@@ -1,28 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>whereami  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="whereami"> donne l&apos;arborescence d&apos;appel de l&apos;instruction courante  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>whereami()  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-  <P>
-    Affiche l&apos;arborescence des appels jusqu&apos;à l&apos;emplacement courant, où se trouve
-    l&apos;appel à whereami(). Peut être utilisé suite à un appel à <VERB>pause</VERB>.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="whereami"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>whereami</refname><refpurpose> donne l'arborescence d'appel de l'instruction courante  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>whereami()</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+  <para>
+    Affiche l'arborescence des appels jusqu'à l'emplacement courant, où se trouve
+    l'appel à whereami(). Peut être utilisé suite à un appel à <literal>pause</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 deff('y=test(a)',['y=sin(a)+1';
                   'y=t1(y)';
                   'y=y+1'])
 deff('y=t1(y)',['y=y^2';'whereami()'])
 test(1)
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>where</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pause</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>errcatch</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="where">where</link> </member>     <member> <link linkend="pause">pause</link> </member>     <member> <link linkend="errcatch">errcatch</link> </member>
+  </simplelist></refsection>
+</refentry>

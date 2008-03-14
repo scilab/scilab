@@ -1,63 +1,56 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>rowcomprX  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="rowcompr"> compression de lignes d&apos;une matrice de polynômes  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[X,rk,Ac]=rowcompr(A)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>A  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice de polynômes
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>Y  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice carrée de polynômes (base unimodulaire à gauche)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>rk  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : rang normal de <VERB>A</VERB>
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>Ac  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : <VERB>Ac=X*A</VERB>, matrice de polynômes
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    Compression de lignes de la matrice de polynômes <VERB>A </VERB>.
-  </P>
-  <P>
-    <VERB>X</VERB> est une base de polynômes unimodulaire à gauche qui compresse les lignes
-    de <VERB>A</VERB>. <VERB>rk</VERB> est le rang normal de A.
-  </P>
-  <P>
-    Attention : élimination des termes &quot;petits&quot; (à utiliser avec précaution).
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>colcompr</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rowcompr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>rowcompr</refname><refpurpose> compression de lignes d'une matrice de polynômes  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[X,rk,Ac]=rowcompr(A)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>A  </term>
+  <listitem>
+  <para>matrice de polynômes
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>Y  </term>
+  <listitem>
+  <para>matrice carrée de polynômes (base unimodulaire à gauche)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>rk  </term>
+  <listitem>
+  <para>rang normal de <literal>A</literal>
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>Ac  </term>
+  <listitem>
+  <para>
+    : <literal>Ac=X*A</literal>, matrice de polynômes
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    Compression de lignes de la matrice de polynômes <literal>A </literal>.
+  </para>
+  <para>
+    <literal>X</literal> est une base de polynômes unimodulaire à gauche qui compresse les lignes
+    de <literal>A</literal>. <literal>rk</literal> est le rang normal de A.
+  </para>
+  <para>
+    Attention : élimination des termes "petits" (à utiliser avec précaution).
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="colcompr">colcompr</link> </member>
+  </simplelist></refsection>
+</refentry>

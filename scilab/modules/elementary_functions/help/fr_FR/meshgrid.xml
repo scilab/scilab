@@ -1,58 +1,52 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="meshgrid"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>meshgrid</refname><refpurpose> construit des matrices ou des tableaux
+  3-D</refpurpose></refnamediv>
+  
 
-  <TITLE>meshgrid</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="meshgrid"> construit des matrices ou des tableaux
-  3-D</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[X, Y] = meshgrid(x)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[X, Y] = meshgrid(x)
+[X, Y] = meshgrid(x,y)
+[X, Y, Z] = meshgrid(x,y,z)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>[X, Y] = meshgrid(x,y)</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x, y, z</term>
 
-    <CALLING_SEQUENCE_ITEM>[X, Y, Z] = meshgrid(x,y,z)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+        <listitem>
+          <para>des vecteurs</para>
+        </listitem>
+      </varlistentry>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>x, y, z</PARAM_NAME>
+      <varlistentry>
+        <term>X, Y, Z</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: des vecteurs</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>des matrices dans le cas de 2 arguments d'entrées, sinon des
+          tableaux des tableaux 3-D dans le cas de 3 arguments d'entrées </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>X, Y, Z</PARAM_NAME>
+  <refsection><title>Description</title>
+    <para>...</para>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: des matrices dans le cas de 2 arguments d'entrées, sinon des
-          tableaux des tableaux 3-D dans le cas de 3 arguments d'entrées </SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+// ]]></programlisting></refsection>
 
-  <DESCRIPTION>
-    <P>...</P>
-  </DESCRIPTION>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="ndgrid">ndgrid</link>
+    </member>
+  </simplelist></refsection>
 
-  <EXAMPLE><![CDATA[
-// ]]></EXAMPLE>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ndgrid</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHOR>Farid Belahcene</AUTHOR>
-</MAN>
+  <refsection><title>Auteurs</title><para>Farid Belahcene</para></refsection>
+</refentry>

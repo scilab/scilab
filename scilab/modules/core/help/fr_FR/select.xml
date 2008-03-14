@@ -1,16 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>select  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="select"> mot-clé utilisé dans une structure select ... case  </SHORT_DESCRIPTION>
-  <DESCRIPTION>
-  <P>
-    Mot-clé utilisé dans une structure <VERB>select ... case</VERB>, à utiliser de la façon suivante :
-  </P>
-  <VERBATIM><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="select"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>select</refname><refpurpose> mot-clé utilisé dans une structure select ... case  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+  <para>
+    Mot-clé utilisé dans une structure <literal>select ... case</literal>, à utiliser de la façon suivante :
+  </para>
+  <programlisting><![CDATA[
  select expr,
    case expr1 then instructions1,
    case expr2 then instructions2,
@@ -18,29 +16,29 @@
    case exprn then instructions,
    [else instructions],
  end
-   ]]></VERBATIM>
+   ]]></programlisting>
 
-  <P>
+  <para>
     Notes :
-  </P>
+  </para>
  
-<DESCRIPTION_INDENT>
-  <DESCRIPTION_ITEM  label="-">
-  <SP>La seule contrainte est que chaque mot-clé &quot;then&quot; soit sur la même ligne que le &quot;case&quot; correspondant.</SP> 
-  </DESCRIPTION_ITEM>
+<itemizedlist>
+  <listitem>
+  <para>La seule contrainte est que chaque mot-clé "then" soit sur la même ligne que le "case" correspondant.</para> 
+  </listitem>
 
-  <DESCRIPTION_ITEM  label="-">
-  <SP>Le mot-clé then peut être remplacé par un passage à la ligne ou une virgule.
-     Les <VERB>instructions1</VERB> sont exécutées si <VERB>expr1=expr</VERB>, etc. 
-</SP>
-  </DESCRIPTION_ITEM>
-</DESCRIPTION_INDENT>
-  <P>
-    Attention : le nombre de caractères constituant le corps d&apos;une instruction conditionnelle (if while for ou select/case) est limité à 16k..
-  </P>
+  <listitem>
+  <para>Le mot-clé then peut être remplacé par un passage à la ligne ou une virgule.
+     Les <literal>instructions1</literal> sont exécutées si <literal>expr1=expr</literal>, etc. 
+</para>
+  </listitem>
+</itemizedlist>
+  <para>
+    Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k..
+  </para>
 
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 while %t do
   n=round(10*rand(1,1))
   select n
@@ -53,8 +51,8 @@ while %t do
   end
 end
   
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>if</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>while</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>for</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="if">if</link> </member>     <member> <link linkend="while">while</link> </member>     <member> <link linkend="for">for</link> </member>
+  </simplelist></refsection>
+</refentry>

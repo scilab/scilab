@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,55 +10,48 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>graph_diameter  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="graph_diameter"> diamètre d&apos;un graphe  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[d,p] = graph_diameter(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste) 
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>d  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>p  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur ligne d&apos;entiers
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>graph_diameter</VERB> calcule le diamètre du graphe <VERB>g</VERB> i.e. le
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="graph_diameter"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graph_diameter</refname><refpurpose> diamètre d'un graphe  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[d,p] = graph_diameter(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste) 
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>d  </term>
+  <listitem>
+  <para>entier
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>p  </term>
+  <listitem>
+  <para>vecteur ligne d'entiers
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>graph_diameter</literal> calcule le diamètre du graphe <literal>g</literal> i.e. le
     plus grand des plus courts chemins entre deux sommets. La longueur des arcs 
     est supposée entière (1 par défaut). La sortie est la valeur
-    <VERB>d</VERB> de la longueur du
-    diamètre et <VERB>p</VERB> est le chemin correspondant.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+    <literal>d</literal> de la longueur du
+    diamètre et <literal>p</literal> est le chemin correspondant.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 11 12 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 15 12 13  9 14 11 16 1 17 14 15];
 g=make_graph('foo',0,17,ta,he);
@@ -69,8 +61,8 @@ g('node_diam')=[1:(g('node_number'))]+20;
 show_graph(g);
 [d,p] = graph_diameter(g)
 show_arcs(p);
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>graph_center</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="graph_center">graph_center</link> </member>
+  </simplelist></refsection>
+</refentry>

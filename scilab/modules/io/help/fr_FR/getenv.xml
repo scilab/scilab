@@ -1,41 +1,35 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>getenv  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="getenv"> renvoie la valeur d&apos;une variable d&apos;environnement  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>env=getenv(str [, rep] )  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>str  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : chaîne de caractères contenant le nom de la variable d&apos;environnement rep : chaîne de caractères optionnelle. Quand elle est utilisée, <VERB>getenv</VERB> renvoie la valeur <VERB>rep</VERB> quand la variable d&apos;environnement <VERB>str</VERB> n&apos;existe pas. 
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>env  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : chaîne de caractères contenant la valeur de la variable d&apos;environnement
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    Renvoie la la valeur d&apos;une variable d&apos;environnement, quand celle-ci existe.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getenv"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getenv</refname><refpurpose> renvoie la valeur d'une variable d'environnement  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>env=getenv(str [, rep] )</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>str  </term>
+  <listitem>
+  <para>chaîne de caractères contenant le nom de la variable d'environnement rep : chaîne de caractères optionnelle. Quand elle est utilisée, <literal>getenv</literal> renvoie la valeur <literal>rep</literal> quand la variable d'environnement <literal>str</literal> n'existe pas. 
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>env  </term>
+  <listitem>
+  <para>chaîne de caractères contenant la valeur de la variable d'environnement
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    Renvoie la la valeur d'une variable d'environnement, quand celle-ci existe.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
  getenv('SCI')
  getenv('FOO','foo') 
- ]]></EXAMPLE>
-</MAN>
+ ]]></programlisting></refsection>
+</refentry>

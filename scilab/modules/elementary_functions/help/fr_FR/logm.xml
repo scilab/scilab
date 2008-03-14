@@ -1,35 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>logm  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="logm"> logarithme matriciel d&apos;une matrice carrée  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>y=logm(x)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice carrée
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>logm(x)</VERB> est le logarithme matriciel de <VERB>x</VERB>.
-    Le résultat est complexe si <VERB>x</VERB> n&apos;est pas positive ou définie positive.
-    Si <VERB>x</VERB> est une matrice symétrique, le calcul est fait en utilisant la forme de Schur. Sinon, <VERB>x</VERB> est supposée diagonalisable. On a 
-    <VERB>expm(logm(x))=x</VERB> 
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="logm"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>logm</refname><refpurpose> logarithme matriciel d'une matrice carrée  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>y=logm(x)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x  </term>
+  <listitem>
+  <para>matrice carrée
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>logm(x)</literal> est le logarithme matriciel de <literal>x</literal>.
+    Le résultat est complexe si <literal>x</literal> n'est pas positive ou définie positive.
+    Si <literal>x</literal> est une matrice symétrique, le calcul est fait en utilisant la forme de Schur. Sinon, <literal>x</literal> est supposée diagonalisable. On a 
+    <literal>expm(logm(x))=x</literal> 
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 A=[1,2;3,4];
 logm(A)
 expm(logm(A))
@@ -38,8 +33,8 @@ logm(A1)
 expm(logm(A1))
 A1(1,1)=%i;
 expm(logm(A1))
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>expm</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>log</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="expm">expm</link> </member>     <member> <link linkend="log">log</link> </member>
+  </simplelist></refsection>
+</refentry>

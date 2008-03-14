@@ -1,77 +1,69 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>power  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="power"> élévation à la puissance (^,.^)   </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>t=A^b  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>t=A**b  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>t=A.^b  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>A,t  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice réelle, complexe, polynomiale ou rationnelle
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>b  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice réelle, complexe, polynomiale ou rationnelle
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="power"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>power</refname><refpurpose> élévation à la puissance (^,.^)   </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>t=A^b
+t=A**b
+t=A.^b</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>A,t  </term>
+  <listitem>
+  <para>matrice réelle, complexe, polynomiale ou rationnelle
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>b  </term>
+  <listitem>
+  <para>matrice réelle, complexe, polynomiale ou rationnelle
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
  
-<DESCRIPTION_INDENT>
-  <DESCRIPTION_ITEM  label='(A:matrice carrée)^(b:scalaire)'> 
-  <SP>
-    : Si <VERB>A</VERB> est une matrice carrée et <VERB>b</VERB> un scalaire alors  <VERB>A^b</VERB> est la matrice <VERB>A</VERB> élevée à la puissance <VERB>b</VERB>.
-</SP>
-  </DESCRIPTION_ITEM>
+<variablelist>
+  <varlistentry><term>(A:matrice carrée)^(b:scalaire)</term><listitem> 
+  <para>Si <literal>A</literal> est une matrice carrée et <literal>b</literal> un scalaire alors  <literal>A^b</literal> est la matrice <literal>A</literal> élevée à la puissance <literal>b</literal>.
+</para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='(A:matrice).^(b:scalaire)'> 
-  <SP>
-    : Si <VERB>b</VERB> est un un scalaire et <VERB>A</VERB> une matrice alors <VERB>A.^b</VERB>  est la matrice formée par les éléments de <VERB>A</VERB> élevés à la puissance <VERB>b</VERB> (puissance élément par élément). Si <VERB>A</VERB> est un vecteur et <VERB>b</VERB> un scalaire alors  <VERB>A^b</VERB> et <VERB>A.^b</VERB> donnent le même résultat (puissance élément par élément).
-</SP>
-  </DESCRIPTION_ITEM>
+  <varlistentry><term>(A:matrice).^(b:scalaire)</term><listitem> 
+  <para>Si <literal>b</literal> est un un scalaire et <literal>A</literal> une matrice alors <literal>A.^b</literal>  est la matrice formée par les éléments de <literal>A</literal> élevés à la puissance <literal>b</literal> (puissance élément par élément). Si <literal>A</literal> est un vecteur et <literal>b</literal> un scalaire alors  <literal>A^b</literal> et <literal>A.^b</literal> donnent le même résultat (puissance élément par élément).
+</para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='(A:scalaire).^(b:matrice)'> 
-  <SP>
-    Si <VERB>A</VERB> est un scalaire et <VERB>b</VERB> est une matrice <VERB>A^b</VERB> et <VERB>A.^b</VERB> sont deux matrices de même taille que b dont les termes sont égaux à <VERB> a^(b(i,j))</VERB>.
-</SP>
-  </DESCRIPTION_ITEM>
+  <varlistentry><term>(A:scalaire).^(b:matrice)</term><listitem> 
+  <para>
+    Si <literal>A</literal> est un scalaire et <literal>b</literal> est une matrice <literal>A^b</literal> et <literal>A.^b</literal> sont deux matrices de même taille que b dont les termes sont égaux à <literal> a^(b(i,j))</literal>.
+</para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='(A:matrice).^(b:matrice)'> 
-  <SP>
-    Si <VERB>A</VERB> et <VERB>b</VERB> sont des matrices de même taille <VERB>A.^b</VERB> est la matrice dont les termes sont égaux à <VERB>A(i,j)^b(i,j)</VERB>.
-</SP>
-  </DESCRIPTION_ITEM>
-</DESCRIPTION_INDENT>
-  <P>
+  <varlistentry><term>(A:matrice).^(b:matrice)</term><listitem> 
+  <para>
+    Si <literal>A</literal> et <literal>b</literal> sont des matrices de même taille <literal>A.^b</literal> est la matrice dont les termes sont égaux à <literal>A(i,j)^b(i,j)</literal>.
+</para>
+  </listitem></varlistentry>
+</variablelist>
+  <para>
     Notes :
-  </P>
-  <P>
+  </para>
+  <para>
      -
-    Pour les matrices carrées <VERB>A^p</VERB> est calculé par multiplications successives si <VERB>p</VERB> est un entier positif, et par diagonalisation sinon.
-  </P>
-  <P>
+    Pour les matrices carrées <literal>A^p</literal> est calculé par multiplications successives si <literal>p</literal> est un entier positif, et par diagonalisation sinon.
+  </para>
+  <para>
      -
-    Les opérateurs <VERB>**</VERB> et <VERB>^</VERB> sont synonymes.
-  </P>
+    Les opérateurs <literal>**</literal> et <literal>^</literal> sont synonymes.
+  </para>
  
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 A=[1 2;3 4];
 A^2.5,
 A.^2.5
@@ -80,8 +72,8 @@ A.^2.5
 
 s=poly(0,'s')
 s^(1:10)
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>exp</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="exp">exp</link> </member>
+  </simplelist></refsection>
+</refentry>

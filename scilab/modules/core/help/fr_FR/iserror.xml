@@ -1,25 +1,21 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>iserror  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="iserror"> test d&apos;occurrence d&apos;une erreur  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>iserror([n])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-  <P>
-    Vérifie si l&apos;erreur <VERB>n</VERB> a eu lieu (après un appel à
-    <VERB>errcatch</VERB>). <VERB>iserror</VERB> renvoie <VERB>1</VERB> si l&apos;erreur a eu lieu
-    et <VERB>0</VERB> sinon.
-  </P>
-  <P>
-    <VERB>n&gt;0</VERB> est le numéro de l&apos;erreur; toutes les erreurs sont testées si <VERB>n&lt;0</VERB>.
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>error</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>errcatch</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="iserror"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>iserror</refname><refpurpose> test d'occurrence d'une erreur  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>iserror([n])</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+  <para>
+    Vérifie si l'erreur <literal>n</literal> a eu lieu (après un appel à
+    <literal>errcatch</literal>). <literal>iserror</literal> renvoie <literal>1</literal> si l'erreur a eu lieu
+    et <literal>0</literal> sinon.
+  </para>
+  <para>
+    <literal>n&gt;0</literal> est le numéro de l'erreur; toutes les erreurs sont testées si <literal>n&lt;0</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="error">error</link> </member>     <member> <link linkend="errcatch">errcatch</link> </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,34 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="with_macros_source"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>with_macros_source</refname><refpurpose>Teste si les sources des macros sont installées</refpurpose></refnamediv>
+  
 
-  <TITLE>with_macros_source</TITLE>
+  
 
-  <TYPE>Fonction Scilab </TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="with_macros_source">Teste si les sources des macros sont installées</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>r=with_macros_source()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>r=with_macros_source()</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>r</PARAM_NAME>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>r</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: a boolean</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>a boolean</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>Returns <VERB>%t</VERB> Teste si les sources des macros sont installées retourne alors
-    <VERB>%f</VERB> dans le cas contraire.</P>
-  </DESCRIPTION>
-</MAN>
+  <refsection><title>Description</title>
+    <para>Returns <literal>%t</literal> Teste si les sources des macros sont installées retourne alors
+    <literal>%f</literal> dans le cas contraire.</para>
+  </refsection>
+</refentry>

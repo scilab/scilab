@@ -1,59 +1,54 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>ROOTS  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="roots"> racines d&apos;un polynôme
-  </SHORT_DESCRIPTION> 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[x]=roots(p)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>p  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : polynôme à coefficients réels ou complexes ou vecteur des coefficients du
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="roots"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>roots</refname><refpurpose> racines d'un polynôme
+  </refpurpose></refnamediv>
+  
+  
+  
+  
+   
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[x]=roots(p)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>p  </term>
+  <listitem>
+  <para>polynôme à coefficients réels ou complexes ou vecteur des coefficients du
 	    polynŽôme ordonnés par puissance décroissante (compatibilité avec
-	    Matlab).</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>x=roots(p)</VERB> renvoie dans le vecteur complexe <VERB>x</VERB> les
-      racines du polynôme <VERB>p</VERB>. Pour les polynŽômes à coéfficients
+	    Matlab).</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>x=roots(p)</literal> renvoie dans le vecteur complexe <literal>x</literal> les
+      racines du polynôme <literal>p</literal>. Pour les polynŽômes à coéfficients
       réels et de degré &lt;=100, l'algorithme rapide RPOLY est utilisé. Dans
       les autres cas les racines sont calculées comme valeurs propres de la
       matrice compagnion du polynŽôme. Pour forcer ce dernier algorithme dans
-      tous les cas utilisez <VERB>x=roots(p,'e')</VERB>.  
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+      tous les cas utilisez <literal>x=roots(p,'e')</literal>.  
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 p=poly([0,10,1+%i,1-%i],'x');
 roots(p)
 A=rand(3,3);roots(poly(A,'x'))    // comparaison via le polynôme caractéristique
 spec(A) 
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>companion</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHORS>
-    <AUTHORS_ITEM>Serge Steer (INRIA)</AUTHORS_ITEM>
-  </AUTHORS>
-  <BIBLIO>
-    <SP>La routine RPOLY est decrite dans ACM TOMS 1 (1975) 178-189</SP>
-  </BIBLIO>
-  <USED_FUNCTIONS>
-    <SP>Le code source de rpoly.f peut être trouvé dans le repertoire
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="poly">poly</link> </member>
+    <member> <link linkend="spec">spec</link> </member>
+    <member> <link linkend="companion">companion</link> </member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>Serge Steer (INRIA)</member>
+  </simplelist></refsection>
+  <refsection><title>Bibliographie</title>
+    <para>La routine RPOLY est decrite dans ACM TOMS 1 (1975) 178-189</para>
+  </refsection>
+  <refsection><title>Fonctions Utilisées</title>
+    <para>Le code source de rpoly.f peut être trouvé dans le repertoire
       routines/control de la distribution source de Scilab. Le calcul des
       valeurs propores est effectué en utilisant les routines DGEEV et ZGEEV de
-      LAPACK. </SP> 
-  </USED_FUNCTIONS>
-</MAN>
+      LAPACK. </para> 
+  </refsection>
+</refentry>

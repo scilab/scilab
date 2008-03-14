@@ -1,40 +1,34 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="perl"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>perl</refname><refpurpose>execute le script Perl.</refpurpose></refnamediv>
+  
 
-  <TITLE>perl</TITLE>
+  
 
-  <TYPE>Fonction Scilab</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="perl">execute le script Perl.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>perl('perlfile')</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>perl('perlfile')
+perl('perlfile',arg1,arg2,...)
+result = perl(...)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>perl('perlfile',arg1,arg2,...)</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Description</title>
+    <para>perl('perlfile') appelle le script Perl perlfile.</para>
 
-    <CALLING_SEQUENCE_ITEM>result = perl(...)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+    <para>perl('perlfile',arg1,arg2,...) appelle le script Perl perlfile et passe
+    les arguments arg1, arg2, ..., à perlfile.</para>
 
-  <DESCRIPTION>
-    <P>perl('perlfile') appelle le script Perl perlfile.</P>
+    <para>result = perl(...) retourne le resultat du script Perl.</para>
+  </refsection>
 
-    <P>perl('perlfile',arg1,arg2,...) appelle le script Perl perlfile et passe
-    les arguments arg1, arg2, ..., à perlfile.</P>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="unix">unix</link>
+    </member>
+  </simplelist></refsection>
 
-    <P>result = perl(...) retourne le resultat du script Perl.</P>
-  </DESCRIPTION>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>unix</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

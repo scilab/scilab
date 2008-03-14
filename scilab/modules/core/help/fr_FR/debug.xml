@@ -1,55 +1,50 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="debug"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>debug</refname><refpurpose>niveau de déboggage</refpurpose></refnamediv>
+  
 
-  <TITLE>debug</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="debug">niveau de déboggage</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>debug(level-int)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>debug(level-int)
+level-int=debug()</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>level-int=debug()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>level-int</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>level-int</PARAM_NAME>
+        <listitem>
+          <para>entier (entre -1 et 4)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: entier (entre -1 et 4)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P>Pour les valeurs 0,1,2,3,4 de <VERB>level-int</VERB> ,
-    <VERB>debug</VERB> définit différents niveaux de déboggage. Ces niveaux
+  <refsection><title>Description</title>
+    <para>Pour les valeurs 0,1,2,3,4 de <literal>level-int</literal> ,
+    <literal>debug</literal> définit différents niveaux de déboggage. Ces niveaux
     sont ciblés sur le déboggage de l'interpréteur et non des scripts Scilab,
-    et sont dédiés aux experts de Scilab.</P>
+    et sont dédiés aux experts de Scilab.</para>
 
-    <P>Pour la valeur -1 de <VERB>level-int</VERB> , <VERB>debug</VERB>
+    <para>Pour la valeur -1 de <literal>level-int</literal> , <literal>debug</literal>
     définit un niveau spécial de déboggage dédié à l'instruction Tcl
-    ScilabEval.</P>
+    ScilabEval.</para>
 
-    <P>Voir aussi le débuggueur intégré à l'éditeur <VERB>Scipad</VERB>, qui
-    est ciblé sur le déboggage des scripts Scilab.</P>
-  </DESCRIPTION>
+    <para>Voir aussi le débuggueur intégré à l'éditeur <literal>Scipad</literal>, qui
+    est ciblé sur le déboggage des scripts Scilab.</para>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>ScilabEval</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="ScilabEval">ScilabEval</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>scipad</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="scipad">scipad</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,68 +10,60 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>max_cap_path  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="max_cap_path"> chemin de capacité maximum  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[p,cap] = max_cap_path(i,j,g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>i,j  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entiers, numéros des sommets
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>p  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur ligne des numéros des arcs du chemin s&apos;il existe
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>cap  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : valeur de la capacité du chemin
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>max_cap_path</VERB> renvoie le chemin de capacité maximum du sommet
-    <VERB>i</VERB> au sommet <VERB>j</VERB> pour le graphe <VERB>g</VERB> s&apos;il existe, et renvoie 
-    le vecteur vide <VERB>[]</VERB> sinon.
-  </P>
-  <P>
-    Les capacités des arêtes sont données par l&apos;élément <VERB>edge_max_cap</VERB>
-    du graphe. Si sa valeur n&apos;est pas donnée (vecteur vide <VERB>[]</VERB>), 
-    <VERB>max_cap_path</VERB> renvoie le vecteur vide <VERB>[]</VERB>.
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="max_cap_path"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>max_cap_path</refname><refpurpose> chemin de capacité maximum  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[p,cap] = max_cap_path(i,j,g)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>i,j  </term>
+  <listitem>
+  <para>entiers, numéros des sommets
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>p  </term>
+  <listitem>
+  <para>vecteur ligne des numéros des arcs du chemin s'il existe
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>cap  </term>
+  <listitem>
+  <para>valeur de la capacité du chemin
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>max_cap_path</literal> renvoie le chemin de capacité maximum du sommet
+    <literal>i</literal> au sommet <literal>j</literal> pour le graphe <literal>g</literal> s'il existe, et renvoie 
+    le vecteur vide <literal>[]</literal> sinon.
+  </para>
+  <para>
+    Les capacités des arêtes sont données par l'élément <literal>edge_max_cap</literal>
+    du graphe. Si sa valeur n'est pas donnée (vecteur vide <literal>[]</literal>), 
+    <literal>max_cap_path</literal> renvoie le vecteur vide <literal>[]</literal>.
     Les capacités doivent être strictement positives, i.e les capacités 
     négatives sont considérées égales à 0 (aucune capacité).
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -86,5 +77,5 @@ edgecolor=1*ones(1,ma); edgecolor(p)=11*ones(p); g('edge_color')=edgecolor;
 x_message(['La capacité maximum est : '+string(cap);
            'Voici le chemin correspondant']);
 show_graph(g); show_arcs(p);
- ]]></EXAMPLE>
-</MAN>
+ ]]></programlisting></refsection>
+</refentry>

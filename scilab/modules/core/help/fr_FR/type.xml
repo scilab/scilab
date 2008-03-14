@@ -1,102 +1,96 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>type  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="type"> type d&apos;une variable  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[i]=type(x)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : objet Scilab
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>i  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>type(x)</VERB> renvoie un entier donnant le code numérique du type de <VERB>x</VERB> définit comme suit :
-  </P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="type"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>type</refname><refpurpose> type d'une variable  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[i]=type(x)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x  </term>
+  <listitem>
+  <para>objet Scilab
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>i  </term>
+  <listitem>
+  <para>entier
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>type(x)</literal> renvoie un entier donnant le code numérique du type de <literal>x</literal> définit comme suit :
+  </para>
  
-  <P>
+  <para>
      1 
     :  matrice réelle ou complexe
-  </P>
-  <P>
+  </para>
+  <para>
      2 
     :  matrice polynomiale
-  </P>
-  <P>
+  </para>
+  <para>
      4 
     :  matrice booléenne
-  </P>
-  <P>
+  </para>
+  <para>
      5
     :  matrice creuse
-  </P>
-  <P>
+  </para>
+  <para>
      6
     :  matrice creuse booléene
-  </P>
-  <P>
+  </para>
+  <para>
      8
-    :  matrice d&apos;entiers codés sur 1, 2 ou 4 octets
-  </P>
-  <P>
+    :  matrice d'entiers codés sur 1, 2 ou 4 octets
+  </para>
+  <para>
      9
     :  matrice de "handle" sur les objets graphiques
-  </P>
-  <P>
+  </para>
+  <para>
      10 
     :  matrice de chaînes de caractères
-  </P>
-  <P>
+  </para>
+  <para>
      11 
     :  fonction non-compilée
-  </P>
-  <P>
+  </para>
+  <para>
      13 
     :  fonction compilée
-  </P>
-  <P>
+  </para>
+  <para>
      14 
-    :  fonction d&apos;une librairie
-  </P>
-  <P>
+    :  fonction d'une librairie
+  </para>
+  <para>
      15 
     :  liste
-  </P>
-  <P>
+  </para>
+  <para>
      16 
     :  liste typée (tlist)
-  </P>
-   <P>
+  </para>
+   <para>
      17
     :  mlist
-  </P>
-  <P>
+  </para>
+  <para>
      128
     : pointeur
-  </P>
+  </para>
  
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>typeof</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="typeof">typeof</link> </member>
+  </simplelist></refsection>
+</refentry>

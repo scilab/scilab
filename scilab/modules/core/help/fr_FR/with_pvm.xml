@@ -1,28 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>fr</LANGUAGE>
-	<TITLE>with_pvm</TITLE>
-	<TYPE>Scilab Function</TYPE>
-	<DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="with_pvm">Test si Scilab a été compilé avec l'interface &quot;Parallel Virtual Machine&quot;</SHORT_DESCRIPTION>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="with_pvm"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>with_pvm</refname><refpurpose>Test si Scilab a été compilé avec l'interface "Parallel Virtual Machine"</refpurpose></refnamediv>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>r=with_pvm()   </CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
-	<PARAM>
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>r</PARAM_NAME>
-				<PARAM_DESCRIPTION>
-					<SP>: a boolean</SP>
-				</PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
-	<DESCRIPTION>
-		<P>
-			Retourne <VERB>%t</VERB> si Scilab a été compilé avec l'interface &quot;Parallel Virtual Machine&quot; ou <VERB>%f</VERB> sinon.
-		</P>
-	</DESCRIPTION>
-</MAN>
+	
+	
+	
+	
+	
+	<refsynopsisdiv><title>Séquence d'appel</title><synopsis>r=with_pvm()</synopsis></refsynopsisdiv>
+	<refsection><title>Paramètres</title>
+		<variablelist>
+			<varlistentry>
+				<term>r</term>
+				<listitem>
+					<para>a boolean</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+	<refsection><title>Description</title>
+		<para>
+			Retourne <literal>%t</literal> si Scilab a été compilé avec l'interface "Parallel Virtual Machine" ou <literal>%f</literal> sinon.
+		</para>
+	</refsection>
+</refentry>

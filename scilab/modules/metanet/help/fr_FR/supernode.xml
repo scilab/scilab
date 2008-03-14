@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,58 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>supernode  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="supernode"> remplace un groupe de sommets par un super-sommet  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>g1 = supernode(v,g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>v  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur ligne, numéros des sommets 
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>g1  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : nouveau graphe (liste) 
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>supernode</VERB> renvoie le graphe <VERB>g1</VERB> avec les sommets de numéros donnés
-    par le vecteur <VERB>v</VERB> contractés en un seul sommet. Le numéro du super-sommet 
-    est le plus petit numéro de <VERB>v</VERB>. Les caractéristiques des anciens sommets
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="supernode"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>supernode</refname><refpurpose> remplace un groupe de sommets par un super-sommet  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>g1 = supernode(v,g)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>v  </term>
+  <listitem>
+  <para>vecteur ligne, numéros des sommets 
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>g1  </term>
+  <listitem>
+  <para>nouveau graphe (liste) 
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>supernode</literal> renvoie le graphe <literal>g1</literal> avec les sommets de numéros donnés
+    par le vecteur <literal>v</literal> contractés en un seul sommet. Le numéro du super-sommet 
+    est le plus petit numéro de <literal>v</literal>. Les caractéristiques des anciens sommets
     et arêtes sont conservées. Le super-sommet est positionné au barycentre des sommets de
-    <VERB>v</VERB>. Le diamètre et l&apos;épaisseur du super-sommet sont le double de ceux du sommet remplacé.
-  </P>
-  <P>
+    <literal>v</literal>. Le diamètre et l'épaisseur du super-sommet sont le double de ceux du sommet remplacé.
+  </para>
+  <para>
     La demande du nouveau sommet, si elle est définie, est la somme des demandes des sommets contractés.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -75,8 +67,8 @@ v=[7 10 13 9];
 show_nodes(v);
 g1=supernode(v,g);
 show_graph(g1,'new');
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>add_edge</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>add_node</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>delete_arcs</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>delete_nodes</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="add_edge">add_edge</link> </member>     <member> <link linkend="add_node">add_node</link> </member>     <member> <link linkend="delete_arcs">delete_arcs</link> </member>     <member> <link linkend="delete_nodes">delete_nodes</link> </member>
+  </simplelist></refsection>
+</refentry>

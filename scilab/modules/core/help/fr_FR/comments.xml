@@ -1,20 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="comments"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>comments</refname><refpurpose>commentaires</refpurpose></refnamediv>
+  
 
-  <TITLE>comments</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="comments">commentaires</SHORT_DESCRIPTION>
+  
 
-  <DESCRIPTION>
-    <P>Les lignes de commandes commençant par <VERB> // </VERB> ne sont pas
-    interprétées par Scilab.</P>
+  <refsection><title>Description</title>
+    <para>Les lignes de commandes commençant par <literal> // </literal> ne sont pas
+    interprétées par Scilab.</para>
 
 
-  </DESCRIPTION>
-</MAN>
+  </refsection>
+</refentry>

@@ -1,61 +1,56 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="struct"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoÃ» 2006) $</pubdate></info><refnamediv><refname>struct</refname><refpurpose>creer une struct</refpurpose></refnamediv>
+  
 
-  <TITLE>struct</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoÃ» 2006) $</DATE>
+  
 
-  <SHORT_DESCRIPTION name="struct">creer une struct</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>st=struct(field1,value1,field2,value2,
-    ...)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>st=struct(field1,value1,field2,value2, ...)</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>field1, field2, ...</PARAM_NAME>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>field1, field2, ...</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: noms des champs (chaines de caracteres)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+        <listitem>
+          <para>noms des champs (chaines de caracteres)</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>value1, value2, ...</PARAM_NAME>
+      <varlistentry>
+        <term>value1, value2, ...</term>
 
-        <PARAM_DESCRIPTION>
-          <SP>: les valeurs des champs (acceptent tous types de données
-          (double, matrice de doubles,des cells, char, ...)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+        <listitem>
+          <para>les valeurs des champs (acceptent tous types de données
+          (double, matrice de doubles,des cells, char, ...)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P>La fonction <VERB>struc</VERB>t retourne une struct avec des noms de
-    champs <VERB>field1</VERB>, <VERB>field2</VERB>, .., et dont les valeurs
-    respectives sont <VERB>value</VERB><VERB>1</VERB>, <VERB>value2</VERB>,
-    ...</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para>La fonction <literal>struc</literal>t retourne une struct avec des noms de
+    champs <literal>field1</literal>, <literal>field2</literal>, .., et dont les valeurs
+    respectives sont <literal>value</literal><literal>1</literal>, <literal>value2</literal>,
+    ...</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[//creer une struct: date les champs sont: 'jour' (valeur: 25), 'mois' (valeur: 'DEC'), 'annee' (valeur: 2006) 
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[//creer une struct: date les champs sont: 'jour' (valeur: 25), 'mois' (valeur: 'DEC'), 'annee' (valeur: 2006) 
 date=struct('jour',25,'mois','DEC','annee',2006)
 // changer la valeur des champs
 date.jour=19;
 date.mois='AOU';
 date.annee=1973;
 // ajouter un champ 'semaine'
-date.semaine=32]]></EXAMPLE>
+date.semaine=32]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>cell</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="cell">cell</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

@@ -1,59 +1,52 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>coeff  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="coeff"> coefficients d&apos;une matrice de polynômes  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[C]=coeff(Mp [,v])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>Mp  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice de polynômes
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>v  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur (ligne ou colonne) d&apos;entiers des degrés choisis
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>C  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : grosse matrice de coefficients
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>C=coeff(Mp)</VERB>
-    renvoie dans une grosse matrice <VERB>C</VERB> les coefficients de la
-    matrice de polynômes <VERB>Mp</VERB>. <VERB>C</VERB> est
-    partitionnée comme <VERB>C=[C0,C1,...,Ck]</VERB> 
-    où les <VERB>Ci</VERB> sont arrangés dans l&apos;ordre décroissant .
-    <VERB>k = maxi(degree(Mp))</VERB>
-  </P>
-  <P>
-    <VERB>C=coeff(Mp,v)</VERB> renvoie la matrice des coefficients avec les 
-    degrés dans <VERB>v</VERB>.
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>degree</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>inv_coeff</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="coeff"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>coeff</refname><refpurpose> coefficients d'une matrice de polynômes  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[C]=coeff(Mp [,v])</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>Mp  </term>
+  <listitem>
+  <para>matrice de polynômes
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>v  </term>
+  <listitem>
+  <para>vecteur (ligne ou colonne) d'entiers des degrés choisis
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>C  </term>
+  <listitem>
+  <para>grosse matrice de coefficients
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>C=coeff(Mp)</literal>
+    renvoie dans une grosse matrice <literal>C</literal> les coefficients de la
+    matrice de polynômes <literal>Mp</literal>. <literal>C</literal> est
+    partitionnée comme <literal>C=[C0,C1,...,Ck]</literal> 
+    où les <literal>Ci</literal> sont arrangés dans l'ordre décroissant .
+    <literal>k = maxi(degree(Mp))</literal>
+  </para>
+  <para>
+    <literal>C=coeff(Mp,v)</literal> renvoie la matrice des coefficients avec les 
+    degrés dans <literal>v</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="poly">poly</link> </member> 
+    <member> <link linkend="degree">degree</link> </member> 
+    <member> <link linkend="inv_coeff">inv_coeff</link> </member>
+  </simplelist></refsection>
+</refentry>

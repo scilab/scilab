@@ -1,44 +1,39 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>SFACT  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sfact"> factorisation spectrale en temps discret  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>F=sfact(P)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>P  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice de polynômes réels
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    Trouve <VERB>F</VERB>, un facteur spectral de <VERB>P</VERB>. <VERB>P</VERB> est une
-    matrice de polynômes telle que chaque racine de <VERB>P</VERB> a une image miroir
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sfact"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sfact</refname><refpurpose> factorisation spectrale en temps discret  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>F=sfact(P)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>P  </term>
+  <listitem>
+  <para>matrice de polynômes réels
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    Trouve <literal>F</literal>, un facteur spectral de <literal>P</literal>. <literal>P</literal> est une
+    matrice de polynômes telle que chaque racine de <literal>P</literal> a une image miroir
     par rapport au cercle unité. Le problème est singulier si une racine se trouve sur le cercle unité.
-  </P>
-  <P>
-    <VERB>sfact(P)</VERB>  renvoie une matrice de polynômes <VERB>F(z)</VERB> antistable et telle que
-  </P>
-  <P>
-    <VERB>P = F(z)* F(1/z) *z^n</VERB>
-  </P>
-  <P>
+  </para>
+  <para>
+    <literal>sfact(P)</literal>  renvoie une matrice de polynômes <literal>F(z)</literal> antistable et telle que
+  </para>
+  <para>
+    <literal>P = F(z)* F(1/z) *z^n</literal>
+  </para>
+  <para>
     Pour les polynômes scalaires un algorithme spécifique est utilisé.
     Les algorithmes sont tirés du livre de Kucera.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 // polynôme simple
 z=poly(0,'z');
 p=(z-1/2)*(2-z)
@@ -62,9 +57,9 @@ fn=sfact(wn);f=numer(horner(fn,(1-s)/(s+1))); // Factorisation et transformation
 f=f/sqrt(horner(f*gtild(f,'c'),0));f=f*sqrt(horner(p,0));      // normalisation
 roots(f)    // f est stable
 clean(f*gtild(f,'c')-p)    //f(s)*f(-s) est égal à p(s) 
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>gtild</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>fspecg</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="gtild">gtild</link> </member> 
+    <member> <link linkend="fspecg">fspecg</link> </member>
+  </simplelist></refsection>
+</refentry>

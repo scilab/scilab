@@ -1,40 +1,34 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>int  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="int"> arrondi vers zéro ou troncature  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[y]=int(X)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>X  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice réelle
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>y  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice d&apos;entiers
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>int(X)</VERB> renvoie une matrice d&apos;entiers dont les éléments sont les arrondis vers zéro des éléments de x. Cette fonction est la même que la fonction <VERB>fix</VERB>.
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>round</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>floor</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ceil</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fix</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="int"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>int</refname><refpurpose> arrondi vers zéro ou troncature  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[y]=int(X)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>X  </term>
+  <listitem>
+  <para>matrice réelle
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>y  </term>
+  <listitem>
+  <para>matrice d'entiers
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>int(X)</literal> renvoie une matrice d'entiers dont les éléments sont les arrondis vers zéro des éléments de x. Cette fonction est la même que la fonction <literal>fix</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="round">round</link> </member>     <member> <link linkend="floor">floor</link> </member>     <member> <link linkend="ceil">ceil</link> </member>     <member> <link linkend="fix">fix</link> </member>
+  </simplelist></refsection>
+</refentry>

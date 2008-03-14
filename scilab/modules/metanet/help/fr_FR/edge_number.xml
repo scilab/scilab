@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,46 +10,40 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>edge_number  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="edge_number"> nombre d&apos;arêtes d&apos;un graphe  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>ma = edge_number(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>m  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier, nombre d&apos;arêtes
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>edge_number</VERB> renvoie le nombre <VERB>m</VERB> d&apos;arêtes du graphe.
-    Si le graphe est orienté, il s&apos;agit du nombre d&apos;arcs.
-    Si le graphe est non-orienté, il s&apos;agit de la moitié du nombre d&apos;arêtes.
-    Ce nombre est toujours égal aux dimensions de <VERB>g(&apos;tail&apos;)</VERB> et <VERB>g(&apos;head&apos;)</VERB>.
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>arc_number</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>node_number</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="edge_number"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>edge_number</refname><refpurpose> nombre d'arêtes d'un graphe  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>ma = edge_number(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>m  </term>
+  <listitem>
+  <para>entier, nombre d'arêtes
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>edge_number</literal> renvoie le nombre <literal>m</literal> d'arêtes du graphe.
+    Si le graphe est orienté, il s'agit du nombre d'arcs.
+    Si le graphe est non-orienté, il s'agit de la moitié du nombre d'arêtes.
+    Ce nombre est toujours égal aux dimensions de <literal>g('tail')</literal> et <literal>g('head')</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="arc_number">arc_number</link> </member>     <member> <link linkend="node_number">node_number</link> </member>
+  </simplelist></refsection>
+</refentry>

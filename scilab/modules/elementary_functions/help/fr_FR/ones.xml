@@ -1,72 +1,66 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>ones  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="ones"> matrice remplie de 1  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>y=ones(m1,m2,...)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>y=ones(x)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>y=ones()  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x,y  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrices
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>m1, m2,..  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entiers
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="ones"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ones</refname><refpurpose> matrice remplie de 1  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>y=ones(m1,m2,...)
+y=ones(x)
+y=ones()</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x,y  </term>
+  <listitem>
+  <para>matrices
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>m1, m2,..  </term>
+  <listitem>
+  <para>entiers
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
     Renvoie une matrice dont tous les termes valent 1.
-  </P>
+  </para>
  
-  <DESCRIPTION_INDENT>
-  <DESCRIPTION_ITEM  label='ones(m1,m2)'>
-   <SP> Renvoie une matrice de taille  <VERB>(m1,m2)</VERB> remplie de 1. </SP>
-  </DESCRIPTION_ITEM>
+  <variablelist>
+  <varlistentry><term>ones(m1,m2)</term><listitem>
+   <para> Renvoie une matrice de taille  <literal>(m1,m2)</literal> remplie de 1. </para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='ones(m1,m2,..,mn)'> 
-    <SP>: renvoie une matrice <VERB>(m1,m2,..,mn)</VERB> remplie de 1. </SP>
-  </DESCRIPTION_ITEM>
+  <varlistentry><term>ones(m1,m2,..,mn)</term><listitem> 
+    <para>renvoie une matrice <literal>(m1,m2,..,mn)</literal> remplie de 1. </para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='ones(x)'> 
-   <SP> : renvoie une matrice remplie de 1 de même taille que <VERB>x</VERB>. </SP>
-  </DESCRIPTION_ITEM>
+  <varlistentry><term>ones(x)</term><listitem> 
+   <para>renvoie une matrice remplie de 1 de même taille que <literal>x</literal>. </para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='ones(x)'> 
-    <SP>est aussi valide si <VERB>x</VERB> est une liste de type <VERB>syslin</VERB> (système dynamique linéaire sous forme d&apos;une fonction de transfert ou d&apos;une représentation d&apos;état). </SP>
-  </DESCRIPTION_ITEM>
-  </DESCRIPTION_INDENT>
-  <P>
-    Notez que <VERB>ones(3)</VERB> est équivalent à <VERB>ones(a)</VERB> avec <VERB>a=3</VERB> et donc n&apos;est PAS une matrice 3x3 !
-  </P>
-  <P>
+  <varlistentry><term>ones(x)</term><listitem> 
+    <para>est aussi valide si <literal>x</literal> est une liste de type <literal>syslin</literal> (système dynamique linéaire sous forme d'une fonction de transfert ou d'une représentation d'état). </para>
+  </listitem></varlistentry>
+  </variablelist>
+  <para>
+    Notez que <literal>ones(3)</literal> est équivalent à <literal>ones(a)</literal> avec <literal>a=3</literal> et donc n'est PAS une matrice 3x3 !
+  </para>
+  <para>
     ones() est équivalent à ones(1,1).
-  </P>
+  </para>
  
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 ones(3)
 ones(3,3)
 ones(2,3,2)
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>eye</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>zeros</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="eye">eye</link> </member>     <member> <link linkend="zeros">zeros</link> </member>
+  </simplelist></refsection>
+</refentry>

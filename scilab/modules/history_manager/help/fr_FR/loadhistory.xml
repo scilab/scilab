@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
@@ -10,59 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="loadhistory"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>loadhistory</refname><refpurpose>charge un fichier contenant l'historique</refpurpose></refnamediv>
+  
 
-  <TITLE>loadhistory</TITLE>
+  
 
-  <TYPE>Fonction Scilab</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="loadhistory">charge un fichier contenant l'historique</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>loadhistory()</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>loadhistory()
+loadhistory(f)</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>loadhistory(f)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>f</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>f</PARAM_NAME>
+        <listitem>
+          <para>chemin du fichier à charger</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: chemin du fichier à charger</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
+  <refsection><title>Description</title>
+    <para>charge un fichier contenant l'historique</para>
 
-  <DESCRIPTION>
-    <P>charge un fichier contenant l'historique</P>
+    <para>Par défaut, le nom du fichier contenant l'historique est home+'/history.scilab'</para>
+  </refsection>
 
-    <P>Par défaut, le nom du fichier contenant l'historique est home+'/history.scilab'</P>
-  </DESCRIPTION>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[loadhistory(SCI+'/session.scilab')]]></programlisting></refsection>
 
-  <EXAMPLE><![CDATA[loadhistory(SCI+'/session.scilab')]]></EXAMPLE>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="savehistory">savehistory</link>
+    </member>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>savehistory</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="resethistory">resethistory</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>resethistory</LINK>
-    </SEE_ALSO_ITEM>
+    <member>
+      <link linkend="gethistory">gethistory</link>
+    </member>
+  </simplelist></refsection>
 
-    <SEE_ALSO_ITEM>
-      <LINK>gethistory</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHORS>
-    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>A.C</member>
+  </simplelist></refsection>
+</refentry>

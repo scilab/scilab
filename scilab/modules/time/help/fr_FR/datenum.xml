@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,56 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>fr</LANGUAGE>
-	<TITLE>datenum</TITLE>
-	<TYPE>Fonction Scilab</TYPE>
-	<DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="datenum"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>datenum</refname><refpurpose>Convertie une date en un nombre</refpurpose></refnamediv>
 	
-	<SHORT_DESCRIPTION name="datenum">Convertie une date en un nombre</SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>N = datenum()</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>N = datenum(DT)</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>N = datenum(Y, M, D)</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>N = datenum(Y, M, D, H, MI, S)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<DESCRIPTION>
-		<P>
+	
+	
+	
+	
+	<refsynopsisdiv><title>Séquence d'appel</title><synopsis>N = datenum()
+N = datenum(DT)
+N = datenum(Y, M, D)
+N = datenum(Y, M, D, H, MI, S)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Description</title>
+		<para>
 			La fonction datenum convertie une date en un nombre lui correspondant.
 			Ce nombre correspond au nombre de jours passe depuis une date reference.
 			Par defaut, cette date est le 1-Jan-0000.
-		</P>
+		</para>
 	
-		<P>
+		<para>
 			N = datenum() retourne le nombre correspondant a la date courante.
-		</P>
-		<P>
+		</para>
+		<para>
 			N = datenum(DT) retourne le nombre correspondant a la date représentée par
 			la matrice DT. DT est soit une matrice m * 3 ou une matrice m * 6 contenant
 			respectivement une date entiere (annee,mois,jour,heure,minute,seconde) ou une
 			date partielle (annee,mois,jour).
-		</P>
+		</para>
 	
-		<P>
+		<para>
 			N = datenum(Y, M, D) retourne le nombre correspondant aux elements Y,
 			M, D (annee, mois, jour). Y, M et D peuvent être des matrices de même
 			dimensions ou de simples scalaires.
-		</P>
+		</para>
 	
-		<P>
+		<para>
 			N = datenum(Y, M, D, H, MI, S) retourne le nombre correspondant aux
 			elements Y, M, D, H, MI, et S (annee, mois, jour, heure, minute, et
 			seconde).Y, M, D, H, MI, et S peuvent être des matrices de même
 			dimensions ou de simples scalaires.
-		</P>
-	</DESCRIPTION>
+		</para>
+	</refsection>
 	
-	<EXAMPLE><![CDATA[
+	<refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 // N = datenum()	
 datenum()
 
@@ -88,18 +83,18 @@ Heures = grand(5,10,'uin',0,23)
 Minutes = grand(5,10,'uin',0,59)
 Secondes = grand(5,10,'uin',0,59)
 datenum(Annees,Mois,Jours,Heures,Minutes,Secondes)
-	]]></EXAMPLE>
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>datevec</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>calendar</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+	<refsection><title>Voir Aussi</title><simplelist type="inline">
+		<member>
+			<link linkend="datevec">datevec</link>
+		</member>
+		<member>
+			<link linkend="calendar">calendar</link>
+		</member>
+	</simplelist></refsection>
 	
-	<AUTHORS>
-		<AUTHORS_ITEM>A.C</AUTHORS_ITEM>
-	</AUTHORS>
-</MAN>
+	<refsection><title>Auteurs</title><simplelist type="vert">
+		<member>A.C</member>
+	</simplelist></refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,49 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>fr</LANGUAGE>
-	<TITLE>weekday</TITLE>
-	<TYPE>Fonction Scilab</TYPE>
-	<DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="weekday"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>weekday</refname><refpurpose>Retourne le jour de la semaine</refpurpose></refnamediv>
 	
-	<SHORT_DESCRIPTION name="weekday">Retourne le jour de la semaine</SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>[N,S] = weekday(D)</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>[N,S] = weekday(D, form)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<DESCRIPTION>
-		<P>[N,S] = weekday(D) retourne le jour de la semaine sous une forme numérique(N) et une chaîne de caractère(S) pour une date donnée (sous la forme d'un "serial date number" : see <LINK>datenum</LINK>). Le paramètre passé en entrée peut être une matrice de "serial date number"</P>
+	
+	
+	
+	
+	<refsynopsisdiv><title>Séquence d'appel</title><synopsis>[N,S] = weekday(D)
+[N,S] = weekday(D, form)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Description</title>
+		<para>[N,S] = weekday(D) retourne le jour de la semaine sous une forme numérique(N) et une chaîne de caractère(S) pour une date donnée (sous la forme d'un "serial date number" : see <link linkend="datenum">datenum</link>). Le paramètre passé en entrée peut être une matrice de "serial date number"</para>
 		
-		<P>[N,S] = weekday(D, form)) retourne le jour de la semaine sous une forme numérique(N) et une chaîne de caractère(S), où le contenu de S dépend du paramètre "form". Si form est égal à 'long', S contient le nom complet du jour de la semaine tandis que si form est égal à 'short', S contient l'abbreviation du nom du jour de la semaine.</P>
-	</DESCRIPTION>
+		<para>[N,S] = weekday(D, form)) retourne le jour de la semaine sous une forme numérique(N) et une chaîne de caractère(S), où le contenu de S dépend du paramètre "form". Si form est égal à 'long', S contient le nom complet du jour de la semaine tandis que si form est égal à 'short', S contient l'abbreviation du nom du jour de la semaine.</para>
+	</refsection>
 	
-	<EXAMPLE><![CDATA[
+	<refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 today = datenum();
 [N,S] = weekday(today)
 [N,S] = weekday(today,'short')
 [N,S] = weekday(today,'long')
-	]]></EXAMPLE>
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>datenum</LINK>
-		</SEE_ALSO_ITEM>
+	<refsection><title>Voir Aussi</title><simplelist type="inline">
+		<member>
+			<link linkend="datenum">datenum</link>
+		</member>
 		
-		<SEE_ALSO_ITEM>
-			<LINK>datevec</LINK>
-		</SEE_ALSO_ITEM>
+		<member>
+			<link linkend="datevec">datevec</link>
+		</member>
 		
-		<SEE_ALSO_ITEM>
-			<LINK>weekday</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+		<member>
+			<link linkend="weekday">weekday</link>
+		</member>
+	</simplelist></refsection>
 	
-	<AUTHORS>
-		<AUTHORS_ITEM>P.M</AUTHORS_ITEM>
-	</AUTHORS>
-</MAN>
+	<refsection><title>Auteurs</title><simplelist type="vert">
+		<member>P.M</member>
+	</simplelist></refsection>
+</refentry>

@@ -1,34 +1,29 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>detrX  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="detr"> déterminant d&apos;un polynôme   </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>d=detr(h)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>h  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice carrée de polynômes ou de fractions rationnelles
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-   <VERB>d=detr(h)</VERB> renvoie le déterminant <VERB>d</VERB> de la
-   matrice <VERB>h</VERB>. Basé sur l&apos;algorithme de Leverrier.
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>det</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>determ</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="detr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>detr</refname><refpurpose> déterminant d'un polynôme   </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>d=detr(h)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>h  </term>
+  <listitem>
+  <para>matrice carrée de polynômes ou de fractions rationnelles
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+   <literal>d=detr(h)</literal> renvoie le déterminant <literal>d</literal> de la
+   matrice <literal>h</literal>. Basé sur l'algorithme de Leverrier.
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="det">det</link> </member> 
+    <member> <link linkend="determ">determ</link> </member>
+  </simplelist></refsection>
+</refentry>

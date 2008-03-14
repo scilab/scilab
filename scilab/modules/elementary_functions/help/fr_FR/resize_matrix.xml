@@ -1,83 +1,79 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="resize_matrix"><info><pubdate>February 2007</pubdate></info><refnamediv><refname>resize_matrix</refname><refpurpose> redimensionne une matrice</refpurpose></refnamediv>
+  
 
-  <TITLE>resize_matrix</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>February 2007</DATE>
+  
 
-  <SHORT_DESCRIPTION name="resize_matrix"> redimensionne une matrice</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>resMat = resize_matrix(mat,nbRow,nbCol,[typeOfMat])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>resMat = resize_matrix(mat,nbRow,nbCol,[typeOfMat])</synopsis></refsynopsisdiv>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>mat</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrice d'entrée à  partir de laquelle la matrice redimensionnée sera créée.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>mat</term>
+        <listitem>
+          <para>matrice d'entrée à  partir de laquelle la matrice redimensionnée sera créée.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>nbRow</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: nombre de lignes de la matrice redimensionnée.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>nbRow</term>
+        <listitem>
+          <para>nombre de lignes de la matrice redimensionnée.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>nbCol</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: nombre de colonnes de la matrice redimensionnée.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>nbCol</term>
+        <listitem>
+          <para>nombre de colonnes de la matrice redimensionnée.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>typeOfMat</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: chaîne de caractères spécifiant le type de la matrice redimensionnée.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>typeOfMat</term>
+        <listitem>
+          <para>chaîne de caractères spécifiant le type de la matrice redimensionnée.</para>
+        </listitem>
+      </varlistentry>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>resMat</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: matrice redimensionnée.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>resMat</term>
+        <listitem>
+          <para>matrice redimensionnée.</para>
+        </listitem>
+      </varlistentry>
 
-    </PARAM_INDENT>
-  </PARAM>
+    </variablelist>
+  </refsection>
 
-  <DESCRIPTION>
-    <P> Crée une matrice de taille <VERB>nbRow</VERB> x<VERB> nbCol</VERB> dont les éléments 
-    <VERB>(i,j)</VERB> sont
-    <VERB>mat(i,j)</VERB> si <VERB>(i,j)</VERB> est inférieur à  la taille de la matrice.
-    Sinon les éléments <VERB>(i,j)</VERB> sont <VERB>0</VERB> pour les matrices de réels ou
+  <refsection><title>Description</title>
+    <para> Crée une matrice de taille <literal>nbRow</literal> x<literal> nbCol</literal> dont les éléments 
+    <literal>(i,j)</literal> sont
+    <literal>mat(i,j)</literal> si <literal>(i,j)</literal> est inférieur à  la taille de la matrice.
+    Sinon les éléments <literal>(i,j)</literal> sont <literal>0</literal> pour les matrices de réels ou
     d'entier,
-    <VERB>%f</VERB> pour les matrices de booléens et une chaîne vide pour les matrices
+    <literal>%f</literal> pour les matrices de booléens et une chaîne vide pour les matrices
     de chaînes de caractères.
-    </P>
-    <P>
+    </para>
+    <para>
     Le type de la matrice de sortie peut être spécifié par l'argument
-    <VERB>typeOfMat</VERB>. Dans ce cas, le type doit être compatible avec celui de la
+    <literal>typeOfMat</literal>. Dans ce cas, le type doit être compatible avec celui de la
     matrice d'entrée.
-    </P>
-    <P>
+    </para>
+    <para>
     Pour l'instant, seules les matrices de réels, d'entiers, de booléens et de chaînes
-    de caractères sont supportées. Ainsi, l'argument <VERB>typeOfMat</VERB> doit prendre
+    de caractères sont supportées. Ainsi, l'argument <literal>typeOfMat</literal> doit prendre
     une valeur parmis : 'constant', 'boolean', 'string' ou un type entier
     ('int8', 'int16',...).
-     </P>
-  </DESCRIPTION>
+     </para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 
   // matrice de chiffres
   myMat = 5 * rand( 3, 4 )
@@ -91,19 +87,19 @@
   myMatString = ["Scilab","the";"Open Source","Scientific";"Software","Package"]
   myMatString = resize_matrix( myMatString, 3, 1 )
  
-  ]]></EXAMPLE>
+  ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>matrix</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>size</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>typeof</LINK>
-    </SEE_ALSO_ITEM>
-    </SEE_ALSO>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="matrix">matrix</link>
+    </member>
+    <member>
+      <link linkend="size">size</link>
+    </member>
+    <member>
+      <link linkend="typeof">typeof</link>
+    </member>
+    </simplelist></refsection>
 
-    <AUTHOR>Jean-Baptiste Silvy </AUTHOR>
-</MAN>
+    <refsection><title>Auteurs</title><para>Jean-Baptiste Silvy </para></refsection>
+</refentry>

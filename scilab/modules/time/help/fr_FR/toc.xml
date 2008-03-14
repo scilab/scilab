@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,47 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="toc"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>toc</refname><refpurpose>Lit le chronomètre</refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>toc()
+t = toc()</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+  <variablelist>
+    <varlistentry>
+      <term>t</term>
+      <listitem>
+        <para>nombre de secondes depuis le dernier appel à <literal>tic()</literal> (Précision de l'ordre de la milliseconde).</para>
+      </listitem> 
+    </varlistentry>
+  </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <para>La séquence de commandes <literal>tic(); opération; toc();</literal> affiche le nombre de secondes nécessaire pour opération.</para>
+   </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>toc</TITLE>
-  <TYPE>Fonction Scilab</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="toc">Lit le chronomètre</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>toc()</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>t = toc()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-  <PARAM_INDENT>
-    <PARAM_ITEM>
-      <PARAM_NAME>t</PARAM_NAME>
-      <PARAM_DESCRIPTION>
-        <SP>: nombre de secondes depuis le dernier appel à <VERB>tic()</VERB> (Précision de l'ordre de la milliseconde).</SP>
-      </PARAM_DESCRIPTION> 
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>La séquence de commandes <VERB>tic(); opération; toc();</VERB> affiche le nombre de secondes nécessaire pour opération.</P>
-   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
 tic();
 realtimeinit(1);
 realtime(0);
 realtime(10);
 toc();
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM><LINK>tic</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>timer</LINK></SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM><LINK>etime</LINK></SEE_ALSO_ITEM>
-  </SEE_ALSO>
-  <AUTHORS>
-    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
-    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member><link linkend="tic">tic</link></member>
+    <member><link linkend="timer">timer</link></member>
+    <member><link linkend="etime">etime</link></member>
+  </simplelist></refsection>
+  <refsection><title>Auteurs</title><simplelist type="vert">
+    <member>V.C.</member>
+    <member>A.C.</member>
+  </simplelist></refsection>
+</refentry>

@@ -1,62 +1,60 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>external  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="external"> Objet Scilab, fonction externe ou routine  </SHORT_DESCRIPTION>
-  <DESCRIPTION>
-  <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="external"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>external</refname><refpurpose> Objet Scilab, fonction externe ou routine  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+  <para>
     Fonction ou routine externe nécessitée par des commandes particulières.
-  </P>
-  <P>
-    Un &quot;external&quot; est une fonction ou une routine qui est utilisée comme argument d&apos;une
-    &quot;primitive de haut niveau&quot;, telle que <VERB>ode</VERB>, <VERB>optim</VERB>, <VERB>schur</VERB>...
-  </P>
-  <P>
-    La séquence d&apos;appel de la fonction ou de la routine est en général imposée
-    par la primitive de haut niveau qui impose en particulier les arguments d&apos;entrée.
-  </P>
-  <P>
-    Par exemple la fonction externe <VERB>costfunc</VERB> est un argument de la primitive <VERB>optim</VERB>.
-    Sa séquence d&apos;appel doit être de la forme : <VERB>[f,g,ind]=costfunc(x,ind)</VERB> et 
-    <VERB>optim</VERB> (primitive permettant de résoudre des problèmes d&apos;optimisation) est invoquée ainsi :
-  </P>
-  <VERBATIM><![CDATA[
+  </para>
+  <para>
+    Un "external" est une fonction ou une routine qui est utilisée comme argument d'une
+    "primitive de haut niveau", telle que <literal>ode</literal>, <literal>optim</literal>, <literal>schur</literal>...
+  </para>
+  <para>
+    La séquence d'appel de la fonction ou de la routine est en général imposée
+    par la primitive de haut niveau qui impose en particulier les arguments d'entrée.
+  </para>
+  <para>
+    Par exemple la fonction externe <literal>costfunc</literal> est un argument de la primitive <literal>optim</literal>.
+    Sa séquence d'appel doit être de la forme : <literal>[f,g,ind]=costfunc(x,ind)</literal> et 
+    <literal>optim</literal> (primitive permettant de résoudre des problèmes d'optimisation) est invoquée ainsi :
+  </para>
+  <programlisting><![CDATA[
 optim(costfunc,...)
-   ]]></VERBATIM>
-  <P>
-    Ici <VERB>costfunc</VERB> (la fonction coût à minimiser avec <VERB>optim</VERB>)
-    calcule <VERB>f=f(x)</VERB> et <VERB>g=</VERB> le gradient de <VERB>f</VERB> en <VERB>x</VERB> (<VERB>ind</VERB> est un entier dont l&apos;usage est précisé dans l&apos;aide de <VERB>optim</VERB>).
-  </P>
-  <P>
-    Si d&apos;autres variables sont nécessaires à la fonction externe, ces variables
+   ]]></programlisting>
+  <para>
+    Ici <literal>costfunc</literal> (la fonction coût à minimiser avec <literal>optim</literal>)
+    calcule <literal>f=f(x)</literal> et <literal>g=</literal> le gradient de <literal>f</literal> en <literal>x</literal> (<literal>ind</literal> est un entier dont l'usage est précisé dans l'aide de <literal>optim</literal>).
+  </para>
+  <para>
+    Si d'autres variables sont nécessaires à la fonction externe, ces variables
     peuvent être définies dans son environnement. Elles peuvent aussi être stockées dans une liste :
     par exemple
-  </P>
-  <VERBATIM><![CDATA[
+  </para>
+  <programlisting><![CDATA[
 [f,g,ind]=costfunc(x,ind,a,b,c) 
-   ]]></VERBATIM>
-  <P>
-    est valide pour <VERB>optim</VERB> si <VERB>costfunc</VERB> est remplacé par <VERB>list(costfunc,a,b,c)</VERB>. 
-    La séquence d&apos;appel à <VERB>optim</VERB> est donc maintenant :
-  </P>
-  <VERBATIM><![CDATA[
+   ]]></programlisting>
+  <para>
+    est valide pour <literal>optim</literal> si <literal>costfunc</literal> est remplacé par <literal>list(costfunc,a,b,c)</literal>. 
+    La séquence d'appel à <literal>optim</literal> est donc maintenant :
+  </para>
+  <programlisting><![CDATA[
 optim(list(costfunc,a1,b1,c1),....
-   ]]></VERBATIM>
-  <P>
-    Un &quot;external&quot; peut aussi être une routine Fortran ou C : cela peut permettre d&apos;accélérer les calculs.
-  </P>
-  <P>
-    Le nom de la routine est donné comme argument à la primitive de haut niveau sous forme d&apos;une
-    chaîne de caractères. La séquence d&apos;appel est aussi imposée. Des exemples sont donnés dans le répertoire <VERB>routines/default</VERB> (voir le fichier <VERB>README</VERB>).
-  </P>
-  <P>
-    Les routines externes Fortran ou C peuvent aussi être liées dynamiquement (voir <VERB>link</VERB>).
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>ode</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>optim</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>impl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>dassl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intg</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>gschur</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+   ]]></programlisting>
+  <para>
+    Un "external" peut aussi être une routine Fortran ou C : cela peut permettre d'accélérer les calculs.
+  </para>
+  <para>
+    Le nom de la routine est donné comme argument à la primitive de haut niveau sous forme d'une
+    chaîne de caractères. La séquence d'appel est aussi imposée. Des exemples sont donnés dans le répertoire <literal>routines/default</literal> (voir le fichier <literal>README</literal>).
+  </para>
+  <para>
+    Les routines externes Fortran ou C peuvent aussi être liées dynamiquement (voir <literal>link</literal>).
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="ode">ode</link> </member>     <member> <link linkend="optim">optim</link> </member>     <member> <link linkend="impl">impl</link> </member>     <member> <link linkend="dassl">dassl</link> </member>     <member> <link linkend="intg">intg</link> </member>     <member> <link linkend="schur">schur</link> </member>     <member> <link linkend="gschur">gschur</link> </member>
+  </simplelist></refsection>
+</refentry>

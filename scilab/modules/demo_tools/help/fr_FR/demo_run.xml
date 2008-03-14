@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,42 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>fr</LANGUAGE>
-	<TITLE>demo_run</TITLE>
-	<TYPE>Scilab Function</TYPE>
-    <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="demo_run"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>demo_run</refname><refpurpose> exécute un script </refpurpose></refnamediv>
 	
-	<SHORT_DESCRIPTION name="demo_run"> exécute un script </SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>demo_run(fil)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<DESCRIPTION>
-		<P>
+    
+	
+	
+	
+	<refsynopsisdiv><title>Séquence d'appel</title><synopsis>demo_run(fil)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Description</title>
+		<para>
 		La fonction demo_run exécute le script contenu dans le fichier donné en argument.
-		</P>
-	</DESCRIPTION>
+		</para>
+	</refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>exec</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>demo_message</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>demo_begin</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>demo_end</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+	<refsection><title>Voir Aussi</title><simplelist type="inline">
+		<member>
+			<link linkend="exec">exec</link>
+		</member>
+		<member>
+			<link linkend="demo_message">demo_message</link>
+		</member>
+		<member>
+			<link linkend="demo_begin">demo_begin</link>
+		</member>
+		<member>
+			<link linkend="demo_end">demo_end</link>
+		</member>
+	</simplelist></refsection>
 	
-	<AUTHORS>
-		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
-	</AUTHORS>
-</MAN>
+	<refsection><title>Auteurs</title><simplelist type="vert">
+		<member>G.H</member>
+	</simplelist></refsection>
+</refentry>

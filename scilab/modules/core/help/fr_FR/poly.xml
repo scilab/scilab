@@ -1,76 +1,72 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>poly  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="poly"> définition d&apos;un polynôme  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[p]=poly(a,&quot;x&quot;, [&quot;flag&quot;])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-	<PARAM_NAME>a  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: matrice ou nombre réel.</SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>x  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: indéterminée du polynôme.</SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>&quot;flag&quot;  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>: chaîne de caractères (&quot;roots&quot;, &quot;coeff&quot;), la
-	    valeur par défaut est &quot;roots&quot;.</SP> 
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="Si a est une matrice,">
-	<SP> <VERB>p</VERB> est le polynôme
-	  caractéristique de a, c&apos;est à dire
-	  <VERB>déterminant(x*eye()-a)</VERB>, <VERB>x</VERB> étant
-	  l&apos;indéterminée. </SP> 
-      </DESCRIPTION_ITEM>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="poly"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>poly</refname><refpurpose> définition d'un polynôme  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[p]=poly(a,"x", ["flag"])</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+	<term>a  </term>
+	<listitem>
+	  <para>matrice ou nombre réel.</para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>x  </term>
+	<listitem>
+	  <para>indéterminée du polynôme.</para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>"flag"  </term>
+	<listitem>
+	  <para>chaîne de caractères ("roots", "coeff"), la
+	    valeur par défaut est "roots".</para> 
+	</listitem> 
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <variablelist>
+      <varlistentry><term>Si a est une matrice,</term><listitem>
+	<para> <literal>p</literal> est le polynôme
+	  caractéristique de a, c'est à dire
+	  <literal>déterminant(x*eye()-a)</literal>, <literal>x</literal> étant
+	  l'indéterminée. </para> 
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM label="Si v est un vecteur,">
-	<DESCRIPTION_INDENT> 
-	  <DESCRIPTION_ITEM label="-">
-	    <SP><VERB>poly(v,&quot;x&quot;,[&quot;roots&quot;])</VERB> est le polynôme
-	      dont les racines sont égales aux termes de <VERB>v</VERB> et
-	      <VERB>&quot;x&quot;</VERB> l&apos;indéterminée. Dans ce cas
-	      <VERB>roots</VERB> et <VERB>poly</VERB> sont des fonctions inverses
-	      l&apos;une de l&apos;autre. Notez qye les racines infinies produisent des
-	      coefficients de haut degré egaux a zéro.</SP>
-	  </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM label="-">
-	    <SP><VERB>poly(v,&quot;x&quot;,&quot;coeff&quot;)</VERB> crée le polynôme
-	      d&apos;indéterminée <VERB>&quot;x&quot;</VERB> dont les coefficients sont
-	      les termes de <VERB>v</VERB> (v(1) est le terme constant). Dans ce
-	      dernier cas, <VERB>poly</VERB> et <VERB>coeff</VERB> sont des fonctions
-	      inverses l&apos;une de l&apos;autre.</SP> 
-	  </DESCRIPTION_ITEM>
-	</DESCRIPTION_INDENT> 
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT> 
-    <SP><VERB>s=poly(0,&quot;s&quot;)</VERB> permet de définir des polynômes en
-      utilisant les opérations usuelles (+,-,*,^).<VERB>&quot;s&quot;</VERB>.</SP>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+      <varlistentry><term>Si v est un vecteur,</term><listitem>
+	<itemizedlist> 
+	  <listitem>
+	    <para><literal>poly(v,"x",["roots"])</literal> est le polynôme
+	      dont les racines sont égales aux termes de <literal>v</literal> et
+	      <literal>"x"</literal> l'indéterminée. Dans ce cas
+	      <literal>roots</literal> et <literal>poly</literal> sont des fonctions inverses
+	      l'une de l'autre. Notez qye les racines infinies produisent des
+	      coefficients de haut degré egaux a zéro.</para>
+	  </listitem>
+	  <listitem>
+	    <para><literal>poly(v,"x","coeff")</literal> crée le polynôme
+	      d'indéterminée <literal>"x"</literal> dont les coefficients sont
+	      les termes de <literal>v</literal> (v(1) est le terme constant). Dans ce
+	      dernier cas, <literal>poly</literal> et <literal>coeff</literal> sont des fonctions
+	      inverses l'une de l'autre.</para> 
+	  </listitem>
+	</itemizedlist> 
+      </listitem></varlistentry>
+    </variablelist> 
+    <para><literal>s=poly(0,"s")</literal> permet de définir des polynômes en
+      utilisant les opérations usuelles (+,-,*,^).<literal>"s"</literal>.</para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
     s=poly(0,"s");p=1+s+2*s^2;
     A=rand(2,2);poly(A,"x")
-    ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>coeff</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>matrices</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>rational</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="coeff">coeff</link> </member> 
+    <member> <link linkend="matrices">matrices</link> </member> 
+    <member> <link linkend="rational">rational</link> </member>
+  </simplelist></refsection>
+</refentry>

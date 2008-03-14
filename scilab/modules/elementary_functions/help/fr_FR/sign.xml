@@ -1,21 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>sign  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sign"> fonction signe  </SHORT_DESCRIPTION>
-  <DESCRIPTION>
-  <P>
-     <VERB>X=sign(A)</VERB> renvoie la matrice contenant les signes de termes <VERB>A(i,j)</VERB>. Pour les matrices complexes, <VERB>sign(A) = A./abs(A)</VERB>.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sign"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sign</refname><refpurpose> fonction signe  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+  <para>
+     <literal>X=sign(A)</literal> renvoie la matrice contenant les signes de termes <literal>A(i,j)</literal>. Pour les matrices complexes, <literal>sign(A) = A./abs(A)</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 sign(rand(2,3))
 sign(1+%i)
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>abs</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="abs">abs</link> </member>
+  </simplelist></refsection>
+</refentry>

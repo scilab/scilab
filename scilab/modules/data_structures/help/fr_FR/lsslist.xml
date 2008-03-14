@@ -1,27 +1,23 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>lsslist  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="lsslist"> Définition d&apos;un système dynamique linéaire  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>lsslist()  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>lsslist(a1,....an)    </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-  <P>
-    <VERB>lsslist(a1,....an)</VERB> est équivalent à la commande
-    <VERB>tlist([&apos;lss&apos;,&apos;A&apos;;&apos;B&apos;;&apos;C&apos;;&apos;X0&apos;,&apos;dt&apos;], a1,....an)</VERB> 
-  </P>
-  <P>
-    Crée une <VERB>tlist</VERB> avec <VERB>[&apos;lss&apos;,&apos;A&apos;;&apos;B&apos;;&apos;C&apos;;&apos;X0&apos;,&apos;dt&apos;]</VERB> pour le premier champ et les <VERB>ai</VERB> pour les termes suivants, s&apos;ils sont spécifiés. Aucune vérification de taille ou de type n&apos;est faite sur les <VERB>ai</VERB>.
-  </P>
-  <P>
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>tlist</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>syslin</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="lsslist"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lsslist</refname><refpurpose> Définition d'un système dynamique linéaire  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>lsslist()
+lsslist(a1,....an)</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+  <para>
+    <literal>lsslist(a1,....an)</literal> est équivalent à la commande
+    <literal>tlist(['lss','A';'B';'C';'X0','dt'], a1,....an)</literal> 
+  </para>
+  <para>
+    Crée une <literal>tlist</literal> avec <literal>['lss','A';'B';'C';'X0','dt']</literal> pour le premier champ et les <literal>ai</literal> pour les termes suivants, s'ils sont spécifiés. Aucune vérification de taille ou de type n'est faite sur les <literal>ai</literal>.
+  </para>
+  <para>
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="tlist">tlist</link> </member>     <member> <link linkend="syslin">syslin</link> </member>
+  </simplelist></refsection>
+</refentry>

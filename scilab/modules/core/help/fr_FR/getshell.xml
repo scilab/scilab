@@ -1,29 +1,25 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getshell"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getshell</refname><refpurpose>retourne le nom de l'interpreteur de
+  commandes.</refpurpose></refnamediv>
+  
 
-  <TITLE>getshell</TITLE>
+  
 
-  <TYPE>Fonction Scilab</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="getshell">retourne le nom de l'interpreteur de
-  commandes.</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>getshell()</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>getshell()</synopsis></refsynopsisdiv>
 
-  <DESCRIPTION>
-    <P><VERB>getshell</VERB> : retourne le nom de l'interpreteur de
-    commandes.</P>
-  </DESCRIPTION>
+  <refsection><title>Description</title>
+    <para><literal>getshell</literal>retourne le nom de l'interpreteur de
+    commandes.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
     getshell()
-    ]]></EXAMPLE>
+    ]]></programlisting></refsection>
 
-  <AUTHOR>Allan CORNET</AUTHOR>
-</MAN>
+  <refsection><title>Auteurs</title><para>Allan CORNET</para></refsection>
+</refentry>

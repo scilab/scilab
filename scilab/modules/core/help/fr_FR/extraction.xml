@@ -1,273 +1,265 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>extraction  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="extraction"> extraction à partir d&apos;une matrice ou d&apos;une liste  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>x(i,j)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>x(i)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[...]=l(i)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[...]=l(k1)...(kn)(i) ou [...]=l(list(k1,...,kn,i))  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>l(k1)...(kn)(i,j)   ou l(list(k1,...,kn,list(i,j))  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-	<PARAM_NAME>x  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : matrice de tout type
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>l  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : liste
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>i,j  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : indices
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>k1,...kn  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : indices à valeurs entières
-	  </SP>
-	</PARAM_DESCRIPTION> 
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM  label='CAS DES MATRICES'> 
-	<SP><VERB>i</VERB> et <VERB>j</VERB> peuvent être :</SP>
-	<DESCRIPTION_INDENT>
-	  <DESCRIPTION_ITEM  label='des scalaires'> 
-	    <SP>,vecteurs ou matrices à éléments positifs. 	</SP>
-	    <DESCRIPTION_INDENT>
-	      <DESCRIPTION_ITEM> 
-		<SP><VERB>r=x(i,j)</VERB> construit la matrice <VERB>r</VERB> telle que:</SP>
-		<P><VERB>r(l,k)=x(int(i(l)),int(j(k)))</VERB></P>
-		<P>pour <VERB>l</VERB>  variant de 1 à
-		  <VERB>size(i,&apos;*&apos;)</VERB></P>
-		<P>et <VERB>k</VERB> variant de 1 à
-		  <VERB>size(j,&apos;*&apos;)</VERB>.</P>
-		<P>La valeur
-		  maximale de <VERB>i</VERB> (resp. <VERB>j</VERB>) doit être
-		  inférieure ou égale à <VERB>size(x,1)</VERB>
-		  (resp. <VERB>size(x,2)</VERB>).
-		</P>
-	      </DESCRIPTION_ITEM>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="extraction"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>extraction</refname><refpurpose> extraction à partir d'une matrice ou d'une liste  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>x(i,j)
+x(i)
+[...]=l(i)
+[...]=l(k1)...(kn)(i) ou [...]=l(list(k1,...,kn,i))
+l(k1)...(kn)(i,j) ou l(list(k1,...,kn,list(i,j))</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+	<term>x  </term>
+	<listitem>
+	  <para>matrice de tout type
+	  </para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>l  </term>
+	<listitem>
+	  <para>liste
+	  </para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>i,j  </term>
+	<listitem>
+	  <para>indices
+	  </para>
+	</listitem> 
+      </varlistentry>
+      <varlistentry>
+	<term>k1,...kn  </term>
+	<listitem>
+	  <para>indices à valeurs entières
+	  </para>
+	</listitem> 
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+    <variablelist>
+      <varlistentry><term>CAS DES MATRICES</term><listitem> 
+	<para><literal>i</literal> et <literal>j</literal> peuvent être :</para>
+	<variablelist>
+	  <varlistentry><term>des scalaires</term><listitem> 
+	    <para>,vecteurs ou matrices à éléments positifs. 	</para>
+	    <itemizedlist>
+	      <listitem> 
+		<para><literal>r=x(i,j)</literal> construit la matrice <literal>r</literal> telle que:</para>
+		<para><literal>r(l,k)=x(int(i(l)),int(j(k)))</literal></para>
+		<para>pour <literal>l</literal>  variant de 1 à
+		  <literal>size(i,'*')</literal></para>
+		<para>et <literal>k</literal> variant de 1 à
+		  <literal>size(j,'*')</literal>.</para>
+		<para>La valeur
+		  maximale de <literal>i</literal> (resp. <literal>j</literal>) doit être
+		  inférieure ou égale à <literal>size(x,1)</literal>
+		  (resp. <literal>size(x,2)</literal>).
+		</para>
+	      </listitem>
 
-	      <DESCRIPTION_ITEM> 
-		<SP> 
-		  <VERB>r=x(i)</VERB> où <VERB>x</VERB> est une matrice 1 x 1,
-		  construit la matrice <VERB>r</VERB> telle que
-		  <VERB>r(l,k)=x(int(i(l)),int(i(k)))</VERB> pour <VERB>l</VERB>
-		  variant de 1 à <VERB>size(i,1)</VERB> et <VERB>k</VERB> variant de 1
-		  à <VERB>size(i,2)</VERB>.   Noter que dans ce cas l&apos;indice
-		  <VERB>i</VERB> est valable si toutes ses composantes sont égales à
+	      <listitem> 
+		<para> 
+		  <literal>r=x(i)</literal> où <literal>x</literal> est une matrice 1 x 1,
+		  construit la matrice <literal>r</literal> telle que
+		  <literal>r(l,k)=x(int(i(l)),int(i(k)))</literal> pour <literal>l</literal>
+		  variant de 1 à <literal>size(i,1)</literal> et <literal>k</literal> variant de 1
+		  à <literal>size(i,2)</literal>.   Noter que dans ce cas l'indice
+		  <literal>i</literal> est valable si toutes ses composantes sont égales à
 		  1.
-		</SP>
-	      </DESCRIPTION_ITEM>
+		</para>
+	      </listitem>
 
-	      <DESCRIPTION_ITEM> 
-		<SP>
-		  <VERB>r=x(i)</VERB> avec <VERB>x</VERB> un vecteur ligne, construit
-		  le vecteur ligne <VERB>r</VERB> tel que
-		  <VERB>r(l)=x(int(i(l)))</VERB> pour <VERB>l</VERB> entre 1 et
-		  <VERB>size(i,&apos;*&apos;)</VERB>  La valeur maximale de
-		  <VERB>i</VERB> doit être inférieure ou égale à
-		  <VERB>size(x,&apos;*&apos;)</VERB>.
-		</SP>
-	      </DESCRIPTION_ITEM>
+	      <listitem> 
+		<para>
+		  <literal>r=x(i)</literal> avec <literal>x</literal> un vecteur ligne, construit
+		  le vecteur ligne <literal>r</literal> tel que
+		  <literal>r(l)=x(int(i(l)))</literal> pour <literal>l</literal> entre 1 et
+		  <literal>size(i,'*')</literal>  La valeur maximale de
+		  <literal>i</literal> doit être inférieure ou égale à
+		  <literal>size(x,'*')</literal>.
+		</para>
+	      </listitem>
 
-	      <DESCRIPTION_ITEM> 
-		<SP> 
-		  <VERB>r=x(i)</VERB> avec <VERB>x</VERB> une matrice à une ou
-		  plusieurs colonnes, construit la matrice  <VERB>r</VERB> telle que
-		  <VERB>r(l)</VERB> (<VERB>l</VERB> variant de 1 à
-		  <VERB>size(i,&apos;*&apos;)</VERB>) contient le terme numéro
-		  <VERB>int(i(l))</VERB> du vecteur colonne issu de la concaténation
-		  des colonnes de <VERB>x</VERB>.  La valeur maximale de <VERB>i</VERB>
-		  doit être inférieure ou égale à <VERB>size(x,&apos;*&apos;)</VERB>.
-		</SP>
-	      </DESCRIPTION_ITEM>
-	    </DESCRIPTION_INDENT>
-	  </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM  label='Le symbole '> 
-	    <SP><VERB> : </VERB> signifiant &quot;tous les éléments&quot;. </SP>
-	    <DESCRIPTION_INDENT>
+	      <listitem> 
+		<para> 
+		  <literal>r=x(i)</literal> avec <literal>x</literal> une matrice à une ou
+		  plusieurs colonnes, construit la matrice  <literal>r</literal> telle que
+		  <literal>r(l)</literal> (<literal>l</literal> variant de 1 à
+		  <literal>size(i,'*')</literal>) contient le terme numéro
+		  <literal>int(i(l))</literal> du vecteur colonne issu de la concaténation
+		  des colonnes de <literal>x</literal>.  La valeur maximale de <literal>i</literal>
+		  doit être inférieure ou égale à <literal>size(x,'*')</literal>.
+		</para>
+	      </listitem>
+	    </itemizedlist>
+	  </listitem></varlistentry>
+	  <varlistentry><term>Le symbole </term><listitem> 
+	    <para><literal> : </literal> signifiant "tous les éléments". </para>
+	    <itemizedlist>
 
-	      <DESCRIPTION_ITEM> 
-		<SP>
-		  <VERB>r=x(i,:)</VERB> construit la matrice <VERB>r</VERB> telle que
-		  <VERB>r(l,k)=x(int(i(l)),k))</VERB> pour <VERB>l</VERB> variant de 1
-		  à <VERB>size(i,&apos;*&apos;)</VERB> et <VERB>k</VERB> variant de 1 à
-		  <VERB>size(x,2)</VERB>
-		</SP>
-	      </DESCRIPTION_ITEM>
+	      <listitem> 
+		<para>
+		  <literal>r=x(i,:)</literal> construit la matrice <literal>r</literal> telle que
+		  <literal>r(l,k)=x(int(i(l)),k))</literal> pour <literal>l</literal> variant de 1
+		  à <literal>size(i,'*')</literal> et <literal>k</literal> variant de 1 à
+		  <literal>size(x,2)</literal>
+		</para>
+	      </listitem>
 
-	      <DESCRIPTION_ITEM> 
-		<SP>
-		  <VERB>r=x(:,j)</VERB> construit la matrice <VERB>r</VERB> telle que
-		  <VERB>r(l,k)=x(l,int(j(k)))</VERB> pour <VERB>l</VERB> variant de 1 à
-		  <VERB>size(r,1)</VERB> et <VERB>k</VERB> variant de 1 à
-		  <VERB>size(j,&apos;*&apos;)</VERB>.
-		</SP>
-	      </DESCRIPTION_ITEM>
+	      <listitem> 
+		<para>
+		  <literal>r=x(:,j)</literal> construit la matrice <literal>r</literal> telle que
+		  <literal>r(l,k)=x(l,int(j(k)))</literal> pour <literal>l</literal> variant de 1 à
+		  <literal>size(r,1)</literal> et <literal>k</literal> variant de 1 à
+		  <literal>size(j,'*')</literal>.
+		</para>
+	      </listitem>
 
-	      <DESCRIPTION_ITEM> 
-		<SP>
-		  <VERB>r=x(:)</VERB> construit le vecteur colonne <VERB>r</VERB>
-		  obtenu par concaténation des colonnes  de <VERB> x</VERB>.  Cette
+	      <listitem> 
+		<para>
+		  <literal>r=x(:)</literal> construit le vecteur colonne <literal>r</literal>
+		  obtenu par concaténation des colonnes  de <literal> x</literal>.  Cette
 		  commande est équivalente à
-		  <VERB>r=matrix(x,size(x,&apos;*&apos;),1)</VERB>.
-		</SP>
-	      </DESCRIPTION_ITEM>
-	    </DESCRIPTION_INDENT>
-	  </DESCRIPTION_ITEM>
+		  <literal>r=matrix(x,size(x,'*'),1)</literal>.
+		</para>
+	      </listitem>
+	    </itemizedlist>
+	  </listitem></varlistentry>
 
-	  <DESCRIPTION_ITEM  label='vecteur de booléens'> 
-	    <SP>
-	      Si un indice (<VERB>i</VERB>  ou <VERB>j</VERB> ) est un vecteur de
-	      booléen il est interprété comme <VERB>find(i)</VERB> ou
-	      <VERB>find(j)</VERB>, respectivement. 
-	    </SP>
-	  </DESCRIPTION_ITEM>
+	  <varlistentry><term>vecteur de booléens</term><listitem> 
+	    <para>
+	      Si un indice (<literal>i</literal>  ou <literal>j</literal> ) est un vecteur de
+	      booléen il est interprété comme <literal>find(i)</literal> ou
+	      <literal>find(j)</literal>, respectivement. 
+	    </para>
+	  </listitem></varlistentry>
 
-	  <DESCRIPTION_ITEM  label='un polynôme'> 
-	    <SP>
-	      Si un indice (<VERB>i</VERB>  ou <VERB>j</VERB> ) est un vecteur de
+	  <varlistentry><term>un polynôme</term><listitem> 
+	    <para>
+	      Si un indice (<literal>i</literal>  ou <literal>j</literal> ) est un vecteur de
 	      polynômes ou de polynômes implicites il est interprété comme
-	      <VERB>horner(i,m)</VERB> ou <VERB>horner(j,n)</VERB>, respectivement,
-	      où <VERB>m</VERB> et <VERB>n</VERB> sont les dimensions de
-	      <VERB>x</VERB> associées.  Même si cette fonctionnalité marche pour
-	      tous les polynômes, il est recommandé d&apos;utiliser des polynômes
-	      dans  <VERB>$</VERB> par souci de lisibilité.  
-	    </SP>
-	  </DESCRIPTION_ITEM>
-	</DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+	      <literal>horner(i,m)</literal> ou <literal>horner(j,n)</literal>, respectivement,
+	      où <literal>m</literal> et <literal>n</literal> sont les dimensions de
+	      <literal>x</literal> associées.  Même si cette fonctionnalité marche pour
+	      tous les polynômes, il est recommandé d'utiliser des polynômes
+	      dans  <literal>$</literal> par souci de lisibilité.  
+	    </para>
+	  </listitem></varlistentry>
+	</variablelist>
+      </listitem></varlistentry>
       
-      <DESCRIPTION_ITEM label='CAS DES LISTES'> 
-	<P>
-	  (types LIST et TLIST)  S&apos;ils sont présents, les <VERB>ki</VERB> donnent
-	  le chemin vers un terme d&apos;une sous-liste de la liste
-	  <VERB>l</VERB>. Ils permettent de faire une extraction récursive
+      <varlistentry><term>CAS DES LISTES</term><listitem> 
+	<para>
+	  (types LIST et TLIST)  S'ils sont présents, les <literal>ki</literal> donnent
+	  le chemin vers un terme d'une sous-liste de la liste
+	  <literal>l</literal>. Ils permettent de faire une extraction récursive
 	  directe sans utiliser de variable intermédiaire.  Les instructions:
-	</P>
-	<P> <VERB>[...]=l(k1)...(kn)(i)</VERB></P>
-	<P>et</P>
-	<P> <VERB>[...]=l(list(k1,...,kn,i))</VERB></P>
-	<P>sont interprétées comme :</P>
-	<P>
-	  <VERB>lk1   = l(k1)</VERB>,  <VERB> ..   = ..    </VERB>,  <VERB>lkn   =
-	    lkn-1(kn)</VERB>,  <VERB>[...] = lkn(i)</VERB>
-	</P>  
-	<P>De même, les instructions </P>
-	<P><VERB>l(k1)...(kn)(i,j)</VERB> </P>
-	<P>et</P>
-	<P><VERB>l(list(k1,...,kn,list(i,j))</VERB> </P>
-	<P>sont interprétées comme :</P>
-	<P> 
-	  <VERB>lk1 = l(k1)</VERB>,  
-	  <VERB> ..   = .. </VERB>,  
-	  <VERB>lkn = lkn-1(kn)</VERB>,  
-	  <VERB>lkn(i,j)</VERB>
-	</P>
+	</para>
+	<para> <literal>[...]=l(k1)...(kn)(i)</literal></para>
+	<para>et</para>
+	<para> <literal>[...]=l(list(k1,...,kn,i))</literal></para>
+	<para>sont interprétées comme :</para>
+	<para>
+	  <literal>lk1   = l(k1)</literal>,  <literal> ..   = ..    </literal>,  <literal>lkn   =
+	    lkn-1(kn)</literal>,  <literal>[...] = lkn(i)</literal>
+	</para>  
+	<para>De même, les instructions </para>
+	<para><literal>l(k1)...(kn)(i,j)</literal> </para>
+	<para>et</para>
+	<para><literal>l(list(k1,...,kn,list(i,j))</literal> </para>
+	<para>sont interprétées comme :</para>
+	<para> 
+	  <literal>lk1 = l(k1)</literal>,  
+	  <literal> ..   = .. </literal>,  
+	  <literal>lkn = lkn-1(kn)</literal>,  
+	  <literal>lkn(i,j)</literal>
+	</para>
 
-	<P>
-	  <VERB>i</VERB> et  <VERB>j</VERB>, peuvent valoir : 
-  	</P>
-	<DESCRIPTION_INDENT>
+	<para>
+	  <literal>i</literal> et  <literal>j</literal>, peuvent valoir : 
+  	</para>
+	<variablelist>
 
-	  <DESCRIPTION_ITEM  label='scalaire'> 
-	    <SP>
-	      vecteur ou matrice à termes positifs    <VERB>[r1,...rn]=l(i)</VERB>
-	      extrait les termes <VERB>i(k)</VERB> de la liste l et les stocke dans
-	      les variables <VERB>rk</VERB> pour <VERB>k</VERB> variant de 1 à
-	      <VERB>size(i,&apos;*&apos;)</VERB> 
-	    </SP>
-	  </DESCRIPTION_ITEM>
+	  <varlistentry><term>scalaire</term><listitem> 
+	    <para>
+	      vecteur ou matrice à termes positifs    <literal>[r1,...rn]=l(i)</literal>
+	      extrait les termes <literal>i(k)</literal> de la liste l et les stocke dans
+	      les variables <literal>rk</literal> pour <literal>k</literal> variant de 1 à
+	      <literal>size(i,'*')</literal> 
+	    </para>
+	  </listitem></varlistentry>
 
-	  <DESCRIPTION_ITEM  label='le symbole '> 
-	    <SP>:  (&quot;tous les éléments&quot;) </SP>
-	  </DESCRIPTION_ITEM>
+	  <varlistentry><term>le symbole </term><listitem> 
+	    <para> ("tous les éléments") </para>
+	  </listitem></varlistentry>
 
-	  <DESCRIPTION_ITEM  label='vecteur de booléens'> 
-	    <SP>
-	      Si <VERB>i</VERB>  est un vecteur de booléens, il est interprété
-	      comme <VERB>find(i)</VERB>. 
-	    </SP>
-	  </DESCRIPTION_ITEM>
+	  <varlistentry><term>vecteur de booléens</term><listitem> 
+	    <para>
+	      Si <literal>i</literal>  est un vecteur de booléens, il est interprété
+	      comme <literal>find(i)</literal>. 
+	    </para>
+	  </listitem></varlistentry>
 
-	  <DESCRIPTION_ITEM  label='un polynôme'> 
-	    <SP>
-	      Si <VERB>i</VERB> est un vecteur de polynômes ou de polynômes
-	      implicites il est interprété comme <VERB>horner(i,m)</VERB> où
-	      <VERB>m=size(l)</VERB>.  Même si cette fonctionnalité marche pour
-	      tous les polynômes, il est recommandé d&apos;utiliser des polynômes
-	      dans  <VERB>$</VERB> par souci de lisibilité. 
-	    </SP>
-	  </DESCRIPTION_ITEM>
-	</DESCRIPTION_INDENT>
+	  <varlistentry><term>un polynôme</term><listitem> 
+	    <para>
+	      Si <literal>i</literal> est un vecteur de polynômes ou de polynômes
+	      implicites il est interprété comme <literal>horner(i,m)</literal> où
+	      <literal>m=size(l)</literal>.  Même si cette fonctionnalité marche pour
+	      tous les polynômes, il est recommandé d'utiliser des polynômes
+	      dans  <literal>$</literal> par souci de lisibilité. 
+	    </para>
+	  </listitem></varlistentry>
+	</variablelist>
 
-      </DESCRIPTION_ITEM>
+      </listitem></varlistentry>
 
-      <DESCRIPTION_ITEM  label='k1,..kn peuvent être :'> 
+      <varlistentry><term>k1,..kn peuvent être :</term><listitem> 
 
-	<DESCRIPTION_INDENT>
-	  <DESCRIPTION_ITEM  label='un nombre réel positif'> 
-	    <SP></SP>
-	  </DESCRIPTION_ITEM>
+	<variablelist>
+	  <varlistentry><term>un nombre réel positif</term><listitem> 
+	    <para/>
+	  </listitem></varlistentry>
 
-	  <DESCRIPTION_ITEM  label='un polynôme'> 
-	    <SP>
-	      un polynôme, interprété comme <VERB>horner(ki,m)</VERB> ou
-	      <VERB>m</VERB> est la taille de la sous-liste correspondante. 
-	    </SP>
-	  </DESCRIPTION_ITEM>
+	  <varlistentry><term>un polynôme</term><listitem> 
+	    <para>
+	      un polynôme, interprété comme <literal>horner(ki,m)</literal> ou
+	      <literal>m</literal> est la taille de la sous-liste correspondante. 
+	    </para>
+	  </listitem></varlistentry>
 
-	  <DESCRIPTION_ITEM  label='une chaîne de caractères'>
-	    <SP>
-	      associée à un nom d&apos;entrée de sous-liste'
-	    </SP>
-	  </DESCRIPTION_ITEM>
-	</DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	<P> Quand le chemin désigne plusieurs
-	  termes d&apos;une liste l&apos;instruction doit avoir autant de termes
+	  <varlistentry><term>une chaîne de caractères</term><listitem>
+	    <para>
+	      associée à un nom d'entrée de sous-liste'
+	    </para>
+	  </listitem></varlistentry>
+	</variablelist>
+      </listitem></varlistentry>
+      <varlistentry><term/><listitem>
+	<para> Quand le chemin désigne plusieurs
+	  termes d'une liste l'instruction doit avoir autant de termes
 	  dans la liste des arguments du membre de gauche que le nombre de termes
-	  sélectionnés. Mais si la syntaxe d&apos;extraction est utilisée dans
-	  les arguments d&apos;entrée d&apos;une fonction,  chaque terme renvoyé
-	  est ajouté aux arguments d&apos;entrée.</P>
-	<P>
-	  Notez que <VERB> l(list())</VERB> est identique à <VERB>l</VERB>.
-	</P>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+	  sélectionnés. Mais si la syntaxe d'extraction est utilisée dans
+	  les arguments d'entrée d'une fonction,  chaque terme renvoyé
+	  est ajouté aux arguments d'entrée.</para>
+	<para>
+	  Notez que <literal> l(list())</literal> est identique à <literal>l</literal>.
+	</para>
+      </listitem></varlistentry>
+    </variablelist>
 
-  </DESCRIPTION>
-  <SECTION label='REMARQUES'>
-    <P>
-      Pour les matrices rationnelles et les systèmes dynamiques linéaires stockés sous forme de représentation d&apos;état, la syntaxe <VERB>x(i)</VERB> ne doit pas être utilisée pour l&apos;extraction des éléments d&apos;un vecteur, à cause de la confusion possible avec l&apos;extraction des éléments de liste. La syntaxe <VERB>x(1,j)</VERB> où <VERB>x(i,1)</VERB> doit être utilisée dans ce cas.
-    </P>
-  </SECTION>
-  <EXAMPLE><![CDATA[
+  </refsection>
+  <refsection><title>REMARQUES</title>
+    <para>
+      Pour les matrices rationnelles et les systèmes dynamiques linéaires stockés sous forme de représentation d'état, la syntaxe <literal>x(i)</literal> ne doit pas être utilisée pour l'extraction des éléments d'un vecteur, à cause de la confusion possible avec l'extraction des éléments de liste. La syntaxe <literal>x(1,j)</literal> où <literal>x(i,1)</literal> doit être utilisée dans ce cas.
+    </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
     // CAS DES MATRICES
     a=[1 2 3;4 5 6]
     a(1,2)
@@ -302,10 +294,10 @@
     dts(2)('b')(1,2)
     [a,b]=dts(2)(['a','b'])
 
-    ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>find</LINK> </SEE_ALSO_ITEM> 
-    <SEE_ALSO_ITEM> <LINK>horner</LINK> </SEE_ALSO_ITEM>  
-    <SEE_ALSO_ITEM> <LINK>parents</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="find">find</link> </member> 
+    <member> <link linkend="horner">horner</link> </member>  
+    <member> <link linkend="parents">parents</link> </member>
+  </simplelist></refsection>
+</refentry>

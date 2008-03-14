@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,22 +10,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>fr</LANGUAGE>
-	<TITLE>demo_mdialog</TITLE>
-	<TYPE>Scilab Function</TYPE>
-    <DATE>$LastChangedDate$</DATE>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="demo_mdialog"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>demo_mdialog</refname><refpurpose>créé une boîte de dialogue</refpurpose></refnamediv>
 	
-	<SHORT_DESCRIPTION name="demo_mdialog">créé une boîte de dialogue</SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>resp = demo_mdialog(fil)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<DESCRIPTION>
-		<P>
+    
+	
+	
+	
+	<refsynopsisdiv><title>Séquence d'appel</title><synopsis>resp = demo_mdialog(fil)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Description</title>
+		<para>
 			La fonction demo_mdialog créé une boîte de dialogue. Elle prend comme argument 
 			le fichier fil, un fichier binaire. Ce fichier est construit à partir d'un 
 			fichier .sce écrit comme suit. Il doit contenir les variables 'titl', le titre 
@@ -37,29 +32,29 @@
 			associcié
 			La fonction demo_mdialog renvoie en sortie 'resp', les valeurs affectées aux 
 			variables
-		</P>
-	</DESCRIPTION>
+		</para>
+	</refsection>
 	
-	<EXAMPLE><![CDATA[
+	<refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 exec('SCI/demos/control/pid/pid_dial_4.sce');
 [defv]=demo_mdialog('SCI/demos/control/pid/pid_dial_4.bin');  
   
   if defv==[] then warning('Demo stops!');return;end
-	]]></EXAMPLE>
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>demo_choose</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>x_mdialog</LINK>
-		</SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM>
-			<LINK>x_dialog</LINK>
-		</SEE_ALSO_ITEM>
-		</SEE_ALSO>
+	<refsection><title>Voir Aussi</title><simplelist type="inline">
+		<member>
+			<link linkend="demo_choose">demo_choose</link>
+		</member>
+		<member>
+			<link linkend="x_mdialog">x_mdialog</link>
+		</member>
+		<member>
+			<link linkend="x_dialog">x_dialog</link>
+		</member>
+		</simplelist></refsection>
 	
-	<AUTHORS>
-		<AUTHORS_ITEM>G.H</AUTHORS_ITEM>
-	</AUTHORS>
-</MAN>
+	<refsection><title>Auteurs</title><simplelist type="vert">
+		<member>G.H</member>
+	</simplelist></refsection>
+</refentry>

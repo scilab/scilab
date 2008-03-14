@@ -1,31 +1,29 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>pause  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="pause"> mode de pause, attente clavier  </SHORT_DESCRIPTION>
-  <DESCRIPTION>
-  <P>
-    Passage en mode de <VERB>pause</VERB>;
-    inséré dans le code d&apos;une fonction, <VERB>pause</VERB> fait une pause dans l&apos;exécution
-    de la fonction : un symbole d&apos;invite de commande est affiché à l&apos;utilisateur indiquant le &quot;niveau&quot; de la <VERB>pause</VERB> (e.g. <VERB>-1-&gt;</VERB>). L&apos;utilisateur se trouve dans un environnement dans lequel toutes les variables du niveau correspondant sont accessibles (en particulier les variables locales de la fonction).
-    Pour reprendre l&apos;exécution taper <VERB>&quot;return&quot;</VERB>.
-  </P>
-  <P>
-    Dans ce mode, <VERB>[...]=return(...) </VERB>
-    renvoie les variables de l&apos;argument <VERB>(...)</VERB> dans l&apos;environnement appelant 
-    sous les noms précisés dans <VERB> [...]</VERB>. Sinon, les variables de l&apos;environnement interrompu sont protégées et non modifiables.
-  </P>
-  <P>
-    L&apos;instruction <VERB>pause</VERB> est très utile en phase de mise au point ou de déboggage.
-  </P>
-  <P>
-    Il est possible de sortir du mode de pause en mettant fin à l&apos;exécution en tapant <VERB>&quot;abort&quot;</VERB>.
-  </P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>halt</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>return</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>abort</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>quit</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>whereami</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>where</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="pause"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pause</refname><refpurpose> mode de pause, attente clavier  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Description</title>
+  <para>
+    Passage en mode de <literal>pause</literal>;
+    inséré dans le code d'une fonction, <literal>pause</literal> fait une pause dans l'exécution
+    de la fonction : un symbole d'invite de commande est affiché à l'utilisateur indiquant le "niveau" de la <literal>pause</literal> (e.g. <literal>-1-&gt;</literal>). L'utilisateur se trouve dans un environnement dans lequel toutes les variables du niveau correspondant sont accessibles (en particulier les variables locales de la fonction).
+    Pour reprendre l'exécution taper <literal>"return"</literal>.
+  </para>
+  <para>
+    Dans ce mode, <literal>[...]=return(...) </literal>
+    renvoie les variables de l'argument <literal>(...)</literal> dans l'environnement appelant 
+    sous les noms précisés dans <literal> [...]</literal>. Sinon, les variables de l'environnement interrompu sont protégées et non modifiables.
+  </para>
+  <para>
+    L'instruction <literal>pause</literal> est très utile en phase de mise au point ou de déboggage.
+  </para>
+  <para>
+    Il est possible de sortir du mode de pause en mettant fin à l'exécution en tapant <literal>"abort"</literal>.
+  </para>
+  </refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="halt">halt</link> </member>     <member> <link linkend="return">return</link> </member>     <member> <link linkend="abort">abort</link> </member>     <member> <link linkend="quit">quit</link> </member>     <member> <link linkend="whereami">whereami</link> </member>     <member> <link linkend="where">where</link> </member>
+  </simplelist></refsection>
+</refentry>

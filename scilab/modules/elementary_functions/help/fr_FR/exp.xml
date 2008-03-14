@@ -1,41 +1,36 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>exp  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="exp"> exponentielle  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>exp(X)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>X  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice carrée réelle ou complexe.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>exp(X)</VERB> renvoie (élément par élément) l&apos;exponentielle des éléments de <VERB>X</VERB>.
-  </P>
-  <P>
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="exp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>exp</refname><refpurpose> exponentielle  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>exp(X)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>X  </term>
+  <listitem>
+  <para>matrice carrée réelle ou complexe.
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>exp(X)</literal> renvoie (élément par élément) l'exponentielle des éléments de <literal>X</literal>.
+  </para>
+  <para>
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 x=[1,2,3+%i];
 log(exp(x))  // élément par élément
 2^x
 exp(x*log(2))
 
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>coff</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>log</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>expm</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="coff">coff</link> </member>     <member> <link linkend="log">log</link> </member>     <member> <link linkend="expm">expm</link> </member>
+  </simplelist></refsection>
+</refentry>

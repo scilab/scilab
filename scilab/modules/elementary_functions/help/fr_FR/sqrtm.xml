@@ -1,40 +1,35 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>sqrtm  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="sqrtm"> racine carrée matricielle  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>y=sqrtm(x)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice carrée réelle ou complexe
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>y=sqrt(x)</VERB> est la racine carrée matricielle de la matrice <VERB>x</VERB> (<VERB>x=y^2</VERB>)
-    Le résultat peut être imprécis si <VERB>x</VERB> n&apos;est pas symétrique.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sqrtm"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sqrtm</refname><refpurpose> racine carrée matricielle  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>y=sqrtm(x)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x  </term>
+  <listitem>
+  <para>matrice carrée réelle ou complexe
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>y=sqrt(x)</literal> est la racine carrée matricielle de la matrice <literal>x</literal> (<literal>x=y^2</literal>)
+    Le résultat peut être imprécis si <literal>x</literal> n'est pas symétrique.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 x=[0 1;2 4]
 w=sqrtm(x); 
 norm(w*w-x)
 x(1,2)=%i;
 w=sqrtm(x);norm(w*w-x,1)
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>expm</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>sqroot</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="expm">expm</link> </member>     <member> <link linkend="sqroot">sqroot</link> </member>
+  </simplelist></refsection>
+</refentry>

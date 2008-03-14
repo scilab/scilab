@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,48 +10,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>save_graph  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="save_graph"> sauve un graphe  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>save_graph(g,chemin)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>chemin  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : chaîne de caractères, nom de fichier
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>save_graph</VERB> sauve le graphe <VERB>g</VERB> dans un fichier.
-    <VERB>chemin</VERB> est le nom du fichier où le graphe est sauvé.
-    <VERB>chemin</VERB> peut être le nom du fichier ou le nom d&apos;un répertoire; si l&apos;extension
-    <VERB>&quot;graph&quot;</VERB> est omise dans <VERB>name</VERB>, elle est ajoutée.
-    Si <VERB>chemin</VERB> est le nom d&apos;un répertoire, le nom du graphe est
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="save_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>save_graph</refname><refpurpose> sauve un graphe  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>save_graph(g,chemin)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>chemin  </term>
+  <listitem>
+  <para>chaîne de caractères, nom de fichier
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>save_graph</literal> sauve le graphe <literal>g</literal> dans un fichier.
+    <literal>chemin</literal> est le nom du fichier où le graphe est sauvé.
+    <literal>chemin</literal> peut être le nom du fichier ou le nom d'un répertoire; si l'extension
+    <literal>"graph"</literal> est omise dans <literal>name</literal>, elle est ajoutée.
+    Si <literal>chemin</literal> est le nom d'un répertoire, le nom du graphe est
     utilisé comme nom de fichier.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 g=load_graph(SCI+'/demos/metanet/mesh100');
 show_graph(g);
 if MSDOS then 
@@ -63,8 +56,8 @@ end
 save_graph(g,'mymesh100.graph');
 g=load_graph('mymesh100');
 show_graph(g,'new');
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>load_graph</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="load_graph">load_graph</link> </member>
+  </simplelist></refsection>
+</refentry>

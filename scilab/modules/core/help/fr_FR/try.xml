@@ -1,47 +1,43 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>try</TITLE>
-  <TYPE>Scilab keyword</TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="try"> mot clé de début du block try dans une
-    instruction de contrôle try-catch </SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="catch">  mot clé de début du block catch dans une
-    instruction de contrôle try-catch </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>try </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>  statements</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>catch </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>  statements</CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>end</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <DESCRIPTION>
-    <P>L'instruction de contrôle <VERB>try</VERB>-<VERB>catch</VERB> peut être
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="try"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>try</refname><refpurpose> mot clé de début du block try dans une
+    instruction de contrôle try-catch </refpurpose></refnamediv><refnamediv xml:id="catch"><refname>catch</refname><refpurpose>  mot clé de début du block catch dans une
+    instruction de contrôle try-catch </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>try
+statements
+catch
+statements
+end</synopsis></refsynopsisdiv>
+  <refsection><title>Description</title>
+    <para>L'instruction de contrôle <literal>try</literal>-<literal>catch</literal> peut être
       utilisée pour controler les conséquence d'une erreur d'éxécution en permettant
-      l'éxécution de code spécifique en cas d'erreur.</P>
+      l'éxécution de code spécifique en cas d'erreur.</para>
 
-    <P>Quand une instruction de contrôle <VERB>try</VERB>-<VERB>catch</VERB>
+    <para>Quand une instruction de contrôle <literal>try</literal>-<literal>catch</literal>
       est exécutée, normalement seules les instructions comprises entre les mots
-      clés  <VERB>try</VERB> et <VERB>catch</VERB> sont exécutées. Cependant,
+      clés  <literal>try</literal> et <literal>catch</literal> sont exécutées. Cependant,
       si une erreur se produit pendant l'exécution de ces instructions,
       l'erreur est mémorisée, les instructions restantes jusqu'au mot clé
-      <VERB>catch</VERB> sont ignorées et les instructions comprises entre les
-      mots clés  <VERB>catch</VERB> et  <VERB>end</VERB> sont exécutées en
-      utilisant le mode de gestion des erreurs par défaut (voir: <LINK>errcatch</LINK>. </P>
-    <P>L'erreur mémorisé peut être retrouvée en utilisant la fonction <LINK>lasterror</LINK>.</P>
+      <literal>catch</literal> sont ignorées et les instructions comprises entre les
+      mots clés  <literal>catch</literal> et  <literal>end</literal> sont exécutées en
+      utilisant le mode de gestion des erreurs par défaut (voir: <link linkend="errcatch">errcatch</link>. </para>
+    <para>L'erreur mémorisé peut être retrouvée en utilisant la fonction <link linkend="lasterror">lasterror</link>.</para>
 
-    <P>Les intructions comprises entre les mots clés  <VERB>catch</VERB> et
-      <VERB>end</VERB> peuvent être omises ainsi que le mot clé
-      <VERB>catch</VERB> si aucun code alternatif n'est fourni.</P>
+    <para>Les intructions comprises entre les mots clés  <literal>catch</literal> et
+      <literal>end</literal> peuvent être omises ainsi que le mot clé
+      <literal>catch</literal> si aucun code alternatif n'est fourni.</para>
 
 
-    <P>Notez que l'on peut aussi utiliser la fonction  <LINK>execstr</LINK>
-      avec l'argument <VERB>'errcatch'</VERB> pour gérer les erreurs et tout 
-      particulièrement pour gérer les erreurs de syntaxe.</P>
-  </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+    <para>Notez que l'on peut aussi utiliser la fonction  <link linkend="execstr">execstr</link>
+      avec l'argument <literal>'errcatch'</literal> pour gérer les erreurs et tout 
+      particulièrement pour gérer les erreurs de syntaxe.</para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+
  file_path=TMPDIR+'/wrong'
  try
     u=mopen(file_path,'r')
@@ -53,24 +49,24 @@
   end 
   [error_message,error_number]=lasterror(%t) 
  
- ]]>
-  </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>error</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>execstr</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>if</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>lasterror</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>errcatch</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
- <AUTHOR> Serge Steer, INRIA</AUTHOR>
-</MAN>
+ 
+  ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="error">error</link>
+    </member>
+    <member>
+      <link linkend="execstr">execstr</link>
+    </member>
+    <member>
+      <link linkend="if">if</link>
+    </member>
+    <member>
+      <link linkend="lasterror">lasterror</link>
+    </member>
+    <member>
+      <link linkend="errcatch">errcatch</link>
+    </member>
+  </simplelist></refsection>
+ <refsection><title>Auteurs</title><para> Serge Steer, INRIA</para></refsection>
+</refentry>

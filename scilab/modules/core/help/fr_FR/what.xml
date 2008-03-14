@@ -1,28 +1,23 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="what"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>what</refname><refpurpose>liste des primitives
+  Scilab</refpurpose></refnamediv>
+  
 
-  <TITLE>what</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="what">liste des primitives
-  Scilab</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>what()</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>what()
+[primitives,commandes]=what();</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>[primitives,commandes]=what();</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Description</title>
+    <para>Liste des primitives et commandes de bas niveau.</para>
 
-  <DESCRIPTION>
-    <P>Liste des primitives et commandes de bas niveau.</P>
+    <para/>
+  </refsection>
 
-    <P></P>
-  </DESCRIPTION>
-
-  <AUTHOR>A.C</AUTHOR>
-</MAN>
+  <refsection><title>Auteurs</title><para>A.C</para></refsection>
+</refentry>

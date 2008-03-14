@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,97 +10,92 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="shortest_path"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>shortest_path</refname><refpurpose>chemin le plus
+  court</refpurpose></refnamediv>
+  
 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+  
 
-  <TITLE>shortest_path</TITLE>
+  
 
-  <TYPE>Scilab function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="shortest_path">chemin le plus
-  court</SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[p,lp] = shortest_path(i,j,g,[typ])</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[p,lp] =
-    shortest_path(i,j,g,[typ])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>i</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>i</PARAM_NAME>
+        <listitem>
+          <para>entier, numéro du sommet de départ</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: entier, numéro du sommet de départ</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>j</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>j</PARAM_NAME>
+        <listitem>
+          <para>entier, numéro du sommet d'arrivée</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: entier, numéro du sommet d'arrivée</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>g</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
+        <listitem>
+          <para>graphe (liste)</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: graphe (liste)</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>typ</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>typ</PARAM_NAME>
+        <listitem>
+          <para>chaîne de caractères, type du chemin le plus court</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: chaîne de caractères, type du chemin le plus court</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>p</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
+        <listitem>
+          <para>vecteur ligne des numéros des arcs du chemin s'il existe</para>
+        </listitem>
+      </varlistentry>
 
-        <PARAM_DESCRIPTION>
-          <SP>: vecteur ligne des numéros des arcs du chemin s'il existe</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+      <varlistentry>
+        <term>lp</term>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>lp</PARAM_NAME>
+        <listitem>
+          <para>longueur du chemin</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: longueur du chemin</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P><VERB>shortest_path</VERB> renvoie le chemin le plus court
-    <VERB>p</VERB> du sommet <VERB>i</VERB> au sommet <VERB>j</VERB> s'il
-    existe, et le vecteur vide <VERB>[]</VERB> sinon. L'argument optionnel
-    <VERB>typ</VERB> est une chaîne définissant le type du chemin, 'arc' pour
+  <refsection><title>Description</title>
+    <para><literal>shortest_path</literal> renvoie le chemin le plus court
+    <literal>p</literal> du sommet <literal>i</literal> au sommet <literal>j</literal> s'il
+    existe, et le vecteur vide <literal>[]</literal> sinon. L'argument optionnel
+    <literal>typ</literal> est une chaîne définissant le type du chemin, 'arc' pour
     le chemin le plus court par rapport au nombre d'arcs et 'length' pour le
     chemin le plus court par rapport à  la longueur des arêtes
-    <VERB>edge_length</VERB>.</P>
+    <literal>edge_length</literal>.</para>
 
-    <P>Pour le chemin le plus court par rapport à  la longueur des arêtes, les
-    longueurs sont données par les éléments <VERB>edge_length</VERB> du
-    graphe. Si cette valeur n'est pas donnée (vecteur vide <VERB>[]</VERB>),
+    <para>Pour le chemin le plus court par rapport à  la longueur des arêtes, les
+    longueurs sont données par les éléments <literal>edge_length</literal> du
+    graphe. Si cette valeur n'est pas donnée (vecteur vide <literal>[]</literal>),
     elle est supposée nulle sur chaque arête. Les longueurs peuvent être
-    positives ou négatives (ou nulles).</P>
+    positives ou négatives (ou nulles).</para>
 
-    <P>Quand le chemin le plus court existe, <VERB>lp</VERB> est la longueur
-    du chemin.</P>
-  </DESCRIPTION>
+    <para>Quand le chemin le plus court existe, <literal>lp</literal> est la longueur
+    du chemin.</para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10];
 he=[2 6 3 4 5 1 3 5 1 7 10 11 5 8 9 5 8 11 10 11 9 11 15 13 14 4 6 9 1];
 g=make_graph('foo',1,15,ta,he);
@@ -122,15 +116,15 @@ g1('edge_color')=edgecolor;
 edgefontsize=12*ones(1,ma);edgefontsize(p)=18*ones(p);
 g1('edge_font_size')=edgefontsize;
 show_graph(g1);
- ]]></EXAMPLE>
+ ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>find_path</LINK>
-    </SEE_ALSO_ITEM>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member>
+      <link linkend="find_path">find_path</link>
+    </member>
 
-    <SEE_ALSO_ITEM>
-      <LINK>nodes_2_path</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+    <member>
+      <link linkend="nodes_2_path">nodes_2_path</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

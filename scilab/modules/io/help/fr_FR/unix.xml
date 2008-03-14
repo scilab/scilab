@@ -1,59 +1,55 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unix"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unix</refname><refpurpose> exécution d'une commande Unix ou DOS  </refpurpose></refnamediv>
 	
-	<LANGUAGE>fr</LANGUAGE>
-	<TITLE>unix  </TITLE>
-	<TYPE>Scilab Function  </TYPE>
-	<DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="unix"> exécution d&apos;une commande Unix ou DOS  </SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>stat=unix(command-name)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<PARAM>
-		<PARAM_INDENT>
-			<PARAM_ITEM>
-				<PARAM_NAME>command-name</PARAM_NAME>
-				<PARAM_DESCRIPTION><SP>: chaîne de caractères contenant les commandes à exécuter</SP></PARAM_DESCRIPTION> 
-			</PARAM_ITEM>
-			<PARAM_ITEM>
-				<PARAM_NAME>stat</PARAM_NAME>
-				<PARAM_DESCRIPTION><SP>: un entier</SP></PARAM_DESCRIPTION>
-			</PARAM_ITEM>
-		</PARAM_INDENT>
-	</PARAM>
 	
-	<DESCRIPTION>
-		<P>
-			Envoie la chaîne <VERB>command-name</VERB> à l&apos;interpréteur de commande
+	
+	
+	
+	<refsynopsisdiv><title>Séquence d'appel</title><synopsis>stat=unix(command-name)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Paramètres</title>
+		<variablelist>
+			<varlistentry>
+				<term>command-name</term>
+				<listitem><para>chaîne de caractères contenant les commandes à exécuter</para></listitem> 
+			</varlistentry>
+			<varlistentry>
+				<term>stat</term>
+				<listitem><para>un entier</para></listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+	
+	<refsection><title>Description</title>
+		<para>
+			Envoie la chaîne <literal>command-name</literal> à l'interpréteur de commande
 			(sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs sont reportées dans 
-			l&apos;interpréteur de commande.
-		</P>
-		<P>
-			<VERB>stat</VERB> vaut -1 en sortie si la fonction ne peut pas être appelée (pas assez de mémoire par exemple) ou
-			alors le code de sortie de l&apos;interpréteur de commande.
-		</P>
-	</DESCRIPTION>
+			l'interpréteur de commande.
+		</para>
+		<para>
+			<literal>stat</literal> vaut -1 en sortie si la fonction ne peut pas être appelée (pas assez de mémoire par exemple) ou
+			alors le code de sortie de l'interpréteur de commande.
+		</para>
+	</refsection>
 	
-	<EXAMPLE>
-<![CDATA[
+	<refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+
 unix("ls $SCI/demos");
 deff('wd=getdir()','if MSDOS then unix(''cd>''+TMPDIR+''\path'');..
 	else unix(''pwd>''+TMPDIR+''/path'');end..
 wd=read(TMPDIR+''/path'',1,1,''(a)'')')
 wd=getdir()
-]]>
-	</EXAMPLE>
+
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM><LINK>edit</LINK></SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM> <LINK>manedit</LINK></SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM> <LINK>unix_g</LINK> </SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM> <LINK>unix_s</LINK> </SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM> <LINK>unix_w</LINK> </SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM> <LINK>unix_x</LINK> </SEE_ALSO_ITEM>
-	</SEE_ALSO>
+	<refsection><title>Voir Aussi</title><simplelist type="inline">
+		<member><link linkend="edit">edit</link></member>
+		<member> <link linkend="manedit">manedit</link></member>
+		<member> <link linkend="unix_g">unix_g</link> </member>
+		<member> <link linkend="unix_s">unix_s</link> </member>
+		<member> <link linkend="unix_w">unix_w</link> </member>
+		<member> <link linkend="unix_x">unix_x</link> </member>
+	</simplelist></refsection>
 	
-</MAN>
+</refentry>

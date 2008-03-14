@@ -1,74 +1,67 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="gstacksize"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gstacksize</refname><refpurpose>obtenir ou changer la taille de la pile
+  des variables globales</refpurpose></refnamediv>
+  
 
-  <TITLE>gstacksize</TITLE>
+  
 
-  <TYPE>Scilab Function</TYPE>
+  
 
-  <DATE>$LastChangedDate$</DATE>
+  
 
-  <SHORT_DESCRIPTION name="gstacksize">obtenir ou changer la taille de la pile
-  des variables globales</SHORT_DESCRIPTION>
+  
 
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>gstacksize(n)</CALLING_SEQUENCE_ITEM>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>gstacksize(n)
+sz=gstacksize()
+gstacksize('min')
+gstacksize('max')</synopsis></refsynopsisdiv>
 
-    <CALLING_SEQUENCE_ITEM>sz=gstacksize()</CALLING_SEQUENCE_ITEM>
+  <refsection><title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
 
-    <CALLING_SEQUENCE_ITEM>gstacksize('min')</CALLING_SEQUENCE_ITEM>
+        <listitem>
+          <para>entier, la taille de pile désirée, en nombre de mots
+          double-précision</para>
+        </listitem>
+      </varlistentry>
 
-    <CALLING_SEQUENCE_ITEM>gstacksize('max')</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+      <varlistentry>
+        <term>sz</term>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>n</PARAM_NAME>
+        <listitem>
+          <para>vecteur à  deux composantes [taille_totale
+          taille_utilisée]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-        <PARAM_DESCRIPTION>
-          <SP>: entier, la taille de pile désirée, en nombre de mots
-          double-précision</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
+  <refsection><title>Description</title>
+    <para>Scilab stocke les variables globales dans une pile.</para>
 
-      <PARAM_ITEM>
-        <PARAM_NAME>sz</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: vecteur à  deux composantes [taille_totale
-          taille_utilisée]</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-    <P>Scilab stocke les variables globales dans une pile.</P>
-
-    <P><VERB>gstacksize(n)</VERB> permet d'augmenter ou de diminuer la taille
+    <para><literal>gstacksize(n)</literal> permet d'augmenter ou de diminuer la taille
     de cette pile. La taille maximum dépend de la mémoire (physique ou
     virtuelle) restante. Notez que Scilab peut augmenter automatiquement la
-    taille de la pile globale si cela s'avère nécessaire.</P>
+    taille de la pile globale si cela s'avère nécessaire.</para>
 
-    <P><VERB>sz=gstacksize()</VERB> renvoie un vecteur à  deux composantes
+    <para><literal>sz=gstacksize()</literal> renvoie un vecteur à  deux composantes
     contenant la taille totale de la pile et la taille actuellement
-    utilisée.</P>
+    utilisée.</para>
 
-    <P><VERB>gstacksize('max')</VERB> permet d'augmenter la taille au maximum
-    de la pile scilab des variables globales.</P>
+    <para><literal>gstacksize('max')</literal> permet d'augmenter la taille au maximum
+    de la pile scilab des variables globales.</para>
 
-    <P><VERB>gstacksize('min')</VERB> permet de diminuer la taille au minimum
-    de la pile scilab des variables globales.</P>
-  </DESCRIPTION>
+    <para><literal>gstacksize('min')</literal> permet de diminuer la taille au minimum
+    de la pile scilab des variables globales.</para>
+  </refsection>
 
-  <SEE_ALSO>
-	  <SEE_ALSO_ITEM>
-		  <LINK>who</LINK>
-	  </SEE_ALSO_ITEM>
-	  <SEE_ALSO_ITEM>
-		  <LINK>stacksize</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+	  <member>
+		  <link linkend="who">who</link>
+	  </member>
+	  <member>
+		  <link linkend="stacksize">stacksize</link>
+    </member>
+  </simplelist></refsection>
+</refentry>

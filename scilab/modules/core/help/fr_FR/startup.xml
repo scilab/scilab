@@ -1,37 +1,35 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-	<LANGUAGE>fr</LANGUAGE>
-	<TITLE>startup</TITLE>
-	<TYPE>Scilab Documentation</TYPE>
-	<DATE>January 2008</DATE>
-	<SHORT_DESCRIPTION name="startup"> startup file</SHORT_DESCRIPTION>
-	<DESCRIPTION>
-		<P>Les fichiers de démarrage <VERB>SCIHOME/.scilab</VERB> et <VERB>SCIHOME/scilab.ini</VERB>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="startup"><info><pubdate>January 2008</pubdate></info><refnamediv><refname>startup</refname><refpurpose> startup file</refpurpose></refnamediv>
+	
+	
+	
+	
+	
+	<refsection><title>Description</title>
+		<para>Les fichiers de démarrage <literal>SCIHOME/.scilab</literal> et <literal>SCIHOME/scilab.ini</literal>
 		sont automatiquement executés (s'ils existent) au démarrage de Scilab, ainsi que le fichier 
 		SCI/scilab.star présent dans le répertoire de Scilab.
-		</P>
-	</DESCRIPTION>
+		</para>
+	</refsection>
 	
-	<SECTION label="Remark">
+	<refsection><title>Remark</title>
 		
-		<P>
+		<para>
 			les fichiers de démarrage doivent obligatoirement comporter une nouvelle ligne en fin 
 			de fichier pour être pris en compte.
-		</P>
+		</para>
 		
-		<P>
+		<para>
 			Définition de SCIHOME : 
 			Sous Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
 			Sous Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
-		</P>
+		</para>
 		
-	</SECTION>
+	</refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM>
-			<LINK>scilab</LINK>
-		</SEE_ALSO_ITEM>
-	</SEE_ALSO>
+	<refsection><title>Voir Aussi</title><simplelist type="inline">
+		<member>
+			<link linkend="scilab">scilab</link>
+		</member>
+	</simplelist></refsection>
 	
-</MAN>
+</refentry>

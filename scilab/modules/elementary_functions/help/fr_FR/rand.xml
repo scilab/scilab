@@ -1,124 +1,116 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>rand  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="rand"> générateur de nombres aléatoires  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>rand(m1,m2,.. [,key])  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>rand(x [, key])  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>rand()  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>rand(key)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>rand(&quot;seed&quot; [,n])  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>rand(&quot;info&quot;)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>mi  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entiers
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>key  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : chaîne de caractères,  <VERB>&quot;uniform&quot;</VERB> ou <VERB>&quot;normal&quot;</VERB> (&quot;uniform&quot; par défaut)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : une matrice, dont uniquement les dimensions sont prises en compte. 
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rand"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>rand</refname><refpurpose> générateur de nombres aléatoires  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>rand(m1,m2,.. [,key])
+rand(x [, key])
+rand()
+
+rand(key)
+rand("seed" [,n])
+rand("info")
+</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>mi  </term>
+  <listitem>
+  <para>entiers
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>key  </term>
+  <listitem>
+  <para>chaîne de caractères,  <literal>"uniform"</literal> ou <literal>"normal"</literal> ("uniform" par défaut)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>x  </term>
+  <listitem>
+  <para>une matrice, dont uniquement les dimensions sont prises en compte. 
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
     Générateur de nombres aléatoires.
-  </P>
-  <P>
-    Sans l&apos;argument <VERB>key</VERB> la syntaxe ci-dessous produit une matrice 
-    aléatoire dont chaque élément est la réalisation d&apos;une variable aléatoire 
+  </para>
+  <para>
+    Sans l'argument <literal>key</literal> la syntaxe ci-dessous produit une matrice 
+    aléatoire dont chaque élément est la réalisation d'une variable aléatoire 
     suivant une loi donnée (par défaut uniforme sur [0,1]).
-  </P>
-   <DESCRIPTION_INDENT>
+  </para>
+   <variablelist>
 
-  <DESCRIPTION_ITEM  label='rand(m1,m2)'> 
-    <SP> est une matrice aléatoire de dimensions <VERB>m1</VERB> x <VERB>m2</VERB>.</SP>
-  </DESCRIPTION_ITEM>
+  <varlistentry><term>rand(m1,m2)</term><listitem> 
+    <para> est une matrice aléatoire de dimensions <literal>m1</literal> x <literal>m2</literal>.</para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='rand(m1,m2,..,mn)'> 
-    <SP> est une matrice aléatoire de dimensions <VERB>m1</VERB> x <VERB>m2</VERB>,.. x <VERB>mn</VERB>.</SP>
-  </DESCRIPTION_ITEM>
+  <varlistentry><term>rand(m1,m2,..,mn)</term><listitem> 
+    <para> est une matrice aléatoire de dimensions <literal>m1</literal> x <literal>m2</literal>,.. x <literal>mn</literal>.</para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='rand(a)'> 
-    <SP> est une matrice aléatoire de mêmes dimensions que a. <VERB>rand(a)</VERB> est complexe si <VERB>a</VERB> 
-    est une matrice complexe.</SP>
-  </DESCRIPTION_ITEM>
+  <varlistentry><term>rand(a)</term><listitem> 
+    <para> est une matrice aléatoire de mêmes dimensions que a. <literal>rand(a)</literal> est complexe si <literal>a</literal> 
+    est une matrice complexe.</para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='rand() : sans argument, renvoie un scalaire aléatoire.'> 
-  </DESCRIPTION_ITEM>
-   </DESCRIPTION_INDENT>
-  <P>
-    S&apos;il est présent, l&apos;argument <VERB>key</VERB> permet de spécifier la loi suivie par défaut par la variable aléatoire.
-  </P>
-  <DESCRIPTION_INDENT>
-  <DESCRIPTION_ITEM  label='rand(&apos;uniform&apos;)'> 
-    <SP> La loi par défaut est uniforme sur l&apos;intervalle [0,1].</SP>
-  </DESCRIPTION_ITEM>
+  
+   </variablelist>
+  <para>
+    S'il est présent, l'argument <literal>key</literal> permet de spécifier la loi suivie par défaut par la variable aléatoire.
+  </para>
+  <variablelist>
+  <varlistentry><term>rand('uniform')</term><listitem> 
+    <para> La loi par défaut est uniforme sur l'intervalle [0,1].</para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='rand(&apos;normal&apos;)'> 
-   <SP> La loi par défaut est une loi normale centrée réduite (moyenne 0, variance 1).</SP>
-  </DESCRIPTION_ITEM>
+  <varlistentry><term>rand('normal')</term><listitem> 
+   <para> La loi par défaut est une loi normale centrée réduite (moyenne 0, variance 1).</para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='str=rand(&apos;info&apos;)'> 
-    <SP> renvoie &apos;uniform&apos; ou &apos;normal&apos; suivant la loi définie par défaut (voir ci-dessus).</SP>
-  </DESCRIPTION_ITEM>
-   </DESCRIPTION_INDENT>
-  <P>
+  <varlistentry><term>str=rand('info')</term><listitem> 
+    <para> renvoie 'uniform' ou 'normal' suivant la loi définie par défaut (voir ci-dessus).</para>
+  </listitem></varlistentry>
+   </variablelist>
+  <para>
     Il est possible de réinitialiser l'état interne du générateur aléatoire (spécifié par un entier
     de l'intervalle [0,2^31-1]) ):
-  </P>
-  <DESCRIPTION_INDENT>
-  <DESCRIPTION_ITEM  label='rand(&apos;seed&apos;)'> 
-    <SP> Renvoie la valeur courante de l'état interne.</SP>
-  </DESCRIPTION_ITEM>
+  </para>
+  <variablelist>
+  <varlistentry><term>rand('seed')</term><listitem> 
+    <para> Renvoie la valeur courante de l'état interne.</para>
+  </listitem></varlistentry>
 
-  <DESCRIPTION_ITEM  label='rand(&apos;seed&apos;,n)'> 
-    <SP> Impose la valeur <VERB>n</VERB> pour l'état interne (par défaut l'état est initialisé
-    à <VERB>n=0</VERB> au premier appel).</SP>
-  </DESCRIPTION_ITEM>
-  </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+  <varlistentry><term>rand('seed',n)</term><listitem> 
+    <para> Impose la valeur <literal>n</literal> pour l'état interne (par défaut l'état est initialisé
+    à <literal>n=0</literal> au premier appel).</para>
+  </listitem></varlistentry>
+  </variablelist>
+  </refsection>
 
-    <SECTION label="Remarque">
-    <P>
-       Il est conseillé d'utiliser plutôt la fonction <LINK>grand</LINK> qui permet aussi de simuler
+    <refsection><title>Remarque</title>
+    <para>
+       Il est conseillé d'utiliser plutôt la fonction <link linkend="grand">grand</link> qui permet aussi de simuler
        les lois les plus classiques (binomiale, poisson, ....).
-    </P>
-    </SECTION>
+    </para>
+    </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 x=rand(10,10,'uniform')
 rand('normal')
 rand('info')
 y=rand(x,'normal');
 x=rand(2,2,2)
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>grand</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>ssrand</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="grand">grand</link> </member>
+    <member> <link linkend="ssrand">ssrand</link> </member>
+  </simplelist></refsection>
+</refentry>

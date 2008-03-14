@@ -1,38 +1,33 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>asinhm  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="asinhm"> sinus hyperbolique matriciel inverse  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>t=asinhm(x)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x,t  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : matrice carrée complexe ou réelle
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="asinhm"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>asinhm</refname><refpurpose> sinus hyperbolique matriciel inverse  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>t=asinhm(x)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x,t  </term>
+  <listitem>
+  <para>matrice carrée complexe ou réelle
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
     asinhm est le sinus hyperbolique matriciel inverse de la matrice x.
-    Cette fonction utilise la formule <VERB>t=logm(x+sqrtm(x*x+eye()))</VERB>.
+    Cette fonction utilise la formule <literal>t=logm(x+sqrtm(x*x+eye()))</literal>.
     Pour les matrices non symétriques le résultat peut être imprécis.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 A=[1,2;2,3]
 sinhm(asinhm(A))
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>asinh</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>logm</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>sqrtm</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="asinh">asinh</link> </member>     <member> <link linkend="logm">logm</link> </member>     <member> <link linkend="sqrtm">sqrtm</link> </member>
+  </simplelist></refsection>
+</refentry>

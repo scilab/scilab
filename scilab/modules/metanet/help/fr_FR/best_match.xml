@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -11,55 +10,48 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>best_match  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="best_match"> meilleur appariement d&apos;un graphe  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[card,match] = best_match(g)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>g  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : graphe (liste) 
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>card  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier 
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>match  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur ligne d&apos;entiers 
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
-    <VERB>best_match</VERB> trouve un appariement optimal pour le graphe <VERB>g</VERB>.
-    Les sorties sont <VERB>card</VERB> et le vecteur <VERB>match</VERB>. <VERB>card</VERB> est la 
-    cardinalité d&apos;un appariement optimal de g. <VERB>match(i)</VERB> est le sommet adjacent
-    au sommet <VERB>i</VERB> dans l&apos;appariement optimal ou 0 si <VERB>i</VERB> n&apos;est pas apparié.
-  </P>
-  </DESCRIPTION>
-  <EXAMPLE>
-  <![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="best_match"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>best_match</refname><refpurpose> meilleur appariement d'un graphe  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[card,match] = best_match(g)</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>g  </term>
+  <listitem>
+  <para>graphe (liste) 
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>card  </term>
+  <listitem>
+  <para>entier 
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>match  </term>
+  <listitem>
+  <para>vecteur ligne d'entiers 
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
+    <literal>best_match</literal> trouve un appariement optimal pour le graphe <literal>g</literal>.
+    Les sorties sont <literal>card</literal> et le vecteur <literal>match</literal>. <literal>card</literal> est la 
+    cardinalité d'un appariement optimal de g. <literal>match(i)</literal> est le sommet adjacent
+    au sommet <literal>i</literal> dans l'appariement optimal ou 0 si <literal>i</literal> n'est pas apparié.
+  </para>
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
 ta=[ta  16 15 15 14 12 9 10 6 9 17 8 17 10 20 11 23 23 12 18 28]; 
 he=[ 1  2 2  4  5 11 13  1 25 22 24 22 22 19 13 13 14 16 16  9 16];
@@ -87,9 +79,9 @@ sp=sparse([ta' he'],[1:size(ta,2)]',[n,n]);
 sp1=sparse([[1:n]' match'],ones(1,size(match,2))',[n,n]);
 [ij,v,mn]=spget(sp.*sp1);
 show_arcs(v');
- ]]>
- </EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>perfect_match</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ 
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="perfect_match">perfect_match</link> </member>
+  </simplelist></refsection>
+</refentry>

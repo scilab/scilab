@@ -1,58 +1,52 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>cumprod  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="cumprod"> produit cumulatif.  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>y=cumprod(x)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>y=cumprod(x,'r') ou y=cumprod(x,1) </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>y=cumprod(x,'c') ou y=cumprod(x,2) </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>y=cumprod(x,'m') </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur ou matrice (réelle ou complexe)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>y  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur ou matrice (réelle ou complexe)
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P> Pour un vecteur <VERB>x</VERB>, <VERB>y=cumprod(x)</VERB> renvoie dans
-      <VERB>y</VERB> le produit cumulatif de tous les éléments de
-      <VERB>x</VERB>. Si <VERB>x</VERB> est une matrice, elle est considérée
-      comme un vecteur (les colonnes sont mises bout à bout). </P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="cumprod"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>cumprod</refname><refpurpose> produit cumulatif.  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>y=cumprod(x)
+y=cumprod(x,'r') ou y=cumprod(x,1)
+y=cumprod(x,'c') ou y=cumprod(x,2)
+y=cumprod(x,'m')</synopsis></refsynopsisdiv>
+  <refsection><title>Paramètres</title>
+ <variablelist>
+  <varlistentry>
+  <term>x  </term>
+  <listitem>
+  <para>vecteur ou matrice (réelle ou complexe)
+</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>y  </term>
+  <listitem>
+  <para>vecteur ou matrice (réelle ou complexe)
+</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para> Pour un vecteur <literal>x</literal>, <literal>y=cumprod(x)</literal> renvoie dans
+      <literal>y</literal> le produit cumulatif de tous les éléments de
+      <literal>x</literal>. Si <literal>x</literal> est une matrice, elle est considérée
+      comme un vecteur (les colonnes sont mises bout à bout). </para>
 
-  <P> <VERB>y=cumprod(x,'c')</VERB> (ou <VERB>y=cumprod(x,2)</VERB>)
-      renvoie dans <VERB>y</VERB> le produit cumulatif des éléments des lignes
-      de <VERB>x</VERB>: <VERB> y(i,:)=cumprod(x(i,:))</VERB>. </P>
+  <para> <literal>y=cumprod(x,'c')</literal> (ou <literal>y=cumprod(x,2)</literal>)
+      renvoie dans <literal>y</literal> le produit cumulatif des éléments des lignes
+      de <literal>x</literal>: <literal> y(i,:)=cumprod(x(i,:))</literal>. </para>
 
-  <P> <VERB>y=cumprod(x,'r')</VERB> (ou <VERB>y=cumprod(x,2)</VERB>)
-      renvoie dans <VERB>y</VERB> le produit cumulatif des colonnes de
-      <VERB>x</VERB>: <VERB> y(:,i)=cumprod(x(:,i))</VERB>. </P>
+  <para> <literal>y=cumprod(x,'r')</literal> (ou <literal>y=cumprod(x,2)</literal>)
+      renvoie dans <literal>y</literal> le produit cumulatif des colonnes de
+      <literal>x</literal>: <literal> y(:,i)=cumprod(x(:,i))</literal>. </para>
 
-  <P> <VERB>y=cumprod(x,'m')</VERB>
+  <para> <literal>y=cumprod(x,'m')</literal>
       effectue le produit cumulatif selon la première dimension plus grande que
-      1 (compatibilité avec Matlab). </P>
+      1 (compatibilité avec Matlab). </para>
 
 
-  </DESCRIPTION>
-  <EXAMPLE><![CDATA[
+  </refsection>
+  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
 A=[1,2;3,4];
 cumprod(A)
 cumprod(A,'r')
@@ -63,10 +57,10 @@ a=rand(3,4);
 w=zeros(a);
 w(1,:)=a(1,:);
 for k=2:m;w(k,:)=w(k-1,:).*a(k,:);end;w-cumprod(a,'r')
- ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>cumsum</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>prod</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-</MAN>
+ ]]></programlisting></refsection>
+  <refsection><title>Voir Aussi</title><simplelist type="inline">
+    <member> <link linkend="cumsum">cumsum</link> </member>     
+    <member> <link linkend="sum">sum</link> </member>     
+    <member> <link linkend="prod">prod</link> </member>
+  </simplelist></refsection>
+</refentry>

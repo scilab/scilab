@@ -1,54 +1,50 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
-<MAN>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unix_g"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unix_g</refname><refpurpose> exécution d'une commande Unix ou DOS, sortie redirigée vers une variable  </refpurpose></refnamediv>
 	
-	<LANGUAGE>fr</LANGUAGE>
-	<TITLE>unix_g  </TITLE>
-	<TYPE>Scilab Function  </TYPE>
-	<DATE>$LastChangedDate$</DATE>
-	<SHORT_DESCRIPTION name="unix_g"> exécution d&apos;une commande Unix ou DOS, sortie redirigée vers une variable  </SHORT_DESCRIPTION>
 	
-	<CALLING_SEQUENCE>
-		<CALLING_SEQUENCE_ITEM>rep=unix_g(cmd)</CALLING_SEQUENCE_ITEM>
-		<CALLING_SEQUENCE_ITEM>[rep,stat]=unix_g(cmd)</CALLING_SEQUENCE_ITEM>
-	</CALLING_SEQUENCE>
 	
-	<PARAM>
-		<PARAM_INDENT>
+	
+	
+	
+	
+	<refsynopsisdiv><title>Séquence d'appel</title><synopsis>rep=unix_g(cmd)
+[rep,stat]=unix_g(cmd)</synopsis></refsynopsisdiv>
+	
+	<refsection><title>Paramètres</title>
+		<variablelist>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>command-name</PARAM_NAME>
-				<PARAM_DESCRIPTION><SP>: chaîne de caractères</SP></PARAM_DESCRIPTION> 
-			</PARAM_ITEM>
+			<varlistentry>
+				<term>command-name</term>
+				<listitem><para>chaîne de caractères</para></listitem> 
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>rep</PARAM_NAME>
-				<PARAM_DESCRIPTION><SP>: vecteur colonne de chaînes de caractères</SP></PARAM_DESCRIPTION> 
-			</PARAM_ITEM>
+			<varlistentry>
+				<term>rep</term>
+				<listitem><para>vecteur colonne de chaînes de caractères</para></listitem> 
+			</varlistentry>
 			
-			<PARAM_ITEM>
-				<PARAM_NAME>stat</PARAM_NAME>
-				<PARAM_DESCRIPTION><SP>: un entier, le statut d'erreur, si stat==0 aucune erreur.</SP></PARAM_DESCRIPTION> 
-			</PARAM_ITEM>
+			<varlistentry>
+				<term>stat</term>
+				<listitem><para>un entier, le statut d'erreur, si stat==0 aucune erreur.</para></listitem> 
+			</varlistentry>
 		
-		</PARAM_INDENT>
-	</PARAM>
+		</variablelist>
+	</refsection>
 	
-	<DESCRIPTION>
-		<P>
-			Envoie la chaîne <VERB>command-name</VERB> à l&apos;interpréteur
+	<refsection><title>Description</title>
+		<para>
+			Envoie la chaîne <literal>command-name</literal> à l'interpréteur
 			de commande (sh sous Unix, ou command.com sous DOS). La sortie
 			standard et les erreurs sont reportées dans la variable
-			<VERB>rep</VERB>. Les erreurs se produisant dans
-			l&apos;interpréteur de commande sont interceptées; notez que la
+			<literal>rep</literal>. Les erreurs se produisant dans
+			l'interpréteur de commande sont interceptées; notez que la
 			*dernière erreur uniquement* est signalée quand
-			<VERB>command-name</VERB> est une suite de commandes séparées par
-			des &quot;;&quot;.
-		</P>
-	</DESCRIPTION>
+			<literal>command-name</literal> est une suite de commandes séparées par
+			des ";".
+		</para>
+	</refsection>
 	
-	<EXAMPLE>
-<![CDATA[
+	<refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+
 function d=DIR(path)
 	path=pathconvert(path,%t,%t)
 	if MSDOS then
@@ -59,14 +55,14 @@ function d=DIR(path)
 	endfunction
 	
 	DIR('SCI/demos')
-]]>
-	</EXAMPLE>
+
+	]]></programlisting></refsection>
 	
-	<SEE_ALSO>
-		<SEE_ALSO_ITEM> <LINK>unix_s</LINK> </SEE_ALSO_ITEM> 
-		<SEE_ALSO_ITEM> <LINK>unix_w</LINK> </SEE_ALSO_ITEM>
-		<SEE_ALSO_ITEM> <LINK>unix_x</LINK> </SEE_ALSO_ITEM> 
-		<SEE_ALSO_ITEM> <LINK>unix</LINK> </SEE_ALSO_ITEM>
-	</SEE_ALSO>
+	<refsection><title>Voir Aussi</title><simplelist type="inline">
+		<member> <link linkend="unix_s">unix_s</link> </member> 
+		<member> <link linkend="unix_w">unix_w</link> </member>
+		<member> <link linkend="unix_x">unix_x</link> </member> 
+		<member> <link linkend="unix">unix</link> </member>
+	</simplelist></refsection>
 	
-</MAN>
+</refentry>
