@@ -56,7 +56,7 @@ int C2F(sci_asin) _PARAMS((char *fname,unsigned long fname_len))
 		pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
 		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
-			wacos(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
+			wasin(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
 
 		CreateCVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
 		LhsVar(1) = 2;
@@ -97,7 +97,7 @@ int C2F(sci_asin) _PARAMS((char *fname,unsigned long fname_len))
 			pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
 			for(iIndex = 0 ; (iIndex < iRows * iCols) ; iIndex++)
-				wacos(pdblRealData[iIndex], 0, &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
+				wasin(pdblRealData[iIndex], 0, &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
 
 			CreateCVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
 			LhsVar(1) = 2;

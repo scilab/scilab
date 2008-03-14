@@ -46,7 +46,9 @@ int C2F(sci_abs) _PARAMS((char *fname,unsigned long fname_len))
 			abs_sparse();
 			break;
 		}
-	default:;
+	default:
+		OverLoad(1);
+		break;
 	}
 
 
@@ -125,15 +127,22 @@ int abs_poly()
 	double *pdblImgData		= 0;
 	double *pReturnRealData	= NULL;
 	double *pReturnImgData	= NULL;
-	int		iComplex		= 1;
 
 	if(iIsComplex(1))
 	{
 		GetRhsCPolyVar(1, &piVarName, &iRows, &iCols, NULL, &iRealData, &iImgData);
-		piPow			= (int*)malloc(iRows * iCols * sizeof(int));
+		piPow				= (int*)malloc(iRows * iCols * sizeof(int));
 		GetRhsCPolyVar(1, &piVarName, &iRows, &iCols, piPow, &iRealData, &iImgData);
-		pdblRealData	= stk(iRealData);
-		pdblImgData		= stk(iImgData);
+		iMaxData			= iArraySum(piPow, 0, iRows * iCols);
+
+		pdblRealData		= stk(iRealData);
+		pdblImgData			= stk(iImgData);
+		pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
+
+		for(iIndex = 0 ; iIndex < iMaxData ; iIndex++)
+		{
+			pReturnRealData[iIndex] = dabsz(pdblRealData[iIndex], pdblImgData[iIndex]);
+		}
 	}
 	else
 	{
@@ -151,17 +160,88 @@ int abs_poly()
 			pReturnRealData[iIndex] = dabss(pdblRealData[iIndex]);
 		}
 
-		CreatePolyVarFromPtr(2, &piVarName, MATRIX_OF_POLYNOMIAL_DATATYPE, iRows, iCols, piPow, pReturnRealData);
-		LhsVar(1) = 2;
-		PutLhsVar();
-		free(pReturnRealData);
-		free(piPow);
 	}
+
+	CreatePolyVarFromPtr(2, &piVarName, iRows, iCols, piPow, pReturnRealData);
+	LhsVar(1) = 2;
+	PutLhsVar();
+	free(pReturnRealData);
+	free(piPow);
+
 	return 0;
 }
 
 int abs_sparse()
 {
+	int iRows			= 0;
+	int iCols			= 0;
+	int iRealData		= 0;
+	int iImgData		= 0;
+	int iTotalElem		= 0;
+	int *piElemByRow	= NULL;
+	int *piColByRow		= NULL;
+
+	int iIndex			= 0;
+	int iIndex2			= 0;
+	int iIndex3			= 0;
+
+	double *pdblRealData	= 0;
+	double *pdblImgData		= 0;
+	double *pReturnRealData	= NULL;
+	double *pReturnImgData	= NULL;
+
+	if(iIsComplex(1))
+	{
+		GetRhsCSparseVar(1, &iRows, &iCols, &iTotalElem, NULL, NULL, &iRealData, &iImgData);
+		piElemByRow	= (int*)malloc(iTotalElem * sizeof(int));
+		piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
+		GetRhsCSparseVar(1, &iRows, &iCols, &iTotalElem, piElemByRow, piColByRow, &iRealData, &iImgData);
+
+		pdblRealData	= stk(iRealData);
+		pdblImgData		= stk(iImgData);
+		pReturnRealData	= (double*)malloc(iTotalElem * sizeof(double));
+
+		for(iIndex = 0 ; iIndex < iTotalElem ; iIndex++)
+		{
+			pReturnRealData[iIndex] = dabsz(pdblRealData[iIndex],pdblImgData[iIndex]);
+		}
+	}
+	else
+	{//void GetRhsSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piRowsElem, int* _piColsElem, int* _piReal);
+		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, NULL, NULL, &iRealData);
+		piElemByRow	= (int*)malloc(iTotalElem * sizeof(int));
+		piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
+		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, piElemByRow, piColByRow, &iRealData);
+
+		pdblRealData	= stk(iRealData);
+
+		pReturnRealData	= (double*)malloc(iTotalElem * sizeof(double));
+
+		/*This is the "elegante" version, parse two arrays and compute abs(Data)*/
+		/*
+		for(iIndex = 0 ; iIndex < iTotalElem ; iIndex++)
+		{
+			for(iIndex2 = 0 ; iIndex2 < piElemByRow[iIndex] ; iIndex2++)
+			{
+				pReturnRealData[iIndex3] = fabs(pdblRealData[iIndex3]);
+				iIndex3++;
+			}
+		}
+		*/
+
+		/*This is the faster version, don't care about position in the matrix, juste compute de value*/
+		for(iIndex = 0 ; iIndex < iTotalElem ; iIndex++)
+			pReturnRealData[iIndex] = fabs(pdblRealData[iIndex]);
+	}
+
+	CreateSparseVarFromPtr(2, iRows, iCols, iTotalElem, piElemByRow, piColByRow, pReturnRealData);
+	LhsVar(1) = 2;
+	PutLhsVar();
+
+	free(piElemByRow);
+	free(piColByRow);
+	free(pReturnRealData);
+
 	return 0;
 }
 
