@@ -22,7 +22,6 @@ import javax.media.opengl.GLAutoDrawable;
  */
 public class BitmapRenderer  extends ExportRenderer {
 
-	private static int fileType;
 	private static String fileName;
 
 	/**
@@ -57,7 +56,7 @@ public class BitmapRenderer  extends ExportRenderer {
 	 */
 	public void setRenderedFile(String fileName, int fileType) {
 		this.fileName = new String(fileName);
-		this.fileType = fileType;
+		super.setFileType(fileType);
 	}
 
 	/** Called by the drawable to initiate OpenGL rendering by the client.
