@@ -47,12 +47,10 @@ BOOL addToClasspath(char *classpathstring)
 				
 				if (cls)
 				{
-					jmethodID mid=NULL;
-					mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "addFile","(Ljava/lang/String;)V");
+					jmethodID mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "addFile","(Ljava/lang/String;)V");
 					if (mid)
 					{
-						jstring jstr;
-						jstr = (*currentENV)->NewStringUTF(currentENV,classpathstring);
+						jstring jstr = (*currentENV)->NewStringUTF(currentENV,classpathstring);
 						(*currentENV)->CallStaticObjectMethod(currentENV,cls, mid,jstr);
 						return TRUE;
 					}

@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) 2008-2008 - INRIA - Sylvestre LEDRU
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,6 +15,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
+#include <stdio.h>
 #include "loadClasspath.h"
 #include "GetXmlFileEncoding.h"
 #include "../../fileio/includes/FileExist.h"
@@ -25,6 +27,7 @@
 BOOL LoadClasspath(char *xmlfilename)
 {
 	BOOL bOK = FALSE;
+	BOOL errorOnLoad=FALSE;
 	if ( FileExist(xmlfilename) )
 	{
 		char *encoding=GetXmlFileEncoding(xmlfilename);
@@ -43,7 +46,7 @@ BOOL LoadClasspath(char *xmlfilename)
 
 			if (doc == NULL) 
 			{
-				printf(_("Error: could not parse file %s\n"), xmlfilename);
+				fprintf(stderr,_("Error: could not parse file %s\n"), xmlfilename);
 				if (encoding) {FREE(encoding);encoding=NULL;}
 				return bOK;
 			}
@@ -87,7 +90,9 @@ BOOL LoadClasspath(char *xmlfilename)
 						}
 
   					    if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
-						addToClasspath(classpath);
+						if (!addToClasspath(classpath)){
+							errorOnLoad=TRUE;
+						}
 						FREE(classpath);
 						classpath = NULL;
 					}
@@ -95,18 +100,22 @@ BOOL LoadClasspath(char *xmlfilename)
 				bOK = TRUE;
 			}
 			else
-			{
-			printf(_("Wrong format for %s.\n"), xmlfilename);
+				{
+					fprintf(stderr,_("Wrong format for %s.\n"), xmlfilename);
 			}
 		}
 		else
 		{
-			printf(_("Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' found\n"), xmlfilename, encoding);
+			fprintf(stderr,_("Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' found\n"), xmlfilename, encoding);
 		}
 		if (encoding) {FREE(encoding);encoding=NULL;}
 	}else{
-		printf(_("Warning: could not find classpath declaration file %s.\n"), xmlfilename);
+		fprintf(stderr,_("Warning: could not find classpath declaration file %s.\n"), xmlfilename);
 	}
+	if (errorOnLoad){
+		fprintf(stderr,_("Some problems during the loading of the Java libraries occured.\nThis could lead to inconsistent behaviours.\nPlease check SCI/etc/classpath.xml.\n"));
+	}
+
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/ 
