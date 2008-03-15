@@ -67,36 +67,42 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 					cutMenu.setCallback(ScilabCallBack.createCallback(
 							"org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection",
 							ScilabCallBack.JAVA));
+					cutMenu.setMnemonic('U');
 					
 					SwingScilabMenuItem copyMenu = new SwingScilabMenuItem();
 					copyMenu.setText("Copy");
 					copyMenu.setCallback(ScilabCallBack.createCallback(
 							"org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection",
 							ScilabCallBack.JAVA));
+					copyMenu.setMnemonic('C');
 					
 					SwingScilabMenuItem pasteMenu = new SwingScilabMenuItem();
 					pasteMenu.setText("Paste");
 					pasteMenu.setCallback(ScilabCallBack.createCallback(
 							"org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole",
 							ScilabCallBack.JAVA));
+					pasteMenu.setMnemonic('P');
 					
 					SwingScilabMenuItem clearHistoryMenu = new SwingScilabMenuItem();
 					clearHistoryMenu.setText("Clear History");
 					clearHistoryMenu.setCallback(ScilabCallBack.createCallback(
 							"org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory", 
 							ScilabCallBack.JAVA));
+					clearHistoryMenu.setMnemonic('H');
 
 					SwingScilabMenuItem clearMenu = new SwingScilabMenuItem();
 					clearMenu.setText("Clear Console");
 					clearMenu.setCallback(ScilabCallBack.createCallback(
 							"org.scilab.modules.gui.bridge.CallScilabBridge.clear",
 							ScilabCallBack.JAVA));
+					clearMenu.setMnemonic('O');
 
 					SwingScilabMenuItem selectMenu = new SwingScilabMenuItem();
 					selectMenu.setText("Select All");
 					selectMenu.setCallback(ScilabCallBack.createCallback(
 							"org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents", 
 							ScilabCallBack.JAVA));
+					selectMenu.setMnemonic('S');
 
 					menu.add(cutMenu);
 					menu.add(copyMenu);
