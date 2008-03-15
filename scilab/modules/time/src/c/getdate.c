@@ -13,10 +13,8 @@
 
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-	#ifdef _WIN32
+	#ifndef _WIN64
 		#define _USE_32BIT_TIME_T 1
-	#else /* _WIN64 problem : convert int to time_t */
-	/* need to check */
 	#endif
 #endif
 /*--------------------------------------------------------------------------*/
