@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2007-2008 - INRIA - Vincent Couvert
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,13 +13,17 @@
 package org.scilab.modules.gui.bridge.console;
 
 import java.awt.Dimension;
+import java.awt.MouseInfo;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 
+import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyleContext;
@@ -28,7 +32,10 @@ import javax.swing.text.StyledDocument;
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciHistoryManager;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.console.SimpleConsole;
+import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -37,7 +44,6 @@ import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Swing implementation for Scilab Console in GUIs
- * This implementation uses JyConsole package
  * @author Vincent COUVERT
  */
 public class SwingScilabConsole extends SciConsole implements SimpleConsole {
@@ -49,6 +55,84 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 */
 	public SwingScilabConsole() {
 		super();
+		
+		MouseListener contextMenu = new MouseListener() {
+
+			public void mouseClicked(MouseEvent arg0) {
+				if (arg0.getButton() == MouseEvent.BUTTON3) {
+					SwingScilabContextMenu menu = new SwingScilabContextMenu();
+					
+					SwingScilabMenuItem cutMenu = new SwingScilabMenuItem();
+					cutMenu.setText("Cut");
+					cutMenu.setCallback(ScilabCallBack.createCallback(
+							"org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection",
+							ScilabCallBack.JAVA));
+					
+					SwingScilabMenuItem copyMenu = new SwingScilabMenuItem();
+					copyMenu.setText("Copy");
+					copyMenu.setCallback(ScilabCallBack.createCallback(
+							"org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection",
+							ScilabCallBack.JAVA));
+					
+					SwingScilabMenuItem pasteMenu = new SwingScilabMenuItem();
+					pasteMenu.setText("Paste");
+					pasteMenu.setCallback(ScilabCallBack.createCallback(
+							"org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole",
+							ScilabCallBack.JAVA));
+					
+					SwingScilabMenuItem clearHistoryMenu = new SwingScilabMenuItem();
+					clearHistoryMenu.setText("Clear History");
+					clearHistoryMenu.setCallback(ScilabCallBack.createCallback(
+							"org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory", 
+							ScilabCallBack.JAVA));
+
+					SwingScilabMenuItem clearMenu = new SwingScilabMenuItem();
+					clearMenu.setText("Clear Console");
+					clearMenu.setCallback(ScilabCallBack.createCallback(
+							"org.scilab.modules.gui.bridge.CallScilabBridge.clear",
+							ScilabCallBack.JAVA));
+
+					SwingScilabMenuItem selectMenu = new SwingScilabMenuItem();
+					selectMenu.setText("Select All");
+					selectMenu.setCallback(ScilabCallBack.createCallback(
+							"org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents", 
+							ScilabCallBack.JAVA));
+
+					menu.add(cutMenu);
+					menu.add(copyMenu);
+					menu.add(pasteMenu);
+
+					menu.addSeparator();
+
+					menu.add(clearHistoryMenu);
+					menu.add(clearMenu);
+
+					menu.addSeparator();
+					
+					menu.add(selectMenu);
+
+					menu.setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+					menu.setVisible(true);
+				}
+			}
+
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
+			public void mouseExited(MouseEvent arg0) {
+			}
+
+			public void mousePressed(MouseEvent arg0) {
+			}
+
+			public void mouseReleased(MouseEvent arg0) {
+			}
+			
+		};
+		
+		((JTextPane) getConfiguration().getOutputView()).addMouseListener(contextMenu);
+		((JTextPane) getConfiguration().getInputCommandView()).addMouseListener(contextMenu);
+		((JPanel) getConfiguration().getPromptView()).addMouseListener(contextMenu);
 	}
 	
 	/**
