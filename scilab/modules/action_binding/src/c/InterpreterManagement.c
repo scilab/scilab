@@ -10,10 +10,6 @@
  *
  */
 
-/**
- * @author Vincent COUVERT
- */
-
 #include <signal.h> /* for SIGINT */
 #include "InterpreterManagement.h"
 #include "dynamic_menus.h"
