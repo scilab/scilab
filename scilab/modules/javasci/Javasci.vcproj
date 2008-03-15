@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="javasci"
 	ProjectGUID="{0BD503EF-5CB6-4277-BAC4-8955C97F247D}"
 	RootNamespace="Javasci"
@@ -298,7 +298,7 @@
 				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../../libs/doublylinkedlist/includes;../core/includes;../output_stream/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"

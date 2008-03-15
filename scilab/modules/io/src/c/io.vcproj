@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="io"
 	ProjectGUID="{80C0F142-184B-4E08-A8EE-5E71437CF904}"
 	RootNamespace="io"
@@ -309,7 +309,7 @@
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;IO_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -564,11 +564,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\setenvc.h"
+				RelativePath="..\..\includes\setenvc.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\setenvc.h"
+				RelativePath=".\setenvc.h"
 				>
 			</File>
 			<File

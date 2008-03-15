@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="special_functions"
 	ProjectGUID="{C8C13A46-DEB8-44AA-8BF8-C9BBC7FA0B46}"
 	>
@@ -280,7 +280,7 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -406,11 +406,11 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\gw_special_functions1.h"
+				RelativePath="..\..\sci_gateway\c\gw_special_functions1.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\gw_special_functions1.h"
+				RelativePath="..\..\includes\gw_special_functions1.h"
 				>
 			</File>
 			<File

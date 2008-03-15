@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="WScilex"
 	ProjectGUID="{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
 	RootNamespace="WScilex"
@@ -294,7 +294,7 @@
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;"
 				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"

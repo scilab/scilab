@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="DetectFramework"
 	ProjectGUID="{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}"
 	RootNamespace="DetectFramework"
@@ -284,7 +284,7 @@
 				WholeProgramOptimization="false"
 				PreprocessorDefinitions="EXPORT_DETECTFRAMEWORK_DLL"
 				RuntimeLibrary="2"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="libmat"
 	ProjectGUID="{8A508625-C2AA-4295-AA76-16E4E456D13D}"
 	Keyword="Win32Proj"
@@ -308,7 +308,7 @@
 				AdditionalIncludeDirectories="../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="STRICT;mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"

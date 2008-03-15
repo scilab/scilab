@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="CScilex"
 	ProjectGUID="{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}"
 	RootNamespace="CScilex"
@@ -294,7 +294,7 @@
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;;&quot;$(SolutionDir)libs\MALLOC\includes&quot;"
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
