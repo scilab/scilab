@@ -66,9 +66,7 @@ BOOL LoadClasspath(char *xmlfilename)
 						if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
 						{ 
 							/* we found the tag value */
-							const char *str=(const char*)attrib->children->content;
-							classpath=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-							strcpy(classpath,str);
+							classpath=(const char*)attrib->children->content;
 						}
 						attrib = attrib->next;
 					}
