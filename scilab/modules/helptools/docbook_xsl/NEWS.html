@@ -1,0 +1,984 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Changes since the 1.72.0 release</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><meta name="description" content="Note: This document lists changes only since the 1.72.0 release. If you instead want a record of the complete list of changes for the codebase over its entire history, you can obtain one by running the following commands: svn checkout https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/xsl svn log --xml --verbose xsl &gt; ChangeHistory.xml"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="id2447176"></a>Changes since the 1.72.0 release</h2></div><div><div class="abstract"><p><span class="strong"><strong>Note:</strong></span> This
+            document lists changes only since the 1.72.0 release.
+            If you instead want a record of the complete list of
+            changes for the codebase over its entire history, you
+            can obtain one by running the following commands:
+            
+</p><pre class="screen">  <code class="code">svn checkout https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/xsl</code>
+  <code class="code">svn log --xml --verbose xsl &gt; ChangeHistory.xml</code></pre></div></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="#V1.73.2">Release Notes: 1.73.2</a></span></dt><dd><dl><dt><span class="sect2"><a href="#V1.73.2_Gentext">Gentext</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Common">Common</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_FO">FO</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_HTML">HTML</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Manpages">Manpages</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_HTMLHelp">HTMLHelp</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Eclipse">Eclipse</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_JavaHelp">JavaHelp</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Roundtrip">Roundtrip</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Slides">Slides</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Website">Website</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Params">Params</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Highlighting">Highlighting</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Profiling">Profiling</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Lib">Lib</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Tools">Tools</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Template">Template</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_Extensions">Extensions</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_XSL-Java">XSL-Java</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_XSL-Saxon">XSL-Saxon</a></span></dt><dt><span class="sect2"><a href="#V1.73.2_XSL-Xalan">XSL-Xalan</a></span></dt></dl></dd></dl></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="V1.73.2"></a>Release Notes: 1.73.2</h2></div></div></div><p>The following is a list of changes that have been made
+        since the 1.72.0 release.</p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Gentext"></a>Gentext</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">gentext</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Mauritz Jeanson: locale/de.xml</code></p><pre class="screen"><span class="commit-message">Applied patch #1766009.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: locale/lv.xml</code></p><pre class="screen"><span class="commit-message">Added localization for <a href="http://docbook.org/tdg/en/html/productionset.html"><code class="sgmltag-element">ProductionSet</code></a>.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: locale/lv.xml; Makefile</code></p><pre class="screen"><span class="commit-message">Added Latvian localization file, from Girts Ziemelis.</span></pre></li><li><p><code class="literal">Robert Stayton: xsl/xsl.xsl</code></p><pre class="screen"><span class="commit-message">Add comment explaining %t etc.</span></pre></li><li><p><code class="literal">Dongsheng Song: locale/zh_cn.xml</code></p><pre class="screen"><span class="commit-message">Brought up to <a href="http://docbook.org/tdg/en/html/date.html"><code class="sgmltag-element">date</code></a> with en.xml in terms of items. A few strings marked for translation.</span></pre></li><li><p><code class="literal">Dongsheng Song: locale/eo.xml</code></p><pre class="screen"><span class="commit-message">Remove svn:executable property from xml files.</span></pre></li><li><p><code class="literal">Jirka Kosek: locale/cs.xml</code></p><pre class="screen"><span class="commit-message">Added missing translations</span></pre></li><li><p><code class="literal">Robert Stayton: locale/eo.xml</code></p><pre class="screen"><span class="commit-message">New locale for Esperanto.</span></pre></li><li><p><code class="literal">Robert Stayton: locale/mn.xml</code></p><pre class="screen"><span class="commit-message">Update from Ganbold Tsagaankhuu.</span></pre></li><li><p><code class="literal">Jirka Kosek: locale/en.xml; locale/cs.xml</code></p><pre class="screen"><span class="commit-message">Rules for normalizing <a href="http://docbook.org/tdg/en/html/glossary.html"><code class="sgmltag-element">glossary</code></a> entries before they are sorted can be now different for each language.</span></pre></li><li><p><code class="literal">Robert Stayton: locale/Auditlocale.pl</code></p><pre class="screen"><span class="commit-message">Fix context comparison bug.</span></pre></li><li><p><code class="literal">Norman Walsh: locale/sr.xml</code></p><pre class="screen"><span class="commit-message">Fix broken locale: you can't have a comment in a start <a href="http://docbook.org/tdg/en/html/tag.html"><code class="sgmltag-element">tag</code></a></span></pre></li><li><p><code class="literal">Michael(tm) Smith: locale/sr_Latn.xml; locale/sr.xml</code></p><pre class="screen"><span class="commit-message">Committed changes from Milo&#353; Komar&#269;evi&#263; to Serbian files.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Renamed cvstools dir to buildtools, and replaced all
+references to "cvstools" in makefiles and elsewhere
+with "buildtools".</span></pre></li><li><p><code class="literal">Jirka Kosek: xsl/xsl.xsl</code></p><pre class="screen"><span class="commit-message">Changed variable expression assignment from RTF to node set, so boolean tests work correctly.</span></pre></li><li><p><code class="literal">Jirka Kosek: xsl/xsl.xsl</code></p><pre class="screen"><span class="commit-message">Empty translation in gentext is copied to target locale file (it is not replaced by English variant).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/xsl.xsl</code></p><pre class="screen"><span class="commit-message">Refined gentext build so that transform of gentext sources to
+output is same whether generated by xsltproc or saxon.</span></pre></li><li><p><code class="literal">Jirka Kosek: locale/en.xml; locale/cs.xml</code></p><pre class="screen"><span class="commit-message">Added support for formatting biblioentries according to ISO690 <a href="http://docbook.org/tdg/en/html/citation.html"><code class="sgmltag-element">citation</code></a> style.
+New <a href="http://docbook.org/tdg/en/html/bibliography.html"><code class="sgmltag-element">bibliography</code></a> style can be turned on by setting parameter <a href="../html/bibliography.style.html"><em class="parameter"><code>bibliography.style</code></em></a> to "iso690"
+The code was provided by Jana Dvorakova</span></pre></li><li><p><code class="literal">Robert Stayton: locale/ja.xml</code></p><pre class="screen"><span class="commit-message">Fix <a href="http://docbook.org/tdg/en/html/chapter.html"><code class="sgmltag-element">chapter</code></a> in context xref-number-and-title</span></pre></li><li><p><code class="literal">Robert Stayton: locale/it.xml</code></p><pre class="screen"><span class="commit-message">Improved version from contributor.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: locale/uk.xml</code></p><pre class="screen"><span class="commit-message">Applied patch 1592083.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Common"></a>Common</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">common</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: stripns.xsl</code></p><pre class="screen"><span class="commit-message">Reverted stripns.xsl to not rely on message-logging template.
+Thanks to Ville-Pekka Vainio, whose testing with Moin/4suite
+exposed a problem this caused.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: charmap.xsl</code></p><pre class="screen"><span class="commit-message">Set keywords on a number of files.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: l10n.xml</code></p><pre class="screen"><span class="commit-message">Added Latvian locale</span></pre></li><li><p><code class="literal">Michael(tm) Smith: charmap.xsl</code></p><pre class="screen"><span class="commit-message">Fixed typo.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Mark up PIs with tag@class=xmlpi so that they can get picked up an
+formatted correctly by the doc build.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore; Makefile</code></p><pre class="screen"><span class="commit-message">Added Latvian localization file, from Girts Ziemelis.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: charmap.xsl</code></p><pre class="screen"><span class="commit-message">Moved charmap templates out of lib.xweb and into
+common/charmap.xsl, and added charmap doc to doc build.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: utility.xsl</code></p><pre class="screen"><span class="commit-message">Fixed typo.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: refentry.xsl; utility.xsl; table.xsl; common.xsl</code></p><pre class="screen"><span class="commit-message">Make all common stylesheets with embedded doc valid against our
+litprog grammar.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Make pi.xsl files valid against our litprog grammar.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Make PI source files valid against our litprog schema.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: labels.xsl</code></p><pre class="screen"><span class="commit-message">Changed handling of <a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a> auto-labeling such that <a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a>
+(when it appears at the component level) is now affected by the
+<a href="../html/label.from.part.html"><em class="parameter"><code>label.from.part</code></em></a> param, just as <a href="http://docbook.org/tdg/en/html/preface.html"><code class="sgmltag-element">preface</code></a>, <a href="http://docbook.org/tdg/en/html/chapter.html"><code class="sgmltag-element">chapter</code></a>, and <a href="http://docbook.org/tdg/en/html/appendix.html"><code class="sgmltag-element">appendix</code></a>.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: refentry.xsl; utility.xsl; common.xsl</code></p><pre class="screen"><span class="commit-message">Updated embedded doc in XSL source files:
+
+ - added dbhtml@dir PIs to control where output goes when
+   generation HTML version of docs
+
+ - put xml:id instances on root elements of embedded doc
+
+ - changed all *<a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a> instances to just <a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a> (DocBook 5) and some
+   @id instance to @xml-id</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Set updated ignore properties and adjusted for fact that shared
+makefile now expects a "PARAMBASE" value to be specified (to
+indicate base <a href="http://docbook.org/tdg/en/html/filename.html"><code class="sgmltag-element">filename</code></a> for the type of content being built: either
+PARAMBASE=param or PARAMBASE=lib; this makes it possible to reduce
+redundancy in the lib build, and just have it use the same
+makefile "infrastructure" as the param builds for all the
+param.xsl files. The reason for that is, lib use the same *.xweb
+system for embedding documentation that the builds for the various
+output formats use (as opposed to the jrefentry-based system that
+used for building the template and PI docs in common etc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: common.xsl; pi.xsl</code></p><pre class="screen"><span class="commit-message">Added doc for the dbchoice choice PI, and fixes some problems with
+the db* start PI handling.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: common.xsl; pi.xsl</code></p><pre class="screen"><span class="commit-message">Added embedded documentation on the following PIs:
+
+  - dbhtml_start
+  - dbfo_start
+  - dbtex_delims
+  - dbtimestamp</span></pre></li><li><p><code class="literal">Michael(tm) Smith: utility.xsl</code></p><pre class="screen"><span class="commit-message">Made minor editorial change to embedded doc for utility templates.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Set XJPARSEFLAGS = -E 0 -w for xsl/common build too.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">For docbook-xsl builds, feed xjparse the -EO and -w switches.
+ -E0
+   suppresses the "Parse succeeded... with no errors and no warnings"
+   messages that xjparse (actually, the XML Commons resolver)
+   otherwise emits.
+ -w
+   cause xjparse/resolver to only do a well-formedness check,
+   instead of trying to do validation; the reason for adding this
+   is that xjparse gets run against what are now doctype-less,
+   namespaced DocBook instances (after recent changes to the
+   build) and fails to validate those (because they don't have a
+   doctype)
+ What we really need to do long-term is replace xjparse with a
+ better, RELAXNG-aware validation mechanism, so that we can have
+ the build properly validate stuff that it should be checking.
+ That maybe amounts to making an "xslt" wrapper tool that either
+ calls jing or rnv (depending on what the builder wants to use).
+
+ But for now we'll need to tolerate that fact that xjparse isn't
+ doing anything more for us than just simply WF checking...</span></pre></li><li><p><code class="literal">Michael(tm) Smith: common.xsl</code></p><pre class="screen"><span class="commit-message">Added support to the HTML stylesheets for proper processing of
+<a href="http://docbook.org/tdg/en/html/orgname.html"><code class="sgmltag-element">orgname</code></a> as a child of <a href="http://docbook.org/tdg/en/html/author.html"><code class="sgmltag-element">author</code></a>.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: targets.xsl; utility.xsl; titles.xsl; pi.xsl; subtitles.xsl; table.xsl;&#8943;</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Added -E0 switch to default xjparse options, in order to suppress
+"Parse succeeded...  with no errors and no warnings." messages.
+Thanks Norm for letting me know which flag to set.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: refentry.xsl; subtitles.xsl; labels.xsl; utility.xsl; titles.xsl; table&#8943;</code></p><pre class="screen"><span class="commit-message">Added IDs in a bunch of places in embedded template docs that
+could use them.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: stripns.xsl; utility.xsl; common.xsl</code></p><pre class="screen"><span class="commit-message">Moved logging template and related templates to separate
+utility.xsl file so that can be imported without importing the
+whole common.xsl file (which is necessary for the build and for
+using the logging template in standalone namespace-stripping
+because the common.xsl file assumes it will be imported along with
+all the params, which it can't be when building lib.xsl).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: stripns.xsl; common.xsl</code></p><pre class="screen"><span class="commit-message">Updated stylesheets to use common logging template to log messages
+emitted during namespace-stripping.
+Also, moved pad-string template from lib to common because
+it's needed in order to use logging template in the profiling
+stylesheets, and the lib build relies on the profiling apparatus
+(so the profiling apparatus can't rely on lib being built first...)</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">svn-ignore newly add eo.xml file</span></pre></li><li><p><code class="literal">Michael(tm) Smith: entities.ent</code></p><pre class="screen"><span class="commit-message">Removed all "Do not edit this file" admonitions that get output in
+generated stylesheets; such admonitions have in the past been
+judged by the free-software police to be at-risk of
+interpretation as license restrictions.
+Also, made various updates to work around some funkiness is
+xsltproc output.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: refentry.xsl</code></p><pre class="screen"><span class="commit-message">Refined logging output of <a href="http://docbook.org/tdg/en/html/refentry.html"><code class="sgmltag-element">refentry</code></a> metadata-gathering template;
+for some cases of "missing" elements (<a href="http://docbook.org/tdg/en/html/refmiscinfo.html"><code class="sgmltag-element">refmiscinfo</code></a> stuff, etc.),
+the log messages now include URL to corresponding page in the
+Definitive Guide (TDG).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: common.xsl</code></p><pre class="screen"><span class="commit-message">Improved general logging template to parameterize some parts that
+were hardcoded previously.</span></pre></li><li><p><code class="literal">Robert Stayton: l10n.xml; Makefile</code></p><pre class="screen"><span class="commit-message">Add eo.xml Esperanto.</span></pre></li><li><p><code class="literal">Robert Stayton: entities.ent</code></p><pre class="screen"><span class="commit-message">Add xmlns:xsl declaration to elements in entities.</span></pre></li><li><p><code class="literal">Jirka Kosek: entities.ent</code></p><pre class="screen"><span class="commit-message">Rules for normalizing <a href="http://docbook.org/tdg/en/html/glossary.html"><code class="sgmltag-element">glossary</code></a> entries before they are sorted can be now different for each language.</span></pre></li><li><p><code class="literal">Robert Stayton: titles.xsl</code></p><pre class="screen"><span class="commit-message">fix <a href="http://docbook.org/tdg/en/html/caption.html"><code class="sgmltag-element">caption</code></a> plus <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> in cals <a href="http://docbook.org/tdg/en/html/table.html"><code class="sgmltag-element">table</code></a> producing double <a href="http://docbook.org/tdg/en/html/caption.html"><code class="sgmltag-element">caption</code></a>.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Renamed cvstools dir to buildtools, and replaced all
+references to "cvstools" in makefiles and elsewhere
+with "buildtools".</span></pre></li><li><p><code class="literal">Robert Stayton: table.xsl</code></p><pre class="screen"><span class="commit-message">Fix bug 1668629 valign on <a href="http://docbook.org/tdg/en/html/tbody.html"><code class="sgmltag-element">tbody</code></a> not inherited.</span></pre></li><li><p><code class="literal">Robert Stayton: titles.xsl</code></p><pre class="screen"><span class="commit-message">Add <a href="http://docbook.org/tdg/en/html/refsection.html"><code class="sgmltag-element">refsection</code></a>/<a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a>/<a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> support.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: titles.xsl</code></p><pre class="screen"><span class="commit-message">Added support for correct handling of <a href="http://docbook.org/tdg/en/html/xref.html"><code class="sgmltag-element">xref</code></a> to elements that
+contain <a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a>/<a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> descendants but no <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> children.
+
+This should be further refined so that it handles any *<a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a>
+elements. And there are probably some other places where similar
+handling for *<a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a>/<a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> should be added.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: refentry.xsl</code></p><pre class="screen"><span class="commit-message">Updated <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a> notices.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: pi.xsl</code></p><pre class="screen"><span class="commit-message">Modified &lt;xsl:when&gt; in datetime.format template to work
+around Xalan bug.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_FO"></a>FO</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">fo</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: highlight.xsl</code></p><pre class="screen"><span class="commit-message">Set keywords on a number of files.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: footnote.xsl</code></p><pre class="screen"><span class="commit-message">Fixed typo (introduced by me in r6773). Closes bug #1778340.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: table.xsl</code></p><pre class="screen"><span class="commit-message">Modified the <a href="http://docbook.org/tdg/en/html/tgroup.html"><code class="sgmltag-element">tgroup</code></a> template so that, for tables with multiple tgroups, 
+a width attribute is output on all corresponding fo:tables. Previously, 
+there was a test prohibiting this (and a comment saying that outputting more
+than one width attribute will cause an error). But this seems to be no longer 
+relevant; it is not a problem with FOP 0.93 or XEP 4.10. Closes bug #1760559.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: graphics.xsl</code></p><pre class="screen"><span class="commit-message">Replaced useless &lt;a&gt; elements with warning messages (textinsert extension).</span></pre></li><li><p><code class="literal">Mauritz Jeanson: admon.xsl</code></p><pre class="screen"><span class="commit-message">Enabled generation of ids (on fo:wrapper) for indexterms in admonition titles, so that page
+references in the <a href="http://docbook.org/tdg/en/html/index.html"><code class="sgmltag-element">index</code></a> can be created. Closes bug #1775086.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: pi.xsl</code></p><pre class="screen"><span class="commit-message">Fixed typo.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: pi.xsl</code></p><pre class="screen"><span class="commit-message">Added missing equals sign (dbfo-need).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Mark up PIs with tag@class=xmlpi so that they can get picked up an
+formatted correctly by the doc build.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Shortened some <a href="http://docbook.org/tdg/en/html/refpurpose.html"><code class="sgmltag-element">refpurpose</code></a> text for embedded doc for PIs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: table.xsl</code></p><pre class="screen"><span class="commit-message">Make fo/table.xsl file valid against our litprog schema.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Make pi.xsl files valid against our litprog grammar.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore another build-generated kludge. Yeah, I know it's
+ridiculous. If you can come up with a prettier way of doing it,
+all of my riches will be yours.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Make PI source files valid against our litprog schema.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Make *.xweb instances valid against the
+https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/docbook/relaxng/params/refentry.rnc
+grammar.</span></pre></li><li><p><code class="literal">Robert Stayton: component.xsl</code></p><pre class="screen"><span class="commit-message">Add parameters to the page.sequence utility template.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Make sure that *template.xml files under version control don't get
+removed when we clean.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: table.xsl</code></p><pre class="screen"><span class="commit-message">Updated embedded doc in XSL source files:
+
+ - added dbhtml@dir PIs to control where output goes when
+   generation HTML version of docs
+
+ - put xml:id instances on root elements of embedded doc
+
+ - changed all *<a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a> instances to just <a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a> (DocBook 5) and some
+   @id instance to @xml-id</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Changed url for page.png</span></pre></li><li><p><code class="literal">Mauritz Jeanson: xref.xsl</code></p><pre class="screen"><span class="commit-message">Added template for <a href="http://docbook.org/tdg/en/html/xref.html"><code class="sgmltag-element">xref</code></a> to <a href="http://docbook.org/tdg/en/html/area.html"><code class="sgmltag-element">area</code></a>/<a href="http://docbook.org/tdg/en/html/areaset.html"><code class="sgmltag-element">areaset</code></a>.
+Part of fix for bug #1675513 (<a href="http://docbook.org/tdg/en/html/xref.html"><code class="sgmltag-element">xref</code></a> to <a href="http://docbook.org/tdg/en/html/area.html"><code class="sgmltag-element">area</code></a> broken).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore intermediate params file.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore; Makefile</code></p><pre class="screen"><span class="commit-message">Set updated ignore properties and adjusted for fact that shared
+makefile now expects a "PARAMBASE" value to be specified (to
+indicate base <a href="http://docbook.org/tdg/en/html/filename.html"><code class="sgmltag-element">filename</code></a> for the type of content being built: either
+PARAMBASE=param or PARAMBASE=lib; this makes it possible to reduce
+redundancy in the lib build, and just have it use the same
+makefile "infrastructure" as the param builds for all the
+param.xsl files. The reason for that is, lib use the same *.xweb
+system for embedding documentation that the builds for the various
+output formats use (as opposed to the jrefentry-based system that
+used for building the template and PI docs in common etc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lists.xsl</code></p><pre class="screen"><span class="commit-message">Added doc for the dbchoice choice PI, and fixes some problems with
+the db* start PI handling.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Added embedded documentation on the following PIs:
+
+  - dbhtml_start
+  - dbfo_start
+  - dbtex_delims
+  - dbtimestamp</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">made some cleanup to the fo/pi.xsl params doc. Also fixed a couple
+typos.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Added TCG links and param links to embedded doc of FO PIs. This
+completes the work on adding this doc for the FO stylesheets.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Made minor editorial to embedded documentation.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: verbatim.xsl</code></p><pre class="screen"><span class="commit-message">Made the following changed in the mode="<a href="../fo/hyphenate.verbatim.html"><em class="parameter"><code>hyphenate.verbatim</code></em></a>" template:
+  -    &lt;xsl:apply-templates select="node()|@*" mode="<a href="../fo/hyphenate.verbatim.html"><em class="parameter"><code>hyphenate.verbatim</code></em></a>"/&gt;
+  +    &lt;xsl:copy-of select="@*"/&gt;
+  +    &lt;xsl:apply-templates mode="<a href="../fo/hyphenate.verbatim.html"><em class="parameter"><code>hyphenate.verbatim</code></em></a>"/&gt;
+...because as was it caused xsltproc to raise a fatal "Attribute
+nodes must be added before any child nodes to an element." (though
+not saxon)</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lists.xsl; titlepage.xsl; formal.xsl; graphics.xsl; qandaset.xsl; gloss&#8943;</code></p><pre class="screen"><span class="commit-message">Consolidated processing of all FO PIs into wrapper templates in
+one place (the fo/pi.xsl file) and added embedded documentation
+for all of them.  This makes it possible to now include generated
+documentation for the PIs in the output docs. Next stop: HTML PIs,
+then on to the common ones...
+
+This touched a lot of files and it is likely that I made some
+mistakes in moving the PI processing over. Meaning that some PIs
+might quit working or not work as expected after this change. So
+it will need to tested. Which is why we do dot-zero releases...</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Added an ID on <a href="http://docbook.org/tdg/en/html/mediaobject.html"><code class="sgmltag-element">mediaobject</code></a> that illustrates FO page regions, so
+that the ID can get picked up and used as the <a href="http://docbook.org/tdg/en/html/filename.html"><code class="sgmltag-element">filename</code></a> for the
+"long description" chunk for that <a href="http://docbook.org/tdg/en/html/mediaobject.html"><code class="sgmltag-element">mediaobject</code></a> in HTML output.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: lists.xsl</code></p><pre class="screen"><span class="commit-message">Fixed bug #1711508.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: division.xsl; toc.xsl; biblio-iso690.xsl; block.xsl; graphics.xsl; html&#8943;</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Norman Walsh: graphics.xsl</code></p><pre class="screen"><span class="commit-message">URIs that start with '/' are absolute too</span></pre></li><li><p><code class="literal">Robert Stayton: xep.xsl</code></p><pre class="screen"><span class="commit-message">Whitespace adjustment.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: docbook.xsl; table.xsl</code></p><pre class="screen"><span class="commit-message">Moved logging template and related templates to separate
+utility.xsl file so that can be imported without importing the
+whole common.xsl file (which is necessary for the build and for
+using the logging template in standalone namespace-stripping
+because the common.xsl file assumes it will be imported along with
+all the params, which it can't be when building lib.xsl).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: docbook.xsl</code></p><pre class="screen"><span class="commit-message">Updated stylesheets to use common logging template to log messages
+emitted during namespace-stripping.
+Also, moved pad-string template from lib to common because
+it's needed in order to use logging template in the profiling
+stylesheets, and the lib build relies on the profiling apparatus
+(so the profiling apparatus can't rely on lib being built first...)</span></pre></li><li><p><code class="literal">Michael(tm) Smith: inline.xsl</code></p><pre class="screen"><span class="commit-message">Added template match for <a href="http://docbook.org/tdg/en/html/person.html"><code class="sgmltag-element">person</code></a> element to fo stylesheet.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Removed all "Do not edit this file" admonitions that get output in
+generated stylesheets; such admonitions have in the past been
+judged by the free-software police to be at-risk of
+interpretation as license restrictions.
+Also, made various updates to work around some funkiness is
+xsltproc output.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: fo-patch-for-fop.xsl</code></p><pre class="screen"><span class="commit-message">fo-patch-for-fop.xsl deleted (obsolete).</span></pre></li><li><p><code class="literal">Robert Stayton: docbook.xsl</code></p><pre class="screen"><span class="commit-message">Changed the comments regarding namespace striping to
+mention the docbook5 namedspaced stylesheets.</span></pre></li><li><p><code class="literal">Robert Stayton: lists.xsl</code></p><pre class="screen"><span class="commit-message">Removed old <a href="http://docbook.org/tdg/en/html/varlistentry.html"><code class="sgmltag-element">varlistentry</code></a> accidentally left in.</span></pre></li><li><p><code class="literal">Robert Stayton: lists.xsl</code></p><pre class="screen"><span class="commit-message">Added support for spacing="compact" in <a href="http://docbook.org/tdg/en/html/variablelist.html"><code class="sgmltag-element">variablelist</code></a>, per bug report #1722540.</span></pre></li><li><p><code class="literal">Robert Stayton: table.xsl</code></p><pre class="screen"><span class="commit-message"><a href="http://docbook.org/tdg/en/html/table.html"><code class="sgmltag-element">table</code></a> pgwide="1" should also use pgwide.properties attribute-set.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: inline.xsl</code></p><pre class="screen"><span class="commit-message">Make citations numbered if <a href="../html/bibliography.numbered.html"><em class="parameter"><code>bibliography.numbered</code></em></a> != 0.</span></pre></li><li><p><code class="literal">Robert Stayton: table.xsl</code></p><pre class="screen"><span class="commit-message">Fixed bug in handling of columns width sum.</span></pre></li><li><p><code class="literal">Robert Stayton: callout.xsl</code></p><pre class="screen"><span class="commit-message">Fixed missing <a href="http://docbook.org/tdg/en/html/quote.html"><code class="sgmltag-element">quote</code></a>.</span></pre></li><li><p><code class="literal">Robert Stayton: callout.xsl</code></p><pre class="screen"><span class="commit-message">Changed param name to <a href="../fo/callout.icon.size.html"><em class="parameter"><code>callout.icon.size</code></em></a></span></pre></li><li><p><code class="literal">Robert Stayton: param.xweb; param.ent</code></p><pre class="screen"><span class="commit-message">Add new profiling parameters for audience and wordsize.</span></pre></li><li><p><code class="literal">Robert Stayton: callout.xsl</code></p><pre class="screen"><span class="commit-message">line break fix</span></pre></li><li><p><code class="literal">Robert Stayton: callout.xsl</code></p><pre class="screen"><span class="commit-message">Add <a href="../fo/callout.icon.size.html"><em class="parameter"><code>callout.icon.size</code></em></a> parameter.</span></pre></li><li><p><code class="literal">Robert Stayton: param.xweb; param.ent</code></p><pre class="screen"><span class="commit-message">Added <a href="../fo/callout.icon.size.html"><em class="parameter"><code>callout.icon.size</code></em></a> parameter.</span></pre></li><li><p><code class="literal">Robert Stayton: inline.xsl; xref.xsl</code></p><pre class="screen"><span class="commit-message">Add support for xlink as <a href="http://docbook.org/tdg/en/html/olink.html"><code class="sgmltag-element">olink</code></a>.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: footnote.xsl</code></p><pre class="screen"><span class="commit-message">Fixed bug #1669601.</span></pre></li><li><p><code class="literal">Robert Stayton: pagesetup.xsl</code></p><pre class="screen"><span class="commit-message">set.flow.properties now strips '-draft' from master name before tests.</span></pre></li><li><p><code class="literal">Robert Stayton: autotoc.xsl; param.xweb; param.ent</code></p><pre class="screen"><span class="commit-message">Add support for <a href="../html/qanda.in.toc.html"><em class="parameter"><code>qanda.in.toc</code></em></a> to fo <a href="http://docbook.org/tdg/en/html/toc.html"><code class="sgmltag-element">TOC</code></a>.</span></pre></li><li><p><code class="literal">Robert Stayton: component.xsl</code></p><pre class="screen"><span class="commit-message">Improved the page.sequence utility template for use with <a href="http://docbook.org/tdg/en/html/book.html"><code class="sgmltag-element">book</code></a>.</span></pre></li><li><p><code class="literal">Robert Stayton: division.xsl</code></p><pre class="screen"><span class="commit-message">Use named templates for front and back <a href="http://docbook.org/tdg/en/html/cover.html"><code class="sgmltag-element">cover</code></a> templates.</span></pre></li><li><p><code class="literal">Robert Stayton: division.xsl</code></p><pre class="screen"><span class="commit-message">Refactored the big <a href="http://docbook.org/tdg/en/html/book.html"><code class="sgmltag-element">book</code></a> template into smaller pieces.
+Used the "page.sequence" utility template in
+component.xsl to shorten the <a href="http://docbook.org/tdg/en/html/toc.html"><code class="sgmltag-element">toc</code></a> piece.
+Added placeholder templates for front.cover and back.cover.</span></pre></li><li><p><code class="literal">Jirka Kosek: glossary.xsl</code></p><pre class="screen"><span class="commit-message">Rules for normalizing <a href="http://docbook.org/tdg/en/html/glossary.html"><code class="sgmltag-element">glossary</code></a> entries before they are sorted can be now different for each language.</span></pre></li><li><p><code class="literal">Jirka Kosek: sections.xsl</code></p><pre class="screen"><span class="commit-message">use-attribute-sets is used without prefix on XSLT elements</span></pre></li><li><p><code class="literal">Robert Stayton: component.xsl</code></p><pre class="screen"><span class="commit-message">Adjust whitespace.</span></pre></li><li><p><code class="literal">Robert Stayton: param.xweb; param.ent; sections.xsl</code></p><pre class="screen"><span class="commit-message">Add <a href="../fo/section.container.element.html"><em class="parameter"><code>section.container.element</code></em></a> parameter to enable
+pgwide spans inside sections.</span></pre></li><li><p><code class="literal">Robert Stayton: param.xweb; param.ent; component.xsl</code></p><pre class="screen"><span class="commit-message">Add component.titlepage.properties attribute-set to
+support span="all" and other properties.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: inline.xsl</code></p><pre class="screen"><span class="commit-message">Fixed #1680755 (<a href="http://docbook.org/tdg/en/html/keycombo.html"><code class="sgmltag-element">keycombo</code></a> joinchar default incorrect).</span></pre></li><li><p><code class="literal">Mauritz Jeanson: lists.xsl</code></p><pre class="screen"><span class="commit-message">Corrected typo in <a href="http://docbook.org/tdg/en/html/calloutlist.html"><code class="sgmltag-element">calloutlist</code></a> template.</span></pre></li><li><p><code class="literal">Robert Stayton: lists.xsl</code></p><pre class="screen"><span class="commit-message">Fix number test in termlength when NaN.</span></pre></li><li><p><code class="literal">Robert Stayton: htmltbl.xsl; table.xsl</code></p><pre class="screen"><span class="commit-message">Apply table.row.properties template to html <a href="http://docbook.org/tdg/en/html/tr.html"><code class="sgmltag-element">tr</code></a> rows too.
+Add keep-with-next to table.row.properties when <a href="http://docbook.org/tdg/en/html/row.html"><code class="sgmltag-element">row</code></a> is in <a href="http://docbook.org/tdg/en/html/thead.html"><code class="sgmltag-element">thead</code></a>.</span></pre></li><li><p><code class="literal">Jirka Kosek: math.xsl</code></p><pre class="screen"><span class="commit-message">MathML must be surrounded by fo:instream-foreign-object</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Renamed cvstools dir to buildtools, and replaced all
+references to "cvstools" in makefiles and elsewhere
+with "buildtools".</span></pre></li><li><p><code class="literal">Robert Stayton: param.xweb; param.ent</code></p><pre class="screen"><span class="commit-message">Add <a href="../html/default.table.frame.html"><em class="parameter"><code>default.table.frame</code></em></a> parameter to fo too.</span></pre></li><li><p><code class="literal">Robert Stayton: table.xsl</code></p><pre class="screen"><span class="commit-message">Add support for <a href="../html/default.table.frame.html"><em class="parameter"><code>default.table.frame</code></em></a> parameter.
+Fix bug 1575446 rowsep last check for @morerows.</span></pre></li><li><p><code class="literal">Robert Stayton: refentry.xsl</code></p><pre class="screen"><span class="commit-message">Add support for <a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a>/<a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> in refsections.</span></pre></li><li><p><code class="literal">Robert Stayton: xref.xsl</code></p><pre class="screen"><span class="commit-message">Fixed bug 1652360 empty <a href="http://docbook.org/tdg/en/html/link.html"><code class="sgmltag-element">link</code></a> with xlink:href.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Port from docs-in-db5 branch of all DocBook5-formatted
+params and all associated build changes needed for
+building the param.xsl files and docs from them.</span></pre></li><li><p><code class="literal">David Cramer: qandaset.xsl</code></p><pre class="screen"><span class="commit-message">Make fo questions and answers behave the same way as html</span></pre></li><li><p><code class="literal">Jirka Kosek: lists.xsl</code></p><pre class="screen"><span class="commit-message">Added missing attribute set for <a href="http://docbook.org/tdg/en/html/procedure.html"><code class="sgmltag-element">procedure</code></a></span></pre></li><li><p><code class="literal">Jirka Kosek: param.xweb; biblio.xsl; docbook.xsl; param.ent; biblio-iso690.xsl</code></p><pre class="screen"><span class="commit-message">Added support for formatting biblioentries according to ISO690 <a href="http://docbook.org/tdg/en/html/citation.html"><code class="sgmltag-element">citation</code></a> style.
+New <a href="http://docbook.org/tdg/en/html/bibliography.html"><code class="sgmltag-element">bibliography</code></a> style can be turned on by setting parameter <a href="../html/bibliography.style.html"><em class="parameter"><code>bibliography.style</code></em></a> to "iso690"
+The code was provided by Jana Dvorakova</span></pre></li><li><p><code class="literal">Robert Stayton: param.xweb; param.ent; pagesetup.xsl</code></p><pre class="screen"><span class="commit-message">Add header.table.properties and footer.table.properties attribute-sets.</span></pre></li><li><p><code class="literal">Robert Stayton: inline.xsl</code></p><pre class="screen"><span class="commit-message">Add <a href="../fo/fop1.extensions.html"><em class="parameter"><code>fop1.extensions</code></em></a> for <a href="http://docbook.org/tdg/en/html/menuchoice.html"><code class="sgmltag-element">menuchoice</code></a> arrow handling exception.</span></pre></li><li><p><code class="literal">Robert Stayton: pagesetup.xsl</code></p><pre class="screen"><span class="commit-message">Fixed master-name used in axf crop mark template call.</span></pre></li><li><p><code class="literal">Robert Stayton: autotoc.xsl</code></p><pre class="screen"><span class="commit-message">Moved the end-indent properties from toc.line to the
+toc.line.properties attribute-set.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Updated <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a> notices.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_HTML"></a>HTML</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">html</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: highlight.xsl</code></p><pre class="screen"><span class="commit-message">Set keywords on a number of files.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: titlepage.xsl</code></p><pre class="screen"><span class="commit-message">Added &lt;xsl:call-template name="process.footnotes"/&gt; to <a href="http://docbook.org/tdg/en/html/abstract.html"><code class="sgmltag-element">abstract</code></a> template
+so that footnotes in <a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a>/<a href="http://docbook.org/tdg/en/html/abstract.html"><code class="sgmltag-element">abstract</code></a> are processed. Closes bug #1760907.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl; synop.xsl</code></p><pre class="screen"><span class="commit-message">Changed handling of HTML output for the <a href="http://docbook.org/tdg/en/html/cmdsynopsis.html"><code class="sgmltag-element">cmdsynopsis</code></a> and
+<a href="http://docbook.org/tdg/en/html/funcsynopsis.html"><code class="sgmltag-element">funcsynopsis</code></a> elements, such that a@id instances are generated for
+them if they are descendants of any element containing a dbcmdlist
+or dbfunclist PI. Also, update the embedded <a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a> docs for the
+dbcmdlist and dbfunclist PIs to make it clear that they can be
+used within any element for which <a href="http://docbook.org/tdg/en/html/cmdsynopsis.html"><code class="sgmltag-element">cmdsynopsis</code></a> or <a href="http://docbook.org/tdg/en/html/funcsynopsis.html"><code class="sgmltag-element">funcsynopsis</code></a> are
+valid children.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: formal.xsl</code></p><pre class="screen"><span class="commit-message">Reverted the part of <a href="http://docbook.org/tdg/en/html/revision.html"><code class="sgmltag-element">revision</code></a> 6952 that caused a@id anchors to be
+generated for output of informal objects. Thanks to Sam Steingold
+for reporting.</span></pre></li><li><p><code class="literal">Robert Stayton: glossary.xsl</code></p><pre class="screen"><span class="commit-message">Account for a <a href="http://docbook.org/tdg/en/html/glossary.html"><code class="sgmltag-element">glossary</code></a> with no <a href="http://docbook.org/tdg/en/html/glossdiv.html"><code class="sgmltag-element">glossdiv</code></a> or <a href="http://docbook.org/tdg/en/html/glossentry.html"><code class="sgmltag-element">glossentry</code></a> children.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: titlepage.xsl</code></p><pre class="screen"><span class="commit-message">Modified <a href="http://docbook.org/tdg/en/html/legalnotice.html"><code class="sgmltag-element">legalnotice</code></a> template so that the base.name parameter is calculated 
+in the same way as for <a href="http://docbook.org/tdg/en/html/revhistory.html"><code class="sgmltag-element">revhistory</code></a> chunks. Using &lt;xsl:apply-templates 
+mode="chunk-filename" select="."/&gt; did not work for single-page output since
+the template with that mode is in chunk-code.xsl.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: graphics.xsl</code></p><pre class="screen"><span class="commit-message">Updated support for SVG (must be a child of <a href="http://docbook.org/tdg/en/html/imagedata.html"><code class="sgmltag-element">imagedata</code></a> in DB 5).
+Added support for MathML in <a href="http://docbook.org/tdg/en/html/imagedata.html"><code class="sgmltag-element">imagedata</code></a>.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: pi.xsl</code></p><pre class="screen"><span class="commit-message">Fixed typo.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: inline.xsl</code></p><pre class="screen"><span class="commit-message">Fixed typo in tests for @xlink:<a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a>.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: pi.xsl</code></p><pre class="screen"><span class="commit-message">Added documentation for the dbhh PI (used for context-sensitive HTML Help).
+(The two templates matching 'dbhh' are still in htmlhelp-common.xsl).</span></pre></li><li><p><code class="literal">Mauritz Jeanson: pi.xsl</code></p><pre class="screen"><span class="commit-message">Corrected <a href="http://docbook.org/tdg/en/html/synopsis.html"><code class="sgmltag-element">synopsis</code></a> of dbhtml-include PI.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: docbook.xsl; highlight.xsl</code></p><pre class="screen"><span class="commit-message">Replaced &lt;font&gt; with &lt;span&gt; and/or inline styles. This fixes the problem with &lt;span class="ERROR"&gt;
+in XHTML (and &lt;font&gt; is deprecated anyway). Closes bug #1715774.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: titlepage.xsl</code></p><pre class="screen"><span class="commit-message">Fixed test for <a href="../html/abstract.notitle.enabled.html"><em class="parameter"><code>abstract.notitle.enabled</code></em></a>. The way I had it, it was
+having an effect opposite to its documented effect; that is, it
+was generating an <a href="http://docbook.org/tdg/en/html/abstract.html"><code class="sgmltag-element">abstract</code></a> <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> only if <a href="../html/abstract.notitle.enabled.html"><em class="parameter"><code>abstract.notitle.enabled</code></em></a>
+was not zero; but it should actually generate the <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> only if
+<a href="../html/abstract.notitle.enabled.html"><em class="parameter"><code>abstract.notitle.enabled</code></em></a> *is* zero. Thanks to Marie Sauvage for
+testing and reporting this very quickly after 1.73.0 was released.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xref.xsl; pi.xsl</code></p><pre class="screen"><span class="commit-message">Mark up PIs with tag@class=xmlpi so that they can get picked up an
+formatted correctly by the doc build.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: param.xweb; param.ent</code></p><pre class="screen"><span class="commit-message">Moved declaration and documentation of <a href="../html/javahelp.encoding.html"><em class="parameter"><code>javahelp.encoding</code></em></a> from javahelp.xsl to the
+regular "parameter machinery".</span></pre></li><li><p><code class="literal">Michael(tm) Smith: autotoc.xsl; chunk-common.xsl</code></p><pre class="screen"><span class="commit-message">Fixed a bug that caused broken links in some TOCs.
+This change affects the code for generating links in HTML output.
+It adds a new optional "toc.context" parameter to the href.target
+template, and based on the value of that parameter, handles
+link-generation in TOCs differently under a certain condition.
+
+The gory details:
+
+  The code now checks to see if the output dir of any file being
+  linked to in a particular <a href="http://docbook.org/tdg/en/html/toc.html"><code class="sgmltag-element">TOC</code></a> is different from the output dir
+  the <a href="http://docbook.org/tdg/en/html/toc.html"><code class="sgmltag-element">TOC</code></a> is written to. If it is different, we do not call the
+  trim.common.uri.paths[1] template.
+
+  The reason is that, given the following case:
+
+  1. we are chunking into separate dirs
+
+  2. output for the <a href="http://docbook.org/tdg/en/html/toc.html"><code class="sgmltag-element">TOC</code></a> is written to current dir, but the file
+     being linked to is written to some subdir "foo".
+
+  For that case, links to that file in that <a href="http://docbook.org/tdg/en/html/toc.html"><code class="sgmltag-element">TOC</code></a> did not show
+  the correct path - they omitted the "foo".
+
+  The cause of that problem was that the trim.common.uri.paths
+  template was being called under all conditions. But it's
+  apparent that we don't want to call trim.common.uri.paths in
+  the case where a linked file is being written to a different
+  directory than the <a href="http://docbook.org/tdg/en/html/toc.html"><code class="sgmltag-element">TOC</code></a> that contains the <a href="http://docbook.org/tdg/en/html/link.html"><code class="sgmltag-element">link</code></a>, because doing
+  so will cause a necessary (not redundant) directory-name
+  part of the <a href="http://docbook.org/tdg/en/html/link.html"><code class="sgmltag-element">link</code></a> to get inadvertently trimmed, resulting in
+  a broken <a href="http://docbook.org/tdg/en/html/link.html"><code class="sgmltag-element">link</code></a> to that file.
+
+  Thus, the conditional check was added to catch this case and to
+  handle it differently
+
+  [1] The purpose of the trim.common.uri.paths template is to
+  prevent cases where, if we didn't call it, we end up with
+  unnecessary, redundant directory names getting output; for
+  example, "foo/foo/refname.html".</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Shortened some <a href="http://docbook.org/tdg/en/html/refpurpose.html"><code class="sgmltag-element">refpurpose</code></a> text for embedded doc for PIs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: admon.xsl</code></p><pre class="screen"><span class="commit-message">Changed handling of titles for note, warning, <a href="http://docbook.org/tdg/en/html/caution.html"><code class="sgmltag-element">caution</code></a>, <a href="http://docbook.org/tdg/en/html/important.html"><code class="sgmltag-element">important</code></a>,
+<a href="http://docbook.org/tdg/en/html/tip.html"><code class="sgmltag-element">tip</code></a> admonitions: We now output and HTML h3 head only if
+<a href="../html/admon.textlabel.html"><em class="parameter"><code>admon.textlabel</code></em></a> is non-zero or if the admonition actually contains
+a <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a>; otherwise, we don't output an h3 head at all.
+(Previously, we were outputting an empty h3 if the <a href="../html/admon.textlabel.html"><em class="parameter"><code>admon.textlabel</code></em></a>
+was zero and if the admonition had no title.)</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Make pi.xsl files valid against our litprog grammar.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore another build-generated kludge. Yeah, I know it's
+ridiculous. If you can come up with a prettier way of doing it,
+all of my riches will be yours.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Make PI source files valid against our litprog schema.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Make *.xweb instances valid against the
+https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/docbook/relaxng/params/refentry.rnc
+grammar.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Make sure that *template.xml files under version control don't get
+removed when we clean.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: table.xsl</code></p><pre class="screen"><span class="commit-message">Fixed bug #1737581 (<a href="../html/table.borders.with.css.html"><em class="parameter"><code>table.borders.with.css</code></em></a> should suppress border attribute).</span></pre></li><li><p><code class="literal">Mauritz Jeanson: xref.xsl</code></p><pre class="screen"><span class="commit-message">Added template for <a href="http://docbook.org/tdg/en/html/xref.html"><code class="sgmltag-element">xref</code></a> to <a href="http://docbook.org/tdg/en/html/area.html"><code class="sgmltag-element">area</code></a>/<a href="http://docbook.org/tdg/en/html/areaset.html"><code class="sgmltag-element">areaset</code></a>.
+Part of fix for bug #1675513 (<a href="http://docbook.org/tdg/en/html/xref.html"><code class="sgmltag-element">xref</code></a> to <a href="http://docbook.org/tdg/en/html/area.html"><code class="sgmltag-element">area</code></a> broken).</span></pre></li><li><p><code class="literal">Mauritz Jeanson: titlepage.xsl; component.xsl; division.xsl; sections.xsl</code></p><pre class="screen"><span class="commit-message">Added fixes to avoid duplicate ids when <a href="../html/generate.id.attributes.html"><em class="parameter"><code>generate.id.attributes</code></em></a> = 1.
+This (hopefully) closes bug #1671052.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore intermediate params file.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore; Makefile</code></p><pre class="screen"><span class="commit-message">Set updated ignore properties and adjusted for fact that shared
+makefile now expects a "PARAMBASE" value to be specified (to
+indicate base <a href="http://docbook.org/tdg/en/html/filename.html"><code class="sgmltag-element">filename</code></a> for the type of content being built: either
+PARAMBASE=param or PARAMBASE=lib; this makes it possible to reduce
+redundancy in the lib build, and just have it use the same
+makefile "infrastructure" as the param builds for all the
+param.xsl files. The reason for that is, lib use the same *.xweb
+system for embedding documentation that the builds for the various
+output formats use (as opposed to the jrefentry-based system that
+used for building the template and PI docs in common etc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lists.xsl</code></p><pre class="screen"><span class="commit-message">Added doc for the dbchoice choice PI, and fixes some problems with
+the db* start PI handling.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl; math.xsl</code></p><pre class="screen"><span class="commit-message">Added embedded documentation on the following PIs:
+
+  - dbhtml_start
+  - dbfo_start
+  - dbtex_delims
+  - dbtimestamp</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">made some cleanup to the fo/pi.xsl params doc. Also fixed a couple
+typos.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Completing adding all doc for HTML PIs. Added "see also" sections
+with links to related global params, plus links to DocBook XSL: TCG
+Also tried out adding some additional doc to param doc for the
+<a href="../html/textinsert.extension.html"><em class="parameter"><code>textinsert.extension</code></em></a> param that back-references the PI
+documentation, plus added some TCG links there too.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl</code></p><pre class="screen"><span class="commit-message">Added doc for the dbhtml <a href="../html/img.src.path.html"><em class="parameter"><code>img.src.path</code></em></a> PI.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: formal.xsl; pi.xsl</code></p><pre class="screen"><span class="commit-message">Made the dbfunclist PI work as intended. Also added doc for
+dbfunclist and dbcmdlist PIs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl; synop.xsl</code></p><pre class="screen"><span class="commit-message">Made the dbcmdlist work the way it appears to have been intended
+to work. Restored dbhtml-dir template back to pi.xsl.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lists.xsl; pi.xsl</code></p><pre class="screen"><span class="commit-message">fixed WF error and removed duplicate template</span></pre></li><li><p><code class="literal">Michael(tm) Smith: graphics.xsl</code></p><pre class="screen"><span class="commit-message">Fixed WF error.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: chunk-common.xsl; pi.xsl</code></p><pre class="screen"><span class="commit-message">Add x-ref links from embedded PI doc to sections in Bob's <a href="http://docbook.org/tdg/en/html/book.html"><code class="sgmltag-element">book</code></a>.
+Also, moved dbhtml-dir template to chunk-common.xsl file, because
+it doesn't really belong in the PI file.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: table.xsl; pi.xsl</code></p><pre class="screen"><span class="commit-message">Consolidated all PIs for HTML <a href="http://docbook.org/tdg/en/html/table.html"><code class="sgmltag-element">table</code></a> stuff into wrapper templates
+in the "master" pi list (html/pi.xsl) and added embedded doc for
+all of them. May have made some flubs in copying over, so this
+change may break some <a href="http://docbook.org/tdg/en/html/table.html"><code class="sgmltag-element">table</code></a> handling.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl; verbatim.xsl</code></p><pre class="screen"><span class="commit-message">Added a verbatim PI that I missed in last commit.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pi.xsl; synop.xsl; verbatim.xsl</code></p><pre class="screen"><span class="commit-message">Consolidated all PIs for HTML <a href="http://docbook.org/tdg/en/html/synopsis.html"><code class="sgmltag-element">synopsis</code></a> and verbatim stuff into
+wrapper templates in the "master" pi list (html/pi.xsl) and added
+embedded doc for all of them. May have made some flubs in copying
+over, so this change may break some <a href="http://docbook.org/tdg/en/html/synopsis.html"><code class="sgmltag-element">synopsis</code></a> and verbatim
+handling. Note: Also added refsee@role=params instances so that we
+can <a href="http://docbook.org/tdg/en/html/link.html"><code class="sgmltag-element">link</code></a> to the corresponding global params (if any) for each PI.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: qandaset.xsl; pi.xsl</code></p><pre class="screen"><span class="commit-message">Consolidated all PIs for <a href="http://docbook.org/tdg/en/html/qandaset.html"><code class="sgmltag-element">qandaset</code></a> into wrapper templates in one
+place (html/pi.xsl) and added embedded doc for all of them.  May
+have made some flubs in copying over, so this change may break
+some <a href="http://docbook.org/tdg/en/html/qandaset.html"><code class="sgmltag-element">qandaset</code></a> handling.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lists.xsl; graphics.xsl; pi.xsl</code></p><pre class="screen"><span class="commit-message">Consolidated all PIs for graphics and lists into wrapper templates
+in one place (html/pi.xsl) and added embedded doc for all of them.
+May have made some flubs in copying over, so this change may break
+some graphics and list handling.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: chunktoc.xsl; chunk-code.xsl; pi.xsl</code></p><pre class="screen"><span class="commit-message">Initial reorganization of HTML PI processing mechanism.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: titlepage.xsl; param.xweb; param.ent</code></p><pre class="screen"><span class="commit-message">Added new param <a href="../html/abstract.notitle.enabled.html"><em class="parameter"><code>abstract.notitle.enabled</code></em></a>.
+If non-zero, in output of the <a href="http://docbook.org/tdg/en/html/abstract.html"><code class="sgmltag-element">abstract</code></a> element on titlepages,
+display of the <a href="http://docbook.org/tdg/en/html/abstract.html"><code class="sgmltag-element">abstract</code></a> <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> is suppressed.
+Because sometimes you really don't want or need that <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a>
+there...</span></pre></li><li><p><code class="literal">Michael(tm) Smith: chunk-code.xsl; graphics.xsl</code></p><pre class="screen"><span class="commit-message">When we are chunking long descriptions for <a href="http://docbook.org/tdg/en/html/mediaobject.html"><code class="sgmltag-element">mediaobject</code></a> instances
+into separate HTML output files, and <a href="../html/use.id.as.filename.html"><em class="parameter"><code>use.id.as.filename</code></em></a> is
+non-zero, if a <a href="http://docbook.org/tdg/en/html/mediaobject.html"><code class="sgmltag-element">mediaobject</code></a> has an ID, use that ID as the basename
+for the long-description file (otherwise, we generate an ID for it
+and use that ID as the basename for the file).
+The parallels the recent change made to cause IDs for <a href="http://docbook.org/tdg/en/html/legalnotice.html"><code class="sgmltag-element">legalnotice</code></a>
+instances to be used as basenames for <a href="http://docbook.org/tdg/en/html/legalnotice.html"><code class="sgmltag-element">legalnotice</code></a> chunks.
+Also, made some minor refinements to the recent changes for
+<a href="http://docbook.org/tdg/en/html/legalnotice.html"><code class="sgmltag-element">legalnotice</code></a> chunk handling.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: titlepage.xsl</code></p><pre class="screen"><span class="commit-message">Added support to the HTML stylesheets for proper processing of
+<a href="http://docbook.org/tdg/en/html/orgname.html"><code class="sgmltag-element">orgname</code></a> as a child of <a href="http://docbook.org/tdg/en/html/author.html"><code class="sgmltag-element">author</code></a>.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: chunk-code.xsl</code></p><pre class="screen"><span class="commit-message">When $generate.legalnotice.link is non-zero and
+$use.id.as.filename is also non-zero, if a <a href="http://docbook.org/tdg/en/html/legalnotice.html"><code class="sgmltag-element">legalnotice</code></a> has an ID,
+then instead of assigning the "ln-&lt;generatedID&gt;" basename to the
+output file for that <a href="http://docbook.org/tdg/en/html/legalnotice.html"><code class="sgmltag-element">legalnotice</code></a>, just use its real ID as the
+basename for the file -- as we do when chunking other elements
+that have IDs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: table.xsl; changebars.xsl; qandaset.xsl; index.xsl; maketoc.xsl; glossa&#8943;</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: docbook.xsl</code></p><pre class="screen"><span class="commit-message">Moved logging template and related templates to separate
+utility.xsl file so that can be imported without importing the
+whole common.xsl file (which is necessary for the build and for
+using the logging template in standalone namespace-stripping
+because the common.xsl file assumes it will be imported along with
+all the params, which it can't be when building lib.xsl).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: chunk-code.xsl; docbook.xsl</code></p><pre class="screen"><span class="commit-message">Updated stylesheets to use common logging template to log messages
+emitted during namespace-stripping.
+Also, moved pad-string template from lib to common because
+it's needed in order to use logging template in the profiling
+stylesheets, and the lib build relies on the profiling apparatus
+(so the profiling apparatus can't rely on lib being built first...)</span></pre></li><li><p><code class="literal">Michael(tm) Smith: db5strip.xsl</code></p><pre class="screen"><span class="commit-message">Removed the db5strip.xsl stylesheet because it has been obsoleted
+by the stripns.xsl stylesheet.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: inline.xsl; autoidx-kimber.xsl; biblio-iso690.xsl; autoidx-kosek.xsl; p&#8943;</code></p><pre class="screen"><span class="commit-message">Removed all "Do not edit this file" admonitions that get output in
+generated stylesheets; such admonitions have in the past been
+judged by the free-software police to be at-risk of
+interpretation as license restrictions.
+Also, made various updates to work around some funkiness is
+xsltproc output.</span></pre></li><li><p><code class="literal">David Cramer: xref.xsl</code></p><pre class="screen"><span class="commit-message">Handle <a href="http://docbook.org/tdg/en/html/alt.html"><code class="sgmltag-element">alt</code></a> text on xrefs to steps when the step doesn't have a <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a>.</span></pre></li><li><p><code class="literal">David Cramer: lists.xsl</code></p><pre class="screen"><span class="commit-message">Added &lt;p&gt; element around <a href="http://docbook.org/tdg/en/html/term.html"><code class="sgmltag-element">term</code></a> in <a href="http://docbook.org/tdg/en/html/variablelist.html"><code class="sgmltag-element">variablelist</code></a> when formatted as <a href="http://docbook.org/tdg/en/html/table.html"><code class="sgmltag-element">table</code></a> to avoid misalignment of <a href="http://docbook.org/tdg/en/html/term.html"><code class="sgmltag-element">term</code></a> and <a href="http://docbook.org/tdg/en/html/listitem.html"><code class="sgmltag-element">listitem</code></a> in xhtml (non-quirks mode) output</span></pre></li><li><p><code class="literal">David Cramer: qandaset.xsl</code></p><pre class="screen"><span class="commit-message">Added &lt;p&gt; element around <a href="http://docbook.org/tdg/en/html/question.html"><code class="sgmltag-element">question</code></a> and <a href="http://docbook.org/tdg/en/html/answer.html"><code class="sgmltag-element">answer</code></a> labels to avoid misalignment of <a href="http://docbook.org/tdg/en/html/label.html"><code class="sgmltag-element">label</code></a> and <a href="http://docbook.org/tdg/en/html/listitem.html"><code class="sgmltag-element">listitem</code></a> in xhtml (non-quirks mode) output</span></pre></li><li><p><code class="literal">David Cramer: lists.xsl</code></p><pre class="screen"><span class="commit-message">Added &lt;p&gt; element around callouts to avoid misalignment of <a href="http://docbook.org/tdg/en/html/callout.html"><code class="sgmltag-element">callout</code></a> and <a href="http://docbook.org/tdg/en/html/listitem.html"><code class="sgmltag-element">listitem</code></a> in xhtml (non-quirks mode) output</span></pre></li><li><p><code class="literal">Robert Stayton: footnote.xsl</code></p><pre class="screen"><span class="commit-message">Fixed bug #1717196 <a href="http://docbook.org/tdg/en/html/footnoteref.html"><code class="sgmltag-element">footnoteref</code></a> not finding the right chunk for the target.</span></pre></li><li><p><code class="literal">Robert Stayton: chunk-code.xsl; docbook.xsl</code></p><pre class="screen"><span class="commit-message">Changed the comments regarding namespace striping to
+mention the docbook5 namedspaced stylesheets.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: inline.xsl</code></p><pre class="screen"><span class="commit-message">Make citations numbered if <a href="../html/bibliography.numbered.html"><em class="parameter"><code>bibliography.numbered</code></em></a> != 0.</span></pre></li><li><p><code class="literal">Robert Stayton: param.xweb; param.ent</code></p><pre class="screen"><span class="commit-message">Add support for new profiling attributes audience and wordsize.</span></pre></li><li><p><code class="literal">Robert Stayton: inline.xsl; xref.xsl</code></p><pre class="screen"><span class="commit-message">Add support for xlink olinks.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: titlepage.xsl</code></p><pre class="screen"><span class="commit-message">Fixed bug #1644874.</span></pre></li><li><p><code class="literal">Jirka Kosek: xref.xsl</code></p><pre class="screen"><span class="commit-message">Do not output xlink namespace declaration into HTML output</span></pre></li><li><p><code class="literal">Jirka Kosek: profile-chunk.xsl</code></p><pre class="screen"><span class="commit-message">Sync profiling stylesheet with base stylesheet</span></pre></li><li><p><code class="literal">Jirka Kosek: glossary.xsl</code></p><pre class="screen"><span class="commit-message">Rules for normalizing <a href="http://docbook.org/tdg/en/html/glossary.html"><code class="sgmltag-element">glossary</code></a> entries before they are sorted can be now different for each language.</span></pre></li><li><p><code class="literal">Robert Stayton: inline.xsl</code></p><pre class="screen"><span class="commit-message">Fix a couple of class attributes.</span></pre></li><li><p><code class="literal">Robert Stayton: titlepage.xsl</code></p><pre class="screen"><span class="commit-message">Remove redundant ./ from xpath statements.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: inline.xsl</code></p><pre class="screen"><span class="commit-message">Fixed #1680755 (<a href="http://docbook.org/tdg/en/html/keycombo.html"><code class="sgmltag-element">keycombo</code></a> joinchar default incorrect).</span></pre></li><li><p><code class="literal">Mauritz Jeanson: lists.xsl</code></p><pre class="screen"><span class="commit-message">Corrected typo in <a href="http://docbook.org/tdg/en/html/calloutlist.html"><code class="sgmltag-element">calloutlist</code></a> template.</span></pre></li><li><p><code class="literal">Robert Stayton: formal.xsl</code></p><pre class="screen"><span class="commit-message">Set formal object class value with class.value mode.</span></pre></li><li><p><code class="literal">Robert Stayton: graphics.xsl</code></p><pre class="screen"><span class="commit-message">Fix bug in contentdepth outputting empty height attribute.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Renamed cvstools dir to buildtools, and replaced all
+references to "cvstools" in makefiles and elsewhere
+with "buildtools".</span></pre></li><li><p><code class="literal">Robert Stayton: chunk-common.xsl; chunk-code.xsl; manifest.xsl; chunk.xsl</code></p><pre class="screen"><span class="commit-message">Refactored the chunking modules to move all named templates to
+chunk-common.xsl and all match templates to chunk-code.xsl, in
+order to enable better chunk customization.
+See the comments in chunk.xsl for more details.</span></pre></li><li><p><code class="literal">Robert Stayton: lists.xsl</code></p><pre class="screen"><span class="commit-message">Add <a href="http://docbook.org/tdg/en/html/anchor.html"><code class="sgmltag-element">anchor</code></a> for xml:id for <a href="http://docbook.org/tdg/en/html/listitem.html"><code class="sgmltag-element">listitem</code></a> in <a href="http://docbook.org/tdg/en/html/varlistentry.html"><code class="sgmltag-element">varlistentry</code></a>.</span></pre></li><li><p><code class="literal">Robert Stayton: refentry.xsl</code></p><pre class="screen"><span class="commit-message">Add support for <a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a>/<a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> in refsections for db5.</span></pre></li><li><p><code class="literal">Robert Stayton: xref.xsl</code></p><pre class="screen"><span class="commit-message">Fixed bug 1652360 empty <a href="http://docbook.org/tdg/en/html/link.html"><code class="sgmltag-element">link</code></a> with xlink:href.</span></pre></li><li><p><code class="literal">Robert Stayton: changebars.xsl</code></p><pre class="screen"><span class="commit-message">Add underline style to "added".</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Port from docs-in-db5 branch of all DocBook5-formatted
+params and all associated build changes needed for
+building the param.xsl files and docs from them.</span></pre></li><li><p><code class="literal">Jirka Kosek: param.xweb; biblio.xsl; docbook.xsl; param.ent; biblio-iso690.xsl</code></p><pre class="screen"><span class="commit-message">Added support for formatting biblioentries according to ISO690 <a href="http://docbook.org/tdg/en/html/citation.html"><code class="sgmltag-element">citation</code></a> style.
+New <a href="http://docbook.org/tdg/en/html/bibliography.html"><code class="sgmltag-element">bibliography</code></a> style can be turned on by setting parameter <a href="../html/bibliography.style.html"><em class="parameter"><code>bibliography.style</code></em></a> to "iso690"
+The code was provided by Jana Dvorakova</span></pre></li><li><p><code class="literal">Robert Stayton: callout.xsl; glossary.xsl; annotations.xsl; autoidx.xsl; footnote.xsl</code></p><pre class="screen"><span class="commit-message">Add call to class.attribute on output &lt;a&gt;.</span></pre></li><li><p><code class="literal">Robert Stayton: inline.xsl; xref.xsl</code></p><pre class="screen"><span class="commit-message">Add call to class.attribute to &lt;a&gt; output elements so they can
+have a class value too.</span></pre></li><li><p><code class="literal">Robert Stayton: html.xsl</code></p><pre class="screen"><span class="commit-message">Add mode=class.value to generate just the value, not the attribute.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Updated <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a> notices.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: glossary.xsl</code></p><pre class="screen"><span class="commit-message">Fixed bug #1644881:
+* Added curly braces around all $language attribute values. 
+* Moved declaration of language variable to top level of stylesheet.
+Tested with Xalan, Saxon, and xsltproc.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Manpages"></a>Manpages</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">manpages</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: endnotes.xsl</code></p><pre class="screen"><span class="commit-message">In manpages output, generate warnings about notesources with
+non-para children only if the notesource is a <a href="http://docbook.org/tdg/en/html/footnote.html"><code class="sgmltag-element">footnote</code></a> or
+<a href="http://docbook.org/tdg/en/html/annotation.html"><code class="sgmltag-element">annotation</code></a>. Thanks to Sam Steingold for reporting problems with
+the existing handling.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: synop.xsl</code></p><pre class="screen"><span class="commit-message">Made italic handling of</span></pre></li><li><p><code class="literal">Michael(tm) Smith: table.xsl</code></p><pre class="screen"><span class="commit-message">Problem:
+  Rows in tables with more than 10 rows get sorted into incorrect
+  order.
+Cause:
+  Code in manpages <a href="http://docbook.org/tdg/en/html/table.html"><code class="sgmltag-element">table</code></a> handler does sorting, using xsl:sort, to
+  deal with instances of cells that span multiple rows. But that
+  sorting was being done alphabetically rather than numerically --
+  the reason being that the default sort method for xsl:sort is
+  "text" (alphabetical).
+Fix:
+  Added @data-type=number to relevant xsl:sort instances in <a href="http://docbook.org/tdg/en/html/table.html"><code class="sgmltag-element">table</code></a>
+  code.
+
+Closes #1763332. Thanks to kesuke.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: docbook.xsl</code></p><pre class="screen"><span class="commit-message">Added import of common/charmap.xsl to fix problem of calls to
+missing named templates. Closes #1760697. Thanks to Daniel
+Leidert.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb; docbook.xsl; param.ent</code></p><pre class="screen"><span class="commit-message">Added the <a href="../manpages/man.authors.section.enabled.html"><em class="parameter"><code>man.authors.section.enabled</code></em></a> and
+<a href="../manpages/man.copyright.section.enabled.html"><em class="parameter"><code>man.copyright.section.enabled</code></em></a> parameters. Set those to zero when
+you want to suppress display of the auto-generated AUTHORS and
+<a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">COPYRIGHT</code></a> sections. Closes request #1467806. Thanks to Daniel
+Leidert.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: info.xsl</code></p><pre class="screen"><span class="commit-message">Fixed minor typo.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore another build-generated kludge. Yeah, I know it's
+ridiculous. If you can come up with a prettier way of doing it,
+all of my riches will be yours.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Make *.xweb instances valid against the
+https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/docbook/relaxng/params/refentry.rnc
+grammar.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore intermediate params file.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile; .cvsignore</code></p><pre class="screen"><span class="commit-message">Set updated ignore properties and adjusted for fact that shared
+makefile now expects a "PARAMBASE" value to be specified (to
+indicate base <a href="http://docbook.org/tdg/en/html/filename.html"><code class="sgmltag-element">filename</code></a> for the type of content being built: either
+PARAMBASE=param or PARAMBASE=lib; this makes it possible to reduce
+redundancy in the lib build, and just have it use the same
+makefile "infrastructure" as the param builds for all the
+param.xsl files. The reason for that is, lib use the same *.xweb
+system for embedding documentation that the builds for the various
+output formats use (as opposed to the jrefentry-based system that
+used for building the template and PI docs in common etc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: docbook.xsl</code></p><pre class="screen"><span class="commit-message">Took the test that the manpages stylesheet does to see if there
+are any <a href="http://docbook.org/tdg/en/html/refentry.html"><code class="sgmltag-element">Refentry</code></a> chilren in current doc, and made it
+namespace-agnostic. Reason for that is because the test otherwise
+won't work when it is copied over into the generated
+profile-docbook.xsl stylesheet.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Added a manpages/profile-docbook.xsl file to enable single-pass
+profiling for manpages output. KNOWN ISSUE: Single-pass namespace
+stripping does not yet work in combination with the
+manpages/profile-docbook.xsl stylesheet.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: info.xsl</code></p><pre class="screen"><span class="commit-message">Output <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a> and <a href="http://docbook.org/tdg/en/html/legalnotice.html"><code class="sgmltag-element">legalnotice</code></a> in man-page output in whatever
+place they are in in document order. Closes #1690539. Thanks to
+Daniel Leidert for reporting.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: docbook.xsl</code></p><pre class="screen"><span class="commit-message">Restored support for single-pass namespace stripping to manpages
+stylesheet.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: docbook.xsl; other.xsl</code></p><pre class="screen"><span class="commit-message">Added check to have the manpages stylesheet log/emit an error
+message if it is given a namespaced DocBook document, with
+instructions to instead either use the docbook5-xsl stylesheets to
+directly process the document, or to use the stripns.xsl
+stylesheet to pre-process it.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Removed all "Do not edit this file" admonitions that get output in
+generated stylesheets; such admonitions have in the past been
+judged by the free-software police to be at-risk of
+interpretation as license restrictions.
+Also, made various updates to work around some funkiness is
+xsltproc output.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: table.xsl; endnotes.xsl; other.xsl</code></p><pre class="screen"><span class="commit-message">Updated manpages logging to work with new-and-improved logging
+template.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: synop.xsl; block.xsl; info.xsl; inline.xsl; lists.xsl; endnotes.xsl; ut&#8943;</code></p><pre class="screen"><span class="commit-message">Changed handling of bold and italic/underline output in manpages
+output. Should be transparent to users, but...
+
+This touches handling of all bold and italic/underline output. The
+exact change is that the mode="bold" and mode="italic" utility
+templates were changed to named templates. (I think maybe I've
+changed it back and forth from mode to named before, so this is
+maybe re-reverting it yet again).
+
+Anyway, the reason for the change is that the templates are
+sometimes call on dynamically node-sets, and using modes to format
+those doesn't allow passing <a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a> about the current/real context
+node from the source (not the node-set created by the stylesheet)
+to that formatting stage.
+
+The named templates allow the context to be passed in as a
+parameter, so that the bold/ital formatting template can use
+context-aware condition checking.
+
+This was basically necessary in order to suppress bold formatting
+in titles, which otherwise gets screwed up because of the numbnut
+way that roff handles nested bold/ital.
+
+Closes #1674534). Much thanks to Daniel Leidert, whose in his
+docbook-xsl bug-finding kung-fu has achieved Grand Master status.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: block.xsl</code></p><pre class="screen"><span class="commit-message">Fixed handling of example instances by adding the example element
+to the same template we use for processing <a href="http://docbook.org/tdg/en/html/figure.html"><code class="sgmltag-element">figure</code></a>. Closes
+#1674538. Thanks to Daniel Leidert.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: utility.xsl</code></p><pre class="screen"><span class="commit-message">Don't include lang in manpages <a href="http://docbook.org/tdg/en/html/filename.html"><code class="sgmltag-element">filename</code></a>/pathname if lang=en (that
+is, only generate lang-qualified file-/pathnames for non-English).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: endnotes.xsl</code></p><pre class="screen"><span class="commit-message">In manpages output, emit warnings for notesources (<a href="http://docbook.org/tdg/en/html/footnote.html"><code class="sgmltag-element">footnote</code></a>, etc.)
+that have something other than <a href="http://docbook.org/tdg/en/html/para.html"><code class="sgmltag-element">para</code></a> as a child.
+
+The numbered-with-hanging-indent formatting that's used for
+rendering endnotes in the NOTES <a href="http://docbook.org/tdg/en/html/section.html"><code class="sgmltag-element">section</code></a> of man pages places some
+limits/assumptions on how the DocBook source is marked up; namely,
+for notesources (<a href="http://docbook.org/tdg/en/html/footnote.html"><code class="sgmltag-element">footnote</code></a>, <a href="http://docbook.org/tdg/en/html/annotation.html"><code class="sgmltag-element">annotation</code></a>, etc.) that can contain
+block-level children, if the they have a block-level child such as
+a <a href="http://docbook.org/tdg/en/html/table.html"><code class="sgmltag-element">table</code></a> or <a href="http://docbook.org/tdg/en/html/itemizedlist.html"><code class="sgmltag-element">itemizedlist</code></a> or <a href="http://docbook.org/tdg/en/html/orderedlist.html"><code class="sgmltag-element">orderedlist</code></a> that is the first child of
+a <a href="http://docbook.org/tdg/en/html/footnote.html"><code class="sgmltag-element">footnote</code></a>, we have no way of rendering/indenting its content
+properly in the endnotes list.
+
+Thus, the manpages stylesheet not emits a warning message for that
+case, and suggests the "fix" (which is to wrap the <a href="http://docbook.org/tdg/en/html/table.html"><code class="sgmltag-element">table</code></a> or
+<a href="http://docbook.org/tdg/en/html/itemizedlist.html"><code class="sgmltag-element">itemizedlist</code></a> or whatever in a <a href="http://docbook.org/tdg/en/html/para.html"><code class="sgmltag-element">para</code></a> that has some preferatory text.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: utility.xsl</code></p><pre class="screen"><span class="commit-message">Added support to mixed-block template for handling tables in
+mixed-blocks (e.g., as child of <a href="http://docbook.org/tdg/en/html/para.html"><code class="sgmltag-element">para</code></a>) correctly.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: endnotes.xsl</code></p><pre class="screen"><span class="commit-message">Added comment to endnotes code.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: endnotes.xsl</code></p><pre class="screen"><span class="commit-message">Normalize text-only endnotes properly.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: utility.xsl</code></p><pre class="screen"><span class="commit-message">Fixed problem with lang values not getting added to filenames as
+expected for all cases. Closes #1674564. Thanks to Daniel Leidert
+for reporting.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb; param.ent; other.xsl; utility.xsl</code></p><pre class="screen"><span class="commit-message">Made some minor updates to param docs and comments in
+manpages stylesheet. Also, removed some params for
+manpages doc that are already doc'ed as HTML params.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Renamed cvstools dir to buildtools, and replaced all
+references to "cvstools" in makefiles and elsewhere
+with "buildtools".</span></pre></li><li><p><code class="literal">Michael(tm) Smith: table.xsl; synop.xsl; block.xsl; info.xsl; lists.xsl; refentry.xsl; end&#8943;</code></p><pre class="screen"><span class="commit-message">Reverted necessary escaping of backslash, dot, and dash
+out of the well-intentioned (but it now appears,
+misguided) "marker" mechanism (introduced in the 1.72.0
+release) -- which made use of alternative "marker"
+characters as internal representations of those
+characters, and then replaced them just prior to
+serialization -- and back into what's basically the
+system that was used prior to the 1.69.0 release; that
+is, into a part of stylesheet code that gets executed
+at the beginning of processing -- before any other roff
+markup up is. This change obviates the need for the
+marker system. It also requires a lot less RAM during
+processing (for large files, the marker mechanism
+ending up requiring gigabytes of memory).
+
+Closes bug #1661177. Thanks to Scott Smedley for
+providing a test case (the fvwm man page) that exposed
+the problem with the marker mechanism.
+
+Also moved the mechanism for converting non-breaking
+spaces back into the same <a href="http://docbook.org/tdg/en/html/area.html"><code class="sgmltag-element">area</code></a> of the stylesheet code.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lists.xsl</code></p><pre class="screen"><span class="commit-message">Fixed problem with incorrect formatting of nested <a href="http://docbook.org/tdg/en/html/variablelist.html"><code class="sgmltag-element">variablelist</code></a>.
+Closes bug #1650931. Thanks to Daniel "Eagle Eye" Leidert.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Port from docs-in-db5 branch of all DocBook5-formatted
+params and all associated build changes needed for
+building the param.xsl files and docs from them.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lists.xsl</code></p><pre class="screen"><span class="commit-message">Make sure that all listitems in <a href="http://docbook.org/tdg/en/html/itemizedlist.html"><code class="sgmltag-element">itemizedlist</code></a> and <a href="http://docbook.org/tdg/en/html/orderedlist.html"><code class="sgmltag-element">orderedlist</code></a> are
+preceded by a blank line. This fixes a regression that occurred
+when instances of the TP macro that were use in a previous
+versions of the list-handling code were switched to RS/RE (because
+TP doesn't support nesting). TP automatically generates a blank
+line, but RS doesn't. So I added a .sp before each .RS</span></pre></li><li><p><code class="literal">Michael(tm) Smith: endnotes.xsl; links.xsl; docbook.xsl</code></p><pre class="screen"><span class="commit-message">Renamed links.xsl to endnotes.xsl.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: block.xsl; inline.xsl; param.xweb; docbook.xsl; links.xsl; param.ent</code></p><pre class="screen"><span class="commit-message">Made a number of changes related to elements with
+out-of-line content:
+
+- Added handling for <a href="http://docbook.org/tdg/en/html/mediaobject.html"><code class="sgmltag-element">mediaobject</code></a> &amp; inlinemedidaobject.
+  Each <a href="http://docbook.org/tdg/en/html/imagedata.html"><code class="sgmltag-element">imagedata</code></a>, <a href="http://docbook.org/tdg/en/html/audiodata.html"><code class="sgmltag-element">audiodata</code></a>, or <a href="http://docbook.org/tdg/en/html/videodata.html"><code class="sgmltag-element">videodata</code></a> element
+  within a <a href="http://docbook.org/tdg/en/html/mediaobject.html"><code class="sgmltag-element">mediaobject</code></a> or inline <a href="http://docbook.org/tdg/en/html/mediaobject.html"><code class="sgmltag-element">mediaobject</code></a> is now
+  treated as a "notesource" and so handled in much the
+  same way as links and <a href="http://docbook.org/tdg/en/html/annotation.html"><code class="sgmltag-element">annotation</code></a>/<a href="http://docbook.org/tdg/en/html/alt.html"><code class="sgmltag-element">alt</code></a>/footnotes.
+
+  That means a numbered marker is generated inline to
+  mark the place in the main flow where the <a href="http://docbook.org/tdg/en/html/imagedata.html"><code class="sgmltag-element">imagedata</code></a>,
+  <a href="http://docbook.org/tdg/en/html/audiodata.html"><code class="sgmltag-element">audiodata</code></a>, or <a href="http://docbook.org/tdg/en/html/videodata.html"><code class="sgmltag-element">videodata</code></a> element occurs, and a
+  corresponding numbered endnote for it is generated in
+  the endnotes list at the end of the man page; the
+  endnote contains the URL from the fileref attribute
+  of the <a href="http://docbook.org/tdg/en/html/imagedata.html"><code class="sgmltag-element">imagedata</code></a>, <a href="http://docbook.org/tdg/en/html/audiodata.html"><code class="sgmltag-element">audiodata</code></a>, or <a href="http://docbook.org/tdg/en/html/videodata.html"><code class="sgmltag-element">videodata</code></a> element.
+
+  For mediobject and <a href="http://docbook.org/tdg/en/html/inlinemediaobject.html"><code class="sgmltag-element">inlinemediaobject</code></a> instances that
+  have a <a href="http://docbook.org/tdg/en/html/textobject.html"><code class="sgmltag-element">textobject</code></a> child, the <a href="http://docbook.org/tdg/en/html/textobject.html"><code class="sgmltag-element">textobject</code></a> is displayed
+  within the main text flow.
+
+- Renamed several man.link.* params to man.endnotes.*,
+  to reflect that fact that the endnotes list now
+  contains more than just links. Also did similar
+  renaming for a number of stylesheet-internal vars.
+
+- Added support for xlink:href (along with existing
+  support for the legacy ulink element).
+
+- Cleaned up and streamlined the endnotes-handling
+  code. It's still messy and klunky and the basic
+  mechanism it uses is very inefficent for documents
+  that contain a lot of notesources, but at least it's
+  a bit better than it was.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Updated <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a> notices.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_HTMLHelp"></a>HTMLHelp</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">htmlhelp</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Mauritz Jeanson: htmlhelp-common.xsl</code></p><pre class="screen"><span class="commit-message">Moved the raw.help.title and help.title variables to the hhp-main template to make sure 
+a value is assigned after the namespace-stripping has been done. This prevents "Request 
+for <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> of element with no <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a>" errors.
+
+Added "//db:<a href="http://docbook.org/tdg/en/html/indexterm.html"><code class="sgmltag-element">indexterm</code></a>[1]|//ng:<a href="http://docbook.org/tdg/en/html/indexterm.html"><code class="sgmltag-element">indexterm</code></a>[1]" to the select expression of the global
+htmlhelp.generate.index parameter, so that an <a href="http://docbook.org/tdg/en/html/index.html"><code class="sgmltag-element">index</code></a> can be built for both DB 4 and 
+DB 5/NG documents (it's a little ugly, but a value needs to be assigned somehow).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: htmlhelp-common.xsl</code></p><pre class="screen"><span class="commit-message">Added single-pass namespace-stripping support to the htmlhelp,
+eclipse, and javahelp stylesheets.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Tweaked some makefiles to bring them into consistency with other
+makefiles in the build.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Renamed cvstools dir to buildtools, and replaced all
+references to "cvstools" in makefiles and elsewhere
+with "buildtools".</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Eclipse"></a>Eclipse</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">eclipse</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Mauritz Jeanson: eclipse.xsl</code></p><pre class="screen"><span class="commit-message">Added "db" and "ng" to exclude-result-prefixes.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: eclipse.xsl</code></p><pre class="screen"><span class="commit-message">Added single-pass namespace-stripping support to the htmlhelp,
+eclipse, and javahelp stylesheets.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: eclipse.xsl</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Tweaked some makefiles to bring them into consistency with other
+makefiles in the build.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore the eclipse generated profile stylesheet.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: Makefile</code></p><pre class="screen"><span class="commit-message">Fixed bug #1715093: Makefile for creating profiled version of eclipse.xsl added.</span></pre></li><li><p><code class="literal">David Cramer: eclipse.xsl</code></p><pre class="screen"><span class="commit-message">Added normalize-space around  to avoid leading whitespace from appearing in the output if there's extra leading whitespace (e.g. &lt;<a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a>&gt; Foo&lt;/<a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a>&gt;) in the source</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_JavaHelp"></a>JavaHelp</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">javahelp</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: javahelp.xsl</code></p><pre class="screen"><span class="commit-message">Added single-pass namespace-stripping support to the htmlhelp,
+eclipse, and javahelp stylesheets.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: javahelp.xsl</code></p><pre class="screen"><span class="commit-message">Moved declaration and documentation of <a href="../html/javahelp.encoding.html"><em class="parameter"><code>javahelp.encoding</code></em></a> from javahelp.xsl to the
+regular "parameter machinery".</span></pre></li><li><p><code class="literal">Michael(tm) Smith: javahelp.xsl</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Tweaked some makefiles to bring them into consistency with other
+makefiles in the build.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: javahelp.xsl</code></p><pre class="screen"><span class="commit-message">Implemented FR #1230233 (sorted <a href="http://docbook.org/tdg/en/html/index.html"><code class="sgmltag-element">index</code></a> in javahelp).</span></pre></li><li><p><code class="literal">Mauritz Jeanson: javahelp.xsl</code></p><pre class="screen"><span class="commit-message">Added normalize-space() around titles and <a href="http://docbook.org/tdg/en/html/index.html"><code class="sgmltag-element">index</code></a> entries to work around whitespace problems.
+Added support for <a href="http://docbook.org/tdg/en/html/glossary.html"><code class="sgmltag-element">glossary</code></a> and <a href="http://docbook.org/tdg/en/html/bibliography.html"><code class="sgmltag-element">bibliography</code></a> in <a href="http://docbook.org/tdg/en/html/toc.html"><code class="sgmltag-element">toc</code></a> and map files.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Renamed cvstools dir to buildtools, and replaced all
+references to "cvstools" in makefiles and elsewhere
+with "buildtools".</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Roundtrip"></a>Roundtrip</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">roundtrip</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: blocks2dbk.xsl; wordml2normalise.xsl; normalise2sections.xsl; sections2&#8943;</code></p><pre class="screen"><span class="commit-message">Set keywords on a number of files.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: pages2normalise.xsl</code></p><pre class="screen"><span class="commit-message">Removed executable property from roundtrip/pages2normalise.xsl
+file. Thanks to Daniel Leidert for reporting.</span></pre></li><li><p><code class="literal">Steve Ball: blocks2dbk.xsl; blocks2dbk.dtd; pages2normalise.xsl</code></p><pre class="screen"><span class="commit-message">Modularised blocks2dbk to allow customisation,
+Added support for tables to pages2normalise</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore another build-generated kludge. Yeah, I know it's
+ridiculous. If you can come up with a prettier way of doing it,
+all of my riches will be yours.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Make *.xweb instances valid against the
+https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/docbook/relaxng/params/refentry.rnc
+grammar.</span></pre></li><li><p><code class="literal">Steve Ball: blocks2dbk.xsl; wordml2normalise.xsl; normalise2sections.xsl; sections2blocks.&#8943;</code></p><pre class="screen"><span class="commit-message">new stylesheets for better word processor support and easier maintenance</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore intermediate params file.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore; Makefile</code></p><pre class="screen"><span class="commit-message">Set updated ignore properties and adjusted for fact that shared
+makefile now expects a "PARAMBASE" value to be specified (to
+indicate base <a href="http://docbook.org/tdg/en/html/filename.html"><code class="sgmltag-element">filename</code></a> for the type of content being built: either
+PARAMBASE=param or PARAMBASE=lib; this makes it possible to reduce
+redundancy in the lib build, and just have it use the same
+makefile "infrastructure" as the param builds for all the
+param.xsl files. The reason for that is, lib use the same *.xweb
+system for embedding documentation that the builds for the various
+output formats use (as opposed to the jrefentry-based system that
+used for building the template and PI docs in common etc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb; dbk2wordml.xsl; pages-normalise.xsl; dbk2pages.xsl; docbook&#8943;</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb; wordml-blocks.xsl; wordml-sections.xsl</code></p><pre class="screen"><span class="commit-message">Removed all "Do not edit this file" admonitions that get output in
+generated stylesheets; such admonitions have in the past been
+judged by the free-software police to be at-risk of
+interpretation as license restrictions.
+Also, made various updates to work around some funkiness is
+xsltproc output.</span></pre></li><li><p><code class="literal">Steve Ball: template-pages.xml; dbk2wp.xsl; sections-spec.xml</code></p><pre class="screen"><span class="commit-message">fixed bugs</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Renamed cvstools dir to buildtools, and replaced all
+references to "cvstools" in makefiles and elsewhere
+with "buildtools".</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Port from docs-in-db5 branch of all DocBook5-formatted
+params and all associated build changes needed for
+building the param.xsl files and docs from them.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Updated <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a> notices.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Slides"></a>Slides</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">slides</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Jirka Kosek: html/slides-common.xsl</code></p><pre class="screen"><span class="commit-message">Fixed wrong template name</span></pre></li><li><p><code class="literal">Michael(tm) Smith: fo/param.xweb; html/param.xweb</code></p><pre class="screen"><span class="commit-message">Made some changes to ID values in slides doc source, in order to
+give us more rational filenames in HTML output of the docs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: fo; html; fo/.cvsignore; html/.cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore another build-generated kludge. Yeah, I know it's
+ridiculous. If you can come up with a prettier way of doing it,
+all of my riches will be yours.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: fo/param.xweb; html/param.xweb</code></p><pre class="screen"><span class="commit-message">Make *.xweb instances valid against the
+https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/docbook/relaxng/params/refentry.rnc
+grammar.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: fo/Makefile</code></p><pre class="screen"><span class="commit-message">Make sure that *template.xml files under version control don't get
+removed when we clean.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: fo; html; fo/.cvsignore; html/.cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore intermediate params file.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: fo; html; fo/.cvsignore; fo/Makefile; html/.cvsignore; html/Makefile</code></p><pre class="screen"><span class="commit-message">Set updated ignore properties and adjusted for fact that shared
+makefile now expects a "PARAMBASE" value to be specified (to
+indicate base <a href="http://docbook.org/tdg/en/html/filename.html"><code class="sgmltag-element">filename</code></a> for the type of content being built: either
+PARAMBASE=param or PARAMBASE=lib; this makes it possible to reduce
+redundancy in the lib build, and just have it use the same
+makefile "infrastructure" as the param builds for all the
+param.xsl files. The reason for that is, lib use the same *.xweb
+system for embedding documentation that the builds for the various
+output formats use (as opposed to the jrefentry-based system that
+used for building the template and PI docs in common etc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: fo/param.xweb; html/param.xweb</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: html/param.xweb; fo/param.xweb</code></p><pre class="screen"><span class="commit-message">Removed all "Do not edit this file" admonitions that get output in
+generated stylesheets; such admonitions have in the past been
+judged by the free-software police to be at-risk of
+interpretation as license restrictions.
+Also, made various updates to work around some funkiness is
+xsltproc output.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: fo/plain.xsl; Makefile; html/slides-common.xsl</code></p><pre class="screen"><span class="commit-message">Made some further adjustments to cause slides/fo and
+slides/html param builds to work correctly.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: fo; html; Makefile; fo/.cvsignore; fo/Makefile; html/.cvsignore; html/M&#8943;</code></p><pre class="screen"><span class="commit-message">Made changes to cause build of separate
+slides/fo/param.xsl and slides/html/param.xsl files,
+and updated doc build to handle that split. Also
+updated build of ChangeLog.xml, NEWS file and
+RELEASE-NOTES.{html,txt,pdf} builds to include slides
+and website changes.
+Closes bug #1671745. Thanks to Justus Piater.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile; doc/Makefile; Makefile; fo/Makefile; demo/frames2/Makefile; d&#8943;</code></p><pre class="screen"><span class="commit-message">Renamed cvstools dir to buildtools, and replaced all
+references to "cvstools" in makefiles and elsewhere
+with "buildtools".</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb; Makefile; param.ent; fo/Makefile; .cvsignore; fo/plain.xsl</code></p><pre class="screen"><span class="commit-message">Port from docs-in-db5 branch of all DocBook5-formatted
+params and all associated build changes needed for
+building the param.xsl files and docs from them.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: graphics; browser; xsl; graphics; browser</code></p><pre class="screen"><span class="commit-message">Moved slides and website stylesheets into xsl tree. They have
+shipped as part of xsl for the last three releases now, just been
+getting pulled in as part of the build. Now that we're using svn,
+it's trivial to actually move them in (and to move them back out
+if we need to).</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Website"></a>Website</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">website</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Put website docs into categories.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore another build-generated kludge. Yeah, I know it's
+ridiculous. If you can come up with a prettier way of doing it,
+all of my riches will be yours.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Make *.xweb instances valid against the
+https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/docbook/relaxng/params/refentry.rnc
+grammar.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore intermediate params file.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile; .cvsignore</code></p><pre class="screen"><span class="commit-message">Set updated ignore properties and adjusted for fact that shared
+makefile now expects a "PARAMBASE" value to be specified (to
+indicate base <a href="http://docbook.org/tdg/en/html/filename.html"><code class="sgmltag-element">filename</code></a> for the type of content being built: either
+PARAMBASE=param or PARAMBASE=lib; this makes it possible to reduce
+redundancy in the lib build, and just have it use the same
+makefile "infrastructure" as the param builds for all the
+param.xsl files. The reason for that is, lib use the same *.xweb
+system for embedding documentation that the builds for the various
+output formats use (as opposed to the jrefentry-based system that
+used for building the template and PI docs in common etc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xbel.xsl; website.xsl; website-common.xsl</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: param.xweb</code></p><pre class="screen"><span class="commit-message">Removed all "Do not edit this file" admonitions that get output in
+generated stylesheets; such admonitions have in the past been
+judged by the free-software police to be at-risk of
+interpretation as license restrictions.
+Also, made various updates to work around some funkiness is
+xsltproc output.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile; schema/dtd/Makefile; schema/relaxng/Makefile; Makefile</code></p><pre class="screen"><span class="commit-message">Renamed cvstools dir to buildtools, and replaced all
+references to "cvstools" in makefiles and elsewhere
+with "buildtools".</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile; .cvsignore; param.xweb; param.ent</code></p><pre class="screen"><span class="commit-message">Port from docs-in-db5 branch of all DocBook5-formatted
+params and all associated build changes needed for
+building the param.xsl files and docs from them.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl</code></p><pre class="screen"><span class="commit-message">Moved slides and website stylesheets into xsl tree. They have
+shipped as part of xsl for the last three releases now, just been
+getting pulled in as part of the build. Now that we're using svn,
+it's trivial to actually move them in (and to move them back out
+if we need to).</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Params"></a>Params</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">params</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Mauritz Jeanson: callout.unicode.number.limit.xml; compact.list.item.spacing.xml; ulink.sh&#8943;</code></p><pre class="screen"><span class="commit-message">A few small parameter fixes.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: saxon.character.representation.xml</code></p><pre class="screen"><span class="commit-message">Emphasized that the parameter only works with Saxon 6.
+Fixed <a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a> to chunker.output.encoding.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: highlight.source.xml</code></p><pre class="screen"><span class="commit-message">Changed uri to <a href="http://docbook.org/tdg/en/html/link.html"><code class="sgmltag-element">link</code></a>.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: htmlhelp.show.advanced.search.xml</code></p><pre class="screen"><span class="commit-message">Reworded <a href="http://docbook.org/tdg/en/html/refpurpose.html"><code class="sgmltag-element">refpurpose</code></a>.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: tex.math.delims.xml</code></p><pre class="screen"><span class="commit-message">Reworded <a href="http://docbook.org/tdg/en/html/refpurpose.html"><code class="sgmltag-element">refpurpose</code></a>.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: img.src.path.xml</code></p><pre class="screen"><span class="commit-message">Fixed typos.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: autotoc.label.in.hyperlink.xml; annotation.graphic.open.xml; highlight.so&#8943;</code></p><pre class="screen"><span class="commit-message">Some small fixes.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: passivetex.extensions.xml</code></p><pre class="screen"><span class="commit-message">Updated URL, added note.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: make.year.ranges.xml</code></p><pre class="screen"><span class="commit-message">Added inline markup.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: highlight.source.xml</code></p><pre class="screen"><span class="commit-message">Some recasting of the documentation.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: funcsynopsis.decoration.xml; funcsynopsis.style.xml</code></p><pre class="screen"><span class="commit-message">Changed element names to lowercase.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: index.prefer.titleabbrev.xml</code></p><pre class="screen"><span class="commit-message">Added a description.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: function.parens.xml</code></p><pre class="screen"><span class="commit-message">Fixed typos.</span></pre></li><li><p><code class="literal">Robert Stayton: procedure.properties.xml</code></p><pre class="screen"><span class="commit-message"><a href="http://docbook.org/tdg/en/html/procedure.html"><code class="sgmltag-element">procedure</code></a> was inheriting keep-together from formal.object.properties, but
+a <a href="http://docbook.org/tdg/en/html/procedure.html"><code class="sgmltag-element">procedure</code></a> does not need to be kept together by default.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: htmlhelp.show.favorities.xml</code></p><pre class="screen"><span class="commit-message">Corrected <a href="http://docbook.org/tdg/en/html/refpurpose.html"><code class="sgmltag-element">refpurpose</code></a> and description.
+(The name of this parameter is misspelt, but I'm ignoring that for now.
+The HTML Help <a href="http://docbook.org/tdg/en/html/section.html"><code class="sgmltag-element">section</code></a> in TCG has the correct spelling, btw.)</span></pre></li><li><p><code class="literal">Mauritz Jeanson: htmlhelp.use.hhk.xml</code></p><pre class="screen"><span class="commit-message">Updated <a href="http://docbook.org/tdg/en/html/refpurpose.html"><code class="sgmltag-element">refpurpose</code></a> and description; added TCG <a href="http://docbook.org/tdg/en/html/link.html"><code class="sgmltag-element">link</code></a>.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: htmlhelp.enumerate.images.xml; htmlhelp.hhc.width.xml; htmlhelp.hhc.show.&#8943;</code></p><pre class="screen"><span class="commit-message">More clarifications and wording tweaks.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: htmlhelp.show.menu.xml</code></p><pre class="screen"><span class="commit-message">Tweaked wording (note that the parameter controls the display of a menu bar, not a menu).</span></pre></li><li><p><code class="literal">Dave Pawson: javahelp.encoding.xml</code></p><pre class="screen"><span class="commit-message">Tidy up of javahelp.encoding.xml</span></pre></li><li><p><code class="literal">Michael(tm) Smith: reference.autolabel.xml</code></p><pre class="screen"><span class="commit-message">Fixed wording in embedded doc for <a href="../html/reference.autolabel.html"><em class="parameter"><code>reference.autolabel</code></em></a>  param.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: olink.fragid.xml</code></p><pre class="screen"><span class="commit-message">Restored equal sign in default value of <a href="../html/olink.fragid.html"><em class="parameter"><code>olink.fragid</code></em></a> param.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: html.longdesc.xml</code></p><pre class="screen"><span class="commit-message">Restored <a href="http://docbook.org/tdg/en/html/tag.html"><code class="sgmltag-element">tag</code></a> markup around <a href="http://docbook.org/tdg/en/html/textobject.html"><code class="sgmltag-element">textobject</code></a> in <a href="../html/html.longdesc.html"><em class="parameter"><code>html.longdesc</code></em></a> param doc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: default.table.width.xml</code></p><pre class="screen"><span class="commit-message">Removed some invalid markup in the <a href="../html/default.table.width.html"><em class="parameter"><code>default.table.width</code></em></a> param doc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: olink.resolver.xml</code></p><pre class="screen"><span class="commit-message">Restored leading "/" in default value of the <a href="../html/olink.resolver.html"><em class="parameter"><code>olink.resolver</code></em></a> param.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: textinsert.extension.xml</code></p><pre class="screen"><span class="commit-message">The <a href="../html/textinsert.extension.html"><em class="parameter"><code>textinsert.extension</code></em></a> parameter really does just enable the
+textinsert extension (that is, it's not the parameter that inserts
+the contents of external files - textinsert extension element does).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: htmlhelp.force.map.and.alias.xml</code></p><pre class="screen"><span class="commit-message">Fixed typo (contex.h -&gt; context.h) in <a href="../html/htmlhelp.force.map.and.alias.html"><em class="parameter"><code>htmlhelp.force.map.and.alias</code></em></a>
+param docs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: emphasis.propagates.style.xml</code></p><pre class="screen"><span class="commit-message">Restored <a href="http://docbook.org/tdg/en/html/tag.html"><code class="sgmltag-element">tag</code></a> markup on <a href="http://docbook.org/tdg/en/html/emphasis.html"><code class="sgmltag-element">emphasis</code></a> element in the
+<a href="../html/emphasis.propagates.style.html"><em class="parameter"><code>emphasis.propagates.style</code></em></a> doc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: nominal.image.width.xml</code></p><pre class="screen"><span class="commit-message">Reverted the r7131 change to the value of the
+<a href="../html/nominal.image.width.html"><em class="parameter"><code>nominal.image.width</code></em></a> param (the value is an <a href="http://docbook.org/tdg/en/html/literal.html"><code class="sgmltag-element">literal</code></a> expression
+that's meant to be evaluated, not a string expression.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: htmlhelp.button.jump1.xml</code></p><pre class="screen"><span class="commit-message">Fixed "Jump2" typo (should be "Jump1")</span></pre></li><li><p><code class="literal">Michael(tm) Smith: htmlhelp.map.file.xml</code></p><pre class="screen"><span class="commit-message">Default value appears to actually be context.h</span></pre></li><li><p><code class="literal">Michael(tm) Smith: id.warnings.xml</code></p><pre class="screen"><span class="commit-message">Default for <a href="../html/id.warnings.html"><em class="parameter"><code>id.warnings</code></em></a> is not actually for them not to be
+emitted.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: chunker.output.cdata-section-elements.xml; chunker.output.standalone.xm&#8943;</code></p><pre class="screen"><span class="commit-message">Restored necessary ".frag" in IDs of src:fragment instances in
+chunker.output.* param files.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: dry-run.xml</code></p><pre class="screen"><span class="commit-message">Restored necessary ".frag" part to ID on scr:fragment</span></pre></li><li><p><code class="literal">Dave Pawson: title.font.family.xml; component.label.includes.part.label.xml; table.frame.b&#8943;</code></p><pre class="screen"><span class="commit-message">Regular formatting re-org.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: abstract.notitle.enabled.xml</code></p><pre class="screen"><span class="commit-message">Minor clean-up of abstract.notitle.enabled.xml to make it follow
+proper convention for default values for booleans. Also, added
+<a href="../html/abstract.notitle.enabled.html"><em class="parameter"><code>abstract.notitle.enabled</code></em></a>=1 to stylesheet we use for building the
+<a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a> docs for the distro (I though it was there and in fact
+claimed that it was there, but, well, I guess I was
+wrong/drunk/lying...)</span></pre></li><li><p><code class="literal">Mauritz Jeanson: htmlhelp.only.xml</code></p><pre class="screen"><span class="commit-message">Fixed <a href="http://docbook.org/tdg/en/html/refpurpose.html"><code class="sgmltag-element">refpurpose</code></a> wording.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: man.authors.section.enabled.xml; man.copyright.section.enabled.xml</code></p><pre class="screen"><span class="commit-message">Added the <a href="../manpages/man.authors.section.enabled.html"><em class="parameter"><code>man.authors.section.enabled</code></em></a> and
+<a href="../manpages/man.copyright.section.enabled.html"><em class="parameter"><code>man.copyright.section.enabled</code></em></a> parameters. Set those to zero when
+you want to suppress display of the auto-generated AUTHORS and
+<a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">COPYRIGHT</code></a> sections. Closes request #1467806. Thanks to Daniel
+Leidert.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: tex.math.file.xml</code></p><pre class="screen"><span class="commit-message">Fixed typo.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: variablelist.as.table.xml; variablelist.as.blocks.xml; glossary.as.bloc&#8943;</code></p><pre class="screen"><span class="commit-message">Mark up PIs with tag@class=xmlpi so that they can get picked up an
+formatted correctly by the doc build.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: htmlhelp.button.back.xml; htmlhelp.button.forward.xml; htmlhelp.button.zo&#8943;</code></p><pre class="screen"><span class="commit-message">Modified <a href="http://docbook.org/tdg/en/html/refpurpose.html"><code class="sgmltag-element">refpurpose</code></a> text.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: htmlhelp.map.file.xml; htmlhelp.force.map.and.alias.xml; htmlhelp.alias.f&#8943;</code></p><pre class="screen"><span class="commit-message">Fixed typos, made some small changes.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: javahelp.encoding.xml</code></p><pre class="screen"><span class="commit-message">Moved declaration and documentation of <a href="../html/javahelp.encoding.html"><em class="parameter"><code>javahelp.encoding</code></em></a> from javahelp.xsl to the
+regular "parameter machinery".</span></pre></li><li><p><code class="literal">Mauritz Jeanson: generate.id.attributes.xml</code></p><pre class="screen"><span class="commit-message">Added <a href="http://docbook.org/tdg/en/html/refpurpose.html"><code class="sgmltag-element">refpurpose</code></a> text.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: annotation.js.xml; annotation.graphic.open.xml; annotation.graphic.close.&#8943;</code></p><pre class="screen"><span class="commit-message">Added better <a href="http://docbook.org/tdg/en/html/refpurpose.html"><code class="sgmltag-element">refpurpose</code></a> texts.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: index.on.type.xml</code></p><pre class="screen"><span class="commit-message">Added two more class="attribute".</span></pre></li><li><p><code class="literal">Michael(tm) Smith: chunker.output.cdata-section-elements.xml; chunker.output.doctype-syste&#8943;</code></p><pre class="screen"><span class="commit-message">Corrected duplicate ID problem introduced in previous commit.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: chunker.output.cdata-section-elements.xml; chunker.output.standalone.xm&#8943;</code></p><pre class="screen"><span class="commit-message">Fixed some broken formatting in source files for chunker.* params,
+as pointed out by Dave Pawson.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: use.embed.for.svg.xml; generate.meta.abstract.xml</code></p><pre class="screen"><span class="commit-message">Reverted addition of tag@role=html markup. It's no longer
+necessary, because the doc build now has a smarter way of
+distinguishing between DocBook elements marked up with the <a href="http://docbook.org/tdg/en/html/tag.html"><code class="sgmltag-element">tag</code></a>
+element, and non-DocBook elements marked up with such.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: label.from.part.xml</code></p><pre class="screen"><span class="commit-message">Changed handling of <a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a> auto-labeling such that <a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a>
+(when it appears at the component level) is now affected by the
+<a href="../html/label.from.part.html"><em class="parameter"><code>label.from.part</code></em></a> param, just as <a href="http://docbook.org/tdg/en/html/preface.html"><code class="sgmltag-element">preface</code></a>, <a href="http://docbook.org/tdg/en/html/chapter.html"><code class="sgmltag-element">chapter</code></a>, and <a href="http://docbook.org/tdg/en/html/appendix.html"><code class="sgmltag-element">appendix</code></a>.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: callout.graphics.extension.xml</code></p><pre class="screen"><span class="commit-message">Clarified that 'extension' refers to file names.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: section.title.level2.properties.xml; section.title.level3.properties.xml;&#8943;</code></p><pre class="screen"><span class="commit-message">Fixed level number in <a href="http://docbook.org/tdg/en/html/refpurpose.html"><code class="sgmltag-element">refpurpose</code></a>.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: index.on.role.xml</code></p><pre class="screen"><span class="commit-message">Added class="attribute" markup.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: show.comments.xml</code></p><pre class="screen"><span class="commit-message">The comment element was renamed to <a href="http://docbook.org/tdg/en/html/remark.html"><code class="sgmltag-element">remark</code></a> in DB 4.0.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: keep.relative.image.uris.xml</code></p><pre class="screen"><span class="commit-message">Fixed typo.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: use.embed.for.svg.xml; generate.meta.abstract.xml; index.on.type.xml</code></p><pre class="screen"><span class="commit-message">Added role/class attributes on some &lt;<a href="http://docbook.org/tdg/en/html/tag.html"><code class="sgmltag-element">tag</code></a>&gt;s to prevent generation of TDG links for DocBook 
+attributes and HTML elements.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: tex.math.file.xml; tex.math.in.alt.xml; tex.math.delims.xml</code></p><pre class="screen"><span class="commit-message">Added embedded documentation on the following PIs:
+
+  - dbhtml_start
+  - dbfo_start
+  - dbtex_delims
+  - dbtimestamp</span></pre></li><li><p><code class="literal">Michael(tm) Smith: textinsert.extension.xml</code></p><pre class="screen"><span class="commit-message">Completing adding all doc for HTML PIs. Added "see also" sections
+with links to related global params, plus links to DocBook XSL: TCG
+Also tried out adding some additional doc to param doc for the
+<a href="../html/textinsert.extension.html"><em class="parameter"><code>textinsert.extension</code></em></a> param that back-references the PI
+documentation, plus added some TCG links there too.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: abstract.notitle.enabled.xml</code></p><pre class="screen"><span class="commit-message">Added new param <a href="../html/abstract.notitle.enabled.html"><em class="parameter"><code>abstract.notitle.enabled</code></em></a>.
+If non-zero, in output of the <a href="http://docbook.org/tdg/en/html/abstract.html"><code class="sgmltag-element">abstract</code></a> element on titlepages,
+display of the <a href="http://docbook.org/tdg/en/html/abstract.html"><code class="sgmltag-element">abstract</code></a> <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> is suppressed.
+Because sometimes you really don't want or need that <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a>
+there...</span></pre></li><li><p><code class="literal">Michael(tm) Smith: man.string.subst.map.xml</code></p><pre class="screen"><span class="commit-message">Output <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a> and <a href="http://docbook.org/tdg/en/html/legalnotice.html"><code class="sgmltag-element">legalnotice</code></a> in man-page output in whatever
+place they are in in document order. Closes #1690539. Thanks to
+Daniel Leidert for reporting.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: man.string.subst.map.xml</code></p><pre class="screen"><span class="commit-message">Updated manpages string-substitute map to reflect fact that
+because of another recent change to suppress bold markup in .SH
+output, we no longer need to add a workaround for the accidental
+uppercasing of roff escapes that occurred previously.</span></pre></li><li><p><code class="literal">Jirka Kosek: margin.note.float.type.xml; title.font.family.xml; table.frame.border.color.x&#8943;</code></p><pre class="screen"><span class="commit-message">Improved parameter metadata</span></pre></li><li><p><code class="literal">Robert Stayton: index.div.title.properties.xml</code></p><pre class="screen"><span class="commit-message">Fixed repeated space-before.optimum</span></pre></li><li><p><code class="literal">Robert Stayton: profile.wordsize.xml; profile.audience.xml</code></p><pre class="screen"><span class="commit-message">Add support for profiling on new attributes audience and wordsize.</span></pre></li><li><p><code class="literal">Robert Stayton: callout.graphics.number.limit.xml; callout.graphics.extension.xml</code></p><pre class="screen"><span class="commit-message">Added SVG graphics for fo output.</span></pre></li><li><p><code class="literal">Robert Stayton: callout.icon.size.xml</code></p><pre class="screen"><span class="commit-message">Set size of <a href="http://docbook.org/tdg/en/html/callout.html"><code class="sgmltag-element">callout</code></a> graphics.</span></pre></li><li><p><code class="literal">Robert Stayton: callout.bug.size.xml</code></p><pre class="screen"><span class="commit-message">Replaced with new name.</span></pre></li><li><p><code class="literal">Robert Stayton: callout.bug.size.xml</code></p><pre class="screen"><span class="commit-message">Control size of graphical <a href="http://docbook.org/tdg/en/html/callout.html"><code class="sgmltag-element">callout</code></a> bugs in FO output.</span></pre></li><li><p><code class="literal">Jirka Kosek: default.units.xml; chunker.output.method.xml; toc.list.type.xml; output.inden&#8943;</code></p><pre class="screen"><span class="commit-message">Updated parameter metadata to the new format.</span></pre></li><li><p><code class="literal">Jirka Kosek: man.output.quietly.xml; title.font.family.xml; footnote.sep.leader.properties&#8943;</code></p><pre class="screen"><span class="commit-message">Added type annotations into parameter definition files.</span></pre></li><li><p><code class="literal">Robert Stayton: section.container.element.xml</code></p><pre class="screen"><span class="commit-message">Support spans in sections for certain processors.</span></pre></li><li><p><code class="literal">Robert Stayton: component.titlepage.properties.xml</code></p><pre class="screen"><span class="commit-message">Empty attribute set for top level component titlepage block.
+Allows setting a span on <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a> <a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a>.</span></pre></li><li><p><code class="literal">Jirka Kosek: bibliography.style.xml</code></p><pre class="screen"><span class="commit-message">Added <a href="http://docbook.org/tdg/en/html/link.html"><code class="sgmltag-element">link</code></a> to WiKi page with description of special markup needed for ISO690 biblioentries</span></pre></li><li><p><code class="literal">Michael(tm) Smith: man.string.subst.map.xml</code></p><pre class="screen"><span class="commit-message">Made some minor updates to param docs and comments in
+manpages stylesheet. Also, removed some params for
+manpages doc that are already doc'ed as HTML params.</span></pre></li><li><p><code class="literal">Robert Stayton: make.year.ranges.xml</code></p><pre class="screen"><span class="commit-message">Clarify that multiple <a href="http://docbook.org/tdg/en/html/year.html"><code class="sgmltag-element">year</code></a> elements are required.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: man.string.subst.map.xml</code></p><pre class="screen"><span class="commit-message">Reverted necessary escaping of backslash, dot, and dash
+out of the well-intentioned (but it now appears,
+misguided) "marker" mechanism (introduced in the 1.72.0
+release) -- which made use of alternative "marker"
+characters as internal representations of those
+characters, and then replaced them just prior to
+serialization -- and back into what's basically the
+system that was used prior to the 1.69.0 release; that
+is, into a part of stylesheet code that gets executed
+at the beginning of processing -- before any other roff
+markup up is. This change obviates the need for the
+marker system. It also requires a lot less RAM during
+processing (for large files, the marker mechanism
+ending up requiring gigabytes of memory).
+
+Closes bug #1661177. Thanks to Scott Smedley for
+providing a test case (the fvwm man page) that exposed
+the problem with the marker mechanism.
+
+Also moved the mechanism for converting non-breaking
+spaces back into the same <a href="http://docbook.org/tdg/en/html/area.html"><code class="sgmltag-element">area</code></a> of the stylesheet code.</span></pre></li><li><p><code class="literal">Robert Stayton: id.warnings.xml</code></p><pre class="screen"><span class="commit-message">Turn off <a href="../html/id.warnings.html"><em class="parameter"><code>id.warnings</code></em></a> by default.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: title.font.family.xml; toc.line.properties.xml; component.label.include&#8943;</code></p><pre class="screen"><span class="commit-message">Port from docs-in-db5 branch of all DocBook5-formatted
+params and all associated build changes needed for
+building the param.xsl files and docs from them.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: man.string.subst.map.xml</code></p><pre class="screen"><span class="commit-message">Fixed typo in param file.</span></pre></li><li><p><code class="literal">Jirka Kosek: bibliography.style.xml</code></p><pre class="screen"><span class="commit-message">Added support for formatting biblioentries according to ISO690 <a href="http://docbook.org/tdg/en/html/citation.html"><code class="sgmltag-element">citation</code></a> style.
+New <a href="http://docbook.org/tdg/en/html/bibliography.html"><code class="sgmltag-element">bibliography</code></a> style can be turned on by setting parameter <a href="../html/bibliography.style.html"><em class="parameter"><code>bibliography.style</code></em></a> to "iso690"
+The code was provided by Jana Dvorakova</span></pre></li><li><p><code class="literal">Robert Stayton: header.table.properties.xml; footer.table.properties.xml</code></p><pre class="screen"><span class="commit-message">Support adding <a href="http://docbook.org/tdg/en/html/table.html"><code class="sgmltag-element">table</code></a> properties to header and footer tables.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: man.string.subst.map.xml</code></p><pre class="screen"><span class="commit-message">Put custom "substitution" element in params/man.string.subst.map.xml into a namespace.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: editedby.enabled.xml</code></p><pre class="screen"><span class="commit-message">Removed stray text that was causing WF error.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: man.links.are.underlined.xml; man.endnotes.list.enabled.xml; man.links.&#8943;</code></p><pre class="screen"><span class="commit-message">Made a number of changes related to elements with
+out-of-line content:
+
+- Added handling for <a href="http://docbook.org/tdg/en/html/mediaobject.html"><code class="sgmltag-element">mediaobject</code></a> &amp; inlinemedidaobject.
+  Each <a href="http://docbook.org/tdg/en/html/imagedata.html"><code class="sgmltag-element">imagedata</code></a>, <a href="http://docbook.org/tdg/en/html/audiodata.html"><code class="sgmltag-element">audiodata</code></a>, or <a href="http://docbook.org/tdg/en/html/videodata.html"><code class="sgmltag-element">videodata</code></a> element
+  within a <a href="http://docbook.org/tdg/en/html/mediaobject.html"><code class="sgmltag-element">mediaobject</code></a> or inline <a href="http://docbook.org/tdg/en/html/mediaobject.html"><code class="sgmltag-element">mediaobject</code></a> is now
+  treated as a "notesource" and so handled in much the
+  same way as links and <a href="http://docbook.org/tdg/en/html/annotation.html"><code class="sgmltag-element">annotation</code></a>/<a href="http://docbook.org/tdg/en/html/alt.html"><code class="sgmltag-element">alt</code></a>/footnotes.
+
+  That means a numbered marker is generated inline to
+  mark the place in the main flow where the <a href="http://docbook.org/tdg/en/html/imagedata.html"><code class="sgmltag-element">imagedata</code></a>,
+  <a href="http://docbook.org/tdg/en/html/audiodata.html"><code class="sgmltag-element">audiodata</code></a>, or <a href="http://docbook.org/tdg/en/html/videodata.html"><code class="sgmltag-element">videodata</code></a> element occurs, and a
+  corresponding numbered endnote for it is generated in
+  the endnotes list at the end of the man page; the
+  endnote contains the URL from the fileref attribute
+  of the <a href="http://docbook.org/tdg/en/html/imagedata.html"><code class="sgmltag-element">imagedata</code></a>, <a href="http://docbook.org/tdg/en/html/audiodata.html"><code class="sgmltag-element">audiodata</code></a>, or <a href="http://docbook.org/tdg/en/html/videodata.html"><code class="sgmltag-element">videodata</code></a> element.
+
+  For mediobject and <a href="http://docbook.org/tdg/en/html/inlinemediaobject.html"><code class="sgmltag-element">inlinemediaobject</code></a> instances that
+  have a <a href="http://docbook.org/tdg/en/html/textobject.html"><code class="sgmltag-element">textobject</code></a> child, the <a href="http://docbook.org/tdg/en/html/textobject.html"><code class="sgmltag-element">textobject</code></a> is displayed
+  within the main text flow.
+
+- Renamed several man.link.* params to man.endnotes.*,
+  to reflect that fact that the endnotes list now
+  contains more than just links. Also did similar
+  renaming for a number of stylesheet-internal vars.
+
+- Added support for xlink:href (along with existing
+  support for the legacy ulink element).
+
+- Cleaned up and streamlined the endnotes-handling
+  code. It's still messy and klunky and the basic
+  mechanism it uses is very inefficent for documents
+  that contain a lot of notesources, but at least it's
+  a bit better than it was.</span></pre></li><li><p><code class="literal">Robert Stayton: toc.line.properties.xml</code></p><pre class="screen"><span class="commit-message">Moved the end-indent properties from toc.line to the
+toc.line.properties attribute-set.</span></pre></li><li><p><code class="literal">Robert Stayton: xep.index.item.properties.xml</code></p><pre class="screen"><span class="commit-message">Fixed case of class attribute in sgmltag element.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Highlighting"></a>Highlighting</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">highlighting</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: common.xsl</code></p><pre class="screen"><span class="commit-message">Set keywords on a number of files.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: common.xsl</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Jirka Kosek: c-hl.xml; xslthl-config.xml</code></p><pre class="screen"><span class="commit-message">Added support for C language. Provided by Bruno Guegan.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Profiling"></a>Profiling</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">profiling</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Mauritz Jeanson: xsl2profile.xsl</code></p><pre class="screen"><span class="commit-message">Fixed bug that affected Eclipse profiling. "etoc" was added as a named template to be processed
+in "correct" mode.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl2profile.xsl</code></p><pre class="screen"><span class="commit-message">Updated stylesheets to use common logging template to log messages
+emitted during namespace-stripping.
+Also, moved pad-string template from lib to common because
+it's needed in order to use logging template in the profiling
+stylesheets, and the lib build relies on the profiling apparatus
+(so the profiling apparatus can't rely on lib being built first...)</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl2profile.xsl</code></p><pre class="screen"><span class="commit-message">Removed all "Do not edit this file" admonitions that get output in
+generated stylesheets; such admonitions have in the past been
+judged by the free-software police to be at-risk of
+interpretation as license restrictions.
+Also, made various updates to work around some funkiness is
+xsltproc output.</span></pre></li><li><p><code class="literal">Robert Stayton: profile-mode.xsl</code></p><pre class="screen"><span class="commit-message">Add support for new profiling attributes audience and wordsize.</span></pre></li><li><p><code class="literal">Robert Stayton: profile.xsl</code></p><pre class="screen"><span class="commit-message">Add new profiling attributes audience and wordsize.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Lib"></a>Lib</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">lib</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: lib.xweb</code></p><pre class="screen"><span class="commit-message">Moved charmap templates out of lib.xweb and into
+common/charmap.xsl, and added charmap doc to doc build.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lib.xweb</code></p><pre class="screen"><span class="commit-message">Make structure of lib.xweb embedded doc consistent with structure
+of similar embedded doc in other source files.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lib.xweb</code></p><pre class="screen"><span class="commit-message">Make lib.xweb valid against our litprog grammar.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Ignore another build-generated kludge. Yeah, I know it's
+ridiculous. If you can come up with a prettier way of doing it,
+all of my riches will be yours.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lib.xweb</code></p><pre class="screen"><span class="commit-message">Make *.xweb instances valid against the
+https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/docbook/relaxng/params/refentry.rnc
+grammar.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lib.xweb</code></p><pre class="screen"><span class="commit-message">Updated embedded doc in XSL source files:
+
+ - added dbhtml@dir PIs to control where output goes when
+   generation HTML version of docs
+
+ - put xml:id instances on root elements of embedded doc
+
+ - changed all *<a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a> instances to just <a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a> (DocBook 5) and some
+   @id instance to @xml-id</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Updated ignore properties on lib dir</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Set updated ignore properties and adjusted for fact that shared
+makefile now expects a "PARAMBASE" value to be specified (to
+indicate base <a href="http://docbook.org/tdg/en/html/filename.html"><code class="sgmltag-element">filename</code></a> for the type of content being built: either
+PARAMBASE=param or PARAMBASE=lib; this makes it possible to reduce
+redundancy in the lib build, and just have it use the same
+makefile "infrastructure" as the param builds for all the
+param.xsl files. The reason for that is, lib use the same *.xweb
+system for embedding documentation that the builds for the various
+output formats use (as opposed to the jrefentry-based system that
+used for building the template and PI docs in common etc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Made the lib build make reuse of the same makefile infrastructure
+now used for param builds.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Added a mechanism for "building" copies of the w2docbook.xsl,
+ldocbook.xsl, cldocbook.xsl, xtangle.xsl files. All that this
+"build" really does is to to first make the litprog module, then
+copy over those files to the releasetools directory, prepending to
+the copies a warning that they might not be up-to-date.
+And so am no also checking in those copies to source control,
+and updating the docbook-xsl build to use those instead of the
+source versions in the litprog module.
+This removes litprog as a build target/dependency for docbook-xsl.
+The sole purpose of this change is just to make it easier for
+other developers to do docbook-xsl release builds.
+The litprog sources change very rarely, so it won't be a big
+maintenance problem to keep these static copies in releasetools up
+to <a href="http://docbook.org/tdg/en/html/date.html"><code class="sgmltag-element">date</code></a>, and it'll certainly make it easier for developers to do
+builds...</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lib.xweb</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lib.xweb</code></p><pre class="screen"><span class="commit-message">Moved logging template and related templates to separate
+utility.xsl file so that can be imported without importing the
+whole common.xsl file (which is necessary for the build and for
+using the logging template in standalone namespace-stripping
+because the common.xsl file assumes it will be imported along with
+all the params, which it can't be when building lib.xsl).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lib.xweb</code></p><pre class="screen"><span class="commit-message">Updated stylesheets to use common logging template to log messages
+emitted during namespace-stripping.
+Also, moved pad-string template from lib to common because
+it's needed in order to use logging template in the profiling
+stylesheets, and the lib build relies on the profiling apparatus
+(so the profiling apparatus can't rely on lib being built first...)</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lib.xweb</code></p><pre class="screen"><span class="commit-message">Fixed typo/oversight in trim-left lib template.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lib.xweb</code></p><pre class="screen"><span class="commit-message">Changed name of prepend-pad template to pad-string and twheeked so
+it can do both right/left padding.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: Makefile</code></p><pre class="screen"><span class="commit-message">Renamed cvstools dir to buildtools, and replaced all
+references to "cvstools" in makefiles and elsewhere
+with "buildtools".</span></pre></li><li><p><code class="literal">Michael(tm) Smith: lib.xweb</code></p><pre class="screen"><span class="commit-message">Updated <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a> notices.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Tools"></a>Tools</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">tools</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: xsl/build/doc-link-docbook.xsl</code></p><pre class="screen"><span class="commit-message">Moved release-notes boilerplate into <a href="http://docbook.org/tdg/en/html/abstract.html"><code class="sgmltag-element">abstract</code></a> and added links to
+online change history to release-notes and to README. Also made a
+minor correction to the README.BUILD file.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/make-xsl-pi.xsl</code></p><pre class="screen"><span class="commit-message">Set keywords on a number of files.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/html2roff.xsl</code></p><pre class="screen"><span class="commit-message">Updated html2roff.xsl to revert to output of real dot characters
+instead of U+2302 markers.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: xsl/build/reference-fo.xsl</code></p><pre class="screen"><span class="commit-message">Added template for handling links with role='tcg' (patterned after HTML version).</span></pre></li><li><p><code class="literal">Mauritz Jeanson: xsl/build/reference.xsl</code></p><pre class="screen"><span class="commit-message">Use <a href="../html/admon.textlabel.html"><em class="parameter"><code>admon.textlabel</code></em></a> instead of <a href="../html/admon.graphics.html"><em class="parameter"><code>admon.graphics</code></em></a> (to avoid problems with paths to the admonition graphics).</span></pre></li><li><p><code class="literal">Mauritz Jeanson: xsl/build/reference.xsl</code></p><pre class="screen"><span class="commit-message">Set <a href="../html/admon.graphics.html"><em class="parameter"><code>admon.graphics</code></em></a> to 1 to make it easier to distinguish between types of admonitions.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/reference.xsl</code></p><pre class="screen"><span class="commit-message">Minor clean-up of abstract.notitle.enabled.xml to make it follow
+proper convention for default values for booleans. Also, added
+<a href="../html/abstract.notitle.enabled.html"><em class="parameter"><code>abstract.notitle.enabled</code></em></a>=1 to stylesheet we use for building the
+<a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a> docs for the distro (I though it was there and in fact
+claimed that it was there, but, well, I guess I was
+wrong/drunk/lying...)</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/reference.xsl; xsl/build/make-xsl-pi.xsl; xsl/build/xsl-pi-li&#8943;</code></p><pre class="screen"><span class="commit-message">Added support for auto-generating doc hyperlinks for names of
+docbook-xsl PIs referenced in the docs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/jref2refsect1.xsl</code></p><pre class="screen"><span class="commit-message">Added handling for refsee@role=tcg sections.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/make-xsl-params.xsl; xsl/build/make-elements.xsl</code></p><pre class="screen"><span class="commit-message">Minor change to add more prominent "warning" in output of the
+stylesheets that generate the elements and params list used in the
+doc build.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/fix-params-ns.xsl</code></p><pre class="screen"><span class="commit-message">Revert change made to fix-params-ns.xsl to cause namespaces to be
+copied over.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/reference.xsl</code></p><pre class="screen"><span class="commit-message">In <a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a> doc for docbook-xsl, auto-label all part output, and
+also include part labels in component labels.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/reference.xsl</code></p><pre class="screen"><span class="commit-message">Don't include list of figures in <a href="http://docbook.org/tdg/en/html/book.html"><code class="sgmltag-element">book</code></a> <a href="http://docbook.org/tdg/en/html/toc.html"><code class="sgmltag-element">TOC</code></a> for <a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a> docs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/clrefentry.xsl; xsl/build/lrefentry.xsl; xsl/build/jrefhtml.x&#8943;</code></p><pre class="screen"><span class="commit-message">Removed obsoleted lrefentry, clrefentry, and jrefhtml stylesheets.
+All HTML output is now generated using the reference.xsl
+stylesheet (and the build now converts jref content to standard
+DocBook content before generating HTML).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/reference.xsl</code></p><pre class="screen"><span class="commit-message">Make the reference.xsl stylesheet (which is used for building the
+HTML output of the docs) import the DocBook-element and
+docbook-xsl-param auto-hyperlinking stylesheets (which are already
+used for adding hyperlinks in the release notes). This makes the
+auto-hyperlinking consistent between the systems used for the
+release-notes build and for the <a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a> docs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/xsl2jref.xsl</code></p><pre class="screen"><span class="commit-message">Don't output prolog in xsl2jref output (no doctype, not public ID,
+no system ID). Because otherwise we end up with the output tree
+getting populated with implied attributes some of which are no
+longer valid in DocBook 5.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/tdg-link.xsl</code></p><pre class="screen"><span class="commit-message">Cleaned up template that handles adding markup for sgmltag|tag
+instances that are DocBook element names.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/jref2refsect1.xsl</code></p><pre class="screen"><span class="commit-message">Made jref2refsect1 stylesheet convert all @id instances to @xml:id</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/id-to-xmlid.xsl</code></p><pre class="screen"><span class="commit-message">Adding yet another hack to workaround the fact that the DocBook 5
+grammar requires @xml:id instead of @id, and xsltproc actually
+takes xml:id seriously and checks that it's really a NCName.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/xsl-param-link.xsl</code></p><pre class="screen"><span class="commit-message">Added the doc-baseuri param to the stylesheet used for
+automatically adding hyperlinks in generated doc for stylesheet
+params and in release-notes output.
+For output of the param doc, doc-baseuri is set to "../" (relative
+path so links point to local files).
+For release-note output, doc-baseuri is set to the http: url for
+the current version of the docbook-xsl docs (instead of to local
+files); reason being that when installed from a downstream
+package, the release notes can't point to local files because the
+release notes are often installed in a separate place for the docs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/xsl2jref.xsl</code></p><pre class="screen"><span class="commit-message">Don't prepend "template." to IDs for embedded doc for PIs. (cause
+of this was a copy/paste error -- the template for processing
+embedded PI documentation began life as a copy of the template for
+processing embeded doc for templates)</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/fix-params-ns.xsl</code></p><pre class="screen"><span class="commit-message">Don't strip namespace nodes from xsl:stylesheet instances when
+generating doc files.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/xsl2jref.xsl</code></p><pre class="screen"><span class="commit-message">Adjusted xsl2jref to copy over any attributes on source
+doc:<a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a> instances (primarily embedded doc for params) and to
+also copy any PIs that are children of doc:<a href="http://docbook.org/tdg/en/html/reference.html"><code class="sgmltag-element">reference</code></a>.
+That ensures that any id/xml:id attributes get copied over -- so
+that they can be used when <a href="../html/use.id.as.filename.html"><em class="parameter"><code>use.id.as.filename</code></em></a> is on -- and that
+any dbhtml@dir and dbhtml@filename PIs can be used for moving
+files into the correct subdirs and are output with right names.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/reference.xsl; xsl/build/reference-fo.xsl; xsl/build/referenc&#8943;</code></p><pre class="screen"><span class="commit-message">Updated stylesheet customization layers used for doc build,
+including disabling extensions during doc build to prevent "Failed
+to load image page.png" error messages.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/xmlid-to-id.xsl</code></p><pre class="screen"><span class="commit-message">Kludge to replace xml:id with id so that we can build the docs
+without xsltproc squawking about duplicate IDs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/reference-fo.xsl</code></p><pre class="screen"><span class="commit-message">Had wrong name for <a href="../fo/hyphenate.html"><em class="parameter"><code>hyphenate</code></em></a> param; fixed.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/xsl2jref.xsl; xsl/build/jref2refsect1.xsl</code></p><pre class="screen"><span class="commit-message">Added some handling in the doc build for generating docs for PIs.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/clrefentry.xsl; xsl/build/lrefentry.xsl</code></p><pre class="screen"><span class="commit-message">Added a mechanism for "building" copies of the w2docbook.xsl,
+ldocbook.xsl, cldocbook.xsl, xtangle.xsl files. All that this
+"build" really does is to to first make the litprog module, then
+copy over those files to the releasetools directory, prepending to
+the copies a warning that they might not be up-to-date.
+And so am no also checking in those copies to source control,
+and updating the docbook-xsl build to use those instead of the
+source versions in the litprog module.
+This removes litprog as a build target/dependency for docbook-xsl.
+The sole purpose of this change is just to make it easier for
+other developers to do docbook-xsl release builds.
+The litprog sources change very rarely, so it won't be a big
+maintenance problem to keep these static copies in releasetools up
+to <a href="http://docbook.org/tdg/en/html/date.html"><code class="sgmltag-element">date</code></a>, and it'll certainly make it easier for developers to do
+builds...</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/jrefhtml.xsl; xsl/build/jref2refsect1.xsl; xsl/build/xsl2jref&#8943;</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/dblatex-release-notes.xsl</code></p><pre class="screen"><span class="commit-message">Added monoseq.small param to dblatex customization to make inline
+monospaced font be same side as default font for <a href="http://docbook.org/tdg/en/html/programlisting.html"><code class="sgmltag-element">programlisting</code></a>
+and <a href="http://docbook.org/tdg/en/html/screen.html"><code class="sgmltag-element">screen</code></a> output.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/dblatex-release-notes.xsl</code></p><pre class="screen"><span class="commit-message">Set doc.collab.show to 0 when building release-notes PDF with
+dblatex (to get rid of the butt-ugly "Collaborators" <a href="http://docbook.org/tdg/en/html/table.html"><code class="sgmltag-element">table</code></a> that
+dblatex generates by default. Thanks Benoit Guillon for adding the
+option to dblatex.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/jrefhtml.xsl</code></p><pre class="screen"><span class="commit-message">Don't indent output from jrefhtml.xsl (which is used for building
+the developer docs).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/fix-params-ns.xsl; xsl/build/make-elements.xsl; xsl/build/mak&#8943;</code></p><pre class="screen"><span class="commit-message">Removed all "Do not edit this file" admonitions that get output in
+generated stylesheets; such admonitions have in the past been
+judged by the free-software police to be at-risk of
+interpretation as license restrictions.
+Also, made various updates to work around some funkiness is
+xsltproc output.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: make/Makefile.docParam</code></p><pre class="screen"><span class="commit-message">Updated Makefile.docParam to handle current db5-namespaced param
+source. Also added support for it to copy xsl:attribute-set along
+with xsl:param (neglected to have it doing that previously...)
+Note that the Makefile.docParam makefile generates copies of the
+html/param.xsl, fo/param.xsl, etc. files with the documentation
+embedded. It was originally intended for use with oXygen XML
+<a href="http://docbook.org/tdg/en/html/editor.html"><code class="sgmltag-element">Editor</code></a> (because oXygen has the capability to parse out that
+embedded doc and display it in the oXygen UI) but could be useful
+for other purposes.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/xsl-param-link.xsl; xsl/build/make-xsl-params.xsl</code></p><pre class="screen"><span class="commit-message">Made changes to cause build of separate
+slides/fo/param.xsl and slides/html/param.xsl files,
+and updated doc build to handle that split. Also
+updated build of ChangeLog.xml, NEWS file and
+RELEASE-NOTES.{html,txt,pdf} builds to include slides
+and website changes.
+Closes bug #1671745. Thanks to Justus Piater.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: make/Makefile.combine</code></p><pre class="screen"><span class="commit-message">Made some minor updates to param docs and comments in
+manpages stylesheet. Also, removed some params for
+manpages doc that are already doc'ed as HTML params.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xsl/build/fix-params-ns.xsl; xsl/build/burst.xsl; xsl/build/entify.xsl;&#8943;</code></p><pre class="screen"><span class="commit-message">Port from docs-in-db5 branch of all DocBook5-formatted
+params and all associated build changes needed for
+building the param.xsl files and docs from them.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: bin/docbook-xsl-update</code></p><pre class="screen"><span class="commit-message">Make docbook-xsl-update check for VERSION file instead of for
+install.sh file.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: bin/docbook-xsl-update</code></p><pre class="screen"><span class="commit-message">Corrected typo in docbook-xsl-update script.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: bin; bin/docbook-xsl-update</code></p><pre class="screen"><span class="commit-message">Did some cleanup to the install.sh source and added a
+docbook-xsl-update script to the docbook-xsl distro, the purpose
+of which is to facilitate easy sync-up to the latest docbook-xsl
+snapshot (by means of rynsc).</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Template"></a>Template</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">template</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: titlepage.xsl</code></p><pre class="screen"><span class="commit-message">Make template/titlepage.xsl file valid against our litprog schema.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: titlepage.xsl</code></p><pre class="screen"><span class="commit-message">Updated embedded doc in XSL source files:
+
+ - added dbhtml@dir PIs to control where output goes when
+   generation HTML version of docs
+
+ - put xml:id instances on root elements of embedded doc
+
+ - changed all *<a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a> instances to just <a href="http://docbook.org/tdg/en/html/info.html"><code class="sgmltag-element">info</code></a> (DocBook 5) and some
+   @id instance to @xml-id</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .cvsignore</code></p><pre class="screen"><span class="commit-message">Set updated ignore properties and adjusted for fact that shared
+makefile now expects a "PARAMBASE" value to be specified (to
+indicate base <a href="http://docbook.org/tdg/en/html/filename.html"><code class="sgmltag-element">filename</code></a> for the type of content being built: either
+PARAMBASE=param or PARAMBASE=lib; this makes it possible to reduce
+redundancy in the lib build, and just have it use the same
+makefile "infrastructure" as the param builds for all the
+param.xsl files. The reason for that is, lib use the same *.xweb
+system for embedding documentation that the builds for the various
+output formats use (as opposed to the jrefentry-based system that
+used for building the template and PI docs in common etc.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: titlepage.xsl</code></p><pre class="screen"><span class="commit-message">In files that still referred to nwalsh.com URL in the <a href="http://docbook.org/tdg/en/html/copyright.html"><code class="sgmltag-element">copyright</code></a>
+header, changed to docbook.sf.net URL.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: titlepage.xsl</code></p><pre class="screen"><span class="commit-message">Moved logging template and related templates to separate
+utility.xsl file so that can be imported without importing the
+whole common.xsl file (which is necessary for the build and for
+using the logging template in standalone namespace-stripping
+because the common.xsl file assumes it will be imported along with
+all the params, which it can't be when building lib.xsl).</span></pre></li><li><p><code class="literal">Michael(tm) Smith: titlepage.xsl</code></p><pre class="screen"><span class="commit-message">Removed all "Do not edit this file" admonitions that get output in
+generated stylesheets; such admonitions have in the past been
+judged by the free-software police to be at-risk of
+interpretation as license restrictions.
+Also, made various updates to work around some funkiness is
+xsltproc output.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_Extensions"></a>Extensions</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">extensions</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: Makefile; xalan2</code></p><pre class="screen"><span class="commit-message">Turned off xalan2.jar build. This removes DocBook XSL
+Java extensions support for versions of Xalan prior to
+Xalan 2.7. If you are currently using the extensions
+with an earlier version of Xalan, you need to upgrade
+to Xalan 2.7.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: saxon65/src/com/nwalsh/saxon/FormatGraphicCallout.java</code></p><pre class="screen"><span class="commit-message">Fixed bug #1640428: added 'url(...)' around the image path.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: xalan2/src/com/nwalsh/xalan/FormatGraphicCallout.java</code></p><pre class="screen"><span class="commit-message">Fixed bug #1640428: added 'url(...)' around the image path.
+Fixed incorrect '<a href="http://docbook.org/tdg/en/html/alt.html"><code class="sgmltag-element">alt</code></a>' attribute.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: xalan27/src/com/nwalsh/xalan/FormatGraphicCallout.java</code></p><pre class="screen"><span class="commit-message">Fixed bug #1640428: added 'url(...)' around the image path.
+Fixed incorrect '<a href="http://docbook.org/tdg/en/html/alt.html"><code class="sgmltag-element">alt</code></a>' attribute.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xalan2/src/com/nwalsh/xalan/Table.java; xalan2/src/com/nwalsh/xalan/Ver&#8943;</code></p><pre class="screen"><span class="commit-message">Removed org.apache.xml.utils.DOMHelper imports from Table.java and
+Verbatim.Java files, per note from Mauritz Jeanson about them not
+being needed.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: xalan2/src/com/nwalsh/xalan/Table.java; xalan2/src/com/nwalsh/xalan/Ver&#8943;</code></p><pre class="screen"><span class="commit-message">Use org.apache.xml.utils.DOMHelper as package name (instead of
+org.apache.xpath.DOMHelper), because build otherwise fails.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_XSL-Java"></a>XSL-Java</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">xsl-java</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Mauritz Jeanson: saxon65/src/com/nwalsh/saxon/Verbatim.java</code></p><pre class="screen"><span class="commit-message">Added test to avoid "Undefined variable: <a href="../fo/callout.icon.size.html"><em class="parameter"><code>callout.icon.size</code></em></a>" messages when generating HTML.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: xalan27/src/com/nwalsh/xalan/Verbatim.java; xalan27/src/com/nwalsh/xalan/&#8943;</code></p><pre class="screen"><span class="commit-message">Added modifications so that the new <a href="../fo/callout.icon.size.html"><em class="parameter"><code>callout.icon.size</code></em></a> parameter is taken into account. This 
+parameter is used for FO output (where SVG now is the default graphics format for callouts).</span></pre></li><li><p><code class="literal">Mauritz Jeanson: saxon65/src/com/nwalsh/saxon/FormatCallout.java; xalan27/src/com/nwalsh/x&#8943;</code></p><pre class="screen"><span class="commit-message">Added code for generating id attributes on callouts in HTML and FO output.
+These patches enable cross-references to callouts placed by <a href="http://docbook.org/tdg/en/html/area.html"><code class="sgmltag-element">area</code></a> coordinates.
+It works for graphic, unicode and text callouts. 
+Part of fix for bug #1675513 (<a href="http://docbook.org/tdg/en/html/xref.html"><code class="sgmltag-element">xref</code></a> to <a href="http://docbook.org/tdg/en/html/area.html"><code class="sgmltag-element">area</code></a> broken).</span></pre></li><li><p><code class="literal">Mauritz Jeanson: xalan27/src/com/nwalsh/xalan/Text.java</code></p><pre class="screen"><span class="commit-message">Removed unnecessary import statements.
+Added patch (from Text.java in the defunct xalan2 directory) to the getEncoding() method.</span></pre></li><li><p><code class="literal">Mauritz Jeanson: xalan27/src/com/nwalsh/xalan/Verbatim.java; xalan27/src/com/nwalsh/xalan/&#8943;</code></p><pre class="screen"><span class="commit-message">Cleaned up by removing several unnecessary import statements.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: saxon65/src/com/nwalsh/saxon/Website.java; xalan27/src/com/nwalsh/xalan&#8943;</code></p><pre class="screen"><span class="commit-message">Copied over Website XSL Java extensions.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: COPYING; README; Makefile; BUGS; AUTHORS; TODO; VERSION; INSTALL</code></p><pre class="screen"><span class="commit-message">Copied xsl/extensions up a level to create a top-level
+xsl-java module. Rationale is that we need to do a
+separate docbook-xsl-java release in order to get the
+XSL Java extensions packaged for Debian, and having it
+as a top-level module allows the release build and
+packaging to be done using the common build files in
+releasetools/ and so makes it a lot easier to set up
+and maintain the build and do the packaging and upload, etc.
+After OK, would be best to next remove the
+xsl/extensions directory from version control and
+instead update the docbook-xsl build to simply copy
+over the built jars from the xsl-java dir.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_XSL-Saxon"></a>XSL-Saxon</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">xsl-saxon</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: VERSION</code></p><pre class="screen"><span class="commit-message">Switched to 1.00 numbering (instead of 1.0)</span></pre></li><li><p><code class="literal">Michael(tm) Smith: nbproject/project.properties; .cvsignore</code></p><pre class="screen"><span class="commit-message">Make sure classes dir gets built where it should and gets
+packaged.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .announcement-text; .cvsignore; Makefile</code></p><pre class="screen"><span class="commit-message">Made further preparations for release of Saxon and Xalan
+extensions as standalone packages.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: VERSION</code></p><pre class="screen"><span class="commit-message">Updated xsl-saxon and xsl-xalan VERSION files/stylesheets with
+hooks for outputting the distro <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a>.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: src/com/nwalsh/saxon/Windows1252.java</code></p><pre class="screen"><span class="commit-message">Minor comment/whitespace change.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: VERSION</code></p><pre class="screen"><span class="commit-message">Set release numbers correctly.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: AUTHORS; VERSION; INSTALL; COPYING; Makefile; README; build.xml; BUGS</code></p><pre class="screen"><span class="commit-message">Set keywords on various files.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: nbproject/build-impl.xml; AUTHORS; VERSION; INSTALL; nbproject/project.&#8943;</code></p><pre class="screen"><span class="commit-message">Prepared xsl-saxon module for standalone release.</span></pre></li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="V1.73.2_XSL-Xalan"></a>XSL-Xalan</h3></div></div></div><p>The following changes have been made to the
+            <code class="filename">xsl-xalan</code> code
+            since the 1.72.0 release.</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">Michael(tm) Smith: VERSION</code></p><pre class="screen"><span class="commit-message">Switched to 1.00 numbering (instead of just 1.0)</span></pre></li><li><p><code class="literal">Michael(tm) Smith: nbproject/project.properties; .cvsignore</code></p><pre class="screen"><span class="commit-message">Make sure classes dir gets built where it should and gets
+packaged.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: .announcement-text; .cvsignore; Makefile</code></p><pre class="screen"><span class="commit-message">Made further preparations for release of Saxon and Xalan
+extensions as standalone packages.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: VERSION</code></p><pre class="screen"><span class="commit-message">Updated xsl-saxon and xsl-xalan VERSION files/stylesheets with
+hooks for outputting the distro <a href="http://docbook.org/tdg/en/html/title.html"><code class="sgmltag-element">title</code></a>.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: src/com/nwalsh/xalan/Website.java</code></p><pre class="screen"><span class="commit-message">Minor change to comment.</span></pre></li><li><p><code class="literal">Michael(tm) Smith: INSTALL; nbproject/project.properties; COPYING; .cvsignore; Makefile; R&#8943;</code></p><pre class="screen"><span class="commit-message">Prepared xsl-xalan module for standalone release.</span></pre></li></ul></div></div></div></div></body></html>
+
