@@ -302,10 +302,10 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 	$(OCAMLC) $(INCLUDE) -c $<
 
 .mll.ml:
-	$(OCAMLYACC) $<
+	$(OCAMLLEX) $<
 
 .mly.ml:
-	$(OCAMLLEX) $<
+	$(OCAMLYACC) $<
 
 # call the ocaml/Yacc
 generate-parser: $(PARSER_SRC)
