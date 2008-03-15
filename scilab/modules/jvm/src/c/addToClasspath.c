@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) 2008-2008 - INRIA - Sylvestre LEDRU
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,11 +14,13 @@
 
 /*--------------------------------------------------------------------------*/ 
 #include <jni.h>
+#include <stdio.h>
 #include "addToClasspath.h"
 #include "getScilabJNIEnv.h"
 #include "../../fileio/includes/isdir.h"
 #include "../../fileio/includes/FileExist.h"
 #include "fromjava.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL addToClasspath(char *classpathstring)
 {
@@ -55,6 +58,8 @@ BOOL addToClasspath(char *classpathstring)
 					}
 				}
 			}
+		}else{
+			fprintf(stderr,_("Warning: Could not find Java package '%s'.\n"),classpathstring);
 		}
 	}
 	return FALSE;
