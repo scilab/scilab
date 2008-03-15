@@ -936,6 +936,38 @@ public class ScilabBridge {
 		ScilabConsoleBridge.clearHistory(console);
 	}
 	
+	/**
+	 * Select all the console contents
+	 * @param console the console 
+	 */
+	public static void selectAll(Console console) {
+		ScilabConsoleBridge.selectAll(console);
+	}
+	
+	/**
+	 * Put the console selected text in the clipboard
+	 * @param console the console 
+	 */
+	public static void copyToClipboard(Console console) {
+		ScilabConsoleBridge.copyToClipboard(console);
+	}
+	
+	/**
+	 * Paste clipboard contents in Console input line
+	 * @param console the console 
+	 */
+	public static void pasteClipboard(Console console) {
+		ScilabConsoleBridge.pasteClipboard(console);
+	}
+
+	/**
+	 * Cut selected text in the Console input line
+	 * @param console the console 
+	 */
+	public static void cutSelection(Console console) {
+		ScilabConsoleBridge.cutSelection(console);
+	}
+	
 	/*****************/
 	/* Canvas Bridge */
 	/*****************/

@@ -74,18 +74,22 @@
 
     <!-- Edit menu -->
     <menu label="Edit" mnemonic="E" enabled="false">
-        <submenu label="Select all" mnemonic="S"> 
-             <callback instruction="notavailablemessage();" type="0"/>
+        <submenu label="Cut" mnemonic="U"> 
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection" type="3"/>
         </submenu>
-        <separator/>
         <submenu label="Copy" mnemonic="C"> 
-             <callback instruction="notavailablemessage();" type="0"/>
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection" type="3"/>
         </submenu>
         <submenu label="Paste" mnemonic="P"> 
-             <callback instruction="notavailablemessage();" type="0"/>
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole" type="3"/>
         </submenu>
+        <separator/>
         <submenu label="Empty clipboard" mnemonic="L"> 
-             <callback instruction="notavailablemessage();" type="0"/>
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.emptyClipboard" type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="Select all" mnemonic="S"> 
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents" type="3"/>
         </submenu>
     </menu>
 

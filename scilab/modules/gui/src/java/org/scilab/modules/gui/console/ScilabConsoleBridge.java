@@ -201,5 +201,36 @@ public class ScilabConsoleBridge {
 	public static void clearHistory(Console console) {
 		console.getAsSimpleConsole().clearHistory();
 	}
+	
+	/**
+	 * Select all the console contents
+	 * @param console the console 
+	 */
+	public static void selectAll(Console console) {
+		console.getAsSimpleConsole().selectAll();
+	}
+	
+	/**
+	 * Put the console selected text in the clipboard
+	 * @param console the console 
+	 */
+	public static void copyToClipboard(Console console) {
+		console.getAsSimpleConsole().copyToClipboard();
+	}
 
+	/**
+	 * Paste clipboard contents in Console input line
+	 * @param console the console 
+	 */
+	public static void pasteClipboard(Console console) {
+		console.getAsSimpleConsole().pasteClipboard();
+	}
+	
+	/**
+	 * Cut selected text in the Console input line
+	 * @param console the console 
+	 */
+	public static void cutSelection(Console console) {
+		console.getAsSimpleConsole().cutSelection();
+	}
 }

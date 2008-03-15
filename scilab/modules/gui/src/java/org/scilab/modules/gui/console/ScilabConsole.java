@@ -208,5 +208,34 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	public void clearHistory() {
 		ScilabBridge.clearHistory(this);
 	}
+	
+	/**
+	 * Select all the console contents
+	 */
+	public void selectAll() {
+		ScilabBridge.selectAll(this);
+		
+	}
+	
+	/**
+	 * Put the console selected text in the clipboard
+	 */
+	public void copyToClipboard() {
+		ScilabBridge.copyToClipboard(this);
+	}
+	
+	/**
+	 * Paste clipboard contents in Console input line
+	 */
+	public void pasteClipboard() {
+		ScilabBridge.pasteClipboard(this);
+	}
+
+	/**
+	 * Cut selected text in the Console input line
+	 */
+	public void cutSelection() {
+		ScilabBridge.cutSelection(this);
+	}
 
 }

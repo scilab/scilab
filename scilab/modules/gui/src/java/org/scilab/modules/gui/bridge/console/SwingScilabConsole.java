@@ -13,8 +13,17 @@
 package org.scilab.modules.gui.bridge.console;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
 import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
 
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
@@ -205,5 +214,107 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	public void clearHistory() {
 		((SciHistoryManager) this.getConfiguration().getHistoryManager()).reset();
 	}
+	
+	/**
+	 * Paste clipboard contents in Console input line
+	 */
+	public void pasteClipboard() {
+		// Gets the contents of the clipboard
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Clipboard systemClipboard = toolkit.getSystemClipboard();
 
+		// Verify that clibpboard data is of text type
+		boolean dataAvailable;
+		try {
+			dataAvailable = systemClipboard.isDataFlavorAvailable(DataFlavor.stringFlavor);
+		} catch (IllegalStateException exception) {
+			return;
+		}
+
+		// Exit if text data not available
+		if (!dataAvailable) {
+			return;
+		}
+
+		// Read data
+		String clipboardContents = null;
+		try {
+			clipboardContents = (String) systemClipboard.getData(DataFlavor.stringFlavor);
+		} catch (UnsupportedFlavorException e1) {
+			// Should never be here
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// Should never be here
+			e1.printStackTrace();
+		}
+		
+		JTextPane input = ((JTextPane) this.getConfiguration().getInputCommandView());
+		StyledDocument doc = input.getStyledDocument();
+		
+		// If some text selected then it is replaced
+		if (input.getSelectedText() != null) {
+			try {
+				doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		// Insert clipboard contents
+		try {
+			doc.insertString(((JTextPane) this.getConfiguration().getInputCommandView()).getCaretPosition(),
+					clipboardContents, doc.getStyle(StyleContext.DEFAULT_STYLE));
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Select all the console contents
+	 */
+	public void selectAll() {
+		JTextPane output = (JTextPane) this.getConfiguration().getOutputView();
+		output.setSelectionStart(0);
+		output.setSelectionEnd(output.getText().length());
+		// TODO should also select the prompt and the input
+	}
+	
+	/**
+	 * Put the console selected text in the clipboard
+	 */
+	public void copyToClipboard() {
+		JTextPane output = (JTextPane) this.getConfiguration().getOutputView();
+		JTextPane input = (JTextPane) this.getConfiguration().getInputCommandView();
+		
+		String selection = new String();
+		if (output.getSelectedText() != null) {
+			selection += output.getSelectedText();
+		}
+		// TODO should also copy the prompt
+		if (input.getSelectedText() != null) {
+			selection += input.getSelectedText();
+		}
+		
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(selection), null);
+
+	}
+	
+	/**
+	 * Cut selected text in the Console input line
+	 */
+	public void cutSelection() {
+		JTextPane input = (JTextPane) this.getConfiguration().getInputCommandView();
+		StyledDocument doc = input.getStyledDocument();
+		
+		// If some text selected then it is replaced
+		if (input.getSelectedText() != null) {
+			try {
+				doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 }

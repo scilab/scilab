@@ -26,12 +26,15 @@
     <separator/>
 
     <!-- Copy -->
+    <button icon="edit-cut.png" tooltiptext="Cut">
+        <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection" type="3"/>
+    </button>
     <button icon="edit-copy.png" tooltiptext="Copy">
-        <callback instruction="notavailablemessage();" type="0"/>
+        <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection" type="3"/>
     </button>
     <!-- Paste -->
     <button icon="edit-paste.png" tooltiptext="Paste">
-        <callback instruction="notavailablemessage();" type="0"/>
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole" type="3"/>
     </button>
 
     <separator/>

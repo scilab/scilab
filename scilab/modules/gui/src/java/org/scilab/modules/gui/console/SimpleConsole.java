@@ -129,5 +129,24 @@ public interface SimpleConsole {
 	 * Clear the commands history 
 	 */
 	void clearHistory();
-
+	
+	/**
+	 * Select all the console contents
+	 */
+	void selectAll();
+	
+	/**
+	 * Put the console selected text in the clipboard
+	 */
+	void copyToClipboard();
+	
+	/**
+	 * Paste clipboard contents in Console input line
+	 */
+	void pasteClipboard();
+	
+	/**
+	 * Cut selected text in the Console input line
+	 */
+	void cutSelection();
 }

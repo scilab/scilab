@@ -15,6 +15,9 @@ package org.scilab.modules.gui.bridge;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
@@ -1900,4 +1903,45 @@ public class CallScilabBridge {
 		WebBrowser.openUrl("http://groups.google.com/groups?dq=&num=25&hl=en&lr=&ie=UTF-8&group=comp.soft-sys.math.scilab");
 	}
 	
+	/***************************/
+	/*                         */
+	/* JAVA CALLBACKS FOR GUIS */
+	/*                         */
+	/***************************/
+	
+	/**
+	 * Select all the console contents
+	 */
+	public static void selectAllConsoleContents() {
+		ScilabConsole.getConsole().selectAll();
+	}
+	
+	/**
+	 * Put the console selected text in the clipboard
+	 */
+	public static void copyConsoleSelection() {
+		ScilabConsole.getConsole().copyToClipboard();
+	}
+
+	/**
+	 * Cut the console selected text in the clipboard
+	 */
+	public static void cutConsoleSelection() {
+		ScilabConsole.getConsole().cutSelection();
+	}
+
+	/**
+	 * Paste clipboard contents in Console input line
+	 */
+	public static void pasteClipboardIntoConsole() {
+		ScilabConsole.getConsole().pasteClipboard();
+	}
+	
+	/**
+	 * Make the clipboard contents empty
+	 */
+	public static void emptyClipboard() {
+		Transferable contents = new StringSelection("");
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(contents, null);
+	}
 }
