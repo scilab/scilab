@@ -17,7 +17,6 @@ package org.scilab.modules.renderer.arcDrawing;
 
 import javax.media.opengl.GL;
 import org.scilab.modules.renderer.drawers.LineDrawerGL;
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 

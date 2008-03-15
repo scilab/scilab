@@ -14,7 +14,6 @@
 package org.scilab.modules.renderer.textDrawing;
 
 import java.awt.Font;
-import java.awt.geom.Rectangle2D;
 
 import com.sun.opengl.util.j2d.TextRenderer;
 

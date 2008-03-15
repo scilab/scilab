@@ -66,7 +66,7 @@ public class SciRenderer
 //	if (!gLDrawable.getAutoSwapBufferMode()) {
 //		gLDrawable.swapBuffers();
 //	}
-        long endTime = System.currentTimeMillis();	
+//        long endTime = System.currentTimeMillis();	
 
 
         //  System.err.println("Time Java = " + (endTime - startTime));
