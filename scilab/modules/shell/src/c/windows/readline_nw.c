@@ -696,8 +696,8 @@ static void doCompletion(const char *current_line,const char *prompt)
 				strcat(backup_line,wordtodisp);
 				strcpy(cur_line,backup_line);
 				fputs (cur_line, stdout);
-				cur_pos = strlen(cur_line);
-				max_pos = strlen(cur_line);
+				cur_pos = (int)strlen(cur_line);
+				max_pos = (int)strlen(cur_line);
 				FREE(backup_line);
 			}
 		}
@@ -712,7 +712,7 @@ static void doCompletion(const char *current_line,const char *prompt)
 			for(i= 0;i<sizeCompletionDictionary;i++)
 			{
 				int b=getColumnsSize();
-				int newlenLine = lenCurrentLine + strlen(completionDictionary[i]) + strlen(" ");
+				int newlenLine = lenCurrentLine + (int)strlen(completionDictionary[i]) + (int)strlen(" ");
 				if ( newlenLine >= (getColumnsSize() - 10) )
 				{
 					fputs ("\n", stdout);
@@ -733,8 +733,8 @@ static void doCompletion(const char *current_line,const char *prompt)
 			redraw_line((char*)prompt);
 			strcpy(cur_line,backup_line);
 			fputs (cur_line, stdout);
-			cur_pos = strlen(cur_line);
-			max_pos = strlen(cur_line);
+			cur_pos = (int)strlen(cur_line);
+			max_pos = (int)strlen(cur_line);
 			FREE(backup_line);
 		}
 		freeArrayOfString(completionDictionary,sizeCompletionDictionary);
