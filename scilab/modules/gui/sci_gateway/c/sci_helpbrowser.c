@@ -17,7 +17,7 @@
 #include "CallHelpBrowser.h"
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
-
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 int sci_helpbrowser(char *fname,unsigned long fname_len)
 {

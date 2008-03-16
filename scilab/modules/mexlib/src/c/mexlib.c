@@ -2098,9 +2098,9 @@ int mxGetElementSize(const mxArray *ptr)
 mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
 {
   static int i, lr1, lw, ilocal, n, k,kk, nmax;
-  nmax = strlen(str[0]);
+  nmax = (int)strlen(str[0]);
   for (k=1; k<m; ++k) {
-    n=strlen(str[k]);
+    n=(int)strlen(str[k]);
     if (n > nmax) nmax=n;
   }
   Nbvars++;
@@ -2112,7 +2112,7 @@ mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
   /*    Convert string to integer code    */
   /*   subroutine cvstr(n,line,str,job) */
   for (k=0; k<m; ++k) {
-    n=strlen(str[k]);
+    n=(int)strlen(str[k]);
     /* fill with blanks (40) if n<nmax !!*/
     C2F(cvstr)(&n, istk(lr1), (char *) str[k], (ilocal=0, &ilocal),i);
     if (nmax>n) {
@@ -2258,7 +2258,7 @@ void mxSetPr(mxArray *array_ptr, double *pr_data)
     mem_size = mn * sizeof(double);
   }
   if(warn_cnt){
-    int overwrite = mem_size - sizeof(double)*(pr_data - start_of_pr);
+    int overwrite = (int)(mem_size - sizeof(double)*(pr_data - start_of_pr));
     if(overwrite > 0){
       char *prefix = --warn_cnt == 0 ? _("Last warning") : _("Warning");
       fprintf(stderr, _("%s: mxSetPr overwriting destination by %i bytes.\n"), prefix, overwrite);
@@ -2293,7 +2293,7 @@ void mxSetPi(mxArray *array_ptr, double *pi_data)
     mem_size = mn * sizeof(double);
   }
   if(warn_cnt){
-    int overwrite = mem_size - sizeof(double)*(pi_data - start_of_pi);
+    int overwrite = (int)(mem_size - sizeof(double)*(pi_data - start_of_pi));
     if(overwrite > 0){
       char *prefix = --warn_cnt == 0 ? _("Last warning") : _("Warning");
       fprintf(stderr, _("%s: mxSetPi overwriting destination by %i bytes.\n"), prefix, overwrite);
