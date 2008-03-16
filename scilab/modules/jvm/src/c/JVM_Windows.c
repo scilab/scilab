@@ -17,7 +17,12 @@
 #include "win_mem_alloc.h" /* MALLOC */
 #include "../../fileio/includes/FileExist.h"
 /*--------------------------------------------------------------------------*/ 
+#ifdef _WIN64
+/* Sun doesn't distribuate "client" version of jvm with jre for x64 version */
+#define JVM_TYPE "server"
+#else
 #define JVM_TYPE "client"
+#endif
 /* #define JVM_TYPE "server" */
 /* Every form of Sun's Java runtime comes with both the "client VM" and the "server VM."
 Unfortunately, Java applications and applets run by default in the client VM.
