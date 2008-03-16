@@ -14,6 +14,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
+#include <stdio.h>
 #include "loadLibrarypath.h"
 #include "GetXmlFileEncoding.h"
 #include "../../fileio/includes/FileExist.h"
@@ -21,6 +22,9 @@
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 #include "localization.h"
+#ifdef _MSC_VER
+	#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 BOOL LoadLibrarypath(char *xmlfilename)
 {
@@ -57,7 +61,6 @@ BOOL LoadLibrarypath(char *xmlfilename)
 				int	i;
 				for(i = 0; i < xpathObj->nodesetval->nodeNr; i++)
 				{
-
 					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->properties;
 					/* Get the properties of <path>  */
 					while (attrib != NULL)
@@ -74,19 +77,32 @@ BOOL LoadLibrarypath(char *xmlfilename)
 					if ( (libraryPath) && (strlen(libraryPath) > 0) )
 					{
 						#define KEYWORDSCILAB "$SCILAB" 
-						char *sciPath=getSCIpath();
+						char *FullLibrarypath = NULL;
+						char *sciPath = getSCIpath();
 						
 						if (strncmp(libraryPath,KEYWORDSCILAB, strlen(KEYWORDSCILAB))==0)
 						{
-							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(libraryPath)+1));
-							strcpy(modifypath,sciPath);
-							strcat(modifypath,&libraryPath[strlen(KEYWORDSCILAB)]);
-							libraryPath = modifypath;
+							FullLibrarypath = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(libraryPath)+1));
+							if (FullLibrarypath)
+							{
+								strcpy(FullLibrarypath,sciPath);
+								strcat(FullLibrarypath,&libraryPath[strlen(KEYWORDSCILAB)]);
+							}
+						}
+						else
+						{
+							FullLibrarypath = strdup(libraryPath);
 						}
 
-  					    if (sciPath) {FREE(sciPath);sciPath=NULL;}
-                        addToLibrarypath(libraryPath);
-						FREE(libraryPath);
+  					    
+						if (FullLibrarypath)
+						{
+							addToLibrarypath(FullLibrarypath);
+							FREE(FullLibrarypath);
+							FullLibrarypath = NULL;
+						}
+
+						if (sciPath) {FREE(sciPath);sciPath=NULL;}
 						libraryPath = NULL;
 					}
 				}

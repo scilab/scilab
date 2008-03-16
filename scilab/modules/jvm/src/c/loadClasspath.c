@@ -23,11 +23,14 @@
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 #include "localization.h"
+#ifdef _MSC_VER
+	#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 BOOL LoadClasspath(char *xmlfilename)
 {
 	BOOL bOK = FALSE;
-	BOOL errorOnLoad=FALSE;
+	BOOL errorOnLoad = FALSE;
 	if ( FileExist(xmlfilename) )
 	{
 		char *encoding=GetXmlFileEncoding(xmlfilename);
@@ -77,23 +80,36 @@ BOOL LoadClasspath(char *xmlfilename)
 					if ( (classpath) && (strlen(classpath) > 0) )
 					{
 						#define KEYWORDSCILAB "$SCILAB" 
-						char *SCIPATH=NULL;
-						SCIPATH=getSCIpath();
+						char *SCIPATH = NULL;
+						char *FullClasspath = NULL;
+
+						SCIPATH = getSCIpath();
 						
 						if (strncmp(classpath,KEYWORDSCILAB,strlen(KEYWORDSCILAB))==0)
 						{
-							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(classpath)+1));
-							strcpy(modifypath,SCIPATH);
-							strcat(modifypath,&classpath[strlen(KEYWORDSCILAB)]);
-							classpath = modifypath;
+							FullClasspath = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(classpath)+1));
+							if (FullClasspath)
+							{
+								strcpy(FullClasspath,SCIPATH);
+								strcat(FullClasspath,&classpath[strlen(KEYWORDSCILAB)]);
+							}
+						}
+						else
+						{
+							FullClasspath = strdup(classpath);
+						}
+  					    
+						if (FullClasspath)
+						{
+							if (!addToClasspath(FullClasspath))
+							{
+								errorOnLoad=TRUE;
+							}
+							FREE(FullClasspath);
+							FullClasspath = NULL;
 						}
 
-  					    if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
-						if (!addToClasspath(classpath))
-						{
-							errorOnLoad=TRUE;
-						}
-						FREE(classpath);
+						if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
 						classpath = NULL;
 					}
 				}
