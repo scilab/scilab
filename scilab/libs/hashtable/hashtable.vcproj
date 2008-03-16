@@ -47,7 +47,7 @@
 				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -74,6 +74,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="msvcrtd.lib libcmtd.lib"
 				OutputFile="..\..\bin\hashtable.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
@@ -138,7 +139,7 @@
 				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -165,6 +166,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="msvcrtd.lib libcmtd.lib"
 				OutputFile="..\..\bin\hashtable.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
@@ -230,7 +232,7 @@
 				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
@@ -257,6 +259,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="msvcrt.lib libcmt.lib"
 				OutputFile="..\..\bin\hashtable.dll"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
 				OptimizeForWindows98="1"
@@ -322,7 +325,7 @@
 				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
@@ -349,6 +352,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="msvcrt.lib libcmt.lib"
 				OutputFile="..\..\bin\hashtable.dll"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
 				OptimizeForWindows98="1"

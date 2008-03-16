@@ -47,7 +47,7 @@
 				AdditionalIncludeDirectories="../intl"
 				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -74,6 +74,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="msvcrtd.lib libcmtd.lib"
 				OutputFile="..\..\bin\libst.dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -139,7 +140,7 @@
 				AdditionalIncludeDirectories="../intl"
 				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -166,6 +167,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="msvcrtd.lib libcmtd.lib"
 				OutputFile="..\..\bin\libst.dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -232,7 +234,7 @@
 				AdditionalIncludeDirectories="../intl"
 				PreprocessorDefinitions="_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
@@ -259,6 +261,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="msvcrt.lib libcmt.lib"
 				OutputFile="..\..\bin\libst.dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="..\..\bin\libst.def"
@@ -325,7 +328,7 @@
 				AdditionalIncludeDirectories="../intl"
 				PreprocessorDefinitions="_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
@@ -352,6 +355,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="msvcrt.lib libcmt.lib"
 				OutputFile="..\..\bin\libst.dll"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="..\..\bin\libst.def"
