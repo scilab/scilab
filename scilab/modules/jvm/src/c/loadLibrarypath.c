@@ -66,9 +66,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
 						if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
 						{ 
 							/* we found the tag value */
-							const char *str=(const char*)attrib->children->content;
-							libraryPath=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-							strcpy(libraryPath,str);
+							libraryPath = (char*)attrib->children->content;
 						}
 						attrib = attrib->next;
 					}
@@ -83,7 +81,6 @@ BOOL LoadLibrarypath(char *xmlfilename)
 							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(libraryPath)+1));
 							strcpy(modifypath,sciPath);
 							strcat(modifypath,&libraryPath[strlen(KEYWORDSCILAB)]);
-							FREE(libraryPath);
 							libraryPath = modifypath;
 						}
 
@@ -96,9 +93,17 @@ BOOL LoadLibrarypath(char *xmlfilename)
 				bOK = TRUE;
 			}
 			else
-				{
-			printf(_("Wrong format for %s.\n"), xmlfilename);
+			{
+				printf(_("Wrong format for %s.\n"), xmlfilename);
 			}
+
+			if(xpathObj) xmlXPathFreeObject(xpathObj);
+			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
+			xmlFreeDoc (doc);
+			/*
+			* Cleanup function for the XML library.
+			*/
+			xmlCleanupParser();
 		}
 		else
 		{

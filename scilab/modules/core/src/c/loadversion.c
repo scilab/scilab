@@ -72,6 +72,7 @@ BOOL getversionmodule(char *modulename,
 
 			xpathCtxt = xmlXPathNewContext(doc);
 			xpathObj = xmlXPathEval((const xmlChar*)"//MODULE_VERSION/VERSION", xpathCtxt);
+
 			if(xpathObj && xpathObj->nodesetval->nodeMax) 
 				{
 					
@@ -127,12 +128,11 @@ BOOL getversionmodule(char *modulename,
 				}
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
 			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
-				xmlFreeDoc (doc);
-
-				/*
-				* Cleanup function for the XML library.
-				*/
-				xmlCleanupParser();
+			xmlFreeDoc (doc);
+			/*
+			* Cleanup function for the XML library.
+			*/
+			xmlCleanupParser();
 			}
 			else
 			{

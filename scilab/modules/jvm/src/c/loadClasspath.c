@@ -85,12 +85,12 @@ BOOL LoadClasspath(char *xmlfilename)
 							char *modifypath = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(classpath)+1));
 							strcpy(modifypath,SCIPATH);
 							strcat(modifypath,&classpath[strlen(KEYWORDSCILAB)]);
-							FREE(classpath);
 							classpath = modifypath;
 						}
 
   					    if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
-						if (!addToClasspath(classpath)){
+						if (!addToClasspath(classpath))
+						{
 							errorOnLoad=TRUE;
 						}
 						FREE(classpath);
@@ -100,19 +100,30 @@ BOOL LoadClasspath(char *xmlfilename)
 				bOK = TRUE;
 			}
 			else
-				{
+			{
 					fprintf(stderr,_("Wrong format for %s.\n"), xmlfilename);
 			}
+
+			if(xpathObj) xmlXPathFreeObject(xpathObj);
+			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
+			xmlFreeDoc (doc);
+			/*
+			* Cleanup function for the XML library.
+			*/
+			xmlCleanupParser();
 		}
 		else
 		{
 			fprintf(stderr,_("Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' found\n"), xmlfilename, encoding);
 		}
 		if (encoding) {FREE(encoding);encoding=NULL;}
-	}else{
+	}
+	else
+	{
 		fprintf(stderr,_("Warning: could not find classpath declaration file %s.\n"), xmlfilename);
 	}
-	if (errorOnLoad){
+	if (errorOnLoad)
+	{
 		fprintf(stderr,_("Some problems during the loading of the Java libraries occured.\nThis could lead to inconsistent behaviours.\nPlease check SCI/etc/classpath.xml.\n"));
 	}
 
