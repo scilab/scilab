@@ -74,7 +74,7 @@ int C2F(checkrhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
 
   if ( Rhs < *iMin || Rhs > *iMax)
     {
-		if (Rhs==0 || Rhs==1) { /* 0 or 1 input argument */
+		if (Rhs==0 || Rhs==1 || *iMin==*iMax) { /* 0 or 1 or equals input argument */
 			Scierror(77,_("%s: Wrong number of input argument: %d expected.\n"),get_fname(fname,fname_len), *iMax);
 		}else{
 			Scierror(77,_("%s: Wrong number of input arguments: %d to %d expected.\n"),get_fname(fname,fname_len), *iMin, *iMax);
@@ -92,7 +92,7 @@ int C2F(checklhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fnam
 {
   if ( Lhs < *iMin || Lhs > *iMax)
     {
-		if (Lhs==0 || Lhs==1) { /* 0 or 1 output argument */
+		if (Lhs==0 || Lhs==1 || *iMin == *iMax) { /* 0 or 1 output argument */
 			Scierror(78,_("%s: Wrong number of output arguments: %d expected.\n"),get_fname(fname,fname_len), *iMax);
 		}else{
 			Scierror(78,_("%s: Wrong number of output arguments: %d to %d expected.\n"),get_fname(fname,fname_len), *iMin, *iMax);
@@ -160,15 +160,13 @@ integer C2F(firstopt)()
 
 int C2F(findopt)(char * str,rhs_opts opts[])
 {
-  int i, pos;
-
-  pos = 0;
+  int i;
   i = rhs_opt_find(str,opts);
   if ( i>=0 )
     if (opts[i].position>0)
-      pos = opts[i].position;
+      return opts[i].position;
 
-  return(pos);
+  return 0;
 }
 
 
@@ -195,7 +193,7 @@ integer C2F(numopt)()
 integer C2F(vartype)(integer *number)
 {
   integer ix1=  *number + Top - Rhs;
-  return  C2F(gettype)(&ix1);
+  return C2F(gettype)(&ix1);
 }
 
 /*------------------------------------------------
@@ -355,22 +353,22 @@ int rhs_opt_find(char *name,rhs_opts opts[])
 {
   int rep=-1,i=0;
   while ( opts[i].name != NULL )
-    {
-      int cmp;
-      /* name is terminated by white space and we want to ignore them */
-      if ( (cmp=strcmp(name,opts[i].name)) == 0 )
-	{
-	  rep = i ; break;
-	}
-      else if ( cmp < 0 )
-	{
-	  break;
-	}
-      else
-	{
-	  i++;
-	}
-    }
+	  {
+		  int cmp;
+		  /* name is terminated by white space and we want to ignore them */
+		  if ( (cmp=strcmp(name,opts[i].name)) == 0 )
+			  {
+				  rep = i ; break;
+			  }
+		  else if ( cmp < 0 )
+			  {
+				  break;
+			  }
+		  else
+			  {
+				  i++;
+			  }
+	  }
   return rep;
 }
 
@@ -391,7 +389,6 @@ void rhs_opt_print_names(rhs_opts opts[])
       i++;
     }
   sciprint(_("and %s.\n"),opts[i].name);
-  return ;
 }
 
 /*---------------------------------------------------------------------
