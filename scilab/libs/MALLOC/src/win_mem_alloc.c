@@ -114,7 +114,12 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int l
 	{
 		_try
 		{
+#ifdef _WIN64
+			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+#else
 			NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+#endif
+
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{
@@ -139,7 +144,11 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int l
 
 		_try
 		{
+#ifdef _WIN64
+			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+#else
 			NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+#endif
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{
@@ -156,7 +165,12 @@ IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int l
 	{
 		_try
 		{
+#ifdef _WIN64
+			HeapFree(GetProcessHeap(),HEAP_NO_SERIALIZE,lpAddress);
+#else
 			VirtualFree(lpAddress,0,MEM_RELEASE);
+#endif
+			
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{
