@@ -34,13 +34,12 @@
  * knowledge of the CeCILL license and that you accept its terms.
  *
  */
-//#ifdef UMFPACK_SUITESPARSE
+#ifdef UMFPACK_SUITESPARSE
 #include <suitesparse/umfpack.h>
-/*
 #else
 #include <umfpack.h>
 #endif
-*/
+
 enum {NOT_ENOUGH_PLACE_IN_STK, MAT_IS_NOT_SPD, A_PRIORI_OK};   /* flags for spd_sci_sparse_to_taucs_sparse */
 
 typedef void * Adr;

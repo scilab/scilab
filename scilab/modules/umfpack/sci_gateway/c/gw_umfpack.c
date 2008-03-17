@@ -1,8 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2005-2008 - INRIA - Allan CORNET
- *  Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
- *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+ *  Copyright (C) 2007 - Bruno PINCON
+ *  Copyright (C) 2008 - INRIA - Sylvestre LEDRU
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which

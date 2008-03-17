@@ -1,6 +1,6 @@
 // ====================================================================
 // umfpack module initialisation file 
-// Copyright INRIA 2006
+// Copyright INRIA 2008
 // ====================================================================
 //Load  functions librarie
 load('SCI/modules/umfpack/macros/lib');

@@ -1,7 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### Allan Cornet <allan.cornet@inria.fr>
-### INRIA - Scilab 2007
+### INRIA - Scilab 2008
 ##########
 
 modulename=umfpack
@@ -17,7 +16,7 @@ libsciumfpack_la_rootdir = $(mydatadir)
 libsciumfpack_la_etcdir = $(mydatadir)/etc
 libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 
-#if UMFPACK
+if UMFPACK
 
 UMFPACK_C_SOURCES = src/c/taucs_scilab.c \
 src/c/common_umfpack.c
@@ -68,13 +67,12 @@ libsciumfpack_la_CFLAGS=  	-Iincludes/ \
 libsciumfpack_la_includedir=$(pkgincludedir)/umfpack
 libsciumfpack_la_include_HEADERS = 
 
-#else
+else
 
-#UMFPACK_C_SOURCES = src/noumfpack/noumfpack.c
+UMFPACK_C_SOURCES = src/noumfpack/noumfpack.c
 
-#libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES)
-
-#libsciumfpack_la_CFLAGS= -I$(top_srcdir)/modules/output_stream/includes
-#endif
+libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES)
+libsciumfpack_la_CFLAGS= -I$(top_srcdir)/modules/output_stream/includes
+endif
 
 include $(top_srcdir)/Makefile.incl.am
