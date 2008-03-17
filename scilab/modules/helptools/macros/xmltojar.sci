@@ -348,7 +348,12 @@ function xmltojar(dirs,titles,directory_language,default_language)
 		if all_scilab_help then
 			if or(need_to_be_build_tab_m) then
 				printf(_("\nBuilding the scilab manual jar file\n"));
-				unix_w(SCI+"/modules/helptools/bin/sci2jh "+master_doc+" "+jar_file);
+				
+				if MSDOS then
+					unix_w(SCI+"\modules\helptools\bin\sci2jh.bat "+master_doc+" "+jar_file);
+				else
+					unix_w(SCI+"/modules/helptools/bin/sci2jh "+master_doc+" "+jar_file);
+				end
 			end
 		end
 		
