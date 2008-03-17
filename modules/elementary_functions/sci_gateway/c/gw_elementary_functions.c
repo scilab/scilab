@@ -70,7 +70,7 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
 {
-  sciprint("WARNING ! : You are using a new generation module\n");
+//  sciprint("WARNING ! : You are using a new generation module\n");
   callFunctionFromGateway(Tab);
 	return 0;
 }
