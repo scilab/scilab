@@ -4,12 +4,6 @@
 #define MACHINE_H
 /* This file defines global element configuration of the build host */
 
-/* undef _FILE_OFFSET_BITS causes silly warnings with the Sun Compiler */
-#ifdef _FILE_OFFSET_BITS 
-#undef _FILE_OFFSET_BITS
-#endif
-
-
 
 /* Define C2F without Trailing Underscore */
 #undef C2F
@@ -442,16 +436,6 @@
 #undef log_10_
 
 
-/*
-   Define integer C type which must fit Fortran integer
-   For Scilab to work, the rule is:
-          size of Fortran double precision = 2 * size of Fortran integer
-
-   At the present time, we suppose:
-       size of Fortran integer = 4 bytes
-       size of Fortran double precision = 8 bytes
-       size of C int = 4 bytes
-*/
 
 #ifdef DIR_SEPARATOR
 	   #undef DIR_SEPARATOR
