@@ -76,6 +76,7 @@
 <module name="pvm" activate="no"/>
 <module name="sci2c" activate="no"/>
 <module name="fftw" activate="yes"/>
+<module name="umfpack" activate="no"/>
 <module name="module_skeleton" activate="no"/>
  </modules>
  
