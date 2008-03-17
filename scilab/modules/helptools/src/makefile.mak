@@ -9,8 +9,8 @@ check :
 
 
 makehelp :
-	@..\..\..\bin\scilex -nb -l en -nouserstartup -nwni -e xmltohtml();exit;
-	@..\..\..\bin\scilex -nb -l fr -nouserstartup -nwni -e xmltohtml();exit;
+	@..\..\..\bin\scilex -nb -l en -nouserstartup -nwni -e xmltojar();exit;
+	@..\..\..\bin\scilex -nb -l fr -nouserstartup -nwni -e xmltojar();exit;
 	
 	
 distclean::	
