@@ -344,18 +344,20 @@ function xmltojar(dirs,titles,directory_language,default_language)
 		
 		jar_file = SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.jar";
 		log_file = SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.log";
+		log_str  = "";
 		
 		if all_scilab_help then
 			if or(need_to_be_build_tab_m) then
 				printf(_("\nBuilding the scilab manual jar file\n"));
-				
 				if MSDOS then
-					unix_w(SCI+"\modules\helptools\bin\sci2jh.bat "+master_doc+" "+jar_file);
+					log_str = unix_g(SCI+"\modules\helptools\bin\sci2jh.bat "+master_doc+" "+jar_file+" 2>&1");
 				else
-					unix_w(SCI+"/modules/helptools/bin/sci2jh "+master_doc+" "+jar_file);
+					log_str = unix_g(SCI+"/modules/helptools/bin/sci2jh "+master_doc+" "+jar_file+" 2>&1");
 				end
 			end
 		end
+		
+		mputl(log_str,log_file);
 		
 		chdir(current_directory);
 		
