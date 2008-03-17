@@ -93,7 +93,7 @@ if rhs==1 then
     n=Funcall("real",1,list(n),list(Variable("",n.infer)))
   elseif ~is_real(n) then
     newn=Funcall("real",1,list(n),list(Variable("",n.infer)))
-    repl_poss(newn,n,n,gettext("messages","m2sci_message_77"));
+    repl_poss(newn,n,n,gettext("is Real."));
     n=newn
   end
   if is_a_scalar(n) then 
@@ -150,7 +150,7 @@ else
       tree.rhs(k)=Funcall("real",1,list(tree.rhs(k)),list()) 
     elseif ~is_real(tree.rhs(k)) then
       newn=Funcall("real",1,list(tree.rhs(k)),list())
-      repl_poss(newn,tree.rhs(k),tree.rhs(k),gettext("messages","m2sci_message_77"));
+      repl_poss(newn,tree.rhs(k),tree.rhs(k),gettext("is Real."));
       tree.rhs(k)=newn
     end
   end

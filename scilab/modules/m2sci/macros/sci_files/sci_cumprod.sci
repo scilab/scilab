@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) {date_debut_1}-{date_fin_1} - {organisme 1} - {auteur 1} 
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -56,7 +56,7 @@ else
 	A.out=tree.lhs
       end
       tree=A;
-      set_infos(msprintf(gettext("messages","m2sci_message_76"),"cumprod"),1)
+      set_infos(msprintf(gettext("Scilab %s() does not work when dim input argument is greater than number of dims of first rhs..."),"cumprod"),1)
       return
     end
   end

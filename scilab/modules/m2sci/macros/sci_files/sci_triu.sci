@@ -25,7 +25,7 @@ if rhs==2 then
     k = Funcall("real",1,list(k),list(Variable("",k.infer)))
   elseif ~is_real(k) then
     newk = Funcall("real",1,list(k),list(Variable("",k.infer)))
-    repl_poss(newk,k,k,gettext("messages","m2sci_message_77"));
+    repl_poss(newk,k,k,gettext("is Real."));
     k=newk
   end
   tree.rhs=Rhs_tlist(X,k)
