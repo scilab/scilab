@@ -39,11 +39,11 @@ SCIFILECONTENTSREF=["";
 "// Display warning for floating point exception";
 "ieee(1);";
 "";
-"// ! L.1: mtlb(rep) can be replaced by rep() or rep whether rep is an M-file or not";
+"// ! L.1: mtlb(rep) can be replaced by rep() or rep whether rep is an M-file or not.";
 "loadmatfile(mtlb(rep)+""alpha"");";
-"// ! L.2: mtlb(rep) can be replaced by rep() or rep whether rep is an M-file or not";
+"// ! L.2: mtlb(rep) can be replaced by rep() or rep whether rep is an M-file or not.";
 "loadmatfile(mtlb(rep)+""beta"");";
-"mu = mtlb_double(beta)*mtlb_double(alpha);";
+"mu = beta*alpha;";
 ]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end
