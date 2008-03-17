@@ -37,7 +37,7 @@
 #
 ###
 
-if test ! -z $SCIVERBOSE; then
+if test ! -z "$SCIVERBOSE"; then
 	SCIVERBOSE=1
 else
 	SCIVERBOSE=0
