@@ -35,6 +35,7 @@
 #include "taucs_scilab.h"
 #include "stack-c.h"   /* F2C macro */
 #include "BOOL.h"
+#include "sciprint.h"
 
 #define BLAS_FLOPS_CUTOFF  1000.0
 #define SOLVE_DENSE_CUTOFF 5
@@ -233,7 +234,6 @@ taucs_ccs_matrix*
 taucs_ccs_create(int m, int n, int nnz)
 {
   taucs_ccs_matrix* matrix;
-  int i,j,k;
 
   matrix = (taucs_ccs_matrix*) malloc(sizeof(taucs_ccs_matrix));
   if (!matrix) { 
@@ -365,9 +365,8 @@ taucs_vec_ipermute(int n, double pv[], double v[], int invp[])
 /*************************************************************/
 
 static supernodal_factor_matrix*
-multifrontal_supernodal_create()
+multifrontal_supernodal_create(void)
 {
-  int sn;
   supernodal_factor_matrix* L;
   
   L = (supernodal_factor_matrix*) malloc(sizeof(supernodal_factor_matrix));
@@ -426,7 +425,6 @@ supernodal_frontal_create(int* firstcol_in_supernode,
 			  int n, 
 			  int* rowind)
 {
-  int i;
   supernodal_frontal_matrix* tmp;
 
   tmp = (supernodal_frontal_matrix*)malloc(sizeof(supernodal_frontal_matrix));
@@ -485,7 +483,6 @@ multifrontal_supernodal_front_factor(int sn,
   int* ind;
   double* re;
   int INFO;
-  double dzero     =  0.0;
   double done      =  1.0;
   double dminusone = -1.0;
 
@@ -716,15 +713,13 @@ taucs_ccs_etree(taucs_ccs_matrix* A,
 		int* l_nnz)
 {
   int* prev_p;
-  int* prev_nbr;
   int* level;
-  int* first_descendant;
   int* l_cc;
   int* l_rc;
   int* wt;
 
   int  n = A->n;
-  int  u,p,q,pprime;
+  int  u,pprime;
   int  ju;
   int* postorder;
   int* ipostorder;
@@ -778,7 +773,7 @@ taucs_ccs_etree(taucs_ccs_matrix* A,
   /* now compute the etree */
 
   {
-    int u,t,vroot;
+    int u2,t,vroot;
     realroot = rowcount; /* reuse space */
 
     for (i=0; i<n; i++) {
@@ -788,11 +783,11 @@ taucs_ccs_etree(taucs_ccs_matrix* A,
       vroot = i;
       for (kp=rowptr[i]; kp<rowptr[i+1]; kp++) {
 	k=colind[kp];
-	u = uf_find(uf,k);
-	t = realroot[u];
+	u2 = uf_find(uf,k);
+	t = realroot[u2];
 	if (parent[t] == n && t != i) {
 	  parent[t] = i;
-	  vroot = uf_union(uf,vroot,u);
+	  vroot = uf_union(uf,vroot,u2);
 	  realroot[vroot] = i;
 	}
       }
@@ -808,7 +803,7 @@ taucs_ccs_etree(taucs_ccs_matrix* A,
   if (l_colcount || l_rowcount || l_nnz) {
     int* l_nz;
     int  tmp;
-    int  u,p,q;
+    int  u2,p,q;
 
     first_child = malloc((n+1)     * sizeof(int));
     next_child  = malloc((n+1)     * sizeof(int));
@@ -914,14 +909,14 @@ taucs_ccs_etree(taucs_ccs_matrix* A,
     }
 
     *l_nz = 0;
-    for (u=0; u<n; u++) {
-      l_cc[u] = wt[u];
-      *l_nz += wt[u];
+    for (u2=0; u2<n; u2++) {
+      l_cc[u2] = wt[u2];
+      *l_nz += wt[u2];
     }
-    for (u=0; u<n; u++) {
-      if (parent[u] != n) {
-	l_cc[parent[u]] += l_cc[u];
-	*l_nz += l_cc[u];
+    for (u2=0; u2<n; u2++) {
+      if (parent[u2] != n) {
+	l_cc[parent[u2]] += l_cc[u2];
+	*l_nz += l_cc[u2];
       }
     }
 
@@ -956,7 +951,7 @@ taucs_ccs_etree_liu(taucs_ccs_matrix* A,
 		    int* l_nnz)
 {
   int n = A->n;
-  int i,j,k,ip,jp,kp;
+  int i,j,k,ip,kp;
   int nnz,jnnz;
 
   int* uf;
@@ -1249,12 +1244,12 @@ recursive_amalgamate_supernodes(int           sn,
 				int            ipostorder[]
 				)
 {
-  int  i,ip,c,c_sn,gc_sn;
+  int  i,ip,c_sn,gc_sn;
   int  nnz;
-  int  nchildren, ichild; /* number of children, child index */
+  int  nchildren; /* number of children, child index */
   znz* c_znz;
   znz  sn_znz, merged_znz;
-  int zero_count = 0;
+
   int new_sn_size, new_sn_up_size;
 
   sn_znz.zeros    = 0.0;
@@ -1745,8 +1740,6 @@ recursive_multifrontal_supernodal_factor_llt(int sn,       /* this supernode */
 void* taucs_ccs_factor_llt_mf(taucs_ccs_matrix* A)
 {
   supernodal_factor_matrix* L;
-  int i,j,ip,jp;
-  int sn,p;
   int* map;
   int fail;
 
@@ -1835,7 +1828,7 @@ recursive_supernodal_solve_l(int sn,       /* this supernode */
 		 sn_blocks[sn],&(sn_blocks_ld[sn]),
 		 xdense       ,&sn_size);
       
-      if (up_size > 0 & sn_size > 0) {
+      if ((up_size > 0) & (sn_size > 0)) {
 	F2C(dgemm)("No Transpose","No Transpose",
 		   &up_size, &ione, &sn_size,
 		   &done,
@@ -1939,7 +1932,7 @@ recursive_supernodal_solve_lt(int sn,       /* this supernode */
       for (i=0; i<up_size; i++)
 	xdense[i] = x[ sn_struct[sn][sn_size+i] ];
       
-      if (up_size > 0 & sn_size > 0)
+      if ((up_size > 0) & (sn_size > 0))
 	F2C(dgemm)("Transpose","No Transpose",
 		   &sn_size, &ione, &up_size,
 		   &dminusone,

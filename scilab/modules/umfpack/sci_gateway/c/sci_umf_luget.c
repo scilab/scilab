@@ -46,6 +46,8 @@
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
 #include "stack-c.h"
+#include "Scierror.h"
+
 extern CellAdr *ListNumeric;
 
 int sci_umf_luget(char* fname, unsigned long l)

@@ -63,7 +63,7 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 {
 	int mb, nb, lb, lx, one=1, lv, lres;
 	int mC_ptr, nC_ptr, lC_ptr;
-	int mA, nA, i, stat, j, n, it_flag, Refinement;
+	int mA, nA, i, j, n, it_flag, Refinement;
 	double *b, *x, *v, *res, norm_res, norm_res_bis;
 	long double *wk = NULL;
 	int A_is_upper_triangular;

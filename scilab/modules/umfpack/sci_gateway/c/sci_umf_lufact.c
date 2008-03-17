@@ -57,6 +57,8 @@
 #include "gw_umfpack.h"
 #include "sciumfpack.h"
 #include "stack-c.h"
+#include "Scierror.h"
+
 
 CellAdr *ListNumeric = NULL;
 CellAdr *ListCholFactors = NULL;

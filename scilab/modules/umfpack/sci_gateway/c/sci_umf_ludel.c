@@ -47,6 +47,7 @@
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
 #include "stack-c.h"
+#include "Scierror.h"
 
 extern CellAdr *ListNumeric;
 

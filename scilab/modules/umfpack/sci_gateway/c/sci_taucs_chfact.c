@@ -57,12 +57,13 @@
 #include "gw_umfpack.h"
 #include "stack-c.h"
 #include "taucs_scilab.h"
+#include "Scierror.h"
 
 extern CellAdr *ListCholFactors;
 
 int sci_taucs_chfact(char* fname, unsigned long l)
 {
-	int mA, nA, i, stat;
+	int mA, nA, stat;
 	int *perm, *invperm;
 	int mC_ptr = 1, nC_ptr = 1; 
 	SciSparse A;

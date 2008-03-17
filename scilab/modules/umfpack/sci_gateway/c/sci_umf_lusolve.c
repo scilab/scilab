@@ -62,7 +62,7 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 {
 	int mb, nb, lrb, lib, itb, mflag, nflag, lflag, lrx, lix, itx;
 	int mLU_ptr, nLU_ptr, lLU_ptr, it_flag, i;
-	int mA, nA, stat, j, one=1, LastNum;
+	int mA, nA, j, one=1, LastNum;
 	SciSparse AA;
 	CcsSparse A;
 	int NoTranspose, NoRaffinement;
@@ -72,7 +72,7 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 	double Info[UMFPACK_INFO]; // double *Info = (double *) NULL;
 	double Control[UMFPACK_CONTROL];
 	void * Numeric;
-	int lnz, unz, n, n_col, nz_udiag, status, umf_flag;
+	int lnz, unz, n, n_col, nz_udiag, umf_flag;
 	int *Wi, lWi, lW, mW;
 	double *W;
   

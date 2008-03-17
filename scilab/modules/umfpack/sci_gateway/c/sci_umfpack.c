@@ -66,10 +66,11 @@
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
 #include "stack-c.h"
+#include "Scierror.h"
 
 int sci_umfpack(char* fname,unsigned long l)
 {
-	int mA, nA, mAp1, mb, nb, lrb, lib, itb, ms, ns, ls, itx, lrx, lix, i;
+	int mA, nA, mb, nb, lrb, lib, itb, ms, ns, ls, itx, lrx, lix, i;
 	int num_A, num_b, one=1;
 	int mW, lW, lWi;
 	int Case, LastNum, stat;
@@ -82,7 +83,7 @@ int sci_umfpack(char* fname,unsigned long l)
 	double Info[UMFPACK_INFO];
 	void *Symbolic, *Numeric;
 	int *Wi;
-	double *W, *Y, *Z, *S;
+	double *W;
 
   
 	/* Check numbers of input/output arguments */

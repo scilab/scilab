@@ -51,6 +51,7 @@
 #include "gw_umfpack.h"
 #include "stack-c.h"
 #include "taucs_scilab.h"
+#include "Scierror.h"
 
 extern CellAdr *ListCholFactors;
 
@@ -61,7 +62,7 @@ int sci_taucs_chget(char* fname, unsigned long l)
 	taucs_handle_factors * pC;
 	taucs_ccs_matrix * C;
 	SciSparse S;
-	int one = 1, nnz, old_nnz, k, lp, i, pl_miss, it_flag;
+	int one = 1, nnz, lp, i, pl_miss, it_flag;
 
 	/* Check numbers of input/output arguments */
 	CheckRhs(1,1); CheckLhs(1,3);
