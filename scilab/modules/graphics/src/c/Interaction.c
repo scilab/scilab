@@ -36,6 +36,9 @@
 #include "localization.h"
 #include "DrawObjects.h"
 #include "DrawingBridge.h"
+#include "JavaInteraction.h"
+#include "Axes.h"
+#include "GetJavaProperty.h"
 
 /*-------------------------------------------------------------------------------------*/
 static int moveObj(sciPointObj * pobj, double displacement[], int displacementSize);
@@ -785,3 +788,50 @@ BOOL sciIsAreaZoom(integer box[4],integer box1[4],integer section[4])
   return FALSE;
 
 }
+/*---------------------------------------------------------------------------------*/
+void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton)
+{
+  javaRubberBox(pFigure, isClick, initialRect, endRect, usedButton);
+}
+/*---------------------------------------------------------------------------------*/
+void rubberBox(sciPointObj * pSubwin, BOOL isClick, const double initialRect[4], double endRect[4], int * usedButton)
+{
+  int endPixelRect[4];
+  double endFirstCorner[2];
+  double endSecondCorner[2];
+
+  /* get up to date coordinates */
+  updateSubwinScale(pSubwin);
+
+  /* convert initial rect in  */
+
+  if (initialRect != NULL)
+  {
+    int initialPixelRect[4];
+
+    /* Convert initial rect in pixels */
+    double firstCorner[2] = {initialRect[0], initialRect[1]}; /* upper left point */
+    double secondCorner[2] = {initialRect[0] + initialRect[2], initialRect[1] - initialRect[3]};
+    sciGet2dViewPixelCoordinates(pSubwin, firstCorner, initialPixelRect);
+    sciGet2dViewPixelCoordinates(pSubwin, secondCorner, initialPixelRect + 2);
+
+    javaRubberBox(sciGetParentFigure(pSubwin), isClick, initialPixelRect, endPixelRect, usedButton);
+  }
+  else
+  {
+    javaRubberBox(sciGetParentFigure(pSubwin), isClick, NULL, endPixelRect, usedButton);
+  }
+
+  /* here we get the two opposite points of the rectangle in pixels */
+  /* convert them in user coordinates */
+  sciGet2dViewCoordFromPixel(pSubwin, endPixelRect, endFirstCorner);
+  sciGet2dViewCoordFromPixel(pSubwin, endPixelRect + 2, endSecondCorner);
+
+  /* [x,y,w,h] array where (x,y) is the upper left point of the rectangle */
+  endRect[0] = Min(endFirstCorner[0], endSecondCorner[0]);
+  endRect[1] = Max(endFirstCorner[1], endSecondCorner[1]);
+  endRect[2] = Abs(endFirstCorner[0] - endSecondCorner[0]);
+  endRect[3] = Abs(endFirstCorner[1] - endSecondCorner[1]);
+
+}
+/*---------------------------------------------------------------------------------*/

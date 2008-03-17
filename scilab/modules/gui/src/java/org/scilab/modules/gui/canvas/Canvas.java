@@ -103,4 +103,14 @@ public interface Canvas extends Dockable {
 	  * @param status is true to set the event handler active
 	  */
 	 void setEventHandlerEnabled(boolean status);
+	 
+	 /**
+	  * Create an interactive selection rectangle and return its pixel coordinates
+	  * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	  *                or a sequence of press-release
+	  * @param initialRect if not null specify the initial rectangle to draw
+	  * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
+	  * @return Scilab code of the pressed button
+	  */
+	 int rubberBox(boolean isClick, int[] initialRect, int[] endRect);
 }

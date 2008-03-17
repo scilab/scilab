@@ -133,6 +133,7 @@ jbooleangetAutoResizeModeID=NULL;
 voidsetIsRenderingEnablejbooleanID=NULL; 
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
+jintArrayrubberBoxjbooleanjintArrayID=NULL; 
 
 
 }
@@ -189,6 +190,7 @@ jbooleangetAutoResizeModeID=NULL;
 voidsetIsRenderingEnablejbooleanID=NULL; 
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
+jintArrayrubberBoxjbooleanjintArrayID=NULL; 
 
 
 }
@@ -862,6 +864,47 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
+}
+
+long * DrawableFigureGL::rubberBox (bool isClick, long * initialRect, int initialRectSize){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jintArrayrubberBoxjbooleanjintArrayID==NULL) { /* Use the cache Luke */ jintArrayrubberBoxjbooleanjintArrayID = curEnv->GetMethodID(this->instanceClass, "rubberBox", "(Z[I)[I" ) ;
+if (jintArrayrubberBoxjbooleanjintArrayID == NULL) {
+std::cerr << "Could not access to the method " << "rubberBox" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+jboolean isClick_ = ((bool) isClick ? JNI_TRUE : JNI_FALSE);
+
+jintArray initialRect_ = curEnv->NewIntArray( initialRectSize ) ;
+curEnv->SetIntArrayRegion( initialRect_, 0, initialRectSize, (jint*) initialRect ) ;
+
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArrayrubberBoxjbooleanjintArrayID ,isClick_, initialRect_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+                        curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(initialRect_);
+
+return myArray;
+
 }
 
 }

@@ -27,6 +27,7 @@ import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
 import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
 import org.scilab.modules.renderer.textDrawing.SciTextRenderer;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
+import org.scilab.modules.renderer.utils.selection.RubberBox;
 import org.scilab.modules.renderer.ObjectGLCleaner;
 
 
@@ -82,6 +83,9 @@ public class DrawableFigureGL extends ObjectGL {
 	/** index of the background color */
 	private int backGroundColorIndex;
 	
+	/** Rubber box used when in rubber box mode */
+	private RubberBox rubberBox;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -98,6 +102,7 @@ public class DrawableFigureGL extends ObjectGL {
       	setDefaultArcRendererFactory();
       	backGroundColorIndex = 0;
       	textWriter = null;
+      	rubberBox = null;
     }
 	
 	/**
@@ -300,8 +305,6 @@ public class DrawableFigureGL extends ObjectGL {
   		setIsRenderingEnable(false);
   		FigureMapper.removeMapping(figureId);
   		
-  		// destroy context
-  		// destroy it here otherwise it crashes Scilab if Scilab quit
   		if (Threading.isOpenGLThread()) {
   			getRenderingTarget().getContext().destroy();
   		} else {
@@ -547,6 +550,64 @@ public class DrawableFigureGL extends ObjectGL {
 			textWriter.dispose();
 		}
 		textWriter = null;
+	}
+	
+	/**
+	 * Switch to rubber box mode by specifying a rubber box to use
+	 * @param rb rubber box to use
+	 */
+	public synchronized void setRubberBox(RubberBox rb) {
+		this.rubberBox = rb;
+	}
+	
+	/**
+	 * Desactivate rubber box mode
+	 */
+	public synchronized void removeRubberBox() {
+		this.rubberBox = null;
+	}
+	
+	/**
+	 * Get the rubber box currently used in the figure if one exists
+	 * @return the rubber box used by the figure or null if none exists
+	 */
+	public synchronized RubberBox getRubberBox() {
+		return this.rubberBox;
+	}
+	
+	/**
+	 * @return Wether the rubber box mod eis on
+	 */
+	public synchronized boolean isRubberBoxModeOn() {
+		return this.rubberBox != null;
+	}
+	
+	/**
+	 * Create an interactive selection rectangle and return its pixel coordinates
+	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 *                or a sequence of press-release
+	 * @param initialRect if not null specify the initial rectangle to draw
+	 * @return array of size 5 [x1, y1, x2, y2, button] where (x1,y1) is one of the rectangle corners
+	 *         (x2,y2) the coordinates of the opposite rectangle in pixel anf button the Scilab code
+	 *         of the mouse button.
+	 */
+	public int[] rubberBox(boolean isClick, int[] initialRect) {
+		
+		// giws is unable to pass null pointers
+		// we found a 0 sized array instead
+		int[] realIntialRect;
+		if (initialRect == null || initialRect.length == 0) {
+			realIntialRect = null;
+		} else {
+			realIntialRect = initialRect;
+		}
+		
+		int[] res = {0, 0, 0, 0, 0};
+		
+		// get [x1,y1,x2,y2] in res and button
+		int button = getRendererProperties().rubberBox(isClick, realIntialRect, res);
+		res[res.length - 1] = button;
+		return res;
 	}
 	
 }

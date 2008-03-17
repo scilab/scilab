@@ -117,7 +117,7 @@ public final class GLTools {
 		gl.glPushMatrix();
 		gl.glLoadIdentity();
 		gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
-		gl.glOrtho(viewPort[0], viewPort[0] + viewPort[2], viewPort[1], viewPort[1] + viewPort[VIEWPORT_LENGTH - 1],
+		gl.glOrtho(0.0, viewPort[2], 0.0, viewPort[VIEWPORT_LENGTH - 1],
 				   MIN_PIXEL_Z, MAX_PIXEL_Z);
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glPushMatrix();

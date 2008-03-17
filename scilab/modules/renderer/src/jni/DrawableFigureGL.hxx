@@ -83,6 +83,7 @@ jmethodID jbooleangetAutoResizeModeID; // cache method id
 jmethodID voidsetIsRenderingEnablejbooleanID; // cache method id
 jmethodID jintArraygetViewportID; // cache method id
 jmethodID voidsetViewportjintjintjintjintID; // cache method id
+jmethodID jintArrayrubberBoxjbooleanjintArrayID; // cache method id
 
 
 /**
@@ -185,6 +186,8 @@ void setIsRenderingEnable(bool isEnable);
 long * getViewport();
 
 void setViewport(long posX, long posY, long width, long height);
+
+long * rubberBox(bool isClick, long * initialRect, int initialRectSize);
 
 
                         /**

@@ -22,6 +22,7 @@ import javax.swing.JViewport;
 
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.ScilabEventListener;
+import org.scilab.modules.gui.events.ScilabRubberBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -82,7 +83,10 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	 * OpenGL function forcing redraw of the canvas
 	 */
 	public void display() {
+		//long deb = System.nanoTime();
 		getCanvas().display();
+		//long end = System.nanoTime() - deb;
+		//System.err.println("Elapsed time = " + (end / 1000000.0));
 	}
 
 	/**
@@ -292,5 +296,17 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 			canvas.removeMouseListener(eventHandler);
 			canvas.removeMouseMotionListener(eventHandler);
 		}
+	}
+	
+	/**
+	 * Create an interactive selection rectangle and return its pixel coordinates
+	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 *                or a sequence of press-release
+	 * @param initialRect if not null specify the initial rectangle to draw
+	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
+	 * @return Scilab code of the pressed button
+	 */
+	public int rubberBox(boolean isClick, int[] initialRect, int[] endRect) {
+		return getCanvas().rubberBox(isClick, initialRect, endRect);
 	}
 }

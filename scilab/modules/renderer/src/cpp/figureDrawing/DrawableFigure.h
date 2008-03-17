@@ -139,6 +139,17 @@ public:
    void setBackgroundColor(int backColor);
 
    /**
+    * Call rubber box on the figure
+    * @param isClick specify whether the rubber box is selected by mouse click
+    *        or a sequence of press/release.
+    * @param intialRect if not null, specify the initial rectangle to use
+    * @param[out] endRect array containing the coordinates of two opposite corners of
+    *                     the rubber box
+    * @param[out] usedButton Scilab code of the button used to terminate the rubber box
+    */
+   void rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton);
+
+   /**
     * Create the rendering canvas for the figure.
     */
    void openRenderingCanvas( void ) ;
@@ -147,6 +158,7 @@ public:
     * Draw the background of the figure
     */
    void drawBackground(void);
+
 
   /*-----------------------------------------------------------------------------*/
    /**

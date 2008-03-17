@@ -216,4 +216,17 @@ public class ScilabCanvasBridge {
 	public static void setEventHandlerEnabled(Canvas canvas, boolean status) {
 		canvas.getAsSimpleCanvas().setEventHandlerEnabled(status);
 	}
+	
+	/**
+	 * Create an interactive selection rectangle and return its pixel coordinates
+	 * @param canvas canvas on whixh the rubber box will be applied
+	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 *                or a sequence of press-release
+	 * @param initialRect if not null specify the initial rectangle to draw
+	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
+	 * @return Scilab code of the pressed button
+	 */
+	public static int rubberBox(Canvas canvas, boolean isClick, int[] initialRect, int[] endRect) {
+		return canvas.getAsSimpleCanvas().rubberBox(isClick, initialRect, endRect);
+	}
 }

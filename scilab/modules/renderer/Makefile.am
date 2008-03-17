@@ -54,6 +54,7 @@ src/cpp/BuildDrawingObserver.cpp \
 src/cpp/DrawableObjectJoGL.cpp \
 src/cpp/GetJavaProperty.cpp \
 src/cpp/SetJavaProperty.cpp \
+src/cpp/JavaInteraction.cpp \
 src/cpp/DrawableObject.cpp \
 src/cpp/DrawingBridge.cpp \
 src/cpp/subwinDrawing/CameraJoGL.cpp \
@@ -397,7 +398,8 @@ includes/BuildDrawingObserver.h \
 includes/DrawingBridge.h \
 includes/GetJavaProperty.h \
 includes/GraphicSynchronizerInterface.h \
-includes/SetJavaProperty.h
+includes/SetJavaProperty.h \
+includes/JavaInteraction.h
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1

@@ -99,6 +99,7 @@ void ConcreteDrawableText::showBox(void)
 
   // get bounding rectangle corners
   double corners[4][3];
+  //sciGetTextBoundingBox(m_pDrawed, corners[0], corners[1], corners[2], corners[3]);
   m_pDrawingTextStrategy->getBoundingRectangle(corners[0], corners[1], corners[2], corners[3]);
 
   for( ; it != m_oDrawingBoxStrategies.end(); it++)

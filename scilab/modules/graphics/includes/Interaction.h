@@ -34,12 +34,31 @@ extern int sciGetCallbackLen (sciPointObj * pthis); /* INTERACTION */
 extern char *sciGetCallback (sciPointObj * pthis); /* INTERACTION */
 extern int sciDelCallback (sciPointObj * pthis); /* INTERACTION */
 
-extern int Objmove(sciPointObj * pobj, double d[], int m, BOOL opt); /* INTERACTION */
+int Objmove(sciPointObj * pobj, double d[], int m, BOOL opt); /* INTERACTION */
 extern BOOL sciIsAreaZoom(integer *box, integer *box1 ,integer *section); /* INTERACTION */
 
+/**
+ * Call rubber box on a figure in pixels
+ * @param pFigure figure on which to apply the rubber box
+ * @param isClick specify whether the rubber box is selected by mouse click
+ *        or a sequence of press/release.
+ * @param intialRect if not null, specify the initial rectangle to use
+ * @param[out] endRect array containing the coordinates of two opposite corners of
+ *                     the rubber box
+ * @param[out] usedButton Scilab code of the button used to terminate the rubber box
+ */
+void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton);
 
-
-
+/**
+ * Call rubber box using a subwn scale
+ * @param pFigure figure on which to apply the rubber box
+ * @param isClick specify whether the rubber box is selected by mouse click
+ *        or a sequence of press/release.
+ * @param intialRect if not null, specify the initial rectangle [x,y,w,h] to use
+ * @param[out] endRect array containing the [x,y,w,h] of the selected rectangle
+ * @param[out] usedButton Scilab code of the button used to terminate the rubber box
+ */
+void rubberBox(sciPointObj * pSubwin, BOOL isClick, const double initialRect[4], double endRect[4], int * usedButton);
 
 
 #endif /* __SCI_INTERACTION__ */

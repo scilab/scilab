@@ -233,6 +233,8 @@ void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], do
 
 void sciGet2dViewCoordFromPixel(sciPointObj * pObj, const int pixelCoords[2], double userCoords2D[2]); /* GET */
 
+void sciGet2dViewPixelCoordinates(sciPointObj * pObj, const double userCoords2D[2], int pixelCoords[2]); /* GET */
+
 BOOL sciGetIsIsoView(sciPointObj * pObj); /* GET */
 
 BOOL sciGetIsCubeScaled(sciPointObj * pObj); /* GET */

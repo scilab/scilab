@@ -15,6 +15,7 @@
 package org.scilab.modules.gui.graphicWindow;
 
 import javax.media.opengl.GL;
+
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
@@ -249,6 +250,18 @@ public class ScilabRendererProperties implements RendererProperties {
 	 */
 	public void setBackgroundColor(double red, double green, double blue) {
 		parentCanvas.setBackgroundColor(red, green, blue);
+	}
+	
+	/**
+	 * Create an interactive selection rectangle and return its pixel coordinates
+	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
+	 *                or a sequence of press-release
+	 * @param initialRect if not null specify the initial rectangle to draw
+	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
+	 * @return Scilab code of the pressed button
+	 */
+	public int rubberBox(boolean isClick, int[] initialRect, int[] endRect) {
+		return parentCanvas.rubberBox(isClick, initialRect, endRect);
 	}
 	
 }

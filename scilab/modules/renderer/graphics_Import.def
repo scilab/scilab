@@ -133,3 +133,4 @@ destroyGraphicStringArray
 sciGetIsAutoDrawable
 sciSetXorMode
 getPixelModeIndex
+sciGetTextBoundingBox

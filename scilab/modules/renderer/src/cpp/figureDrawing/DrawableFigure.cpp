@@ -241,4 +241,9 @@ void DrawableFigure::setBackgroundColor(int backColor)
   getFigureImp()->setBackgroundColor(backColor);
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigure::rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton)
+{
+  getFigureImp()->rubberBox(isClick, initialRect, endRect, usedButton);
+}
+/*---------------------------------------------------------------------------------*/
 }

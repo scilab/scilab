@@ -33,6 +33,8 @@ public class SciRenderer
 	/** index of the figure to render */
 	private int renderedFigure;
 	
+	
+	
 	/**
 	 * Default constructor
 	 * @param figureIndex index of the figure to render
@@ -47,8 +49,6 @@ public class SciRenderer
    * @param gLDrawable The GLDrawable object.
    */    
   public void display(GLAutoDrawable gLDrawable) {
-	
-    //long startTime = System.currentTimeMillis();
 
 	DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
 	
@@ -59,17 +59,21 @@ public class SciRenderer
 	}
     // should call the draw function of the corresponding figure
 	if (curFigure.getIsRenderingEnable()) {
-		FigureScilabCall.displayFigure(renderedFigure);
+		
+		
+		if (curFigure.isRubberBoxModeOn()) {
+			curFigure.getRubberBox().drawInContext();
+		} else {
+			// draw the hierarchy
+			FigureScilabCall.displayFigure(renderedFigure);
+		}
 	}
 	
 	// seems that buffers will be swaped any way with GLJPanel
 //	if (!gLDrawable.getAutoSwapBufferMode()) {
 //		gLDrawable.swapBuffers();
 //	}
-//        long endTime = System.currentTimeMillis();	
-
-
-        //  System.err.println("Time Java = " + (endTime - startTime));
+          
 
   }
     
@@ -95,7 +99,6 @@ public class SciRenderer
 		  return;
 	  }
 	  //gLDrawable.setAutoSwapBufferMode(false);
-	  
 	  GL gl = gLDrawable.getGL();
       gl.glShadeModel(GL.GL_SMOOTH);              // Enable Smooth Shading
       gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);    // white Background
@@ -105,8 +108,9 @@ public class SciRenderer
       gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
       gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_FASTEST);	// Really fast
       gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin line
-      gl.glTexEnvi(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_DECAL); // Color of texture will not be 
-      																		// mixed with the color of the polygon
+      // Color of texture will not be 
+		// mixed with the color of the polygon
+      gl.glTexEnvi(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_DECAL);
 
       gl.glEnable(GL.GL_COLOR_LOGIC_OP); // to use pixel drawing mode
       gl.glLogicOp(GL.GL_COPY);
@@ -114,7 +118,7 @@ public class SciRenderer
 	  if (curFigure.getIsRenderingEnable()) {
 		  curFigure.getColorMap().clearTexture();
 		  curFigure.destroyTextWriter();
-    	  FigureScilabCall.redrawFigure(renderedFigure);
+		  FigureScilabCall.redrawFigure(renderedFigure);
       }
 
     }
@@ -133,10 +137,17 @@ public class SciRenderer
    * @param width The new width of the window.
    * @param height The new height of the window.
    */
-  public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height)
-    {
+  public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height)	{
+	  DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
 	  
-    }
+	  if (curFigure.isRubberBoxModeOn()) {
+		// in rubber box mode we don't automatically redraw the figure
+		// so we need to force a redraw to get a consistent background
+		// previous rubber box will be then cleared, so we must erase it
+		curFigure.getRubberBox().doNotErase();
+		FigureScilabCall.displayFigure(renderedFigure);
+	  }
+  }
 
 
 }

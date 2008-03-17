@@ -92,10 +92,11 @@ static gw_generic_table Tab[]={
 	{sci_get,"get"},
 	{sci_set,"set"},
 	{sci_newaxes,"newaxes"},
-    {sci_relocate_handle,"relocate_handle"},
-    {sci_swap_handles,"swap_handles"},
+        {sci_relocate_handle,"relocate_handle"},
+        {sci_swap_handles,"swap_handles"},
 	{sci_help_gtk,"help_gtk"},
-	{sci_showalluimenushandles,"showalluimenushandles"}
+	{sci_showalluimenushandles,"showalluimenushandles"},
+        {sci_rubberbox,"rubberbox"}
 };
 
 /*--------------------------------------------------------------------------*/ 

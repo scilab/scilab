@@ -4080,7 +4080,7 @@ void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pi
 }
 /*----------------------------------------------------------------------------------*/
 /**
- * Convert user coordinates to pixel ones (relative to the viewing canvas).
+ * Convert user coordinates to user cooordinates (2D).
  * @param pObj subwindow handle
  * @param userCoord3D user coordinates
  * @param userCoords2D result in user coordinates in the default 2D plane.
@@ -4101,11 +4101,11 @@ void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], do
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Convert pixel coordinates to 2D view coordinate
-* @param pObj subwindow handle
-* @param userCoord pixel coordinates
-* @param userCoords2D user coordinates in default 2D plane
-*/
+ * Convert pixel coordinates to 2D view coordinate
+ * @param pObj subwindow handle
+ * @param userCoord pixel coordinates
+ * @param userCoords2D user coordinates in default 2D plane
+ */
 void sciGet2dViewCoordFromPixel(sciPointObj * pObj, const int pixelCoords[2], double userCoords2D[2])
 {
   switch(sciGetEntityType(pObj))
@@ -4117,6 +4117,31 @@ void sciGet2dViewCoordFromPixel(sciPointObj * pObj, const int pixelCoords[2], do
     sciprint(_("Coordinates modifications are only applicable on axes objects.\n"));
     userCoords2D[0] = 0.0;
     userCoords2D[1] = 0.0;
+    break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Convert 2d view coordinates to pixel coordinates
+ * @param pObj subwindow handle
+ * @param userCoords2D coordinates in th default 2D plane
+ * @param pixelsCoords pixel coordinates
+ */
+void sciGet2dViewPixelCoordinates(sciPointObj * pObj, const double userCoords2D[2], int pixelCoords[2])
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    {
+      /* create a 3d user coord */
+      double userCoord3D[3] = {userCoords2D[0], userCoords2D[1], 0.0};
+      sciGetJava2dViewPixelCoordinates(pObj, userCoord3D, pixelCoords);
+    }
+    break;
+  default:
+    sciprint(_("Coordinates modifications are only applicable on axes objects.\n"));
+    pixelCoords[0] = -1;
+    pixelCoords[1] = -1;
     break;
   }
 }
