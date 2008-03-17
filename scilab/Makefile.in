@@ -40,6 +40,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT)
+# doc
 
 #  The user wants to compile the localization files
 @GENERATE_LOCALIZATION_FILES_TRUE@am__append_1 = localization
@@ -49,9 +50,10 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	COPYING config/compile config/config.guess config/config.rpath \
-	config/config.sub config/depcomp config/install-sh \
-	config/ltmain.sh config/missing
+	ABOUT-NLS COPYING config.guess config.sub config/compile \
+	config/config.guess config/config.rpath config/config.sub \
+	config/depcomp config/install-sh config/ltmain.sh \
+	config/missing depcomp install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
@@ -328,7 +330,7 @@ $(top_builddir)/modules/shell/libscishell.la
 #else
 #	scilab_bin_LDADD +=	$(X_EXTRA_LIBS)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros doc $(am__append_1)
+TARGETS_ALL = macros $(am__append_1)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \

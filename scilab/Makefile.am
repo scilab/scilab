@@ -34,7 +34,8 @@ endif
 
 LANG_DOMAIN=scilab
 
-TARGETS_ALL=macros doc
+TARGETS_ALL=macros
+# doc
 
 #  The user wants to compile the localization files
 if GENERATE_LOCALIZATION_FILES
