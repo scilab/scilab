@@ -6,7 +6,7 @@
 	ProjectGUID="{E5038304-761D-448C-B358-48CA2883778A}"
 	RootNamespace="norandlib"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

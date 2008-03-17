@@ -6,7 +6,7 @@
 	ProjectGUID="{B23B01C1-A545-4BA0-9950-7BCADE201C5B}"
 	RootNamespace="renderer"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

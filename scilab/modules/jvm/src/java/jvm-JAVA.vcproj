@@ -6,7 +6,7 @@
 	ProjectGUID="{E9783492-017E-4811-9CC7-6B71856F847C}"
 	RootNamespace="libjvm-Ant"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

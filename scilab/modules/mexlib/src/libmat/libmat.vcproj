@@ -5,7 +5,7 @@
 	Name="libmat"
 	ProjectGUID="{8A508625-C2AA-4295-AA76-16E4E456D13D}"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

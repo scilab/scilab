@@ -5,7 +5,7 @@
 	Name="CheckHelp"
 	ProjectGUID="{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

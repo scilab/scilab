@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="interscin"
 	ProjectGUID="{53AAB5BC-2C08-4BBA-9793-C36140A404F8}"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

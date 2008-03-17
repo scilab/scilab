@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="optim"
 	ProjectGUID="{425B887B-9FC5-4CD2-B632-DBFC000E3E25}"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

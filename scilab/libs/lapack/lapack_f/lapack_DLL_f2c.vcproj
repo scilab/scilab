@@ -6,7 +6,7 @@
 	ProjectGUID="{69296D00-0DE1-4F4B-B0CE-FE4F3CB43923}"
 	RootNamespace="lapack_f2c_DLL"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

@@ -6,7 +6,7 @@
 	ProjectGUID="{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}"
 	RootNamespace="libjvm"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

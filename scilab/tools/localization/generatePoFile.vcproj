@@ -6,7 +6,7 @@
 	ProjectGUID="{6880D4DF-BC7A-411F-AD9B-20A14429A92F}"
 	RootNamespace="generatePoFile"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

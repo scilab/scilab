@@ -6,7 +6,7 @@
 	ProjectGUID="{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}"
 	RootNamespace="localization-Ant"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

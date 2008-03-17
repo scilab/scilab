@@ -6,7 +6,7 @@
 	ProjectGUID="{2EA61E81-0F0C-4006-985C-12785093CD2F}"
 	RootNamespace="shell-Ant"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

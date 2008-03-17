@@ -6,7 +6,7 @@
 	ProjectGUID="{3411652C-2879-48D0-B5C1-18D546E0A683}"
 	RootNamespace="nographic_export"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

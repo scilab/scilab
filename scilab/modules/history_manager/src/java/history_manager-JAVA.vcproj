@@ -6,7 +6,7 @@
 	ProjectGUID="{63965A84-E354-4CBC-BFAC-FDFC8224573F}"
 	RootNamespace="history_manager-Ant"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

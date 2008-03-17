@@ -6,7 +6,7 @@
 	ProjectGUID="{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}"
 	RootNamespace="randlib"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="cacsd"
 	ProjectGUID="{D5DD1407-3926-4F6C-AD7B-3A6B2DE56049}"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

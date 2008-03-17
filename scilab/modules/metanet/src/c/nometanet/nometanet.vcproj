@@ -6,7 +6,7 @@
 	ProjectGUID="{5F09A87D-A877-4AB8-9482-029253833FE4}"
 	RootNamespace="nometanet"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

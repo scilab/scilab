@@ -6,7 +6,7 @@
 	ProjectGUID="{8028F371-6A94-4A26-8804-6E7F05F1D1AA}"
 	RootNamespace="scilab_windows"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

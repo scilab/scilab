@@ -6,7 +6,7 @@
 	ProjectGUID="{28E4E9CA-3EEC-43EE-9F15-56259C6677B8}"
 	RootNamespace="differential_equations_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

@@ -6,7 +6,7 @@
 	ProjectGUID="{03773159-155A-48E0-9B26-119D0BF35B2B}"
 	RootNamespace="sound"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

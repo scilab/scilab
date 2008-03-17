@@ -6,7 +6,7 @@
 	ProjectGUID="{70F677F1-B535-4D0F-A16F-5093B799A540}"
 	RootNamespace="scicos_blocks"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

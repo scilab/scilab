@@ -5,7 +5,7 @@
 	Name="core"
 	ProjectGUID="{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 	RootNamespace="core"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

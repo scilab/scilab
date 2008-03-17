@@ -6,7 +6,7 @@
 	ProjectGUID="{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}"
 	RootNamespace="blas_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

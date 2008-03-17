@@ -6,7 +6,7 @@
 	ProjectGUID="{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
 	RootNamespace="WScilex"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

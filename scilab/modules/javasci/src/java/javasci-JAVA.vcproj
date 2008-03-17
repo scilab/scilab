@@ -6,7 +6,7 @@
 	ProjectGUID="{6182A20D-8111-41C1-9713-CD2A4725057C}"
 	RootNamespace="javasci-Ant"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

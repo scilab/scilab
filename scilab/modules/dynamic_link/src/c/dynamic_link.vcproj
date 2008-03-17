@@ -6,7 +6,7 @@
 	ProjectGUID="{EAB6C580-22B3-4359-BA1D-DD7499A96163}"
 	RootNamespace="dynamic_link"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

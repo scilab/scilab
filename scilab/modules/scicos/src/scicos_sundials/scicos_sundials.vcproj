@@ -6,7 +6,7 @@
 	ProjectGUID="{C781737A-7C97-4CF9-ACBC-F68C2BBF0FFA}"
 	RootNamespace="scicos_sundials"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

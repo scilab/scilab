@@ -6,7 +6,7 @@
 	ProjectGUID="{CE521770-0466-4743-B9F6-38F8AEB93888}"
 	RootNamespace="spreadsheet"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

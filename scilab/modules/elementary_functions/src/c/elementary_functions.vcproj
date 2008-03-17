@@ -5,7 +5,7 @@
 	Name="elementary_functions"
 	ProjectGUID="{5B110267-7C18-437C-B87D-DBA2B50729E9}"
 	RootNamespace="elementary_functions"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

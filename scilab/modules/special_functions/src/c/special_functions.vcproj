@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="special_functions"
 	ProjectGUID="{C8C13A46-DEB8-44AA-8BF8-C9BBC7FA0B46}"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

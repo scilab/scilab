@@ -6,7 +6,7 @@
 	ProjectGUID="{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}"
 	RootNamespace="SetupAtlas"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

@@ -6,7 +6,7 @@
 	ProjectGUID="{68F65DC6-AF8B-442F-A21A-108E1E501BE6}"
 	RootNamespace="nohistory_manager"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

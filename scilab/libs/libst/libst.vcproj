@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="libst"
 	ProjectGUID="{FBF44619-6C9B-4400-940C-9147D81EB340}"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

@@ -6,7 +6,7 @@
 	ProjectGUID="{3E4EF47F-2284-4B43-ABBB-20593FF0B51D}"
 	RootNamespace="graphic_export-Ant"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

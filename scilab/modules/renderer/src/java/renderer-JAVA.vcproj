@@ -6,7 +6,7 @@
 	ProjectGUID="{4235A847-ED0E-43A3-B62B-E59CB857EDE9}"
 	RootNamespace="renderer-Ant"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="integer"
 	ProjectGUID="{C7865CAA-EC7C-41EB-8324-2B81C384CA20}"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

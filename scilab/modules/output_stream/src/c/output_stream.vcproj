@@ -6,7 +6,7 @@
 	ProjectGUID="{A5911CD7-F8E8-440C-A23E-4843A0636F3A}"
 	RootNamespace="output_stream"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

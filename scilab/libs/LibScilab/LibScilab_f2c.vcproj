@@ -5,7 +5,7 @@
 	Name="LibScilab_f2c"
 	ProjectGUID="{64BC155E-292F-484F-9404-76EE6AE67A43}"
 	RootNamespace="LibScilab"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

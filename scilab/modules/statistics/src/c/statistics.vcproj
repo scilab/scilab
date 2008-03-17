@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="statistics"
 	ProjectGUID="{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

@@ -6,7 +6,7 @@
 	ProjectGUID="{CEF88C5F-6820-46D4-BCCD-44D5581481C5}"
 	RootNamespace="libmx"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="signal"
 	ProjectGUID="{A3AD381E-C0DD-45BB-ACB2-C0A0DB33A606}"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

@@ -6,7 +6,7 @@
 	ProjectGUID="{77154919-8A20-4F35-B7C7-6B3B957BDCA1}"
 	RootNamespace="dynamiclibrary"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

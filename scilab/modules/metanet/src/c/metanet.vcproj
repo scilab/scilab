@@ -6,7 +6,7 @@
 	ProjectGUID="{E9741474-5C3A-4101-8B85-AC5221018C05}"
 	RootNamespace="metanet"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

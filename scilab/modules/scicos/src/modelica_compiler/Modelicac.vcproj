@@ -5,7 +5,7 @@
 	Name="Modelicac"
 	ProjectGUID="{BB476641-07F4-488E-AA87-21795FFA8F4A}"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

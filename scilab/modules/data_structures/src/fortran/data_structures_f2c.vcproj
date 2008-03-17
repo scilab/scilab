@@ -6,7 +6,7 @@
 	ProjectGUID="{8091E9B6-4C08-4218-A63D-742867CCFE9F}"
 	RootNamespace="data_structures_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

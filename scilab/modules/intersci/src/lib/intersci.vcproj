@@ -6,7 +6,7 @@
 	ProjectGUID="{DFA0D75B-F7EF-4D02-B33F-486829405315}"
 	RootNamespace="intersci"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

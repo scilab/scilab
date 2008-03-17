@@ -5,7 +5,7 @@
 	Name="BuildMacros"
 	ProjectGUID="{66F2FB48-5D68-4445-A856-119F685A371B}"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

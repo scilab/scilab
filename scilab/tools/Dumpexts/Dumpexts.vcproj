@@ -5,7 +5,7 @@
 	Name="Dumpexts"
 	ProjectGUID="{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}"
 	RootNamespace="Dumpexts"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

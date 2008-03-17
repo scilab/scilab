@@ -6,7 +6,7 @@
 	ProjectGUID="{0BD503EF-5CB6-4277-BAC4-8955C97F247D}"
 	RootNamespace="Javasci"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

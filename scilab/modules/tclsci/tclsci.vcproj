@@ -6,7 +6,7 @@
 	ProjectGUID="{C456D5B8-8A32-496A-A2EE-164B0D734126}"
 	RootNamespace="tclsci"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

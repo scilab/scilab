@@ -6,7 +6,7 @@
 	ProjectGUID="{5AD5654B-B2EE-4B84-81FC-F6A4C1073D96}"
 	RootNamespace="graphic_export"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

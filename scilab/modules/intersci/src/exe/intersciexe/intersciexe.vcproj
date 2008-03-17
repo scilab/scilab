@@ -5,7 +5,7 @@
 	Name="intersciexe"
 	ProjectGUID="{73AA7612-4297-4339-B521-8C2870E7BEC1}"
 	RootNamespace="intersciexe"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform

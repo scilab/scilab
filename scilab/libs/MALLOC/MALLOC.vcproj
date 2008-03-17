@@ -6,7 +6,7 @@
 	ProjectGUID="{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}"
 	RootNamespace="MALLOC"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
+	
 	>
 	<Platforms>
 		<Platform
