@@ -471,6 +471,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gw_dynamic_generic.c"
+				>
+			</File>
+			<File
 				RelativePath=".\gw_dynamic_scicos.c"
 				>
 			</File>
@@ -984,11 +988,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
@@ -1037,6 +1041,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_core.h"
+				>
+			</File>
+			<File
+				RelativePath=".\gw_dynamic_generic.h"
 				>
 			</File>
 			<File
@@ -1116,11 +1124,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Os_specific.h"
+				RelativePath="..\..\includes\Os_specific.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\Os_specific.h"
+				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File

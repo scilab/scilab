@@ -9,26 +9,33 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include <stdlib.h>
-#include "machine.h"
-#include "gw_dynamic_scicos.h"
-#include "callDynamicGateway.h"
-#include "gw_dynamic_generic.h"
-#include "Scierror.h"
-/*--------------------------------------------------------------------------*/
-#define SCICOS_MODULE_NAME "scicos"
-static DynLibHandle hScicosLib = NULL;
-static PROC_GATEWAY ptr_gw_scicos = NULL;
-static char* dynlibname_scicos = NULL;
-static char* gatewayname_scicos = NULL;
-/*--------------------------------------------------------------------------*/
-int gw_dynamic_scicos(void)
-{
-	return gw_dynamic_generic(SCICOS_MODULE_NAME,
-		                      &dynlibname_scicos,
-							  &gatewayname_scicos,
-							  &hScicosLib,
-							  &ptr_gw_scicos);
 
+/*--------------------------------------------------------------------------*/
+#include "gw_dynamic_generic.h"
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_generic(char *moduleName,
+					   char **dynlibName,
+					   char **gatewayName,
+					   DynLibHandle *hModuleLib,
+					   PROC_GATEWAY *ptrGatewayFunction)
+{
+	dynamic_gateway_error_code err;
+	if (*dynlibName == NULL)
+	{
+		*dynlibName = buildModuleDynLibraryName(moduleName);
+	}
+
+	if (*gatewayName == NULL)
+	{
+		*gatewayName = buildGatewayName(moduleName);
+	}
+
+	err = callDynamicGateway(*dynlibName,
+							*gatewayName,
+							hModuleLib,
+							ptrGatewayFunction);
+	displayErrorGateway(err,*dynlibName,*gatewayName);
+	
+	return 0;
 }
 /*--------------------------------------------------------------------------*/
