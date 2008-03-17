@@ -3400,7 +3400,6 @@ int checkPercent( char * string )
       return -1 ;
     }
   }
-  return -1 ;
 }
 /*---------------------------------------------------------------------------*/
 int sciInitAutoSize( sciPointObj * pObj, BOOL autoSize )
