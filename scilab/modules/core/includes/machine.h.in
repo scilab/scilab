@@ -4,6 +4,12 @@
 #define MACHINE_H
 /* This file defines global element configuration of the build host */
 
+/* undef _FILE_OFFSET_BITS causes silly warnings with the Sun Compiler */
+#ifdef _FILE_OFFSET_BITS 
+#undef _FILE_OFFSET_BITS
+#endif
+
+
 
 /* Define C2F without Trailing Underscore */
 #undef C2F
