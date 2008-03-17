@@ -94,7 +94,7 @@ Source: modules\{#HELPTOOLS}\macros\names; DestDir: {app}\modules\{#HELPTOOLS}\m
 Source: modules\{#HELPTOOLS}\macros\*.bin; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\macros\*.sci; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HELPTOOLS}\bin\*.*; DestDir: {app}\modules\{#HELPTOOLS}\bin\sablotron; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\bin\*.*; DestDir: {app}\modules\{#HELPTOOLS}; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HELPTOOLS}\examples\*.*; DestDir: {app}\modules\{#HELPTOOLS}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
