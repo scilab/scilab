@@ -140,8 +140,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/HandleDrawingObserver.cpp \
 	src/cpp/BuildDrawingObserver.cpp \
 	src/cpp/DrawableObjectJoGL.cpp src/cpp/GetJavaProperty.cpp \
-	src/cpp/SetJavaProperty.cpp src/cpp/DrawableObject.cpp \
-	src/cpp/DrawingBridge.cpp src/cpp/subwinDrawing/CameraJoGL.cpp \
+	src/cpp/SetJavaProperty.cpp src/cpp/JavaInteraction.cpp \
+	src/cpp/DrawableObject.cpp src/cpp/DrawingBridge.cpp \
+	src/cpp/subwinDrawing/CameraJoGL.cpp \
 	src/cpp/subwinDrawing/CameraBridge.cpp \
 	src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
 	src/cpp/subwinDrawing/CameraFactory.cpp \
@@ -391,6 +392,7 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-DrawableObjectJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-GetJavaProperty.lo \
 @GUI_TRUE@	libscirenderer_la-SetJavaProperty.lo \
+@GUI_TRUE@	libscirenderer_la-JavaInteraction.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableObject.lo \
 @GUI_TRUE@	libscirenderer_la-DrawingBridge.lo \
 @GUI_TRUE@	libscirenderer_la-CameraJoGL.lo \
@@ -879,6 +881,7 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/DrawableObjectJoGL.cpp \
 @GUI_TRUE@src/cpp/GetJavaProperty.cpp \
 @GUI_TRUE@src/cpp/SetJavaProperty.cpp \
+@GUI_TRUE@src/cpp/JavaInteraction.cpp \
 @GUI_TRUE@src/cpp/DrawableObject.cpp \
 @GUI_TRUE@src/cpp/DrawingBridge.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/CameraJoGL.cpp \
@@ -1212,7 +1215,8 @@ includes/BuildDrawingObserver.h \
 includes/DrawingBridge.h \
 includes/GetJavaProperty.h \
 includes/GraphicSynchronizerInterface.h \
-includes/SetJavaProperty.h
+includes/SetJavaProperty.h \
+includes/JavaInteraction.h
 
 
 # Provides macros compilation, Java compilation, cleaning
@@ -1503,6 +1507,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsometricCameraGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsometricCameraJavaMapper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-JavaInteraction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LabelPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LabelPositionerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LeftYTicksDrawerGL.Plo@am__quote@
@@ -2008,6 +2013,13 @@ libscirenderer_la-SetJavaProperty.lo: src/cpp/SetJavaProperty.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetJavaProperty.cpp' object='libscirenderer_la-SetJavaProperty.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SetJavaProperty.lo `test -f 'src/cpp/SetJavaProperty.cpp' || echo '$(srcdir)/'`src/cpp/SetJavaProperty.cpp
+
+libscirenderer_la-JavaInteraction.lo: src/cpp/JavaInteraction.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-JavaInteraction.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-JavaInteraction.Tpo -c -o libscirenderer_la-JavaInteraction.lo `test -f 'src/cpp/JavaInteraction.cpp' || echo '$(srcdir)/'`src/cpp/JavaInteraction.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-JavaInteraction.Tpo $(DEPDIR)/libscirenderer_la-JavaInteraction.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/JavaInteraction.cpp' object='libscirenderer_la-JavaInteraction.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-JavaInteraction.lo `test -f 'src/cpp/JavaInteraction.cpp' || echo '$(srcdir)/'`src/cpp/JavaInteraction.cpp
 
 libscirenderer_la-DrawableObject.lo: src/cpp/DrawableObject.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableObject.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableObject.Tpo -c -o libscirenderer_la-DrawableObject.lo `test -f 'src/cpp/DrawableObject.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObject.cpp
