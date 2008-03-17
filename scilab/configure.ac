@@ -727,24 +727,6 @@ AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)
 AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
 
 
-
-#################
-## UMFPACK
-#################
-
-AC_ARG_WITH(umfpack,
-    [  --with-umfpack	           compile with the UMFPACK 3 library])
-
-UMFPACK_ENABLE=0
-if test "$with_umfpack" = yes; then
-   AC_UMFPACK()
-   UMFPACK_ENABLE=1
-fi
-
-AC_SUBST(UMFPACK_ENABLE)
-AM_CONDITIONAL(UMFPACK, test "$with_umfpack" = yes)
-
-
 #################
 ## FFTW
 #################
@@ -867,7 +849,7 @@ if test "$with_umfpack" = yes; then
 fi
 
 AC_SUBST(UMFPACK_ENABLE)
-AM_CONDITIONAL(UMFPACK, test "$with_enable" = yes)
+AM_CONDITIONAL(UMFPACK, test "$with_umfpack" = yes)
 
 #######################
 ## Test for PCRE
@@ -1009,6 +991,12 @@ AC_DEFINE_UNQUOTED([PATH_SEPARATOR], ["$PATH_SEPARATOR"],
 AH_TOP([#ifndef MACHINE_H
 #define MACHINE_H
 /* This file defines global element configuration of the build host */
+
+/* undef _FILE_OFFSET_BITS causes silly warnings with the Sun Compiler */
+#ifdef _FILE_OFFSET_BITS 
+#undef _FILE_OFFSET_BITS
+#endif
+
 ])
 
 AH_BOTTOM([
