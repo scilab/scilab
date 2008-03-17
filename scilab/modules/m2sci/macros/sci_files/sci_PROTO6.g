@@ -16,7 +16,7 @@ function [tree]=sci_MFUN(tree)
 
 A=getrhs(tree)
 A=convert2double(A)
-tree.rhs=Rhs(A)
+tree.rhs=Rhs_tlist(A)
 
 tree.lhs(1).dims=A.dims
 if is_real(A) then

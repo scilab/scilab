@@ -16,7 +16,7 @@ function [tree]=sci_erfc(tree)
 
 A=getrhs(tree)
 A=convert2double(A)
-tree.rhs=Rhs(A)
+tree.rhs=Rhs_tlist(A)
 
 tree.lhs(1).dims=A.dims
 tree.lhs(1).type=Type(Double,Real)

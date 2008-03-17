@@ -19,7 +19,7 @@ opt=part("MFUN",1)
 A = getrhs(tree)
 if A.vtype==String then
   tree.name="SFUN"
-  tree.rhs=Rhs(A,opt)
+  tree.rhs=Rhs_tlist(A,opt)
   tree.lhs(1).dims=A.dims
   tree.lhs(1).type=A.type
 elseif A.vtype==Unknown then

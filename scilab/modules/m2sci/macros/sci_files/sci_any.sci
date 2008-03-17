@@ -25,20 +25,20 @@ if rhs==1 then
   A = convert2double(A)
   
   if is_complex(A) then
-    A = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
+    A = Funcall("abs",1,Rhs_tlist(A),list(Variable("",A.infer)))
   elseif ~is_real(A) then
-    newA = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
+    newA = Funcall("abs",1,Rhs_tlist(A),list(Variable("",A.infer)))
     repl_poss(newA,A,A,gettext("messages","m2sci_message_77"))
     A=newA
   end
-  tree.rhs=Rhs(A)
+  tree.rhs=Rhs_tlist(A)
   
   // if A is not a multidimensional array
   if size(A.dims)==2 then
     if is_a_vector(A) then
       tree.lhs(1).dims=list(1,1)
     elseif not_a_vector(A) then
-      tree.rhs=Rhs(A,1)
+      tree.rhs=Rhs_tlist(A,1)
       tree.lhs(1).dims=list(1,A.dims(2))
     else
       tree.name="mtlb_any"
@@ -48,12 +48,12 @@ if rhs==1 then
   else
     dim = first_non_singleton(A)
     if dim<>Unknown then
-      tree.rhs=Rhs(A,dim)
+      tree.rhs=Rhs_tlist(A,dim)
       tree.lhs(1).dims=A.dims
       tree.lhs(1).dims(dim)=1
     else
       newrhs=Funcall("firstnonsingleton",1,list(A),list())
-      tree.rhs=Rhs(A,newrhs)
+      tree.rhs=Rhs_tlist(A,newrhs)
       tree.lhs(1).dims=allunknown(A.dims)
     end
   end
@@ -67,13 +67,13 @@ else
   A = convert2double(A)
   
   if is_complex(A) then
-    A = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
+    A = Funcall("abs",1,Rhs_tlist(A),list(Variable("",A.infer)))
   elseif ~is_real(A) then
-    newA = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
+    newA = Funcall("abs",1,Rhs_tlist(A),list(Variable("",A.infer)))
     repl_poss(newA,A,A,gettext("messages","m2sci_message_77"))
     A=newA
   end
-  tree.rhs=Rhs(A,dim)
+  tree.rhs=Rhs_tlist(A,dim)
   
   if typeof(dim)=="cste" then
     if dim.value<=size(A.dims) then

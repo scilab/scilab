@@ -26,7 +26,7 @@ if rhs==-1 then
   elseif tree.name=="rand" then
     // Nothing changed
   elseif tree.name=="randn" then
-    tree.rhs=Rhs(1,1,"normal")
+    tree.rhs=Rhs_tlist(1,1,"normal")
     tree.lhs(1).dims=list(1,1)
     tree.lhs(1).type=Type(Double,Real)
   elseif tree.name=="false" then
@@ -45,7 +45,7 @@ if rhs==0 then
   elseif tree.name=="rand" then
     // Nothing changed
   elseif tree.name=="randn" then
-    tree.rhs=Rhs(1,1,"normal")
+    tree.rhs=Rhs_tlist(1,1,"normal")
     tree.lhs(1).dims=list(1,1)
     tree.lhs(1).type=Type(Double,Real)
   elseif tree.name=="false" then
@@ -61,20 +61,20 @@ if tree.name=="randn" |tree.name=="rand" then
   if tree.rhs(1).vtype==String then // State
     if rhs==1 then // Get the state
       if tree.name=="rand" then
-	onescall=Funcall("ones",1,Rhs(35,1),list())
-	randcall=Funcall("rand",1,Rhs("seed"),list())
+	onescall=Funcall("ones",1,Rhs_tlist(35,1),list())
+	randcall=Funcall("rand",1,Rhs_tlist("seed"),list())
 	tree=Operation("*",list(onescall,randcall),tree.lhs)
 	tree.out(1).dims=list(35,1)
 	tree.out(1).type=Type(Double,Real)
       else
-	onescall=Funcall("ones",1,Rhs(2,1),list())
-	randcall=Funcall("rand",1,Rhs("seed"),list())
+	onescall=Funcall("ones",1,Rhs_tlist(2,1),list())
+	randcall=Funcall("rand",1,Rhs_tlist("seed"),list())
 	tree=Operation("*",list(onescall,randcall),tree.lhs)
 	tree.out(1).dims=list(2,1)
 	tree.out(1).type=Type(Double,Real)
       end
     else // Set the state
-      tree=Funcall("rand",1,Rhs("seed",tree.rhs(2)),tree.lhs)
+      tree=Funcall("rand",1,Rhs_tlist("seed",tree.rhs(2)),tree.lhs)
       tree.lhs(1).dims=list(0,0)
       tree.lhs(1).type=Type(Unknown,Unknown)
     end
@@ -102,7 +102,7 @@ if rhs==1 then
       dim=Unknown
     end
     
-    tree=Funcall("ones",1,Rhs(n,n,opt),tree.lhs)
+    tree=Funcall("ones",1,Rhs_tlist(n,n,opt),tree.lhs)
     tree.lhs(1).dims=list(dim,dim)
     tree.lhs(1).type=Type(Double,Real)
   // true([n1,n2,...])

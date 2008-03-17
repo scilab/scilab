@@ -21,16 +21,16 @@ if rhs==1 then
 
   // Because %b_cumsum and %C_cumsum are not defined
   A = convert2double(A)
-  tree.rhs=Rhs(A)
+  tree.rhs=Rhs_tlist(A)
   
   dim=first_non_singleton(A)
 
   tree.lhs(1).dims=A.dims
   
   if dim>0 then
-    tree.rhs=Rhs(A,dim)
+    tree.rhs=Rhs_tlist(A,dim)
   elseif dim==-1 then
-    tree.rhs=Rhs(A,Funcall("firstnonsingleton",1,list(A),list()))
+    tree.rhs=Rhs_tlist(A,Funcall("firstnonsingleton",1,list(A),list()))
   end
   if is_real(A) then
     tree.lhs(1).type=Type(Double,Real)
@@ -44,7 +44,7 @@ else
   // Because %b_cumsum and %C_cumsum are not defined
   A=convert2double(A)
   dim=convert2double(dim)
-  tree.rhs=Rhs(A,dim)
+  tree.rhs=Rhs_tlist(A,dim)
   
   if typeof(dim)=="cste" then
     if dim.value>size(A.dims) then

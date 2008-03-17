@@ -27,7 +27,7 @@ end
 
 x = convert2double(x)
 
-tree.rhs=Rhs(x)
+tree.rhs=Rhs_tlist(x)
 
 if is_complex(x) then
   set_infos(msprintf(gettext("messages","m2sci_message_78"),"uint32","uint32"),2);

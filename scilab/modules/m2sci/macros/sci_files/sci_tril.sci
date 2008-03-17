@@ -28,7 +28,7 @@ if rhs==2 then
     repl_poss(newk,k,k,gettext("messages","m2sci_message_77"));
     k=newk
   end
-  tree.rhs=Rhs(X,k)
+  tree.rhs=Rhs_tlist(X,k)
 // L = tril(X)
 else
   X = getrhs(tree)
@@ -39,7 +39,7 @@ if or(X.vtype==[String,Unknown]) then
   tree.name="mtlb_tril"
 else
   if X.vtype==Boolean then
-    X=Funcall("bool2s",1,Rhs(X),list(Variable("",X.infer)))
+    X=Funcall("bool2s",1,Rhs_tlist(X),list(Variable("",X.infer)))
     tree.rhs(1)=X
   end
 end
