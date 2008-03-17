@@ -7,7 +7,7 @@ modulename=umfpack
 
 pkglib_LTLIBRARIES = libsciumfpack.la
 
-libsciumfpack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(UMFPACK3_LIB) -lumfpack -lamd
+libsciumfpack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) 
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
@@ -18,6 +18,8 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 
 if UMFPACK
 
+
+libsciumfpack_la_LDFLAGS += $(UMFPACK_LIB)
 UMFPACK_C_SOURCES = src/c/taucs_scilab.c \
 src/c/common_umfpack.c
 

@@ -55,14 +55,15 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@UMFPACK_TRUE@@USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
-@UMFPACK_TRUE@@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la 
+@UMFPACK_TRUE@am__append_1 = $(UMFPACK_LIB)
+@UMFPACK_TRUE@@USE_EMBEDDED_LAPACK_TRUE@am__append_2 = $(top_builddir)/libs/lapack/libscilapack.la
+@UMFPACK_TRUE@@USE_EMBEDDED_BLAS_TRUE@am__append_3 = $(top_builddir)/libs/blas/libsciblas.la 
 DIST_COMMON = $(libsciumfpack_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_3 = java
-@SWIG_TRUE@am__append_4 = swig
-@GIWS_TRUE@am__append_5 = giws
+@GUI_TRUE@am__append_4 = java
+@SWIG_TRUE@am__append_5 = swig
+@GIWS_TRUE@am__append_6 = giws
 subdir = modules/umfpack
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
@@ -101,7 +102,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@UMFPACK_TRUE@	$(am__append_1) $(am__append_2)
+@UMFPACK_TRUE@	$(am__append_2) $(am__append_3)
 am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
 	src/c/taucs_scilab.c src/c/common_umfpack.c \
 	sci_gateway/c/gw_umfpack.c sci_gateway/c/sci_res_with_prec.c \
@@ -341,7 +342,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 modulename = umfpack
 pkglib_LTLIBRARIES = libsciumfpack.la
-libsciumfpack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(UMFPACK3_LIB) -lumfpack -lamd
+libsciumfpack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) \
+	$(am__append_1)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
@@ -384,7 +386,7 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@UMFPACK_TRUE@	$(am__append_1) $(am__append_2)
+@UMFPACK_TRUE@	$(am__append_2) $(am__append_3)
 @UMFPACK_FALSE@libsciumfpack_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
 @UMFPACK_TRUE@libsciumfpack_la_CFLAGS = -Iincludes/ \
 @UMFPACK_TRUE@			-Isrc/c/ \
@@ -405,7 +407,7 @@ mydatadir = $(pkgdatadir)/modules/$(modulename)
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3) $(am__append_4) $(am__append_5)
+TARGETS_ALL = $(am__append_4) $(am__append_5) $(am__append_6)
 
 ################ MACROS ######################
 # Rule to build a macro
