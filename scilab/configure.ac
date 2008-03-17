@@ -991,25 +991,9 @@ AC_DEFINE_UNQUOTED([PATH_SEPARATOR], ["$PATH_SEPARATOR"],
 AH_TOP([#ifndef MACHINE_H
 #define MACHINE_H
 /* This file defines global element configuration of the build host */
-
-/* undef _FILE_OFFSET_BITS causes silly warnings with the Sun Compiler */
-#ifdef _FILE_OFFSET_BITS 
-#undef _FILE_OFFSET_BITS
-#endif
-
 ])
 
 AH_BOTTOM([
-/*
-   Define integer C type which must fit Fortran integer
-   For Scilab to work, the rule is:
-          size of Fortran double precision = 2 * size of Fortran integer
-
-   At the present time, we suppose:
-       size of Fortran integer = 4 bytes
-       size of Fortran double precision = 8 bytes
-       size of C int = 4 bytes
-*/
 
 #ifdef DIR_SEPARATOR
 	   #undef DIR_SEPARATOR
