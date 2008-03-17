@@ -14,6 +14,7 @@ c you should have received as part of this distribution.  The terms
 c are also available at    
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+
       INCLUDE 'stack.h'
 c     
       integer dot,colon
@@ -880,6 +881,34 @@ c     .  arg4(:,:)=arg3
             return
          endif
       endif
+      init4=0
+      if(m1.eq.-1.and.m4.eq.0) then
+c     .  arg4(:,i)=arg3
+         m3=m3*n3
+         n3=1
+         n4=1
+         m4=m3
+         init4=1
+         
+      elseif(m2.eq.-1.and.m4.eq.0) then
+c     .  arg4(i,:)=arg3
+         n3=m3*n3
+         m3=1
+         m4=1
+         n4=n3
+         init4=1
+      endif
+      if(init4.eq.1) then
+         mn4=m4*n4
+         l4=iadr(lw)
+         lw=sadr(l4+ mn4)
+         err=lw-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call iset(mn4,0,istk(l4),1)
+      endif
       call indxg(il1,m4,ili,mi,mxi,lw,1)
       if(err.gt.0) return
       call indxg(il2,n4,ilj,mj,mxj,lw,1)
@@ -943,7 +972,7 @@ c     copy arg3 elements in r
  69   continue
 c     
       ilrs=iadr(lstk(top))
-      if(lr.ne.l4) then
+      if(lr.ne.l4.or.init4.ne.0) then
          call icopy(mnr,istk(lr),1,istk(ilrs+3),1)
          istk(ilrs)=4
          istk(ilrs+1)=mr

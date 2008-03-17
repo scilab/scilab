@@ -1,4 +1,5 @@
 function show_startupinfo()
+  return
   //used to inform users on first start after installation
   
   // If in No Window mode then returns...

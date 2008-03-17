@@ -276,12 +276,14 @@ c
       mn1=m1*n1
 
       if(mn3.ne.0) then
-         if(it3.ne.it4.or.istk(il3).ne.istk(il4)) then 
+         if(istk(il4).eq.1.and.mn4.eq.0) then
+            ityp=istk(il3)
+            it4=it3
+         elseif(it3.ne.it4.or.istk(il3).ne.istk(il4))then 
             top=top0
             fin=-fin
             return
          endif
-         ityp=istk(il3)
       else
          ityp=istk(il4)
       endif
@@ -420,6 +422,35 @@ c     .     set all elements of arg4 to arg3
          endif
       endif
 
+      init4=0
+      if(m1.eq.-1.and.m4.eq.0) then
+c     .  arg4(:,i)=arg3
+         m3=m3*n3
+         n3=1
+         n4=1
+         m4=m3
+         init4=1
+         
+      elseif(m2.eq.-1.and.m4.eq.0) then
+c     .  arg4(i,:)=arg3
+         n3=m3*n3
+         m3=1
+         m4=1
+         n4=n3
+         init4=1
+      endif
+      if(init4.eq.1) then
+         mn4=m4*n4
+         l4=iadr(lw)
+         lw=sadr(l4+ mn4)
+         err=lw-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call tpconv(4,it4,1,0,1,is2,1)
+         call genset(it4,mn4,is2,istk(l4),1)
+      endif
       call indxg(il1,m4,ili,mi,mxi,lw,1)
       if(err.gt.0) return
       call indxg(il2,n4,ilj,mj,mxj,lw,1)
@@ -475,7 +506,7 @@ c     copy arg3 elements in r
       call geninsert2(it4,mj,mi,istk(ilj),istk(ili),istk(lr),mr,
      $        istk(l3),m3,inc3)
 c     
-      if(lr.ne.l4.or..not.ref) then
+      if(lr.ne.l4.or..not.ref.or.init4.ne.0) then
          l1=il1+4
          call gencopy(it4,mnr,istk(lr),1,istk(l1),1)
          lstk(top+1)=sadr(l1+memused(it4,mnr))

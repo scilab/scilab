@@ -14,7 +14,7 @@ c   operations sur les matrices de chaines de caracteres
 c
 c ====================================================================
 c
-
+c     Copyright INRIA
       include 'stack.h'
       common /mtlbc/ mmode
 c
@@ -29,6 +29,11 @@ c
       sadr(l)=(l/2)+1
 c 
       op=fin
+c
+      if (ddt .eq. 4) then
+         write(buf(1:4),'(i4)') fin
+         call basout(io,wte,' strops '//buf(1:4))
+      endif
 c
       fun=0
 c
@@ -613,7 +618,36 @@ c     .  reshape arg3 according to arg4
          goto 999
       endif
 
- 127  call indxg(il1,m4,ili,mi,mxi,lw,1)
+ 127  continue
+      init4=0
+      if(m1.eq.-1.and.m4.eq.0) then
+c     .  arg4(:,i)=arg3
+         m3=m3*n3
+         n3=1
+         n4=1
+         m4=m3
+         init4=1
+      elseif(m2.eq.-1.and.m4.eq.0) then
+c     .  arg4(i,:)=arg3
+         n3=m3*n3
+         m3=1
+         m4=1
+         n4=n3
+         init4=1
+      endif
+      if(init4.eq.1) then
+         mn4=m4*n4
+         l4r=iadr(lw)
+         id4=l4r
+         lw=sadr(id4+mn4+1)
+         err=lw-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call ivimp(1,mn4+1,1,istk(id4))
+      endif
+      call indxg(il1,m4,ili,mi,mxi,lw,1)
       if(err.gt.0) return
       call indxg(il2,n4,ilj,mj,mxj,lw,1)
       if(err.gt.0) return

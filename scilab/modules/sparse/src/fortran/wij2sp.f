@@ -37,7 +37,7 @@ c     eliminate leading zero entries
       vi(k1)=vi(k0)
       if(nel.gt.k0) then
       do 08 k=k0+1,nel
-         if (vr(k0).ne.0.0d0.or.vi(k0).ne.0.0d0) then
+         if (vr(k).ne.0.0d0.or.vi(k).ne.0.0d0) then
             if(ij(k,1).ne.ij(k1,1).or.ij(k,2).ne.ij(k1,2)) then
                k1=k1+1
                ij(k1,1)=ij(k,1)
