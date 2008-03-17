@@ -77,5 +77,7 @@ typedef pthread_cond_t __threadSignal;
 
 #define __WaitThreadDie(threadId)		pthread_join(threadId, NULL)
 
+#define __Terminate(threadId)			pthread_cancel(threadId)
+
 #endif /* !__THREAD_WRAPPER_H__ */
 

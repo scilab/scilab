@@ -178,6 +178,7 @@ BOOL CloseTCLsci(void)
       if (isTkStarted())
 	{
 	  setTkStarted(FALSE);
+	  __Terminate(TclThread);
 	  __WaitThreadDie(TclThread);
 	  deleteTclInterp();
 	  TKmainWindow=NULL;
