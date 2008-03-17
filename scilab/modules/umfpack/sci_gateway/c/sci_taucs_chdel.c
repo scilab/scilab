@@ -79,7 +79,7 @@ int sci_taucs_chdel(char* fname, unsigned long l)
 	else
 		{
 			/* get the pointer to the Cholesky factors */
-			GetRhsVar(1,"p", &mC_ptr, &nC_ptr, &lC_ptr);
+			GetRhsVar(1,SCILAB_POINTER_DATATYPE, &mC_ptr, &nC_ptr, &lC_ptr);
 			pC = (taucs_handle_factors *) ((unsigned long int) *stk(lC_ptr));
       
 			/* Check if the pointer is a valid ref to ... */

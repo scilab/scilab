@@ -48,11 +48,11 @@ int sci_res_with_prec(char* fname, unsigned long l)
 	CheckRhs(3,3);  CheckLhs(1,2);
 
 	/* get A the sparse matrix */ 
-	GetRhsVar(1, "s", &mA, &nA, &A);
+	GetRhsVar(1, SPARSE_MATRIX_DATATYPE, &mA, &nA, &A);
 
 	/* get x and b */
-	GetRhsCVar(2, "d", &itx, &mx, &nx, &lxr, &lxi);
-	GetRhsCVar(3, "d", &itb, &mb, &nb, &lbr, &lbi);
+	GetRhsCVar(2, MATRIX_OF_DOUBLE_DATATYPE, &itx, &mx, &nx, &lxr, &lxi);
+	GetRhsCVar(3, MATRIX_OF_DOUBLE_DATATYPE, &itb, &mb, &nb, &lbr, &lbi);
  
 	if ( nx < 1 || nb != nx || mx != nA || mb != mA )
 		{
@@ -65,9 +65,9 @@ int sci_res_with_prec(char* fname, unsigned long l)
 	else
 		itr = 0;
 
-	CreateCVar(4, "d", &itr, &mb, &nb, &lrr, &lri);
+	CreateCVar(4, MATRIX_OF_DOUBLE_DATATYPE, &itr, &mb, &nb, &lrr, &lri);
 
-	CreateVar(5, "d", &one, &nb, &ln);
+	CreateVar(5, MATRIX_OF_DOUBLE_DATATYPE, &one, &nb, &ln);
 	LastNum = 5;
 
 	if ( itr == 0 )
@@ -77,19 +77,19 @@ int sci_res_with_prec(char* fname, unsigned long l)
 		{
 			if ( itx == 0 ) 
 				{
-					CreateVar(LastNum+1, "d", &mx, &nx, &lxi);
+					CreateVar(LastNum+1, MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lxi);
 					for ( i = 0 ; i < mx*nx ; i++ ) *stk(lxi+i) = 0.0;
 					LastNum++;
 				}
 			if ( itb == 0 ) 
 				{
-					CreateVar(LastNum+1, "d", &mb, &nb, &lbi);
+					CreateVar(LastNum+1, MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lbi);
 					for ( i = 0 ; i < mb*nb ; i++ ) *stk(lbi+i) = 0.0;
 					LastNum++;
 				}
 			if ( A.it == 0 ) 
 				{
-					CreateVar(LastNum+1, "d", &one, &nb, &lni);
+					CreateVar(LastNum+1, MATRIX_OF_DOUBLE_DATATYPE, &one, &nb, &lni);
 					for ( i = 0 ; i < nb ; i++ )
 						residu_with_prec(&A, stk(lxr+i*mx), stk(lbr+i*mb), stk(lrr+i*mb), stk(ln+i));
 					for ( i = 0 ; i < nb ; i++ )

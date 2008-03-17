@@ -74,7 +74,7 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 	CheckRhs(2,3); CheckLhs(1,1);
 
 	/* First get arg #1 : the pointer to the Cholesky factors */
-	GetRhsVar(1,"p", &mC_ptr, &nC_ptr, &lC_ptr);
+	GetRhsVar(1,SCILAB_POINTER_DATATYPE, &mC_ptr, &nC_ptr, &lC_ptr);
 	pC = (taucs_handle_factors *) ((unsigned long int) *stk(lC_ptr));
 
 	/* Check if this pointer is a valid ref to a Cholesky factor object */
@@ -86,9 +86,8 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 
 	/*  the number of rows/lines of the matrix  */
 	n = pC->n;
-
 	/* Get now arg #2 : the vector b */
-	GetRhsVar(2,"d",&mb,&nb,&lb);
+	GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE ,&mb,&nb,&lb);
 
 	/* test if the right hand side is compatible */
 	if (mb != n || nb < 1)  
@@ -102,7 +101,7 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 
 	if ( Rhs == 3 )
 		{
-			GetRhsVar(3, "s", &mA, &nA, &A);
+			GetRhsVar(3,  SPARSE_MATRIX_DATATYPE, &mA, &nA, &A);
 			if ( mA != nA  ||  mA != n  ||  A.it == 1 )
 				{
 					Scierror(999,"%s: the matrix (arg #3) is not compatible with the Choleski factorisation",fname);
@@ -115,15 +114,15 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 		Refinement = 0;
 
 	/* allocate memory for the solution x */
-	CreateVar(Rhs+1, "d", &mb, &nb, &lx);
+	CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lx);
 	x = stk(lx);
 
 	/* allocate memory for a temporary vector v */
-	CreateVar(Rhs+2, "d", &mb, &one, &lv); v = stk(lv);
+	CreateVar(Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lv); v = stk(lv);
 
 	if ( Refinement )
 		{
-			CreateVar(Rhs+3, "d", &mb, &one, &lres); res = stk(lres);
+			CreateVar(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lres); res = stk(lres);
 			if ( A_is_upper_triangular )
 				if ( (wk = malloc( n * sizeof(long double))) == NULL )
 					{

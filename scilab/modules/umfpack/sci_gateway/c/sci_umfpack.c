@@ -90,7 +90,7 @@ int sci_umfpack(char* fname,unsigned long l)
 	CheckRhs(3,3); CheckLhs(1,1);
 
 	/* First get arg #2 : a string of length 1 */
-	GetRhsVar(2,"c", &ms, &ns, &ls);
+	GetRhsVar(2,STRING_DATATYPE, &ms, &ns, &ls);
 
 	/* select Case 1 or 2 depending (of the first char of) the string ... */ 
 	if (*cstk(ls) == '\\')
@@ -114,7 +114,7 @@ int sci_umfpack(char* fname,unsigned long l)
 			return 0;
 		};
  
-	GetRhsCVar(num_b,"d",&itb,&mb,&nb,&lrb,&lib);
+	GetRhsCVar(num_b,MATRIX_OF_DOUBLE_DATATYPE,&itb,&mb,&nb,&lrb,&lib);
 	if ( (Case==1 && ( mb != mA || nb < 1 )) || (Case==2 && ( nb != mA || mb < 1 )) )
 		{
 			Scierror(999,"%s: bad dimensions for the \"vector(s)\" (arg #%d)", fname, num_b);
@@ -125,19 +125,19 @@ int sci_umfpack(char* fname,unsigned long l)
 
 	/* allocate memory for the solution x */
 	if ( A.it == 1  ||  itb == 1 ) itx = 1; else itx = 0;     
-	CreateCVar(5,"d", &itx, &mb, &nb, &lrx, &lix);
+	CreateCVar(5,MATRIX_OF_DOUBLE_DATATYPE, &itx, &mb, &nb, &lrx, &lix);
 	xr = stk(lrx); xi = stk(lix);
 
 	/* allocate memory for umfpack_di_wsolve usage or umfpack_zi_wsolve usage*/
-	CreateVar(6, "i", &mA, &one, &lWi); Wi = istk(lWi);
+	CreateVar(6, MATRIX_OF_INTEGER_DATATYPE, &mA, &one, &lWi); Wi = istk(lWi);
 	if (A.it == 1) mW = 10*mA; else mW = 5*mA;
-	CreateVar(7, "d", &mW, &one, &lW); W  = stk(lW);
+	CreateVar(7, MATRIX_OF_DOUBLE_DATATYPE, &mW, &one, &lW); W  = stk(lW);
 
 	/* get the pointer for b */
 	br = stk(lrb); bi = stk(lib);
 	if ( A.it == 1  &&  itb == 0 )
 		{
-			CreateVar(8,"d", &mb, &nb, &lib); LastNum = 8;
+			CreateVar(8,MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lib); LastNum = 8;
 			bi = stk(lib);
 			for ( i = 0 ; i < mb*nb ; i++ ) bi[i] = 0.0;
 		}

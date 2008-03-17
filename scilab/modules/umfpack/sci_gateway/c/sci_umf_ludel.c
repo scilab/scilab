@@ -75,7 +75,7 @@ int sci_umf_ludel(char* fname, unsigned long l)
   else
     {
       /* get the pointer to the LU factors */
-      GetRhsVar(1,"p", &mLU_ptr, &nLU_ptr, &lLU_ptr);
+      GetRhsVar(1,SCILAB_POINTER_DATATYPE, &mLU_ptr, &nLU_ptr, &lLU_ptr);
       Numeric = (void *) ((unsigned long int) *stk(lLU_ptr));
       
       /* Check if the pointer is a valid ref to ... */

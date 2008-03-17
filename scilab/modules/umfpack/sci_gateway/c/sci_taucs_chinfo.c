@@ -67,7 +67,7 @@ int sci_taucs_chinfo(char* fname, unsigned long l)
 	CheckRhs(1,1); CheckLhs(1,3);
 
 	/* get the pointer to the Choleski handle factor */
-	GetRhsVar(1,"p", &mC_ptr, &nC_ptr, &lC_ptr);
+	GetRhsVar(1,SCILAB_POINTER_DATATYPE, &mC_ptr, &nC_ptr, &lC_ptr);
 	pC = (taucs_handle_factors *) ((unsigned long int) *stk(lC_ptr));
 
 	/* Check if the pointer is a valid ref to ... */
@@ -82,9 +82,9 @@ int sci_taucs_chinfo(char* fname, unsigned long l)
 			OK = 0; cnz = 0; n = 0;
 		}
   
-	CreateVar(2,"b", &one, &one, &ind_OK);   *istk(ind_OK) = OK;
-	CreateVar(3,"d", &one, &one, &ind_n);    *stk(ind_n)   = (double) n;
-	CreateVar(4,"d", &one, &one, &ind_cnz);  *stk(ind_cnz) = (double) cnz;
+	CreateVar(2,MATRIX_OF_BOOLEAN_DATATYPE, &one, &one, &ind_OK);   *istk(ind_OK) = OK;
+	CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &ind_n);    *stk(ind_n)   = (double) n;
+	CreateVar(4,MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &ind_cnz);  *stk(ind_cnz) = (double) cnz;
 
 	LhsVar(1) = 2;
 	LhsVar(2) = 3;

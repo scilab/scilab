@@ -79,7 +79,7 @@ int sci_umf_lufact(char* fname,unsigned long l)
 	CheckRhs(1,1);  CheckLhs(1,1);
 
 	/* get A the sparse matrix to factorize */ 
-	GetRhsVar(1, "s", &mA, &nA, &AA);
+	GetRhsVar(1, SPARSE_MATRIX_DATATYPE, &mA, &nA, &AA);
 	if (nA <= 0 || mA <= 0 )  
 		{
 			Scierror(999,"%s: bad dimensions for the matrix",fname);
@@ -134,7 +134,7 @@ int sci_umf_lufact(char* fname,unsigned long l)
 		};
 
 	/* create the scilab object to store the pointer onto the LU factors */
-	CreateVarFromPtr(3,"p",&one,&one, Numeric);
+	CreateVarFromPtr(3,SCILAB_POINTER_DATATYPE,&one,&one, Numeric);
 
 	/* return the pointer */
 	LhsVar(1) = 3;

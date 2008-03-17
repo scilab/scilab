@@ -79,24 +79,24 @@ int sci_umf_luinfo(char* fname, unsigned long l)
 			else
 				umfpack_zi_get_lunz(&lnz, &unz, &nrow, &ncol, &nz_udiag, Numeric);
 			OK = 1;
-			CreateVar(2,"b", &one, &one, &ind_OK);   *istk(ind_OK) = OK;
-			CreateVar(3,"d", &one, &one, &ind_nrow); *stk(ind_nrow)= (double) nrow;
-			CreateVar(4,"d", &one, &one, &ind_ncol); *stk(ind_ncol)= (double) ncol;
-			CreateVar(5,"d", &one, &one, &ind_lnz);  *stk(ind_lnz) = (double) lnz;
-			CreateVar(6,"d", &one, &one, &ind_unz);  *stk(ind_unz) = (double) unz;
-			CreateVar(7,"d", &one, &one, &ind_nzu);  *stk(ind_nzu) = (double) nz_udiag;
-			CreateVar(8,"d", &one, &one, &ind_it);   *stk(ind_it)  = (double) it_flag;
+			CreateVar(2,MATRIX_OF_BOOLEAN_DATATYPE, &one, &one, &ind_OK);   *istk(ind_OK) = OK;
+			CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &ind_nrow); *stk(ind_nrow)= (double) nrow;
+			CreateVar(4,MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &ind_ncol); *stk(ind_ncol)= (double) ncol;
+			CreateVar(5,MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &ind_lnz);  *stk(ind_lnz) = (double) lnz;
+			CreateVar(6,MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &ind_unz);  *stk(ind_unz) = (double) unz;
+			CreateVar(7,MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &ind_nzu);  *stk(ind_nzu) = (double) nz_udiag;
+			CreateVar(8,MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &ind_it);   *stk(ind_it)  = (double) it_flag;
 		}
 	else
 		{
 			OK = 0;
-			CreateVar(2,"b", &one, &one, &ind_OK);   *istk(ind_OK) = OK;
-			CreateVar(3,"d", &zero, &zero, &ind_nrow);
-			CreateVar(4,"d", &zero, &zero, &ind_ncol);
-			CreateVar(5,"d", &zero, &zero, &ind_lnz);
-			CreateVar(6,"d", &zero, &zero, &ind_unz);
-			CreateVar(7,"d", &zero, &zero, &ind_nzu); 
-			CreateVar(8,"d", &zero, &zero, &ind_it);
+			CreateVar(2,MATRIX_OF_BOOLEAN_DATATYPE, &one, &one, &ind_OK);   *istk(ind_OK) = OK;
+			CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &ind_nrow);
+			CreateVar(4,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &ind_ncol);
+			CreateVar(5,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &ind_lnz);
+			CreateVar(6,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &ind_unz);
+			CreateVar(7,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &ind_nzu); 
+			CreateVar(8,MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &ind_it);
 		}
 	LhsVar(1) = 2;
 	LhsVar(2) = 3;

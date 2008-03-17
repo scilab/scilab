@@ -75,7 +75,7 @@ int sci_taucs_chfact(char* fname, unsigned long l)
 	CheckRhs(1,1);  CheckLhs(1,1);
 
 	/* get A the sparse matrix to factorize */ 
-	GetRhsVar(1, "s", &mA, &nA, &A);
+	GetRhsVar(1, SPARSE_MATRIX_DATATYPE, &mA, &nA, &A);
 
 	stat = spd_sci_sparse_to_taucs_sparse(2, &A, &B);
 	if ( stat != A_PRIORI_OK )  
@@ -121,7 +121,7 @@ int sci_taucs_chfact(char* fname, unsigned long l)
 	AddAdrToList((Adr) pC, 0, &ListCholFactors);  /* FIXME add a test here .. */
 
 	/* create the scilab object to store the pointer onto the Chol handle */
-	CreateVarFromPtr(3,"p",&mC_ptr,&nC_ptr, (void *)pC );
+	CreateVarFromPtr(3,SCILAB_POINTER_DATATYPE,&mC_ptr,&nC_ptr, (void *)pC );
 
 	/* return the pointer */
 	LhsVar(1) = 3;

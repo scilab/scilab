@@ -75,7 +75,7 @@ int sci_umf_luget(char* fname, unsigned long l)
 	CheckRhs(1,1); CheckLhs(1,5);
 
 	/* get the pointer to the LU factors */
-	GetRhsVar(1,"p", &mLU_ptr, &nLU_ptr, &lLU_ptr);
+	GetRhsVar(1,SCILAB_POINTER_DATATYPE, &mLU_ptr, &nLU_ptr, &lLU_ptr);
 	Numeric = (void *) ((unsigned long int) *stk(lLU_ptr));
 
 	/* Check if the pointer is a valid ref to ... */
@@ -162,15 +162,15 @@ int sci_umf_luget(char* fname, unsigned long l)
 	U.m = n; U.n = n_col; U.it = it_flag; U.nel = unz; U.mnel = U_mnel; U.icol = U_icol; U.R = U_R; U.I = U_I; 
      
 	if (! test_size_for_sparse(2 , L.m, L.it, L.nel, &pl_miss)) { error_flag = 3; goto the_end; }; 
-	CreateVarFromPtr(2,"s",&n_row ,&n  , &L);
+	CreateVarFromPtr(2,SPARSE_MATRIX_DATATYPE,&n_row ,&n  , &L);
 	if (! test_size_for_sparse(3 , U.m, U.it, U.nel, &pl_miss)) { error_flag = 3; goto the_end; };
-	CreateVarFromPtr(3,"s",&n ,&n_col  , &U);
+	CreateVarFromPtr(3,SPARSE_MATRIX_DATATYPE,&n ,&n_col  , &U);
 	if (! test_size_for_mat(4 , n_row, 1, 0, &pl_miss)) { error_flag = 3; goto the_end; };
-	CreateVarFromPtr(4,"i",&n_row ,&one, &p);
+	CreateVarFromPtr(4,MATRIX_OF_INTEGER_DATATYPE,&n_row ,&one, &p);
 	if (! test_size_for_mat(5 , n_col, 1, 0, &pl_miss)) { error_flag = 3; goto the_end; };
-	CreateVarFromPtr(5,"i",&n_col ,&one, &q);
+	CreateVarFromPtr(5,MATRIX_OF_INTEGER_DATATYPE,&n_col ,&one, &q);
 	if (! test_size_for_mat(6 , n_row, 1, 0, &pl_miss)) { error_flag = 3; goto the_end; };
-	CreateVarFromPtr(6,"d",&n_row ,&one, &Rs);
+	CreateVarFromPtr(6,MATRIX_OF_DOUBLE_DATATYPE,&n_row ,&one, &Rs);
 
  the_end:
 	free(L_mnel); free(L_icol); free(L_R); free(L_ptrow); free(p);

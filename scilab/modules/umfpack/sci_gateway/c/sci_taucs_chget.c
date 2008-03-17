@@ -68,7 +68,7 @@ int sci_taucs_chget(char* fname, unsigned long l)
 	CheckRhs(1,1); CheckLhs(1,3);
 
 	/* get the pointer to the Choleski factorisation handle */
-	GetRhsVar(1,"p", &mC_ptr, &nC_ptr, &lC_ptr);
+	GetRhsVar(1,SCILAB_POINTER_DATATYPE, &mC_ptr, &nC_ptr, &lC_ptr);
 	pC = (taucs_handle_factors *) ((unsigned long int) *stk(lC_ptr));
 
 	/* Check if the pointer is a valid ref to ... */
@@ -107,11 +107,11 @@ int sci_taucs_chget(char* fname, unsigned long l)
 					 fname, pl_miss);
 			return 0;
 		}
-	CreateVarFromPtr(2,"s",&S.m,&S.n,&S);  
+	CreateVarFromPtr(2,SPARSE_MATRIX_DATATYPE,&S.m,&S.n,&S);  
 	taucs_ccs_free(C); 
   
 	/* now p */
-	CreateVar(3,"i", &(S.m), &one, &lp); 
+	CreateVar(3,MATRIX_OF_INTEGER_DATATYPE, &(S.m), &one, &lp); 
 	for  (i = 0 ; i < S.m ; i++)
 		*istk(lp+i) = pC->p[i]+1;
 

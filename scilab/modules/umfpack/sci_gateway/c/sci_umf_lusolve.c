@@ -80,7 +80,7 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 	CheckRhs(2,4); CheckLhs(1,1);
 
 	/* First get arg #1 : the pointer to the LU factors */
-	GetRhsVar(1,"p", &mLU_ptr, &nLU_ptr, &lLU_ptr);
+	GetRhsVar(1,SCILAB_POINTER_DATATYPE, &mLU_ptr, &nLU_ptr, &lLU_ptr);
 	Numeric = (void *) ((unsigned long int) *stk(lLU_ptr));
 
 	/* Check if this pointer is a valid ref to a umfpack LU numeric object */
@@ -107,7 +107,7 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 		};
 
 	/* Get now arg #2 : the vector b */
-	GetRhsCVar(2,"d", &itb, &mb, &nb, &lrb, &lib);
+	GetRhsCVar(2,MATRIX_OF_DOUBLE_DATATYPE, &itb, &mb, &nb, &lrb, &lib);
 	if (mb != n || nb < 1)    /* test if the right hand side is compatible */
 		{
 			Scierror(999,"%s: bad dimensions for the rhs (arg #2)",fname);
@@ -116,7 +116,7 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 
 	/* allocate memory for the solution x */
 	if ( it_flag == 1  ||  itb == 1 ) itx = 1; else itx = 0;     
-	CreateCVar(Rhs+1,"d", &itx, &mb, &nb, &lrx, &lix);
+	CreateCVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &itx, &mb, &nb, &lrx, &lix);
 	xr = stk(lrx); xi = stk(lix);
 
 	/*  selection between the different options :
@@ -131,7 +131,7 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 		}
 	else  /* 3 or 4 input arguments but the third must be a string */
 		{
-			GetRhsVar(3,"c",&mflag,&nflag,&lflag);
+			GetRhsVar(3,STRING_DATATYPE,&mflag,&nflag,&lflag);
 			if ( strcmp(cstk(lflag),"Ax=b") == 0 )
 				NoTranspose = 1;
 			else if ( strcmp(cstk(lflag),"A'x=b") == 0 )
@@ -143,7 +143,7 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 				};
 			if ( Rhs == 4 ) 
 				{
-					GetRhsVar(4, "s", &mA, &nA, &AA);
+					GetRhsVar(4, SPARSE_MATRIX_DATATYPE, &mA, &nA, &AA);
 					/*  some check... but we can't be sure that the matrix corresponds to the LU factors */
 					if ( mA != nA || mA != n || AA.it != it_flag )  
 						{
@@ -157,12 +157,12 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 		}
 
 	/* allocate memory for umfpack_di_wsolve usage or umfpack_zi_wsolve usage*/
-	CreateVar(Rhs+2, "i", &n, &one, &lWi); Wi = istk(lWi);
+	CreateVar(Rhs+2,  MATRIX_OF_INTEGER_DATATYPE, &n, &one, &lWi); Wi = istk(lWi);
 	if (it_flag == 1) 
 		if (NoRaffinement) mW = 4*n; else mW = 10*n;
 	else
 		if (NoRaffinement) mW = n; else mW = 5*n;
-	CreateVar(Rhs+3, "d", &mW, &one, &lW); W  = stk(lW);
+	CreateVar(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &mW, &one, &lW); W  = stk(lW);
 
 
 	if (! NoRaffinement)
@@ -180,7 +180,7 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 	br = stk(lrb); bi = stk(lib);
 	if ( it_flag == 1  &&  itb == 0 )
 		{
-			CreateVar(LastNum+1,"d", &mb, &nb, &lib);
+			CreateVar(LastNum+1,MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lib);
 			bi = stk(lib);
 			for ( i = 0 ; i < mb*nb ; i++ ) bi[i] = 0.0;
 		}
