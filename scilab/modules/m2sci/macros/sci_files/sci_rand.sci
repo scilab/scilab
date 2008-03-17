@@ -45,6 +45,7 @@ if rhs==0 then
   elseif tree.name=="rand" then
     // Nothing changed
   elseif tree.name=="randn" then
+    tree.name="rand";
     tree.rhs=Rhs_tlist(1,1,"normal")
     tree.lhs(1).dims=list(1,1)
     tree.lhs(1).type=Type(Double,Real)
