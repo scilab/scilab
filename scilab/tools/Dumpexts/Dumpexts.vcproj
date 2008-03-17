@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="9,00"
 	Name="Dumpexts"
 	ProjectGUID="{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}"
 	RootNamespace="Dumpexts"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -93,6 +94,8 @@
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(ConfigurationName)/Dumpexts.pdb"
 				SubSystem="1"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -115,10 +118,6 @@
 			<Tool
 				Name="VCFxCopTool"
 				ExecutionBucket="15"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-				ExecutionBucket="16"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -195,6 +194,8 @@
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(ConfigurationName)/Dumpexts.pdb"
 				SubSystem="1"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -215,9 +216,6 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -298,6 +296,8 @@
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/Dumpexts.pdb"
 				SubSystem="1"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -320,10 +320,6 @@
 			<Tool
 				Name="VCFxCopTool"
 				ExecutionBucket="15"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-				ExecutionBucket="16"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -401,6 +397,8 @@
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/Dumpexts.pdb"
 				SubSystem="1"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -421,9 +419,6 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"

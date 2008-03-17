@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="9,00"
 	Name="dcd_f2c"
 	ProjectGUID="{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
 	RootNamespace="dcd_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -59,88 +60,6 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-				ExecutionBucket="7"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				ExecutionBucket="8"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-				ExecutionBucket="9"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				ExecutionBucket="10"
-				OutputFile="../../../../../libs/dcd_f.lib"
-			/>
-			<Tool
-				Name="VCALinkTool"
-				ExecutionBucket="11"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-				ExecutionBucket="12"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				ExecutionBucket="13"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-				ExecutionBucket="14"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				Description="Build dcd_f.vcdef"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def dcd_f.def &gt;nul&#x0D;&#x0A;copy dcd_f.def ..\..\..\..\..\..\libs\dcd_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
-				ExecutionBucket="15"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			CharacterSet="2"
-			WholeProgramOptimization="1"
-			>
-			<Tool
-				Name="f2c rule"
-				ExecutionBucket="1"
-			/>
-			<Tool
-				Name="VCPreBuildEventTool"
-				ExecutionBucket="2"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				ExecutionBucket="5"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				ExecutionBucket="6"
-				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
-				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -254,6 +173,88 @@
 				Name="VCPostBuildEventTool"
 				Description="Build dcd_f.vcdef"
 				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def dcd_f.def &gt;nul&#x0D;&#x0A;copy dcd_f.def ..\..\..\..\..\..\libs\dcd_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="4"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="f2c rule"
+				ExecutionBucket="1"
+			/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				ExecutionBucket="2"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+				ExecutionBucket="4"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				ExecutionBucket="5"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="6"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="../../../../../libs/f2c"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				RuntimeLibrary="2"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+				ExecutionBucket="7"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				ExecutionBucket="8"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				ExecutionBucket="9"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				ExecutionBucket="10"
+				OutputFile="../../../../../libs/dcd_f.lib"
+			/>
+			<Tool
+				Name="VCALinkTool"
+				ExecutionBucket="11"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+				ExecutionBucket="12"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				ExecutionBucket="13"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+				ExecutionBucket="14"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Description="Build dcd_f.vcdef"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def dcd_f.def &gt;nul&#x0D;&#x0A;copy dcd_f.def ..\..\..\..\..\..\libs\dcd_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+				ExecutionBucket="15"
 			/>
 		</Configuration>
 		<Configuration
@@ -605,1136 +606,254 @@
 			<File
 				RelativePath="..\algdiv.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\alngam.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\alnrel.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\apser.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\basym.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\bcorr.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\betaln.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\bfrac.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\bgrat.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\bpser.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\bratio.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\brcmp1.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\brcomp.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\bup.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cdfbet.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cdfbin.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cdfchi.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cdfchn.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cdff.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cdffnc.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cdfgam.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cdfnbn.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cdfnor.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cdfpoi.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cdft.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cumbet.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cumbin.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cumchi.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cumchn.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cumf.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cumfnc.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cumgam.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cumnbn.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cumnor.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cumpoi.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\cumt.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\devlpl.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\dexpm1.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\dinvnr.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\dinvr.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\dt1.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\dzror.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\erf.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\erfc1.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\esum.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\exparg.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\fpser.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\gam1.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\gaminv.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\gamln.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\gamln1.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\gamma.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\grat1.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\gratio.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\gsumln.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\ipmpar.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\psi.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\rcomp.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\rexp.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\rlog.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\rlog1.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\spmpar.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\stvaln.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<File

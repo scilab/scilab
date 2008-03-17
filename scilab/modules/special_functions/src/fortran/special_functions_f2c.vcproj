@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="9,00"
 	Name="special_functions_f2c"
 	ProjectGUID="{E3A01BE7-815F-4A06-9F0A-C95E80873966}"
 	RootNamespace="special_functions_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -59,88 +60,6 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-				ExecutionBucket="7"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				ExecutionBucket="8"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-				ExecutionBucket="9"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				ExecutionBucket="10"
-				OutputFile="../../../../libs/special_functions_f.lib"
-			/>
-			<Tool
-				Name="VCALinkTool"
-				ExecutionBucket="11"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-				ExecutionBucket="12"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				ExecutionBucket="13"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-				ExecutionBucket="14"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				Description="Build special_functions_f.vcdef"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def special_functions_f.def &gt;nul&#x0D;&#x0A;copy special_functions_f.def ..\..\..\..\..\libs\special_functions_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
-				ExecutionBucket="15"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			CharacterSet="2"
-			WholeProgramOptimization="1"
-			>
-			<Tool
-				Name="f2c rule"
-				ExecutionBucket="1"
-			/>
-			<Tool
-				Name="VCPreBuildEventTool"
-				ExecutionBucket="2"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				ExecutionBucket="5"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				ExecutionBucket="6"
-				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../../libs/f2c"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
-				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -254,6 +173,88 @@
 				Name="VCPostBuildEventTool"
 				Description="Build special_functions_f.vcdef"
 				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def special_functions_f.def &gt;nul&#x0D;&#x0A;copy special_functions_f.def ..\..\..\..\..\libs\special_functions_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="4"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="f2c rule"
+				ExecutionBucket="1"
+			/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				ExecutionBucket="2"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+				ExecutionBucket="4"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				ExecutionBucket="5"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="6"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="../../../../libs/f2c"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				RuntimeLibrary="2"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+				ExecutionBucket="7"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				ExecutionBucket="8"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				ExecutionBucket="9"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				ExecutionBucket="10"
+				OutputFile="../../../../libs/special_functions_f.lib"
+			/>
+			<Tool
+				Name="VCALinkTool"
+				ExecutionBucket="11"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+				ExecutionBucket="12"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				ExecutionBucket="13"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+				ExecutionBucket="14"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Description="Build special_functions_f.vcdef"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def special_functions_f.def &gt;nul&#x0D;&#x0A;copy special_functions_f.def ..\..\..\..\..\libs\special_functions_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+				ExecutionBucket="15"
 			/>
 		</Configuration>
 		<Configuration
@@ -385,146 +386,34 @@
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_calerf.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_dlgamma.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_gamma.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_lgamma.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesseli.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesselj.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesselk.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_oldbessely.f"
 				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<File

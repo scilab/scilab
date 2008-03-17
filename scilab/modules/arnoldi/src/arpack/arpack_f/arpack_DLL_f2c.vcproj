@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="9,00"
 	Name="arpack_f2c_DLL"
 	ProjectGUID="{34F953E3-9A2C-4359-A8C5-41CEBD0ECE45}"
 	RootNamespace="arpack_f2c_DLL"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -88,6 +89,8 @@
 				AdditionalOptions="/fixed:no"
 				OutputFile="../../../../../bin/Arpack.dll"
 				ModuleDefinitionFile="..\..\..\..\..\bin\Arpack.def"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
@@ -109,110 +112,6 @@
 			<Tool
 				Name="VCFxCopTool"
 				ExecutionBucket="15"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-				ExecutionBucket="16"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-				ExecutionBucket="17"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="f2c rule"
-				ExecutionBucket="1"
-				CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E  &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-			/>
-			<Tool
-				Name="VCPreBuildEventTool"
-				CommandLine=""
-				ExecutionBucket="2"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				ExecutionBucket="5"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				ExecutionBucket="6"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../../../../libs/f2c"
-				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
-				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
-				UsePrecompiledHeader="0"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-				ExecutionBucket="7"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				ExecutionBucket="8"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-				Description="Build Arpack.def file"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n Arpack.dll %%f &gt;nul&#x0D;&#x0A;copy *.def Arpack1.def &gt;nul&#x0D;&#x0A;copy  ..\Arpack.def+Arpack1.def ..\..\..\..\..\..\bin\Arpack.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
-				ExecutionBucket="9"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				ExecutionBucket="10"
-				OutputFile="../../../../../bin/Arpack.dll"
-				ModuleDefinitionFile="..\..\..\..\..\bin\Arpack.def"
-				CLRUnmanagedCodeCheck="true"
-			/>
-			<Tool
-				Name="VCALinkTool"
-				ExecutionBucket="11"
-			/>
-			<Tool
-				Name="VCManifestTool"
-				ExecutionBucket="12"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-				ExecutionBucket="13"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				ExecutionBucket="14"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-				ExecutionBucket="15"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-				ExecutionBucket="16"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -282,6 +181,8 @@
 				AdditionalOptions="/fixed:no"
 				OutputFile="../../../../../bin/Arpack.dll"
 				ModuleDefinitionFile="..\..\..\..\..\bin\Arpack.def"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -304,11 +205,106 @@
 				Name="VCAppVerifierTool"
 			/>
 			<Tool
-				Name="VCWebDeploymentTool"
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="f2c rule"
+				ExecutionBucket="1"
+				CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E  &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine=""
+				ExecutionBucket="2"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+				ExecutionBucket="4"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				ExecutionBucket="5"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="6"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="../../../../../libs/f2c"
+				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
+				RuntimeLibrary="0"
+				EnableEnhancedInstructionSet="1"
+				UsePrecompiledHeader="0"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+				ExecutionBucket="7"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				ExecutionBucket="8"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				Description="Build Arpack.def file"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n Arpack.dll %%f &gt;nul&#x0D;&#x0A;copy *.def Arpack1.def &gt;nul&#x0D;&#x0A;copy  ..\Arpack.def+Arpack1.def ..\..\..\..\..\..\bin\Arpack.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+				ExecutionBucket="9"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				ExecutionBucket="10"
+				OutputFile="../../../../../bin/Arpack.dll"
+				ModuleDefinitionFile="..\..\..\..\..\bin\Arpack.def"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				CLRUnmanagedCodeCheck="true"
+			/>
+			<Tool
+				Name="VCALinkTool"
+				ExecutionBucket="11"
+			/>
+			<Tool
+				Name="VCManifestTool"
+				ExecutionBucket="12"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+				ExecutionBucket="13"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				ExecutionBucket="14"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+				ExecutionBucket="15"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
 				CommandLine=""
+				ExecutionBucket="17"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 		</Configuration>
 		<Configuration
@@ -368,6 +364,8 @@
 				Name="VCLinkerTool"
 				OutputFile="../../../../../bin/Arpack.dll"
 				ModuleDefinitionFile="..\..\..\..\..\bin\Arpack.def"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -388,9 +386,6 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"

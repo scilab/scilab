@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="9,00"
 	Name="polynomials"
 	ProjectGUID="{620D8FA7-3704-438E-BB1E-391C84401A2E}"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
