@@ -1,3 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) XXXX-2008 - INRIA
+// Copyright (C) XXXX-2008 - INRIA - Allan CORNET
+
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function [rep,stat]=unix_g(cmd)
 //unix_g - shell command execution 
 //%Syntax
@@ -13,8 +25,6 @@ function [rep,stat]=unix_g(cmd)
 //%See also
 // host unix_x unix_s
 //!
-// Copyright INRIA
-// Modified by Allan CORNET
 
   [lhs,rhs]=argn(0)
   if prod(size(cmd))<>1 then error(55,1),end

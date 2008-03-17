@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) XXXX-2008 INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function []=ssprint(sl,out)
 //ssprint(sl [,out])  pretty print of a linear system in state-space form
 // sl=(A,B,C,D) syslin list.
@@ -9,7 +19,6 @@ function []=ssprint(sl,out)
 // ssprint(syslin('d',a,b,c,d))
 //!
 
-// Copyright INRIA
 [lhs,rhs]=argn(0)
 mess='system cannot be displayed in this page'
 fil=%f
