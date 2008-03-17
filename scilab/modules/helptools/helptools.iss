@@ -19,6 +19,49 @@
 #define HELPTOOLS "helptools"
 ,
 Source: thirdparty\jhall.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\avalon-framework.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\avalon-framework.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\avalon-framework.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\batik.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\batik.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\batik.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\commons-io.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\commons-io.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\commons-io.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\commons-logging.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\commons-logging.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\commons-logging.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\docbook-xsl-saxon.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\fop-hyph.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\fop-hyph.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\fop-hyph.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\fop.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\fop.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\fop.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\isorelax.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\jeuclid-core.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\jeuclid.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\jeuclid.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\jimi.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\jimi.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\jimi.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\jing.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\jing.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\jing.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\js.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\js.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\js.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\saxon.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\saxon.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\saxon.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\sci_doc_kit.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\sci_doc_kit.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\sci_doc_kit.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\xercesImpl.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\xml-apis.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\xmlgraphics-commons.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\xmlgraphics-commons.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\xmlgraphics-commons.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HELPTOOLS}\VERSION.xml; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\readme.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
