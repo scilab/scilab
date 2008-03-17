@@ -1847,19 +1847,21 @@ public class CallScilabBridge {
 	/**
 	 * Launch Scilab help browser if not already created
 	 * @param helps help chapters and directories
+	 * @param language Scilab current language
 	 */
-	public static void launchHelpBrowser(String[] helps) {
-		ScilabHelpBrowser.createHelpBrowser(helps);
+	public static void launchHelpBrowser(String[] helps, String language) {
+		ScilabHelpBrowser.createHelpBrowser(helps, language);
 	}
 	
 	/**
 	 * Search a keyword in Scilab Help Browser
 	 * @param keyword the keyword to search
 	 * @param helps help chapters and directories
+	 * @param language Scilab current language
 	 * @return true if the keyword is a function name
 	 */
-	public static boolean searchKeyword(String[] helps, String keyword) {
-		return ScilabHelpBrowser.createHelpBrowser(helps).searchKeywork(keyword);
+	public static boolean searchKeyword(String[] helps, String keyword, String language) {
+		return ScilabHelpBrowser.createHelpBrowser(helps, language).searchKeywork(keyword);
 	}
 
 	/**

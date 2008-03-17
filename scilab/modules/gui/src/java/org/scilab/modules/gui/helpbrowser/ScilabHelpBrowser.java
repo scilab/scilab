@@ -15,14 +15,12 @@ package org.scilab.modules.gui.helpbrowser;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.dockable.ScilabDockable;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
-import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -34,6 +32,8 @@ import org.scilab.modules.gui.window.Window;
  */
 public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
+	private static final String MENUBARXMLFILE = System.getenv("SCI") + "/modules/gui/etc/helpbrowser_menubar.xml";
+
 	private static HelpBrowser instance;
 	
 	private static Tab helpTab;
@@ -43,34 +43,30 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 	/**
 	 * Constructor
 	 * @param helps help chapters and directories
+	 * @param language Scilab current language
 	 */
-	protected ScilabHelpBrowser(String[] helps) {
-		component = ScilabBridge.createHelpBrowser(helps);
+	protected ScilabHelpBrowser(String[] helps, String language) {
+		component = ScilabBridge.createHelpBrowser(helps, language);
 	}
 
 	/**
 	 * Creates a Scilab Help Browser
 	 * @param helps help chapters and directories
+	 * @param language Scilab current language
 	 * @return the created Help Browser
 	 */
-	public static HelpBrowser createHelpBrowser(String[] helps) {
+	public static HelpBrowser createHelpBrowser(String[] helps, String language) {
 		if (instance == null) {
-			instance = new ScilabHelpBrowser(helps);
+			
+			instance = new ScilabHelpBrowser(helps, language);
+			
 			helpTab = ScilabTab.createTab("Help Browser");
 			helpTab.addMember(instance);
+			 /* Action when the Browser tab is closed */
 			helpTab.setCallback(ScilabCallBack
 					.createCallback("org.scilab.modules.gui.bridge.CallScilabBridge.closeHelpBrowser", ScilabCallBack.JAVA));
 			
-			MenuBar menubar = ScilabMenuBar.createMenuBar();
-			
-			Menu menu = ScilabMenu.createMenu();
-			menu.setText("File");
-			menubar.add(menu);
-			
-			menu = ScilabMenu.createMenu();
-			menu.setText("?");
-			menubar.add(menu);
-			
+			MenuBar menubar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
 			helpTab.addMenuBar(menubar);
 
 			TextBox infobar = ScilabTextBox.createTextBox();
@@ -79,6 +75,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 			Window helpWindow = ScilabWindow.createWindow();
 			helpWindow.addTab(helpTab);
 			helpWindow.draw();
+			
 		}
 		return instance;
 	}
@@ -88,11 +85,10 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 	 * @return the console
 	 */
 	public static HelpBrowser getHelpBrowser() {
-		throw new UnsupportedOperationException();
-//		if (instance == null) {
-//			instance = new ScilabHelpBrowser();
-//		}
-//		return instance;
+		if (instance == null) {
+			instance = new ScilabHelpBrowser(null, "en_US");
+		}
+		return instance;
 	}
 	
 	/**

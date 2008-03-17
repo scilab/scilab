@@ -29,10 +29,11 @@ public class ScilabHelpBrowserBridge {
 	/**
 	 * Creates a Scilab HelpBrowser
 	 * @param helps help chapters and directories
+	 * @param language Scilab current language
 	 * @return the created HelpBrowser
 	 */
-	public static SimpleHelpBrowser createHelpBrowser(String[] helps) {
-		return new SwingScilabHelpBrowser(helps);
+	public static SimpleHelpBrowser createHelpBrowser(String[] helps, String language) {
+		return new SwingScilabHelpBrowser(helps, language);
 	}
 
 	/**

@@ -233,8 +233,8 @@ voidsetWaitBarMessagejintjobjectArrayID=NULL;
 voidsetWaitBarValuejintjintID=NULL; 
 voiddestroyWaitBarjintID=NULL; 
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
-voidlaunchHelpBrowserjobjectArrayID=NULL; 
-jbooleansearchKeywordjobjectArrayjstringID=NULL; 
+voidlaunchHelpBrowserjobjectArrayjstringID=NULL; 
+jbooleansearchKeywordjobjectArrayjstringjstringID=NULL; 
 
 
 }
@@ -391,8 +391,8 @@ voidsetWaitBarMessagejintjobjectArrayID=NULL;
 voidsetWaitBarValuejintjintID=NULL; 
 voiddestroyWaitBarjintID=NULL; 
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
-voidlaunchHelpBrowserjobjectArrayID=NULL; 
-jbooleansearchKeywordjobjectArrayjstringID=NULL; 
+voidlaunchHelpBrowserjobjectArrayjstringID=NULL; 
+jbooleansearchKeywordjobjectArrayjstringjstringID=NULL; 
 
 
 }
@@ -3820,14 +3820,14 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void CallScilabBridge::launchHelpBrowser (JavaVM * jvm_, char ** helps, int helpsSize){
+void CallScilabBridge::launchHelpBrowser (JavaVM * jvm_, char ** helps, int helpsSize, char * language){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidlaunchHelpBrowserjobjectArrayID = curEnv->GetStaticMethodID(cls, "launchHelpBrowser", "([Ljava/lang/String;)V" ) ;
-if (voidlaunchHelpBrowserjobjectArrayID == NULL) {
+jmethodID voidlaunchHelpBrowserjobjectArrayjstringID = curEnv->GetStaticMethodID(cls, "launchHelpBrowser", "([Ljava/lang/String;Ljava/lang/String;)V" ) ;
+if (voidlaunchHelpBrowserjobjectArrayjstringID == NULL) {
 std::cerr << "Could not access to the method " << "launchHelpBrowser" << std::endl;
 exit(EXIT_FAILURE);
 }
@@ -3856,7 +3856,9 @@ curEnv->SetObjectArrayElement( helps_, i, TempString);
 // avoid keeping reference on to many strings
 curEnv->DeleteLocalRef(TempString);
 }
-                         curEnv->CallStaticVoidMethod(cls, voidlaunchHelpBrowserjobjectArrayID ,helps_);
+jstring language_ = curEnv->NewStringUTF( language );
+
+                         curEnv->CallStaticVoidMethod(cls, voidlaunchHelpBrowserjobjectArrayjstringID ,helps_, language_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -3867,14 +3869,14 @@ curEnv->DeleteLocalRef(helps_);
 
 }
 
-bool CallScilabBridge::searchKeyword (JavaVM * jvm_, char ** helps, int helpsSize, char * keyword){
+bool CallScilabBridge::searchKeyword (JavaVM * jvm_, char ** helps, int helpsSize, char * keyword, char * language){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jbooleansearchKeywordjobjectArrayjstringID = curEnv->GetStaticMethodID(cls, "searchKeyword", "([Ljava/lang/String;Ljava/lang/String;)Z" ) ;
-if (jbooleansearchKeywordjobjectArrayjstringID == NULL) {
+jmethodID jbooleansearchKeywordjobjectArrayjstringjstringID = curEnv->GetStaticMethodID(cls, "searchKeyword", "([Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z" ) ;
+if (jbooleansearchKeywordjobjectArrayjstringjstringID == NULL) {
 std::cerr << "Could not access to the method " << "searchKeyword" << std::endl;
 exit(EXIT_FAILURE);
 }
@@ -3905,7 +3907,9 @@ curEnv->DeleteLocalRef(TempString);
 }
 jstring keyword_ = curEnv->NewStringUTF( keyword );
 
-                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleansearchKeywordjobjectArrayjstringID ,helps_, keyword_);
+jstring language_ = curEnv->NewStringUTF( language );
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleansearchKeywordjobjectArrayjstringjstringID ,helps_, keyword_, language_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

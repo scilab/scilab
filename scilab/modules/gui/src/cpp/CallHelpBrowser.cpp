@@ -14,12 +14,12 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-void launchHelpBrowser(char **helps, int helpsSize)
+void launchHelpBrowser(char **helps, int helpsSize, char* language)
 {
-  CallScilabBridge::launchHelpBrowser(getScilabJavaVM(), helps, helpsSize);
+  CallScilabBridge::launchHelpBrowser(getScilabJavaVM(), helps, helpsSize, language);
 }
 
-BOOL searchKeyword(char **helps, int helpsSize, char *keyword)
+BOOL searchKeyword(char **helps, int helpsSize, char *keyword, char* language)
 {
-  return CallScilabBridge::searchKeyword(getScilabJavaVM(), helps, helpsSize, keyword);
+  return CallScilabBridge::searchKeyword(getScilabJavaVM(), helps, helpsSize, keyword, language);
 }

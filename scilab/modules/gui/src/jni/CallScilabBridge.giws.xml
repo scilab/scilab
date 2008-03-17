@@ -483,10 +483,12 @@
 <!-- Help Browser -->
 	<method name="launchHelpBrowser" returnType="void" modifier="static">
           <parameter type="String[]" name="helps"/>
+          <parameter type="String" name="language"/>
         </method>      
         <method name="searchKeyword" returnType="boolean" modifier="static">
           <parameter type="String[]" name="helps"/>
           <parameter type="String" name="keyword"/>
+          <parameter type="String" name="language"/>
         </method>
   </object>
 </package>

@@ -23,36 +23,64 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0, keywordAdr = 0;
   int nbRowHelp = 0, nbColHelp = 0, helpAdr = 0;
+  int languageAdr = 0;
   
-  CheckRhs(1,2);
+  CheckRhs(2,3);
   CheckLhs(0,1);
 
-  if (Rhs == 1)
+  if (VarType(1) == sci_strings)
     {
-      if (VarType(1) == sci_strings)
+      GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRowHelp, &nbColHelp, &helpAdr);
+    }
+  else
+    {
+      if (VarType(1) == sci_matrix)
         {
-          GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRowHelp, &nbColHelp, &helpAdr);
+          if (nbRow*nbCol == 0)
+            {
+              helpAdr = -1; /* No toolboxes installed */
+            }
+          else
+            {
+              Scierror(999, _("%s: Wrong type for first input argument: String matrix expected.\n"), "helpbrowser");
+              return FALSE;
+            }
         }
       else
         {
           Scierror(999, _("%s: Wrong type for first input argument: String matrix expected.\n"), "helpbrowser");
           return FALSE;
         }
-
-      launchHelpBrowser(getStringMatrixFromStack(helpAdr), nbRowHelp*nbColHelp);
     }
-  else
+  
+  if (Rhs == 2)
     {
-      if (VarType(1) == sci_strings)
+      if (VarType(2) == sci_strings)
         {
-          GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRowHelp, &nbColHelp, &helpAdr);
+          GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &languageAdr);
+          if (nbRow*nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"), "helpbrowser");
+              return FALSE;
+            }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single matrix expected.\n"), "helpbrowser");
+          Scierror(999, _("%s: Wrong type for second input argument: String matrix expected.\n"), "helpbrowser");
           return FALSE;
         }
 
+      if (helpAdr == -1) /* No toolboxes loaded */
+        {
+          launchHelpBrowser(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack(languageAdr)[0]);
+        }
+      else
+        {
+          launchHelpBrowser(getStringMatrixFromStack(helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack(languageAdr)[0]);
+        }
+    }
+  else
+    {
       if (VarType(2) == sci_strings)
         {
           GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &keywordAdr);
@@ -68,9 +96,35 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
           return FALSE;
         }
       
-      if (!searchKeyword(getStringMatrixFromStack(helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack(keywordAdr)[0])) {
-        sciprint(_("Could not find help page for function: %s.\n"),getStringMatrixFromStack(keywordAdr)[0]);
-      }
+      if (VarType(3) == sci_strings)
+        {
+          GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &languageAdr);
+          if (nbRow*nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong size for third input argument: Single string expected.\n"), "helpbrowser");
+              return FALSE;
+            }
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for third second argument: Single string expected.\n"), "helpbrowser");
+          return FALSE;
+        }
+      
+      if (helpAdr == -1) /* No toolboxes loaded */
+        {
+          if (!searchKeyword(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack(keywordAdr)[0], getStringMatrixFromStack(languageAdr)[0]))
+            {
+              sciprint(_("Could not find help page for function: %s.\n"),getStringMatrixFromStack(keywordAdr)[0]);
+            }
+        }
+      else
+        {
+          if (!searchKeyword(getStringMatrixFromStack(helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack(keywordAdr)[0], getStringMatrixFromStack(languageAdr)[0]))
+            {
+              sciprint(_("Could not find help page for function: %s.\n"),getStringMatrixFromStack(keywordAdr)[0]);
+            }
+        }
     }
   
   LhsVar(1) = 0;

@@ -25,9 +25,9 @@ function help(key)
 			INDEX=make_help_index()
 			
 			if argn(2)==0 then
-				//global %helps
-				//helpbrowser(%helps(:,1));
-				browsehelp(INDEX,"index");
+				global %helps
+				helpbrowser(%helps(:,1), getlanguage());
+				//browsehelp(INDEX,"index");
 				return
 			end
 			
@@ -41,9 +41,9 @@ function help(key)
 			path=gethelpfile(key)
 			
 			if path<>[] then
-				//global %helps
-				//helpbrowser(%helps(:,1), key);
-				browsehelp(path,key)
+				global %helps
+				helpbrowser(%helps(:,1), key, getlanguage());
+				//browsehelp(path,key)
 			else
 				apropos(key)
 			end

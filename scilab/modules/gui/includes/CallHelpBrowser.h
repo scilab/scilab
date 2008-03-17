@@ -21,8 +21,9 @@
  *
  * @param helps help chapters and directories
  * @param helpsSize number of entries in helps
+ * @param language Scilab current locale
  */
-void launchHelpBrowser(char **helps, int helpsSize);
+void launchHelpBrowser(char **helps, int helpsSize, char *language);
 
 /**
  * Search a keyword in Scilab Help Browser
@@ -30,8 +31,9 @@ void launchHelpBrowser(char **helps, int helpsSize);
  * @param helps help chapters and directories
  * @param helpsSize number of entries in helps
  * @param keyword the keyword to search
+ * @param language Scilab current locale
  */
-BOOL searchKeyword(char **helps, int helpsSize, char *keyword);
+BOOL searchKeyword(char **helps, int helpsSize, char *keyword, char *language);
 
 #endif /* !__CALLHELPBROWSER_H__ */
 

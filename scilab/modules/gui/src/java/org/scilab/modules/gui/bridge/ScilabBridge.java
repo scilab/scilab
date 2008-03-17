@@ -4164,10 +4164,11 @@ public class ScilabBridge {
 	/**
 	 * Create a new Help Browser
 	 * @param helps help chapters and directories
+	 * @param language Scilab current language
 	 * @return the created Help Browser
 	 */
-	public static SimpleHelpBrowser createHelpBrowser(String[] helps) {
-		return ScilabHelpBrowserBridge.createHelpBrowser(helps);
+	public static SimpleHelpBrowser createHelpBrowser(String[] helps, String language) {
+		return ScilabHelpBrowserBridge.createHelpBrowser(helps, language);
 	}
 
 	/**

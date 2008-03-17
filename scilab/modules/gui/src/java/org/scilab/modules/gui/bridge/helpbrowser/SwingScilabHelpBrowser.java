@@ -12,10 +12,10 @@
 package org.scilab.modules.gui.bridge.helpbrowser;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.util.StringTokenizer;
 
 import javax.help.BadIDException;
 import javax.help.DefaultHelpModel;
@@ -32,30 +32,69 @@ import org.scilab.modules.gui.helpbrowser.SimpleHelpBrowser;
 public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	
 	private static final long serialVersionUID = 5306766011092074961L;
-
+	
+	private String jarExtension = "_help.jar";
+	private String mainJarPath = System.getenv("SCI") + "/modules/helptools/scilab_";
+	private String defaultLanguage = "en_US";
     private HelpSet helpSet;
 
     /**
 	 * Constructor
 	 * @param helps help chapters and directories
+	 * @param language Scilab current language
 	 */		
-	public SwingScilabHelpBrowser(String[] helps) {
+	public SwingScilabHelpBrowser(String[] helps, String language) {
 		super();	
 		
-	    File[] jarFiles = new File[helps.length];
-	    String moduleName = "";
-	    for (int k = 0; k < helps.length; k++) {
-			/* Search module name */
-			StringTokenizer tok = new StringTokenizer(helps[k], "/");
-			while (tok.hasMoreTokens()) {
-				if (tok.nextToken().equals("modules")) {
-					moduleName = tok.nextToken();
-					break;
-				}
-			}
-			/* Jar file name */
-			jarFiles[k] =  new File(helps[k] + moduleName + "_help.jar");
+		File[] jarFiles;
+		if (helps == null) {
+			jarFiles = new File[helps.length + 1]; /* +1 because of Scilab main help jar file */
+		} else {
+			jarFiles = new File[1]; /* Scilab main help jar file */
 		}
+
+	    /* Main Jar file */
+	    File mainJar = new File(mainJarPath + language + jarExtension);
+	    if (!mainJar.exists()) {
+	    	mainJar = new File(mainJarPath + defaultLanguage + jarExtension);
+	    }
+	    
+	    jarFiles[0] = mainJar;
+	    
+	    /* Toolboxes jar files */
+	    if (helps != null) {
+	    	for (int k = 0; k < helps.length; k++) {
+	    		File toolboxJarPath = new File(helps[k]);
+
+	    		/* Find all Jars */
+	    		String[] all = toolboxJarPath.list(new FilenameFilter() {
+	    			public boolean accept(File pathname, String arg1) {
+	    				return pathname.getAbsolutePath().matches("*_help.jar");
+	    			}
+	    		});
+
+	    		/* Get the default language help and the current language help */
+	    		int defaultHelpIndex = -1;
+	    		int localeHelpIndex = -1;
+	    		for (int fileIndex = 0; fileIndex < all.length; fileIndex++) {
+	    			if (all[fileIndex].indexOf(defaultLanguage) != -1) {
+	    				defaultHelpIndex = fileIndex;
+	    			}
+	    			if (all[fileIndex].indexOf(language) != -1) {
+	    				localeHelpIndex = fileIndex;
+	    			}
+	    		}
+
+	    		/* Add the toolbox help file */
+	    		if (localeHelpIndex != -1) {
+	    			jarFiles[k + 1] =  new File(all[localeHelpIndex]);
+	    		} else if (defaultHelpIndex != -1) {
+	    			jarFiles[k + 1] =  new File(all[defaultHelpIndex]);
+	    		} else if (all != null) {
+	    			jarFiles[k + 1] =  new File(all[0]); /* First file as default */
+	    		}
+	    	}
+	    }
 	    this.setModel(new DefaultHelpModel(new HelpSet()));
         
 	    for (int i = 0; i < jarFiles.length; ++i) {
@@ -81,7 +120,6 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            //this.setModel(new DefaultHelpModel(helpSet));
 			this.getModel().getHelpSet().add(helpSet);
         }
 
