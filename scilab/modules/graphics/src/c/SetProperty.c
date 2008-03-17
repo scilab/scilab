@@ -3278,7 +3278,7 @@ int sciInitAutoRotation( sciPointObj * pObj, BOOL value )
   {
   case SCI_LABEL:
     pLABEL_FEATURE(pObj)->auto_rotation = value ;
-      break;
+    return 0;
   case SCI_POLYLINE:
   case SCI_RECTANGLE:
   case SCI_ARC:
@@ -3327,7 +3327,7 @@ int sciInitAutoPosition( sciPointObj * pObj, BOOL value )
   {
   case SCI_LABEL:
     pLABEL_FEATURE(pObj)->auto_position = value ;
-    break;
+    return 0;
   case SCI_POLYLINE:
   case SCI_RECTANGLE:
   case SCI_ARC:
@@ -3725,6 +3725,7 @@ int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
     }
   default:
     printSetGetErrorMessage("info_message");
+    return -1;
   }
 }
 /*-----------------------------------------------------------------------------------*/
@@ -3831,13 +3832,13 @@ int sciSetDataBounds( sciPointObj * pObj, double bounds[6] )
     {
       pSUBWIN_FEATURE(pObj)->SRect[i] = bounds[i] ;
     }
-    break ;
+    return 0;
   case SCI_SURFACE:
     for ( i = 0 ; i < 6 ; i++ )
     {
       pSURFACE_FEATURE(pObj)->ebox[i] = bounds[i] ;
     }
-    break;
+    return 0;
   default:
     printSetGetErrorMessage("data_bounds");
     return -1 ; 
@@ -4038,7 +4039,7 @@ int sciInitAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL 
     pSUBWIN_FEATURE(pObj)->axes.auto_ticks[0] = autoTicksX;
     pSUBWIN_FEATURE(pObj)->axes.auto_ticks[1] = autoTicksY;
     pSUBWIN_FEATURE(pObj)->axes.auto_ticks[2] = autoTicksZ;
-    break;
+    return 0;
   default:
     printSetGetErrorMessage("auto_ticks");
     return -1;
@@ -4070,7 +4071,7 @@ int sciSetRenderingEnable(sciPointObj * pObj, BOOL enable)
   {
   case SCI_FIGURE:
     sciSetJavaRenderingEnable(pObj, enable);
-    break;
+    return 0;
   default:
     return -1;
   }
@@ -4091,7 +4092,7 @@ int sciSetZoomBox(sciPointObj * pObj, const double zoomBox[6])
     pSUBWIN_FEATURE(pObj)->ZRect[3] = zoomBox[3];
     pSUBWIN_FEATURE(pObj)->ZRect[4] = zoomBox[4];
     pSUBWIN_FEATURE(pObj)->ZRect[5] = zoomBox[5];
-    break;
+    return 0;
   default:
     printSetGetErrorMessage("zoom_box");
     return -1;
