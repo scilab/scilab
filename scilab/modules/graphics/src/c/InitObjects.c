@@ -314,7 +314,6 @@ sciInitGraphicContext (sciPointObj * pobj)
     return -1;
     break;
   }
-  return 0;
 }
 
 /**

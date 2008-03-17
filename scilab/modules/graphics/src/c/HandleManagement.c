@@ -313,7 +313,6 @@ sciGetRelationship (sciPointObj * pobj)
       return (sciRelationShip *) NULL;
       break;
     }
-  return (sciRelationShip *) NULL;
 }
 
 
@@ -459,8 +458,6 @@ BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
       return FALSE;
       break;
     }
-
-  return FALSE ;
 }
 
 
@@ -610,7 +607,6 @@ BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent )
   default:
     return ( parentType == SCI_SUBWIN || parentType == SCI_AGREG ) ;
   }
-  return FALSE ;
 }
 /*--------------------------------------------------------------------------*/
 /**

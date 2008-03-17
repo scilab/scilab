@@ -560,8 +560,6 @@ ConstructSubWin(sciPointObj * pparentfigure)
       sciprint(_("The parent has to be a FIGURE\n"));
       return (sciPointObj *) NULL;
     }
-  
-  return (sciPointObj *) NULL;
 }
 
 

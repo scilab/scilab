@@ -201,7 +201,6 @@ sciCloneObj (sciPointObj * pobj)
       return (sciPointObj *)NULL;
       break;
     }
-  return (sciPointObj *)NULL;
 }
 
 

@@ -477,15 +477,13 @@ int sciInitNumColors( sciPointObj * pobj, int numcolors)
 {
 
   /* modified jb Silvy 06/2006 */
-  switch (sciGetEntityType (pobj))
+	if (sciGetEntityType (pobj)==SCI_FIGURE)
   {
-  case SCI_FIGURE:
     pFIGURE_FEATURE(pobj)->numcolors = numcolors ;
     return 0 ;
-  default:
+  }else{
     return sciSetNumColors( sciGetParentFigure( pobj ), numcolors ) ;
   }
-  return -1 ;
 }
 
 /**sciSetNumColors
@@ -1396,7 +1394,6 @@ sciSetFontName (sciPointObj * pobj, char pfontname[], int n)
       return -1;
       break;
     }
-  return 0;
 }
 
 
@@ -2471,7 +2468,6 @@ int sciInitSubWindowPos( sciPointObj * pobj, int *pposx, int *pposy)
       return -1;
       break;
     }
-  return 0 ;
 }
 
 /**sciSetSubwindowPos
@@ -3180,7 +3176,6 @@ int sciInitBoxType( sciPointObj * pobj, EAxesBoxType type )
       return -1 ;
       break;
   }
-  return 0;
 }
 
 /* set the property of the axes box  */
@@ -3240,7 +3235,7 @@ int sciInitIsBoxed( sciPointObj * pobj, BOOL isboxed )
       return -1;
       break;
     }
-  return 0;
+
 }
 
 /**sciSetIsBoxed
@@ -3310,7 +3305,6 @@ int sciInitAutoRotation( sciPointObj * pObj, BOOL value )
     break;
   }
 
-  return 0 ;
 }
 
 /* set the auto_rotation property of an object */
@@ -3360,7 +3354,6 @@ int sciInitAutoPosition( sciPointObj * pObj, BOOL value )
     break;
   }
 
-  return 0 ;
 }
 
 /* set the auto_position property of an object */
@@ -3422,7 +3415,7 @@ int sciInitAutoSize( sciPointObj * pObj, BOOL autoSize )
     return -1 ;
     break;
   }
-  return -1 ;
+
 }
 /*---------------------------------------------------------------------------*/
 int sciSetAutoSize( sciPointObj * pObj, BOOL autoSize )
@@ -3446,7 +3439,7 @@ int sciInitAlignment( sciPointObj * pObj, sciTextAlignment align )
     printSetGetErrorMessage("alignment");
     return -1 ;
   }
-  return -1 ;
+
 }
 /*-----------------------------------------------------------------------------------*/
 int sciSetAlignment( sciPointObj * pObj, sciTextAlignment align )
@@ -3471,7 +3464,6 @@ int sciInitUserSize( sciPointObj * pObj, double width, double height )
     printSetGetErrorMessage("text_box");
     return -1 ;
   }
-  return -1 ;
 }
 /*-----------------------------------------------------------------------------------*/
 int sciSetUserSize( sciPointObj * pObj, double width, double height )
@@ -3498,7 +3490,7 @@ int sciInitCenterPos( sciPointObj * pObj, BOOL newCP )
     printSetGetErrorMessage("data");
     return -1 ;
   }
-  return -1 ;
+
 }
 /*-----------------------------------------------------------------------------------*/
 int sciSetCenterPos( sciPointObj * pObj, BOOL newCP )
@@ -3551,7 +3543,6 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
      printSetGetErrorMessage("view");
      return -1 ;
    }
-   return -1 ;
 }
 /*-----------------------------------------------------------------------------------*/
 /**
@@ -3586,7 +3577,6 @@ int sciInitHiddenColor( sciPointObj * pObj, int newColor )
     printSetGetErrorMessage("hidden_color");
     return -1 ;
   }
-  return -1 ;
 }
 /*-----------------------------------------------------------------------------------*/
 int sciSetHiddenColor( sciPointObj * pObj, int newColor )
@@ -3615,7 +3605,6 @@ int sciInitHiddenAxisColor( sciPointObj * pObj, int newColor )
     printSetGetErrorMessage("hidden_axis_color");
     return -1 ;
   }
-  return -1 ;
 }
 /*-----------------------------------------------------------------------------------*/
 int sciSetHiddenAxisColor( sciPointObj * pObj, int newColor )
@@ -3648,7 +3637,6 @@ int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle )
    printSetGetErrorMessage("grid");
     return -1 ;
   }
-  return -1 ;
 }
 /*-----------------------------------------------------------------------------------*/
 /**
@@ -3693,7 +3681,6 @@ int sciSetViewport( sciPointObj * pObj, const int viewport[4] )
     printSetGetErrorMessage("viewport");
     return -1 ;
   }
-  return -1 ;
 
 }
 /*-----------------------------------------------------------------------------------*/
@@ -3739,7 +3726,6 @@ int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
     }
   default:
     printSetGetErrorMessage("info_message");
-    return -1 ;
   }
 }
 /*-----------------------------------------------------------------------------------*/
@@ -3858,7 +3844,6 @@ int sciSetDataBounds( sciPointObj * pObj, double bounds[6] )
     return -1 ; 
 
   }
-  return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
 /**
@@ -3880,7 +3865,6 @@ int sciSetRealDataBounds(sciPointObj * pObj, const double bounds[6])
     return -1 ; 
 
   }
-  return 0 ;
 }
 /*--------------------------------------------------------------------------------------------*/
 int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta)
@@ -3893,8 +3877,9 @@ int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta)
     return 0;
   default:
     printSetGetErrorMessage("rotation_angles");
+	return -1;
   }
-  return -1;
+
 }
 /*-----------------------------------------------------------------------------------*/
 /**
@@ -3954,9 +3939,8 @@ int sciInitPixmapMode(sciPointObj * pObj, BOOL onOrOff)
     return 0;
   default:
     printSetGetErrorMessage("pixmap");
-    break;
+	return -1;
   }
-  return -1;
 }
 /*----------------------------------------------------------------------------------*/
 /**
@@ -4060,7 +4044,6 @@ int sciInitAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL 
     printSetGetErrorMessage("auto_ticks");
     return -1;
   }
-  return 0;
 }
 /*----------------------------------------------------------------------------------*/
 int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ)
@@ -4092,7 +4075,6 @@ int sciSetRenderingEnable(sciPointObj * pObj, BOOL enable)
   default:
     return -1;
   }
-  return 0;
 }
 /*----------------------------------------------------------------------------------*/
 /**
@@ -4115,7 +4097,6 @@ int sciSetZoomBox(sciPointObj * pObj, const double zoomBox[6])
     printSetGetErrorMessage("zoom_box");
     return -1;
   }
-  return 0;
 }
 /*----------------------------------------------------------------------------------*/
 /**
