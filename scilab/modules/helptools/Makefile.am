@@ -18,8 +18,8 @@ libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
 
 #### helptools : help files ####
-libscihelptools_la_helpfilesdir = $(mydatadir)
-libscihelptools_la_helpfiles_DATA = scilab_fr_FR_help.jar scilab_en_US_help.jar
+#libscihelptools_la_helpfilesdir = $(mydatadir)
+#libscihelptools_la_helpfiles_DATA = scilab_fr_FR_help.jar scilab_en_US_help.jar
 
 
 #### helptools : css files ####
