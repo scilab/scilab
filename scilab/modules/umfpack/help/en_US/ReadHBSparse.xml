@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ReadHBSparse  </TITLE>
+  <TYPE>scilab function - scispt toolbox</TYPE>
+  <DATE>  </DATE>
+  <SHORT_DESCRIPTION name="ReadHBSparse"> read a Harwell-Boeing sparse format file  </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[A, description, ref, mtype] = ReadHBSparse([filename])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>filename  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (optional) a string given the filename (eventually preceeding by the path), if filename is not given then the function use <LINK>xgetfile</LINK> to get filename interactively
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : the sparse matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>description  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a string given some information about the matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ref  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a string given the reference of the matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>mtype  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a string given the type of the matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    An utility to read the Harwell-Boeing sparse matrix 
+    format. Currently don&apos;t work for unassembled matrix.
+    Also the eventual rhs vectors of the file are not returned.
+    Generally the file name is of the form ref.mtype  
+    where mtype is a 3 letters word abc given some 
+    informations (already inside the file) on the matrix : 
+  </P>
+  <VERBATIM><![CDATA[
+   a = R|C|P   for real|complex|pattern (no values given)
+   b = S|H|Z|U for symetric|hermitian|skew symetric|unsymetric
+   c = A|E     for assembled|unassembled matrix 
+               (case E is not treated by this func)
+   ]]></VERBATIM>
+  </DESCRIPTION>
+  <SECTION label='References'>
+  <P>
+    Users&apos; Guide for the Harwell-Boeing Sparse Matrix Collection Iain S. Duff, Roger G. Grimes, John G. Lewis. 
+    You may found  this guide and numerous sparse matrices (in the Harwell-Boeing  format) at the University of 
+    Florida Sparse Matrix Collection web site :
+  </P>
+     <A href="http://www.cise.ufl.edu/research/sparse/matrices/">http://www.cise.ufl.edu/research/sparse/matrices/</A>
+  <P>
+    maintained by Tim Davis (<A href="http://www.cise.ufl.edu/~davis/">http://www.cise.ufl.edu/~davis/</A>);
+  </P>
+  </SECTION>
+  <EXAMPLE><![CDATA[
+[A] = ReadHBSparse(DIR_SCISPT_DEM+"arc130.rua");
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>PlotSparse</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bruno Pincon &lt;Bruno.Pincon@iecn.u-nancy.fr&gt;  </AUTHOR>
+</MAN>

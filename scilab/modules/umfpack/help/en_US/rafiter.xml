@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<MAN>
+
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>rafiter  </TITLE>
+  <TYPE>scilab function - scispt toolbox</TYPE>
+  <DATE>  </DATE>
+
+  <SHORT_DESCRIPTION name="rafiter"> (obsolete) iterative refinement for a s.p.d. linear system  </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[xn, rn] = rafiter(A, C_ptr, b, x0, [, nb_iter, verb])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a real symetric positive definite sparse matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>C_ptr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a pointer to a Cholesky factorization (got with taucs_chfact)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector (r.h.s of the linear system) but &quot;matrix&quot; (multiple r.h.s.) are allowed.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : first solution obtained with taucs_chsolve(C_ptr, b)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>nb_iter  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (optional) number of raffinement iterations (default 2)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>verb  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (optional) boolean, must be %t for displaying the intermediary results, 
+      and %f (default) if you don&apos;t want.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>xn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : new refined solution
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : residual (<TT>A*xn - b</TT>)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+  <P>
+    This function is somewhat obsolete, use <TT>x = taucs_chsolve(C_ptr,b,A)</TT>
+    (see <LINK>taucs_chsolve</LINK>) which do one iterative refinement step.
+  </P>
+  <P>
+    To use if you want to improve a little the solution got with taucs_chsolve.
+    Note that with verb=%t the displayed internal steps are essentially meaningful 
+    in the case where b is a column vector.
+  </P>
+  </DESCRIPTION>
+  <SECTION label='Caution'>
+  <P>
+    Currently there is no verification for the input parameters !
+  </P>
+  </SECTION>
+  <EXAMPLE><![CDATA[
+[A] = ReadHBSparse(DIR_SCISPT_DEM+"bcsstk24.rsa");
+C_ptr = taucs_chfact(A);
+b = rand(size(A,1),1);
+x0 = taucs_chsolve(C_ptr, b);
+norm(A*x0 - b)
+[xn, rn] = rafiter(A, C_ptr, b, x0, verb=%t);
+norm(A*xn - b)
+taucs_chdel(C_ptr)
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>taucs_chsolve</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chfact</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Bruno Pincon &lt;Bruno.Pincon@iecn.u-nancy.fr&gt; </AUTHOR>
+
+</MAN>

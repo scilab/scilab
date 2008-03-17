@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<MAN>
+
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>umf_ludel  </TITLE>
+  <TYPE>scilab function - scispt toolbox</TYPE>
+  <DATE>scispt toolbox  </DATE>
+  <SHORT_DESCRIPTION name="umf_ludel"> utility function used with umf_lufact  </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+     <CALLING_SEQUENCE_ITEM>umf_ludel(LU_ptr) or umf_ludel()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+     <PARAM_INDENT>
+     <PARAM_ITEM>
+         <PARAM_NAME>LU_ptr  </PARAM_NAME>
+         <PARAM_DESCRIPTION>
+            : a pointer to an handle of umf lu factors (L,U,p,q,R)
+         </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+  <P>
+    This function must be used in conjunction with <LINK>umf_lufact</LINK> and
+    <LINK>umf_lusolve</LINK>. It clears the internal memory space used to store 
+    the LU factors (got with umf_lufact). Use without argument 
+    it frees the memory for all the current scilab umfpack LU factors. 
+  </P>
+  </DESCRIPTION>
+
+  <SECTION label='Examples'>
+  <P>
+    see the example section of <LINK>umf_lufact</LINK> 
+  </P>
+  </SECTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>umfpack</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_lufact</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_lusolve</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_luget</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_luinfo</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+      <AUTHORS_ITEM><EM>umfpack</EM> by Timothy A. Davis (see <LINK>umf_license</LINK>)</AUTHORS_ITEM>
+      <AUTHORS_ITEM><EM>scilab interface</EM> by Bruno Pincon</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>

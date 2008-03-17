@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>taucs_chget  </TITLE>
+  <TYPE>scilab function - scispt toolbox</TYPE>
+  <DATE>  </DATE>
+
+  <SHORT_DESCRIPTION name="taucs_chget"> retrieve the Cholesky factorization at the scilab level  </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[Ct,p] = taucs_chget(C_ptr)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>C_ptr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a pointer to the Cholesky factorization (C,p : A(p,p)=CC&apos;)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Ct  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a scilab sparse matrix (you get the upper triangle i.e. Ct is equal to C&apos;) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>p  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector storing the permutation
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+  <P>
+    This function  may be used if you want  to plot  the sparse
+    pattern  of the Cholesky factorization (or if you  code something which
+    use the factors). Traditionnaly, the factorization is written :
+  </P>
+  <VERBATIM><![CDATA[
+    P A P' = C C'
+   ]]></VERBATIM>
+  <P>
+    with P&apos; the permutation matrix associated to the permutation p.
+    As we get the upper triangle Ct (= C&apos;), in scilab syntax we
+    can write :
+  </P>
+  <VERBATIM><![CDATA[
+    A(p,p) = Ct' * Ct
+   ]]></VERBATIM>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+// Example #1 : a small linear test system 
+A = sparse( [ 2 -1  0  0  0;
+             -1  2 -1  0  0; 
+              0 -1  2 -1  0; 
+              0  0 -1  2 -1; 
+              0  0  0 -1  2] );
+Cp = taucs_chfact(A);
+[Ct, p] = taucs_chget(Cp);
+full(A(p,p) - Ct'*Ct)  // this must be near the null matrix
+taucs_chdel(Cp)
+
+// Example #2 a real example
+stacksize(3000000)  // the last PlotSparse need memory
+// first load a sparse matrix
+[A] = ReadHBSparse(DIR_SCISPT_DEM+"bcsstk24.rsa");
+// compute the factorisation
+Cptr = taucs_chfact(A); 
+// retrieve the factor at scilab level
+[Ct, p] = taucs_chget(Cptr);
+// plot the initial matrix
+xset("window",0) ; xbasc()
+PlotSparse(A) ; xtitle("Initial matrix A (bcsstk24.rsa)")
+// plot the permuted matrix
+B = A(p,p);
+xset("window",1) ; xbasc()
+PlotSparse(B) ; xtitle("Permuted matrix B = A(p,p)")
+// plot the upper triangle Ct
+xset("window",2) ; xbasc()
+PlotSparse(Ct) ; xtitle("The pattern of Ct (A(p,p) = C*Ct)")
+// retrieve cnz
+[OK, n, cnz] = taucs_chinfo(Cptr)
+// cnz is superior to the realnumber of non zeros elements of C :
+cnz_exact = nnz(Ct)
+// don't forget to clear memory
+taucs_chdel(Cptr)
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>taucs_chfact</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chsolve</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chdel</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chinfo</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chget</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>cond2sp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+      <AUTHORS_ITEM><EM>taucs</EM> by Sivan Toledo (see <LINK>taucs_license</LINK>)</AUTHORS_ITEM>
+      <AUTHORS_ITEM><EM>scilab interface</EM> by Bruno Pincon</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>

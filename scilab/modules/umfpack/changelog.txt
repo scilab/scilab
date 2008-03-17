@@ -1,0 +1,102 @@
+from version 1.3 beta to version 1.4:
+       choose CeCILL-A licence
+       adapt PlotSparse for newgraphics
+       adapt the interface with minor changes in scilab (lstk->Lstk)
+       remove obsolete umfpack_cmplx function.
+
+from version 1.3 alpha to 1.3 beta:
+       From a suggestion of Eduardo Lenz
+       the functions taucs_chfact and taucs_chsolve work
+       also if one provides only the upper triangle of 
+       the matrix.
+
+from version 1.2 alpha to 1.3 alpha:
+
+       This new version was motivated by several things:
+          * Antonio Manoel Ferreria Frasson sent me some month
+            ago a first version adapted for complex matrices
+            (concerning the umfpack interface).
+          * I am also working currently with complex systems
+            (from Helmholtz equation).
+          * The likely incorporation of umfpack (with this interface)
+            in the future scilab version (3.1 ?); a very good news !
+          * update the interface to support umfpack v4.3.
+
+       So many changes occured but most are not visibles from
+       the scilab functions provided by this toolbox. For the user
+       the main changes are that: x=umfpack(A,"\",b), LUp=umf_lufact(A);
+       x = umf_lusolve(LUp,b) can be used with A or b real or
+       complex.
+
+        (i)   adapt the Antonio 's modifs (to treat complex linear
+              systems) => umfpack_cmplx is obsolete. I have 
+              added a field "it" in the cell type of the ListNumeric 
+              linked list. It gives the type (real it=0 or complex it=1)
+              of the factorisation: this was necessary to choose which
+              routines umfpack calling (the xxx_di_xxxxx family (real)
+              or the xxxxx_zi_xxxxx family (complex)). Also
+              rectangular matrices may be factorised.
+    
+        (ii)  finally I take the decision to
+              change the format (scilab sparse -> CCS) before 
+              calling the umfpack routines: this is clearer than 
+              the tricks I have done before (one got a factorisation of A' 
+              while the interface provides now a factorisation of A).
+              This extra work is compensed by the fact that the
+              interface is now passed by reference.
+
+        (iii) many changes in the interface C file:
+               - I use more heavily the scilab stack in place 
+                 of malloc (this simplifies a little all the error 
+                 treatment). 
+               - Also Francois (Delebecque) tells me about sci_gateway 
+                 which avoid the use of PutLhsVar(). 
+
+        (iv)  remove some bugs, in particular in umf_lusolve without 
+              refinement.
+
+        (v)   taucs_chsolve with an optional arg (A) do one
+              refinement step (=> rafiter is obsolete).
+
+        (vi)  better builder.sce and loader.sce (thanks to Antonio
+              Frasson) so that the toolbox is "loadable" from any
+              directory.
+
+
+from version 1.1 alpha to 1.2 alpha:
+        (i)   adapt the stuff to umfpack v4.0 
+
+        (ii)  correct a bug in  ReadHBSparse
+
+        (iii) help pages are provided also in html
+
+        (iv)  install explanations may be a little
+              clearer than before !   
+
+from version 1.0 alpha to 1.1 alpha :
+	(i)   add the taucs snmf stuff interface
+
+	(ii)  add a trick in ReadHBSparse so as to
+              read some HB matrices which doesn't respect
+              exactly the Harwell-Boeing format !
+
+        (iii) add the 2 macros cond2sp and rafiter and a
+              new func res_with_prec
+
+        (iv)  add a trick in PlotSparse to minimize memory
+              usage
+
+        (v)   add some tricks in the interface to avoid
+              memory leak when CreateVarFromPtr fails
+              (see test_size_for_sparse and test_size_for_mat
+              in scispt.c).
+
+        (vi)  correct bad path in the .cat files
+
+        (vii) correct a scilab bug (you have to download the
+              latest cvs version (begin of December) or to correct 
+              yourself, see NOTES 2 in the README file). You must 
+              correct it if you want to use umf_luget or taucs_chget 
+              with to small sparse matrices.
+
+

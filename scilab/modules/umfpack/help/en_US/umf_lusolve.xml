@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>umf_lusolve  </TITLE>
+  <TYPE>Scilab function - scispt toolbox</TYPE>
+  <DATE></DATE>
+  <SHORT_DESCRIPTION name="umf_lusolve"> solve a linear sparse system given the LU factors  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x] = umf_lusolve(LU_ptr, b [, st, A])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>LU_ptr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a pointer to umf lu factors (L,U,p,q,R) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a real or complex column vector or a matrix (multiple rhs)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>st  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (optional) a string &quot;Ax=b&quot; (default) or &quot;Ax&apos;=b&quot; 
+      (to be written &quot;Ax&apos;&apos;=b&quot;  in scilab langage: a quote in a string
+       must be doubled !)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (optional) the sparse square matrix corresponding to the LU factors (LU_ptr must be got with LU_ptr = umf_lufact(A))
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a column vector or a matrix in case of multiple rhs ( x(:,i) is solution of A x(:,i) = b(:,i) or A&apos;x(:,i) = b(:,i) )
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function must be used in conjonction with <LINK>umf_lufact</LINK> which
+    computes the LU factors of a sparse matrix. The optional
+    <VERB>st</VERB> argument lets us choose between the solving of Ax=b (general case)
+    or of A&apos;x=b (sometimes useful). If you give the 4th argument then
+    iterative refinement will be also proceceed (as in umfpack) to
+    give a better numerical solution. 
+  </P>
+  </DESCRIPTION>
+  <SECTION label='Examples'>
+  <P>
+    see the example section of <LINK>umf_lufact</LINK>
+  </P>
+  </SECTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>umfpack</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_lufact</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_luget</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_ludel</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_luinfo</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+      <AUTHORS_ITEM><EM>umfpack</EM> by Timothy A. Davis (see <LINK>umf_license</LINK>)</AUTHORS_ITEM>
+      <AUTHORS_ITEM><EM>scilab interface</EM> by Bruno Pincon with contributions from Antonio Frasson</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>

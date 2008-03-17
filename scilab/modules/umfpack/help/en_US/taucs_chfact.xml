@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>taucs_chfact  </TITLE>
+  <TYPE>scilab function - scispt toolbox</TYPE>
+  <DATE></DATE>
+  <SHORT_DESCRIPTION name="taucs_chfact"> cholesky factorisation of a sparse s.p.d. matrix  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>C_ptr = taucs_chfact(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a sparse real symetric positive definite (s.p.d.)  matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>C_ptr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a pointer to the Cholesky factors (C,p : A(p,p)=CC&apos;)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function computes a Cholesky factorization of the sparse 
+    symetric positive definite (s.p.d.) matrix A and retrieves at the scilab 
+    level, a pointer (C_ptr) to an handle of the Cholesky 
+    factors (C,p) (the memory used for them is &quot;outside&quot; scilab
+    space).
+  </P>
+  <P>
+    If your matrix is s.p.d. this function must be used in 
+    place of <LINK>umf_lufact</LINK> or in place of the scilab function 
+    <LINK>chfact</LINK> for
+    a gain in speed (also as chfact uses the scilab memory for the factors
+    the user must set the stacksize with a large value because of the
+    fill-in occuring in computing the factor C which then may take more
+    memory than the initial matrix A).
+  </P>
+  <P>
+    When such a factorisation have 
+    been computed, a linear system  must be solved with <LINK>taucs_chsolve</LINK>. 
+    To free the memory used by the Cholesky factors, use <LINK>taucs_chdel</LINK>(C_ptr) ; 
+    to retrieve the Cholesky factors at the scilab level (for example to 
+    display their sparse patterns), use <LINK>taucs_chget</LINK> ; to get some informations 
+    (number of non zeros in C), use <LINK>taucs_chinfo</LINK>. To compute an approximation
+    of the condition number in norm 2 use <LINK>cond2sp</LINK>.
+  </P>
+  </DESCRIPTION>
+  <SECTION label='Remarks'>
+  <ITEMIZE>
+  <ITEM label='1.'>
+      taucs_chfact works only with the upper triangle of A, and the matrix A must
+      be provided either in its complete form (that is with the lower triangle also) or
+      only with its upper triangle ;
+  </ITEM>
+  <ITEM label='2.'>
+      currently taucs_chfact uses the genmmd (generalized minimum degree) algorithm of 
+      Liu to find in a first step the permutation p (so as to minimize the fill-in in 
+      the factorization) ; future versions will let the user choose his/her own reordering 
+      by providing a supplementary argument p.
+  </ITEM>
+  </ITEMIZE>
+  </SECTION>
+
+  <EXAMPLE><![CDATA[
+// Example #1 : a small linear test system 
+// whom solution must be [1;2;3;4;5]
+A = sparse( [ 2 -1  0  0  0;
+             -1  2 -1  0  0; 
+              0 -1  2 -1  0; 
+              0  0 -1  2 -1; 
+              0  0  0 -1  2] );
+b = [0 ; 0; 0; 0; 6];
+Cp = taucs_chfact(A);
+x = taucs_chsolve(Cp,b)
+// don't forget to clear memory with
+taucs_chdel(Cp)
+
+// Example #2 a real example
+// first load a sparse matrix
+[A] = ReadHBSparse(DIR_SCISPT_DEM+"bcsstk24.rsa");
+// compute the factorisation
+Cp = taucs_chfact(A); 
+b = rand(size(A,1),1); // a random rhs
+// use taucs_chsolve for solving Ax=b
+x = taucs_chsolve(Cp,b);
+norm(A*x - b)
+// the same with one iterative refinement step
+x = taucs_chsolve(Cp,b,A);
+norm(A*x - b)
+// don't forget to clear memory
+taucs_chdel(Cp)
+   ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>taucs_chsolve</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chdel</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chinfo</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chget</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>cond2sp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+      <AUTHORS_ITEM><EM>taucs</EM> by Sivan Toledo (see <LINK>taucs_license</LINK>)</AUTHORS_ITEM>
+      <AUTHORS_ITEM><EM>scilab interface</EM> by Bruno Pincon</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>

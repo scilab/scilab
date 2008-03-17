@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cond2sp  </TITLE>
+  <TYPE>scilab function - scispt toolbox</TYPE>
+  <DATE>  </DATE>
+  <SHORT_DESCRIPTION name="cond2sp"> computes an approximation of the 2-norm condition number of a s.p.d. sparse matrix  </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[K2, lm, vm, lM, vM] = cond2sp(A, C_ptr [, rtol, itermax, verb])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a real symetric positive definite sparse matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>C_ptr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a pointer to a Cholesky factorization (got with taucs_chfact)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rtol  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (optional) relative tolerance (default 1.e-3) (see details in DESCRIPTION)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>itermax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (optional) maximum number of iterations in the underlying algorithms (default 30)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>verb  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (optional) boolean, must be %t for displaying the intermediary results, and %f (default) if you don&apos;t want.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>K2  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : estimated 2-norm condition number <TT>K2 = ||A||_2 ||A^(-1)||_2 = lM/lm</TT>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>lm  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (real positive scalar) minimum eigenvalue
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>vm  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : associated eigenvector
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>lM  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (real positive scalar) maximum eigenvalue
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>vM  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : associated eigenvector
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+  <P>
+    This quick and dirty function computes <TT>(lM,vM)</TT> using the iterative 
+    power method and <TT>(lm,vm)</TT> with the inverse iterative power method, then 
+    <TT>K2 = lM/lm</TT>. For each method the iterations are stopped until the following
+    condition is met :
+  </P>
+  <VERBATIM><![CDATA[
+     | (l_new - l_old)/l_new | < rtol
+   ]]></VERBATIM>
+  <P>
+    but 4 iterations are nevertheless required and also the iterations are stopped
+    if itermax is reached (and a warning message is issued). As the matrix is symetric
+    this is the rayleigh quotient which gives the estimated eigenvalue at each step
+    (<TT>lambda = v&apos;*A*v</TT>). You may called this function with named parameter, for 
+    instance if you want to see the intermediary result without setting yourself the 
+    rtol and itermax parameters you may called this function with the syntax :
+  </P>
+  <VERBATIM><![CDATA[
+    [K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, verb=%t )
+   ]]></VERBATIM>
+  </DESCRIPTION>
+  <SECTION label='Caution'>
+  <P>
+    Currently there is no verification for the input parameters !
+  </P>
+  </SECTION>
+  <SECTION label='Remark'>
+  <P>
+    This function is intended to get an approximation of the 2-norm condition number (K2) and 
+    with the methods used, the precision on the obtained eigenvectors (vM and vm) are generally 
+    not very good. If you look for a smaller residual <TT>||Av - l*v||</TT>, you may apply some inverse 
+    power iterations  from v0 with the matrix :
+  </P>
+  <VERBATIM><![CDATA[
+   B = A - l0*speye(A)
+   ]]></VERBATIM>
+  <P>
+    For instance, applied 5 such iterations for <TT>(lm,vm)</TT> is done with :
+  </P>
+  <VERBATIM><![CDATA[
+l0 = lm ; v0 = vm;  // or l0 = lM ; v0 = vM;  // to polish (lM,vM)
+B = A - l0*speye(A);
+LUp = umf_lufact(B);
+vr = v0; nstep = 5;
+for i=1:nstep, vr = umf_lusolve(LUp, vr, "Ax=b", B); vr = vr/norm(vr) ; end
+umf_ludel(LUp); // if you don't use anymore this factorization
+lr = vr'*A*vr;
+norm_r0 = norm(A*v0 - l0*v0);
+norm_rr = norm(A*vr - lr*vr);
+// Bauer-Fike error bound...
+mprintf(" first estimated eigenvalue : l0 = %e \n\t", l0) 
+mprintf(" |l-l0| <= ||Av0-l0v0|| = %e , |l-l0|/l0 <= %e \n\r", norm_r0, norm_r0/l0)
+mprintf(" raffined estimated eigenvalue : lr = %e \n\t", lr) 
+mprintf(" |l-lr| <= ||Avr-lrvr|| = %e , |l-lr|/lr <= %e \n\r", norm_rr, norm_rr/lr)
+   ]]></VERBATIM>
+  </SECTION>
+
+  <EXAMPLE><![CDATA[
+[A] = ReadHBSparse(DIR_SCISPT_DEM+"bcsstk24.rsa");
+C_ptr = taucs_chfact(A);
+[K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, 1.e-5, 50, %t );
+taucs_chdel(C_ptr)
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>condestsp</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chfact</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>rcond</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bruno Pincon  &lt;Bruno.Pincon@iecn.u-nancy.fr&gt;  </AUTHOR>
+</MAN>

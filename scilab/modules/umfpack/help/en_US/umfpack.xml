@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>umfpack  </TITLE>
+  <TYPE>scilab function - scispt toolbox</TYPE>
+  <DATE></DATE>
+  <SHORT_DESCRIPTION name="umfpack"> solve sparse linear system  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>x = umfpack(A,&quot;\&quot;,b)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>x = umfpack(b,&quot;/&quot;,A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a sparse (real or complex) square matrix n x n
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : in the first case, a column vector (n x 1) or a n x m matrix ;    
+      in the second case, a row vector (1 x n) or a m x n matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : in the first case , a column vector (n x 1) or a n x m matrix ;    
+      in the second case, a row vector (1 x n) or a m x n matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>2d arg  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : string specifier &quot;\&quot; or &quot;/&quot;
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function is intended to work like the classic operators \ and / 
+    x = A\b  and x = b/A) i.e. it solves a linear system Ax = b or xA = b 
+    with a sparse square (says n x n) real or complex matrix and with a compatible
+    rhs b : n x m in the first case and m x n in the second. 
+  </P>
+  </DESCRIPTION>
+  <SECTION label='Details'>
+  <P>
+    First an LU factorisation of the matrix is computed (<TT> P R^(-1) A Q = LU </TT>
+    where P and Q are permutation matrices, R is a diagonal matrix (row scaling), L
+    a lower triangular matrix with a diagonal of 1, and U an upper triangular matrix) 
+    then a first solution is computed with forward/backward subtitutions ; 
+    finaly the solution is improved  by iterative refinement.
+  </P>
+  </SECTION>
+
+  <EXAMPLE><![CDATA[
+// this is the small linear test system from UMFPACK
+// whom solution must be [1;2;3;4;5]
+A = sparse( [ 2  3  0  0  0;
+              3  0  4  0  6; 
+              0 -1 -3  2  0; 
+              0  0  1  0  0; 
+              0  4  2  0  1] );
+b = [8 ; 45; -3; 3; 19];
+x = umfpack(A,"\",b)
+
+// test the other form x A = b
+b = [8  20  13  6  17];
+x = umfpack(b,"/",A)   // solution must be [1 2 3 4 5]
+
+// test multiple rhs
+b = rand(5,3);
+x = umfpack(A,"\",b)
+norm(A*x - b)
+
+// test multiple rhs for x A = b
+b = rand(3,5);
+x = umfpack(b,"/",A)
+norm(x*A - b)
+
+// solve a complex system
+A = sparse( [ 2+%i  3+2*%i  0      0    0;
+              3-%i  0       4+%i   0    6-3*%i; 
+              0    -1+%i   -3+6*%i 2-%i 0; 
+              0     0       1-5*%i 0    0; 
+              0     4       2-%i   0    1] );
+b = [ 3+13*%i ; 58+32*%i ; -19+13*%i ; 18-12*%i ; 22+16*%i ];
+x = umfpack(A,"\",b)  // x must be [1+i; 2+2i; 3+3i; 4 + 4i; 5+5i]
+   ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>umf_lufact</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_lusolve</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_ludel</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_luinfo</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>umf_luget</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+      <AUTHORS_ITEM><EM>umfpack</EM> by Timothy A. Davis (see <LINK>umf_license</LINK>)</AUTHORS_ITEM>
+      <AUTHORS_ITEM><EM>scilab interface</EM> by Bruno Pincon with contributions from Antonio Frasson</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -68,6 +68,7 @@ development_tools \
 compatibility_functions \
 helptools \
 fftw \
+umfpack \
 demo_tools
 
 #umfpack
@@ -162,6 +163,10 @@ libscilab_la_LIBADD +=	$(top_builddir)/modules/string/libscistring.la
 
 if FFTW
 libscilab_la_LIBADD += $(top_builddir)/modules/fftw/libscifftw.la
+endif
+
+if UMFPACK
+libscilab_la_LIBADD += $(top_builddir)/modules/umfpack/libsciumfpack.la
 endif
 
 libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la

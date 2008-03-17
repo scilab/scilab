@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<MAN>
+
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>res_with_prec  </TITLE>
+  <TYPE>scilab function - scispt toolbox</TYPE>
+  <DATE>  </DATE>
+
+  <SHORT_DESCRIPTION name="res_with_prec"> computes the residual r = Ax-b with precision  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[r,norm2_r] = res_with_prec(A, x, b)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real or complex sparse matrix (m x n)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector (n x 1) or matrix (n x p) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector (m x 1) or matrix (m x p)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>r  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : column vector (m x 1) or matrix (m x p)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>norm2_r  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scalar or vector (1 x p) when b is a m x p matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+  <P>
+    This function computes the residual of a linear system <TT>r = Ax - b</TT> (together
+    with its 2-norm) with the additionnal precision provided on &quot;Intel like&quot; 
+    FPU (80 bits in place of 64) if the compiler translate &quot;long double&quot; to 
+    use it. Else one must get the same than using <TT>A*x - b</TT> at the scilab level. 
+    In both cases using <VERB>[r, nr] = res_with_prec(A,x,b)</VERB> is 
+    faster than  <VERB>r = A*x - b</VERB> (and faster than <TT>r = A*x - b; nr = norm(r)</TT>).
+  </P>
+  <P>
+    When <TT>p &gt; 1</TT>, <TT>norm2_r(i)</TT> is the 2-norm of the vector <TT>r(:,i)</TT>.
+  </P>
+
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+[A] = ReadHBSparse(DIR_SCISPT_DEM+"bcsstk24.rsa");
+C_ptr = taucs_chfact(A);
+b = rand(size(A,1),1);
+x0 = taucs_chsolve(C_ptr, b);
+norm(A*x0 - b)
+norm(res_with_prec(A, x0, b))
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>rafiter</LINK> </SEE_ALSO_ITEM>
+
+  </SEE_ALSO>
+
+  <AUTHOR>Bruno Pincon &lt;Bruno.Pincon@iecn.u-nancy.fr&gt; </AUTHOR>
+
+</MAN>

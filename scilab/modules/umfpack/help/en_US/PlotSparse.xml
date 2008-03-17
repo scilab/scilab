@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+
+<MAN>
+
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>PlotSparse  </TITLE>
+  <TYPE>scilab function - scispt toolbox</TYPE>
+  <DATE></DATE>
+  <SHORT_DESCRIPTION name="PlotSparse"> plot the pattern of non nul elements of a sparse matrix  </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>PlotSparse(A [,style])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+    <PARAM_ITEM>
+    <PARAM_NAME>A  </PARAM_NAME>
+      <PARAM_DESCRIPTION>
+    : a sparse matrix
+      </PARAM_DESCRIPTION> 
+   </PARAM_ITEM>
+   <PARAM_ITEM>
+   <PARAM_NAME>style  </PARAM_NAME>
+   <PARAM_DESCRIPTION>
+    : (optional) a string given the color and/or the marker type of the form &quot;[color][mark]&quot; 
+      where color may be a number referring the color you want to use (in the current colormap). 
+      If you use the std colormap then color may be one of the following letters :
+  <VERBATIM><![CDATA[
+    k  for black       b  for blue
+    r  for red         g  for green
+    c  for cyan        m  for magenta
+    y  for yellow      t  for turquoise
+    G  a dark green
+   ]]></VERBATIM>
+  <P>
+    mark must be one of the following :
+  </P>
+  <VERBATIM><![CDATA[
+    .  point           +  plus 
+    x  cross           *  circled plus 
+    D  filled diamond  d  diamond
+    ^  upper triangle  v  down triangle
+    o  circle
+   ]]></VERBATIM>
+  <P>
+    by default you have &quot;b.&quot; (in fact the 2d color) and this is also forced in case of error. 
+  </P>
+
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    plot the pattern of non nul elements of a sparse matrix :
+    each non nul element is drawn with a marker. For &quot;big&quot; 
+    matrix use essentially the point . as marker
+  </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+[A,description,ref,mtype] = ReadHBSparse(DIR_SCISPT_DEM+"arc130.rua");
+set figure_style old
+PlotSparse(A,"y+")
+xtitle(ref + "." + mtype + " : " + description)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ReadHBSparse</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bruno Pincon  &lt;Bruno.Pincon@iecn.u-nancy.fr&gt;  </AUTHOR>
+</MAN>

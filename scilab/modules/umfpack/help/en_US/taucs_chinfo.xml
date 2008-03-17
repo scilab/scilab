@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "manrev.dtd">
+
+<MAN>
+
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>taucs_chinfo  </TITLE>
+  <TYPE>scilab function - scispt toolbox</TYPE>
+  <DATE>scispt  </DATE>
+  <SHORT_DESCRIPTION name="taucs_chinfo ">  get information on Cholesky factors  </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[OK, n, cnz] = taucs_chinfo(C_ptr)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>C_ptr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a pointer to a Cholesky factorization
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>OK  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a scalar boolean
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>n  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a scalar integer
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>cnz  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a scalar integer
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+  <P>
+    This function may be used to know basic information about 
+    the Cholesky factor created with taucs_chfact :
+  </P>
+
+  <DESCRIPTION_ITEM> 
+    first <VERB>OK</VERB> is <TT>%t</TT> if <VERB>C_ptr</VERB> is a valid pointer to an Cholesky 
+    factorization (and <TT>%f</TT> else)
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM> 
+    if <VERB>OK</VERB> is <TT>%t</TT> then <VERB>n</VERB> and <VERB>cnz</VERB> are respectively the 
+    matrix order and the number of non zeros elements in the supernodal structure storing 
+    <VERB>C</VERB> ; if <VERB>OK</VERB> is <TT>%f</TT>, <VERB>n</VERB> and <VERB>cnz</VERB> are set 
+    to the void matrix [].
+  </DESCRIPTION_ITEM>
+ 
+  </DESCRIPTION>
+
+  <SECTION label='Details'>
+  <P>
+    Due to the supernodal structure used for <VERB>C</VERB>, <VERB>cnz</VERB> is larger 
+    than the exact number of non-zeros elements in <VERB>C</VERB> (and so this <VERB>cnz</VERB>
+    is a mesure of the memory used internally). To get the exact <VERB>cnz</VERB> you may retrieve 
+    the Cholesky factor with <LINK>taucs_chget</LINK> then apply 
+    the <LINK>nnz</LINK> scilab function (see the 2d example in <LINK>taucs_chget</LINK>).
+  </P>
+  </SECTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>taucs_chfact</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chsolve</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chdel</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>taucs_chget</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+      <AUTHORS_ITEM><EM>taucs</EM> by Sivan Toledo (see <LINK>taucs_license</LINK>)</AUTHORS_ITEM>
+      <AUTHORS_ITEM><EM>scilab interface</EM> by Bruno Pincon</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>
