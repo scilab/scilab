@@ -256,7 +256,7 @@ libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
 
 ######### Modelica #############
 
-
+if OCAML
 TARGET = modelicac
 
 bin_PROGRAMS = $(TARGET)
@@ -322,6 +322,7 @@ $(TARGET): generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(ML
 
 
 CLEANFILES = $(BASE_PATH)/*.cmi $(BASE_PATH)/*.o $(BASE_PATH)/*.cmo $(BASE_PATH)/*.cm[aiox] $(TARGET) $(BASE_PATH)/parser.mli $(BASE_PATH)/lexer.mli $(BASE_PATH)/parser.ml $(BASE_PATH)/lexer.ml
+endif # OCAML
 
 else
 
