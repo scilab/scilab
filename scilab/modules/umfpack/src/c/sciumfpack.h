@@ -34,6 +34,7 @@
  * knowledge of the CeCILL license and that you accept its terms.
  *
  */
+#include "machine.h"
 #ifdef UMFPACK_SUITESPARSE
 #include <suitesparse/umfpack.h>
 #else
