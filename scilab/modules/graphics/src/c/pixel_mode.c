@@ -153,7 +153,7 @@ int getPixelModeIndex( const char * modeName )
   case 'x':
     {
       if ( nameLen < 3 ) { break ; }
-      return 8 ; /* xor */
+      return 6 ; /* xor */
       break ;
     }
   }
