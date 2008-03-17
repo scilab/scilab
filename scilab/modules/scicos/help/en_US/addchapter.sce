@@ -9,7 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // ====================================================================
-path = SCI+'/modules/scicos/help/'+getdefaultlanguage();
-add_help_chapter("Scicos",path,%T);
-clear path add_help_chapter;
+// path = SCI+'/modules/scicos/help/'+getdefaultlanguage();
+// add_help_chapter("Scicos",path,%T);
+// clear path add_help_chapter;
 // ====================================================================
