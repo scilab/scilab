@@ -92,6 +92,7 @@
 
 /* 57 */						#include "../../graphic_export/includes/gw_graphic_export.h"
 
+/* 58 */						#include "../../umfpack/includes/gw_umfpack.h"
 /* 58 *///                        #include "../../mpi/includes/gw_mpi.h"
 
 
