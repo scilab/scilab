@@ -410,6 +410,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@			$(TCL_INC_PATH) \
 @TCLTK_TRUE@			$(TK_INC_PATH) \
 @TCLTK_TRUE@			-I$(top_srcdir)/modules/action_binding/includes \
+@TCLTK_TRUE@			-I$(top_srcdir)/modules/fileio/includes \
 @TCLTK_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @TCLTK_TRUE@			-I$(top_srcdir)/modules/localization/includes
 

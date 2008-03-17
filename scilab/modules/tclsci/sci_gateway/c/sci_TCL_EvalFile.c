@@ -18,8 +18,7 @@
 #include "localization.h"
 #include "GlobalTclInterp.h"
 #include "TCL_Command.h"
-/*--------------------------------------------------------------------------*/
-extern BOOL FileExist(char *filename); /* From module fileio */
+#include "FileExist.h"
 /*--------------------------------------------------------------------------*/
 int sci_TCL_EvalFile(char *fname,unsigned long l)
 {

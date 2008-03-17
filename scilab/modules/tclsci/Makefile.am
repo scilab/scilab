@@ -48,6 +48,7 @@ libscitclsci_la_CFLAGS= -Iincludes/ \
 			$(TCL_INC_PATH) \
 			$(TK_INC_PATH) \
 			-I$(top_srcdir)/modules/action_binding/includes \
+			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes
 
