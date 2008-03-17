@@ -14,5 +14,5 @@
 //    savewave crashes my machine
 
 
-if execstr("savewave(""toto.WAV"", rand(1:10000), 11025);", "errcatch")<>0 then pause; end
+if execstr("savewave(TMPDIR+""/toto.WAV"", rand(1:10000), 11025);", "errcatch")<>0 then pause; end
 
