@@ -20,14 +20,13 @@ I - TO RUN SCILAB (BINARY VERSION)
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin", 
         so you can run Scilab by executing directly "wscilex.exe".
  
-    3 - Scilab has been compiled with Visual C++ .NET 2005 Pro
-	      (Intel C 10 & Fortran 10, see III below).
+    3 - Scilab has been compiled with Visual C++ .NET 2008 Pro
+	(Intel C 10.1 & Fortran 10.1, see III below).
         All examples of dynamic link given with Scilab are prepared
         for Visual C++.
  
-    4 - If you want use Microsoft Visual C++ 2005 or 2008 Express with Scilab 5.0
-        download and install "Microsoft Plateform SDK R2"
-        http://msdn.microsoft.com/vstudio/express/visualc/usingpsdk/
+    4 - If you want use Microsoft Visual C++  2008 Express with Scilab 5.0
+        http://www.microsoft.com/express/vc/
  
     5 - If you want use LCC-Win32 (C compiler) with Scilab 5.0
         See :
@@ -53,32 +52,18 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 III - TO COMPILE SCILAB FROM A SOURCE VERSION
 ******************************************************************************
  
-    We have compiled this distribution with Visual Studio 2005 (Intel C 10 &
-    Fortran 10). 
+    We have compiled this distribution with Visual Studio 2008 (Intel C 10.1 &
+    Fortran 10.1). 
 
-    To compile with Visual C++ .NET 2005,  see Readme_visual.txt 
+    To compile with Visual C++ .NET 2008,  see Readme_visual.txt 
  
 ******************************************************************************
 IV - DOCUMENTATION
 ******************************************************************************
  
  In addition to Scilab online documentation (obtained by typing "help item" or
- "apropos keyword" or clicking on the help button), you will find 
- compressed postscript and pdf documentation by anonymous ftp on
- "ftp.inria.fr:/INRIA/Projects/Scilab"
- or from Web site
- "http://www.scilab.org":
- 
- Internals.ps.gz, Internals.pdf: Scilab's internals
- Intro.ps.gz, Intro.pdf: Introduction to Scilab
- Lmi.ps.gz, Lmi.pdf: Linear Matrix Inequalities Optimization Toolbox
- Manual.ps.gz, Manual.pdf: On line Manual
- Metanet.ps.gz, Metanet.pdf: Metanet User's Guide and Tutorial
- Scicos.ps.gz, Scicos.pdf: Scicos: a Dynamic System Builder and Simulator 
- Signal.ps.gz, Signal.pdf: Signal Processing Toolbox
- Intersci.ps.gz, Intersci.pdf: Interfacing Tool
- 
- Note that these documents are not uptodate.
+ clicking on the help button), you will find scilab wiki :
+ http://wiki.scilab.org/
 
 ******************************************************************************
 V - SOME IMPORTANT FILES AND DIRECTORIES
@@ -91,15 +76,15 @@ V - SOME IMPORTANT FILES AND DIRECTORIES
  
  Makefile.incl.mak: file included by all Makefile's.
  
- Scilab.sln : Visual Studio 2005 Scilab Solution with Intel Fortran.
+ Scilab.sln : Visual Studio 2008 Scilab Solution with Intel Fortran.
  
- Scilab_f2c.sln : Visual Studio 2005 Scilab Solution without Intel Fortran.
+ Scilab_f2c.sln : Visual Studio 2008 Scilab Solution without Intel Fortran.
     
  bin/	   : executable code and scripts.
 
- 		scilex  : executable code of Scilab (Console version).
-		wscilex  : executable code of Scilab (Windows version).
+ scilex  : executable code of Scilab (Console version).
+ wscilex  : executable code of Scilab (Windows version).
   
- ******************************************************************************
+******************************************************************************
 
 		       

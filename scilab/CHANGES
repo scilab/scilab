@@ -77,8 +77,8 @@ GNU/Linux - Unix:
 Windows:	
 ========
  - Compilation process :
-	+ Visual Studio 2005 solution (requires Intel Fortran 10.x) support
-	+ Visual Studio 2005 express solution (fortran conversion with f2c) support (Free... as beer)
+	+ Visual Studio 2008 solution (requires Intel Fortran 10.1) support
+	+ Visual Studio 2005 express solution (fortran conversion with f2c) support
  - Dynamic libraries	
  - Atlas 3.8 support (Core 2 Duo and more support)
  - Intel Math Kernel Library support
