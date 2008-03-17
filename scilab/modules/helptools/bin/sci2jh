@@ -32,7 +32,7 @@ fi
 binDir=`dirname $0`
 ### Need an absolute directory
 binDir=`(cd $binDir 2> /dev/null && pwd;)`
-libDir=$binDir/../lib
+libDir=$binDir/../../../thirdparty
 docbookXslDir=$binDir/../docbook_xsl
 cssDir=$binDir/../css
 
