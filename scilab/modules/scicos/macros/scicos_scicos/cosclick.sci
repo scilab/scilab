@@ -88,10 +88,10 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   end
 
   //**-----------------------------------------------------------
-  //chngwin=%f  //not needed anymore because of modification of rubberbox
+       // chngwin=%f  //not needed anymore because of modification of rubberbox
   if or(btn==[20,21,22]) then 
-    btn=btn-20
-    //chngwin=%t //not needed anymore because of modification of rubberbox
+    btn = btn-20
+       // chngwin=%t //not needed anymore because of modification of rubberbox
   end
   
   if (win==-1)& (btn==-2)&part(str,1:7)=='execstr' then
@@ -105,11 +105,11 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     pathh=inactive_windows(1)(find(win==inactive_windows(2)))
 
  //not needed anymore because of modification of rubberbox    
-//    if chngwin & or(btn==[0,1]) then btn=3,end  // in case of window
-                                                // switching to another
-                                                // superblock only
+ //    if chngwin & or(btn==[0,1]) then btn=3,end  // in case of window
+                                                  // switching to another
+                                                 // superblock only
                                                 // consider click to
-                                                // avoid problem with rubberbox
+                                               // avoid problem with rubberbox
     
     if (btn==-2) then
       cmd='Cmenu='+part(str,9:length(str)-1)+';execstr(''Cmenu=''+Cmenu)'

@@ -23,6 +23,8 @@ function [ox,oy,w,h,ok] = get_rectangle(xc,yc)
 //
 //** using the new "rubberbox" function //** the rubberduck solution 
 
+//** 18 Mar 2008 : update to "scicos_rubberbox()" for Scilab 5
+
 ox = xc
 oy = yc
 w=0 ; h=0
@@ -36,9 +38,9 @@ rub_height = 0 ;
 
 //** [x_left, y_top, width, height]
 
-[final_rect, button] = rubberbox([xc; yc; rub_width; rub_height], %t) ;
+[final_rect, button] = scicos_rubberbox([xc; yc; rub_width; rub_height], %t) ;
 
-if button == [2 5 12 -100] then // right button exit OR active window has been closed
+if button == [2 5 12 -100] then //** right button exit OR active window has been closed
     ok = %f ;
     return ; //** ---> Exit point 
 end

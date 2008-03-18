@@ -69,7 +69,7 @@ function [reg, rect, prt] = get_region2(xc, yc, win)
   //** residual old code 
   // [ox, oy, w, h, ok] = get_rectangle(xc,yc) ; //** <-- key function !
 
-  [rect,button] = rubberbox([xc; yc; 0; 0], %t) ;
+  [rect,button] = scicos_rubberbox([xc; yc; 0; 0], %t) ;
   if or(button == [2 5 12 -100]) then // right button exit OR active window has been closed
     prt  = [] ;
     rect = [] ;

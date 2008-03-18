@@ -26,6 +26,9 @@ function SelectRegion_()
 //**            Objects must be totally included in
 //*             "rubber box" in order to be selected.
 
+//** 18 Mar 2008 : update to "scicos_rubberbox()" for Scilab 5
+
+
   if with_gtk()|MSDOS then  // first click under windows treated as
                             // press move (always the case under gtk)
     Cmenu =[]; Select=[] ;
@@ -36,25 +39,25 @@ function SelectRegion_()
   gh_winback = gcf(); //** save the current figure 
   gh_percentwin = scf(%win);
 
-  drawnow()
-  //[ox,oy,w,h,ok] = get_rectangle(%xc,%yc)
-  [rect,button] = rubberbox([%pt(1); %pt(2); 0; 0], %t) ;
+  drawnow(); 
+  [rect,button] = scicos_rubberbox([%pt(1); %pt(2); 0; 0], %t) ;
   if or(button == [2 5 12 -100]) then // right button exit OR active window has been closed
-
     return ; //** ---> Exit point
   end
-  ox=rect(1),oy=rect(2),w=rect(3),h=rect(4);
+
+  ox = rect(1); oy = rect(2) ; w = rect(3); h = rect(4);
+
   clear rect
 
   scf(gh_winback); //** restore the current figure
   kc = find(%win==windows(:,2))
 
   if kc==[] then
-    message('This window is not an active palette');
+    message("This window is not an active palette");
     return ; //** Exit point
 
   elseif windows(kc,1)<0 then //click inside a palette window
-    kpal=-windows(kc,1);
+    kpal = -windows(kc,1);
     [in,out] = get_objs_in_rect(palettes(kpal),ox,oy,w,h)
 
   elseif %win==curwin then //click inside the current window
@@ -67,8 +70,9 @@ function SelectRegion_()
     return ; //** ---> Exit point
   end
 
-  clear ox,clear oy,clear w, clear h;
-  Select=[in',%win*ones(in')]
+  clear ox ;clear oy ;clear w; clear h;
+
+  Select = [in',%win*ones(in')]; 
 
 endfunction
 
