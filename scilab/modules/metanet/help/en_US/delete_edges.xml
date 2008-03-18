@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,49 +10,83 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="delete_edges"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>delete_edges</refname><refpurpose> deletes all the arcs or edges between a set of nodes</refpurpose></refnamediv><refnamediv xml:id="delete_arcs"><refname>delete_arcs</refname><refpurpose> deletes all the arcs or edges between a set of nodes</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g1 = delete_edges(ij,g)
-g1 = delete_arcs(ij,g)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry version="5.0-subset Scilab" xml:id="delete_edges" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>delete_edges</refname>
+
+    <refpurpose>deletes all the arcs or edges between a set of
+    nodes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>g1 = delete_edges(ij,g)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>ij</term>
+
         <listitem>
           <para>matrix of integers (number of nodes)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>g</term>
+
         <listitem>
-          <para> a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+          <para>a <link
+          linkend="graph_data_structure">graph_data_structure</link>.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>g1</term>
+
         <listitem>
-          <para>graph data structure of the new graph without the arcs or edges defined by ij</para>
+          <para>graph data structure of the new graph without the arcs or
+          edges defined by ij</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-    <para>
-    If <literal>g</literal> is a directed graph,
-    <literal>delete_edges</literal> or <literal>delete_arcs</literal> returns the graph <literal>g1</literal> with the arcs defined 
-    by matrix <literal>ij</literal> being deleted.
-    <literal>ij</literal> must be a n x 2 matrix of node numbers: the <literal>n</literal> edges to be
-    deleted are defined by couples of nodes (<literal>ij(i,1)</literal>, <literal>ij(i,2)</literal>).</para>
-    <para>If <literal>g</literal> is an undirected graph, the edges corresponding to matrix <literal>ij</literal>
-    are deleted.</para>
-    <para><literal>delete_edges</literal> or <literal>delete_arcs</literal> define the same function</para> 
+
+  <refsection>
+    <title>Description</title>
+
+    <para>If <literal>g</literal> is a directed graph,
+    <literal>delete_edges</literal> returns the graph <literal>g1</literal>
+    with the arcs defined by matrix <literal>ij</literal> being deleted.
+    <literal>ij</literal> must be a n x 2 matrix of node numbers: the
+    <literal>n</literal> edges to be deleted are defined by couples of nodes
+    (<literal>ij(i,1)</literal>, <literal>ij(i,2)</literal>).</para>
+
+    <para>If <literal>g</literal> is an undirected graph, the edges
+    corresponding to matrix <literal>ij</literal> are deleted.</para>
+
+    <para><literal>delete_edges</literal> and <literal>delete_arcs</literal>
+    define the same function</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
 
 //Create a graph
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -75,16 +109,18 @@ g.directed=0;
 gt=delete_edges(ij,g);
 show_graph(gt,'new');
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="add_edge">add_edge</link>
-    </member>
-    <member>
-      <link linkend="add_node">add_node</link>
-    </member>
-    <member>
-      <link linkend="delete_nodes">delete_nodes</link>
-    </member>
-  </simplelist></refsection>
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="add_edge">add_edge</link></member>
+
+      <member><link linkend="add_node">add_node</link></member>
+
+      <member><link linkend="delete_nodes">delete_nodes</link></member>
+    </simplelist>
+  </refsection>
 </refentry>
