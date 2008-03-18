@@ -16,7 +16,7 @@ if [ $# -eq 0 ]; then
 fi
 
 binDir=`dirname $0`
-libDir=$binDir/../lib
+libDir=$binDir/../../../thirdparty
 schemaDir=$binDir/../schema
 
 java -jar "$libDir/jing.jar" -c "$schemaDir/scilab.rnc" "$@"

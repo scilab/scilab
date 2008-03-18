@@ -17,7 +17,7 @@ if [ $# -ne 2 ]; then
 fi
 
 binDir=`dirname $0`
-libDir=$binDir/../lib
+libDir=$binDir/../../../thirdparty
 docbookXslDir=$binDir/../docbook_xsl
 cssDir=$binDir/../css
 

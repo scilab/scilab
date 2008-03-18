@@ -26,7 +26,7 @@ else
 fi
 
 binDir=`dirname $0`
-libDir=$binDir/../lib
+libDir=$binDir/../../../thirdparty
 ### This XSL style sheet fixes bugs in ../docbook_xsl/fo/htmltbl.xsl
 docbookXslDir=$binDir/../xsl
 
