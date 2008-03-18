@@ -62,8 +62,8 @@
     Users' Guide for the Harwell-Boeing Sparse Matrix Collection Iain S. Duff, Roger G. Grimes, John G. Lewis. 
     You may found  this guide and numerous sparse matrices (in the Harwell-Boeing  format) at the University of 
     Florida Sparse Matrix Collection web site :
+    <link xlink:href="http://www.cise.ufl.edu/research/sparse/matrices/">http://www.cise.ufl.edu/research/sparse/matrices/</link>
   </para>
-     <link xlink:href="http://www.cise.ufl.edu/research/sparse/matrices/">http://www.cise.ufl.edu/research/sparse/matrices/</link>
   <para>
     maintained by Tim Davis (<link xlink:href="http://www.cise.ufl.edu/~davis/">http://www.cise.ufl.edu/~davis/</link>);
   </para>

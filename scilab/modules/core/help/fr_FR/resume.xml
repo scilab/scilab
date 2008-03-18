@@ -6,15 +6,6 @@
   
   <refsynopsisdiv><title>Séquence d'appel</title><synopsis>resume
 [x1,..,xn]=resume(a1,..,an)</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>x  </term>
-  <listitem>
-  </listitem> 
-  </varlistentry>
- </variablelist>
-  </refsection>
   <refsection><title>Description</title>
   <para>
     Dans une fonction <literal>resume</literal> termine son exécution et

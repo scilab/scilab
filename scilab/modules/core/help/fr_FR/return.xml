@@ -4,17 +4,7 @@
   
   
   
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>return
-[x1,..,xn]=return(a1,..,an)</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>x  </term>
-  <listitem>
-  </listitem> 
-  </varlistentry>
- </variablelist>
-  </refsection>
+  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>return [x1,..,xn]=return(a1,..,an)</synopsis></refsynopsisdiv>
   <refsection><title>Description</title>
   <para>
     Dans une fonction <literal>return</literal> termine son exécution et
