@@ -1,87 +1,82 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="taucs_chinfo"><info><pubdate>scispt  </pubdate></info><refnamediv><refname>taucs_chinfo </refname><refpurpose>  get information on Cholesky factors  </refpurpose></refnamediv>
 
-<MAN>
+  
+  
+  
+  
+  
 
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>taucs_chinfo  </TITLE>
-  <TYPE>scilab function - scispt toolbox</TYPE>
-  <DATE>scispt  </DATE>
-  <SHORT_DESCRIPTION name="taucs_chinfo ">  get information on Cholesky factors  </SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[OK, n, cnz] = taucs_chinfo(C_ptr)</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[OK, n, cnz] = taucs_chinfo(C_ptr)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+ <variablelist>
+  <varlistentry>
+  <term>C_ptr  </term>
+  <listitem>
+  <para>a pointer to a Cholesky factorization</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>OK  </term>
+  <listitem>
+  <para>a scalar boolean</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>n  </term>
+  <listitem>
+  <para>a scalar integer</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>cnz  </term>
+  <listitem>
+  <para>a scalar integer</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
 
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>C_ptr  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : a pointer to a Cholesky factorization
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>OK  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : a scalar boolean
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>n  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : a scalar integer
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>cnz  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : a scalar integer
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-  <P>
+  <refsection><title>Description</title>
+  <para>
     This function may be used to know basic information about 
     the Cholesky factor created with taucs_chfact :
-  </P>
+  </para>
+  <itemizedlist>
+  <listitem> 
+    <para>first <literal>OK</literal> is <literal>%t</literal> if <literal>C_ptr</literal> is a valid pointer to an Cholesky 
+    factorization (and <literal>%f</literal> else)</para>
+  </listitem>
 
-  <DESCRIPTION_ITEM> 
-    first <VERB>OK</VERB> is <TT>%t</TT> if <VERB>C_ptr</VERB> is a valid pointer to an Cholesky 
-    factorization (and <TT>%f</TT> else)
-  </DESCRIPTION_ITEM>
-
-  <DESCRIPTION_ITEM> 
-    if <VERB>OK</VERB> is <TT>%t</TT> then <VERB>n</VERB> and <VERB>cnz</VERB> are respectively the 
+  <listitem> 
+    <para>if <literal>OK</literal> is <literal>%t</literal> then <literal>n</literal> and <literal>cnz</literal> are respectively the 
     matrix order and the number of non zeros elements in the supernodal structure storing 
-    <VERB>C</VERB> ; if <VERB>OK</VERB> is <TT>%f</TT>, <VERB>n</VERB> and <VERB>cnz</VERB> are set 
-    to the void matrix [].
-  </DESCRIPTION_ITEM>
- 
-  </DESCRIPTION>
+    <literal>C</literal> ; if <literal>OK</literal> is <literal>%f</literal>, <literal>n</literal> and <literal>cnz</literal> are set 
+    to the void matrix [].</para>
+  </listitem>
+</itemizedlist>
+  </refsection>
 
-  <SECTION label='Details'>
-  <P>
-    Due to the supernodal structure used for <VERB>C</VERB>, <VERB>cnz</VERB> is larger 
-    than the exact number of non-zeros elements in <VERB>C</VERB> (and so this <VERB>cnz</VERB>
-    is a mesure of the memory used internally). To get the exact <VERB>cnz</VERB> you may retrieve 
-    the Cholesky factor with <LINK>taucs_chget</LINK> then apply 
-    the <LINK>nnz</LINK> scilab function (see the 2d example in <LINK>taucs_chget</LINK>).
-  </P>
-  </SECTION>
+  <refsection><title>Details</title>
+  <para>
+    Due to the supernodal structure used for <literal>C</literal>, <literal>cnz</literal> is larger 
+    than the exact number of non-zeros elements in <literal>C</literal> (and so this <literal>cnz</literal>
+    is a mesure of the memory used internally). To get the exact <literal>cnz</literal> you may retrieve 
+    the Cholesky factor with <link linkend="taucs_chget">taucs_chget</link> then apply 
+    the <link linkend="nnz">nnz</link> scilab function (see the 2d example in <link linkend="taucs_chget">taucs_chget</link>).
+  </para>
+  </refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>taucs_chfact</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>taucs_chsolve</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>taucs_chdel</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>taucs_chget</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="taucs_chfact">taucs_chfact</link> </member>     
+    <member> <link linkend="taucs_chsolve">taucs_chsolve</link> </member>     
+    <member> <link linkend="taucs_chdel">taucs_chdel</link> </member>     
+    <member> <link linkend="taucs_chget">taucs_chget</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-      <AUTHORS_ITEM><EM>taucs</EM> by Sivan Toledo (see <LINK>taucs_license</LINK>)</AUTHORS_ITEM>
-      <AUTHORS_ITEM><EM>scilab interface</EM> by Bruno Pincon</AUTHORS_ITEM>
-  </AUTHORS>
+  <refsection><title>Authors</title><simplelist type="vert">
+      <member>taucs by Sivan Toledo (see taucs_license)</member>
+      <member>scilab interface by Bruno Pincon</member>
+  </simplelist></refsection>
 
-</MAN>
+</refentry>
