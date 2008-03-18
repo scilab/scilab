@@ -5,6 +5,8 @@
 //                      - Ramine Nikoukhah <ramine.nikoukhah@inria.fr>
 //                      - Rachid Djenidi
 //
+//                      - Scilab 5 update by Simone Mannori 
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
@@ -52,8 +54,8 @@ function CodeGeneration_()
     if scs_m.objs(k).model.sim(1)=='super' then
       
         XX = scs_m.objs(k);
-        [ok, XX, alreadyran, flgcdgen, szclkINTemp, freof] = ...
-                        do_compile_superblock42(XX, scs_m, k, alreadyran);
+        [ok, XX, alreadyran, flgcdgen, szclkINTemp, freof] = do_compile_superblock42(XX, scs_m, k, alreadyran);
+        
         //**quick fix for sblock that contains scope
         gh_curwin = scf(curwin); 
 
@@ -978,7 +980,7 @@ function ok=gen_gui42();
   end
 endfunction
 
-function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof]=do_compile_superblock42(XX,all_scs_m,numk,alreadyran)
+function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock42(XX,all_scs_m,numk,alreadyran)
 // Transforms a given Scicos discrete and continuous SuperBlock into a C defined Block
 
   scs_m=XX.model.rpar
@@ -1569,6 +1571,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof]=do_compile_superblock42(
     XX=update_block(XX);
     execstr(rdnom+'_c=resume('+rdnom+'_c)')
   end
+
 endfunction
 
 //BlockProto : generate prototype
