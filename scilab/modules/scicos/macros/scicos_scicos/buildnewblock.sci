@@ -23,34 +23,34 @@
 // See the file ../license.txt
 //
 
-function [ok]=buildnewblock(blknam,files,filestan,libs,rpat,ldflags,cflags)
+function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cflags)
 
 //** buildnewblock : generates Makefiles for
-//                   the generated C code of a scicos block,
+//                   the generated C code of a Scicos block,
 //                   compile and link it in Scilab
 //
-// Input : blknam : a prefix
+// Input :
+//         blknam : a prefix
+//
 //         files : files to be compiled
+//
 //         filestan : files to be compiled and included in
 //                    the standalone code
+//
 //         libs : a vector of string of object files
-//                    to include in the building process
+//                to include in the building process
+//
 //         rpat     : a target directory
+//
 //         ldflags  : linker flags
+//
 //         cflags   : C compiler flags
 //
 // Output :  ok : a flag to say if build is ok
 //
-// Authors : Rachid Djenidi
-//           Alan Layec, 28 Juin 2007
-//                 "cosmetic comments" (looks like
-//                                      Simone's comments)
-//                 add lhs parameters, rewritte
-//
-
 
   //** check rhs paramaters
-  [lhs,rhs]=argn(0);
+  [lhs,rhs] = argn(0);
 
   if rhs <= 1 then files    = blknam, end
   if rhs <= 2 then filestan = '', end
@@ -59,44 +59,45 @@ function [ok]=buildnewblock(blknam,files,filestan,libs,rpat,ldflags,cflags)
   if rhs <= 5 then ldflags  = '', end
   if rhs <= 6 then cflags   = '', end
 
-  //** ?? Ask Ramin
-  [fd,ierr]=mopen(rpat+'/'+blknam+'f.f','r')
+  //** Try to open a file 
+  [fd,ierr] = mopen(rpat+'/'+blknam+'f.f','r') 
+  
   if ierr==0 then
-    mclose(fd)
-    files=[files,blknam+'f']
+    mclose(fd); 
+    files = [files,blknam+'f']
   end
 
   //** adjust path and name of object files
-  //   to include in the building process
+  //** to include in the building process
   if (libs ~= emptystr()) then
-    libs=pathconvert(libs,%f,%t)
+    libs = pathconvert(libs,%f,%t)
   end
 
   //** def make file name
-  Makename=rpat+'/'+blknam+'_Makefile';
+  Makename = rpat+'/'+blknam+'_Makefile';
 
   //** otherlibs treatment
-  [ok,libs,for_link]=link_olibs(libs,rpat)
+  [ok, libs, for_link] = link_olibs(libs,rpat)
   if ~ok then
-    ok=%f;
-    x_message(['sorry compiling problem';lasterror()]);
+    ok = %f;
+    message(["Sorry compiling problem";lasterror()]);
     return;
   end
 
   //** generate txt of makefile and get wright name
-  //   of the Makefile file
-  [Makename2,txt]=gen_make(blknam,files,filestan,libs,Makename,ldflags,cflags);
+  //** of the Makefile file
+  [Makename2, txt] = gen_make(blknam,files,filestan,libs,Makename,ldflags,cflags); //** the Makefile is n
 
   //** write text of the Makefile in the file called Makename
-  ierr=execstr('mputl(txt,Makename2)','errcatch')
+  ierr = execstr("mputl(txt,Makename2)",'errcatch')
   if ierr<>0 then
-    x_message(['Can''t write '+Makename2;lasterror()])
-    ok=%f
+    message(["Can''t write "+Makename2;lasterror()])
+    ok = %f
     return
   end
 
   //** unlink if necessary
-  [a,b]=c_link(blknam);
+  [a,b] = c_link(blknam);
   while a
     ulink(b);
     [a,b]=c_link(blknam);
@@ -110,14 +111,14 @@ function [ok]=buildnewblock(blknam,files,filestan,libs,rpat,ldflags,cflags)
   if ierr<>0 then
     ok=%f;
     chdir(oldpath);
-    x_message(['sorry compiling problem';lasterror()]);
+    message(["sorry compiling problem";lasterror()]); //** we are here :( 
     return;
   end
 
   //** link scicos generated code in scilab
-  libn=pathconvert(libn,%f,%t)
-  ierr=execstr('libnumber=link(libn)','errcatch')
-  ierr=execstr('link(libnumber,blknam,''c'')','errcatch')
+  libn = pathconvert(libn,%f,%t)
+  ierr = execstr('libnumber=link(libn)','errcatch')
+  ierr = execstr('link(libnumber,blknam,''c'')','errcatch')
   if ierr<>0 then
     ok=%f;
     x_message(['sorry link problem';lasterror()]);
@@ -125,17 +126,18 @@ function [ok]=buildnewblock(blknam,files,filestan,libs,rpat,ldflags,cflags)
   end
 
   //** generate text of the loader file
-  [txt]=gen_loader(blknam,for_link)
+  [txt] = gen_loader(blknam,for_link)
 
   //** write text of the loader in file
-  ierr=execstr('mputl(txt,rpat+''/''+blknam+''_loader.sce'')','errcatch')
+  ierr = execstr('mputl(txt,rpat+''/''+blknam+''_loader.sce'')','errcatch')
   if ierr<>0 then
-    x_message(['Can''t write '+blknam+'_loader.sce';lasterror()])
-    ok=%f
+    message(["Can''t write "+blknam+"_loader.sce";lasterror()])
+    ok = %f ;
     return
   end
 
 endfunction
+//**------------------------------------------------------------------------------------------------
 
 //** convpathforwin : convert path that only include
 //                    a single '\' in a '\\'
@@ -169,6 +171,8 @@ function txt = convpathforwin(path)
     txt=txt+part(path,j);
   end
 endfunction
+//**------------------------------------------------------------------------------------------
+
 //** exportlibforlcc : export a lcc.lib file from
 //                     an existing dll
 //
@@ -248,6 +252,7 @@ function [ok] = exportlibforlcc(libs,rpat)
   end
 
 endfunction
+//**-----------------------------------------------------------------------------------
 
 //** gen_loader : generates the Scilab script for defining the
 //                newly created block into Scilab.
@@ -315,6 +320,7 @@ function SCode=gen_loader(blknam,for_link)
          '']
 
 endfunction
+//**-------------------------------------------------------------------------------------
 
 //** gen_make_lccwin32 : generate text of the Makefile
 //              for scicos code generator for
@@ -419,7 +425,7 @@ function T=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags)
                  "/out:standalone.exe "];
   end
 endfunction
-
+//**----------------------------------------------------------------------------------------------------
 
 //** gen_make : generate text of the Makefile
 //              for scicos code generator
@@ -472,10 +478,10 @@ function [Makename,txt]=gen_make(blknam,files,filestan,libs,Makename,ldflags,cfl
    else
    	txt=gen_make_unix(blknam,files,filestan,libs,ldflags,cflags);
    end
-   
- 
- 
+    
 endfunction
+//**---------------------------------------------------------------------------------------------
+
 
 //** gen_make_unix : generate text of the Makefile
 //              for scicos code generator for cc/gcc
@@ -525,6 +531,7 @@ function T=gen_make_unix(blknam,files,filestan,libs,ldflags,cflags)
   end
 
 endfunction
+//**--------------------------------------------------------------------------------------------
 
 //** gen_make_win32 : generate text of the Makefile
 //              for scicos code generator for
@@ -627,366 +634,6 @@ function T=gen_make_win32(blknam,files,filestan,libs,ldflags,cflags)
                  " $(OTHERLIBS) $(SCILIBS) " + ..
                  "$(SCICOSCLIB) $(SCICOSFLIB) $(SCICOS_BLOCKSCLIB) $(SCICOS_BLOCKSFLIB) " + ..
                  "/out:standalone.exe "];
-  end
-
-endfunction
-
-
-//** link_olibs   : links otherlibs in scilab
-//                  for scicos C generated block
-//
-// Input : libs   : a matrix of string containing path+name
-//                 of the libraries
-//
-//         rpat   : a target directory for temporary generated files
-//
-// Output : ok    : a boolean variable to say if job has succed
-//          libs  : a matrix of string containing path+name
-//                  of the libraries
-//          for_link : a vector of strings with link cmd
-//                     for exec or for loader.sce
-//
-// Author : Alan Layec, 1 Jul 2007
-//
-function [ok,libs,for_link]=link_olibs(libs,rpat)
-
-  //** get lhs,rhs nb paramaters
-  [lhs,rhs]=argn(0);
-
-  //** decl and set local variables
-  ok=%t
-  x=''
-  xlibs=[]
-  for_link=[]
-
-  //** get out from this function if
-  //   there is nothing to do
-  if libs=='' | libs==[] then return, end
-
-  //** LCC
-  if with_lcc()==%T then
-    //** add lcc.lib
-    //   for compatibility with dll of
-    //   msvc
-    libs=libs(:)';
-    for x=libs
-      //** extract path, name and extension of libs
-      [path,fname,extension]=fileparts(x);
-      if rhs <= 1 then
-        rpat = path
-      end
-      if (extension == '') then
-        //** search dll
-        if fileinfo(x+'.dll')<>[] then
-          if fileinfo(x+'lcc.lib')==[] then
-            //** export lcc.lib
-            x_message(['I will try to export a '+x+'lcc.lib']);
-            ok=exportlibforlcc(x,rpat)
-            if ~ok then
-              x_message(['Can''t export a '+path+fname+'lcc.lib';
-                         'Please try to do your own lcc.lib file with';
-                         'the xx scilab function or change the path';
-                         'of your library '+x+'.dll']);
-              ok=%f;
-              return
-            end
-          end
-          for_link=[for_link;x+'.dll']
-          link(for_link($));
-          xlibs=[xlibs;x+'lcc.lib']
-
-        //** search DLL
-        elseif fileinfo(x+'.DLL')<>[] then
-          if fileinfo(x+'lcc.lib')==[] then
-            //** export lcc.lib
-            x_message(['I will try to export a '+x+'lcc.lib']);
-            ok=exportlibforlcc(x,rpat)
-            if ~ok then
-              x_message(['Can''t export a '+path+fname+'lcc.lib';
-                         'Please try to do your own lcc.lib file with';
-                         'the xx scilab function or change the path';
-                         'of your library '+x+'.dll']);
-              ok=%f;
-              return
-            end
-          end
-          for_link=[for_link;x+'.DLL']
-          link(for_link($));
-          xlibs=[xlibs;x+'lcc.lib']
-
-        else
-          //** no extension
-          //   no .dll exists
-          //   do something here please ?
-          ok=%f
-          pause
-        end
-      elseif fileinfo(x)==[] then
-        x_message(['Can''t include '+x;
-                   'That file doesn''t exist';
-                   lasterror()])
-        ok=%f
-        return
-      //** extension assume that user know what he does
-      else
-        //** compiled object (.obj)
-        //** compiled object doesn't need to be linked
-        if extension=='.obj' | extension=='.OBJ'  then
-          xlibs=[xlibs;x]
-        //** library (.dll)
-        elseif extension=='.dll' | extension=='.DLL' then
-          for_link=[for_link;x]
-          link(for_link($));
-          if fileinfo(x+'lcc.lib')==[] then
-            //** export lcc.lib
-            x_message(['I will try to export a '+x+'lcc.lib']);
-            ok=exportlibforlcc(path+fname,rpat)
-            if ~ok then
-              x_message(['Can''t export a '+path+fname+'lcc.lib';
-                         'Please try to do your own lcc.lib file with';
-                         'the xx scilab function or change the path';
-                         'of your library '+x+'.dll']);
-              ok=%f;
-              return
-            end
-          end
-          xlibs=[xlibs;path+fname+'lcc.lib']
-
-        //** library (.lib)
-        elseif extension=='.lib' | extension=='.ilib' then
-          if fileinfo(path+fname+'.dll')<>[] then
-            for_link=[for_link;path+fname+'.dll']
-            link(for_link($));
-          elseif fileinfo(path+fname+'.DLL')<>[] then
-            for_link=[for_link;path+fname+'.DLL']
-            link(for_link($));
-          else
-            //link(x);
-            x_message(['I don''t know what to do !';
-                      'Please report to alan.layec@inria.fr';])
-            ok=%f
-            pause
-          end
-          xlibs=[xlibs;x]
-        else
-          //link(x);
-          x_message(['I don''t know what to do !';
-                     'Please report to alan.layec@inria.fr';])
-          ok=%f
-          pause
-        end
-      end
-    end
-
-  //** MSVC
-  elseif getenv('WIN32','NO')=='OK' then
-    //** add .lib or .ilib
-    libs=libs(:)';
-    for x=libs
-      [path,fname,extension]=fileparts(x);
-      if (extension == '') then
-        //** search ilib
-        if fileinfo(x+'.ilib')<>[] then
-          //** search dll
-          if fileinfo(x+'.dll')<>[] then
-            for_link=[for_link;x+'.dll']
-            link(for_link($));
-          //** search DLL
-          elseif fileinfo(x+'.DLL')<>[] then
-            for_link=[for_link;x+'.DLL']
-            link(for_link($));
-          //** no .dll, .DLL
-          else
-            x_message(['I cant''t find a dll !';
-                       'Please report to alan.layec@inria.fr';])
-            ok=%f
-            pause
-          end
-          xlibs=[xlibs;x+'.ilib']
-        //** search lib
-        elseif fileinfo(x+'.lib')<>[] then
-          //** search dll
-          if fileinfo(x+'.dll')<>[] then
-            for_link=[for_link;x+'.dll']
-            link(for_link($));
-          //** search DLL
-          elseif fileinfo(x+'.DLL')<>[] then
-            for_link=[for_link;x+'.DLL']
-            link(for_link($));
-          //** no .dll, .DLL
-          else
-            x_message(['I cant''t find a dll !';
-                       'Please report to alan.layec@inria.fr';])
-            ok=%f
-            pause
-          end
-          xlibs=[xlibs;x+'.lib']
-        else
-          //** no extension
-          //   no .lib, no .ilib exists
-          //   do something here please ?
-          x_message(['I don''t know what to do !';
-                     'Please report to alan.layec@inria.fr';])
-          ok=%f
-          pause
-        end
-      elseif fileinfo(x)==[] then
-        x_message(['Can''t include '+x;
-                   'That file doesn''t exist';
-                   lasterror()])
-        ok=%f
-        return
-      //** extension assume that user know what he does
-      else
-        //** compiled object (.obj)
-        //** compiled object doesn't need to be linked
-        if extension=='.obj' | extension=='.OBJ'  then
-          xlibs=[xlibs;x]
-        //** library (.dll)
-        elseif extension=='.dll' | extension=='.DLL' then
-          for_link=[for_link;x]
-          link(for_link($));
-          if fileinfo(path+fname+'.ilib')<> [] then
-            xlibs=[xlibs;path+fname+'.ilib']
-          elseif fileinfo(path+fname+'.lib')<> [] then
-            xlibs=[xlibs;path+fname+'.lib']
-          else
-            //link(x);
-            x_message(['I don''t know what to do !';
-                      'Please report to alan.layec@inria.fr';])
-            ok=%f
-            pause
-          end
-        //** library (.lib)
-        elseif extension=='.lib' | extension=='.ilib' then
-          if fileinfo(path+fname+'.dll')<>[] then
-            for_link=[for_link;path+fname+'.dll']
-            link(for_link($));
-          elseif fileinfo(path+fname+'.DLL')<>[] then
-            for_link=[for_link;path+fname+'.DLL']
-            link(for_link($));
-          else
-            //link(x);
-            x_message(['I don''t know what to do !';
-                      'Please report to alan.layec@inria.fr';])
-            ok=%f
-            pause
-          end
-          xlibs=[xlibs;x]
-        else
-          //link(x);
-          x_message(['I don''t know what to do !';
-                     'Please report to alan.layec@inria.fr';])
-          ok=%f
-          pause
-        end
-      end
-    end
-
-  //** Unix
-  else
-    //** add .a
-    //   for compatibility test if we have already a .a
-    libs=libs(:)';
-    for x=libs
-      [path,fname,extension]=fileparts(x);
-      //** no extension. Assume that's a so library
-      if (extension == '') then
-       if fileinfo(path+fname+'.so')<>[] then
-        for_link=[for_link;x+'.so']
-        link(for_link($));
-       elseif fileinfo(path+fname+'.SO')<>[] then
-        for_link=[for_link;x+'.SO']
-        link(for_link($));
-       else
-         //link(x);
-         x_message(['I don''t know what to do !';
-                    'Please report to alan.layec@inria.fr';])
-         ok=%f
-         pause
-       end
-       if fileinfo(x+'.a')<>[] then
-         xlibs=[xlibs;x+'.a']
-       elseif fileinfo(x+'.A')<>[] then
-         xlibs=[xlibs;x+'.A']
-       else
-         //link(x);
-         x_message(['I don''t know what to do !';
-                    'Please report to alan.layec@inria.fr';])
-         ok=%f
-         pause
-       end
-      elseif fileinfo(x)==[] then
-        x_message(['Can''t include '+x;
-                   'That file doesn''t exist';
-                   lasterror()])
-        ok=%f
-        return
-      //** extension assume that user know what he does
-      else
-        //** compiled object (.o)
-        //** compiled object doesn't need to be linked
-        if extension=='.o' | extension=='.O'  then
-          xlibs=[xlibs;x]
-        //** library (.so)
-        elseif extension=='.so' | extension=='.SO' then
-          for_link=[for_link;x]
-          link(for_link($));
-          if fileinfo(path+fname+'.a')<> [] then
-            xlibs=[xlibs;path+fname+'.a']
-          elseif fileinfo(path+fname+'.A')<> [] then
-            xlibs=[xlibs;path+fname+'.A']
-          else
-            //link(x);
-            x_message(['I don''t know what to do !';
-                      'Please report to alan.layec@inria.fr';])
-            ok=%f
-            pause
-          end
-        //** library (.a)
-        elseif extension=='.a' | extension=='.A' then
-          if fileinfo(path+fname+'.so')<>[] then
-            for_link=[for_link;path+fname+'.so']
-            link(for_link($));
-          elseif fileinfo(path+fname+'.SO')<>[] then
-            for_link=[for_link;path+fname+'.SO']
-            link(for_link($));
-          else
-            //link(x);
-            x_message(['I don''t know what to do !';
-                      'Please report to alan.layec@inria.fr';])
-            ok=%f
-            pause
-          end
-          xlibs=[xlibs;x]
-        else
-          //link(x);
-          x_message(['I don''t know what to do !';
-                    'Please report to alan.layec@inria.fr';])
-          ok=%f
-          pause
-        end
-      end
-    end
-  end
-
-  //** add double quote for include in
-  //   Makefile
-  libs=xlibs
-  if MSDOS then
-      libs='""'+libs+'""'
-   else
-     libs=''''+libs+''''
-   end
-
-  //** return link cmd for for_link
-  if for_link <> [] then
-    for_link = 'link(""'+for_link+'"");';
-  end
-
-  //** concatenate libs for Makefile
-  if size(libs,1)<>1 then
-    libs = strcat(libs,' ')
   end
 
 endfunction
