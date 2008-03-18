@@ -400,6 +400,9 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		// If some text selected then it is replaced
 		if (input.getSelectedText() != null) {
 			try {
+				/* Put the selection in the clipboard */
+				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(input.getSelectedText()), null);
+				/* Remove selected text */
 				doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
 			} catch (BadLocationException e) {
 				// TODO Auto-generated catch block
