@@ -34,73 +34,11 @@ Graphics:
  - Obsolete functions:
         * Using xgetmouse with a flag to avoid the event queue to be cleared is now obsolete. This functionnality will be removed in Scilab 5.1.
 
+
 Graphic file export:
 ====================
   - xs2jpeg, xs2png functions added to export graphics under jpeg and png formats.     	
   - Removed functions xs2emf and xs2fig from export graphics.
-
-Consoles:
-=========
- - Based on a joint project Artenum - INRIA/Scilab called Jrosetta
- - Completion
-	+ Functions
-	+ Variables
-	+ Paths
- 
-Scilab modes:
-=============
- - Scilab is now available in four modes:
-	+ Normal mode
-		The standard Java
-	+ NW (No window) mode
-		Run in command line but can launch help or rendering/graphics 
-		(loads the Java Virtual Machine)
-	+ NWNI (No window No interactive) mode
-		Run in command line but no help, TCL or rendering
-		(do not load the Java Virtual Machine)
-	+ API mode
-		Scilab as API/computing engine
-
-GNU/Linux - Unix:
-=================
- - New configure (based on autoconf)
- - New compilation process (based on automake and libtool)
- - Dynamic libraries
- - Advanced numerical libraries can be used (Atlas, MKL...)
- - Use librairies when available on the system
- - Versioned libraries
- - Easier profiling (memory and call graph)
- - Better startup script
-	+ Debug
-	+ Profiling (valgrind)
-	
-Windows:	
-========
- - Compilation process :
-	+ Visual Studio 2008 solution (requires Intel Fortran 10.1) support
-	+ Visual Studio 2005 express solution (fortran conversion with f2c) support
- - Dynamic libraries	
- - Atlas 3.8 support (Core 2 Duo and more support)
- - Intel Math Kernel Library support
- - Better support on Windows Vista
-
-
-Functions:
-==========
- - New functions:
-	+ getdebuginfo
-	+ getscilabmode		    - returns scilab mode
-	+ getvariablesonstack	- get variable names on stack of scilab
-	+ getmd5                - get the MD5 checksum of strings or files.
-	+ getmodules            - returns list of modules installed in Scilab
-	+ with_module           - Checks if a Scilab module is installed
-	+ islittleendian        - Checks if machine architecture is "little-endian"
-	+ librarieslist         - get scilab libraries
-	+ libraryinfo           - get macros and path of a scilab library
-	+ completion            - returns words that start with the text you pass as parameter.
-
- - Rewrite in native code:
-  + warning 
 
 
 Signal processing:
@@ -116,65 +54,31 @@ Signal processing:
 	+ fftwlibraryisloaded - checks if fftw library is loaded
 
 
-Java/Scilab API:
-================
- - Refactoring of the Java API
-
-
-Modules/toolboxes template:
-===========================
- - A template model has been defined to normalize how modules and toolboxes 
-	should be.
-	+ See http://wiki.scilab.org/Scilab_Module_Architecture for module
-	+ See contrib/toolbox_skeleton/ for toolboxes
-
-Source reorganisation:
-======================
- - Source code split into dedicated and clear modules
- - Clear separation between the Scilab gateway (argument management, etc) and 
-	the code
- - Use XML declaration for the list of functions
- - Use XML declaration for the list of modules (and activation or not)
- - Massive cleanup of the code 
- - Thousand of warnings removed
- - First step to a future Scilab API
-
-New Scilab Functions:
-=====================
- - Function rewrited from Fortran to C for better maintenance
-
-
-Time and date functions:
+Sparse LU factorization:
 ========================
- - New functions:
-	+ clock   - return current time as date vector
-	+ eomday  - return last day of month
-	+ weekday - return day of week
-	+ now     - return current date and time
-
-
-Binary, octal and hexadecimal representation:
-=============================================
- - New functions:
-	+ bin2dec  - return integer corresponding to a binary form
-	+ bitand   - AND applied to binary representation of inputs argument
-	+ bitcmp
-	+ bitget
-	+ bitor    - OR applied to binary representation of inputs arguments
-	+ bitxor   - XOR applied to binary representation of inputs arguments
-	+ dec2bin  - return binary representation
-	+ dec2oct  - return octal representation of integers
+ - UMFPACK features added in Scilab. Many thanks to Bruno Pincon.
+	+ umfpack			- Solve sparse linear system 
+	+ umf_lufact		- LU factorisation of a sparse matrix 
+	+ umf_lusolve		- Solve a linear sparse system given the LU factors
+	+ umf_luinfo		- Get information on LU factors
+	+ umf_luget			- Retrieve LU factors at the Scilab level 
+	+ taucs_chfact		- Cholesky factorisation of a sparse Symmetric Positive Definite (s.p.d.) matrix
+	+ taucs_chsolve		- Solve a linear sparse (s.p.d.) system given the Cholesky factors
+	+ taucs_chinfo		- Get information on Cholesky factors
+	+ taucs_chget		- Retrieve the Cholesky factorization at the Scilab level
+	+ res_with_prec		- Computes the residual r = Ax-b with precision
+	+ cond2sp 			- Computes an approximation of the 2-norm condition number of a s.p.d. sparse matrix
+	+ condestsp			- Estimate the condition number of a sparse matrix
+	+ PlotSparse		- Plot the pattern of non nul elements of a sparse matrix 
+	+ ReadHBSparse		- Read a Harwell-Boeing sparse format file
 
 
 Input/Output functions (files):
 ===============================
  - New functions:
-	+ getdrives           - get the drive letters of all mounted filesystems on
-	                        the computer.
-	+ getrelativefilename - given an absolute directory and an absolute filename,
-	                        returns a relative file name.
-	+ fullpath            - creates an full path name for the specified relative
-	                        path name.
+	+ getdrives           - get the drive letters of all mounted filesystems on the computer.
+	+ getrelativefilename - given an absolute directory and an absolute filename, returns a relative file name.
+	+ fullpath            - creates an full path name for the specified relative path name.
 	+ is_absolute_path    -
 	+ createdir           - make new directory
 	+ removedir           - remove a directory
@@ -225,27 +129,52 @@ String manipulation:
 	+ strtok     - split string into tokens
 
 
+Functions:
+==========
+ - New functions:
+	+ getdebuginfo
+	+ getscilabmode		    - returns scilab mode
+	+ getvariablesonstack	- get variable names on stack of scilab
+	+ getmd5                - get the MD5 checksum of strings or files.
+	+ getmodules            - returns list of modules installed in Scilab
+	+ with_module           - Checks if a Scilab module is installed
+	+ islittleendian        - Checks if machine architecture is "little-endian"
+	+ librarieslist         - get scilab libraries
+	+ libraryinfo           - get macros and path of a scilab library
+	+ completion            - returns words that start with the text you pass as parameter.
+
+ - Rewrite in native code:
+  + warning 
+
+
+Time and date functions:
+========================
+ - New functions:
+	+ clock   - return current time as date vector
+	+ eomday  - return last day of month
+	+ weekday - return day of week
+	+ now     - return current date and time
+
+
+Binary, octal and hexadecimal representation:
+=============================================
+ - New functions:
+	+ bin2dec  - return integer corresponding to a binary form
+	+ bitand   - AND applied to binary representation of inputs argument
+	+ bitcmp
+	+ bitget
+	+ bitor    - OR applied to binary representation of inputs arguments
+	+ bitxor   - XOR applied to binary representation of inputs arguments
+	+ dec2bin  - return binary representation
+	+ dec2oct  - return octal representation of integers
+
+
 jvm module:
 ===========
 	+ with_embedded_jre        - checks if scilab uses a embedded JRE
 	+ system_getproperty       - gets the system property indicated by a specified key.
 	+ javaclasspath            - set and get dynamic Java class path
 	+ javalibrarypath          - set and get dynamic java.library.path
-
-Dynamic/incremental link:
-=========================
- - Module renamed to dynamic link
- - Visual Studio 2008 support
- - Under Linux/Unix, now based on basic autotools for the detection of compiler
-	and compilation.
- - New functions:
-  + getdynlibext - get the extension of dynamic libraries on your operating system.
-
-TCL/TK:
-=======
- - New event loop 
-	+ @TODO detail
- - Provided with version 8.5 of TCL/TK
 
 
 Localization:
@@ -295,7 +224,6 @@ Windows_tools:
 	+ findfileassociation - Searches for and retrieves a file association-related string from the registry.
 	+ dos                 - shell (cmd) command execution 
 
-
 History manager:
 ================
  - New functions:
@@ -314,6 +242,104 @@ History manager:
 	+ savehistory
 	+ gethistory
 	+ resethistory
+
+Consoles:
+=========
+ - Based on a joint project Artenum - INRIA/Scilab called Jrosetta
+ - Completion
+	+ Functions
+	+ Variables
+	+ Paths
+
+
+Modules/toolboxes template:
+===========================
+ - A template model has been defined to normalize how modules and toolboxes 
+	should be.
+	+ See http://wiki.scilab.org/Scilab_Module_Architecture for module
+	+ See contrib/toolbox_skeleton/ for toolboxes
+
+
+Source reorganisation:
+======================
+ - Source code split into dedicated and clear modules
+ - Clear separation between the Scilab gateway (argument management, etc) and 
+	the code
+ - Use XML declaration for the list of functions
+ - Use XML declaration for the list of modules (and activation or not)
+ - Massive cleanup of the code 
+ - Thousand of warnings removed
+ - First step to a future Scilab API
+
+
+New Scilab Functions:
+=====================
+ - Function rewrited from Fortran to C for better maintenance
+
+ 
+Scilab modes:
+=============
+ - Scilab is now available in four modes:
+	+ Normal mode
+		The standard Java
+	+ NW (No window) mode
+		Run in command line but can launch help or rendering/graphics 
+		(loads the Java Virtual Machine)
+	+ NWNI (No window No interactive) mode
+		Run in command line but no help, TCL or rendering
+		(do not load the Java Virtual Machine)
+	+ API mode
+		Scilab as API/computing engine
+
+
+GNU/Linux - Unix:
+=================
+ - New configure (based on autoconf)
+ - New compilation process (based on automake and libtool)
+ - Dynamic libraries
+ - Advanced numerical libraries can be used (Atlas, MKL...)
+ - Use librairies when available on the system
+ - Versioned libraries
+ - Easier profiling (memory and call graph)
+ - Better startup script
+	+ Debug
+	+ Profiling (valgrind)
+
+	
+Windows:	
+========
+ - Compilation process :
+	+ Visual Studio 2008 solution (requires Intel Fortran 10.1) support
+	+ Visual Studio 2005 express solution (fortran conversion with f2c) support
+ - Dynamic libraries	
+ - Atlas 3.8 support (Core 2 Duo and more support)
+ - Intel Math Kernel Library support
+ - Better support on Windows Vista
+
+
+Dynamic/incremental link:
+=========================
+ - Module renamed to dynamic link
+ - Visual Studio 2008 support
+ - Under Linux/Unix, now based on basic autotools for the detection of compiler
+	and compilation.
+ - New functions:
+  + getdynlibext - get the extension of dynamic libraries on your operating system.
+
+
+TCL/TK:
+=======
+ - New event loop 
+	+ @TODO detail
+ - Provided with version 8.5 of TCL/TK
+ - Removed Functions:
+	+ tcl_?
+
+
+Java/Scilab API:
+================
+ - Refactoring of the Java API
+
 
 Tests:
 ======
