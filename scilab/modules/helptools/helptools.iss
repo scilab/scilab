@@ -17,7 +17,7 @@
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define HELPTOOLS "helptools"
-,
+
 Source: thirdparty\jhall.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\avalon-framework.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\avalon-framework.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
