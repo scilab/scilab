@@ -16,7 +16,31 @@ if [ $# -eq 0 ]; then
 fi
 
 binDir=`dirname $0`
-libDir=$binDir/../../../thirdparty
 schemaDir=$binDir/../schema
+
+
+
+# libDir path
+# ==============================================================================
+
+if [ -e "$binDir/../../../thirdparty" ]; then
+	libDir=$binDir/../../../thirdparty
+elif [ -e "$binDir/../../../../../thirdparty" ]; then
+	libDir=$binDir/../../../../../thirdparty
+else
+	echo "Don't find the thirdparty directory."
+	exit 2
+fi
+
+# jar checks
+# ==============================================================================
+
+if [ ! -e "$libDir/jing.jar" ]; then
+    echo "Don't find the jing.jar file."
+    exit 3
+fi
+
+# validation
+# ==============================================================================
 
 java -jar "$libDir/jing.jar" -c "$schemaDir/scilab.rnc" "$@"

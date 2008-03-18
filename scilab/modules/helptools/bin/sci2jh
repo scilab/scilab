@@ -32,7 +32,54 @@ fi
 binDir=`dirname $0`
 ### Need an absolute directory
 binDir=`(cd $binDir 2> /dev/null && pwd;)`
-libDir=$binDir/../../../thirdparty
+
+# libDir path
+# ==============================================================================
+
+if [ -e "$binDir/../../../thirdparty" ]; then
+	libDir=$binDir/../../../thirdparty
+elif [ -e "$binDir/../../../../../thirdparty" ]; then
+	libDir=$binDir/../../../../../thirdparty
+else
+	echo "Don't find the thirdparty directory."
+	exit 2
+fi
+
+# jar checks
+# ==============================================================================
+
+if [ ! -e "$libDir/js.jar" ]; then
+    echo "Don't find the js.jar file."
+    exit 3
+fi
+
+if [ ! -e "$libDir/batik.jar" ]; then
+    echo "Don't find the batik.jar file."
+    exit 4
+fi
+
+if [ ! -e "$libDir/commons-logging.jar" ]; then
+    echo "Don't find the commons-logging.jar file."
+    exit 5
+fi
+
+if [ ! -e "$libDir/jeuclid-core.jar" ]; then
+    echo "Don't find the euclid-core.jar file."
+    exit 6
+fi
+
+if [ ! -e "$libDir/fop.jar" ]; then
+    echo "Don't find the fop.jar file."
+    exit 7
+fi
+
+if [ ! -e "$libDir/sci_doc_kit.jar" ]; then
+    echo "Don't find the sci_doc_kit.jar file."
+    exit 8
+fi
+
+
+
 docbookXslDir=$binDir/../docbook_xsl
 cssDir=$binDir/../css
 

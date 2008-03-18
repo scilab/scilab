@@ -21,6 +21,15 @@ libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 #libscihelptools_la_helpfilesdir = $(mydatadir)
 #libscihelptools_la_helpfiles_DATA = scilab_fr_FR_help.jar scilab_en_US_help.jar
 
+#### helptools : bin files ####
+libscihelptools_la_bindir = $(mydatadir)/bin
+libscihelptools_la_bin_DATA = bin/scivalid \
+bin/man2sci \
+bin/sci2pdf \
+bin/sci2jh \
+bin/manrev2sci \
+bin/sci2html \
+bin/sciviewhelp
 
 #### helptools : css files ####
 libscihelptools_la_cssdir = $(mydatadir)/css
