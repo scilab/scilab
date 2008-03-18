@@ -83,17 +83,11 @@ for i=1:nv-1
     // With this trick, d=[1,3];
   end
 
-  //  disp("i=");
-  //  disp(i);
-  //  disp("d vaut:");
-  //  disp(d)
 end
 
 
 if (d==[]) // No data couple found
   // Search for at least a single data , i.e.: plot(y)
-  //  disp(T)
-  //  disp(type(T(1,1)))
 
   if (T(1,1)==1 & ListArg(1)<>[]) then // case plot(SINGLE y,...)
     d = 1; 
@@ -109,12 +103,6 @@ if (d==[]) // No data couple found
     warning("Error inside input argument : no data");
     return;
   end
-  
-  //  disp("ICII--------------------")
-  //  disp("d vaut:")
-  //  disp(d);
-  //  disp("P1=")
-  //  disp(P1)
   
 else
   
@@ -155,9 +143,6 @@ P = zeros(numplot,3);
 // if one of these indices is 0 => it does not exist
 // (which is possible for x and linepsec, not for y)
 
-//disp("T vaut:");
-//disp(T)
-
 if (provided_data == 2) then
 
   for k=1:size(d,'*')
@@ -168,7 +153,6 @@ if (provided_data == 2) then
 	P(k,3) = d(k)+2;
       end
     end
-    //    disp(P);
   end
 else
   // we are in the case where: plot(SINGLE y,... x not specified
@@ -185,9 +169,6 @@ if (d+1 < P1)
 end
 end
 
-//disp("P1 vaut:");
-//disp(P1);
-
 
 
 // delay the drawing commands
@@ -199,12 +180,6 @@ current_figure.immediate_drawing = 'off';
 
 //Now, we plot the decomposed plots one by one with their own linespec
 // provided_data = 2 : x and y are provided
-
-//disp("P=")
-//disp(P)
-
-//disp("ListArg=")
-//disp(ListArg)
 
 FinalAgreg=[]; // Final Compound containing all the new created plots.
 
@@ -227,17 +202,44 @@ for i=1:numplot
       buildFunc = ListArg(P(i,2));
       firstarg = ListArg(P(i,1));
       tmp = [];
+
       for ii=1:sizefirstarg(1,2)
-	for jj=1:sizefirstarg(1,1)
-	  tmp(jj,ii) = buildFunc(firstarg(jj,ii));
-	end
+        for jj=1:sizefirstarg(1,1)
+ 	  
+          // function evaluation may fail
+          // try/cacth is buggy for now
+          // so use execstr until the bug is fixed
+          err = execstr('tmp(jj,ii) = buildFunc(firstarg(jj,ii))','errcatch','n');
+
+          if (err <> 0) then
+            // reset data
+            ResetFigureDDM(current_figure, cur_draw_mode);
+
+            // get error
+            [err_message, err_number, err_line, err_func] = lasterror(%t);
+
+            // print it
+            if (err_func <> "") then
+              disp("Error : unable to evaluate input function" + " " + err_func + ".");
+            else
+              disp("Error : unable to evaluate input function" + ".");
+            end
+            disp("Error " + string(err_number) +" at line " + string(err_line) + " : " + err_message);
+            clear buildFunc;
+
+            // exit function
+            return;
+          end
+
+        end
       end
+
+      
       ListArg(P(i,2)) = tmp;
       // if there is an other iteration, we will have error message redefining function.
       // we need to clear here and not before, because user must see the warning if needed.
       clear buildFunc;
     end
-
     [X,Y] = checkXYPair(typeOfPlot,ListArg(P(i,1)),ListArg(P(i,2)),current_figure,cur_draw_mode)
   else
     if or(size(ListArg(P(1,2)))==1)  // If this is a vector
@@ -338,8 +340,6 @@ for i=1:numplot
 
   
   // The plot is made now :
-  
-  //  pause;
   err = execstr('plot2d(X,Y)','errcatch','m');
   
   if err <> 0
@@ -366,15 +366,6 @@ for i=1:numplot
     if DefaultColor == %T
       [Color,CurColor] = setDefaultColor(CurColor);
     end
-
-
-    //    disp('CurColor=')
-    //    disp(CurColor);
-    //    disp('Color=')
-    //    disp(Color)
-
-    //    disp('Line=');
-    //    disp(Line);
 
     if (Marker == %T)
       e.mark_style=MarkerStyle;
@@ -410,7 +401,6 @@ end
 ///////////////////////////////////
 
 
-//disp("Start Global Property treatment")
 
 // Those properties will be applied to Agreg children
 Agreg = glue(FinalAgreg(1:$))
@@ -424,14 +414,9 @@ while (k<>[])
 end
 
 
-//disp("Agreg=")
-//disp(Agreg);
-
 
 // P1 is the position of the first PropertyName field.
 Property = P1;
-
-//disp("JE SUIS LA...");
 
 Curves = Agreg.children
 //Curves(:,1) = Curves(:,$:-1:1);
@@ -444,15 +429,6 @@ while (Property <= nv-1)
   
   Property = Property+2;
 end
-
-
-
-
-
-//disp("PUIS LA...");
-
-
-//disp("End Global Property treatment")
 
 
 
