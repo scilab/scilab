@@ -1,35 +1,33 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "manrev.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>taucs_license  </TITLE>
-  <TYPE>  </TYPE>
-  <DATE>scispt toolbox  </DATE>
-  <SHORT_DESCRIPTION name="taucs_license"> display the taucs license   </SHORT_DESCRIPTION>
-  <SECTION label='Copyright'>
-  <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="taucs_license"><info><pubdate>scispt toolbox  </pubdate></info><refnamediv><refname>taucs_license</refname><refpurpose> display the taucs license   </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsection><title>Copyright</title>
+  <para>
     TAUCS Version 1.0, November 29, 2001. Copyright (c) 2001 by Sivan Toledo, Tel-Aviv Univesity,
     stoledo@tau.ac.il. All Rights Reserved. 
-  </P>
-  </SECTION>
-  <SECTION label='TAUCS License'>
-  <P>
+  </para>
+  </refsection>
+  <refsection><title>TAUCS License</title>
+  <para>
     Your use or distribution of TAUCS or any derivative code implies that you agree to this 
     License.   THIS MATERIAL IS PROVIDED AS IS, WITH ABSOLUTELY NO WARRANTY EXPRESSED OR IMPLIED. 
     ANY USE IS AT YOUR OWN RISK.   Permission is hereby granted to use or copy this program, 
     provided that the Copyright, this License, and the Availability of the original version is 
     retained on all copies. User documentation of any code that uses this code or any derivative
-    code must cite the Copyright, this License, the Availability note, and &quot;Used by permission.&quot; 
+    code must cite the Copyright, this License, the Availability note, and "Used by permission." 
     If this code or any derivative code is accessible from within MATLAB, then typing 
-    &quot;help taucs&quot; must cite the Copyright, and &quot;type taucs&quot; must also cite this 
+    "help taucs" must cite the Copyright, and "type taucs" must also cite this 
     License and the Availability note. Permission to modify the code and to distribute modified code 
     is granted, provided the Copyright, this License, and the Availability note are retained, and a 
     notice that the code was modified is included. This software is provided to you free of charge. 
-  </P>
-  </SECTION>
-  <SECTION label='Availability'>
-  <P>
-    <A href="http://www.tau.ac.il/~stoledo/taucs/">http://www.tau.ac.il/~stoledo/taucs/</A>
-  </P>
-  </SECTION>
-</MAN>
+  </para>
+  </refsection>
+  <refsection><title>Availability</title>
+  <para>
+    <link xlink:href="http://www.tau.ac.il/~stoledo/taucs/">http://www.tau.ac.il/~stoledo/taucs/</link>
+  </para>
+  </refsection>
+</refentry>

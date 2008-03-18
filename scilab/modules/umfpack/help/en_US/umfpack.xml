@@ -1,64 +1,60 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "manrev.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>umfpack  </TITLE>
-  <TYPE>scilab function - scispt toolbox</TYPE>
-  <DATE></DATE>
-  <SHORT_DESCRIPTION name="umfpack"> solve sparse linear system  </SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>x = umfpack(A,&quot;\&quot;,b)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>x = umfpack(b,&quot;/&quot;,A)  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>A  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : a sparse (real or complex) square matrix n x n
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>b  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : in the first case, a column vector (n x 1) or a n x m matrix ;    
-      in the second case, a row vector (1 x n) or a m x n matrix
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : in the first case , a column vector (n x 1) or a n x m matrix ;    
-      in the second case, a row vector (1 x n) or a m x n matrix
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>2d arg  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : string specifier &quot;\&quot; or &quot;/&quot;
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-  <P>
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="umfpack"><info><pubdate/></info><refnamediv><refname>umfpack</refname><refpurpose> solve sparse linear system  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>x = umfpack(A,"\",b)
+x = umfpack(b,"/",A)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+ <variablelist>
+  <varlistentry>
+  <term>A  </term>
+  <listitem>
+    <para>a sparse (real or complex) square matrix n x n</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>b  </term>
+  <listitem>
+	  <para>in the first case, a column vector (n x 1) or a n x m matrix ;    
+		  in the second case, a row vector (1 x n) or a m x n matrix</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>x  </term>
+  <listitem>
+	  <para>in the first case , a column vector (n x 1) or a n x m matrix ;    
+		  in the second case, a row vector (1 x n) or a m x n matrix</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>2d arg  </term>
+  <listitem>
+	  <para>string specifier "\" or "/"</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
+  <refsection><title>Description</title>
+  <para>
     This function is intended to work like the classic operators \ and / 
     x = A\b  and x = b/A) i.e. it solves a linear system Ax = b or xA = b 
     with a sparse square (says n x n) real or complex matrix and with a compatible
     rhs b : n x m in the first case and m x n in the second. 
-  </P>
-  </DESCRIPTION>
-  <SECTION label='Details'>
-  <P>
-    First an LU factorisation of the matrix is computed (<TT> P R^(-1) A Q = LU </TT>
+  </para>
+  </refsection>
+  <refsection><title>Details</title>
+  <para>
+    First an LU factorisation of the matrix is computed (<literal> P R^(-1) A Q = LU </literal>
     where P and Q are permutation matrices, R is a diagonal matrix (row scaling), L
     a lower triangular matrix with a diagonal of 1, and U an upper triangular matrix) 
     then a first solution is computed with forward/backward subtitutions ; 
     finaly the solution is improved  by iterative refinement.
-  </P>
-  </SECTION>
+  </para>
+  </refsection>
 
-  <EXAMPLE><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 // this is the small linear test system from UMFPACK
 // whom solution must be [1;2;3;4;5]
 A = sparse( [ 2  3  0  0  0;
@@ -91,18 +87,18 @@ A = sparse( [ 2+%i  3+2*%i  0      0    0;
               0     4       2-%i   0    1] );
 b = [ 3+13*%i ; 58+32*%i ; -19+13*%i ; 18-12*%i ; 22+16*%i ];
 x = umfpack(A,"\",b)  // x must be [1+i; 2+2i; 3+3i; 4 + 4i; 5+5i]
-   ]]></EXAMPLE>
+   ]]></programlisting></refsection>
 
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>umf_lufact</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>umf_lusolve</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>umf_ludel</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>umf_luinfo</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>umf_luget</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="umf_lufact">umf_lufact</link> </member>     
+    <member> <link linkend="umf_lusolve">umf_lusolve</link> </member>     
+    <member> <link linkend="umf_ludel">umf_ludel</link> </member>     
+    <member> <link linkend="umf_luinfo">umf_luinfo</link> </member>     
+    <member> <link linkend="umf_luget">umf_luget</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-      <AUTHORS_ITEM><EM>umfpack</EM> by Timothy A. Davis (see <LINK>umf_license</LINK>)</AUTHORS_ITEM>
-      <AUTHORS_ITEM><EM>scilab interface</EM> by Bruno Pincon with contributions from Antonio Frasson</AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+  <refsection><title>Authors</title><simplelist type="vert">
+      <member>umfpack by Timothy A. Davis (see umf_license)</member>
+      <member>scilab interface by Bruno Pincon with contributions from Antonio Frasson</member>
+  </simplelist></refsection>
+</refentry>

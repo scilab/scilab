@@ -1,76 +1,71 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "manrev.dtd">
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="taucs_chsolve"><info><pubdate>  </pubdate></info><refnamediv><refname>taucs_chsolve</refname><refpurpose> solve a linear sparse (s.p.d.) system given the Cholesky factors  </refpurpose></refnamediv>
+  
+  
+  
+  
+  
 
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>taucs_chsolve  </TITLE>
-  <TYPE>scilab function - scispt toolbox</TYPE>
-  <DATE>  </DATE>
-  <SHORT_DESCRIPTION name="taucs_chsolve"> solve a linear sparse (s.p.d.) system given the Cholesky factors  </SHORT_DESCRIPTION>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x] = taucs_chsolve(C_ptr, b [, A])</synopsis></refsynopsisdiv>
 
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[x] = taucs_chsolve(C_ptr, b [, A])  </CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
+  <refsection><title>Parameters</title>
+ <variablelist>
+  <varlistentry>
+  <term>C_ptr  </term>
+  <listitem>
+   <para>a pointer to a handle of the Cholesky factors (C,p with A(p,p)=CC')</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>b  </term>
+  <listitem>
+	  <para>a real column vector or a matrix (multiple rhs)</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>x  </term>
+  <listitem>
+	  <para>a real column vector or a matrix in case of multiple rhs ( x(:,i) is solution of A x(:,i) = b(:,i))</para>
+  </listitem> 
+  </varlistentry>
+  <varlistentry>
+  <term>A  </term>
+  <listitem>
+	  <para>(optional) the real s.p.d. matrix A (to use for iterative refinement step)</para>
+  </listitem> 
+  </varlistentry>
+ </variablelist>
+  </refsection>
 
-  <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>C_ptr  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : a pointer to a handle of the Cholesky factors (C,p with A(p,p)=CC&apos;)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>b  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : a real column vector or a matrix (multiple rhs)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>x  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : a real column vector or a matrix in case of multiple rhs ( x(:,i) is solution of A x(:,i) = b(:,i))
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>A  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : (optional) the real s.p.d. matrix A (to use for iterative refinement step)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
-  </PARAM>
-
-  <DESCRIPTION>
-  <P>
-    This function must be used in conjonction with <LINK>taucs_chfact</LINK> which
+  <refsection><title>Description</title>
+  <para>
+    This function must be used in conjonction with <link linkend="taucs_chfact">taucs_chfact</link> which
     computes the Cholesky factorization of a sparse real s.p.d. matrix.
-    When the matrix <VERB>A</VERB> is provided, one iterative refinement
+    When the matrix <literal>A</literal> is provided, one iterative refinement
     step is done (the refined solution is accepted if it improves the
-    2-norm of the residual <VERB>Ax-b</VERB>).
-  </P>
-  <P>
-    Like in <LINK>taucs_chfact</LINK> the matrix A may be provided either
+    2-norm of the residual <literal>Ax-b</literal>).
+  </para>
+  <para>
+    Like in <link linkend="taucs_chfact">taucs_chfact</link> the matrix A may be provided either
     in its complete form (that is with the lower triangle also) or
     only with its upper triangle.
-   </P>
-   </DESCRIPTION>
-  <SECTION label='Examples'>
-  <P>
-    see the example section of <LINK>taucs_chfact</LINK>
-  </P>
-  </SECTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>taucs_chfact</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>taucs_chdel</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>taucs_chinfo</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>taucs_chget</LINK> </SEE_ALSO_ITEM>     
-    <SEE_ALSO_ITEM> <LINK>cond2sp</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+   </para>
+   </refsection>
+  <refsection><title>Examples</title>
+  <para>
+    see the example section of <link linkend="taucs_chfact">taucs_chfact</link>
+  </para>
+  </refsection>
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member> <link linkend="taucs_chfact">taucs_chfact</link> </member>     
+    <member> <link linkend="taucs_chdel">taucs_chdel</link> </member>     
+    <member> <link linkend="taucs_chinfo">taucs_chinfo</link> </member>     
+    <member> <link linkend="taucs_chget">taucs_chget</link> </member>     
+    <member> <link linkend="cond2sp">cond2sp</link> </member>
+  </simplelist></refsection>
 
-  <AUTHORS>
-      <AUTHORS_ITEM><EM>taucs</EM> by Sivan Toledo (see <LINK>taucs_license</LINK>)</AUTHORS_ITEM>
-      <AUTHORS_ITEM><EM>scilab interface</EM> by Bruno Pincon</AUTHORS_ITEM>
-  </AUTHORS>
+  <refsection><title>Authors</title><simplelist type="vert">
+      <member>taucs by Sivan Toledo (see taucs_license)</member>
+      <member>scilab interface by Bruno Pincon</member>
+  </simplelist></refsection>
 
-</MAN>
+</refentry>
