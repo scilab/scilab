@@ -38,15 +38,15 @@ function help(key)
 				key="symbols";
 			end
 			
-			path=gethelpfile(key)
+			//path=gethelpfile(key)
 			
-			if path<>[] then
+			//if path<>[] then
 				global %helps
 				helpbrowser(%helps(:,1), key, getlanguage());
 				//browsehelp(path,key)
-			else
-				apropos(key)
-			end
+			//else
+			//	apropos(key)
+			//end
 			
 		else
 			if (%browsehelp == []) then
