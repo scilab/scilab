@@ -14,9 +14,16 @@ if type(a)==16 then
   if rhs<>1 then error(39),end
   a1=a(1);
   select a1(1)
-    case 'lss' then [a,b,c,d]=a(2:5)
-    case 'r' then a=tf2ss(a),[a,b,c,d]=a(2:5)
-    else error(97,1)
+  case 'lss' then 
+    [a,b,c,d]=a(2:5)
+  case 'r' then 
+    a=tf2ss(a),
+    [a,b,c,d]=a(2:5)
+    if type(d)<>1 then 
+      error('The given transfer fuction is not proper')
+    end
+  else 
+    error(97,1)
   end;
 end;
 
