@@ -90,6 +90,9 @@ static OpTab Interfaces[] = {
 	/* 55  */ {gw_history_manager},
 	/* 56  */ {gw_spreadsheet},
 	/* 57  */ {gw_graphic_export}
+#ifdef _MSC_VER
+	/* 58  */ ,{gw_umfpack}
+#endif
 
 };
 
