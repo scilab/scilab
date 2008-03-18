@@ -67,6 +67,8 @@
 #include "gw_umfpack.h"
 #include "stack-c.h"
 #include "Scierror.h"
+#include "taucs_scilab.h"
+#include "common_umfpack.h"
 
 int sci_umfpack(char* fname,unsigned long l)
 {

@@ -34,9 +34,12 @@
  * knowledge of the CeCILL license and that you accept its terms.
  *
  */
-#include "sciumfpack.h"
 #include "gw_umfpack.h"
 #include "stack-c.h"
+#include "sciumfpack.h"
+#include "taucs_scilab.h"
+#include "common_umfpack.h"
+#include "Scierror.h"
 
 int sci_res_with_prec(char* fname, unsigned long l)
 {

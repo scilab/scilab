@@ -57,7 +57,9 @@
 #include "gw_umfpack.h"
 #include "stack-c.h"
 #include "taucs_scilab.h"
+#include "common_umfpack.h"
 #include "Scierror.h"
+#include "MALLOC.h"
 
 extern CellAdr *ListCholFactors;
 
@@ -96,7 +98,7 @@ int sci_taucs_chfact(char* fname, unsigned long l)
   
 	/* apply permutation */
 	PAPT = taucs_ccs_permute_symmetrically(&B, perm, invperm);
-	free(invperm);
+	FREE(invperm);
 
 	/* factor */
 	C = taucs_ccs_factor_llt_mf(PAPT);
@@ -112,7 +114,7 @@ int sci_taucs_chfact(char* fname, unsigned long l)
 		};
       
 	/* put in an handle (Chol fact + perm + size) */
-	pC = malloc( sizeof(taucs_handle_factors) );
+	pC = (taucs_handle_factors*)MALLOC( sizeof(taucs_handle_factors) );
 	pC->p = perm;
 	pC->C = C;
 	pC->n = A.n;

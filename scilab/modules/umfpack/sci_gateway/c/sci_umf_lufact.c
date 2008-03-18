@@ -58,7 +58,9 @@
 #include "sciumfpack.h"
 #include "stack-c.h"
 #include "Scierror.h"
-
+#include "sciprint.h"
+#include "taucs_scilab.h"
+#include "common_umfpack.h"
 
 CellAdr *ListNumeric = NULL;
 CellAdr *ListCholFactors = NULL;

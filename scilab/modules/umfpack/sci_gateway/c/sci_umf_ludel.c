@@ -44,10 +44,13 @@
  |   umf_ludel(LU_ptr)  or umf_ludel() for freed all fact.     |
  |                                                             |
  +------------------------------------------------------------*/
+#include "MALLOC.h"
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
 #include "stack-c.h"
 #include "Scierror.h"
+#include "taucs_scilab.h"
+#include "common_umfpack.h"
 
 extern CellAdr *ListNumeric;
 
@@ -70,7 +73,7 @@ int sci_umf_ludel(char* fname, unsigned long l)
 	  umfpack_di_free_numeric(&(Cell->adr));
 	else
 	  umfpack_zi_free_numeric(&(Cell->adr));
-	free(Cell);
+	FREE(Cell);
       }
   else
     {

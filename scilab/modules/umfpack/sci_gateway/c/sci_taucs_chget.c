@@ -51,6 +51,7 @@
 #include "gw_umfpack.h"
 #include "stack-c.h"
 #include "taucs_scilab.h"
+#include "common_umfpack.h"
 #include "Scierror.h"
 
 extern CellAdr *ListCholFactors;

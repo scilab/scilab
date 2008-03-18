@@ -46,7 +46,10 @@
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
 #include "stack-c.h"
+#include "taucs_scilab.h"
+#include "common_umfpack.h"
 #include "Scierror.h"
+#include "MALLOC.h"
 
 extern CellAdr *ListNumeric;
 
@@ -93,25 +96,25 @@ int sci_umf_luget(char* fname, unsigned long l)
 		}
 
 	if (n_row <= n_col) n = n_row; else n = n_col;
-	L_mnel  = malloc( n_row   * sizeof(int));
-	L_icol  = malloc( lnz     * sizeof(int));
-	L_ptrow = malloc((n_row+1)* sizeof(int));
-	L_R     = malloc( lnz     * sizeof(double));
-	U_mnel  = malloc( n       * sizeof(int));
-	U_icol  = malloc( unz     * sizeof(int));
-	U_ptrow = malloc((n+1)    * sizeof(int));
-	U_R     = malloc( unz     * sizeof(double));
-	V_irow  = malloc( unz     * sizeof(int));
-	V_ptcol = malloc((n_col+1)* sizeof(int));
-	V_R     = malloc( unz     * sizeof(double));
-	p       = malloc( n_row   * sizeof(int));
-	q       = malloc( n_col   * sizeof(int));
-	Rs      = malloc( n_row   * sizeof(double)); 
+	L_mnel  = (int*)MALLOC( n_row   * sizeof(int));
+	L_icol  = (int*)MALLOC( lnz     * sizeof(int));
+	L_ptrow = (int*)MALLOC((n_row+1)* sizeof(int));
+	L_R     = (double*)MALLOC( lnz     * sizeof(double));
+	U_mnel  = (int*)MALLOC( n       * sizeof(int));
+	U_icol  = (int*)MALLOC( unz     * sizeof(int));
+	U_ptrow = (int*)MALLOC((n+1)    * sizeof(int));
+	U_R     = (double*)MALLOC( unz     * sizeof(double));
+	V_irow  = (int*)MALLOC( unz     * sizeof(int));
+	V_ptcol = (int*)MALLOC((n_col+1)* sizeof(int));
+	V_R     = (double*)MALLOC( unz     * sizeof(double));
+	p       = (int*)MALLOC( n_row   * sizeof(int));
+	q       = (int*)MALLOC( n_col   * sizeof(int));
+	Rs      = (double*)MALLOC( n_row   * sizeof(double)); 
 	if ( it_flag == 1 )
 		{
-			L_I = malloc( lnz     * sizeof(double));
-			U_I = malloc( unz     * sizeof(double));
-			V_I = malloc( unz     * sizeof(double));
+			L_I = (double*)MALLOC( lnz     * sizeof(double));
+			U_I = (double*)MALLOC( unz     * sizeof(double));
+			V_I = (double*)MALLOC( unz     * sizeof(double));
 		}
 	else
 		{ L_I = U_I = V_I = NULL; }
@@ -173,11 +176,11 @@ int sci_umf_luget(char* fname, unsigned long l)
 	CreateVarFromPtr(6,MATRIX_OF_DOUBLE_DATATYPE,&n_row ,&one, &Rs);
 
  the_end:
-	free(L_mnel); free(L_icol); free(L_R); free(L_ptrow); free(p);
-	free(U_mnel); free(U_icol); free(U_R); free(U_ptrow); free(q);
-	free(V_irow); free(V_R); free(V_ptcol); free(Rs);
+	FREE(L_mnel); FREE(L_icol); FREE(L_R); FREE(L_ptrow); FREE(p);
+	FREE(U_mnel); FREE(U_icol); FREE(U_R); FREE(U_ptrow); FREE(q);
+	FREE(V_irow); FREE(V_R); FREE(V_ptcol); FREE(Rs);
 	if ( it_flag == 1 )
-		{ free(L_I); free(V_I); free(U_I); }
+		{ FREE(L_I); FREE(V_I); FREE(U_I); }
 
 	switch (error_flag)
 		{

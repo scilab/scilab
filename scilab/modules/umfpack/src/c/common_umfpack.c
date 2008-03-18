@@ -69,14 +69,16 @@
  *         test_size_for_mat : the same for classic matrix
  */
 
-#include "sciumfpack.h"
+#include "MALLOC.h"
 #include "stack-c.h"
+#include "sciumfpack.h"
 #include "taucs_scilab.h"
+#include "common_umfpack.h"
 
 int AddAdrToList(Adr adr, int it_flag, CellAdr **L)
 {
   CellAdr *NewCell;
-  if ( (NewCell = malloc(sizeof(CellAdr))) == NULL )
+  if ( (NewCell = MALLOC(sizeof(CellAdr))) == NULL )
     return 0;
   else  
     {
@@ -101,7 +103,7 @@ int RetrieveAdrFromList(Adr adr, CellAdr **L, int *it_flag)
       Cell = *L;
       *it_flag = Cell->it;
       *L = (*L)->next;
-      free(Cell);
+      FREE(Cell);
       return 1;
     }
   else
@@ -237,7 +239,7 @@ int spd_sci_sparse_to_taucs_sparse(int num, SciSparse *A, taucs_ccs_matrix *B)
    *  The scilab sparse may be only upper triangular
    */
   int taille, one=1, B_nel, n = A->n;
-  int l0, l1, l2, i, j, k, l, p, nnz;
+  int l0, l1, l2, i, k, l, p, nnz;
 
   if ( A->m != A->n  ||  A->m <= 0  ||  A->it == 1 )
     return ( MAT_IS_NOT_SPD );

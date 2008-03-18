@@ -55,6 +55,9 @@
 #include "gw_umfpack.h"
 #include "stack-c.h"
 #include "taucs_scilab.h"
+#include "common_umfpack.h"
+#include "Scierror.h"
+#include "MALLOC.h"
 
 extern CellAdr *ListCholFactors;
 
@@ -124,7 +127,7 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 		{
 			CreateVar(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lres); res = stk(lres);
 			if ( A_is_upper_triangular )
-				if ( (wk = malloc( n * sizeof(long double))) == NULL )
+				if ( (wk = MALLOC( n * sizeof(long double))) == NULL )
 					{
 						Scierror(999,"%s: not enough memory",fname);
 						return 0;
@@ -156,7 +159,7 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 				}
 		}
   
-	free(wk);
+	FREE(wk);
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();
 	return 0;

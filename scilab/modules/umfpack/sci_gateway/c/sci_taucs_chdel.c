@@ -45,10 +45,12 @@
  |                                                             |
  +------------------------------------------------------------*/
 #include "sciumfpack.h"
+#include "taucs_scilab.h"
 #include "gw_umfpack.h"
 #include "stack-c.h"
-#include "taucs_scilab.h"
+#include "common_umfpack.h"
 #include "Scierror.h"
+#include "MALLOC.h"
 
 extern CellAdr *ListCholFactors;
 
@@ -72,9 +74,9 @@ int sci_taucs_chdel(char* fname, unsigned long l)
 				ListCholFactors = ListCholFactors->next;
 				pC = (taucs_handle_factors *) Cell->adr;
 				taucs_supernodal_factor_free(pC->C);  /* free the super nodal struct */
-				free(pC->p);                          /* free the permutation vector */
-				free(pC);                             /* free the handle             */
-				free(Cell);                           
+				FREE(pC->p);                          /* free the permutation vector */
+				FREE(pC);                             /* free the handle             */
+				FREE(Cell);                           
 			}
 	else
 		{
@@ -87,8 +89,8 @@ int sci_taucs_chdel(char* fname, unsigned long l)
 				/* free the memory of the objects */
 				{
 					taucs_supernodal_factor_free(pC->C);
-					free(pC->p);
-					free(pC);
+					FREE(pC->p);
+					FREE(pC);
 				}
 			else
 				Scierror(999,"%s: the argument is not a valid reference to Cholesky factors",fname);
