@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function xmltojar(dirs,titles,directory_language,default_language)
+function xmltops(dirs,titles,directory_language,default_language)
 	
 	lhs=argn(1);
 	rhs=argn(2);
@@ -15,17 +15,17 @@ function xmltojar(dirs,titles,directory_language,default_language)
 	select rhs
 	
 	case 0 then
-		xmltoformat("javaHelp");
+		xmltoformat("ps");
 	case 1 then
-		xmltoformat("javaHelp",dirs);
+		xmltoformat("ps",dirs);
 	case 2 then
-		xmltoformat("javaHelp",dirs,titles);
+		xmltoformat("ps",dirs,titles);
 	case 3 then
-		xmltoformat("javaHelp",dirs,titles,directory_language);
+		xmltoformat("ps",dirs,titles,directory_language);
 	case 4 then
-		xmltoformat("javaHelp",dirs,titles,directory_language,default_language);
+		xmltoformat("ps",dirs,titles,directory_language,default_language);
 	else
-		error(msprintf(gettext("%s: Wrong number of input argument(s): At most %d expected.\n"),"xmltojar",4));
+		error(msprintf(gettext("%s: Wrong number of input argument(s): At most %d expected.\n"),"xmltops",4));
 	
 	end
 	

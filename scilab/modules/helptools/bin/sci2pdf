@@ -154,10 +154,7 @@ if [ $? -eq 0 ]; then
     xep -valid -fo "$foFile" $format "$2"
 
 else
-    cp2=$libDir/fop.jar:$libDir/fop-hyph.jar:$libDir/avalon-framework.jar:\
-        $libDir/commons-io.jar:$libDir/commons-logging.jar:\
-        $libDir/xmlgraphics-commons.jar:\
-        $libDir/jimi.jar:$libDir/batik.jar:$libDir/js.jar
+    cp2=$libDir/fop.jar:$libDir/fop-hyph.jar:$libDir/avalon-framework.jar:$libDir/commons-io.jar:$libDir/commons-logging.jar:$libDir/xmlgraphics-commons.jar:$libDir/jimi.jar:$libDir/batik.jar:$libDir/js.jar
 
     java -Xmx512m -cp "$cp2" org.apache.fop.cli.Main \
         -dpi 120 -r -fo "$foFile" $format "$2"
