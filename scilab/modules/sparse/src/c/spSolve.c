@@ -126,11 +126,6 @@ char *eMatrix;
 RealVector  RHS, Solution IMAG_VECTORS;
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
-register  ElementPtr  pElement;
-register  RealVector  Intermediate;
-register  RealNumber  Temp;
-register  int  I, *pExtOrder, Size;
-ElementPtr  pPivot;
 
 /* Begin `spSolve'. */
     ASSERT( IS_VALID(Matrix) AND IS_FACTORED(Matrix) );

@@ -62,7 +62,7 @@ int set_position_property( sciPointObj * pobj, int stackPointer, int valueType, 
   else if( sciGetEntityType(pobj) == SCI_FIGURE ) /* Added for compatibility with old TK figure */
   {
     double * values = getDoubleMatrixFromStack( stackPointer ) ;
-    return (sciInitScreenPosition(pobj, values[0], values[1]) & sciSetWindowDim(pobj, values[2], values[3]));
+    return (int)(sciInitScreenPosition(pobj, (int)values[0], (int)values[1]) & sciSetWindowDim(pobj, (int)values[2], (int)values[3]));
   }
   else
   {
