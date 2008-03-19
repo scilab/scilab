@@ -68,6 +68,9 @@ Source: modules\{#HELPTOOLS}\readme.txt; DestDir: {app}\modules\{#HELPTOOLS}; Co
 Source: modules\{#HELPTOOLS}\license.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\changelog.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#HELPTOOLS}\scilab_fr_FR_help.jar.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\scilab_en_US_help.jar.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
+;
 ;Source: modules\{#HELPTOOLS}\*.htm; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HELPTOOLS}\*.xsl; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HELPTOOLS}\help.dtd; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
@@ -83,9 +86,6 @@ Source: modules\{#HELPTOOLS}\etc\{#HELPTOOLS}.start; DestDir: {app}\modules\{#HE
 ;
 Source: modules\{#HELPTOOLS}\help\addchapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-;
-;Source: modules\{#HELPTOOLS}\help\*.htm; DestDir: {app}\modules\{#HELPTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#HELPTOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\macros\buildmacros.bat; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
@@ -94,7 +94,14 @@ Source: modules\{#HELPTOOLS}\macros\names; DestDir: {app}\modules\{#HELPTOOLS}\m
 Source: modules\{#HELPTOOLS}\macros\*.bin; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\macros\*.sci; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HELPTOOLS}\bin\*.*; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\bin\man2sci.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\bin\manrev2sci.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\bin\sci2chm.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\bin\sci2html.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\bin\sci2jh.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\bin\sci2pdf.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\bin\scivalid.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\bin\sciviewhelp.bat; DestDir: {app}\modules\{#HELPTOOLS}\bin; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
 Source: modules\{#HELPTOOLS}\examples\*.*; DestDir: {app}\modules\{#HELPTOOLS}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
