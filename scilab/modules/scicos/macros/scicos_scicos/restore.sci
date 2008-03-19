@@ -56,8 +56,9 @@ function %zoom = restore(gh_curwin)
   
   if ~super_block then
     delmenu(curwin,'stop')
+    //** Bruno/Simone 
     //** the Devil is hidden in the follwing line
-    addmenu(curwin,'stop',list(1,'haltscicos'))
+    addmenu(curwin,'stop',list(2,'haltscicos')); 
     //** 
     unsetmenu(curwin,'stop')
   else

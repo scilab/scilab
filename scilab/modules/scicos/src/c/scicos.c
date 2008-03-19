@@ -1427,7 +1427,9 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
       //     .     sxevents can modify halt 
     }
 */
-    if (C2F(coshlt).halt != 0) {
+    //** BRUNO/SIMONE : patch for scicos halt
+    //** 
+    if (ismenu() || C2F(coshlt).halt != 0) {
       if (C2F(coshlt).halt ==2) *told=*tf; /* end simulation */
       C2F(coshlt).halt = 0;
       freeall;
