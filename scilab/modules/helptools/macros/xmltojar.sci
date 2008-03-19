@@ -45,7 +45,7 @@ function xmltojar(dirs,titles,directory_language,default_language)
 		
 		[lhs,rhs] = argn(0);
 		
-		// Trop de paramêtres
+		// Trop de paramï¿½tres
 		// ---------------------------------------------------------------------
 		
 		if rhs > 4 then
@@ -53,7 +53,7 @@ function xmltojar(dirs,titles,directory_language,default_language)
 		end
 		
 		
-		// Cas par défaut : construction de l'aide en ligne de Scilab
+		// Cas par dï¿½faut : construction de l'aide en ligne de Scilab
 		// ---------------------------------------------------------------------
 		
 		if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
@@ -115,7 +115,7 @@ function xmltojar(dirs,titles,directory_language,default_language)
 				end
 			end
 			
-		// Cas ou seulement le ou les répertoires sont précisés
+		// Cas ou seulement le ou les rï¿½pertoires sont prï¿½cisï¿½s
 		// ---------------------------------------------------------------------
 		
 		elseif (rhs == 1) & (dirs <> []) then
@@ -135,8 +135,8 @@ function xmltojar(dirs,titles,directory_language,default_language)
 				end
 			end
 			
-		// Cas ou seulement le ou les répertoires ainsi que le ou les titres
-		// sont précisés
+		// Cas ou seulement le ou les rï¿½pertoires ainsi que le ou les titres
+		// sont prï¿½cisï¿½s
 		// ---------------------------------------------------------------------
 		
 		elseif rhs == 2 then
@@ -147,8 +147,8 @@ function xmltojar(dirs,titles,directory_language,default_language)
 				language_system = [language_system;%F];
 			end
 		
-		// Cas les répertoires,les titres ainsi que la
-		// langue du répertoire sont précisés
+		// Cas les rï¿½pertoires,les titres ainsi que la
+		// langue du rï¿½pertoire sont prï¿½cisï¿½s
 		// ---------------------------------------------------------------------
 		
 		elseif rhs == 3 then
@@ -161,7 +161,7 @@ function xmltojar(dirs,titles,directory_language,default_language)
 				language_system = [language_system;%F];
 			end
 		
-		// Cas où tous est précisé
+		// Cas oï¿½ tous est prï¿½cisï¿½
 		// ---------------------------------------------------------------------
 		
 		elseif rhs == 4 then
@@ -178,7 +178,7 @@ function xmltojar(dirs,titles,directory_language,default_language)
 			
 		end
 		
-		// On transforme le ou les chemins donnés en chemin absolu
+		// On transforme le ou les chemins donnï¿½s en chemin absolu
 		// ---------------------------------------------------------------------
 		
 		for k=1:size(dirs,'*');
@@ -231,7 +231,7 @@ function xmltojar(dirs,titles,directory_language,default_language)
 		end
 		
 		//----------------------------------------------------------------------
-		// On etablit la liste des répertoires nécéssitants d'être reconstruit
+		// On etablit la liste des rï¿½pertoires nï¿½cï¿½ssitants d'ï¿½tre reconstruit
 		//----------------------------------------------------------------------
 		
 		need_to_be_build_tab   = [];
@@ -268,7 +268,7 @@ function xmltojar(dirs,titles,directory_language,default_language)
 			return;
 		end
 		
-		// Nombre de répertoire ayant besoin d'une modification
+		// Nombre de rï¿½pertoire ayant besoin d'une modification
 		// ---------------------------------------------------------------------
 		
 		nb_dir = size( find(need_to_be_build_tab == %T) , '*' );
@@ -348,7 +348,9 @@ function xmltojar(dirs,titles,directory_language,default_language)
 		
 		if all_scilab_help then
 			if or(need_to_be_build_tab_m) then
+				
 				printf(_("\nBuilding the scilab manual jar file\n"));
+				
 				if MSDOS then
 					log_str = unix_g(SCI+"\modules\helptools\bin\sci2jh.bat "+master_doc+" "+jar_file+" 2>&1");
 				else
@@ -402,7 +404,7 @@ function xmltojar(dirs,titles,directory_language,default_language)
 		end
 		
 		//----------------------------------------------------------------------
-		// Création du fichier "directory/.last_successful_build"
+		// Crï¿½ation du fichier "directory/.last_successful_build"
 		//----------------------------------------------------------------------
 		
 		for k=1:size(dirs,'*');
@@ -447,17 +449,17 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	// Copyright INRIA
 	// Date : 26, july 2006
 	//
-	// Cette macro complète un répertoire dont certaines aides en ligne sont manquantes
-	// Elle le complète avec les aides en ligne de la langue par défaut
+	// Cette macro complï¿½te un rï¿½pertoire dont certaines aides en ligne sont manquantes
+	// Elle le complï¿½te avec les aides en ligne de la langue par dï¿½faut
 	//
 	// macro non-visible de l'utilisateur
 	//--------------------------------------------------------------------------
 	
-	// Directory traitée
+	// Directory traitï¿½e
 	directory = pathconvert(directory,%f,%f);
 	
 	//--------------------------------------------------------------------------
-	// Nettoyage du répertoire
+	// Nettoyage du rï¿½pertoire
 	// Si il existe un fichier .list_<directory_language> (fichier contenant tous les
 	// fichiers traduits dans la langue du r?pertoire), on supprime dans l'ordre :
 	//   1. Tous les fichiers n'appartenant pas ? la liste contenue dans .list_<directory_language>
@@ -724,8 +726,8 @@ function category = title2category(mytitle)
 		category = mytitle;
 		category = strsubst(category , "&"  , "_" );
 		category = strsubst(category , "é"  , "e" );
-		category = strsubst(category , "è"  , "e" );
 		category = strsubst(category , "ê"  , "e" );
+		category = strsubst(category , "è"  , "e" );
 		category = strsubst(category , "ù"  , "u" );
 		category = strsubst(category , "î"  , "i" );
 		category = strsubst(category , "ô"  , "o" );
