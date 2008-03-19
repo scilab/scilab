@@ -13,7 +13,7 @@ setlocal
 if "%2"=="" goto usage
 
 set binDir=%~dp0
-set libDir=%binDir%\..\lib
+set libDir=%binDir%\..\..\..\thirdparty
 set convDir=%binDir%\..\xsl\convert
 set tmpFile=%1.manrev
 

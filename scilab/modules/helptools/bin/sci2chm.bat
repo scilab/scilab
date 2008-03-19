@@ -16,7 +16,7 @@ rem MODIFY THIS IF NEEDED TO
 set hhc=C:\Program Files\HTML Help Workshop\hhc.exe
 
 set binDir=%~dp0
-set libDir=%binDir%\..\lib
+set libDir=%binDir%\..\..\..\thirdparty
 set docbookXslDir=%binDir%\..\docbook_xsl
 set cssDir=%binDir%\..\css
 

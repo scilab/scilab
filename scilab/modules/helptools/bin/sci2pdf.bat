@@ -13,7 +13,7 @@ setlocal
 if "%2"=="" goto usage
 
 set binDir=%~dp0
-set libDir=%binDir%\..\lib
+set libDir=%binDir%\..\..\..\thirdparty
 rem This XSL style sheet fixes bugs in ..\docbook_xsl\fo\htmltbl.xsl
 set docbookXslDir=%binDir%\..\xsl
 

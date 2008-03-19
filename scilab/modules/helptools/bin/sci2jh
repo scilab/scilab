@@ -9,6 +9,19 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+# Neeeded jar :
+# - sci_doc_kit.jar:
+# - jeuclid-core.jar
+# - commons-logging.jar
+# - batik.jar
+# - js.jar
+# - jhall.jar
+# - saxon.jar
+# - docbook-xsl-saxon.jar
+
+# help
+# ==============================================================================
+
 if [ $# -ne 2 ]; then
     echo "Usage: sci2jh in_xml_file out_javahelp_jar_file"
     echo "Converts an XML document conforming to scilab.rnc"
@@ -17,11 +30,17 @@ if [ $# -ne 2 ]; then
     exit 1
 fi
 
+# output filename syntax
+# ==============================================================================
+
 echo $2 | grep '^.*_help\.jar$' 1> /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "$2 must end with '_help.jar'."
     exit 2
 fi
+
+# jar command line check
+# ==============================================================================
 
 type jar 1> /dev/null 2>&1
 if [ $? -ne 0 ]; then
@@ -29,8 +48,10 @@ if [ $? -ne 0 ]; then
     exit 3
 fi
 
+# binDir path (Need an absolute directory)
+# ==============================================================================
+
 binDir=`dirname $0`
-### Need an absolute directory
 binDir=`(cd $binDir 2> /dev/null && pwd;)`
 
 # libDir path
@@ -77,8 +98,6 @@ if [ ! -e "$libDir/sci_doc_kit.jar" ]; then
     echo "Don't find the sci_doc_kit.jar file."
     exit 8
 fi
-
-
 
 docbookXslDir=$binDir/../docbook_xsl
 cssDir=$binDir/../css

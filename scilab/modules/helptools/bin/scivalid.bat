@@ -13,7 +13,7 @@ setlocal
 if "%1"=="" goto usage
 
 set binDir=%~dp0
-set libDir=%binDir%\..\lib
+set libDir=%binDir%\..\..\..\thirdparty
 set schemaDir=%binDir%\..\schema
 
 java -jar "%libDir%\jing.jar" -c "%schemaDir%\scilab.rnc" %*

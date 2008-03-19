@@ -13,7 +13,7 @@ setlocal
 if "%2"=="" goto usage
 
 set binDir=%~dp0
-set libDir=%binDir%\..\lib
+set libDir=%binDir%\..\..\..\thirdparty
 set convDir=%binDir%\..\xsl\convert
 
 java -jar "%libDir%\saxon.jar" -o "%2" "%1" "%convDir%\manrev2sci.xsl"

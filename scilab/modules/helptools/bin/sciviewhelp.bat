@@ -13,7 +13,7 @@ setlocal
 if "%1"=="" goto usage
 
 set binDir=%~dp0
-set libDir=%binDir%\..\lib
+set libDir=%binDir%\..\..\..\thirdparty
 
 java -cp "%libDir%\sci_doc_kit.jar;%libDir%\jhall.jar" org.scilab.doc_kit.HelpViewer %*
 
