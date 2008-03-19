@@ -59,82 +59,118 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
   if rhs <= 5 then ldflags  = '', end
   if rhs <= 6 then cflags   = '', end
 
-  //** Try to open a file 
-  [fd,ierr] = mopen(rpat+'/'+blknam+'f.f','r') 
   
-  if ierr==0 then
-    mclose(fd); 
-    files = [files,blknam+'f']
-  end
+  if MSDOS then
+    //**------------ Windows ----------------------------------------------
+    //** on Windows we keep the old way : "hard coded" makefile (.mak)
 
-  //** adjust path and name of object files
-  //** to include in the building process
-  if (libs ~= emptystr()) then
-    libs = pathconvert(libs,%f,%t)
-  end
+    //** Try to open a file 
+    [fd,ierr] = mopen(rpat+'/'+blknam+'f.f','r') 
+  
+    if ierr==0 then
+      mclose(fd); 
+      files = [files,blknam+'f']
+    end
 
-  //** def make file name
-  Makename = rpat+'/'+blknam+'_Makefile';
+    //** adjust path and name of object files
+    //** to include in the building process
+    if (libs ~= emptystr()) then
+      libs = pathconvert(libs,%f,%t)
+    end
 
-  //** otherlibs treatment
-  [ok, libs, for_link] = link_olibs(libs,rpat)
-  if ~ok then
-    ok = %f;
-    message(["Sorry compiling problem";lasterror()]);
-    return;
-  end
+    //** def make file name
+    Makename = rpat+'/'+blknam+'_Makefile';
 
-  //** generate txt of makefile and get wright name
-  //** of the Makefile file
-  [Makename2, txt] = gen_make(blknam,files,filestan,libs,Makename,ldflags,cflags); //** the Makefile is n
+    //** otherlibs treatment
+    [ok, libs, for_link] = link_olibs(libs,rpat)
+    if ~ok then
+      ok = %f;
+      message(["Sorry compiling problem";lasterror()]);
+      return;
+    end
 
-  //** write text of the Makefile in the file called Makename
-  ierr = execstr("mputl(txt,Makename2)",'errcatch')
-  if ierr<>0 then
-    message(["Can''t write "+Makename2;lasterror()])
-    ok = %f
-    return
-  end
+    //** generate txt of makefile and get wright name
+    //** of the Makefile file
+    [Makename2, txt] = gen_make(blknam,files,filestan,libs,Makename,ldflags,cflags); //** the Makefile is n
 
-  //** unlink if necessary
-  [a,b] = c_link(blknam);
-  while a
-    ulink(b);
-    [a,b]=c_link(blknam);
-  end
+    //** write text of the Makefile in the file called Makename
+    ierr = execstr("mputl(txt,Makename2)",'errcatch')
+    if ierr<>0 then
+      message(["Can''t write "+Makename2;lasterror()])
+      ok = %f
+      return
+    end
 
-  //** save path in case of error in ilib_compile
-  oldpath=getcwd();
+    //** unlink if necessary
+    [a,b] = c_link(blknam);
+    while a
+      ulink(b);
+      [a,b]=c_link(blknam);
+    end
 
-  //** compile Makefile
-  ierr=execstr('libn=ilib_compile(''lib''+blknam,Makename)','errcatch')
-  if ierr<>0 then
-    ok=%f;
-    chdir(oldpath);
-    message(["sorry compiling problem";lasterror()]); //** we are here :( 
-    return;
-  end
+    //** save path in case of error in ilib_compile
+    oldpath=getcwd();
 
-  //** link scicos generated code in scilab
-  libn = pathconvert(libn,%f,%t)
-  ierr = execstr('libnumber=link(libn)','errcatch')
-  ierr = execstr('link(libnumber,blknam,''c'')','errcatch')
-  if ierr<>0 then
-    ok=%f;
-    x_message(['sorry link problem';lasterror()]);
-    return;
-  end
+    //** compile Makefile
+    ierr=execstr('libn=ilib_compile(''lib''+blknam,Makename)','errcatch')
+    if ierr<>0 then
+      ok = %f;
+      chdir(oldpath);
+      message(["sorry compiling problem";lasterror()]);
+      return;
+    end
 
-  //** generate text of the loader file
-  [txt] = gen_loader(blknam,for_link)
+    //** link scicos generated code in scilab
+    libn = pathconvert(libn,%f,%t)
+    ierr = execstr('libnumber=link(libn)','errcatch')
+    ierr = execstr('link(libnumber,blknam,''c'')','errcatch')
+    if ierr<>0 then
+      ok = %f;
+      message(["sorry link problem";lasterror()]);
+      return;
+    end
 
-  //** write text of the loader in file
-  ierr = execstr('mputl(txt,rpat+''/''+blknam+''_loader.sce'')','errcatch')
-  if ierr<>0 then
-    message(["Can''t write "+blknam+"_loader.sce";lasterror()])
-    ok = %f ;
-    return
-  end
+    //** generate text of the loader file
+    [txt] = gen_loader(blknam,for_link)
+
+    //** write text of the loader in file
+    ierr = execstr('mputl(txt,rpat+''/''+blknam+''_loader.sce'')','errcatch')
+    if ierr<>0 then
+      message(["Can''t write "+blknam+"_loader.sce";lasterror()])
+      ok = %f ;
+      return
+    end
+  
+  else
+    //**------------ Linux / Unix  -------------------------------------------
+    //** on Linux we change to the new "autotools" based model 
+
+    //** save path in case of error
+    oldpath = getcwd(); //** current working path 
+  
+    //** change working dir where the Scicos generated files are 
+    chdir(rpat);
+
+    //** change dir to the TEMPDIR  
+    chdir(TMPDIR);
+
+    //** copy all the source generated file in the TMPDIR
+    cmd_line = "cp "+rpat+"/*"+" "+"." ;
+    unix(cmd_line); 
+
+    //** prepare the parameters 
+    entry_names = [files(1), files(1)+"_actuator", files(1)+"_sensor"]; 
+    file_names = files + ".o"  ;
+    libs  = libs  ;
+    flag = "c" ; //** "C" entry point / "C" source code  
+    
+    libn = ilib_for_link(entry_names, file_names, libs, flag); 
+
+    exec("loader.sce"); 
+  
+    chdir(oldpath); //** restore the old current working directory 
+  
+  end 
 
 endfunction
 //**------------------------------------------------------------------------------------------------
