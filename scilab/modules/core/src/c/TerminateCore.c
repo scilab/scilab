@@ -33,8 +33,10 @@ BOOL TerminateCorePart1(void)
 BOOL TerminateCorePart2(void)
 {
 	#ifdef _MSC_VER /* Bug sous Linux lors de la liberation memoire */
+		#ifndef _WIN64
 		C2F(freegmem)();
 		C2F(freemem)();
+		#endif
 	#endif
 
 	DisposeModulesInfo();

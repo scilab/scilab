@@ -12,6 +12,10 @@
 #ifdef _MSC_VER
 IMPORT_EXPORT_MALLOC_DLL unsigned long GetLargestFreeMemoryRegion(void)
 {
+#if _WIN64
+	/* we need to limite values on 32 bits for Scilab :( */
+	return MAXLONG32;
+#else
 	SYSTEM_INFO systemInfo;
 	VOID *p = 0;
 	MEMORY_BASIC_INFORMATION mbi;
@@ -39,6 +43,7 @@ IMPORT_EXPORT_MALLOC_DLL unsigned long GetLargestFreeMemoryRegion(void)
 		}
 	}
 	return largestSize;
+#endif
 }
 /*-----------------------------------------------------------------------------------*/
 #else

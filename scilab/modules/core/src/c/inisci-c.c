@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
 #ifdef _MSC_VER
 #include <windows.h>
 #else
@@ -29,7 +30,7 @@
 #include "SCIHOME.h"
 #include "scilabmode.h"
 #include "scilabDefaults.h"
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 int C2F(withmodelicac)(int *rep)
 {
 	if (ExistModelicac())
@@ -42,8 +43,7 @@ int C2F(withmodelicac)(int *rep)
 	}
   return 0;
 }
-
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 int C2F(withmsdos)(int *rep)
 {
 #ifdef _MSC_VER
@@ -53,7 +53,7 @@ int C2F(withmsdos)(int *rep)
 #endif
 	return 0;
 }
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
 {
   int ierr,iflag=0,l1buf=lbuf;
@@ -62,7 +62,7 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
   *nbuf = (int)strlen(buf);
   return 0;
 }
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /**
  * Set the SCI path and initialize the scilab environement path
  *
@@ -87,8 +87,7 @@ int SetSci()
 	if (buf) {FREE(buf);buf=NULL;}
 	return 0;
 }
-
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /**
  * Get the SCI path and initialize the scilab environment path
  *
@@ -103,7 +102,7 @@ int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
 	if (pathtmp) {FREE(pathtmp);pathtmp=NULL;}
 	return 0;
 }
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /**
 * Get the SCIHOME path and initialize the scilab environment path
 *
@@ -137,7 +136,7 @@ int C2F(getscihome)(char *buf,int *nbuf,long int lbuf)
 
 	return 0;
 }
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 {
 	int ierr,iflag=0,l1buf=lbuf;
@@ -154,7 +153,7 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 	*nbuf = (int)strlen(buf);
 	return 0;
 }
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 BOOL ExistModelicac(void)
 {
 	BOOL bOK=FALSE;
@@ -169,10 +168,27 @@ BOOL ExistModelicac(void)
 	if (SCIPATH) FREE(SCIPATH);
 	return bOK;
 }
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 int C2F(withgui)(int *rep)
 { 
 	*rep = (getScilabMode() != SCILAB_NWNI); 
 	return 0;
 }
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
+int C2F(getdefaultgstacksize)(int *defaultsize)
+{
+#if defined(_MSC_VER) && defined(_WIN64)
+	*defaultsize = DEFAULTGSTACKSIZE;
+#else
+	*defaultsize = DEFAULTGSTACKSIZE;
+#endif
+	
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int C2F(getdefaultstacksize)(int *defaultsize)
+{
+	*defaultsize = DEFAULTSTACKSIZE;
+	return 0;
+}
+/*--------------------------------------------------------------------------*/

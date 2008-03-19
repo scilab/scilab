@@ -71,6 +71,14 @@ integer getIntermediateMemoryNeeded(void)
 /*--------------------------------------------------------------------------*/
 BOOL is_a_valid_size_for_scilab_stack(int sizestack)
 {
+#if defined(_MSC_VER) && defined(_WIN64)
+	/* On Windows x64 with scilab's stack , we need to limite stack access */
+	if ((unsigned long)sizestack >= get_max_memory_for_scilab_stack()+1)
+	{
+		return FALSE;
+	}
+	return TRUE;
+#else
 	double dsize = ((double) sizeof(double)) * (sizestack);
 	unsigned long ulsize = ((unsigned long)sizeof(double)) * (sizestack);
 	if ( dsize != (double) ulsize)
@@ -78,11 +86,16 @@ BOOL is_a_valid_size_for_scilab_stack(int sizestack)
 		return FALSE;
 	}
 	return TRUE;
+#endif
 }
 /*--------------------------------------------------------------------------*/
 unsigned long get_max_memory_for_scilab_stack(void)
 {
+#if defined(_MSC_VER) && defined(_WIN64)
+	return MAXLONG32/sizeof(double);
+#else
 	return MAXLONG/sizeof(double);
+#endif
 }
 /*--------------------------------------------------------------------------*/
 char *getLocalNamefromId(int n)

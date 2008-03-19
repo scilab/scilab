@@ -182,13 +182,15 @@ c @TODO : What is 768 ?
       isiz=isizt-768
 
 c     .  memory allocation
-      stk(1)=1.0d0
+c     get default stackize from c
+      call getdefaultstacksize(stk(1))
       offset=0
       call scimem(vsizr,offset)
       lstk(1) =   offset+1
 c     . hard predefined variables
       goffset=0
-      vsizg=1000
+c     get default global stackize from c      
+      call getdefaultgstacksize(vsizg)
       call scigmem(vsizg,goffset)
 
       gtop=isiz+1

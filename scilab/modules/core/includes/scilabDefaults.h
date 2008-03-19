@@ -69,6 +69,15 @@
 /* What is the default Scilab StackSize ? */
 #define DEFAULTSTACKSIZE 1000000
 
+/* default Scilab global StackSize  */
+#if defined(_MSC_VER) && defined(_WIN64)
+/* On Windows x64 initial global stacksize must be bigger :( */
+	#define DEFAULTGSTACKSIZE DEFAULTSTACKSIZE
+#else
+	#define DEFAULTGSTACKSIZE 1000
+#endif
+
+
 //#define DefaultScilabQuit "SCI/etc/scilab.quit"
 //static char DefaultSCIenv[]="../..";
 

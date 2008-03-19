@@ -127,5 +127,18 @@ int C2F(getscihome)(char *buf,int *nbuf,long int lbuf);
  */
 int C2F(inisci)(int *ini,int *memory,int *ierr);
 
+/**
+ * Get default value of global scilab stacksize
+ *
+ * @param[out] default globalstacksize
+ */
+int C2F(getdefaultgstacksize)(int *defaultsize);
+
+/**
+ * Get default value of scilab stacksize
+ *
+ * @param[out] default stacksize
+ */
+int C2F(getdefaultstacksize)(int *defaultsize);
 
 #endif /* __INI_C_H__ */
