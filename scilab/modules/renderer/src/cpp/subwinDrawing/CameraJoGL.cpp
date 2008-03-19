@@ -37,6 +37,11 @@ CameraJoGL::CameraJoGL( Camera * camera )
   m_aViewPort[3] = 0.0;
 }
 /*--------------------------------------------------------------------------*/
+CameraJoGL::~CameraJoGL(void)
+{
+  
+}
+/*--------------------------------------------------------------------------*/
 void CameraJoGL::renderPosition( void )
 {
   getCameraJavaMapper()->setViewingArea(m_aViewingTranslation[0], m_aViewingTranslation[1],

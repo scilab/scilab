@@ -71,7 +71,10 @@ void DrawableObjectJoGL::destroy( void )
 {
   if (m_pJavaMapper != NULL)
   {
-    DrawableObject * drawer = getDrawer();
+    // bug on intel compiler
+    // it is not possible here to retrieve m_pDrawer using the function getDrawer()
+    // it may return invalid pointers.
+    DrawableObject * drawer = m_pDrawer;
     sciPointObj * pObj = drawer->getDrawedObject();
     getJavaMapper()->destroy(sciGetNum(sciGetParentFigure(pObj)));
     delete getJavaMapper();

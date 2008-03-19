@@ -31,9 +31,11 @@ public:
 
   /**
    * Default constructor
-   * @param subwin Subwindow containign the camera
+   * @param camera corresponding camera
    */
   CameraJoGL( Camera * camera ) ;
+
+  virtual ~CameraJoGL(void);
 
   /**
    * Position the view and view area accordingly to previous calls.

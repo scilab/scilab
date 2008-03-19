@@ -27,7 +27,7 @@ public:
 
   CameraBridgeFactory( void ) { m_pCamera = NULL; }
 
-  ~CameraBridgeFactory( void ) { m_pCamera = NULL;}
+  virtual ~CameraBridgeFactory( void ) { m_pCamera = NULL;}
 
   /**
    * Create a new cameraBridge with the rigth driver
