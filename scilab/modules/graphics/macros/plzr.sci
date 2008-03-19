@@ -20,7 +20,7 @@ if type(a)==16 then
     a=tf2ss(a),
     [a,b,c,d]=a(2:5)
     if type(d)<>1 then 
-      error('The given transfer fuction is not proper')
+      error(gettext("The given transfer fuction is not proper."))
     end
   else 
     error(97,1)
