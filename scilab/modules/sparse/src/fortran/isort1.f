@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine isort1(count,n,index,flag)
 c     
 c     !purpose
@@ -19,7 +27,6 @@ c     quick sort method is used
 c     !restriction
 c     n must be less than 2**(50/2) ! due to lengh of work space mark
 c     !
-c     Copyright INRIA
       dimension mark(50),index(n)
       integer count(n),av,x,flag
 c     

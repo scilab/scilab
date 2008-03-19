@@ -1,4 +1,3 @@
-
 /* README :
  * The routines in this file use a pointer to a Matrix
  * at the Fortran Level this pointer is stored as an integer

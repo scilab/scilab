@@ -1,5 +1,12 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine wspxs(nr,nc,ar,ai,nela,inda,br,bi,mb,cr,ci,nelc,indc,
-c     Copyright INRIA
      $     ierr,it1,it2)
 c!purpose
 c     multiply a full and a  sparse matrices elementwise

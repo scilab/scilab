@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine dspmax(nr,nc,a,nela,inda,b,nelb,indb,c,nelc,indc,ierr)
 c!pupose
 c     computes the sparse matrix formed with maximum elementwise of two 
@@ -27,7 +35,7 @@ c            of c
 c            indc(m+i) 1<=i<=nelb column index of each non zero element
 c     ierr : if non zero initial value of nelc is to small
 c!
-c     Copyright INRIA
+
       double precision a(*),b(*),c(*)
       integer nr,nc,nela,inda(*),nelb,indb(*),nelc,indc(*),ierr
 c

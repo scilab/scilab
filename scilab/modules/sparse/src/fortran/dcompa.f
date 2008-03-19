@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) 1995-2007 - INRIA - Serge STEER
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       logical function dcompa(a,b,op)
 c     compare two double precision numbers a and b
 c! calling sequence
@@ -11,9 +19,6 @@ c     op=119: a~=b
 c     op=109: a<=b
 c     op=110: a>=b
 c
-c!origin : Serge Steer INRIA 1995
-c!
-c     Copyright INRIA
       double precision a,b
       integer op
       integer less,great,equal

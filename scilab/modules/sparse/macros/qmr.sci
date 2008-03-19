@@ -1,3 +1,15 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) XXXX-2008 - INRIA
+// Copyright (C) 2005 - IRISA - Sage Group
+
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 // [x, flag, err, iter, res] = qmr( A, Ap, b, x, M1, M2, max_it, tol )
 //
 // QMR solves the linear system Ax=b using the 

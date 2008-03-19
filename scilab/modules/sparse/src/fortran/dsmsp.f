@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine dsmsp(nrb,ncb,nca,b,mrb,a,nela,inda,c,mrc)
 c multiply a full matrix stored in b on right by a sparse
 c  matrix stored in a,inda. Put result in c.
@@ -19,7 +27,6 @@ c***output
 c  c          a two-dimensional array containing all the
 c               elements of the product matrix.
 c!
-c     Copyright INRIA
       double precision  a(*), b(mrb,ncb), c(mrc,nca)
       integer inda(*)
 

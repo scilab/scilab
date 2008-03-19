@@ -1,3 +1,11 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine lspt(r,s,nela,inda,ia,iat,indat)  
 c transpose a sparse boolean matrix using a distribution count sort.
 c*** input
@@ -17,7 +25,6 @@ c               in same format as ma...see msmgus.
 c*** working storage.
 c  iat        iat(i) is address in at of first element in row i of at.
 c               iat(s+1) contains number of elements in at,plus 1.
-c     Copyright INRIA
       integer inda(*), ia(*), indat(*), iat(*)
       integer r, s
 c

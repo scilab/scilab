@@ -67,6 +67,11 @@
 #include "spmalloc.h"
 #include "spAllocate.h"
 
+static int InitializeElementBlocks( MatrixPtr  Matrix, int InitialNumberOfElements, int NumberOfFillinsExpected );
+
+static int RecordAllocation( MatrixPtr Matrix, char *AllocatedPtr );
+
+static int AllocateBlockOfAllocationList( MatrixPtr Matrix );
 /*
  *  MATRIX SPALLOCATION
  *

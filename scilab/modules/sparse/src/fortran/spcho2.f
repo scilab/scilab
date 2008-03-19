@@ -1,4 +1,3 @@
-C********************************************************************
        SUBROUTINE SPCHO2 (  NEQNS , NSUPER, XSUPER, SNODE , SPLIT , 
      &                  XLINDX, LINDX , XLNZ  , LNZ  ,
      &                  IWORK , TMPSIZ, TMPVEC,indlnz,nnzl,nsub) 

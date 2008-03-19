@@ -1,6 +1,13 @@
+c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c Copyright (C) INRIA
+c 
+c This file must be used under the terms of the CeCILL.
+c This source file is licensed as described in the file COPYING, which
+c you should have received as part of this distribution.  The terms
+c are also available at    
+c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine lspisp(ma,na,nela,inda,i,ni,j,nj,
      $     mb,nb,nelb,indb,mr,nr,nelr,indr,ptrb,ierr)
-c     Copyright INRIA
 c     extract a submatrix from a sparse boolean matrix
 c!
       integer inda(*),indr(*),i(*),j(*),ptrb(*)
