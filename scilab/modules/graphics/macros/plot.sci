@@ -60,43 +60,43 @@ end
 nv = size(ListArg)
 
 
-T=[];
-d=[];
+argTypes=[];
+couple=[];
 
 typeOfPlot = 'plot';
 provided_data = 2;
 
-for k=1:nv
-  T(k,1) = type(ListArg(k))
+for curArgIndex=1:nv
+  argTypes(curArgIndex,1) = type(ListArg(curArgIndex))
 end
 
-Ttmp=T;
+Ttmp=argTypes;
 
 for i=1:nv-1
-  e=[];
-  e=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,13,130])) // to accept double, macro function or primitive as second argument
+  acceptedTypes=[];
+  acceptedTypes=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,13,130])) // to accept double, macro function or primitive as second argument
 
-  if (e<>[]) then
-    d=[d i];
+  if (acceptedTypes<>[]) then
+    couple=[couple i];
     Ttmp(i,1)  = 99; // Replace a known type by 99 (no meaning) to count it once only!
-    Ttmp(i+1,1)= 99; // to avoid having (x1,y1,x2,y2) ->d=[1,2,3]
-    // With this trick, d=[1,3];
+    Ttmp(i+1,1)= 99; // to avoid having (x1,y1,x2,y2) ->couple=[1,2,3]
+    // With this trick, couple=[1,3];
   end
 
 end
 
 
-if (d==[]) // No data couple found
+if (couple==[]) // No data couple found
   // Search for at least a single data , i.e.: plot(y)
 
-  if (T(1,1)==1 & ListArg(1)<>[]) then // case plot(SINGLE y,...)
-    d = 1; 
+  if (argTypes(1,1)==1 & ListArg(1)<>[]) then // case plot(SINGLE y,...)
+    couple = 1; 
     provided_data = 1;
     
-    if (modulo(nv-d,2)<>0) then
-      P1 = d+2 // Position of the first PropertyName field
+    if (modulo(nv-couple,2)<>0) then
+      P1 = couple+2 // Position of the first PropertyName field
     else
-      P1 = d+1
+      P1 = couple+1
     end
     
   else
@@ -110,17 +110,17 @@ else
   //
   // 1. Test if 2 data couples (first : type==1, second : type=[1,13,130]) 
   // are at least separated by 2 indices
-  if (d(2:$)-d(1:$-1)<2)
+  if (couple(2:$)-couple(1:$-1)<2)
     warning("Error inside input argument !");
     return;
   end
 
   // 2. Test if no string couples happen before P1 (see below for P1 definition)
-  for i=1:d($)
-    e=[];
-    e=find(Ttmp(i,1)==10 & Ttmp(i+1,1)==10)
+  for index=1:couple($)
+    acceptedTypes=[];
+    acceptedTypes=find(Ttmp(index,1)==10 & Ttmp(index+1,1)==10)
     
-    if (e<>[]) then
+    if (acceptedTypes<>[]) then
       warning("Error inside input argument : String argument is an unknown option.");
       return;
     end
@@ -128,43 +128,43 @@ else
 
 
   
-  if (modulo(nv-(d($)+1),2)<>0) then
-    P1 = d($)+3 // Position of the first PropertyName field
+  if (modulo(nv-(couple($)+1),2)<>0) then
+    P1 = couple($)+3 // Position of the first PropertyName field
   else
-    P1 = d($)+2
+    P1 = couple($)+2
   end
   
 end
 
-numplot = size(d,'*');
+numplot = size(couple,'*');
 
-P = zeros(numplot,3); 
-// P is a matrix storing the index of x, y and linespec
+xyIndexLineSpec = zeros(numplot,3); 
+// xyIndexLineSpec is a matrix storing the index of x, y and linespec
 // if one of these indices is 0 => it does not exist
 // (which is possible for x and linepsec, not for y)
 
 if (provided_data == 2) then
 
-  for k=1:size(d,'*')
-    P(k,1:2) = d(k) +[0,1] // x,y index storage
+  for curCouple=1:size(couple,'*')
+    xyIndexLineSpec(curCouple,1:2) = couple(curCouple) +[0,1] // x,y index storage
 
-    if (d(k)+2 < P1)
-      if (T(d(k)+2,1)==10) then // LineSpec treatment
-	P(k,3) = d(k)+2;
+    if (couple(curCouple)+2 < P1)
+      if (argTypes(couple(curCouple)+2,1)==10) then // LineSpec treatment
+	xyIndexLineSpec(curCouple,3) = couple(curCouple)+2;
       end
     end
   end
 else
   // we are in the case where: plot(SINGLE y,... x not specified
   // or plot(handle,SINGLE y,...
-  P(1,1) = 0; // no x specified
-P(1,2) = d;
+  xyIndexLineSpec(1,1) = 0; // no x specified
+  xyIndexLineSpec(1,2) = couple;
 
 //pause;
 
-if (d+1 < P1)
-  if (T(d+1,1)==10) then // LineSpec treatment
-    P(1,3) = d+1;
+if (couple+1 < P1)
+  if (argTypes(couple+1,1)==10) then // LineSpec treatment
+    xyIndexLineSpec(1,3) = couple+1;
   end
 end
 end
@@ -196,11 +196,11 @@ for i=1:numplot
 
   if (provided_data == 2) then
     
-    if (type(ListArg(P(i,2))) == 13 | type(ListArg(P(i,2))) == 130)
+    if (type(ListArg(xyIndexLineSpec(i,2))) == 13 | type(ListArg(xyIndexLineSpec(i,2))) == 130)
       // A function (macro or primitive) is given. We need to build the vector or matrix.
-      sizefirstarg = size(ListArg(P(i,1)));
-      buildFunc = ListArg(P(i,2));
-      firstarg = ListArg(P(i,1));
+      sizefirstarg = size(ListArg(xyIndexLineSpec(i,1)));
+      buildFunc = ListArg(xyIndexLineSpec(i,2));
+      firstarg = ListArg(xyIndexLineSpec(i,1));
       tmp = [];
 
       for ii=1:sizefirstarg(1,2)
@@ -235,19 +235,19 @@ for i=1:numplot
       end
 
       
-      ListArg(P(i,2)) = tmp;
+      ListArg(xyIndexLineSpec(i,2)) = tmp;
       // if there is an other iteration, we will have error message redefining function.
       // we need to clear here and not before, because user must see the warning if needed.
       clear buildFunc;
     end
-    [X,Y] = checkXYPair(typeOfPlot,ListArg(P(i,1)),ListArg(P(i,2)),current_figure,cur_draw_mode)
+    [X,Y] = checkXYPair(typeOfPlot,ListArg(xyIndexLineSpec(i,1)),ListArg(xyIndexLineSpec(i,2)),current_figure,cur_draw_mode)
   else
-    if or(size(ListArg(P(1,2)))==1)  // If this is a vector
-      X=1:length(ListArg(P(1,2))); // insert an abcsissa vector of same length,
+    if or(size(ListArg(xyIndexLineSpec(1,2)))==1)  // If this is a vector
+      X=1:length(ListArg(xyIndexLineSpec(1,2))); // insert an abcsissa vector of same length,
     else                                  // if this is a matrix,
-      X=1:size(ListArg(P(1,2)),1); // insert an abcsissa vector with 
+      X=1:size(ListArg(xyIndexLineSpec(1,2)),1); // insert an abcsissa vector with 
     end
-    [X,Y] = checkXYPair(typeOfPlot,X,ListArg(P(1,2)),current_figure,cur_draw_mode)
+    [X,Y] = checkXYPair(typeOfPlot,X,ListArg(xyIndexLineSpec(1,2)),current_figure,cur_draw_mode)
   end
 
   // Case if 'Xdata', 'Ydata' or 'Zdata' have been set in (PropertyName,Propertyvalue) couples
@@ -320,7 +320,7 @@ for i=1:numplot
   
 
   
-  //Now we have an array P [numplot x 3] containing indices pointing on T for :
+  //Now we have an array xyIndexLineSpec [numplot x 3] containing indices pointing on T for :
   // - x (<>0 if existing)
   // - y
   // - linespec (<>0 if existing)
@@ -334,8 +334,8 @@ for i=1:numplot
   
   
   
-  if (P(i,3)<>0) then // if we have a line spec <=> index <> 0
-    [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail] = getLineSpec(ListArg(P(i,3)),current_figure,cur_draw_mode); 
+  if (xyIndexLineSpec(i,3)<>0) then // if we have a line spec <=> index <> 0
+    [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail] = getLineSpec(ListArg(xyIndexLineSpec(i,3)),current_figure,cur_draw_mode); 
   end
 
   
@@ -359,7 +359,7 @@ for i=1:numplot
   end
 
   for ii=size(agreg.children,'*'):-1:1
-    e=agreg.children(ii); // we apply linespec to the lines
+    curPolyline=agreg.children(ii); // we apply linespec to the lines
 
     // Color treatment : if no color specified by LineSpec nor PropertyName
     // Set the default color to the curve
@@ -368,27 +368,27 @@ for i=1:numplot
     end
 
     if (Marker == %T)
-      e.mark_style=MarkerStyle;
-      e.mark_mode ='on';
-      e.mark_foreground = Color;
-      e.mark_style=MarkerStyle;
-      e.mark_size=MarkerSize;
+      curPolyline.mark_style=MarkerStyle;
+      curPolyline.mark_mode ='on';
+      curPolyline.mark_foreground = Color;
+      curPolyline.mark_style=MarkerStyle;
+      curPolyline.mark_size=MarkerSize;
     else
-      e.mark_mode ='off'
+      curPolyline.mark_mode ='off'
     end
 
     if (Line == %T)
-      e.line_mode='on';
-      e.foreground = Color;
-      e.line_style = LineStyle;
+      curPolyline.line_mode='on';
+      curPolyline.foreground = Color;
+      curPolyline.line_style = LineStyle;
     else
-      e.line_mode='off'
+      curPolyline.line_mode='off'
     end
 
     if (Line == %F & Marker ==%F) // no linespec nor PropertyName set
-      e.line_mode='on';
-      e.foreground = Color;
-      e.line_style = LineStyle;
+      curPolyline.line_mode='on';
+      curPolyline.foreground = Color;
+      curPolyline.line_style = LineStyle;
     end
 
   end
@@ -405,12 +405,12 @@ end
 // Those properties will be applied to Agreg children
 Agreg = glue(FinalAgreg(1:$))
 
-k=find(Agreg.children.type=="Compound")
+nbCompound = find(Agreg.children.type=="Compound")
 
-while (k<>[])
-  k=k(1);
-  unglue(Agreg.children(k));
-  k=find(Agreg.children.type=="Compound")
+while (nbCompound<>[])
+  nbCompound=nbCompound(1);
+  unglue(Agreg.children(nbCompound));
+  nbCompound=find(Agreg.children.type=="Compound")
 end
 
 
