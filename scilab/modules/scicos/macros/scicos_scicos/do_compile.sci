@@ -19,17 +19,24 @@
 // See the file ../license.txt
 //
 
-function  [%cpr,ok]=do_compile(scs_m)
-show_trace=%f
-    if show_trace then disp('c_pass0:'+string(timer())),end
-if exists('%scicos_solver')==0 then %scicos_solver=0,end
-par=scs_m.props;
-if alreadyran then 
-  //terminate current simulation
-  do_terminate()
+function  [%cpr,ok] = do_compile(scs_m)
+show_trace = %t //** tracing and profiling (probably by Alan L. )
+    if show_trace then 
+         disp("c_pass0:"+string(timer()))
+    end
+
+if exists('%scicos_solver')==0 then 
+    %scicos_solver = 0 ; 
 end
 
-timer()
+par = scs_m.props;
+
+if alreadyran then 
+  // terminate current simulation
+  do_terminate();
+end
+
+timer() ; //** profiling timer 
 
 IN=[];OUT=[];
 for i=1:lstsize(scs_m.objs)
@@ -45,12 +52,14 @@ for i=1:lstsize(scs_m.objs)
     end
   end
 end
+
 IN=-sort(-IN);
 if or(IN<>[1:size(IN,'*')]) then 
   ok=%f;%cpr=list()
   message('Input ports are not numbered properly.')
   return
 end
+
 OUT=-sort(-OUT);
 if or(OUT<>[1:size(OUT,'*')]) then 
   ok=%f;%cpr=list()
@@ -58,13 +67,24 @@ if or(OUT<>[1:size(OUT,'*')]) then
   return
 end
 [bllst,connectmat,clkconnect,cor,corinv,ok]=c_pass1(scs_m);
-if show_trace then disp('c_pass1:'+string(timer())),end
+
+if show_trace then
+  disp('c_pass1:'+string(timer()))
+end
+
 if ~ok then %cpr=list(),return,end
 
-if size(connectmat,2)==6 then connectmat=connectmat(:,[1 2 4 5]),end
+if size(connectmat,2)==6 then 
+  connectmat = connectmat(:,[1 2 4 5])
+end
+
 //pause
-scs_m=null()
-if ~ok then %cpr=list(),return,end
+
+scs_m = null() ;
+
+if ~ok then %cpr=list()
+  return
+end
 
 //newc_pass2 destroys the corinv component associated
 //to the modelica blocks preserve it
@@ -75,8 +95,10 @@ if ~ok then %cpr=list(),return,end
 //to the modelica blocks
 //if type(clast)==15 then %cpr.corinv(klast)=clast,end
 
-%cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv);
+%cpr = c_pass2(bllst,connectmat,clkconnect,cor,corinv);
 
-if %cpr==list() then ok=%f,end 
+if %cpr==list() then
+  ok=%f
+end 
 
 endfunction
