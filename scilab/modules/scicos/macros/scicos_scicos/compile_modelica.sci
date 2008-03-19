@@ -23,12 +23,14 @@
 function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
   
   if ~with_modelica_compiler() then
-    message('Modelica compiler unavailable')
-    ok=%f,name='',nx=0,nin=0,nout=0,ng=0,nm=0,nz=0
+    message("Modelica compiler unavailable");
+    ok=%f
+    name=''
+    nx=0; nin=0; nout=0; ng=0 ; nm=0; nz=0 ;
     return
   end
   
-  ng=0
+  ng = 0 ;
   fil=pathconvert(fil,%f,%t)
   mlibs=pathconvert(modelica_libs,%f,%t)
   
@@ -46,9 +48,11 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
     JAC=' ';
   end
   if updateC then
-    if MSDOS then      //Win/Unix/Linux/Mac 
-      FlatName=fil;
-      modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)     
+    
+    if MSDOS then      
+      //**---------------------------- //Win/Unix/Linux/Mac ------------------------------------------
+      FlatName = fil;
+      modelicac = pathconvert(SCI+'/bin/modelicac.exe',%f,%t)     
       if strindex(modelicac,' ')<>[] then modelicac='""'+modelicac+'""',end
       modelicac=modelicac+strcat(' -L ""'+mlibs+'""')
       instr=modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+' > '+TMPDIR+'/Wmodelicac.err'         
@@ -113,12 +117,16 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
 	  end // if_translator_exists
       end // end of  If_modelicac_fails_then_use_Translator
       mprintf('   C code generated at '+path+name+'.c\n')
+    //**------------------------------------------------------------------------------------------------------------------
+
+
     else //==================Win/Unix/Linux/Mac....
 
-      FlatName=fil;
-      modelicac=pathconvert(SCI+'/bin/modelicac',%f,%t)
-      modelicac=modelicac+strcat(' -L '+mlibs)
-      instr=modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+' > '+TMPDIR+'/Lmodelicac.err;';          
+      FlatName = fil;
+      modelicac = pathconvert(SCI+'/bin/modelicac',%f,%t)
+      modelicac = modelicac + strcat(' -L '+ mlibs); 
+      instr = modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+' > '+TMPDIR+'/Lmodelicac.err;';          
+      
       if  fileinfo(SCI+'/bin/translator')<>[] then 
 	OUTM=unix(instr)<>0;// in order to mask the message in the Scilab windows       
       else
