@@ -124,6 +124,7 @@ function ilib_link_gen_Make(names, ..
   
 endfunction
 //==========================================
+
 function ilib_link_gen_loader(names,flag,loadername,libs,libname)
 
   rhs = argn(2);
@@ -142,21 +143,30 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
   mfprintf(fd,"%s_path = get_absolute_file_path(''%s'');\n",libname,basename(loadername+'.x'));
   mfprintf(fd,"\n");
   
-  nl=size(libs,'*') ;
-  for i=1:nl 
-    if ( part(libs(i),1) == '/') then
-      mfprintf(fd,"link(''%s%s'');\n",libs(i),lib_suf);
-    else
-      [diri, basenamei, exti] = fileparts(libs(i));
-      if (diri == '') then
-         mfprintf(fd,"link(%s_path+''%s%s'');\n",libname,libs(i),lib_suf);
-      else
-        mfprintf(fd,"link(''%s%s'');\n",libs(i),lib_suf);
+  //** first "link" : external libraries 
+  if libs==""then 
+    //** do nothing : you don't need to link any "external" lib(s)
+  else
+    //** add one "link" line for each library (with the appropriate extension)
+      nl = size(libs,'*') ;
+      for i=1:nl 
+         if ( part(libs(i),1) == '/') then
+           mfprintf(fd,"link(''%s%s'');\n",libs(i),lib_suf);
+         else
+           [diri, basenamei, exti] = fileparts(libs(i));
+           if (diri == '') then
+            mfprintf(fd,"link(%s_path+''%s%s'');\n",libname,libs(i),lib_suf);
+           else
+            mfprintf(fd,"link(''%s%s'');\n",libs(i),lib_suf);
+           end
+         end
       end
-    end
-  end 
+  end  
+  
+  //** second "link" : user defined functions  
   mfprintf(fd,"link(%s_path+''lib%s%s'',[",libname,libname,lib_suf);
-  names=names(:)';
+  
+  names = names(:)';
   n = size(names,'*');
   for i=1:n
     mfprintf(fd,"''%s''",names(i))

@@ -8,6 +8,8 @@ function libn = ilib_compile(lib_name,makename,files, ..
 				                         cc)
 
 
+  libn=""; //** init variable 
+
   if ~haveacompiler() then
   	error(_("A Fortran or C compiler is required."))
   	return;
@@ -32,7 +34,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
   
   // first try to build each file step by step 
   if MSDOS then
-  
+    //** ----------- Windows section  -----------------
     nf = size(files,'*');
     
     for i=1:nf 
@@ -45,21 +47,26 @@ function libn = ilib_compile(lib_name,makename,files, ..
     unix_s(make_command + makename + ' '+ lib_name); 
    
   else
-	  oldPath = pwd();
+    //** ---------- Linux section ---------------------  
+ 
+          oldPath = pwd();
 	  // Switch back to the TMPDIR where the mandatory files are
 	  chdir(TMPDIR);
-	  cmd="make "
+	  cmd = "make "
 	  // CFLAGS 
 	  cmd = cmd +" CFLAGS=""-I"+SCI+"/modules/core/includes/ -I"+SCI+"/modules/mexlib/includes/"""
 
-	  [msg,ierr] = unix_g(cmd)
-	if ierr <> 0 then
-	  disp(msg);
-	  return;
-	end
-	// Copy the produce lib to the working path
-	copyfile(".libs/" + lib_name, oldPath);
-	end
+          //** BEWARE : this function can cause errors if used with "old style" Makefile inside a Scilab 5
+          //**          environment where the Makefile are created from a "./configure"  
+	  [msg,ierr] = unix_g(cmd) ; 
+	  if ierr <> 0 then
+	    disp(msg);
+	    return ;
+	  end
+	  // Copy the produce lib to the working path
+	  copyfile(".libs/" + lib_name, oldPath);
+   
+  end
 	
   libn = path + lib_name_make ; 
   chdir(oldpath);
