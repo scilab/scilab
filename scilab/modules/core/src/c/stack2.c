@@ -1208,15 +1208,15 @@ int C2F(getmatdims)(integer *number,integer *m,integer *n)
 
 int C2F(getrhsvar)(integer *number,char *typex,integer *m,integer *n,integer *lr,unsigned long type_len)
 {
-	int ierr=0,il1,ild1,nn;
-	int lrr;
+	int ierr = 0,il1 = 0,ild1 = 0,nn = 0;
+	int lrr = 0;
 	char *fname = Get_Iname();
-	char **items, namex[nlgh+1];
+	char **items = NULL, namex[nlgh+1];
 	unsigned char Type = *(unsigned char *) typex;
-	integer topk,ltype, m1, n1, lc,lr1, it=0, lw, ile, ils, ix1,ix2;
-	integer mnel,icol;
-	SciSparse *Sp;
-	SciIntMat *Im;
+	integer topk = 0,ltype = 0, m1 = 0, n1 = 0, lc = 0,lr1 = 0, it = 0, lw = 0, ile = 0, ils = 0, ix1 = 0,ix2 = 0;
+	integer mnel = 0,icol = 0;
+	SciSparse *Sp = NULL;
+	SciIntMat *Im = NULL;
 	/* we accept a call to getrhsvar after a createvarfromptr call */
 	if ( *number > Rhs && *number > Nbvars ) {
 		Scierror(999,_("%s: bad call to %s! (1rst argument).\n"),fname,"getrhsvar");
