@@ -347,7 +347,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		select output_format
 			
 			case "javaHelp"
-				output_file = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.jar",%f,%f);
+				output_file = pathconvert(SCI+"/modules/helptools/jar/scilab_"+getlanguage()+"_help.jar",%f,%f);
 				log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.jar.log",%f,%f);
 				script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2jh",%f,%f);
 			
