@@ -29,7 +29,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.scilab.modules.gui.utils.ConfigManager;
 import org.xml.sax.SAXException;
 
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
