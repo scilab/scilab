@@ -6,7 +6,7 @@
 	ProjectGUID="{9594AC02-20EE-4FBF-95B4-BFA5865ED7CA}"
 	RootNamespace="windows_tools"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -421,6 +421,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_toprint.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_win64.c"
 				>
 			</File>
 			<File

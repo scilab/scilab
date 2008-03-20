@@ -44,4 +44,5 @@
 <PRIMITIVE gatewayId="47" primitiveId="8" primitiveName="consolebox" />
 <PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="printsetupbox" />
 <PRIMITIVE gatewayId="47" primitiveId="10" primitiveName="toprint" />
+<PRIMITIVE gatewayId="47" primitiveId="11" primitiveName="win64" />
 </GATEWAY>
