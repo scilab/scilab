@@ -6,4 +6,5 @@ EXPORTS
 ;
 getScilabMode
 sigbas_
+getSCIHOME
 ;
