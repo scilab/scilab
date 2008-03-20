@@ -55,7 +55,8 @@ fi
 if test "x$with_umfpack_library" != "xyes"; then
 	AC_MSG_CHECKING([for umf_divcomplex in $with_umfpack_library])
 	save_LIBS="$LIBS"
-	LIBS="$BLAS_LIBS -L$with_umfpack_library $LIBS"
+	LIBS="$BLAS_LIBS -L$with_umfpack_library -lm $LIBS"
+	# We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
 
 	AC_CHECK_LIB([amd], [amd_info],
 			[UMFPACK_LIB="-lamd"],
@@ -74,7 +75,8 @@ fi
 # check in the default path
 if test $UMFPACK_OK = no; then
 	save_LIBS="$LIBS"
-	LIBS="$BLAS_LIBS $LIBS" # libamd* is mandatory to link umfpack
+	LIBS="$BLAS_LIBS $LIBS -lm" # libamd* is mandatory to link umfpack
+	# We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
 
 	AC_CHECK_LIB([amd], [amd_info],
 			[UMFPACK_LIB="-lamd"],
