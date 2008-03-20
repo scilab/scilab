@@ -39,4 +39,5 @@ public class GuiManagementJNI {
   }
 
   public final static native void setScilabLines(int jarg1, int jarg2);
+  public final static native String getSCIHOME();
 }

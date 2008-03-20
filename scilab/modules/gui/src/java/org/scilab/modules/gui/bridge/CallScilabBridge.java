@@ -29,6 +29,8 @@ import org.scilab.modules.gui.editbox.ScilabEditBox;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
+import org.scilab.modules.gui.fontchooser.FontChooser;
+import org.scilab.modules.gui.fontchooser.ScilabFontChooser;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrame;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
@@ -54,6 +56,7 @@ import org.scilab.modules.gui.radiobutton.ScilabRadioButton;
 import org.scilab.modules.gui.slider.ScilabSlider;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
@@ -1945,5 +1948,22 @@ public class CallScilabBridge {
 	public static void emptyClipboard() {
 		Transferable contents = new StringSelection("");
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(contents, null);
+	}
+	
+	/**
+	 * Opens a dialog to selected a new font for the console
+	 */
+	public static void changeConsoleFont() {
+		FontChooser fontChooser = ScilabFontChooser.createFontChooser(ScilabConsole.getConsole().getFont());
+
+		Font selectedFont = fontChooser.getSelectedFont();
+		
+		if (selectedFont != null) {
+			/* Change console font */
+			ScilabConsole.getConsole().setFont(selectedFont);
+			
+			/* Save new settings */
+			ConfigManager.saveFont(selectedFont);
+		}
 	}
 }

@@ -3,6 +3,7 @@
 %module GuiManagement
 %{
 #include "../c/GuiManagement.h"
+#include "../../../core/includes/SCIHOME.h"
 %}
 
 /* JavaDoc for GuiManagementJNI class */
@@ -69,3 +70,12 @@ public class";
    */
 ";
 void setScilabLines(int nbRows, int nbCols);
+
+/* JavaDoc */
+%javamethodmodifiers getSCIHOME() "
+ /**
+   * Get SCIHOME variable from Scilab
+   * @return SCIHOME value
+   */
+public";
+char* getSCIHOME();

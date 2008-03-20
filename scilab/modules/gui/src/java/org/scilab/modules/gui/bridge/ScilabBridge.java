@@ -38,6 +38,9 @@ import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooserBridge;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
+import org.scilab.modules.gui.fontchooser.FontChooser;
+import org.scilab.modules.gui.fontchooser.ScilabFontChooserBridge;
+import org.scilab.modules.gui.fontchooser.SimpleFontChooser;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrameBridge;
 import org.scilab.modules.gui.frame.SimpleFrame;
@@ -968,6 +971,24 @@ public class ScilabBridge {
 		ScilabConsoleBridge.cutSelection(console);
 	}
 	
+	/**
+	 * Set the font of the Console
+	 * @param console the console
+	 * @param font the font to set
+	 */
+	public static void setFont(Console console, Font font) {
+		ScilabConsoleBridge.setFont(console, font);
+	}
+
+	/**
+	 * Get the font of the Console
+	 * @param console the console
+	 * @return the font
+	 */
+	public static Font getFont(Console console) {
+		return ScilabConsoleBridge.getFont(console);
+	}
+
 	/*****************/
 	/* Canvas Bridge */
 	/*****************/
@@ -4210,5 +4231,26 @@ public class ScilabBridge {
 		ScilabHelpBrowserBridge.close(browser);
 	}
 
+	/***********************/
+	/* FontChooser Bridge */
+	/***********************/
+
+	/**
+	 * Create a new FontChooser
+	 * @param font the default font
+	 * @return the created FontChooser
+	 */
+	public static SimpleFontChooser createFontChooser(Font font) {
+		return ScilabFontChooserBridge.createFontChooser(font);
+	}
+	
+	/** 
+	 * Retrieve the selected font, or null 
+	 * @param fontChooser the FontChooser
+	 * @return the selected font
+	 */
+	public static Font getSelectedFont(FontChooser fontChooser) {
+		return ScilabFontChooserBridge.getSelectedFont(fontChooser);
+	}
 
 }

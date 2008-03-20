@@ -13,6 +13,8 @@
 
 package org.scilab.modules.gui.console;
 
+import java.awt.Font;
+
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.dockable.ScilabDockable;
 import org.scilab.modules.gui.utils.Position;
@@ -236,6 +238,22 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 */
 	public void cutSelection() {
 		ScilabBridge.cutSelection(this);
+	}
+
+	/**
+	 * Set the font of the Console
+	 * @param font the font to set
+	 */
+	public void setFont(Font font) {
+		ScilabBridge.setFont(this, font);
+	}
+
+	/**
+	 * Get the font of the Console
+	 * @return the font
+	 */
+	public Font getFont() {
+		return ScilabBridge.getFont(this);
 	}
 
 }

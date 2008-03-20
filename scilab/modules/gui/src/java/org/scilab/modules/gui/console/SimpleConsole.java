@@ -12,6 +12,8 @@
 
 package org.scilab.modules.gui.console;
 
+import java.awt.Font;
+
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -149,4 +151,16 @@ public interface SimpleConsole {
 	 * Cut selected text in the Console input line
 	 */
 	void cutSelection();
+	
+	/**
+	 * Set the font of the Console
+	 * @param font the font to set
+	 */
+	void setFont(Font font);
+
+	/**
+	 * Get the font of the Console
+	 * @return the font
+	 */
+	Font getFont();
 }

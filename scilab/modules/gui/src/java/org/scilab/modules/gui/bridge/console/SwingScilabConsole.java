@@ -36,6 +36,7 @@ import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -54,7 +55,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 * Constructor
 	 */
 	public SwingScilabConsole() {
-		super();
+		super(ConfigManager.getUserConfigFile());
 		
 		MouseListener contextMenu = new MouseListener() {
 

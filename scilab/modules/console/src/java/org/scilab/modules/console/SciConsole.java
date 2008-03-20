@@ -15,10 +15,12 @@ package org.scilab.modules.console;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -27,6 +29,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.xml.sax.SAXException;
 
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
@@ -93,11 +96,11 @@ public abstract class SciConsole extends JPanel {
 
 	/**
 	 * Constructor
+	 * @param the configuration file to use
 	 */
-	public SciConsole() {
+	public SciConsole(String configFilePath) {
 		super(new BorderLayout());
 
-		String configFilePath = System.getenv("SCI") + "/modules/console/etc/configuration.xml";
 		String profileName = null;
 
 		try {
@@ -463,4 +466,40 @@ public abstract class SciConsole extends JPanel {
 		return workDone;
 	}
 
+	/**
+	 * Set the font of the Console
+	 * @param font the font to set
+	 */
+	public void setFont(Font font) {
+		if (sciConsole != null) {
+			sciConsole.setFont(font);
+			
+			/* Have to update the output view contents with new font */
+			String txt;
+			try {
+				txt = config.getOutputViewStyledDocument().getText(0, config.getOutputViewStyledDocument().getLength());
+				config.getOutputViewStyledDocument().remove(0, config.getOutputViewStyledDocument().getLength());
+				config.getOutputView().append(txt);
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			/* Update the prompt */
+			((JLabel) ((SciPromptView) config.getPromptView()).getPromptUI()).setFont(font);
+			config.getPromptView().updatePrompt();
+		}
+	}
+
+	/**
+	 * Get the font of the Console
+	 * @return the font
+	 */
+	public Font getFont() {
+		if (sciConsole != null) {
+			return ((JLabel) ((SciPromptView) config.getPromptView()).getPromptUI()).getFont();
+		} else {
+			return null;
+		}
+	}
 }

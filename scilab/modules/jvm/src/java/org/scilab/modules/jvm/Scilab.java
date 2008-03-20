@@ -25,6 +25,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Size;
@@ -147,6 +148,8 @@ public class Scilab {
 			consoleTab.addMember(ScilabConsole.getConsole());
 			mainView.addTab(consoleTab);
 			mainView.draw();
+			
+			ConfigManager.createUserCopy();
 		} 
 
 	}

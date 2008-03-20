@@ -13,6 +13,8 @@
 
 package org.scilab.modules.gui.console;
 
+import java.awt.Font;
+
 import org.scilab.modules.gui.dockable.Dockable;
 
 /**
@@ -99,4 +101,16 @@ public interface Console extends Dockable {
 	 * Cut selected text in the Console input line
 	 */
 	void cutSelection();
+	
+	/**
+	 * Set the font of the Console
+	 * @param font the font to set
+	 */
+	void setFont(Font font);
+
+	/**
+	 * Get the font of the Console
+	 * @return the font
+	 */
+	Font getFont();
 }

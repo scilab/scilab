@@ -11,6 +11,8 @@
  */
 package org.scilab.modules.gui.console;
 
+import java.awt.Font;
+
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.tab.Tab;
@@ -233,4 +235,24 @@ public class ScilabConsoleBridge {
 	public static void cutSelection(Console console) {
 		console.getAsSimpleConsole().cutSelection();
 	}
+	
+	/**
+	 * Set the font of the Console
+	 * @param console the console
+	 * @param font the font to set
+	 */
+	public static void setFont(Console console, Font font) {
+		console.getAsSimpleConsole().setFont(font);
+	}
+	
+	/**
+	 * Set the font of the Console
+	 * @param console the console
+	 * @return the Console font
+	 */
+	public static Font getFont(Console console) {
+		return console.getAsSimpleConsole().getFont();
+	}
+
+
 }
