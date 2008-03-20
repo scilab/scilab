@@ -5,7 +5,7 @@
 	Name="BuildHelp"
 	ProjectGUID="{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}"
 	Keyword="MakeFileProj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -26,9 +26,9 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
+				BuildCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)scilex -nb -l en -nouserstartup -nwni -e xmltojar();exit;&#x0D;&#x0A;$(SolutionDir)scilex -nb -l fr -nouserstartup -nwni -e xmltojar();exit;"
+				ReBuildCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)scilex -nb -l en -nouserstartup -nwni -e xmltojar();exit;&#x0D;&#x0A;$(SolutionDir)scilex -nb -l fr -nouserstartup -nwni -e xmltojar();exit;"
+				CleanCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)scilex -nb -l en -nouserstartup -nwni -e clean_help();exit;&#x0D;&#x0A;$(SolutionDir)scilex -nb -l fr -nouserstartup -nwni -e clean_help();exit;"
 				Output=""
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
@@ -46,9 +46,9 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
+				BuildCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)bin\scilex -nb -l en -nouserstartup -nwni -e xmltojar();exit;&#x0D;&#x0A;$(SolutionDir)bin\scilex -nb -l fr -nouserstartup -nwni -e xmltojar();exit;"
+				ReBuildCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)bin\scilex -nb -l en -nouserstartup -nwni -e xmltojar();exit;&#x0D;&#x0A;$(SolutionDir)bin\scilex -nb -l fr -nouserstartup -nwni -e xmltojar();exit;"
+				CleanCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)bin\scilex -nb -l en -nouserstartup -nwni -e clean_help();exit;&#x0D;&#x0A;$(SolutionDir)bin\scilex -nb -l fr -nouserstartup -nwni -e clean_help();exit;"
 				Output=""
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
@@ -66,9 +66,9 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
+				BuildCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)scilex -nb -l en -nouserstartup -nwni -e xmltojar();exit;&#x0D;&#x0A;$(SolutionDir)scilex -nb -l fr -nouserstartup -nwni -e xmltojar();exit;"
+				ReBuildCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)scilex -nb -l en -nouserstartup -nwni -e xmltojar();exit;&#x0D;&#x0A;$(SolutionDir)scilex -nb -l fr -nouserstartup -nwni -e xmltojar();exit;"
+				CleanCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)scilex -nb -l en -nouserstartup -nwni -e clean_help();exit;&#x0D;&#x0A;$(SolutionDir)scilex -nb -l fr -nouserstartup -nwni -e clean_help();exit;"
 				Output="BuildHelp.exe"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
@@ -86,9 +86,9 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
-				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
+				BuildCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)scilex -nb -l en -nouserstartup -nwni -e xmltojar();exit;&#x0D;&#x0A;$(SolutionDir)scilex -nb -l fr -nouserstartup -nwni -e xmltojar();exit;"
+				ReBuildCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)scilex -nb -l en -nouserstartup -nwni -e xmltojar();exit;&#x0D;&#x0A;$(SolutionDir)scilex -nb -l fr -nouserstartup -nwni -e xmltojar();exit;"
+				CleanCommandLine="set PATH=%PATH%;$(SolutionDir)\java\jdk\bin;$(SolutionDir)\java\jre\bin&#x0D;&#x0A;$(SolutionDir)scilex -nb -l en -nouserstartup -nwni -e clean_help();exit;&#x0D;&#x0A;$(SolutionDir)scilex -nb -l fr -nouserstartup -nwni -e clean_help();exit;"
 				Output="BuildHelp.exe"
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
