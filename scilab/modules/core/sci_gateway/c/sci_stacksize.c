@@ -94,7 +94,7 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 								}
 							else
 							{
-								Scierror(999,_("%s: Cannot alloc more memory.\nTry stacksize('max').\n"),fname);
+								Scierror(999,_("%s: Cannot allocate more memory.\nTry stacksize('max').\n"),fname);
 								return 0;
 							}
 						}
