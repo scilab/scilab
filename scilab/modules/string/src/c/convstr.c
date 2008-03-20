@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
+ * Copyright (C) INRIA - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,23 +31,12 @@ void convstr(char **Input_Matrix, char **Output_Matrix, char typ, int mn)
 			if ( (typ == UPPER) || (typ == UPPER_B) )
 			{
 				/*converts the matrix of strings  str-matrix into upper case */
-				if (Input_Matrix[x][y] > 0)
-				{
-					if (isalpha(Input_Matrix[x][y])) Output_Matrix[x][y] = (char)toupper(Input_Matrix[x][y]);
-					else Output_Matrix[x][y] = (char)Input_Matrix[x][y];
-				}
-				else Output_Matrix[x][y] = (char)0;
+				Output_Matrix[x][y] = (char)toupper(Input_Matrix[x][y]);
 			}
 			else if ( (typ==LOW) || (typ==LOW_B) )
 			{
 				/*converts the matrix of strings  str-matrix  into lower case */
-				if (Input_Matrix[x][y] > 0)
-				{
-					if (isalpha(Input_Matrix[x][y])) Output_Matrix[x][y] = (char)tolower(Input_Matrix[x][y]);
-					else Output_Matrix[x][y] = (char)Input_Matrix[x][y];
-				}
-				else Output_Matrix[x][y] = (char)0;
-
+				Output_Matrix[x][y] = (char)tolower(Input_Matrix[x][y]);
 			}
 		}
         Output_Matrix[x][y] = 0;
