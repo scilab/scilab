@@ -47,7 +47,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 		super();	
 		
 		File[] jarFiles;
-		if (helps == null) {
+		if (helps != null) {
 			jarFiles = new File[helps.length + 1]; /* +1 because of Scilab main help jar file */
 		} else {
 			jarFiles = new File[1]; /* Scilab main help jar file */
@@ -59,7 +59,8 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	    	mainJar = new File(mainJarPath + defaultLanguage + jarExtension);
 	    }
 	    
-	    jarFiles[0] = mainJar;
+	    int nbFilesToLoad = 0;
+		jarFiles[nbFilesToLoad++] = mainJar;
 	    
 	    /* Toolboxes jar files */
 	    if (helps != null) {
@@ -68,8 +69,8 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 
 	    		/* Find all Jars */
 	    		String[] all = toolboxJarPath.list(new FilenameFilter() {
-	    			public boolean accept(File pathname, String arg1) {
-	    				return pathname.getAbsolutePath().matches("*_help.jar");
+	    			public boolean accept(File pathname, String filename) {
+	    				return filename.endsWith(jarExtension);
 	    			}
 	    		});
 
@@ -87,17 +88,17 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 
 	    		/* Add the toolbox help file */
 	    		if (localeHelpIndex != -1) {
-	    			jarFiles[k + 1] =  new File(all[localeHelpIndex]);
+	    			jarFiles[nbFilesToLoad++] =  new File(toolboxJarPath + File.separator + all[localeHelpIndex]);
 	    		} else if (defaultHelpIndex != -1) {
-	    			jarFiles[k + 1] =  new File(all[defaultHelpIndex]);
-	    		} else if (all != null) {
-	    			jarFiles[k + 1] =  new File(all[0]); /* First file as default */
+	    			jarFiles[nbFilesToLoad++] =  new File(toolboxJarPath + File.separator + all[defaultHelpIndex]);
+	    		} else if ((all != null) && (all.length != 0)) {
+	    			jarFiles[nbFilesToLoad++] =  new File(toolboxJarPath + File.separator + all[0]); /* First file as default */
 	    		}
 	    	}
 	    }
 	    this.setModel(new DefaultHelpModel(new HelpSet()));
         
-	    for (int i = 0; i < jarFiles.length; ++i) {
+	    for (int i = 0; i < nbFilesToLoad; ++i) {
             URI jarURI = jarFiles[i].toURI();
 
             StringBuilder buffer = new StringBuilder("jar:");
@@ -117,8 +118,8 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
             try {
 				helpSet = new HelpSet(/*classLoader*/ null, helpSetURL);
 			} catch (HelpSetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Could not load file: " + jarFiles[i] + ". Please check its contents, must be a Java Help file.");
+				return;
 			}
 			this.getModel().getHelpSet().add(helpSet);
         }
