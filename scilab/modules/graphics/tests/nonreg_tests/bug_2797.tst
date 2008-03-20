@@ -35,3 +35,5 @@ plot(x,x)
 
 // check we are not in drawlater mode anymore
 if (curFig.immediate_drawing <> "on") then pause; end
+
+

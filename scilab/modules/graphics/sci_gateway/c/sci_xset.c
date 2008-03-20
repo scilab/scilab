@@ -113,8 +113,10 @@ int sci_xset( char *fname, unsigned long fname_len )
 
   if (strcmp(cstk(l1),"clipping") == 0)
   {
-    sciSetClipping(sciGetCurrentObj(),xx);
-    forceRedraw(sciGetCurrentObj());
+    subwin = sciGetCurrentSubWin() ;
+    sciSetClipping(subwin,xx);
+    sciSetIsClipping(subwin, 1);
+    forceRedraw(subwin);
   }
   else if ( strcmp(cstk(l1),"colormap") == 0)
   {

@@ -13,26 +13,20 @@
 // http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2796
 //
 // <-- Short Description -->
-//    After an error when plotting with the syntax "plot(x,f)", the following plots
-//    are empty.
+// There is a variable named k equals to à 1 when a function f is evaluated when
+// plotting with plot(x,f).
 
-function r = f(x);
-  r = 1 / x;
+k = 42;
+
+function r=f(x),
+  // check that k is still 42
+  if (k <> 42) then
+    pause;
+  end
+  r=x;
 endfunction
 
-x = linspace(-1, 1, 101);
-
-curFig = gcf();
-// just to be sure
-curFig.immediate_drawing = "on";
-
-// evaluation of f will fail
-// it use to keep current figure in drawlater mode
+x=linspace(0,1,6);
+// plot will evaluate f
 plot(x,f)
-
-plot(x,x)
-
-
-// check we are not in drawlater mode anymore
-if (curFig.immediate_drawing <> "on") then pause; end
 
