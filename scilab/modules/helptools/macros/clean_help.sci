@@ -76,27 +76,55 @@ function clean_help(dirs)
 	mprintf(gettext("-- Deleting "+getlanguage()+" help files --"));
 	
 	for k=1:size(dirs,'*')
-		files_to_delete = listfiles([dirs(k)+"/*.htm";dirs(k)+"/.list*";dirs(k)+"/.last_successful_build*"]);
+		
+		files_to_delete = listfiles([ ..
+			dirs(k)+"/*.htm"; ..
+			dirs(k)+"/.list*"; ..
+			dirs(k)+"/.last_successful_build*"; ..
+			dirs(k)+"/*.log"; ..
+			dirs(k)+"/master_help.xml"; ..
+			dirs(k)+"/*_help.jar"; ..
+			dirs(k)+"/*_help.pdf"; ..
+			dirs(k)+"/*_help.ps"; ..
+			dirs(k)+"/*_help.chm" ..
+		]);
+		
 		for i=1:size(files_to_delete,'*')
 			mprintf(".");
 			mdelete(files_to_delete(i));
 		end
 	end
 	
-	// Clean up of indexes and contents
+	// Clean up helptools dir
 	// ------------------------------------------------------------------------
 	
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 	
-	if fileinfo(SCI+pathconvert("/modules/helptools/index_"+getlanguage()+".htm",%f,%f)) <> [] then
-		  mprintf(".");
+		if fileinfo(SCI+pathconvert("/modules/helptools/index_"+getlanguage()+".htm",%f,%f)) <> [] then
+			mprintf(".");
 			mdelete(SCI+pathconvert("/modules/helptools/index_"+getlanguage()+".htm",%f,%f));
 		end
-			
+		
 		if fileinfo(SCI+pathconvert("/modules/helptools/contents_"+getlanguage()+".htm",%f,%f)) <> [] then
-		  mprintf(".");
+			mprintf(".");
 			mdelete(SCI+pathconvert("/modules/helptools/contents_"+getlanguage()+".htm",%f,%f));
 		end
+		
+		if fileinfo(SCI+pathconvert("/modules/helptools/jar/scilab_"+getlanguage()+"_help.jar",%f,%f)) <> [] then
+			mprintf(".");
+			mdelete(SCI+pathconvert("/modules/helptools/jar/scilab_"+getlanguage()+"_help.jar",%f,%f));
+		end
+		
+		if fileinfo(SCI+pathconvert("/modules/helptools/scilab_"+getlanguage()+"_help.jar.log",%f,%f)) <> [] then
+			mprintf(".");
+			mdelete(SCI+pathconvert("/modules/helptools/scilab_"+getlanguage()+"_help.jar.log",%f,%f));
+		end
+		
+		if fileinfo(SCI+pathconvert("/modules/helptools/master_"+getlanguage()+"_help.xml",%f,%f)) <> [] then
+			mprintf(".");
+			mdelete(SCI+pathconvert("/modules/helptools/master_"+getlanguage()+"_help.xml",%f,%f));
+		end
+		
 	end
 	
 	mprintf("\n");

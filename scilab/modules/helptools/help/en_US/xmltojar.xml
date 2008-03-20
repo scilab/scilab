@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xmltohtml" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-14 11:58:09 +0100 (ven, 14 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xmltojar</refname>
+
+    <refpurpose>converts xml Scilab help files to javaHelp format</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>xmltojar(dirs [,titles [,dir_language [default_language]]]]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>dirs</term>
+
+        <listitem>
+          <para>vector of strings: a set of directory paths for which html
+          manuals are to be generated or <literal>[] </literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>titles</term>
+
+        <listitem>
+          <para>vector of strings: titles associated to directory paths or
+          []</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dir_language</term>
+
+        <listitem>
+          <para>vector of strings: languages associated to directory paths or
+          []</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>default_language</term>
+
+        <listitem>
+          <para>vector of strings: default languages associated to directory
+          paths or []</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>converts xml Scilab help files contained in a set of directories
+    into jar files.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+
+// example_1/
+// `-- help
+//     |-- eng
+//     |   |-- example_1_function_1.xml
+//     |   |-- example_1_function_2.xml
+//     |   `-- example_1_function_3.xml
+//     `-- fr
+//         |-- example_1_function_1.xml
+//         `-- example_1_function_3.xml
+
+my_module_path = pathconvert(SCI+'/modules/helptools/examples/example_1',%f,%f)
+
+  // Build the french help
+  // ===================================================================================
+my_french_help_dir    =  my_module_path+'/help/fr';
+my_french_xsl_file    =  pathconvert(SCI+'/modules/helptools/help_fr.xsl',%f,%f)
+my_french_help_title  =  'Example 1 [fr]';
+xmltohtml(my_french_help_dir,my_french_help_title,my_french_xsl_file,'all','fr','en');
+
+
+  // Build the english help
+  // ===================================================================================
+my_english_help_dir   =  my_module_path+'/help/en';
+my_english_xsl_file   =  pathconvert(SCI+'/modules/helptools/help_eng.xsl',%f,%f)
+my_english_help_title =  'Example 1 [eng]';
+xmltohtml(my_english_help_dir,my_english_help_title,my_english_xsl_file,'all');
+
+
+  // Add french and english help chapters
+  // ===================================================================================
+add_help_chapter(my_french_help_title,my_french_help_dir);
+add_help_chapter(my_english_help_title,my_english_help_dir);
+
+
+  // See the result in the help browser
+  // ===================================================================================
+help();
+
+
+  // Del french and english help chapters
+  // ===================================================================================
+del_help_chapter(my_french_help_title);
+del_help_chapter(my_english_help_title);
+
+	</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="help">help</link></member>
+
+      <member><link
+      linkend="add_help_chapter">add_help_chapter</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -316,26 +316,42 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		// build all the Master document
 		//----------------------------------------------------------------------
 		
-		displaydone = 0;
-		
-		master_doc = SCI+"/modules/helptools/master_"+getlanguage()+"_help.xml";
-		
 		if all_scilab_help then
 			
-			// if or(need_to_be_build_tab_m) then
-			if %T then
+			master_doc = SCI+"/modules/helptools/master_"+getlanguage()+"_help.xml";
+			
+			if or(need_to_be_build_tab_m) then
 				printf(_("\nBuilding the scilab manual master document\n"));
-				create_master_document(dirs_m,titles_m,master_doc);
+				create_MD(dirs_m,titles_m,master_doc);
 			end
 			
 			if or(need_to_be_build_tab_c) then
 				for k=1:size(dirs_c,"*")
 					if need_to_be_build_tab_c(k) then
 						printf(_("\nBuilding the master document : %s\n"),titles_c(k));
-						create_master_document(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml");
+						create_MD(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml");
 					end
 				end
 			end
+			
+		else
+			
+			displaydone = 0;
+			for k=1:size(dirs,"*");
+				if need_to_be_build_tab(k) then
+					if nb_dir > 1 then
+						if displaydone == 0 then
+							printf(_("\nBuilding the master document\n"));
+							displaydone = 1;
+						end
+						printf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+					else
+						printf(_("\nBuilding the master document in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+					end
+					create_MD_dir(dirs(k),titles(k),dirs(k)+"/master_help.xml");
+				end
+			end
+		
 		end
 		
 		//----------------------------------------------------------------------
@@ -344,44 +360,93 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		
 		script_tool = "";
 		
-		select output_format
-			
-			case "javaHelp"
-				output_file = pathconvert(SCI+"/modules/helptools/jar/scilab_"+getlanguage()+"_help.jar",%f,%f);
-				log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.jar.log",%f,%f);
-				script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2jh",%f,%f);
-			
-			case "chm"
-				output_file = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.chm",%f,%f);
-				log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.chm.log",%f,%f);
-				script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2chm",%f,%f);
-			
-			case "pdf"
-				output_file = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.pdf",%f,%f);
-				log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.pdf.log",%f,%f);
-				script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2pdf",%f,%f);
-			
-			case "ps"
-				output_file = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.ps",%f,%f);
-				log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.ps.log",%f,%f);
-				script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2pdf",%f,%f);
-		end
-		
-		if MSDOS then
-			script_tool = script_tool+".bat";
-		end
-		
-		log_str     = "";
-		
 		if all_scilab_help then
-			// if or(need_to_be_build_tab_m) then
-			if %T then
+			
+			select output_format
+				
+				case "javaHelp"
+					output_file = pathconvert(SCI+"/modules/helptools/jar/scilab_"+getlanguage()+"_help.jar",%f,%f);
+					log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.jar.log",%f,%f);
+					script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2jh",%f,%f);
+				
+				case "chm"
+					output_file = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.chm",%f,%f);
+					log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.chm.log",%f,%f);
+					script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2chm",%f,%f);
+				
+				case "pdf"
+					output_file = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.pdf",%f,%f);
+					log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.pdf.log",%f,%f);
+					script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2pdf",%f,%f);
+				
+				case "ps"
+					output_file = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.ps",%f,%f);
+					log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.ps.log",%f,%f);
+					script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2pdf",%f,%f);
+			end
+			
+			if MSDOS then
+				script_tool = script_tool+".bat";
+			end
+			
+			log_str     = "";
+			
+			if or(need_to_be_build_tab_m) then
 				printf(_("\nBuilding the scilab manual file ["+output_format+"]\n"));
 				log_str = unix_g(script_tool+" "+master_doc+" "+output_file+" 2>&1");
+				mputl(log_str,log_file);
+			end
+		
+		else
+		
+			displaydone = 0;
+			for k=1:size(dirs,"*");
+				if need_to_be_build_tab(k) then
+					
+					if nb_dir > 1 then
+						if displaydone == 0 then
+							printf(_("\nBuilding the manual file ["+output_format+"]\n"));
+							displaydone = 1;
+						end
+						printf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+					else
+						printf(_("\nBuilding the manual file ["+output_format+"] in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+					end
+					
+					select output_format
+						
+						case "javaHelp"
+							output_file = pathconvert(dirs(k)+"/"+getlanguage()+"_help.jar",%f,%f);
+							log_file    = pathconvert(dirs(k)+"/"+getlanguage()+"_help.jar.log",%f,%f);
+							script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2jh",%f,%f);
+						
+						case "chm"
+							output_file = pathconvert(dirs(k)+"/"+getlanguage()+"_help.chm",%f,%f);
+							log_file    = pathconvert(dirs(k)+"/"+getlanguage()+"_help.chm.log",%f,%f);
+							script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2chm",%f,%f);
+						
+						case "pdf"
+							output_file = pathconvert(dirs(k)+"/"+getlanguage()+"_help.pdf",%f,%f);
+							log_file    = pathconvert(dirs(k)+"/"+getlanguage()+"_help.pdf.log",%f,%f);
+							script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2pdf",%f,%f);
+						
+						case "ps"
+							output_file = pathconvert(dirs(k)+"/"+getlanguage()+"_help.ps",%f,%f);
+							log_file    = pathconvert(dirs(k)+"/"+getlanguage()+"_help.ps.log",%f,%f);
+							script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2pdf",%f,%f);
+					end
+					
+					if MSDOS then
+						script_tool = script_tool+".bat";
+					end
+					
+					log_str = unix_g(script_tool+" "+dirs(k)+"/master_help.xml "+output_file+" 2>&1");
+					mputl(log_str,log_file);
+					
+				end
 			end
 		end
 		
-		mputl(log_str,log_file);
 		chdir(current_directory);
 		
 		//----------------------------------------------------------------------
@@ -470,20 +535,20 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	// Copyright INRIA
 	// Date : 26, july 2006
 	//
-	// Cette macro compl?te un r?pertoire dont certaines aides en ligne sont manquantes
-	// Elle le compl?te avec les aides en ligne de la langue par d?faut
+	// Cette macro complète un répertoire dont certaines aides en ligne sont manquantes
+	// Elle le complète avec les aides en ligne de la langue par défaut
 	//
 	// macro non-visible de l'utilisateur
 	//--------------------------------------------------------------------------
 	
-	// Directory trait?e
+	// Directory traitée
 	directory = pathconvert(directory,%f,%f);
 	
 	//--------------------------------------------------------------------------
-	// Nettoyage du r?pertoire
+	// Nettoyage du répertoire
 	// Si il existe un fichier .list_<directory_language> (fichier contenant tous les
-	// fichiers traduits dans la langue du r?pertoire), on supprime dans l'ordre :
-	//   1. Tous les fichiers n'appartenant pas ? la liste contenue dans .list_<directory_language>
+	// fichiers traduits dans la langue du répertoire), on supprime dans l'ordre :
+	//   1. Tous les fichiers n'appartenant pas à la liste contenue dans .list_<directory_language>
 	//   2. Tous les fichiers de la forme .list_<language>
 	//--------------------------------------------------------------------------
 	
@@ -494,7 +559,7 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	
 	//--------------------------------------------------------------------------
 	// Construction du fichier list_<directory_language> contenant la liste des
-	// fichiers traduits dans la langue associ?e au r?pertoire
+	// fichiers traduits dans la langue associée au répertoire
 	//--------------------------------------------------------------------------
 	
 	dir_language_xml_files = basename(listfiles(directory+"/*.xml"));
@@ -506,23 +571,23 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	
 	//--------------------------------------------------------------------------
 	// Construction du fichier list_<default_language> contenant la liste des fichiers
-	// non traduits dans la langue associ?e au r?pertoire qui seront r?cup?r?s depuis le
-	// r?pertoire de la langue par d?faut
+	// non traduits dans la langue associée au répertoire qui seront récupérés depuis le
+	// répertoire de la langue par défaut
 	//--------------------------------------------------------------------------
 	
 	// Tous les fichiers contenus dans <directory>/../<default_language> pour commencer
 	// On afinnera par la suite
 	df_lang_xml_files = basename(listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f)));
 	
-	// On supprime de "df_lang_xml_files" tous les ?l?ment contenus dans
-	// "dir_language_xml_files", c'est ? dire tous les fichiers d?ja traduit dans la langue
-	// associ?e au r?pertoire.
+	// On supprime de "df_lang_xml_files" tous les élément contenus dans
+	// "dir_language_xml_files", c'est à dire tous les fichiers déja traduit dans la langue
+	// associée au répertoire.
 	
 	for i=1:size(dir_language_xml_files,'*');
 		df_lang_xml_files(find(df_lang_xml_files==dir_language_xml_files(i)))=[];
 	end
 	
-	// Cr?ation du fichier
+	// Création du fichier
 	if df_lang_xml_files <> [] then
 		mputl(df_lang_xml_files,pathconvert(directory+"/.list_"+default_language,%f,%f));
 	else
@@ -549,25 +614,25 @@ function del_df_lang_xml_files(directory,directory_language)
 	// Copyright INRIA
 	// Date : 26, july 2006
 	//
-	// Cette macro d?truit tous les fichiers xml qui ne sont pas traduit dans
-	// la langue associ?e au r?pertoire
+	// Cette macro détruit tous les fichiers xml qui ne sont pas traduit dans
+	// la langue associée au répertoire
 	//
 	// macro non-visible de l'utilisateur
 	//--------------------------------------------------------------------------
 	
-	// Directory trait?e
+	// Directory traitée
 	directory = pathconvert(directory,%f,%t);
 	
 	if listfiles(pathconvert(directory+"/.list_"+directory_language,%f,%f)) <> [] then
 		
-		// R?cup?ration de la liste des fichiers xml copi?s depuis le r?pertoire de la langue par d?faut
+		// Récupération de la liste des fichiers xml copiés depuis le répertoire de la langue par défaut
 		dir_language_xml_files = mgetl(pathconvert(directory+"/.list_"+directory_language,%f,%f));
 		
-		// Liste de tous les fichiers xml contenu dans le r?pertoire
+		// Liste de tous les fichiers xml contenu dans le répertoire
 		all_files = basename(listfiles(directory+"/*.xml"));
 		
-		// On retire de "all_files" tous les ?l?ments appartenant ? "xml_directory_language_files"
-		// Ce sont les aides en ligne traduite dans la langue associ?e r?pertoire
+		// On retire de "all_files" tous les éléments appartenant à "xml_directory_language_files"
+		// Ce sont les aides en ligne traduite dans la langue associée répertoire
 		for i=1:size(dir_language_xml_files,'*');
 			all_files(find(all_files==dir_language_xml_files(i)))=[];
 		end
@@ -589,33 +654,33 @@ function result = need_to_be_build(directory,directory_language,default_language
 	// Copyright INRIA
 	// Date : 27, july 2006
 	//
-	// Cette fonction a pour but de d?terminer si le r?pertoire a besoin d'?tre
+	// Cette fonction a pour but de déterminer si le répertoire a besoin d'être
 	// reconstruit ou pas.
 	//
-	// On d?termine la date de derni?re modification la plus r?cente parmi les
-	// dates de derni?re modification suivantes :
-	//     -  date de derni?re modification du r?pertoire "directory".
-	//     -  dates de derni?re modification des fichiers XML du r?pertoire "directory".
-	//     -  date de derni?re modification du r?pertoire "directory/../<default_language>"
-	//        si le syst?me de multilinguisme est utilis?
-	//      - dates de derni?re modification des fichiers XML du r?pertoire
-	//        "directory/../<default_language>" si le syst?me de multilinguisme est utilis?
+	// On détermine la date de dernière modification la plus récente parmi les
+	// dates de dernière modification suivantes :
+	//     -  date de dernière modification du répertoire "directory".
+	//     -  dates de dernière modification des fichiers XML du répertoire "directory".
+	//     -  date de dernière modification du répertoire "directory/../<default_language>"
+	//        si le système de multilinguisme est utilisé
+	//      - dates de dernière modification des fichiers XML du répertoire
+	//        "directory/../<default_language>" si le système de multilinguisme est utilisé
 	//
-	// Ensuite cette valeur est compar?e ? la valeur contenue dans le fichier
+	// Ensuite cette valeur est comparée à la valeur contenue dans le fichier
 	// "directory/.last_successful_build". Si elle est plus grande,
 	// need_to_be_build renvoie %T
 	//
-	// Si le fichier "directory/.last_successful_build" n'existe pas, l'aide n'a jamais ?t?
+	// Si le fichier "directory/.last_successful_build" n'existe pas, l'aide n'a jamais été
 	// construite donc need_to_be_build renvoie %T
 	//
 	//--------------------------------------------------------------------------
 	
 	[lhs,rhs]=argn(0);
 	
-	// S'il n'y a pas de fichiers XML dans le r?pertoire ni dans son homologue,
-	// Le r?pertoire n'a pas besoin d'?tre construit.
-	// Cela est une s?curit? pour ?viter de detruire les whatis des versions binaires
-	// o? il n'y a pas de fichiers XML
+	// S'il n'y a pas de fichiers XML dans le répertoire ni dans son homologue,
+	// Le répertoire n'a pas besoin d'être construit.
+	// Cela est une sécurité pour éviter de detruire les whatis des versions binaires
+	// où il n'y a pas de fichiers XML
 	
 	xml_file_list    = listfiles(directory+"/*.xml");
 	
@@ -683,7 +748,7 @@ function result = need_to_be_build(directory,directory_language,default_language
 endfunction
 
 
-function create_master_document(dirs,titles,output_filename)
+function create_MD(dirs,titles,output_filename)
 
 	master_document = ["<?xml version=""1.0"" encoding=""ISO-8859-1""?>"; ..
 			"<!DOCTYPE book [";
@@ -741,24 +806,73 @@ function create_master_document(dirs,titles,output_filename)
 
 endfunction
 
+function create_MD_dir(my_dir,my_title,output_filename)
+
+	xml_files   = basename(listfiles(my_dir+"/*.xml"));
+	category_id = title2category(my_title);
+	my_title    = strsubst(my_title , "&"  , "&amp;" );
+	
+	master_document = ["<?xml version=""1.0"" encoding=""ISO-8859-1""?>"; ..
+			"<!DOCTYPE book [";
+			"<!--Begin Entities-->"];
+		
+	xml_files          = listfiles(my_dir+"/*.xml");
+	
+	xml_files(grep(xml_files,"master_help.xml")) = [];
+	
+	master_document    = [master_document; ..
+		"<!ENTITY "+basename(xml_files)+" SYSTEM """+xml_files+""">"];
+	
+	master_document    = [ master_document; ..
+		"<!--End Entities-->"; ..
+		"]>"; ..
+		"<book version=""5.0-subset Scilab"" xml:lang=""en"""; ..
+		"      xmlns=""http://docbook.org/ns/docbook"""; ..
+		"      xmlns:xlink=""http://www.w3.org/1999/xlink"""; ..
+		"      xmlns:xi=""http://www.w3.org/2001/XInclude"""; ..
+		"      xmlns:svg=""http://www.w3.org/2000/svg"""; ..
+		"      xmlns:mml=""http://www.w3.org/1998/Math/MathML"""; ..
+		"      xmlns:html=""http://www.w3.org/1999/xhtml"""; ..
+		"      xmlns:db=""http://docbook.org/ns/docbook"">"; ..
+		"  <info>"; ..
+		"    <title>"+my_title+"</title>"; ..
+		"  </info>"; ..
+		"<!--Begin Reference-->"];
+		
+		master_document    = [ master_document; ..
+			"<reference xml:id=''"+category_id+"''>"; ..
+			"<title>"+my_title+"</title>"; ..
+			"&"+basename(xml_files)+";"; ..
+			"</reference>"]
+			
+	
+	master_document    = [ master_document; ..
+	"  <!--End Reference-->"; ..
+	"</book>" ];
+	
+	mputl(master_document,output_filename);
+
+endfunction
 
 function category = title2category(mytitle)
 		
 		category = mytitle;
 		category = strsubst(category , "&"  , "_" );
-		category = strsubst(category , "?"  , "e" );
-		category = strsubst(category , "?"  , "e" );
-		category = strsubst(category , "?"  , "e" );
-		category = strsubst(category , "?"  , "u" );
-		category = strsubst(category , "?"  , "i" );
-		category = strsubst(category , "?"  , "o" );
-		category = strsubst(category , "?"  , "a" );
+		category = strsubst(category , "é"  , "e" );
+		category = strsubst(category , "è"  , "e" );
+		category = strsubst(category , "ê"  , "e" );
+		category = strsubst(category , "ù"  , "u" );
+		category = strsubst(category , "î"  , "i" );
+		category = strsubst(category , "ô"  , "o" );
+		category = strsubst(category , "à"  , "a" );
 		category = strsubst(category , ":"  , ""  );
 		category = strsubst(category , "\"  , "_" );
 		category = strsubst(category , "/"  , "_" );
 		category = strsubst(category , "''" , "_" );
 		category = strsubst(category , "  " , " " );
 		category = strsubst(category , " "  , "_" );
+		category = strsubst(category , "["  , ""  );
+		category = strsubst(category , "]"  , ""  );
 		category = convstr(category,"l");
 		category = "category_"+category;
 		
