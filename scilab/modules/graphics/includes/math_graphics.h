@@ -23,10 +23,6 @@
 #include "machine.h"
 #include "core_math.h"
 
-
-
-
-
 #ifdef _MSC_VER 
 		#include <float.h>
 		#define finite(x) _finite(x) 
@@ -61,14 +57,6 @@
 
 #define linint(x) ((integer) floor(x + 0.5 )) 
 #define inint(x) ((int) floor(x + 0.5 ))  
-
-/* XWindow function arguments can be  int16 or unsigned16 */
-
-#define SCIINT16   short
-#define INT16MAX   SHRT_MAX
-#define INT16MIN   SHRT_MIN
-#define int16max   0x7FFF
-#define uns16max   0xFFFF
 
 #if (defined(sun) && defined(SYSV)) 
 #include <ieeefp.h>
