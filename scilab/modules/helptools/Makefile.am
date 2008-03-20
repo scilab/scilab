@@ -17,10 +17,6 @@ libscihelptools_la_etcdir = $(mydatadir)/etc
 libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
 
-#### helptools : help files ####
-#libscihelptools_la_helpfilesdir = $(mydatadir)
-#libscihelptools_la_helpfiles_DATA = scilab_fr_FR_help.jar scilab_en_US_help.jar
-
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
 libscihelptools_la_bin_DATA = bin/scivalid \
@@ -31,6 +27,7 @@ bin/manrev2sci \
 bin/sci2html \
 bin/sciviewhelp
 
+
 #### helptools : css files ####
 libscihelptools_la_cssdir = $(mydatadir)/css
 libscihelptools_la_css_DATA = css/html.css \
@@ -39,10 +36,13 @@ css/javahelp.css
 
 
 #### helptools : xsl files ####
-libscihelptools_la_xsldir = $(mydatadir)/xsl
-libscihelptools_la_xsl_DATA = xsl/convert/man2manrev.xsl \
-xsl/convert/manrev2sci.xsl \
-xsl/fo/docbook.xsl
+libscihelptools_la_xsl_convertdir = $(mydatadir)/xsl/convert
+libscihelptools_la_xsl_convert_DATA = \
+xsl/convert/man2manrev.xsl \
+xsl/convert/manrev2sci.xsl
+
+libscihelptools_la_xsl_fodir = $(mydatadir)/xsl/fo
+libscihelptools_la_xsl_fo_DATA = xsl/fo/docbook.xsl
 
 
 #### helptools : schema files ####
@@ -52,9 +52,14 @@ libscihelptools_la_schema_DATA = schema/scilab.rnc
 
 #### helptools : doc files ####
 libscihelptools_la_docdir = $(mydatadir)/doc
-libscihelptools_la_doc_DATA = doc/addonprefs.png \
+libscihelptools_la_doc_DATA = \
+doc/addonprefs.png \
+doc/addonprefs.png \
 doc/doc.pdf \
-doc/doc.xml \
+doc/doc.xml
+
+libscihelptools_la_doc_htmldir = $(mydatadir)/doc/html
+libscihelptools_la_doc_html_DATA = \
 doc/html/ch01.html \
 doc/html/ch02.html \
 doc/html/ch03.html \
@@ -63,6 +68,13 @@ doc/html/ch05.html \
 doc/html/ch06.html \
 doc/html/ch07.html \
 doc/html/html.css \
+doc/html/index.html
+
+libscihelptools_la_doc_html_imagesdir = $(mydatadir)/doc/html/images
+libscihelptools_la_doc_html_images_DATA = doc/html/images/draft.png
+
+libscihelptools_la_doc_html_images_calloutsdir = $(mydatadir)/doc/html/images/callouts
+libscihelptools_la_doc_html_images_callouts_DATA = \
 doc/html/images/callouts/1.png \
 doc/html/images/callouts/10.png \
 doc/html/images/callouts/11.png \
@@ -77,10 +89,10 @@ doc/html/images/callouts/5.png \
 doc/html/images/callouts/6.png \
 doc/html/images/callouts/7.png \
 doc/html/images/callouts/8.png \
-doc/html/images/callouts/9.png \
-doc/html/images/draft.png \
-doc/html/index.html \
-doc/html/resources/addonprefs.png
+doc/html/images/callouts/9.png
+
+libscihelptools_la_doc_html_resourcesdir = $(mydatadir)/doc/html/resources
+libscihelptools_la_doc_html_resources_DATA = doc/html/resources/addonprefs.png
 
 
 #### helptools : docbook_xsl files ####
@@ -88,6 +100,22 @@ libscihelptools_la_docbook_xsldir = $(mydatadir)docbook_xsl
 libscihelptools_la_docbook_xsl_DATA = docbook_xsl/AUTHORS \
 docbook_xsl/BUGS \
 docbook_xsl/catalog.xml \
+docbook_xsl/COPYING \
+docbook_xsl/INSTALL \
+docbook_xsl/install.sh \
+docbook_xsl/NEWS \
+docbook_xsl/NEWS.html \
+docbook_xsl/NEWS.xml \
+docbook_xsl/README \
+docbook_xsl/RELEASE-NOTES.html \
+docbook_xsl/RELEASE-NOTES.pdf \
+docbook_xsl/RELEASE-NOTES.txt \
+docbook_xsl/RELEASE-NOTES.xml \
+docbook_xsl/TODO \
+docbook_xsl/VERSION
+
+libscihelptools_la_docbook_xsl_commondir = $(mydatadir)/docbook_xsl/common
+libscihelptools_la_docbook_xsl_common_DATA = \
 docbook_xsl/common/addns.xsl \
 docbook_xsl/common/af.xml \
 docbook_xsl/common/am.xml \
@@ -174,8 +202,10 @@ docbook_xsl/common/utility.xsl \
 docbook_xsl/common/vi.xml \
 docbook_xsl/common/xh.xml \
 docbook_xsl/common/zh_cn.xml \
-docbook_xsl/common/zh_tw.xml \
-docbook_xsl/COPYING \
+docbook_xsl/common/zh_tw.xml
+
+libscihelptools_la_docbook_xsl_docsrcdir = $(mydatadir)/docbook_xsl/docsrc
+libscihelptools_la_docbook_xsl_docsrc_DATA = \
 docbook_xsl/docsrc/authors.xml \
 docbook_xsl/docsrc/copyright.xml \
 docbook_xsl/docsrc/license.xml \
@@ -183,11 +213,20 @@ docbook_xsl/docsrc/page.png \
 docbook_xsl/docsrc/reference.css \
 docbook_xsl/docsrc/reference.xml \
 docbook_xsl/docsrc/reference.xml.included \
-docbook_xsl/docsrc/warranty.xml \
+docbook_xsl/docsrc/warranty.xml
+
+libscihelptools_la_docbook_xsl_eclipsedir = $(mydatadir)/docbook_xsl/eclipse
+libscihelptools_la_docbook_xsl_eclipse_DATA = \
 docbook_xsl/eclipse/eclipse.xsl \
-docbook_xsl/eclipse/profile-eclipse.xsl \
+docbook_xsl/eclipse/profile-eclipse.xsl
+
+libscihelptools_la_docbook_xsl_extensionsdir = $(mydatadir)/docbook_xsl/extensions
+libscihelptools_la_docbook_xsl_extensions_DATA = \
 docbook_xsl/extensions/saxon65.jar \
-docbook_xsl/extensions/xalan27.jar \
+docbook_xsl/extensions/xalan27.jar
+
+libscihelptools_la_docbook_xsl_fodir = $(mydatadir)/docbook_xsl/fo
+libscihelptools_la_docbook_xsl_fo_DATA = \
 docbook_xsl/fo/admon.xsl \
 docbook_xsl/fo/annotations.xsl \
 docbook_xsl/fo/autoidx-kimber.xsl \
@@ -244,7 +283,10 @@ docbook_xsl/fo/titlepage.xsl \
 docbook_xsl/fo/toc.xsl \
 docbook_xsl/fo/verbatim.xsl \
 docbook_xsl/fo/xep.xsl \
-docbook_xsl/fo/xref.xsl \
+docbook_xsl/fo/xref.xsl
+
+libscihelptools_la_docbook_xsl_highlightingdir = $(mydatadir)/docbook_xsl/highlighting
+libscihelptools_la_docbook_xsl_highlighting_DATA = \
 docbook_xsl/highlighting/c-hl.xml \
 docbook_xsl/highlighting/common.xsl \
 docbook_xsl/highlighting/delphi-hl.xml \
@@ -253,7 +295,10 @@ docbook_xsl/highlighting/java-hl.xml \
 docbook_xsl/highlighting/m2-hl.xml \
 docbook_xsl/highlighting/myxml-hl.xml \
 docbook_xsl/highlighting/php-hl.xml \
-docbook_xsl/highlighting/xslthl-config.xml \
+docbook_xsl/highlighting/xslthl-config.xml
+
+libscihelptools_la_docbook_xsl_htmldir = $(mydatadir)/docbook_xsl/html
+libscihelptools_la_docbook_xsl_html_DATA = \
 docbook_xsl/html/admon.xsl \
 docbook_xsl/html/annotations.xsl \
 docbook_xsl/html/autoidx-kimber.xsl \
@@ -314,14 +359,59 @@ docbook_xsl/html/titlepage.templates.xsl \
 docbook_xsl/html/titlepage.xsl \
 docbook_xsl/html/toc.xsl \
 docbook_xsl/html/verbatim.xsl \
-docbook_xsl/html/xref.xsl \
+docbook_xsl/html/xref.xsl
+
+libscihelptools_la_docbook_xsl_htmlhelpdir = $(mydatadir)/docbook_xsl/htmlhelp
+libscihelptools_la_docbook_xsl_htmlhelp_DATA = \
 docbook_xsl/htmlhelp/htmlhelp-common.xsl \
 docbook_xsl/htmlhelp/htmlhelp.xsl \
 docbook_xsl/htmlhelp/profile-htmlhelp-common.xsl \
-docbook_xsl/htmlhelp/profile-htmlhelp.xsl \
+docbook_xsl/htmlhelp/profile-htmlhelp.xsl
+
+libscihelptools_la_docbook_xsl_imagesdir = $(mydatadir)/docbook_xsl/images
+libscihelptools_la_docbook_xsl_images_DATA = \
 docbook_xsl/images/annot-close.png \
 docbook_xsl/images/annot-open.png \
 docbook_xsl/images/blank.png \
+docbook_xsl/images/caution.gif \
+docbook_xsl/images/caution.png \
+docbook_xsl/images/caution.svg \
+docbook_xsl/images/caution.tif \
+docbook_xsl/images/draft.png \
+docbook_xsl/images/home.gif \
+docbook_xsl/images/home.png \
+docbook_xsl/images/home.svg \
+docbook_xsl/images/important.gif \
+docbook_xsl/images/important.png \
+docbook_xsl/images/important.svg \
+docbook_xsl/images/important.tif \
+docbook_xsl/images/next.gif \
+docbook_xsl/images/next.png \
+docbook_xsl/images/next.svg \
+docbook_xsl/images/note.gif \
+docbook_xsl/images/note.png \
+docbook_xsl/images/note.svg \
+docbook_xsl/images/note.tif \
+docbook_xsl/images/prev.gif \
+docbook_xsl/images/prev.png \
+docbook_xsl/images/prev.svg \
+docbook_xsl/images/tip.gif \
+docbook_xsl/images/tip.png \
+docbook_xsl/images/tip.svg \
+docbook_xsl/images/tip.tif \
+docbook_xsl/images/toc-blank.png \
+docbook_xsl/images/toc-minus.png \
+docbook_xsl/images/toc-plus.png \
+docbook_xsl/images/up.gif \
+docbook_xsl/images/up.png \
+docbook_xsl/images/up.svg \
+docbook_xsl/images/warning.gif \
+docbook_xsl/images/warning.png \
+docbook_xsl/images/warning.svg \
+docbook_xsl/images/warning.tif
+
+libscihelptools_la_docbook_xsl_images_calloutsdir = $(mydatadir)/docbook_xsl/images/callouts
+libscihelptools_la_docbook_xsl_images_callouts_DATA = \
 docbook_xsl/images/callouts/1.gif \
 docbook_xsl/images/callouts/1.png \
 docbook_xsl/images/callouts/1.svg \
@@ -381,48 +471,19 @@ docbook_xsl/images/callouts/8.png \
 docbook_xsl/images/callouts/8.svg \
 docbook_xsl/images/callouts/9.gif \
 docbook_xsl/images/callouts/9.png \
-docbook_xsl/images/callouts/9.svg \
-docbook_xsl/images/caution.gif \
-docbook_xsl/images/caution.png \
-docbook_xsl/images/caution.svg \
-docbook_xsl/images/caution.tif \
-docbook_xsl/images/draft.png \
-docbook_xsl/images/home.gif \
-docbook_xsl/images/home.png \
-docbook_xsl/images/home.svg \
-docbook_xsl/images/important.gif \
-docbook_xsl/images/important.png \
-docbook_xsl/images/important.svg \
-docbook_xsl/images/important.tif \
-docbook_xsl/images/next.gif \
-docbook_xsl/images/next.png \
-docbook_xsl/images/next.svg \
-docbook_xsl/images/note.gif \
-docbook_xsl/images/note.png \
-docbook_xsl/images/note.svg \
-docbook_xsl/images/note.tif \
-docbook_xsl/images/prev.gif \
-docbook_xsl/images/prev.png \
-docbook_xsl/images/prev.svg \
-docbook_xsl/images/tip.gif \
-docbook_xsl/images/tip.png \
-docbook_xsl/images/tip.svg \
-docbook_xsl/images/tip.tif \
-docbook_xsl/images/toc-blank.png \
-docbook_xsl/images/toc-minus.png \
-docbook_xsl/images/toc-plus.png \
-docbook_xsl/images/up.gif \
-docbook_xsl/images/up.png \
-docbook_xsl/images/up.svg \
-docbook_xsl/images/warning.gif \
-docbook_xsl/images/warning.png \
-docbook_xsl/images/warning.svg \
-docbook_xsl/images/warning.tif \
-docbook_xsl/INSTALL \
-docbook_xsl/install.sh \
+docbook_xsl/images/callouts/9.svg
+
+libscihelptools_la_docbook_xsl_javahelpdir = $(mydatadir)/docbook_xsl/javahelp
+libscihelptools_la_docbook_xsl_javahelp_DATA = \
 docbook_xsl/javahelp/javahelp.xsl \
-docbook_xsl/javahelp/profile-javahelp.xsl \
-docbook_xsl/lib/lib.xsl \
+docbook_xsl/javahelp/profile-javahelp.xsl
+
+libscihelptools_la_docbook_xsl_libdir = $(mydatadir)/docbook_xsl/lib
+libscihelptools_la_docbook_xsl_lib_DATA = \
+docbook_xsl/lib/lib.xsl
+
+libscihelptools_la_docbook_xsl_manpagesdir = $(mydatadir)/docbook_xsl/manpages
+libscihelptools_la_docbook_xsl_manpages_DATA = \
 docbook_xsl/manpages/block.xsl \
 docbook_xsl/manpages/ChangeLog.20020917 \
 docbook_xsl/manpages/charmap.groff.xsl \
@@ -439,10 +500,10 @@ docbook_xsl/manpages/profile-docbook.xsl \
 docbook_xsl/manpages/refentry.xsl \
 docbook_xsl/manpages/synop.xsl \
 docbook_xsl/manpages/table.xsl \
-docbook_xsl/manpages/utility.xsl \
-docbook_xsl/NEWS \
-docbook_xsl/NEWS.html \
-docbook_xsl/NEWS.xml \
+docbook_xsl/manpages/utility.xsl
+
+libscihelptools_la_docbook_xsl_paramsdir = $(mydatadir)/docbook_xsl/params
+libscihelptools_la_docbook_xsl_params_DATA = \
 docbook_xsl/params/abstract.notitle.enabled.xml \
 docbook_xsl/params/abstract.properties.xml \
 docbook_xsl/params/abstract.title.properties.xml \
@@ -1083,16 +1144,17 @@ docbook_xsl/params/xref.label-page.separator.xml \
 docbook_xsl/params/xref.label-title.separator.xml \
 docbook_xsl/params/xref.properties.xml \
 docbook_xsl/params/xref.title-page.separator.xml \
-docbook_xsl/params/xref.with.number.and.title.xml \
+docbook_xsl/params/xref.with.number.and.title.xml
+
+libscihelptools_la_docbook_xsl_profilingdir = $(mydatadir)/docbook_xsl/profiling
+libscihelptools_la_docbook_xsl_profiling_DATA = \
 docbook_xsl/profiling/profile-mode.xsl \
 docbook_xsl/profiling/profile.xsl \
 docbook_xsl/profiling/strip-attributes.xsl \
-docbook_xsl/profiling/xsl2profile.xsl \
-docbook_xsl/README \
-docbook_xsl/RELEASE-NOTES.html \
-docbook_xsl/RELEASE-NOTES.pdf \
-docbook_xsl/RELEASE-NOTES.txt \
-docbook_xsl/RELEASE-NOTES.xml \
+docbook_xsl/profiling/xsl2profile.xsl
+
+libscihelptools_la_docbook_xsl_roundtripdir = $(mydatadir)/docbook_xsl/roundtrip
+libscihelptools_la_docbook_xsl_roundtrip_DATA = \
 docbook_xsl/roundtrip/blocks-spec.xml \
 docbook_xsl/roundtrip/blocks2dbk.dtd \
 docbook_xsl/roundtrip/blocks2dbk.xsl \
@@ -1119,7 +1181,10 @@ docbook_xsl/roundtrip/wordml-final.xsl \
 docbook_xsl/roundtrip/wordml-normalise.xsl \
 docbook_xsl/roundtrip/wordml-sections.xsl \
 docbook_xsl/roundtrip/wordml.xsl \
-docbook_xsl/roundtrip/wordml2normalise.xsl \
+docbook_xsl/roundtrip/wordml2normalise.xsl
+
+libscihelptools_la_docbook_xsl_slides_browserdir = $(mydatadir)/docbook_xsl/slides/browser
+libscihelptools_la_docbook_xsl_slides_browser_DATA = \
 docbook_xsl/slides/browser/CTOCWidget.js \
 docbook_xsl/slides/browser/overlay.js \
 docbook_xsl/slides/browser/slides-default.css \
@@ -1137,12 +1202,28 @@ docbook_xsl/slides/browser/xbLibrary.js \
 docbook_xsl/slides/browser/xbStyle-css.js \
 docbook_xsl/slides/browser/xbStyle-nn4.js \
 docbook_xsl/slides/browser/xbStyle-not-supported.js \
-docbook_xsl/slides/browser/xbStyle.js \
+docbook_xsl/slides/browser/xbStyle.js
+
+libscihelptools_la_docbook_xsl_slides_fodir = $(mydatadir)/docbook_xsl/slides/fo
+libscihelptools_la_docbook_xsl_slides_fo_DATA = \
 docbook_xsl/slides/fo/param.xml \
 docbook_xsl/slides/fo/param.xsl \
 docbook_xsl/slides/fo/plain-titlepage.xml \
 docbook_xsl/slides/fo/plain-titlepage.xsl \
-docbook_xsl/slides/fo/plain.xsl \
+docbook_xsl/slides/fo/plain.xsl
+
+libscihelptools_la_docbook_xsl_slides_graphicsdir = $(mydatadir)/docbook_xsl/slides/graphics
+libscihelptools_la_docbook_xsl_slides_graphics_DATA = \
+docbook_xsl/slides/graphics/arrow.gif \
+docbook_xsl/slides/graphics/blank.gif \
+docbook_xsl/slides/graphics/blank.png \
+docbook_xsl/slides/graphics/hidetoc.gif \
+docbook_xsl/slides/graphics/plus.gif \
+docbook_xsl/slides/graphics/pointer.png \
+docbook_xsl/slides/graphics/showtoc.gif
+
+libscihelptools_la_docbook_xsl_slides_graphics_activedir = $(mydatadir)/docbook_xsl/slides/graphics/active
+libscihelptools_la_docbook_xsl_slides_graphics_active_DATA = \
 docbook_xsl/slides/graphics/active/arr-next.png \
 docbook_xsl/slides/graphics/active/arr-prev.png \
 docbook_xsl/slides/graphics/active/but-fforward.png \
@@ -1157,11 +1238,10 @@ docbook_xsl/slides/graphics/active/nav-toc.png \
 docbook_xsl/slides/graphics/active/nav-up.png \
 docbook_xsl/slides/graphics/active/w3c-next.png \
 docbook_xsl/slides/graphics/active/w3c-prev.png \
-docbook_xsl/slides/graphics/active/w3c-toc.png \
-docbook_xsl/slides/graphics/arrow.gif \
-docbook_xsl/slides/graphics/blank.gif \
-docbook_xsl/slides/graphics/blank.png \
-docbook_xsl/slides/graphics/hidetoc.gif \
+docbook_xsl/slides/graphics/active/w3c-toc.png
+
+libscihelptools_la_docbook_xsl_slides_graphics_inactivedir = $(mydatadir)/docbook_xsl/slides/graphics/inactive
+libscihelptools_la_docbook_xsl_slides_graphics_inactive_DATA = \
 docbook_xsl/slides/graphics/inactive/but-fforward.png \
 docbook_xsl/slides/graphics/inactive/but-info.png \
 docbook_xsl/slides/graphics/inactive/but-next.png \
@@ -1174,13 +1254,16 @@ docbook_xsl/slides/graphics/inactive/nav-toc.png \
 docbook_xsl/slides/graphics/inactive/nav-up.png \
 docbook_xsl/slides/graphics/inactive/w3c-next.png \
 docbook_xsl/slides/graphics/inactive/w3c-prev.png \
-docbook_xsl/slides/graphics/inactive/w3c-toc.png \
-docbook_xsl/slides/graphics/plus.gif \
-docbook_xsl/slides/graphics/pointer.png \
-docbook_xsl/slides/graphics/showtoc.gif \
+docbook_xsl/slides/graphics/inactive/w3c-toc.png
+
+libscihelptools_la_docbook_xsl_slides_graphics_tocdir = $(mydatadir)/docbook_xsl/slides/graphics/toc
+libscihelptools_la_docbook_xsl_slides_graphics_toc_DATA = \
 docbook_xsl/slides/graphics/toc/bullet.png \
 docbook_xsl/slides/graphics/toc/closed.png \
-docbook_xsl/slides/graphics/toc/open.png \
+docbook_xsl/slides/graphics/toc/open.png
+
+libscihelptools_la_docbook_xsl_slides_htmldir = $(mydatadir)/docbook_xsl/slides/html
+libscihelptools_la_docbook_xsl_slides_html_DATA = \
 docbook_xsl/slides/html/css.xsl \
 docbook_xsl/slides/html/default.xsl \
 docbook_xsl/slides/html/flat.xsl \
@@ -1193,9 +1276,18 @@ docbook_xsl/slides/html/plain.xsl \
 docbook_xsl/slides/html/slides-common.xsl \
 docbook_xsl/slides/html/tables.xsl \
 docbook_xsl/slides/html/vslides.xsl \
-docbook_xsl/slides/html/w3c.xsl \
-docbook_xsl/slides/htmlhelp/htmlhelp.xsl \
-docbook_xsl/slides/keynote/default.xsl \
+docbook_xsl/slides/html/w3c.xsl
+
+libscihelptools_la_docbook_xsl_slides_htmlhelpdir = $(mydatadir)/docbook_xsl/slides/htmlhelp
+libscihelptools_la_docbook_xsl_slides_htmlhelp_DATA = \
+docbook_xsl/slides/htmlhelp/htmlhelp.xsl
+
+libscihelptools_la_docbook_xsl_slides_keynotedir = $(mydatadir)/docbook_xsl/slides/keynote
+libscihelptools_la_docbook_xsl_slides_keynote_DATA = \
+docbook_xsl/slides/keynote/default.xsl
+
+libscihelptools_la_docbook_xsl_slides_keynote_xsltsldir = $(mydatadir)/docbook_xsl/slides/keynote/xsltsl
+libscihelptools_la_docbook_xsl_slides_keynote_xsltsl_DATA = \
 docbook_xsl/slides/keynote/xsltsl/cmp.xsl \
 docbook_xsl/slides/keynote/xsltsl/date-time.xsl \
 docbook_xsl/slides/keynote/xsltsl/example.xsl \
@@ -1205,8 +1297,14 @@ docbook_xsl/slides/keynote/xsltsl/node.xsl \
 docbook_xsl/slides/keynote/xsltsl/stdlib.xsl \
 docbook_xsl/slides/keynote/xsltsl/string.xsl \
 docbook_xsl/slides/keynote/xsltsl/svg.xsl \
-docbook_xsl/slides/keynote/xsltsl/uri.xsl \
-docbook_xsl/slides/svg/default.xsl \
+docbook_xsl/slides/keynote/xsltsl/uri.xsl
+
+libscihelptools_la_docbook_xsl_slides_svgdir = $(mydatadir)/docbook_xsl/slides/svg
+libscihelptools_la_docbook_xsl_slides_svg_DATA = \
+docbook_xsl/slides/svg/default.xsl
+
+libscihelptools_la_docbook_xsl_slides_xhtmldir = $(mydatadir)/docbook_xsl/slides/xhtml
+libscihelptools_la_docbook_xsl_slides_xhtml_DATA = \
 docbook_xsl/slides/xhtml/css.xsl \
 docbook_xsl/slides/xhtml/default.xsl \
 docbook_xsl/slides/xhtml/flat.xsl \
@@ -1218,15 +1316,25 @@ docbook_xsl/slides/xhtml/plain.xsl \
 docbook_xsl/slides/xhtml/slides-common.xsl \
 docbook_xsl/slides/xhtml/tables.xsl \
 docbook_xsl/slides/xhtml/vslides.xsl \
-docbook_xsl/slides/xhtml/w3c.xsl \
+docbook_xsl/slides/xhtml/w3c.xsl
+
+libscihelptools_la_docbook_xsl_templatedir = $(mydatadir)/docbook_xsl/template
+libscihelptools_la_docbook_xsl_template_DATA = \
 docbook_xsl/template/titlepage.xml \
-docbook_xsl/template/titlepage.xsl \
-docbook_xsl/TODO \
-docbook_xsl/tools/bin/docbook-xsl-update \
+docbook_xsl/template/titlepage.xsl
+
+libscihelptools_la_docbook_xsl_tools_bindir = $(mydatadir)/docbook_xsl/tools/bin
+libscihelptools_la_docbook_xsl_tools_bin_DATA = \
+docbook_xsl/tools/bin/docbook-xsl-update
+
+libscihelptools_la_docbook_xsl_tools_makedir = $(mydatadir)/docbook_xsl/tools/make
+libscihelptools_la_docbook_xsl_tools_make_DATA = \
 docbook_xsl/tools/make/Makefile.combine \
 docbook_xsl/tools/make/Makefile.DocBook \
-docbook_xsl/tools/make/Makefile.docParam \
-docbook_xsl/VERSION \
+docbook_xsl/tools/make/Makefile.docParam
+
+libscihelptools_la_docbook_xsl_websitedir = $(mydatadir)/docbook_xsl/website
+libscihelptools_la_docbook_xsl_website_DATA = \
 docbook_xsl/website/autolayout.xsl \
 docbook_xsl/website/chunk-common.xsl \
 docbook_xsl/website/chunk-tabular.xsl \
@@ -1243,7 +1351,10 @@ docbook_xsl/website/toc.xsl \
 docbook_xsl/website/website-common.xsl \
 docbook_xsl/website/website-targets.xsl \
 docbook_xsl/website/website.xsl \
-docbook_xsl/website/xbel.xsl \
+docbook_xsl/website/xbel.xsl
+
+libscihelptools_la_docbook_xsl_xhtmldir = $(mydatadir)/docbook_xsl/xhtml
+libscihelptools_la_docbook_xsl_xhtml_DATA = \
 docbook_xsl/xhtml/admon.xsl \
 docbook_xsl/xhtml/annotations.xsl \
 docbook_xsl/xhtml/autoidx-kimber.xsl \
