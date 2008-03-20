@@ -1,0 +1,8 @@
+LIBRARY    libshell.dll
+
+
+EXPORTS
+;
+;shell
+ismenu
+
