@@ -34,7 +34,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	private static final long serialVersionUID = 5306766011092074961L;
 	
 	private String jarExtension = "_help.jar";
-	private String mainJarPath = System.getenv("SCI") + "/modules/helptools/scilab_";
+	private String mainJarPath = System.getenv("SCI") + "/modules/helptools/jar/scilab_";
 	private String defaultLanguage = "en_US";
     private HelpSet helpSet;
 
