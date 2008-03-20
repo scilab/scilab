@@ -405,7 +405,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 					
 					if nb_dir > 1 then
 						if displaydone == 0 then
-							printf(_("\nBuilding the manual file ["+output_format+"]\n"));
+							printf(_("\nBuilding the manual file ["+output_format+"]   (Please wait building ... this can take up to 10 minutes)\n"));
 							displaydone = 1;
 						end
 						printf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
