@@ -14,6 +14,7 @@
 #define __TERMINATEGUI_H__
 #include "machine.h"
 #include "CallMainWindow.h"
+#include "scilabmode.h"
 
 BOOL TerminateGUI(void);
 
