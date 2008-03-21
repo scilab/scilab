@@ -101,6 +101,8 @@ public class Scilab {
 
 		if (mode == 2) { /* Mode GUI */
 
+			// Create a user config file if not already exists
+			ConfigManager.createUserCopy();
 
 			try {
 				mainView = ScilabWindow.createWindow();
@@ -148,8 +150,6 @@ public class Scilab {
 			consoleTab.addMember(ScilabConsole.getConsole());
 			mainView.addTab(consoleTab);
 			mainView.draw();
-			
-			ConfigManager.createUserCopy();
 		} 
 
 	}
