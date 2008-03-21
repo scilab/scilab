@@ -28,7 +28,15 @@ BOOL WindowsQueryRegistry(char *ParamIn1,char *ParamIn2,char *ParamIn3,char *Par
 
 	hKeyToOpen = GetHkeyrootFromString(ParamIn1);
 	
-	if (IsWow64())
+#ifdef _WIN64 /* Scilab x64 on x64 windows */
+	OpensKeyOptions = KEY_QUERY_VALUE | KEY_WOW64_64KEY;
+	if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS) 
+	{
+		OpensKeyOptions = KEY_QUERY_VALUE | KEY_WOW64_32KEY;
+		if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS) return FALSE;
+	}
+#else
+	if (IsWow64()) /* Scilab 32 bits on x64 windows */
 	{
 		OpensKeyOptions = KEY_QUERY_VALUE | KEY_WOW64_64KEY;
 		if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS) 
@@ -37,11 +45,12 @@ BOOL WindowsQueryRegistry(char *ParamIn1,char *ParamIn2,char *ParamIn3,char *Par
 			if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS) return FALSE;
 		}
 	}
-	else
+	else /* Scilab 32 bits on windows 32 bits */
 	{
 		OpensKeyOptions = KEY_QUERY_VALUE;
 		if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS) return FALSE;
 	}
+#endif
 
 	if ( RegQueryValueEx(key, ParamIn3, NULL, &type, NULL, NULL) == ERROR_SUCCESS )
 	{
@@ -66,6 +75,7 @@ BOOL WindowsQueryRegistry(char *ParamIn1,char *ParamIn2,char *ParamIn3,char *Par
 			}
 		}
 	}
+
 	RegCloseKey(key);
 
 	return bOK;
@@ -81,7 +91,15 @@ BOOL WindowsQueryRegistryList(char *ParamIn1,char *ParamIn2,int dimMax,char **Li
 
 	hKeyToOpen =GetHkeyrootFromString(ParamIn1);
 
-	if (IsWow64())
+#ifdef _WIN64 /* Scilab x64 on x64 windows */
+	OpensKeyOptions = KEY_READ  | KEY_WOW64_64KEY;
+	if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS ) 
+	{
+		OpensKeyOptions = KEY_READ  | KEY_WOW64_32KEY;
+		if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS ) return FALSE;
+	}
+#else
+	if (IsWow64())  /* Scilab 32 bits on x64 windows */
 	{
 		OpensKeyOptions = KEY_READ  | KEY_WOW64_64KEY;
 		if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS ) 
@@ -90,11 +108,13 @@ BOOL WindowsQueryRegistryList(char *ParamIn1,char *ParamIn2,int dimMax,char **Li
 			if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS ) return FALSE;
 		}
 	}
-	else
+	else /* Scilab 32 bits on windows 32 bits */
 	{
 		OpensKeyOptions = KEY_READ ;
 		if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS ) return FALSE;
 	}
+
+#endif
 
 	for (i=0; i<dimMax; i++) 
 	{ 
@@ -168,7 +188,15 @@ BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,in
 
 	hKeyToOpen =GetHkeyrootFromString(ParamIn1);
 
-	if (IsWow64())
+#ifdef _WIN64 /* Scilab x64 on x64 windows */
+	OpensKeyOptions = KEY_READ  | KEY_WOW64_64KEY;
+	if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS ) 
+	{
+		OpensKeyOptions = KEY_READ  | KEY_WOW64_32KEY;
+		if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS ) return FALSE;
+	}
+#else
+	if (IsWow64()) /* Scilab 32 bits on x64 windows */
 	{
 		OpensKeyOptions = KEY_READ  | KEY_WOW64_64KEY;
 		if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS ) 
@@ -177,12 +205,12 @@ BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,in
 			if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS ) return FALSE;
 		}
 	}
-	else
+	else /* Scilab 32 bits on windows 32 bits */
 	{
 		OpensKeyOptions = KEY_READ ;
 		if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS ) return FALSE;
 	}
-
+#endif
 	retCode = RegQueryInfoKey(
 			hTestKey,                // key handle 
 			achClass,                // buffer for class name 
