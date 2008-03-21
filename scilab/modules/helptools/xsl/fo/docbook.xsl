@@ -6,7 +6,20 @@
                 xmlns:ah="http://www.antennahouse.com/"
                 version='1.0'>
 
-<xsl:import href="../../docbook_xsl/fo/docbook.xsl"/>
+<xsl:import href="xxe-config:docbook5/xsl/fo/docbook.xsl"/>
+
+<!-- =========================================================================
+     Customize the look of the output
+========================================================================== -->
+
+<xsl:attribute-set name="xref.properties">
+  <xsl:attribute name="color">navy</xsl:attribute>
+  <xsl:attribute name="text-decoration">underline</xsl:attribute>
+</xsl:attribute-set>
+
+<!-- =========================================================================
+     Fix bugs in the rendering of the HTML tables
+========================================================================== -->
 
 <!--
 
