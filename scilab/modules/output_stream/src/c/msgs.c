@@ -731,7 +731,7 @@ static int msg_30(integer *n, integer *ierr)
 /*--------------------------------------------------------------------------*/
 static int msg_31(integer *n, integer *ierr)
 {
-         /*int cerr=-1;*/
+    /*int cerr=-1;*/
 	sciprint(_("Warning: stack problem..., cleared.\n"));
 	/*Error(cerr);*/
 	return 0;
@@ -766,6 +766,7 @@ static int msg_33(integer *n, integer *ierr)
 
 	localbuf=(char*)MALLOC(sizeof(char)*(nreal +1));
 	strncpy(localbuf,BUF,nreal);
+	localbuf[nreal]='\0';
 	sciprint(_("Warning :\n"));
 	sciprint(_("The identifier : %s\n"),localbuf);
 	localbuf[nlgh]='\0';
