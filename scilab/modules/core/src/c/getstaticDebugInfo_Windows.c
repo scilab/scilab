@@ -58,6 +58,17 @@ char **getStaticDebugInfo_Windows(int *sizeArray)
 	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
 	if (str_info)
 	{
+		#ifdef _WIN64
+		sprintf(str_info,_("Compiler Architecture : %s"),"X64");
+		#else
+		sprintf(str_info,_("Compiler Architecture : %s"),"x86");
+		#endif
+		outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+	if (str_info)
+	{
 
 	#ifdef __INTEL__
 		sprintf(str_info,_("Compiled with %s"),"Intel compiler");
