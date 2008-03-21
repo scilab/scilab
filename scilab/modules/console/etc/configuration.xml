@@ -30,6 +30,9 @@
                 <FontStyle useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
                 <FontSize useCache="true" value="13"/>
 
+                <MainWindowPosition useCache="true" x="0" y="0"/>
+                <MainWindowSize useCache="true" width="650" height="550"/>
+
 		<!-- Core part -->
 		<OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
 		<InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>

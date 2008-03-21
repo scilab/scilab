@@ -130,15 +130,15 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
 	src/cpp/CallJxgetmouse.cpp src/cpp/CallFileChooser.cpp \
 	src/cpp/CallFigure.cpp src/cpp/CallMessageBox.cpp \
-	src/cpp/CallWaitBar.cpp src/cpp/CallHelpBrowser.cpp \
-	src/cpp/PushButton.cpp src/cpp/EditBox.cpp src/cpp/Label.cpp \
-	src/cpp/CheckBox.cpp src/cpp/RadioButton.cpp \
-	src/cpp/Slider.cpp src/cpp/PopupMenu.cpp \
-	src/cpp/ContextMenu.cpp src/cpp/ListBox.cpp src/cpp/Frame.cpp \
-	src/cpp/Toolbar.cpp src/cpp/SetUimenuLabel.cpp \
-	src/cpp/GetUimenuLabel.cpp src/cpp/GetUicontrolStyle.cpp \
-	src/cpp/SetUicontrolString.cpp src/cpp/GetUicontrolString.cpp \
-	src/cpp/SetUicontrolParent.cpp \
+	src/cpp/CallMainWindow.cpp src/cpp/CallWaitBar.cpp \
+	src/cpp/CallHelpBrowser.cpp src/cpp/PushButton.cpp \
+	src/cpp/EditBox.cpp src/cpp/Label.cpp src/cpp/CheckBox.cpp \
+	src/cpp/RadioButton.cpp src/cpp/Slider.cpp \
+	src/cpp/PopupMenu.cpp src/cpp/ContextMenu.cpp \
+	src/cpp/ListBox.cpp src/cpp/Frame.cpp src/cpp/Toolbar.cpp \
+	src/cpp/SetUimenuLabel.cpp src/cpp/GetUimenuLabel.cpp \
+	src/cpp/GetUicontrolStyle.cpp src/cpp/SetUicontrolString.cpp \
+	src/cpp/GetUicontrolString.cpp src/cpp/SetUicontrolParent.cpp \
 	src/cpp/SetUicontrolBackgroundColor.cpp \
 	src/cpp/GetUicontrolBackgroundColor.cpp \
 	src/cpp/SetUiobjectForegroundColor.cpp \
@@ -224,6 +224,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-CallFileChooser.lo \
 @GUI_TRUE@	libscigui_la-CallFigure.lo \
 @GUI_TRUE@	libscigui_la-CallMessageBox.lo \
+@GUI_TRUE@	libscigui_la-CallMainWindow.lo \
 @GUI_TRUE@	libscigui_la-CallWaitBar.lo \
 @GUI_TRUE@	libscigui_la-CallHelpBrowser.lo \
 @GUI_TRUE@	libscigui_la-PushButton.lo libscigui_la-EditBox.lo \
@@ -588,6 +589,7 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/CallFileChooser.cpp \
 @GUI_TRUE@src/cpp/CallFigure.cpp \
 @GUI_TRUE@src/cpp/CallMessageBox.cpp \
+@GUI_TRUE@src/cpp/CallMainWindow.cpp \
 @GUI_TRUE@src/cpp/CallWaitBar.cpp \
 @GUI_TRUE@src/cpp/CallHelpBrowser.cpp \
 @GUI_TRUE@src/cpp/PushButton.cpp \
@@ -918,6 +920,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallHelpBrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJxclick.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJxgetmouse.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallMainWindow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallMessageBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallScilabBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallWaitBar.Plo@am__quote@
@@ -1444,6 +1447,13 @@ libscigui_la-CallMessageBox.lo: src/cpp/CallMessageBox.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallMessageBox.cpp' object='libscigui_la-CallMessageBox.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallMessageBox.lo `test -f 'src/cpp/CallMessageBox.cpp' || echo '$(srcdir)/'`src/cpp/CallMessageBox.cpp
+
+libscigui_la-CallMainWindow.lo: src/cpp/CallMainWindow.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallMainWindow.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallMainWindow.Tpo -c -o libscigui_la-CallMainWindow.lo `test -f 'src/cpp/CallMainWindow.cpp' || echo '$(srcdir)/'`src/cpp/CallMainWindow.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-CallMainWindow.Tpo $(DEPDIR)/libscigui_la-CallMainWindow.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallMainWindow.cpp' object='libscigui_la-CallMainWindow.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallMainWindow.lo `test -f 'src/cpp/CallMainWindow.cpp' || echo '$(srcdir)/'`src/cpp/CallMainWindow.cpp
 
 libscigui_la-CallWaitBar.lo: src/cpp/CallWaitBar.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallWaitBar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallWaitBar.Tpo -c -o libscigui_la-CallWaitBar.lo `test -f 'src/cpp/CallWaitBar.cpp' || echo '$(srcdir)/'`src/cpp/CallWaitBar.cpp

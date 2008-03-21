@@ -235,6 +235,7 @@ voiddestroyWaitBarjintID=NULL;
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
 voidlaunchHelpBrowserjobjectArrayjstringID=NULL; 
 jbooleansearchKeywordjobjectArrayjstringjstringID=NULL; 
+voidsaveMainWindowSettingsID=NULL; 
 
 
 }
@@ -393,6 +394,7 @@ voiddestroyWaitBarjintID=NULL;
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
 voidlaunchHelpBrowserjobjectArrayjstringID=NULL; 
 jbooleansearchKeywordjobjectArrayjstringjstringID=NULL; 
+voidsaveMainWindowSettingsID=NULL; 
 
 
 }
@@ -3920,6 +3922,27 @@ curEnv->DeleteLocalRef(helps_);
 
 return (res == JNI_TRUE);
 
+}
+
+void CallScilabBridge::saveMainWindowSettings (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsaveMainWindowSettingsID = curEnv->GetStaticMethodID(cls, "saveMainWindowSettings", "()V" ) ;
+if (voidsaveMainWindowSettingsID == NULL) {
+std::cerr << "Could not access to the method " << "saveMainWindowSettings" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsaveMainWindowSettingsID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

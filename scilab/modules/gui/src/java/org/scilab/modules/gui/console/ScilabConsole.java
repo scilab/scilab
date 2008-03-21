@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2007-2008 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * 
  * This file must be used under the terms of the CeCILL.
@@ -13,6 +13,7 @@
 
 package org.scilab.modules.gui.console;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
@@ -256,4 +257,35 @@ public class ScilabConsole extends ScilabDockable implements Console {
 		return ScilabBridge.getFont(this);
 	}
 
+	/**
+	 * Get the Foreground Color of the Console
+	 * @return the Foreground Color
+	 */
+	public Color getForeground() {
+		return ScilabBridge.getForeground(this);
+	}
+	
+	/**
+	 * Get the Background Color of the Console
+	 * @return the Background Color
+	 */
+	public Color getBackground() {
+		return ScilabBridge.getBackground(this);
+	}
+
+	/**
+	 * Set the Foreground Color of the Console
+	 * @param color the Foreground Color
+	 */
+	public void setForeground(Color color) {
+		ScilabBridge.setForeground(this, color);
+	}
+	
+	/**
+	 * Set the Background Color of the Console
+	 * @param color the Background Color
+	 */
+	public void setBackground(Color color) {
+		ScilabBridge.setBackground(this, color);
+	}
 }

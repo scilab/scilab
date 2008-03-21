@@ -37,6 +37,7 @@ src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallFileChooser.cpp \
 src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
+src/cpp/CallMainWindow.cpp \
 src/cpp/CallWaitBar.cpp \
 src/cpp/CallHelpBrowser.cpp \
 src/cpp/PushButton.cpp \

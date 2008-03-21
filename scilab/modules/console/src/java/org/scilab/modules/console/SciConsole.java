@@ -13,6 +13,7 @@
 package org.scilab.modules.console;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -480,8 +481,8 @@ public abstract class SciConsole extends JPanel {
 				config.getOutputViewStyledDocument().remove(0, config.getOutputViewStyledDocument().getLength());
 				config.getOutputView().append(txt);
 			} catch (BadLocationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Could not change the Console Font.");
+				return;
 			}
 			
 			/* Update the prompt */
@@ -501,4 +502,64 @@ public abstract class SciConsole extends JPanel {
 			return null;
 		}
 	}
+	
+	/**
+	 * Get the Foreground Color of the Console
+	 * @return the Foreground Color
+	 */
+	public Color getForeground() {
+		if (sciConsole != null) {
+			return sciConsole.getForeground();
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Get the Background Color of the Console
+	 * @return the Background Color
+	 */
+	public Color getBackground() {
+		if (sciConsole != null) {
+			return sciConsole.getBackground();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Set the Foreground Color of the Console
+	 * @param color the Foreground Color
+	 */
+	public void setForeground(Color color) {
+		if (sciConsole != null) {
+			sciConsole.setForeground(color);
+			
+			/* Have to update the output view contents with new Foreground */
+			String txt;
+			try {
+				txt = config.getOutputViewStyledDocument().getText(0, config.getOutputViewStyledDocument().getLength());
+				config.getOutputViewStyledDocument().remove(0, config.getOutputViewStyledDocument().getLength());
+				config.getOutputView().append(txt);
+			} catch (BadLocationException e) {
+				System.out.println("Could not change the Console Foreground.");
+				return;
+			}
+			
+			/* Update the prompt */
+			((JLabel) ((SciPromptView) config.getPromptView()).getPromptUI()).setForeground(color);
+			config.getPromptView().updatePrompt();
+		}
+	}
+	
+	/**
+	 * Set the Background Color of the Console
+	 * @param color the Background Color
+	 */
+	public void setBackground(Color color) {
+		if (sciConsole != null) {
+			sciConsole.setBackground(color);
+		}
+	}
+
 }

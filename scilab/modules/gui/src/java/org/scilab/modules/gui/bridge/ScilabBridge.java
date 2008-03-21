@@ -25,6 +25,9 @@ import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBoxBridge;
 import org.scilab.modules.gui.checkbox.SimpleCheckBox;
+import org.scilab.modules.gui.colorchooser.ColorChooser;
+import org.scilab.modules.gui.colorchooser.ScilabColorChooserBridge;
+import org.scilab.modules.gui.colorchooser.SimpleColorChooser;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.console.ScilabConsoleBridge;
 import org.scilab.modules.gui.console.SimpleConsole;
@@ -987,6 +990,42 @@ public class ScilabBridge {
 	 */
 	public static Font getFont(Console console) {
 		return ScilabConsoleBridge.getFont(console);
+	}
+
+	/**
+	 * Get the Foreground Color of the Console
+	 * @param console the console
+	 * @return the Foreground Color
+	 */
+	public static Color getForeground(Console console) {
+		return ScilabConsoleBridge.getForeground(console);
+	}
+	
+	/**
+	 * Get the Background Color of the Console
+	 * @param console the console
+	 * @return the Background Color
+	 */
+	public static Color getBackground(Console console) {
+		return ScilabConsoleBridge.getBackground(console);
+	}
+
+	/**
+	 * Set the Foreground Color of the Console
+	 * @param console the console
+	 * @param color the Foreground Color
+	 */
+	public static void setForeground(Console console, Color color) {
+		ScilabConsoleBridge.setForeground(console, color);
+	}
+	
+	/**
+	 * Set the Background Color of the Console
+	 * @param console the console
+	 * @param color the Background Color
+	 */
+	public static void setBackground(Console console, Color color) {
+		ScilabConsoleBridge.setBackground(console, color);
 	}
 
 	/*****************/
@@ -4251,6 +4290,28 @@ public class ScilabBridge {
 	 */
 	public static Font getSelectedFont(FontChooser fontChooser) {
 		return ScilabFontChooserBridge.getSelectedFont(fontChooser);
+	}
+
+	/***********************/
+	/* ColorChooser Bridge */
+	/***********************/
+
+	/**
+	 * Create a new ColorChooser
+	 * @param color the default color
+	 * @return the created ColorChooser
+	 */
+	public static SimpleColorChooser createColorChooser(Color color) {
+		return ScilabColorChooserBridge.createColorChooser(color);
+	}
+	
+	/** 
+	 * Retrieve the selected color, or null 
+	 * @param colorChooser the ColorChooser
+	 * @return the selected color
+	 */
+	public static Color getSelectedColor(ColorChooser colorChooser) {
+		return ScilabColorChooserBridge.getSelectedColor(colorChooser);
 	}
 
 }

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2007-2008 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * 
  * This file must be used under the terms of the CeCILL.
@@ -13,6 +13,7 @@
 
 package org.scilab.modules.gui.console;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.dockable.Dockable;
@@ -113,4 +114,29 @@ public interface Console extends Dockable {
 	 * @return the font
 	 */
 	Font getFont();
+	
+	/**
+	 * Get the Foreground Color of the Console
+	 * @return the Foreground Color
+	 */
+	Color getForeground();
+	
+	/**
+	 * Get the Background Color of the Console
+	 * @return the Background Color
+	 */
+	Color getBackground();
+
+	/**
+	 * Set the Foreground Color of the Console
+	 * @param color the Foreground Color
+	 */
+	void setForeground(Color color);
+	
+	/**
+	 * Set the Background Color of the Console
+	 * @param color the Background Color
+	 */
+	void setBackground(Color color);
+
 }

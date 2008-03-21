@@ -186,6 +186,7 @@ jmethodID voiddestroyWaitBarjintID; // cache method id
 jmethodID voidsetWaitBarIndeterminateModejintjbooleanID; // cache method id
 jmethodID voidlaunchHelpBrowserjobjectArrayjstringID; // cache method id
 jmethodID jbooleansearchKeywordjobjectArrayjstringjstringID; // cache method id
+jmethodID voidsaveMainWindowSettingsID; // cache method id
 
 
 /**
@@ -492,6 +493,8 @@ static void setWaitBarIndeterminateMode(JavaVM * jvm_, long objID, bool status);
 static void launchHelpBrowser(JavaVM * jvm_, char ** helps, int helpsSize, char * language);
 
 static bool searchKeyword(JavaVM * jvm_, char ** helps, int helpsSize, char * keyword, char * language);
+
+static void saveMainWindowSettings(JavaVM * jvm_);
 
 
                         /**

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2007-2008 - INRIA - Vincent Couvert
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,6 +11,7 @@
  */
 package org.scilab.modules.gui.console;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
@@ -254,5 +255,39 @@ public class ScilabConsoleBridge {
 		return console.getAsSimpleConsole().getFont();
 	}
 
+	/**
+	 * Get the Foreground Color of the Console
+	 * @param console the console
+	 * @return the Foreground Color
+	 */
+	public static Color getForeground(Console console) {
+		return console.getAsSimpleConsole().getForeground();
+	}
+	
+	/**
+	 * Get the Background Color of the Console
+	 * @param console the console
+	 * @return the Background Color
+	 */
+	public static Color getBackground(Console console) {
+		return console.getAsSimpleConsole().getBackground();
+	}
 
+	/**
+	 * Set the Foreground Color of the Console
+	 * @param console the console
+	 * @param color the Foreground Color
+	 */
+	public static void setForeground(Console console, Color color) {
+		console.getAsSimpleConsole().setForeground(color);
+	}
+	
+	/**
+	 * Set the Background Color of the Console
+	 * @param console the console
+	 * @param color the Background Color
+	 */
+	public static void setBackground(Console console, Color color) {
+		console.getAsSimpleConsole().setBackground(color);
+	}
 }

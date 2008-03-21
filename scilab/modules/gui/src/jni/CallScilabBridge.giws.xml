@@ -490,5 +490,8 @@
           <parameter type="String" name="keyword"/>
           <parameter type="String" name="language"/>
         </method>
+<!-- Main settings -->
+	<method name="saveMainWindowSettings" returnType="void" modifier="static">
+        </method>      
   </object>
 </package>

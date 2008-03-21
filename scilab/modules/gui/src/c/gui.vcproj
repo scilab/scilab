@@ -400,6 +400,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CallMainWindow.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\CallMessageBox.cpp"
 				>
 			</File>
@@ -878,6 +882,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\CallJxgetmouse.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallMainWindow.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\CallMainWindow.hxx"
 				>
 			</File>
 			<File

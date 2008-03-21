@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,8 +19,12 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 
+import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
+import org.scilab.modules.gui.colorchooser.ColorChooser;
+import org.scilab.modules.gui.colorchooser.ScilabColorChooser;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
@@ -1964,6 +1968,55 @@ public class CallScilabBridge {
 			
 			/* Save new settings */
 			ConfigManager.saveFont(selectedFont);
+		}
+	}
+	
+	/**
+	 * Save the main Window size and position
+	 */
+	public static void saveMainWindowSettings() {
+		SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
+		SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
+		Window mainWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
+		
+		ConfigManager.saveMainWindowPosition(mainWindow.getPosition());
+		ConfigManager.saveMainWindowSize(mainWindow.getDims());
+		
+	}
+
+	/**
+	 * Opens a dialog to selected a new Foreground Color for the console
+	 */
+	public static void changeConsoleForeground() {
+		// TODO use console color as default
+		ColorChooser colorChooser = ScilabColorChooser.createColorChooser(ScilabConsole.getConsole().getForeground());
+
+		Color selectedColor = colorChooser.getSelectedColor();
+
+		if (selectedColor != null) {
+			/* Change console foreground */
+			ScilabConsole.getConsole().setForeground(selectedColor);
+			
+			/* Save new settings */
+			ConfigManager.saveConsoleForeground(selectedColor);
+		}
+	}
+
+	/**
+	 * Opens a dialog to selected a new Background Color for the console
+	 */
+	public static void changeConsoleBackground() {
+		// TODO use console color as default
+		ColorChooser colorChooser = ScilabColorChooser.createColorChooser(ScilabConsole.getConsole().getBackground());
+
+		Color selectedColor = colorChooser.getSelectedColor();
+
+		if (selectedColor != null) {
+			/* Change console background */
+			ScilabConsole.getConsole().setBackground(selectedColor);
+			
+			/* Save new settings */
+			ConfigManager.saveConsoleBackground(selectedColor);
 		}
 	}
 }

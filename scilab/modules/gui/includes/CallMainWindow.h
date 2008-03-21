@@ -1,6 +1,8 @@
+#ifndef __CALLMAINWINDOW_H__
+#define __CALLMAINWINDOW_H__
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
@@ -10,12 +12,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef __TERMINATEGUI_H__
-#define __TERMINATEGUI_H__
-#include "machine.h"
-#include "CallMainWindow.h"
 
-BOOL TerminateGUI(void);
+/**
+ * Save Main Window Size and Position
+ */
+void saveMainWindowSettings(void);
 
-#endif /* _TERMINATEGUI_H__ */
-/*--------------------------------------------------------------------------*/ 
+#endif /* !__CALLMAINWINDOW_H__ */
+

@@ -28,7 +28,6 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
-import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 
 /**
@@ -49,18 +48,13 @@ public class Scilab {
 	
 	private static final String SEE_DEFAULT_PATHS = "See SCI/etc/classpath.xml for default paths.";
 
-	private static final int DEFAULTWIDTH = 650;
-	private static final int DEFAULTHEIGHT = 550;
-	
 	/** Index of windows vista version */
 	private static final double VISTA_VERSION = 6.0;
 	
 	private static final String ENABLE_JAVA2D_OPENGL_PIPELINE = "sun.java2d.opengl";
 	private static final String ENABLE = "true";
 	private static final String DISABLE = "false";
-	private static final String ENABLE_WITH_DEBUG = "True";
 	private static final String DISABLE_DDRAW = "sun.java2d.noddraw";
-	
 
 	private int mode;
 
@@ -112,8 +106,10 @@ public class Scilab {
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
-			mainView.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
 			
+			mainView.setPosition(ConfigManager.getMainWindowPosition());
+			mainView.setDims(ConfigManager.getMainWindowSize());
+
 			/************/
 			/* MENU BAR */
 			/************/
