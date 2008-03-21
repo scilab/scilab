@@ -50,10 +50,9 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	ABOUT-NLS COPYING config.guess config.sub config/compile \
-	config/config.guess config/config.rpath config/config.sub \
-	config/depcomp config/install-sh config/ltmain.sh \
-	config/missing depcomp install-sh missing
+	COPYING config/compile config/config.guess config/config.rpath \
+	config/config.sub config/depcomp config/install-sh \
+	config/ltmain.sh config/missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
@@ -950,11 +949,11 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		echo "-- Building documentation (English) --"; \
-		echo "$(top_builddir)/bin/scilab -nb -l en -nouserstartup -nwni -e \"xmltohtml();exit;\"";\
-		$(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nwni -e "xmltojar();exit;";\
+		echo "$(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e \"xmltojar();exit;\"";\
+		$(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar();exit;";\
 		echo "-- Building documentation (French) --"; \
-		echo "$(top_builddir)/bin/scilab -nb -l fr -nouserstartup -nwni -e \"xmltohtml();exit;\""; \
-		$(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nwni -e "xmltojar();exit;"; \
+		echo "$(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e \"xmltojar();exit;\""; \
+		$(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e "xmltojar();exit;"; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
