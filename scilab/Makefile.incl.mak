@@ -12,21 +12,34 @@ MAKE=nmake /f Makefile.mak
 CC=cl
 LINKER=link
 
-# standard option for the linker 
+# standard option for the linker
+!IF "$(WIN64)" == "OK"
+LINKER_FLAGS=/NOLOGO /machine:X64 /RELEASE
+!ELSE
 LINKER_FLAGS=/NOLOGO /machine:ix86 /RELEASE
+!ENDIF
 
-# debug for the linker 
+# debug for the linker
+!IF "$(WIN64)" == "OK" 
+#LINKER_FLAGS=/NOLOGO /machine:X64 /DEBUG
+!ELSE
 #LINKER_FLAGS=/NOLOGO /machine:ix86 /DEBUG
+!ENDIF
+
 
 # include options 
 INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" -I"$(SCIDIR)\modules\core\includes" -I"$(SCIDIR)\modules\output_stream\includes" -I"$(SCIDIR)/libs/f2c" -I"$(SCIDIR)/modules/mexlib/includes" 
 
+!IF "$(WIN64)" == "OK" 
+CC_COMMON=-D__MSC__ -D_WIN64 -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(USE_MT)
+!ELSE
 CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(USE_MT)
+!ENDIF
 
-# standard option for C compiler for VC 2005
+# standard option for C compiler for VC 2008
 CC_OPTIONS = $(CC_COMMON) -Z7 -W3 -O2 -Gd
 
-# debug option for C compiler  for VC 2005
+# debug option for C compiler  for VC 2008
 #CC_OPTIONS = $(CC_COMMON) -Zi -W3 -Od -Gd
 
 CC_LDFLAGS = 
