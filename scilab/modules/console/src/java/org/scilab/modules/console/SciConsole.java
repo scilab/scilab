@@ -95,7 +95,7 @@ public abstract class SciConsole extends JPanel {
 
 	/**
 	 * Constructor
-	 * @param the configuration file to use
+	 * @param configFilePath the configuration file to use
 	 */
 	public SciConsole(String configFilePath) {
 		super(new BorderLayout());
