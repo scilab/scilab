@@ -99,18 +99,15 @@
               <callback instruction="notavailablemessage();" type="0"/>
         </submenu>
         <submenu label="Colors" mnemonic="C"> 
-            <submenu label="Background..." mnemonic="B"> 
+            <submenu label="Console Background..." mnemonic="B"> 
                 <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleBackground" type="3"/>
             </submenu>
-            <submenu label="Foreground..." mnemonic="B"> 
+            <submenu label="Console Font..." mnemonic="B"> 
                 <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleForeground" type="3"/>
             </submenu>
         </submenu>
         <submenu label="Font..." mnemonic="N"> 
             <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleFont" type="3"/>
-        </submenu>
-        <submenu label="File association" mnemonic="F"> 
-              <callback instruction="notavailablemessage();" type="0"/>
         </submenu>
         <submenu label="Show/Hide Toolbar" mnemonic="L"> 
               <callback 
@@ -171,9 +168,6 @@
     <menu label="?" mnemonic="?" enabled="false">
         <submenu label="Scilab Help" mnemonic="S"> 
             <callback instruction="help();" type="0"/>
-        </submenu>
-        <submenu label="Configure" mnemonic="C"> 
-               <callback instruction="notavailablemessage();" type="0"/>
         </submenu>
         <separator/>
         <submenu label="Scilab demonstrations" mnemonic="D">
