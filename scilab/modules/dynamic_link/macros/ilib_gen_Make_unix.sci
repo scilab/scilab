@@ -149,31 +149,11 @@ function generateConfigure(workingPath, ..
 	
 	// We launch ./configure in order to produce a "generic" Makefile 
 	// for this computer
-	cmd=''
-	// CFLAGS
-	if cflags <> '' then
-		cmd = cmd +" CFLAGS="""+cflags+""""
-	end
-	
-	// LDFLAGS
-	if ldflags <> '' then
-		cmd = cmd +" LDFLAGS="""+ldflags+""""
-	end
-	
-	// FFLAGS
-	if fflags <> '' then
-		cmd = cmd +" FFLAGS="""+fflags+""""
-	end
-	
-	// CC
-	if cc <> '' then
-		cmd = cmd +" CC="""+cc+""""
-	end
-	
+
 	if (warningmode == 'on') then
 		mprintf(gettext("   %s: configure : Generate Makefile in %s\n"),"ilib_gen_Make",workingPath);
 	end
-	
+	cmd=gencompilationflags_unix(ldflags, cflags, fflags, cc)
 	cmd=workingPath+"/compilerDetection.sh "+cmd
 	
 	[msg,ierr] = unix_g(cmd);

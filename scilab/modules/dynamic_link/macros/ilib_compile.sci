@@ -1,6 +1,12 @@
-//==========================================
-// Copyright (C) INRIA/ENPC
-//==========================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA
+// Copyright (C) ENPC
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function libn = ilib_compile(lib_name,makename,files, ..
 				                         ldflags, ..
 				                         cflags, ..
@@ -48,13 +54,14 @@ function libn = ilib_compile(lib_name,makename,files, ..
    
   else
     //** ---------- Linux section ---------------------  
- 
-          oldPath = pwd();
+	cflags="-I"+SCI+"/modules/core/includes/ -I"+SCI+"/modules/mexlib/includes/ "+cflags
+
+      oldPath = pwd();
 	  // Switch back to the TMPDIR where the mandatory files are
 	  chdir(TMPDIR);
 	  cmd = "make "
-	  // CFLAGS 
-	  cmd = cmd +" CFLAGS=""-I"+SCI+"/modules/core/includes/ -I"+SCI+"/modules/mexlib/includes/"""
+	  
+	  cmd = cmd + gencompilationflags_unix(ldflags, cflags, fflags, cc)
 
           //** BEWARE : this function can cause errors if used with "old style" Makefile inside a Scilab 5
           //**          environment where the Makefile are created from a "./configure"  
