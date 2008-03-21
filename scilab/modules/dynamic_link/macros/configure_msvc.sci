@@ -271,15 +271,15 @@ function SDKpath = get_ms_SDK()
     try
       // Windows 2003 R2 SDK
       SDKpath = winqueryreg('HKEY_LOCAL_MACHINE', ..
-                            'Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1', ..
-                            'Install Dir');
+                'Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1', ..
+                'Install Dir');
       return;
     catch
       try
         // Windows 2003 SDK
         SDKpath = winqueryreg('HKEY_LOCAL_MACHINE', ..
-                              'Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3', ..
-                              'Install Dir');
+                  'Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3', ..
+                  'Install Dir');
         return;
       catch
         SDKpath = '';
@@ -389,9 +389,114 @@ function bOK = commons_msvc90(MS_VS_DIRECTORY)
           LIB;
     err = setenv('LIB',LIB);
     if (err == %F) then bOK = %F,return,end
-
   
     bOK = %T;
+  end
+endfunction
+//==========================================
+function bOK = set_msvc90pro_x64()
+  bOK = %F;
+  try
+    MSVSDir = winqueryreg('HKEY_LOCAL_MACHINE', ..
+                          'Software\Microsoft\VisualStudio\9.0\Setup\VS\Pro', ..
+                          'ProductDir');
+  catch
+    MSVSDir = '';
+  end
+  bOK = commons_msvc90_x64(MSVSDir);
+endfunction
+//==========================================
+function bOK = set_msvc90std_x64()
+  bOK = %F;
+  try
+    MSVSDir = winqueryreg('HKEY_LOCAL_MACHINE', ..
+                          'Software\Microsoft\VisualStudio\9.0\Setup\VS\Std', ..
+                          'ProductDir');
+  catch
+    MSVSDir = '';
+  end
+  bOK = commons_msvc90_x64(MSVSDir);
+endfunction
+//==========================================
+function bOK = set_msvc90express_x64()
+  bOK = %F;
+  try
+    MSVSDir = winqueryreg('HKEY_LOCAL_MACHINE', ..
+                          'Software\Microsoft\VCExpress\9.0\Setup\VS', ..
+                          'ProductDir');
+  catch
+    return;
+  end
+  bOK = commons_msvc90_x64(MSVSDir);
+endfunction
+//==========================================
+function bOK = commons_msvc90_x64(MS_VS_DIRECTORY)
+  bOK = %F;
+  if (MS_VS_DIRECTORY <> '') then
+    if ( part(MS_VS_DIRECTORY,length(MS_VS_DIRECTORY)) == filesep() ) then 
+      MSVSDir = part(MS_VS_DIRECTORY,1:length(MS_VS_DIRECTORY)-1);
+    end;
+  
+    err = setenv('VSINSTALLDIR',MSVSDir);
+    if (err == %F) then bOK = %F,return,end
+    
+    err = setenv('VCINSTALLDIR',MSVSDir+'\VC');
+    if (err == %F) then bOK = %F,return,end
+    
+    err = setenv('VS90COMNTOOLS',MSVSDir+'\Common7\Tools\');
+    if (err == %F) then bOK = %F,return,end
+    
+
+    SDK = get_ms_SDK();
+    if SDK <> '' then
+      err = setenv('WindowsSdkDir',SDK);
+      if (err == %F) then bOK = %F,return,end
+    end
+    
+    INCLUDE = getenv('INCLUDE','');  
+    INCLUDE = MSVSDir + '\VC\ATLMFC\INCLUDE' + pathsep() + ..
+              MSVSDir + '\VC\INCLUDE' + pathsep() + ..
+              SDK + '\include' + pathsep() + INCLUDE;
+              
+    err = setenv('INCLUDE',INCLUDE);
+    if (err == %F) then bOK = %F,return,end
+    
+    LIB = getenv('LIB','');  
+    LIB = MSVSDir + '\VC\ATLMFC\LIB\amd64' + pathsep() + ..
+          MSVSDir + '\VC\LIB\amd64' + pathsep() + ..
+          SDK + '\lib\x64' + pathsep() + LIB;
+          
+    err = setenv('LIB',LIB);
+    if (err == %F) then bOK = %F,return,end
+    
+    LIBPATH = getenv('LIBPATH','');  
+    LIBPATH = MSVSDir + 'VC\ATLMFC\LIB\amd64' + pathsep() + ..
+              MSVSDir + 'VC\LIB\amd64' + pathsep() + LIBPATH;
+          
+    err = setenv('LIBPATH',LIBPATH);
+    if (err == %F) then bOK = %F,return,end
+    
+    LIB = getenv('LIB','');  
+    LIB = MSVSDir + '\VC\ATLMFC\LIB\amd64' + pathsep() + ..
+          MSVSDir + '\VC\LIB\amd64' + pathsep() + ..
+          SDK + '\lib\x64' + pathsep() + LIB;
+          
+    err = setenv('LIB',LIB);
+    if (err == %F) then bOK = %F,return,end
+    
+    PATH = getenv('PATH','');  
+    PATH = MSVSDir + '\VC\BIN\amd64' + pathsep() + ..
+           MSVSDir + '\VC\VCPackages' + pathsep() + ..
+           MSVSDir + '\Common7\IDE' + pathsep() + ..
+           MSVSDir + '\Common7\Tools' + pathsep() + ..
+           MSVSDir + '\Common7\Tools\bin' + pathsep() + ..
+           SDK + '\bin\x64' + pathsep() + ..
+           SDK + '\bin\win64\x64' + pathsep() + ..
+           SDK + '\bin' + pathsep() + PATH;
+          
+    err = setenv('PATH',PATH);
+    if (err == %F) then bOK = %F,return,end
+    
   end
 endfunction
 //==========================================
@@ -400,35 +505,61 @@ endfunction
     msvc = findmsvccompiler();
     bOK = %F;
     
-    select msvc,
-      case  'msvc90pro' then          // Microsoft Visual 2008 Studio Professional
-        bOK = set_msvc90pro();
+    if win64() & detectmsvc64tools() then
+      select msvc,
+        // Microsoft Visual 2008 Studio Professional
+        case  'msvc90pro' then
+        bOK = set_msvc90pro_x64();
+
+        // Microsoft Visual 2008 Studio Standard              
+        case  'msvc90std' then
+        bOK = set_msvc90std_x64();
         
-      case  'msvc90std' then          // Microsoft Visual 2008 Studio Standard      
+        // Microsoft Visual 2008 Express 
+        case  'msvc90express' then      
+        bOK = set_msvc90express_x64();
+			else
+        bOK = %F;
+      end        
+    else
+      select msvc,
+        // Microsoft Visual 2008 Studio Professional
+        case  'msvc90pro' then
+        bOK = set_msvc90pro();
+
+        // Microsoft Visual 2008 Studio Standard              
+        case  'msvc90std' then
         bOK = set_msvc90std();
         
-      case  'msvc90express' then      // Microsoft Visual 2008 Express 
+        // Microsoft Visual 2008 Express 
+        case  'msvc90express' then      
         bOK = set_msvc90express();
         
-      case  'msvc80pro' then          // Microsoft Visual 2005 Studio Professional
+        // Microsoft Visual 2005 Studio Professional
+        case  'msvc80pro' then          
         bOK = set_msvc80pro();
         
-      case  'msvc80std' then          // Microsoft Visual 2005 Studio Standard
+        // Microsoft Visual 2005 Studio Standard
+        case  'msvc80std' then          
         bOK = set_msvc80std();    
         
-      case  'msvc80express' then      // Microsoft Visual 2005 Express
+        // Microsoft Visual 2005 Express
+        case  'msvc80express' then      
         bOK = set_msvc80express();    
         
-      case  'msvc71' then             // Microsoft Visual Studio .NET 2003
+        // Microsoft Visual Studio .NET 2003
+        case  'msvc71' then             
         bOK = set_msvc71();    
         
-      case  'msvc70' then             // Microsoft Visual Studio .NET 2002
+        // Microsoft Visual Studio .NET 2002
+        case  'msvc70' then             
         bOK = set_msvc70();  
       
       else
     		warning('Microsoft Visual Studio C Compiler not found.');
         bOK = %F;
       end
+    end
   else
     bOK = %F;
   end

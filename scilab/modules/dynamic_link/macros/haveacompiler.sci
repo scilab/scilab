@@ -12,17 +12,27 @@ function bOK = haveacompiler()
   if MSDOS then
     bOK = %F;
     msvc = findmsvccompiler();
-    if ( msvc == 'unknow' ) then
-      if findlcccompiler() then
+    if ( msvc == 'unknown' ) then
+      if ~win64() & findlcccompiler() then
         bOK = %T;
+      else
+        bOK = %F;
       end
     else
-      bOK = %T;
+      if win64() then
+        if detectmsvc64tools() then
+          bOK = %T;
+        else
+          bOK = %F;
+        end
+      else
+        bOK = %T;
+      end
     end
   else
     // Very hard to detect under Linux/Unix since there are plenty of 
-	// compiler... Then, we return all the time TRUE
-	// The actual detection is done by the dedicated ./configure
+	  // compiler... Then, we return all the time TRUE
+	  // The actual detection is done by the dedicated ./configure
     bOK = %T;
   end
 endfunction
