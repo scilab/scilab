@@ -40,7 +40,8 @@ function [arc,resid]=armax1(r,s,q,y,u,b0f)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 if rhs<=5,b0f=0;end
-if s==-1,b0f=0;end // Seams not natural, but makes things work 
+if s==-1,b0f=0;end // Seems not natural, but makes things work 
+u=matrix(u,1,-1);y=matrix(y,1,-1); //make u and y row vectors
 [n1,n2]=size(y)
 if size(y,'*')<>size(u,'*') then error('u and y must have same size');
 end 
