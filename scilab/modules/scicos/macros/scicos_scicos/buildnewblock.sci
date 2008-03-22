@@ -145,30 +145,111 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
     //**------------ Linux / Unix  -------------------------------------------
     //** on Linux we change to the new "autotools" based model 
 
+    //** the input parameters are : "blknam", "files", "filestan", "libs", "rpat", "ldflags", cflags
+    //** "blknam" : a prefix (the name 
+    //** "files" : files to be compiled
+    //** "filestan" : files to be compiled and included in the standalone code
+    //** "libs" : a vector of string of object files "exteral lib(s)" to include in the building process
+    //** "rpat" : a target directory
+    //** "ldflags"  : linker flags
+    //** "cflags"  : C compiler flags
+
     //** save path in case of error
     oldpath = getcwd(); //** current working path 
+
+    //** For this revision (22/03/2008) Scicos Super Block and Modelica are handled in a slight different 
+    //** ways, so the code is splitted in two branches. 
+    //** We plan to remove these differences - in a second phase - modifing the upper levels routines. 
+     
+    //** the switch is done lloking inside at "filestan" : it is empty for Modelica ;) 
+    //** BEWARE: "ilib_for_link" does NOT provide support for "standalone" applications !
+
+    if filestan=="" then
+      //** --------------------------- MODELICA ---------------------------------------
+      //** Special note for Modelica : this code override some settings 
+      //**
+      // 
+       //** change dir to the TEMPDIR  
+       chdir(TMPDIR);
+
+       entry_names = blknam ;
+       file_names = files + ".o"  ;
+       libs = libs ;
+       flag = "c" ; //** "C" entry point / "C" source code  
+       makename = "Makelib" ;
+       loadername = "loader.sce" ;
+       libname = "";
+       ldflags = ldflags ;
+       //** BEWARE:
+       //**     1 - Remember to use WSCI for the Windows version
+       //**     2 - This setting OVERRIDE the original one 
+       cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include 
+       fflags = ""; //** no Fortran 
+       cc = ""; //** default "C" compiler 
   
-    //** change working dir where the Scicos generated files are 
-    chdir(rpat);
+       disp("Compile and link Modelica generated C code"); 
 
-    //** change dir to the TEMPDIR  
-    chdir(TMPDIR);
+       libn = ilib_for_link(entry_names, file_names, libs, flag, makename, loadername, libname, ldflags, cflags, fflags, cc); 
 
-    //** copy all the source generated file in the TMPDIR
-    cmd_line = "cp "+rpat+"/*"+" "+"." ;
-    unix(cmd_line); 
+       exec("loader.sce"); //** load the shared library 
 
-    //** prepare the parameters 
-    entry_names = [files(1), files(1)+"_actuator", files(1)+"_sensor"]; 
-    file_names = files + ".o"  ;
-    libs  = libs  ;
-    flag = "c" ; //** "C" entry point / "C" source code  
-    
-    libn = ilib_for_link(entry_names, file_names, libs, flag); 
+    else
+     //** -------------- Scicos Super Block Compilation ---------------------------------------
+     //** Special note for SB : this code is a simplified version  
+     //**
+      
+      //** change dir to the TEMPDIR  
+      chdir(TMPDIR);
 
-    exec("loader.sce"); 
+      //**---------------------------------------------------------------------
+      //** -------- This POC works for Scicos code generation -----------------
+      //** 
+      //** Copy all the source generated file in the TMPDIR because 
+      //** TMPDIR is the "ilib_for_link" default 
+      cmd_line = "cp "+rpat+"/*"+" "+"." ;
+      unix(cmd_line); 
+
+      //** prepare the parameters 
+      //** BEWARE :
+      //**       1 - This setting is "hard coded" 
+      //**       2 - "C" blocks are not yet supported 
+      entry_names = [files(1), files(1)+"_actuator", files(1)+"_sensor"]; 
+      file_names = files + ".o"  ;
+      libs  = libs  ;
+      flag = "c" ; //** "C" entry point / "C" source code  
+
+      message(["BEWARE: if you want to reload this simulation,", ...
+               "you need to MANUALLY reload - for each Compiled Super Block - ",...
+               "the shared library using ''exec loader.sce'' AND",...
+               "the interfacing function ''*.sci''              ",...
+               "in the corresponding directory ", ...
+               "   _BEFORE_ ",...
+               "running ''scicos();'' "]);
+
+      disp("Compile and link Scicos generated C code"); 
+
+      libn = ilib_for_link(entry_names, file_names, libs, flag); 
+      
+      //** This is just a patch because "ilib_for_link" has some issues outside "TMPDIR"
+      //** copy the shared library and the loader where the Scicos code generated is 
+      //** 
+      //** change dir to the permanent directory   
+      chdir(rpat);
+
+      cmd_line = "cp "+TMPDIR+"/"+"lib"+files(1)+".*"+" "+"." ;
+      unix(cmd_line); 
   
-    chdir(oldpath); //** restore the old current working directory 
+      cmd_line = "cp "+TMPDIR+"/"+"loader.sce"+" "+"." ;
+      unix(cmd_line);
+      
+      exec("loader.sce"); //** load the shared library 
+
+      //**--------------------------------------------------------------------- 
+ 
+  end 
+
+
+  chdir(oldpath); //** restore the old current working directory 
   
   end 
 
