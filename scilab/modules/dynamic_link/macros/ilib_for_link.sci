@@ -22,8 +22,8 @@ function libn = ilib_for_link(names, ..
 
   [lhs,rhs] = argn(0);
   
-  if rhs <= 4 then makename = 'Makelib';end
-  if rhs <= 5 then loadername = 'loader.sce';end
+  if rhs <= 4 then makename = "Makelib";end
+  if rhs <= 5 then loadername = "loader.sce";end
   if rhs <= 6 then libname = ""; end
   if rhs <= 7 then ldflags = ""; end 
   if rhs <= 8 then cflags  = ""; end 
@@ -144,7 +144,7 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
   mfprintf(fd,"\n");
   
   //** first "link" : external libraries 
-  if libs==""then 
+  if libs=="" then 
     //** do nothing : you don't need to link any "external" lib(s)
   else
     //** add one "link" line for each library (with the appropriate extension)

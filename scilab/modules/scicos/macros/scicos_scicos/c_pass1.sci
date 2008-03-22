@@ -209,8 +209,13 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,f
     cmmat=abs(cmmat) ;
     //create regular block associated to all modelica blocks
 
-    [model,ok]=build_modelica_block(blklstm, cmmat,NiM,NoM,scs_m.props.title(1),TMPDIR+'/');
-    if ~ok then return,end
+    //** look at the use of TMPDIR
+    [model,ok] = build_modelica_block(blklstm, cmmat, NiM, NoM, scs_m.props.title(1),TMPDIR+'/'); //** here we are 
+    if ~ok then
+       return ; //** EXIT immediately in case of problems
+    end
+    
+
     blklst(nr+1)=model;
     //make compiled modelica block refer to the set of corresponding
     //modelica blocks

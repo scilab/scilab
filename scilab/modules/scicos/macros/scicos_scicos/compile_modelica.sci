@@ -20,7 +20,7 @@
 // See the file ../license.txt
 //
 
-function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
+function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
   
   if ~with_modelica_compiler() then
     message("Modelica compiler unavailable");
@@ -261,10 +261,15 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
     // end
 
     files = name;
-    ok = buildnewblock(name,files,'',libs,TMPDIR,'',E2);
-    if ~ok then return, end
+    
+    ok = buildnewblock(name,files,'',libs,TMPDIR,'',E2); //** here we are 
+    
+    if ~ok then
+      return
+    end
 
   end
+
 endfunction
 
 function [nx,nin,nout,ng,nm,nz]=analyze_c_code(txt)
