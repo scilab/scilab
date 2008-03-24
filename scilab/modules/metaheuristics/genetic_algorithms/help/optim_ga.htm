@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>optim_ga</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 24/03/2008</div>
+<p><b>optim_ga</b> -  A flexible genetic algorithm </p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>[pop_opt,fobj_pop_opt,pop_init,fobj_pop_init] = optim_ga(ga_f,pop_size,nb_generation,p_mut,p_cross,Log,param)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>ga_f</b></tt>
+       : the function to be optimized. The prototype if y = f(x) or y = list(f,p1,p2,...).
+       </li>
+<li>
+<tt><b>pop_size</b></tt>
+       : the size of the population of individuals (default value: 100).
+       </li>
+<li>
+<tt><b>nb_generation</b></tt>
+       : the number of generations (equivalent to the number of iterations in classical optimization) to be computed (default value: 10).
+       </li>
+<li>
+<tt><b>p_mut</b></tt>
+       : the mutation probability (default value: 0.1).
+       </li>
+<li>
+<tt><b>p_cross</b></tt>
+       : the crossover probability (default value: 0.7).
+       </li>
+<li>
+<tt><b>Log</b></tt>
+       : if %T, we will display to information message during the run of the genetic algorithm.
+       </li>
+<li>
+<tt><b>param</b></tt>
+       : a list of parameters.
+         - 'codage_func': the function which will perform the coding and decoding of individuals (default function: codage_identity).
+         - 'init_func': the function which will perform the initialization of the population (default function: init_func_default).
+         - 'crossover_func': the function which will perform the crossover between two individuals (default function: crossover_func_default).
+         - 'mutation_func': the function which will perform the mutation of one individual (default function: mutation_func_default).
+         - 'selection_func': the function whcih will perform the selection of individuals at the end of a generation (default function: selection_func_elitist).
+         - 'nb_couples': the number of couples which will be selected so as to perform the crossover and mutation (default value: 100).
+         - 'pressure': the value the efficiency of the worst individual (default value: 0.05).
+       </li>
+<li>
+<tt><b>pop_opt</b></tt>
+       : the population of optimal individuals.
+       </li>
+<li>
+<tt><b>fobj_pop_opt</b></tt>
+       : the set of objective function values associated to pop_opt (optional).
+       </li>
+<li>
+<tt><b>pop_init</b></tt>
+       : the initial population of individuals (optional).
+       </li>
+<li>
+<tt><b>fobj_pop_init</b></tt>
+       : the set of objective function values associated to pop_init (optional).
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl><dd>
+<b></b><p>
+      This function implements the classical genetic algorithm.
+     </p>
+</dd></dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+    deff('y=f(x)','y = 'sum(x.^2)');
+
+    PopSize     = 100;
+    Proba_cross = 0.7;
+    Proba_mut   = 0.1;
+    NbGen       = 10;
+    NbCouples   = 110;
+    Log         = %T;
+    nb_disp     = 10; // Nb point to display from the optimal population
+    pressure    = 0.05;
+
+    ga_params = init_param();
+    // Parameters to adapt to the shape of the optimization problem
+    ga_params = add_param(ga_params,'minbound',[-2; -2]);
+    ga_params = add_param(ga_params,'maxbound',[2; 2]);
+    ga_params = add_param(ga_params,'dimension',2);
+    ga_params = add_param(ga_params,'beta',0);
+    ga_params = add_param(ga_params,'delta',0.1);
+    // Parameters to fine tune the Genetic algorithm. All these parameters are optional for continuous optimization
+    // If you need to adapt the GA to a special problem, you 
+    ga_params = add_param(ga_params,'init_func',init_func_default);
+    ga_params = add_param(ga_params,'crossover_func',crossover_func_default);
+    ga_params = add_param(ga_params,'mutation_func',mutation_func_default);
+    ga_params = add_param(ga_params,'codage_func',codage_identity);
+    ga_params = add_param(ga_params,'selection_func',selection_func_elitist);
+    //ga_params = add_param(ga_params,'selection_func',selection_func_random);
+    ga_params = add_param(ga_params,'nb_couples',NbCouples);
+    ga_params = add_param(ga_params,'pressure',pressure);
+
+    Min = get_param(ga_params,'minbound');
+    Max = get_param(ga_params,'maxbound');
+    x0  = (Max - Min) .* rand(size(Min,1),size(Min,2)) + Min;
+
+    [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
+  </pre>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="optim_moga.htm"><tt><b> optim_moga </b></tt></a>,&nbsp;&nbsp;<a href="optim_nsga.htm"><tt><b> optim_nsga </b></tt></a>,&nbsp;&nbsp;<a href="optim_nsga2.htm"><tt><b> optim_nsga2 </b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b>Yann COLLETTE</b>
+    ycollet@freesurf.fr
+    </dd></dl>
+</body>
+</html>

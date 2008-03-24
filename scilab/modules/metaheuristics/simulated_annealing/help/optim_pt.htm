@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>optim_pt</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 24/03/2008</div>
+<p><b>optim_pt</b> -  Parallel tempering </p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>[x_best,x_history] = optim_pt(x0,pt_f,ItMax,T,pt_proba,Log,neigh_func,param_neigh_func)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>x0</b></tt>
+       : a starting point for the parallel tempering method
+       </li>
+<li>
+<tt><b>pt_f</b></tt>
+       : the objective function
+       </li>
+<li>
+<tt><b>ItMax</b></tt>
+       : maximum number of iterations
+       </li>
+<li>
+<tt><b>T</b></tt>
+       : a vector of temperatures
+       </li>
+<li>
+<tt><b>pt_proba</b></tt>
+       : the probability of increasing or decreasing the temperatures (default 0.05)
+       </li>
+<li>
+<tt><b>Log</b></tt>
+       : a boolean to allows to display some informations during the execution of the optimization method
+       </li>
+<li>
+<tt><b>neigh_func</b></tt>
+       : a neighborhood function
+       </li>
+<li>
+<tt><b>param_neigh_func</b></tt>
+       : a list of parameters to be sent to neigh_func
+       </li>
+<li>
+<tt><b>x_best</b></tt>
+       : the best solution found so far
+       </li>
+<li>
+<tt><b>x_history</b></tt>
+       : a list of all the points computed by the optimization method
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl><dd>
+<b></b><p>
+      This method implements the parallel tempering which correspond to several simulated annealing in parallel with a random reinitialization of some of the simulated annealing.
+     </p>
+</dd></dl>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="../help/optim_sa.htm"><tt><b> optim_sa </b></tt></a>,&nbsp;&nbsp;<a href="../help/neigh_func_default.htm"><tt><b> neigh_func_default </b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b>collette</b>
+    yann.collette@renault.com
+    </dd></dl>
+</body>
+</html>

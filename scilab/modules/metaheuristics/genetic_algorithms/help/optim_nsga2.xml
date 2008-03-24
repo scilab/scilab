@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file://C:\PROGRA~1\SCILAB~1.2\man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>optim_nsga2</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>4-Feb-2008</DATE>
+  <SHORT_DESCRIPTION name="optim_nsga2"> A multi-objective Niched Sharing Genetic Algorithm version 2 </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[pop_opt,fobj_pop_opt,pop_init,fobj_pop_init] = optim_nsga2(ga_f,pop_size,nb_generation,p_mut,p_cross,Log,param)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>ga_f</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the function to be optimized. The prototype if y = f(x) or y = list(f,p1,p2,...).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>pop_size</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the size of the population of individuals (default value: 100).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>nb_generation</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the number of generations (equivalent to the number of iterations in classical optimization) to be computed (default value: 10).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>p_mut</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the mutation probability (default value: 0.1).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>p_cross</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the crossover probability (default value: 0.7).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Log</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : if %T, we will display to information message during the run of the genetic algorithm.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a list of parameters.
+         - 'codage_func': the function which will perform the coding and decoding of individuals (default function: codage_identity).
+         - 'init_func': the function which will perform the initialization of the population (default function: init_func_default).
+         - 'crossover_func': the function which will perform the crossover between two individuals (default function: crossover_func_default).
+         - 'mutation_func': the function which will perform the mutation of one individual (default function: mutation_func_default).
+         - 'selection_func': the function whcih will perform the selection of individuals at the end of a generation (default function: selection_func_elitist).
+         - 'nb_couples': the number of couples which will be selected so as to perform the crossover and mutation (default value: 100).
+         - 'pressure': the value the efficiency of the worst individual (default value: 0.05).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>pop_opt</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the population of optimal individuals.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>fobj_pop_opt</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the set of objective function values associated to pop_opt (optional).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>pop_init</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the initial population of individuals (optional).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>fobj_pop_init</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the set of objective function values associated to pop_init (optional).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      This function implements the classical "Niched Sharing Genetic Algorithm". For a demonstration, see demos/NSGA2demo.sce.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> optim_moga </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> optim_ga </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> optim_nsga </LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Yann COLLETTE'>
+    ycollet@freesurf.fr
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

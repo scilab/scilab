@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file://C:\PROGRA~1\SCILAB~1.1\man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>add_param</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>23-Aug-2007</DATE>
+  <SHORT_DESCRIPTION name="add_param"> Add a parameter to a list of parameters </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[ga_list,err] = add_param(list_name,param_name,param_value)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>list_name</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the list of parameters. This list must have been initialize by a call to init_param.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param_name</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a string. The name of the parameter to be added in the list of parameters.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param_value</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the value associated to the parameter param_name. This parameter is optional. You can set the value of this parameter via a call to set_param.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>ga_list</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the updated list of parameters.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>err</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : an error flag which is set to %T if list_name is not of type plist (this list hasn't been initialized by a call to init_param).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      This function creates a new parameter in a list of parameters. You can set the value of the parameter using this function or you can set it via a call to set_param.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   mylist = init_param();
+   mylist = add_param(mylist,'minbound',[0 0 0]);
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> init_param </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> set_param </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> get_param </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> remove_param </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> is_param </LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='collette'>
+    ycollet@freesurf.fr
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

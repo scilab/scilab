@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>optim_nsga</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 24/03/2008</div>
+<p><b>optim_nsga</b> -  A multi-objective Niched Sharing Genetic Algorithm </p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>[pop_opt,fobj_pop_opt,pop_init,fobj_pop_init] = optim_nsga(ga_f,pop_size,nb_generation,p_mut,p_cross,Log,param,sigma,pow)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>ga_f</b></tt>
+       : the function to be optimized. The prototype if y = f(x) or y = list(f,p1,p2,...).
+       </li>
+<li>
+<tt><b>pop_size</b></tt>
+       : the size of the population of individuals (default value: 100).
+       </li>
+<li>
+<tt><b>nb_generation</b></tt>
+       : the number of generations (equivalent to the number of iterations in classical optimization) to be computed (default value: 10).
+       </li>
+<li>
+<tt><b>p_mut</b></tt>
+       : the mutation probability (default value: 0.1).
+       </li>
+<li>
+<tt><b>p_cross</b></tt>
+       : the crossover probability (default value: 0.7).
+       </li>
+<li>
+<tt><b>Log</b></tt>
+       : if %T, we will display to information message during the run of the genetic algorithm.
+       </li>
+<li>
+<tt><b>param</b></tt>
+       : a list of parameters.
+         - 'codage_func': the function which will perform the coding and decoding of individuals (default function: codage_identity).
+         - 'init_func': the function which will perform the initialization of the population (default function: init_func_default).
+         - 'crossover_func': the function which will perform the crossover between two individuals (default function: crossover_func_default).
+         - 'mutation_func': the function which will perform the mutation of one individual (default function: mutation_func_default).
+         - 'selection_func': the function whcih will perform the selection of individuals at the end of a generation (default function: selection_func_elitist).
+         - 'nb_couples': the number of couples which will be selected so as to perform the crossover and mutation (default value: 100).
+         - 'pressure': the value the efficiency of the worst individual (default value: 0.05).
+       </li>
+<li>
+<tt><b>sigma</b></tt>
+       : the radius of the sharing area.
+       </li>
+<li>
+<tt><b>pow</b></tt>
+       : the power coefficient of the penalty formula.
+       </li>
+<li>
+<tt><b>pop_opt</b></tt>
+       : the population of optimal individuals.
+       </li>
+<li>
+<tt><b>fobj_pop_opt</b></tt>
+       : the set of objective function values associated to pop_opt (optional).
+       </li>
+<li>
+<tt><b>pop_init</b></tt>
+       : the initial population of individuals (optional).
+       </li>
+<li>
+<tt><b>fobj_pop_init</b></tt>
+       : the set of objective function values associated to pop_init (optional).
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl><dd>
+<b></b><p>
+      This function implements the classical "Niched Sharing Genetic Algorithm". For a demonstration, see demos/NSGAdemo.sce.
+     </p>
+</dd></dl>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="optim_moga.htm"><tt><b> optim_moga </b></tt></a>,&nbsp;&nbsp;<a href="optim_ga.htm"><tt><b> optim_ga </b></tt></a>,&nbsp;&nbsp;<a href="optim_nsga2.htm"><tt><b> optim_nsga2 </b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b>Yann COLLETTE</b>
+    ycollet@freesurf.fr
+    </dd></dl>
+</body>
+</html>

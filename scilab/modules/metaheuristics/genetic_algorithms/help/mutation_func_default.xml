@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file://C:\PROGRA~1\SCILAB~1.2\man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mutation_func_default</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>4-Feb-2008</DATE>
+  <SHORT_DESCRIPTION name="mutation_func_default"> A continuous variable mutation function </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>Mut_Indiv = mutation_func_default(Indiv,param)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Indiv</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : The individual to be mutated.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a list of parameters.
+         - 'delta': a random perturbation will be sampled via an uniform distribution between -delta and + delta.
+         - 'minbound': a vector of minimum bound for the variable X.
+         - 'maxbound': a vector of maximum bound for the variable X.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Mut_Indiv</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : The resulting mutated individual.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      This function performs the classical continuous variable mutation function.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> mutation_func_binary </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> crossover_func_default </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> init_func_default </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> optim_ga </LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Yann COLLETTE'>
+    ycollet@freesurf.fr
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

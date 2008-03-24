@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file://C:\PROGRA~1\SCILAB~1.2\man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mutation_func_binary</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>4-Feb-2008</DATE>
+  <SHORT_DESCRIPTION name="mutation_func_binary"> A function which performs binary mutation </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>Mut_Indiv = mutation_func_binary(Indiv,param)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Indiv</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the individual on which we will perform the mutation.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a list of parameters.
+         - 'binary_length': the size of the binary code.
+         - 'multi_mut': a boolean. If %T, several random bits will be flipped.
+         - 'multi_mut_nd': the number of bits to be flipped. Works only when multi_mut is set to %T.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Mut_Indiv</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : The mutated individual.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      This function performs a classical multi-bits binary mutation.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> mutation_func_default </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> crossover_func_binary </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> init_func_default </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> optim_ga </LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Yann COLLETTE'>
+    ycollet@freesurf.fr
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

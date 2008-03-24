@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file:///local/stow/scilab-4.1.1/lib/scilab-4.1.1/man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>optim_sa</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>29-Nov-2006</DATE>
+  <SHORT_DESCRIPTION name="optim_sa"> A Simulated Annealing optimization method </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x_best,f_best,mean_list,var_list,f_history,temp_list,x_history] = optim_sa(x0,f,ItExt,ItInt,T0,Log,temp_law,param_temp_law,neigh_func,param_neigh_func)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x0</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the initial solution
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>f</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the objective function to be optimized (the prototype if f(x))
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>ItExt</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the number of temperature decrease
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>ItInt</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the number of iterations during one temperature stage
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>T0</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the initial temperature (see compute_initial_temp to compute easily this temperature)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Log</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : if %T, some informations will be displayed during the run of the simulated annealing
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>temp_law</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the temperature decrease law (see temp_law_default for an example of such a function)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param_temp_law</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a structure (of any kind - it depends on the temperature law used) which is transmitted as a parameter to temp_law
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>neigh_func</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a function which computes a neighbor of a given point (see neigh_func_default for an example of such a function)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param_neigh_func</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a structure (of any kind like vector, list, it depends on the neighborhood function used) which is transmitted as a parameter to neigh_func
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x_best</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the best solution found so far
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>f_best</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the objective function value corresponding to x_best
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>mean_list</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the mean of the objective function value for each temperature stage. A vector of float (optional)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>var_list</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the variance of the objective function values for each temperature stage. A vector of float (optional)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>f_history</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the computed objective function values for each iteration. Each input of the list corresponds
+       to a temperature stage. Each input of the list is a vector of float which gathers all the objective function values
+       computed during the corresponding temperature stage - (optional)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>temp_list</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the list of temperature computed for each temperature stage. A vector of float (optional)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x_history</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the parameter values computed for each iteration. Each input of the list corresponds
+       to a temperature stage. Each input of the list is a vector of input variables which corresponds to all the variables
+       computed during the corresponding temperature stage -  (optional - can slow down a lot the execution of optim_sa)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     A Simulated Annealing optimization method.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    x0          = [2 2];
+    Proba_start = 0.7;
+    It_Pre      = 100;
+    It_extern   = 100;
+    It_intern   = 1000;
+    x_test = neigh_func_default(x0);
+
+    T0 = compute_initial_temp(x0, rosenbrock, Proba_start, It_Pre, neigh_func_default);
+
+    [x_opt, f_opt, sa_mean_list, sa_var_list] = optim_sa(x0, rosenbrock, It_extern, It_intern, T0, Log = %T);
+
+    printf('optimal solution:\n'); disp(x_opt);
+    printf('value of the objective function = %f\n', f_opt);
+
+    t = 1:length(sa_mean_list);
+    plot(t,sa_mean_list,'r',t,sa_var_list,'g');
+    ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> compute_initial_temp </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> neigh_func_default </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> temp_law_default </LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='collette'>
+    Yann COLLETTE (yann.collette@renault.com)
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

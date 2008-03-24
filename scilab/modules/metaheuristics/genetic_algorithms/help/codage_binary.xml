@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file://C:\PROGRA~1\SCILAB~1.2\man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>codage_binary</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>4-Feb-2008</DATE>
+  <SHORT_DESCRIPTION name="codage_binary"> A function which performs conversion between binary and continuous representation </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>pop_out = codage_binary(pop_in,direction,param)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>pop_in</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a list which contains all the individuals in the current population.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>direction</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : 'code' or 'decode'. If direction == 'code' then we perform a continuous to binary encoding. Else, we convert from binary to continuous.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a parameter list.
+         - 'binary_length': the number of bits by variables. If binary_length = 8 and the variable X is of dimension 2 then the binary code will be 16 bits length.
+         - 'minboun': a vector of minimum bounds for the variable X.
+         - 'maxbound': a vector of maximum bounds for the variable X.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>pop_out</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the population coded to binary or decoded to continuous values.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      This function allows to code or decode a population of individuals from / to continuous variables to / from binary.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   Add here scilab instructions and comments
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> optim_ga </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> mutation_func_binary </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> crossover_func_binary </LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Yann COLLETTE'>
+    ycollet@freesurf.Fr
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

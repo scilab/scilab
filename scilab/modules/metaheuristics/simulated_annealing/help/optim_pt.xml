@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file:///local/stow/scilab-4.1.1/lib/scilab-4.1.1/man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>optim_pt</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>22-Aug-2007</DATE>
+  <SHORT_DESCRIPTION name="optim_pt"> Parallel tempering </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x_best,x_history] = optim_pt(x0,pt_f,ItMax,T,pt_proba,Log,neigh_func,param_neigh_func)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x0</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a starting point for the parallel tempering method
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>pt_f</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the objective function
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>ItMax</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : maximum number of iterations
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>T</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a vector of temperatures
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>pt_proba</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the probability of increasing or decreasing the temperatures (default 0.05)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Log</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a boolean to allows to display some informations during the execution of the optimization method
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>neigh_func</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a neighborhood function
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param_neigh_func</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a list of parameters to be sent to neigh_func
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x_best</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the best solution found so far
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x_history</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a list of all the points computed by the optimization method
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      This method implements the parallel tempering which correspond to several simulated annealing in parallel with a random reinitialization of some of the simulated annealing.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> optim_sa </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> neigh_func_default </LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='collette'>
+    yann.collette@renault.com
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

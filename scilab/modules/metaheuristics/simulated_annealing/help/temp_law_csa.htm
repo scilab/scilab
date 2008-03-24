@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>temp_law_csa</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 22/08/2007</div>
+<p><b>temp_law_csa</b> -   The classical temperature decrease law </p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>T_out = temp_law_csa(T_in,step_mean,step_var,temp_stage,n,param)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>T_in</b></tt>
+       : the temperature at the current stage
+       </li>
+<li>
+<tt><b>step_mean</b></tt>
+       : the mean value of the objective function computed during the current stage
+       </li>
+<li>
+<tt><b>step_var</b></tt>
+       : the variance value of the objective function computed during the current stage
+       </li>
+<li>
+<tt><b>temp_stage</b></tt>
+       : the index of the current temperature stage
+       </li>
+<li>
+<tt><b>n</b></tt>
+       : the dimension of the decision variable (the x in f(x))
+       </li>
+<li>
+<tt><b>param</b></tt>
+       : not used for this temperature law
+       </li>
+<li>
+<tt><b>T_out</b></tt>
+       : the temperature for the temperature stage to come
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl><dd>
+<b></b><p>
+     This function implements the classical annealing temperature schedule (the one for which the convergence of the simulated annealing has been proven).
+     </p>
+</dd></dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+  x0 = [-1, -1];
+  Proba_start = 0.8;
+  It_intern = 1000;
+  It_extern = 30;
+  It_Pre    = 100;
+
+  printf('SA: the CSA algorithm\n');
+
+  T0 = compute_initial_temp(x0, rosenbrock, Proba_start, It_Pre, neigh_func_default);
+  printf('Initial temperatore T0 = %f\n', T0);
+
+  [x_opt, f_opt, sa_mean_list, sa_var_list, temp_list] = optim_sa(x0, f, It_extern, It_intern, T0, Log = %T, temp_law_csa, neigh_func_csa);
+
+  printf('optimal solution:\n'); disp(x_opt);
+  printf('value of the objective function = %f\n', f_opt);
+
+  scf();
+  subplot(2,1,1);
+  xtitle('Classical simulated annealing','Iteration','Mean / Variance');
+  t = 1:length(sa_mean_list);
+  plot(t,sa_mean_list,'r',t,sa_var_list,'g');
+  legend(['Mean','Variance']);
+  subplot(2,1,2);
+  xtitle('Temperature evolution','Iteration','Temperature');
+  plot(t,temp_list,'k-');
+  </pre>
+<h3><font color="blue">See Also</font></h3>
+<p><a href=""><tt><b> optim_sa </b></tt></a>,&nbsp;&nbsp;<a href=""><tt><b> temp_law_huang </b></tt></a>,&nbsp;&nbsp;<a href=""><tt><b> neigh_func_default </b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b>collette</b>
+    Yann COLLETTE (yann.collette@renault.com)
+    </dd></dl>
+</body>
+</html>

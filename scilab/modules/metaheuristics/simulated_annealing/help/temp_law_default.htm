@@ -1,0 +1,65 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>temp_law_default</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 22/08/2007</div>
+<p><b>temp_law_default</b> -  A SA function which computed the temperature of the next temperature stage </p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>T_next = temp_law_default(T,step_mean,step_var,temp_stage,n,param)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>T</b></tt>
+       : the temperature applied during the last temperature stage
+       </li>
+<li>
+<tt><b>step_mean</b></tt>
+       : the mean of the objective function values computed during the last temperature stage
+       </li>
+<li>
+<tt><b>step_var</b></tt>
+       : the variance of the obejective function values computed during the last temperature stage
+       </li>
+<li>
+<tt><b>temp_stage</b></tt>
+       : the index of the current temperature stage
+       </li>
+<li>
+<tt><b>n</b></tt>
+       : the dimension of the decision variable (the x in f(x))
+       </li>
+<li>
+<tt><b>param</b></tt>
+       : a float between 0 and 1. Corresponds to the decrease in temperature of the geometric law (0.9 by default)
+       </li>
+<li>
+<tt><b>T_next</b></tt>
+       : the new temperature to be applied for the next temperature stage
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl><dd>
+<b></b><p>
+     A SA function which computed the temperature of the next temperature stage
+     </p>
+</dd></dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+    // This function implements the simple geometric temperature law
+    function T = temp_law_default(T, step_mean, step_var)
+      _alpha = 0.9;
+      T = _alpha*T;
+    endfunction
+  </pre>
+<h3><font color="blue">See Also</font></h3>
+<p><a href=""><tt><b> optim_sa </b></tt></a>,&nbsp;&nbsp;<a href=""><tt><b> compute_initial_temp </b></tt></a>,&nbsp;&nbsp;<a href=""><tt><b> neigh_func_default </b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b>collette</b>
+    Yann COLLETTE (yann.collette@renault.com)
+    </dd></dl>
+</body>
+</html>

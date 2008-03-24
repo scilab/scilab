@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>codage_binary</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 24/03/2008</div>
+<p><b>codage_binary</b> -  A function which performs conversion between binary and continuous representation </p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>pop_out = codage_binary(pop_in,direction,param)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>pop_in</b></tt>
+       : a list which contains all the individuals in the current population.
+       </li>
+<li>
+<tt><b>direction</b></tt>
+       : 'code' or 'decode'. If direction == 'code' then we perform a continuous to binary encoding. Else, we convert from binary to continuous.
+       </li>
+<li>
+<tt><b>param</b></tt>
+       : a parameter list.
+         - 'binary_length': the number of bits by variables. If binary_length = 8 and the variable X is of dimension 2 then the binary code will be 16 bits length.
+         - 'minboun': a vector of minimum bounds for the variable X.
+         - 'maxbound': a vector of maximum bounds for the variable X.
+       </li>
+<li>
+<tt><b>pop_out</b></tt>
+       : the population coded to binary or decoded to continuous values.
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl><dd>
+<b></b><p>
+      This function allows to code or decode a population of individuals from / to continuous variables to / from binary.
+     </p>
+</dd></dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+   Add here scilab instructions and comments
+  </pre>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="optim_ga.htm"><tt><b> optim_ga </b></tt></a>,&nbsp;&nbsp;<a href="mutation_func_binary.htm"><tt><b> mutation_func_binary </b></tt></a>,&nbsp;&nbsp;<a href="crossover_func_binary.htm"><tt><b> crossover_func_binary </b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b>Yann COLLETTE</b>
+    ycollet@freesurf.Fr
+    </dd></dl>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>mutation_func_binary</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 24/03/2008</div>
+<p><b>mutation_func_binary</b> -  A function which performs binary mutation </p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>Mut_Indiv = mutation_func_binary(Indiv,param)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>Indiv</b></tt>
+       : the individual on which we will perform the mutation.
+       </li>
+<li>
+<tt><b>param</b></tt>
+       : a list of parameters.
+         - 'binary_length': the size of the binary code.
+         - 'multi_mut': a boolean. If %T, several random bits will be flipped.
+         - 'multi_mut_nd': the number of bits to be flipped. Works only when multi_mut is set to %T.
+       </li>
+<li>
+<tt><b>Mut_Indiv</b></tt>
+       : The mutated individual.
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl><dd>
+<b></b><p>
+      This function performs a classical multi-bits binary mutation.
+     </p>
+</dd></dl>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="mutation_func_default.htm"><tt><b> mutation_func_default </b></tt></a>,&nbsp;&nbsp;<a href="crossover_func_binary.htm"><tt><b> crossover_func_binary </b></tt></a>,&nbsp;&nbsp;<a href="init_func_default.htm"><tt><b> init_func_default </b></tt></a>,&nbsp;&nbsp;<a href="optim_ga.htm"><tt><b> optim_ga </b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b>Yann COLLETTE</b>
+    ycollet@freesurf.fr
+    </dd></dl>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>selection_func_elitist</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 24/03/2008</div>
+<p><b>selection_func_elitist</b> -  An 'elitist' selection function </p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>[Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_func_elitist(Pop_in,Indiv1,Indiv2,FObj_Pop_in,FObj_Indiv1,FObj_Indiv2,MO_Total_FObj_in,MO_FObj_Indiv1,MO_FObj_Indiv2,param)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>Pop_in</b></tt>
+       : The initial population of individuals.
+       </li>
+<li>
+<tt><b>Indiv1</b></tt>
+       : a first set of childs generated via crossover + mutation.
+       </li>
+<li>
+<tt><b>Indiv2</b></tt>
+       : a second set of childs generated via crossover + mutation.
+       </li>
+<li>
+<tt><b>FObj_Pop_in</b></tt>
+       : a vector of objective function values associated to each individuals of Pop_in.
+       </li>
+<li>
+<tt><b>FObj_Indiv1</b></tt>
+       : a vector of objective function values associated to each individuals of Indiv1.
+       </li>
+<li>
+<tt><b>FObj_Indiv2</b></tt>
+       : a vector of objective function values associated to each individuals of Indiv2.
+       </li>
+<li>
+<tt><b>MO_Total_FObj_in</b></tt>
+       : a matrix of multi-objective function values associated to each individuals of Pop_in.
+       </li>
+<li>
+<tt><b>MO_FObj_Indiv1</b></tt>
+       : a matrix of multi-objective function values associated to each individuals of Indiv1.
+       </li>
+<li>
+<tt><b>MO_FObj_Indiv2</b></tt>
+       : a matrix of multi-objective function values associated to each individuals of Indiv2.
+       </li>
+<li>
+<tt><b>param</b></tt>
+       : a list of parameters.
+         - 'pressure': the selection pressure coefficient. Each individuals with 0 efficiency will have an efficiency value equal to 'pressure'.
+       </li>
+<li>
+<tt><b>Pop_out</b></tt>
+       : all the selected individuals in a population of size pop_size.
+       </li>
+<li>
+<tt><b>FObj_Pop_out</b></tt>
+       : all the objective function values associated to each individuals of Pop_out.
+       </li>
+<li>
+<tt><b>Efficiency</b></tt>
+       : all the efficiency values associated to each individuals of Pop_out.
+       </li>
+<li>
+<tt><b>MO_Total_FObj_out</b></tt>
+       : all the multi-objective function values associated to each individuals of Pop_out.
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl><dd>
+<b></b><p>
+      This function performs the elitist selection function. We select the best individuals in the set of parents and childs individuals.
+     </p>
+</dd></dl>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="selection_func_random.htm"><tt><b> selection_func_random </b></tt></a>,&nbsp;&nbsp;<a href="mutation_func_default.htm"><tt><b> mutation_func_default </b></tt></a>,&nbsp;&nbsp;<a href="crossover_func_default.htm"><tt><b> crossover_func_default </b></tt></a>,&nbsp;&nbsp;<a href="init_func_default.htm"><tt><b> init_func_default </b></tt></a>,&nbsp;&nbsp;<a href="optim_ga.htm"><tt><b> optim_ga </b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b>Yann COLLETTE</b>
+    ycollet@freesurf.fr
+    </dd></dl>
+</body>
+</html>

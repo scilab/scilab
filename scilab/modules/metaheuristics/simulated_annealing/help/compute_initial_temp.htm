@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>compute_initial_temp</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>Scilab Function  </center>
+<div align="right">Last update : 24/03/2008</div>
+<p><b>compute_initial_temp</b> -  A SA function which allows to compute the initial temperature of the simulated annealing </p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>T_init = compute_initial_temp(x0,f,proba_init,ItMX,neigh_func,param_neigh_func)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<tt><b>x0</b></tt>
+       : the starting point
+       </li>
+<li>
+<tt><b>f</b></tt>
+       : the objective function which will be send to the simulated annealing for optimization
+       </li>
+<li>
+<tt><b>proba_init</b></tt>
+       : the initial probability of accepting a bad solution (usually around 0.7)
+       </li>
+<li>
+<tt><b>ItMX</b></tt>
+       : the number of iterations of random walk (usually around 100)
+       </li>
+<li>
+<tt><b>neigh_func</b></tt>
+       : a function which returns a neighbor of a given point (see the help page of neigh_func to see the prototype of this function)
+       </li>
+<li>
+<tt><b>param_neigh_func</b></tt>
+       : some parameters (can be a list) which will be sent as parameters to neigh_func
+       </li>
+<li>
+<tt><b>T_init</b></tt>
+       : The initial temperature corresponding to the given probability of accepting a bad solution
+       </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<dl><dd>
+<b></b><p>
+     This function computes an initial temperature given an initial probability of accepting a bad solution.
+     This computation is based on some iterations of random walk.
+     </p>
+</dd></dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+    x0 = [2 2];
+    Proba_start = 0.7;
+    It_Pre = 100;
+    x_test = neigh_func_default(x0);
+
+    T0 = compute_initial_temp(x0, rosenbrock, Proba_start, It_Pre, neigh_func_default,[]);
+  </pre>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="../help/optim_sa.htm"><tt><b> optim_sa </b></tt></a>,&nbsp;&nbsp;<a href="../help/neigh_func_default.htm"><tt><b> neigh_func_default </b></tt></a>,&nbsp;&nbsp;<a href="../help/temp_law_default.htm"><tt><b> temp_law_default </b></tt></a>,&nbsp;&nbsp;</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b>collette</b>
+    Yann COLLETTE (yann.collette@renault.com)
+    </dd></dl>
+</body>
+</html>
