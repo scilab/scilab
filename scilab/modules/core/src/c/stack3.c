@@ -824,7 +824,7 @@ int iIsComplex(int _iVar)
 	_piPow		: Array of max pow for each polymon in the matrix ( size = iRows * iCols )
 	_piReal		: Returns a pointer on array of coeff of polynom matrix ( size = sum of _piPow )
 
-	Warning		: if _pblReal == NULL, this fonction return _piRows and _piCols with good values to allow array of Pow and array of Values.
+	Warning		: if _piPow == NULL, this fonction return _piRows and _piCols with good values to allow array of Pow and array of Values.
 */
 void GetRhsPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal)
 {
@@ -957,6 +957,9 @@ void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCol
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iNewVal));
 	int iAddrPtr		= 0;
 	int iAddrData		= 0;
+
+	int *toto = istk(iAddrBase);
+
 	*istk(iAddrBase)	= 2;
 	*istk(iAddrBase + 1)= _iRows;
 	*istk(iAddrBase + 2)= _iCols;
@@ -981,11 +984,11 @@ void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCol
 
 	if(_pdblImgData != NULL)
 	{
-		iAddrData  = sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols);
-		*istk(iAddrBase + 3)= 1; // Use complex values
+		//iAddrData  += iArraySum(_piPow, 0, _iRows * _iCols) + 1;
+		*istk(iAddrBase + 3) = 1; // Use complex values
 		for(iIndex = 0 ; iIndex < iArraySum(_piPow, 0, _iRows * _iCols) ; iIndex++)
 		{
-			int iTemp = sadr(iAddrData) + iIndex;
+			int iTemp = sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols) + iIndex;
 			*stk(iTemp) = _pdblImgData[iIndex];
 		}
 	}
@@ -994,7 +997,10 @@ void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCol
 	C2F(intersci).iwhere[Top - Rhs + _iNewVal - 1]	= *Lstk(_iNewVal);
 	C2F(intersci).lad[Top - Rhs + _iNewVal - 1]		= sadr(iAddrData);
 
-	*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrData) + iIndex;
+	if(_pdblImgData = NULL)
+		*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrData) + iIndex;
+	else
+		*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols) + iIndex;
 }
 
 void CreateSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int* _piElemByRow, int* _piColByRow, double* _pdblRealData)
@@ -1046,6 +1052,10 @@ void CreateCSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalEl
 	C2F(intersci).iwhere[Top - Rhs + _iNewVal - 1]	= *Lstk(_iNewVal);
 	C2F(intersci).lad[Top - Rhs + _iNewVal - 1]		= sadr(iAddrRealData);
 
-	*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrRealData) + iIndex;
+	if(_pdblImgData = NULL)
+		*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrRealData) + iIndex;
+	else
+		*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrRealData) + _iTotalElem + iIndex;
+
 
 }
