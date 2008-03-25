@@ -291,7 +291,6 @@ sci_gateway/c/sci_cumprod.c \
 sci_gateway/c/sci_cumsum.c \
 sci_gateway/c/sci_dsearch.c \
 sci_gateway/c/sci_nearfloat.c \
-sci_gateway/c/sci_chinesehat.c \
 sci_gateway/c/sci_isreal.c \
 sci_gateway/c/sci_floor.c \
 sci_gateway/c/sci_real.c \
@@ -341,7 +340,6 @@ sci_gateway/fortran/sci_f_kron.f \
 sci_gateway/fortran/sci_f_dsearch.f \
 sci_gateway/fortran/sci_f_cumsum.f \
 sci_gateway/fortran/sci_f_nearfloat.f \
-sci_gateway/fortran/sci_f_chinesehat.f \
 sci_gateway/fortran/sci_f_isreal.f \
 sci_gateway/fortran/sci_f_floor.f \
 sci_gateway/fortran/sci_f_real.f \

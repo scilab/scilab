@@ -388,7 +388,6 @@ am__objects_4 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_cumsum.lo \
 	libscielementary_functions_la-sci_dsearch.lo \
 	libscielementary_functions_la-sci_nearfloat.lo \
-	libscielementary_functions_la-sci_chinesehat.lo \
 	libscielementary_functions_la-sci_isreal.lo \
 	libscielementary_functions_la-sci_floor.lo \
 	libscielementary_functions_la-sci_real.lo \
@@ -437,7 +436,6 @@ am__objects_5 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_dsearch.lo \
 	libscielementary_functions_la-sci_f_cumsum.lo \
 	libscielementary_functions_la-sci_f_nearfloat.lo \
-	libscielementary_functions_la-sci_f_chinesehat.lo \
 	libscielementary_functions_la-sci_f_isreal.lo \
 	libscielementary_functions_la-sci_f_floor.lo \
 	libscielementary_functions_la-sci_f_real.lo \
@@ -574,6 +572,7 @@ NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
+OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
 PACKAGE = @PACKAGE@
@@ -965,7 +964,6 @@ sci_gateway/c/sci_cumprod.c \
 sci_gateway/c/sci_cumsum.c \
 sci_gateway/c/sci_dsearch.c \
 sci_gateway/c/sci_nearfloat.c \
-sci_gateway/c/sci_chinesehat.c \
 sci_gateway/c/sci_isreal.c \
 sci_gateway/c/sci_floor.c \
 sci_gateway/c/sci_real.c \
@@ -1015,7 +1013,6 @@ sci_gateway/fortran/sci_f_kron.f \
 sci_gateway/fortran/sci_f_dsearch.f \
 sci_gateway/fortran/sci_f_cumsum.f \
 sci_gateway/fortran/sci_f_nearfloat.f \
-sci_gateway/fortran/sci_f_chinesehat.f \
 sci_gateway/fortran/sci_f_isreal.f \
 sci_gateway/fortran/sci_f_floor.f \
 sci_gateway/fortran/sci_f_real.f \
@@ -1251,7 +1248,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_asin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_atan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_ceil.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_clean.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_conj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cos.Plo@am__quote@
@@ -1736,13 +1732,6 @@ libscielementary_functions_la-sci_nearfloat.lo: sci_gateway/c/sci_nearfloat.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_nearfloat.c' object='libscielementary_functions_la-sci_nearfloat.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_nearfloat.lo `test -f 'sci_gateway/c/sci_nearfloat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nearfloat.c
-
-libscielementary_functions_la-sci_chinesehat.lo: sci_gateway/c/sci_chinesehat.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_chinesehat.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Tpo -c -o libscielementary_functions_la-sci_chinesehat.lo `test -f 'sci_gateway/c/sci_chinesehat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chinesehat.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Tpo $(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_chinesehat.c' object='libscielementary_functions_la-sci_chinesehat.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_chinesehat.lo `test -f 'sci_gateway/c/sci_chinesehat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chinesehat.c
 
 libscielementary_functions_la-sci_isreal.lo: sci_gateway/c/sci_isreal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_isreal.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_isreal.Tpo -c -o libscielementary_functions_la-sci_isreal.lo `test -f 'sci_gateway/c/sci_isreal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isreal.c
@@ -2634,9 +2623,6 @@ libscielementary_functions_la-sci_f_cumsum.lo: sci_gateway/fortran/sci_f_cumsum.
 
 libscielementary_functions_la-sci_f_nearfloat.lo: sci_gateway/fortran/sci_f_nearfloat.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_nearfloat.lo `test -f 'sci_gateway/fortran/sci_f_nearfloat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_nearfloat.f
-
-libscielementary_functions_la-sci_f_chinesehat.lo: sci_gateway/fortran/sci_f_chinesehat.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_chinesehat.lo `test -f 'sci_gateway/fortran/sci_f_chinesehat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_chinesehat.f
 
 libscielementary_functions_la-sci_f_isreal.lo: sci_gateway/fortran/sci_f_isreal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_isreal.lo `test -f 'sci_gateway/fortran/sci_f_isreal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isreal.f
