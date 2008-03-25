@@ -30,13 +30,22 @@
     <para>
     For boolean, polynomial and rational matrices, the exponent must be an
     integer</para>
+   
+    <refsection><title>Remarks </title>
     <para>
-    Remark that <literal>123.^b</literal> is interpreted as <literal>(123).^b</literal>. In such
+      <literal>123.^b</literal> is interpreted as <literal>(123).^b</literal>. In such
     cases dot is part of the operator, not of the number.</para>
+    <para>
+      For two real or complex numbers <literal>x1</literal> et
+      <literal>x2</literal> the value of  <literal>x1^x2</literal> is the "principal value"
+      determined by <literal>x1^x2 = exp(x2*log(x1))</literal>.
+    </para>
+    </refsection>
   </refsection>
   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 
 2^4
+(-0.5)^(1/3)
 [1 2;2 4]^(1+%i)
 s=poly(0,"s");
 [1 2 s]^4
