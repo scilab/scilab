@@ -17,7 +17,11 @@ extern int C2F(intchinesehat) _PARAMS((int *id));
 int C2F(sci_chinesehat) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
+#ifdef _NEW_TONIO_
 	C2F(intchinesehat)(id);
+#else
+	C2F(intchinesehat)(id);
+#endif
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

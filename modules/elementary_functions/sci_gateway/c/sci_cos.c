@@ -13,19 +13,9 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "stdlib.h"
-
+#include "basic_functions.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intcos) _PARAMS((int *id));
-
-
-extern int iIsComplex(int _iVar);
-extern double dcoss(double _dblVal);
-extern double dsins(double _dblVal);
-extern double dcoshs(double _dblVal);
-extern double dsinhs(double _dblVal);
-
-extern void wcos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
-
 /*--------------------------------------------------------------------------*/
 
 
@@ -38,7 +28,6 @@ int C2F(sci_cos) _PARAMS((char *fname,unsigned long fname_len))
 	int iRealData = 0;
 	int iImgData = 0;
 	int iIndex;
-	double toto1 = 0, toto2 = 0, toto3 = 0;
 	
 
 	CheckRhs(1,1);
@@ -46,7 +35,7 @@ int C2F(sci_cos) _PARAMS((char *fname,unsigned long fname_len))
 
 	if(GetType(1) != sci_matrix)
 	{
-		//Voir comment faire l'appel a une fonction 'client dans le cas ou les variables ne sont pas des matrices de doubles.
+		OverLoad(1);
 		return 0;
 	}
 

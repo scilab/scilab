@@ -26,7 +26,6 @@ int C2F(sci_asin) _PARAMS((char *fname,unsigned long fname_len))
 	int iRealData = 0;
 	int iImgData = 0;
 	int iIndex;
-	int toto1 = 0, toto2 = 0, toto3 = 0;
 	
 	CheckRhs(1,1);
 	CheckLhs(1,1);

@@ -15,7 +15,7 @@
 #include "stack-c.h"
 #include "stdlib.h"
 #include "basic_functions.h"
-#include "msgs.h"
+#include "../../core/src/c/parse.h"
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(intatan) _PARAMS((int *id));
@@ -66,7 +66,7 @@ int C2F(sci_atan) _PARAMS((char *fname,unsigned long fname_len))
 					if(C2F(errgst).ieee==0)
 						Error(32);
 					else if(C2F(errgst).ieee==1)
-						Msgs(64);
+						Msgs(64,0);
 				}
 				else
 				{

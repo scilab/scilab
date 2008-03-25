@@ -117,6 +117,12 @@ double dsins(double _dblVal)
 	return sin(_dblVal);
 }
 
+/*tan*/
+double dtans(double _dblVal)
+{
+	return tan(_dblVal);
+}
+
 /*cosh*/
 double dcoshs(double _dblVal)
 {
@@ -494,4 +500,33 @@ double dsigns(double _dblRef, double _dblVal)
 		return _dblRef;
 	else
 		return -_dblRef;
+}
+
+int dceils(double _dblVal)
+{
+	/*
+	3.14 -> 3
+	4,00 -> 4
+
+	-3.14 -> -3
+	-4.00 -> -4
+	*/
+	if((int)_dblVal == _dblVal)
+		return (int)(_dblVal);
+
+	if(_dblVal >= 0)
+		return (int)(_dblVal + 1);
+
+	return (int)(_dblVal);
+}
+
+double dceilsEx(double _dblVal, int _iPrecision)
+{
+	double iPow = pow(10, _iPrecision);
+
+	double dblTemp = _dblVal * iPow;
+	dblTemp = dceils(dblTemp);
+
+	return (double)dblTemp / iPow;
+
 }
