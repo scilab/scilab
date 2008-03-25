@@ -13,6 +13,7 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "stdlib.h"
+#include "basic_functions.h"
 
 int abs_double();
 int abs_poly();
@@ -20,8 +21,6 @@ int abs_sparse();
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(intabs) _PARAMS((int *id));
-extern double dabss(double _dblVal);
-extern double dabsz(double _dblRealVal, double _dblImgVal);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_abs) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -58,6 +57,7 @@ int C2F(sci_abs) _PARAMS((char *fname,unsigned long fname_len))
 	return 0;
 }
 
+/*Absolute value for a double*/
 int abs_double()
 {
 	int iRows = 0;
@@ -79,7 +79,6 @@ int abs_double()
 		pdblImgData		= stk(iImgData);
 
 		pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
-//		pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
 		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
 			pReturnRealData[iIndex] = dabsz(pdblRealData[iIndex], pdblImgData[iIndex]);
@@ -112,6 +111,7 @@ int abs_double()
 	return 0;
 }
 
+/*Absolute value for a polynomial ( absolute value of each coefficient )*/
 int abs_poly()
 {
 	int iRows = 0;
@@ -171,6 +171,7 @@ int abs_poly()
 	return 0;
 }
 
+/*Absolute value for a sparse ( absolute value of each element )*/
 int abs_sparse()
 {
 	int iRows			= 0;

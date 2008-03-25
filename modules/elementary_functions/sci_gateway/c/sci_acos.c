@@ -13,13 +13,10 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "stdlib.h"
+#include "basic_functions.h"
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(intacos) _PARAMS((int *id));
-
-extern double dacoss(double _dblVal);
-extern void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
-
 /*--------------------------------------------------------------------------*/
 int C2F(sci_acos) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -36,7 +33,7 @@ int C2F(sci_acos) _PARAMS((char *fname,unsigned long fname_len))
 
 	if(GetType(1) != sci_matrix)
 	{
-		//Voir comment faire l'appel a une fonction 'client dans le cas ou les variables ne sont pas des matrices de doubles.
+		OverLoad(1);
 		return 0;
 	}
 

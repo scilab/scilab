@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Antoine ELIAS
+ * Copyright (C) 2008 - INRIA - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,14 +10,70 @@
  *
  */
 
-/* translation : Fortran "cos" function to C, stack calls move in caller to separate maths source code and memory management*/
+#include "basic_functions.h"
 
-#include "stack-c.h"
-#include <stdlib.h>
-#include <math.h>
 
-extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
-extern double C2F(logp1) _PARAMS((double *x));
+/*
+	PURPOSE :  Compute   v = log ( (1 + s)/(1 - s) )
+	for small s, this is for |s| < SLIM = 0.20
+
+	ALGORITHM : 
+	1/ if |s| is "very small" we use a truncated
+	taylor dvp (by keeping 3 terms) from : 
+	2        4          6
+	t = 2 * s * ( 1 + 1/3 s  + 1/5 s  + [ 1/7 s  + ....] )
+	2        4      
+	t = 2 * s * ( 1 + 1/3 s  + 1/5 s  + er)
+
+	The limit E until we use this formula may be simply
+	gotten so that the negliged part er is such that :
+	2        4
+	(#) er <= epsm * ( 1 + 1/3 s  + 1/5 s )   for all |s|<= E
+
+	As  er  = 1/7 s^6 + 1/9 s^8 + ... 
+	er <= 1/7 * s^6 ( 1 + s^2 + s^4 + ...) = 1/7  s^6/(1-s^2)
+
+	the inequality (#) is forced if :
+
+	1/7  s^6 / (1-s^2)  <= epsm * ( 1 + 1/3 s^2  + 1/5 s^4 )
+
+	s^6 <= 7 epsm * (1 - 2/3 s^2 - 3/15 s^4 - 1/5 s^6)
+
+	So that E is very near (7 epsm)^(1/6) (approximately 3.032d-3):
+
+	2/ For larger |s| we used a minimax polynome :
+
+	yi = s * (2  + d3 s^3 + d5 s^5 .... + d13 s^13 + d15 s^15)
+
+	This polynome was computed (by some remes algorithm) following 
+	(*) the sin(x) example (p 39) of the book :
+
+	"ELEMENTARY FUNCTIONS"
+	"Algorithms and implementation"
+	J.M. Muller (Birkhauser)
+
+	(*) without the additionnal raffinement to get the first coefs
+	very near floating point numbers)
+*/
+double lnp1m1(double _dblVar)
+{
+	static double sdblD3	= 0.66666666666672679472;
+	static double sdblD5	= 0.39999999996176889299;
+	static double sdblD7	= 0.28571429392829380980;
+	static double sdblD9	= 0.22222138684562683797;
+	static double sdblD11	= 0.18186349187499222459;
+	static double sdblD13	= 0.15250315884469364710;
+	static double sdblD15	= 0.15367270224757008114;
+	static double sdblE		= 3.032E-3;
+	static double sdblC3	= 2.0/3.0;
+	static double sdblC5	= 2.0/5.0;
+
+	double dblS2 = _dblVar * _dblVar;
+	if( dabss(_dblVar) <= sdblE)
+		return _dblVar * (2 + dblS2 * (sdblC3 + sdblC5 * dblS2));
+	else
+		return _dblVar * (2 + dblS2 * (sdblD3 + dblS2 * (sdblD5 + dblS2 * (sdblD7 + dblS2 * (sdblD9 + dblS2 * (sdblD11 + dblS2 * (sdblD13 + dblS2 * sdblD15)))))));
+}
 
 
 /*abs*/
@@ -85,6 +141,18 @@ double dasins(double _dblVal)
 	return asin(_dblVal);
 }
 
+/*atan*/
+double datans(double _dblVal)
+{
+	return atan(_dblVal);
+}
+
+/*atan2*/
+double datan2s(double _dblValX, double _dblValY)
+{
+	return atan2(_dblValX, _dblValY);
+}
+
 /*sqrt*/
 double dsqrts(double _dblVal)
 {
@@ -120,8 +188,8 @@ void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 
 	double dblAbsReal	= fabs(_dblReal);
 	double dblAbsImg	= fabs(_dblImg);
-	int iSignReal		= _dblReal < 0 ? -1 : 1;
-	int iSignImg		= _dblImg < 0 ? -1 : 1;
+	double dblSignReal	= dsigns(1, _dblReal);
+	double dblSignImg	= dsigns(1, _dblImg);
 
 	double dblR = 0, dblS = 0, dblA = 0, dblB = 0;
 
@@ -207,11 +275,11 @@ void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 			*_pdblImg	= 0.5 * F2C(logp1)(&dblTemp);
 		}
 	}
-	if(iSignReal < 0)
+	if(dblSignReal < 0)
 		*_pdblReal = sdblPi - *_pdblReal;
 
-	if(dblAbsImg != 0 || iSignReal < 0)
-		*_pdblImg = - iSignImg * (*_pdblImg);
+	if(dblAbsImg != 0 || dblSignReal < 0)
+		*_pdblImg = - dblSignImg * (*_pdblImg);
 }
 
 /*This fonction is a translation of fortran wasin write by Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
@@ -328,3 +396,102 @@ void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 	*_pdblImg *= iSignImg;
 }
 
+/*
+watan compute the arctangent of a complex number
+	COPYRIGHT (C) 2001 Bruno Pincon and Lydia van Dijk
+	Written by Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr> so
+	as to get more precision.  Also to fix the
+	behavior at the singular points and at the branch cuts.
+	Polished by Lydia van Dijk 
+	<lvandijk@hammersmith-consulting.com>
+
+*/
+void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
+{
+	static double sdblSlim		= 0.2;
+	static double sdblAlim		= 1E-150;
+	static double sdblTol		= 0.3;
+	static double sdblLn2		= 0.6931471805599453094172321;
+
+	double dblRMax				= F2C(dlamch)("O",1L);
+	double dblPi_2				= 2.0 * datans(1);
+
+
+	//Temporary variables
+	double dblR2 = 0;
+	double dblS = 0;
+
+
+	if(_dblImg == 0)
+	{
+		*_pdblReal	= datans(_dblReal);
+		*_pdblImg	= 0;
+	}
+	else
+	{
+		dblR2 = _dblReal * _dblReal + _dblImg * _dblImg; // Oo
+		if(dblR2 > dblRMax)
+		{
+			if( dabss(_dblImg) > dblRMax)
+				dblS = 0;
+			else
+				dblS = 1 / (((0.5 * _dblReal) / _dblImg) * _dblReal + 0.5 * _dblImg );
+		}
+		else
+			dblS = (2 * _dblImg) / (1+dblR2);
+
+		if(dabss(dblS) < sdblSlim)
+		{
+			/*
+			s is small: |s| < SLIM  <=>  |z| outside the following disks:
+			D+ = D(center = [0;  1/slim], radius = sqrt(1/slim**2 - 1)) if b > 0
+			D- = D(center = [0; -1/slim], radius = sqrt(1/slim**2 - 1)) if b < 0
+			use the special evaluation of log((1+s)/(1-s)) (5)
+			*/
+			*_pdblImg = lnp1m1(dblS) * 0.25;
+		}
+		else
+		{
+			if(dabss(dblS) == 1 && dabss(_dblReal) <= sdblAlim)
+			{
+				//|s| >= SLIM  => |z| is inside D+ or D-
+				*_pdblImg = dsigns(0.5,_dblImg) * ( sdblLn2 - log(dabss(_dblReal)));
+			}
+			else
+			{
+				*_pdblImg = 0.25 * log((pow(_dblReal,2) + pow((_dblImg + 1),2)) / pow(_dblReal,2) + pow((_dblImg - 1),2));
+			}
+		}
+		if(_dblReal == 0)
+		{//z is purely imaginary
+			if( dabss(_dblImg) > 1)
+			{//got sign(b) * pi/2
+				*_pdblReal = dsigns(1, _dblImg) * dblPi_2;
+			}
+			else if( dabss(_dblImg) == 1)
+			{//got a Nan with 0/0
+				*_pdblReal = (_dblReal - _dblReal) / (_dblReal - _dblReal); // Oo
+			}
+			else
+				*_pdblReal = 0;
+		}
+		else if(dblR2 > dblRMax)
+		{//_pdblImg is necessarily very near sign(a)* pi/2 
+			*_pdblReal = dsigns(1, _dblReal) * dblPi_2;
+		}
+		else if(dabss(1 - dblR2) + dabss(_dblReal) <= sdblTol)
+		{//|b| is very near 1 (and a is near 0)  some cancellation occur in the (next) generic formula 
+			*_pdblReal = 0.5 * atan2(2 * _dblReal, (1-_dblImg) * (1 + _dblImg) - pow(_dblReal,2));
+		}
+		else
+			*_pdblReal = 0.5 * atan2(2 * _dblReal, 1 - dblR2);
+	}
+}
+
+double dsigns(double _dblRef, double _dblVal)
+{
+	if( _dblVal >= 0)
+		return _dblRef;
+	else
+		return -_dblRef;
+}

@@ -650,6 +650,10 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\basic_functions.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\elementary_functions.h"
 				>
 			</File>

@@ -37,6 +37,7 @@ int C2F(sci_sin) _PARAMS((char *fname,unsigned long fname_len))
 	CheckLhs(1,1);
 	if(GetType(1) != sci_matrix)
 	{
+		OverLoad(1);
 		//Voir comment faire l'appel a une fonction 'client dans le cas ou les variables ne sont pas des matrices de doubles.
 		return 0;
 	}
