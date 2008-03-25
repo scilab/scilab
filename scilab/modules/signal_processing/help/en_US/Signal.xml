@@ -75,9 +75,6 @@
       <varlistentry><term>group</term><listitem>
         <para>calculate the group delay of a digital filter</para>
       </listitem></varlistentry>
-      <varlistentry><term>optfir</term><listitem>
-        <para>optimal design of linear phase filters using linear programming</para>
-      </listitem></varlistentry>
       <varlistentry><term>remezb</term><listitem>
         <para>minimax approximation of a frequency domain magnitude response.</para>
       </listitem></varlistentry>
