@@ -14,7 +14,7 @@ else
   params=list()
 end
 if type(%__func)==10 then //hard coded function given by its name
-  error('hard coded function not allowed, create a Scilab function using call""')
+  error(gettext("Hard coded function not allowed, create a Scilab function using call."))
 end
 
 %x=%x(:);
