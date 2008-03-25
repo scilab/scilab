@@ -13,7 +13,7 @@
 #ifndef __GW_ELEMENTARIES_FUNCTIONS__
 #define __GW_ELEMENTARIES_FUNCTIONS__
 
-//#define _NEW_TONIO_
+#define _NEW_TONIO_
 
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
