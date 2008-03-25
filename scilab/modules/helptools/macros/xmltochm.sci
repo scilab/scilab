@@ -9,7 +9,7 @@
 
 function xmltochm(dirs,titles,directory_language,default_language)
 	
-	if ! MSDOS then
+	if ~MSDOS then
 		warning(msprintf(gettext("%s: This function is only supported on Windows platforms.\n"),"xmltochm"));
 		return;
 	end
