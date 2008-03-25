@@ -42,300 +42,174 @@ C   decimal digits.  The accuracy achieved depends on the arithmetic
 C   system, the compiler, the intrinsic functions, and proper
 C   selection of the machine-dependent constants.
 C
-C*******************************************************************
-C*******************************************************************
-C
-C Explanation of machine-dependent constants
-C
-C   XMIN   = the smallest positive floating-point number.
-C   XINF   = the largest positive finite floating-point number.
-C   XNEG   = the largest negative argument acceptable to ERFCX;
-C            the negative of the solution to the equation
-C            2*exp(x*x) = XINF.
-C   XSMALL = argument below which erf(x) may be represented by
-C            2*x/sqrt(pi)  and above which  x*x  will not underflow.
-C            A conservative value is the largest machine number X
-C            such that   1.0 + X = 1.0   to machine precision.
-C   XBIG   = largest argument acceptable to ERFC;  solution to
-C            the equation:  W(x) * (1-0.5/x**2) = XMIN,  where
-C            W(x) = exp(-x*x)/[x*sqrt(pi)].
-C   XHUGE  = argument above which  1.0 - 1/(2*x*x) = 1.0  to
-C            machine precision.  A conservative value is
-C            1/[2*sqrt(XSMALL)]
-C   XMAX   = largest acceptable argument to ERFCX; the minimum
-C            of XINF and 1/[sqrt(pi)*XMIN].
-C
-C   Approximate values for some important machines are:
-C
-C                          XMIN       XINF        XNEG     XSMALL
-C
-C  CDC 7600      (S.P.)  3.13E-294   1.26E+322   -27.220  7.11E-15
-C  CRAY-1        (S.P.)  4.58E-2467  5.45E+2465  -75.345  7.11E-15
-C  IEEE (IBM/XT,
-C    SUN, etc.)  (S.P.)  1.18E-38    3.40E+38     -9.382  5.96E-8
-C  IEEE (IBM/XT,
-C    SUN, etc.)  (D.P.)  2.23D-308   1.79D+308   -26.628  1.11D-16
-C  IBM 195       (D.P.)  5.40D-79    7.23E+75    -13.190  1.39D-17
-C  UNIVAC 1108   (D.P.)  2.78D-309   8.98D+307   -26.615  1.73D-18
-C  VAX D-Format  (D.P.)  2.94D-39    1.70D+38     -9.345  1.39D-17
-C  VAX G-Format  (D.P.)  5.56D-309   8.98D+307   -26.615  1.11D-16
-C
-C
-C                          XBIG       XHUGE       XMAX
-C
-C  CDC 7600      (S.P.)  25.922      8.39E+6     1.80X+293
-C  CRAY-1        (S.P.)  75.326      8.39E+6     5.45E+2465
-C  IEEE (IBM/XT,
-C    SUN, etc.)  (S.P.)   9.194      2.90E+3     4.79E+37
-C  IEEE (IBM/XT,
-C    SUN, etc.)  (D.P.)  26.543      6.71D+7     2.53D+307
-C  IBM 195       (D.P.)  13.306      1.90D+8     7.23E+75
-C  UNIVAC 1108   (D.P.)  26.582      5.37D+8     8.98D+307
-C  VAX D-Format  (D.P.)   9.269      1.90D+8     1.70D+38
-C  VAX G-Format  (D.P.)  26.569      6.71D+7     8.98D+307
+C   This file was taken in the below url :
+C   http://www.kurims.kyoto-u.ac.jp/~ooura/index.html
+C   Takuya OOURA, Research Institute for Mathematical Sciences 
+C   Kyoto University, Kyoto 606-01 Japan
+C   e-mail : ooura@kurims.kyoto-u.ac.jp
 C
 C*******************************************************************
 C*******************************************************************
-C
-C Error returns
-C
-C  The program returns  ERFC = 0      for  ARG .GE. XBIG;
-C
-C                       ERFCX = XINF  for  ARG .LT. XNEG;
-C      and
-C                       ERFCX = 0     for  ARG .GE. XMAX.
-C
-C
-C Intrinsic functions required are:
-C
-C     ABS, AINT, EXP
-C
-C
-C  Author: W. J. Cody
-C          Mathematics and Computer Science Division
-C          Argonne National Laboratory
-C          Argonne, IL 60439
-C
-C  Latest modification: March 19, 1990
-C
-C------------------------------------------------------------------
-      INTEGER I,JINT
-CS    REAL
-      DOUBLE PRECISION
-     1     A,ARG,B,C,D,DEL,FOUR,HALF,P,ONE,Q,RESULT,SIXTEN,SQRPI,
-     2     TWO,THRESH,X,XBIG,XDEN,XHUGE,XINF,XMAX,XNEG,XNUM,XSMALL,
-     3     Y,YSQ,ZERO
-      DIMENSION A(5),B(4),C(9),D(8),P(6),Q(5)
-C------------------------------------------------------------------
-C  Mathematical constants
-C------------------------------------------------------------------
-CS    DATA FOUR,ONE,HALF,TWO,ZERO/4.0E0,1.0E0,0.5E0,2.0E0,0.0E0/,
-CS   1     SQRPI/5.6418958354775628695E-1/,THRESH/0.46875E0/,
-CS   2     SIXTEN/16.0E0/
-      DATA FOUR,ONE,HALF,TWO,ZERO/4.0D0,1.0D0,0.5D0,2.0D0,0.0D0/,
-     1     SQRPI/5.6418958354775628695D-1/,THRESH/0.46875D0/,
-     2     SIXTEN/16.0D0/
-C------------------------------------------------------------------
-C  Machine-dependent constants
-C------------------------------------------------------------------
-CS    DATA XINF,XNEG,XSMALL/3.40E+38,-9.382E0,5.96E-8/,
-CS   1     XBIG,XHUGE,XMAX/9.194E0,2.90E3,4.79E37/
-      DATA XINF,XNEG,XSMALL/1.79D308,-26.628D0,1.11D-16/,
-     1     XBIG,XHUGE,XMAX/26.543D0,6.71D7,2.53D307/
-C------------------------------------------------------------------
-C  Coefficients for approximation to  erf  in first interval
-C------------------------------------------------------------------
-CS    DATA A/3.16112374387056560E00,1.13864154151050156E02,
-CS   1       3.77485237685302021E02,3.20937758913846947E03,
-CS   2       1.85777706184603153E-1/
-CS    DATA B/2.36012909523441209E01,2.44024637934444173E02,
-CS   1       1.28261652607737228E03,2.84423683343917062E03/
-      DATA A/3.16112374387056560D00,1.13864154151050156D02,
-     1       3.77485237685302021D02,3.20937758913846947D03,
-     2       1.85777706184603153D-1/
-      DATA B/2.36012909523441209D01,2.44024637934444173D02,
-     1       1.28261652607737228D03,2.84423683343917062D03/
-C------------------------------------------------------------------
-C  Coefficients for approximation to  erfc  in second interval
-C------------------------------------------------------------------
-CS    DATA C/5.64188496988670089E-1,8.88314979438837594E0,
-CS   1       6.61191906371416295E01,2.98635138197400131E02,
-CS   2       8.81952221241769090E02,1.71204761263407058E03,
-CS   3       2.05107837782607147E03,1.23033935479799725E03,
-CS   4       2.15311535474403846E-8/
-CS    DATA D/1.57449261107098347E01,1.17693950891312499E02,
-CS   1       5.37181101862009858E02,1.62138957456669019E03,
-CS   2       3.29079923573345963E03,4.36261909014324716E03,
-CS   3       3.43936767414372164E03,1.23033935480374942E03/
-      DATA C/5.64188496988670089D-1,8.88314979438837594D0,
-     1       6.61191906371416295D01,2.98635138197400131D02,
-     2       8.81952221241769090D02,1.71204761263407058D03,
-     3       2.05107837782607147D03,1.23033935479799725D03,
-     4       2.15311535474403846D-8/
-      DATA D/1.57449261107098347D01,1.17693950891312499D02,
-     1       5.37181101862009858D02,1.62138957456669019D03,
-     2       3.29079923573345963D03,4.36261909014324716D03,
-     3       3.43936767414372164D03,1.23033935480374942D03/
-C------------------------------------------------------------------
-C  Coefficients for approximation to  erfc  in third interval
-C------------------------------------------------------------------
-CS    DATA P/3.05326634961232344E-1,3.60344899949804439E-1,
-CS   1       1.25781726111229246E-1,1.60837851487422766E-2,
-CS   2       6.58749161529837803E-4,1.63153871373020978E-2/
-CS    DATA Q/2.56852019228982242E00,1.87295284992346047E00,
-CS   1       5.27905102951428412E-1,6.05183413124413191E-2,
-CS   2       2.33520497626869185E-3/
-      DATA P/3.05326634961232344D-1,3.60344899949804439D-1,
-     1       1.25781726111229246D-1,1.60837851487422766D-2,
-     2       6.58749161529837803D-4,1.63153871373020978D-2/
-      DATA Q/2.56852019228982242D00,1.87295284992346047D00,
-     1       5.27905102951428412D-1,6.05183413124413191D-2,
-     2       2.33520497626869185D-3/
-C------------------------------------------------------------------
-      X = ARG
-      Y = ABS(X)
-      IF (Y .LE. THRESH) THEN
-C------------------------------------------------------------------
-C  Evaluate  erf  for  |X| <= 0.46875
-C------------------------------------------------------------------
-            YSQ = ZERO
-            IF (Y .GT. XSMALL) YSQ = Y * Y
-            XNUM = A(5)*YSQ
-            XDEN = YSQ
-            DO 20 I = 1, 3
-               XNUM = (XNUM + A(I)) * YSQ
-               XDEN = (XDEN + B(I)) * YSQ
-   20       CONTINUE
-            RESULT = X * (XNUM + A(4)) / (XDEN + B(4))
-            IF (JINT .NE. 0) RESULT = ONE - RESULT
-            IF (JINT .EQ. 2) RESULT = EXP(YSQ) * RESULT
-            GO TO 800
-C------------------------------------------------------------------
-C  Evaluate  erfc  for 0.46875 <= |X| <= 4.0
-C------------------------------------------------------------------
-         ELSE IF (Y .LE. FOUR) THEN
-            XNUM = C(9)*Y
-            XDEN = Y
-            DO 120 I = 1, 7
-               XNUM = (XNUM + C(I)) * Y
-               XDEN = (XDEN + D(I)) * Y
-  120       CONTINUE
-            RESULT = (XNUM + C(8)) / (XDEN + D(8))
-            IF (JINT .NE. 2) THEN
-               YSQ = AINT(Y*SIXTEN)/SIXTEN
-               DEL = (Y-YSQ)*(Y+YSQ)
-               RESULT = EXP(-YSQ*YSQ) * EXP(-DEL) * RESULT
-            END IF
-C------------------------------------------------------------------
-C  Evaluate  erfc  for |X| > 4.0
-C------------------------------------------------------------------
-         ELSE
-            RESULT = ZERO
-            IF (Y .GE. XBIG) THEN
-               IF ((JINT .NE. 2) .OR. (Y .GE. XMAX)) GO TO 300
-               IF (Y .GE. XHUGE) THEN
-                  RESULT = SQRPI / Y
-                  GO TO 300
-               END IF
-            END IF
-            YSQ = ONE / (Y * Y)
-            XNUM = P(6)*YSQ
-            XDEN = YSQ
-            DO 240 I = 1, 4
-               XNUM = (XNUM + P(I)) * YSQ
-               XDEN = (XDEN + Q(I)) * YSQ
-  240       CONTINUE
-            RESULT = YSQ *(XNUM + P(5)) / (XDEN + Q(5))
-            RESULT = (SQRPI -  RESULT) / Y
-            IF (JINT .NE. 2) THEN
-               YSQ = AINT(Y*SIXTEN)/SIXTEN
-               DEL = (Y-YSQ)*(Y+YSQ)
-               RESULT = EXP(-YSQ*YSQ) * EXP(-DEL) * RESULT
-            END IF
-      END IF
-C------------------------------------------------------------------
-C  Fix up for negative argument, erf, etc.
-C------------------------------------------------------------------
-  300 IF (JINT .EQ. 0) THEN
-            RESULT = (HALF - RESULT) + HALF
-            IF (X .LT. ZERO) RESULT = -RESULT
-         ELSE IF (JINT .EQ. 1) THEN
-            IF (X .LT. ZERO) RESULT = TWO - RESULT
-         ELSE
-            IF (X .LT. ZERO) THEN
-               IF (X .LT. XNEG) THEN
-                     RESULT = XINF
-                  ELSE
-                     YSQ = AINT(X*SIXTEN)/SIXTEN
-                     DEL = (X-YSQ)*(X+YSQ)
-                     Y = EXP(YSQ*YSQ) * EXP(DEL)
-                     RESULT = (Y+Y) - RESULT
-               END IF
-            END IF
-      END IF
-  800 RETURN
-C---------- Last card of CALERF ----------
-      END
-CS    REAL FUNCTION ERF(X)
-      DOUBLE PRECISION FUNCTION DERFF(X)
-C--------------------------------------------------------------------
-C
-C This subprogram computes approximate values for erf(x).
-C   (see comments heading CALERF).
-C
-C   Author/date: W. J. Cody, January 8, 1985
-C
-C--------------------------------------------------------------------
-      INTEGER JINT
-CS    REAL             X, RESULT
-      DOUBLE PRECISION X, RESULT
-C------------------------------------------------------------------
-      JINT = 0
-      CALL CALERF(X,RESULT,JINT)
-CS    ERF = RESULT
-      DERFF = RESULT
-      RETURN
-C---------- Last card of DERFF ----------
-      END
-CS    REAL FUNCTION ERFC(X)
-      DOUBLE PRECISION FUNCTION DERFCF(X)
-C--------------------------------------------------------------------
-C
-C This subprogram computes approximate values for erfc(x).
-C   (see comments heading CALERF).
-C
-C   Author/date: W. J. Cody, January 8, 1985
-C
-C--------------------------------------------------------------------
-      INTEGER JINT
-CS    REAL             X, RESULT
-      DOUBLE PRECISION X, RESULT
-C------------------------------------------------------------------
-      JINT = 1
-      CALL CALERF(X,RESULT,JINT)
-CS    ERFC = RESULT
-      DERFCF = RESULT
-      RETURN
-C---------- Last card of DERFCF ----------
-      END
-CS    REAL FUNCTION ERFCX(X)
-      DOUBLE PRECISION FUNCTION DERFCX(X)
-C------------------------------------------------------------------
-C
-C This subprogram computes approximate values for exp(x*x) * erfc(x).
-C   (see comments heading CALERF).
-C
-C   Author/date: W. J. Cody, March 30, 1987
-C
-C------------------------------------------------------------------
-      INTEGER JINT
-CS    REAL             X, RESULT
-      DOUBLE PRECISION X, RESULT
-C------------------------------------------------------------------
-      JINT = 2
-      CALL CALERF(X,RESULT,JINT)
-CS    ERFCX = RESULT
-      DERFCX = RESULT
-      RETURN
-C---------- Last card of DERFCX ----------
-      END
+      implicit real*8 (a - h, o - z)
+      dimension a(0 : 64), b(0 : 64)
+      data (a(i), i = 0, 12) / 
+     &    0.00000000005958930743d0, -0.00000000113739022964d0, 
+     &    0.00000001466005199839d0, -0.00000016350354461960d0, 
+     &    0.00000164610044809620d0, -0.00001492559551950604d0, 
+     &    0.00012055331122299265d0, -0.00085483269811296660d0, 
+     &    0.00522397762482322257d0, -0.02686617064507733420d0, 
+     &    0.11283791670954881569d0, -0.37612638903183748117d0, 
+     &    1.12837916709551257377d0 / 
+      data (a(i), i = 13, 25) / 
+     &    0.00000000002372510631d0, -0.00000000045493253732d0, 
+     &    0.00000000590362766598d0, -0.00000006642090827576d0, 
+     &    0.00000067595634268133d0, -0.00000621188515924000d0, 
+     &    0.00005103883009709690d0, -0.00037015410692956173d0, 
+     &    0.00233307631218880978d0, -0.01254988477182192210d0, 
+     &    0.05657061146827041994d0, -0.21379664776456006580d0, 
+     &    0.84270079294971486929d0 / 
+      data (a(i), i = 26, 38) / 
+     &    0.00000000000949905026d0, -0.00000000018310229805d0, 
+     &    0.00000000239463074000d0, -0.00000002721444369609d0, 
+     &    0.00000028045522331686d0, -0.00000261830022482897d0, 
+     &    0.00002195455056768781d0, -0.00016358986921372656d0, 
+     &    0.00107052153564110318d0, -0.00608284718113590151d0, 
+     &    0.02986978465246258244d0, -0.13055593046562267625d0, 
+     &    0.67493323603965504676d0 / 
+      data (a(i), i = 39, 51) / 
+     &    0.00000000000382722073d0, -0.00000000007421598602d0, 
+     &    0.00000000097930574080d0, -0.00000001126008898854d0, 
+     &    0.00000011775134830784d0, -0.00000111992758382650d0, 
+     &    0.00000962023443095201d0, -0.00007404402135070773d0, 
+     &    0.00050689993654144881d0, -0.00307553051439272889d0, 
+     &    0.01668977892553165586d0, -0.08548534594781312114d0, 
+     &    0.56909076642393639985d0 / 
+      data (a(i), i = 52, 64) / 
+     &    0.00000000000155296588d0, -0.00000000003032205868d0, 
+     &    0.00000000040424830707d0, -0.00000000471135111493d0, 
+     &    0.00000005011915876293d0, -0.00000048722516178974d0, 
+     &    0.00000430683284629395d0, -0.00003445026145385764d0, 
+     &    0.00024879276133931664d0, -0.00162940941748079288d0, 
+     &    0.00988786373932350462d0, -0.05962426839442303805d0, 
+     &    0.49766113250947636708d0 / 
+      data (b(i), i = 0, 12) / 
+     &    -0.00000000029734388465d0, 0.00000000269776334046d0, 
+     &    -0.00000000640788827665d0, -0.00000001667820132100d0, 
+     &    -0.00000021854388148686d0, 0.00000266246030457984d0, 
+     &    0.00001612722157047886d0, -0.00025616361025506629d0, 
+     &    0.00015380842432375365d0, 0.00815533022524927908d0, 
+     &    -0.01402283663896319337d0, -0.19746892495383021487d0, 
+     &    0.71511720328842845913d0 / 
+      data (b(i), i = 13, 25) / 
+     &    -0.00000000001951073787d0, -0.00000000032302692214d0, 
+     &    0.00000000522461866919d0, 0.00000000342940918551d0, 
+     &    -0.00000035772874310272d0, 0.00000019999935792654d0, 
+     &    0.00002687044575042908d0, -0.00011843240273775776d0, 
+     &    -0.00080991728956032271d0, 0.00661062970502241174d0, 
+     &    0.00909530922354827295d0, -0.20160072778491013140d0, 
+     &    0.51169696718727644908d0 / 
+      data (b(i), i = 26, 38) / 
+     &    0.00000000003147682272d0, -0.00000000048465972408d0, 
+     &    0.00000000063675740242d0, 0.00000003377623323271d0, 
+     &    -0.00000015451139637086d0, -0.00000203340624738438d0, 
+     &    0.00001947204525295057d0, 0.00002854147231653228d0, 
+     &    -0.00101565063152200272d0, 0.00271187003520095655d0, 
+     &    0.02328095035422810727d0, -0.16725021123116877197d0, 
+     &    0.32490054966649436974d0 / 
+      data (b(i), i = 39, 51) / 
+     &    0.00000000002319363370d0, -0.00000000006303206648d0, 
+     &    -0.00000000264888267434d0, 0.00000002050708040581d0, 
+     &    0.00000011371857327578d0, -0.00000211211337219663d0, 
+     &    0.00000368797328322935d0, 0.00009823686253424796d0, 
+     &    -0.00065860243990455368d0, -0.00075285814895230877d0, 
+     &    0.02585434424202960464d0, -0.11637092784486193258d0, 
+     &    0.18267336775296612024d0 / 
+      data (b(i), i = 52, 64) / 
+     &    -0.00000000000367789363d0, 0.00000000020876046746d0, 
+     &    -0.00000000193319027226d0, -0.00000000435953392472d0, 
+     &    0.00000018006992266137d0, -0.00000078441223763969d0, 
+     &    -0.00000675407647949153d0, 0.00008428418334440096d0, 
+     &    -0.00017604388937031815d0, -0.00239729611435071610d0, 
+     &    0.02064129023876022970d0, -0.06905562880005864105d0, 
+     &    0.09084526782065478489d0 / 
+      parameter (
+     &    pa = 3.97886080735226000d+00, 
+     &    p0 = 2.75374741597376782d-01, 
+     &    p1 = 4.90165080585318424d-01, 
+     &    p2 = 7.74368199119538609d-01, 
+     &    p3 = 1.07925515155856677d+00, 
+     &    p4 = 1.31314653831023098d+00, 
+     &    p5 = 1.37040217682338167d+00, 
+     &    p6 = 1.18902982909273333d+00, 
+     &    p7 = 8.05276408752910567d-01, 
+     &    p8 = 3.57524274449531043d-01, 
+     &    p9 = 1.66207924969367356d-02, 
+     &    p10 = -1.19463959964325415d-01, 
+     &    p11 = -8.38864557023001992d-02)
+      parameter (
+     &    p12 = 2.49367200053503304d-03, 
+     &    p13 = 3.90976845588484035d-02, 
+     &    p14 = 1.61315329733252248d-02, 
+     &    p15 = -1.33823644533460069d-02, 
+     &    p16 = -1.27223813782122755d-02, 
+     &    p17 = 3.83335126264887303d-03, 
+     &    p18 = 7.73672528313526668d-03, 
+     &    p19 = -8.70779635317295828d-04, 
+     &    p20 = -3.96385097360513500d-03, 
+     &    p21 = 1.19314022838340944d-04, 
+     &    p22 = 1.27109764952614092d-03)
+      integer JINT
+      if (JINT .eq. 0) then
+      w = abs(ARG)
+C----Addition of the variable wsq to calculate erfcx---------
+      if (w .lt. 2.2d0) then
+          t = w * w
+          k = int(t)
+          t = t - k
+          k = k * 13
+          y = ((((((((((((a(k) * t + a(k + 1)) * t + 
+     &        a(k + 2)) * t + a(k + 3)) * t + a(k + 4)) * t + 
+     &        a(k + 5)) * t + a(k + 6)) * t + a(k + 7)) * t + 
+     &        a(k + 8)) * t + a(k + 9)) * t + a(k + 10)) * t + 
+     &        a(k + 11)) * t + a(k + 12)) * w
+      else if (w .lt. 6.9d0) then
+          k = int(w)
+          t = w - k
+          k = 13 * (k - 2)
+          y = (((((((((((b(k) * t + b(k + 1)) * t + 
+     &        b(k + 2)) * t + b(k + 3)) * t + b(k + 4)) * t + 
+     &        b(k + 5)) * t + b(k + 6)) * t + b(k + 7)) * t + 
+     &        b(k + 8)) * t + b(k + 9)) * t + b(k + 10)) * t + 
+     &        b(k + 11)) * t + b(k + 12)
+          y = y * y
+          y = y * y
+          y = y * y
+          y = 1 - y * y
+      else
+          y = 1
+      end if
+      if (ARG .lt. 0) y = -y
+      RESULT = y
+      else
+      t = pa / (pa + abs(ARG))
+      u = t - 0.5d0
+      y = (((((((((p22 * u + p21) * u + p20) * u + 
+     &    p19) * u + p18) * u + p17) * u + p16) * u + 
+     &    p15) * u + p14) * u + p13) * u + p12
+      y = ((((((((((((y * u + p11) * u + p10) * u + 
+     &    p9) * u + p8) * u + p7) * u + p6) * u + p5) * u + 
+     &    p4) * u + p3) * u + p2) * u + p1) * u + p0) * t * 
+     &    exp(-ARG * ARG)
+      if (ARG .lt. 0) y = 2 - y
+C----if JINT = 1 we calculate erfc-----------------------------
+      if (JINT .eq. 1) then
+      RESULT = y
+      endif
+C----if JINT = 2 we calculate erfcx
+      if (JINT .eq. 2) then
+      RESULT = exp(ARG * ARG) * y
+      endif
+      endif      
+      end
+      
+

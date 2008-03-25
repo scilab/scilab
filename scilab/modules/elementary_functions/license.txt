@@ -2,3 +2,9 @@ INRIA 2006
 
 Slatec :
 See http://www.netlib.org/slatec/
+
+calerf.f :
+See http://www.kurims.kyoto-u.ac.jp/~ooura/index.html
+Takuya OOURA, Research Institute for Mathematical Sciences 
+Kyoto University, Kyoto 606-01 Japan
+e-mail : ooura@kurims.kyoto-u.ac.jp
