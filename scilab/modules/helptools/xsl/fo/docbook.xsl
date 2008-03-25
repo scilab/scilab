@@ -6,7 +6,7 @@
                 xmlns:ah="http://www.antennahouse.com/"
                 version='1.0'>
 
-<xsl:import href="xxe-config:docbook5/xsl/fo/docbook.xsl"/>
+<xsl:import href="../../docbook_xsl/fo/docbook.xsl"/>
 
 <!-- =========================================================================
      Customize the look of the output
