@@ -176,8 +176,8 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	metanet signal_processing sound time sparse windows_tools \
 	functions others overloading maple2scilab m2sci texmacs scipad \
 	scilab2fortran development_tools compatibility_functions \
-	helptools fftw umfpack demo_tools scicos_blocks scicos . \
-	javasci
+	helptools fftw umfpack demo_tools genetic_algorithms \
+	scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -372,7 +372,8 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	randlib sparse windows_tools functions others overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
 	development_tools compatibility_functions helptools fftw \
-	umfpack demo_tools $(am__append_1) scicos . $(am__append_2)
+	umfpack demo_tools genetic_algorithms $(am__append_1) scicos . \
+	$(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)

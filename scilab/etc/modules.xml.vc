@@ -78,5 +78,6 @@
 <module name="fftw" activate="yes"/>
 <module name="umfpack" activate="yes"/>
 <module name="module_skeleton" activate="no"/>
- </modules>
- 
+<!-- comments -->
+<module name="genetic_algorithms" activate="no"/>
+</modules>

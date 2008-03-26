@@ -69,7 +69,8 @@ compatibility_functions \
 helptools \
 fftw \
 umfpack \
-demo_tools
+demo_tools \
+genetic_algorithms
 
 #umfpack
 

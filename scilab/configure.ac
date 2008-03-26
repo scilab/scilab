@@ -962,7 +962,7 @@ AM_CONDITIONAL(INSTALL_HELP_XML, test "$with_install_help_xml" = "yes")
 AC_PROG_LIBTOOL([shared static dlopen])
 AM_PROG_LIBTOOL
 
-# Avoid to link all the dep from others libraries (*.la included by LIBADD)
+#ï¿½Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no
 
 # Check to see if building shared libraries
@@ -1099,6 +1099,7 @@ modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile
 modules/demo_tools/Makefile
+modules/genetic_algorithms/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

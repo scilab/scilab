@@ -76,5 +76,6 @@
 <module name="fftw" activate="@FFTW_ENABLE@"/>
 <module name="umfpack" activate="@UMFPACK_ENABLE@"/>
 <module name="module_skeleton" activate="no"/>
- </modules>
- 
+<!-- comments -->
+<module name="genetic_algorithms" activate="yes"/>
+</modules>
