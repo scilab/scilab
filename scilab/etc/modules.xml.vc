@@ -80,4 +80,5 @@
 <module name="module_skeleton" activate="no"/>
 <!-- comments -->
 <module name="genetic_algorithms" activate="no"/>
+<module name="simulated_annealing" activate="yes"/>
 </modules>

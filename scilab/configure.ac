@@ -1100,6 +1100,7 @@ modules/output_stream/Makefile
 modules/console/Makefile
 modules/demo_tools/Makefile
 modules/genetic_algorithms/Makefile
+modules/simulated_annealing/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

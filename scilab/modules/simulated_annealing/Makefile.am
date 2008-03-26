@@ -8,26 +8,21 @@
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 #### Target ######
-modulename=genetic_algorithms
+modulename=simulated_annealing
 
-#### genetic_algorithms : Conf files ####
-libgenetic_algorithms_la_rootdir = $(mydatadir)
-libgenetic_algorithms_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+#### simulated_annealing : Conf files ####
+libsimulated_annealing_la_rootdir = $(mydatadir)
+libsimulated_annealing_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### genetic_algorithms : init scripts ####
-libgenetic_algorithms_la_etcdir = $(mydatadir)/etc
-libgenetic_algorithms_la_etc_DATA = etc/genetic_algorithms.quit etc/genetic_algorithms.start
+#### simulated_annealing : init scripts ####
+libsimulated_annealing_la_etcdir = $(mydatadir)/etc
+libsimulated_annealing_la_etc_DATA = etc/simulated_annealing.quit etc/simulated_annealing.start
 
-#### genetic_algorithms : examples files ####
-libgenetic_algorithms_la_examplesdir = $(mydatadir)/examples
-libgenetic_algorithms_la_examples_DATA = \
-examples/crossover_func_ising2d.sci \
-examples/GAdemo.sce \
-examples/GAIsing2ddemo.sce \
-examples/init_func_ising2d.sci \
-examples/MOGAdemo.sce \
-examples/mutation_func_ising2d.sci \
-examples/NSGA2demo.sce \
-examples/NSGAdemo.sce
+#### simulated_annealing : examples files ####
+libsimulated_annealing_la_examplesdir = $(mydatadir)/examples
+libsimulated_annealing_la_examples_DATA = \
+examples/neigh_func_ising2d.sci \
+examples/SAdemo.sce \
+examples/SAIsing2ddemo.sce
 
 include $(top_srcdir)/Makefile.incl.am
