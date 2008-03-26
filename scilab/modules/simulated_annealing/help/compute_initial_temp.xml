@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file:///local/stow/scilab-4.1.1/lib/scilab-4.1.1/man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>compute_initial_temp</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>29-Nov-2006</DATE>
+  <SHORT_DESCRIPTION name="compute_initial_temp"> A SA function which allows to compute the initial temperature of the simulated annealing </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>T_init = compute_initial_temp(x0,f,proba_init,ItMX,neigh_func,param_neigh_func)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x0</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the starting point
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>f</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the objective function which will be send to the simulated annealing for optimization
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>proba_init</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the initial probability of accepting a bad solution (usually around 0.7)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>ItMX</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the number of iterations of random walk (usually around 100)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>neigh_func</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a function which returns a neighbor of a given point (see the help page of neigh_func to see the prototype of this function)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param_neigh_func</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : some parameters (can be a list) which will be sent as parameters to neigh_func
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>T_init</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : The initial temperature corresponding to the given probability of accepting a bad solution
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     This function computes an initial temperature given an initial probability of accepting a bad solution.
+     This computation is based on some iterations of random walk.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    x0 = [2 2];
+    Proba_start = 0.7;
+    It_Pre = 100;
+    x_test = neigh_func_default(x0);
+
+    T0 = compute_initial_temp(x0, rosenbrock, Proba_start, It_Pre, neigh_func_default,[]);
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> optim_sa </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> neigh_func_default </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> temp_law_default </LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='collette'>
+    Yann COLLETTE (yann.collette@renault.com)
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

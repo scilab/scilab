@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file:///local/stow/scilab-4.1.1/lib/scilab-4.1.1/man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>temp_law_huang</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>4-Dec-2006</DATE>
+  <SHORT_DESCRIPTION name="temp_law_huang"> The Huang temperature decrease law for the simulated annealing </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>T_out = temp_law_huang(T_in,step_mean,step_var,temp_stage,n,param)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>T_in</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the temperature at the current stage
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>step_mean</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the mean value of the objective function computed during the current stage
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>step_var</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the variance value of the objective function computed during the current stage
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>temp_stage</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the index of the current temperature stage
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>n</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the dimension of the decision variable (the x in f(x))
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a float corresponding to the lambda parameter of the Huang temperature decrease law (0.01 by default)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>T_out</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the temperature for the temperature stage to come
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     This function implements the Huang temperature decrease law for the simulated annealing.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+  x0 = [-1, -1];
+  Proba_start = 0.8;
+  It_intern = 1000;
+  It_extern = 30;
+  It_Pre    = 100;
+
+  printf('SA: the Huang temperature decrease law\n');
+
+  T0 = compute_initial_temp(x0, rosenbrock, Proba_start, It_Pre, neigh_func_default);
+  printf('Initial temperatore T0 = %f\n', T0);
+
+  [x_opt, f_opt, sa_mean_list, sa_var_list, temp_list] = optim_sa(x0, f, It_extern, It_intern, T0, Log = %T, temp_law_huang, neigh_func_default);
+
+  printf('optimal solution:\n'); disp(x_opt);
+  printf('value of the objective function = %f\n', f_opt);
+
+  scf();
+  subplot(2,1,1);
+  xtitle('Huang simulated annealing','Iteration','Mean / Variance');
+  t = 1:length(sa_mean_list);
+  plot(t,sa_mean_list,'r',t,sa_var_list,'g');
+  legend(['Mean','Variance']);
+  subplot(2,1,2);
+  xtitle('Temperature evolution','Iteration','Temperature');
+  plot(t,temp_list,'k-');
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> optim_sa </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> temp_law_csa </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> neigh_func_csa </LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='collette'>
+    Yann COLLETTE (yann.collette@renault.com)
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

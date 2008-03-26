@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file:///local/stow/scilab-4.1.1/lib/scilab-4.1.1/man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>neigh_func_default</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>29-Nov-2006</DATE>
+  <SHORT_DESCRIPTION name="neigh_func_default"> A SA function which computes a neighbor of a given point </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>x_neigh = neigh_func_default(x_current,T,param)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x_current</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the point for which we want to compute a neighbor
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>T</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the current temperature
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a two columns vector. The first column correspond to the negative amplitude of variation and the second column corresponds to
+       the positive amplitude of variation of the neighborhood. By default, the first column is a column of -0.1 and the second column
+       is a column of 0.1.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x_neigh</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the computed neighbor
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      This function computes a neighbor of a given point. For example, for a continuous vector, a neighbor will be produced by adding some 
+      noise to each component of the vector. For a binary string, a neighbor will be produced by changing one bit from 0 to 1 or from 1 to 0.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    // We produce a neighbor by adding some noise to each component of a given vector
+    function x_neigh = neigh_func_default(x_current, T)
+      sa_min_delta = -0.1*ones(size(x_current,1),size(x_current,2));
+      sa_max_delta = 0.1*ones(size(x_current,1),size(x_current,2));
+      x_neigh = x_current + (sa_max_delta - sa_min_delta).*rand(size(x_current,1),size(x_current,2)) + sa_min_delta;
+    endfunction
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> optim_sa </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> compute_initial_temp </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> temp_law_default </LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='collette'>
+    Yann COLLETTE (yann.collette@renault.com)
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

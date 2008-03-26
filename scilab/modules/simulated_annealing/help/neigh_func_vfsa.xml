@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "file:///local/stow/scilab-4.1.1/lib/scilab-4.1.1/man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>neigh_func_vfsa</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>4-Dec-2006</DATE>
+  <SHORT_DESCRIPTION name="neigh_func_vfsa"> The Very Fast Simulated Annealing neighborhood relationship </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>x_neigh = neigh_func_vfsa(x_current,T,param)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x_current</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the point for which we want to compute a neighbor
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>T</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the current temperature
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a ones column vector. The column correspond to the amplitude of variation of the neighborhood. 
+       By default, the column is a column of 0.1.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x_neigh</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the computed neighbor
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     This function implements the Very Fast Simulated Annealing relationship. This distribution is more and more peaked as the temperature
+     decrease.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> optim_sa </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> neigh_func_vfsa </LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> temp_law_huang </LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='collette'>
+    Yann COLLETTE (yann.collette@renault.com)
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
