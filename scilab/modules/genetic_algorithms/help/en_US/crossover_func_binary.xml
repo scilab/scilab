@@ -1,89 +1,97 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "file://C:\PROGRA~1\SCILAB~1.2\man/manrev.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>crossover_func_binary</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>4-Feb-2008</DATE>
-  <SHORT_DESCRIPTION name="crossover_func_binary"> A crossover function for binary code </SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[Crossed_Indiv1,Crossed_Indiv2] = crossover_func_binary(Indiv1,Indiv2,param)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Indiv1</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the first individual (here a binary code) to be crossed-over.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Indiv2</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the second individual to be crossed-over.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>param</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a list of parameters.
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="crossover_func_binary">
+  <info>
+    <pubdate>4-Feb-2008</pubdate>
+  </info>
+  <refnamediv>
+    <refname>crossover_func_binary</refname>
+    <refpurpose> A crossover function for binary code </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Crossed_Indiv1,Crossed_Indiv2] = crossover_func_binary(Indiv1,Indiv2,param)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Indiv1</term>
+        <listitem>
+          <para>the first individual (here a binary code) to be crossed-over.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Indiv2</term>
+        <listitem>
+          <para>the second individual to be crossed-over.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param</term>
+        <listitem>
+          <para>a list of parameters.
          - 'binary_length': the length of the binary code.
          - 'multi_cross': a boolean. If %T then we allow several cuts in the binary code.
          - 'multi_cross_nb': the number of cuts in the binary code. Only used when multi_cross is set to %T.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Crossed_Indiv1</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : The first individual obtained by the cross-over function.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Crossed_Indiv2</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : The second individual obtained by the cross-over function.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
- 
-  <DESCRIPTION>
-     <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM>
-     <P>
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Crossed_Indiv1</term>
+        <listitem>
+          <para>The first individual obtained by the cross-over function.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Crossed_Indiv2</term>
+        <listitem>
+          <para>The second individual obtained by the cross-over function.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
       This function implements a classical binary cross-over.
-     </P>
-     </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK> crossover_func_binary </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> crossover_func_default </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> mutation_func_binary </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> optim_ga </LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHORS>
-    <AUTHORS_ITEM label='Yann COLLETTE'>
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="crossover_func_binary"> crossover_func_binary </link>
+      </member>
+      <member>
+        <link linkend="crossover_func_default"> crossover_func_default </link>
+      </member>
+      <member>
+        <link linkend="mutation_func_binary"> mutation_func_binary </link>
+      </member>
+      <member>
+        <link linkend="optim_ga"> optim_ga </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Yann COLLETTE</term>
+        <listitem>
+          <para>
     ycollet@freesurf.fr
-    </AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

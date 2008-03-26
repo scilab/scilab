@@ -1,71 +1,83 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "file://C:\PROGRA~1\SCILAB~1.2\man/manrev.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>init_func_default</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>4-Feb-2008</DATE>
-  <SHORT_DESCRIPTION name="init_func_default"> A function a initialize a population </SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>Pop_init = init_func_default(popsize,param)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>popsize</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the number of individuals to generate.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>param</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a list of parameters.
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="init_func_default">
+  <info>
+    <pubdate>4-Feb-2008</pubdate>
+  </info>
+  <refnamediv>
+    <refname>init_func_default</refname>
+    <refpurpose> A function a initialize a population </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>Pop_init = init_func_default(popsize,param)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>popsize</term>
+        <listitem>
+          <para>the number of individuals to generate.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param</term>
+        <listitem>
+          <para>a list of parameters.
          - 'dimension': the size of the vector X.
          - 'minbound': a vector of minimum bounds for the variable X.
          - 'maxbound': a vector of maximum bounds for the variable X.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Pop_init</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a list which contains the initial population of individuals.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
- 
-  <DESCRIPTION>
-     <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM>
-     <P>
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Pop_init</term>
+        <listitem>
+          <para>a list which contains the initial population of individuals.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
       This function generate an initial population containing pop_size individuals.
-     </P>
-     </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK> crossover_func_default </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> mutation_func_default </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> mutation_func_binary </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> optim_ga </LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHORS>
-    <AUTHORS_ITEM label='Yann COLLETTE'>
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="crossover_func_default"> crossover_func_default </link>
+      </member>
+      <member>
+        <link linkend="mutation_func_default"> mutation_func_default </link>
+      </member>
+      <member>
+        <link linkend="mutation_func_binary"> mutation_func_binary </link>
+      </member>
+      <member>
+        <link linkend="optim_ga"> optim_ga </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Yann COLLETTE</term>
+        <listitem>
+          <para>
     ycollet@freesurf.fr
-    </AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

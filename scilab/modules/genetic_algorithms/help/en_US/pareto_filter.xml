@@ -1,85 +1,91 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "file://C:\PROGRA~1\SCILAB~1.2\man/manrev.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pareto_filter</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>4-Feb-2008</DATE>
-  <SHORT_DESCRIPTION name="pareto_filter"> A function which extracts non dominated solution from a set </SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[F_out,X_out,Ind_out] = pareto_filter(F_in,X_in)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>F_in</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the set of multi-objective function values from which we want to extract the non dominated solutions.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>X_in</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the associated values in the parameters space.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>F_out</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the set of non dominated multi-objective function values.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>X_out</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the associated values in the parameters space.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Ind_out</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the set of indexes of the non dominated individuals selected from the set X_in.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
- 
-  <DESCRIPTION>
-     <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM>
-     <P>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pareto_filter">
+  <info>
+    <pubdate>4-Feb-2008</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pareto_filter</refname>
+    <refpurpose> A function which extracts non dominated solution from a set </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[F_out,X_out,Ind_out] = pareto_filter(F_in,X_in)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>F_in</term>
+        <listitem>
+          <para>the set of multi-objective function values from which we want to extract the non dominated solutions.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X_in</term>
+        <listitem>
+          <para>the associated values in the parameters space.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>F_out</term>
+        <listitem>
+          <para>the set of non dominated multi-objective function values.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X_out</term>
+        <listitem>
+          <para>the associated values in the parameters space.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ind_out</term>
+        <listitem>
+          <para>the set of indexes of the non dominated individuals selected from the set X_in.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
       This function applies a Pareto filter to extract non dominated solutions from a set of values.
-     </P>
-     </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK> optim_moga </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> optim_nsga </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> optim_nsga2 </LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHORS>
-    <AUTHORS_ITEM label='Yann COLLETTE'>
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="optim_moga"> optim_moga </link>
+      </member>
+      <member>
+        <link linkend="optim_nsga"> optim_nsga </link>
+      </member>
+      <member>
+        <link linkend="optim_nsga2"> optim_nsga2 </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Yann COLLETTE</term>
+        <listitem>
+          <para>
     ycollet@freesurf.Fr
-    </AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

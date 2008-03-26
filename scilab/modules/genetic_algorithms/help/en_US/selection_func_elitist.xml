@@ -1,169 +1,161 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "file://C:\PROGRA~1\SCILAB~1.2\man/manrev.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>selection_func_elitist</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>4-Feb-2008</DATE>
-  <SHORT_DESCRIPTION name="selection_func_elitist"> An 'elitist' selection function </SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_func_elitist(Pop_in,Indiv1,Indiv2,FObj_Pop_in,FObj_Indiv1,FObj_Indiv2,MO_Total_FObj_in,MO_FObj_Indiv1,MO_FObj_Indiv2,param)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Pop_in</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : The initial population of individuals.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Indiv1</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a first set of childs generated via crossover + mutation.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Indiv2</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a second set of childs generated via crossover + mutation.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>FObj_Pop_in</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a vector of objective function values associated to each individuals of Pop_in.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>FObj_Indiv1</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a vector of objective function values associated to each individuals of Indiv1.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>FObj_Indiv2</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a vector of objective function values associated to each individuals of Indiv2.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>MO_Total_FObj_in</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a matrix of multi-objective function values associated to each individuals of Pop_in.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>MO_FObj_Indiv1</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a matrix of multi-objective function values associated to each individuals of Indiv1.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>MO_FObj_Indiv2</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a matrix of multi-objective function values associated to each individuals of Indiv2.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>param</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a list of parameters.
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="selection_func_elitist">
+  <info>
+    <pubdate>4-Feb-2008</pubdate>
+  </info>
+  <refnamediv>
+    <refname>selection_func_elitist</refname>
+    <refpurpose> An 'elitist' selection function </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_func_elitist(Pop_in,Indiv1,Indiv2,FObj_Pop_in,FObj_Indiv1,FObj_Indiv2,MO_Total_FObj_in,MO_FObj_Indiv1,MO_FObj_Indiv2,param)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Pop_in</term>
+        <listitem>
+          <para>The initial population of individuals.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Indiv1</term>
+        <listitem>
+          <para>a first set of childs generated via crossover + mutation.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Indiv2</term>
+        <listitem>
+          <para>a second set of childs generated via crossover + mutation.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>FObj_Pop_in</term>
+        <listitem>
+          <para>a vector of objective function values associated to each individuals of Pop_in.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>FObj_Indiv1</term>
+        <listitem>
+          <para>a vector of objective function values associated to each individuals of Indiv1.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>FObj_Indiv2</term>
+        <listitem>
+          <para>a vector of objective function values associated to each individuals of Indiv2.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>MO_Total_FObj_in</term>
+        <listitem>
+          <para>a matrix of multi-objective function values associated to each individuals of Pop_in.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>MO_FObj_Indiv1</term>
+        <listitem>
+          <para>a matrix of multi-objective function values associated to each individuals of Indiv1.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>MO_FObj_Indiv2</term>
+        <listitem>
+          <para>a matrix of multi-objective function values associated to each individuals of Indiv2.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param</term>
+        <listitem>
+          <para>a list of parameters.
          - 'pressure': the selection pressure coefficient. Each individuals with 0 efficiency will have an efficiency value equal to 'pressure'.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Pop_out</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : all the selected individuals in a population of size pop_size.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>FObj_Pop_out</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : all the objective function values associated to each individuals of Pop_out.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Efficiency</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : all the efficiency values associated to each individuals of Pop_out.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>MO_Total_FObj_out</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : all the multi-objective function values associated to each individuals of Pop_out.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
- 
-  <DESCRIPTION>
-     <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM>
-     <P>
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Pop_out</term>
+        <listitem>
+          <para>all the selected individuals in a population of size pop_size.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>FObj_Pop_out</term>
+        <listitem>
+          <para>all the objective function values associated to each individuals of Pop_out.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Efficiency</term>
+        <listitem>
+          <para>all the efficiency values associated to each individuals of Pop_out.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>MO_Total_FObj_out</term>
+        <listitem>
+          <para>all the multi-objective function values associated to each individuals of Pop_out.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
       This function performs the elitist selection function. We select the best individuals in the set of parents and childs individuals.
-     </P>
-     </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK> selection_func_random </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> mutation_func_default </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> crossover_func_default </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> init_func_default </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> optim_ga </LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHORS>
-    <AUTHORS_ITEM label='Yann COLLETTE'>
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="selection_func_random"> selection_func_random </link>
+      </member>
+      <member>
+        <link linkend="mutation_func_default"> mutation_func_default </link>
+      </member>
+      <member>
+        <link linkend="crossover_func_default"> crossover_func_default </link>
+      </member>
+      <member>
+        <link linkend="init_func_default"> init_func_default </link>
+      </member>
+      <member>
+        <link linkend="optim_ga"> optim_ga </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Yann COLLETTE</term>
+        <listitem>
+          <para>
     ycollet@freesurf.fr
-    </AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

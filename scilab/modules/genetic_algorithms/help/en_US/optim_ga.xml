@@ -1,78 +1,65 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "file://C:\PROGRA~1\SCILAB~1.2\man/manrev.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>optim_ga</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>4-Feb-2008</DATE>
-  <SHORT_DESCRIPTION name="optim_ga"> A flexible genetic algorithm </SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[pop_opt,fobj_pop_opt,pop_init,fobj_pop_init] = optim_ga(ga_f,pop_size,nb_generation,p_mut,p_cross,Log,param)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>ga_f</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the function to be optimized. The prototype if y = f(x) or y = list(f,p1,p2,...).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>pop_size</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the size of the population of individuals (default value: 100).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>nb_generation</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the number of generations (equivalent to the number of iterations in classical optimization) to be computed (default value: 10).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>p_mut</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the mutation probability (default value: 0.1).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>p_cross</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the crossover probability (default value: 0.7).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>Log</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : if %T, we will display to information message during the run of the genetic algorithm.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>param</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a list of parameters.
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="optim_ga">
+  <info>
+    <pubdate>4-Feb-2008</pubdate>
+  </info>
+  <refnamediv>
+    <refname>optim_ga</refname>
+    <refpurpose> A flexible genetic algorithm </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[pop_opt,fobj_pop_opt,pop_init,fobj_pop_init] = optim_ga(ga_f,pop_size,nb_generation,p_mut,p_cross,Log,param)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>ga_f</term>
+        <listitem>
+          <para>the function to be optimized. The prototype if y = f(x) or y = list(f,p1,p2,...).
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pop_size</term>
+        <listitem>
+          <para>the size of the population of individuals (default value: 100).
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nb_generation</term>
+        <listitem>
+          <para>the number of generations (equivalent to the number of iterations in classical optimization) to be computed (default value: 10).
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p_mut</term>
+        <listitem>
+          <para>the mutation probability (default value: 0.1).
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p_cross</term>
+        <listitem>
+          <para>the crossover probability (default value: 0.7).
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Log</term>
+        <listitem>
+          <para>if %T, we will display to information message during the run of the genetic algorithm.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param</term>
+        <listitem>
+          <para>a list of parameters.
          - 'codage_func': the function which will perform the coding and decoding of individuals (default function: codage_identity).
          - 'init_func': the function which will perform the initialization of the population (default function: init_func_default).
          - 'crossover_func': the function which will perform the crossover between two individuals (default function: crossover_func_default).
@@ -80,59 +67,52 @@
          - 'selection_func': the function whcih will perform the selection of individuals at the end of a generation (default function: selection_func_elitist).
          - 'nb_couples': the number of couples which will be selected so as to perform the crossover and mutation (default value: 100).
          - 'pressure': the value the efficiency of the worst individual (default value: 0.05).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>pop_opt</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the population of optimal individuals.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>fobj_pop_opt</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the set of objective function values associated to pop_opt (optional).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>pop_init</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the initial population of individuals (optional).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>fobj_pop_init</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the set of objective function values associated to pop_init (optional).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
- 
-  <DESCRIPTION>
-     <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM>
-     <P>
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pop_opt</term>
+        <listitem>
+          <para>the population of optimal individuals.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fobj_pop_opt</term>
+        <listitem>
+          <para>the set of objective function values associated to pop_opt (optional).
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pop_init</term>
+        <listitem>
+          <para>the initial population of individuals (optional).
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fobj_pop_init</term>
+        <listitem>
+          <para>the set of objective function values associated to pop_init (optional).
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
       This function implements the classical genetic algorithm.
-     </P>
-     </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
     deff('y=f(x)','y = 'sum(x.^2)');
 
     PopSize     = 100;
@@ -167,17 +147,33 @@
     x0  = (Max - Min) .* rand(size(Min,1),size(Min,2)) + Min;
 
     [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
-  ]]></EXAMPLE>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK> optim_moga </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> optim_nsga </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> optim_nsga2 </LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHORS>
-    <AUTHORS_ITEM label='Yann COLLETTE'>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="optim_moga"> optim_moga </link>
+      </member>
+      <member>
+        <link linkend="optim_nsga"> optim_nsga </link>
+      </member>
+      <member>
+        <link linkend="optim_nsga2"> optim_nsga2 </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Yann COLLETTE</term>
+        <listitem>
+          <para>
     ycollet@freesurf.fr
-    </AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>
