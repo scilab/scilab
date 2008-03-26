@@ -1101,6 +1101,7 @@ modules/console/Makefile
 modules/demo_tools/Makefile
 modules/genetic_algorithms/Makefile
 modules/simulated_annealing/Makefile
+modules/parameters/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

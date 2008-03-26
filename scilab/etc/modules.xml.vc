@@ -81,4 +81,5 @@
 <!-- comments -->
 <module name="genetic_algorithms" activate="no"/>
 <module name="simulated_annealing" activate="yes"/>
+<module name="parameters" activate="yes"/>
 </modules>
