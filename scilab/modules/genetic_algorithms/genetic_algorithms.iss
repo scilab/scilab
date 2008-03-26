@@ -1,9 +1,8 @@
-;###############################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
-; Allan CORNET
+; ==============================================================================
+; Script d'installation Inno Setup pour scilab
 ; Version TRUNK
 ; Copyright INRIA 2008
-;###############################################################################
+; ==============================================================================
 
 ;-------------------------------------------------------------------------------
 ; genetic_algorithms module
@@ -20,8 +19,6 @@ Source: modules\{#GENETICALGORITHMS}\etc\{#GENETICALGORITHMS}.quit; DestDir: {ap
 Source: modules\{#GENETICALGORITHMS}\etc\{#GENETICALGORITHMS}.start; DestDir: {app}\modules\{#GENETICALGORITHMS}\etc; Components: {#COMPN_SCILAB}
 
 Source: modules\{#GENETICALGORITHMS}\help\addchapter.sce; DestDir: {app}\modules\{#GENETICALGORITHMS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-
-Source: modules\{#GENETICALGORITHMS}\help\*.htm; DestDir: {app}\modules\{#GENETICALGORITHMS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 
 Source: modules\{#GENETICALGORITHMS}\macros\lib; DestDir: {app}\modules\{#GENETICALGORITHMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#GENETICALGORITHMS}\macros\names; DestDir: {app}\modules\{#GENETICALGORITHMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
