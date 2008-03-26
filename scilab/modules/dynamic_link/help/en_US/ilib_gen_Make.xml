@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_gen_Make"><info><pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate></info><refnamediv><refname>ilib_gen_Make</refname><refpurpose> utility for  ilib_build: produces a makefile for building shared libraries</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway,ldflags,cflags,fflags])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_gen_Make">
+  <info>
+    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ilib_gen_Make</refname>
+    <refpurpose> utility for  ilib_build: produces a makefile for building shared libraries</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway,ldflags,cflags,fflags])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>lib_name</term>
@@ -57,14 +63,14 @@
 	    generated Makefile. Default value is ''</para>
         </listitem>
       </varlistentry>
-     <varlistentry>
+      <varlistentry>
         <term>cflags</term>
         <listitem>
           <para>a string. It can be used to add specific C compiler options in the
 	    generated Makefile. Default value is ''</para>
         </listitem>
       </varlistentry>
-     <varlistentry>
+      <varlistentry>
         <term>fflags</term>
         <listitem>
           <para>a string. It can be used to add specific Fortran compiler options in the
@@ -79,7 +85,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Utility function used by <literal>ilib_build</literal></para>
     <para>
@@ -97,27 +104,30 @@
     Files are not required to exist, when makefile is generated, but of
     course are required for executing the makefile.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="addinter">addinter</link>
-    </member>
-    <member>
-      <link linkend="link">link</link>
-    </member>
-    <member>
-      <link linkend="ilib_build">ilib_build</link>
-    </member>
-    <member>
-      <link linkend="ilib_compile">ilib_compile</link>
-    </member>
-    <member>
-      <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
-    </member>
-    <member>
-      <link linkend="ilib_gen_loader">ilib_gen_loader</link>
-    </member>
-    <member>
-      <link linkend="ilib_for_link">ilib_for_link</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="addinter">addinter</link>
+      </member>
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="ilib_build">ilib_build</link>
+      </member>
+      <member>
+        <link linkend="ilib_compile">ilib_compile</link>
+      </member>
+      <member>
+        <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
+      </member>
+      <member>
+        <link linkend="ilib_gen_loader">ilib_gen_loader</link>
+      </member>
+      <member>
+        <link linkend="ilib_for_link">ilib_for_link</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

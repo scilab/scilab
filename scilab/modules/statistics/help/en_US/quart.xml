@@ -10,17 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quart"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>quart</refname><refpurpose> computation of quartiles
-  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>s=quart(x)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quart">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>quart</refname>
+    <refpurpose> computation of quartiles
+  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>s=quart(x)
 s=quart(x,'r') or m=quart(x,1)
-s=quart(x,'c') or m=quart(x,2)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+s=quart(x,'c') or m=quart(x,2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -30,7 +36,8 @@ s=quart(x,'c') or m=quart(x,2)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
 For a vector  or a matrix x,  [q]=quart(x,y)
 returns in the vector q the quartiles of x.
@@ -46,7 +53,9 @@ x.</para>
 returns in each row of  the matrix q the quartiles
 of data in the corresponding row of x.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 
 x=[6 7 0 7 10 4 2 2 7 1;
@@ -64,9 +73,14 @@ q=quart(x,'r')
 q=quart(x,'c')
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>Authors</title><para> Carlos Klimann</para></refsection>
-  <refsection><title>Bibliography</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Carlos Klimann</para>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
     <para>
     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
   </refsection>

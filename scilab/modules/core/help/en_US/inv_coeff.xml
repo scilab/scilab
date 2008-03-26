@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="inv_coeff"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>inv_coeff</refname><refpurpose> build a polynomial matrix from its coefficients</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="inv_coeff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>inv_coeff</refname>
+    <refpurpose> build a polynomial matrix from its coefficients</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>C</term>
@@ -27,12 +34,15 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>P=inv_coeff(Mp,k)</literal>, when <literal>k</literal> is compatible with <literal>Mp</literal>  
     size, returns a polynomial matrix of degree k. <literal>C=[C0,C1,...,Ck]</literal> and 
     <literal>P= C0 + C1*x +... +Ck*x^k</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=int(10*rand(2,6))
 // Building a degree 1 polynomial matrix
@@ -42,16 +52,20 @@ norm(coeff(P)-A)
 P1=inv_coeff(A)
 norm(coeff(P1)-A)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="poly">poly</link>
-    </member>
-    <member>
-      <link linkend="degree">degree</link>
-    </member>
-    <member>
-      <link linkend="coeff">coeff</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="degree">degree</link>
+      </member>
+      <member>
+        <link linkend="coeff">coeff</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

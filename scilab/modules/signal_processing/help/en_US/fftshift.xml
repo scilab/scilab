@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fftshift"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fftshift</refname><refpurpose> rearranges the fft output, moving the zero frequency to the center of the spectrum</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=fftshift(x [,job])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fftshift">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fftshift</refname>
+    <refpurpose> rearranges the fft output, moving the zero frequency to the center of the spectrum</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=fftshift(x [,job])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -27,7 +34,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     if <literal>x</literal> results of an fft computation <literal>y= fftshift(x)</literal> or <literal>y= fftshift(x,"all")</literal> moves the zero frequency component to the center
     of the spectrum, which is sometimes a more convenient form.</para>
@@ -45,7 +53,9 @@ x=[       ]        gives   y=[       ]
     ]]></programlisting>
     <para><literal>y= fftshift(x,n)</literal>  make the swap only along the <literal>n</literal>th dimension</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //make a signal
 t=0:0.1:1000;
@@ -70,10 +80,14 @@ subplot(2,1,1);Matplot(abs(y))
 subplot(2,1,2);Matplot(fftshift(abs(y)))
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="fft">fft</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fft">fft</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

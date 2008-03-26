@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="external"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>external</refname><refpurpose> Scilab Object, external function or routine</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="external">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>external</refname>
+    <refpurpose> Scilab Object, external function or routine</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
     External function or routine for use with specific commands.</para>
     <para>
@@ -53,27 +57,30 @@ optim(list(costfunc,a1,b1,c1),....
     <para>
     External Fortran or C routines can also be dynamically linked (see <literal>link</literal>)</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="ode">ode</link>
-    </member>
-    <member>
-      <link linkend="optim">optim</link>
-    </member>
-    <member>
-      <link linkend="impl">impl</link>
-    </member>
-    <member>
-      <link linkend="dassl">dassl</link>
-    </member>
-    <member>
-      <link linkend="intg">intg</link>
-    </member>
-    <member>
-      <link linkend="schur">schur</link>
-    </member>
-    <member>
-      <link linkend="gschur">gschur</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+      <member>
+        <link linkend="optim">optim</link>
+      </member>
+      <member>
+        <link linkend="impl">impl</link>
+      </member>
+      <member>
+        <link linkend="dassl">dassl</link>
+      </member>
+      <member>
+        <link linkend="intg">intg</link>
+      </member>
+      <member>
+        <link linkend="schur">schur</link>
+      </member>
+      <member>
+        <link linkend="gschur">gschur</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

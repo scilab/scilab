@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="uigetdir"><info><pubdate>$LastChangedDate: 2007-12-07 11:59:53 +0100 (ven, 07 déc 2007) $</pubdate></info><refnamediv><refname>uigetdir</refname><refpurpose>dialog for selecting a directory</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>directory = uigetdir()
-directory = uigetdir(start_path [,title])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="uigetdir">
+  <info>
+    <pubdate>$LastChangedDate: 2007-12-07 11:59:53 +0100 (ven, 07 déc 2007) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>uigetdir</refname>
+    <refpurpose>dialog for selecting a directory</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>directory = uigetdir()
+directory = uigetdir(start_path [,title])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>start_path</term>
@@ -28,26 +35,33 @@ directory = uigetdir(start_path [,title])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Creates a dialog window for selecting a directory</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 uigetdir()
 uigetdir("SCI/modules/")
 uigetdir("SCI/modules/", "Choose a directory")
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="xgetfile">xgetfile</link>
-    </member>
-    <member>
-      <link linkend="tk_getfile">tk_getfile</link>
-    </member>
-    <member>
-      <link linkend="tk_getdir">tk_getdir</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xgetfile">xgetfile</link>
+      </member>
+      <member>
+        <link linkend="tk_getfile">tk_getfile</link>
+      </member>
+      <member>
+        <link linkend="tk_getdir">tk_getdir</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atan"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>atan</refname><refpurpose> 2-quadrant and 4-quadrant inverse tangent</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>phi=atan(x)
-phi=atan(y,x)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atan">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>atan</refname>
+    <refpurpose> 2-quadrant and 4-quadrant inverse tangent</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>phi=atan(x)
+phi=atan(y,x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -34,7 +41,8 @@ phi=atan(y,x)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     The first form computes the 2-quadrant inverse tangent, which is the
     inverse of <literal>tan(phi)</literal>.  For real <literal>x</literal>, <literal>phi</literal> is in the
@@ -52,7 +60,9 @@ phi=atan(y,x)</synopsis></refsynopsisdiv>
     element-wise, so that <literal>phi</literal> is a vector or matrix of the same size
     with <literal>phi(i,j)=atan(x(i,j))</literal> or <literal>phi(i,j)=tan(y(i,j),x(i,j))</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // examples with the second form
 x=[1,%i,-1,%i]
@@ -71,19 +81,26 @@ ieee(2)
 atan(%i)
 atan(-%i)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="tan">tan</link>
-    </member>
-    <member>
-      <link linkend="ieee">ieee</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><simplelist type="vert">
-    <member>B.P.</member>
-    <member>L.V.D.
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tan">tan</link>
+      </member>
+      <member>
+        <link linkend="ieee">ieee</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>B.P.</member>
+      <member>L.V.D.
     (authors of the complex atan function).
     </member>
-  </simplelist></refsection>
+    </simplelist>
+  </refsection>
 </refentry>

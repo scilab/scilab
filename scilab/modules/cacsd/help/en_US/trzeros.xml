@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="trzeros"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>trzeros</refname><refpurpose> transmission zeros and normal rank</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[tr]=trzeros(Sl)
-[nt,dt,rk]=trzeros(Sl)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="trzeros">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>trzeros</refname>
+    <refpurpose> transmission zeros and normal rank</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[tr]=trzeros(Sl)
+[nt,dt,rk]=trzeros(Sl)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>Sl</term>
@@ -46,7 +52,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Called with one output argument, <literal>trzeros(Sl)</literal> returns the 
     transmission zeros of the linear system <literal>Sl</literal>.</para>
@@ -80,7 +87,9 @@
     Caution: the computed zeros are not always reliable, in particular
     in case of repeated zeros.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 W1=ssrand(2,2,5);trzeros(W1)    //call trzeros
 roots(det(systmat(W1)))         //roots of det(system matrix)
@@ -90,13 +99,17 @@ St1=Q*St*Z;rowf=(Qd(1)+Qd(2)+1):(Qd(1)+Qd(2)+Qd(3));
 colf=(Zd(1)+Zd(2)+1):(Zd(1)+Zd(2)+Zd(3));
 roots(St1(rowf,colf)), nt./dt     //By Kronecker form
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="gspec">gspec</link>
-    </member>
-    <member>
-      <link linkend="kroneck">kroneck</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gspec">gspec</link>
+      </member>
+      <member>
+        <link linkend="kroneck">kroneck</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

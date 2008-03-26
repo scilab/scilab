@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tlist"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>tlist</refname><refpurpose> Scilab object and typed list definition.  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>tlist(typ,a1,....an )</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tlist">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tlist</refname>
+    <refpurpose> Scilab object and typed list definition.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>tlist(typ,a1,....an )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>typ</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Creates a <literal>typed-list</literal> with elements <literal>ai</literal>'s. The <literal>typ</literal>
     argument specifies the list type. Such <literal>typed-list</literal> allow the user
@@ -78,18 +85,21 @@
     <para>
     H(2), H('num') or H.num is the transfer matrix numerator</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="null">null</link>
-    </member>
-    <member>
-      <link linkend="percent">percent</link>
-    </member>
-    <member>
-      <link linkend="syslin">syslin</link>
-    </member>
-    <member>
-      <link linkend="list">list</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="null">null</link>
+      </member>
+      <member>
+        <link linkend="percent">percent</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="list">list</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

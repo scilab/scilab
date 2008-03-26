@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="czt"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>czt</refname><refpurpose> chirp z-transform algorithm</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[czx]=czt(x,m,w,phi,a,theta)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="czt">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>czt</refname>
+    <refpurpose> chirp z-transform algorithm</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[czx]=czt(x,m,w,phi,a,theta)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -51,14 +58,17 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     chirp z-transform algorithm which calcultes the z-transform on a
     spiral in the z-plane at the points
     <literal>[a*exp(j*theta)][w^kexp(j*k*phi)] </literal> for
     <literal>k=0,1,...,m-1</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 a=.7*exp(%i*%pi/6);
 [ffr,bds]=xgetech(); //preserve current context
@@ -79,6 +89,10 @@ zr=real(z);zi=imag(z);
 plot2d(zr',zi',[5],"000")
 xsetech(ffr,bds); //restore context
  
-  ]]></programlisting></refsection>
-  <refsection><title>Authors</title><para>C. Bunks</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>C. Bunks</para>
+  </refsection>
 </refentry>

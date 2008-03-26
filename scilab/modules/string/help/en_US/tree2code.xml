@@ -10,23 +10,27 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tree2code"><info><pubdate>$LastChangedDate: 2007-03-07 13:01:23 +0100 (Wed, 07 Mar 2007) $</pubdate></info><refnamediv><refname>tree2code</refname><refpurpose> generates ascii definition of a Scilab function</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>txt=tree2code(tree,prettyprint)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tree2code">
+  <info>
+    <pubdate>$LastChangedDate: 2007-03-07 13:01:23 +0100 (Wed, 07 Mar 2007) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tree2code</refname>
+    <refpurpose> generates ascii definition of a Scilab function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>txt=tree2code(tree,prettyprint)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
-
       <varlistentry>
         <term>tree</term>
         <listitem>
           <para>a macro tree (coming from macr2tree)</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>prettyprint</term>
         <listitem>
@@ -47,34 +51,42 @@
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>txt</term>
         <listitem>
           <para>a column vector of strings, the text giving the Scilab instructions</para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Given a loaded Scilab function "tree" (returned by macr2tree), tree2code allows to
     re-generate the code.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 tree=macr2tree(cosh);
 txt=tree2code(tree,%T);
 write(%io(2),txt,'(a)');
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="macr2tree">macr2tree</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="macr2tree">macr2tree</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

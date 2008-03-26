@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pipe_network"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pipe_network</refname><refpurpose> solves the pipe network problem</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x,pi] = pipe_network(g)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pipe_network">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pipe_network</refname>
+    <refpurpose> solves the pipe network problem</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x,pi] = pipe_network(g)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>g</term>
@@ -39,7 +45,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>pipe_network</literal> returns the value of the flows and of the potentials
     for the pipe network problem: flow problem with two Kirchhoff laws.
     The graph must be directed. The problem must be feasible (the sum of
@@ -49,7 +56,9 @@
     <para>
     The problem is solved by using sparse matrices LU factorization.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15 15 8 9 10 11 12 13 14];
 he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4 5 6 7 16 16 16 16 16 16 16];
@@ -72,5 +81,6 @@ show_graph(g);
 
 
  
-  ]]></programlisting></refsection>
+  ]]></programlisting>
+  </refsection>
 </refentry>

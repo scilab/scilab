@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="circuit"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>circuit</refname><refpurpose> finds a circuit or the rank function in a directed graph</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[p,r] = circuit(g)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="circuit">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>circuit</refname>
+    <refpurpose> finds a circuit or the rank function in a directed graph</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[p,r] = circuit(g)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>g</term>
@@ -39,21 +45,23 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>A cycle of a graph <literal>g</literal>, also called a
     circuit, is a subset of the edges  of <literal>g</literal> that forms
     a path such that the first node of the path corresponds to the
-    last.</para> 
+    last.</para>
     <para><literal>circuit</literal> tries to find surch a circuit
     for the directed graph <literal>g</literal>.  It returns the circuit
     <literal>p</literal> as a row vector of the corresponding arc numbers if
     it exists and it returns the empty vector <literal>[]</literal>
     otherwise.</para>
-    
     <para>If the graph has no circuit, the rank function is returned in <literal>r</literal>, 
     otherwise its value is the empty vector <literal>[]</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // graph with circuit
 ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
@@ -79,8 +87,10 @@ g1.edges.graphics.display='number';
 show_graph(g1,'new');
 [p,r]=circuit(g)
  
-  ]]></programlisting></refsection>
-<refsection><title>Bibliography</title>
-<para>Stanley, R. P. Enumerative Combinatorics, Vol. 1. Cambridge, England: Cambridge University Press, 1999.</para>
-</refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
+    <para>Stanley, R. P. Enumerative Combinatorics, Vol. 1. Cambridge, England: Cambridge University Press, 1999.</para>
+  </refsection>
 </refentry>

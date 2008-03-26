@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graph_2_mat"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graph_2_mat</refname><refpurpose> node-arc or node-node incidence matrix of a graph</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>a = graph_2_mat(g,mat)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graph_2_mat">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>graph_2_mat</refname>
+    <refpurpose> node-arc or node-node incidence matrix of a graph</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>a = graph_2_mat(g,mat)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>g</term>
@@ -39,7 +45,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>graph_2_mat</literal> computes the node-arc or the node-node incidence matrix 
     corresponding
     to the graph <literal>g</literal>.</para>
@@ -65,7 +72,9 @@
     It is defined as follows:</para>
     <para><literal>a(i,j) = 1</literal> if there is an arc from node <literal>i</literal> to node <literal>j</literal></para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 ta = [10,3,6,2,3,7,6,9,5,10,8,2,5,8,4,9,1,8,9,4,7]
 he = [3,6,10,6,2,6,9,7,3,5,2,5,8,4,9,8,4,1,2,7,10]
@@ -81,10 +90,14 @@ a=[['' string(1:10)];[string(1:10)' string(full(a))]]
 a=graph_2_mat(g);
 string(full(a))'
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="mat_2_graph">mat_2_graph</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mat_2_graph">mat_2_graph</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

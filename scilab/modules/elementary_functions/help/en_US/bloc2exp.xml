@@ -11,15 +11,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bloc2exp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>bloc2exp</refname><refpurpose> block-diagram to symbolic expression</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[str]=bloc2exp(blocd)
-[str,names]=bloc2exp(blocd)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bloc2exp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bloc2exp</refname>
+    <refpurpose> block-diagram to symbolic expression</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[str]=bloc2exp(blocd)
+[str,names]=bloc2exp(blocd)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>blocd</term>
@@ -41,7 +47,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     given a block-diagram representation of a linear system
     <literal>bloc2exp</literal> returns its symbolic evaluation.
@@ -160,10 +167,16 @@ w=bloc2exp(syst);
       <literal>P11+P12*invr(eye()-K*P22)*K*P21;</literal>
     </para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="bloc2ss">bloc2ss</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>S. S., F. D. (INRIA)  </para></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="bloc2ss">bloc2ss</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. S., F. D. (INRIA)  </para>
+  </refsection>
 </refentry>

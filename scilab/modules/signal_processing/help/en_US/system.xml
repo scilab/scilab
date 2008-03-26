@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="system"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>system</refname><refpurpose> observation update</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x1,y]=system(x0,f,g,h,q,r)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="system">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>system</refname>
+    <refpurpose> observation update</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x1,y]=system(x0,f,g,h,q,r)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x0</term>
@@ -57,7 +64,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     define system function which generates the next
     observation given the old state.
@@ -72,5 +80,8 @@
     where <literal>u</literal> is distributed <literal>N(0,q)</literal>
     and <literal>v</literal> is distribute <literal>N(0,r)</literal>.</para>
   </refsection>
-  <refsection><title>Authors</title><para>C. B.  </para></refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>C. B.  </para>
+  </refsection>
 </refentry>

@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="freq"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>freq</refname><refpurpose> frequency response</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x]=freq(A,B,C [,D],f)
-[x]=freq(NUM,DEN,f)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="freq">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>freq</refname>
+    <refpurpose> frequency response</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x]=freq(A,B,C [,D],f)
+[x]=freq(NUM,DEN,f)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A, B, C, D</term>
@@ -40,7 +46,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>x=freq(A,B,C [,D],f)</literal> returns a real or complex <literal>mxp*t</literal> matrix
     such that:</para>
     <para><literal>x(:,k*p:(k+1)*p)= C*inv(f(k)*eye()-A)*B + D</literal>.</para>
@@ -52,7 +59,9 @@
     that columns <literal>k*(p-1)+1</literal> to <literal>k*p</literal> of <literal>x</literal> contain the matrix  
     <literal>NUM(f(k))./DEN(f(k))</literal></para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 s=poly(0,'s');
 sys=(s+1)/(s^3-5*s+4)
@@ -63,13 +72,17 @@ Sys=tf2ss(sys);
 [A,B,C,D]=abcd(Sys);
 freq(A,B,C,[0,0.9,1.1,2,3,10,20])
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="repfreq">repfreq</link>
-    </member>
-    <member>
-      <link linkend="horner">horner</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="repfreq">repfreq</link>
+      </member>
+      <member>
+        <link linkend="horner">horner</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

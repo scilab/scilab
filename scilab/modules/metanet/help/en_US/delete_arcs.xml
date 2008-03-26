@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="delete_arcs"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>delete_arcs</refname><refpurpose> deletes all the arcs or edges between a set of nodes</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g1 = delete_arcs(ij,g)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="delete_arcs">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>delete_arcs</refname>
+    <refpurpose> deletes all the arcs or edges between a set of nodes</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>g1 = delete_arcs(ij,g)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>ij</term>
@@ -39,7 +45,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     If <literal>g</literal> is a directed graph,
     <literal>delete_arcs</literal> returns the graph <literal>g1</literal> with the arcs defined 
@@ -50,7 +57,9 @@
     If <literal>g</literal> is an undirected graph, the edges corresponding to matrix <literal>ij</literal>
     are deleted.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
@@ -65,16 +74,20 @@ g('directed')=0;
 gt=delete_arcs(ij,g);
 show_graph(gt,'new');
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="add_edge">add_edge</link>
-    </member>
-    <member>
-      <link linkend="add_node">add_node</link>
-    </member>
-    <member>
-      <link linkend="delete_nodes">delete_nodes</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="add_edge">add_edge</link>
+      </member>
+      <member>
+        <link linkend="add_node">add_node</link>
+      </member>
+      <member>
+        <link linkend="delete_nodes">delete_nodes</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

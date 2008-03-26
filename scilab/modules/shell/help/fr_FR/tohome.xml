@@ -10,27 +10,36 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="tohome"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>tohome</refname><refpurpose>Dï¿½place le curseur en haut ï¿½ gauche de la fenï¿½tre de commande</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>tohome()</synopsis></refsynopsisdiv>
-
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="tohome">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tohome</refname>
+    <refpurpose>Dï¿½place le curseur en haut ï¿½ gauche de la fenï¿½tre de commande</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>tohome()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
     <para><literal>tohome()</literal> dï¿½place le curseur en haut ï¿½ gauche de la fenï¿½tre de commande et efface l'ï¿½cran.</para>
     <para>Vous pouvez utiliser la barre de dï¿½filement pour voir l'historique des fonctions.</para>
     <para>Notez que <literal>tohome()</literal> ne peut ï¿½tre utilisï¿½ sous Windows quand Scilab est utilisï¿½ en mode sans fenï¿½tre.</para>
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member><link linkend="clc">clc</link></member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="clc">clc</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

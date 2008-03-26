@@ -10,46 +10,42 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_triu"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_triu</refname><refpurpose>Fonction d'�mulation de la fonction Matlab triu</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_triu">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_triu</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab triu</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction <literal>triu</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec des param�tres d'entr�e complexes : La fonction Matlab <literal>triu</literal> peut �tre
 	utilis�e avec des donn�es complexes mais pas la fonction Scilab.
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Avec des param�tres d'entr�e de type cha�ne de cacat�res : �tant donn� que Matlab et Scilab
 	ne consid�rent pas les cha�nes de caract�res de la m�me fa�on, la fonction <literal>triu</literal>
 	ne donne pas le m�me r�sutat pour ce type d'entr�e dans Scilab et dans Matlab.
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Avec des param�tres d'entr�e bool�ens : La fonction Matlab <literal>triu</literal> peut �tre
 	utilis�e avec des donn�es bool�ennes mais pas la fonction Scilab.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_triu(x,k)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>triu(x,k)</literal> quand il n'�tait pas
@@ -57,36 +53,38 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_triu</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>X</literal> contient des doubles r�els
         <literal>mtlb_triu(x,k)</literal> peut �tre remplac� par <literal>triu(x,k)</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Si <literal>X</literal> contient des bool�ens
         <literal>mtlb_triu(x,k)</literal> peut �tre remplac� par <literal>triu(bool2s(x),k)</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_triu</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="Chaines_de_caracteres_MatlabScilab">Chaines_de_caracteres_Matlab-Scilab</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="Chaines_de_caracteres_MatlabScilab">Chaines_de_caracteres_Matlab-Scilab</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

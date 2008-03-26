@@ -10,35 +10,39 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sda"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sda</refname><refpurpose>  Set default axes. </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sda()
-a = gda(); set(a,"default_values",1)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
-  <variablelist>
-
-    <varlistentry>
-    <term>a</term>
-    <listitem>
-       <para>handle, the handle of the default axes.</para>
-    </listitem>
-    </varlistentry>
-  </variablelist>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sda">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sda</refname>
+    <refpurpose>  Set default axes. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>sda()
+a = gda(); set(a,"default_values",1)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>handle, the handle of the default axes.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
- 
-  <refsection><title>Description</title>
-  <para>
+  <refsection>
+    <title>Description</title>
+    <para>
    This routine resets the axes' model to default values.
    </para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
    
   x=[0:0.1:2*%pi]';
   f=get("default_figure"); // get the handle of the model figure 
@@ -70,17 +74,32 @@ a = gda(); set(a,"default_values",1)</synopsis></refsynopsisdiv>
   plot2d(x-2,sin(x))
   
 
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member> <link linkend="sdf">sdf</link> </member>
-    <member> <link linkend="gda">gda</link> </member>
-    <member> <link linkend="gdf">gdf</link> </member>
-    <member> <link linkend="set">set</link> </member>
-    <member> <link linkend="graphics_entities">graphics_entities</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><para>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sdf">sdf</link>
+      </member>
+      <member>
+        <link linkend="gda">gda</link>
+      </member>
+      <member>
+        <link linkend="gdf">gdf</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>
     Djalel ABDEMOUCHE
-  </para></refsection>
+  </para>
+  </refsection>
 </refentry>

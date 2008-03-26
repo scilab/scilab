@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xfpolys"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xfpolys</refname><refpurpose> fill a set of polygons</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xfpolys(xpols,ypols,[fill])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xfpolys">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xfpolys</refname>
+    <refpurpose> fill a set of polygons</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xfpolys(xpols,ypols,[fill])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>xpols,ypols</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>xfpolys</literal> fills a set of polygons of the same size defined by 
       the two matrices <literal>xpols</literal> and <literal>ypols</literal>. 
       The coordinates of each polygon
@@ -43,43 +50,48 @@
       interpolated (shaded) colors.
     </para>
     <variablelist>
-      <varlistentry><term>flat color painting</term><listitem>
-	<para>In this case <literal>fill</literal> should be a vector of size
+      <varlistentry>
+        <term>flat color painting</term>
+        <listitem>
+          <para>In this case <literal>fill</literal> should be a vector of size
 	  <literal>n</literal>.
 	  The pattern for filling polygon number i is given by
 	  <literal>fill(i)</literal>:</para>
-	<itemizedlist>
-	  <listitem>
-	    <para>if <literal>fill(i)&lt;0</literal>, the polygon is filled with
+          <itemizedlist>
+            <listitem>
+              <para>if <literal>fill(i)&lt;0</literal>, the polygon is filled with
 	      pattern id <literal>-fill(i)</literal>.</para>
-	  </listitem>
-	  <listitem>
-	    <para>if <literal>fill(i)=0</literal>, the polygon is drawn with the
+            </listitem>
+            <listitem>
+              <para>if <literal>fill(i)=0</literal>, the polygon is drawn with the
 	      current dash style (or current color) and not filled.</para>
-	  </listitem>
-	  <listitem>
-	    <para>if <literal>fill(i)&gt;0</literal>, the polygon is filled with
+            </listitem>
+            <listitem>
+              <para>if <literal>fill(i)&gt;0</literal>, the polygon is filled with
 	      pattern id <literal>fill(i)</literal>.  Then its contour is drawn with
 	      the current dash (or color) and closed if necessary.</para>
-	  </listitem>
-	</itemizedlist>
-      </listitem></varlistentry>
-      <varlistentry><term>interpolated color painting</term><listitem>
-	<para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>interpolated color painting</term>
+        <listitem>
+          <para>
 	  In this case <literal>fill</literal> should be a matrix with same sizes
 	  as <literal>xpols</literal> and <literal>ypols</literal>. Note that
 	  <literal>p</literal> must be equal to 3 or 4.
 	</para>
-	<para>
-	  <literal>fill(k,i)</literal> gives the color at the <literal>k</literal>th edge
+          <para><literal>fill(k,i)</literal> gives the color at the <literal>k</literal>th edge
 	  of polygon <literal>i</literal>.
 	</para>
-      </listitem></varlistentry>
-
+        </listitem>
+      </varlistentry>
     </variablelist>
- 
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
     
     
     a=gca();a.data_bounds=[0,-10;210,40];a.foreground=color('red');
@@ -118,17 +130,24 @@
     xfpolys(X,Y,C)
 
     
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="xfpoly">xfpoly</link>
-    </member>
-    <member>
-      <link linkend="xpoly">xpoly</link>
-    </member>
-    <member>
-      <link linkend="xpolys">xpolys</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xfpoly">xfpoly</link>
+      </member>
+      <member>
+        <link linkend="xpoly">xpoly</link>
+      </member>
+      <member>
+        <link linkend="xpolys">xpolys</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

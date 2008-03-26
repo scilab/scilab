@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fix"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fix</refname><refpurpose> rounding towards zero</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y]=fix(x)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fix">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fix</refname>
+    <refpurpose> rounding towards zero</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[y]=fix(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -33,19 +39,23 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>fix(x)</literal> returns an integer matrix made of nearest rounded integers 
     toward zero,i.e, <literal>y=sign(x).*floor(abs(x))</literal>. Same as <literal>int</literal>.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="round">round</link>
-    </member>
-    <member>
-      <link linkend="floor">floor</link>
-    </member>
-    <member>
-      <link linkend="ceil">ceil</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="round">round</link>
+      </member>
+      <member>
+        <link linkend="floor">floor</link>
+      </member>
+      <member>
+        <link linkend="ceil">ceil</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

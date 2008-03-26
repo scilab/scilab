@@ -10,21 +10,27 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="leastsq"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>leastsq</refname><refpurpose> 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="leastsq">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>leastsq</refname>
+    <refpurpose> 
     Solves non-linear least squares problems  
-  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[fopt,[xopt,[grdopt]]]=leastsq(fun, x0)
+  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[fopt,[xopt,[grdopt]]]=leastsq(fun, x0)
 [fopt,[xopt,[grdopt]]]=leastsq(fun, dfun, x0)
 [fopt,[xopt,[grdopt]]]=leastsq(fun, cstr, x0)
 [fopt,[xopt,[grdopt]]]=leastsq(fun, dfun, cstr, x0)
 [fopt,[xopt,[grdopt]]]=leastsq(fun, dfun, cstr, x0, algo)
-[fopt,[xopt,[grdopt]]]=leastsq([imp], fun [,dfun] [,cstr],x0 [,algo],[df0,[mem]],[stop])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[fopt,[xopt,[grdopt]]]=leastsq([imp], fun [,dfun] [,cstr],x0 [,algo],[df0,[mem]],[stop])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>fopt</term>
@@ -44,7 +50,6 @@
           <para>gradient of <emphasis>f</emphasis> at <literal>xopt</literal></para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>fun</term>
         <listitem>
@@ -149,14 +154,12 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
-
-  <refsection><title>Description</title>
-    <para>
-     <emphasis>fun</emphasis> being a function from <emphasis>R^n</emphasis> to <emphasis>R^m</emphasis> this routine tries to minimize w.r.t.
+  <refsection>
+    <title>Description</title>
+    <para><emphasis>fun</emphasis> being a function from <emphasis>R^n</emphasis> to <emphasis>R^m</emphasis> this routine tries to minimize w.r.t.
      <emphasis>x</emphasis>, the function:
    </para>
-        <programlisting><![CDATA[
+    <programlisting><![CDATA[
                            _m_     
                       2    \      2
      f(x) = ||fun(x)||  =  /   fun (x)
@@ -165,33 +168,38 @@
           ]]></programlisting>
     <para> which is the sum of the squares of the components of <emphasis>fun</emphasis>. Bound constraints may be
      imposed on <literal>x</literal>.</para>
-  </refsection>   
-
-  <refsection><title>How to provide fun and dfun</title>
+  </refsection>
+  <refsection>
+    <title>How to provide fun and dfun</title>
     <para><literal>fun</literal> can be either a usual scilab function (case 1) or a fortran or a C routine linked
             to scilab (case 2). For most problems the definition of <emphasis>fun</emphasis> will need 
             supplementary parameters and this can be done in both cases.</para>
-         <variablelist>
-          <varlistentry><term>case 1:</term><listitem>
-            <para> when <literal>fun</literal> is a Scilab function, its calling sequence must be:
+    <variablelist>
+      <varlistentry>
+        <term>case 1:</term>
+        <listitem>
+          <para> when <literal>fun</literal> is a Scilab function, its calling sequence must be:
           <literal>y=fun(x [,opt_par1,opt_par2,...])</literal>. When <literal>fun</literal> needs optional parameters it
            must appear as <literal>list(fun,opt_par1,opt_par2,...)</literal> in the calling sequence of
            <literal>leastsq</literal>.</para>
-          </listitem></varlistentry>
-          <varlistentry><term>case 2:</term><listitem>
-            <para> when <literal>fun</literal> is defined by a Fortran or C routine it must appear as
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>case 2:</term>
+        <listitem>
+          <para> when <literal>fun</literal> is defined by a Fortran or C routine it must appear as
                 <literal>list(fun_name,m [,opt_par1,opt_par2,...])</literal> in the calling
                 sequence of <literal>leastsq</literal>, <literal>fun_name</literal> (a string) being the name 
                 of the routine which must be linked to Scilab (see <link linkend="link">link</link>). The generic 
-                calling sequences for this routine are:</para> 
-            <programlisting><![CDATA[
+                calling sequences for this routine are:</para>
+          <programlisting><![CDATA[
 In Fortran:    subroutine fun(m, n, x, params, y)
                integer m,n
                double precision x(n), params(*), y(m)
 
 In C:          void fun(int *m, int *n, double *x, double *params, double *y)
          ]]></programlisting>
-            <para>where <literal>n</literal> is the dimension of vector <literal>x</literal>, <literal>m</literal> the dimension of 
+          <para>where <literal>n</literal> is the dimension of vector <literal>x</literal>, <literal>m</literal> the dimension of 
             vector <literal>y</literal> (which must store the evaluation of <emphasis>fun</emphasis> 
             at <emphasis>x</emphasis>) and <literal>params</literal> is a vector which contains the optional parameters 
             <emphasis>opt_par1, opt_par2, ...</emphasis> (each parameter may be a vector, for instance if <emphasis>opt_par1</emphasis> 
@@ -199,38 +207,43 @@ In C:          void fun(int *m, int *n, double *x, double *params, double *y)
             and from  <literal>params[3]</literal> (C case), etc... Note that even if <literal>fun</literal> doesn't need
             supplementary parameters you must anyway write the fortran code with a <literal>params</literal> argument
             (which is then unused in the subroutine core).</para>
-          </listitem></varlistentry>
-         </variablelist>
-
-        <para>In many cases it is adviced to provide the Jacobian matrix <literal>dfun</literal> (<emphasis>dfun(i,j)=dfi/dxj</emphasis>) 
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>In many cases it is adviced to provide the Jacobian matrix <literal>dfun</literal> (<emphasis>dfun(i,j)=dfi/dxj</emphasis>) 
            to the optimizer (which uses a finite difference approximation otherwise) and as for <literal>fun</literal> it may 
-           be given as a usual scilab function or as a  fortran or a C routine linked to scilab.</para> 
-        <variablelist>
-          <varlistentry><term>case 1:</term><listitem>
-            <para> when <literal>dfun</literal> is a scilab function, its calling sequence must be:
+           be given as a usual scilab function or as a  fortran or a C routine linked to scilab.</para>
+    <variablelist>
+      <varlistentry>
+        <term>case 1:</term>
+        <listitem>
+          <para> when <literal>dfun</literal> is a scilab function, its calling sequence must be:
           <literal>y=dfun(x [, optional parameters])</literal> (notes that even if <literal>dfun</literal> needs optional 
               parameters it must appear simply as <literal>dfun</literal> in the calling sequence of
            <literal>leastsq</literal>).</para>
-          </listitem></varlistentry>
-          <varlistentry><term>case 2:</term><listitem>
-            <para> when <literal>dfun</literal> is defined by a Fortran or C routine it must appear as
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>case 2:</term>
+        <listitem>
+          <para> when <literal>dfun</literal> is defined by a Fortran or C routine it must appear as
                 <literal>dfun_name</literal> (a string) in the calling sequence of <literal>leastsq</literal> 
                 (<literal>dfun_name</literal> being the name of the routine which must be linked to Scilab). 
-                The calling sequences for this routine are nearly the same than for <literal>fun</literal>:</para> 
-            <programlisting><![CDATA[
+                The calling sequences for this routine are nearly the same than for <literal>fun</literal>:</para>
+          <programlisting><![CDATA[
 In Fortran:    subroutine dfun(m, n, x, params, y)
                integer m,n
                double precision x(n), params(*), y(m,n)
 
 In C:          void fun(int *m, int *n, double *x, double *params, double *y)
          ]]></programlisting>
-            <para>in the C case <emphasis>dfun(i,j)=dfi/dxj</emphasis> must be stored in <literal>y[m*(j-1)+i-1]</literal>.</para>
-          </listitem></varlistentry>
-        </variablelist>
-
+          <para>in the C case <emphasis>dfun(i,j)=dfi/dxj</emphasis> must be stored in <literal>y[m*(j-1)+i-1]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-
-  <refsection><title>Remarks</title>
+  <refsection>
+    <title>Remarks</title>
     <para> Like <link linkend="datafit">datafit</link>, <literal>leastsq</literal> is a front end onto the <link linkend="optim">optim</link>
        function. If you want to try the Levenberg-Marquard method instead, use <link linkend="lsqrsolve">lsqrsolve</link>.
     </para>
@@ -240,8 +253,9 @@ In C:          void fun(int *m, int *n, double *x, double *params, double *y)
         identification of a differential equation).
     </para>
   </refsection>
- 
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 // We will show different calling possibilities of leastsq on one (trivial) example
 // which is non linear but doesn't really need to be solved with leastsq (applying
 // log linearizes the model and the problem may be solved with linear algebra). 
@@ -394,28 +408,32 @@ link(clibname,names,"c")
 // 8-4/ ready for the leastsq call
 [f,xopt, gropt] = leastsq(list("myfunc",m,tm,ym,wm),"mydfunc",x0)
    
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="lsqrsolve">lsqrsolve</link>
-    </member>
-    <member>
-      <link linkend="optim">optim</link>
-    </member>
-    <member>
-      <link linkend="NDcost">NDcost</link>
-    </member>
-    <member>
-      <link linkend="datafit">datafit</link>
-    </member>
-    <member>
-      <link linkend="external">external</link>
-    </member>
-    <member>
-      <link linkend="quapro">quapro</link>
-    </member>
-    <member>
-      <link linkend="linpro">linpro</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lsqrsolve">lsqrsolve</link>
+      </member>
+      <member>
+        <link linkend="optim">optim</link>
+      </member>
+      <member>
+        <link linkend="NDcost">NDcost</link>
+      </member>
+      <member>
+        <link linkend="datafit">datafit</link>
+      </member>
+      <member>
+        <link linkend="external">external</link>
+      </member>
+      <member>
+        <link linkend="quapro">quapro</link>
+      </member>
+      <member>
+        <link linkend="linpro">linpro</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

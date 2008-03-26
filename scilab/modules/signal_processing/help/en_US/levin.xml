@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="levin"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>levin</refname><refpurpose> Toeplitz system solver by Levinson algorithm (multidimensional)  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[la,sig]=levin(n,cov)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="levin">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>levin</refname>
+    <refpurpose> Toeplitz system solver by Levinson algorithm (multidimensional)  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[la,sig]=levin(n,cov)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -36,14 +43,17 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     function which solves recursively on n
     the following Toeplitz system (normal equations)</para>
     <para>
     where {<literal>Rk;k=1,nlag</literal>} is the sequence of <literal>nlag</literal> empirical covariances</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //We use the 'levin' macro for solving the normal equations 
 //on two examples: a one-dimensional and a two-dimensional process.
@@ -129,11 +139,18 @@ s2=sort(imag(s2));s2=s2(1:d*n/2);//just the positive ones !
 //but beneath many non relevant others.
 //
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="phc">phc</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>G. Le Vey</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="phc">phc</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>G. Le Vey</para>
+  </refsection>
 </refentry>

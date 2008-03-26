@@ -10,19 +10,25 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="double"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>double</refname><refpurpose> conversion from integer to double precision  representation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=double(X)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="double">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>double</refname>
+    <refpurpose> conversion from integer to double precision  representation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=double(X)
 y=int16(X)
 y=int32(X)
 y=uint8(X)
 y=uint16(X)
-y=uint32(X)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+y=uint32(X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
@@ -38,27 +44,34 @@ y=uint32(X)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     converts  data stored using  one, two or four bytes integers into
     double precision floating point representation. If <literal>X</literal> entries are already 
     double precision floats, nothing is done.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 x=int8([0 12 140])
 double(x)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="int8">int8</link>
-    </member>
-    <member>
-      <link linkend="inttype">inttype</link>
-    </member>
-    <member>
-      <link linkend="type">type</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="int8">int8</link>
+      </member>
+      <member>
+        <link linkend="inttype">inttype</link>
+      </member>
+      <member>
+        <link linkend="type">type</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

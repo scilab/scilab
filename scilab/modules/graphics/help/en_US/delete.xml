@@ -10,19 +10,25 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="delete"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>delete</refname><refpurpose> 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="delete">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>delete</refname>
+    <refpurpose> 
    delete  a graphic entity and its children.
-  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>delete(h)
+  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>delete(h)
 delete(h,"callback")
 delete()
-delete("all")</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+delete("all")</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
@@ -39,7 +45,8 @@ delete("all")</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This routine can be used to delete a graphics entity identified
     by the handle given as argument. In this case, All children of 
@@ -50,7 +57,9 @@ delete("all")</synopsis></refsynopsisdiv>
     <para> 
     The <literal>"callback"</literal> argument is not yet handled.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 
   subplot(211);
@@ -67,23 +76,30 @@ delete("all")</synopsis></refsynopsisdiv>
   delete("all"); //delete all the graphics objects of the figure
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="get">get</link>
-    </member>
-    <member>
-      <link linkend="set">set</link>
-    </member>
-    <member>
-      <link linkend="copy">copy</link>
-    </member>
-    <member>
-      <link linkend="move">move</link>
-    </member>
-    <member>
-      <link linkend="graphics_entities">graphics_entities</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para> Djalel ABDEMOUCHE</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="copy">copy</link>
+      </member>
+      <member>
+        <link linkend="move">move</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Djalel ABDEMOUCHE</para>
+  </refsection>
 </refentry>

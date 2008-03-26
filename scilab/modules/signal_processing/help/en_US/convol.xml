@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="convol"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>convol</refname><refpurpose> convolution</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y]=convol(h,x)
-[y,e1]=convol(h,x,e0)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="convol">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>convol</refname>
+    <refpurpose> convolution</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[y]=convol(h,x)
+[y,e1]=convol(h,x,e0)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x,h</term>
@@ -34,7 +41,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     calculates the convolution <literal>y= h*x</literal> of two
     discrete sequences by using the fft.  Overlap add method can be used.</para>
@@ -46,7 +54,9 @@
     Final call : [yN]=convol(h,xN,eNm1);
     Finally y=[y1,y2,...,yNm1,yN]</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 x=1:3;
 h1=[1,0,0,0,0];h2=[0,1,0,0,0];h3=[0,0,1,0,0];
@@ -56,17 +66,24 @@ p1=poly(x,'x','coeff')
 p2=poly(h1+h2+h3,'x','coeff')
 p1*p2
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="corr">corr</link>
-    </member>
-    <member>
-      <link linkend="fft">fft</link>
-    </member>
-    <member>
-      <link linkend="pspect">pspect</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>F. D , C. Bunks Date 3 Oct. 1988; ;   </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="corr">corr</link>
+      </member>
+      <member>
+        <link linkend="fft">fft</link>
+      </member>
+      <member>
+        <link linkend="pspect">pspect</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F. D , C. Bunks Date 3 Oct. 1988; ;   </para>
+  </refsection>
 </refentry>

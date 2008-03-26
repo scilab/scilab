@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="binomial"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>binomial</refname><refpurpose> binomial distribution probabilities</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>pr=binomial(p,n)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="binomial">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>binomial</refname>
+    <refpurpose> binomial distribution probabilities</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>pr=binomial(p,n)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>pr</term>
@@ -39,7 +45,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>pr=binomial(p,n)</literal> returns the binomial probability vector, i.e. 
     <literal>pr(k+1)</literal> is the probability of <literal>k</literal> success in <literal>n</literal> independent 
     Bernouilli trials with probability of success <literal>p</literal>. In other words :
@@ -53,7 +60,9 @@
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // first example
 n=10;p=0.3; xbasc(); plot2d3(0:n,binomial(p,n));
@@ -81,13 +90,17 @@ x=poly(0,'x');
 pr=Cnks.*horner(x.^(0:n).*(1-x)^(n:-1:0),p);
 pr-binomial(p,n)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="cdfbin">cdfbin</link>
-    </member>
-    <member>
-      <link linkend="grand">grand</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cdfbin">cdfbin</link>
+      </member>
+      <member>
+        <link linkend="grand">grand</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

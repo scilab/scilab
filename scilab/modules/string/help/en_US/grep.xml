@@ -10,71 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="grep"><info><pubdate>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)$</pubdate></info><refnamediv><refname>grep</refname><refpurpose>find matches of a string in a vector of
-  strings</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>row=grep(haystack,needle )
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="grep">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>grep</refname>
+    <refpurpose>find matches of a string in a vector of
+  strings</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>row=grep(haystack,needle )
 [row,which]=grep(haystack,needle )
 row=grep(haystack,needle ,["flag"])
-[row,which]=grep(haystack,needle ,["flag"])</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+[row,which]=grep(haystack,needle ,["flag"])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>haystack</term>
-
         <listitem>
           <para>a vector of strings.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>needle </term>
-
         <listitem>
           <para>a character string or character string vector . The string(s)
           to search in <literal>haystack</literal></para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>row</term>
-
         <listitem>
           <para>vector of indices: row where a match has been found or an
           empty matrix if no match found.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>which</term>
-
         <listitem>
           <para>vector of indices: index of needle string found or an empty
           matrix if no match found.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"Flag"</term>
-
         <listitem>
           <para>:string("r" for regular expression)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>Foreach entry of haystack , grep searches if at least a string in
     needle matches a substring. haystack entries index where at least a match
     has been found are returned in the row argument. while optionnal which
@@ -83,8 +74,9 @@ row=grep(haystack,needle ,["flag"])
     And then grep is going to match it with haystack according to the regular
     express rules.</para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 txt=['find matches of a string in a vector of strings'
      'search position of a character string in an other string'
@@ -101,11 +93,14 @@ grep(str,'/[hc]+at/','r')
 grep(str,'/[hc]?at/','r')
 grep(str,'/cat|dog/','r')
 
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="strindex">strindex</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="strindex">strindex</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

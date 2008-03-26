@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="edit_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>edit_graph</refname><refpurpose> graph and network graphical editor</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>num=edit_graph()
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="edit_graph">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>edit_graph</refname>
+    <refpurpose> graph and network graphical editor</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>num=edit_graph()
 num=edit_graph(file_name [,zoom [,wsize]])
-num=edit_graph(G [,zoom [,wsize]])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+num=edit_graph(G [,zoom [,wsize]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>file_name</term>
@@ -55,13 +61,16 @@ num=edit_graph(G [,zoom [,wsize]])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
    This function starts a network graphical editor.   Each time <literal>edit_graph</literal> is
   executed, a new editor window  is created.  The editor capabilities
    and menus are described in <link linkend="edit_graph_menus">edit_graph_menus</link></para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
  ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
  he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
@@ -72,19 +81,23 @@ num=edit_graph(G [,zoom [,wsize]])</synopsis></refsynopsisdiv>
  edit_graph(g,1,[800 600])
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="netclose">netclose</link>
-    </member>
-    <member>
-      <link linkend="show_graph">show_graph</link>
-    </member>
-    <member>
-      <link linkend="netwindow">netwindow</link>
-    </member>
-    <member>
-      <link linkend="edit_graph_menus">edit_graph_menus</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="netclose">netclose</link>
+      </member>
+      <member>
+        <link linkend="show_graph">show_graph</link>
+      </member>
+      <member>
+        <link linkend="netwindow">netwindow</link>
+      </member>
+      <member>
+        <link linkend="edit_graph_menus">edit_graph_menus</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

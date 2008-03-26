@@ -10,42 +10,39 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_a"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_a</refname><refpurpose>Fonction d'�mulation de l'addition Matlab</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_a">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_a</refname>
+    <refpurpose>Fonction d'�mulation de l'addition Matlab</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, l'addition se comporte diff�remment dans Matlab et dans Scilab :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec des op�randes de type cha�ne de caract�res : L'op�rateur <literal>+</literal>
 	est utilis� dans Scilab pour concat�ner des cha�nes de caract�res alors que
 	Matlab calcule la somme des codes ASCII des op�randes.
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
 	Avec une matrice vide : Dans Scilab, si une des
 	op�randes est une matrice vide alors le r�sultat de l'addition est
 	l'autre op�rande. Dans Matlab si une des op�randes est une matrice
 	vide alors le r�sultat de l'addition est soit une erreur (la seconde op�rande n'est pas un scalaire)
 	soit une matrice vide.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_a(A,B)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>A+B</literal> quand il n'�tait pas
@@ -53,47 +50,47 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_a</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>A</literal> et <literal>B</literal> sont des cha�nes de caract�res,
         <literal>mtlb_a(A,B)</literal> peut �tre remplac� par <literal>asciimat(A)+asciimat(B)</literal>
         </para>
-      </listitem>
-
-      <listitem>
-	<para>
+          </listitem>
+          <listitem>
+            <para>
 	Si <literal>A</literal> et <literal>B</literal> ne sont pas des matrices vides
 	<literal>mtlb_a(A,B)</literal> peut �tre remplac� par <literal>A+B</literal>,
 	sinon <literal>mtlb_a(A,B)</literal> peut �tre remplac� par
 	<literal>[]</literal>.
 	</para>
-      </listitem>
-
-      <listitem>
-	<para>
+          </listitem>
+          <listitem>
+            <para>
 	Si mtlb_mode()==%T, alors <literal>mtlb_a(A,B)</literal>
 	peut �tre remplac� par <literal>A+B</literal> dans tous les cas o�
 	<literal>A</literal> et <literal>B</literal> ne sont pas des cha�nes de caract�res.
 	</para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_a</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="mtlb_mode">mtlb_mode</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mtlb_mode">mtlb_mode</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="riccati"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>riccati</refname><refpurpose> Riccati equation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>X=riccati(A,B,C,dom,[typ])
-[X1,X2]=riccati(A,B,C,dom,[typ])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="riccati">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>riccati</refname>
+    <refpurpose> Riccati equation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>X=riccati(A,B,C,dom,[typ])
+[X1,X2]=riccati(A,B,C,dom,[typ])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A,B,C</term>
@@ -46,7 +52,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>X=riccati(A,B,C,dom,[typ])</literal> solves the Riccati equation:</para>
     <programlisting><![CDATA[
 
@@ -65,12 +72,15 @@ A'*X+X*A-X*B*X+C=0
     If called with two output arguments, <literal>riccati</literal> returns <literal>X1,X2</literal>
     such that <literal>X=X1/X2</literal>.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="ricc">ricc</link>
-    </member>
-    <member>
-      <link linkend="ric_desc">ric_desc</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ricc">ricc</link>
+      </member>
+      <member>
+        <link linkend="ric_desc">ric_desc</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

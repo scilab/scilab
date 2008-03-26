@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="funptr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>funptr</refname><refpurpose> coding of  primitives ( wizard stuff )  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[numptr] = funptr(name)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="funptr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>funptr</refname>
+    <refpurpose> coding of  primitives ( wizard stuff )  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[numptr] = funptr(name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>name</term>
@@ -21,7 +28,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Utility function (for experts only) to get the internal routine number <literal>numptr</literal>
     of the primitive <literal>'name'</literal>. <literal>numptr</literal> is formed from the interface
@@ -30,7 +38,9 @@
     the interface number <literal>fun = floor(numptr/100)</literal> which may be useful to link a 
     dynamical interface with arguments passed by reference (see example section).</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // Suppose you want to load some codes via the dynamic 
 // loading facilities offers by addinter. By default 
@@ -49,19 +59,23 @@
 //
 // you will see all the interfaces working by reference
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="clearfun">clearfun</link>
-    </member>
-    <member>
-      <link linkend="newfun">newfun</link>
-    </member>
-    <member>
-      <link linkend="intppty">intppty</link>
-    </member>
-    <member>
-      <link linkend="addinter">addinter</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="clearfun">clearfun</link>
+      </member>
+      <member>
+        <link linkend="newfun">newfun</link>
+      </member>
+      <member>
+        <link linkend="intppty">intppty</link>
+      </member>
+      <member>
+        <link linkend="addinter">addinter</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

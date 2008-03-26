@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="balreal"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>balreal</refname><refpurpose> balanced realization</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[slb [,U] ] = balreal(sl)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="balreal">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>balreal</refname>
+    <refpurpose> balanced realization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[slb [,U] ] = balreal(sl)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>sl,slb</term>
@@ -27,7 +33,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Balanced realization of linear system <literal>sl=[A,B,C,D]</literal>. <literal>sl</literal>
     can be a continuous-time or discrete-time state-space system. 
@@ -41,7 +48,9 @@ slb=[inv(U)*A*U ,inv(U)*B , C*U , D]
     is the balanced realization.</para>
     <para><literal>slb</literal> is returned as a <literal>syslin</literal> list.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=diag([-1,-2,-3,-4,-5]);B=rand(5,2);C=rand(1,5);
 sl=syslin('c',A,B,C);
@@ -49,22 +58,26 @@ sl=syslin('c',A,B,C);
 Wc=clean(ctr_gram(slb))
 W0=clean(obs_gram(slb))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="ctr_gram">ctr_gram</link>
-    </member>
-    <member>
-      <link linkend="obs_gram">obs_gram</link>
-    </member>
-    <member>
-      <link linkend="hankelsv">hankelsv</link>
-    </member>
-    <member>
-      <link linkend="equil">equil</link>
-    </member>
-    <member>
-      <link linkend="equil1">equil1</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ctr_gram">ctr_gram</link>
+      </member>
+      <member>
+        <link linkend="obs_gram">obs_gram</link>
+      </member>
+      <member>
+        <link linkend="hankelsv">hankelsv</link>
+      </member>
+      <member>
+        <link linkend="equil">equil</link>
+      </member>
+      <member>
+        <link linkend="equil1">equil1</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

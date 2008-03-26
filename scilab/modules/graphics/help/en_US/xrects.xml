@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xrects"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xrects</refname><refpurpose> draw or fill a set of rectangles</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xrects(rects,[fill])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xrects">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xrects</refname>
+    <refpurpose> draw or fill a set of rectangles</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xrects(rects,[fill])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>rects</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>xrects</literal> draws or fills a set of rectangles. 
     Each column of <literal>rects</literal> describes 
     a rectangle (upper-left point, width, height):
@@ -49,7 +56,9 @@
     if <literal>fill(i)=0</literal>, rectangle <literal>i</literal> is drawn using the current
     line style (or color).</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 plot2d([-100,500],[-50,50],[-1,-1],"022")
 cols=[-34,-33,-32,-20:5:20,32,33,34];
@@ -58,14 +67,21 @@ rects=[x;10*ones(x);step*ones(x);30*ones(x)];
 xrects(rects,cols)
 xnumb(x,15*ones(x),cols)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="xfrect">xfrect</link>
-    </member>
-    <member>
-      <link linkend="xrect">xrect</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xfrect">xfrect</link>
+      </member>
+      <member>
+        <link linkend="xrect">xrect</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

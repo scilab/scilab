@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xlfont"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xlfont</refname><refpurpose> load a font in the graphic context or query loaded font</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xlfont(font-name,font-id)
-fonts=xlfont()</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xlfont">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xlfont</refname>
+    <refpurpose> load a font in the graphic context or query loaded font</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xlfont(font-name,font-id)
+fonts=xlfont()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>font-name</term>
@@ -40,7 +46,8 @@ fonts=xlfont()</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Without any argument, <literal>xlfont()</literal> returns the list of
     currently loaded fonts.
@@ -83,15 +90,19 @@ fonts=xlfont()</synopsis></refsynopsisdiv>
        the choice of the identifier <literal>font-id</literal> for the loaded font :
     </para>
     <itemizedlist>
-      <listitem> <para>if <literal>font-id=10</literal> then the strings (drawn
+      <listitem>
+        <para>if <literal>font-id=10</literal> then the strings (drawn
         with this font) will be drawn with the default font (Times) at the same size;</para>
       </listitem>
-      <listitem> <para>else the strings will be drawn with the default font
+      <listitem>
+        <para>else the strings will be drawn with the default font
         corresponding to <literal>font-id</literal>.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // Caution : this example may not work if your system have not
 //           the schoolbook bold font 
@@ -103,10 +114,21 @@ end
 xset("font", 10, 4) // use Schoolbook bold at 18 pts
 plot2d()
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member><link linkend="xset">xset</link></member>
-    <member><link linkend="getfont">getfont</link></member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xset">xset</link>
+      </member>
+      <member>
+        <link linkend="getfont">getfont</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

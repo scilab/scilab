@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isequal"><info><pubdate>2001</pubdate></info><refnamediv><refname>isequal</refname><refpurpose> objects comparison</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>t=isequal(a,b)
-t=isequal(a,b,..)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isequal">
+  <info>
+    <pubdate>2001</pubdate>
+  </info>
+  <refnamediv>
+    <refname>isequal</refname>
+    <refpurpose> objects comparison</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>t=isequal(a,b)
+t=isequal(a,b,..)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>a, b , ...  </term>
@@ -34,7 +40,8 @@ t=isequal(a,b,..)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal> isequal</literal> compares its arguments. If all of them
     are equals function returns <literal> %t</literal> and in the other case
     it returns <literal> %f</literal> .</para>
@@ -44,22 +51,28 @@ t=isequal(a,b,..)</synopsis></refsynopsisdiv>
     NaN values are not equal. See <link linkend="isequalbitwise">isequalbitwise</link> for bitwise
     comparisons. </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 a=[1 2]
 isequal(a,[1 2])
 isequal(a,1)
    
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="isequalbitwise">isequalbitwise</link>
-    </member>
-    <member>
-      <link linkend="equal">equal</link>
-    </member>
-    <member>
-      <link linkend="less">less</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="isequalbitwise">isequalbitwise</link>
+      </member>
+      <member>
+        <link linkend="equal">equal</link>
+      </member>
+      <member>
+        <link linkend="less">less</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

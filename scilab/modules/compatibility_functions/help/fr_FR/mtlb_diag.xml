@@ -10,31 +10,29 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_diag"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_diag</refname><refpurpose>Fonction d'�mulation de la fonction Matlab diag</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_diag">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_diag</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab diag</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction <literal>diag</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec des matrices de cha�nes de caract�res : La fonction <literal>diag</literal> de Scilab consid�re
 	les cha�nes comme des objets alors que Matlab consid�re chaque caract�re s�par�ment.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>y = mtlb_diag(x[,dim])</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>y = diag(x[,dim])</literal> quand il n'�tait pas
@@ -42,29 +40,32 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_diag</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>x</literal> n'est pas une matrice de cha�nes de caract�res
         <literal>y = mtlb_diag(x,dim)</literal> peut �tre remplac� par <literal>y = diag(x[,dim])</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_diag</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="Chaines_de_caracteres_MatlabScilab">Chaines_de_caracteres_Matlab-Scilab</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="Chaines_de_caracteres_MatlabScilab">Chaines_de_caracteres_Matlab-Scilab</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

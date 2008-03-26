@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hotcolormap"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>hotcolormap</refname><refpurpose> red to yellow colormap</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>cmap=hotcolormap(n)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hotcolormap">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hotcolormap</refname>
+    <refpurpose> red to yellow colormap</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>cmap=hotcolormap(n)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -33,28 +39,35 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>hotcolormap</literal> computes a colormap with <literal>n</literal> hot colors
     varying from red to yellow.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 xset("colormap",hotcolormap(32))
 plot3d1() 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="colormap">colormap</link>
-    </member>
-    <member>
-      <link linkend="graycolormap">graycolormap</link>
-    </member>
-    <member>
-      <link linkend="jetcolormap">jetcolormap</link>
-    </member>
-    <member>
-      <link linkend="xset">xset</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="colormap">colormap</link>
+      </member>
+      <member>
+        <link linkend="graycolormap">graycolormap</link>
+      </member>
+      <member>
+        <link linkend="jetcolormap">jetcolormap</link>
+      </member>
+      <member>
+        <link linkend="xset">xset</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

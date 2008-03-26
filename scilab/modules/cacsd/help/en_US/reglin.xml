@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="reglin"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>reglin</refname><refpurpose> Linear regression</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[a,b,sig]=reglin(x,y)</synopsis></refsynopsisdiv>
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="reglin">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>reglin</refname>
+    <refpurpose> Linear regression</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[a,b,sig]=reglin(x,y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
     <para>
     solve the regression problem y=a*x+ b in the least square sense. 
     <literal>sig</literal> is the standard deviation of the residual. <literal>x</literal> and <literal>y</literal>
@@ -44,15 +50,18 @@ y= [ 2,3]*x+ 10*ones(f) + 0.1*rand(f);
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pinv">pinv</link>
-    </member>
-    <member>
-      <link linkend="leastsq">leastsq</link>
-    </member>
-    <member>
-      <link linkend="qr">qr</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pinv">pinv</link>
+      </member>
+      <member>
+        <link linkend="leastsq">leastsq</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

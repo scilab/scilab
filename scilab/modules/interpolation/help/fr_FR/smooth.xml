@@ -10,54 +10,75 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="smooth"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>smooth</refname><refpurpose> interpolation par une spline  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[pt]=smooth(ptd [,pas])</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>ptd  </term>
-  <listitem>
-  <para>vecteur rï¿½el ï¿½ deux colonnes
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="smooth">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>smooth</refname>
+    <refpurpose> interpolation par une spline  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[pt]=smooth(ptd [,pas])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>ptd  </term>
+        <listitem>
+          <para>vecteur rï¿½el ï¿½ deux colonnes
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>pas  </term>
-  <listitem>
-  <para>rï¿½el (pas de discrï¿½tisation des abscisses)
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pas  </term>
+        <listitem>
+          <para>rï¿½el (pas de discrï¿½tisation des abscisses)
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>pt  </term>
-  <listitem>
-  <para>vecteur rï¿½el ï¿½ deux colonnes
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pt  </term>
+        <listitem>
+          <para>vecteur rï¿½el ï¿½ deux colonnes
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
+  <refsection>
+    <title>Description</title>
+    <para>
     Cette fonction calcule les valeurs d'une spline d'interpolation
     dont les points de rï¿½fï¿½rence sont donnï¿½s par <literal>(ptd(1,i),ptd(2,i))</literal>. Les abscisses <literal>ptd(1,:)</literal> doivent ï¿½tre classï¿½s par ordre croissant.
     La valeur par dï¿½faut du pas est ï¿½gale ï¿½ 
     <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal>
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 x=[1 10 20 30 40];
 y=[1 30 -10 20 40];
 plot2d(x',y',[3],"011"," ",[-10,-40,50,50]);
 yi=smooth([x;y],0.1);
 plot2d(yi(1,:)',yi(2,:)',[1],"000");
- ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="splin">splin</link> </member>     <member> <link linkend="interp">interp</link> </member>     <member> <link linkend="interpln">interpln</link> </member>
-  </simplelist></refsection>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="splin">splin</link>
+      </member>
+      <member>
+        <link linkend="interp">interp</link>
+      </member>
+      <member>
+        <link linkend="interpln">interpln</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

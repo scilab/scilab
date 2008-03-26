@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="det"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>det</refname><refpurpose> determinant</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>det(X)
-[e,m]=det(X)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="det">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>det</refname>
+    <refpurpose> determinant</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>det(X)
+[e,m]=det(X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
@@ -40,19 +46,23 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>det(X)</literal> ( <literal>m*10^e</literal> is the determinant of the square matrix <literal>X</literal>.</para>
     <para>
     For polynomial matrix <literal>det(X)</literal> is equivalent to <literal>determ(X)</literal>.</para>
     <para>
     For rational matrices <literal>det(X)</literal> is equivalent to <literal>detr(X)</literal>.</para>
   </refsection>
-  <refsection><title>References</title>
+  <refsection>
+    <title>References</title>
     <para>
      det computations are based on the Lapack routines
       DGETRF for  real matrices and  ZGETRF for the complex case.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 x=poly(0,'x');
 det([x,1+x;2-x,x^2])
@@ -60,13 +70,17 @@ w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   //zeros of linear system
 A=rand(3,3);
 det(A), prod(spec(A))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="detr">detr</link>
-    </member>
-    <member>
-      <link linkend="determ">determ</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="detr">detr</link>
+      </member>
+      <member>
+        <link linkend="determ">determ</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -1,147 +1,186 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="save_format"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>save_format</refname><refpurpose>format of files produced by "save"</refpurpose></refnamediv>
-  
-  
-  
-  
-  
- 
-  <refsection><title>Description</title>
-     <para>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="save_format">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>save_format</refname>
+    <refpurpose>format of files produced by "save"</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
      Variables are saved by Scilab with the <link linkend="save">save</link> command in this
      format:
      </para>
-     <para>
+    <para>
      each variable record is appended consecutively to the file. The variable
      record begins with 24 bytes holding the variable name in encoded format 
      (see <link linkend="code2str">code2str</link>), where the name is terminated by the value 40.
      </para>
-     <para>
+    <para>
      After that comes the variable type (long integer), then, depending on it, for:
      </para>
-     
-     <variablelist>
-        <varlistentry><term>Floating matrices (type 1)</term><listitem>
-           <para>row size m (long integer), column size n (long integer), it (long integer);</para>
-           <para>data (8*n*m*(it+1) bytes)</para>
-        </listitem></varlistentry>
-     </variablelist>
-     
-     <variablelist>
-        <varlistentry><term>Polynomials (type 2) and Size implicit indices (?) (type 129)</term><listitem>
-           <para>row size m (long integer), column size n (long integer), it (long integer);</para>
-           <para>formal variable name (16 bytes); pointer table (m*n+1 long integers);</para>
-           <para>data (8*(N-1)*(it+1) bytes, where N is the last entry of the pointer table)</para>
-        </listitem></varlistentry>
-     </variablelist>
-     
-     <variablelist>
-        <varlistentry><term>Booleans (type 4)</term><listitem>
-           <para>row size m (long integer), column size n (long integer);</para>
-           <para>data (4*n*m bytes)</para>
-        </listitem></varlistentry>
-     </variablelist>
-     
-     <variablelist>
-        <varlistentry><term>Floating sparse matrices (type 5)</term><listitem>
-           <para>row size m (long integer), column size n (long integer),
+    <variablelist>
+      <varlistentry>
+        <term>Floating matrices (type 1)</term>
+        <listitem>
+          <para>row size m (long integer), column size n (long integer), it (long integer);</para>
+          <para>data (8*n*m*(it+1) bytes)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Polynomials (type 2) and Size implicit indices (?) (type 129)</term>
+        <listitem>
+          <para>row size m (long integer), column size n (long integer), it (long integer);</para>
+          <para>formal variable name (16 bytes); pointer table (m*n+1 long integers);</para>
+          <para>data (8*(N-1)*(it+1) bytes, where N is the last entry of the pointer table)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Booleans (type 4)</term>
+        <listitem>
+          <para>row size m (long integer), column size n (long integer);</para>
+          <para>data (4*n*m bytes)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Floating sparse matrices (type 5)</term>
+        <listitem>
+          <para>row size m (long integer), column size n (long integer),
            it (long integer), nel (long integer); </para>
-           <para>index (4*m+nel bytes);</para>
-           <para>non-zero values (8*nel*(it+1) bytes)</para>
-        </listitem></varlistentry>
-     </variablelist>
-     
-     <variablelist>
-        <varlistentry><term>Boolean sparse matrices (type 6)</term><listitem>
-           <para>row size m (long integer), column size n (long integer),
+          <para>index (4*m+nel bytes);</para>
+          <para>non-zero values (8*nel*(it+1) bytes)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Boolean sparse matrices (type 6)</term>
+        <listitem>
+          <para>row size m (long integer), column size n (long integer),
             it (long integer), nel (long integer);</para>
-           <para>index (4*m+nel bytes);</para>
-           <para> non-zero values (4*nel*(it+1) bytes)</para>
-        </listitem></varlistentry>
-     </variablelist>
-     
-     <variablelist>
-        <varlistentry><term>Integer matrices (type 8)</term><listitem>
-           <para>row size m (long integer), column size n (long integer),</para>
-           <para>integer type (long integer): 1,2,4, or 11,12,14 for signed and unsigned
+          <para>index (4*m+nel bytes);</para>
+          <para> non-zero values (4*nel*(it+1) bytes)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Integer matrices (type 8)</term>
+        <listitem>
+          <para>row size m (long integer), column size n (long integer),</para>
+          <para>integer type (long integer): 1,2,4, or 11,12,14 for signed and unsigned
               1,2,4 bytes integers;</para>
-           <para>data (n*m*(it modulo 10) bytes)</para>
-        </listitem></varlistentry>
-     </variablelist>
-     
-     <variablelist>
-        <varlistentry><term>handles (type 9)</term><listitem>
-           <para>
+          <para>data (n*m*(it modulo 10) bytes)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>handles (type 9)</term>
+        <listitem>
+          <para>
            ??
           </para>
-        </listitem></varlistentry>
-     </variablelist>
-     
-     <variablelist>
-        <varlistentry><term>Strings (type 10)</term><listitem>
-           <para>row size m (long integer), column size n (long integer),</para>
-           <para>total number of characters nc+1 (long integer);</para>
-           <para>pointer table (n*m+1 bytes);</para>
-           <para>data (4*nc bytes)</para>
-           </listitem></varlistentry>
-     </variablelist>
-     
-     <variablelist>
-        <varlistentry><term>Uncompiled functions (type 11)</term><listitem>
-           <para>nout (long integer), lhs names (24*nout bytes),</para>
-           <para>nin (long integer), rhs names (24*nin bytes);</para>
-           <para>code length N (long integer),</para>
-           <para>code (4*N bytes)</para>
-          </listitem></varlistentry>
-     </variablelist>
-     
-     <variablelist>
-        <varlistentry><term>Compiled functions (type 13)</term><listitem>
-           <para>nout (long integer), lhs names (24*nout bytes),</para>
-           <para>nin (long integer), rhs names (24*nin bytes);</para>
-           <para>code length N (long integer),</para>
-           <para>pseudocode (4*N bytes)</para>
-        </listitem></varlistentry>
-     </variablelist>
-
-     <variablelist>
-           <varlistentry><term>Libraries (type 14)</term><listitem>
-           <para>path length np (long integer), path name (4*np bytes),</para>
-           <para>number of names nn (long integer),</para>
-           <para>class pointers (120 bytes);</para>
-           <para>names (24*nn bytes);</para>
-        </listitem></varlistentry>
-     </variablelist>
-
-     <variablelist>
-        <varlistentry><term>Lists (type 15), tlists (type 16), mlists (type 17)</term><listitem>
-           <para>number of fields n (long integer),</para>
-           <para>pointers (4*(n+1) bytes);</para>
-           <para>variables (each one written according to its format)</para>
-        </listitem></varlistentry>
-     </variablelist>
-     
-     <variablelist>
-     <varlistentry><term>Pointers (type 128)</term><listitem>
-     <para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Strings (type 10)</term>
+        <listitem>
+          <para>row size m (long integer), column size n (long integer),</para>
+          <para>total number of characters nc+1 (long integer);</para>
+          <para>pointer table (n*m+1 bytes);</para>
+          <para>data (4*nc bytes)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Uncompiled functions (type 11)</term>
+        <listitem>
+          <para>nout (long integer), lhs names (24*nout bytes),</para>
+          <para>nin (long integer), rhs names (24*nin bytes);</para>
+          <para>code length N (long integer),</para>
+          <para>code (4*N bytes)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Compiled functions (type 13)</term>
+        <listitem>
+          <para>nout (long integer), lhs names (24*nout bytes),</para>
+          <para>nin (long integer), rhs names (24*nin bytes);</para>
+          <para>code length N (long integer),</para>
+          <para>pseudocode (4*N bytes)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Libraries (type 14)</term>
+        <listitem>
+          <para>path length np (long integer), path name (4*np bytes),</para>
+          <para>number of names nn (long integer),</para>
+          <para>class pointers (120 bytes);</para>
+          <para>names (24*nn bytes);</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Lists (type 15), tlists (type 16), mlists (type 17)</term>
+        <listitem>
+          <para>number of fields n (long integer),</para>
+          <para>pointers (4*(n+1) bytes);</para>
+          <para>variables (each one written according to its format)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Pointers (type 128)</term>
+        <listitem>
+          <para>
      ??
      </para>
-     </listitem></varlistentry>
-     </variablelist>
-
-
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member> <link linkend="save">save</link> </member>
-    <member> <link linkend="load">load</link> </member>
-    <member> <link linkend="listvarinfile">listvarinfile</link> </member>
-    <member> <link linkend="type">type</link> </member>
-    <member> <link linkend="typeof">typeof</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><simplelist type="vert">
-    <member>compiled by Enrico Segre</member>
-  </simplelist></refsection>
-
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="load">load</link>
+      </member>
+      <member>
+        <link linkend="listvarinfile">listvarinfile</link>
+      </member>
+      <member>
+        <link linkend="type">type</link>
+      </member>
+      <member>
+        <link linkend="typeof">typeof</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>compiled by Enrico Segre</member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bsplin3val"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>bsplin3val</refname><refpurpose>3d spline arbitrary derivative evaluation function</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[dfp]=bsplin3val(xp,yp,zp,tl,der)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bsplin3val">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bsplin3val</refname>
+    <refpurpose>3d spline arbitrary derivative evaluation function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[dfp]=bsplin3val(xp,yp,zp,tl,der)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>xp, yp, zp</term>
@@ -36,13 +43,14 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     While the function <link linkend="interp3d">interp3d</link> may compute only the spline  <literal>s</literal> and
     its first derivatives, <literal>bsplin3val</literal> may compute any derivative of  <literal>s</literal>.
     The derivative to compute is specified by the argument  <literal>der=[ox,oy,oz]</literal> :
     </para>
-        <programlisting><![CDATA[
+    <programlisting><![CDATA[
                ox   oy   oz
               d    d    d
    dfp(i) =  ---  ---  ---   s (xp(i),yp(i),zp(i))
@@ -59,8 +67,9 @@
     function returns 0.
     </para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 deff("v=f(x,y,z)","v=cos(x).*sin(y).*cos(z)");
 deff("v=fx(x,y,z)","v=-sin(x).*sin(y).*cos(z)");
 deff("v=fxy(x,y,z)","v=-sin(x).*cos(y).*cos(z)");
@@ -92,20 +101,24 @@ fxyz_i = bsplin3val(xp,yp,zp,tl,[1 1 1])
 fxxyz_e = fxxyz(xp,yp,zp)
 fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
 
- ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="splin3d">splin3d</link>
-    </member>
-    <member>
-      <link linkend="interp3d">interp3d</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><simplelist type="vert">
-     <member> R.F. Boisvert, C. De Boor (code from the CMLIB fortran lib)</member>
-     <member> B. Pincon (scilab interface)</member>
-  </simplelist></refsection>
-
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="splin3d">splin3d</link>
+      </member>
+      <member>
+        <link linkend="interp3d">interp3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member> R.F. Boisvert, C. De Boor (code from the CMLIB fortran lib)</member>
+      <member> B. Pincon (scilab interface)</member>
+    </simplelist>
+  </refsection>
 </refentry>

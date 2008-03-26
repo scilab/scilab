@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gsort"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gsort</refname><refpurpose> decreasing order sorting</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[s, [k]]=gsort(v )
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gsort">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gsort</refname>
+    <refpurpose> decreasing order sorting</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[s, [k]]=gsort(v )
 [s, [k]]=gsort(v,flag1)
-[s, [k]]=gsort(v,flag1,flag2)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[s, [k]]=gsort(v,flag1,flag2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>v,s</term>
@@ -41,7 +47,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>gsort</literal> is similar to <literal>sort</literal> with additional properties. 
     The third argument can be used to chose between increasing or
     decreasing order. The second argument can be used for lexical orders.</para>
@@ -63,7 +70,9 @@
     <literal>i&lt;j</literal>. <literal>[s,k]=gsort(a,'lc','i')</literal> performs the same operation 
     for increasing lexical order</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 
 alr=[1,2,2;
@@ -92,12 +101,21 @@ gsort(v,'lc','i')
 
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member> <link linkend="find">find</link> </member>
-    <member> <link linkend="sort">sort</link> </member>
-  </simplelist></refsection>
-  <refsection><title>Bibliography</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="find">find</link>
+      </member>
+      <member>
+        <link linkend="sort">sort</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
     <para>Quick sort algorithm</para>
   </refsection>
 </refentry>

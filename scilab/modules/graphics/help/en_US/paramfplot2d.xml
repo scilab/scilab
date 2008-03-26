@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="paramfplot2d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>paramfplot2d</refname><refpurpose> animated 2D plot, curve defined by a function</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>paramfplot2d(f,x,theta)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="paramfplot2d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>paramfplot2d</refname>
+    <refpurpose> animated 2D plot, curve defined by a function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>paramfplot2d(f,x,theta)
 paramfplot2d(f,x,theta,flag)
-paramfplot2d(f,x,theta,flagrect)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+paramfplot2d(f,x,theta,flagrect)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -53,7 +59,8 @@ paramfplot2d(f,x,theta,flagrect)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Animated plot of the function x--&gt;f(x,t) for t=theta(1),theta(2),etc.
     f can be a either Scilab function or a dynamically linked routine since
@@ -61,22 +68,28 @@ paramfplot2d(f,x,theta,flagrect)</synopsis></refsynopsisdiv>
     f: mapping x,t -&gt; f(x,t) = <literal>R^N</literal>  valued function for x= vector of <literal>R^N</literal>
     and t=real number. x is a N-vector of x-values and for each t in theta, f(x,t)=N-vector of y-values.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 deff('y=f(x,t)','y=t*sin(x)')
 x=linspace(0,2*%pi,50);theta=0:0.05:1;
 paramfplot2d(f,x,theta);
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="plot2d">plot2d</link>
-    </member>
-    <member>
-      <link linkend="feval">feval</link>
-    </member>
-    <member>
-      <link linkend="fplot2d">fplot2d</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="feval">feval</link>
+      </member>
+      <member>
+        <link linkend="fplot2d">fplot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

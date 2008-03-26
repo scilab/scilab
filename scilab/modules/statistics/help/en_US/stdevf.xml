@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="stdevf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>stdevf</refname><refpurpose> standard deviation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>s=stdevf(x,fre)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="stdevf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>stdevf</refname>
+    <refpurpose> standard deviation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>s=stdevf(x,fre)
 s=stdevf(x,fre,'r') or s=stdevf(x,fre,1)
-s=stdevf(x,fre,'c') or s=stdevf(x,fre,2)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+s=stdevf(x,fre,'c') or s=stdevf(x,fre,2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -29,7 +35,8 @@ s=stdevf(x,fre,'c') or s=stdevf(x,fre,2)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function   computes the standard  deviation  of the
     values  of a vector  or matrix <literal>   x</literal>, each of them
@@ -55,7 +62,9 @@ s=stdevf(x,fre,'c') or s=stdevf(x,fre,2)</synopsis></refsynopsisdiv>
     counted    with the  multiplicity    indicated   by  the
     corresponding value of <literal> fre</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 
 x=[0.2113249 0.0002211 0.6653811;0.7560439 0.9546254 0.6283918]
@@ -65,9 +74,14 @@ m=stdevf(x,fre,'r')
 m=stdevf(x,fre,'c')
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>Authors</title><para> Carlos Klimann</para></refsection>
-  <refsection><title>Bibliography</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Carlos Klimann</para>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
     <para>
     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
   </refsection>

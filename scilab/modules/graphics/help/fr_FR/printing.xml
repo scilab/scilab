@@ -1,13 +1,20 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="printing"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>printing</refname><refpurpose> impression des graphiques Scilab   </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>Blatexpr xscale yscale filename.ps
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="printing">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>printing</refname>
+    <refpurpose> impression des graphiques Scilab   </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>Blatexpr xscale yscale filename.ps
 BEpsf filename.ps
-Blpr "Title" filename1.ps filename2.ps ... filenamen.ps | lpr</synopsis></refsynopsisdiv>
-  <refsection><title>Description</title>
+Blpr "Title" filename1.ps filename2.ps ... filenamen.ps | lpr</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
     <para>
       Les graphiques peuvent être sauvegardés avec la commande <literal>xbasimp</literal>.
       La commande :
@@ -21,61 +28,70 @@ Blpr "Title" filename1.ps filename2.ps ... filenamen.ps | lpr</synopsis></refsyn
       mais un ensemble de programmes Scilab ( dans le répertoire <literal>bin</literal> de Scilab ) sont 
       à utiliser pour cela :
     </para>
-    
     <variablelist>
-    <varlistentry><term>BEpsf</term><listitem> 
-      <para>La commande <literal>BEpsf</literal> crée un fichier epsf (PostScript
+      <varlistentry>
+        <term>BEpsf</term>
+        <listitem>
+          <para>La commande <literal>BEpsf</literal> crée un fichier epsf (PostScript
 	encapsulé) à partir du fichier <literal>des.ps.xx</literal> sous le nom
 	<literal>des.epsf</literal>, ce fichier epsf peut être imprimé directement ou
 	inclus dans un fichier PostScript.</para>
-
-    </listitem></varlistentry>
-
-    <varlistentry><term>Blatexpr</term><listitem> 
-      <para>La commande  <literal>Blatexpr</literal> crée un fichier epsf à partir du
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Blatexpr</term>
+        <listitem>
+          <para>La commande  <literal>Blatexpr</literal> crée un fichier epsf à partir du
 	  fichier <literal>des.ps.xx</literal> <literal>des.ps.xx</literal></para>
-	<programlisting><![CDATA[
+          <programlisting><![CDATA[
 	  mv des.ps.xx des.ps
 	  Blatexpr 1.0 1.0 des.ps
 	  ]]></programlisting>
-	<para>
+          <para>
 	  sous le nom <literal>des.epsf</literal> et un fichier LaTeX 
 	  <literal>des.tex</literal>. Le fichier <literal>des.tex</literal> peut être inséré dans un document LaTeX 
 	  pour inclure le fichier epsf ( le fichier postscript 
 	  est inclus avec la commande <literal>special</literal> de TeX )
 	</para>
-	<programlisting><![CDATA[
+          <programlisting><![CDATA[
 	  \input des.tex 
 	  \dessin{caption}{label}
 	  ]]></programlisting>
-    </listitem></varlistentry>
-
-    <varlistentry><term>Blpr</term><listitem> 
-      <para>La commande <literal>Blpr</literal> est utilisée pour imprimer un ensemble
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Blpr</term>
+        <listitem>
+          <para>La commande <literal>Blpr</literal> est utilisée pour imprimer un ensemble
 	de graphiques sur une même feuille de papier. Par exemple pour imprimer
 	deux graphiques sur une seule page :</para>
-      <programlisting><![CDATA[
+          <programlisting><![CDATA[
 	Blpr "Deux graphiques" file1.ps.0 file2.ps.1 | lpr 
 	]]></programlisting>
-    </listitem></varlistentry>
- 
-
-    <varlistentry><term>Blatexprs</term><listitem> 
-      <para>La commande <literal>Blatexprs</literal> utilisée pour insérer dans une
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Blatexprs</term>
+        <listitem>
+          <para>La commande <literal>Blatexprs</literal> utilisée pour insérer dans une
 	figure LaTeX un ensemble de graphiques  Scilab</para>
-      <programlisting><![CDATA[
+          <programlisting><![CDATA[
 	Blatexprs res file1.ps.0 file2.ps.1
 	]]></programlisting>
-      <para>
+          <para>
 	crée deux fichiers <literal>res.ps</literal> et <literal>res.tex</literal>. Le fichier <literal>res.tex</literal>
 	est utilisé comme pour <literal>Blatexpr</literal> pour lire la figure.
       </para>
-    </listitem></varlistentry>
+        </listitem>
+      </varlistentry>
     </variablelist>
-   
-    
   </refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="xbasimp">xbasimp</link> </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xbasimp">xbasimp</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="zoom_rect"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>zoom_rect</refname><refpurpose> zoom a selection of the current graphic figure</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>zoom_rect()
-zoom_rect(rect)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="zoom_rect">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>zoom_rect</refname>
+    <refpurpose> zoom a selection of the current graphic figure</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>zoom_rect()
+zoom_rect(rect)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>rect</term>
@@ -29,13 +35,14 @@ zoom_rect(rect)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>zoom_rect</literal> is used to zoom a given rectangle of the current graphic
       figure: the rectangle(s) formed by the intersection of the given
       rectangle with the axes boxe(s) are zoomed, i.e. the rectangle(s) content
       are enlarged to fill the axes boxe(s). The selected rectangle  for each
       axes is stored in the <literal>zoom_box</literal> property of associated the
-      axes entity (see  <link linkend="axes_properties">axes_properties</link>).</para> 
+      axes entity (see  <link linkend="axes_properties">axes_properties</link>).</para>
     <para>Without argument, the user is required to select the rectangle
       with the mouse. If specified, the  <literal>rect</literal> argument  should
       contain the coordinates ( using the current graphics scale) of two
@@ -43,7 +50,9 @@ zoom_rect(rect)</synopsis></refsynopsisdiv>
     <para>The <literal>zoom_rect</literal> function corresponds to the <literal>Zoom</literal>
     menu.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
     clf()
     x=0:0.01:6*%pi;
     plot2d(x,sin(x^2))
@@ -75,15 +84,21 @@ zoom_rect(rect)</synopsis></refsynopsisdiv>
     zoom_rect(rect) 
  
 
-]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="unzoom">unzoom</link>
-    </member>
-    <member>
-      <link linkend="axes_properties">axes_properties</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>Serge Steer INRIA </para></refsection>
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="unzoom">unzoom</link>
+      </member>
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Serge Steer INRIA </para>
+  </refsection>
 </refentry>

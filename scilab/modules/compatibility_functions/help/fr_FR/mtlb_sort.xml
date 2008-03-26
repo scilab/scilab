@@ -10,44 +10,39 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_sort"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoï¿½ 2006) $</pubdate></info><refnamediv><refname>mtlb_sort</refname><refpurpose>Fonction d'ï¿½mulation de la fonction
-  Matlab sort</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>P = mtlb_sort(X)
-P = mtlb_sort(X,dim[,mode])</synopsis></refsynopsisdiv>
-
-  <refsection><title>Paramètres</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_sort">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoï¿½ 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_sort</refname>
+    <refpurpose>Fonction d'ï¿½mulation de la fonction
+  Matlab sort</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>P = mtlb_sort(X)
+P = mtlb_sort(X,dim[,mode])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
-
         <listitem>
           <para>un scalaire, un vecteur, une matrice ou hypermatrice
           d'elements compris dans [-1 1]un scalaire, un vecteur ou une matrice
           de rï¿½els, de boolï¿½ens ou une string</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>ndim</term>
-
         <listitem>
           <para>un entier positif</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>mode</term>
-
         <listitem>
           <para>:une chaine de caracteres (<literal>"ascend"</literal> or
           <literal>"descend"</literal>) </para>
@@ -55,12 +50,11 @@ P = mtlb_sort(X,dim[,mode])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction <literal>sort</literal> de
     Matlab et la fonction <literal>gsort</literal> de Scilab se comportent
     diffï¿½remment :</para>
-
     <itemizedlist>
       <listitem>
         <itemizedlist>
@@ -69,13 +63,11 @@ P = mtlb_sort(X,dim[,mode])</synopsis></refsynopsisdiv>
             <literal>sort(X) </literal>de Matlab est ï¿½quivalent ï¿½ï¿½ l'appel de la
             fonction <literal>sort(X,'g','i')</literal> de Scilab. </para>
           </listitem>
-
           <listitem>
             <para><literal>dim=1</literal> (resp. <literal>2</literal>) de Matlab est
             equivalent au flag <literal>'r'</literal> (resp.<literal> 'c'</literal>) de
             Scilab.</para>
           </listitem>
-
           <listitem>
             <para><literal>mode="ascend"</literal> (resp. <literal>"descend"</literal>) est
             ï¿½quivalent au flag <literal>'i'</literal> (resp <literal>'d'</literal>) de
@@ -84,7 +76,6 @@ P = mtlb_sort(X,dim[,mode])</synopsis></refsynopsisdiv>
         </itemizedlist>
       </listitem>
     </itemizedlist>
-
     <para>La fonction <literal>mtlb_sort(X,dim[,mode])</literal> est utilisï¿½e par
     <literal>mfile2sci</literal> pour remplacer <literal>sort(X,dim[,mode])</literal>
     quand il n'ï¿½tait pas possible de savoir ce qu'ï¿½taient les paramï¿½tres
@@ -92,12 +83,13 @@ P = mtlb_sort(X,dim[,mode])</synopsis></refsynopsisdiv>
     fonction va dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour
     obtenir un code plus performant on peut remplacer les appels ï¿½ï¿½
     <literal>mtlb_sort</literal> par des appels <link linkend="gsort">gsort</link>.</para>
-
     <para>Attention : <literal>mtlb_sort</literal> ne doit pas ï¿½tre utilisï¿½e pour une
     programmation manuelle.</para>
   </refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>F.B.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>F.B.</member>
+    </simplelist>
+  </refsection>
 </refentry>

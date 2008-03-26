@@ -1,64 +1,72 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="intersect"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>intersect</refname><refpurpose> recherche de valeurs communes à deux vecteurs.  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[v, [ka,kb]]=intersect(a,b)
-</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>a  </term>
-  <listitem>
-  <para>vecteur de nombres réels ou de chaînes de caractères
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="intersect">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>intersect</refname>
+    <refpurpose> recherche de valeurs communes à deux vecteurs.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[v, [ka,kb]]=intersect(a,b)
+</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>a  </term>
+        <listitem>
+          <para>vecteur de nombres réels ou de chaînes de caractères
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>b  </term>
-  <listitem>
-  <para>vecteur de nombres réels ou de chaînes de caractères
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b  </term>
+        <listitem>
+          <para>vecteur de nombres réels ou de chaînes de caractères
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>v  </term>
-  <listitem>
-  <para>vecteur ligne de nombres réels ou de chaînes de caractères
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v  </term>
+        <listitem>
+          <para>vecteur ligne de nombres réels ou de chaînes de caractères
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>ka  </term>
-  <listitem>
-  <para>vecteur ligne d'entiers
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ka  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>kb  </term>
-  <listitem>
-  <para>vecteur ligne d'entiers 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>kb  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers 
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
-    <literal>intersect(a,b)</literal> renvoie un vecteur trié des valeurs communes à <literal>a</literal> et <literal>b</literal>.
+  <refsection>
+    <title>Description</title>
+    <para><literal>intersect(a,b)</literal> renvoie un vecteur trié des valeurs communes à <literal>a</literal> et <literal>b</literal>.
   </para>
-  <para>
-    <literal>[v,ka,kb]=intersect(a,b)</literal> renvoie aussi deux vecteurs d'indices <literal>ka</literal> et
+    <para><literal>[v,ka,kb]=intersect(a,b)</literal> renvoie aussi deux vecteurs d'indices <literal>ka</literal> et
     <literal>kb</literal> tels que <literal>v=a(ka)</literal> et <literal>v=b(kb)</literal>.
   </para>
-  <para>
+    <para>
   </para>
-  <para>
+    <para>
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 A=round(5*rand(10,1));
 B=round(5*rand(7,1));
 
@@ -67,8 +75,20 @@ intersect(A,B)
 
 intersect('a'+string(A),'a'+string(B))
 
- ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="unique">unique</link> </member>     <member> <link linkend="sort">sort</link> </member>     <member> <link linkend="union">union</link> </member>
-  </simplelist></refsection>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="unique">unique</link>
+      </member>
+      <member>
+        <link linkend="sort">sort</link>
+      </member>
+      <member>
+        <link linkend="union">union</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

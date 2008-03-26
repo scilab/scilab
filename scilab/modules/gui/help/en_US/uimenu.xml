@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="uimenu"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>uimenu</refname><refpurpose> Create a menu or a submenu in a figure</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>h=uimenu([prop1,val1] [,prop2, val2] ...)
-h=uimenu(parent,[prop1, val1] [,prop2, val2] ...)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="uimenu">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>uimenu</refname>
+    <refpurpose> Create a menu or a submenu in a figure</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>h=uimenu([prop1,val1] [,prop2, val2] ...)
+h=uimenu(parent,[prop1, val1] [,prop2, val2] ...)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>parent </term>
@@ -34,7 +41,8 @@ h=uimenu(parent,[prop1, val1] [,prop2, val2] ...)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This allows to create menus in a figure.
     If <literal>parent</literal> is a figure, then
@@ -44,20 +52,32 @@ h=uimenu(parent,[prop1, val1] [,prop2, val2] ...)</synopsis></refsynopsisdiv>
     To create a customized menu, you can use the properties listed below:
     </para>
   </refsection>
-  <refsection><title>Properties</title>
+  <refsection>
+    <title>Properties</title>
     <variablelist>
-      <varlistentry><term>callback</term><listitem>
-        <para>string: allows to set up the scilab instruction to call when the item is selected by the user.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>label</term><listitem>
-        <para>string: allows to set up the text appearing for the item.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>tag</term><listitem>
-        <para>string: this property is generally used to identify the menu. It allows to give it a "name". Mainly used in conjontion with <link linkend="findobj">findobj</link>.</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>callback</term>
+        <listitem>
+          <para>string: allows to set up the scilab instruction to call when the item is selected by the user.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>label</term>
+        <listitem>
+          <para>string: allows to set up the text appearing for the item.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tag</term>
+        <listitem>
+          <para>string: this property is generally used to identify the menu. It allows to give it a "name". Mainly used in conjontion with <link linkend="findobj">findobj</link>.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 f=figure('position', [10 10 300 200]);
 // create a figure
@@ -72,20 +92,27 @@ m12=uimenu(m1,'label', 'clear  window', 'callback',"xbasc()");
 close(f);
 // close the figure
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="figure">figure</link>
-    </member>
-    <member>
-      <link linkend="uicontrol">uicontrol</link>
-    </member>
-    <member>
-      <link linkend="set">set</link>
-    </member>
-    <member>
-      <link linkend="get">get</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>Bertrand Guiheneuf</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="figure">figure</link>
+      </member>
+      <member>
+        <link linkend="uicontrol">uicontrol</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Bertrand Guiheneuf</para>
+  </refsection>
 </refentry>

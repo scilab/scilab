@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="qld"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>qld</refname><refpurpose> linear quadratic programming solver</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x,lagr]=qld(Q,p,C,b,ci,cs,me [,tol])
-[x,lagr,info]=qld(Q,p,C,b,ci,cs,me [,tol])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="qld">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>qld</refname>
+    <refpurpose> linear quadratic programming solver</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x,lagr]=qld(Q,p,C,b,ci,cs,me [,tol])
+[x,lagr,info]=qld(Q,p,C,b,ci,cs,me [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>Q</term>
@@ -40,7 +47,7 @@
 	    some components of <literal>x</literal> are bounded from below, set the
 	    other (unconstrained) values of <literal>ci</literal> to a very  large
 	    negative  number (e.g. <literal>ci(j) =
-	      -number_properties('huge')</literal>.</para> 
+	      -number_properties('huge')</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -67,7 +74,6 @@
           <para>optimal solution found.</para>
         </listitem>
       </varlistentry>
-   
       <varlistentry>
         <term>lagr</term>
         <listitem>
@@ -80,7 +86,7 @@
 	    (resp. lower-bound) constraint <literal>i</literal> is active
 	    <literal>lagr(i)</literal> is &gt; 0 (resp. &lt;0). If no bounds are
 	    provided, <literal>lagr</literal> has only <literal>me + md</literal>
-	    components.</para> 
+	    components.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -88,15 +94,16 @@
         <listitem>
           <para>integer, return the execution status instead of sending
 	  errors.</para>
-	<para>info==1 : Too many iterations needed</para>
-	<para>info==2 : Accuracy insufficient to statisfy convergence criterion</para>
-	<para>info==5 : Length of working array is too short</para>
- 	<para>info==10: The constraints are inconsistent</para>
+          <para>info==1 : Too many iterations needed</para>
+          <para>info==2 : Accuracy insufficient to statisfy convergence criterion</para>
+          <para>info==5 : Length of working array is too short</para>
+          <para>info==10: The constraints are inconsistent</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>Minimize <literal> 0.5*x'*Q*x + p'*x</literal></para>
     <para>under the constraints</para>
     <programlisting><![CDATA[
@@ -109,7 +116,9 @@
     <para>This function requires  <literal>Q</literal> to be positive definite, if it is
       not the case, one may use the <link linkend="quapro">quapro</link> function.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
@@ -132,21 +141,38 @@ me=3;
 [x,lagr]=qld(Q,p,C,b,ci,cs,me)
 //Only linear constraints (1 to 4) are active (lagr(1:6)=0):
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="quapro">quapro</link>
-    </member>
-    <member>
-      <link linkend="optim">optim</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><variablelist>
-    <varlistentry><term>K.Schittkowski</term><listitem><para>, University of Bayreuth, Germany</para></listitem></varlistentry>
-    <varlistentry><term> A.L. Tits and J.L. Zhou</term><listitem><para> , University of Maryland</para></listitem></varlistentry>
-  </variablelist></refsection>
-  <refsection><title>Used Functions</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="quapro">quapro</link>
+      </member>
+      <member>
+        <link linkend="optim">optim</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>K.Schittkowski</term>
+        <listitem>
+          <para>, University of Bayreuth, Germany</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term> A.L. Tits and J.L. Zhou</term>
+        <listitem>
+          <para> , University of Maryland</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
     <para>ql0001.f in routines/optim directory</para>
   </refsection>
-
 </refentry>

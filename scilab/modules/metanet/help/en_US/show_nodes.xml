@@ -10,17 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="show_nodes"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>show_nodes</refname><refpurpose> highlights a set of nodes</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>show_nodes(nodes [,sup])
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="show_nodes">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>show_nodes</refname>
+    <refpurpose> highlights a set of nodes</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>show_nodes(nodes [,sup])
 show_nodes(nodes ,sup=value)
 show_nodes(nodes ,leg=value)
-show_nodes(nodes ,sup=value,leg=value)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+show_nodes(nodes ,sup=value,leg=value)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>nodes</term>
@@ -33,7 +39,7 @@ show_nodes(nodes ,sup=value,leg=value)</synopsis></refsynopsisdiv>
         <listitem>
           <para>string, superposition flag. The default value is  <literal>'no'</literal>.</para>
         </listitem>
-      </varlistentry>     
+      </varlistentry>
       <varlistentry>
         <term>leg</term>
         <listitem>
@@ -42,7 +48,8 @@ show_nodes(nodes ,sup=value,leg=value)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>show_nodes</literal> highlights the set of nodes
     <literal>nodes</literal> of the displayed graph in the current
     <literal>edit_graph</literal> window (see <link linkend="netwindow">netwindow</link>).  If
@@ -52,7 +59,9 @@ show_nodes(nodes ,sup=value,leg=value)</synopsis></refsynopsisdiv>
     <para>If leg is equal to <literal>'name'</literal> the node names are  also drawn.</para>
     <para>If leg is equal to one of the node data fields the corresponding values are also drawn.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
@@ -64,26 +73,29 @@ for i=2:3:g.nodes.number, show_nodes(i); end;
 for i=1:3:g.nodes.number, show_nodes(i,'sup'); end;
 show_nodes(1:3:g.nodes.number,leg='number')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="edit_graph">edit_graph</link>
-    </member>
-    <member>
-      <link linkend="hilite_nodes">hilite_nodes</link>
-    </member>
-    <member>
-      <link linkend="unhilite_nodes">unhilite_nodes</link>
-    </member>
-  
-    <member>
-      <link linkend="show_arcs">show_arcs</link>
-    </member>
-    <member>
-      <link linkend="netwindow">netwindow</link>
-    </member>
-    <member>
-      <link linkend="netwindows">netwindows</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="edit_graph">edit_graph</link>
+      </member>
+      <member>
+        <link linkend="hilite_nodes">hilite_nodes</link>
+      </member>
+      <member>
+        <link linkend="unhilite_nodes">unhilite_nodes</link>
+      </member>
+      <member>
+        <link linkend="show_arcs">show_arcs</link>
+      </member>
+      <member>
+        <link linkend="netwindow">netwindow</link>
+      </member>
+      <member>
+        <link linkend="netwindows">netwindows</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

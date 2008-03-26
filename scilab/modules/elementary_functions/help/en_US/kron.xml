@@ -10,17 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="kron"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>kron</refname><refpurpose> Kronecker product (.*.)  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>kron(A,B)
-A.*.B</synopsis></refsynopsisdiv>
-  <refsection><title>Description</title>
-    <para>
-    <literal>kron(A,B)</literal> or  <literal>A.*.B</literal> returns the Kronecker tensor 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="kron">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>kron</refname>
+    <refpurpose> Kronecker product (.*.)  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>kron(A,B)
+A.*.B</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para><literal>kron(A,B)</literal> or  <literal>A.*.B</literal> returns the Kronecker tensor 
     product of two matrices <literal>A</literal> and <literal>B</literal>. The resulting
     matrix has the following block form:
     </para>
@@ -37,7 +42,9 @@ A.*.B</synopsis></refsynopsisdiv>
     </para>
     <para><literal>A</literal> and <literal>B</literal> can be sparse matrices.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=[1,2;3,4];
 kron(A,A)
@@ -46,5 +53,6 @@ sparse(A).*.sparse(A)
 A(1,1)=%i;
 kron(A,A)
  
-  ]]></programlisting></refsection>
+  ]]></programlisting>
+  </refsection>
 </refentry>

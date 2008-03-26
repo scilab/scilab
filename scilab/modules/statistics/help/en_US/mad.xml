@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mad"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mad</refname><refpurpose>  mean absolute deviation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>s2=mad(x)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mad">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mad</refname>
+    <refpurpose>  mean absolute deviation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>s2=mad(x)
 s2=mad(x,'r') or s2=mad(x,1)
-s2=mad(x,'c') or s2=mad(x,2)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+s2=mad(x,'c') or s2=mad(x,2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -29,7 +35,8 @@ s2=mad(x,'c') or s2=mad(x,2)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function computes   the mean absolute deviation of  a
     real or complex vector or matrix <literal> x</literal>.</para>
@@ -44,7 +51,8 @@ s2=mad(x,'c') or s2=mad(x,2)</synopsis></refsynopsisdiv>
     returns in each entry of the column vector <literal> s2</literal>
     the mean absolute deviation of each row of <literal> x</literal>.</para>
   </refsection>
-  <refsection><title>Bibliography</title>
+  <refsection>
+    <title>Bibliography</title>
     <para>
     Reference: Wonacott  T.H.&amp; Wonacott  R.J. .-  Introductory Statistics, 5th edition, John Wiley, 1990.</para>
   </refsection>

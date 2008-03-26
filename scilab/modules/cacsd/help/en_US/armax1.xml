@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="armax1"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>armax1</refname><refpurpose> armax identification</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[arc,resid]=armax1(r,s,q,y,u [,b0f])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="armax1">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>armax1</refname>
+    <refpurpose> armax identification</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[arc,resid]=armax1(r,s,q,y,u [,b0f])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>y</term>
@@ -77,7 +83,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     armax1 is used to identify the coefficients of a 1-dimensional 
     ARX process:</para>
@@ -93,7 +100,7 @@
     <para>
     for the method, see Eykhoff in trends and progress in system identification) page 96.
     with
-    </para> 
+    </para>
     <programlisting><![CDATA[
             z(t)=[y(t-1),..,y(t-r),u(t),...,
                   u(t-s),e(t-1),...,e(t-q)] 
@@ -110,5 +117,8 @@
     by an estimated value is used (RLLS). With q=0 this method is exactly
     a sequential version of armax</para>
   </refsection>
-  <refsection><title>Authors</title><para>J.-Ph.C; ;   </para></refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.-Ph.C; ;   </para>
+  </refsection>
 </refentry>

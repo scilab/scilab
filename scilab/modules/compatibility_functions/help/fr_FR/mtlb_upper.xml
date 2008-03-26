@@ -10,32 +10,30 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_upper"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_upper</refname><refpurpose>Fonction d'�mulation de la fonction Matlab upper</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_upper">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_upper</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab upper</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>upper(A)</literal> et la fonction Scilab
     <literal>convstr(A,"u")</literal> se comportent diff�remment :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>A</literal> n'est pas une cha�ne de caract�res : la fonction Matlab <literal>upper</literal> peut �tre utilis�e
 	avec <literal>A</literal> n'�tant pas une cha�ne de caract�res mais pas la fonction Scilab <literal>convstr</literal>.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_upper(A)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>upper(A)</literal> quand il n'�tait pas
@@ -43,36 +41,38 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_upper</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>A</literal> est une matrice de cha�nes de caract�res
         <literal>mtlb_upper(A)</literal> peut �tre remplac� par <literal>convstr(A,"u")</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Si <literal>A</literal> n'est pas une matrice de cha�nes de caract�res
         <literal>mtlb_upper(A)</literal> peut �tre remplac� par <literal>A</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_upper</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="convstr">convstr</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="convstr">convstr</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

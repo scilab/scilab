@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rational"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>rational</refname><refpurpose> Scilab objects, rational in Scilab</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rational">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rational</refname>
+    <refpurpose> Scilab objects, rational in Scilab</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
     A rational <literal>r</literal> is a quotient of two polynomials <literal>r=num/den</literal>.
     The internal representation of a rational is a list.
@@ -15,7 +19,9 @@
     A rational matrix can also be defined as above as a list
     <literal>tlist(['r','num','den','dt'],num,den,[])</literal> with <literal>num</literal> and <literal>den</literal> polynomial matrices.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 s=poly(0,'s');
 W=[1/s,1/(s+1)]
@@ -27,16 +33,20 @@ syslin('c',Num,Den)
 syslin('c',H)
 [Num1,Den1]=simp(Num,Den)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="poly">poly</link>
-    </member>
-    <member>
-      <link linkend="syslin">syslin</link>
-    </member>
-    <member>
-      <link linkend="simp">simp</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

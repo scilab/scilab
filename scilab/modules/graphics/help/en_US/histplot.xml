@@ -10,21 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="histplot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>histplot</refname><refpurpose>plot a histogram</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>histplot(n, data, &lt;opt_args&gt;)
-histplot(x, data, &lt;opt_args&gt;)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="histplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>histplot</refname>
+    <refpurpose>plot a histogram</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>histplot(n, data, &lt;opt_args&gt;)
+histplot(x, data, &lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -32,24 +32,20 @@ histplot(x, data, &lt;opt_args&gt;)</synopsis></refsynopsisdiv>
           <para>positive integer (number of classes)</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>x</term>
         <listitem>
           <para>increasing vector defining the classes (<literal>x</literal> may have at least 2 components)</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>data</term>
         <listitem>
           <para>vector (datas to be analysed)</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
-
         <listitem>
           <para>This represents a sequence of statements <literal>key1=value1,key2=value2</literal>
           ,... where <literal>key1</literal>,
@@ -60,22 +56,21 @@ histplot(x, data, &lt;opt_args&gt;)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para> This function plot an histogram of the <literal>data</literal> vector using the
         classes <literal>x</literal>. When the number <literal>n</literal> of classes is provided
         instead of <literal>x</literal>, the classes are choosen equally spaced and
         <emphasis>x(1) = min(data) &lt;  x(2) = x(1) + dx  &lt;  ...  &lt; x(n+1) = max(data)</emphasis>
         with <emphasis>dx = (x(n+1)-x(1))/n</emphasis>.
     </para>
-
     <para> The classes are defined by C1 = [x(1), x(2)] and  Ci = ( x(i), x(i+1)] for i &gt;= 2.
         Noting Nmax the total number of <literal>data</literal> (Nmax = length(data)) and Ni the number 
         of <literal>data</literal> components falling in Ci, the value of the histogram for x in Ci 
         is equal to <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> when <literal>normalization</literal> is true
         (default case) and else, simply equal to <emphasis>Ni</emphasis>. When normalization occurs the
         histogram verifies: 
-    </para> 
+    </para>
     <programlisting><![CDATA[
             x(n+1)
            /  
@@ -84,18 +79,16 @@ histplot(x, data, &lt;opt_args&gt;)</synopsis></refsynopsisdiv>
            x(1)
      
     ]]></programlisting>
-
     <para>Any <link linkend="plot2d">plot2d</link> (optional) parameter may be provided; for instance to
        plot an histogram with the color number 2 (blue if std colormap is used) and
        to restrict the plot inside the rectangle [-3,3]x[0,0.5],
        you may use <literal>histplot(n,data, style=2, rect=[-3,0,3,0.5])</literal>.
-    </para> 
-
+    </para>
     <para>Enter the command <literal>histplot()</literal> to see a demo.</para>
-
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 // example #1: variations around an histogram of a gaussian random sample 
 d=rand(1,10000,'normal');  // the gaussian random sample
 clf();histplot(20,d)
@@ -124,19 +117,20 @@ x = linspace(0,max(Xmax),100)';
 plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
 legend(["exponential random sample histogram" "exact density curve"]);
 
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="hist3d">hist3d</link>
-    </member>
-
-    <member>
-      <link linkend="plot2d">plot2d</link>
-    </member>
-
-    <member>
-      <link linkend="dsearch">dsearch</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="hist3d">hist3d</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="dsearch">dsearch</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

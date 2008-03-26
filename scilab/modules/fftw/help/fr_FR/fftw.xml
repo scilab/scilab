@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fftw"><info><pubdate>October 2006</pubdate></info><refnamediv><refname>fftw</refname><refpurpose>transformée de Fourier rapide qui utilise la librairie FFTW</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[y]=fftw(x)
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fftw">
+  <info>
+    <pubdate>October 2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fftw</refname>
+    <refpurpose>transformée de Fourier rapide qui utilise la librairie FFTW</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[y]=fftw(x)
 [y]=fftw(x,sign)
 [y]=fftw(x,sign,dim,incr)
-[y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
+[y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
     <variablelist>
       <varlistentry>
         <term>y,x</term>
@@ -36,7 +43,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Cette fonction réalise une Transformée de Fourier Discrete (TFD) inverse ou directe au moyen de la libraire FFTW.
     </para>
@@ -56,7 +64,9 @@
     Cela permet une amélioration significative du temps de calcul lorsque la fonction fftw est appelée consécutivement avec les mêmes paramètres.
     </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
   
   //transformée 1D
   a = rand(50,1)+%i*rand(50,1);
@@ -82,19 +92,29 @@
   y = fftw(a,-1,[5 6 4],[1 5 30]);
   b = fftw(y,1,[5 6 4],[1 5 30]);
   
-  ]]></programlisting></refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member><link linkend="fftw_flags">fftw_flags</link></member>
-    <member><link linkend="get_fftw_wisdom">get_fftw_wisdom</link></member>
-    <member><link linkend="set_fftw_wisdom">set_fftw_wisdom</link></member>
-    <member><link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link></member>
-  </simplelist></refsection>
-
-  <refsection><title>Bibliographie</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fftw_flags">fftw_flags</link>
+      </member>
+      <member>
+        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+      </member>
+      <member>
+        <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+      </member>
+      <member>
+        <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Bibliographie</title>
     <para>
     Matteo Frigo and Steven G. Johnson, "FFTW Manual fo version 3.1.2" June 2006. Available : http://www.fftw.org
     </para>
   </refsection>
-
 </refentry>

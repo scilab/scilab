@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fit_dat"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fit_dat</refname><refpurpose> Parameter identification based on measured data</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[p,err]=fit_dat(G,p0,Z [,W] [,pmin,pmax] [,DG])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fit_dat">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fit_dat</refname>
+    <refpurpose> Parameter identification based on measured data</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[p,err]=fit_dat(G,p0,Z [,W] [,pmin,pmax] [,DG])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>G</term>
@@ -63,14 +69,17 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>fit_dat</literal> is used for fitting data to a model.
     For a given function G(p,z), this function finds the best vector 
     of parameters p for approximating G(p,z_i)=0 for a set of measurement
     vectors z_i. Vector p is found by minimizing
     <literal>G(p,z_1)'WG(p,z_1)+G(p,z_2)'WG(p,z_2)+...+G(p,z_n)'WG(p,z_n)</literal></para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 deff('y=FF(x)','y=a*(x-b)+c*x.*x')
 X=[];Y=[];
@@ -93,13 +102,17 @@ plot2d(X',Y',-1)
 plot2d(X',FF(X)',5,'002')
 a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="optim">optim</link>
-    </member>
-    <member>
-      <link linkend="datafit">datafit</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="optim">optim</link>
+      </member>
+      <member>
+        <link linkend="datafit">datafit</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

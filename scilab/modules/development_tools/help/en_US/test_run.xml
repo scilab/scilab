@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -11,56 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry version="5.0-subset Scilab" xml:id="taucs_chfact" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="taucs_chfact" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate: 2008-03-14 11:58:09 +0100 (ven, 14 mar 2008) $</pubdate>
   </info>
-  
   <refnamediv>
     <refname>test_run</refname>
-
     <refpurpose>Launch tests</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>
       N = test_run()
       N = test_run(module_name[,test_name[,options]])
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
-
     <variablelist>
       <varlistentry>
         <term>module_name</term>
-
         <listitem>
           <para>a vector of string</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>test_name</term>
-
         <listitem>
           <para>a vector of string</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>options</term>
-
         <listitem>
           <para>a vector of string</para>
           <itemizedlist>
@@ -96,7 +77,6 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <programlisting role="example">
@@ -125,7 +105,6 @@ test_run([],[],'unit_test');
 test_run([],[],['no_check_ref','mode_nw']);
    </programlisting>
   </refsection>
-
   <refsection>
     <title>Authors</title>
     <simplelist type="vert">

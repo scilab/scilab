@@ -11,14 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mgetl"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mgetl</refname><refpurpose> read lines from an ascii file</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>txt=mgetl(file_desc [,m])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mgetl">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mgetl</refname>
+    <refpurpose> read lines from an ascii file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>txt=mgetl(file_desc [,m])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>file_desc</term>
@@ -40,7 +46,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>mgetl</literal> function allows to read a lines from an ascii file.</para>
     <para>
     If <literal>m</literal> is
@@ -54,7 +61,9 @@
     <para><literal>mgetl</literal> allows to read files coming from Unix, Windows, or Mac
     operating systems.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 mgetl('SCI/etc/scilab.start',5)
 
@@ -64,32 +73,39 @@ fd=mopen('SCI/etc/scilab.start','r')
 mgetl(fd,10)
 mclose(fd)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="mputl">mputl</link>
-    </member>
-    <member>
-      <link linkend="mclose">mclose</link>
-    </member>
-    <member>
-      <link linkend="mfscanf">mfscanf</link>
-    </member>
-    <member>
-      <link linkend="mget">mget</link>
-    </member>
-    <member>
-      <link linkend="mput">mput</link>
-    </member>
-    <member>
-      <link linkend="mgetstr">mgetstr</link>
-    </member>
-    <member>
-      <link linkend="mopen">mopen</link>
-    </member>
-    <member>
-      <link linkend="read">read</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>S. Steer</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mputl">mputl</link>
+      </member>
+      <member>
+        <link linkend="mclose">mclose</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="mgetstr">mgetstr</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+      <member>
+        <link linkend="read">read</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. Steer</para>
+  </refsection>
 </refentry>

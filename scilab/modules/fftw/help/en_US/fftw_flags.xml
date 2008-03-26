@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fftw_flags"><info><pubdate>October 2006</pubdate></info><refnamediv><refname>fftw_flags</refname><refpurpose> set computation method of fast fourier transform of the fftw function</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[a,[S]]=fftw_flags([x1;x2;...])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fftw_flags">
+  <info>
+    <pubdate>October 2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fftw_flags</refname>
+    <refpurpose> set computation method of fast fourier transform of the fftw function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[a,[S]]=fftw_flags([x1;x2;...])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>[x1;x2;...]</term>
@@ -39,41 +45,88 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function enables the change of the <literal>unsigned flags</literal> parameter of the
     <literal>fftw_plan_guru_split_dft</literal> function that is used in <link xlink:href="fftw.htm"><literal>fftw</literal></link> function. Default value is FFTW_ESTIMATE</para>
     <para>Accepted entries are :</para>
     <itemizedlist>
-      <listitem><para>FFTW_MEASURE or 0</para></listitem>
-      <listitem><para>FFTW_DESTROY_INPUT or 1</para></listitem>
-      <listitem><para>FFTW_UNALIGNED or 2</para></listitem>
-      <listitem><para>FFTW_CONSERVE_MEMORY or 4</para></listitem>
-      <listitem><para>FFTW_EXHAUSTIVE or 8</para></listitem>
-      <listitem><para>FFTW_PRESERVE_INPUT or 16</para></listitem>
-      <listitem><para>FFTW_PATIENT or 32</para></listitem>
-      <listitem><para>FFTW_ESTIMATE or 64</para></listitem>
-      <listitem><para>FFTW_ESTIMATE_PATIENT or 128</para></listitem>
-      <listitem><para>FFTW_BELIEVE_PCOST or 256</para></listitem>
-      <listitem><para>FFTW_NO_DFT_R2HC or 512</para></listitem>
-      <listitem><para>FFTW_NO_NONTHREADED or 1024</para></listitem>
-      <listitem><para>FFTW_NO_BUFFERING or 2048</para></listitem>
-      <listitem><para>FFTW_NO_INDIRECT_OP or 4096</para></listitem>
-      <listitem><para>FFTW_ALLOW_LARGE_GENERIC or 8192</para></listitem>
-      <listitem><para>FFTW_NO_RANK_SPLITS or 16384</para></listitem>
-      <listitem><para>FFTW_NO_VRANK_SPLITS or 32768</para></listitem>
-      <listitem><para>FFTW_NO_VRECURSE or 65536</para></listitem>
-      <listitem><para>FFTW_NO_SIMD or 131072</para></listitem>
-      <listitem><para>FFTW_NO_SLOW or 262144</para></listitem>
-      <listitem><para>FFTW_NO_FIXED_RADIX_LARGE_N or 524288</para></listitem>
-      <listitem><para>FFTW_ALLOW_PRUNING or 1048576</para></listitem>
+      <listitem>
+        <para>FFTW_MEASURE or 0</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_DESTROY_INPUT or 1</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_UNALIGNED or 2</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_CONSERVE_MEMORY or 4</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_EXHAUSTIVE or 8</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_PRESERVE_INPUT or 16</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_PATIENT or 32</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_ESTIMATE or 64</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_ESTIMATE_PATIENT or 128</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_BELIEVE_PCOST or 256</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_DFT_R2HC or 512</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_NONTHREADED or 1024</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_BUFFERING or 2048</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_INDIRECT_OP or 4096</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_ALLOW_LARGE_GENERIC or 8192</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_RANK_SPLITS or 16384</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_VRANK_SPLITS or 32768</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_VRECURSE or 65536</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_SIMD or 131072</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_SLOW or 262144</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_NO_FIXED_RADIX_LARGE_N or 524288</para>
+      </listitem>
+      <listitem>
+        <para>FFTW_ALLOW_PRUNING or 1048576</para>
+      </listitem>
     </itemizedlist>
     <para>
      Rmk : when using FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE you must call two times fftw.
      (first call for initialisation, second and others calls for computation)
    </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
  //return the integer value of the flag
  fftw_flags()
@@ -84,8 +137,14 @@
  //change flags and display current value of fftw flags (both integer and strings)
  [a,S]=fftw_flags("FFTW_PATIENT")
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member><link linkend="fftw">fftw</link></member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fftw">fftw</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

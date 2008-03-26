@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="frmag"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>frmag</refname><refpurpose> magnitude of FIR and IIR filters</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[xm,fr]=frmag(num[,den],npts)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="frmag">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>frmag</refname>
+    <refpurpose> magnitude of FIR and IIR filters</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[xm,fr]=frmag(num[,den],npts)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>npts</term>
@@ -45,12 +52,16 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     calculates the magnitude of the frequency responses of
     FIR and IIR filters. The filter description can be
     one or two vectors of coefficients, one or two polynomials,
     or a rational polynomial.</para>
   </refsection>
-  <refsection><title>Authors</title><para>C. B.  </para></refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>C. B.  </para>
+  </refsection>
 </refentry>

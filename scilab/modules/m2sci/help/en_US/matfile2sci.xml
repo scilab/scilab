@@ -10,15 +10,21 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="matfile2sci"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>matfile2sci</refname><refpurpose> converts  a Matlab 5 MAT-file
-  into a Scilab binary file</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="matfile2sci">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>matfile2sci</refname>
+    <refpurpose> converts  a Matlab 5 MAT-file
+  into a Scilab binary file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>mat_file_path</term>
@@ -34,25 +40,33 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Converts a Matlab 5 MAT-file into a Scilab binary file compatible
     with  the function <literal>load</literal> The Matlab data types are
     converted into the Scilab equivalents.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="loadmatfile">loadmatfile</link>
-    </member>
-    <member>
-      <link linkend="load">load</link>
-    </member>
-    <member>
-      <link linkend="mfile2sci">mfile2sci</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>Serge Steer (INRIA)  </para></refsection>
-  <refsection><title>Bibliography</title>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="loadmatfile">loadmatfile</link>
+      </member>
+      <member>
+        <link linkend="load">load</link>
+      </member>
+      <member>
+        <link linkend="mfile2sci">mfile2sci</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Serge Steer (INRIA)  </para>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
     <para>This function has been developped according to the document  "MAT-File Format":
  <link xlink:href="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</link></para>
   </refsection>

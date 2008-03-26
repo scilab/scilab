@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sorder"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sorder</refname><refpurpose> computing the order of a discrete-time system</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Ro(,n,sval,rcnd)] = sorder(meth,alg,jobd,batch,conct,s,Y(,U,tol,
-printw,ldwork,Ri))</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sorder">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sorder</refname>
+    <refpurpose> computing the order of a discrete-time system</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Ro(,n,sval,rcnd)] = sorder(meth,alg,jobd,batch,conct,s,Y(,U,tol,
+printw,ldwork,Ri))</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>meth</term>
@@ -258,7 +264,8 @@ end if
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     sorder  - function for computing the order of a discrete-time
     system using SLICOT routine IB01AD.</para>
@@ -303,19 +310,26 @@ end
     <para>
     and  A, B, C, and D  are real matrices of appropriate dimensions.</para>
   </refsection>
-  <refsection><title>Comments</title>
+  <refsection>
+    <title>Comments</title>
     <para>
     1. The Cholesy or fast QR algorithms can be much faster (for large data blocks) than QR algorithm, but they cannot be used if the correlation  matrix, H'*H, is not positive definite. In such a case, the code automatically switches to the QR algorithm, if sufficient workspace is provided and batch = 4.</para>
     <para>
     2. If ldwork is specified, but it is less than the minimum workspace size  needed, that minimum value is used instead.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="findBD">findBD</link>
-    </member>
-    <member>
-      <link linkend="sident">sident</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>   V. Sima, Research Institute for Informatics, Bucharest, Oct. 1999.; ;  Revisions:;    V. Sima, May 2000, July 2000.  </para></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="findBD">findBD</link>
+      </member>
+      <member>
+        <link linkend="sident">sident</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>   V. Sima, Research Institute for Informatics, Bucharest, Oct. 1999.; ;  Revisions:;    V. Sima, May 2000, July 2000.  </para>
+  </refsection>
 </refentry>

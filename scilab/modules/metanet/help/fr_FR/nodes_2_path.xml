@@ -10,45 +10,53 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="nodes_2_path"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>nodes_2_path</refname><refpurpose> chemin reliant un ensemble de sommets  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>p = nodes_2_path(ns,g)</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>ns  </term>
-  <listitem>
-  <para>vecteur ligne des numéros de sommets
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="nodes_2_path">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>nodes_2_path</refname>
+    <refpurpose> chemin reliant un ensemble de sommets  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>p = nodes_2_path(ns,g)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>ns  </term>
+        <listitem>
+          <para>vecteur ligne des numéros de sommets
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>g  </term>
-  <listitem>
-  <para>graphe (liste)
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g  </term>
+        <listitem>
+          <para>graphe (liste)
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>p  </term>
-  <listitem>
-  <para>vecteur ligne des numéros des arcs si le chemin existe
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p  </term>
+        <listitem>
+          <para>vecteur ligne des numéros des arcs si le chemin existe
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
-    <literal>nodes_2_path</literal> renvoie, s'il existe, le chemin <literal>p</literal> correspondant à la séquence de
+  <refsection>
+    <title>Description</title>
+    <para><literal>nodes_2_path</literal> renvoie, s'il existe, le chemin <literal>p</literal> correspondant à la séquence de
     sommets <literal>ns</literal>; sinon, le vecteur vide <literal>[]</literal> est renvoyé
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -64,8 +72,14 @@ g1=g; edgecolor=1*ones(ta); edgecolor(p)=11*ones(p);
 g1('edge_color')=edgecolor;
 show_graph(g1); show_arcs(p);
 show_nodes(ns,'sup');
- ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="path_2_nodes">path_2_nodes</link> </member>
-  </simplelist></refsection>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="path_2_nodes">path_2_nodes</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

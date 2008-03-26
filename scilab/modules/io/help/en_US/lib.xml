@@ -9,14 +9,21 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- --><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lib"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lib</refname><refpurpose> library definition</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xlib = lib('lib-dir')</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lib">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lib</refname>
+    <refpurpose> library definition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xlib = lib('lib-dir')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>lib-dir</term>
@@ -26,7 +33,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>lib-dir</literal> is a character string defining a directory that contains
     compiled Scilab function (<literal>.bin</literal>) files.</para>
     <para>
@@ -46,11 +54,14 @@
     usually is saved for later loading, either on-line or from the
     user-specific startup file (see startup).</para>
   </refsection>
-  <refsection><title>Restrictions</title>
+  <refsection>
+    <title>Restrictions</title>
     <para>
     Scilab tacitly assumes that each xxxx.bin file defines a  variable named <literal>xxxx</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //define some variables
 function z = myplus(x, y), z = x + y,endfunction
@@ -77,25 +88,29 @@ myplus(1,2)
 
 A
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="library">library</link>
-    </member>
-    <member>
-      <link linkend="genlib">genlib</link>
-    </member>
-    <member>
-      <link linkend="save">save</link>
-    </member>
-    <member>
-      <link linkend="deff">deff</link>
-    </member>
-    <member>
-      <link linkend="getf">getf</link>
-    </member>
-    <member>
-      <link linkend="whereis">whereis</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="library">library</link>
+      </member>
+      <member>
+        <link linkend="genlib">genlib</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="deff">deff</link>
+      </member>
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+      <member>
+        <link linkend="whereis">whereis</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

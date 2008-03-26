@@ -10,17 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tk_getdir"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>tk_getdir</refname><refpurpose> dialog to get a directory path</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>path=tk_getdir([title='string'])
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tk_getdir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tk_getdir</refname>
+    <refpurpose> dialog to get a directory path</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>path=tk_getdir([title='string'])
 path=tk_getdir([title='string'])
 path=tk_getdir(dir,[title='string'])
-path=tk_getdir(dir,'string')</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+path=tk_getdir(dir,'string')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>dir</term>
@@ -42,26 +48,33 @@ path=tk_getdir(dir,'string')</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Creates a dialog window for file selection</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 tk_getdir()
 tk_getdir('SCI/macros/xdess')
 tk_getdir(title='Choose a directory name ')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="tk_getfile">tk_getfile</link>
-    </member>
-    <member>
-      <link linkend="file">file</link>
-    </member>
-    <member>
-      <link linkend="fileinfo">fileinfo</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tk_getfile">tk_getfile</link>
+      </member>
+      <member>
+        <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="fileinfo">fileinfo</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

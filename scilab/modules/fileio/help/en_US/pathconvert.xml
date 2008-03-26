@@ -11,14 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pathconvert"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pathconvert</refname><refpurpose> pathnames convertion between posix and windows.  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>paths=pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pathconvert">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pathconvert</refname>
+    <refpurpose> pathnames convertion between posix and windows.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>paths=pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>paths</term>
@@ -40,7 +46,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>pathconvert</literal> can be used to convert a set of pathnames
     (given by a string matrix <literal>paths</literal>) from windows native 
     filename to posix-style pathnames and back. The target style 
@@ -60,7 +67,9 @@
     is true leading strings like  <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are 
     expanded using environment variables.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 pathconvert('SCI/macros\util/foo.sci',%f,%f,'u')
 pathconvert('SCI/macros\util/foo.sci',%f,%f,'w')
@@ -69,13 +78,17 @@ pathconvert('HOME/macros/util/foo.sci',%t,%t,'w')
 pathconvert('c:/tmp',%f,%t,'u')
 pathconvert('/cygdrive/c/tmp',%f,%f,'w')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="basename">basename</link>
-    </member>
-    <member>
-      <link linkend="listfiles">listfiles</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="basename">basename</link>
+      </member>
+      <member>
+        <link linkend="listfiles">listfiles</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unzoom"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unzoom</refname><refpurpose> unzoom graphics</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>unzoom()
-unzoom(H)</synopsis></refsynopsisdiv>
-   <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unzoom">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>unzoom</refname>
+    <refpurpose> unzoom graphics</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>unzoom()
+unzoom(H)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>H</term>
@@ -28,15 +34,16 @@ unzoom(H)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>unzoom()</literal> is used to remove the zoom effect for all the axes of the
-      current graphic figure: </para> 
+      current graphic figure: </para>
     <para><literal>unzoom(H)</literal> is used to remove the zoom effect for all the
-      axes given by the vector of handles on axes <literal>H</literal>.</para> 
-
-  
+      axes given by the vector of handles on axes <literal>H</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
     clf()
     x=0:0.01:6*%pi;
     plot2d(x,sin(x^2))
@@ -60,15 +67,21 @@ unzoom(H)</synopsis></refsynopsisdiv>
     zoom_rect(rect) //zoom again
     unzoom() //unzoom all the axes
 
-]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="zoom_rect">zoom_rect</link>
-    </member>
-    <member>
-      <link linkend="axes_properties">axes_properties</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>Serge Steer INRIA </para></refsection>
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="zoom_rect">zoom_rect</link>
+      </member>
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Serge Steer INRIA </para>
+  </refsection>
 </refentry>

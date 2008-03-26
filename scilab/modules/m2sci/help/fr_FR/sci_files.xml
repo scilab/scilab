@@ -10,16 +10,17 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sci_files"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sci_files</refname><refpurpose>Comment �crire des fonctions de conversion</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-  <para>  
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sci_files">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sci_files</refname>
+    <refpurpose>Comment �crire des fonctions de conversion</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>  
   Pour convertir les appels � des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appel�e
   <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>. Toutes ces fonctions sont d�finies dans des <literal>sci_files</literal>
   dans le r�pertoire SCI/macros/m2sci/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
@@ -27,171 +28,231 @@
   Cependant, un utilisateur Scilab peut ajouter des <literal>sci_files</literal> (pour des fonctions Matlab
   ou pour ses propres fonctions) en utilisant les conseils suivants.
   </para>
-
-  <para>
+    <para>
   Dans M2SCI, un appel � une fonction est consid�r� comme un "arbre" (c'est aussi le cas des instructions
   du fichier � convertir), repr�sent� dans Scilab par une <literal>tlist</literal> avec les champs suivants :
   </para>
-  
-  <itemizedlist>
-  <listitem>
-    <variablelist>
-      <varlistentry><term>name</term><listitem>
-      <para>nom de la fonction Matlab</para>
-      </listitem></varlistentry>
-      <varlistentry><term>lhsnb</term><listitem>
-      <para>nombre de param�tres de sortie de la fonction Matlab</para>
-      </listitem></varlistentry>
-      <varlistentry><term>lhs</term><listitem>
-      <para>liste des param�tres de sortie de la fonction Matlab</para>
-      </listitem></varlistentry>
-      <varlistentry><term>rhs</term><listitem>
-      <para>liste des param�tres d'entr�e de la fonction Matlab</para>
-      </listitem></varlistentry>
-    </variablelist>
-  </listitem>
-  </itemizedlist>
-  
-  <para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>name</term>
+            <listitem>
+              <para>nom de la fonction Matlab</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>lhsnb</term>
+            <listitem>
+              <para>nombre de param�tres de sortie de la fonction Matlab</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>lhs</term>
+            <listitem>
+              <para>liste des param�tres de sortie de la fonction Matlab</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>rhs</term>
+            <listitem>
+              <para>liste des param�tres d'entr�e de la fonction Matlab</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>
   Une <literal>sci_function</literal> a un param�tre d'entr�e <literal>tree</literal> qui est aussi la sortie de cette fonction.
   Une <literal>sci_function</literal> doit convertir cet arbre pour qu'il soit compatible avec Scilab
   en changeant name, lhsnb, lhs et/ou rhs. L'autre r�le de cette fonction est de g�rer
   l'inf�rence. L'arbre d'entr�e contient des donn�es d'inf�rence dans ses rhs qui devront �tre mises � jour avec
   ce que l'on peut inf�rer pour les lhs de cette fonction. 
   </para>
-
-  <para>
+    <para>
   Plusieurs fonctions ont �t� �crites pour aider � la r�daction de fonctions de conversion :
   </para>
-
-  <itemizedlist>
-  <listitem>
-    <variablelist>
-      <varlistentry><term>Funcall</term><listitem>
-      <para>cr�� un arbre qui repr�sente l'appel � une fonction</para>
-      </listitem></varlistentry>
-      <varlistentry><term>Operation</term><listitem>
-      <para>cr�� un arbre qui repr�sente une op�ration</para>
-      </listitem></varlistentry>
-      <varlistentry><term>Variable</term><listitem>
-      <para>cr�� un arbre qui repr�sente une variable</para>
-      </listitem></varlistentry>
-      <varlistentry><term>Cste</term><listitem>
-      <para>cr�� un arbre qui repr�sente une constante</para>
-      </listitem></varlistentry>
-      <varlistentry><term>Infer</term><listitem>
-      <para>cr�� un arbre qui repr�sente les donn�es d'inf�rence</para>
-      </listitem></varlistentry>
-      <varlistentry><term>Type</term><listitem>
-      <para>cr�� un arbre qui repr�sente le type pour l'inf�rence</para>
-      </listitem></varlistentry>
-      <varlistentry><term>Equal</term><listitem>
-      <para>cr�� un arbre qui repr�sente une instruction</para>
-      </listitem></varlistentry>
-    </variablelist>
-  </listitem>
-  </itemizedlist>
-
-  <para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>Funcall</term>
+            <listitem>
+              <para>cr�� un arbre qui repr�sente l'appel � une fonction</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Operation</term>
+            <listitem>
+              <para>cr�� un arbre qui repr�sente une op�ration</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Variable</term>
+            <listitem>
+              <para>cr�� un arbre qui repr�sente une variable</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Cste</term>
+            <listitem>
+              <para>cr�� un arbre qui repr�sente une constante</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Infer</term>
+            <listitem>
+              <para>cr�� un arbre qui repr�sente les donn�es d'inf�rence</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Type</term>
+            <listitem>
+              <para>cr�� un arbre qui repr�sente le type pour l'inf�rence</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Equal</term>
+            <listitem>
+              <para>cr�� un arbre qui repr�sente une instruction</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>
   Quelques fonctions ont �t� �crites pour r�cup�rer les propri�t�s des op�randes/entr�es. En consid�rant A comme une tlist utilis�e dans l'arbre, vous pouvez utiliser les fonctions suivantes :
   </para>
-
-  <informaltable border="1">
-    <tr>
-      <td>La fonction</td>
-      <td>renvoie %T si...</td>
-    </tr>
-    <tr>
-      <td>is_empty(A)</td>
-      <td>toutes les dimensions de A sont �gales � 0</td>
-    </tr>
-    <tr>
-      <td>not_empty(A)</td>
-      <td>toutes les dimensions de A sont connues et au moins une dimension de A est diff�rente de 0</td>
-    </tr>
-    <tr>
-      <td>is_a_scalar(A)</td>
-      <td>toutes les dimensions de A sont �gales 1</td>
-    </tr>
-    <tr>
-      <td>not_a_scalar(A)</td>
-      <td>toutes les dimensions de A sont connues et au moins une dimension de A est diff�rente de 1</td>
-    </tr>
-    <tr>
-      <td>is_a_vector(A)</td>
-      <td>toutes les dimensions de A sotn connues et toutes les dimensions de A sauf une sont �gales � 1</td>
-    </tr>
-    <tr>
-      <td>not_a_vector(A)</td>
-      <td>toutes les dimensions de A sotn connues et au moins deux dimensions de A sont sup�rieures � 1</td>
-    </tr>
-    <tr>
-      <td>is_real(A)</td>
-      <td>A est r�el</td>
-    </tr>
-    <tr>
-      <td>is_complex(A)</td>
-      <td>A est complexe</td>
-    </tr>
-    <tr>
-      <td>isdefinedvar(A)</td>
-      <td>A est une variable d�j� d�finie dans le M-file en cours de conversion</td>
-    </tr>
-    <tr>
-      <td>allunknown(A)</td>
-      <td>Toutes les dimensions de A sont inconnues</td>
-    </tr>
-  </informaltable>
-
-  <para>
+    <informaltable border="1">
+      <tr>
+        <td>La fonction</td>
+        <td>renvoie %T si...</td>
+      </tr>
+      <tr>
+        <td>is_empty(A)</td>
+        <td>toutes les dimensions de A sont �gales � 0</td>
+      </tr>
+      <tr>
+        <td>not_empty(A)</td>
+        <td>toutes les dimensions de A sont connues et au moins une dimension de A est diff�rente de 0</td>
+      </tr>
+      <tr>
+        <td>is_a_scalar(A)</td>
+        <td>toutes les dimensions de A sont �gales 1</td>
+      </tr>
+      <tr>
+        <td>not_a_scalar(A)</td>
+        <td>toutes les dimensions de A sont connues et au moins une dimension de A est diff�rente de 1</td>
+      </tr>
+      <tr>
+        <td>is_a_vector(A)</td>
+        <td>toutes les dimensions de A sotn connues et toutes les dimensions de A sauf une sont �gales � 1</td>
+      </tr>
+      <tr>
+        <td>not_a_vector(A)</td>
+        <td>toutes les dimensions de A sotn connues et au moins deux dimensions de A sont sup�rieures � 1</td>
+      </tr>
+      <tr>
+        <td>is_real(A)</td>
+        <td>A est r�el</td>
+      </tr>
+      <tr>
+        <td>is_complex(A)</td>
+        <td>A est complexe</td>
+      </tr>
+      <tr>
+        <td>isdefinedvar(A)</td>
+        <td>A est une variable d�j� d�finie dans le M-file en cours de conversion</td>
+      </tr>
+      <tr>
+        <td>allunknown(A)</td>
+        <td>Toutes les dimensions de A sont inconnues</td>
+      </tr>
+    </informaltable>
+    <para>
   D'autres fonctions ont �t� �crites pour des besoins sp�cifiques lors de l'�criture de fonctions de conversion :
   </para>
-
-  <itemizedlist>
-  <listitem>
-    <variablelist>
-      <varlistentry><term>first_non_singleton</term><listitem>
-      <para>est �quivalente � <link linkend="firstnonsingleton">firstnonsingleton</link> pour une tlist M2SCI. S�quence d'appel : dim = first_non_singleton(A)</para>
-      </listitem></varlistentry>
-      <varlistentry><term>gettempvar</term><listitem>
-      <para>g�n�re une variable temporaire portant une nom qui n'existe pas. S�quence d'appel : v = gettempvar()</para>
-      </listitem></varlistentry>
-      <varlistentry><term>insert</term><listitem>
-      <para>permet d'ins�rer des instruction. S�quence d'appel : insert(Equal(...),opt) avec opt~=1 pour ins�rer avan tl'instruction courante et opt=1 pour ins�rer apr�s celle-ci.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>getoperands</term><listitem>
-      <para>peut �tre utilis�e pour extraire chaque op�rande comme une variable. S�quence d'appel : [A,B] = getoperands(operation_tlist)</para>
-      </listitem></varlistentry>
-      <varlistentry><term>getrhs</term><listitem>
-      <para>peut �tre utilis�e pour extraire chaque param�tre comme une variable. S�quence d'appel : [A,...] = getrhs(funcall_tlist)</para>
-      </listitem></varlistentry>
-      <varlistentry><term>convert2double</term><listitem>
-      <para>change le type de l'entr�e quand ce type n'est pas impl�ment� pour une fonction particuli�re de Scilab. S�quence d'appel : A = convert2double(A)</para>
-      </listitem></varlistentry>
-    </variablelist>
-  </listitem>
-  </itemizedlist>
-
-  <para>
+    <itemizedlist>
+      <listitem>
+        <variablelist>
+          <varlistentry>
+            <term>first_non_singleton</term>
+            <listitem>
+              <para>est �quivalente � <link linkend="firstnonsingleton">firstnonsingleton</link> pour une tlist M2SCI. S�quence d'appel : dim = first_non_singleton(A)</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>gettempvar</term>
+            <listitem>
+              <para>g�n�re une variable temporaire portant une nom qui n'existe pas. S�quence d'appel : v = gettempvar()</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>insert</term>
+            <listitem>
+              <para>permet d'ins�rer des instruction. S�quence d'appel : insert(Equal(...),opt) avec opt~=1 pour ins�rer avan tl'instruction courante et opt=1 pour ins�rer apr�s celle-ci.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>getoperands</term>
+            <listitem>
+              <para>peut �tre utilis�e pour extraire chaque op�rande comme une variable. S�quence d'appel : [A,B] = getoperands(operation_tlist)</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>getrhs</term>
+            <listitem>
+              <para>peut �tre utilis�e pour extraire chaque param�tre comme une variable. S�quence d'appel : [A,...] = getrhs(funcall_tlist)</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>convert2double</term>
+            <listitem>
+              <para>change le type de l'entr�e quand ce type n'est pas impl�ment� pour une fonction particuli�re de Scilab. S�quence d'appel : A = convert2double(A)</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </listitem>
+    </itemizedlist>
+    <para>
   Pour plus d'informations sur la f�on d'�crire ces fichiers, consulter le r�pertoire
   SCI/macros/m2sci/sci_files/ qui donne de nombreux exemples, des plus simples (e.g. sci_abs.sci)
   aux plus compliqu�s (e.g. sci_zeros.sci).
   </para>
-
-  </refsection> 
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="m2scideclare">m2scideclare</link> </member>
-    <member> <link linkend="Funcall">Funcall</link> </member>
-    <member> <link linkend="Operation">Operation</link> </member>
-    <member> <link linkend="Variable">Variable</link> </member>
-    <member> <link linkend="Cste">Cste</link> </member>
-    <member> <link linkend="Infer">Infer</link> </member>
-    <member> <link linkend="Type">Type</link> </member>
-    <member> <link linkend="Equal">Equal</link> </member>
-  </simplelist></refsection>
-  
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="m2scideclare">m2scideclare</link>
+      </member>
+      <member>
+        <link linkend="Funcall">Funcall</link>
+      </member>
+      <member>
+        <link linkend="Operation">Operation</link>
+      </member>
+      <member>
+        <link linkend="Variable">Variable</link>
+      </member>
+      <member>
+        <link linkend="Cste">Cste</link>
+      </member>
+      <member>
+        <link linkend="Infer">Infer</link>
+      </member>
+      <member>
+        <link linkend="Type">Type</link>
+      </member>
+      <member>
+        <link linkend="Equal">Equal</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

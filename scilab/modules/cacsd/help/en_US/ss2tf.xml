@@ -10,13 +10,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ss2tf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ss2tf</refname><refpurpose> conversion from state-space to transfer function</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[h]=ss2tf(sl)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ss2tf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ss2tf</refname>
+    <refpurpose> conversion from state-space to transfer function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[h]=ss2tf(sl)
 [Ds,NUM,chi]=ss2tf(sl)
 
 [h]=ss2tf(sl,"b")
@@ -26,8 +30,10 @@
 [h]=ss2tf(sl,rmax)
 [Ds,NUM,chi]=ss2tf(sl,rmax)
 
-</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>sl</term>
@@ -43,7 +49,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Called with three outputs <literal>[Ds,NUM,chi]=ss2tf(sl)</literal> returns 
     the numerator polynomial matrix <literal>NUM</literal>, the characteristic
@@ -64,7 +71,9 @@ h=NUM/chi + Ds
     sl.A matrix and applies "Leverrier" algorithm on blocks.
     If given, <literal>rmax</literal> controls the conditionning (see bdiag).</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 s=poly(0,'s');
 h=[1,1/s;1/(s^2+1),s/(s^2-2)]
@@ -72,19 +81,23 @@ sl=tf2ss(h);
 h=clean(ss2tf(sl))
 [Ds,NUM,chi]=ss2tf(sl)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="tf2ss">tf2ss</link>
-    </member>
-    <member>
-      <link linkend="syslin">syslin</link>
-    </member>
-    <member>
-      <link linkend="nlev">nlev</link>
-    </member>
-    <member>
-      <link linkend="glever">glever</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tf2ss">tf2ss</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="nlev">nlev</link>
+      </member>
+      <member>
+        <link linkend="glever">glever</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

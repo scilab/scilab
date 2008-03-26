@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="linsolve"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>linsolve</refname><refpurpose> linear equation solver</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x0,kerA]=linsolve(A,b [,x0])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="linsolve">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>linsolve</refname>
+    <refpurpose> linear equation solver</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x0,kerA]=linsolve(A,b [,x0])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -45,7 +51,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>linsolve</literal>  computes all the solutions to <literal> A*x+b=0</literal>.</para>
     <para><literal>x0</literal> is a particular solution (if any) and <literal> kerA= </literal>nullspace
     of <literal>A</literal>. Any <literal>x=x0+kerA*w</literal> with arbitrary <literal>w</literal> satisfies
@@ -54,26 +61,32 @@
     If compatible <literal>x0</literal> is given on entry, <literal>x0</literal> is returned. If not
     a compatible <literal>x0</literal>, if any, is returned.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=rand(5,3)*rand(3,8);
 b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //compatible b
 b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //uncompatible b
 A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x is unique
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="inv">inv</link>
-    </member>
-    <member>
-      <link linkend="pinv">pinv</link>
-    </member>
-    <member>
-      <link linkend="colcomp">colcomp</link>
-    </member>
-    <member>
-      <link linkend="im_inv">im_inv</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="inv">inv</link>
+      </member>
+      <member>
+        <link linkend="pinv">pinv</link>
+      </member>
+      <member>
+        <link linkend="colcomp">colcomp</link>
+      </member>
+      <member>
+        <link linkend="im_inv">im_inv</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

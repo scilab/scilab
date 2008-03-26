@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="subgraph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>subgraph</refname><refpurpose> subgraph of a graph</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g1 = subgraph(v,ind,g)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="subgraph">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>subgraph</refname>
+    <refpurpose> subgraph of a graph</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>g1 = subgraph(v,ind,g)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>v</term>
@@ -45,7 +51,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>subgraph</literal> returns the graph <literal>g1</literal>, built with the numbers given by the
     the row vector <literal>v</literal>. 
     If <literal>ind</literal> is the string <literal>'nodes'</literal>, <literal>g1</literal> is built with the node 
@@ -55,7 +62,9 @@
     <para>
     All the characteristics of the old nodes and edges of <literal>g</literal> are preserved.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
@@ -78,22 +87,26 @@ g1=subgraph(v,'edges',g);
 netwindow(w1);
 show_graph(g1);
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="add_edge">add_edge</link>
-    </member>
-    <member>
-      <link linkend="add_node">add_node</link>
-    </member>
-    <member>
-      <link linkend="delete_arcs">delete_arcs</link>
-    </member>
-    <member>
-      <link linkend="delete_nodes">delete_nodes</link>
-    </member>
-    <member>
-      <link linkend="supernode">supernode</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="add_edge">add_edge</link>
+      </member>
+      <member>
+        <link linkend="add_node">add_node</link>
+      </member>
+      <member>
+        <link linkend="delete_arcs">delete_arcs</link>
+      </member>
+      <member>
+        <link linkend="delete_nodes">delete_nodes</link>
+      </member>
+      <member>
+        <link linkend="supernode">supernode</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

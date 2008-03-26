@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="size"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>size</refname><refpurpose> size of objects</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=size(x [,sel])
-[nr,nc]=size(x)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="size">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>size</refname>
+    <refpurpose> size of objects</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=size(x [,sel])
+[nr,nc]=size(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -46,30 +52,48 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <variablelist>
-      <varlistentry><term>Applied to :</term><listitem>
-        <para>a matrix (constant, polynomial, string, boolean, rational)
+      <varlistentry>
+        <term>Applied to :</term>
+        <listitem>
+          <para>a matrix (constant, polynomial, string, boolean, rational)
     <literal>x</literal>, with only one lhs argument <literal>size</literal>
     returns a <literal>1</literal>x<literal>2</literal> vector [number of rows,
     number of columns].  Called with LHS=2, returns <literal>nr,nc</literal>
     = [number of rows, number of columns].  <literal>sel</literal> may be
     used to specify what dimension to get:</para>
-      </listitem></varlistentry>
-      <varlistentry><term>1 or 'r'</term><listitem>
-        <para>to get the number of rows</para>
-      </listitem></varlistentry>
-      <varlistentry><term>2 or 'c'</term><listitem>
-        <para>to get the number of columns</para>
-      </listitem></varlistentry>
-      <varlistentry><term>'*'</term><listitem>
-        <para>to get the product of rows and column numbers</para>
-      </listitem></varlistentry>
-      <varlistentry><term>Applied to:</term><listitem>
-        <para>a list it returns the number of elements. In this case only   <literal>y=size(x)</literal> syntax can be used</para>
-      </listitem></varlistentry>
-      <varlistentry><term>Applied to:</term><listitem>
-        <para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>1 or 'r'</term>
+        <listitem>
+          <para>to get the number of rows</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>2 or 'c'</term>
+        <listitem>
+          <para>to get the number of columns</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>'*'</term>
+        <listitem>
+          <para>to get the product of rows and column numbers</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Applied to:</term>
+        <listitem>
+          <para>a list it returns the number of elements. In this case only   <literal>y=size(x)</literal> syntax can be used</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Applied to:</term>
+        <listitem>
+          <para>
      a linear system, <literal>y=size(x)</literal> returns in <literal>y</literal>
      the (row) vector [number of outputs, number if inputs] i.e. the
      dimension of the corresponding transfer matrix. The syntax
@@ -78,18 +102,24 @@
      system in state-space form, then <literal>[nr,nc,nx]=size(x)</literal> 
      returns in addition the dimension <literal>nx</literal> of the
      <literal>A</literal> matrix of <literal>x</literal>.</para>
-      </listitem></varlistentry>
-      <varlistentry><term/><listitem>
-        <para>label='Applied to:'&gt; 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term/>
+        <listitem>
+          <para>label='Applied to:'&gt; 
     an hypermatrix <literal> y=size(x) </literal> returns the vector of
     hypermatrix dimensions. <literal> [n1,n2,...nn]=size(x) </literal>
     returns the hypermatrix dimensions. <literal> ni=size(x,i) </literal>
     returns the ith dimension and <literal>size(x,'*') </literal>
     returns the product of dimensions.</para>
-      </listitem></varlistentry>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 [n,m]=size(rand(3,2))
 [n,m]=size(['a','b';'c','d'])
@@ -97,13 +127,17 @@ x=ssrand(3,2,4);[ny,nu]=size(x)
 [ny,nu]=size(ss2tf(x))
 [ny,nu,nx]=size(x)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="length">length</link>
-    </member>
-    <member>
-      <link linkend="syslin">syslin</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="length">length</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

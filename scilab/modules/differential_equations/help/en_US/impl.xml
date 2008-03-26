@@ -11,14 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="impl"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>impl</refname><refpurpose> differential algebraic equation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="impl">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>impl</refname>
+    <refpurpose> differential algebraic equation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>y0,ydot0</term>
@@ -64,7 +70,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Solution of the linear implicit differential equation</para>
     <para>
@@ -127,7 +134,9 @@ j = jac(t,y,ydot)
     <literal>SCIDIR/routines/default/Ex-impl.f</literal> for an example to do that.</para>
     <para><literal>jac</literal> can also be a list: see the help of <literal>ode</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
 // Using hot restart 
@@ -136,16 +145,20 @@ y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
 //[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
 //maxi(abs(x1-x))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="dassl">dassl</link>
-    </member>
-    <member>
-      <link linkend="ode">ode</link>
-    </member>
-    <member>
-      <link linkend="external">external</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="dassl">dassl</link>
+      </member>
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+      <member>
+        <link linkend="external">external</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

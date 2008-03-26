@@ -10,39 +10,36 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_num2str"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_num2str</refname><refpurpose>Fonction d'�mulation de la fonction Matlab num2str</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_num2str">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_num2str</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab num2str</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>num2str</literal> et ses �quivalents Scilab
     (<literal>string</literal>, <literal>msprintf</literal>) se comportent diff�remment :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec deux param�tres d'entr�e, le second donnant une pr�cision : Il n'y a pas de fonction Scilab �quivalente 
 	mais <literal>msprintf</literal> peut �tre utilis�e pour �muler ce cas.
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Avec deux param�tres d'entr�e, le second donnant un format : l'�quivalent Scilab pour l'expression Matlab 
 	<literal>num2string(a,format)</literal> est <literal>msprintf(format,a)</literal>.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_num2str(x,f)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>num2str(x,f)</literal> quand il n'�tait pas
@@ -51,30 +48,35 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_num2str</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>f</literal> est une cha�ne de caract�res,
         <literal>mtlb_num2str(x,f)</literal> peut �tre remplac� par <literal>msprintf(f,x)</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_num2str</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="string">string</link> </member>
-    <member> <link linkend="msprintf">msprintf</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="string">string</link>
+      </member>
+      <member>
+        <link linkend="msprintf">msprintf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

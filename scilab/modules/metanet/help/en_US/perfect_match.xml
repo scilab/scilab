@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="perfect_match"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>perfect_match</refname><refpurpose> min-cost perfect matching</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[cst,nmatch] = perfect_match(g,arcost)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="perfect_match">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>perfect_match</refname>
+    <refpurpose> min-cost perfect matching</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[cst,nmatch] = perfect_match(g,arcost)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>g</term>
@@ -45,7 +51,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>perfect_match</literal> finds a perfect min-cost matching for the graph <literal>g</literal>.
     <literal>g</literal> must be an undirected graph with an even number of nodes.
     <literal>arcost</literal> is the vector of the (integer) costs of the arcs (the dimension
@@ -53,7 +60,9 @@
     The output is the vector <literal>nmatch</literal> of the perfect matching and the
     corresponding cost <literal>cst</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
 ta=[ta  16 15 15 14 12 9 10 6 9 17 8 17 10 20 11 23 23 12 18 28]; 
@@ -73,13 +82,18 @@ arcost=round(100.*rand(1,m2));
 v=index_from_tail_head(g,1:n,nmatch)
 hilite_edges(v);
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="best_match">best_match</link>
-    </member>
-  </simplelist></refsection>
-<refsection><title>Bibliography</title>
-<para> U. Derigs "Solving non-bipartite matching problems via shortest path techniques" Annals of operations research 7, 1988. </para>
-</refsection> 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="best_match">best_match</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
+    <para> U. Derigs "Solving non-bipartite matching problems via shortest path techniques" Annals of operations research 7, 1988. </para>
+  </refsection>
 </refentry>

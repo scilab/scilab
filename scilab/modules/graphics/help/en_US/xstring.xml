@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xstring"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xstring</refname><refpurpose> draw strings</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xstring(x,y,str,[angle,box])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xstring">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xstring</refname>
+    <refpurpose> draw strings</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xstring(x,y,str,[angle,box])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>
@@ -45,7 +51,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>xstring</literal> draws the matrix of strings <literal>str</literal> at location <literal>x,y</literal>
     (lower-left point) in the current graphic scale: each row of the matrix
     stands for a line of text and row elements stand for words separated by a
@@ -53,7 +60,9 @@
     used for drawing the strings. If <literal>box</literal> is 1 and <literal>angle</literal> is 0,
     a box is drawn around the strings.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 plot2d([0;1],[0;1],0)
 xstring(0.5,0.5,["Scilab" "is"; "not" "esilaB"])
@@ -74,23 +83,30 @@ xstring(0.1,0.3,alphabet)
 xset("font",1,24); xstring(0.1,0.6,"a") //big alpha
 xset("default")
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="titlepage">titlepage</link>
-    </member>
-    <member>
-      <link linkend="xnumb">xnumb</link>
-    </member>
-    <member>
-      <link linkend="xstringb">xstringb</link>
-    </member>
-    <member>
-      <link linkend="xstringl">xstringl</link>
-    </member>
-    <member>
-      <link linkend="xtitle">xtitle</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="titlepage">titlepage</link>
+      </member>
+      <member>
+        <link linkend="xnumb">xnumb</link>
+      </member>
+      <member>
+        <link linkend="xstringb">xstringb</link>
+      </member>
+      <member>
+        <link linkend="xstringl">xstringl</link>
+      </member>
+      <member>
+        <link linkend="xtitle">xtitle</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

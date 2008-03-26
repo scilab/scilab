@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="center"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>center</refname><refpurpose>  center</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>s=center(x)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="center">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>center</refname>
+    <refpurpose>  center</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>s=center(x)
 s=center(x,'r') or s=center(x,1)
-s=center(x,'c') or s=center(x,2)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+s=center(x,'c') or s=center(x,2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>  </term>
@@ -29,7 +35,8 @@ s=center(x,'c') or s=center(x,2)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
      
     This function  computes <literal>s</literal>, the  centred version of
@@ -52,7 +59,9 @@ s=center(x,'c') or s=center(x,2)</synopsis></refsynopsisdiv>
     <literal>s(i,j)</literal>   the    value   <literal>(x(i,j)-xbarh(i)))</literal>   with
     <literal>xbarh(i)</literal> the mean of the values of the <literal>i</literal> row.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 x=[0.2113249  0.0002211 0.6653811;
    0.7560439  0.3303271 0.6283918]
@@ -61,11 +70,18 @@ s=center(x,'r')
 s=center(x,'c')
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="wcenter">wcenter</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para> Carlos Klimann</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="wcenter">wcenter</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Carlos Klimann</para>
+  </refsection>
 </refentry>

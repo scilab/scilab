@@ -10,45 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="permute"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>permute</refname><refpurpose>permute the dimensions of an
-  array</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=permute(x,dims)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="permute">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>permute</refname>
+    <refpurpose>permute the dimensions of an
+  array</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=permute(x,dims)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>dims</term>
-
         <listitem>
           <para>a scalar or a vector of positive reals.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>x</term>
-
         <listitem>
           <para>a scalar, a vector, a matrix or a mutlti-array.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
-    <para><literal>y=permute(x,dims) : </literal></para>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <literal>y=permute(x,dims) : </literal>
+    </para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 //example 1:
 x=[1 2 3;4 5 6];
 y=permute(x,[2 1]);
@@ -56,21 +56,24 @@ y=permute(x,[2 1]);
 //example 2:
 x=matrix(1:12,[2,3,2]);
 y=permute(x,[3 1 2]);
-]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pertrans">pertrans</link>
-    </member>
-
-    <member>
-      <link linkend="quote">quote</link>
-    </member>
-
-    <member>
-      <link linkend="cat">cat</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><para>Farid Belahcene</para></refsection>
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pertrans">pertrans</link>
+      </member>
+      <member>
+        <link linkend="quote">quote</link>
+      </member>
+      <member>
+        <link linkend="cat">cat</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Farid Belahcene</para>
+  </refsection>
 </refentry>

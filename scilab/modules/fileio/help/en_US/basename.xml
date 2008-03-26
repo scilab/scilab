@@ -11,14 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="basename"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>basename</refname><refpurpose> strip directory and suffix from filenames</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>files= basename(files[,flag [,flagexpand]])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="basename">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>basename</refname>
+    <refpurpose> strip directory and suffix from filenames</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>files= basename(files[,flag [,flagexpand]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>files</term>
@@ -40,7 +46,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>basename</literal> return the basename of the file entries given in files.</para>
     <para>
     If <literal>flag</literal> is true the files are first converted to the target 
@@ -53,19 +60,25 @@
     pathnames given in files do not follow the convention 
     given by the <literal>MSDOS</literal> variable.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 files=basename('SCI/macros/util/poo.sci')
 files=basename('SCI/macros\util/poo.sci')
 files=basename('SCI/macros\util/poo.sci.k')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="listfiles">listfiles</link>
-    </member>
-    <member>
-      <link linkend="pathconvert">pathconvert</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="listfiles">listfiles</link>
+      </member>
+      <member>
+        <link linkend="pathconvert">pathconvert</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

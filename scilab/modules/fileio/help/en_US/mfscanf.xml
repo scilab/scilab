@@ -11,23 +11,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mfscanf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv xml:id="mscanf"><refname>mscanf</refname><refpurpose> interface to the C scanf function</refpurpose></refnamediv><refnamediv><refname>mfscanf</refname><refpurpose> interface to the C fscanf function</refpurpose></refnamediv><refnamediv xml:id="msscanf"><refname>msscanf</refname><refpurpose> interface to the C sscanf function</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[n,v_1,...v_n]=mfscanf([niter,]fd,format)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mfscanf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv xml:id="mscanf">
+    <refname>mscanf</refname>
+    <refpurpose> interface to the C scanf function</refpurpose>
+  </refnamediv>
+  <refnamediv>
+    <refname>mfscanf</refname>
+    <refpurpose> interface to the C fscanf function</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="msscanf">
+    <refname>msscanf</refname>
+    <refpurpose> interface to the C sscanf function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[n,v_1,...v_n]=mfscanf([niter,]fd,format)
 L=mfscanf([niter,] fd,format)
 
 [n,v_1,...v_n]=mscanf([niter,] format)
 L=mscanf([niter,]format)
 
 [n,v_1,...v_m]=msscanf([niter,]str,format)
-L=msscanf([niter,] str,format)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+L=msscanf([niter,] str,format)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>format</term>
@@ -42,7 +54,7 @@ L=msscanf([niter,] str,format)</synopsis></refsynopsisdiv>
         <listitem>
           <para>:The fd parameter returned by the function <literal>mopen</literal> is
 	    used as a file descriptor (it's a positive integer). The value -1
-	    refers to the  last opened file.</para> 
+	    refers to the  last opened file.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -85,7 +97,8 @@ L=msscanf([niter,] str,format)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
       The <literal>mfscanf</literal> function reads characters from the stream <literal>fd</literal>.</para>
     <para>
@@ -98,7 +111,9 @@ L=msscanf([niter,] str,format)</synopsis></refsynopsisdiv>
       output matrix. If <literal>niter==-1</literal> the function iterates up
       to the end of file. The <literal>niter</literal> default value is 1.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
     
     //--    Simple use                                        --
     //----------------------------------------------------------
@@ -153,58 +168,62 @@ L=msscanf([niter,] str,format)</synopsis></refsynopsisdiv>
 
 
     
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="mclose">mclose</link>
-    </member>
-    <member>
-      <link linkend="meof">meof</link>
-    </member>
-    <member>
-      <link linkend="mfprintf">mfprintf</link>
-    </member>
-    <member>
-      <link linkend="fprintfMat">fprintfMat</link>
-    </member>
-    <member>
-      <link linkend="mfscanf">mfscanf</link>
-    </member>
-    <member>
-      <link linkend="fscanfMat">fscanfMat</link>
-    </member>
-    <member>
-      <link linkend="mget">mget</link>
-    </member>
-    <member>
-      <link linkend="mgetstr">mgetstr</link>
-    </member>
-    <member>
-      <link linkend="mopen">mopen</link>
-    </member>
-    <member>
-      <link linkend="mprintf">mprintf</link>
-    </member>
-    <member>
-      <link linkend="mput">mput</link>
-    </member>
-    <member>
-      <link linkend="mputstr">mputstr</link>
-    </member>
-    <member>
-      <link linkend="mscanf">mscanf</link>
-    </member>
-    <member>
-      <link linkend="mseek">mseek</link>
-    </member>
-    <member>
-      <link linkend="mtell">mtell</link>
-    </member>
-    <member>
-      <link linkend="mdelete">mdelete</link>
-    </member>
-    <member>
-      <link linkend="scanf_conversion">scanf_conversion</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mclose">mclose</link>
+      </member>
+      <member>
+        <link linkend="meof">meof</link>
+      </member>
+      <member>
+        <link linkend="mfprintf">mfprintf</link>
+      </member>
+      <member>
+        <link linkend="fprintfMat">fprintfMat</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="fscanfMat">fscanfMat</link>
+      </member>
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="mgetstr">mgetstr</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+      <member>
+        <link linkend="mprintf">mprintf</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="mputstr">mputstr</link>
+      </member>
+      <member>
+        <link linkend="mscanf">mscanf</link>
+      </member>
+      <member>
+        <link linkend="mseek">mseek</link>
+      </member>
+      <member>
+        <link linkend="mtell">mtell</link>
+      </member>
+      <member>
+        <link linkend="mdelete">mdelete</link>
+      </member>
+      <member>
+        <link linkend="scanf_conversion">scanf_conversion</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

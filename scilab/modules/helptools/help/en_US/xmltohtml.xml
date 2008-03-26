@@ -10,103 +10,94 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xmltohtml"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xmltohtml</refname><refpurpose>converts xml Scilab help files to html</refpurpose></refnamediv>
-	
-	
-	
-	
-	
-	
-	
-	<refsynopsisdiv><title>Calling Sequence</title><synopsis>xmltohtml(dirs [,titles [,xsl [,step [,dir_language [default_language]]]]])</synopsis></refsynopsisdiv>
-	
-	<refsection><title>Parameters</title>
-		<variablelist>
-			
-			<varlistentry>
-				<term>dirs</term>
-				<listitem>
-					<para>vector of strings: a set of directory paths for which html manuals are to be generated or <literal>[] </literal></para>
-				</listitem>
-			</varlistentry>
-			
-			<varlistentry>
-				<term>titles</term>
-				<listitem>
-					<para>vector of strings: titles associated to directory paths or []</para>
-				</listitem>
-			</varlistentry>
-			
-			<varlistentry>
-				<term>xsl</term>
-				<listitem>
-					<para>string, name of xsl file used for translation</para>
-				</listitem>
-			</varlistentry>
-			
-			<varlistentry>
-				<term>step</term>
-				<listitem>
-					<para>string, should be  "whatis", "index", "html","contents", or "all"</para>
-				</listitem>
-			</varlistentry>
-			
-			<varlistentry>
-				<term>dir_language</term>
-				<listitem>
-					<para>vector of strings: languages associated to directory paths or []</para>
-				</listitem>
-			</varlistentry>
-			
-			<varlistentry>
-				<term>default_language</term>
-				<listitem>
-					<para>vector of strings: default languages associated to directory paths or []</para>
-				</listitem>
-			</varlistentry>
-			
-		</variablelist>
-	</refsection>
-	
-	<refsection><title>Description</title>
-		<para>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xmltohtml">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xmltohtml</refname>
+    <refpurpose>converts xml Scilab help files to html</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xmltohtml(dirs [,titles [,xsl [,step [,dir_language [default_language]]]]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>dirs</term>
+        <listitem>
+          <para>vector of strings: a set of directory paths for which html manuals are to be generated or <literal>[] </literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>titles</term>
+        <listitem>
+          <para>vector of strings: titles associated to directory paths or []</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xsl</term>
+        <listitem>
+          <para>string, name of xsl file used for translation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>step</term>
+        <listitem>
+          <para>string, should be  "whatis", "index", "html","contents", or "all"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dir_language</term>
+        <listitem>
+          <para>vector of strings: languages associated to directory paths or []</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>default_language</term>
+        <listitem>
+          <para>vector of strings: default languages associated to directory paths or []</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
 			converts xml Scilab help files contained in a set of directories  into
 			html files.
 		</para>
-		
-		<para>
+    <para>
 			In a first step ("whatis") a whatis.htm file is generated in each directory using
 			information given in the "SHORT_DESCRIPTION" tag of each xml file and
 			the given title.
 		</para>
-		
-		<para>
+    <para>
 			In a second step ("index") the tags LINK are analysed, and xmltohtml tries to
 			resolve  the references using the already known help files defined in
 			the <literal>%helps</literal> variable.
 		</para>
-		
-		<para>
+    <para>
 			The third step ("html") it translates the xml file to html using external program
 			xsltproc and the given  xsl file which should be located in
 			<literal>SCIDIR/man/LANGUAGE/</literal>
 			The generated html files are located together with the
 			corresponding xml ones.
 		</para>
-		
-		<para>
+    <para>
 			the last step ("contents") produces a contents.xml file
 		</para>
-		
-		<para>
+    <para>
 			if dirs is  [] then already defined help directories
 			(see <literal>%helps(:,1)</literal>)  are assumed and titles are searched in <literal>%helps(:,2)</literal>. So
 			<literal>xmltohtml([])</literal> updates currents html files
 		</para>
-		
-	</refsection>
-	
-	  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 
 // example_1/
@@ -153,22 +144,20 @@ help();
 del_help_chapter(my_french_help_title);
 del_help_chapter(my_english_help_title);
 
-	]]></programlisting></refsection>
-	
-	<refsection><title>See Also</title><simplelist type="inline">
-		
-		<member>
-			<link linkend="help">help</link>
-		</member>
-		
-		<member>
-			<link linkend="help_skeleton">help_skeleton</link>
-		</member>
-		
-		<member>
-			<link linkend="add_help_chapter">add_help_chapter</link>
-		</member>
-		
-	</simplelist></refsection>
-
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="help">help</link>
+      </member>
+      <member>
+        <link linkend="help_skeleton">help_skeleton</link>
+      </member>
+      <member>
+        <link linkend="add_help_chapter">add_help_chapter</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

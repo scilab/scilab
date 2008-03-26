@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="factors"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>factors</refname><refpurpose> numeric real factorization</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[lnum,g]=factors(pol [,'flag'])
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="factors">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>factors</refname>
+    <refpurpose> numeric real factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[lnum,g]=factors(pol [,'flag'])
 [lnum,lden,g]=factors(rat [,'flag'])
-rat=factors(rat,'flag')</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+rat=factors(rat,'flag')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>pol</term>
@@ -59,7 +65,8 @@ rat=factors(rat,'flag')</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     returns the factors of polynomial <literal>pol</literal> in the list <literal>lnum</literal>
     and the "gain" g.</para>
@@ -88,7 +95,9 @@ rat=factors(rat,'flag')</synopsis></refsynopsisdiv>
     with same magnitude as <literal>R1</literal> along the imaginary axis (<literal>'c'</literal>)
     or unit circle (<literal>'d'</literal>).</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 n=poly([0.2,2,5],'z');
 d=poly([0.1,0.3,7],'z');
@@ -99,10 +108,14 @@ roots(R1('den'))
 w=exp(2*%i*%pi*[0:0.1:1]);
 norm(abs(horner(R1,w))-abs(horner(R,w)))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="simp">simp</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

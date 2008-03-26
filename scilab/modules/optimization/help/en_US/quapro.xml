@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quapro"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>quapro</refname><refpurpose> linear quadratic programming solver</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x,lagr,f]=quapro(Q,p,C,b [,x0])
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quapro">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>quapro</refname>
+    <refpurpose> linear quadratic programming solver</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x,lagr,f]=quapro(Q,p,C,b [,x0])
 [x,lagr,f]=quapro(Q,p,C,b,ci,cs [,x0])
 [x,lagr,f]=quapro(Q,p,C,b,ci,cs,me [,x0])
-[x,lagr,f]=quapro(Q,p,C,b,ci,cs,me,x0 [,imp])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[x,lagr,f]=quapro(Q,p,C,b,ci,cs,me,x0 [,imp])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>Q</term>
@@ -26,14 +33,14 @@
         <term>C</term>
         <listitem>
           <para>real matrix (dimension <literal> (me + md) x n</literal>) (If no
-	    constraints are given, you can set <literal>C = []</literal>)</para> 
+	    constraints are given, you can set <literal>C = []</literal>)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>b</term>
         <listitem>
           <para>RHS column vector (dimension <literal> (me + md)</literal>) (If no
-	    constraints are given, you can set <literal>b = []</literal>)</para> 
+	    constraints are given, you can set <literal>b = []</literal>)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -44,7 +51,7 @@
 	    some components of <literal>x</literal> are bounded from below, set the
 	    other (unconstrained) values of <literal>ci</literal> to a very  large
 	    negative  number (e.g. <literal>ci(j) =
-	      -number_properties('huge')</literal>.</para> 
+	      -number_properties('huge')</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -66,7 +73,7 @@
 	    character strings <literal>'v'</literal> or <literal>'g'</literal>. If
 	    <literal>x0='v'</literal> the calculated initial feasible point is a
 	    vertex. If <literal>x0='g'</literal> the calculated initial feasible
-	    point is arbitrary.</para> 
+	    point is arbitrary.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -74,7 +81,7 @@
         <listitem>
           <para>verbose option (optional parameter)   (Try
 	    <literal>imp=7,8,...</literal>). warning the message are output in the
-	    window where scilab has been started.</para> 
+	    window where scilab has been started.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -101,12 +108,13 @@
 	    (resp. lower-bound) constraint <literal>i</literal> is active
 	    <literal>lagr(i)</literal> is &gt; 0 (resp. &lt;0). If no bounds are
 	    provided, <literal>lagr</literal> has only <literal>me + md</literal>
-	    components.</para> 
+	    components.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Minimize <literal>0.5*x'*Q*x + p'*x</literal></para>
     <para>
@@ -153,7 +161,9 @@ C*x <= b          ci <= x <= cs
     Note that <literal>Q</literal> is not necessarily non-negative, i.e.
     <literal>Q</literal> may have negative eigenvalues.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
@@ -177,28 +187,47 @@ me=3;
 //Only linear constraints (1 to 4) are active (lagr(1:6)=0):
 [x,lagr,f]=quapro(Q,p,C,b,[],[],me)   //Same result as above
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="qld">qld</link>
-    </member>
-    <member>
-      <link linkend="linpro">linpro</link>
-    </member>
-    <member>
-      <link linkend="optim">optim</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><variablelist>
-    <varlistentry><term>Eduardo Casas  Renteria</term><listitem><para>, Universidad de Cantabria,</para></listitem></varlistentry>
-    <varlistentry><term>Cecilia Pola Mendez</term><listitem><para> , Universidad de Cantabria</para></listitem></varlistentry>
-  </variablelist></refsection>
-  <refsection><title>Bibliography</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="qld">qld</link>
+      </member>
+      <member>
+        <link linkend="linpro">linpro</link>
+      </member>
+      <member>
+        <link linkend="optim">optim</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Eduardo Casas  Renteria</term>
+        <listitem>
+          <para>, Universidad de Cantabria,</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Cecilia Pola Mendez</term>
+        <listitem>
+          <para> , Universidad de Cantabria</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
     <para>E. Casas and C. Pola, An algorithm for indefinite quadratic
       programming based on a partial Cholesky factorization, RAIRO-Recherche
       Opérationnelle/Operations Research, 27 (1993), 401-426. </para>
   </refsection>
-  <refsection><title>Used Functions</title>
+  <refsection>
+    <title>Used Functions</title>
     <para>
 in routines/optim directory (authors E.Casas, C. Pola Mendez):</para>
     <para>

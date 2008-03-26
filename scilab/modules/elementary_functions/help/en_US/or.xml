@@ -10,18 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="or"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>or</refname><refpurpose> (|) logical or</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>or(A), or(A,'*')
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="or">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>or</refname>
+    <refpurpose> (|) logical or</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>or(A), or(A,'*')
 or(A,'r'), or(A,1)
 
 or(A,'c'), or(A,2)
-A|B</synopsis></refsynopsisdiv>
-  <refsection><title>Description</title>
+A|B</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
     <para><literal>or(A)</literal>  gives the  <literal>or</literal> of the elements of the  boolean 
     matrix  <literal>A</literal>. <literal>or(A)</literal> is true (<literal>%t</literal>) iff at least one entry of
     <literal>A</literal> is <literal>%t</literal>.</para>
@@ -35,22 +41,28 @@ A|B</synopsis></refsynopsisdiv>
      <literal>A</literal> and  <literal>B</literal> .<literal>A</literal> and  <literal>B</literal> must be matrices with the same
      dimensions or one from them must be a single boolean.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 or([%t %t %f])
 [%t %t %f]|[%f %t %t]
 [%t %t %f]|%f
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="and">and</link>
-    </member>
-    <member>
-      <link linkend="not">not</link>
-    </member>
-    <member>
-      <link linkend="find">find</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="and">and</link>
+      </member>
+      <member>
+        <link linkend="not">not</link>
+      </member>
+      <member>
+        <link linkend="find">find</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

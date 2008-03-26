@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sci2for"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sci2for</refname><refpurpose> scilab function to Fortran routine conversion</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>txt=sci2for(fun,nam,vtps [,lvtps])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sci2for">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sci2for</refname>
+    <refpurpose> scilab function to Fortran routine conversion</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>txt=sci2for(fun,nam,vtps [,lvtps])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>fun</term>
@@ -51,7 +57,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
   </para>
     <para>
@@ -73,33 +80,55 @@ vtps(i)=list(typ,row_dim,col_dim)
     where :
   </para>
     <variablelist>
-      <varlistentry><term>typ</term><listitem>
-        <para>is a character string giving the type of the variable :</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"0"</term><listitem>
-        <para>constant,integer vector or matrix</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"1"</term><listitem>
-        <para>constant,double precision vector or matrix</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"10"</term><listitem>
-        <para>character string</para>
-      </listitem></varlistentry>
-      <varlistentry><term>row_dim</term><listitem>
-        <para>character string (row dimension)</para>
-      </listitem></varlistentry>
-      <varlistentry><term>col_dim</term><listitem>
-        <para>character string (column dimension)</para>
-      </listitem></varlistentry>
-      <varlistentry><term>txt</term><listitem>
-        <para>Fortran code</para>
-        <para>
+      <varlistentry>
+        <term>typ</term>
+        <listitem>
+          <para>is a character string giving the type of the variable :</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"0"</term>
+        <listitem>
+          <para>constant,integer vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"1"</term>
+        <listitem>
+          <para>constant,double precision vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"10"</term>
+        <listitem>
+          <para>character string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>row_dim</term>
+        <listitem>
+          <para>character string (row dimension)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>col_dim</term>
+        <listitem>
+          <para>character string (column dimension)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>Fortran code</para>
+          <para>
     Generated code may use routines of scilab libraries and some others
     whose source code may be found in &lt;SCIDIR&gt;/util/sci2for.f</para>
-      </listitem></varlistentry>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Remarks</title>
+  <refsection>
+    <title>Remarks</title>
     <para>
     This function is just a try. Only simple function may be translated. Many function calls have not  yet Fortran equivalent, to add the translation of a new function call you may define a scilab function. whose name is f_&lt;name of function&gt;. see &lt;SCIDIR&gt;/macros/sci2for/f_*.sci files for examples.</para>
     <para>
@@ -114,9 +143,12 @@ vtps(i)=list(typ,row_dim,col_dim)
     <para>
     may not appear in the function code.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="function">function</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="function">function</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

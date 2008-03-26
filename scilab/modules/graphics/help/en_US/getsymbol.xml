@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getsymbol"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getsymbol</refname><refpurpose> dialog to select a symbol and its size</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>c=getsymbol([title])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getsymbol">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getsymbol</refname>
+    <refpurpose> dialog to select a symbol and its size</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>c=getsymbol([title])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>title</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para> Obsolete function use <link linkend="getmark">getmark</link> or the interactive graphic
       properties editor preferabily.</para>
     <para><literal>getsymbol</literal> opens a dialog choice box with title <literal>title</literal> if
@@ -41,12 +48,15 @@
     symbol and its size. <literal>getsymbol</literal> returns the id of the mark
     <literal>n</literal> and the id of its size <literal>sz</literal>.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="getmark">getmark</link>
-    </member>
-    <member>
-      <link linkend="xset">xset</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getmark">getmark</link>
+      </member>
+      <member>
+        <link linkend="xset">xset</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

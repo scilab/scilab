@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="funcprot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>funcprot</refname><refpurpose> switch scilab functions protection mode</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>prot=funcprot()
-funcprot(prot)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="funcprot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>funcprot</refname>
+    <refpurpose> switch scilab functions protection mode</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>prot=funcprot()
+funcprot(prot)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>prot</term>
@@ -16,7 +23,8 @@ funcprot(prot)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Scilab functions are variable, funcprot allows the user to specify
     what scilab do when such  variables are redefined.
@@ -33,7 +41,9 @@ funcprot(prot)</synopsis></refsynopsisdiv>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 funcprot(1)
 deff('[x]=foo(a)','x=a')
@@ -44,5 +54,6 @@ deff('[x]=foo(a)','x=a')
 deff('[x]=foo(a)','x=a+1')
 foo=33
  
-  ]]></programlisting></refsection>
+  ]]></programlisting>
+  </refsection>
 </refentry>

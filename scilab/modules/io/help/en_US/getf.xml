@@ -9,14 +9,21 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- --><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getf</refname><refpurpose> defining a function from a file</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>getf(file-name [,opt])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getf</refname>
+    <refpurpose> defining a function from a file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>getf(file-name [,opt])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>
@@ -54,7 +61,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     loads one or several functions (see <literal>functions</literal>)
     defined in the file <literal>'file-name'</literal>.  The string
@@ -70,14 +78,12 @@ function [y1,...,yn]=foo(x1,...,xm)
    
     ]]></programlisting>
     <para>The following lines contain a sequence of scilab instructions.</para>
-
     <para>The "syntax definition" line gives the "full"
     calling syntax of this function. The <literal>yi</literal> are output
     variables calculated as functions of input variables
     <literal>xi</literal> and variables existing in Scilab when the function
     is executed. Shorter input or output argument list may be
     used.</para>
-
     <para> Many functions may be written in the same file. A function is
     terminated by an <literal>endfunction</literal> keyword. For
     compatibility with previous versions a function may also be
@@ -85,42 +91,46 @@ function [y1,...,yn]=foo(x1,...,xm)
     <literal>EOF</literal> mark. For that reason it is not possible to load
     function containing nested function definition using the
     <literal>getf</literal> function.</para>
-
     <para><literal>getf</literal> is an obsolete way for loading functions into
     scilab from a file. It is replaced by the <literal>exec</literal>
     function. Note that functions in a file should be terminated by an
     <literal>endfunction</literal> keyword.  The <literal>exec</literal> function
     supposes <literal>opt=='c'</literal>.</para>
-
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 getf('SCI/modules/graphics/macros/plot.sci')
 
 getf SCI/modules/graphics/macros/plot.sci
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="functions">functions</link>
-    </member>
-    <member>
-      <link linkend="function">function</link>
-    </member>
-    <member>
-      <link linkend="genlib">genlib</link>
-    </member>
-    <member>
-      <link linkend="getd">getd</link>
-    </member>
-    <member>
-      <link linkend="exec">exec</link>
-    </member>
-    <member>
-      <link linkend="edit">edit</link>
-    </member>
-    <member>
-      <link linkend="comp">comp</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="functions">functions</link>
+      </member>
+      <member>
+        <link linkend="function">function</link>
+      </member>
+      <member>
+        <link linkend="genlib">genlib</link>
+      </member>
+      <member>
+        <link linkend="getd">getd</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="edit">edit</link>
+      </member>
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

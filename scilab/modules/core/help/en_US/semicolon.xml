@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="semicolon"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>semicolon</refname><refpurpose> (;)  ending expression and row separator</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="semicolon">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>semicolon</refname>
+    <refpurpose> (;)  ending expression and row separator</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
       In a file, the line separator ``;'' suppresses the display of the
       line.
@@ -13,12 +17,22 @@
       Within brackets ; denotes row separator in matrix definition.
     </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
     a=[1,2,3;4,5,6];
     a=1;b=1,c=2
-    ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member> <link linkend="comma">comma</link> </member> 
-    <member> <link linkend="brackets">brackets</link> </member>
-  </simplelist></refsection>
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="comma">comma</link>
+      </member>
+      <member>
+        <link linkend="brackets">brackets</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

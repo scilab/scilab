@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="delmenu"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>delmenu</refname><refpurpose> interactive button or menu deletion</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>delmenu(button)
-delmenu(gwin,button)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="delmenu">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>delmenu</refname>
+    <refpurpose> interactive button or menu deletion</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>delmenu(button)
+delmenu(gwin,button)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>button</term>
@@ -22,7 +29,8 @@ delmenu(gwin,button)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     The function allows the user to delete  buttons or menus create by
     <literal>addmenu</literal> in the main or graphics windows command panels. 
@@ -31,21 +39,27 @@ delmenu(gwin,button)</synopsis></refsynopsisdiv>
     If possible, it is better to delete first the latest created button
     for a given window to avoid gaps in  command panels.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 addmenu('foo')
 delmenu('foo')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="setmenu">setmenu</link>
-    </member>
-    <member>
-      <link linkend="unsetmenu">unsetmenu</link>
-    </member>
-    <member>
-      <link linkend="addmenu">addmenu</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="setmenu">setmenu</link>
+      </member>
+      <member>
+        <link linkend="unsetmenu">unsetmenu</link>
+      </member>
+      <member>
+        <link linkend="addmenu">addmenu</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

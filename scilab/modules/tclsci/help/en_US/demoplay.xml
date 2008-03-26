@@ -10,31 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demoplay"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>demoplay</refname><refpurpose> interactive demo player.</refpurpose></refnamediv>
-
-
-
-
-
-
-<refsynopsisdiv><title>Calling Sequence</title><synopsis>demoplay(filename)</synopsis></refsynopsisdiv>
-
-<refsection><title>Parameters</title>
-<variablelist>
-<varlistentry>
- <term>filename</term>
- <listitem><para>string, name of the file to play.</para></listitem>
-</varlistentry>
-</variablelist>
-</refsection>
-
-<refsection><title>Description</title>
-<para><literal>demoplay</literal> display demo files in a interactive manner. More information to do!!</para>
-</refsection>
-
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demoplay">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>demoplay</refname>
+    <refpurpose> interactive demo player.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>demoplay(filename)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>string, name of the file to play.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>demoplay</literal> display demo files in a interactive manner. More information to do!!</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 demoplay();
-]]></programlisting></refsection>
-<refsection><title>Authors</title><para>Jaime Urzua</para></refsection>
-  
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Jaime Urzua</para>
+  </refsection>
 </refentry>

@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="canon"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>canon</refname><refpurpose> canonical controllable form</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Ac,Bc,U,ind]=canon(A,B)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="canon">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>canon</refname>
+    <refpurpose> canonical controllable form</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Ac,Bc,U,ind]=canon(A,B)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>Ac,Bc</term>
@@ -39,7 +45,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     gives the canonical controllable form of the pair <literal>(A,B)</literal>.</para>
     <para>
@@ -63,7 +70,9 @@ Ac=   [0,1,0,0,0]        Bc=[0]
     of <literal>F</literal> the <literal>*</literal> entries of <literal>Ac+Bc*F</literal> 
     can be arbitrarily set to desired values (pole placement).</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=[1,2,3,4,5;
    1,0,0,0,0;
@@ -89,29 +98,36 @@ F=Bcstar\(Acstardesired-Acstar);   //Feedbak gain
 Ac+Bc*F         // Companion form 
 spec(A+B*F/U)   // F/U is the gain matrix in original basis.
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="obsv_mat">obsv_mat</link>
-    </member>
-    <member>
-      <link linkend="cont_mat">cont_mat</link>
-    </member>
-    <member>
-      <link linkend="ctr_gram">ctr_gram</link>
-    </member>
-    <member>
-      <link linkend="contrss">contrss</link>
-    </member>
-    <member>
-      <link linkend="ppol">ppol</link>
-    </member>
-    <member>
-      <link linkend="contr">contr</link>
-    </member>
-    <member>
-      <link linkend="stabil">stabil</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>F.D.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="obsv_mat">obsv_mat</link>
+      </member>
+      <member>
+        <link linkend="cont_mat">cont_mat</link>
+      </member>
+      <member>
+        <link linkend="ctr_gram">ctr_gram</link>
+      </member>
+      <member>
+        <link linkend="contrss">contrss</link>
+      </member>
+      <member>
+        <link linkend="ppol">ppol</link>
+      </member>
+      <member>
+        <link linkend="contr">contr</link>
+      </member>
+      <member>
+        <link linkend="stabil">stabil</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.D.  </para>
+  </refsection>
 </refentry>

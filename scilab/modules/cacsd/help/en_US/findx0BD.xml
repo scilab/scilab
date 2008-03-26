@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findx0BD"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>findx0BD</refname><refpurpose> Estimates state and B and D matrices of a discrete-time linear system</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[X0,B,D] = findx0BD(A,C,Y,U,WITHX0,WITHD,TOL,PRINTW)
-[x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findx0BD">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>findx0BD</refname>
+    <refpurpose> Estimates state and B and D matrices of a discrete-time linear system</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[X0,B,D] = findx0BD(A,C,Y,U,WITHX0,WITHD,TOL,PRINTW)
+[x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -151,7 +157,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     findx0BD  Estimates the initial state and/or the matrices B and D of a
     discrete-time linear system, given the (estimated) system
@@ -182,7 +189,9 @@
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
@@ -211,13 +220,17 @@ SYS1=syslin(1,A,B,C,D,X0);
 Y1=flts(U,SYS1);
 xbasc();plot2d((1:nsmp)',[Y',Y1'])
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="findBD">findBD</link>
-    </member>
-    <member>
-      <link linkend="inistate">inistate</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="findBD">findBD</link>
+      </member>
+      <member>
+        <link linkend="inistate">inistate</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

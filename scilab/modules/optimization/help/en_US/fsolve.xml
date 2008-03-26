@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fsolve"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fsolve</refname><refpurpose> find a zero of a system of n nonlinear functions</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fsolve">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fsolve</refname>
+    <refpurpose> find a zero of a system of n nonlinear functions</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x0</term>
@@ -95,7 +101,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     find a zero of a system of
     n nonlinear functions in n variables by a modification
@@ -147,7 +154,9 @@ fct(int *n, double x[],double v[],int *iflag)
     which must be linked to Scilab calling sequences are the same as those
     for fct. Note however that v must be a nxn array.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // A simple example with fsolve 
 a=[1,7;2,8];b=[10;11];
@@ -161,19 +170,23 @@ a*xres+b
 [xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
 a*xres+b
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="external">external</link>
-    </member>
-    <member>
-      <link linkend="quapro">quapro</link>
-    </member>
-    <member>
-      <link linkend="linpro">linpro</link>
-    </member>
-    <member>
-      <link linkend="optim">optim</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="external">external</link>
+      </member>
+      <member>
+        <link linkend="quapro">quapro</link>
+      </member>
+      <member>
+        <link linkend="linpro">linpro</link>
+      </member>
+      <member>
+        <link linkend="optim">optim</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

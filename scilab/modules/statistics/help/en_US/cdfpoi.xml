@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cdfpoi"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>cdfpoi</refname><refpurpose> cumulative distribution function poisson distribution</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[P,Q]=cdfpoi("PQ",S,Xlam)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cdfpoi">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cdfpoi</refname>
+    <refpurpose> cumulative distribution function poisson distribution</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[P,Q]=cdfpoi("PQ",S,Xlam)
 [S]=cdfpoi("S",Xlam,P,Q)
-[Xlam]=cdfpoi("Xlam",P,Q,S);</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[Xlam]=cdfpoi("Xlam",P,Q,S);</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>P,Q,S,Xlam</term>
@@ -47,7 +53,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Calculates any one parameter of the Poisson
     distribution given values for the others.</para>

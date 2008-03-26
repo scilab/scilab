@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atanh"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>atanh</refname><refpurpose> hyperbolic tangent inverse</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>t=atanh(x)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atanh">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>atanh</refname>
+    <refpurpose> hyperbolic tangent inverse</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>t=atanh(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -33,13 +39,15 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     The components of vector <literal>t</literal> are the hyperbolic tangent inverse of the 
     corresponding entries of vector <literal>x</literal>.
     Definition domain is <literal>[-1,1]</literal> for the real function (see Remark).</para>
   </refsection>
-  <refsection><title>Remark</title>
+  <refsection>
+    <title>Remark</title>
     <para>
     In Scilab (as in some others numerical software) when you try to evaluate an elementary
     mathematical function outside its definition domain in the real case, then the complex 
@@ -55,7 +63,9 @@
     and you get <literal>atanh(1) = +Inf + i NaN</literal> while you get <literal>atanh(1) = +Inf</literal>
     with <literal>[1 0.5]</literal> for instance.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // example 1
 x=[0,%i,-%i]
@@ -71,13 +81,17 @@ ieee(2)
 atanh([1 2])
 atanh([1 0.5])
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="tanh">tanh</link>
-    </member>
-    <member>
-      <link linkend="ieee">ieee</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tanh">tanh</link>
+      </member>
+      <member>
+        <link linkend="ieee">ieee</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

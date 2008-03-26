@@ -10,29 +10,34 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_load"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_load</refname><refpurpose>Fonction d'�mulation de la fonction Matlab load</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_load">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_load</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab load</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
     La fonction <literal>mtlb_load</literal> �tait utilis�e par les anciennes version de 
     <literal>mfile2sci</literal> pour remplacer <literal>load</literal> mais est maintenant obsol�te
     utilisez plut�t <literal>loadmatfile</literal>
     </para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="loadmatfile">loadmatfile</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="loadmatfile">loadmatfile</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

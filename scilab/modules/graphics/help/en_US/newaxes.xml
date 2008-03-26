@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="newaxes"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>newaxes</refname><refpurpose> Creates a new Axes entity</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>a=newaxes()</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="newaxes">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>newaxes</refname>
+    <refpurpose> Creates a new Axes entity</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>a=newaxes()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>a</term>
@@ -27,13 +33,16 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>newaxes()</literal> is used to create a new <literal>Axes</literal> entity (see
       <link linkend="graphics_entities">graphics_entities</link>) in the current figure. The properties of
       this entity are inherited from the <literal>default_axes</literal> entity (see
       <link linkend="gda">gda</link>) </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 clf()
 a1=newaxes(); 
@@ -50,17 +59,24 @@ sca(a1); //make first axes current
 plot(t,asinh(t),'g')
 legend(['acosh','asinh'])
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="subplot">subplot</link>
-    </member>
-    <member>
-      <link linkend="gda">gda</link>
-    </member>
-    <member>
-      <link linkend="sca">sca</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>S. Steer, INRIA</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="subplot">subplot</link>
+      </member>
+      <member>
+        <link linkend="gda">gda</link>
+      </member>
+      <member>
+        <link linkend="sca">sca</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. Steer, INRIA</para>
+  </refsection>
 </refentry>

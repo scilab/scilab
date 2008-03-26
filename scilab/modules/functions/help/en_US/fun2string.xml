@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fun2string"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fun2string</refname><refpurpose> generates ascii definition of a scilab function</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>txt=fun2string(fun,name)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fun2string">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fun2string</refname>
+    <refpurpose> generates ascii definition of a scilab function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>txt=fun2string(fun,name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>fun</term>
@@ -39,7 +45,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Given a loaded Scilab function pseudo-code fun2string allows to
     re-generate the code. The generated
@@ -48,21 +55,27 @@
     The mechanism is similar, but simpler than the mfile2sci one. It may
     be adapted for syntax translations.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 txt=fun2string(asinh,'foo');
 write(%io(2),txt,'(a)')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="getf">getf</link>
-    </member>
-    <member>
-      <link linkend="edit">edit</link>
-    </member>
-    <member>
-      <link linkend="macrovar">macrovar</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+      <member>
+        <link linkend="edit">edit</link>
+      </member>
+      <member>
+        <link linkend="macrovar">macrovar</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,33 +10,31 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_strrep"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_strrep</refname><refpurpose>Fonction d'�mulation de la fonction Matlab strrep</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_strrep">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_strrep</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab strrep</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>strrep</literal> et la fonction Scilab
     <literal>strsubst</literal> se comportent diff�remment :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec des param�tres d'entr�e n'�tant pas des cha�nes de caract�re : La fonction Matlab <literal>strrep</literal>
 	peut �tre utilis�e avec des entr�es n'�tant pas des cha�nes de caract�res mais pas la fonction
 	Scilab <literal>strsubst</literal>.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_strrep(A,B,C)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>strrep(A,B,C)</literal> quand il n'�tait pas
@@ -44,25 +42,24 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_strrep</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>A</literal>, <literal>B</literal> et <literal>C</literal> sont des cha�nes de caract�res
         <literal>y = mtlb_strrep(A,B,C)</literal> peut �tre remplac� par <literal>strsubst(A,B,C)</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_strrep</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

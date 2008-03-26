@@ -10,44 +10,48 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="edges_data_structure"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>edges_data_structure</refname><refpurpose> description of the data structure representing the edges of a graph </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="edges_data_structure">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>edges_data_structure</refname>
+    <refpurpose> description of the data structure representing the edges of a graph </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para> A  edges data structure is represented by a Scilab <literal>mlist</literal> with type  <literal>edges</literal>
     and 4 fields:</para>
     <itemizedlist>
       <listitem>
-	<para><literal>tail</literal> row vector. <literal>tail(i)</literal> is the
+        <para><literal>tail</literal> row vector. <literal>tail(i)</literal> is the
 	index of the node connected to the tail of the
 	<literal>i</literal>th edge.</para>
-      </listitem>	  
+      </listitem>
       <listitem>
-	<para><literal>head</literal> row vector. <literal>head(i)</literal> is the
+        <para><literal>head</literal> row vector. <literal>head(i)</literal> is the
 	index of the node connected to the head of the
 	<literal>i</literal>th edge.</para>
       </listitem>
       <listitem>
-	<para><literal>graphics</literal>&gt; A Scilab mlist data structure of type <literal>egraphic</literal> 
+        <para><literal>graphics</literal>&gt; A Scilab mlist data structure of type <literal>egraphic</literal> 
 	which stores the information relative to edges graphical display (see  <link linkend="egraphic_data_structure">egraphic_data_structure</link></para>
       </listitem>
       <listitem>
-	<para><literal>data</literal> A Scilab <literal>mlist</literal> data structure of type
+        <para><literal>data</literal> A Scilab <literal>mlist</literal> data structure of type
 	<literal>edgedata</literal>.  which stores the data associated with
 	nodes.  By defaut this data structure is empty. User can add
 	its own fields using the <literal>add_edge_data</literal>
 	function..</para>
-	<para> For a given field the associated data should be a
+        <para> For a given field the associated data should be a
 	row vector or a matrix. In the matrix case a column is
 	associated to an edge.</para>
       </listitem>
     </itemizedlist>
-  
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //create a simple graph
 ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13];
@@ -70,22 +74,26 @@ g.edges.graphics.display='length';
 show_graph(g)
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="graph_data_structure">graph_data_structure</link>
-    </member>
-    <member>
-      <link linkend="add_edge">add_edge</link>
-    </member>
-    <member>
-      <link linkend="delete_arcs">delete_arcs</link>
-    </member>
-   <member>
-      <link linkend="edgedatafields">edgedatafields</link>
-   </member>
-    <member>
-      <link linkend="add_edge_data">add_edge_data</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="graph_data_structure">graph_data_structure</link>
+      </member>
+      <member>
+        <link linkend="add_edge">add_edge</link>
+      </member>
+      <member>
+        <link linkend="delete_arcs">delete_arcs</link>
+      </member>
+      <member>
+        <link linkend="edgedatafields">edgedatafields</link>
+      </member>
+      <member>
+        <link linkend="add_edge_data">add_edge_data</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

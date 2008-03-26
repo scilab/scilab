@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="iir"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>iir</refname><refpurpose> iir digital filter</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[hz]=iir(n,ftype,fdesign,frq,delta)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="iir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>iir</refname>
+    <refpurpose> iir digital filter</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[hz]=iir(n,ftype,fdesign,frq,delta)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -69,11 +76,14 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     function which designs an iir digital filter using analog filter designs.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
 [hzm,fr]=frmag(hz,256);
@@ -82,14 +92,21 @@ xtitle('Discrete IIR filter band pass  0.15<fr<0.25 ',' ',' ');
 q=poly(0,'q');     //to express the result in terms of the ...
 hzd=horner(hz,1/q) //delay operator q=z^-1
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="eqfir">eqfir</link>
-    </member>
-    <member>
-      <link linkend="eqiir">eqiir</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>C. B.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="eqfir">eqfir</link>
+      </member>
+      <member>
+        <link linkend="eqiir">eqiir</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>C. B.  </para>
+  </refsection>
 </refentry>

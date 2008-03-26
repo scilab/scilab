@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dlgamma"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dlgamma</refname><refpurpose>  derivative  of gammaln function, psi function</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y = dlgamma(x)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dlgamma">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dlgamma</refname>
+    <refpurpose>  derivative  of gammaln function, psi function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y = dlgamma(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>dlgamma(x)</literal> evaluates, at all the elements of <literal>x</literal> the logarithmic 
     derivative of the gamma function which corresponds also to the derivative of the
     gammaln function :</para>
@@ -44,19 +51,28 @@
     ]]></programlisting>
     <para><literal>x</literal> must be real. Also known as the psi function.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 dlgamma(0.5)
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="gamma">gamma</link>
-    </member>
-    <member>
-      <link linkend="gammaln">gammaln</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>W. J. Cody (code from Netlib (specfun))</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gamma">gamma</link>
+      </member>
+      <member>
+        <link linkend="gammaln">gammaln</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>W. J. Cody (code from Netlib (specfun))</para>
+  </refsection>
 </refentry>

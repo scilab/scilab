@@ -10,18 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_file_choice"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>demo_file_choice</refname><refpurpose> choose and executes an item within a list </refpurpose></refnamediv>
-	
-	
-	
-    
-	
-	
-	
-	<refsynopsisdiv><title>Calling Sequence</title><synopsis>demo_file_choice(path,ch)</synopsis></refsynopsisdiv>
-	
-	<refsection><title>Description</title>
-		<para>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_file_choice">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>demo_file_choice</refname>
+    <refpurpose> choose and executes an item within a list </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>demo_file_choice(path,ch)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
 		The function demo_file_choice choose and executes an item chosen in the 
 		'demolist' variable, that shall be written above. The variable 'demolist' is a 
 		text matrix whose first column contains names of items displayed in an options 
@@ -34,9 +37,10 @@
 		If you choose to cancel the options window, the console is put back to its 
 		previous width.
 		</para>
-	</refsection>
-	
-	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 demolist=['n-pendulum','npend/npend_gateway.sce';
 	  'Wheel simulation','wheel2/wheel_gateway.sce';
 	  'Bike Simulation','bike/bike_gateway.sce';
@@ -44,15 +48,20 @@ demolist=['n-pendulum','npend/npend_gateway.sce';
 	  'DAE''S','dae/dae.dem']
 
 demo_file_choice('SCI/demos/simulation/','no');
-	]]></programlisting></refsection>
-	
-	<refsection><title>See Also</title><simplelist type="inline">
-		<member>
-			<link linkend="demo_function_choice">demo_function_choice</link>
-		</member>
-	</simplelist></refsection>
-	
-	<refsection><title>Authors</title><simplelist type="vert">
-		<member>G.H</member>
-	</simplelist></refsection>
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="demo_function_choice">demo_function_choice</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>G.H</member>
+    </simplelist>
+  </refsection>
 </refentry>

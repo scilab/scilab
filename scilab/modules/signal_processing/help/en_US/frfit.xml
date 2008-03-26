@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="frfit"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>frfit</refname><refpurpose> frequency response fit</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sys=frfit(w,fresp,order)
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="frfit">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>frfit</refname>
+    <refpurpose> frequency response fit</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>sys=frfit(w,fresp,order)
 [num,den]=frfit(w,fresp,order)
 sys=frfit(w,fresp,order,weight)
-[num,den]=frfit(w,fresp,order,weight)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[num,den]=frfit(w,fresp,order,weight)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>w</term>
@@ -42,14 +49,17 @@ sys=frfit(w,fresp,order,weight)
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>sys=frfit(w,fresp,order,weight)</literal> returns a bi-stable transfer function
     <literal>G(s)=sys=num/den</literal>, of of given <literal>order</literal> such that 
     its frequency response <literal>G(w(i))</literal> matches <literal>fresp(i)</literal>, i.e.
     <literal>freq(num,den,%i*w)</literal> should be close to <literal>fresp</literal>.
     <literal>weight(i)</literal> is the weight given to <literal>w(i)</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 w=0.01:0.01:2;s=poly(0,'s');
 G=syslin('c',2*(s^2+0.1*s+2), (s^2+s+1)*(s^2+0.3*s+1));
@@ -58,25 +68,29 @@ Gid=frfit(w,fresp,4);
 frespfit=repfreq(Gid,w);
 bode(w,[fresp;frespfit])
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="frep2tf">frep2tf</link>
-    </member>
-    <member>
-      <link linkend="factors">factors</link>
-    </member>
-    <member>
-      <link linkend="cepstrum">cepstrum</link>
-    </member>
-    <member>
-      <link linkend="mrfit">mrfit</link>
-    </member>
-    <member>
-      <link linkend="freq">freq</link>
-    </member>
-    <member>
-      <link linkend="calfrq">calfrq</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="frep2tf">frep2tf</link>
+      </member>
+      <member>
+        <link linkend="factors">factors</link>
+      </member>
+      <member>
+        <link linkend="cepstrum">cepstrum</link>
+      </member>
+      <member>
+        <link linkend="mrfit">mrfit</link>
+      </member>
+      <member>
+        <link linkend="freq">freq</link>
+      </member>
+      <member>
+        <link linkend="calfrq">calfrq</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

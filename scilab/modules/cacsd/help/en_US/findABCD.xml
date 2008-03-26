@@ -10,18 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findABCD"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>findABCD</refname><refpurpose> discrete-time system subspace identification</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findABCD">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>findABCD</refname>
+    <refpurpose> discrete-time system subspace identification</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
 SYS = findABCD(S,N,L,R,METH)
 
 [SYS,K,Q,Ry,S,RCND] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
-[SYS,RCND] = findABCD(S,N,L,R,METH)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[SYS,RCND] = findABCD(S,N,L,R,METH)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>S</term>
@@ -149,7 +155,8 @@ SYS = findABCD(S,N,L,R,METH)
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Finds the system matrices and the Kalman gain of a discrete-time 
     system, given the system order and the relevant part of the 
@@ -184,7 +191,9 @@ SYS = findABCD(S,N,L,R,METH)
     METH and JOBD.  METH = 1 and JOBD = 1 must be used in findR, for METH = 1 
     in findABCD;  METH = 1 must be used in findR, for METH = 3 in findABCD.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
@@ -211,25 +220,29 @@ Y1=flts(U,SYS1);
 xbasc();plot2d((1:nsmp)',[Y',Y1'])
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="findAC">findAC</link>
-    </member>
-    <member>
-      <link linkend="findBD">findBD</link>
-    </member>
-    <member>
-      <link linkend="findBDK">findBDK</link>
-    </member>
-    <member>
-      <link linkend="findR">findR</link>
-    </member>
-    <member>
-      <link linkend="sorder">sorder</link>
-    </member>
-    <member>
-      <link linkend="sident">sident</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="findAC">findAC</link>
+      </member>
+      <member>
+        <link linkend="findBD">findBD</link>
+      </member>
+      <member>
+        <link linkend="findBDK">findBDK</link>
+      </member>
+      <member>
+        <link linkend="findR">findR</link>
+      </member>
+      <member>
+        <link linkend="sorder">sorder</link>
+      </member>
+      <member>
+        <link linkend="sident">sident</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

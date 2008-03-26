@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="global"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>global</refname><refpurpose> Define global variable</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>global('nam1',...,'namn')
-global nam1 ... namn</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="global">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>global</refname>
+    <refpurpose> Define global variable</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>global('nam1',...,'namn')
+global nam1 ... namn</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>nam1,..., namn</term>
@@ -16,7 +23,8 @@ global nam1 ... namn</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Ordinarily, each Scilab function, has its
     own local variables and can "read" all variables created in the base
@@ -28,7 +36,9 @@ global nam1 ... namn</synopsis></refsynopsisdiv>
     If the global variable doesn't exist the first time you issue
     the <literal>global</literal> statement, it will be initialized to the empty matrix.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //first: calling environnment and a function share a variable
 global a
@@ -45,22 +55,26 @@ letsgo()
 letsgo1()
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="who">who</link>
-    </member>
-    <member>
-      <link linkend="isglobal">isglobal</link>
-    </member>
-    <member>
-      <link linkend="clearglobal">clearglobal</link>
-    </member>
-    <member>
-      <link linkend="gstacksize">gstacksize</link>
-    </member>
-    <member>
-      <link linkend="resume">resume</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="who">who</link>
+      </member>
+      <member>
+        <link linkend="isglobal">isglobal</link>
+      </member>
+      <member>
+        <link linkend="clearglobal">clearglobal</link>
+      </member>
+      <member>
+        <link linkend="gstacksize">gstacksize</link>
+      </member>
+      <member>
+        <link linkend="resume">resume</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

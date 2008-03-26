@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lqr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lqr</refname><refpurpose> LQ compensator (full state)  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[K,X]=lqr(P12)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lqr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lqr</refname>
+    <refpurpose> LQ compensator (full state)  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[K,X]=lqr(P12)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>P12</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>lqr</literal>  computes the linear optimal LQ full-state gain
     for the plant <literal>P12=[A,B2,C1,D12]</literal> in continuous or
     discrete time.</para>
@@ -98,7 +105,9 @@ X=Abar'*inv(inv(X)+B2*inv(r)*B2')*Abar+Qbar
     Caution: It is assumed that matrix R is non singular. In particular,
     the plant must be tall (number of outputs &gt;= number of inputs).</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=rand(2,2);B=rand(2,1);   //two states, one input
 Q=diag([2,5]);R=2;     //Usual notations x'Qx + u'Ru
@@ -113,17 +122,24 @@ P=syslin('d',A,B,C1,D12);    // Discrete time plant
 spec(A+B*K)   //check stability
 norm(A'*X*A-(A'*X*B)*pinv(B'*X*B+R)*(B'*X*A)+Q-X,1) //Riccati check
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="lqe">lqe</link>
-    </member>
-    <member>
-      <link linkend="gcare">gcare</link>
-    </member>
-    <member>
-      <link linkend="leqr">leqr</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>F.D.;   </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lqe">lqe</link>
+      </member>
+      <member>
+        <link linkend="gcare">gcare</link>
+      </member>
+      <member>
+        <link linkend="leqr">leqr</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.D.;   </para>
+  </refsection>
 </refentry>

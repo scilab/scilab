@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="knapsack"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>knapsack</refname><refpurpose> solves a 0-1 multiple knapsack problem</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[earn,ind] = knapsack(profit,weight,capa,[bck])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="knapsack">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>knapsack</refname>
+    <refpurpose> solves a 0-1 multiple knapsack problem</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[earn,ind] = knapsack(profit,weight,capa,[bck])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>profit</term>
@@ -57,17 +63,24 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>The 0-1 multiple knapsack problem with  n (n &gt;= 2)
     items and  m  knapsacks (m &gt;= 1) is defined as follow:</para>
     <para>Maximize the global profit  <literal>E=profit*sum(X,1)</literal> under the constraints:</para>
-    <para><literal>X*weight &lt;= capa</literal></para>
-    <para><literal>sum(X,1) &lt;= 1 ; i=1,...,n</literal></para>
-    <para><literal>X(j,i)= 0 or 1</literal></para>
+    <para>
+      <literal>X*weight &lt;= capa</literal>
+    </para>
+    <para>
+      <literal>sum(X,1) &lt;= 1 ; i=1,...,n</literal>
+    </para>
+    <para>
+      <literal>X(j,i)= 0 or 1</literal>
+    </para>
     <para> Where</para>
     <para><literal>profit</literal> is the vector of the profits of the n items. The entries must be positive integers.</para>
     <para><literal>weight</literal> is the vector of the corresponding weights. The entries must be positive integers</para>
-    <para><literal>capa</literal> is the vector of the (integer) capacities of the m knapsacks.The entries must be positive integers </para> 
+    <para><literal>capa</literal> is the vector of the (integer) capacities of the m knapsacks.The entries must be positive integers </para>
     <para><literal>X</literal> is a <literal>m</literal> by <literal>n</literal> matrix.</para>
     <para> </para>
     <para><literal>[earn,ind] = knapsack(profit,weight,capa)</literal> solves
@@ -88,10 +101,11 @@
     <para><literal>bck</literal> is an optional integer: the maximum number of
     backtrackings to be performed, if heuristic solution is
     required. If the exact solution is required <literal>bck</literal> can
-    be omitted or can have a negative value.</para> 
- 
+    be omitted or can have a negative value.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 weight=ones(1,15).*.[1:4];
 profit=ones(1,60);
@@ -107,15 +121,19 @@ x=sum(X,1);
 and(x<=1) //contraints check
 profit*x'==earn
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="qassign">qassign</link>
-    </member>
-  </simplelist></refsection>
-<refsection><title>Bibliography</title>
-<para>Coppersmith, D. "Knapsack Used in Factoring." §4.6 in Open Problems in Communication and Computation (Ed. T. M. Cover and B. Gopinath). New York: Springer-Verlag, pp. 117-119, 1987.</para>
-<para>Honsberger, R. Mathematical Gems III. Washington, DC: Math. Assoc. Amer., pp. 163-166, 1985.</para>
-</refsection>
-
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="qassign">qassign</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
+    <para>Coppersmith, D. "Knapsack Used in Factoring." §4.6 in Open Problems in Communication and Computation (Ed. T. M. Cover and B. Gopinath). New York: Springer-Verlag, pp. 117-119, 1987.</para>
+    <para>Honsberger, R. Mathematical Gems III. Washington, DC: Math. Assoc. Amer., pp. 163-166, 1985.</para>
+  </refsection>
 </refentry>

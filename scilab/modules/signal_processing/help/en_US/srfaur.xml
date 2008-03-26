@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="srfaur"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>srfaur</refname><refpurpose> square-root algorithm</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="srfaur">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>srfaur</refname>
+    <refpurpose> square-root algorithm</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>h, f, g</term>
@@ -51,11 +58,14 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     square-root algorithm for the algebraic Riccati equation.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //GENERATE SIGNAL
 x=%pi/10:%pi/10:102.4*%pi;
@@ -73,16 +83,20 @@ r0=c(1:2,1:2);
 //Make covariance matrix exactly symetric
 Rt=(Rt+Rt')/2
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="phc">phc</link>
-    </member>
-    <member>
-      <link linkend="faurre">faurre</link>
-    </member>
-    <member>
-      <link linkend="lindquist">lindquist</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="phc">phc</link>
+      </member>
+      <member>
+        <link linkend="faurre">faurre</link>
+      </member>
+      <member>
+        <link linkend="lindquist">lindquist</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

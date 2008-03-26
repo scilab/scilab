@@ -1,41 +1,37 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fec"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fec</refname><refpurpose>dessin en pseudo-couleurs d'une surface
-  définie sur une triangulation</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax])</synopsis></refsynopsisdiv>
-
-  <refsection><title>Paramètres</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fec">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fec</refname>
+    <refpurpose>dessin en pseudo-couleurs d'une surface
+  définie sur une triangulation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>
-
         <listitem>
           <para>deux vecteurs de taille <literal>n</literal>,
           <literal>(x(i),y(i))</literal> donne les coordonnées du sommet
           <literal>i</literal></para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>func</term>
-
         <listitem>
           <para>un vecteur de taille <literal>n</literal> : <literal>func(i)</literal>
           donne la valeur de la fonction à  représenter</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>triangles</term>
-
         <listitem>
           <para>une matrice <literal>[Ntr,5]</literal>. Chaque ligne de
           <literal>triangles</literal> représente un triangle du maillage
@@ -45,18 +41,14 @@
           est un entier qui n'est pas utilisé par fec.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>strf,leg,rect,nax</term>
-
         <listitem>
           <para>voir plot2d</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>zminmax</term>
-
         <listitem>
           <para>parfait pour faire des animations avec fec. zminmax est un
           vecteur de taille 2 [zmin zmax] qui donne les z associés à  la
@@ -73,10 +65,8 @@
           niveaux de zminmax sont franchis).</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>colminmax</term>
-
         <listitem>
           <para>un vecteur de 2 entiers positifs colminmax=[colmin colmax]
           avec 1 &lt;= colmin &lt; colmax &lt;= nc (où nc est la taille de la
@@ -87,21 +77,20 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>Voir les fonctions de démonstration dans le répertoire
     <literal>demos/fec</literal>.</para>
-
     <para><literal>fec.ex1</literal> est une simple démo dans laquelle le maillage et
     la fonction sont construits en langage Scilab.</para>
-
     <para><literal>fec.ex2</literal> est un exemple où le maillage est construit avec
     un mailleur externe (type amdba). Un ensemble de macros
     (<literal>macros.sci</literal>) peut être utilisé pour lire les fichiers de
     données correspondants.</para>
   </refsection>
-
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 // define a mini triangulation (4 vertices, 2 triangles)
 x = [0 1 0 -1];
 y = [0 0 1  1];
@@ -168,15 +157,17 @@ subplot(1,2,2)
    fec(x,y,T,z,strf="040", colminmax=[65 128], mesh=%t)
    xtitle("fec using the jet colormap")
 xselect()
-  ]]></programlisting></refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member>
-      <link linkend="Sfgrayplot">Sfgrayplot</link>
-    </member>
-
-    <member>
-      <link linkend="Sgrayplot">Sgrayplot</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="Sfgrayplot">Sfgrayplot</link>
+      </member>
+      <member>
+        <link linkend="Sgrayplot">Sgrayplot</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

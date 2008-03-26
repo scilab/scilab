@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dhinf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dhinf</refname><refpurpose> H_infinity design of discrete-time systems</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[AK,BK,CK,DK,(RCOND)] = dishin(A,B,C,D,ncon,nmeas,gamma)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dhinf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dhinf</refname>
+    <refpurpose> H_infinity design of discrete-time systems</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[AK,BK,CK,DK,(RCOND)] = dishin(A,B,C,D,ncon,nmeas,gamma)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -143,7 +149,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>[AK,BK,CK,DK,(RCOND)] = dhinf(A,B,C,D,ncon,nmeas, gamma)</literal> 
      To compute the matrices of an H-infinity (sub)optimal n-state
   controller</para>
@@ -169,11 +176,14 @@
     number of control inputs (ncon) and C2 has row size of the number
     of measurements (nmeas) being provided to the controller.</para>
   </refsection>
-  <refsection><title>References</title>
+  <refsection>
+    <title>References</title>
     <para>
        [1] P.Hr. Petkov, D.W. Gu and M.M. Konstantinov. Fortran 77 routines        for Hinf and H2 design of linear discrete-time control systems.        Report99-8, Department of Engineering, Leicester University,        April 1999.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //example from Niconet report SLWN1999-12
 //Hinf
@@ -205,13 +215,17 @@ nmeas=2
 gam=111.30;
 [AK,BK,CK,DK] = dhinf(A,B,C,D,ncon,nmeas,gam)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="hinf">hinf</link>
-    </member>
-    <member>
-      <link linkend="h_inf">h_inf</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="hinf">hinf</link>
+      </member>
+      <member>
+        <link linkend="h_inf">h_inf</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

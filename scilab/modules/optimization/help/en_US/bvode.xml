@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bvode"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>bvode</refname><refpurpose> boundary value problems for ODE</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[z]=bvode(points,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
-fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bvode">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bvode</refname>
+    <refpurpose> boundary value problems for ODE</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[z]=bvode(points,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
+fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>z</term>
@@ -82,7 +89,6 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis></refsynopsisdiv>
                 </para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>ipar(3)  </term>
               <listitem>
@@ -98,19 +104,19 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis></refsynopsisdiv>
                 </para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>ipar(5)</term>
               <listitem>
                 <para>= dimension of <literal>fspace</literal> ( = ndimf ) a
                 real work array. its size provides a constraint on
                 nmax. choose ipar(5) according to the formula:</para>
-                <para> <literal>ipar(5)&gt;=nmax*nsizef</literal> </para>
+                <para>
+                  <literal>ipar(5)&gt;=nmax*nsizef</literal>
+                </para>
                 <para>where</para>
-                <para> <literal>nsizef=4+3*mstar+(5+kd)*kdm+(2*mstar-nrec)*2*mstar</literal>.</para>
+                <para><literal>nsizef=4+3*mstar+(5+kd)*kdm+(2*mstar-nrec)*2*mstar</literal>.</para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>ipar(6)</term>
               <listitem>
@@ -118,9 +124,11 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis></refsynopsisdiv>
                  array. its size provides a constraint on nmax, the
                  maximum number of subintervals. choose
                  <literal>ipar(6)</literal> according to the formula:</para>
-                 <para> <literal>ipar(6)&gt;=nmax*nsizei</literal></para>
-                  <para>where</para>
-                 <para><literal>nsizei=3 + kdm</literal> with
+                <para>
+                  <literal>ipar(6)&gt;=nmax*nsizei</literal>
+                </para>
+                <para>where</para>
+                <para><literal>nsizei=3 + kdm</literal> with
                  <literal>kdm=kd+mstar</literal> ; <literal>kd=k*ncomp </literal>;
                  <literal>nrec</literal>=number of right end boundary
                  conditions.</para>
@@ -274,9 +282,8 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis></refsynopsisdiv>
           in tol controls the error in the l-th component of
           <literal>z(u)</literal>.  also require that:</para>
           <para>
-          <literal>1 &lt;= ltol(1) &lt; ltol(2) &lt; ... &lt; ltol(ntol) &lt;= mstar</literal> 
+            <literal>1 &lt;= ltol(1) &lt; ltol(2) &lt; ... &lt; ltol(ntol) &lt;= mstar</literal>
           </para>
-          
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -287,11 +294,10 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis></refsynopsisdiv>
           tolerance on the <literal>ltol(j)</literal> -th component of
           <literal>z(u)</literal>. thus, the code attempts to satisfy for
           <literal>j=1:ntol</literal>  on each subinterval</para>
-<programlisting><![CDATA[
+          <programlisting><![CDATA[
         abs(z(v)-z(u))       <=     tol(j)*abs(z(u))     +tol(j)
                      ltol(j)                       ltol(j)
 ]]></programlisting>
-          
           <para>
     if <literal>v(x)</literal> is the approximate solution vector.
   </para>
@@ -317,7 +323,7 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis></refsynopsisdiv>
               <term>fsub</term>
               <listitem>
                 <para>name of subroutine for evaluating</para>
-<programlisting><![CDATA[
+                <programlisting><![CDATA[
                                                 t
                 f(x,z(u(x))) =    (f ,...,f     )  
                                     1      ncomp
@@ -325,7 +331,7 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis></refsynopsisdiv>
                 <para>
     at a point x in <literal>(aleft,aright)</literal>. it should have the heading  <literal>[f]=fsub(x,z)</literal>  where <literal>f</literal> is the vector containing the value of <literal>fi(x,z(u))</literal> in the i-th component and 
   </para>
- <programlisting><![CDATA[
+                <programlisting><![CDATA[
                                                     t
                          z(u(x))=(z(1),...,z(mstar))
 ]]></programlisting>
@@ -345,12 +351,10 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis></refsynopsisdiv>
                 (<literal>mstar</literal>) array df should be filled by the
                 partial derivatives of  f, viz, for a particular call
                 one calculates</para>
-
- <programlisting><![CDATA[
+                <programlisting><![CDATA[
                     df(i,j) = dfi / dzj, i=1,...,ncomp
                                          j=1,...,mstar.
 ]]></programlisting>
-
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -401,58 +405,58 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     this package solves a multi-point boundary value
     problem for a mixed order system of ode-s given by</para>
-<programlisting><![CDATA[
+    <programlisting><![CDATA[
        (m(i))
        u       =  f  ( x; z(u(x)) )      i = 1, ... ,ncomp
         i          i                     aleft < x  < aright,
                                         
 ]]></programlisting>
-
-<programlisting><![CDATA[
+    <programlisting><![CDATA[
        g  ( zeta(j); z(u(zeta(j))) ) = 0   j = 1, ... ,mstar
         j
       mstar = m(1)+m(2)+...+m(ncomp),
 ]]></programlisting>
-<para> where</para>
-<programlisting><![CDATA[
+    <para> where</para>
+    <programlisting><![CDATA[
                                         t
              u = (u , u , ... ,u     )   
                    1   2        ncomp    
 ]]></programlisting>
-<para>is the exact solution vector</para>
-<programlisting><![CDATA[
+    <para>is the exact solution vector</para>
+    <programlisting><![CDATA[
               (mi)
              u     is the mi=m(i) th  derivative of u
               i                                      i
-]]></programlisting> 
-<programlisting><![CDATA[                                     
+]]></programlisting>
+    <programlisting><![CDATA[                                     
 
                                 (1)        (m1-1)       (mncomp-1)
              z(u(x)) = ( u (x),u  (x),...,u    (x),...,u      (x) )
                           1     1          1            ncomp
-]]></programlisting> 
-<programlisting><![CDATA[  
+]]></programlisting>
+    <programlisting><![CDATA[  
               f (x,z(u))   
                i
 ]]></programlisting>
     <para> is a (generally) nonlinear function of <literal>z(u)=z(u(x))</literal>.</para>
-<programlisting><![CDATA[ 
+    <programlisting><![CDATA[ 
               g (zeta(j);z(u))  
                j
 ]]></programlisting>
-      <para>  is a (generally) nonlinear function   used to represent a boundary condition.</para>
-
+    <para>  is a (generally) nonlinear function   used to represent a boundary condition.</para>
     <para> the boundary points satisfy</para>
-
-     <para><literal>aleft &lt;= zeta(1)  &lt;= ..  &lt;= zeta(mstar)  &lt;= aright</literal>. </para>
+    <para><literal>aleft &lt;= zeta(1)  &lt;= ..  &lt;= zeta(mstar)  &lt;= aright</literal>. </para>
     <para> the orders <literal>mi</literal> of the differential equations satisfy</para>
     <para><literal>1&lt;=m(i)&lt;=4</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 deff('df=dfsub(x,z)','df=[0,0,-6/x**2,-6/x]')
 deff('f=fsub(x,z)','f=(1 -6*x**2*z(4)-6*x*z(3))/x**3')
@@ -481,23 +485,30 @@ z=bvode(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
 z1=[];for x=res,z1=[z1,trusol(x)]; end;  
 z-z1
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="fort">fort</link>
-    </member>
-    <member>
-      <link linkend="link">link</link>
-    </member>
-    <member>
-      <link linkend="external">external</link>
-    </member>
-    <member>
-      <link linkend="ode">ode</link>
-    </member>
-    <member>
-      <link linkend="dassl">dassl</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>u. ascher, department of computer science, university of british; columbia, vancouver, b. c., canada   v6t 1w5; g. bader, institut f. angewandte mathematik university of heidelberg; im neuenheimer feld 294d-6900 heidelberg 1 ; ; Fortran subroutine colnew.f</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fort">fort</link>
+      </member>
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="external">external</link>
+      </member>
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+      <member>
+        <link linkend="dassl">dassl</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>u. ascher, department of computer science, university of british; columbia, vancouver, b. c., canada   v6t 1w5; g. bader, institut f. angewandte mathematik university of heidelberg; im neuenheimer feld 294d-6900 heidelberg 1 ; ; Fortran subroutine colnew.f</para>
+  </refsection>
 </refentry>

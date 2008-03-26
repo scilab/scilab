@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_recv"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvm_recv</refname><refpurpose> receive a message.  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[buff, info, msgtid, tag] = pvm_recv(tid, msgtag)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_recv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_recv</refname>
+    <refpurpose> receive a message.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[buff, info, msgtid, tag] = pvm_recv(tid, msgtag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>tid</term>
@@ -57,7 +63,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>pvm_recv</literal> 
     blocks the process until a message with label
     <literal>msgtag</literal> (<literal>-1</literal> can be used to match 
@@ -99,13 +106,15 @@
     Once pvm_recv returns, the data in the message can be unpacked
     into the user's memory using the unpack routines.</para>
   </refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pvm_send">pvm_send</link>
-    </member>
-    <member>
-      <link linkend="pvm_bcast">pvm_bcast</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_send">pvm_send</link>
+      </member>
+      <member>
+        <link linkend="pvm_bcast">pvm_bcast</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="simp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>simp</refname><refpurpose> rational simplification</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[N1,D1]=simp(N,D)
-H1=simp(H)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="simp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>simp</refname>
+    <refpurpose> rational simplification</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[N1,D1]=simp(N,D)
+H1=simp(H)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>N,D</term>
@@ -34,7 +40,8 @@ H1=simp(H)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>[n1,d1]=simp(n,d)</literal> calculates two polynomials <literal>n1</literal> and <literal>d1</literal>
     such that <literal>n1/d1 = n/d</literal>.</para>
     <para>
@@ -58,7 +65,9 @@ H1=simp(H)</synopsis></refsynopsisdiv>
     rationals. It is possible to toggle simplification on or off using
     <literal>simp_mode</literal> function.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 s=poly(0,'s');
 [n,d]=simp((s+1)*(s+2),(s+1)*(s-2))
@@ -67,22 +76,26 @@ simp_mode(%F);hns=s/s
 simp_mode(%T);hns=s/s
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="roots">roots</link>
-    </member>
-    <member>
-      <link linkend="trfmod">trfmod</link>
-    </member>
-    <member>
-      <link linkend="poly">poly</link>
-    </member>
-    <member>
-      <link linkend="clean">clean</link>
-    </member>
-    <member>
-      <link linkend="simp_mode">simp_mode</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="roots">roots</link>
+      </member>
+      <member>
+        <link linkend="trfmod">trfmod</link>
+      </member>
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="clean">clean</link>
+      </member>
+      <member>
+        <link linkend="simp_mode">simp_mode</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

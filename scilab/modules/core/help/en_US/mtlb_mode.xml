@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_mode"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_mode</refname><refpurpose> switch Matlab like operations</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>mmode=mtlb_mode()
-mtlb_mode(mmode)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_mode">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_mode</refname>
+    <refpurpose> switch Matlab like operations</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>mmode=mtlb_mode()
+mtlb_mode(mmode)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>mmode</term>
@@ -16,15 +23,18 @@ mtlb_mode(mmode)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Scilab and Matlab additions and substractions work differently
     when used with empty matrices:
   </para>
     <variablelist>
-      <varlistentry><term>Scilab</term><listitem>
-        <para>:</para>
-        <programlisting><![CDATA[
+      <varlistentry>
+        <term>Scilab</term>
+        <listitem>
+          <para>:</para>
+          <programlisting><![CDATA[
 
 a+[] -->a
 a-[] -->a
@@ -32,9 +42,12 @@ a-[] -->a
 []-a -->-a
    
         ]]></programlisting>
-      </listitem></varlistentry>
-      <varlistentry><term>Matlab</term><listitem>
-        <programlisting><![CDATA[
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Matlab</term>
+        <listitem>
+          <programlisting><![CDATA[
 
 a+[] -->[]
 a-[] -->[]
@@ -42,15 +55,19 @@ a-[] -->[]
 []-a -->[]
    
         ]]></programlisting>
-      </listitem></varlistentry>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para><literal> mtlb_mode(%t)</literal>  switches to Matlab evaluation mode for additions and
     substractions. <literal> mtlb_mode(%f)</literal>  switches back to Scilab mode.</para>
     <para><literal> mtlb_mode()</literal> return the current mmode' value</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="empty">empty</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="empty">empty</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

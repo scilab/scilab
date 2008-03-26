@@ -10,62 +10,72 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="get_contents_infer"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>get_contents_infer</refname><refpurpose>Cherche des
-  informations dans le contenu d'une "tlist M2SCI"</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[infer,pos]=get_contents_infer(m2scitlist,index)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Paramètres</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="get_contents_infer">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>get_contents_infer</refname>
+    <refpurpose>Cherche des
+  informations dans le contenu d'une "tlist M2SCI"</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[infer,pos]=get_contents_infer(m2scitlist,index)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
     <variablelist>
       <varlistentry>
         <term>m2scitlist</term>
         <listitem>
           <para>une "tlist M2SCI"</para>
-       </listitem>
+        </listitem>
       </varlistentry>
       <varlistentry>
         <term>index</term>
         <listitem>
           <para>un index tel que ceux retournï¿½s par <literal>macr2tree</literal>.</para>
-       </listitem>
+        </listitem>
       </varlistentry>
       <varlistentry>
         <term>infer</term>
         <listitem>
           <para>une tlist de type "infer"</para>
-       </listitem>
+        </listitem>
       </varlistentry>
       <varlistentry>
         <term>pos</term>
         <listitem>
           <para>position des informations dans la liste</para>
-       </listitem>
+        </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Cette fonction recherche les informations d'infï¿½rence pour un
     index donnï¿½ dans le contenu d'une Cell ou d'une Struct en tenant
     compte des <literal>*</literal>. Si aucune information correspond ï¿½ cet
     index, les valeurs retournï¿½es sont infer=Infer() et pos=0.
-    </para>  
+    </para>
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="Infer">Infer</link> </member>
-    <member> <link linkend="Contents">Contents</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
-
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="Infer">Infer</link>
+      </member>
+      <member>
+        <link linkend="Contents">Contents</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

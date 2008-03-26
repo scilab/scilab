@@ -10,17 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="and"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>and</refname><refpurpose> (&amp;) logical and</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>b=and(A), b=and(A,'*')
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="and">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>and</refname>
+    <refpurpose> (&amp;) logical and</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>b=and(A), b=and(A,'*')
 b=and(A,'r'), b=and(A,1)
 b=and(A,'c'), b=and(A,2)
-A&amp;B</synopsis></refsynopsisdiv>
-  <refsection><title>Description</title>
+A&amp;B</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
     <para><literal>and(A)</literal> is the logical AND of elements of 
     the boolean matrix <literal>A</literal>. <literal>and(A)</literal> returns <literal>%T</literal> ("true")  iff 
     all entries of <literal>A</literal> are <literal>%T</literal>.</para>
@@ -34,12 +40,15 @@ A&amp;B</synopsis></refsynopsisdiv>
      <literal>A</literal> and  <literal>B</literal> .<literal>A</literal> and  <literal>B</literal> must be matrices with the same
      dimensions or one from them must be a single boolean.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="not">not</link>
-    </member>
-    <member>
-      <link linkend="or">or</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="not">not</link>
+      </member>
+      <member>
+        <link linkend="or">or</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

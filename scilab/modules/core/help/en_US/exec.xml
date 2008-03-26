@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="exec"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>exec</refname><refpurpose> script file execution</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>exec(path [,mode])
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="exec">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>exec</refname>
+    <refpurpose> script file execution</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>exec(path [,mode])
 exec(fun [,mode])
 ierr=exec(path,'errcatch' [,mode])
-ierr=exec(fun,'errcatch' [,mode])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+ierr=exec(fun,'errcatch' [,mode])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>path</term>
@@ -36,7 +43,8 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>exec(path [,mode])</literal> executes sequentialy the scilab instructions
     contained in the file given by <literal>path</literal>  with an optional 
     execution mode <literal>mode</literal> .</para>
@@ -75,10 +83,13 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis></refsynopsisdiv>
     number. If 'errcatch' flag is not present, standard error handling
     works.</para>
   </refsection>
-  <refsection><title>Remark</title>
+  <refsection>
+    <title>Remark</title>
     <para><literal>exec</literal> files may now be used to define functions using the inline function definition syntax (see function).</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // create a script file
 mputl('a=1;b=2',TMPDIR+'/myscript')
@@ -101,28 +112,32 @@ exec(foo)
 // a and y are created in the current environment
 whos -name "a "
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="getf">getf</link>
-    </member>
-    <member>
-      <link linkend="execstr">execstr</link>
-    </member>
-    <member>
-      <link linkend="evstr">evstr</link>
-    </member>
-    <member>
-      <link linkend="comp">comp</link>
-    </member>
-    <member>
-      <link linkend="mode">mode</link>
-    </member>
-    <member>
-      <link linkend="chdir">chdir</link>
-    </member>
-    <member>
-      <link linkend="getcwd">getcwd</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+      <member>
+        <link linkend="mode">mode</link>
+      </member>
+      <member>
+        <link linkend="chdir">chdir</link>
+      </member>
+      <member>
+        <link linkend="getcwd">getcwd</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

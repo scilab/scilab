@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="glist"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>glist</refname><refpurpose>Scilab-4.x graph list creation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g = glist(a1, ... ,a34)</synopsis></refsynopsisdiv>
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="glist">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>glist</refname>
+    <refpurpose>Scilab-4.x graph list creation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>g = glist(a1, ... ,a34)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
     <para> This is an obsolete function, replaced by <link linkend="make_graph">make_graph</link> </para>
     <para><literal>glist(a1,....a34)</literal> is a shortcut to  to </para>
     <programlisting><![CDATA[
@@ -36,12 +42,15 @@
     No checking is done.
     For standard creation of graph lists, use <literal>make_graph</literal>.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="check_graph">check_graph</link>
-    </member>
-    <member>
-      <link linkend="make_graph">make_graph</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="check_graph">check_graph</link>
+      </member>
+      <member>
+        <link linkend="make_graph">make_graph</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

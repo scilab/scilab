@@ -11,14 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="int2d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>int2d</refname><refpurpose> definite 2D integral by quadrature and cubature method</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[I,err]=int2d(X,Y,f [,params])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="int2d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>int2d</refname>
+    <refpurpose> definite 2D integral by quadrature and cubature method</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[I,err]=int2d(X,Y,f [,params])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
@@ -90,7 +96,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>int2d</literal> computes the two-dimensional integral of a
     function <literal>f</literal> over a region consisting of <literal>n</literal> triangles.
     A total error estimate is obtained and compared with a
@@ -115,7 +122,9 @@
     senses that roundoff error is beginning to contaminate
     the result.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 X=[0,0;1,1;1,0];
 Y=[0,0;0,1;1,1];
@@ -123,23 +132,30 @@ deff('z=f(x,y)','z=cos(x+y)')
 [I,e]=int2d(X,Y,f)
 // computes the integrand over the square [0 1]x[0 1]
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="intc">intc</link>
-    </member>
-    <member>
-      <link linkend="intl">intl</link>
-    </member>
-    <member>
-      <link linkend="int3d">int3d</link>
-    </member>
-    <member>
-      <link linkend="intg">intg</link>
-    </member>
-    <member>
-      <link linkend="mesh2d">mesh2d</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>Fortran routine twodq Authors: Kahaner,D.K.,N.B.S., Rechard,O.W.,N.B.S.,; Barnhill,Robert,Univ. of UTAH</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="intc">intc</link>
+      </member>
+      <member>
+        <link linkend="intl">intl</link>
+      </member>
+      <member>
+        <link linkend="int3d">int3d</link>
+      </member>
+      <member>
+        <link linkend="intg">intg</link>
+      </member>
+      <member>
+        <link linkend="mesh2d">mesh2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Fortran routine twodq Authors: Kahaner,D.K.,N.B.S., Rechard,O.W.,N.B.S.,; Barnhill,Robert,Univ. of UTAH</para>
+  </refsection>
 </refentry>

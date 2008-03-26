@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="syslin"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>syslin</refname><refpurpose> linear system definition</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[sl]=syslin(dom,A,B,C [,D [,x0] ])
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="syslin">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>syslin</refname>
+    <refpurpose> linear system definition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[sl]=syslin(dom,A,B,C [,D [,x0] ])
 [sl]=syslin(dom,N,D)
-[sl]=syslin(dom,H)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[sl]=syslin(dom,H)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>dom</term>
@@ -60,7 +66,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>syslin</literal>  defines a linear system as a list and checks consistency of data.</para>
     <para><literal>dom</literal> specifies the time domain of the system and can have the following values:</para>
     <para><literal>dom='c'</literal> for a continuous time system, <literal>dom='d'</literal> for a discrete time system,
@@ -105,7 +112,9 @@ sl=syslin(dom,H)
     Most of state-space control functions receive a <literal>syslin</literal> list as input instead
     of the four matrices defining the system.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=[0,1;0,0];B=[1;1];C=[1,1];
 S1=syslin('c',A,B,C)   //Linear system definition
@@ -123,31 +132,35 @@ S1bis+S2bis
 S1*S2bis
 size(S1)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="tlist">tlist</link>
-    </member>
-    <member>
-      <link linkend="lsslist">lsslist</link>
-    </member>
-    <member>
-      <link linkend="rlist">rlist</link>
-    </member>
-    <member>
-      <link linkend="ssrand">ssrand</link>
-    </member>
-    <member>
-      <link linkend="ss2tf">ss2tf</link>
-    </member>
-    <member>
-      <link linkend="tf2ss">tf2ss</link>
-    </member>
-    <member>
-      <link linkend="dscr">dscr</link>
-    </member>
-    <member>
-      <link linkend="abcd">abcd</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="lsslist">lsslist</link>
+      </member>
+      <member>
+        <link linkend="rlist">rlist</link>
+      </member>
+      <member>
+        <link linkend="ssrand">ssrand</link>
+      </member>
+      <member>
+        <link linkend="ss2tf">ss2tf</link>
+      </member>
+      <member>
+        <link linkend="tf2ss">tf2ss</link>
+      </member>
+      <member>
+        <link linkend="dscr">dscr</link>
+      </member>
+      <member>
+        <link linkend="abcd">abcd</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

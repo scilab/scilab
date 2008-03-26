@@ -10,33 +10,31 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_conv"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_conv</refname><refpurpose>Fonction d'�mulation de la fonction Matlab conv</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_conv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_conv</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab conv</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>conv</literal> et la fonction Scilab <literal>convol</literal>
     se comportent diff�remment :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec des vecteurs colonne comme param�tres d'entr�es : Si au moins l'un des deux param�tres d'entr�e de la fonction
 	Matlab <literal>conv</literal> est un vecteur colonne alors la valeur retourn�e sera un vecteur colonne mais la fonction Scilab
 	<literal>convol</literal> retourne toujours un vecteur ligne.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_conv(u,v)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>conv(u,v)</literal> quand il n'�tait pas
@@ -45,46 +43,46 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_conv</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>u</literal> et <literal>v</literal> sont des vecteurs ligne,
         <literal>mtlb_conv(u,v)</literal> peut �tre remplac� par <literal>convol(u,v)</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Si <literal>u</literal> ou <literal>v</literal> est un vecteur colonne,
         <literal>mtlb_conv(u,v)</literal> peut �tre remplac� par <literal>convol(u,v).'</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Si <literal>u</literal> et <literal>v</literal> sont des vecteurs colonne,
         <literal>mtlb_conv(u,v)</literal> peut �tre remplac� par <literal>convol(u,v).'</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>La fonction Scilab <literal>convol</literal> retourne parfois des valeurs qui peuvent �tre arrondies en utilisant <literal>clean</literal>
     pour avoir un r�sultat plus proche de Matlab.</para>
-
     <para>Attention : <literal>mtlb_conv</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="clean">clean</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="clean">clean</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

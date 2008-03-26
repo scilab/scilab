@@ -10,40 +10,37 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_prod"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_prod</refname><refpurpose>Fonction d'�mulation de la fonction Matlab prod</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_prod">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_prod</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab prod</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction <literal>prod</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         En cas d'appel avec un param�tre d'entr�e : La fonction Matlab <literal>prod</literal> traite
 	les valeurs en suivant la premi�re dimension qui n'est pas 1 alors que la fonction Scilab
 	<literal>prod</literal> traite toutes les valeurs de l'entr�e.
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         En cas d'appel avec deux param�tres d'entr�e : La fonction Matlab <literal>prod</literal> peut �tre
 	utilis�e avec le second param�tre donnant une dimension du premier param�tre qui n'existe pas
 	alors que la fonction Scilab <literal>prod</literal> retourne un message d'erreur.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_prod(A[,dim])</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>prod(A[,dim])</literal> quand il n'�tait pas
@@ -51,51 +48,51 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_prod</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est une matrice vide, un scalaire ou un vecteur,
         <literal>mtlb_prod(A)</literal> peut �tre remplac� par <literal>prod(A)</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est une matrice non-vide,
         <literal>mtlb_prod(A)</literal> peut �tre remplac� par <literal>prod(A,1)</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est hypermatrice,
         <literal>mtlb_prod(A)</literal> peut �tre remplac� par <literal>prod(A,firstnonsingleton(A))</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         En cas d'appel avec deux param�tres d'entr�e, si <literal>dim</literal> est inf�rieure au nombre
 	de dimensions de <literal>A</literal> 
         <literal>mtlb_prod(A,dim)</literal> peut �tre remplac� par <literal>prod(A,dim)</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_prod</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="firstnonsingleton">firstnonsingleton</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="firstnonsingleton">firstnonsingleton</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

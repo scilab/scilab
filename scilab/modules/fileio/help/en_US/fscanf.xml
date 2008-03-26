@@ -11,14 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fscanf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fscanf</refname><refpurpose> Converts formatted input read on a file</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[v_1,...v_n]=fscanf (file,format)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fscanf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fscanf</refname>
+    <refpurpose> Converts formatted input read on a file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[v_1,...v_n]=fscanf (file,format)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>format</term>
@@ -34,7 +40,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     The fscanf functions read character data on the file specified by the
     <literal>file</literal> argument , interpret it according
@@ -60,24 +67,27 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="printf">printf</link>
-    </member>
-    <member>
-      <link linkend="read">read</link>
-    </member>
-    <member>
-      <link linkend="scanf">scanf</link>
-    </member>
-    <member>
-      <link linkend="sscanf">sscanf</link>
-    </member>
-    <member>
-      <link linkend="mfscanf">mfscanf</link>
-    </member>
-    <member>
-      <link linkend="scanf_conversion">scanf_conversion</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="printf">printf</link>
+      </member>
+      <member>
+        <link linkend="read">read</link>
+      </member>
+      <member>
+        <link linkend="scanf">scanf</link>
+      </member>
+      <member>
+        <link linkend="sscanf">sscanf</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="scanf_conversion">scanf_conversion</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,17 +10,20 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Variable"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>Variable</refname><refpurpose>Create a tree representing a variable</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>var=Variable(name,infer)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Variable">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Variable</refname>
+    <refpurpose>Create a tree representing a variable</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>var=Variable(name,infer)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>var</term>
@@ -42,26 +45,43 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function create a <literal>tlist</literal> representing a variable when using M2SCI.
     All input parameters values are verified to be compatible with "M2SCI tlists".
-    </para>  
+    </para>
   </refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member> <link linkend="Funcall">Funcall</link> </member>
-    <member> <link linkend="Operation">Operation</link> </member>
-    <member> <link linkend="Cste">Cste</link> </member>
-    <member> <link linkend="Infer">Infer</link> </member>
-    <member> <link linkend="Contents">Contents</link> </member>
-    <member> <link linkend="Type">Type</link> </member>
-    <member> <link linkend="Equal">Equal</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
-
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="Funcall">Funcall</link>
+      </member>
+      <member>
+        <link linkend="Operation">Operation</link>
+      </member>
+      <member>
+        <link linkend="Cste">Cste</link>
+      </member>
+      <member>
+        <link linkend="Infer">Infer</link>
+      </member>
+      <member>
+        <link linkend="Contents">Contents</link>
+      </member>
+      <member>
+        <link linkend="Type">Type</link>
+      </member>
+      <member>
+        <link linkend="Equal">Equal</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

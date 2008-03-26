@@ -10,17 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quaskro"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>quaskro</refname><refpurpose> quasi-Kronecker form</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quaskro">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>quaskro</refname>
+    <refpurpose> quasi-Kronecker form</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F)
 [Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A)
 [Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F,tol)
-[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A,tol)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A,tol)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>F</term>
@@ -60,7 +66,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Quasi-Kronecker form of matrix pencil: <literal>quaskro</literal> computes two
     orthogonal matrices <literal>Q, Z</literal> which put the pencil <literal>F=s*E -A</literal> into
@@ -99,15 +106,18 @@ Q(sE-A)Z = |=================================|============|
     <para>
     The code is taken from T. Beelen</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="kroneck">kroneck</link>
-    </member>
-    <member>
-      <link linkend="gschur">gschur</link>
-    </member>
-    <member>
-      <link linkend="gspec">gspec</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="kroneck">kroneck</link>
+      </member>
+      <member>
+        <link linkend="gschur">gschur</link>
+      </member>
+      <member>
+        <link linkend="gspec">gspec</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

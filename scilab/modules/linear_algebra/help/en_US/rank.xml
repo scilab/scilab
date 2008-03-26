@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rank"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>rank</refname><refpurpose> rank</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[i]=rank(X)
-[i]=rank(X,tol)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rank">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rank</refname>
+    <refpurpose> rank</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[i]=rank(X)
+[i]=rank(X,tol)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
@@ -34,7 +40,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>rank(X)</literal> is the numerical rank of <literal>X</literal>
     i.e. the number of singular values of X that are larger than
     <literal>norm(size(X),'inf') * norm(X) * %eps</literal>.</para>
@@ -45,27 +52,33 @@
     <literal>norm(X)</literal>. As a consequence
     <literal>rank([1.d-80,0;0,1.d-80])</literal> is 2 !.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 rank([1.d-80,0;0,1.d-80])
 rank([1,0;0,1.d-80])
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="svd">svd</link>
-    </member>
-    <member>
-      <link linkend="qr">qr</link>
-    </member>
-    <member>
-      <link linkend="rowcomp">rowcomp</link>
-    </member>
-    <member>
-      <link linkend="colcomp">colcomp</link>
-    </member>
-    <member>
-      <link linkend="lu">lu</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+      <member>
+        <link linkend="colcomp">colcomp</link>
+      </member>
+      <member>
+        <link linkend="lu">lu</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

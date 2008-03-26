@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dtsi"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dtsi</refname><refpurpose> stable anti-stable decomposition</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Ga,Gs,Gi]=dtsi(G,[tol])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dtsi">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dtsi</refname>
+    <refpurpose> stable anti-stable decomposition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Ga,Gs,Gi]=dtsi(G,[tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>G</term>
@@ -51,24 +57,28 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     returns the stable-antistable decomposition of <literal>G</literal>:</para>
     <para><literal>G = Ga + Gs + Gi</literal>,  <literal>(Gi = G(oo))</literal></para>
     <para><literal>G</literal> can be given in state-space form or in transfer form.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="syslin">syslin</link>
-    </member>
-    <member>
-      <link linkend="pbig">pbig</link>
-    </member>
-    <member>
-      <link linkend="psmall">psmall</link>
-    </member>
-    <member>
-      <link linkend="pfss">pfss</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="pbig">pbig</link>
+      </member>
+      <member>
+        <link linkend="psmall">psmall</link>
+      </member>
+      <member>
+        <link linkend="pfss">pfss</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

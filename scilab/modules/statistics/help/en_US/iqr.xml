@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="iqr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>iqr</refname><refpurpose> interquartile range</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>q=iqr(x)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="iqr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>iqr</refname>
+    <refpurpose> interquartile range</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>q=iqr(x)
 q=iqr(x,'r') (or, equivalently, q=iqr(x,1))
-q=iqr(x,'c') (or, equivalently, q=iqr(x,2))</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+q=iqr(x,'c') (or, equivalently, q=iqr(x,2))</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -29,7 +35,8 @@ q=iqr(x,'c') (or, equivalently, q=iqr(x,2))</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function computes  the interquartile range IQR= upper
     quartile - lower  quartile of a  vector or a  matrix <literal> x </literal>.</para>
@@ -46,8 +53,12 @@ q=iqr(x,'c') (or, equivalently, q=iqr(x,2))</synopsis></refsynopsisdiv>
     each     entry of  the    column  vector  <literal>   q</literal> the
     interquartile range of each row of <literal> x</literal>.</para>
   </refsection>
-  <refsection><title>Authors</title><para> Carlos Klimann</para></refsection>
-  <refsection><title>Bibliography</title>
+  <refsection>
+    <title>Authors</title>
+    <para> Carlos Klimann</para>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
     <para>
      Wonacott, T.H.Wonacott, R.J.; Introductory Statistics, J.Wiley-Sons, 1990.</para>
   </refsection>

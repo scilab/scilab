@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sident"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sident</refname><refpurpose> discrete-time state-space realization and Kalman gain</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[(A,C)(,B(,D))(,K,Q,Ry,S)(,rcnd)] = sident(meth,job,s,n,l,R(,tol,t,Ai,
-Ci,printw))</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sident">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sident</refname>
+    <refpurpose> discrete-time state-space realization and Kalman gain</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[(A,C)(,B(,D))(,K,Q,Ry,S)(,rcnd)] = sident(meth,job,s,n,l,R(,tol,t,Ai,
+Ci,printw))</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>meth</term>
@@ -205,7 +211,8 @@ Ci,printw))</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     SIDENT function for computing a discrete-time state-space realization
     (A,B,C,D) and Kalman gain K using SLICOT routine IB01BD.</para>
@@ -246,7 +253,8 @@ Ci,printw))</synopsis></refsynopsisdiv>
     <para>
     and  A, B, C, D, and K  are real matrices of appropriate dimensions.</para>
   </refsection>
-  <refsection><title>Comments</title>
+  <refsection>
+    <title>Comments</title>
     <para>
     1. The n-by-n system state matrix A, and the p-by-n system output  matrix C are computed for job &lt;= 2.</para>
     <para>
@@ -256,7 +264,9 @@ Ci,printw))</synopsis></refsynopsisdiv>
     <para>
     4. The n-by-l Kalman predictor gain matrix K and the covariance matrices Q, Ry, and S are computed for t &gt; 0.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
@@ -295,16 +305,23 @@ SYS1.X0 = inistate(SYS1,Y',U');
 Y1=flts(U,SYS1);
 xbasc();plot2d((1:nsmp)',[Y',Y1'])
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="findBD">findBD</link>
-    </member>
-    <member>
-      <link linkend="sorder">sorder</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>   V. Sima, Research Institute for Informatics, Bucharest, Oct. 1999. 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="findBD">findBD</link>
+      </member>
+      <member>
+        <link linkend="sorder">sorder</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>   V. Sima, Research Institute for Informatics, Bucharest, Oct. 1999. 
   Revisions: May 2000, July 2000. 
- </para></refsection>
+ </para>
+  </refsection>
 </refentry>

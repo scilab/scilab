@@ -1,45 +1,50 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lsq_splin"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lsq_splin</refname><refpurpose>weighted least squares cubic spline fitting</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y, d] = lsq_splin(xd, yd [, wd], x)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lsq_splin">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lsq_splin</refname>
+    <refpurpose>weighted least squares cubic spline fitting</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[y, d] = lsq_splin(xd, yd [, wd], x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
-     <varlistentry>
+      <varlistentry>
         <term>xd, yd</term>
         <listitem>
-	 <para>vectors of the same size, datas to be fitted by a cubic spline</para>
-	</listitem> 
-     </varlistentry>
-     <varlistentry>
+          <para>vectors of the same size, datas to be fitted by a cubic spline</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>wd</term>
         <listitem>
-	 <para>(optional) a vector of same format than <literal>xd</literal> and  <literal>yd</literal>, 
+          <para>(optional) a vector of same format than <literal>xd</literal> and  <literal>yd</literal>, 
                weights of the least square fit.</para>
-	</listitem> 
-     </varlistentry>
-     <varlistentry>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>x</term>
         <listitem>
-	 <para>a strictly increasing (row or column) vector, breakpoints of the
+          <para>a strictly increasing (row or column) vector, breakpoints of the
                cubic spline</para>
-	</listitem> 
-     </varlistentry>
-     <varlistentry>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>y, d</term>
         <listitem>
-	 <para>vectors of same format than <literal>x</literal>, the triplet (x,y,d) defines the approximated
+          <para>vectors of same format than <literal>x</literal>, the triplet (x,y,d) defines the approximated
                cubic spline.</para>
-	</listitem> 
-     </varlistentry>
-   </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function computes an approximated cubic spline <emphasis>s</emphasis> for the datas 
     <literal>xd, yd, wd</literal> (in the following <emphasis>m</emphasis> is supposed to be the 
@@ -49,14 +54,14 @@
     cubic splines functions with breakpoints <emphasis>x1 &lt; x2 &lt; ... &lt; xn</emphasis> then 
     the resulting spline <emphasis>s</emphasis> is such that:
     </para>
-        <programlisting><![CDATA[
+    <programlisting><![CDATA[
      _m_                               _m_                       
      \                           2     \                           2
      /   wd(k) (s(xd(k)) - yd(k))  <=  /   wd(k) (f(xd(k)) - yd(k))    
      ---                               ---  
      k=1                               k=1
           ]]></programlisting>
-     <para> for all <emphasis>f in S</emphasis>, i.e. realizes the minimum of the sum of the squared errors 
+    <para> for all <emphasis>f in S</emphasis>, i.e. realizes the minimum of the sum of the squared errors 
          over all functions of <emphasis>S</emphasis>.
     </para>
     <para>
@@ -65,9 +70,9 @@
     first derivatives at the xi 's : <emphasis>yi=s(xi)</emphasis> and <emphasis>di=s'(xi)</emphasis>) and 
     its evaluation at some points must be done by the <link linkend="interp">interp</link> function.
     </para>
-    </refsection>
-
-    <refsection><title>Remarks</title>
+  </refsection>
+  <refsection>
+    <title>Remarks</title>
     <para> When <literal>wd</literal> is not given, all the points have the same weight 1.</para>
     <para> A point <emphasis>(xd(k),yd(k))</emphasis> is considered in the fit if <emphasis>xd(k) in [x1,xn]
         and  wd(k) &gt; 0</emphasis>. In particular you can put a null (or even negative) weight to
@@ -82,8 +87,10 @@
         to be used when <emphasis>m</emphasis> is much larger than <emphasis>n</emphasis> and in this case no such problem
         may occured.
     </para>
-    </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 // this is an artifical example where the datas xd and yd
 // are build from a perturbed sin function
 a = 0; b = 2*%pi;
@@ -106,19 +113,24 @@ plot2d(xd,[ye yd ys],style=[2 -2 3], ...
        leg="exact function@experimental measures (gaussian perturbation)@fitted spline")
 xtitle("a least square spline")
 xselect()
- ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="interp">interp</link>
-    </member>
-    <member>
-      <link linkend="splin">splin</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><simplelist type="vert">
-     <member> C. De Boor, A.H. Morris  (code from the NSWC fortran lib)</member>
-     <member> B. Pincon (scilab interface and slight modifications)</member>
-  </simplelist></refsection>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="interp">interp</link>
+      </member>
+      <member>
+        <link linkend="splin">splin</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member> C. De Boor, A.H. Morris  (code from the NSWC fortran lib)</member>
+      <member> B. Pincon (scilab interface and slight modifications)</member>
+    </simplelist>
+  </refsection>
 </refentry>

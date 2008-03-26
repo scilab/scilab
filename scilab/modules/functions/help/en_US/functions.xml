@@ -10,19 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="functions"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>functions</refname><refpurpose> Scilab procedures and Scilab objects</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="functions">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>functions</refname>
+    <refpurpose> Scilab procedures and Scilab objects</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
     Functions are Scilab procedures ("macro", "function" and "procedure"
     have the save meaning). 
   </para>
   </refsection>
-  <refsection><title>Function definition</title>
+  <refsection>
+    <title>Function definition</title>
     <para>
     Usually, they are defined in files with an editor and loaded into
     Scilab by <literal>getf</literal> or through a library (see
@@ -47,7 +51,8 @@
     <para>
       The "syntax definition" line gives the "full" calling syntax of this function. The <literal>yi</literal> are output variables calculated as functions of input variables <literal>xi</literal> and variables existing in Scilab when the function is executed.</para>
   </refsection>
-  <refsection><title>Calling function</title>
+  <refsection>
+    <title>Calling function</title>
     <para>
     Usually function calling syntax is <literal>[y1,...,yn]=foo(x1,...,xm)</literal>. Shorter input or output argument list than definition ones may be used. In such cases, only the first variables from the left are used of set. The <literal>argn</literal> function may be used to get the actual number of calling arguments.</para>
     <para>
@@ -55,13 +60,16 @@
     <para>
     When a function has no left hand side argument and is called only with character string arguments, the callling syntax may be simplified <literal>fun('a','toto','a string')</literal> can be replaced by <literal>fun a toto 'a string'</literal></para>
   </refsection>
-  <refsection><title>Miscellaneous</title>
+  <refsection>
+    <title>Miscellaneous</title>
     <para>
     Functions are Scilab objects (with type numbers 13 or 11). They and can be manipulated (built, saved, loaded, passed as arguments,..) as other variable types.</para>
     <para>
     Collections of functions can be collected in libraries.  Functions which begin with <literal>%</literal> sign (e.g. <literal>%foo</literal>) are often used to overload (see <literal>overloading</literal>) operations or functions for new data type.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //inline definition (see function)
 function [x,y]=myfct(a,b)
@@ -81,37 +89,41 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
 getf SCI/modules/elementary_functions/macros/asinh.sci;
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="function">function</link>
-    </member>
-    <member>
-      <link linkend="deff">deff</link>
-    </member>
-    <member>
-      <link linkend="getf">getf</link>
-    </member>
-    <member>
-      <link linkend="comp">comp</link>
-    </member>
-    <member>
-      <link linkend="lib">lib</link>
-    </member>
-    <member>
-      <link linkend="getd">getd</link>
-    </member>
-    <member>
-      <link linkend="genlib">genlib</link>
-    </member>
-    <member>
-      <link linkend="exists">exists</link>
-    </member>
-    <member>
-      <link linkend="varargin">varargin</link>
-    </member>
-    <member>
-      <link linkend="varargout">varargout</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="function">function</link>
+      </member>
+      <member>
+        <link linkend="deff">deff</link>
+      </member>
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+      <member>
+        <link linkend="lib">lib</link>
+      </member>
+      <member>
+        <link linkend="getd">getd</link>
+      </member>
+      <member>
+        <link linkend="genlib">genlib</link>
+      </member>
+      <member>
+        <link linkend="exists">exists</link>
+      </member>
+      <member>
+        <link linkend="varargin">varargin</link>
+      </member>
+      <member>
+        <link linkend="varargout">varargout</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

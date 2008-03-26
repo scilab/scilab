@@ -10,18 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fort"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fort</refname><refpurpose> Fortran or C user routines call</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>// long form 'out' is present
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fort">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fort</refname>
+    <refpurpose> Fortran or C user routines call</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>// long form 'out' is present
 [y1,...,yk]=fort("ident",x1,px1,"tx1",...,xn,pxn,"txn",
 "out",[ny1,my1],py1,"ty1",...,[nyl,myl],pyl,"tyl")
 // short form : no 'out' parameter
-[y1,....,yk]=fort("ident",x1,...,xn)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[y1,....,yk]=fort("ident",x1,...,xn)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>"ident"  </term>
@@ -49,7 +55,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Interactive call of Fortran (or C) user program from Scilab. The
     routine must be previously linked with Scilab. This link may be done:
@@ -74,30 +81,54 @@
     The meaning of each parameter is described now:
   </para>
     <variablelist>
-      <varlistentry><term>"ident"</term><listitem>
-        <para>is the name of the called subroutine.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>x1,...,xn</term><listitem>
-        <para>are input variables (real matrices or strings) sent to the routine,</para>
-      </listitem></varlistentry>
-      <varlistentry><term>px1,...,pxn</term><listitem>
-        <para>are the respective positions of these variables in the calling sequence of the routine <literal>"ident"</literal> and</para>
-      </listitem></varlistentry>
-      <varlistentry><term>tx1,...,txn</term><listitem>
-        <para>are their types (<literal>"r"</literal>, <literal>"i"</literal>, <literal>"d"</literal> and <literal>"c"</literal>   for real (float) , integer, double precision and strings)</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"out"</term><listitem>
-        <para>is a keyword used to separate input variables from output variables. when this key word is present it is assumes that  the long form will be used and when it is not prsent, the short form is used.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>[ny1, my1]</term><listitem>
-        <para>are the size (number of rows and columns. For 'c' arguments,<literal>m1*n1</literal> is the number of charaters )  of output variables and</para>
-      </listitem></varlistentry>
-      <varlistentry><term>py1, ...</term><listitem>
-        <para>are the positions of output variables (possibly equal to <literal>pxi</literal> ) in the calling sequence of the routine. The <literal>pyi</literal>'s integers must be in increasing order.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"ty1", ...</term><listitem>
-        <para>are the Fortran types of output variables. The <literal>k</literal>  first output variables are put in <literal>y1,..., yk</literal>.</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>"ident"</term>
+        <listitem>
+          <para>is the name of the called subroutine.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x1,...,xn</term>
+        <listitem>
+          <para>are input variables (real matrices or strings) sent to the routine,</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>px1,...,pxn</term>
+        <listitem>
+          <para>are the respective positions of these variables in the calling sequence of the routine <literal>"ident"</literal> and</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tx1,...,txn</term>
+        <listitem>
+          <para>are their types (<literal>"r"</literal>, <literal>"i"</literal>, <literal>"d"</literal> and <literal>"c"</literal>   for real (float) , integer, double precision and strings)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"out"</term>
+        <listitem>
+          <para>is a keyword used to separate input variables from output variables. when this key word is present it is assumes that  the long form will be used and when it is not prsent, the short form is used.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>[ny1, my1]</term>
+        <listitem>
+          <para>are the size (number of rows and columns. For 'c' arguments,<literal>m1*n1</literal> is the number of charaters )  of output variables and</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>py1, ...</term>
+        <listitem>
+          <para>are the positions of output variables (possibly equal to <literal>pxi</literal> ) in the calling sequence of the routine. The <literal>pyi</literal>'s integers must be in increasing order.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"ty1", ...</term>
+        <listitem>
+          <para>are the Fortran types of output variables. The <literal>k</literal>  first output variables are put in <literal>y1,..., yk</literal>.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>
     If an output variable coincides with an input variable
@@ -168,18 +199,21 @@ c=fort("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="link">link</link>
-    </member>
-    <member>
-      <link linkend="c_link">c_link</link>
-    </member>
-    <member>
-      <link linkend="intersci">intersci</link>
-    </member>
-    <member>
-      <link linkend="addinter">addinter</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="c_link">c_link</link>
+      </member>
+      <member>
+        <link linkend="intersci">intersci</link>
+      </member>
+      <member>
+        <link linkend="addinter">addinter</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

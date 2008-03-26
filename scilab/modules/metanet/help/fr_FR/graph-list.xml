@@ -10,13 +10,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="graphlist"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graph-list</refname><refpurpose> description d'un graphe (sous forme de liste)  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="graphlist">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>graph-list</refname>
+    <refpurpose> description d'un graphe (sous forme de liste)  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
       Un graphe dans Scilab est représenté par une liste typée.
     </para>
@@ -87,153 +90,278 @@
       Les éléments d'un graphe sont les suivants :
     </para>
     <variablelist>
-      <varlistentry><term>name :</term><listitem> 
-	<para> le nom du graphe. C'est une chaîne de caractères (longueur &lt; 80).</para>
-      </listitem></varlistentry>
-
-      <varlistentry><term>oriented :</term><listitem> 
-	<para> flag donnant le type du graphe. Il est égal à 1 (graphe orienté) ou
+      <varlistentry>
+        <term>name :</term>
+        <listitem>
+          <para> le nom du graphe. C'est une chaîne de caractères (longueur &lt; 80).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>oriented :</term>
+        <listitem>
+          <para> flag donnant le type du graphe. Il est égal à 1 (graphe orienté) ou
 	égal à 0 (graphe non-orienté).</para>
-      </listitem></varlistentry>
-      <varlistentry><term>node_number :</term><listitem> 
-	<para> nombre de sommets </para>
-      </listitem></varlistentry>
-      <varlistentry><term>tail :</term><listitem> 
-	<para> vecteur ligne des numéros des sommets origines</para>
-      </listitem></varlistentry>
-      <varlistentry><term>head :</term><listitem> 
-	<para> vecteur ligne des numéros des sommets extrémités </para>
-      </listitem></varlistentry>
-      <varlistentry><term>node_name :</term><listitem> 
-	<para> vecteur ligne des noms des sommets. Les noms des sommets doivent être
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>node_number :</term>
+        <listitem>
+          <para> nombre de sommets </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tail :</term>
+        <listitem>
+          <para> vecteur ligne des numéros des sommets origines</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>head :</term>
+        <listitem>
+          <para> vecteur ligne des numéros des sommets extrémités </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>node_name :</term>
+        <listitem>
+          <para> vecteur ligne des noms des sommets. Les noms des sommets doivent être
 	différents. Par défaut les noms des sommets sont égaux à leurs numéros.</para>
-      </listitem></varlistentry>
-      
-      <varlistentry><term>node_type :</term><listitem> 
-	<para> vecteur ligne des types des sommets. Le type est un entier entre 0 et
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>node_type :</term>
+        <listitem>
+          <para> vecteur ligne des types des sommets. Le type est un entier entre 0 et
 	2, 0 par défaut:</para>
-	<variablelist>
-	  <varlistentry><term>0</term><listitem> 
-	   <para> = sommet normal</para>
-	  </listitem></varlistentry>
-	  <varlistentry><term>1</term><listitem>
-	    <para>= puits</para>
-	  </listitem></varlistentry>
-	  <varlistentry><term>2</term><listitem> 
-	    <para>= source</para>
-	  </listitem></varlistentry>
-	</variablelist>
-      </listitem></varlistentry>
-      <varlistentry><term>node_x :</term><listitem> 
-	<para> vecteur ligne des coordonnées x des sommets. Valeur par défaut calculée.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>node_y :</term><listitem> 
-	<para> vecteur ligne des coordonnées y des sommets. Valeur par défaut calculée.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>node_color :</term><listitem> 
-	<para> vecteur ligne des couleurs des sommets, des entiers correspondants a la
+          <variablelist>
+            <varlistentry>
+              <term>0</term>
+              <listitem>
+                <para> = sommet normal</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>1</term>
+              <listitem>
+                <para>= puits</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>2</term>
+              <listitem>
+                <para>= source</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>node_x :</term>
+        <listitem>
+          <para> vecteur ligne des coordonnées x des sommets. Valeur par défaut calculée.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>node_y :</term>
+        <listitem>
+          <para> vecteur ligne des coordonnées y des sommets. Valeur par défaut calculée.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>node_color :</term>
+        <listitem>
+          <para> vecteur ligne des couleurs des sommets, des entiers correspondants a la
 	table de couleur courante.</para>
-      </listitem></varlistentry>
-
-      <varlistentry><term>node_diam :</term><listitem> 
-	<para> vecteur ligne des diamètres des sommets en pixels, un sommet est
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>node_diam :</term>
+        <listitem>
+          <para> vecteur ligne des diamètres des sommets en pixels, un sommet est
 	dessiné sous forme d'un cercle. Par défaut, valeur de l'élément
 	<literal>default_node_diam</literal>.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>node_border :</term><listitem> 
-	<para> vecteur ligne de l'épaisseur des bords des sommets. un sommet est
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>node_border :</term>
+        <listitem>
+          <para> vecteur ligne de l'épaisseur des bords des sommets. un sommet est
 	dessiné sous forme d'un cercle, par défaut, valeur de l'élément
 	<literal>default_node_border</literal>.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>node_font_size :</term><listitem> 
-	<para> vecteur ligne de la taille de la police utilisée pour afficher le nom
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>node_font_size :</term>
+        <listitem>
+          <para> vecteur ligne de la taille de la police utilisée pour afficher le nom
 	du sommet. Les tailles possibles sont: 8, 10, 12, 14, 18 ou 24. Par
 	défaut, valeur de l'élément  <literal>default_font_size</literal>.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>node_demand :</term><listitem> 
-	<para> vecteur ligne des demandes des sommets,  0 par défaut;</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_name :</term><listitem> 
-	<para> vecteur ligne des noms d'arêtes. Il est souhaitable que les noms
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>node_demand :</term>
+        <listitem>
+          <para> vecteur ligne des demandes des sommets,  0 par défaut;</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_name :</term>
+        <listitem>
+          <para> vecteur ligne des noms d'arêtes. Il est souhaitable que les noms
 	des arêtes soient différents, mais c'est n'est pas
 	obligatoire. Par défaut les noms des arêtes sont leur numéros.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_color:</term><listitem> 
-	<para> vecteur ligne des couleurs des arêtes. des entiers correspondants a la
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_color:</term>
+        <listitem>
+          <para> vecteur ligne des couleurs des arêtes. des entiers correspondants a la
 	table de couleur courante.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_width:</term><listitem> 
-	<para> vecteur ligne des épaisseurs des arêtes en pixels, par défaut, valeur
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_width:</term>
+        <listitem>
+          <para> vecteur ligne des épaisseurs des arêtes en pixels, par défaut, valeur
 	de l'élément <literal>default_edge_width</literal>.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_hi_width :</term><listitem> 
-	<para> vecteur ligne des épaisseurs des arêtes mises en évidence (en pixels),
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_hi_width :</term>
+        <listitem>
+          <para> vecteur ligne des épaisseurs des arêtes mises en évidence (en pixels),
 	par défaut, valeur de l'élément <literal>default_edge_hi_width</literal>.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_font_size:</term><listitem> 
-	<para>  vecteur ligne de la taille de la police utilisée pour afficher le nom
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_font_size:</term>
+        <listitem>
+          <para>  vecteur ligne de la taille de la police utilisée pour afficher le nom
 	des arêtes. Les tailles possibles sont:8, 10, 12, 14, 18 ou 24.  Par
 	défaut, valeur de l'élément <literal>default_font_size</literal> .</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_length :</term><listitem> 
-	<para> vecteur ligne des longueurs des arêtes, 0 par défaut.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_cost :</term><listitem> 
-	<para> vecteur ligne des coûts des arêtes, 0 par défaut.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_min_cap :</term><listitem> 
-	<para> vecteur ligne des capacités minimum des arêtes, 0 par défaut.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_max_cap :</term><listitem> 
-	<para> vecteur ligne des capacités maximum des arêtes, 0 par défaut.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_q_weight :</term><listitem> 
-	<para> vecteur ligne des poids quadratiques des arêtes, 0 par défaut.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_q_orig :</term><listitem> 
-	<para> vecteur ligne des origines quadratiques des arêtes, 0 par défaut.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_weight :</term><listitem> 
-	<para> vecteur ligne des poids des arêtes,  0 par défaut.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>default_node_diam :</term><listitem> 
-	<para> diamètre par défaut des sommets du graphe, 20 pixels par défaut.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>default_node_border :</term><listitem> 
-	<para> épaisseur du bord des sommets, 2 pixels par défaut.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>default_edge_width :</term><listitem> 
-	<para> épaisseur par défaut des arêtes du graphe,1 pixel par défaut.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>default_edge_hi_width :</term><listitem> 
-	<para> taille par défaut des arêtes mises en évidence (en pixels),  3 pixels
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_length :</term>
+        <listitem>
+          <para> vecteur ligne des longueurs des arêtes, 0 par défaut.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_cost :</term>
+        <listitem>
+          <para> vecteur ligne des coûts des arêtes, 0 par défaut.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_min_cap :</term>
+        <listitem>
+          <para> vecteur ligne des capacités minimum des arêtes, 0 par défaut.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_max_cap :</term>
+        <listitem>
+          <para> vecteur ligne des capacités maximum des arêtes, 0 par défaut.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_q_weight :</term>
+        <listitem>
+          <para> vecteur ligne des poids quadratiques des arêtes, 0 par défaut.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_q_orig :</term>
+        <listitem>
+          <para> vecteur ligne des origines quadratiques des arêtes, 0 par défaut.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_weight :</term>
+        <listitem>
+          <para> vecteur ligne des poids des arêtes,  0 par défaut.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>default_node_diam :</term>
+        <listitem>
+          <para> diamètre par défaut des sommets du graphe, 20 pixels par défaut.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>default_node_border :</term>
+        <listitem>
+          <para> épaisseur du bord des sommets, 2 pixels par défaut.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>default_edge_width :</term>
+        <listitem>
+          <para> épaisseur par défaut des arêtes du graphe,1 pixel par défaut.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>default_edge_hi_width :</term>
+        <listitem>
+          <para> taille par défaut des arêtes mises en évidence (en pixels),  3 pixels
 	par défaut.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>default_font_size :</term><listitem> 
-	<para> taille par défaut de la police utilisée pour afficher le nom des
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>default_font_size :</term>
+        <listitem>
+          <para> taille par défaut de la police utilisée pour afficher le nom des
 	sommets  et arêtes.  12 par défaut</para>
-      </listitem></varlistentry>
-      <varlistentry><term>node_label :</term><listitem> 
-	<para> vecteur ligne des noms des sommets </para>
-      </listitem></varlistentry>
-      <varlistentry><term>edge_label :</term><listitem> 
-	<para> vecteur ligne des noms des arêtes</para>
-      </listitem></varlistentry>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>node_label :</term>
+        <listitem>
+          <para> vecteur ligne des noms des sommets </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>edge_label :</term>
+        <listitem>
+          <para> vecteur ligne des noms des arêtes</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
     g=load_graph(SCI+'/demos/metanet/mesh100');
     g('node_color')=int(rand(1:g('node_number'))*16);
     g('edge_color')=int(rand(1:edge_number(g))*16);
     show_graph(g)
-    ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-     <member> <link linkend="edit_graph">edit_graph</link> </member> 
-    <member> <link linkend="arc_number">arc_number</link> </member> 
-    <member> <link linkend="check_graph">check_graph</link> </member> 
-    <member> <link linkend="edge_number">edge_number</link> </member> 
-    <member> <link linkend="glist">glist</link> </member>  
-    <member> <link linkend="make_graph">make_graph</link> </member> 
-    <member> <link linkend="node_number">node_number</link> </member>
-  </simplelist></refsection>
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="edit_graph">edit_graph</link>
+      </member>
+      <member>
+        <link linkend="arc_number">arc_number</link>
+      </member>
+      <member>
+        <link linkend="check_graph">check_graph</link>
+      </member>
+      <member>
+        <link linkend="edge_number">edge_number</link>
+      </member>
+      <member>
+        <link linkend="glist">glist</link>
+      </member>
+      <member>
+        <link linkend="make_graph">make_graph</link>
+      </member>
+      <member>
+        <link linkend="node_number">node_number</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

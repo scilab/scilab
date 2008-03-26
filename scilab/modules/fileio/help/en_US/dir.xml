@@ -11,15 +11,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dir"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dir</refname><refpurpose> get file list </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>dir path
-S=dir([path])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dir</refname>
+    <refpurpose> get file list </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>dir path
+S=dir([path])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>path</term>
@@ -37,9 +43,9 @@ S=dir([path])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-    <para>
-      <literal>dir</literal> can be used to get the files which match 
+  <refsection>
+    <title>Description</title>
+    <para><literal>dir</literal> can be used to get the files which match 
       the patterns given by the path argument. 
       Patterns are given to the unix <literal>ls</literal> or to the windows
       <literal>dir</literal> commands in order to get information on files. 
@@ -52,7 +58,6 @@ S=dir([path])</synopsis></refsynopsisdiv>
       The <literal>name</literal> field of the returned variable is the column vector
       of the file names.
     </para>
-
     <para>
       The <literal>date</literal> field of the returned variable is the column vector
       of integers containing a last modification date coded in second from 1 Jan 1970).
@@ -61,12 +66,14 @@ S=dir([path])</synopsis></refsynopsisdiv>
       The <literal>isdir</literal> field of the returned variable is the column vector
       of boolean true if the corresponding name is a directory.
     </para>
-   <para>
+    <para>
       The  default display of the returned structure is a column formatted list
       of files. It can be changed redefining the function <literal>%dir_p</literal>
     </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 dir
 dir SCI/modules/core/macros/*.bin
@@ -74,22 +81,26 @@ x=dir('SCI/modules/core/macros/*.bin')
 dt=getdate(x.date);
 mprintf("%s: %04d-%02d-%02d %02d:%02d:%02d\n",x.name,dt(:,[1 2 6 7:9]))
 
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="listfiles">listfiles</link>
-    </member>
-    <member>
-      <link linkend="findfiles">findfiles</link>
-    </member>
-    <member>
-      <link linkend="ls">ls</link>
-    </member>
-    <member>
-      <link linkend="fileinfo">fileinfo</link>
-    </member>
-    <member>
-      <link linkend="date">date</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="listfiles">listfiles</link>
+      </member>
+      <member>
+        <link linkend="findfiles">findfiles</link>
+      </member>
+      <member>
+        <link linkend="ls">ls</link>
+      </member>
+      <member>
+        <link linkend="fileinfo">fileinfo</link>
+      </member>
+      <member>
+        <link linkend="date">date</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

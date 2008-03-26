@@ -10,15 +10,21 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="wavwrite"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>wavwrite</refname><refpurpose> writes .wav sound file</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>wavwrite(y,wavfile)
-wavwrite(y,Fs,wavfile)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="wavwrite">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>wavwrite</refname>
+    <refpurpose> writes .wav sound file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>wavwrite(y,wavfile)
+wavwrite(y,Fs,wavfile)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>y</term>
@@ -40,7 +46,8 @@ wavwrite(y,Fs,wavfile)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Utility function to save <literal>.wav</literal> sound file.
     <literal>wavwrite(y,wavfile)</literal> writes a sound file specified by the
@@ -51,30 +58,35 @@ wavwrite(y,Fs,wavfile)</synopsis></refsynopsisdiv>
     <para><literal>wavwrite(y,Fs,wavfile)</literal> specifies in <literal>Fs</literal> the sample rate of the data
     in Hertz.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
   A=matrix(1:6,2,3);
   wavwrite(A/6,TMPDIR+'/foo.wav');
   B=wavread(TMPDIR+'/foo.wav');
   maxi(abs(A- round(B*6)))
  
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="auread">auread</link>
-    </member>
-    <member>
-      <link linkend="wavread">wavread</link>
-    </member>
-    <member>
-      <link linkend="savewave">savewave</link>
-    </member>
-    <member>
-      <link linkend="analyze">analyze</link>
-    </member>
-    <member>
-      <link linkend="mapsound">mapsound</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="auread">auread</link>
+      </member>
+      <member>
+        <link linkend="wavread">wavread</link>
+      </member>
+      <member>
+        <link linkend="savewave">savewave</link>
+      </member>
+      <member>
+        <link linkend="analyze">analyze</link>
+      </member>
+      <member>
+        <link linkend="mapsound">mapsound</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

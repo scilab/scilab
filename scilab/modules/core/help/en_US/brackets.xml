@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="brackets"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>brackets</refname><refpurpose>([,]) left and right brackets</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[a11,a12,...;a21,a22,...;...]
-[s1,s2,...]=func(...)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="brackets">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>brackets</refname>
+    <refpurpose>([,]) left and right brackets</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[a11,a12,...;a21,a22,...;...]
+[s1,s2,...]=func(...)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>a11,a12,...  </term>
@@ -22,7 +29,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Left and right brackets are used to note vector and matrix concatenation.
     These symbols are also used to denote a multiple left-hand-side for a function 
@@ -37,7 +45,9 @@
     <para>
     Within multiple lhs brackets variable names must be separated by comma.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 [6.9,9.64; sqrt(-1) 0]
 [1 +%i  2 -%i  3]
@@ -48,13 +58,17 @@ s=poly(0,'s');[1/s,2/s]
 
 [u,s]=schur(rand(3,3))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="comma">comma</link>
-    </member>
-    <member>
-      <link linkend="semicolon">semicolon</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="comma">comma</link>
+      </member>
+      <member>
+        <link linkend="semicolon">semicolon</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

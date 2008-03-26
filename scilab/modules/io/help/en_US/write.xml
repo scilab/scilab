@@ -9,15 +9,22 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- --><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="write"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>write</refname><refpurpose>  write in a formatted file</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>write(file-desc,a,[format])
-write(file-desc,a,k,format)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="write">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>write</refname>
+    <refpurpose>  write in a formatted file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>write(file-desc,a,[format])
+write(file-desc,a,k,format)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>file-desc</term>
@@ -45,7 +52,8 @@ write(file-desc,a,k,format)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     writes row-by-row a real matrix or a column vector of character
     strings in a formatted file.  Each row of the <literal>a</literal> argument begin
@@ -66,7 +74,9 @@ write(file-desc,a,k,format)</synopsis></refsynopsisdiv>
     one output line per matrix row. If this contraint is not verified
     unpredictable behavior could happen.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 if MSDOS then unix('del asave');
 else unix('rm -f asave'); end
@@ -80,37 +90,41 @@ if MSDOS then unix('del foo');
 else unix('rm -f foo'); end
 write('foo',A)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="file">file</link>
-    </member>
-    <member>
-      <link linkend="fileinfo">fileinfo</link>
-    </member>
-    <member>
-      <link linkend="writb">writb</link>
-    </member>
-    <member>
-      <link linkend="read">read</link>
-    </member>
-    <member>
-      <link linkend="print">print</link>
-    </member>
-    <member>
-      <link linkend="string">string</link>
-    </member>
-    <member>
-      <link linkend="mfprintf">mfprintf</link>
-    </member>
-    <member>
-      <link linkend="mprintf">mprintf</link>
-    </member>
-    <member>
-      <link linkend="msprintf">msprintf</link>
-    </member>
-    <member>
-      <link linkend="fprintfMat">fprintfMat</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="fileinfo">fileinfo</link>
+      </member>
+      <member>
+        <link linkend="writb">writb</link>
+      </member>
+      <member>
+        <link linkend="read">read</link>
+      </member>
+      <member>
+        <link linkend="print">print</link>
+      </member>
+      <member>
+        <link linkend="string">string</link>
+      </member>
+      <member>
+        <link linkend="mfprintf">mfprintf</link>
+      </member>
+      <member>
+        <link linkend="mprintf">mprintf</link>
+      </member>
+      <member>
+        <link linkend="msprintf">msprintf</link>
+      </member>
+      <member>
+        <link linkend="fprintfMat">fprintfMat</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

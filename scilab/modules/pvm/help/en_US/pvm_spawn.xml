@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_spawn"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvm_spawn</refname><refpurpose> Starts new Scilab processes.  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[tids, numt] = pvm_spawn(task, ntask, [nw], [where])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_spawn">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_spawn</refname>
+    <refpurpose> Starts new Scilab processes.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[tids, numt] = pvm_spawn(task, ntask, [nw], [where])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>task : string, which is the file name of the scilab script (see exec) to be</term>
@@ -58,7 +64,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>pvm_spawn</literal> 
     starts <literal>ntask</literal> 
     copies of the scilab script <literal>task</literal>.</para>
@@ -104,13 +111,15 @@
     <literal>pvm_spawn</literal> will start all
     copies on this single machine using the vendor's underlying routines.</para>
   </refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pvm">pvm</link>
-    </member>
-    <member>
-      <link linkend="pvm_spawn_independent">pvm_spawn_independent</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm">pvm</link>
+      </member>
+      <member>
+        <link linkend="pvm_spawn_independent">pvm_spawn_independent</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

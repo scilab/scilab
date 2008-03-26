@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unsetmenu"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unsetmenu</refname><refpurpose> interactive button or menu or submenu de-activation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>unsetmenu(button,[nsub])
-unsetmenu(gwin,button,[nsub])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unsetmenu">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>unsetmenu</refname>
+    <refpurpose> interactive button or menu or submenu de-activation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>unsetmenu(button,[nsub])
+unsetmenu(gwin,button,[nsub])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>button</term>
@@ -28,27 +35,34 @@ unsetmenu(gwin,button,[nsub])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     The function allows the user to desactivate  buttons or menus created by
     <literal>addmenu</literal> in the main or graphics windows command panels.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //addmenu('foo')
 //unsetmenu('foo')
 //unsetmenu('File',2)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="delmenu">delmenu</link>
-    </member>
-    <member>
-      <link linkend="setmenu">setmenu</link>
-    </member>
-    <member>
-      <link linkend="addmenu">addmenu</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="delmenu">delmenu</link>
+      </member>
+      <member>
+        <link linkend="setmenu">setmenu</link>
+      </member>
+      <member>
+        <link linkend="addmenu">addmenu</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

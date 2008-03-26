@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="equil"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>equil</refname><refpurpose> balancing of pair of symmetric matrices</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>T=equil(P,Q)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="equil">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>equil</refname>
+    <refpurpose> balancing of pair of symmetric matrices</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>T=equil(P,Q)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>P, Q</term>
@@ -33,12 +39,15 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>equil</literal> returns <literal>t</literal> such that:</para>
     <para><literal>T*P*T'</literal> and  <literal>inv(T)'*Q*inv(T)</literal>  are both equal to a same 
     diagonal and positive matrix.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 P=rand(4,4);P=P*P';
 Q=rand(4,4);Q=Q*Q';
@@ -46,16 +55,20 @@ T=equil(P,Q)
 clean(T*P*T')
 clean(inv(T)'*Q*inv(T))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="equil1">equil1</link>
-    </member>
-    <member>
-      <link linkend="balanc">balanc</link>
-    </member>
-    <member>
-      <link linkend="ctr_gram">ctr_gram</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="equil1">equil1</link>
+      </member>
+      <member>
+        <link linkend="balanc">balanc</link>
+      </member>
+      <member>
+        <link linkend="ctr_gram">ctr_gram</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

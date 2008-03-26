@@ -10,34 +10,40 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="save_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>save_graph</refname><refpurpose> sauve un graphe  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>save_graph(g,chemin)</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>g  </term>
-  <listitem>
-  <para>graphe (liste)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="save_graph">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>save_graph</refname>
+    <refpurpose> sauve un graphe  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>save_graph(g,chemin)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>g  </term>
+        <listitem>
+          <para>graphe (liste)
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>chemin  </term>
-  <listitem>
-  <para>chaîne de caractères, nom de fichier
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>chemin  </term>
+        <listitem>
+          <para>chaîne de caractères, nom de fichier
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
-    <literal>save_graph</literal> sauve le graphe <literal>g</literal> dans un fichier.
+  <refsection>
+    <title>Description</title>
+    <para><literal>save_graph</literal> sauve le graphe <literal>g</literal> dans un fichier.
     <literal>chemin</literal> est le nom du fichier où le graphe est sauvé.
     <literal>chemin</literal> peut être le nom du fichier ou le nom d'un répertoire; si l'extension
     <literal>"graph"</literal> est omise dans <literal>name</literal>, elle est ajoutée.
@@ -45,7 +51,9 @@
     utilisé comme nom de fichier.
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 g=load_graph(SCI+'/demos/metanet/mesh100');
 show_graph(g);
 if MSDOS then 
@@ -56,8 +64,14 @@ end
 save_graph(g,'mymesh100.graph');
 g=load_graph('mymesh100');
 show_graph(g,'new');
- ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="load_graph">load_graph</link> </member>
-  </simplelist></refsection>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="load_graph">load_graph</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

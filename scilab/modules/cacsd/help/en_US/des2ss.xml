@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="des2ss"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>des2ss</refname><refpurpose> descriptor to state-space</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Sl]=des2ss(A,B,C,D,E [,tol])
-[Sl]=des2ss(Des)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="des2ss">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>des2ss</refname>
+    <refpurpose> descriptor to state-space</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Sl]=des2ss(A,B,C,D,E [,tol])
+[Sl]=des2ss(Des)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A,B,C,D,E</term>
@@ -46,7 +52,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Descriptor to state-space transform.</para>
     <para><literal>Sl=des2ss(A,B,C,D,E)</literal> returns 
@@ -61,7 +68,9 @@
     <para>
     A generalized Leverrier algorithm is used.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 s=poly(0,'s');G=[1/(s-1),s;1,2/s^3];
 S1=tf2des(G);S2=tf2des(G,"withD");
@@ -69,16 +78,20 @@ W1=des2ss(S1);W2=des2ss(S2);
 clean(ss2tf(W1))
 clean(ss2tf(W2))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="des2tf">des2tf</link>
-    </member>
-    <member>
-      <link linkend="glever">glever</link>
-    </member>
-    <member>
-      <link linkend="rowshuff">rowshuff</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="des2tf">des2tf</link>
+      </member>
+      <member>
+        <link linkend="glever">glever</link>
+      </member>
+      <member>
+        <link linkend="rowshuff">rowshuff</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

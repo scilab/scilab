@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="linpro"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>linpro</refname><refpurpose> linear programming solver</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x,lagr,f]=linpro(p,C,b [,x0])
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="linpro">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>linpro</refname>
+    <refpurpose> linear programming solver</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x,lagr,f]=linpro(p,C,b [,x0])
 [x,lagr,f]=linpro(p,C,b,ci,cs [,x0])
 [x,lagr,f]=linpro(p,C,b,ci,cs,me [,x0])
-[x,lagr,f]=linpro(p,C,b,ci,cs,me,x0 [,imp])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[x,lagr,f]=linpro(p,C,b,ci,cs,me,x0 [,imp])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>p</term>
@@ -101,7 +108,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>[x,lagr,f]=linpro(p,C,b [,x0])</literal> Minimize
     <literal>p'*x</literal> under the constraints <literal>C*x &lt;=
     b</literal></para>
@@ -131,7 +139,9 @@
     on the variables that are security bounds and
     very likely not active at the optimal solution.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //Find x in R^6 such that:
 //C1*x = b1  (3 equality constraints i.e me=3)
@@ -154,22 +164,41 @@ C=[C1;C2]; b=[b1;b2] ; me=3; x0='v';
 // constraint 5 is active --> lagr(3:4) < 0 and lagr(5) > 0.
 // Linear (equality) constraints 1 to 3 are active --> lagr(7:9) <> 0
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="quapro">quapro</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><variablelist>
-    <varlistentry><term>Eduardo Casas  Renteria</term><listitem><para>, Universidad de Cantabria,</para></listitem></varlistentry>
-    <varlistentry><term>Cecilia Pola Mendez</term><listitem><para> , Universidad de Cantabria</para></listitem></varlistentry>
-  </variablelist></refsection>
-  <refsection><title>Bibliography</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="quapro">quapro</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Eduardo Casas  Renteria</term>
+        <listitem>
+          <para>, Universidad de Cantabria,</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Cecilia Pola Mendez</term>
+        <listitem>
+          <para> , Universidad de Cantabria</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
     <para>E. Casas and C. Pola, An algorithm for indefinite quadratic
       programming based on a partial Cholesky factorization, RAIRO-Recherche
       Opérationnelle/Operations Research, 27 (1993), 401-426. </para>
   </refsection>
-  <refsection><title>Used Functions</title>
+  <refsection>
+    <title>Used Functions</title>
     <para>
 in routines/optim directory (authors E.Casas, C. Pola Mendez):</para>
     <para>

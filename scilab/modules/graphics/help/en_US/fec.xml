@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fec"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fec</refname><refpurpose> pseudo-color plot of a function defined on a triangular mesh</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>fec(x,y,triangles,func,&lt;opt_args&gt;)
-fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fec">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fec</refname>
+    <refpurpose> pseudo-color plot of a function defined on a triangular mesh</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>fec(x,y,triangles,func,&lt;opt_args&gt;)
+fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>
@@ -44,10 +50,8 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
                 not used in the fec function</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
-
         <listitem>
           <para>This represents a sequence of statements <literal>key1=value1, key2=value2</literal>,... where <literal>key1</literal>,
           <literal>key2,...</literal> can be one of the following: strf, leg, rect, nax, zminmax, colminmax, colout, mesh
@@ -86,14 +90,13 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>This function is the good one to draw linear triangular finite element solutions 
        or simply to display a function defined on a triangulation. The color interpolation
       is done through software computation and so it is not too fast.</para>
-
     <para>The function <link linkend="colorbar">colorbar</link> may be used to see the color scale (see the example
        section).</para>
-
     <para>    
     The <literal>zminmax</literal> argument gives the z values associated with the first and the last 
     color (of the current colormap). More exactly if the colormap have nc colors and if we note 
@@ -109,19 +112,28 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
     <literal>upper_max_col</literal> may be equal (independantly) to:
     </para>
     <variablelist>
-       <varlistentry><term>-1</term><listitem>
-            <para>in this case the same color than in the neighbouring zone is used (CAUTION: 
+      <varlistentry>
+        <term>-1</term>
+        <listitem>
+          <para>in this case the same color than in the neighbouring zone is used (CAUTION: 
                   you don't see that the corresponding limit is crossed), this is the
                   default case.</para>
-       </listitem></varlistentry>
-       <varlistentry><term>0</term><listitem>
-            <para>in this case the extreme region is not painting at all.</para>
-       </listitem></varlistentry>
-       <varlistentry><term>k</term><listitem>
-            <para>(k being a valid index to a color of the current colormap) the extreme region
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>0</term>
+        <listitem>
+          <para>in this case the extreme region is not painting at all.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>(k being a valid index to a color of the current colormap) the extreme region
                   is painting in color k.</para>
-       </listitem></varlistentry>
-     </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
     <para>If you don't want to use the complete colormap you may use the <literal>colminmax</literal>
     argument with <emphasis>1 &lt;= colmin &lt; colmax &lt;= nc</emphasis> (nc being the number of colors 
     of the current colormap) so as to use only the [colmin,colmax]  sub-part of the colormap.
@@ -136,7 +148,9 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
     A set of macros ( provided in file <literal>macros.sci</literal>) can be used to read the 
     data files in Scilab and plot the results.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 // define a mini triangulation (4 vertices, 2 triangles)
 x = [0 1 0 -1];
 y = [0 0 1  1];
@@ -203,17 +217,20 @@ subplot(1,2,2)
    fec(x,y,T,z,strf="040", colminmax=[65 128], mesh=%t)
    xtitle("fec using the jet colormap")
 xselect()
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="colorbar">colorbar</link>
-    </member>
-    <member>
-      <link linkend="Sfgrayplot">Sfgrayplot</link>
-    </member>
-    <member>
-      <link linkend="Sgrayplot">Sgrayplot</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="colorbar">colorbar</link>
+      </member>
+      <member>
+        <link linkend="Sfgrayplot">Sfgrayplot</link>
+      </member>
+      <member>
+        <link linkend="Sgrayplot">Sgrayplot</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

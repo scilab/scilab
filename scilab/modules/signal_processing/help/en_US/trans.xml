@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="trans"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>trans</refname><refpurpose> low-pass to other filter transform</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>hzt=trans(hz,tr_type,frq)
-hzt=trans(pd,zd,gd,tr_type,frq)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="trans">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>trans</refname>
+    <refpurpose> low-pass to other filter transform</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>hzt=trans(hz,tr_type,frq)
+hzt=trans(pd,zd,gd,tr_type,frq)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>hz</term>
@@ -14,7 +21,6 @@ hzt=trans(pd,zd,gd,tr_type,frq)</synopsis></refsynopsisdiv>
           <para>given fiter transfert function</para>
         </listitem>
       </varlistentry>
-  
       <varlistentry>
         <term>pd</term>
         <listitem>
@@ -53,7 +59,8 @@ hzt=trans(pd,zd,gd,tr_type,frq)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     function for transforming standardized low-pass filter given its
       poles-zeros_gain representation into
@@ -75,7 +82,9 @@ hzt=trans(pd,zd,gd,tr_type,frq)</synopsis></refsynopsisdiv>
       stop-band ('sb') , the frequency range is given by frq(1) and frq(2).
     </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 clf()
 
@@ -98,6 +107,10 @@ legend('stop band')
 
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>Authors</title><para>C. Bunks ;   </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>C. Bunks ;   </para>
+  </refsection>
 </refentry>

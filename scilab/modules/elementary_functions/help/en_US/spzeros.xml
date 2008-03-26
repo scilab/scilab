@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="spzeros"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>spzeros</refname><refpurpose>  sparse zero matrix</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sp=spzeros(nrows,ncols)
-sp=spzeros(A)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="spzeros">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>spzeros</refname>
+    <refpurpose>  sparse zero matrix</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>sp=spzeros(nrows,ncols)
+sp=spzeros(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>nrows</term>
@@ -46,7 +52,8 @@ sp=spzeros(A)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>sp=spzeros(nrows,ncols)</literal> returns a sparse zero matrix <literal>sp</literal> 
     with <literal>nrows</literal> rows, <literal>ncols</literal> columns. 
     (Equivalent to <literal>sparse([],[],[nrow,ncols])</literal>)</para>
@@ -55,26 +62,32 @@ sp=spzeros(A)</synopsis></refsynopsisdiv>
     <literal>spzeros(A)</literal> are equivalent. In particular <literal>spzeros(3)</literal> is not
     equivalent to <literal>spzeros(3,3)</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 sum(spzeros(1000,1000))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="sparse">sparse</link>
-    </member>
-    <member>
-      <link linkend="full">full</link>
-    </member>
-    <member>
-      <link linkend="eye">eye</link>
-    </member>
-    <member>
-      <link linkend="speye">speye</link>
-    </member>
-    <member>
-      <link linkend="spones">spones</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sparse">sparse</link>
+      </member>
+      <member>
+        <link linkend="full">full</link>
+      </member>
+      <member>
+        <link linkend="eye">eye</link>
+      </member>
+      <member>
+        <link linkend="speye">speye</link>
+      </member>
+      <member>
+        <link linkend="spones">spones</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

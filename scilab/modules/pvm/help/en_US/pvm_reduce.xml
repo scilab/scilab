@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_reduce"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvm_reduce</refname><refpurpose> Performs a reduce operation over members of the specified group</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[buff, info] = pvm_reduce(func, buff, msgtag, group, rootginst)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_reduce">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_reduce</refname>
+    <refpurpose> Performs a reduce operation over members of the specified group</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[buff, info] = pvm_reduce(func, buff, msgtag, group, rootginst)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>func :  string, defines the  operation performed  on  the global</term>
@@ -57,7 +63,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>pvm_reduce</literal> performs global operations such as max, min,
          sum or product over  all  the tasks in a group. All group members
          call pvm_reduce with their local data, and the  result  of
@@ -74,27 +81,30 @@
          pvm_reduce  and  then  leaves  the group before the root has
          called pvm_reduce an error may occur.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pvm_bcast">pvm_bcast</link>
-    </member>
-    <member>
-      <link linkend="pvm_barrier">pvm_barrier</link>
-    </member>
-    <member>
-      <link linkend="pvm_send">pvm_send</link>
-    </member>
-    <member>
-      <link linkend="pvm_getinst">pvm_getinst</link>
-    </member>
-    <member>
-      <link linkend="pvm_gsize">pvm_gsize</link>
-    </member>
-    <member>
-      <link linkend="pvm_joingroup">pvm_joingroup</link>
-    </member>
-    <member>
-      <link linkend="pvm_lvgroup">pvm_lvgroup</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_bcast">pvm_bcast</link>
+      </member>
+      <member>
+        <link linkend="pvm_barrier">pvm_barrier</link>
+      </member>
+      <member>
+        <link linkend="pvm_send">pvm_send</link>
+      </member>
+      <member>
+        <link linkend="pvm_getinst">pvm_getinst</link>
+      </member>
+      <member>
+        <link linkend="pvm_gsize">pvm_gsize</link>
+      </member>
+      <member>
+        <link linkend="pvm_joingroup">pvm_joingroup</link>
+      </member>
+      <member>
+        <link linkend="pvm_lvgroup">pvm_lvgroup</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

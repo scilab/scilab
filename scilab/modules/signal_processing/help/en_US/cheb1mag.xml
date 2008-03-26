@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cheb1mag"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>cheb1mag</refname><refpurpose>  response of Chebyshev type 1 filter</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[h2]=cheb1mag(n,omegac,epsilon,sample)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cheb1mag">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cheb1mag</refname>
+    <refpurpose>  response of Chebyshev type 1 filter</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[h2]=cheb1mag(n,omegac,epsilon,sample)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -39,7 +46,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Square magnitude response of a type 1 Chebyshev filter.</para>
     <para><literal>omegac</literal>=passband edge.</para>
@@ -47,7 +55,9 @@
     <para><literal>sample</literal>vector of frequencies where the square magnitude
     is desired.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //Chebyshev; ripple in the passband
 n=13;epsilon=0.2;omegac=3;sample=0:0.05:10;
@@ -55,10 +65,14 @@ h=cheb1mag(n,omegac,epsilon,sample);
 plot2d(sample,h)
 xtitle('','frequencies','magnitude')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="buttmag">buttmag</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="buttmag">buttmag</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

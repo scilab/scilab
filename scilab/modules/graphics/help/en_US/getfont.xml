@@ -10,18 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getfont"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getfont</refname><refpurpose> dialog to select font</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[fId,fSize]=getfont()
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getfont">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getfont</refname>
+    <refpurpose> dialog to select font</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[fId,fSize]=getfont()
 [fId,fSize]=getfont(str)
 fnt=getfont()
 fnt=getfont(str)
-fnt=getfont(S=str,font=[fId,fSize])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+fnt=getfont(S=str,font=[fId,fSize])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>str</term>
@@ -49,29 +55,36 @@ fnt=getfont(S=str,font=[fId,fSize])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>getfont</literal> opens a graphic window to select a font.
     User has to select a font and a size clicking on the corresponding
     displayed character. Killing a keyboard key changes the displayed
     character.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 [fId,fSize]=getfont();
 xset("font",fId,fSize)
 plot2d(0,0,rect=[0 0 10 10],axesflag=0)
 xstring(5,5,"string")
    
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="xset">xset</link>
-    </member>
-    <member>
-      <link linkend="getmark">getmark</link>
-    </member>
-    <member>
-      <link linkend="xlfont">xlfont</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xset">xset</link>
+      </member>
+      <member>
+        <link linkend="getmark">getmark</link>
+      </member>
+      <member>
+        <link linkend="xlfont">xlfont</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

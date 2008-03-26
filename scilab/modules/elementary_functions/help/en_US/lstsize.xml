@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lstsize"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lstsize</refname><refpurpose> list, tlist, mlist numbers of entries</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>n=lstsize(x)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lstsize">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lstsize</refname>
+    <refpurpose> list, tlist, mlist numbers of entries</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>n=lstsize(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>l</term>
@@ -33,35 +39,42 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>lstsize(x)</literal> returns the number of entries for list,
    list, mlist objects. This function is more efficient than the
    <literal>size</literal> function and works similarily with all list
    types while <literal>size</literal> is overloaded for <literal>mlist</literal> objects.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 lstsize(list(1,'aqsdf'))
 x=ssrand(3,2,4);
 [ny,nu]=size(x)
 lstsize(x)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="length">length</link>
-    </member>
-    <member>
-      <link linkend="size">size</link>
-    </member>
-    <member>
-      <link linkend="list">list</link>
-    </member>
-    <member>
-      <link linkend="tlist">tlist</link>
-    </member>
-    <member>
-      <link linkend="mlist">mlist</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="length">length</link>
+      </member>
+      <member>
+        <link linkend="size">size</link>
+      </member>
+      <member>
+        <link linkend="list">list</link>
+      </member>
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="mlist">mlist</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

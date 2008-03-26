@@ -10,64 +10,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="qr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>qr</refname><refpurpose> factorisation QR  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[Q,R]=qr(X [,"e"])
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="qr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>qr</refname>
+    <refpurpose> factorisation QR  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[Q,R]=qr(X [,"e"])
 [Q,R,E]=qr(X [,"e"])
-[Q,R,rk,E]=qr(X [,tol])</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
+[Q,R,rk,E]=qr(X [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-	<term>X  </term>
-	<listitem>
-	  <para>matrice réelle ou complexe
+        <term>X  </term>
+        <listitem>
+          <para>matrice réelle ou complexe
 	  </para>
-	</listitem> 
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>tol  </term>
-	<listitem>
-	  <para>nombre réel positif
+        <term>tol  </term>
+        <listitem>
+          <para>nombre réel positif
 	  </para>
-	</listitem> 
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>Q  </term>
-	<listitem>
-	  <para>matrice carrée unitaire
+        <term>Q  </term>
+        <listitem>
+          <para>matrice carrée unitaire
 	  </para>
-	</listitem> 
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>R  </term>
-	<listitem>
-	  <para>matrice de même dimensions que <literal>X</literal>
+        <term>R  </term>
+        <listitem>
+          <para>matrice de même dimensions que <literal>X</literal>
 	  </para>
-	</listitem> 
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>E  </term>
-	<listitem>
-	  <para>matrice de permutation
+        <term>E  </term>
+        <listitem>
+          <para>matrice de permutation
 	  </para>
-	</listitem> 
+        </listitem>
       </varlistentry>
       <varlistentry>
-	<term>rk  </term>
-	<listitem>
-	  <para>entier (rang de <literal>X</literal>)
+        <term>rk  </term>
+        <listitem>
+          <para>entier (rang de <literal>X</literal>)
 	  </para>
-	</listitem> 
+        </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-    <para>
-      <literal>[Q,R] = qr(X)</literal> renvoie une matrice triangulaire supérieure
+  <refsection>
+    <title>Description</title>
+    <para><literal>[Q,R] = qr(X)</literal> renvoie une matrice triangulaire supérieure
       <literal>R</literal> de même
       dimensions que <literal>X</literal> et une matrice carrée othogonale
       (unitaire dans le cas complexe) <literal>Q</literal> telles que
@@ -97,8 +103,7 @@
 	...</literal> sont nulles.
 
     </para>
-    <para>
-      <literal>[Q,R,E] = qr(X)</literal> renvoie une matrice de permutations (de
+    <para><literal>[Q,R,E] = qr(X)</literal> renvoie une matrice de permutations (de
       colonnes) <literal>E</literal>,
       une matrice triangulaire supérieure <literal>R</literal> dont les
       éléments diagonaux sont classés par ordre décroissant et une
@@ -112,8 +117,7 @@
       ainsi que les <literal>n</literal> premières lignes de
       <literal>R</literal>.   
     </para>
-    <para>
-      <literal>[Q,R,rk,E] = qr(X [,tol])</literal>renvoie de plus 
+    <para><literal>[Q,R,rk,E] = qr(X [,tol])</literal>renvoie de plus 
       <literal>rk</literal> =rang estimé de <literal>X</literal>. 
       Plus précisément, 
       <literal>rk</literal> est le nombre d'éléments diagonaux de
@@ -126,8 +130,9 @@
       supérieurs à <literal>R(1,1)*%eps*max(size(R)</literal>.
     </para>
   </refsection>
-
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
     // QR factorization, generic case
     // X is tall (full rank)
     X=rand(5,2);[Q,R]=qr(X); [Q'*X R]
@@ -143,14 +148,27 @@
     [Q,R,rk,E] = qr(A,1.d-10);
     norm(Q'*A-R)
     svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
-    ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="rank">rank</link> </member> 
-    <member> <link linkend="svd">svd</link> </member> 
-    <member> <link linkend="rowcomp">rowcomp</link> </member>  
-    <member> <link linkend="colcomp">colcomp</link> </member>
-  </simplelist></refsection>
-  <refsection><title>Fonctions Utilisées</title>
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="rank">rank</link>
+      </member>
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+      <member>
+        <link linkend="colcomp">colcomp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Fonctions Utilisées</title>
     <para>La décomposition QR est basée sur les routines Lapack  DGEQRF, DGEQPF,
       DORGQR pour les matrices réelles et ZGEQRF, ZGEQPF, ZORGQR pour le cas
       complexe.</para>

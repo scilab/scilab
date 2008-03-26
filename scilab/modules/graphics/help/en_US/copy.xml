@@ -10,18 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="copy"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>copy</refname><refpurpose> 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="copy">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>copy</refname>
+    <refpurpose> 
    copy a graphics entity.
-  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>copy(h)
+  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>copy(h)
 copy(h,h_axes)
-h_copy=copy(h)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+h_copy=copy(h)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
@@ -44,7 +50,8 @@ h_copy=copy(h)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This routine can be used to make a copy of a graphics entity with
     all its propeties'values, it returns the handle on this new
@@ -52,7 +59,9 @@ h_copy=copy(h)</synopsis></refsynopsisdiv>
   <literal>h_axes</literal> omitted, graphics entity is cloned and it's 
   copied in the  same parent axes entity.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 subplot(211);a1=gca();
 plot2d()
@@ -64,23 +73,30 @@ a2.data_bounds=a1.data_bounds;
 copy(p1,a2);
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="get">get</link>
-    </member>
-    <member>
-      <link linkend="set">set</link>
-    </member>
-    <member>
-      <link linkend="delete">delete</link>
-    </member>
-    <member>
-      <link linkend="move">move</link>
-    </member>
-    <member>
-      <link linkend="graphics_entities">graphics_entities</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para> Djalel ABDEMOUCHE</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="move">move</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Djalel ABDEMOUCHE</para>
+  </refsection>
 </refentry>

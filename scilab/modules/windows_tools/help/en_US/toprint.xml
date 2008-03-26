@@ -10,52 +10,54 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="toprint"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>toprint</refname><refpurpose>Send text or figure to the printer
-  (Windows)</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>toprint('filename')
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="toprint">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>toprint</refname>
+    <refpurpose>Send text or figure to the printer
+  (Windows)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>toprint('filename')
 toprint(['line1','line2',...],'page header')
 toprint(num)
-toprint(num,output)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Description</title>
+toprint(num,output)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
     <para>toprint('filename') send text file to the printer.</para>
-
     <para>bOK=toprint('filename') send text file to the printer. bOK is %T if
     file exist.</para>
-
     <para>toprint(['line1','line2',...],'page header')</para>
-
     <para>toprint(num) send the figure with figure_id=num to the printer.</para>
-
     <para>toprint(num,output) send the figure with figure_id=num to the
     printer.With ouput='pos' or 'gdi' ('gdi' by default)</para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[toprint(['Test','toprint primitive'],'Scilab page header');
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[toprint(['Test','toprint primitive'],'Scilab page header');
 scf(4);
 plot();
 toprint(4);
 toprint(4,'pos');
 
-]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="printsetupbox">printsetupbox</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><simplelist type="vert">
-    <member>A.C</member>
-  </simplelist></refsection>
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="printsetupbox">printsetupbox</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>A.C</member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,30 +10,28 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_isfield"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_isfield</refname><refpurpose>Fonction d'�mulation de la fonction Matlab isfield</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_isfield">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_isfield</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab isfield</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Il n'y a pas de fonction Scilab equivalente � la fonctions Matlab <literal>isfield(st,f)</literal> et l'expression �quivalente se comporte diff�remment dans certains cas particuliers:</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>st</literal> n'est pas une structure : l'�quivalent Scilab retourne une erreur alors que Matlab renvoie <literal>0</literal>.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_isfield(st,f)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>isfield(st,f)</literal> quand il n'�tait pas
@@ -42,36 +40,38 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_isfield</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>st</literal> est une structure
         <literal>tf = mtlb_isfield(st,f)</literal> peut �tre remplac� par <literal>allf=getfield(1,st);tf=or(allf(3:$)==f);</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Si <literal>st</literal> n'est pas une structure
         <literal>tf = mtlb_isfield(st,f)</literal> peut �tre remplac� par <literal>tf=%F;</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_isfield</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="getfield">getfield</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getfield">getfield</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

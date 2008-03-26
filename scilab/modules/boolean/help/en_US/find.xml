@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="find"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>find</refname><refpurpose> find indices of  boolean vector or matrix true elements</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[ii]=find(x [,nmax])
-[i1,i2,..]=find(x [,nmax])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="find">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>find</refname>
+    <refpurpose> find indices of  boolean vector or matrix true elements</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[ii]=find(x [,nmax])
+[i1,i2,..]=find(x [,nmax])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -41,7 +47,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     If <literal>x</literal> is a boolean matrix,</para>
     <para><literal>ii=find(x)</literal> returns the vector
@@ -56,7 +63,9 @@
     <literal>find(x&lt;&gt;0)</literal></para>
     <para><literal>find([])</literal> returns <literal>[]</literal></para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=rand(1,20);
 w=find(A<0.4)
@@ -71,19 +80,23 @@ H=rand(4,3,5); //an hypermatrix
 
 H(i(1),j(1),k(1))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="boolean">boolean</link>
-    </member>
-    <member>
-      <link linkend="extraction">extraction</link>
-    </member>
-    <member>
-      <link linkend="insertion">insertion</link>
-    </member>
-    <member>
-      <link linkend="vectorfind">vectorfind</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="boolean">boolean</link>
+      </member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
+      <member>
+        <link linkend="insertion">insertion</link>
+      </member>
+      <member>
+        <link linkend="vectorfind">vectorfind</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

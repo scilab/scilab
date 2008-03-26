@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xaxis"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xaxis</refname><refpurpose> draw an axis</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xaxis(alpha,nsteps,size,init)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xaxis">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xaxis</refname>
+    <refpurpose> draw an axis</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xaxis(alpha,nsteps,size,init)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>alpha</term>
@@ -45,7 +51,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>xaxis</literal> draws an axis.</para>
     <para>
     The direction of the axis is given by
@@ -68,7 +75,9 @@
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 x=[-%pi:0.1:%pi]';
 // plot without axis
@@ -82,6 +91,10 @@ xpoly([0 0],[-1 1],"lines")
 xaxis(90,[2 2],[0.5 0.025 3],[0 1])
 xstring(-0.5,-1.05,"-1"); xstring(-0.35,0.95,"1")
  
-  ]]></programlisting></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

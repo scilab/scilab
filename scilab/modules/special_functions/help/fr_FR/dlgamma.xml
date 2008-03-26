@@ -10,51 +10,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="dlgamma"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dlgamma</refname><refpurpose>  dérivée de la fonction gammaln
-  ou fonction psi.  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>y = dlgamma(x)</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>x</term>
-  <listitem>
-  <para>vecteur réel.
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="dlgamma">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dlgamma</refname>
+    <refpurpose>  dérivée de la fonction gammaln
+  ou fonction psi.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y = dlgamma(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>vecteur réel.
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>y</term>
-  <listitem>
-  <para>vecteur réel de même taille.
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>vecteur réel de même taille.
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>dlgamma(x)</literal> calcule la dérivée de la fonction gammaln
     pour chaque composante de <literal>x</literal>. 
 </para>
-      <programlisting><![CDATA[
+    <programlisting><![CDATA[
           d/dx (gamma(x)) / gamma(x) = d/dx (ln gamma(x))
       ]]></programlisting>
-
-   <para> <literal>x</literal> doit être réel. Cette fonction est aussi connue
+    <para><literal>x</literal> doit être réel. Cette fonction est aussi connue
     sous le nom de fonction psi
 </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 dlgamma(0.5)
 
- ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="gamma">gamma</link> </member>     <member> <link linkend="gammaln">gammaln</link> </member>
-  </simplelist></refsection>
-<refsection><title>Auteurs</title><para>W. J. Cody (code from Netlib (specfun))</para></refsection>
-
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gamma">gamma</link>
+      </member>
+      <member>
+        <link linkend="gammaln">gammaln</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>W. J. Cody (code from Netlib (specfun))</para>
+  </refsection>
 </refentry>

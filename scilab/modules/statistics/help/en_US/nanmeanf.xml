@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="nanmeanf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>nanmeanf</refname><refpurpose> mean (ignoring Nan's) with a given frequency.</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>m=nanmean(val,fre)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="nanmeanf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>nanmeanf</refname>
+    <refpurpose> mean (ignoring Nan's) with a given frequency.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>m=nanmean(val,fre)
 m=nanmean(val,fre,'r') (or m=nanmean(val,fre,1))
-m=nanmean(val,fre,'c') (or m=nanmean(val,fre,2))</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+m=nanmean(val,fre,'c') (or m=nanmean(val,fre,2))</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>val</term>
@@ -36,7 +42,8 @@ val</para>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function returns in scalar <literal> m</literal> the mean of the
     values (ignoring  the NANs) of a vector  or matrix 
@@ -65,7 +72,9 @@ val</para>
     <para>
     In Labostat, NAN values stand for missing values in tables.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
 fre=[34 12 25;12 23 5]
@@ -73,9 +82,14 @@ m=nanmeanf(x,fre)
 m=nanmeanf(x,fre,1)
 m=nanmeanf(x,fre,2)
  
-  ]]></programlisting></refsection>
-  <refsection><title>Authors</title><para> Carlos Klimann</para></refsection>
-  <refsection><title>Bibliography</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Carlos Klimann</para>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
     <para>
     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
   </refsection>

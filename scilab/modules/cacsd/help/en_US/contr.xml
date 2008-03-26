@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>contr</refname><refpurpose> controllability, controllable subspace, staircase</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>n=contr(A,B [,tol])
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>contr</refname>
+    <refpurpose> controllability, controllable subspace, staircase</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>n=contr(A,B [,tol])
 [n,U]=contr(A,B [,tol])
-[n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A, B</term>
@@ -71,7 +77,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>[n,[U]]=contr(A,B,[tol])</literal> gives the controllable form of an <literal>(A,B)</literal> 
     pair.(<literal>dx/dt = A x + B u</literal> or <literal>x(n+1) = A x(n) +b u(n)</literal>).
     The <literal>n</literal> first columns of <literal>U</literal> make a basis for the controllable
@@ -97,11 +104,14 @@
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>Reference</title>
+  <refsection>
+    <title>Reference</title>
     <para>
     Slicot library (see ab01od in SCIDIR/routines/slicot).</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 W=ssrand(2,3,5,list('co',3));  //cont. subspace has dim 3.
 A=W("A");B=W("B");
@@ -110,22 +120,26 @@ A1=U'*A*U;
 spec(A1(n+1:$,n+1:$))  //uncontrollable modes
 spec(A+B*rand(3,5))    
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="canon">canon</link>
-    </member>
-    <member>
-      <link linkend="cont_mat">cont_mat</link>
-    </member>
-    <member>
-      <link linkend="unobs">unobs</link>
-    </member>
-    <member>
-      <link linkend="stabil">stabil</link>
-    </member>
-    <member>
-      <link linkend="st_ility">st_ility</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="canon">canon</link>
+      </member>
+      <member>
+        <link linkend="cont_mat">cont_mat</link>
+      </member>
+      <member>
+        <link linkend="unobs">unobs</link>
+      </member>
+      <member>
+        <link linkend="stabil">stabil</link>
+      </member>
+      <member>
+        <link linkend="st_ility">st_ility</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

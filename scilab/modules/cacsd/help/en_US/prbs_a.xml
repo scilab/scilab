@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="prbs_a"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>prbs_a</refname><refpurpose> pseudo random binary sequences generation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[u]=prbs_a(n,nc,[ids])</synopsis></refsynopsisdiv>
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="prbs_a">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>prbs_a</refname>
+    <refpurpose> pseudo random binary sequences generation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[u]=prbs_a(n,nc,[ids])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
     <para>
     generation of pseudo random binary sequences
     <literal>u=[u0,u1,...,u_(n-1)]</literal>
@@ -25,10 +31,13 @@
     ids can be used to fix the date at which u must change its sign 
     ids is then an integer vector with values in <literal>[1:n]</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 u=prbs_a(50,10);
 plot2d2("onn",(1:50)',u',1,"151",' ',[0,-1.5,50,1.5]);
  
-  ]]></programlisting></refsection>
+  ]]></programlisting>
+  </refsection>
 </refentry>

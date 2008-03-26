@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ss2ss"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ss2ss</refname><refpurpose> state-space to state-space conversion, feedback, injection</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Sl1,right,left]=ss2ss(Sl,T, [F, [G , [flag]]])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ss2ss">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ss2ss</refname>
+    <refpurpose> state-space to state-space conversion, feedback, injection</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Sl1,right,left]=ss2ss(Sl,T, [F, [G , [flag]]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>Sl</term>
@@ -51,7 +57,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Returns the linear system <literal>Sl1=[A1,B1,C1,D1]</literal>
     where <literal>A1=inv(T)*A*T, B1=inv(T)*B, C1=C*T, D1=D</literal>.
@@ -105,7 +112,9 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 Sl=ssrand(2,2,5); trzeros(Sl)       // zeros are invariant:
 Sl1=ss2ss(Sl,rand(5,5),rand(2,5),rand(5,2)); 
@@ -138,13 +147,17 @@ F2=0*rand(p,n);F=[F1;F2];
 
 res=clean(ss2tf(sys2)-ss2tf(sys1))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="projsl">projsl</link>
-    </member>
-    <member>
-      <link linkend="feedback">feedback</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="projsl">projsl</link>
+      </member>
+      <member>
+        <link linkend="feedback">feedback</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

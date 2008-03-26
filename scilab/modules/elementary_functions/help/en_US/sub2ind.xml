@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sub2ind"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sub2ind</refname><refpurpose>matrix  subscript values to linear index</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>I = sub2ind(dims,i1,i2,...)
-J = sub2ind(dims,Mi)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sub2ind">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sub2ind</refname>
+    <refpurpose>matrix  subscript values to linear index</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>I = sub2ind(dims,i1,i2,...)
+J = sub2ind(dims,Mi)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>dims</term>
@@ -46,7 +52,8 @@ J = sub2ind(dims,Mi)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>sub2ind</literal> is used to determine the equivalent single index
 corresponding to a given set of subscript values.
 
@@ -59,7 +66,9 @@ result <literal>I</literal> has the same matrix shape.
 equivalent to the subscripts in the columns of the matrix <literal>Mi</literal> for a matrix
 of size <literal>dims</literal>. in this case <literal>I</literal> is a column vector</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 i=[1 2 1 1 2 1 1];
 j=[1 2 3 1 2 3 3];
@@ -68,19 +77,26 @@ sub2ind([2,3,2],i,j,k)
 
 sub2ind([2,3,2],[i',j',k'])
 </EXAMPLE>  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="ind2sub">ind2sub</link>
-    </member>
-    <member>
-      <link linkend="extraction">extraction</link>
-    </member>
-    <member>
-      <link linkend="insertion">insertion</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ind2sub">ind2sub</link>
+      </member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
+      <member>
+        <link linkend="insertion">insertion</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>
     Serge Steer, INRIA
-  </para></refsection>
+  </para>
+  </refsection>
 </refentry>

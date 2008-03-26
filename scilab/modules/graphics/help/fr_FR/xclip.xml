@@ -1,45 +1,53 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xclip"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xclip</refname><refpurpose> définit une zone de "clipping"  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>xclip([x,y,w,h])
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xclip">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xclip</refname>
+    <refpurpose> définit une zone de "clipping"  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>xclip([x,y,w,h])
 xclip(rect)
-xclip("clipgrf")</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>x,y,w,h  </term>
-  <listitem>
-  <para>valeurs réelles.
+xclip("clipgrf")</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y,w,h  </term>
+        <listitem>
+          <para>valeurs réelles.
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>rect  </term>
-  <listitem>
-  <para>vecteur ligne de taille 4.
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect  </term>
+        <listitem>
+          <para>vecteur ligne de taille 4.
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
-    <literal>xclip</literal> définit une zone de "clipping" définie par les coordonnées, dans l'échelle courante, du rectangle <literal>x,y,w,h</literal> (point en haut à gauche, largeur, hauteur) : les opérations graphiques sont restreintes à ce rectangle.
+  <refsection>
+    <title>Description</title>
+    <para><literal>xclip</literal> définit une zone de "clipping" définie par les coordonnées, dans l'échelle courante, du rectangle <literal>x,y,w,h</literal> (point en haut à gauche, largeur, hauteur) : les opérations graphiques sont restreintes à ce rectangle.
   </para>
-  <para>
+    <para>
     Si un seul argument est donné, il est considéré comme une spécification de rectangle <literal>rect=[x,y,w,h]</literal>.
   </para>
-  <para>
-    <literal>xclip("clipgrf")</literal> est utilisé pour utiliser la zone de clipping égale au cadre du dessin courant.
+    <para><literal>xclip("clipgrf")</literal> est utilisé pour utiliser la zone de clipping égale au cadre du dessin courant.
   </para>
-  <para>
+    <para>
     Pour supprimer l'effet d'une commande xclip précédente, utiliser <literal>xclip()</literal>.
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 
 x=0:0.2:2*%pi;
 x1=[sin(x);100*sin(x)];
@@ -64,6 +72,10 @@ xclip("clipgrf")
 // remove clipping
 e.clip_state='off';
  
-  ]]></programlisting></refsection>
-  <refsection><title>Auteurs</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

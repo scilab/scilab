@@ -10,39 +10,36 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_setstr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_setstr</refname><refpurpose>Fonction d'�mulation de la fonction Matlab setstr</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_setstr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_setstr</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab setstr</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>setstr</literal> et la fonction Scilab
     <literal>ascii</literal> se comportent diff�remment :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec les cha�nes de charact�res : la fonction Matlab <literal>setstr</literal> retourne une cha�ne de caract�res
 	alors que la fonction Scilab <literal>ascii</literal> retourne uen matrice de doubles.
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Avec les matrices de doubles : la fonction Matlab <literal>setstr</literal> retourne une matrice
 	de caract�res alors que la fonction Scilab <literal>ascii</literal> retourne une chaine de caract�res.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_setstr(A)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>setstr(A)</literal> quand il n'�tait pas
@@ -50,32 +47,30 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_setstr</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>A</literal> est une cha�ne de carat�res ou une matrice de cha�nes
         <literal>mtlb_setstr(A)</literal> peut �tre remplac� par <literal>A</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
          Si <literal>A</literal> est un vecteur ligne de doubles
         <literal>mtlb_setstr(A)</literal> peut �tre remplac� par <literal>ascii(A)</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_setstr</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

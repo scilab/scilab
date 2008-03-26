@@ -10,41 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="convex_hull"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>convex_hull</refname><refpurpose> enveloppe convexe d'un ensemble de points dans le plan  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[nhull,ind] = convex_hull(xy)</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>xy  </term>
-  <listitem>
-  <para>matrice réelle 2 x n 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="convex_hull">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>convex_hull</refname>
+    <refpurpose> enveloppe convexe d'un ensemble de points dans le plan  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[nhull,ind] = convex_hull(xy)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>xy  </term>
+        <listitem>
+          <para>matrice réelle 2 x n 
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>nhull  </term>
-  <listitem>
-  <para>entier 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nhull  </term>
+        <listitem>
+          <para>entier 
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>ind  </term>
-  <listitem>
-  <para>vecteur ligne d'entiers 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ind  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers 
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
-    <literal>convex_hull</literal> trouve l'enveloppe convexe d'un ensemble de n points 
+  <refsection>
+    <title>Description</title>
+    <para><literal>convex_hull</literal> trouve l'enveloppe convexe d'un ensemble de n points 
     dans le plan. <literal>xy</literal> est la matrice 2 x n des coordonnées (x,y) des 
     points. <literal>convex_hull</literal> renvoie dans <literal>nhull</literal> le nombre
     de points de l'enveloppe convexe et dans <literal>ind</literal> le
@@ -53,7 +59,9 @@
     consécutifs sur la frontière.
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
 ta=[ta  16 15 15 14 12 9 10 6 9 17 8 17 10 20 11 23 23 12 18 28]; 
 he=[ 1  2 2  4  5 11 13  1 25 22 24 22 22 19 13 13 14 16 16  9 16];
@@ -67,5 +75,6 @@ show_graph(g);
 xy=[g('node_x');g('node_y')];
 [nhull,ind] = convex_hull(xy)
 show_nodes(ind);
- ]]></programlisting></refsection>
+ ]]></programlisting>
+  </refsection>
 </refentry>

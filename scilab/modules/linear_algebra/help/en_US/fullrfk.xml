@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullrfk"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fullrfk</refname><refpurpose> full rank factorization of A^k</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Bk,Ck]=fullrfk(A,k)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullrfk">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fullrfk</refname>
+    <refpurpose> full rank factorization of A^k</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Bk,Ck]=fullrfk(A,k)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -39,7 +45,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function computes the full rank factorization of <literal>A^k</literal> i.e.
     <literal>Bk*Ck=A^k</literal> where <literal>Bk</literal> is full column rank and <literal>Ck</literal> full row rank.
@@ -47,19 +54,28 @@
     <para>
     For <literal>k=1</literal>, <literal>fullrfk</literal> is equivalent to <literal>fullrf</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=rand(5,2)*rand(2,5);[Bk,Ck]=fullrfk(A,3);
 norm(Bk*Ck-A^3,1)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="fullrf">fullrf</link>
-    </member>
-    <member>
-      <link linkend="range">range</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>F.D (1990);   </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fullrf">fullrf</link>
+      </member>
+      <member>
+        <link linkend="range">range</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.D (1990);   </para>
+  </refsection>
 </refentry>

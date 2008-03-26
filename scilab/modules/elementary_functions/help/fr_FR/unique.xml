@@ -1,40 +1,49 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unique"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unique</refname><refpurpose> extrait les composantes distinctes d'un vecteur  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[N, [k]]=unique(M)
-</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>M,N  </term>
-  <listitem>
-  <para>vecteur réel ou vecteur de chaînes de caractères
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unique">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>unique</refname>
+    <refpurpose> extrait les composantes distinctes d'un vecteur  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[N, [k]]=unique(M)
+</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>M,N  </term>
+        <listitem>
+          <para>vecteur réel ou vecteur de chaînes de caractères
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>k  </term>
-  <listitem>
-  <para>vecteur d'entiers
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k  </term>
+        <listitem>
+          <para>vecteur d'entiers
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
-    <literal>unique(M)</literal> renvoie un vecteur contenant les valeurs distinctes contenues dans les termes de <literal>M</literal> classées par ordre croissant.
+  <refsection>
+    <title>Description</title>
+    <para><literal>unique(M)</literal> renvoie un vecteur contenant les valeurs distinctes contenues dans les termes de <literal>M</literal> classées par ordre croissant.
   </para>
-  <para>
+    <para>
     S'il est présent l'argument de sortie <literal>k</literal> contient la position de la première occurrence de chaque valeur distincte dans <literal>M</literal>.
   </para>
-  <para>
+    <para>
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 M=round(2*rand(20,1));
 
 unique(M)
@@ -43,8 +52,20 @@ unique(M)
 unique(string(M))
 [N,k]=unique(string(M))
 
- ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="union">union</link> </member>     <member> <link linkend="sort">sort</link> </member>     <member> <link linkend="lex_sort">lex_sort</link> </member>
-  </simplelist></refsection>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="union">union</link>
+      </member>
+      <member>
+        <link linkend="sort">sort</link>
+      </member>
+      <member>
+        <link linkend="lex_sort">lex_sort</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

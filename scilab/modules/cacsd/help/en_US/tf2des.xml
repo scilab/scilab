@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tf2des"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>tf2des</refname><refpurpose> transfer function to descriptor</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>S=tf2des(G)
-S=tf2des(G,flag)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tf2des">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tf2des</refname>
+    <refpurpose> transfer function to descriptor</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>S=tf2des(G)
+S=tf2des(G,flag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>G</term>
@@ -40,7 +46,8 @@ S=tf2des(G,flag)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Transfer function to descriptor form: <literal>S=list('d',A,B,C,D,E)</literal></para>
     <programlisting><![CDATA[
@@ -54,26 +61,32 @@ S=tf2des(G,flag)</synopsis></refsynopsisdiv>
     given. Otherwise a maximal rank <literal>D</literal> matrix is returned in the fifth
     entry of the list <literal>S</literal></para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 s=poly(0,'s');
 G=[1/(s-1),s;1,2/s^3];
 S1=tf2des(G);des2tf(S1)
 S2=tf2des(G,"withD");des2tf(S2)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pol2des">pol2des</link>
-    </member>
-    <member>
-      <link linkend="tf2ss">tf2ss</link>
-    </member>
-    <member>
-      <link linkend="ss2des">ss2des</link>
-    </member>
-    <member>
-      <link linkend="des2tf">des2tf</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pol2des">pol2des</link>
+      </member>
+      <member>
+        <link linkend="tf2ss">tf2ss</link>
+      </member>
+      <member>
+        <link linkend="ss2des">ss2des</link>
+      </member>
+      <member>
+        <link linkend="des2tf">des2tf</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

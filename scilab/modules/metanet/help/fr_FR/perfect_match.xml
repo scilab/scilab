@@ -10,48 +10,54 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="perfect_match"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>perfect_match</refname><refpurpose> appariement parfait de coût minimum  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[cst,nmatch] = perfect_match(g,arcost)</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>g  </term>
-  <listitem>
-  <para>graphe (liste) 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="perfect_match">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>perfect_match</refname>
+    <refpurpose> appariement parfait de coût minimum  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[cst,nmatch] = perfect_match(g,arcost)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>g  </term>
+        <listitem>
+          <para>graphe (liste) 
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>arcost  </term>
-  <listitem>
-  <para>vecteur ligne d'entiers
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>arcost  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>cst  </term>
-  <listitem>
-  <para>entier 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cst  </term>
+        <listitem>
+          <para>entier 
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>nmatch  </term>
-  <listitem>
-  <para>vecteur ligne d'entiers 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nmatch  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers 
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
-    <literal>perfect_match</literal> trouve un appariement parfait de coût minimum pour le graphe <literal>g</literal>.
+  <refsection>
+    <title>Description</title>
+    <para><literal>perfect_match</literal> trouve un appariement parfait de coût minimum pour le graphe <literal>g</literal>.
     <literal>g</literal> doit être un graphe non-orienté avec un nombre pair de sommets.
     <literal>arcost</literal> est le vecteur des coût (entiers) des arcs (la dimension
     de <literal>arcost</literal> est le double du nombre d'arêtes du graphe). 
@@ -59,7 +65,9 @@
     correspondant <literal>cst</literal>.
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
 ta=[ta  16 15 15 14 12 9 10 6 9 17 8 17 10 20 11 23 23 12 18 28]; 
 he=[ 1  2 2  4  5 11 13  1 25 22 24 22 22 19 13 13 14 16 16  9 16];
@@ -77,8 +85,14 @@ sp=sparse([ta' he'],[1:size(ta,2)]',[n,n]);
 sp1=sparse([[1:n]' nmatch'],ones(1,size(nmatch,2))',[n,n]);
 [ij,v,mn]=spget(sp.*sp1);
 show_arcs(v');
- ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="best_match">best_match</link> </member>
-  </simplelist></refsection>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="best_match">best_match</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

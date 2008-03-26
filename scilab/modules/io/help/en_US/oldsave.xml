@@ -9,14 +9,21 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- --><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="oldsave"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>oldsave</refname><refpurpose> saving variables in 2.4.1 and previous format</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>oldsave(filename [,x1,x2,...,xn])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="oldsave">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>oldsave</refname>
+    <refpurpose> saving variables in 2.4.1 and previous format</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>oldsave(filename [,x1,x2,...,xn])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>
@@ -32,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     The <literal>oldsave</literal> function is obsolete and is retained only for
     compatibility purpose.</para>
@@ -45,7 +53,9 @@
     <para>
     Saved  variables can be reloaded by the <literal>load</literal> or oldload command.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 a=eye(2,2);b=ones(a);
 oldsave('TMPDIR/val.dat',a,b);
@@ -54,13 +64,17 @@ clear b
 oldload('TMPDIR/val.dat','a','b');
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="load">load</link>
-    </member>
-    <member>
-      <link linkend="file">file</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="load">load</link>
+      </member>
+      <member>
+        <link linkend="file">file</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

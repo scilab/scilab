@@ -11,15 +11,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hist3d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>hist3d</refname><refpurpose> 3D representation of a histogram</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>hist3d(f,[theta,alpha,leg,flag,ebox])
-hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hist3d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hist3d</refname>
+    <refpurpose> 3D representation of a histogram</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>hist3d(f,[theta,alpha,leg,flag,ebox])
+hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>f</term>
@@ -41,20 +47,27 @@ hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>hist3d</literal> represents a 2d histogram as a 3D plot.
     The values are associated to the intervals 
     <literal>[x(i) x(i+1)[ X [y(i) y(i+1)[</literal>.</para>
     <para>
     Enter the command <literal>hist3d()</literal> to see a demo.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="histplot">histplot</link>
-    </member>
-    <member>
-      <link linkend="plot3d">plot3d</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>Steer S. &amp; JPhilippe C.  </para></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="histplot">histplot</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Steer S. &amp; JPhilippe C.  </para>
+  </refsection>
 </refentry>

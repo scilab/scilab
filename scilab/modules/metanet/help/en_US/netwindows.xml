@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="netwindows"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>netwindows</refname><refpurpose> gets the numbers of edit_graph windows</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>l = netwindows()</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="netwindows">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>netwindows</refname>
+    <refpurpose> gets the numbers of edit_graph windows</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>l = netwindows()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>l</term>
@@ -27,25 +33,29 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function returns a list <literal>l</literal>. Its first element is the row vector of 
     all the edit_graph windows and the second element is the number of the 
     current edit_graph window. This number is equal to 0 if no current Metanet
     window exists.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="edit_graph">edit_graph</link>
-    </member>
-    <member>
-      <link linkend="netclose">netclose</link>
-    </member>
-    <member>
-      <link linkend="netwindow">netwindow</link>
-    </member>
-    <member>
-      <link linkend="show_graph">show_graph</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="edit_graph">edit_graph</link>
+      </member>
+      <member>
+        <link linkend="netclose">netclose</link>
+      </member>
+      <member>
+        <link linkend="netwindow">netwindow</link>
+      </member>
+      <member>
+        <link linkend="show_graph">show_graph</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,48 +10,54 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="max_clique"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>max_clique</refname><refpurpose> clique maximum d'un graphe  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[size,nodes] = max_clique(g,[ind])</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>g  </term>
-  <listitem>
-  <para>graphe (liste)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="max_clique">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>max_clique</refname>
+    <refpurpose> clique maximum d'un graphe  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[size,nodes] = max_clique(g,[ind])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>g  </term>
+        <listitem>
+          <para>graphe (liste)
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>ind  </term>
-  <listitem>
-  <para>entier (optionnel) 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ind  </term>
+        <listitem>
+          <para>entier (optionnel) 
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>size  </term>
-  <listitem>
-  <para>entier
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>size  </term>
+        <listitem>
+          <para>entier
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>nodes  </term>
-  <listitem>
-  <para>vecteur ligne d'entiers
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nodes  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
-    <literal>max_clique</literal> calcule la clique maximum d'un graphe <literal>g</literal> i.e. le 
+  <refsection>
+    <title>Description</title>
+    <para><literal>max_clique</literal> calcule la clique maximum d'un graphe <literal>g</literal> i.e. le 
     sous-graphe complet de taille maximum. <literal>ind</literal> est un paramètre pour le 
     choix de la méthode: si <literal>ind</literal> vaut 0 la méthode est un 
     algorithme partiellement énumératif et si <literal>ind</literal> vaut 1 l'algorithme 
@@ -60,7 +66,9 @@
     l'algorithme et <literal>nodes</literal> est le vecteur des sommets correspondants.
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 ta=[1 2 3 4 5 6 6 7 8  9 10 16 16 10 11 11 12 12 11 14 15 15 13 7 13 13];
 he=[2 3 4 5 6 7 8 8 9 10 16  2  3 11 12 13  1 14 14 15  5  9 12 4 14 15];
 g=make_graph('foo',0,16,ta,he);
@@ -73,5 +81,6 @@ show_nodes(no);
 g1=graph_complement(g);
 [ns,no] = max_clique(g1);
 show_nodes(no);
- ]]></programlisting></refsection>
+ ]]></programlisting>
+  </refsection>
 </refentry>

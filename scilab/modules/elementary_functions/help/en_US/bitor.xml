@@ -10,49 +10,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bitor"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>bitor</refname><refpurpose>OR applied to binary representation of
-  inputs arguments</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[z]=bitor(x,y)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bitor">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bitor</refname>
+    <refpurpose>OR applied to binary representation of
+  inputs arguments</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[z]=bitor(x,y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
-
         <listitem>
           <para>scalar/vector/matrix/hypermatrix of positives integers</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>y</term>
-
         <listitem>
           <para>scalar/vector/matrix/hypermatrix of positives integers</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>z</term>
-
         <listitem>
           <para>scalar/vector/matrix/hypermatrix of positives integers</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>Given <literal>x</literal> and <literal>y</literal> two positives integers, this
     function returns <literal>z</literal> the decimal number whose the binary form
     is the OR of the binary representations of <literal>x</literal> and
@@ -60,8 +55,9 @@
     same size). If dimension of <literal>x</literal> is superior than 1 then
     <literal>z(i)</literal> is equal to <literal>bitor(x(i),y(i))</literal></para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[// example 1 :
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[// example 1 :
 // '110000' : is the binary representation of 48 
 // '100101' : is the binary representation of 37   
 // '110101' : is the binary representation for the OR applied to the binary forms 48 and 37 
@@ -74,19 +70,20 @@ x=[12,45]; y=[25,49]
 z=bitor(x,y)
 
  
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="bitand">bitand</link>
-    </member>
-
-    <member>
-      <link linkend="bin2dec">bin2dec</link>
-    </member>
-
-    <member>
-      <link linkend="dec2bin">dec2bin</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="bitand">bitand</link>
+      </member>
+      <member>
+        <link linkend="bin2dec">bin2dec</link>
+      </member>
+      <member>
+        <link linkend="dec2bin">dec2bin</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

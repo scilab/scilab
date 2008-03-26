@@ -1,45 +1,50 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="splin3d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>splin3d</refname><refpurpose>spline gridded 3d interpolation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>tl = splin3d(x, y, z, v, [order])</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="splin3d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>splin3d</refname>
+    <refpurpose>spline gridded 3d interpolation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>tl = splin3d(x, y, z, v, [order])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
-     <varlistentry>
+      <varlistentry>
         <term>x,y,z</term>
         <listitem>
-           <para>strictly increasing row vectors (each with at least 3 components)
+          <para>strictly increasing row vectors (each with at least 3 components)
                defining the 3d interpolation grid</para>
         </listitem>
-     </varlistentry>
-     <varlistentry>
+      </varlistentry>
+      <varlistentry>
         <term>v</term>
         <listitem>
-            <para>nx x ny x nz hypermatrix (nx, ny, nz being the length of <literal>x</literal>,
+          <para>nx x ny x nz hypermatrix (nx, ny, nz being the length of <literal>x</literal>,
                <literal>y</literal> and <literal>z</literal>)</para>
         </listitem>
-     </varlistentry>
-     <varlistentry>
+      </varlistentry>
+      <varlistentry>
         <term>order</term>
         <listitem>
-         <para>(optional) a 1x3 vector [kx,ky,kz] given the order of the tensor 
+          <para>(optional) a 1x3 vector [kx,ky,kz] given the order of the tensor 
                spline in each direction (default [4,4,4], i.e. tricubic spline)</para>
-        </listitem> 
-     </varlistentry>
-     <varlistentry>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>tl</term>
         <listitem>
-         <para>a tlist of type splin3d defining the spline</para>
-        </listitem> 
-     </varlistentry>
-   </variablelist>
+          <para>a tlist of type splin3d defining the spline</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function computes a 3d tensor spline <emphasis>s</emphasis> which interpolates the 
     <emphasis>(xi,yj,zk,vijk)</emphasis> points, ie, we have <emphasis>s(xi,yj,zk)=vijk</emphasis> for all  
@@ -51,13 +56,13 @@
     function (to compute an arbitrary derivative of <emphasis>s</emphasis>) . Several kind of splines may be computed 
     by selecting the order of the spline in each direction <literal>order=[kx,ky,kz]</literal>.
     </para>
-    </refsection>
-
-    <refsection><title>Remark</title>
+  </refsection>
+  <refsection>
+    <title>Remark</title>
     <para>
        This function works under the conditions: 
     </para>
-        <programlisting><![CDATA[
+    <programlisting><![CDATA[
        nx, ny, nz >= 3
        2 <= kx < nx
        2 <= ky < ny
@@ -65,8 +70,10 @@
     <para>
        an error being issued when they are not respected.
     </para>
-    </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 // example 1
 // =============================================================================
 
@@ -123,22 +130,27 @@ colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("3d spline interpolation of "+func)
 xselect()
-]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="linear_interpn">linear_interpn</link>
-    </member>
-    <member>
-      <link linkend="interp3d">interp3d</link>
-    </member>
-    <member>
-      <link linkend="bsplin3val">bsplin3val</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><simplelist type="vert">
-     <member> R.F. Boisvert, C. De Boor (code from the CMLIB fortran lib)</member>
-     <member> B. Pincon (scilab interface)</member>
-  </simplelist></refsection>
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="linear_interpn">linear_interpn</link>
+      </member>
+      <member>
+        <link linkend="interp3d">interp3d</link>
+      </member>
+      <member>
+        <link linkend="bsplin3val">bsplin3val</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member> R.F. Boisvert, C. De Boor (code from the CMLIB fortran lib)</member>
+      <member> B. Pincon (scilab interface)</member>
+    </simplelist>
+  </refsection>
 </refentry>

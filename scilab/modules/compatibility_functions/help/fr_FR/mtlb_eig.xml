@@ -10,43 +10,41 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_eig"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_eig</refname><refpurpose>Fonction d'�mulation de la fonction Matlab eig</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_eig">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_eig</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab eig</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, les fonctions <literal>eig</literal> de Matlab et <literal>spec</literal>
     de Scilab se comportent diff�remment :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec un argument d'entr�e (<literal>A</literal>) et deux arguments de sortie (<literal>V</literal>,<literal>D</literal>),
 	les valeurs obtenues dans Scilab et dans Matlab sont de signe oppos�.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>[V,D] = mtlb_eig(A,B)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>[V,D] = eig(A)</literal>. Cette fonction va
     d�terminer la s�mantique correcte pendant l'ex�cution. Elle ne peut �tre remplac�e.
     </para>
-
     <para>Attention : <literal>mtlb_eig</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

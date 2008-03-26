@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pdiv"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pdiv</refname><refpurpose> polynomial division</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[R,Q]=pdiv(P1,P2)
-[Q]=pdiv(P1,P2)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pdiv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pdiv</refname>
+    <refpurpose> polynomial division</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[R,Q]=pdiv(P1,P2)
+[Q]=pdiv(P1,P2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>P1</term>
@@ -40,14 +46,17 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Element-wise euclidan division of the polynomial matrix <literal>P1</literal>
     by the polynomial <literal>P2</literal> or by the polynomial matrix <literal>P2</literal>.
     <literal>Rij</literal> is the matrix of remainders, <literal>Qij</literal> is the matrix
     of quotients and <literal>P1ij = Qij*P2 + Qij</literal> or <literal>P1ij = Qij*P2ij + Qij</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 x=poly(0,'x');
 p1=(1+x^2)*(1-x);p2=1-x;
@@ -57,13 +66,17 @@ p2=1+x;
 [r,q]=pdiv(p1,p2)
 p2*q+r-p1
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="ldiv">ldiv</link>
-    </member>
-    <member>
-      <link linkend="gcd">gcd</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ldiv">ldiv</link>
+      </member>
+      <member>
+        <link linkend="gcd">gcd</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

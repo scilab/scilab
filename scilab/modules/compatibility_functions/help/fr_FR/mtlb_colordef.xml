@@ -10,19 +10,18 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_colordef"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_colordef</refname><refpurpose>Fonction d'�mulation de la fonction Matlab colordef</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_colordef">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_colordef</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab colordef</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Il n'y a pas de fonction Scilab �quivalente � la fonction Matlab <literal>colordef</literal> mais il existe 
     des instructions �quivalentes.</para>
-
     <para>
     La fonction <literal>h = mtlb_colordef(color_option)</literal> ou
     <literal>h = mtlb_colordef(fig,color_option)</literal> est utilis�e par
@@ -33,74 +32,71 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_colordef</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Pour les appels avec un param�tre d'entr�e, si <literal>color_option</literal> est �gal � "black" ou "none"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = gcf();fig.background = -1;</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Pour les appels avec un param�tre d'entr�e, si <literal>color_option</literal> est �gal � "white"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = gcf();fig.background = -2;</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est un handle graphique et
 	<literal>color_option</literal> est �gal � "black" ou "none"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig.background = -1;</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est un handle graphique et
 	<literal>color_option</literal> est �gal � "white"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig.background = -2;</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est �gal � "new" et
 	<literal>color_option</literal> est �gal � "black" ou "none"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = scf(max(winsid())+1);fig.background = -1;</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est �gal � "new" et
 	<literal>color_option</literal> est �gal � "white"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = scf(max(winsid())+1);fig.background = -2;</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Pour les appels avec un param�tre de sortie <literal>h</literal>, ajouter <literal>h = fig;</literal> � la suite des instructions �quivalentes.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_colordef</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="figure_properties">figure_properties</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="figure_properties">figure_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bvodeS"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>bvodeS</refname><refpurpose>simplified call of bvode</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>z=bvodeS(x,m,n,a,b,fsub,gsub,zeta, [ystart,dfsub,dgsub,fixpnt,ndimf,ndimi,ltol,tol,ntol,nonlin, collpnt,subint,iprint,ireg,ifail])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bvodeS">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bvodeS</refname>
+    <refpurpose>simplified call of bvode</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>z=bvodeS(x,m,n,a,b,fsub,gsub,zeta, [ystart,dfsub,dgsub,fixpnt,ndimf,ndimi,ltol,tol,ntol,nonlin, collpnt,subint,iprint,ireg,ifail])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -88,8 +95,8 @@ for parameter transfer. The function <literal>ystart</literal> is called <litera
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
 This interface program simplifies the call of <link linkend="bvode">bvode</link>, a program for the numerical
 solution of multi-point boundary value problems for mixed order systems of ordinary
@@ -101,9 +108,9 @@ with the help of bvodeS, but also should emphazise some important problems which
 with boundary value problems for ordinary ode's.
 </para>
   </refsection>
-
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 // 1. Modified example from help bvode. 
 
 // DE:  y1''''(x)=(1-6*x*x*y1'''(x)-6*x*y1''(x))/(y2(x)^3)
@@ -300,19 +307,24 @@ endfunction
 
 disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="bvode">bvode</link>
-    </member>
-    <member>
-      <link linkend="ode">ode</link>
-    </member>
-    <member>
-      <link linkend="dassl">dassl</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><para>Rainer von Seggern</para></refsection>
-
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="bvode">bvode</link>
+      </member>
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+      <member>
+        <link linkend="dassl">dassl</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Rainer von Seggern</para>
+  </refsection>
 </refentry>

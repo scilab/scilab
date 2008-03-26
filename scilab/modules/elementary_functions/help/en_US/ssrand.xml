@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ssrand"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ssrand</refname><refpurpose> random system generator</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sl=ssrand(nout,nin,nstate)
-[sl,U]=ssrand(nout,nin,nstate,flag)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ssrand">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ssrand</refname>
+    <refpurpose> random system generator</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>sl=ssrand(nout,nin,nstate)
+[sl,U]=ssrand(nout,nin,nstate,flag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>nout</term>
@@ -58,7 +64,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>sl=ssrand(nout,nin,nstate)</literal> returns a random strictly proper 
     (<literal>D=0</literal>) state-space system of size <literal>[nout,nint]</literal> represented 
     by a <literal>syslin</literal> list and with <literal>nstate</literal> state variables.</para>
@@ -86,7 +93,9 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
     stand for "controllable", "unobservable", "non-controllable-non-observable",
     "stabilizable","detectable","output-nulling","unknown-input".</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
 //dim_cont_subs<=dim_stab_subs<=dim_stab0  
@@ -101,10 +110,14 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
 w=ss2ss(Sl,inv(U)); //undo the random change of basis => form as above
 [n,nc,u,sl]=st_ility(Sl);n,nc
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="syslin">syslin</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

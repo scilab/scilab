@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="drawaxis"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>drawaxis</refname><refpurpose> draw an axis</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>drawaxis([options])
-// options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="drawaxis">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>drawaxis</refname>
+    <refpurpose> draw an axis</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>drawaxis([options])
+// options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>dir=string</term>
@@ -82,7 +88,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>drawaxis</literal> is used to draw an axis in vertical or horizontal 
     direction. the direction of the axis is given by dir 
     <literal>dir = 'u'</literal> or <literal>'d'</literal> gives a horizontal axis 
@@ -112,7 +119,9 @@
     this is done if <literal>val</literal> is provided. The size of <literal>val</literal> must 
     match the number of tics.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 plot2d(1:10,1:10,1,"020")
 // horizontal axis 
@@ -143,6 +152,10 @@ drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
 // horizontal axis again 
 drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
  
-  ]]></programlisting></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

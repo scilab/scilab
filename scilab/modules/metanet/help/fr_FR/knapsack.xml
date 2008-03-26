@@ -10,62 +10,68 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="knapsack"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>knapsack</refname><refpurpose> résout un problème du sac à dos 0-1 multiple   </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[earn,ind] = knapsack(profit,weight,capa,[bck])</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>profit  </term>
-  <listitem>
-  <para>vecteur ligne d'entiers 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="knapsack">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>knapsack</refname>
+    <refpurpose> résout un problème du sac à dos 0-1 multiple   </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[earn,ind] = knapsack(profit,weight,capa,[bck])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>profit  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers 
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>weight  </term>
-  <listitem>
-  <para>vecteur ligne d'entiers 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>weight  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers 
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>capa  </term>
-  <listitem>
-  <para>vecteur ligne d'entiers
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>capa  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>bck  </term>
-  <listitem>
-  <para>entier
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bck  </term>
+        <listitem>
+          <para>entier
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>earn  </term>
-  <listitem>
-  <para>entier 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>earn  </term>
+        <listitem>
+          <para>entier 
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>ind  </term>
-  <listitem>
-  <para>vecteur ligne d'entiers 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ind  </term>
+        <listitem>
+          <para>vecteur ligne d'entiers 
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
-    <literal>knapsack</literal> résout un problème du sac à dos 0-1 multiple avec n (n &gt;= 2)
+  <refsection>
+    <title>Description</title>
+    <para><literal>knapsack</literal> résout un problème du sac à dos 0-1 multiple avec n (n &gt;= 2)
     objets et m sacs à dos (m &gt;= 1).
     <literal>profit</literal> est le vecteur des profits (entiers) des n objets et
     <literal>weight</literal> est le vecteur des poids correspondants (entiers).
@@ -78,7 +84,7 @@
     donne le numéro du sac à dos où l'objet i est mis et cette valeur est 0 si 
     l'objet i n'est pas dans la solution optimale.
   </para>
-  <para>
+    <para>
     Rappelons que le problème à résoudre est le suivant :
     <literal>p(i)</literal> et <literal>w</literal> désignent respectivement le profit et le poids de
     l'objet <literal>i</literal> 1=1,...,n; 
@@ -86,11 +92,11 @@
     <literal>q(j,i)</literal> désigne la quantité d'objets <literal>i</literal> dans le sac à dos <literal>j</literal> 
     (en fait 0 ou 1).
   </para>
-  <para>
+    <para>
     On cherche à maximiser le profit global <literal>E</literal> :
      <literal>E=p(1)*[x(1,1)+...+x(m,1)]+...+p(n)*[x(1,n)+...+x(m,n)]</literal>
   </para>
-  <para>
+    <para>
     sous les contraintes :
      <literal>[w(1)*x(j,1)+...+w(n)*x(j,m)] &lt;= c(j) ; j=1,...,m</literal>
      <literal>[x(1,i)+...+x(m,i)] &lt;= 1 ; i=1,...,n</literal>
@@ -98,13 +104,21 @@
      <literal>p(),w(),c()</literal> sont des entiers positifs.
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 weight=ones(1,15).*.[1:4];
 profit=ones(1,60);
 capa=[15 45 30 60];
 [earn,ind]=knapsack(profit,weight,capa)
- ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="qassign">qassign</link> </member>
-  </simplelist></refsection>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="qassign">qassign</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,46 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="grayplot_properties"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>grayplot_properties</refname><refpurpose>description of the grayplot
-  entities properties</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="grayplot_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>grayplot_properties</refname>
+    <refpurpose>description of the grayplot
+  entities properties</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>The Grayplot entity is a leaf of the graphics entities hierarchy. It
     represents 2D plots of surface using colors and images (see
     <literal>grayplot</literal>, <literal>Sgrayplot</literal>, <literal>fgrayplot</literal> and
     <literal>Sfgrayplot</literal>).</para>
-
     <variablelist>
-      <varlistentry><term>parent: </term><listitem>
-        <para>This property contains the handle of the parent. The parent of the
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>This property contains the handle of the parent. The parent of the
         grayplot entity should be of the type <literal>"Axes"</literal>.</para>
-      </listitem></varlistentry>
-
-      <varlistentry><term>children: </term><listitem>
-        <para>This property contains a vector with the <literal>children</literal> of
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>children: </term>
+        <listitem>
+          <para>This property contains a vector with the <literal>children</literal> of
         the handle. However, <literal>grayplot</literal> handles currently do not
         have any <literal>children</literal>.</para>
-      </listitem></varlistentry>
-
-      <varlistentry><term>visible: </term><listitem>
-        <para>This field contains the <literal>visible</literal> property value for
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>This field contains the <literal>visible</literal> property value for
         the entity . It should be <literal>"on" </literal> or <literal>"off"</literal> .
         By default, the plot is visible, the value's property is
         <literal>"on"</literal>. If <literal>"off"</literal> the plot is not drawn on the
         screen.</para>
-      </listitem></varlistentry>
-
-      <varlistentry><term>data: </term><listitem>
-        <para>This field defines a <literal>tlist</literal> data structure of type
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data: </term>
+        <listitem>
+          <para>This field defines a <literal>tlist</literal> data structure of type
         <literal>"grayplotdata"</literal> composed of a row and column indices of
         each element : the x and y grid coordinates are contained respectively
         in <literal>data.x</literal> and <literal>data.y</literal>. The complementary
@@ -63,24 +68,30 @@
         indices are ignored and the color is determined directly in the
         colormap by the indices of the submatrix
         <literal>data.z(1:$-1,1:$-1)</literal>.</para>
-      </listitem></varlistentry>
-
-      <varlistentry><term>data_mapping: </term><listitem>
-        <para>By default the value of this property is <literal>"scaled"</literal> :
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data_mapping: </term>
+        <listitem>
+          <para>By default the value of this property is <literal>"scaled"</literal> :
         the indices of painting colors are proportional to the value
         <literal>z</literal> coordinates. In the other case, the property takes as
         value <literal>"direct"</literal> where the plot is a grayplot and the
         indices of painting colors are given by the data (see above).</para>
-      </listitem></varlistentry>
-
-      <varlistentry><term>user_data: </term><listitem>
-        <para>This field can be use to store any scilab variable in the grayplot
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>This field can be use to store any scilab variable in the grayplot
         data structure, and to retreive it.</para>
-      </listitem></varlistentry>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 
    m=5;n=5;
@@ -109,41 +120,39 @@
    
 
  
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="set">set</link>
-    </member>
-
-    <member>
-      <link linkend="get">get</link>
-    </member>
-
-    <member>
-      <link linkend="delete">delete</link>
-    </member>
-
-    <member>
-      <link linkend="grayplot">grayplot</link>
-    </member>
-
-    <member>
-      <link linkend="Matplot">Matplot</link>
-    </member>
-
-    <member>
-      <link linkend="Matplot1">Matplot1</link>
-    </member>
-
-    <member>
-      <link linkend="graphics_entities">graphics_entities</link>
-    </member>
-
-    <member>
-      <link linkend="Matplot_properties">Matplot_properties</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE &amp; F.Leray</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="grayplot">grayplot</link>
+      </member>
+      <member>
+        <link linkend="Matplot">Matplot</link>
+      </member>
+      <member>
+        <link linkend="Matplot1">Matplot1</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="Matplot_properties">Matplot_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Djalel ABDEMOUCHE &amp; F.Leray</para>
+  </refsection>
 </refentry>

@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ricc"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ricc</refname><refpurpose> Riccati equation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[X,RCOND,FERR]=ricc(A,B,C,"cont""method")
-[X,RCOND,FERR]=ricc(F,G,H,"disc","method")</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ricc">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ricc</refname>
+    <refpurpose> Riccati equation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[X,RCOND,FERR]=ricc(A,B,C,"cont""method")
+[X,RCOND,FERR]=ricc(F,G,H,"disc","method")</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A,B,C</term>
@@ -52,7 +58,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Riccati solver.</para>
     <para>
@@ -100,7 +107,9 @@
     It is assumed that the matrices A, C and D are such that the
     corresponding Hamiltonian matrix has N eigenvalues with negative real parts.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //Standard formulas to compute Riccati solutions
 A=rand(3,3);B=rand(3,2);C=rand(3,3);C=C*C';R=rand(2,2);R=R*R'+eye();
@@ -130,22 +139,30 @@ Ham=[F+G*Fit*H -G*Fit;-Fit*H Fit];
 [T,d]=schur(Ham,'d');T=T(:,1:d);X2=T(4:6,:)/T(1:3,:);
 norm(X2-X,1)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="riccati">riccati</link>
-    </member>
-    <member>
-      <link linkend="ric_desc">ric_desc</link>
-    </member>
-    <member>
-      <link linkend="schur">schur</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="riccati">riccati</link>
+      </member>
+      <member>
+        <link linkend="ric_desc">ric_desc</link>
+      </member>
+      <member>
+        <link linkend="schur">schur</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>
  P. Petkov
-</para></refsection>
-  <refsection><title>Used Functions</title>
+</para>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
     <para>See SCIDIR/routines/control/riccpack&gt;</para>
   </refsection>
 </refentry>

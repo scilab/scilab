@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="make_index"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>make_index</refname><refpurpose> creates a new index file for on-line help</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>make_index()</synopsis></refsynopsisdiv>
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="make_index">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>make_index</refname>
+    <refpurpose> creates a new index file for on-line help</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>make_index()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
     <para>
     The on-line help reads first the <literal>index.html</literal> file
     which contains the list of the chapters. This file comes with Scilab and is
@@ -27,12 +33,15 @@
     modify the <link linkend="helps">%helps</link> variable and then use the
     <literal>make_index</literal> function.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="helps">%helps</link>
-    </member>
-    <member>
-      <link linkend="man">man</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="helps">%helps</link>
+      </member>
+      <member>
+        <link linkend="man">man</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contour2di"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>contour2di</refname><refpurpose> compute level curves of a surface on a 2D plot</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[xc,yc]=contour2di(x,y,z,nz)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contour2di">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>contour2di</refname>
+    <refpurpose> compute level curves of a surface on a 2D plot</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[xc,yc]=contour2di(x,y,z,nz)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>
@@ -59,7 +65,7 @@
             </varlistentry>
             <varlistentry>
               <term/>
-             <listitem>
+              <listitem>
                 <para>If <literal>nz</literal> is a vector, <literal>nz(i)</literal> gives the value of the ith level curve.</para>
               </listitem>
             </varlistentry>
@@ -74,7 +80,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>contour2di</literal> computes level curves of a surface <literal>z=f(x,y)</literal> on
     a 2D plot.  The values of <literal>f(x,y)</literal> are given by the matrix <literal>z</literal>
     at the grid points defined by <literal>x</literal> and <literal>y</literal>.</para>
@@ -84,7 +91,9 @@
     of the paths points.
     The second path begin at <literal>xc(2+N1)</literal> and <literal>yc(2+N1)</literal> and so on.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 [xc,yc]=contour2di(1:10,1:10,rand(10,10),5);
 k=1;n=yc(k);c=1;
@@ -96,26 +105,33 @@ while k+yc(k)<size(xc,'*')
 end
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="contour">contour</link>
-    </member>
-    <member>
-      <link linkend="fcontour">fcontour</link>
-    </member>
-    <member>
-      <link linkend="fcontour2d">fcontour2d</link>
-    </member>
-    <member>
-      <link linkend="contour2d">contour2d</link>
-    </member>
-    <member>
-      <link linkend="plot2d">plot2d</link>
-    </member>
-    <member>
-      <link linkend="xset">xset</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="contour">contour</link>
+      </member>
+      <member>
+        <link linkend="fcontour">fcontour</link>
+      </member>
+      <member>
+        <link linkend="fcontour2d">fcontour2d</link>
+      </member>
+      <member>
+        <link linkend="contour2d">contour2d</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="xset">xset</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="h_inf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>h_inf</refname><refpurpose> H-infinity (central) controller</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Sk,ro]=h_inf(P,r,romin,romax,nmax)
-[Sk,rk,ro]=h_inf(P,r,romin,romax,nmax)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="h_inf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>h_inf</refname>
+    <refpurpose> H-infinity (central) controller</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Sk,ro]=h_inf(P,r,romin,romax,nmax)
+[Sk,rk,ro]=h_inf(P,r,romin,romax,nmax)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>P</term>
@@ -46,7 +52,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>h_inf</literal> computes H-infinity optimal controller for the 
     continuous-time plant <literal>P</literal>.</para>
     <para>
@@ -78,16 +85,22 @@
     Algorithm is adapted from Safonov-Limebeer. Note that <literal>P</literal> is assumed to be 
     a continuous-time plant.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="gamitg">gamitg</link>
-    </member>
-    <member>
-      <link linkend="ccontrg">ccontrg</link>
-    </member>
-    <member>
-      <link linkend="leqr">leqr</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>F.Delebecque INRIA (1990)  </para></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gamitg">gamitg</link>
+      </member>
+      <member>
+        <link linkend="ccontrg">ccontrg</link>
+      </member>
+      <member>
+        <link linkend="leqr">leqr</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.Delebecque INRIA (1990)  </para>
+  </refsection>
 </refentry>

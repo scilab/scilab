@@ -10,17 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="givens"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>givens</refname><refpurpose> Givens transformation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>U=givens(xy)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="givens">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>givens</refname>
+    <refpurpose> Givens transformation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>U=givens(xy)
 U=givens(x,y)
 [U,c]=givens(xy)
-[U,c]=givens(x,y)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[U,c]=givens(x,y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>
@@ -48,23 +54,30 @@ U=givens(x,y)
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>U = givens(x, y)</literal> or <literal>U = givens(xy)</literal> with <literal>xy = [x;y]</literal>
     returns a <literal>2</literal>x<literal>2</literal> unitary matrix <literal>U</literal> such that:</para>
     <para><literal>U*xy=[r;0]=c</literal>.</para>
     <para>
     Note that <literal>givens(x,y)</literal> and <literal>givens([x;y])</literal> are equivalent.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=[3,4;5,6];
 U=givens(A(:,1));
 U*A
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="qr">qr</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

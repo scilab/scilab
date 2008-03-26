@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="symbols"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>symbols</refname><refpurpose> scilab operator names</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="symbols">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>symbols</refname>
+    <refpurpose> scilab operator names</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
     Use the following names to get help on a specific symbol.</para>
     <informaltable border="1">
@@ -81,11 +85,15 @@
         <td>semi</td>
       </tr>
       <tr>
-        <td><literal>^</literal></td>
+        <td>
+          <literal>^</literal>
+        </td>
         <td>hat</td>
       </tr>
       <tr>
-        <td><literal>.^</literal></td>
+        <td>
+          <literal>.^</literal>
+        </td>
         <td>power</td>
       </tr>
       <tr>
@@ -102,9 +110,12 @@
       </tr>
     </informaltable>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="overloading">overloading</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="overloading">overloading</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

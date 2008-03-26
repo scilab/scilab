@@ -10,18 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="inistate"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>inistate</refname><refpurpose> Estimates the initial state of a discrete-time system</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>X0 = inistate(SYS,Y,U,TOL,PRINTW)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="inistate">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>inistate</refname>
+    <refpurpose> Estimates the initial state of a discrete-time system</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>X0 = inistate(SYS,Y,U,TOL,PRINTW)
 X0 = inistate(A,B,C,Y,U);
 X0 = inistate(A,C,Y);
 
-[x0,V,rcnd] = inistate(SYS,Y,U,TOL,PRINTW)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[x0,V,rcnd] = inistate(SYS,Y,U,TOL,PRINTW)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>SYS</term>
@@ -93,7 +99,8 @@ X0 = inistate(A,C,Y);
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     inistate  Estimates the initial state of a discrete-time system, given the 
     (estimated) system matrices, and a set of input/output data.</para>
@@ -120,12 +127,15 @@ X0 = inistate(A,C,Y);
     a real Schur form, as well as an estimate of the reciprocal condition
     number of the coefficient matrix of the least squares problem solved.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="findBD">findBD</link>
-    </member>
-    <member>
-      <link linkend="findx0BD">findx0BD</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="findBD">findBD</link>
+      </member>
+      <member>
+        <link linkend="findx0BD">findx0BD</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

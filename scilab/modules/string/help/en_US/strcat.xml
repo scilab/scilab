@@ -10,50 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strcat"><info><pubdate>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)$</pubdate></info><refnamediv><refname>strcat</refname><refpurpose>concatenate character
-  strings</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>txt=strcat(vstr [,strp])
-txt=strcat(vstr [,strp],["flag"])</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strcat">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan 2008)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>strcat</refname>
+    <refpurpose>concatenate character
+  strings</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>txt=strcat(vstr [,strp])
+txt=strcat(vstr [,strp],["flag"])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>vstr</term>
-
         <listitem>
           <para>vector of strings</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>strp</term>
-
         <listitem>
           <para>string, default value is the emptystr <literal>""</literal></para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>txt</term>
-
         <listitem>
           <para>string</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>"flag"</term>
-
         <listitem>
           <para>string ( "*" for just return one string , "r" for return a
           column matrix, "c" for return a row matrix) </para>
@@ -61,28 +54,30 @@ txt=strcat(vstr [,strp],["flag"])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>txt=strcat(vstr)</literal> concatenates character strings :
     <literal>txt=vstr(1)+...+vstr(n)</literal></para>
-
     <para><literal>txt=strcat(vstr,strp)</literal> returns
     <literal>txt=strs(1)+strp+...+strp+strs(n)</literal>. The plus symbol does the
     same: <literal>"a"+"b"</literal> is the same as <literal>strcat(["a","b"]) If the
     number of vstr is one, returns txt=str(1);</literal></para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 strcat(string(1:10),',')
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="string">string</link>
-    </member>
-
-    <member>
-      <link linkend="strings">strings</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="string">string</link>
+      </member>
+      <member>
+        <link linkend="strings">strings</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

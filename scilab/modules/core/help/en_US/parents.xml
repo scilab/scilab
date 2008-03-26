@@ -1,16 +1,23 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="parents"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>parents</refname><refpurpose>  ( ) left and right parenthesis</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>(expression)
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="parents">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>parents</refname>
+    <refpurpose>  ( ) left and right parenthesis</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>(expression)
 [...]=func(e1,e2,...)
 [x1,x2,...]=(e1,e2,...)
 x(i,j)
 v(i)
-[...]=l(i)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[...]=l(i)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -44,7 +51,8 @@ v(i)
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Left and right parenthesis are used to</para>
     <para>
@@ -64,7 +72,9 @@ v(i)
     %t_2 = e2, ..., and then x1 = %t_1, x2 = %t_2, ..., where the
     variables %t_i, i = 1, 2, ... are invisible to the user.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 3^(-1)
 x=poly(0,"x");
@@ -90,25 +100,29 @@ v=%t([1 1 1 1 1])
 //
 [x,y,z]=(1,2,3)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="colon">colon</link>
-    </member>
-    <member>
-      <link linkend="comma">comma</link>
-    </member>
-    <member>
-      <link linkend="brackets">brackets</link>
-    </member>
-    <member>
-      <link linkend="list">list</link>
-    </member>
-    <member>
-      <link linkend="extraction">extraction</link>
-    </member>
-    <member>
-      <link linkend="insertion">insertion</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="colon">colon</link>
+      </member>
+      <member>
+        <link linkend="comma">comma</link>
+      </member>
+      <member>
+        <link linkend="brackets">brackets</link>
+      </member>
+      <member>
+        <link linkend="list">list</link>
+      </member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
+      <member>
+        <link linkend="insertion">insertion</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

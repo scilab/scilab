@@ -9,15 +9,22 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- --><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lusolve"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lusolve</refname><refpurpose> sparse linear system solver</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>lusolve(hand,b)
-lusolve(A,b)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lusolve">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lusolve</refname>
+    <refpurpose> sparse linear system solver</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>lusolve(hand,b)
+lusolve(A,b)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>b</term>
@@ -39,14 +46,17 @@ lusolve(A,b)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>x=lusolve(hand,b)</literal> solves the sparse linear system
     <literal>A*x = b</literal>.</para>
     <para><literal>[hand,rk]=lufact(A)</literal> is the output of lufact.</para>
     <para><literal>x=lusolve(A,b)</literal> solves the sparse linear system  
     <literal>A*x = b</literal></para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 non_zeros=[1,2,3,4];rows_cols=[1,1;2,2;3,3;4,4];
 sp=sparse(rows_cols,non_zeros);
@@ -58,19 +68,23 @@ sp=sparse(rows_cols,non_zeros);
 x=lusolve(sp,-ones(4,1));
 sp*x
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="sparse">sparse</link>
-    </member>
-    <member>
-      <link linkend="lufact">lufact</link>
-    </member>
-    <member>
-      <link linkend="slash">slash</link>
-    </member>
-    <member>
-      <link linkend="backslash">backslash</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sparse">sparse</link>
+      </member>
+      <member>
+        <link linkend="lufact">lufact</link>
+      </member>
+      <member>
+        <link linkend="slash">slash</link>
+      </member>
+      <member>
+        <link linkend="backslash">backslash</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

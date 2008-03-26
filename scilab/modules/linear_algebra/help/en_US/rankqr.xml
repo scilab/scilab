@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rankqr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>rankqr</refname><refpurpose>  rank revealing QR factorization</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Q,R,JPVT,RANK,SVAL]=rankqr(A, [RCOND,JPVT])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rankqr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rankqr</refname>
+    <refpurpose>  rank revealing QR factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Q,R,JPVT,RANK,SVAL]=rankqr(A, [RCOND,JPVT])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -72,7 +78,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
 To compute (optionally) a rank-revealing QR factorization of a real
 general M-by-N real or complex matrix <literal>A</literal>, which may be
@@ -105,21 +112,28 @@ rank is well defined with respect to the chosen value of
 <literal>RCOND</literal>.  The ratio <literal>SVAL(1)/SVAL(2)</literal> is an
 estimate of the condition number of <literal>R(1:RANK,1:RANK)</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=rand(5,3)*rand(3,7);
 [Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="qr">qr</link>
-    </member>
-    <member>
-      <link linkend="rank">rank</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Used Functions</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="rank">rank</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
     <para>
     Slicot library routines MB03OD, ZB03OD.</para>
   </refsection>

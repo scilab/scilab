@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="time_id"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>time_id</refname><refpurpose> SISO least square identification</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[H [,err]]=time_id(n,u,y)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="time_id">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>time_id</refname>
+    <refpurpose> SISO least square identification</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[H [,err]]=time_id(n,u,y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -71,7 +77,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Identification of discrete time response. If <literal>y</literal> is strictly
     proper (<literal>y(1)=0</literal>) then <literal>time_id</literal> computes the least square
@@ -79,7 +86,9 @@
     constraint  <literal>coeff(Den,n):=1</literal>. if <literal>y(1)~=0</literal> then the algorithm
     first computes the proper part solution and then add  y(1) to the solution</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 z=poly(0,'z');
 h=(1-2*z)/(z^2-0.5*z+5)
@@ -95,20 +104,27 @@ rep=flts(u,tf2ss(h));     //step response.
 H=time_id(2,'step',rep)
 H=time_id(3,u,rep)    //with u as input and too high order required
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="imrep2ss">imrep2ss</link>
-    </member>
-    <member>
-      <link linkend="arl2">arl2</link>
-    </member>
-    <member>
-      <link linkend="armax">armax</link>
-    </member>
-    <member>
-      <link linkend="frep2tf">frep2tf</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>Serge Steer INRIA</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="imrep2ss">imrep2ss</link>
+      </member>
+      <member>
+        <link linkend="arl2">arl2</link>
+      </member>
+      <member>
+        <link linkend="armax">armax</link>
+      </member>
+      <member>
+        <link linkend="frep2tf">frep2tf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Serge Steer INRIA</para>
+  </refsection>
 </refentry>

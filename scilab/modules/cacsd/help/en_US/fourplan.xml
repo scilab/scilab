@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fourplan"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fourplan</refname><refpurpose> augmented plant to four plants</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[P11,P12,P21,P22]=fourplan(P,r)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fourplan">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fourplan</refname>
+    <refpurpose> augmented plant to four plants</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[P11,P12,P21,P22]=fourplan(P,r)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>P</term>
@@ -39,7 +45,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Utility function.</para>
     <para><literal>P</literal> being partitioned as follows:</para>
@@ -52,21 +59,24 @@ P=[ P11 P12;
     <para>
     with <literal>size(P22)=r</literal> this function returns the four linear systems <literal>P11,P12,P21,P22</literal>.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="lqg">lqg</link>
-    </member>
-    <member>
-      <link linkend="lqg2stan">lqg2stan</link>
-    </member>
-    <member>
-      <link linkend="lqr">lqr</link>
-    </member>
-    <member>
-      <link linkend="lqe">lqe</link>
-    </member>
-    <member>
-      <link linkend="lft">lft</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lqg">lqg</link>
+      </member>
+      <member>
+        <link linkend="lqg2stan">lqg2stan</link>
+      </member>
+      <member>
+        <link linkend="lqr">lqr</link>
+      </member>
+      <member>
+        <link linkend="lqe">lqe</link>
+      </member>
+      <member>
+        <link linkend="lft">lft</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

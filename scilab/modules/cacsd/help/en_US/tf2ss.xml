@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tf2ss"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>tf2ss</refname><refpurpose> transfer to state-space</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>sl=tf2ss(h [,tol])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="tf2ss">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tf2ss</refname>
+    <refpurpose> transfer to state-space</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>sl=tf2ss(h [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
@@ -53,30 +59,37 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     transfer to state-space conversion:</para>
     <para>
       <literal>h=C*(s*eye()-A)^-1*B+D(s)</literal>
     </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 s=poly(0,'s');
 H=[2/s,(s+1)/(s^2-5)];
 Sys=tf2ss(H)
 clean(ss2tf(Sys))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="ss2tf">ss2tf</link>
-    </member>
-    <member>
-      <link linkend="tf2des">tf2des</link>
-    </member>
-    <member>
-      <link linkend="des2tf">des2tf</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ss2tf">ss2tf</link>
+      </member>
+      <member>
+        <link linkend="tf2des">tf2des</link>
+      </member>
+      <member>
+        <link linkend="des2tf">des2tf</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

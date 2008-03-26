@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cainv"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>cainv</refname><refpurpose>  Dual of abinv</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cainv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cainv</refname>
+    <refpurpose>  Dual of abinv</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>Sl</term>
@@ -81,7 +87,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>cainv</literal> finds a bases <literal>(X,Y)</literal> (of state space and output space resp.)
     and output injection matrix <literal>J</literal> such that the matrices of Sl in 
     bases (X,Y) are displayed as:</para>
@@ -148,15 +155,18 @@
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="abinv">abinv</link>
-    </member>
-    <member>
-      <link linkend="dt_ility">dt_ility</link>
-    </member>
-    <member>
-      <link linkend="ui_observer">ui_observer</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="abinv">abinv</link>
+      </member>
+      <member>
+        <link linkend="dt_ility">dt_ility</link>
+      </member>
+      <member>
+        <link linkend="ui_observer">ui_observer</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

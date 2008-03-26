@@ -10,48 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="beta"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>beta</refname><refpurpose>beta function</refpurpose></refnamediv>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>z = beta(x,y)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="beta">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>beta</refname>
+    <refpurpose>beta function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>z = beta(x,y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
-     <varlistentry>
+      <varlistentry>
         <term>x, y </term>
         <listitem>
-	 <para>2 positive reals or 2 matrices (or vectors) of positive reals of same size.</para>
-	</listitem> 
-     </varlistentry>
-     <varlistentry>
+          <para>2 positive reals or 2 matrices (or vectors) of positive reals of same size.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>z  </term>
         <listitem>
-         <para>a real or a matrix of the same size than <literal>x</literal> with <literal>z(i,j) = beta(x(i,j),y(i,j))</literal>.</para>
-        </listitem> 
-     </varlistentry>
-   </variablelist>
+          <para>a real or a matrix of the same size than <literal>x</literal> with <literal>z(i,j) = beta(x(i,j),y(i,j))</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  
-  <refsection><title>Description</title>
-  <para>
+  <refsection>
+    <title>Description</title>
+    <para>
     Computes the complete beta function :
   </para>
-     <programlisting><![CDATA[
+    <programlisting><![CDATA[
                /1
                |   x-1     y-1        gamma(x) gamma(y)
   beta(x,y) =  |  t   (1-t)    dt  =  ----------------
                /0                        gamma(x+y)
       ]]></programlisting>
-  <para>
+    <para>
     For small <literal>x</literal> and <literal>y</literal> the algorithm uses the expression in function
     of the gamma function, else it applies the exponential function onto the result of the
     <literal>betaln</literal> function provided with the DCDFLIB: Library of Fortran Routines for 
@@ -59,9 +58,9 @@
     for more information about DCDFLIB).
   </para>
   </refsection>
-
- 
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 // example 1 :
 beta(5,2) - beta(2,5)   // symetry (must be exactly 0)
 beta(0.5,0.5)           // exact value is pi
@@ -87,15 +86,17 @@ xbasc()
 plot3d(t, t, Z, flag=[2 4 4], leg="x@y@z", alpha=75, theta=30)
 xtitle("The beta function on [0.2,10]x[0.2,10]")
 xselect()
- ]]></programlisting></refsection>
- 
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="gamma">gamma</link>
-    </member>
-    <member>
-      <link linkend="cdfbet">cdfbet</link>
-    </member>
-  </simplelist></refsection>
-
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gamma">gamma</link>
+      </member>
+      <member>
+        <link linkend="cdfbet">cdfbet</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,17 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fftw"><info><pubdate>October 2006</pubdate></info><refnamediv><refname>fftw</refname><refpurpose>fast fourier transform that use fftw library</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y]=fftw(x)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fftw">
+  <info>
+    <pubdate>October 2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fftw</refname>
+    <refpurpose>fast fourier transform that use fftw library</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[y]=fftw(x)
 [y]=fftw(x,sign)
 [y]=fftw(x,sign,dim,incr)
-[y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>y,x</term>
@@ -48,7 +54,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function realizes direct/inverse Discrete Fourier Transform (DFT) with the help of the FFTW library.
     </para>
@@ -68,7 +75,9 @@
     This results on a time computation improvement when consecutives calls (with same parameters) are used.
     </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
   
   //simple vector direct transform
   a = rand(50,1)+%i*rand(50,1);
@@ -94,19 +103,29 @@
   y = fftw(a,-1,[5 6 4],[1 5 30]);
   b = fftw(y,1,[5 6 4],[1 5 30]);
   
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member><link linkend="fftw_flags">fftw_flags</link></member>
-    <member><link linkend="get_fftw_wisdom">get_fftw_wisdom</link></member>
-    <member><link linkend="set_fftw_wisdom">set_fftw_wisdom</link></member>
-    <member><link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link></member>
-  </simplelist></refsection>
-
-  <refsection><title>Bibliography</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fftw_flags">fftw_flags</link>
+      </member>
+      <member>
+        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+      </member>
+      <member>
+        <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+      </member>
+      <member>
+        <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
     <para>
     Matteo Frigo and Steven G. Johnson, "FFTW Manual fo version 3.1.2" June 2006. Available : http://www.fftw.org
     </para>
   </refsection>
-
 </refentry>

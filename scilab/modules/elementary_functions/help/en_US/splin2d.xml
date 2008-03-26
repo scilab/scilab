@@ -1,44 +1,49 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="splin2d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>splin2d</refname><refpurpose>bicubic spline gridded 2d interpolation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="splin2d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>splin2d</refname>
+    <refpurpose>bicubic spline gridded 2d interpolation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
-     <varlistentry>
+      <varlistentry>
         <term>x,y</term>
         <listitem>
-	 <para>strictly increasing row vectors (with at least 2 components)
+          <para>strictly increasing row vectors (with at least 2 components)
                defining the interpolation grid</para>
-	</listitem> 
-     </varlistentry>
-     <varlistentry>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>z</term>
         <listitem>
-	 <para>nx x ny matrix (nx being the length of <literal>x</literal> and 
+          <para>nx x ny matrix (nx being the length of <literal>x</literal> and 
                ny the length of <literal>y</literal>)</para>
-	</listitem> 
-     </varlistentry>
-     <varlistentry>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>spline_type </term>
         <listitem>
-         <para>(optional) a string selecting the kind of bicubic spline to compute</para>
-        </listitem> 
-     </varlistentry>
-     <varlistentry>
+          <para>(optional) a string selecting the kind of bicubic spline to compute</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>C</term>
         <listitem>
-         <para>a big vector with the coefficients of the bicubic patches (see details in Remarks)</para>
-        </listitem> 
-     </varlistentry>
-   </variablelist>
+          <para>a big vector with the coefficients of the bicubic patches (see details in Remarks)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function computes a bicubic spline or sub-spline <emphasis>s</emphasis> which interpolates the 
     <emphasis>(xi,yj,zij)</emphasis> points, ie, we have <emphasis>s(xi,yj)=zij</emphasis> for all  <emphasis>i=1,..,nx</emphasis>
@@ -48,7 +53,7 @@
     of the (nx-1)(ny-1) bicubic patches : on <emphasis>[x(i) x(i+1)]x[y(j) y(j+1)]</emphasis>, <emphasis>s</emphasis>
     is defined by :
     </para>
-        <programlisting><![CDATA[
+    <programlisting><![CDATA[
              _4_   _4_                       
              \     \                   k-1       l-1
     s(x,y) = /     /    C (k,l) (x - xi)  (y - yj)
@@ -68,22 +73,24 @@
     with the <literal>spline_type</literal> parameter (see <link linkend="splin">splin</link> for details) :  
     </para>
     <variablelist>
-      <varlistentry><term>"not_a_knot"</term><listitem>
-        <para>this is the default case.</para>
-      </listitem></varlistentry>
-      
-      <varlistentry><term>"periodic"</term><listitem>
-        <para>to use if the underlying function is periodic : you must have <emphasis>z(1,j) = z(nx,j) for
+      <varlistentry>
+        <term>"not_a_knot"</term>
+        <listitem>
+          <para>this is the default case.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"periodic"</term>
+        <listitem>
+          <para>to use if the underlying function is periodic : you must have <emphasis>z(1,j) = z(nx,j) for
               all j in [1,ny] and  z(i,1) = z(i,ny) for i in [1,nx]</emphasis> but this is not verified
               by the interface.</para>
-      </listitem></varlistentry>
-      
-      
-      
-      </variablelist>
-    </refsection>
-
-    <refsection><title>Remarks</title>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Remarks</title>
     <para>From an accuracy point of view use essentially the <emphasis role="bold">not_a_knot</emphasis> type or <emphasis role="bold">periodic</emphasis>
     type if the underlying interpolated function is periodic.
     </para>
@@ -98,8 +105,10 @@
      hypermatrix <literal>c</literal> (note that one can easily retrieve <literal>C</literal> from <literal>c</literal> with
      <literal>C=c(:)</literal>).
     </para>
-    </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 // example 1 : interpolation of cos(x)cos(y)
 n = 7;  // a regular grid with n x n interpolation points
         // will be used
@@ -168,20 +177,26 @@ subplot(1,2,1)
 subplot(1,2,2)
    plot3d1(xp, xp, zp2, flag=[-2 6 4])
    xtitle("subspline (monotone)")
- ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="cshep2d">cshep2d</link>
-    </member>
-    <member>
-      <link linkend="linear_interpn">linear_interpn</link>
-    </member>
-    <member>
-      <link linkend="interp2d">interp2d</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><para>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cshep2d">cshep2d</link>
+      </member>
+      <member>
+        <link linkend="linear_interpn">linear_interpn</link>
+      </member>
+      <member>
+        <link linkend="interp2d">interp2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>
      B. Pincon
-  </para></refsection>
+  </para>
+  </refsection>
 </refentry>

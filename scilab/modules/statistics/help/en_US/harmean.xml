@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="harmean"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>harmean</refname><refpurpose> harmonic mean</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>hm=harmean(x)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="harmean">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>harmean</refname>
+    <refpurpose> harmonic mean</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>hm=harmean(x)
 hm=harmean(x,'r')(or, equivalently, hm=harmean(x,1))
-hm=harmean(x,'c')(or, equivalently, hm=harmean(x,2))</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+hm=harmean(x,'c')(or, equivalently, hm=harmean(x,2))</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -29,7 +35,8 @@ hm=harmean(x,'c')(or, equivalently, hm=harmean(x,2))</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function  computes the harmonic  mean of a  vector or
     matrix <literal> x</literal>.  For a vector or matrix  <literal> x</literal>, 
@@ -42,8 +49,12 @@ hm=harmean(x,'c')(or, equivalently, hm=harmean(x,2))</synopsis></refsynopsisdiv>
     <literal> hm=harmean(x,2) </literal> ) returns  in each entry of the column
     vector <literal> hm</literal> the harmonic mean of each  row of <literal> x </literal>.</para>
   </refsection>
-  <refsection><title>Authors</title><para> Carlos Klimann</para></refsection>
-  <refsection><title>Bibliography</title>
+  <refsection>
+    <title>Authors</title>
+    <para> Carlos Klimann</para>
+  </refsection>
+  <refsection>
+    <title>Bibliography</title>
     <para>
     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
   </refsection>

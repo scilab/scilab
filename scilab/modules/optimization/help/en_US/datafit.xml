@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="datafit"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>datafit</refname><refpurpose> Parameter identification based on measured data</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[p,err]=datafit([imp,] G [,DG],Z [,W],[contr],p0,[algo],[df0,[mem]],
-[work],[stop],['in'])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="datafit">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datafit</refname>
+    <refpurpose> Parameter identification based on measured data</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[p,err]=datafit([imp,] G [,DG],Z [,W],[contr],p0,[algo],[df0,[mem]],
+[work],[stop],['in'])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>imp</term>
@@ -144,7 +150,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>datafit</literal> is used for fitting data to a model.
     For a given function <literal>G(p,z)</literal>, this function finds the best vector 
     of parameters <literal>p</literal> for approximating <literal>G(p,z_i)=0</literal> for a set of measurement
@@ -152,7 +159,9 @@
     <literal>G(p,z_1)'WG(p,z_1)+G(p,z_2)'WG(p,z_2)+...+G(p,z_n)'WG(p,z_n)</literal></para>
     <para><literal>datafit</literal> is an improved version of <literal>fit_dat</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //generate the data
 function y=FF(x,p),y=p(1)*(x-p(2))+p(3)*x.*x,endfunction
@@ -192,16 +201,20 @@ plot2d(X,FF(X,p),12) //the solution
 
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-   <member>
-      <link linkend="lsqrsolve">lsqrsolve</link>
-    </member>
-    <member>
-      <link linkend="optim">optim</link>
-    </member>
-    <member>
-      <link linkend="leastsq">leastsq</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lsqrsolve">lsqrsolve</link>
+      </member>
+      <member>
+        <link linkend="optim">optim</link>
+      </member>
+      <member>
+        <link linkend="leastsq">leastsq</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

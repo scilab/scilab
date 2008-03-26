@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="intersect"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>intersect</refname><refpurpose> returns the vector of common values of two vectors</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[v, [ka,kb]]=intersect(a,b)
-</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="intersect">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>intersect</refname>
+    <refpurpose> returns the vector of common values of two vectors</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[v, [ka,kb]]=intersect(a,b)
+</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>a</term>
@@ -52,13 +58,16 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>intersect(a,b)</literal> returns a sorted row vector of common values of
     two vectors of <literal>a</literal> and <literal>b</literal>.</para>
     <para><literal>[v,ka,kb]=intersect(a,b)</literal> also returns index vectors <literal>ka</literal> and
     <literal>kb</literal> such that <literal>v=a(ka)</literal> and <literal>v=b(kb)</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=round(5*rand(10,1));
 B=round(5*rand(7,1));
@@ -69,16 +78,20 @@ intersect(A,B)
 intersect('a'+string(A),'a'+string(B))
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="unique">unique</link>
-    </member>
-    <member>
-      <link linkend="sort">sort</link>
-    </member>
-    <member>
-      <link linkend="union">union</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="unique">unique</link>
+      </member>
+      <member>
+        <link linkend="sort">sort</link>
+      </member>
+      <member>
+        <link linkend="union">union</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

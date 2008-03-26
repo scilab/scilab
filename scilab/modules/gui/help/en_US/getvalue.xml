@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getvalue"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getvalue</refname><refpurpose> xwindow dialog for data acquisition</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getvalue">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getvalue</refname>
+    <refpurpose> xwindow dialog for data acquisition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>desc</term>
@@ -97,32 +104,43 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function encapsulate <literal>x_mdialog</literal> function with error checking,
     evaluation of numerical response, ...</para>
   </refsection>
-  <refsection><title>Remarks</title>
+  <refsection>
+    <title>Remarks</title>
     <para>
     All valid expressions can be used as answers; for matrices  and vectors <literal>getvalues</literal> automatically adds [ ] around the given answer before numeric evaluation.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 labels=["magnitude";"frequency";"phase    "];
 [ok,mag,freq,ph]=getvalue("define sine signal",labels,...
      list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="x_mdialog">x_mdialog</link>
-    </member>
-    <member>
-      <link linkend="x_matrix">x_matrix</link>
-    </member>
-    <member>
-      <link linkend="x_dialog">x_dialog</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>S. Steer ; ;   </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="x_mdialog">x_mdialog</link>
+      </member>
+      <member>
+        <link linkend="x_matrix">x_matrix</link>
+      </member>
+      <member>
+        <link linkend="x_dialog">x_dialog</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. Steer ; ;   </para>
+  </refsection>
 </refentry>

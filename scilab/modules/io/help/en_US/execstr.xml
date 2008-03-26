@@ -9,15 +9,22 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- --><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="execstr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>execstr</refname><refpurpose> execute Scilab code in strings</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>execstr(instr)
-ierr=execstr(instr,'errcatch' [,msg])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="execstr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>execstr</refname>
+    <refpurpose> execute Scilab code in strings</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>execstr(instr)
+ierr=execstr(instr,'errcatch' [,msg])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>instr</term>
@@ -39,7 +46,8 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>Executes the Scilab instructions given in argument
       <literal>instr</literal>.</para>
     <para>Note that instr should not make use of continuation marks (..) </para>
@@ -52,17 +60,25 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis></refsynopsisdiv>
       <literal>ierr</literal> equal to the error number.  In this case the display of the
       error message is controlled by the <literal>msg</literal> option:</para>
     <variablelist>
-      <varlistentry><term>"m"</term><listitem>
-        <para>error message is displayed and recorded.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"n"</term><listitem>
-        <para>no error message is displayed, but the error message is recorded (see <literal>lasterror</literal>).  This is the default.</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>"m"</term>
+        <listitem>
+          <para>error message is displayed and recorded.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"n"</term>
+        <listitem>
+          <para>no error message is displayed, but the error message is recorded (see <literal>lasterror</literal>).  This is the default.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para> ierr=execstr(instr,'errcatch') can handle syntactical errors. This is
       useful for evalution of instruction obtained by a query to the user.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 execstr('a=1') // sets a=1.
 execstr('1+1') // does nothing (while evstr('1+1') returns 2)
@@ -85,19 +101,23 @@ execstr('a=[1 2 3)','errcatch')
 lasterror(%t)
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="evstr">evstr</link>
-    </member>
-    <member>
-      <link linkend="lasterror">lasterror</link>
-    </member>
-    <member>
-      <link linkend="error">error</link>
-    </member>
-    <member>
-      <link linkend="try">try</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="lasterror">lasterror</link>
+      </member>
+      <member>
+        <link linkend="error">error</link>
+      </member>
+      <member>
+        <link linkend="try">try</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

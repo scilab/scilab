@@ -10,57 +10,86 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="intsplin"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>intsplin</refname><refpurpose> intï¿½gration approchï¿½e de donnï¿½es expï¿½rimentales utilisant une interpolation par une spline.  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>v = intsplin([x,] s)</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>x  </term>
-  <listitem>
-  <para>vecteur des abscisses, classï¿½es par ordre croissant. La valeur par dï¿½faut est <literal>1:size(y,'*')</literal>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="intsplin">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>intsplin</refname>
+    <refpurpose> intï¿½gration approchï¿½e de donnï¿½es expï¿½rimentales utilisant une interpolation par une spline.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>v = intsplin([x,] s)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>vecteur des abscisses, classï¿½es par ordre croissant. La valeur par dï¿½faut est <literal>1:size(y,'*')</literal>
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>s  </term>
-  <listitem>
-  <para>vecteur des ordonnï¿½es.
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s  </term>
+        <listitem>
+          <para>vecteur des ordonnï¿½es.
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>v  </term>
-  <listitem>
-  <para>valeur de l'approximation de l'intï¿½grale
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v  </term>
+        <listitem>
+          <para>valeur de l'approximation de l'intï¿½grale
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
+  <refsection>
+    <title>Description</title>
+    <para>
     Calcule une approximation de :
   </para>
-  <para>
+    <para>
     oï¿½ f est donnï¿½e sous forme de valeurs expï¿½rimentales :
   </para>
-  <para>
-    <literal>s(i)=f(x(i))</literal>  et <literal>x0=x(1)</literal>, <literal>x1=x(n)</literal>
+    <para><literal>s(i)=f(x(i))</literal>  et <literal>x0=x(1)</literal>, <literal>x1=x(n)</literal>
   </para>
-  <para>
+    <para>
     Entre les points, f est approchï¿½e ï¿½ l'aide d'une spline.
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 t=0:0.1:%pi
 intsplin(t,sin(t))
- ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="intg">intg</link> </member>     <member> <link linkend="intc">intc</link> </member>     <member> <link linkend="intl">intl</link> </member>     <member> <link linkend="integrate">integrate</link> </member>     <member> <link linkend="inttrap">inttrap</link> </member>     <member> <link linkend="splin">splin</link> </member>
-  </simplelist></refsection>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="intg">intg</link>
+      </member>
+      <member>
+        <link linkend="intc">intc</link>
+      </member>
+      <member>
+        <link linkend="intl">intl</link>
+      </member>
+      <member>
+        <link linkend="integrate">integrate</link>
+      </member>
+      <member>
+        <link linkend="inttrap">inttrap</link>
+      </member>
+      <member>
+        <link linkend="splin">splin</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

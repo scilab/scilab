@@ -10,17 +10,20 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="clc"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>clc</refname><refpurpose>Efface la fenï¿½tre de commande</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>clc([nblines])</synopsis></refsynopsisdiv>
-
-  <refsection><title>Paramètres</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="clc">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>clc</refname>
+    <refpurpose>Efface la fenï¿½tre de commande</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>clc([nblines])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
     <variablelist>
       <varlistentry>
         <term>nblines</term>
@@ -30,19 +33,25 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>clc()</literal> efface toutes les entrï¿½es et sorties de la fenï¿½tre de commande.</para>
     <para>Aprï¿½s avoir utilisï¿½ <literal>clc()</literal>, vous ne pouvez pas utiliser la barre de dï¿½filement pour voir l'historique des fonctions, mais vous pouvez encore utiliser le clavier pour rappeler les instructions de l'historique des commandes.</para>
     <para><literal>clc(nblines)</literal> efface <literal>nblines</literal> au dessus de la ligne courante du curseur et dï¿½place le curseur jusqu'ï¿½ cette ligne.</para>
     <para>Notez que <literal>clc([nblines])</literal> ne peut ï¿½tre utilisï¿½ sous Unix/Linux quand Scilab est utilisï¿½ en mode sans fenï¿½tre.</para>
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member><link linkend="tohome">tohome</link></member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tohome">tohome</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

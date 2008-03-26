@@ -10,42 +10,35 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_echo"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_echo</refname><refpurpose>Fonction d'�mulation de la fonction Matlab echo</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_echo">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_echo</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab echo</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Il n'y a pas d'�quivalent Scilab pour la fonction Matlab <literal>echo</literal> mais quelques cas particuliers peuvent �tre remplac�s par des appels � la fonction Scilab <literal>mode</literal>:</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
-        <literal>echo</literal> : est �quivalent � <literal>mode(abs(mode()-1))</literal> dans Scilab pour les scripts et les fonctions non-compil�es
+        <itemizedlist>
+          <listitem>
+            <para><literal>echo</literal> : est �quivalent � <literal>mode(abs(mode()-1))</literal> dans Scilab pour les scripts et les fonctions non-compil�es
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
-        <literal>echo on</literal> : est �quivalent � <literal>mode(1)</literal> dans Scilab pour les scripts et les fonctions non-compil�es
+          </listitem>
+          <listitem>
+            <para><literal>echo on</literal> : est �quivalent � <literal>mode(1)</literal> dans Scilab pour les scripts et les fonctions non-compil�es
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
-        <literal>echo off</literal> : est �quivalent � <literal>mode(0)</literal>
+          </listitem>
+          <listitem>
+            <para><literal>echo off</literal> : est �quivalent � <literal>mode(0)</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_echo(arg1[,arg2])</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>echo arg1 [arg2]</literal> quand il n'�tait pas
@@ -54,36 +47,38 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_echo</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>arg1</literal> est �gal � "on"
         <literal>mtlb_echo(arg1)</literal> peut �tre remplac� par <literal>mode(1)</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Si <literal>arg1</literal> est �gal � "off"
         <literal>mtlb_echo(arg1)</literal> peut �tre remplac� par <literal>mode(0)</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_echo</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="mode">mode</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mode">mode</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -9,38 +9,45 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- --><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getf</refname><refpurpose> chargement de fonctions à partir d'un fichier  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>getf(file-name [,opt])</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
-   <variablelist>
-  <varlistentry>
-  <term>filename  </term>
-  <listitem>
-    <para>chaîne de caractères</para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>opt  </term>
-  <listitem>
-     <para>chaîne de caractères optionnelle. Si
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getf</refname>
+    <refpurpose> chargement de fonctions à partir d'un fichier  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>getf(file-name [,opt])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename  </term>
+        <listitem>
+          <para>chaîne de caractères</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>opt  </term>
+        <listitem>
+          <para>chaîne de caractères optionnelle. Si
      opt=="c", les fonctions sont "compilées"
      pour accélérer leur exécution (par défaut). Si
      opt=="n", les fonctions ne sont pas
      "compilées". Si opt=="p",les fonctions
      sont "compilées" et préparées pour les
      statistiques d'appel (voir <literal>profile</literal>) </para>
-  </listitem> 
-  </varlistentry>
-
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
+  <refsection>
+    <title>Description</title>
+    <para>
     Charge une ou plusieurs fonctions (voir <literal>functions</literal>)
     définies dans le fichier <literal>'file-name'</literal>.
     La chaîne de caractères <literal>opt='n'</literal>
@@ -50,13 +57,13 @@
     les fonctions sont compilées
     (i.e. <literal>opt='c'</literal> est utilisée).
   </para>
-  <para>
+    <para>
     Dans le fichier chaque fonction doit commencer par une ligne de la forme :
   </para>
-  <programlisting><![CDATA[
+    <programlisting><![CDATA[
 function [y1,...,yn]=foo(x1,...,xm)
    ]]></programlisting>
-   <para>
+    <para>
       les lignes suivantes contiennent la r une suite d'instructions Scilab.
     </para>
     <para>
@@ -85,21 +92,39 @@ function [y1,...,yn]=foo(x1,...,xm)
     <literal>exec</literal>. A noter que dans ce cas l'usage des mots-clé
     <literal>endfunction</literal> est impératif. L'usage de
     <literal>exec</literal> sous entend l'option<literal>opt=='c'</literal>.</para>
-
   </refsection>
-
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
   getf('SCI/macros/xdess/plot.sci')
 
   getf SCI/macros/xdess/plot.sci
-  ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="functions">functions</link> </member>
-    <member> <link linkend="function">function</link> </member>
-    <member> <link linkend="genlib">genlib</link> </member>
-    <member> <link linkend="getd">getd</link> </member>
-     <member> <link linkend="exec">exec</link> </member> 
-    <member> <link linkend="edit">edit</link> </member> 
-    <member> <link linkend="comp">comp</link> </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="functions">functions</link>
+      </member>
+      <member>
+        <link linkend="function">function</link>
+      </member>
+      <member>
+        <link linkend="genlib">genlib</link>
+      </member>
+      <member>
+        <link linkend="getd">getd</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="edit">edit</link>
+      </member>
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

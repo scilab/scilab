@@ -1,17 +1,22 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="taucs_license"><info><pubdate>scispt toolbox  </pubdate></info><refnamediv><refname>taucs_license</refname><refpurpose> display the taucs license   </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Copyright</title>
-  <para>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="taucs_license">
+  <info>
+    <pubdate>scispt toolbox  </pubdate>
+  </info>
+  <refnamediv>
+    <refname>taucs_license</refname>
+    <refpurpose> display the taucs license   </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Copyright</title>
+    <para>
     TAUCS Version 1.0, November 29, 2001. Copyright (c) 2001 by Sivan Toledo, Tel-Aviv Univesity,
     stoledo@tau.ac.il. All Rights Reserved. 
   </para>
   </refsection>
-  <refsection><title>TAUCS License</title>
-  <para>
+  <refsection>
+    <title>TAUCS License</title>
+    <para>
     Your use or distribution of TAUCS or any derivative code implies that you agree to this 
     License.   THIS MATERIAL IS PROVIDED AS IS, WITH ABSOLUTELY NO WARRANTY EXPRESSED OR IMPLIED. 
     ANY USE IS AT YOUR OWN RISK.   Permission is hereby granted to use or copy this program, 
@@ -25,9 +30,10 @@
     notice that the code was modified is included. This software is provided to you free of charge. 
   </para>
   </refsection>
-  <refsection><title>Availability</title>
-  <para>
-    <link xlink:href="http://www.tau.ac.il/~stoledo/taucs/">http://www.tau.ac.il/~stoledo/taucs/</link>
-  </para>
+  <refsection>
+    <title>Availability</title>
+    <para>
+      <link xlink:href="http://www.tau.ac.il/~stoledo/taucs/">http://www.tau.ac.il/~stoledo/taucs/</link>
+    </para>
   </refsection>
 </refentry>

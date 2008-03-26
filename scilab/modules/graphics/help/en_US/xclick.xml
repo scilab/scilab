@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xclick"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xclick</refname><refpurpose> wait for a mouse click</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[c_i,c_x,c_y,c_w,c_m]=xclick([flag])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xclick">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xclick</refname>
+    <refpurpose> wait for a mouse click</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[c_i,c_x,c_y,c_w,c_m]=xclick([flag])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>c_i</term>
@@ -51,7 +57,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>xclick</literal> waits for a mouse click in the graphics window.
   </para>
     <para>
@@ -66,83 +73,133 @@
     The returned values are described below.
   </para>
     <variablelist>
-      <varlistentry><term>c_i</term><listitem>
-        <para>an integer which gives the number of the mouse button or key that was
+      <varlistentry>
+        <term>c_i</term>
+        <listitem>
+          <para>an integer which gives the number of the mouse button or key that was
 	  pressed  .</para>
-	
-	<variablelist>
-          <varlistentry><term>ibutton==0</term><listitem>
-            <para>Left mouse button has been pressed</para>
-          </listitem></varlistentry>
-	  <varlistentry><term>ibutton==1</term><listitem>
-            <para>Middle mouse button has been pressed</para>
-          </listitem></varlistentry>
-	  <varlistentry><term>ibutton==2</term><listitem>
-            <para>Right mouse button has been pressed</para>
-	    <para/>
-          </listitem></varlistentry>
-
-	  <varlistentry><term>ibutton==3</term><listitem>
-            <para>Left mouse button has been clicked</para>
-          </listitem></varlistentry>
-	  <varlistentry><term>ibutton==4</term><listitem>
-            <para>Middle mouse button has been clicked</para>
-          </listitem></varlistentry>
-	  <varlistentry><term>ibutton==5</term><listitem>
-            <para>Right mouse button has been clicked</para>
-	    <para/>
-          </listitem></varlistentry>
-
-	  <varlistentry><term>ibutton==10</term><listitem>
-            <para>Left mouse button has been double-clicked</para>
-          </listitem></varlistentry>
-	  <varlistentry><term>ibutton==11</term><listitem>
-            <para>Middle mouse button has been double-clicked</para>
-          </listitem></varlistentry>
-	  <varlistentry><term>ibutton==12</term><listitem>
-            <para>Right mouse button has been double-clicked</para>
-	    <para/>
-          </listitem></varlistentry>
-
-          <varlistentry><term>ibutton &gt; =32</term><listitem>
-            <para>key with ascii code ascii(ibutton) has been pressed</para>
-          </listitem></varlistentry>
-	
-          <varlistentry><term>ibutton &gt; =1000+32</term><listitem>
-            <para>key with ascii code ascii(ibutton-1000) has been pressed while CTRL
+          <variablelist>
+            <varlistentry>
+              <term>ibutton==0</term>
+              <listitem>
+                <para>Left mouse button has been pressed</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton==1</term>
+              <listitem>
+                <para>Middle mouse button has been pressed</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton==2</term>
+              <listitem>
+                <para>Right mouse button has been pressed</para>
+                <para/>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton==3</term>
+              <listitem>
+                <para>Left mouse button has been clicked</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton==4</term>
+              <listitem>
+                <para>Middle mouse button has been clicked</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton==5</term>
+              <listitem>
+                <para>Right mouse button has been clicked</para>
+                <para/>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton==10</term>
+              <listitem>
+                <para>Left mouse button has been double-clicked</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton==11</term>
+              <listitem>
+                <para>Middle mouse button has been double-clicked</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton==12</term>
+              <listitem>
+                <para>Right mouse button has been double-clicked</para>
+                <para/>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton &gt; =32</term>
+              <listitem>
+                <para>key with ascii code ascii(ibutton) has been pressed</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton &gt; =1000+32</term>
+              <listitem>
+                <para>key with ascii code ascii(ibutton-1000) has been pressed while CTRL
 	    key pressed</para>
-          </listitem></varlistentry>
-          <varlistentry><term>ibutton==-100</term><listitem>
-            <para>graphic window has been closed</para>
-          </listitem></varlistentry>
-          <varlistentry><term>ibutton==-2</term><listitem>
-            <para>a dynamic menu has been selected</para>
-          </listitem></varlistentry>
-	</variablelist>
-
-      </listitem></varlistentry>
-      <varlistentry><term>c_x,c_y</term><listitem>
-        <para>the coordinates of the position of the mouse click in the current graphics  scale.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>c_w</term><listitem>
-        <para>the window number where the click has occurred.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>c_m</term><listitem>
-        <para>string associated with a dynamic menu. If xclick returns due to a click on a menu, <literal>c_i</literal>, <literal>c_x</literal>, <literal>c_y,</literal> and <literal>c_w</literal> take arbitrary values.</para>
-      </listitem></varlistentry>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton==-100</term>
+              <listitem>
+                <para>graphic window has been closed</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ibutton==-2</term>
+              <listitem>
+                <para>a dynamic menu has been selected</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c_x,c_y</term>
+        <listitem>
+          <para>the coordinates of the position of the mouse click in the current graphics  scale.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c_w</term>
+        <listitem>
+          <para>the window number where the click has occurred.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c_m</term>
+        <listitem>
+          <para>string associated with a dynamic menu. If xclick returns due to a click on a menu, <literal>c_i</literal>, <literal>c_x</literal>, <literal>c_y,</literal> and <literal>c_w</literal> take arbitrary values.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="locate">locate</link>
-    </member>
-    <member>
-      <link linkend="xgetmouse">xgetmouse</link>
-    </member>
-    <member>
-      <link linkend="seteventhandler">seteventhandler</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="locate">locate</link>
+      </member>
+      <member>
+        <link linkend="xgetmouse">xgetmouse</link>
+      </member>
+      <member>
+        <link linkend="seteventhandler">seteventhandler</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="addmenu"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>addmenu</refname><refpurpose> interactive button or menu definition</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>addmenu(button [,submenus] [,action])
-addmenu(gwin,button [,submenus] [,action])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="addmenu">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>addmenu</refname>
+    <refpurpose> interactive button or menu definition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>addmenu(button [,submenus] [,action])
+addmenu(gwin,button [,submenus] [,action])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>button</term>
@@ -71,43 +78,58 @@ addmenu(gwin,button [,submenus] [,action])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     The function allows the user to add new buttons or menus in the main
     window or graphics windows command panels.
   </para>
     <variablelist>
-      <varlistentry><term>If</term><listitem>
-        <para><literal>action</literal> argument is not given the action associated
+      <varlistentry>
+        <term>If</term>
+        <listitem>
+          <para><literal>action</literal> argument is not given the action associated
     with a button must be defined by a scilab instruction given by the
     character string variable which name is</para>
-        <para> +  <literal>button</literal> for a main window command</para>
-        <para> +  <literal>button_gwin</literal> for a graphic window command</para>
-      </listitem></varlistentry>
-      <varlistentry><term>If</term><listitem>
-        <para><literal>action</literal>  argument is set to 0 <literal>proc_name</literal>
+          <para> +  <literal>button</literal> for a main window command</para>
+          <para> +  <literal>button_gwin</literal> for a graphic window command</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>If</term>
+        <listitem>
+          <para><literal>action</literal>  argument is set to 0 <literal>proc_name</literal>
     should be the name of a Scilab string vector.  Actions associated
     with the kth sub_menu must be defined by scilab instructions
     stored in the kth element of the character string variable.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>If</term><listitem>
-        <para><literal>action</literal> argument is set to 1 <literal>proc_name</literal>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>If</term>
+        <listitem>
+          <para><literal>action</literal> argument is set to 1 <literal>proc_name</literal>
     designes a C or Fortran procedure, this procedure may be
     interfaced in Fortran subroutine default/fbutn.f or dynamically
     linked with scilab using the <literal>link</literal> function. The C
     calling sequence is: <literal>(char* button_name, int* gwin,int *k)</literal></para>
-      </listitem></varlistentry>
-      <varlistentry><term>If</term><listitem>
-        <para><literal>action</literal> argument is set to 2 <literal>proc_name</literal>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>If</term>
+        <listitem>
+          <para><literal>action</literal> argument is set to 2 <literal>proc_name</literal>
     designes a Scilab function. This function calling sequence should
     be:</para>
-        <para> +  <literal>proc_name(k)</literal>for a main window command</para>
-        <para> +  <literal>proc_name(k,gwin)</literal>for a graphic window
+          <para> +  <literal>proc_name(k)</literal>for a main window command</para>
+          <para> +  <literal>proc_name(k,gwin)</literal>for a graphic window
     command or a main window command</para>
-      </listitem></varlistentry>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 addmenu('foo')
 foo='disp(''hello'')'
@@ -141,16 +163,20 @@ chdir(dir);
 //add menu
 addmenu('foo',['a','b','c'],list(1,'foo'))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="setmenu">setmenu</link>
-    </member>
-    <member>
-      <link linkend="unsetmenu">unsetmenu</link>
-    </member>
-    <member>
-      <link linkend="delmenu">delmenu</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="setmenu">setmenu</link>
+      </member>
+      <member>
+        <link linkend="unsetmenu">unsetmenu</link>
+      </member>
+      <member>
+        <link linkend="delmenu">delmenu</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

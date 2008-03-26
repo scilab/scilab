@@ -10,17 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pfss"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pfss</refname><refpurpose> partial fraction decomposition</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>elts=pfss(Sl)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pfss">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pfss</refname>
+    <refpurpose> partial fraction decomposition</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>elts=pfss(Sl)
 elts=pfss(Sl,rmax)
 elts=pfss(Sl,'cord')
-elts=pfss(Sl,rmax,'cord')</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+elts=pfss(Sl,rmax,'cord')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>Sl</term>
@@ -33,7 +39,8 @@ elts=pfss(Sl,rmax,'cord')</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Partial fraction decomposition of the linear system <literal>Sl</literal> (in state-space 
     form, transfer matrices are automatically converted to state-space form
@@ -60,27 +67,36 @@ elts=pfss(Sl,rmax,'cord')</synopsis></refsynopsisdiv>
     are sorted according to the real part (resp. magnitude if <literal>cord='d'</literal>)
     of the eigenvalues of A matrices.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 W=ssrand(1,1,6);
 elts=pfss(W); 
 W1=0;for k=1:size(elts), W1=W1+ss2tf(elts(k));end
 clean(ss2tf(W)-W1)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pbig">pbig</link>
-    </member>
-    <member>
-      <link linkend="bdiag">bdiag</link>
-    </member>
-    <member>
-      <link linkend="coffg">coffg</link>
-    </member>
-    <member>
-      <link linkend="dtsi">dtsi</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>F.D.;   </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pbig">pbig</link>
+      </member>
+      <member>
+        <link linkend="bdiag">bdiag</link>
+      </member>
+      <member>
+        <link linkend="coffg">coffg</link>
+      </member>
+      <member>
+        <link linkend="dtsi">dtsi</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.D.;   </para>
+  </refsection>
 </refentry>

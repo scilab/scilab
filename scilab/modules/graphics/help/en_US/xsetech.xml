@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xsetech"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xsetech</refname><refpurpose> set the sub-window of a graphics window for plotting</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xsetech(wrect,[frect,logflag])
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xsetech">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xsetech</refname>
+    <refpurpose> set the sub-window of a graphics window for plotting</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xsetech(wrect,[frect,logflag])
 xsetech(wrect=[...],frect=[..],logflag="..", arect=[...])
-xsetech()</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+xsetech()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>wrect</term>
@@ -47,7 +53,8 @@ xsetech()</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>xsetech</literal> is mainly used to set the sub-window of the graphics
     window which will be used for plotting. The sub-window is specified
     with the parameter <literal>wrect=[x,y,w,h]</literal> (upper-left point, width,
@@ -73,7 +80,9 @@ xsetech()</synopsis></refsynopsisdiv>
     graphic subwindow.  Default value is <literal>1/8*[1,1,1,1]</literal>. If
     <literal>arect</literal> is not given, current value remains unchanged.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // To get a graphical explanation of xsetech parameters enter:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
@@ -111,20 +120,27 @@ x=1:0.1:10;plot2d(x',sin(x)')
 xbasc()
 xset("default")
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="xgetech">xgetech</link>
-    </member>
-    <member>
-      <link linkend="subplot">subplot</link>
-    </member>
-    <member>
-      <link linkend="isoview">isoview</link>
-    </member>
-    <member>
-      <link linkend="square">square</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xgetech">xgetech</link>
+      </member>
+      <member>
+        <link linkend="subplot">subplot</link>
+      </member>
+      <member>
+        <link linkend="isoview">isoview</link>
+      </member>
+      <member>
+        <link linkend="square">square</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

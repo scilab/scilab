@@ -1,33 +1,38 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ndgrid"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ndgrid</refname><refpurpose>arrays for multidimensional function evaluation on grid</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[X, Y] = ndgrid(x,y)
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ndgrid">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ndgrid</refname>
+    <refpurpose>arrays for multidimensional function evaluation on grid</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[X, Y] = ndgrid(x,y)
 [X, Y, Z] = ndgrid(x,y,z)
 [X, Y, Z, T] = ndgrid(x,y,z,t)
-[X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+[X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
-     <varlistentry>
+      <varlistentry>
         <term>x, y, z, ...</term>
         <listitem>
-	 <para>vectors</para>
-	</listitem> 
-     </varlistentry>
-     <varlistentry>
+          <para>vectors</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>X, Y, Z, ...</term>
         <listitem>
-	 <para>matrices in case of 2 input arguments, or else hypermatrices</para>
-	</listitem> 
-     </varlistentry>
-   </variablelist>
+          <para>matrices in case of 2 input arguments, or else hypermatrices</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This is an utility routine useful to create arrays for function evaluation on 2, 3, ..., n 
     dimensional grids. For instance in 2d, a grid is defined by two vectors, <literal>x</literal> and
@@ -64,9 +69,10 @@
     Xj(i1,i2,...,ij,...,im) = xj(ij)   
     for all (i1,i2,...,im) in [1,nx1]x[1,nx2]x...x[1,nxm]  
      ]]></programlisting>
-    </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 // create a simple 2d grid
 nx = 40; ny = 40;
 x = linspace(-1,1,nx);
@@ -100,16 +106,20 @@ end
 xbasc()
 plot3d(XF,YF,ZF, flag=[0 6 3], leg="X@Y@Z")
 xtitle("A 3d grid !"); xselect()
- ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="kron">kron</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><para>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="kron">kron</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>
      B. Pincon
-  </para></refsection>
-
+  </para>
+  </refsection>
 </refentry>

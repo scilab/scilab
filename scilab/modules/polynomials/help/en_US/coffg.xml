@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="coffg"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>coffg</refname><refpurpose> inverse of polynomial matrix</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Ns,d]=coffg(Fs)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="coffg">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>coffg</refname>
+    <refpurpose> inverse of polynomial matrix</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Ns,d]=coffg(Fs)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>Fs</term>
@@ -27,7 +33,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>coffg</literal> computes <literal>Fs^-1</literal> where <literal>Fs</literal> is a polynomial
     matrix by co-factors method.</para>
     <para><literal>Fs</literal> inverse = <literal>Ns/d</literal></para>
@@ -35,30 +42,39 @@
     <para>
     (For large matrices,be patient...results are generally reliable)</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 s=poly(0,'s')
 a=[ s, s^2+1; s  s^2-1];
 [a1,d]=coffg(a);
 (a1/d)-inv(a)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="determ">determ</link>
-    </member>
-    <member>
-      <link linkend="detr">detr</link>
-    </member>
-    <member>
-      <link linkend="invr">invr</link>
-    </member>
-    <member>
-      <link linkend="penlaur">penlaur</link>
-    </member>
-    <member>
-      <link linkend="glever">glever</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>F. D.; ;   </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="determ">determ</link>
+      </member>
+      <member>
+        <link linkend="detr">detr</link>
+      </member>
+      <member>
+        <link linkend="invr">invr</link>
+      </member>
+      <member>
+        <link linkend="penlaur">penlaur</link>
+      </member>
+      <member>
+        <link linkend="glever">glever</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F. D.; ;   </para>
+  </refsection>
 </refentry>

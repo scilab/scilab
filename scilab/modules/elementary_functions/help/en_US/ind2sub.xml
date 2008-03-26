@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ind2sub"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ind2sub</refname><refpurpose>linear index to matrix subscript values</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[i1,i2,..] =ind2sub(dims,I)
-Mi = ind2sub(dims,I)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ind2sub">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ind2sub</refname>
+    <refpurpose>linear index to matrix subscript values</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[i1,i2,..] =ind2sub(dims,I)
+Mi = ind2sub(dims,I)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>dims</term>
@@ -46,7 +52,8 @@ Mi = ind2sub(dims,I)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>ind2sub</literal> is used to determine the equivalent subscript values
   corresponding to a given single index into an array.
 
@@ -59,24 +66,33 @@ Mi = ind2sub(dims,I)</synopsis></refsynopsisdiv>
   whose columns are the arrays <literal>i1(:)</literal>, <literal>i2(:)</literal>,
   ...</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
    ind2sub([2,3,2],1:12)
    [i,j,k]=ind2sub([2,3,2],1:12)
   
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="sub2ind">sub2ind</link>
-    </member>
-    <member>
-      <link linkend="extraction">extraction</link>
-    </member>
-    <member>
-      <link linkend="insertion">insertion</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sub2ind">sub2ind</link>
+      </member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
+      <member>
+        <link linkend="insertion">insertion</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>
     Serge Steer, INRIA
-  </para></refsection>
+  </para>
+  </refsection>
 </refentry>

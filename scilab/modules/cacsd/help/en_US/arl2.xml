@@ -10,17 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="arl2"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>arl2</refname><refpurpose> SISO model realization by L2 transfer approximation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>h=arl2(y,den0,n [,imp])
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="arl2">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>arl2</refname>
+    <refpurpose> SISO model realization by L2 transfer approximation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>h=arl2(y,den0,n [,imp])
 h=arl2(y,den0,n [,imp],'all')
 [den,num,err]=arl2(y,den0,n [,imp])
-[den,num,err]=arl2(y,den0,n [,imp],'all')</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[den,num,err]=arl2(y,den0,n [,imp],'all')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>y</term>
@@ -72,7 +78,8 @@ h=arl2(y,den0,n [,imp],'all')
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>[den,num,err]=arl2(y,den0,n [,imp]) </literal> finds a pair of polynomials
     <literal>num</literal> and <literal>den</literal> such that the transfer function <literal>num/den</literal>
     is stable and its impulse response approximates (with a minimal l2
@@ -94,7 +101,9 @@ h=arl2(y,den0,n [,imp],'all')
     errors <literal>err</literal>. In this case <literal>den0</literal> is already assumed to be 
     <literal>poly(1,'z','c')</literal></para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 v=ones(1,20);
 xbasc();
@@ -110,22 +119,26 @@ plot2d1('enn',0,ldiv(n,d,100),5,'000')
 [d,n,e]=arl2(v,poly(1,'z','c'),4,'all')
 plot2d1('enn',0,ldiv(n(1),d(1),100),10,'000')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="ldiv">ldiv</link>
-    </member>
-    <member>
-      <link linkend="imrep2ss">imrep2ss</link>
-    </member>
-    <member>
-      <link linkend="time_id">time_id</link>
-    </member>
-    <member>
-      <link linkend="armax">armax</link>
-    </member>
-    <member>
-      <link linkend="frep2tf">frep2tf</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ldiv">ldiv</link>
+      </member>
+      <member>
+        <link linkend="imrep2ss">imrep2ss</link>
+      </member>
+      <member>
+        <link linkend="time_id">time_id</link>
+      </member>
+      <member>
+        <link linkend="armax">armax</link>
+      </member>
+      <member>
+        <link linkend="frep2tf">frep2tf</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

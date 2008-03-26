@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_mex_build"><info><pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate></info><refnamediv><refname>ilib_mex_build</refname><refpurpose> utility for mex library management</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>ilib_mex_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,cc])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_mex_build">
+  <info>
+    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ilib_mex_build</refname>
+    <refpurpose> utility for mex library management</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>ilib_mex_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,cc])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>lib_name</term>
@@ -57,13 +63,16 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This tool is used to create mex libraries and to generate a 
     loader file which can be used to dynamically load the mex shared library
     </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 cd(TMPDIR);
 mputl('ilib_mex_build(''libmex'',[''mexf16'',''mexfunction16'',''cmex''],[],[],''Makelib'','''','''','''')','builder.sce');
@@ -81,28 +90,32 @@ exec(TMPDIR+'/loader.sce');
 mexf16(rand(2,3,2));
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="addinter">addinter</link>
-    </member>
-    <member>
-      <link linkend="link">link</link>
-    </member>
-    <member>
-      <link linkend="ilib_compile">ilib_compile</link>
-    </member>
-    <member>
-      <link linkend="ilib_gen_Make">ilib_gen_Make</link>
-    </member>
-    <member>
-      <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
-    </member>
-    <member>
-      <link linkend="ilib_gen_loader">ilib_gen_loader</link>
-    </member>
-    <member>
-      <link linkend="ilib_for_link">ilib_for_link</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="addinter">addinter</link>
+      </member>
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="ilib_compile">ilib_compile</link>
+      </member>
+      <member>
+        <link linkend="ilib_gen_Make">ilib_gen_Make</link>
+      </member>
+      <member>
+        <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
+      </member>
+      <member>
+        <link linkend="ilib_gen_loader">ilib_gen_loader</link>
+      </member>
+      <member>
+        <link linkend="ilib_for_link">ilib_for_link</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

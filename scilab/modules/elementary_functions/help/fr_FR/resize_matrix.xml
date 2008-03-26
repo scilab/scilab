@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="resize_matrix"><info><pubdate>February 2007</pubdate></info><refnamediv><refname>resize_matrix</refname><refpurpose> redimensionne une matrice</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>resMat = resize_matrix(mat,nbRow,nbCol,[typeOfMat])</synopsis></refsynopsisdiv>
-
-  <refsection><title>Paramètres</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="resize_matrix">
+  <info>
+    <pubdate>February 2007</pubdate>
+  </info>
+  <refnamediv>
+    <refname>resize_matrix</refname>
+    <refpurpose> redimensionne une matrice</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>resMat = resize_matrix(mat,nbRow,nbCol,[typeOfMat])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
     <variablelist>
       <varlistentry>
         <term>mat</term>
@@ -19,39 +20,34 @@
           <para>matrice d'entrée à  partir de laquelle la matrice redimensionnée sera créée.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>nbRow</term>
         <listitem>
           <para>nombre de lignes de la matrice redimensionnée.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>nbCol</term>
         <listitem>
           <para>nombre de colonnes de la matrice redimensionnée.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>typeOfMat</term>
         <listitem>
           <para>chaîne de caractères spécifiant le type de la matrice redimensionnée.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>resMat</term>
         <listitem>
           <para>matrice redimensionnée.</para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para> Crée une matrice de taille <literal>nbRow</literal> x<literal> nbCol</literal> dont les éléments 
     <literal>(i,j)</literal> sont
     <literal>mat(i,j)</literal> si <literal>(i,j)</literal> est inférieur à  la taille de la matrice.
@@ -72,8 +68,9 @@
     ('int8', 'int16',...).
      </para>
   </refsection>
-
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 
   // matrice de chiffres
   myMat = 5 * rand( 3, 4 )
@@ -87,19 +84,24 @@
   myMatString = ["Scilab","the";"Open Source","Scientific";"Software","Package"]
   myMatString = resize_matrix( myMatString, 3, 1 )
  
-  ]]></programlisting></refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member>
-      <link linkend="matrix">matrix</link>
-    </member>
-    <member>
-      <link linkend="size">size</link>
-    </member>
-    <member>
-      <link linkend="typeof">typeof</link>
-    </member>
-    </simplelist></refsection>
-
-    <refsection><title>Auteurs</title><para>Jean-Baptiste Silvy </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="matrix">matrix</link>
+      </member>
+      <member>
+        <link linkend="size">size</link>
+      </member>
+      <member>
+        <link linkend="typeof">typeof</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>Jean-Baptiste Silvy </para>
+  </refsection>
 </refentry>

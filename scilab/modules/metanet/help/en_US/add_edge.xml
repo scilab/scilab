@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="add_edge"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>add_edge</refname><refpurpose> adds an edge or an arc between two nodes</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>g1 = add_edge(i,j,g)
-g1 = add_edge(ij,g)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="add_edge">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>add_edge</refname>
+    <refpurpose> adds an edge or an arc between two nodes</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>g1 = add_edge(i,j,g)
+g1 = add_edge(ij,g)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>i</term>
@@ -52,16 +58,18 @@ g1 = add_edge(ij,g)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>add_edge(i,j,g)</literal> returns the graph <literal>g1</literal> with a new edges connecting node number 
     <literal>i(k)</literal> to node number <literal>j(k)</literal>. If the graph is directed, the edge is an arc.
     The number of edges plus 1 is taken as the name of the new edge.</para>
     <para><literal>add_edge(ij,g)</literal> returns the graph <literal>g1</literal> with a new edges connecting node number 
     <literal>ij(1,k)</literal> to node number <literal>ij(2,k)</literal>. If the graph is directed, the edge is an arc.
     The number of edges plus 1 is taken as the name of the new edge.</para>
-
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
@@ -76,16 +84,20 @@ show_graph(g);
 hilite_edges(ne+1:ne+3)
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="add_node">add_node</link>
-    </member>
-    <member>
-      <link linkend="delete_arcs">delete_arcs</link>
-    </member>
-    <member>
-      <link linkend="delete_nodes">delete_nodes</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="add_node">add_node</link>
+      </member>
+      <member>
+        <link linkend="delete_arcs">delete_arcs</link>
+      </member>
+      <member>
+        <link linkend="delete_nodes">delete_nodes</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

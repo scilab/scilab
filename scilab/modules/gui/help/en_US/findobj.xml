@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findobj"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>findobj</refname><refpurpose> find an object with specified property</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findobj">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>findobj</refname>
+    <refpurpose> find an object with specified property</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>prop</term>
@@ -26,14 +30,17 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This routine is currently used to find objects knowing their 'tag'
     property.  It returns handle of the first found object which property
     'prop' is equal to 'value'. If such an object does not exist, the
     function returns an empty matrix.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 h=figure();
 // creates  figure number 1.
@@ -48,20 +55,27 @@ lab=findobj('tag','Alabel');
 disp('the handle of the label is '+string(lab));
 close();
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="uicontrol">uicontrol</link>
-    </member>
-    <member>
-      <link linkend="uimenu">uimenu</link>
-    </member>
-    <member>
-      <link linkend="set">set</link>
-    </member>
-    <member>
-      <link linkend="get">get</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>Bertrand Guiheneuf</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="uicontrol">uicontrol</link>
+      </member>
+      <member>
+        <link linkend="uimenu">uimenu</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Bertrand Guiheneuf</para>
+  </refsection>
 </refentry>

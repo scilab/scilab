@@ -10,33 +10,31 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_l"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_l</refname><refpurpose>Fonction d'�mulation de la division � gauche de Matlab</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_l">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_l</refname>
+    <refpurpose>Fonction d'�mulation de la division � gauche de Matlab</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la division � gauche se comporte diff�remment dans Matlab et dans Scilab :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
 	Avec des op�randes de type cha�ne de caract�res : L'op�rateur <literal>\</literal> 
 	ne peut pas �tre utilis� dans Scilab avec des cha�nes de caract�res, alors que
 	dans Matlab c'est possible. Et dans ce cas, le r�sultat donn� par matlab est
 	tranpos� d'une mani�re tr�s floue...
         </para>
-       </listitem>
+          </listitem>
+        </itemizedlist>
+      </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_l(a,b)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>A\B</literal> quand il n'�tait pas
@@ -44,25 +42,24 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_l</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>A</literal> et <literal>B</literal> ne sont pas des cha�nes de caract�res
         <literal>mtlb_l(A,B)</literal> peut �tre remplac� par <literal>A\B</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_l</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

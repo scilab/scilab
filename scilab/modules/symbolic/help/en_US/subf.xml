@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="subf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>subf</refname><refpurpose>  symbolic subtraction</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>["c"]=subf("a","b")</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="subf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>subf</refname>
+    <refpurpose>  symbolic subtraction</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>["c"]=subf("a","b")</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>"a","b","c"  </term>
@@ -27,34 +33,41 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     returns the character string <literal>c</literal>=<literal>"a-b"</literal>
     Trivial simplifications such as <literal>subf("0","a")</literal> or
     <literal>subf("1","2")</literal> are performed.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 subf('0','a')
 subf('2','1')
 subf('a','0')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="mulf">mulf</link>
-    </member>
-    <member>
-      <link linkend="ldivf">ldivf</link>
-    </member>
-    <member>
-      <link linkend="rdivf">rdivf</link>
-    </member>
-    <member>
-      <link linkend="eval">eval</link>
-    </member>
-    <member>
-      <link linkend="evstr">evstr</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mulf">mulf</link>
+      </member>
+      <member>
+        <link linkend="ldivf">ldivf</link>
+      </member>
+      <member>
+        <link linkend="rdivf">rdivf</link>
+      </member>
+      <member>
+        <link linkend="eval">eval</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

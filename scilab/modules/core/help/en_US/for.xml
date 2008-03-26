@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="for"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>for</refname><refpurpose> language keyword for loops</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="for">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>for</refname>
+    <refpurpose> language keyword for loops</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
     Used to define loops. Its syntax is:
    <literal> for variable=expression ,instruction, .. ,instruction,end</literal></para>
@@ -26,7 +30,9 @@
     conditional instruction (if while for or select/case) must be limited to
     16k.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // "traditional" for loops
 n=5;
@@ -42,16 +48,20 @@ for j=1:n,v=a(:,j), write(6,v),end
 //loop on list entries
 for l=list(1,2,'example'); l,end 
  
-  ]]></programlisting></refsection>
-   <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="while">while</link>
-    </member>
-    <member>
-      <link linkend="end">end</link>
-    </member>
-    <member>
-      <link linkend="do">do</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="while">while</link>
+      </member>
+      <member>
+        <link linkend="end">end</link>
+      </member>
+      <member>
+        <link linkend="do">do</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

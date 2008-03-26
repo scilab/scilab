@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="balanc"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>balanc</refname><refpurpose> matrix or pencil balancing</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Ab,X]=balanc(A)
-[Eb,Ab,X,Y]=balanc(E,A)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="balanc">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>balanc</refname>
+    <refpurpose> matrix or pencil balancing</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Ab,X]=balanc(A)
+[Eb,Ab,X,Y]=balanc(E,A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A:  </term>
@@ -46,7 +52,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Balance a square matrix to improve
     its condition number.</para>
@@ -59,27 +66,34 @@
     <para><literal>[Eb,Ab,X,Y] = balanc(E,A)</literal> returns left and right transformations <literal>X</literal> and <literal>Y</literal>
     such that <literal>Eb=inv(X)*E*Y,  Ab=inv(X)*A*Y</literal></para>
   </refsection>
-  <refsection><title>Remark</title>
+  <refsection>
+    <title>Remark</title>
     <para>
     Balancing is made in the functions <literal>bdiag</literal> and <literal>spec</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=[1/2^10,1/2^10;2^10,2^10];
 [Ab,X]=balanc(A);
 norm(A(1,:))/norm(A(2,:))
 norm(Ab(1,:))/norm(Ab(2,:))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="bdiag">bdiag</link>
-    </member>
-    <member>
-      <link linkend="spec">spec</link>
-    </member>
-    <member>
-      <link linkend="schur">schur</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="bdiag">bdiag</link>
+      </member>
+      <member>
+        <link linkend="spec">spec</link>
+      </member>
+      <member>
+        <link linkend="schur">schur</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

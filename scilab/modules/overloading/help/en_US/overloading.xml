@@ -10,24 +10,33 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="overloading"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>overloading</refname><refpurpose> display, functions and operators overloading capabilities</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="overloading">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>overloading</refname>
+    <refpurpose> display, functions and operators overloading capabilities</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
     In scilab, variable display, functions and operators may be defined
     for new objects using  functions (scilab coded or primitives).
   </para>
     <variablelist>
-      <varlistentry><term>Display</term><listitem>
-        <para>The display of new objects defined by <literal>tlist</literal> structure may be overloaded (the default display is similar to <literal>list</literal>'s one). The overloading function must have no output argument a single input argument. It's name is formed as follow <literal>%&lt;tlist_type&gt;_p</literal> where <literal>%&lt;tlist_type&gt;</literal> stands for the first entry of the <literal>tlist</literal> type component truncated to the first 9 characters.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>Operators</term><listitem>
-        <para>Each operator which is not defined for given operands type may be defined. The overloading function must have a single output argument and one or two inputs according to the number of operands. The function name is formed as follow:</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>Display</term>
+        <listitem>
+          <para>The display of new objects defined by <literal>tlist</literal> structure may be overloaded (the default display is similar to <literal>list</literal>'s one). The overloading function must have no output argument a single input argument. It's name is formed as follow <literal>%&lt;tlist_type&gt;_p</literal> where <literal>%&lt;tlist_type&gt;</literal> stands for the first entry of the <literal>tlist</literal> type component truncated to the first 9 characters.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Operators</term>
+        <listitem>
+          <para>Each operator which is not defined for given operands type may be defined. The overloading function must have a single output argument and one or two inputs according to the number of operands. The function name is formed as follow:</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>
     for binary operators:
@@ -92,7 +101,9 @@
         <td>boolean sparse</td>
         <td>spb</td>
         <td>tlist</td>
-        <td><literal>tlist_type</literal></td>
+        <td>
+          <literal>tlist_type</literal>
+        </td>
       </tr>
     </informaltable>
     <para><literal>&lt;op_code&gt;</literal> is a single character associated with each operator as
@@ -106,7 +117,9 @@
         <td>char code</td>
       </tr>
       <tr>
-        <td>    <literal>'</literal>       </td>
+        <td>
+          <literal>'</literal>
+        </td>
         <td>    t</td>
         <td>    +        </td>
         <td>    a</td>
@@ -118,13 +131,17 @@
         <td>    m</td>
       </tr>
       <tr>
-        <td>    <literal>/</literal>        </td>
+        <td>
+          <literal>/</literal>
+        </td>
         <td>    r</td>
         <td>    \        </td>
         <td>    l</td>
       </tr>
       <tr>
-        <td>    <literal>^</literal>       </td>
+        <td>
+          <literal>^</literal>
+        </td>
         <td>    p</td>
         <td>   .*        </td>
         <td>    x</td>
@@ -142,7 +159,9 @@
         <td>    y</td>
       </tr>
       <tr>
-        <td>    <literal>.\.</literal>       </td>
+        <td>
+          <literal>.\.</literal>
+        </td>
         <td>    z</td>
         <td>    :        </td>
         <td>    b</td>
@@ -154,7 +173,9 @@
         <td>    v</td>
       </tr>
       <tr>
-        <td>    <literal>\.</literal>        </td>
+        <td>
+          <literal>\.</literal>
+        </td>
         <td>    w</td>
         <td>   [a,b]     </td>
         <td>    c</td>
@@ -180,7 +201,9 @@
       <tr>
         <td>    &amp;        </td>
         <td>    h</td>
-        <td>    <literal>.^</literal>       </td>
+        <td>
+          <literal>.^</literal>
+        </td>
         <td>    j</td>
       </tr>
       <tr>
@@ -236,18 +259,23 @@
     overloading function is very similar to the <literal>e</literal>'s one.
    </para>
     <variablelist>
-      <varlistentry><term>Functions :</term><listitem>
-        <para>Some basic primitive function</para>
-        <para>
+      <varlistentry>
+        <term>Functions :</term>
+        <listitem>
+          <para>Some basic primitive function</para>
+          <para>
     may also be overloaded for new data type. When such a function
     is undefined for a particular data types the function
     <literal>%&lt;type_of_an_argument&gt;_&lt;function_name&gt;</literal> is
     called. User may add in this called function the definition
     associated with the input data types.</para>
-      </listitem></varlistentry>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //DISPLAY
 deff('[]=%tab_p(l)','disp([['' '';l(3)] [l(2);string(l(4))]])')
@@ -261,16 +289,20 @@ deff('x=%c_a_s(a,b)','x=a+string(b)')
 deff('x=%c_sin(a)','x=''sin(''+a+'')''')
 sin('2*x')
    
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="tlist">tlist</link>
-    </member>
-    <member>
-      <link linkend="disp">disp</link>
-    </member>
-    <member>
-      <link linkend="symbols">symbols</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="disp">disp</link>
+      </member>
+      <member>
+        <link linkend="symbols">symbols</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

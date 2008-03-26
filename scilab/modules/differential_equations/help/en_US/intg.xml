@@ -11,14 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="intg"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>intg</refname><refpurpose> definite integral</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="intg">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>intg</refname>
+    <refpurpose> definite integral</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>a,b</term>
@@ -58,7 +64,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>intg(a,b,f)</literal> evaluates the definite integral  from <literal>a</literal> to
     <literal>b</literal> of <literal>f(t)dt</literal>. The function <literal>f(t)</literal>
       should be continuous.</para>
@@ -73,18 +80,17 @@
     If <literal>f</literal> is a list the list must be as follows:
     <literal> list(f,x1,x2,...)</literal> where <literal>f</literal> is a function with calling
     sequence <literal>f(t,x1,x2,...)</literal>.</para>
-
     <para>If <literal>f</literal> is a string it refers to a the name
     of a Fortran function or a C prodedure with a given calling sequence: </para>
-
     <para>In the fortran case the calling sequence should be 
 	<literal>double precision function f(x)</literal> where <literal>x</literal> is
       also a double precision number. </para>
     <para>In the C case the calling sequence should be 
 	<literal>double f(double *x)</literal>. </para>
-
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //Scilab function case
 function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
@@ -134,25 +140,30 @@ I=intg(0,2*%pi,'cfun')
 abs(exact-I)
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="intc">intc</link>
-    </member>
-    <member>
-      <link linkend="intl">intl</link>
-    </member>
-    <member>
-      <link linkend="inttrap">inttrap</link>
-    </member>
-    <member>
-      <link linkend="intsplin">intsplin</link>
-    </member>
-    <member>
-      <link linkend="ode">ode</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Used Functions</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="intc">intc</link>
+      </member>
+      <member>
+        <link linkend="intl">intl</link>
+      </member>
+      <member>
+        <link linkend="inttrap">inttrap</link>
+      </member>
+      <member>
+        <link linkend="intsplin">intsplin</link>
+      </member>
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
     <para>The associated routines can be found in  routines/integ directory :</para>
     <para>dqag0.f and dqags.f from quadpack </para>
   </refsection>

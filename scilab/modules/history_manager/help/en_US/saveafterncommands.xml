@@ -10,39 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="saveafterncommands"><info><pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006) $</pubdate></info><refnamediv><refname>saveafterncommands</refname><refpurpose>Save the history file after n statements are added to the file.</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>saveafterncommands(n)
-v = saveafterncommands()</synopsis></refsynopsisdiv>
-
-	<refsection><title>Parameters</title>
-		<variablelist>
-			<varlistentry>
-				<term>n</term>
-				<listitem>
-				<para>a integer, n statements</para>
-				</listitem>
-			</varlistentry>
-			<varlistentry>
-				<term>v</term>
-				<listitem>
-				<para>current value</para>
-				</listitem>
-			</varlistentry>
-		</variablelist>
-	</refsection>
-
-
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="saveafterncommands">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>saveafterncommands</refname>
+    <refpurpose>Save the history file after n statements are added to the file.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>saveafterncommands(n)
+v = saveafterncommands()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>a integer, n statements</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>current value</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
     <para>Save the history file after n statements are added to the file.</para>
     <para>For example, when you select the option and set n to 5, after every 5 statements are added,
     the history file is automatically saved.</para>
@@ -50,15 +49,18 @@ v = saveafterncommands()</synopsis></refsynopsisdiv>
     such as a power failure.</para>
     <para>saveafterncommands() returns current value.</para>
     <para>0 is default value.</para>
-
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 	saveafterncommands(3)
 
-]]></programlisting></refsection>
-
-  <refsection><title>Authors</title><simplelist type="vert">
-    <member>A.C</member>
-  </simplelist></refsection>
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>A.C</member>
+    </simplelist>
+  </refsection>
 </refentry>

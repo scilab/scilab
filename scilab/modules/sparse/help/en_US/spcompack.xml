@@ -9,13 +9,17 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- --><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="spcompack"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>spcompack</refname><refpurpose> converts a compressed adjacency representation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Parameters</title>
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="spcompack">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>spcompack</refname>
+    <refpurpose> converts a compressed adjacency representation</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>xadj</term>
@@ -43,7 +47,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <programlisting><![CDATA[
 
 Utility fonction spcompak is used to convert a compressed adjacency
@@ -51,7 +56,9 @@ representation into standard adjacency representation.
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // A is the sparse matrix:
 A=[1,0,0,0,0,0,0;
@@ -88,16 +95,20 @@ xlindx=[1,2,3,8,9,11];
 [xadj,adjncy,anz]= sp2adj(A);
 adjncy-spcompack(xadj,xlindx,lindx)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="sp2adj">sp2adj</link>
-    </member>
-    <member>
-      <link linkend="adj2sp">adj2sp</link>
-    </member>
-    <member>
-      <link linkend="spget">spget</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sp2adj">sp2adj</link>
+      </member>
+      <member>
+        <link linkend="adj2sp">adj2sp</link>
+      </member>
+      <member>
+        <link linkend="spget">spget</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="max_flow"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>max_flow</refname><refpurpose> maximum flow between two nodes</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[v,phi,flag] = max_flow(i,j,g)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="max_flow">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>max_flow</refname>
+    <refpurpose> maximum flow between two nodes</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[v,phi,flag] = max_flow(i,j,g)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>i</term>
@@ -57,7 +63,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>max_flow</literal> returns the value of maximum flow <literal>v</literal> from node number
     <literal>i</literal> to node number <literal>j</literal> if it exists, and the value of the flow 
     on each arc as a row vector <literal>phi</literal>. All the computations are made with 
@@ -72,7 +79,9 @@
     <literal>max_cap</literal> is not given, they are assumed to be equal to
     0 on each edge.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15 15 8 9 10 11 12 13 14];
 he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4 5 6 7 16 16 16 16 16 16 16];
@@ -92,23 +101,26 @@ g=add_edge_data(g,'flow',phi)
 g.edges.graphics.display='flow';
 show_graph(g);
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="min_lcost_flow1">min_lcost_flow1</link>
-    </member>
-    <member>
-      <link linkend="min_lcost_flow2">min_lcost_flow2</link>
-    </member>
-    <member>
-      <link linkend="min_qcost_flow">min_qcost_flow</link>
-    </member>
-    <member>
-      <link linkend="edges_data_structure">edges_data_structure</link>
-    </member>
-    <member>
-      <link linkend="add_edge_data">add_edge_data</link>
-    </member>
-  </simplelist></refsection>
-
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="min_lcost_flow1">min_lcost_flow1</link>
+      </member>
+      <member>
+        <link linkend="min_lcost_flow2">min_lcost_flow2</link>
+      </member>
+      <member>
+        <link linkend="min_qcost_flow">min_qcost_flow</link>
+      </member>
+      <member>
+        <link linkend="edges_data_structure">edges_data_structure</link>
+      </member>
+      <member>
+        <link linkend="add_edge_data">add_edge_data</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

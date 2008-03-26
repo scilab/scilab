@@ -11,14 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="odeoptions"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>odeoptions</refname><refpurpose> set options for ode solvers</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>odeoptions()</synopsis></refsynopsisdiv>
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="odeoptions">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>odeoptions</refname>
+    <refpurpose> set options for ode solvers</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>odeoptions()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
     <para>
     This function interactively displays a command which
     should be executed to set various options of ode solvers.
@@ -84,9 +90,12 @@
      df1/dy1, df2/dy1, df3/dy1, ... (1+ml possibly non-zero entries)
      column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2, etc</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="ode">ode</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

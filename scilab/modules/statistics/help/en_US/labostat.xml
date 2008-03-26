@@ -10,13 +10,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="labostat"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>labostat</refname><refpurpose>    Statistical toolbox for Scilab</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Contents</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="labostat">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>labostat</refname>
+    <refpurpose>    Statistical toolbox for Scilab</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Contents</title>
     <programlisting><![CDATA[
 
 centre: centering variables
@@ -58,7 +61,8 @@ varf: variance with frequence table
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>References</title>
+  <refsection>
+    <title>References</title>
     <para>
      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, 5th edition, J.Wiley &amp; Sons, 1990.</para>
     <para>

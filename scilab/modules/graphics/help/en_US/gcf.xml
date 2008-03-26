@@ -10,40 +10,40 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gcf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gcf</refname><refpurpose>Return handle of current graphic or GUI
-  window.</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>h = gcf()</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gcf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gcf</refname>
+    <refpurpose>Return handle of current graphic or GUI
+  window.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>h = gcf()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
-
         <listitem>
           <para>handle or integer.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>This routine returns the handle of the current graphic or GUI window.
     If the current figure is a graphic one <literal>gcf()</literal> returns a handle
     on it. If the current figure is a <link linkend="uicontrol">uicontrol</link> one
     <literal>gcf()</literal> returns it's figure number.</para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
     
     f=gcf()  
     f.figure_size= [610,469]/2;
@@ -61,41 +61,39 @@
     figure(f) //make GUI  window f the current figure
     gcf()
 
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="gdf">gdf</link>
-    </member>
-
-    <member>
-      <link linkend="gca">gca</link>
-    </member>
-
-    <member>
-      <link linkend="gce">gce</link>
-    </member>
-
-    <member>
-      <link linkend="get">get</link>
-    </member>
-
-    <member>
-      <link linkend="scf">scf</link>
-    </member>
-
-    <member>
-      <link linkend="set">set</link>
-    </member>
-
-    <member>
-      <link linkend="graphics_entities">graphics_entities</link>
-    </member>
-
-    <member>
-      <link linkend="uicontrol">uicontrol</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><para>Serge Steer, INRIA</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gdf">gdf</link>
+      </member>
+      <member>
+        <link linkend="gca">gca</link>
+      </member>
+      <member>
+        <link linkend="gce">gce</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="scf">scf</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="uicontrol">uicontrol</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Serge Steer, INRIA</para>
+  </refsection>
 </refentry>

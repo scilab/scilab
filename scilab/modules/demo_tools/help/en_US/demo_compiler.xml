@@ -10,24 +10,28 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_compiler"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>demo_compiler</refname><refpurpose> test the presence of a compileur </refpurpose></refnamediv>
-	
-	
-	
-    
-	
-	
-	
-	<refsynopsisdiv><title>Calling Sequence</title><synopsis>N = datenum()</synopsis></refsynopsisdiv>
-	
-	<refsection><title>Description</title>
-		<para>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="demo_compiler">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>demo_compiler</refname>
+    <refpurpose> test the presence of a compileur </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>N = datenum()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
 			The function demo_compiler asks the computer if it owns a compileur C or not. 
 			It returns a boolean indicating wether the compiler exists or not.
 		</para>
-	</refsection>
-	
-	<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 select num,
  case 0
   return;
@@ -42,15 +46,20 @@ select num,
 	wheelg=wheelgs;
 	show(x);
 end
-	]]></programlisting></refsection>
-	
-	<refsection><title>See Also</title><simplelist type="inline">
-		<member>
-			<link linkend="findmsvccompiler">findmsvccompiler</link>
-		</member>
-	</simplelist></refsection>
-	
-	<refsection><title>Authors</title><simplelist type="vert">
-		<member>G.H</member>
-	</simplelist></refsection>
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="findmsvccompiler">findmsvccompiler</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>G.H</member>
+    </simplelist>
+  </refsection>
 </refentry>

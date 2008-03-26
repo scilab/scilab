@@ -10,42 +10,39 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_size"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_size</refname><refpurpose>Fonction d'�mulation de la fonction Matlab size</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_size">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_size</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab size</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction <literal>size</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec deux param�tres d'entr�e : La fonction Matlab <literal>size</literal> peut �tre
 	utilis�e avec le second param�tre donnant donnant une dimension du premier param�tre
 	qui n'existe pas (retourne 1 dans ce cas) mais pas la fonction Scilab.
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Avec plus d'une param�tre de sortie : si le nombre de param�tres de sortie est plus
 	petit que le nombre de dimension, la derni�re sortie est �gale au produit de toutes
 	les dimensions restantes dans Matlab mais pas dans Scilab. Si le nombre de sorties
 	est plus grand que le nombre de dimensions, toutes les sorties correspondant � une
 	dimension qui n'existe pas sont �gales � 1 en Matlab mais Scilab retourne une erreur dans ce cas.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>[d1,[d2,...]] = mtlb_size(X[,dim])</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>[d1,[d2,...]] = mtlb_size(X[,dim])</literal> quand il n'�tait pas
@@ -53,32 +50,30 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_size</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec deux param�tres d'entr�e : si <literal>dim</literal> correspond � une dimension de <literal>X</literal> qui existe
         <literal>mtlb_size(X,dim)</literal> peut �tre remplac� par <literal>size(X,dim)</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
 	Avec plus d'un param�tre de sortie : si le nombre des sorties est �gal au nombre de dimensions de <literal>X</literal>
 	<literal>[d1,[d2,...]] = mtlb_size(X)</literal> peut �tre remplac� par <literal>[d1,[d2,...]] = size(X)</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_size</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

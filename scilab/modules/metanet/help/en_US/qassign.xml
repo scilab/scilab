@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="qassign"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>qassign</refname><refpurpose> solves a quadratic assignment problem</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[crit,order] = qassign(c,f,d)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="qassign">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>qassign</refname>
+    <refpurpose> solves a quadratic assignment problem</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[crit,order] = qassign(c,f,d)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>c</term>
@@ -51,7 +57,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>qassign</literal> solves the quadratic assignment problem i.e.
     minimize the global criterium:
     <literal> crit = e(1)+...+e(n) </literal> 
@@ -62,7 +69,9 @@
     <para><literal>c</literal>, <literal>f</literal> and <literal>d</literal> are n x n real arrays; their diagonal entries
     are zero.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 n=15;
 d=100*rand(15,15);
@@ -71,10 +80,14 @@ c=zeros(n,n);f=c;
 f(2:n,1)=ones(1:n-1)';
 [crit,order]=qassign(c,f,d)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="knapsack">knapsack</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="knapsack">knapsack</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

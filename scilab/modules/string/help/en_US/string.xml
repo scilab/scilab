@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="string"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate></info><refnamediv><refname>string</refname><refpurpose> conversion to string</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>string(x)
-[out,in,text]=string(x)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="string">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>string</refname>
+    <refpurpose> conversion to string</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>string(x)
+[out,in,text]=string(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -28,7 +34,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     converts a matrix into a matrix of strings.</para>
     <para>
@@ -47,41 +54,47 @@
     <para>
     Concatenation of strings is made by the <literal>+</literal> operation.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 string(rand(2,2))
 deff('y=mymacro(x)','y=x+1')
 [out,in,text]=string(mymacro)
 x=123.356; 'Result is '+string(x)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="part">part</link>
-    </member>
-    <member>
-      <link linkend="length">length</link>
-    </member>
-    <member>
-      <link linkend="quote">quote</link>
-    </member>
-    <member>
-      <link linkend="evstr">evstr</link>
-    </member>
-    <member>
-      <link linkend="execstr">execstr</link>
-    </member>
-    <member>
-      <link linkend="strsubst">strsubst</link>
-    </member>
-    <member>
-      <link linkend="strcat">strcat</link>
-    </member>
-    <member>
-      <link linkend="strindex">strindex</link>
-    </member>
-    <member>
-      <link linkend="sci2exp">sci2exp</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="part">part</link>
+      </member>
+      <member>
+        <link linkend="length">length</link>
+      </member>
+      <member>
+        <link linkend="quote">quote</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="strsubst">strsubst</link>
+      </member>
+      <member>
+        <link linkend="strcat">strcat</link>
+      </member>
+      <member>
+        <link linkend="strindex">strindex</link>
+      </member>
+      <member>
+        <link linkend="sci2exp">sci2exp</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

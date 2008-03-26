@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_start"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvm_start</refname><refpurpose> Start the PVM daemon</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[info] = pvm_start(["hostfile"])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_start">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_start</refname>
+    <refpurpose> Start the PVM daemon</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[info] = pvm_start(["hostfile"])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>hostfile</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>pvm_start</literal>  starts the <literal>Pvmd3</literal> daemon process  which
     coordinates  unix hosts in a  virtual machine.  One  pvmd3 must run on
     each host component of the virtual machine. They provide  the
@@ -70,18 +77,21 @@ pvm_start()
     <para>
     Error -28 means: pvm_start_pvmd(): Duplicate host</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pvmd3">pvmd3</link>
-    </member>
-    <member>
-      <link linkend="pvm_halt">pvm_halt</link>
-    </member>
-    <member>
-      <link linkend="pvm_addhosts">pvm_addhosts</link>
-    </member>
-    <member>
-      <link linkend="pvm_config">pvm_config</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvmd3">pvmd3</link>
+      </member>
+      <member>
+        <link linkend="pvm_halt">pvm_halt</link>
+      </member>
+      <member>
+        <link linkend="pvm_addhosts">pvm_addhosts</link>
+      </member>
+      <member>
+        <link linkend="pvm_config">pvm_config</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

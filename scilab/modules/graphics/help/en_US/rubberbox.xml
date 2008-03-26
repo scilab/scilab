@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rubberbox"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>rubberbox</refname><refpurpose> Rubberband box for rectangle selection</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[final_rect,btn]=rubberbox(initial_rect)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rubberbox">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rubberbox</refname>
+    <refpurpose> Rubberband box for rectangle selection</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[final_rect,btn]=rubberbox(initial_rect)
 [final_rect,btn]=rubberbox()
-[final_rect,btn]=rubberbox(edition_mode)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[final_rect,btn]=rubberbox(edition_mode)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>initial_rect</term>
@@ -53,36 +59,43 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>rubberbox(initial_rect)</literal>  tracks a rubberband box in
     the current graphic window, following the mouse. When a button is clicked <literal>rubberbox</literal> returns the final
     rectangles definition  in <literal>final_Rect</literal>. If the argument
     <literal>initial_rect</literal> user has to click to fix the initial
     corner position.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 xsetech(frect=[0,0,100,100])
 [x,y]=xclick();r=rubberbox([x;y;30;10])
 xrect(r)
 r=rubberbox()
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="xrect">xrect</link>
-    </member>
-    <member>
-      <link linkend="xrects">xrects</link>
-    </member>
-    <member>
-      <link linkend="xclick">xclick</link>
-    </member>
-    <member>
-      <link linkend="xgetmouse">xgetmouse</link>
-    </member>
-    <member>
-      <link linkend="dragrect">dragrect</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xrect">xrect</link>
+      </member>
+      <member>
+        <link linkend="xrects">xrects</link>
+      </member>
+      <member>
+        <link linkend="xclick">xclick</link>
+      </member>
+      <member>
+        <link linkend="xgetmouse">xgetmouse</link>
+      </member>
+      <member>
+        <link linkend="dragrect">dragrect</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

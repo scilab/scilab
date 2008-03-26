@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="copfac"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>copfac</refname><refpurpose> right coprime factorization</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[N,M,XT,YT]=copfac(G [,polf,polc,tol])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="copfac">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>copfac</refname>
+    <refpurpose> right coprime factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[N,M,XT,YT]=copfac(G [,polf,polc,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>G</term>
@@ -45,7 +51,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>[N,M,XT,YT]=copfac(G,[polf,polc,[tol]])</literal> returns a right coprime factorization of <literal>G</literal>.</para>
     <para><literal>G = N*M^-1</literal> where <literal>N</literal> and <literal>M</literal> are stable, proper and right coprime.
     (i.e. <literal>[N M]</literal> left-invertible with stability)</para>
@@ -53,12 +60,15 @@
     <para><literal>[XT -YT].[M N]' = eye</literal> (Bezout identity)</para>
     <para><literal>G</literal> is assumed stabilizable and detectable.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="syslin">syslin</link>
-    </member>
-    <member>
-      <link linkend="lcf">lcf</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="lcf">lcf</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

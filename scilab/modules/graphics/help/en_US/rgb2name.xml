@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rgb2name"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>rgb2name</refname><refpurpose> returns the name of a color</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>names=rgb2name(r,g,b)
-names=rgb2name(rgb)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rgb2name">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rgb2name</refname>
+    <refpurpose> returns the name of a color</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>names=rgb2name(r,g,b)
+names=rgb2name(rgb)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>r,g,b</term>
@@ -40,7 +46,8 @@ names=rgb2name(rgb)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>rgb2name</literal> returns the color name corresponding to the RGB values
     given by its argument. A vector of color names can also be returned if the color has more than 1 name.
     <literal>r</literal>, <literal>g</literal> and <literal>b</literal> must be integers between 0 and 255
@@ -49,7 +56,9 @@ names=rgb2name(rgb)</synopsis></refsynopsisdiv>
     <para> If no color is found <literal>[]</literal> is returned.</para>
     <para> The list of all known colors is given by <link linkend="color_list">color_list</link>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 rgb2name(255,128,128)
 rgb2name([255 215 0])
@@ -57,16 +66,20 @@ rgb2name([255 215 0])
 cmap=get(gcf(),"color_map");
 rgb2name(cmap(10,:)*255)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="color">color</link>
-    </member>
-    <member>
-      <link linkend="color_list">color_list</link>
-    </member>
-    <member>
-      <link linkend="name2rgb">name2rgb</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="color">color</link>
+      </member>
+      <member>
+        <link linkend="color_list">color_list</link>
+      </member>
+      <member>
+        <link linkend="name2rgb">name2rgb</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

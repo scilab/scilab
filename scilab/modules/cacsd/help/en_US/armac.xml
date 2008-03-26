@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="armac"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>armac</refname><refpurpose> Scilab description of an armax process</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[ar]=armac(a,b,d,ny,nu,sig)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="armac">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>armac</refname>
+    <refpurpose> Scilab description of an armax process</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[ar]=armac(a,b,d,ny,nu,sig)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>a=[Id,a1,..,a_r]  </term>
@@ -57,7 +63,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function creates a description as a tlist of an  ARMAX process</para>
     <para><literal>ar</literal> is defined by</para>
@@ -70,7 +77,9 @@ ar=tlist(['ar','a','b','d','ny','nu','sig'],a,b,d,ny,nu,sig);
     and thus the coefficients of <literal>ar</literal> can be retrieved by e.g.
     <literal> ar('a') </literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 a=[1,-2.851,2.717,-0.865].*.eye(2,2)
 b=[0,1,1,1].*.[1;1];
@@ -80,25 +89,29 @@ ar=armac(a,b,d,2,1,sig)
 // extract polynomial matrices from ar representation 
 [A,B,D]=arma2p(ar);
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="arma">arma</link>
-    </member>
-    <member>
-      <link linkend="armax">armax</link>
-    </member>
-    <member>
-      <link linkend="armax1">armax1</link>
-    </member>
-    <member>
-      <link linkend="arsimul">arsimul</link>
-    </member>
-    <member>
-      <link linkend="arma2p">arma2p</link>
-    </member>
-    <member>
-      <link linkend="tlist">tlist</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="arma">arma</link>
+      </member>
+      <member>
+        <link linkend="armax">armax</link>
+      </member>
+      <member>
+        <link linkend="armax1">armax1</link>
+      </member>
+      <member>
+        <link linkend="arsimul">arsimul</link>
+      </member>
+      <member>
+        <link linkend="arma2p">arma2p</link>
+      </member>
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

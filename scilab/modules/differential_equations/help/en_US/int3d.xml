@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="int3d"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>int3d</refname><refpurpose> definite 3D integral by quadrature and cubature method</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="int3d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>int3d</refname>
+    <refpurpose> definite 3D integral by quadrature and cubature method</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
@@ -83,7 +90,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     The function calculates an approximation to a given
     vector of definite integrals</para>
@@ -140,11 +148,14 @@ F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
     caution when the different components of the integrals
     require clearly different subdivisions.</para>
   </refsection>
-  <refsection><title>References</title>
+  <refsection>
+    <title>References</title>
     <para>
     Fortran routine dcutet.f</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 X=[0;1;0;0];
 Y=[0;0;1;0];
@@ -177,36 +188,58 @@ function v=f(xyz,numfun),v=1,endfunction
 [result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
 
    
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="intc">intc</link>
-    </member>
-    <member>
-      <link linkend="intl">intl</link>
-    </member>
-    <member>
-      <link linkend="int2d">int2d</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><variablelist>
-    <varlistentry><term>Jarle Berntsen</term><listitem><para> The Computing Centre,
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="intc">intc</link>
+      </member>
+      <member>
+        <link linkend="intl">intl</link>
+      </member>
+      <member>
+        <link linkend="int2d">int2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Jarle Berntsen</term>
+        <listitem>
+          <para> The Computing Centre,
 University of Bergen, Thormohlens gt. 55,
 N-5008 Bergen, Norway
 Phone..  47-5-544055
 Email..  jarle@eik.ii.uib.no, 
-</para></listitem></varlistentry>
-    <varlistentry><term>Ronald Cools</term><listitem><para> Dept. of Computer Science,
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ronald Cools</term>
+        <listitem>
+          <para> Dept. of Computer Science,
 Katholieke Universiteit Leuven, Celestijnenlaan 200A,
 B-3030 Heverlee, Belgium
 Phone..  32-16-201015 (3562)
 Email..  ronald@cs.kuleuven.ac.be,
-</para></listitem></varlistentry>
-    <varlistentry><term>Terje O. Espelid</term><listitem><para> Department of Informatics,
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Terje O. Espelid</term>
+        <listitem>
+          <para> Department of Informatics,
 University of Bergen, Thormohlens gt. 55,
 N-5008 Bergen, Norway
 Phone..  47-5-544180
 Email..  terje@eik.ii.uib.no
-</para></listitem></varlistentry>
-  </variablelist></refsection>
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 </refentry>

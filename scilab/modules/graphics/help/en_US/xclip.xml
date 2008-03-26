@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xclip"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xclip</refname><refpurpose> set a clipping zone</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>xclip([x,y,w,h])
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xclip">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xclip</refname>
+    <refpurpose> set a clipping zone</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xclip([x,y,w,h])
 xclip(rect)
-xclip("clipgrf")</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+xclip("clipgrf")</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x,y,w,h</term>
@@ -35,11 +41,11 @@ xclip("clipgrf")</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>xclip</literal> is obsolete with the new graphic mode, use the
       <literal>clip_state</literal> and <literal>clip_box</literal> properties of the
       entities instead.</para>
-
     <para><literal>xclip</literal> set a clipping zone given by the coordinates, in the current
     graphics scale, of the rectangle <literal>x,y,w,h</literal> 
     (upper-left point, width, height). If only one argument is given, it stands
@@ -48,7 +54,9 @@ xclip("clipgrf")</synopsis></refsynopsisdiv>
     <para>
     To unclip a region use the command <literal>xclip()</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 x=0:0.2:2*%pi;
 x1=[sin(x);100*sin(x)];
@@ -73,6 +81,10 @@ xclip("clipgrf")
 // remove clipping
 e.clip_state='off';
  
-  ]]></programlisting></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

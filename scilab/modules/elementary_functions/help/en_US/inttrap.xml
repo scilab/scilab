@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="inttrap"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>inttrap</refname><refpurpose> integration of experimental data by trapezoidal interpolation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>v = inttrap([x,] s)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="inttrap">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>inttrap</refname>
+    <refpurpose> integration of experimental data by trapezoidal interpolation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>v = inttrap([x,] s)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -39,7 +45,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     computes :</para>
     <para>
@@ -48,30 +55,36 @@
     <para>
     Between mesh points function is interpolated linearly.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 t=0:0.1:%pi
 inttrap(t,sin(t))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="intg">intg</link>
-    </member>
-    <member>
-      <link linkend="intc">intc</link>
-    </member>
-    <member>
-      <link linkend="intl">intl</link>
-    </member>
-    <member>
-      <link linkend="integrate">integrate</link>
-    </member>
-    <member>
-      <link linkend="intsplin">intsplin</link>
-    </member>
-    <member>
-      <link linkend="splin">splin</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="intg">intg</link>
+      </member>
+      <member>
+        <link linkend="intc">intc</link>
+      </member>
+      <member>
+        <link linkend="intl">intl</link>
+      </member>
+      <member>
+        <link linkend="integrate">integrate</link>
+      </member>
+      <member>
+        <link linkend="intsplin">intsplin</link>
+      </member>
+      <member>
+        <link linkend="splin">splin</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

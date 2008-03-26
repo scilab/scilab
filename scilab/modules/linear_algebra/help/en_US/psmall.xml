@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="psmall"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>psmall</refname><refpurpose> spectral projection</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Q,M]=psmall(A,thres,flag)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="psmall">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>psmall</refname>
+    <refpurpose> spectral projection</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Q,M]=psmall(A,thres,flag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -45,7 +51,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Projection on eigen-subspace associated with eigenvalues with real
     part &lt; <literal>thres</literal> (<literal>flag='c'</literal>) or
@@ -76,7 +83,9 @@
     eigenvalues of <literal>A</literal> with magnitude &gt;=
     <literal>thres</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
 [Q,M]=psmall(A,2.5,'d');
@@ -84,20 +93,28 @@ spec(M*A*Q)
 [Q1,M1]=fullrf(eye()-Q*M);
 spec(M1*A*Q1)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pbig">pbig</link>
-    </member>
-    <member>
-      <link linkend="proj">proj</link>
-    </member>
-    <member>
-      <link linkend="projspec">projspec</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>F. Delebecque INRIA. (1988);   </para></refsection>
-  <refsection><title>Used Functions</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pbig">pbig</link>
+      </member>
+      <member>
+        <link linkend="proj">proj</link>
+      </member>
+      <member>
+        <link linkend="projspec">projspec</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F. Delebecque INRIA. (1988);   </para>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
     <para>
    This function is  based on the ordered schur form (scilab
    function <literal>schur</literal>).</para>

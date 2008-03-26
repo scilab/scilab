@@ -10,54 +10,36 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="delete_edges" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="delete_edges" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>delete_edges</refname>
-
     <refpurpose>deletes all the arcs or edges between a set of
     nodes</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>g1 = delete_edges(ij,g)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
-
     <variablelist>
       <varlistentry>
         <term>ij</term>
-
         <listitem>
           <para>matrix of integers (number of nodes)</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>g</term>
-
         <listitem>
-          <para>a <link
-          linkend="graph_data_structure">graph_data_structure</link>.</para>
+          <para>a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>g1</term>
-
         <listitem>
           <para>graph data structure of the new graph without the arcs or
           edges defined by ij</para>
@@ -65,27 +47,21 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>If <literal>g</literal> is a directed graph,
     <literal>delete_edges</literal> returns the graph <literal>g1</literal>
     with the arcs defined by matrix <literal>ij</literal> being deleted.
     <literal>ij</literal> must be a n x 2 matrix of node numbers: the
     <literal>n</literal> edges to be deleted are defined by couples of nodes
     (<literal>ij(i,1)</literal>, <literal>ij(i,2)</literal>).</para>
-
     <para>If <literal>g</literal> is an undirected graph, the edges
     corresponding to matrix <literal>ij</literal> are deleted.</para>
-
     <para><literal>delete_edges</literal> and <literal>delete_arcs</literal>
     define the same function</para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example">
 
 //Create a graph
@@ -111,16 +87,18 @@ show_graph(gt,'new');
  
   </programlisting>
   </refsection>
-
   <refsection>
     <title>See Also</title>
-
     <simplelist type="inline">
-      <member><link linkend="add_edge">add_edge</link></member>
-
-      <member><link linkend="add_node">add_node</link></member>
-
-      <member><link linkend="delete_nodes">delete_nodes</link></member>
+      <member>
+        <link linkend="add_edge">add_edge</link>
+      </member>
+      <member>
+        <link linkend="add_node">add_node</link>
+      </member>
+      <member>
+        <link linkend="delete_nodes">delete_nodes</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

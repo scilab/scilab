@@ -10,18 +10,17 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_plot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_plot</refname><refpurpose>Fonction d'�mulation de la fonction Matlab plot</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_plot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_plot</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab plot</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>La fonction Matlab <literal>plot</literal> et la fonction Scilab <literal>plot2d</literal> se comportent diff�remment.</para>
-
     <para>
     La fonction <literal>mtlb_plot(...)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>plot(...)</literal> quand il n'�tait pas
@@ -31,43 +30,44 @@
     on peut remplacer les appels � <literal>mtlb_plot</literal> quand il n'y a pas de valeur de sortie,
     dans ce cas, les couleurs doivent �tre chang�es par l'utilisateur:
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec un param�tre d'entr�e, si <literal>Y</literal> est r�el
         <literal>mtlb_plot(Y)</literal> peut �tre remplac� par <literal>plot2d(Y)</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Avec un param�tre d'entr�e, si <literal>Y</literal> est complex
         <literal>mtlb_plot(Y)</literal> peut �tre remplac� par <literal>plot2d(real(Y),imag(Y))</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Avec deux param�tres d'entr�e <literal>X</literal> et <literal>Y</literal>, si <literal>Y</literal> n'est pas une cha�ne de caract�res,
         <literal>mtlb_plot(X,Y)</literal> peut �tre remplac� par <literal>plot2d(X,Y)</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_plot</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="plot2d">plot2d</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

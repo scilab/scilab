@@ -10,13 +10,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvmd3"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvmd3</refname><refpurpose> PVM  daemon</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvmd3">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvmd3</refname>
+    <refpurpose> PVM  daemon</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
     pvmd3 is a daemon process which coordinates hosts in a virtual
     machine. One pvmd must run on each host in the group. They provide
@@ -37,7 +40,8 @@
     <para>
   </para>
   </refsection>
-  <refsection><title>Options</title>
+  <refsection>
+    <title>Options</title>
     <para>
     The following options may be specified on the command line when starting the master pvmd or PVM console:
   </para>
@@ -83,15 +87,24 @@
     The following options are used by the master pvmd when starting slaves and are only of interest to someone writing a hoster. Don't just go using them, now.
   </para>
     <variablelist>
-      <varlistentry><term>-s</term><listitem>
-        <para>Start pvmd in slave mode. Hostfile cannot be used, five additional parameters must be supplied: master pvmd index, master IP, master MTU, slave pvmd index, and slave IP.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>-S</term><listitem>
-        <para>Same as -s, but slave pvmd doesn't wait for its stdin to be closed after printing its parameters.  Used for manual startup.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>-f</term><listitem>
-        <para>Slave doesn't fork after configuration (useful if the slave is to be controlled or monitored by some process).</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>-s</term>
+        <listitem>
+          <para>Start pvmd in slave mode. Hostfile cannot be used, five additional parameters must be supplied: master pvmd index, master IP, master MTU, slave pvmd index, and slave IP.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-S</term>
+        <listitem>
+          <para>Same as -s, but slave pvmd doesn't wait for its stdin to be closed after printing its parameters.  Used for manual startup.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-f</term>
+        <listitem>
+          <para>Slave doesn't fork after configuration (useful if the slave is to be controlled or monitored by some process).</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>
     Lines beginning with a splat ( <literal>#</literal> ), optionally preceded by whitespace, are ignored.
@@ -113,64 +126,118 @@ betty
     This specifies the names of five hosts to be configured in the virtual machine.  The master pvmd for a group is started by hand on the localhost, and it starts slaves on each of the remaining hosts using the rsh or rexec command. The master host may appear on any line of the hostfile, but must have an entry.  The simple format above works fine if you have the same login name on all five machines and the name of the master host in your .rhosts files on the other four.  There are several host file options available:
   </para>
     <variablelist>
-      <varlistentry><term>lo=NAME</term><listitem>
-        <para>Specifies an alternate login name (NAME) to use.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>so=pw</term><listitem>
-        <para>This is necessary when the remote host cannot trust the master. Causes the master pvmd to prompt for a password for the remote host in the tty of the pvmd (note you can't start the master using the console or background it when using this option) you will see: Password (honk.cs.utk.edu:manchek): you should type your password for the remote host. The startup will then continue as normal.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>dx=FILE</term><listitem>
-        <para>Specifies the path of the pvmd executable. FILE may be a simple filename, an absolute pathname, or a path relative to the user's home directory on the remote host. This is mainly useful to aid in debugging new versions of PVM, but may have other uses.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>ep=PATH</term><listitem>
-        <para>Specifies a path for the pvmd to search for executable program components when spawning a new process. The path may have multiple elements, separated by colons ( : ).</para>
-      </listitem></varlistentry>
-      <varlistentry><term>wd=PATH Specifies a working directory in which all spawned tasks on</term><listitem>
-        <para>this host will execute.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>sp=VALUE</term><listitem>
-        <para>Specifies the relative computational speed of this host compared to other hosts in the configuration. VALUE is an integer in the range [1 - 1000000]</para>
-      </listitem></varlistentry>
-      <varlistentry><term>bx=PATH</term><listitem>
-        <para>Specifies the debugger program path. Note: the environment variable PVM_DEBUGGER can also be set.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>so=ms</term><listitem>
-        <para>Rarely used. Causes the master pvmd to request user to manually perform the startup of a pvmd on a slave host when rsh and rexec network services are disabled but IP connectivity exists. See section "MANUAL STARTUP".</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>lo=NAME</term>
+        <listitem>
+          <para>Specifies an alternate login name (NAME) to use.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>so=pw</term>
+        <listitem>
+          <para>This is necessary when the remote host cannot trust the master. Causes the master pvmd to prompt for a password for the remote host in the tty of the pvmd (note you can't start the master using the console or background it when using this option) you will see: Password (honk.cs.utk.edu:manchek): you should type your password for the remote host. The startup will then continue as normal.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dx=FILE</term>
+        <listitem>
+          <para>Specifies the path of the pvmd executable. FILE may be a simple filename, an absolute pathname, or a path relative to the user's home directory on the remote host. This is mainly useful to aid in debugging new versions of PVM, but may have other uses.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ep=PATH</term>
+        <listitem>
+          <para>Specifies a path for the pvmd to search for executable program components when spawning a new process. The path may have multiple elements, separated by colons ( : ).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wd=PATH Specifies a working directory in which all spawned tasks on</term>
+        <listitem>
+          <para>this host will execute.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sp=VALUE</term>
+        <listitem>
+          <para>Specifies the relative computational speed of this host compared to other hosts in the configuration. VALUE is an integer in the range [1 - 1000000]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bx=PATH</term>
+        <listitem>
+          <para>Specifies the debugger program path. Note: the environment variable PVM_DEBUGGER can also be set.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>so=ms</term>
+        <listitem>
+          <para>Rarely used. Causes the master pvmd to request user to manually perform the startup of a pvmd on a slave host when rsh and rexec network services are disabled but IP connectivity exists. See section "MANUAL STARTUP".</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>
      A dollar sign ( <literal>$</literal> ) in an option introduces a variable name, for example <literal>$PVM_ARCH</literal>. Names are expanded from environment variables by each pvmd.  Each of the flags above has a default value. These are: 
   </para>
     <variablelist>
-      <varlistentry><term>lo</term><listitem>
-        <para>The loginname on the master host.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>so</term><listitem>
-        <para>Nothing</para>
-      </listitem></varlistentry>
-      <varlistentry><term>dx</term><listitem>
-        <para><literal>$PVM_ROOT/lib/pvmd</literal> (or environment variable PVM_DPATH)</para>
-      </listitem></varlistentry>
-      <varlistentry><term>ep</term><listitem>
-        <para><literal>pvm3/bin/$PVM_ARCH:$PVM_ROOT/bin/$PVM_ARCH</literal></para>
-      </listitem></varlistentry>
-      <varlistentry><term>wd</term><listitem>
-        <para><literal>$HOME</literal></para>
-      </listitem></varlistentry>
-      <varlistentry><term>sp</term><listitem>
-        <para>1000</para>
-      </listitem></varlistentry>
-      <varlistentry><term>bx</term><listitem>
-        <para><literal>$PVM_ROOT/lib/debugger</literal></para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>lo</term>
+        <listitem>
+          <para>The loginname on the master host.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>so</term>
+        <listitem>
+          <para>Nothing</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dx</term>
+        <listitem>
+          <para><literal>$PVM_ROOT/lib/pvmd</literal> (or environment variable PVM_DPATH)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ep</term>
+        <listitem>
+          <para>
+            <literal>pvm3/bin/$PVM_ARCH:$PVM_ROOT/bin/$PVM_ARCH</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wd</term>
+        <listitem>
+          <para>
+            <literal>$HOME</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sp</term>
+        <listitem>
+          <para>1000</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bx</term>
+        <listitem>
+          <para>
+            <literal>$PVM_ROOT/lib/debugger</literal>
+          </para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>
     You can change these by adding a line with a star ( * ) in the first field followed by the options, for example:
   </para>
     <variablelist>
-      <varlistentry><term>* lo=afriend so=pw</term><listitem>
-        <para>This sets new default values for `lo' and `so' for the remainder of the host file, or until the next `*' line. Options set on the last `*' line also apply to hosts added dynamically using pvm_addhosts().</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>* lo=afriend so=pw</term>
+        <listitem>
+          <para>This sets new default values for `lo' and `so' for the remainder of the host file, or until the next `*' line. Options set on the last `*' line also apply to hosts added dynamically using pvm_addhosts().</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>
     Host options can be set without starting the hosts automatically. Information on host file lines beginning with `&amp;' is stored, but the hosts are not started until added using pvm_addhosts().
@@ -189,7 +256,8 @@ sigi.cs
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>Manual STARTUP</title>
+  <refsection>
+    <title>Manual STARTUP</title>
     <para>
      When adding a host with this option set you will see on the tty of the pvmd:</para>
     <programlisting><![CDATA[
@@ -221,7 +289,8 @@ Thanks
     <para>
     and the two pvmds should be able to communicate.  Note you can't start the master using the console or background it when using this option.</para>
   </refsection>
-  <refsection><title>Stopping PVMD3</title>
+  <refsection>
+    <title>Stopping PVMD3</title>
     <para>
      The preferred method of stopping all the pvmds is to give the halt command in the PVM console.  This kills all pvm tasks, all the remote daemons, the local daemon, and finally the console itself. If the master pvmd is killed manually it should be sent a SIGTERM signal to allow it to kill the remote pvmds and clean up various files.  The pvmd can be killed in a manner that leaves the file /tmp/pvmd.uid behind on one or more hosts. Uid is the numeric user ID (from /etc/passwd) of the user. This will prevent PVM from restarting on that host. Deletion of this file will fix this problem:</para>
     <programlisting><![CDATA[

@@ -10,19 +10,18 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_exist"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_exist</refname><refpurpose>Fonction d'�mulation de la fonction Matlab exist</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_exist">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_exist</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab exist</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Il n'y a pas d'�quivalent Scilab pour la fonction Matlab <literal>exist</literal> sauf si l'entr�e est une variable.
     La fonction Scilab <literal>mtlb_exist</literal> est une �mulation partielle de cette fonction.</para>
-
     <para>
     La fonction <literal>r = mtlb_exist(nam[,tp])</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>exist(nam[,tp])</literal> quand il n'�tait pas
@@ -30,29 +29,32 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_exist</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec une entr�e et si <literal>nam</literal> est un nom de variable,
         <literal>mtlb_exist(nam)</literal> peut �tre remplac� par <literal>exists(nam)</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_exist</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="exists">exists</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="exists">exists</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

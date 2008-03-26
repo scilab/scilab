@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="eqiir"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>eqiir</refname><refpurpose> Design of iir filters</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="eqiir">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>eqiir</refname>
+    <refpurpose> Design of iir filters</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>ftype</term>
@@ -63,7 +70,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Design of iir filter interface with eqiir (syredi)</para>
     <para>
@@ -72,19 +80,25 @@
     <para>
     That is <literal>hz=fact*prod(cells(2))./prod(cells(3))</literal></para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 [cells,fact,zzeros,zpoles]=...
 eqiir('lp','ellip',[2*%pi/10,4*%pi/10],0.02,0.001)
 transfer=fact*poly(zzeros,'z')/poly(zpoles,'z')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="eqfir">eqfir</link>
-    </member>
-    <member>
-      <link linkend="iir">iir</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="eqfir">eqfir</link>
+      </member>
+      <member>
+        <link linkend="iir">iir</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dsearch"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dsearch</refname><refpurpose>binary search (aka dichotomous search in french)</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[ind, occ, info] = dsearch(X, val [, ch ])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dsearch">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dsearch</refname>
+    <refpurpose>binary search (aka dichotomous search in french)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[ind, occ, info] = dsearch(X, val [, ch ])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
@@ -46,48 +53,69 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>This function is useful to search in an ordered table and/or to count the number of components
        of a vector falling in some classes (a class being an interval or a value).
     </para>
     <para>By default or when <literal>ch="c"</literal>, this is the interval case, that is, for 
        each X(i) search in which of the n-1 intervals it falls, the intervals being defined by:
     </para>
-        <programlisting><![CDATA[
+    <programlisting><![CDATA[
             I1 = [val(1), val(2)]
             Ik = (val(k), val(k+1)] for 1 < k <= n-1 ; 
 ]]></programlisting>
     <para>and:
     </para>
     <variablelist>
-       <varlistentry><term>ind(i)</term><listitem>
-            <para>is the interval number of X(i) (0 if X(i) is not in
+      <varlistentry>
+        <term>ind(i)</term>
+        <listitem>
+          <para>is the interval number of X(i) (0 if X(i) is not in
               [val(1),val(n)])</para>
-       </listitem></varlistentry>
-       <varlistentry><term>occ(k)</term><listitem>
-            <para>is the number of components of X which are in Ik</para>
-       </listitem></varlistentry>
-       <varlistentry><term>info</term><listitem>
-            <para>is the number of components of X which are not in [val(1),val(n)]</para>
-       </listitem></varlistentry>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>occ(k)</term>
+        <listitem>
+          <para>is the number of components of X which are in Ik</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>is the number of components of X which are not in [val(1),val(n)]</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>When <literal>ch="d"</literal> case, this is the discrete case, that is, for 
        each X(i)  search if it is equal to one val(k) and:
     </para>
     <variablelist>
-       <varlistentry><term>ind(i)</term><listitem>
-            <para>is equal to the index of the component of val which matches X(i) 
+      <varlistentry>
+        <term>ind(i)</term>
+        <listitem>
+          <para>is equal to the index of the component of val which matches X(i) 
                (ind(i) = k if X(i)=val(k)) or 0 if X(i) is not in val.</para>
-       </listitem></varlistentry>
-       <varlistentry><term>occ(k)</term><listitem>
-            <para>is the number of components of X equal to val(k)</para>
-       </listitem></varlistentry>
-       <varlistentry><term>info</term><listitem>
-            <para>is the number of components of X which are not in the set {val(1),...,val(n)}</para>
-       </listitem></varlistentry>
-     </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>occ(k)</term>
+        <listitem>
+          <para>is the number of components of X equal to val(k)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>info</term>
+        <listitem>
+          <para>is the number of components of X which are not in the set {val(1),...,val(n)}</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // example #1 (elementary stat for U(0,1))
 m = 50000 ; n = 10;
@@ -129,14 +157,21 @@ xtitle("an Hermite piecewise polynomial")
 // NOTE : you can verify by adding these ones : 
 // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
    
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="find">find</link>
-    </member>
-    <member>
-      <link linkend="tabul">tabul</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>B.P.   </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="find">find</link>
+      </member>
+      <member>
+        <link linkend="tabul">tabul</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>B.P.   </para>
+  </refsection>
 </refentry>

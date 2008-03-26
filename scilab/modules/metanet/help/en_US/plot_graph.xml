@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plot_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>plot_graph</refname><refpurpose> general plot of a graph (obsolete)</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>plot_graph(g,[rep,rep1])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="plot_graph">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>plot_graph</refname>
+    <refpurpose> general plot of a graph (obsolete)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>plot_graph(g,[rep,rep1])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>g</term>
@@ -39,9 +45,9 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para> This function is osolete, use show_graph instead</para>
-
     <para><literal>plot_graph</literal> plots graph <literal>g</literal> in a Scilab graphical window.
     The optional arguments <literal>rep</literal> and <literal>rep1</literal> define the parameters
     of the plot. If there are not given, a dialog box for the definition
@@ -81,7 +87,9 @@
     <literal>rep1</literal> must be a row vector <literal>[orx,ory,w,h]</literal> giving respectively the coordinates of the upper-left point, the width and the height of the
     plotting rectangle.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // simple graph with different choices for the plot
 ta=[2 2 1 1 2 4 3 3 4];
@@ -106,10 +114,14 @@ xset("thickness",4);
 clf();
 plot_graph(g);
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="show_graph">show_graph</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="show_graph">show_graph</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

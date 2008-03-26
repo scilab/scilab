@@ -10,40 +10,37 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_cumsum"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_cumsum</refname><refpurpose>Fonction d'�mulation de la fonction Matlab cumsum</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_cumsum">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_cumsum</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab cumsum</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction <literal>cumsum</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec un argument d'entr�e (<literal>cumsum(A)</literal>) : La fonction <literal>cumsum</literal> de Matlab
 	traite les valeurs suivant la premi�re dimension qui n'est pas 1 comme des vecteurs alors
 	que Scilab traite toutes les valeurs de A.
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Avec deux arguments d'entr�e (<literal>cumsum(A,dim)</literal>) : Matlab tol�re une valeur de
 	<literal>dim</literal> sup�rieure au nombre de dimensions de A alors que Scilab renvoie un
 	message d'erreur dans ce cas.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>R = mtlb_cumsum(A,[,dim])</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>cumsum(A,[,dim])</literal> quand il n'�tait pas
@@ -51,36 +48,38 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_cumsum</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>dim</literal> est inf�rieure ou �gale au nombre de dimensiopns de A 
         <literal>R = mtlb_cumsum(A,dim)</literal> peut �tre remplac� par <literal>R = cumsum(A,dim)</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Si <literal>dim</literal> est sup�rieure au nombre de dimensiopns de A 
         <literal>R = mtlb_cumsum(A,dim)</literal> peut �tre remplac� par <literal>R = A</literal>
 	</para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_cumsum</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="firstnonsingleton">firstnonsingleton</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="firstnonsingleton">firstnonsingleton</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,43 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Sgrayplot"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>Sgrayplot</refname><refpurpose>smooth 2D plot of a surface using
-  colors</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>Sgrayplot(x,y,z,&lt;opt_args&gt;)
-Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="Sgrayplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Sgrayplot</refname>
+    <refpurpose>smooth 2D plot of a surface using
+  colors</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>Sgrayplot(x,y,z,&lt;opt_args&gt;)
+Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>
-
         <listitem>
           <para>real row vectors of size n1 and n2.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>z</term>
-
         <listitem>
           <para>real matrix of size (n1,n2). <literal>z(i,j)</literal> is the value
           of the surface at the point (x(i),y(j)).</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
-
         <listitem>
           <para>This represents a sequence of statements
           <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
@@ -54,25 +49,22 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
           (see <link linkend="plot2d">plot2d</link> for the 3 first and <link linkend="fec">fec</link> for the 4 last).</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>strf,rect,nax</term>
         <listitem>
           <para>see <link linkend="plot2d">plot2d</link>.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>zminmax, colminmax, mesh, colout</term>
         <listitem>
           <para>see <link linkend="fec">fec</link>.</para>
         </listitem>
       </varlistentry>
-  </variablelist>
+    </variablelist>
   </refsection>
-
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>Sgrayplot</literal> is the same as <literal>grayplot</literal> but the
     plot is smoothed. The function <literal>fec</literal> is used for smoothing. The
     surface is plotted assuming that it is linear on a set of triangles built
@@ -83,18 +75,15 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
              |/_|/_|/_|/_| 
              | /| /| /| /| 
              |/_|/_|/_|/_|]]></programlisting>
-
     <para>The function <link linkend="colorbar">colorbar</link> may be used to see the color scale.</para>
-
     <para>The parameter <literal>zminmax</literal> is useful for animation purpose (see an
        example after) and the parameter <literal>colminmax</literal> lets the user choose a part
        of the current colormap (see the <link linkend="fec">fec</link> help page).</para>
-
     <para>Enter the command <literal>Sgrayplot()</literal> to see a demo.</para>
-
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 // example #1
 x=-10:10; y=-10:10;m =rand(21,21);
 clf()
@@ -128,29 +117,30 @@ for i = 1:nt
    show_pixmap()
 end
 f.pixmap='off';
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="fec">fec</link>
-    </member>
-
-    <member>
-      <link linkend="fgrayplot">fgrayplot</link>
-    </member>
-
-    <member>
-      <link linkend="grayplot">grayplot</link>
-    </member>
-
-    <member>
-      <link linkend="Sfgrayplot">Sfgrayplot</link>
-    </member>
-
-    <member>
-      <link linkend="colorbar">colorbar</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><para>J.Ph.C.</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fec">fec</link>
+      </member>
+      <member>
+        <link linkend="fgrayplot">fgrayplot</link>
+      </member>
+      <member>
+        <link linkend="grayplot">grayplot</link>
+      </member>
+      <member>
+        <link linkend="Sfgrayplot">Sfgrayplot</link>
+      </member>
+      <member>
+        <link linkend="colorbar">colorbar</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.</para>
+  </refsection>
 </refentry>

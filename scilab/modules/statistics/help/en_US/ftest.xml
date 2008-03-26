@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ftest"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ftest</refname><refpurpose> Fischer ratio</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>f=ftest(samples)
-[f,p]=ftest(samples)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ftest">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ftest</refname>
+    <refpurpose> Fischer ratio</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>f=ftest(samples)
+[f,p]=ftest(samples)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>samples</term>
@@ -28,7 +34,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal> f=ftest(samples) </literal> computes the Fischer ratio of the
     nc samples whose  values are in the columns  of the matrix
     <literal>samples</literal>. Each one of these samples is composed of nr
@@ -38,11 +45,14 @@
     <para><literal> [f,p]=ftest(samples) </literal> gives in p the p-value of the
     computed Fischer ratio f.</para>
   </refsection>
-  <refsection><title>References</title>
+  <refsection>
+    <title>References</title>
     <para>
     Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 samples=[46 55 54;
          53 54 50; 
@@ -51,11 +61,18 @@ samples=[46 55 54;
          46 52 49]
 [f,p]=ftest(samples)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="ftuneq">ftuneq</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para> Carlos Klimann</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ftuneq">ftuneq</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Carlos Klimann</para>
+  </refsection>
 </refentry>

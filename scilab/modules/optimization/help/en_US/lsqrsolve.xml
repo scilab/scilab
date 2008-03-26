@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lsqrsolve"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lsqrsolve</refname><refpurpose> minimize the sum of the squares of
-nonlinear functions, levenberg-marquardt algorithm</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[x [,v [,info]]]=lsqrsolve(x0,fct,m [,stop [,diag]])
-[x [,v [,info]]]=lsqrsolve(x0,fct,m ,fjac [,stop [,diag]])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lsqrsolve">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lsqrsolve</refname>
+    <refpurpose> minimize the sum of the squares of
+nonlinear functions, levenberg-marquardt algorithm</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[x [,v [,info]]]=lsqrsolve(x0,fct,m [,stop [,diag]])
+[x [,v [,info]]]=lsqrsolve(x0,fct,m ,fjac [,stop [,diag]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x0</term>
@@ -33,7 +39,7 @@ nonlinear functions, levenberg-marquardt algorithm</refpurpose></refnamediv>
           <para>external (i.e function or list or string).</para>
         </listitem>
       </varlistentry>
-       <varlistentry>
+      <varlistentry>
         <term>m</term>
         <listitem>
           <para>integer, the number of functions.</para>
@@ -52,73 +58,70 @@ nonlinear functions, levenberg-marquardt algorithm</refpurpose></refnamediv>
           <literal>[ftol,xtol,gtol,maxfev,epsfcn,factor]</literal> the
           default value is <literal>[1.d-8,1.d-8,1.d-5,1000,0,100]</literal></para>
           <variablelist>
-          <varlistentry>
-            <term>ftol</term>
-            <listitem>
-            <para>A positive real number,termination occurs when both
+            <varlistentry>
+              <term>ftol</term>
+              <listitem>
+                <para>A positive real number,termination occurs when both
                   the actual and predicted relative reductions in the
                   sum of squares are at most ftol.  therefore, ftol
                   measures the relative error desired in the sum of
                   squares.</para>
-           </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>xtol</term>
-            <listitem>
-            <para>A positive real number, termination occurs when the
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>xtol</term>
+              <listitem>
+                <para>A positive real number, termination occurs when the
              relative error between two consecutive iterates is at
              most xtol. therefore, xtol measures the relative error
              desired in the approximate solution.</para>
-           </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>gtol</term>
-            <listitem>
-            <para>A nonnegative input variable. termination
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>gtol</term>
+              <listitem>
+                <para>A nonnegative input variable. termination
 		  occurs when the cosine of the angle between fct(x) and
 		  any column of the jacobian is at most gtol in absolute
 		  value. therefore, gtol measures the orthogonality
 		  desired between the function vector and the columns
 		  of the jacobian.</para>
-           </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>maxfev</term>
-            <listitem>
-            <para>A positive integer, termination occurs when the
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>maxfev</term>
+              <listitem>
+                <para>A positive integer, termination occurs when the
              number of calls to fct is at least maxfev by the end of
              an iteration.</para>
-           </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>epsfcn</term>
-            <listitem>
-            <para>A positive real number, used in determining a
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>epsfcn</term>
+              <listitem>
+                <para>A positive real number, used in determining a
              suitable step length for the forward-difference
              approximation. this approximation assumes that the
              relative errors in the functions are of the order of
              epsfcn. if epsfcn is less than the machine precision, it
              is assumed that the relative errors in the functions are
              of the order of the machine precision.</para>
-           </listitem>
-          </varlistentry>
-
-         <varlistentry>
-            <term>factor</term>
-            <listitem>
-            <para>A positive real number, used in determining the
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>factor</term>
+              <listitem>
+                <para>A positive real number, used in determining the
             initial step bound. this bound is set to the product of
             factor and the euclidean norm of diag*x if nonzero, or
             else to factor itself. in most cases factor should lie in
             the interval (.1,100.). 100. is a generally recommended
             value.</para>
-           </listitem>
-          </varlistentry>
+              </listitem>
+            </varlistentry>
           </variablelist>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>diag</term>
         <listitem>
@@ -127,7 +130,6 @@ nonlinear functions, levenberg-marquardt algorithm</refpurpose></refnamediv>
          multiplicative scale factors for the variables.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>x :  </term>
         <listitem>
@@ -180,74 +182,76 @@ nonlinear functions, levenberg-marquardt algorithm</refpurpose></refnamediv>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     minimize the sum of the squares of m nonlinear functions in n
      variables by a modification of the levenberg-marquardt
      algorithm. the user must provide a subroutine which calculates
      the functions. the jacobian is then calculated by a
      forward-difference approximation.</para>
- 
     <para>
      minimize <literal>sum(fct(x,m).^2)</literal> where
     <literal>fct</literal> is function from <literal>R^n</literal> to <literal>R^m</literal>
     </para>
-    <para>
-    <literal>fct</literal> should be :
-    </para> 
+    <para><literal>fct</literal> should be :
+    </para>
     <itemizedlist>
-    <listitem>  
-    <para>a Scilab function whose calling sequence is <literal>v=fct(x,m)</literal> given <literal>x</literal> and
+      <listitem>
+        <para>a Scilab function whose calling sequence is <literal>v=fct(x,m)</literal> given <literal>x</literal> and
     <literal>m</literal>.</para>
-    </listitem> 
-
-    <listitem> 
-     <para>a character string which  refers to a C or Fortran routine  which must be linked to Scilab. </para>
-
-    <para>
+      </listitem>
+      <listitem>
+        <para>a character string which  refers to a C or Fortran routine  which must be linked to Scilab. </para>
+        <para>
     Fortran calling sequence should be
    <literal>fct(m,n,x,v,iflag)</literal>  where <literal>m</literal>,
     <literal>n</literal>, <literal>iflag</literal> are integers, <literal>x</literal> a
     double precision vector of size  <literal>n</literal> and <literal>v</literal> a
     double precision vector of size  <literal>m</literal>.
     </para>
-    <para>  
+        <para>  
     C calling sequence should be
     <literal>fct(int *m, int *n, double x[],double v[],int *iflag)</literal>
     </para>
-
-    </listitem> 
-     </itemizedlist>
-
-     <para>  <literal>fjac</literal> is an external which returns <literal>v=d(fct)/dx (x)</literal>.
+      </listitem>
+    </itemizedlist>
+    <para><literal>fjac</literal> is an external which returns <literal>v=d(fct)/dx (x)</literal>.
      it should be :</para>
     <variablelist>
-    <varlistentry><term>a Scilab function</term><listitem> <para>whose calling
+      <varlistentry>
+        <term>a Scilab function</term>
+        <listitem>
+          <para>whose calling
     sequence is <literal>J=fjac(x,m)</literal> given <literal>x</literal> and
     <literal>m</literal>.</para>
-    </listitem></varlistentry> 
-    <varlistentry><term>a character string</term><listitem>  <para>it refers to a C or Fortran routine
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a character string</term>
+        <listitem>
+          <para>it refers to a C or Fortran routine
     which must be linked to Scilab. </para>
-    <para>
+          <para>
     Fortran calling sequence should be
    <literal>fjac(m,n,x,jac,iflag)</literal>  where <literal>m</literal>,
     <literal>n</literal>, <literal>iflag</literal> are integers, <literal>x</literal> a
     double precision vector of size  <literal>n</literal> and <literal>jac</literal> a
     double precision vector of size  <literal>m*n</literal>.
     </para>
-    <para>  
+          <para>  
     C calling sequence should be
     <literal>fjac(int *m, int *n, double x[],double v[],int *iflag)</literal>
     </para>
- </listitem></varlistentry> 
- </variablelist>
-   <para> return -1 in iflag to stop the algoritm if the function
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para> return -1 in iflag to stop the algoritm if the function
    or jacobian could not be evaluated.</para>
-  
-
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // A simple example with lsqrsolve 
 a=[1,7;
@@ -279,26 +283,30 @@ abc
 norm(v)
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="external">external</link>
-    </member>
-    <member>
-      <link linkend="quapro">quapro</link>
-    </member>
-    <member>
-      <link linkend="linpro">linpro</link>
-    </member>
-    <member>
-      <link linkend="optim">optim</link>
-    </member>
-    <member>
-      <link linkend="fsolve">fsolve</link>
-    </member>
-  </simplelist></refsection>
- 
- <refsection><title>Used Functions</title>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="external">external</link>
+      </member>
+      <member>
+        <link linkend="quapro">quapro</link>
+      </member>
+      <member>
+        <link linkend="linpro">linpro</link>
+      </member>
+      <member>
+        <link linkend="optim">optim</link>
+      </member>
+      <member>
+        <link linkend="fsolve">fsolve</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Used Functions</title>
     <para>lmdif, lmder from  minpack, Argonne National Laboratory.</para>
- </refsection>
+  </refsection>
 </refentry>

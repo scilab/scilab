@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="driver"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>driver</refname><refpurpose> select a graphics driver</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>driver(driver_name)
-current_driver=driver()</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="driver">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>driver</refname>
+    <refpurpose> select a graphics driver</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>driver(driver_name)
+current_driver=driver()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>driver_name</term>
@@ -28,7 +34,8 @@ current_driver=driver()</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function is used to select a graphics driver, or with no arguments 
     to get the current graphics driver name.
@@ -37,27 +44,46 @@ current_driver=driver()</synopsis></refsynopsisdiv>
     The selected driver can be one of the followings:
   </para>
     <variablelist>
-      <varlistentry><term>"X11"</term><listitem>
-        <para>output to the screen of the computer.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"Pos"</term><listitem>
-        <para>output into Postscript format.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"Rec"</term><listitem>
-        <para>output to the screen of the computer with recording of all the graphics commands. This is the default driver.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"Fig"</term><listitem>
-        <para>output into XFig format. Clipping of objects is not provided in XFig.</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"GIF"</term><listitem>
-        <para>output into Gif format based on gd (http://www.boutell.com/gd)</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"PPM"</term><listitem>
-        <para>output into PPM format based on gd (http://www.boutell.com/gd)</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>"X11"</term>
+        <listitem>
+          <para>output to the screen of the computer.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"Pos"</term>
+        <listitem>
+          <para>output into Postscript format.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"Rec"</term>
+        <listitem>
+          <para>output to the screen of the computer with recording of all the graphics commands. This is the default driver.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"Fig"</term>
+        <listitem>
+          <para>output into XFig format. Clipping of objects is not provided in XFig.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"GIF"</term>
+        <listitem>
+          <para>output into Gif format based on gd (http://www.boutell.com/gd)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"PPM"</term>
+        <listitem>
+          <para>output into PPM format based on gd (http://www.boutell.com/gd)</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Remark</title>
+  <refsection>
+    <title>Remark</title>
     <para>
     To convert "GIF" or "PPM" files to other image format or for building animation one can use the "convert" program for ImageMagic (http://www.imagemagick.org/)</para>
     <para>
@@ -68,16 +94,22 @@ convert -delay 10  img*.gif anim.gif
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="xtape">xtape</link>
-    </member>
-    <member>
-      <link linkend="xbasc">xbasc</link>
-    </member>
-    <member>
-      <link linkend="xbasimp">xbasimp</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xtape">xtape</link>
+      </member>
+      <member>
+        <link linkend="xbasc">xbasc</link>
+      </member>
+      <member>
+        <link linkend="xbasimp">xbasimp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

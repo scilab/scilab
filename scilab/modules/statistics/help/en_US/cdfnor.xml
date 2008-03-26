@@ -10,17 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cdfnor"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>cdfnor</refname><refpurpose> cumulative distribution function normal distribution</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[P,Q]=cdfnor("PQ",X,Mean,Std)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cdfnor">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cdfnor</refname>
+    <refpurpose> cumulative distribution function normal distribution</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[P,Q]=cdfnor("PQ",X,Mean,Std)
 [X]=cdfnor("X",Mean,Std,P,Q)
 [Mean]=cdfnor("Mean",Std,P,Q,X)
-[Std]=cdfnor("Std",P,Q,X,Mean)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[Std]=cdfnor("Std",P,Q,X,Mean)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>P,Q,X,Mean,Std</term>
@@ -54,7 +60,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Calculates any one parameter of the normal
     distribution given values for the others.</para>

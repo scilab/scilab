@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gstacksize"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gstacksize</refname><refpurpose> set/get scilab global stack size</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>gstacksize(n)
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gstacksize">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gstacksize</refname>
+    <refpurpose> set/get scilab global stack size</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>gstacksize(n)
 gstacksize('max')
 gstacksize('min')
-sz=gstacksize()</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+sz=gstacksize()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -24,7 +31,8 @@ sz=gstacksize()</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Scilab stores gobal variables in a stack</para>
     <para><literal>gstacksize(n)</literal> allows the user to increase or decrease the size of
@@ -38,12 +46,15 @@ sz=gstacksize()</synopsis></refsynopsisdiv>
     <para><literal>gstacksize('min')</literal> allows the user to decrease the size of
     this global stack to the minimum.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="who">who</link>
-    </member>
-    <member>
-      <link linkend="stacksize">stacksize</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="who">who</link>
+      </member>
+      <member>
+        <link linkend="stacksize">stacksize</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

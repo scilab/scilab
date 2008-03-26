@@ -10,45 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="saveconsecutivecommands"><info><pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006) $</pubdate></info><refnamediv><refname>saveconsecutivecommands</refname><refpurpose>Save consecutive duplicate commands.</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>saveconsecutivecommands(boolean_in)
-boolean_out = saveconsecutivecommands()</synopsis></refsynopsisdiv>
-
-	<refsection><title>Parameters</title>
-		<variablelist>
-			<varlistentry>
-				<term>boolean_in</term>
-				<listitem>
-				<para>a boolean (%t or %f)</para>
-				</listitem>
-			</varlistentry>
-			<varlistentry>
-				<term>boolean_out</term>
-				<listitem>
-				<para>current value</para>
-				</listitem>
-			</varlistentry>
-		</variablelist>
-	</refsection>
-
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="saveconsecutivecommands">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-17 18:06:16 +0200 (jeu., 17 août 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>saveconsecutivecommands</refname>
+    <refpurpose>Save consecutive duplicate commands.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>saveconsecutivecommands(boolean_in)
+boolean_out = saveconsecutivecommands()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>boolean_in</term>
+        <listitem>
+          <para>a boolean (%t or %f)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>boolean_out</term>
+        <listitem>
+          <para>current value</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
     <para>Save consecutive duplicate commands.</para>
-
     <para>saveconsecutivecommands(%t) if you want consecutive executions of the
     same statement to be saved to the history file.</para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[saveconsecutivecommands()
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[saveconsecutivecommands()
 saveconsecutivecommands(%t)
 1
 1
@@ -57,9 +57,12 @@ saveconsecutivecommands(%f)
 1
 1
 2
-]]></programlisting></refsection>
-
-  <refsection><title>Authors</title><simplelist type="vert">
-    <member>A.C</member>
-  </simplelist></refsection>
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>A.C</member>
+    </simplelist>
+  </refsection>
 </refentry>

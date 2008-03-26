@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="csim"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>csim</refname><refpurpose> simulation (time response) of linear system</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y [,x]]=csim(u,t,sl,[x0 [,tol]])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="csim">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>csim</refname>
+    <refpurpose> simulation (time response) of linear system</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[y [,x]]=csim(u,t,sl,[x0 [,tol]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>u</term>
@@ -57,7 +63,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     simulation of the controlled linear system <literal>sl</literal>.
     <literal>sl</literal> is assumed to be a continuous-time system 
@@ -81,7 +88,9 @@
     <para>
     5. a vector giving the values of u correponding to each t value.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 s=poly(0,'s');rand('seed',0);w=ssrand(1,1,3);w('A')=w('A')-2*eye();
 t=0:0.05:5;
@@ -101,28 +110,32 @@ deff('u=input(t)','u=abs(sin(t))')
 xbasc();plot2d([t',t'],[(csim(input,t,w))',0*t'])
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="syslin">syslin</link>
-    </member>
-    <member>
-      <link linkend="dsimul">dsimul</link>
-    </member>
-    <member>
-      <link linkend="flts">flts</link>
-    </member>
-    <member>
-      <link linkend="ltitr">ltitr</link>
-    </member>
-    <member>
-      <link linkend="rtitr">rtitr</link>
-    </member>
-    <member>
-      <link linkend="ode">ode</link>
-    </member>
-    <member>
-      <link linkend="impl">impl</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="dsimul">dsimul</link>
+      </member>
+      <member>
+        <link linkend="flts">flts</link>
+      </member>
+      <member>
+        <link linkend="ltitr">ltitr</link>
+      </member>
+      <member>
+        <link linkend="rtitr">rtitr</link>
+      </member>
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+      <member>
+        <link linkend="impl">impl</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

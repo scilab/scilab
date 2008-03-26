@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="select"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>select</refname><refpurpose> select keyword</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="select">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>select</refname>
+    <refpurpose> select keyword</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <programlisting><![CDATA[
 
  select expr,
@@ -34,7 +38,9 @@
     conditionnal instruction (if while for or select/case) must be limited to
     16k.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 while %t do
   n=round(10*rand(1,1))
@@ -49,16 +55,20 @@ while %t do
 end
   
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="if">if</link>
-    </member>
-    <member>
-      <link linkend="while">while</link>
-    </member>
-    <member>
-      <link linkend="for">for</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="if">if</link>
+      </member>
+      <member>
+        <link linkend="while">while</link>
+      </member>
+      <member>
+        <link linkend="for">for</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

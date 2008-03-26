@@ -10,18 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lmitool"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>lmitool</refname><refpurpose> tool for solving linear matrix inequations</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>lmitool()
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lmitool">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lmitool</refname>
+    <refpurpose> tool for solving linear matrix inequations</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>lmitool()
 
 lmitool(filename)
 
-txt=lmitool(probname,varlist,datalist)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+txt=lmitool(probname,varlist,datalist)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>
@@ -55,7 +61,8 @@ txt=lmitool(probname,varlist,datalist)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>lmitool()</literal> or <literal>lmitool(filename)</literal> is used to define 
     interactively a LMI problem.
     In the non interactive mode,
@@ -65,9 +72,12 @@ txt=lmitool(probname,varlist,datalist)</synopsis></refsynopsisdiv>
     This file is the skeleton of a solver function and the corresponding 
     evaluation function needed by <literal>lmisolver</literal>.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="lmisolver">lmisolver</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lmisolver">lmisolver</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,16 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sort"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sort</refname><refpurpose> order sorting</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[s, [k]]=sort(v)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sort">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sort</refname>
+    <refpurpose> order sorting</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[s, [k]]=sort(v)
 [s, [k]]=sort(v,'r')
-[s, [k]]=sort(v,'c')</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[s, [k]]=sort(v,'c')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>v</term>
@@ -41,7 +47,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>s=sort(v)</literal> sorts <literal>v</literal>  in decreasing order. 
     If <literal>v</literal> is a matrix, sorting is done columnwise, <literal>v</literal> being seen as the stacked vector <literal>v(:)</literal>.
     If <literal>v</literal> is a string, sort is increasing order.
@@ -61,7 +68,9 @@
     <para><literal>y=sort(A)</literal> is valid when <literal>A</literal> is a sparse vector. Column/row
     sorting is not implemented for sparse matrices.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 [s,p]=sort(rand(1,10));
 //p  is a random permutation of 1:10
@@ -73,10 +82,14 @@ sort(v')
 sort(v,'r')  //Does nothing for row vectors
 sort(v,'c')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="find">find</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="find">find</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

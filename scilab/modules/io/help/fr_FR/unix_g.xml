@@ -9,40 +9,46 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- --><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unix_g"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>unix_g</refname><refpurpose> exécution d'une commande Unix ou DOS, sortie redirigée vers une variable  </refpurpose></refnamediv>
-	
-	
-	
-	
-	
-	
-	
-	<refsynopsisdiv><title>Séquence d'appel</title><synopsis>rep=unix_g(cmd)
-[rep,stat]=unix_g(cmd)</synopsis></refsynopsisdiv>
-	
-	<refsection><title>Paramètres</title>
-		<variablelist>
-			
-			<varlistentry>
-				<term>command-name</term>
-				<listitem><para>chaîne de caractères</para></listitem> 
-			</varlistentry>
-			
-			<varlistentry>
-				<term>rep</term>
-				<listitem><para>vecteur colonne de chaînes de caractères</para></listitem> 
-			</varlistentry>
-			
-			<varlistentry>
-				<term>stat</term>
-				<listitem><para>un entier, le statut d'erreur, si stat==0 aucune erreur.</para></listitem> 
-			</varlistentry>
-		
-		</variablelist>
-	</refsection>
-	
-	<refsection><title>Description</title>
-		<para>
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unix_g">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>unix_g</refname>
+    <refpurpose> exécution d'une commande Unix ou DOS, sortie redirigée vers une variable  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>rep=unix_g(cmd)
+[rep,stat]=unix_g(cmd)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>command-name</term>
+        <listitem>
+          <para>chaîne de caractères</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rep</term>
+        <listitem>
+          <para>vecteur colonne de chaînes de caractères</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>stat</term>
+        <listitem>
+          <para>un entier, le statut d'erreur, si stat==0 aucune erreur.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
 			Envoie la chaîne <literal>command-name</literal> à l'interpréteur
 			de commande (sh sous Unix, ou command.com sous DOS). La sortie
 			standard et les erreurs sont reportées dans la variable
@@ -52,9 +58,10 @@
 			<literal>command-name</literal> est une suite de commandes séparées par
 			des ";".
 		</para>
-	</refsection>
-	
-	<refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 
 function d=DIR(path)
 	path=pathconvert(path,%t,%t)
@@ -67,13 +74,23 @@ function d=DIR(path)
 	
 	DIR('SCI/demos')
 
-	]]></programlisting></refsection>
-	
-	<refsection><title>Voir Aussi</title><simplelist type="inline">
-		<member> <link linkend="unix_s">unix_s</link> </member> 
-		<member> <link linkend="unix_w">unix_w</link> </member>
-		<member> <link linkend="unix_x">unix_x</link> </member> 
-		<member> <link linkend="unix">unix</link> </member>
-	</simplelist></refsection>
-	
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="unix_s">unix_s</link>
+      </member>
+      <member>
+        <link linkend="unix_w">unix_w</link>
+      </member>
+      <member>
+        <link linkend="unix_x">unix_x</link>
+      </member>
+      <member>
+        <link linkend="unix">unix</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

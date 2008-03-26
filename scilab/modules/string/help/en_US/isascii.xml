@@ -10,21 +10,27 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isascii"><info><pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate></info><refnamediv><refname>isascii</refname><refpurpose> tests if character is a 7-bit US-ASCII character</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>res = isascii(str)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isascii">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>isascii</refname>
+    <refpurpose> tests if character is a 7-bit US-ASCII character</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>res = isascii(str)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>str</term>
         <listitem>
           <para>a string</para>
         </listitem>
-      </varlistentry>        
+      </varlistentry>
       <varlistentry>
         <term>res</term>
         <listitem>
@@ -33,14 +39,16 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-    <para>
-        <literal>res = isascii(str)</literal> returns TRUE (%T) if c is a 7-bit
+  <refsection>
+    <title>Description</title>
+    <para><literal>res = isascii(str)</literal> returns TRUE (%T) if c is a 7-bit
         US-ASCII character code between 0 and octal 0177 inclusive.
         otherwise returns FALSE (%F)
     </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 isascii(code2str(300))
 isascii(code2str(-11))
@@ -49,10 +57,14 @@ isascii(letters)
 ascii(letters)
 isascii('scilab')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="isalphanum">isalphanum</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="isalphanum">isalphanum</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

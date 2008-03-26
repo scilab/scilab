@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="eval3dp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>eval3dp</refname><refpurpose> compute facets of a 3D parametric surface</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[Xf,Yf,Zf]=eval3dp(fun,p1,p2)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="eval3dp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>eval3dp</refname>
+    <refpurpose> compute facets of a 3D parametric surface</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[Xf,Yf,Zf]=eval3dp(fun,p1,p2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>Xf,Yf,Zf</term>
@@ -45,13 +51,16 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>eval3dp</literal> computes a four sided facets representation of a 3D parametric surface 
     defined by the function <literal>fun</literal>. <literal>fun(p1,p2)</literal> computes the 
     x-axis ,y-axis and z-axis coordinates of the corresponding points on the 
     surface, as [x(i),y(i),z(i)]=fun(p1(i),p2(i)). This is used for efficiency.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 p1=linspace(0,2*%pi,10);
 p2=linspace(0,2*%pi,10);
@@ -61,13 +70,17 @@ deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
 [Xf,Yf,Zf]=eval3dp(scp,p1,p2);
 plot3d(Xf,Yf,Zf)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="genfac3d">genfac3d</link>
-    </member>
-    <member>
-      <link linkend="plot3d">plot3d</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="genfac3d">genfac3d</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

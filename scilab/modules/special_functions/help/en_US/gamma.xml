@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gamma"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gamma</refname><refpurpose>  The gamma function.  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y = gamma(x)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gamma">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gamma</refname>
+    <refpurpose>  The gamma function.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y = gamma(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>gamma(x)</literal> evaluates the gamma function at all the elements of <literal>x</literal>.
     The gamma function is defined by :</para>
     <programlisting><![CDATA[
@@ -47,7 +54,9 @@
     <para>
      and generalizes the factorial function for real numbers (<literal>gamma(n+1) = n!</literal>).</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // simple examples
 gamma(0.5)
@@ -65,14 +74,21 @@ xset("color",c)
 xtitle("The gamma function on ["+string(a)+","+string(b)+"]")
 xselect()
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="gammaln">gammaln</link>
-    </member>
-    <member>
-      <link linkend="dlgamma">dlgamma</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>W. J. Cody and L. Stoltz (code from Netlib (specfun))</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gammaln">gammaln</link>
+      </member>
+      <member>
+        <link linkend="dlgamma">dlgamma</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>W. J. Cody and L. Stoltz (code from Netlib (specfun))</para>
+  </refsection>
 </refentry>

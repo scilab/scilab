@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="star"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>star</refname><refpurpose> (*) multiplication operator</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="star">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>star</refname>
+    <refpurpose> (*) multiplication operator</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
     Multiplication. Usual meaning. Valid for constant,
     boolean, polynomial, rational matrices and for <literal>syslin</literal> lists (the meaning is series connection)</para>
@@ -15,12 +19,15 @@
     <para>
     Kronecker product is <literal>x.*.y</literal></para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="mulf">mulf</link>
-    </member>
-    <member>
-      <link linkend="syslin">syslin</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mulf">mulf</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

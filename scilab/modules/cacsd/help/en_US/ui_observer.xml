@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ui_observer"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>ui_observer</refname><refpurpose> unknown input observer</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[UIobs,J,N]=ui_observer(Sys,reject,C1,D1)
-[UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ui_observer">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ui_observer</refname>
+    <refpurpose> unknown input observer</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[UIobs,J,N]=ui_observer(Sys,reject,C1,D1)
+[UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>Sys</term>
@@ -64,7 +70,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Unknown input observer.</para>
     <para><literal>Sys: (w,u) --&gt; y</literal> is a <literal>(A,B,C2,D2)</literal> syslin linear system with 
@@ -106,7 +113,9 @@
     Stability (resp. pole placement) requires detectability
     (resp. observability) of (A,C2).</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=diag([3,-3,7,4,-4,8]);
 B=[eye(3,3);zeros(3,3)];
@@ -132,17 +141,24 @@ nx=2;ny=3;nwu=2;Sys=ssrand(ny,nwu,nx);
 C1=rand(1,nx);D1=[0,1];
 UIobs=ui_observer(Sys,1,C1,D1);
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="cainv">cainv</link>
-    </member>
-    <member>
-      <link linkend="ddp">ddp</link>
-    </member>
-    <member>
-      <link linkend="abinv">abinv</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>F.D.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cainv">cainv</link>
+      </member>
+      <member>
+        <link linkend="ddp">ddp</link>
+      </member>
+      <member>
+        <link linkend="abinv">abinv</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F.D.  </para>
+  </refsection>
 </refentry>

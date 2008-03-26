@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="g_margin"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>g_margin</refname><refpurpose> gain margin</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[gm [,fr]]=g_margin(h)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="g_margin">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>g_margin</refname>
+    <refpurpose> gain margin</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[gm [,fr]]=g_margin(h)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
@@ -27,33 +33,40 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     returns <literal>gm</literal>, the gain margin in dB of <literal>h</literal> 
     (SISO plant) and <literal>fr</literal>, the achieved corresponding frequency in hz.
     The gain margin is values of the system gain at points where the
     nyquist plot crosses the negative real axis.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 h=syslin('c',-1+%s,3+2*%s+%s^2)
 [g,fr]=g_margin(h)
 [g,fr]=g_margin(h-10)
 nyquist(h-10)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="p_margin">p_margin</link>
-    </member>
-    <member>
-      <link linkend="black">black</link>
-    </member>
-    <member>
-      <link linkend="chart">chart</link>
-    </member>
-    <member>
-      <link linkend="nyquist">nyquist</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="p_margin">p_margin</link>
+      </member>
+      <member>
+        <link linkend="black">black</link>
+      </member>
+      <member>
+        <link linkend="chart">chart</link>
+      </member>
+      <member>
+        <link linkend="nyquist">nyquist</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

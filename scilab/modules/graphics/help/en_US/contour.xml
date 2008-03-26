@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contour"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>contour</refname><refpurpose> level curves on a 3D surface</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])
-contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contour">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>contour</refname>
+    <refpurpose> level curves on a 3D surface</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])
+contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>
@@ -103,32 +109,30 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
               <term>mode</term>
               <listitem>
                 <para>string representation mode.</para>
-		<variablelist>
+                <variablelist>
                   <varlistentry>
                     <term>mode=0: </term>
-		    <listitem>
-		    <para>the level curves are drawn on the surface defined by
+                    <listitem>
+                      <para>the level curves are drawn on the surface defined by
 			(x,y,z).</para>
-		    </listitem>
+                    </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>mode=1: </term>
-		    <listitem>
-		      <para>the level curves are drawn on a 3D plot and
+                    <listitem>
+                      <para>the level curves are drawn on a 3D plot and
 			on the plan defined by  the equation z=zlev.</para>
-		    </listitem>
+                    </listitem>
                   </varlistentry>
                   <varlistentry>
-                    <term>mode=2:</term> 
-		    <listitem>
-		      <para>the level curves are drawn on a 2D plot.</para>
-		    </listitem>
+                    <term>mode=2:</term>
+                    <listitem>
+                      <para>the level curves are drawn on a 2D plot.</para>
+                    </listitem>
                   </varlistentry>
-		</variablelist>
-	      </listitem>
-
-	    </varlistentry>
-
+                </variablelist>
+              </listitem>
+            </varlistentry>
             <varlistentry>
               <term>type</term>
               <listitem>
@@ -140,7 +144,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
                       <para>the plot is made using the current 3D scaling (set by
 			a previous call to <literal>param3d</literal>,
 			<literal>plot3d</literal>, <literal>contour</literal> or
-			<literal>plot3d1</literal>).</para> 
+			<literal>plot3d1</literal>).</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -148,7 +152,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
                     <listitem>
                       <para>rescales automatically 3d boxes with extreme aspect
 			ratios, the boundaries are specified by the value of
-			the optional argument <literal>ebox</literal>.</para> 
+			the optional argument <literal>ebox</literal>.</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -156,7 +160,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
                     <listitem>
                       <para>rescales automatically 3d boxes with extreme aspect
 			ratios, the boundaries are computed using the given
-			data.</para> 
+			data.</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -164,14 +168,14 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
                     <listitem>
                       <para>3d isometric with box bounds given by optional
 			<literal>ebox</literal>, similarily to
-			<literal>type=1</literal></para> 
+			<literal>type=1</literal></para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>type=4</term>
                     <listitem>
                       <para>3d isometric bounds  derived from the data, to
-			similarily<literal>type=2</literal></para> 
+			similarily<literal>type=2</literal></para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -179,14 +183,14 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
                     <listitem>
                       <para>3d expanded isometric bounds  with box bounds given
 			by optional <literal>ebox</literal>, similarily to
-			<literal>type=1</literal></para> 
+			<literal>type=1</literal></para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>type=6</term>
                     <listitem>
                       <para>3d expanded isometric bounds  derived from the data,
-			similarily to <literal>type=2</literal></para> 
+			similarily to <literal>type=2</literal></para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -238,7 +242,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
         <listitem>
           <para>used when <literal>type</literal> in <literal>flag</literal> is 1. It
 	    specifies the boundaries of the plot as the vector
-	    <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>.</para> 
+	    <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -249,7 +253,8 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>contour</literal> draws level curves of a surface z=f(x,y). The level curves are
     drawn on a 3D surface. The optional arguments are the same as for the function 
     <literal>plot3d</literal> (except <literal>zlev</literal>) and their meanings are the same. 
@@ -257,16 +262,25 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
     Only <literal>flag(1)=mode</literal> has a special meaning.
   </para>
     <variablelist>
-      <varlistentry><term>mode=0</term><listitem>
-        <para>the level curves are drawn on the surface defined by (x,y,z).</para>
-      </listitem></varlistentry>
-      <varlistentry><term>mode=1</term><listitem>
-        <para>the level curves are drawn on a 3D plot and on the plan defined
-	  by  the equation z=zlev.</para> 
-      </listitem></varlistentry>
-      <varlistentry><term>mode=2</term><listitem>
-        <para>the level curves are drawn on a 2D plot.</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>mode=0</term>
+        <listitem>
+          <para>the level curves are drawn on the surface defined by (x,y,z).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode=1</term>
+        <listitem>
+          <para>the level curves are drawn on a 3D plot and on the plan defined
+	  by  the equation z=zlev.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode=2</term>
+        <listitem>
+          <para>the level curves are drawn on a 2D plot.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>
     You can change the format of the floating point number printed on the levels
@@ -279,7 +293,9 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis></refsynopsisdiv>
     <para>
     Enter the command <literal>contour()</literal> to see a demo.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 t=linspace(-%pi,%pi,30);
 function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
@@ -296,14 +312,21 @@ plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
 //
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="contour2d">contour2d</link>
-    </member>
-    <member>
-      <link linkend="plot3d">plot3d</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="contour2d">contour2d</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

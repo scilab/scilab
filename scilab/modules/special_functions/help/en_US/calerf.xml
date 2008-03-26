@@ -10,13 +10,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="calerf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>calerf</refname><refpurpose>  computes error functions.  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="calerf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>calerf</refname>
+    <refpurpose>  computes error functions.  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -38,28 +41,38 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>calerf(x,0)</literal> computes the error function <literal>erf(x)</literal></para>
     <para><literal>calerf(x,1)</literal> computes the complementary error function <literal>erfc(x)</literal></para>
     <para><literal>calerf(x,2)</literal> computes the  scaled complementary error function <literal>erfcx(x)</literal></para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 deff('y=f(t)','y=exp(-t^2)');
 calerf(1,0)
 2/sqrt(%pi)*intg(0,1,f)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="erf">erf</link>
-    </member>
-    <member>
-      <link linkend="erfc">erfc</link>
-    </member>
-    <member>
-      <link linkend="erfcx">erfcx</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>W. J. Cody (code from Netlib (specfun))</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="erf">erf</link>
+      </member>
+      <member>
+        <link linkend="erfc">erfc</link>
+      </member>
+      <member>
+        <link linkend="erfcx">erfcx</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>W. J. Cody (code from Netlib (specfun))</para>
+  </refsection>
 </refentry>

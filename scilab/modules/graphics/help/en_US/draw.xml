@@ -11,25 +11,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="draw"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>draw</refname><refpurpose>draw an entity.</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>draw()
-draw(h)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="draw">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>draw</refname>
+    <refpurpose>draw an entity.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>draw()
+draw(h)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
-
         <listitem>
           <para>a handle, the handle on an entity to draw. <literal>h</literal> can
           be a vector of handles, in which case all objects identified by h(i)
@@ -38,16 +37,17 @@ draw(h)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>This function can be used to draw entities specified by <literal>h</literal>
     even if its parent figure <literal>immediate_drawing</literal> property is
     <literal>"off"</literal>. If no argument is specified, the <literal>current object</literal> 
     is drawn. Note that the window must not be resized ; if not,
     those objects are hidden back.</para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[   subplot(212)
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[   subplot(212)
    a=gca();
     plot2d
    drawlater
@@ -72,29 +72,30 @@ draw(h)</synopsis></refsynopsisdiv>
 
 
  
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="get">get</link>
-    </member>
-
-    <member>
-      <link linkend="set">set</link>
-    </member>
-
-    <member>
-      <link linkend="drawnow">drawnow</link>
-    </member>
-
-    <member>
-      <link linkend="drawlater">drawlater</link>
-    </member>
-
-    <member>
-      <link linkend="graphics_entities">graphics_entities</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE, F.Leray</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="drawnow">drawnow</link>
+      </member>
+      <member>
+        <link linkend="drawlater">drawlater</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Djalel ABDEMOUCHE, F.Leray</para>
+  </refsection>
 </refentry>

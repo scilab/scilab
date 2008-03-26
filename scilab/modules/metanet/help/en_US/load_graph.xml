@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="load_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>load_graph</refname><refpurpose> loads a graph from a file</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[g,modified,mgs] = load_graph(name)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="load_graph">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>load_graph</refname>
+    <refpurpose> loads a graph from a file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[g,modified,mgs] = load_graph(name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>name</term>
@@ -30,7 +36,8 @@
         <listitem>
           <para> a  <link linkend="graph_data_structure">graph_data_structure</link>.</para>
         </listitem>
-      </varlistentry> <varlistentry>
+      </varlistentry>
+      <varlistentry>
         <term>modified</term>
         <listitem>
           <para>a boolean, if true it indicates that the  graph list has been updated to the current version</para>
@@ -48,31 +55,38 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-    <para> <literal>load_graph</literal> loads a graph from a file. This file
+  <refsection>
+    <title>Description</title>
+    <para><literal>load_graph</literal> loads a graph from a file. This file
     may be either an ascii file (scilab4.x versions) or a binary file
     compatible with the <literal>load</literal> and <literal>save</literal> functions.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 g=load_graph(metanet_module_path()+'/demos/mesh100.graph');
 show_graph(g);
 g=load_graph(metanet_module_path()+'/demos/colored.graph');
 show_graph(g,'new');
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="save_graph">save_graph</link>
-    </member>
-    <member>
-      <link linkend="graph_data_structure">graph_data_structure</link>
-    </member>
-    <member>
-      <link linkend="save">save</link>
-    </member>
-    <member>
-      <link linkend="load">load</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="save_graph">save_graph</link>
+      </member>
+      <member>
+        <link linkend="graph_data_structure">graph_data_structure</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="load">load</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

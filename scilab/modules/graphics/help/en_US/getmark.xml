@@ -10,46 +10,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getmark"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>getmark</refname><refpurpose>dialog to select mark
-  (symbol)</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[mark,mrkSize]=getmark()</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getmark">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getmark</refname>
+    <refpurpose>dialog to select mark
+  (symbol)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[mark,mrkSize]=getmark()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>mark</term>
-
         <listitem>
           <para>integer, the number of the selected mark</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>mrkSize</term>
-
         <listitem>
           <para>integer, the size of the selected mark</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>getmark</literal> opens a graphic window to select a mark
     (symbol).</para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 x=0:0.1:10;
 [mark,mrkSize]=getmark();
 plot2d(x,sin(x),style=-mark);
@@ -59,17 +57,18 @@ e=gce(); // store the Compound containing the plot
 [mark,mrkSize]=getmark();
 e.children(1).mark_style = mark;
 
-]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member/>
-
-    <member>
-      <link linkend="getfont">getfont</link>
-    </member>
-
-    <member>
-      <link linkend="getlinestyle">getlinestyle</link>
-    </member>
-  </simplelist></refsection>
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member/>
+      <member>
+        <link linkend="getfont">getfont</link>
+      </member>
+      <member>
+        <link linkend="getlinestyle">getlinestyle</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

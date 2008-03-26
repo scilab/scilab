@@ -10,83 +10,73 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="get"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>get</refname><refpurpose>Retrieve a property value from a graphics
-  entity or an User Interface object.</refpurpose></refnamediv>
-  
-
-  
-
-  
-
-  
-
-  
-
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>h=get(prop)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="get">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>get</refname>
+    <refpurpose>Retrieve a property value from a graphics
+  entity or an User Interface object.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>h=get(prop)
 val=get(h,prop)
 val=h.prop
-val=get(n,prop)</synopsis></refsynopsisdiv>
-
-  <refsection><title>Parameters</title>
+val=get(n,prop)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
-
         <listitem>
           <para>handle, the handle of the entity to retrieve a property.
           <literal>h</literal> can be a vector of handles, in which case get returns
           the property's value for all objects identified by h(i).</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>n</term>
-
         <listitem>
           <para>integer, the handle of the User Interface object to retrieve a
           property.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>prop</term>
-
         <listitem>
           <para>character string name of the property.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>val</term>
-
         <listitem>
           <para>scilab object value of the property.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>This routine can be used to retrieve the value of a specified property
     graphics entity or a GUI object. If the handle is not specified, the
     current object is taken as the default handle. It is also used to return a
     list of all children, parent, or type for the input handle if this one is
     specified. Otherwise, the current axes object is taken as the default
     input.</para>
-
     <para>Property name are character strings.</para>
-
     <para>See <link linkend="graphics_entities">graphics_entities</link> for details about properties' names
     and values for graphics entities.</para>
-
     <para>See <link linkend="uicontrol">uicontrol</link> for details about properties' names and
     values for User Interface objects.</para>
-
     <para>For graphics entities handle it is possible to use a dot notation like
     <literal>h.background</literal> instead of <literal>get</literal>.</para>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
   // for graphics entities
     clf()
     
@@ -124,17 +114,21 @@ val=get(n,prop)</synopsis></refsynopsisdiv>
    close(); // close figure
 
  
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="uicontrol">uicontrol</link>
-    </member>
-
-    <member>
-      <link linkend="set">set</link>
-    </member>
-  </simplelist></refsection>
-
-  <refsection><title>Authors</title><para>Djalel ABDEMOUCHE</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="uicontrol">uicontrol</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
 </refentry>

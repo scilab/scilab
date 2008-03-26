@@ -1,57 +1,61 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="gsort"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>gsort</refname><refpurpose> tri par ordre décroissant  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>[s, [k]]=gsort(v )
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="gsort">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gsort</refname>
+    <refpurpose> tri par ordre décroissant  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[s, [k]]=gsort(v )
 [s, [k]]=gsort(v,flag1)
-[s, [k]]=gsort(v,flag1,flag2)</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>v,s  </term>
-  <listitem>
-  <para>vecteur ou matrice de nombres réels, entiers ou de chaînes de caractères.
+[s, [k]]=gsort(v,flag1,flag2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>v,s  </term>
+        <listitem>
+          <para>vecteur ou matrice de nombres réels, entiers ou de chaînes de caractères.
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>flag1  </term>
-  <listitem>
-  <para>la chaîne de caractères <literal>'r'</literal>, <literal>'c'</literal>,<literal>'g'</literal>,<literal>'lr'</literal> et <literal>'lc'</literal>.
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag1  </term>
+        <listitem>
+          <para>la chaîne de caractères <literal>'r'</literal>, <literal>'c'</literal>,<literal>'g'</literal>,<literal>'lr'</literal> et <literal>'lc'</literal>.
 </para>
-  </listitem> 
-  </varlistentry>
-  <varlistentry>
-  <term>flag2  </term>
-  <listitem>
-  <para>la chaîne de caractères <literal>'i'</literal> pour l'ordre croissant et <literal>'d'</literal> pour l'ordre décroissant. k : vecteur ou matrice de nombres entiers.
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag2  </term>
+        <listitem>
+          <para>la chaîne de caractères <literal>'i'</literal> pour l'ordre croissant et <literal>'d'</literal> pour l'ordre décroissant. k : vecteur ou matrice de nombres entiers.
 </para>
-  </listitem> 
-  </varlistentry>
- </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
-  <para>
-    <literal>gsort</literal> est similaire à <literal>sort</literal> avec des propriétés supplémentaires.
+  <refsection>
+    <title>Description</title>
+    <para><literal>gsort</literal> est similaire à <literal>sort</literal> avec des propriétés supplémentaires.
     Le troisième argument peut être utilisé pour choisir entre tri croissant ou décroissant. Le deuxième argument est utilisé pour l'ordre lexicographique.
   </para>
-  <para>
-    <literal>[s,k]=gsort(a,'g')</literal> et <literal>[s,k]=gsort(a,'g','d')</literal> produisent le même résultat que <literal>[s,k]=gsort(a)</literal>. Ces instructions produisent un tri de la 
+    <para><literal>[s,k]=gsort(a,'g')</literal> et <literal>[s,k]=gsort(a,'g','d')</literal> produisent le même résultat que <literal>[s,k]=gsort(a)</literal>. Ces instructions produisent un tri de la 
     matrice <literal>a</literal>, <literal>a</literal> vue comme un vecteur <literal>a(:)</literal>
     (les colonnes sont empilées). <literal>[s,k]=gsort(a,'g','i')</literal> fonctionne de la même manière pour l'ordre croissant.
   </para>
-  <para>
-    <literal>[s,k]=gsort(a,'lr')</literal> trie les lignes de la matrice <literal>a</literal> 
+    <para><literal>[s,k]=gsort(a,'lr')</literal> trie les lignes de la matrice <literal>a</literal> 
     dans l'ordre lexical décroissant. <literal>s</literal> est obtenue par une permutation 
     des lignes de la matrice <literal>a</literal>  donnée par le vecteur <literal>k</literal>)
     de telle manière que les lignes de <literal>s</literal> vérifient <literal>s(i,:) &gt; s(j,:)</literal> si
     <literal>i&lt;j</literal>. <literal>[s,k]=gsort(a,'lr','i')</literal> fonctionne de la même manière 
     pour l'ordre lexical croissant. 
   </para>
-  <para>
-    <literal>[s,k]=gsort(a,'lc')</literal> trie les colonnes de la matrice <literal>a</literal> 
+    <para><literal>[s,k]=gsort(a,'lc')</literal> trie les colonnes de la matrice <literal>a</literal> 
     dans l'ordre lexical décroissant. <literal>s</literal> est obtenue par une permutation  
     des colonnes de la matrice <literal>a</literal>  donnée par le vecteur <literal>k</literal>)
     de telle manière que les colonnes de <literal>s</literal> vérifient <literal>s(:,i) &gt; s(:,j)</literal> si
@@ -59,7 +63,9 @@
     pour l'ordre lexical croissant. 
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 alr=[1,2,2;
      1,2,1;
      1,1,2;
@@ -85,12 +91,21 @@ gsort(v,'lr','i')
 gsort(v,'lc','i')
 
 
- ]]></programlisting></refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="find">find</link> </member>
-    <member> <link linkend="sort">sort</link> </member>
-  </simplelist></refsection>
-  <refsection><title>Bibliographie</title>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="find">find</link>
+      </member>
+      <member>
+        <link linkend="sort">sort</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Bibliographie</title>
     <para>Quick sort algorithm</para>
   </refsection>
 </refentry>

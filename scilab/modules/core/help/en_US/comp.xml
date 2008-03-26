@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="comp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>comp</refname><refpurpose>  scilab function compilation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>comp(function [,opt])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="comp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>comp</refname>
+    <refpurpose>  scilab function compilation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>comp(function [,opt])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>function</term>
@@ -21,32 +28,46 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>comp(function)</literal>  compiles the function <literal>function</literal>.
     Compiled and interpreted functions are equivalent but usually 
     compiled functions are much faster.
     The functions provided in the standard libraries are compiled.</para>
-     <para>
+    <para>
       The online definition as well as the short syntax of the commands
       <literal>getf</literal> and <literal>deff</literal> generate compiled functions. 
       So comp has to be used in very particular cases. To produce uncompiled
       functions one must use <literal>getf</literal> or <literal>deff</literal> with 
       the option <literal>"n"</literal>.
-    </para> 
+    </para>
     <para>
     The value opt==2 causes the function to be compiled "for profiling".
     The osolete opt==1 option was specific to code analysis purposes and 
     is now ignored, i.e treated as opt==0.</para>
-   <para>
+    <para>
    Note: the compilation takes part "in place", i.e the original function is modified
    and no new object is created.
    </para>
-   </refsection>
-   <refsection><title>See Also</title><simplelist type="inline">
-    <member> <link linkend="type">type</link> </member> 
-    <member> <link linkend="deff">deff</link> </member> 
-    <member> <link linkend="getf">getf</link> </member>
-    <member> <link linkend="function">function</link> </member>
-    <member> <link linkend="profile">profile</link> </member>
-  </simplelist></refsection>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="type">type</link>
+      </member>
+      <member>
+        <link linkend="deff">deff</link>
+      </member>
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+      <member>
+        <link linkend="function">function</link>
+      </member>
+      <member>
+        <link linkend="profile">profile</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xgraduate"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xgraduate</refname><refpurpose> axis graduation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xgraduate">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xgraduate</refname>
+    <refpurpose> axis graduation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>xmi,xma</term>
@@ -39,7 +45,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>xgraduate</literal> returns the axis graduations which are used by the plot
     routines (with pretty print flag enabled). It returns an interval <literal>[xi,xa]</literal> which contains the
     given interval <literal>[xmi,xma]</literal> and such that</para>
@@ -47,18 +54,27 @@
     be divided into <literal>np2</literal> intervals and each interval is divided in
     <literal>np1</literal> sub-intervals.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
   [x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="graduate">graduate</link>
-    </member>
-    <member>
-      <link linkend="plot2d">plot2d</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>J.P.C ; ;   </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="graduate">graduate</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.P.C ; ;   </para>
+  </refsection>
 </refentry>

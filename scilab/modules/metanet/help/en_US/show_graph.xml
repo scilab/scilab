@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="show_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>show_graph</refname><refpurpose> displays a graph</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>nw = show_graph(g,[smode,scale])
-nw = show_graph(g,[scale,winsize])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="show_graph">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>show_graph</refname>
+    <refpurpose> displays a graph</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>nw = show_graph(g,[smode,scale])
+nw = show_graph(g,[scale,winsize])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>g</term>
@@ -52,7 +58,8 @@ nw = show_graph(g,[scale,winsize])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>show_graph</literal> displays the graph <literal>g</literal> in the current edit_graph window. 
     If there is no current edit_graph window, a edit_graph window is created.
     The return value <literal>nw</literal> is the number of the edit_graph window where
@@ -70,7 +77,9 @@ nw = show_graph(g,[scale,winsize])</synopsis></refsynopsisdiv>
     The optional argument <literal>scale</literal> is the value of the scale factor when 
     drawing the graph. The default value is 1.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
@@ -81,16 +90,20 @@ show_graph(g,2);
 show_graph(g,0.5);
 show_graph(g,1);
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="edit_graph">edit_graph</link>
-    </member>
-    <member>
-      <link linkend="netwindow">netwindow</link>
-    </member>
-    <member>
-      <link linkend="netwindows">netwindows</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="edit_graph">edit_graph</link>
+      </member>
+      <member>
+        <link linkend="netwindow">netwindow</link>
+      </member>
+      <member>
+        <link linkend="netwindows">netwindows</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

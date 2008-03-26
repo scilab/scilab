@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="save_graph"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>save_graph</refname><refpurpose>saves a graph in a file</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>save_graph(g,path)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="save_graph">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>save_graph</refname>
+    <refpurpose>saves a graph in a file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>save_graph(g,path)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>g</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>save_graph</literal> saves the graph <literal>g</literal> in a graph file.
     <literal>path</literal> is the name of the graph file where the graph will be saved.
     <literal>path</literal> can be the name or the pathname of the file; if the 
@@ -46,7 +53,9 @@
     you want to reload this file with <link linkend="load_graph">load_graph</link> or
     <link linkend="edit_graph">edit_graph</link>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 g=load_graph(SCI+'/demos/metanet/mesh100.graph');
 show_graph(g);
@@ -54,22 +63,26 @@ save_graph(g,'mymesh100.graph');
 g=load_graph('mymesh100.graph');
 show_graph(g,'new');
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="load_graph">load_graph</link>
-    </member>
-    <member>
-      <link linkend="edit_graph">edit_graph</link>
-    </member>
-    <member>
-      <link linkend="graph_data_structure">graph_data_structure</link>
-    </member>
-    <member>
-      <link linkend="save">save</link>
-    </member>
-    <member>
-      <link linkend="load">load</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="load_graph">load_graph</link>
+      </member>
+      <member>
+        <link linkend="edit_graph">edit_graph</link>
+      </member>
+      <member>
+        <link linkend="graph_data_structure">graph_data_structure</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="load">load</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

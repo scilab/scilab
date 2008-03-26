@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bandwr"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>bandwr</refname><refpurpose> bandwidth reduction for a sparse matrix</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[iperm,mrepi,prof,ierr] = bandwr(sp,[iopt])
-[iperm,mrepi,prof,ierr] = bandwr(lp,ls,n,[iopt])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bandwr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bandwr</refname>
+    <refpurpose> bandwidth reduction for a sparse matrix</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[iperm,mrepi,prof,ierr] = bandwr(sp,[iopt])
+[iperm,mrepi,prof,ierr] = bandwr(lp,ls,n,[iopt])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>sp</term>
@@ -76,7 +82,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>bandwr</literal> solves the problem of bandwidth reduction for a sparse
     matrix: the matrix is supposed to be upper triangular with a full
     diagonal (it is easy to complete a non symmetric matrix, and then
@@ -106,7 +113,9 @@
     the bandwidth of the matrix.
     <literal>ierr</literal> is an integer indicating an error if its value is not zero.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //Build the initial graph
 ta=[2  1 3 2 2 4 4 5 6 7 8 8 9 10 10 10 10 11 12 13 13 14 15 16 16 17 17];
@@ -148,5 +157,6 @@ g1.nodes.graphics.x=g.nodes.graphics.x;g1.nodes.graphics.y=g.nodes.graphics.y;
 g2=g;g2.nodes.graphics.name=string(iperm);
 show_graph(g2,'new');
  
-  ]]></programlisting></refsection>
+  ]]></programlisting>
+  </refsection>
 </refentry>

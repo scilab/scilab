@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="feedback"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>feedback</refname><refpurpose> feedback operation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>Sl=Sl1/.Sl2</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="feedback">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>feedback</refname>
+    <refpurpose> feedback operation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>Sl=Sl1/.Sl2</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>Sl1,Sl2</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     The feedback operation is denoted by <literal> /. </literal> (slashdot).
     This command returns <literal>Sl=Sl1*(I+Sl2*Sl1)^-1</literal>, i.e the (negative) 
@@ -44,7 +51,9 @@
     <para>
     Caution: do not use with decimal point (e.g. <literal>1/.1</literal> is ambiguous!)</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 S1=ssrand(2,2,3);S2=ssrand(2,2,2);
 W=S1/.S2;
@@ -59,19 +68,23 @@ ss2tf(W1)
 //Inverting
 ss2tf(S1*inv(eye()+S2*S1))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="lft">lft</link>
-    </member>
-    <member>
-      <link linkend="sysdiag">sysdiag</link>
-    </member>
-    <member>
-      <link linkend="augment">augment</link>
-    </member>
-    <member>
-      <link linkend="obscont">obscont</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lft">lft</link>
+      </member>
+      <member>
+        <link linkend="sysdiag">sysdiag</link>
+      </member>
+      <member>
+        <link linkend="augment">augment</link>
+      </member>
+      <member>
+        <link linkend="obscont">obscont</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

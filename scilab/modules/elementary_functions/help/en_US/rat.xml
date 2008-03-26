@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rat"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>rat</refname><refpurpose> Floating point rational approximation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[N,D]=rat(x [,tol])
-y=rat(x [,tol])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rat">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rat</refname>
+    <refpurpose> Floating point rational approximation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[N,D]=rat(x [,tol])
+y=rat(x [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -46,7 +52,8 @@ y=rat(x [,tol])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>[N,D] = rat(x,tol)</literal> returns two integer
     matrices so that <literal>N./D</literal> is close to<literal>x</literal> in the sense that
     <literal>abs(N./D - X) &lt;= tol*abs(x)</literal>. The rational approximations are
@@ -54,19 +61,25 @@ y=rat(x [,tol])</synopsis></refsynopsisdiv>
     <literal>tol = 1.e-6*norm(X,1)</literal> is the default.
     <literal>y = rat(x,tol)</literal> return the quotient <literal>N./D</literal></para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 [n,d]=rat(%pi)
 [n,d]=rat(%pi,1.d-12)
 n/d-%pi
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="int">int</link>
-    </member>
-    <member>
-      <link linkend="round">round</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="int">int</link>
+      </member>
+      <member>
+        <link linkend="round">round</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

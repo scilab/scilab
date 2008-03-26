@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_addhosts"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>pvm_addhosts</refname><refpurpose> add hosts to the virtual machine.  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[infos] = pvm_addhosts(hosts)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pvm_addhosts">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pvm_addhosts</refname>
+    <refpurpose> add hosts to the virtual machine.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[infos] = pvm_addhosts(hosts)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>hosts</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>pvm_addhosts</literal>
     adds the computers named in the row matrix <literal>hosts</literal>
     to the configuration of computers making up the virtual machine.
@@ -55,12 +62,15 @@
     as they become available, for example on a weekend, or if the
     application dynamically determines it could use more computational power.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pvm_delhosts">pvm_delhosts</link>
-    </member>
-    <member>
-      <link linkend="pvm_config">pvm_config</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pvm_delhosts">pvm_delhosts</link>
+      </member>
+      <member>
+        <link linkend="pvm_config">pvm_config</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

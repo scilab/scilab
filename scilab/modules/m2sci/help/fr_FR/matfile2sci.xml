@@ -10,53 +10,66 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="matfile2sci"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>matfile2sci</refname><refpurpose> convertit un fichier  Matlab .mat  en un fichier binaire Scilab</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
- <variablelist>
-  <varlistentry>
-  <term>mat_file_path</term>
-  <listitem>
-  <para>Chaï¿½ne de caractï¿½res contenant le chemin du fichier d'entrï¿½e 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="matfile2sci">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>matfile2sci</refname>
+    <refpurpose> convertit un fichier  Matlab .mat  en un fichier binaire Scilab</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>mat_file_path</term>
+        <listitem>
+          <para>Chaï¿½ne de caractï¿½res contenant le chemin du fichier d'entrï¿½e 
 </para>
-  </listitem> 
-  </varlistentry>
-
-  <varlistentry>
-  <term>sci_file_path </term>
-  <listitem>
-  <para> Chaï¿½ne de caractï¿½res contenant le chemin du fichier rï¿½sultant
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sci_file_path </term>
+        <listitem>
+          <para> Chaï¿½ne de caractï¿½res contenant le chemin du fichier rï¿½sultant
 </para>
-  </listitem> 
-  </varlistentry>
-  </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
-
-  <refsection><title>Description</title>
-  <para>
+  <refsection>
+    <title>Description</title>
+    <para>
    convertit un fichier  Matlab .mat  en un fichier binaire compatible
    avec la fonction <literal>load</literal>. Les types de donnï¿½es Matlab
    sont convertis en leur ï¿½quivalent Scilab.
   </para>
-
   </refsection>
-
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="loadmatfile">loadmatfile</link> </member>
-    <member> <link linkend="load">load</link> </member>
-    <member> <link linkend="mfile2sci">mfile2sci</link> </member> 
-  </simplelist></refsection> 
-  <refsection><title>Auteurs</title><para>Serge Steer (INRIA)  </para></refsection>
-
-<refsection><title>Bibliographie</title> 
-<para>Cette fonction a ï¿½tï¿½ dï¿½veloppï¿½e en suivant le document   "MAT-File Format":
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="loadmatfile">loadmatfile</link>
+      </member>
+      <member>
+        <link linkend="load">load</link>
+      </member>
+      <member>
+        <link linkend="mfile2sci">mfile2sci</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>Serge Steer (INRIA)  </para>
+  </refsection>
+  <refsection>
+    <title>Bibliographie</title>
+    <para>Cette fonction a ï¿½tï¿½ dï¿½veloppï¿½e en suivant le document   "MAT-File Format":
 www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf</para>
- </refsection>
-
+  </refsection>
 </refentry>

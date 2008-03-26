@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contourf"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>contourf</refname><refpurpose> filled level curves of a surface on a 2D plot</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>contourf(x,y,z,nz,[style,strf,leg,rect,nax])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contourf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>contourf</refname>
+    <refpurpose> filled level curves of a surface on a 2D plot</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>contourf(x,y,z,nz,[style,strf,leg,rect,nax])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>
@@ -73,7 +79,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>contourf</literal> paints surface between two consecutives level curves of a surface <literal>z=f(x,y)</literal> on a 2D plot.
     The values of <literal>f(x,y)</literal> are given by the matrix <literal>z</literal> at the
     grid points defined by <literal>x</literal> and <literal>y</literal>.</para>
@@ -85,30 +92,39 @@
     <para>
     Enter the command <literal>contour2d()</literal> to see a demo.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="contour">contour</link>
-    </member>
-    <member>
-      <link linkend="fcontour">fcontour</link>
-    </member>
-    <member>
-      <link linkend="fcontour2d">fcontour2d</link>
-    </member>
-    <member>
-      <link linkend="contour2di">contour2di</link>
-    </member>
-    <member>
-      <link linkend="plot2d">plot2d</link>
-    </member>
-    <member>
-      <link linkend="xset">xset</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>J.Ph.C.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="contour">contour</link>
+      </member>
+      <member>
+        <link linkend="fcontour">fcontour</link>
+      </member>
+      <member>
+        <link linkend="fcontour2d">fcontour2d</link>
+      </member>
+      <member>
+        <link linkend="contour2di">contour2di</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="xset">xset</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
 </refentry>

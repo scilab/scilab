@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="chain_struct"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>chain_struct</refname><refpurpose> chained structure from adjacency lists of a graph</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[fe,che,fn,chn] = chain_struct(g)
-[fe,che,fn,chn] = chain_struct(lp,la,ls)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="chain_struct">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>chain_struct</refname>
+    <refpurpose> chained structure from adjacency lists of a graph</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[fe,che,fn,chn] = chain_struct(g)
+[fe,che,fn,chn] = chain_struct(lp,la,ls)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>g</term>
@@ -81,7 +87,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>chain_struct</literal> computes the row vectors of the edge chained structure 
     description of the graph <literal>g</literal>.
     It is also possible to give directly <literal>chain_struct</literal> the adjacency lists of
@@ -97,7 +104,9 @@
     <para><literal>fn(i)</literal> is the number of the first node reached from node i</para>
     <para><literal>ch(i)</literal> is the number of the node reached by edge <literal>che(i)</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
 he=[2 3 5 4 6 6 7 4 3 2 8 1 7 4];
@@ -114,13 +123,17 @@ for i=1:node_number(g)
   cur=fe(i);while cur<>0;unhilite_edges(cur);cur=che(cur);end
 end
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="adj_lists">adj_lists</link>
-    </member>
-    <member>
-      <link linkend="graph_2_mat">graph_2_mat</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="adj_lists">adj_lists</link>
+      </member>
+      <member>
+        <link linkend="graph_2_mat">graph_2_mat</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

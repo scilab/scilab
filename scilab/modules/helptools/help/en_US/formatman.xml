@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="formatman"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>formatman</refname><refpurpose> translates old NROFF man files in a directory into ascii, tex, html or xml</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>formatman(path [,to])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="formatman">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>formatman</refname>
+    <refpurpose> translates old NROFF man files in a directory into ascii, tex, html or xml</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>formatman(path [,to])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>path</term>
@@ -33,7 +39,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     This function, not yet fully checked, formats old help files (*.man) of a given
     directory, written
@@ -59,26 +66,41 @@
     are ignored
   </para>
     <variablelist>
-      <varlistentry><term>ascii</term><listitem>
-        <para>mode generates a .cat file for each .man file and a whatis file</para>
-      </listitem></varlistentry>
-      <varlistentry><term>tex</term><listitem>
-        <para>mode generates a .tex file for each .man file and a whatis.tex file</para>
-      </listitem></varlistentry>
-      <varlistentry><term>html</term><listitem>
-        <para>mode generates a .html file for each .man file and a index.html file</para>
-      </listitem></varlistentry>
-      <varlistentry><term>xml</term><listitem>
-        <para>mode generates a .xml file for each .man file</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>ascii</term>
+        <listitem>
+          <para>mode generates a .cat file for each .man file and a whatis file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tex</term>
+        <listitem>
+          <para>mode generates a .tex file for each .man file and a whatis.tex file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>html</term>
+        <listitem>
+          <para>mode generates a .html file for each .man file and a index.html file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xml</term>
+        <listitem>
+          <para>mode generates a .xml file for each .man file</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="help">help</link>
-    </member>
-    <member>
-      <link linkend="man">man</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="help">help</link>
+      </member>
+      <member>
+        <link linkend="man">man</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

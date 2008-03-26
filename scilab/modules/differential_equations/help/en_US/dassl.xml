@@ -11,14 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dassl"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>dassl</refname><refpurpose> differential algebraic equation</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[r [,hd]]=dassl(x0,t0,t [,atol,[rtol]],res [,jac] [,info] [,hd])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dassl">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dassl</refname>
+    <refpurpose> differential algebraic equation</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[r [,hd]]=dassl(x0,t0,t [,atol,[rtol]],res [,jac] [,info] [,hd])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x0</term>
@@ -216,7 +222,8 @@ r=jac(t,y,ydot,x1,x2,...)
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Solution of the implicit differential equation</para>
     <programlisting><![CDATA[
@@ -228,7 +235,9 @@ r=jac(t,y,ydot,x1,x2,...)
     <para>
     Detailed examples are given in SCIDIR/tests/dassldasrt.tst</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
  deff('[r,ires]=chemres(t,y,yd)',[
          'r(1)=-0.04*y(1)+1d4*y(2)*y(3)-yd(1);';
@@ -252,25 +261,29 @@ info(2)=1;
 y=dassl([y0,yd0],0,4d10,chemres,info);
 y=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="ode">ode</link>
-    </member>
-    <member>
-      <link linkend="dasrt">dasrt</link>
-    </member>
-    <member>
-      <link linkend="impl">impl</link>
-    </member>
-    <member>
-      <link linkend="fort">fort</link>
-    </member>
-    <member>
-      <link linkend="link">link</link>
-    </member>
-    <member>
-      <link linkend="external">external</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ode">ode</link>
+      </member>
+      <member>
+        <link linkend="dasrt">dasrt</link>
+      </member>
+      <member>
+        <link linkend="impl">impl</link>
+      </member>
+      <member>
+        <link linkend="fort">fort</link>
+      </member>
+      <member>
+        <link linkend="link">link</link>
+      </member>
+      <member>
+        <link linkend="external">external</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

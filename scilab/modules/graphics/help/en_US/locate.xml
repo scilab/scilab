@@ -11,14 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="locate"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>locate</refname><refpurpose> mouse selection of a set of points</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>x=locate([n,flag])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="locate">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>locate</refname>
+    <refpurpose> mouse selection of a set of points</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>x=locate([n,flag])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -34,7 +40,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>locate</literal> is used to get the coordinates of one or more 
     points selected with the mouse in a graphics window. The coordinates 
     are given using the current graphics scale.</para>
@@ -50,13 +57,19 @@
     <para>
     If <literal>flag=1</literal> a cross is drawn at the points where the mouse is clicked.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="xclick">xclick</link>
-    </member>
-    <member>
-      <link linkend="xgetmouse">xgetmouse</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>S.S. &amp; J.Ph.C</para></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xclick">xclick</link>
+      </member>
+      <member>
+        <link linkend="xgetmouse">xgetmouse</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S.S. &amp; J.Ph.C</para>
+  </refsection>
 </refentry>

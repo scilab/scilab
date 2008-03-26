@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="p_margin"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>p_margin</refname><refpurpose> phase margin</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[phm,fr]=p_margin(h)
-phm=p_margin(h)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="p_margin">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>p_margin</refname>
+    <refpurpose> phase margin</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[phm,fr]=p_margin(h)
+phm=p_margin(h)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
@@ -40,12 +46,15 @@ phm=p_margin(h)</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     The phase margin is the values of the phase at points where the
     nyquist plot of <literal>h</literal> crosses the unit circle.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 h=syslin('c',-1+%s,3+2*%s+%s^2)
 [p,fr]=p_margin(h)  
@@ -53,20 +62,27 @@ h=syslin('c',-1+%s,3+2*%s+%s^2)
 nyquist(h+0.7)
 t=(0:0.1:2*%pi)';plot2d(sin(t),cos(t),-3,'000')
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="chart">chart</link>
-    </member>
-    <member>
-      <link linkend="black">black</link>
-    </member>
-    <member>
-      <link linkend="g_margin">g_margin</link>
-    </member>
-    <member>
-      <link linkend="nyquist">nyquist</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>S. S.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="chart">chart</link>
+      </member>
+      <member>
+        <link linkend="black">black</link>
+      </member>
+      <member>
+        <link linkend="g_margin">g_margin</link>
+      </member>
+      <member>
+        <link linkend="nyquist">nyquist</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. S.  </para>
+  </refsection>
 </refentry>

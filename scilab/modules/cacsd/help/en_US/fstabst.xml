@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fstabst"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>fstabst</refname><refpurpose> Youla's parametrization</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[J]=fstabst(P,r)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fstabst">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fstabst</refname>
+    <refpurpose> Youla's parametrization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[J]=fstabst(P,r)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>P</term>
@@ -39,7 +45,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Parameterization of all stabilizing feedbacks.</para>
     <para><literal>P</literal> is partitioned as follows:</para>
@@ -68,7 +75,9 @@ P=[ P11 P12;
     and <literal>J</literal> : <literal>[T,rt]=lft(P,r,J,r)</literal> one has that <literal>T12</literal> is inner
     and <literal>T21</literal> is co-inner.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 ny=2;nu=3;nx=4;
 P22=ssrand(ny,nu,nx);
@@ -80,19 +89,23 @@ Q=ssrand(nu,ny,1);Q('A')=-1;  //Stable Q
 K=lft(J,r,Q);
 A=h_cl(P,r,K); spec(A)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="obscont">obscont</link>
-    </member>
-    <member>
-      <link linkend="lft">lft</link>
-    </member>
-    <member>
-      <link linkend="lqg">lqg</link>
-    </member>
-    <member>
-      <link linkend="lqg2stan">lqg2stan</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="obscont">obscont</link>
+      </member>
+      <member>
+        <link linkend="lft">lft</link>
+      </member>
+      <member>
+        <link linkend="lqg">lqg</link>
+      </member>
+      <member>
+        <link linkend="lqg2stan">lqg2stan</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="derivative"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>derivative</refname><refpurpose> approximate derivatives of a function</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>derivative(F,x)
-[J [,H]] = derivative(F,x [,h ,order ,H_form ,Q])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="derivative">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>derivative</refname>
+    <refpurpose> approximate derivatives of a function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>derivative(F,x)
+[J [,H]] = derivative(F,x [,h ,order ,H_form ,Q])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>F</term>
@@ -77,7 +84,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Numerical approximation of the first and second derivatives of a function
     F: <literal> R^n --&gt; R^m</literal> at the point x. The Jacobian is computed  by approximating
@@ -95,7 +103,8 @@
     <para>
     (([J,H]=derivative(F,x,H_form='default'), J=J(x), H=H(x).)</para>
   </refsection>
-  <refsection><title>Remarks</title>
+  <refsection>
+    <title>Remarks</title>
     <para>
     Numerical approximation of derivatives is generally an unstable process.  
 The step size h must be small to get a low error but if it is too small floating  
@@ -113,7 +122,9 @@ derivative(F, x, order = 4) etc.
    
     ]]></programlisting>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
   function y=F(x)
    y=[sin(x(1)*x(2))+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
@@ -160,14 +171,21 @@ derivative(F, x, order = 4) etc.
  clean(Je - J)
  clean(He - H)
    
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="numdiff">numdiff</link>
-    </member>
-    <member>
-      <link linkend="derivat">derivat</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para> Rainer von Seggern, Bruno Pincon</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="numdiff">numdiff</link>
+      </member>
+      <member>
+        <link linkend="derivat">derivat</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para> Rainer von Seggern, Bruno Pincon</para>
+  </refsection>
 </refentry>

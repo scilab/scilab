@@ -11,14 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mputl"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mputl</refname><refpurpose> writes strings in an ascii file</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>mputl(txt [,file_desc])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mputl">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mputl</refname>
+    <refpurpose> writes strings in an ascii file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>mputl(txt [,file_desc])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>file_desc</term>
@@ -34,35 +40,42 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>mputl</literal> function allows to write a vector of strings as a sequence
     of lines in an ascii file.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="mget">mget</link>
-    </member>
-    <member>
-      <link linkend="mgetl">mgetl</link>
-    </member>
-    <member>
-      <link linkend="mclose">mclose</link>
-    </member>
-    <member>
-      <link linkend="mfprintf">mfprintf</link>
-    </member>
-    <member>
-      <link linkend="mput">mput</link>
-    </member>
-    <member>
-      <link linkend="mputstr">mputstr</link>
-    </member>
-    <member>
-      <link linkend="mopen">mopen</link>
-    </member>
-    <member>
-      <link linkend="write">write</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>S. Steer</para></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="mgetl">mgetl</link>
+      </member>
+      <member>
+        <link linkend="mclose">mclose</link>
+      </member>
+      <member>
+        <link linkend="mfprintf">mfprintf</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="mputstr">mputstr</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+      <member>
+        <link linkend="write">write</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. Steer</para>
+  </refsection>
 </refentry>

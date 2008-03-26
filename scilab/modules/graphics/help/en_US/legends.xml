@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="legends"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>legends</refname><refpurpose> draw graph legend</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>legends(strings,style,&lt;opt_args&gt;)
-</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="legends">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>legends</refname>
+    <refpurpose> draw graph legend</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>legends(strings,style,&lt;opt_args&gt;)
+</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>strings</term>
@@ -34,12 +40,10 @@
       </varlistentry>
       <varlistentry>
         <term>&lt;opt_args&gt;</term>
-        
         <listitem>
           <para>This represents a sequence of statements
           <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
           <literal>key2,...</literal> can be one of the following:</para>
-          
           <variablelist>
             <varlistentry>
               <term>opt</term>
@@ -88,14 +92,12 @@
                 </variablelist>
               </listitem>
             </varlistentry>
-          
             <varlistentry>
               <term>with_box</term>
               <listitem>
                 <para>a boolean (default value %t) which sets ot not the drawing of the box.</para>
               </listitem>
             </varlistentry>
-          
             <varlistentry>
               <term>font_size</term>
               <listitem>
@@ -107,7 +109,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Puts a legend on the current plot using the specified strings as
     labels.</para>
@@ -118,7 +121,9 @@
     This function allows more flexible placement of the legends than the
     leg plot2d argument.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
   
 
 // Example 1
@@ -156,21 +161,23 @@ legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
 
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="plot2d">plot2d</link>
-    </member>
-    <member>
-      <link linkend="xstring">xstring</link>
-    </member>
-    <member>
-      <link linkend="xtitle">xtitle</link>
-    </member>
-
-    <member>
-      <link linkend="legend">legend</link>
-    </member>
-
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="xstring">xstring</link>
+      </member>
+      <member>
+        <link linkend="xtitle">xtitle</link>
+      </member>
+      <member>
+        <link linkend="legend">legend</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

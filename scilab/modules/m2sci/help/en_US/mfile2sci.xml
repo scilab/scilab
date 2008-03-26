@@ -11,14 +11,20 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mfile2sci"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mfile2sci</refname><refpurpose> Matlab M-file to Scilab conversion function</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>mfile2sci([M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprint]]]]]])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mfile2sci">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mfile2sci</refname>
+    <refpurpose> Matlab M-file to Scilab conversion function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>mfile2sci([M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprint]]]]]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>M-file-path</term>
@@ -82,9 +88,10 @@
           <para>Boolean flag, if %T generated code is beautified. Default value: %F</para>
         </listitem>
       </varlistentry>
-     </variablelist>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     M2SCI (and particularly mfile2sci) is Matlab M-file to Scilab function conversion tools. It
     tries whenever possible to replace call to Matlab functions by the
@@ -99,15 +106,24 @@
     mfile2sci will generate three files in the same directory
   </para>
     <variablelist>
-      <varlistentry><term>&lt;function-name&gt;.sci</term><listitem>
-        <para>the Scilab equivalent of the M-file</para>
-      </listitem></varlistentry>
-      <varlistentry><term>&lt;function-name&gt;.cat</term><listitem>
-        <para>the Scilab help file associated to the function</para>
-      </listitem></varlistentry>
-      <varlistentry><term>sci_&lt;function-name&gt;.sci</term><listitem>
-        <para>the Scilab function required to convert the calls to this Matlab M-file in other Matlab M-files. This function may be improved "by hand". This function is only useful for conversion not for use of translated functions.</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>&lt;function-name&gt;.sci</term>
+        <listitem>
+          <para>the Scilab equivalent of the M-file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;function-name&gt;.cat</term>
+        <listitem>
+          <para>the Scilab help file associated to the function</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sci_&lt;function-name&gt;.sci</term>
+        <listitem>
+          <para>the Scilab function required to convert the calls to this Matlab M-file in other Matlab M-files. This function may be improved "by hand". This function is only useful for conversion not for use of translated functions.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>
     Some functions like eye, ones, size, sum,... behave differently
@@ -127,11 +143,13 @@
     When translation may be incorrect or may be improved mfile2sci adds a
     comment which begins by "//!" (according to verbose-mode)
   </para>
-  <para>
+    <para>
   When called without rhs, <literal>mfile2sci()</literal> launches a GUI to help to select a file/directory and options.
   </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 // Create a simple M-file
 write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
@@ -164,14 +182,21 @@ getf(TMPDIR+'/rot90.sci')
 // Execute it
 m=rand(4,2);rot90(m,1)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="translatepaths">translatepaths</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><simplelist type="vert">
-    <member>V. Couvert</member>
-    <member>S. Steer</member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="translatepaths">translatepaths</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>V. Couvert</member>
+      <member>S. Steer</member>
+    </simplelist>
+  </refsection>
 </refentry>

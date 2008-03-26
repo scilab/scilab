@@ -1,24 +1,31 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quit"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>quit</refname><refpurpose> decrease the pause level or exit</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quit">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>quit</refname>
+    <refpurpose> decrease the pause level or exit</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para><literal>quit</literal> terminates Scilab or decreases the <literal>pause</literal> level.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pause">pause</link>
-    </member>
-    <member>
-      <link linkend="break">break</link>
-    </member>
-    <member>
-      <link linkend="abort">abort</link>
-    </member>
-    <member>
-      <link linkend="exit">exit</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+      <member>
+        <link linkend="break">break</link>
+      </member>
+      <member>
+        <link linkend="abort">abort</link>
+      </member>
+      <member>
+        <link linkend="exit">exit</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

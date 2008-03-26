@@ -10,18 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="demo_function_choice"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>demo_function_choice</refname><refpurpose> choisit et exécute un item au sein d'une liste </refpurpose></refnamediv>
-	
-	
-	
-    
-	
-	
-	
-	<refsynopsisdiv><title>Séquence d'appel</title><synopsis>demo_function_choice()</synopsis></refsynopsisdiv>
-	
-	<refsection><title>Description</title>
-		<para>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="demo_function_choice">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>demo_function_choice</refname>
+    <refpurpose> choisit et exécute un item au sein d'une liste </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>demo_function_choice()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
 		La fonction demo_function_choice choisit et exécute un item choisi dans la 
 		variable 'demolist' qui doit figurer avant. La variable 'demolist' est une matrice de texte dont la 
 		premiere colonne contient des noms d'items affichés dans une fenêtre d'options 
@@ -30,9 +33,10 @@
 		Quand on choisit d'abandonner la fenêtre d'options, la console est remise à sa largeur 
 		initiale.
 		</para>
-	</refsection>
-	
-	<refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 demolist=[
 	'Simulation of a binomial random variable','set figure_style new;xbasc();BinomialT();';
 	'Simulation of a discrete random variable','set figure_style new;xbasc();RndDiscT();';
@@ -44,15 +48,20 @@ demolist=[
 	'Simulation of an Erlang random variable','set figure_style new;xbasc();ErlangT();'];
 
 demo_function_choice();
-	]]></programlisting></refsection>
-	
-	<refsection><title>Voir Aussi</title><simplelist type="inline">
-		<member>
-			<link linkend="demo_file_choice">demo_file_choice</link>
-		</member>
-	</simplelist></refsection>
-	
-	<refsection><title>Auteurs</title><simplelist type="vert">
-		<member>G.H</member>
-	</simplelist></refsection>
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="demo_file_choice">demo_file_choice</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>G.H</member>
+    </simplelist>
+  </refsection>
 </refentry>

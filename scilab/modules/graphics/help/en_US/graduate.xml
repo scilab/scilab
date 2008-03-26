@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graduate"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>graduate</refname><refpurpose> pretty axis graduations</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[xi,xa,np]=graduate( xmi, xma,n1,n2)
-[xi,xa,np]=graduate( xmi, xma)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graduate">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>graduate</refname>
+    <refpurpose> pretty axis graduations</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[xi,xa,np]=graduate( xmi, xma,n1,n2)
+[xi,xa,np]=graduate( xmi, xma)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>xmi,xma</term>
@@ -46,7 +52,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     graduate looks for the minimum interval <literal>[xi,xa]</literal> and a number of tics 
     <literal>np</literal> such that:</para>
@@ -58,7 +65,9 @@
       <literal>n1 &lt; np &lt; n2</literal>
     </para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
   y=(0:0.33:145.78)';
   xbasc();plot2d1('enn',0,y)
@@ -66,14 +75,21 @@
   rect=[1,ymn,prod(size(y)),ymx];
   xbasc();plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="xsetech">xsetech</link>
-    </member>
-    <member>
-      <link linkend="plot2d">plot2d</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>S. Steer 1992;   </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xsetech">xsetech</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. Steer 1992;   </para>
+  </refsection>
 </refentry>

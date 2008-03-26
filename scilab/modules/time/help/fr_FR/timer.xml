@@ -10,28 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="timer"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>timer</refname><refpurpose>temps CPU consommé</refpurpose></refnamediv>
-	
-	
-	
-	
-	
-	
-	<refsynopsisdiv><title>Séquence d'appel</title><synopsis>timer()</synopsis></refsynopsisdiv>
-	
-	<refsection><title>Description</title>
-		<para>Renvoie le temps CPU consommé par Scilab depuis le dernier appel à <literal>timer()</literal>.</para>
-	</refsection>
-	
-	<refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="timer">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>timer</refname>
+    <refpurpose>temps CPU consommé</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>timer()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Renvoie le temps CPU consommé par Scilab depuis le dernier appel à <literal>timer()</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 timer();A=rand(100,100);timer()
-	]]></programlisting></refsection>
-	
-	<refsection><title>Voir Aussi</title><simplelist type="inline">
-		<member><link linkend="getdate">getdate</link></member>
-		<member><link linkend="toc">toc</link></member>
-		<member><link linkend="tic">tic</link></member>
-		<member><link linkend="timer">timer</link></member>
-		<member><link linkend="etime">etime</link></member>
-	</simplelist></refsection>
+	]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getdate">getdate</link>
+      </member>
+      <member>
+        <link linkend="toc">toc</link>
+      </member>
+      <member>
+        <link linkend="tic">tic</link>
+      </member>
+      <member>
+        <link linkend="timer">timer</link>
+      </member>
+      <member>
+        <link linkend="etime">etime</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

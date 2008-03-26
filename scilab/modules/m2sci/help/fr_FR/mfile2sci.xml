@@ -11,14 +11,20 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mfile2sci"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mfile2sci</refname><refpurpose> Fonction de conversion de M-file Matlab vers Scilab</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>mfile2sci(M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprint]]]]])</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mfile2sci">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mfile2sci</refname>
+    <refpurpose> Fonction de conversion de M-file Matlab vers Scilab</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>mfile2sci(M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprint]]]]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
     <variablelist>
       <varlistentry>
         <term>M-file-path</term>
@@ -82,9 +88,10 @@
           <para>Flag boolï¿½en, si il vaut %T le code gï¿½nï¿½rï¿½ est rï¿½arrangï¿½. Valeur par dï¿½faut : %F</para>
         </listitem>
       </varlistentry>
-     </variablelist>
+    </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     M2SCI (et en particulier mfile2sci) est un ensemble d'outils de conversion de M-file vers Scilab. Il essaie
     ï¿½ chaque fois que c'est possible de remplacer l'appel ï¿½ une fonction Matlab par la
@@ -99,15 +106,24 @@
     mfile2sci va gï¿½nï¿½rer trois fichiers dans le mï¿½me rï¿½pertoire :
   </para>
     <variablelist>
-      <varlistentry><term>&lt;function-name&gt;.sci</term><listitem>
-        <para>l'ï¿½quivalent Scilab pour le M-file</para>
-      </listitem></varlistentry>
-      <varlistentry><term>&lt;function-name&gt;.cat</term><listitem>
-        <para>le fichier d'aide Scilab associï¿½ ï¿½ la fonction</para>
-      </listitem></varlistentry>
-      <varlistentry><term>sci_&lt;function-name&gt;.sci</term><listitem>
-        <para>la fonction Scilab requise pour convertir les appels ï¿½ ce M-file dans d'autres M-files. Cette fonction peut ï¿½tre amï¿½liorï¿½e "ï¿½ la main". Cette fonction est utile uniquement pour la conversion, pas pour utiliser la fonction convertie.</para>
-      </listitem></varlistentry>
+      <varlistentry>
+        <term>&lt;function-name&gt;.sci</term>
+        <listitem>
+          <para>l'ï¿½quivalent Scilab pour le M-file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;function-name&gt;.cat</term>
+        <listitem>
+          <para>le fichier d'aide Scilab associï¿½ ï¿½ la fonction</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sci_&lt;function-name&gt;.sci</term>
+        <listitem>
+          <para>la fonction Scilab requise pour convertir les appels ï¿½ ce M-file dans d'autres M-files. Cette fonction peut ï¿½tre amï¿½liorï¿½e "ï¿½ la main". Cette fonction est utile uniquement pour la conversion, pas pour utiliser la fonction convertie.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>
     Des fonctions comme eye, ones, size, sum,... se comportent diffï¿½remment
@@ -127,11 +143,13 @@
     Quand la conversion peut ï¿½tre incorrecte ou amï¿½liorï¿½e, mfile2sci ajoute
     des commentaires qui commencent par "//!" (suivant verbose-mode).
   </para>
-  <para>
+    <para>
   Un appel ï¿½ <literal>mfile2sci()</literal> sans rhs lance une interface graphique pour aider ï¿½ la sï¿½lection d'un fichier/rï¿½pertoire et des options.
   </para>
   </refsection>
-  <refsection><title>Exemples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
 
 // Crï¿½ation d'une fichier .m simple
 write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
@@ -164,15 +182,21 @@ getf(TMPDIR+'/rot90.sci')
 // Exï¿½cution du code
 m=rand(4,2);rot90(m,1)
  
-  ]]></programlisting></refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member>
-      <link linkend="translatepaths">translatepaths</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V. Couvert</member>
-    <member>S. Steer</member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="translatepaths">translatepaths</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V. Couvert</member>
+      <member>S. Steer</member>
+    </simplelist>
+  </refsection>
 </refentry>

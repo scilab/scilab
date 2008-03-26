@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="interp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>interp</refname><refpurpose>cubic spline evaluation function</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[yp [,yp1 [,yp2 [,yp3]]]]=interp(xp, x, y, d [, out_mode])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="interp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>interp</refname>
+    <refpurpose>cubic spline evaluation function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[yp [,yp1 [,yp2 [,yp3]]]]=interp(xp, x, y, d [, out_mode])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>xp</term>
@@ -42,13 +49,14 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Given three vectors <literal>(x,y,d)</literal> defining a spline or sub-spline function
     (see <link linkend="splin">splin</link>) with <literal>yi=s(xi), di = s'(xi)</literal> this function
     evaluates <literal>s</literal> (and <literal>s', s'', s'''</literal> if needed) at <literal>xp(i)</literal> :
     </para>
-        <programlisting><![CDATA[
+    <programlisting><![CDATA[
       yp(i) = s(xp(i))    or  yp(i,j) = s(xp(i,j))
       yp1(i) = s'(xp(i))   or  yp1(i,j) = s'(xp(i,j))
       yp2(i) = s''(xp(i))   or  yp2(i,j) = s''(xp(i,j))
@@ -59,41 +67,60 @@
     i.e. for <literal>xp(i)</literal> not in [x1,xn] : 
     </para>
     <variablelist>
-      <varlistentry><term>"by_zero"</term><listitem>
-         <para>an extrapolation by zero is done</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"by_nan"</term><listitem>
-         <para>extrapolation by Nan</para>
-      </listitem></varlistentry>
-      <varlistentry><term>"C0"</term><listitem>
-         <para>the extrapolation is defined as follows :</para>
-        <programlisting><![CDATA[
+      <varlistentry>
+        <term>"by_zero"</term>
+        <listitem>
+          <para>an extrapolation by zero is done</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"by_nan"</term>
+        <listitem>
+          <para>extrapolation by Nan</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"C0"</term>
+        <listitem>
+          <para>the extrapolation is defined as follows :</para>
+          <programlisting><![CDATA[
       s(x) = y1  for  x < x1
       s(x) = yn  for  x > xn
          ]]></programlisting>
-      </listitem></varlistentry>
-      <varlistentry><term>"natural"</term><listitem>
-         <para>the extrapolation is defined as follows (<emphasis>p_i</emphasis> being the polynomial defining 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"natural"</term>
+        <listitem>
+          <para>the extrapolation is defined as follows (<emphasis>p_i</emphasis> being the polynomial defining 
                <literal>s</literal> on [x_i,x_{i+1}]) :</para>
-        <programlisting><![CDATA[
+          <programlisting><![CDATA[
       s(x) = p_1(x)      for  x < x1
       s(x) = p_{n-1}(x)  for  x > xn
          ]]></programlisting>
-      </listitem></varlistentry>
-      <varlistentry><term>"linear"</term><listitem>
-         <para>the extrapolation is defined as follows :</para>
-        <programlisting><![CDATA[
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"linear"</term>
+        <listitem>
+          <para>the extrapolation is defined as follows :</para>
+          <programlisting><![CDATA[
       s(x) = y1 + s'(x1)(x-x1)  for  x < x1
       s(x) = yn + s'(xn)(x-xn)  for  x > xn
          ]]></programlisting>
-      </listitem></varlistentry>
-      <varlistentry><term>"periodic"</term><listitem>
-         <para>: <literal>s</literal> is extended by periodicity.</para>
-      </listitem></varlistentry>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"periodic"</term>
+        <listitem>
+          <para>: <literal>s</literal> is extended by periodicity.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 // see the examples of splin and lsq_splin
 
 // an example showing C2 and C1 continuity of spline and subspline
@@ -133,17 +160,23 @@ yy3 = interp(xx,x,y,d,"periodic");
 xbasc()
 plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
 xtitle(" different way to evaluate a spline outside its domain")
- ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="splin">splin</link>
-    </member>
-    <member>
-      <link linkend="lsq_splin">lsq_splin</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="splin">splin</link>
+      </member>
+      <member>
+        <link linkend="lsq_splin">lsq_splin</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>
     B. Pincon
-  </para></refsection>
+  </para>
+  </refsection>
 </refentry>

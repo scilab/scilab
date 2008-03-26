@@ -10,17 +10,23 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="auread"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>auread</refname><refpurpose> load .au sound file</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=auread(aufile)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="auread">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>auread</refname>
+    <refpurpose> load .au sound file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=auread(aufile)
 y=auread(aufile,ext)
 [y,Fs,bits]=auread(aufile)
-[y,Fs,bits]=auread(aufile,ext)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[y,Fs,bits]=auread(aufile,ext)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>aufile</term>
@@ -48,7 +54,8 @@ y=auread(aufile,ext)
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Utility function to read <literal>.au</literal> sound file.
     <literal>auread(aufile)</literal> loads a sound file specified by the string aufile,
@@ -67,7 +74,9 @@ y=auread(aufile,ext)
     <para><literal>auread(aufile,'snd')</literal> returns information about the sample and data
     as a tlist.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
   y=wavread('SCI/modules/sound/demos/chimes.wav');
   // default is 8-bits mu-law
@@ -75,17 +84,20 @@ y=auread(aufile,ext)
   y1=auread(TMPDIR+'/tmp.au');
   maxi(abs(y-y1))
  
-  ]]></programlisting></refsection>
-
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="savewave">savewave</link>
-    </member>
-    <member>
-      <link linkend="analyze">analyze</link>
-    </member>
-    <member>
-      <link linkend="mapsound">mapsound</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="savewave">savewave</link>
+      </member>
+      <member>
+        <link linkend="analyze">analyze</link>
+      </member>
+      <member>
+        <link linkend="mapsound">mapsound</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

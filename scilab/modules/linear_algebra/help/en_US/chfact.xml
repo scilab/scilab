@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="chfact"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>chfact</refname><refpurpose> sparse Cholesky factorization</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>spcho=chfact(A)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="chfact">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>chfact</refname>
+    <refpurpose> sparse Cholesky factorization</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>spcho=chfact(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -33,28 +39,32 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>spcho=chfact(A)</literal> computes the sparse Cholesky factors of sparse
     matrix <literal>A</literal>, assumed symmetric positive definite.
     This function is based on the Ng-Peyton programs (ORNL). See the
     Fortran programs for a complete description of the variables in
     <literal>spcho</literal>. This function is to be used with <literal>chsolve</literal>.</para>
   </refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="chsolve">chsolve</link>
-    </member>
-    <member>
-      <link linkend="sparse">sparse</link>
-    </member>
-    <member>
-      <link linkend="lufact">lufact</link>
-    </member>
-    <member>
-      <link linkend="luget">luget</link>
-    </member>
-    <member>
-      <link linkend="spchol">spchol</link>
-    </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="chsolve">chsolve</link>
+      </member>
+      <member>
+        <link linkend="sparse">sparse</link>
+      </member>
+      <member>
+        <link linkend="lufact">lufact</link>
+      </member>
+      <member>
+        <link linkend="luget">luget</link>
+      </member>
+      <member>
+        <link linkend="spchol">spchol</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -1,22 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xbasc"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>xbasc</refname><refpurpose> efface une fenêtre graphique et efface les graphiques enregistrés  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>xbasc([window-id])</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xbasc">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xbasc</refname>
+    <refpurpose> efface une fenêtre graphique et efface les graphiques enregistrés  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>xbasc([window-id])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-	<term>window-id  </term>
-	<listitem>
-	  <para>entier ou vecteur d'entiers
+        <term>window-id  </term>
+        <listitem>
+          <para>entier ou vecteur d'entiers
 	  </para>
-	</listitem> 
+        </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
       Sans argument, cette fonction efface la fenêtre graphique courante et 
       les graphiques enregistrés.
@@ -30,8 +38,15 @@
       <literal>xbasc</literal>.
     </para>
   </refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="clf">clf</link> </member>
-    <member> <link linkend="xclear">xclear</link> </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+      <member>
+        <link linkend="xclear">xclear</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

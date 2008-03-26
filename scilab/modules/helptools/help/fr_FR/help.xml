@@ -10,14 +10,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="help"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>help</refname><refpurpose> commande d'aide en ligne  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Séquence d'appel</title><synopsis>help(key)</synopsis></refsynopsisdiv>
-  <refsection><title>Paramètres</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="help">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>help</refname>
+    <refpurpose> commande d'aide en ligne  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>help(key)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
     <variablelist>
       <varlistentry>
         <term>key</term>
@@ -27,34 +33,36 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>help</literal> sans argument, visualise la page hypertexte contenat la
       liste des chapitres d'aide.</para>
-
     <para><literal>help(key)</literal> visualise la page d'aide associé avec le nom
       donné par <literal>key</literal>. S'il n'y a pas de page d'aide, <literal>help(key)</literal>
       appele automatiquement <literal>apropos(key)</literal>.</para>
-
     <para> Scilab comprend son propre browser html écrit en  TCL/TK. Il est
       possible de choisir un autre browser. La variable globale
       <literal>%browsehelp</literal> contient une chaîne de caractères définissant
       quel browser doit être utilisé. Sa valeur initiale est fixée par le
       fichier startup <literal>scilab.start</literal> est peut être changée. </para>
-
-
-      <para>Si cette variable est affectée à la matrice vide ( <literal>global
+    <para>Si cette variable est affectée à la matrice vide ( <literal>global
 	%browsehelp; %browsehelp=[]</literal>) alors une fenêtre de dialogue
       apparait au lancement du help et permet de  choisir le browser
       désiré. Attention, les differents browsers on des synatxes d'appel
       différentes. Aussi si vous souhaitez ajouter un nouveau browser à la
       liste vous devrez modifier la fonction Scilab <literal>browsehelp</literal>
       dont le code source est dans  <literal>SCI/macros/util/browsehelp.sci</literal>.</para>
-
-
-    <para> Voir  <link linkend="man">man</link> pour apprendre à écrire de nouvelles pages d'aide.</para> 
+    <para> Voir  <link linkend="man">man</link> pour apprendre à écrire de nouvelles pages d'aide.</para>
   </refsection>
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="apropos">apropos</link> </member>   
-     <member> <link linkend="man">man</link> </member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="apropos">apropos</link>
+      </member>
+      <member>
+        <link linkend="man">man</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

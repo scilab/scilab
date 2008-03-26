@@ -1,22 +1,26 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="LANGUAGE"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>LANGUAGE</refname><refpurpose> Variable qui définit la langue  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
-  <para>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="LANGUAGE">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>LANGUAGE</refname>
+    <refpurpose> Variable qui définit la langue  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
     La variable globale <literal>LANGUAGE</literal> est une chaîne de
     caractères.  Elle définit la langue pour l'aide en ligne et divers
     menus. Actuellement, les valeurs de <literal>LANGUAGE</literal> peuvent
     être <literal>"fr"</literal> pour le français, c'est le défaut, ou
     <literal>"eng"</literal> pour l'anglais.
   </para>
-  <para>
+    <para>
     Cette variable est définie dans le fichier d'initialisation
     <literal>scilab.start</literal>. On peut la changer là.
   </para>
-  <para>
+    <para>
     Quand on lance Scilab, on peut donner la valeur de la langue comme
     argument : <literal>scilab -l &lt;language&gt;</literal> pour Unix et
     <literal>runscilab.exe -l &lt;language&gt;</literal> pour Windows.

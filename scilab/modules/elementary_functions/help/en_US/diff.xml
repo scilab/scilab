@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="diff"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>diff</refname><refpurpose> Difference and discrete derivative</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=diff(x)
-y=diff(x [,n [,dim]])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="diff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>diff</refname>
+    <refpurpose> Difference and discrete derivative</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=diff(x)
+y=diff(x [,n [,dim]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -46,7 +52,8 @@ y=diff(x [,n [,dim]])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>y=diff(x)</literal>  compute the difference function y=x(2:$)-x(1:$-1)</para>
     <para><literal>diff(x,n,dim)</literal> is the <literal>n</literal> th difference function along
     dimension <literal>dim</literal>.</para>
@@ -57,7 +64,9 @@ y=diff(x [,n [,dim]])</synopsis></refsynopsisdiv>
     <para><literal>dim='r'</literal> is equivalent to <literal>dim=1</literal> and <literal>dim='c'</literal> is
     equivalent to <literal>dim=2</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 v=(1:8)^3;
 diff(v)
@@ -76,5 +85,6 @@ y=sin(t);
 dy=diff(sin(t))/step; //approximate differentiation of sine function
 norm(dy-cos(t(1:$-1)),%inf)
  
-  ]]></programlisting></refsection>
+  ]]></programlisting>
+  </refsection>
 </refentry>

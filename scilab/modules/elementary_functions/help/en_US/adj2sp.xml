@@ -10,13 +10,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="adj2sp"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>adj2sp</refname><refpurpose> converts adjacency form into  sparse matrix.  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="adj2sp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>adj2sp</refname>
+    <refpurpose> converts adjacency form into  sparse matrix.  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>xadj</term>
@@ -50,7 +53,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <programlisting><![CDATA[
 
 sp2adj converts an adjacency form representation of a matrix
@@ -66,7 +70,9 @@ xadj, adjncy, anz = adjacency representation of A i.e:
     <literal>adjncy</literal> is an integer (column) vector of size <literal>nz=nnz(A)</literal>.
     <literal>anz</literal> is a real vector of size <literal>nz=nnz(A)</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A = sprand(100,50,.05);
 [xadj,adjncy,anz]= sp2adj(A);
@@ -74,13 +80,17 @@ A = sprand(100,50,.05);
 p = adj2sp(xadj,adjncy,anz,[n,m]);
 A-p,
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="sp2adj">sp2adj</link>
-    </member>
-    <member>
-      <link linkend="spcompack">spcompack</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sp2adj">sp2adj</link>
+      </member>
+      <member>
+        <link linkend="spcompack">spcompack</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

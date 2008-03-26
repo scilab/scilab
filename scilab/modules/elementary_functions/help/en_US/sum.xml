@@ -10,19 +10,25 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sum"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>sum</refname><refpurpose> sum (row sum, column sum) of vector/matrix entries</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>y=sum(x)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sum">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sum</refname>
+    <refpurpose> sum (row sum, column sum) of vector/matrix entries</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>y=sum(x)
 y=sum(x,'r') or y=sum(x,1)
 
 y=sum(x,'c') or y=sum(x,2)
 
-y=sum(x,'m')</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+y=sum(x,'m')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -38,24 +44,23 @@ y=sum(x,'m')</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para> For a vector or a matrix <literal>x</literal>, <literal>y=sum(x)</literal>  returns
       in the scalar <literal>y</literal> the sum of all the entries of
-      <literal>x</literal>.</para> 
-
+      <literal>x</literal>.</para>
     <para><literal>y=sum(x,'r')</literal> (or, equivalently, <literal>y=sum(x,1)</literal>) is
       the rowwise sum: <literal>y(j)= sum(x(:,j))</literal>. <literal>y</literal> is a row
       vector</para>
-
     <para><literal>y=sum(x,'c')</literal> (or, equivalently, <literal>y=sum(x,2)</literal>) is
       the columnwise sum. It returns in each entry of the column vector
-      <literal>y</literal> the sum :  <literal>y(i)= sum(x(i,:))</literal>)).</para> 
-
+      <literal>y</literal> the sum :  <literal>y(i)= sum(x(i,:))</literal>)).</para>
     <para><literal>y=sum(x,'m')</literal>  is the sum along the first non singleton
-      dimension of <literal>x</literal> (for compatibility with Matlab).</para> 
-
+      dimension of <literal>x</literal> (for compatibility with Matlab).</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=[1,2;3,4];
 trace(A)-sum(diag(A))
@@ -66,13 +71,17 @@ s=poly(0,'s');
 M=[s,%i+s;s^2,1];
 sum(M),sum(M,2)
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="cumsum">cumsum</link>
-    </member>
-    <member>
-      <link linkend="prod">prod</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cumsum">cumsum</link>
+      </member>
+      <member>
+        <link linkend="prod">prod</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

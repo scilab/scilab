@@ -10,17 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="repfreq"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>repfreq</refname><refpurpose> frequency response</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[ [frq,] repf]=repfreq(sys,fmin,fmax [,step])
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="repfreq">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>repfreq</refname>
+    <refpurpose> frequency response</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[ [frq,] repf]=repfreq(sys,fmin,fmax [,step])
 [ [frq,] repf]=repfreq(sys [,frq])
 [ frq,repf,splitf]=repfreq(sys,fmin,fmax [,step])
-[ frq,repf,splitf]=repfreq(sys [,frq])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+[ frq,repf,splitf]=repfreq(sys [,frq])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>sys</term>
@@ -60,7 +66,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para><literal>repfreq</literal> returns the frequency response calculation of a linear
     system. If <literal>sys(s)</literal> is the transfer function of <literal>Sys</literal>, <literal>repf(k)</literal> 
     equals <literal>sys(s)</literal> evaluated at <literal>s= %i*frq(k)*2*%pi</literal> for continuous time systems and 
@@ -80,7 +87,9 @@
     <literal>sys</literal> has a pole in the range <literal>[frq(splitf(k)),frq(splitf(k)+1)]</literal> and 
     no poles outside.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 A=diag([-1,-2]);B=[1;1];C=[1,1];
 Sys=syslin('c',A,B,C);
@@ -97,26 +106,33 @@ phi(2)
 repf=repfreq(Sys,frq);
 repf(2)-x
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="bode">bode</link>
-    </member>
-    <member>
-      <link linkend="freq">freq</link>
-    </member>
-    <member>
-      <link linkend="calfrq">calfrq</link>
-    </member>
-    <member>
-      <link linkend="horner">horner</link>
-    </member>
-    <member>
-      <link linkend="nyquist">nyquist</link>
-    </member>
-    <member>
-      <link linkend="dbphi">dbphi</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>S. S.  </para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="bode">bode</link>
+      </member>
+      <member>
+        <link linkend="freq">freq</link>
+      </member>
+      <member>
+        <link linkend="calfrq">calfrq</link>
+      </member>
+      <member>
+        <link linkend="horner">horner</link>
+      </member>
+      <member>
+        <link linkend="nyquist">nyquist</link>
+      </member>
+      <member>
+        <link linkend="dbphi">dbphi</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. S.  </para>
+  </refsection>
 </refentry>

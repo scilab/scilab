@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cspect"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>cspect</refname><refpurpose> spectral estimation (correlation method)  </refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cspect">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cspect</refname>
+    <refpurpose> spectral estimation (correlation method)  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -57,14 +64,17 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     Spectral estimation using the  correlation method.
     Cross-spectral estimate of <literal>x</literal> and <literal>y</literal> is calculated when both
     <literal>x</literal> and <literal>y</literal> are given. Auto-spectral estimate of <literal>x</literal> is calculated
     if <literal>y</literal> is not given.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 rand('normal');rand('seed',0);
 x=rand(1:1024-33+1);
@@ -79,11 +89,18 @@ sm=cspect(100,200,'tr',y);
 smsize=maxi(size(sm));fr=(1:smsize)/smsize;
 plot(fr,log(sm))
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="pspect">pspect</link>
-    </member>
-  </simplelist></refsection>
-  <refsection><title>Authors</title><para>C. Bunks ;  Digital Signal Processing by Oppenheim and Schafer</para></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pspect">pspect</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>C. Bunks ;  Digital Signal Processing by Oppenheim and Schafer</para>
+  </refsection>
 </refentry>

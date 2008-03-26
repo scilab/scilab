@@ -10,40 +10,37 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_double"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>mtlb_double</refname><refpurpose>Fonction d'�mulation de la fonction Matlab double</refpurpose></refnamediv>
-  
-  
-  
-  
-
-  
-
-  <refsection><title>Description</title>
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_double">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_double</refname>
+    <refpurpose>Fonction d'�mulation de la fonction Matlab double</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction <literal>double</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Avec un param�tre d'entr�e de type cha�ne de caract�re : La fonction <literal>double</literal> de Scilab
 	ne tol�re pas ce type d'entr�e alors que la fonction <literal>double</literal> de Matlab retourne
 	une matrice de codes ASCII.
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Avec un param�tre d'entr�e de type bool�en : La fonction <literal>double</literal> de Scilab
 	ne tol�re pas ce type d'entr�e alors que la fonction <literal>double</literal> de Matlab retourne
 	une matrice de doubles.
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>
     La fonction <literal>mtlb_double(A)</literal> est utilis�e par
     <literal>mfile2sci</literal> pour remplacer <literal>double(A)</literal> quand il n'�tait pas
@@ -51,44 +48,47 @@
     d�terminer la s�mantique correcte pendant l'ex�cution. Pour obtenir un code plus performant
     on peut remplacer les appels � <literal>mtlb_double</literal> :
     </para>
-
-    <itemizedlist>
-    <listitem>
     <itemizedlist>
       <listitem>
-        <para>
+        <itemizedlist>
+          <listitem>
+            <para>
         Si <literal>A</literal> est une cha�ne de caract�re
         <literal>mtlb_double(A)</literal> peut �tre remplac� par <literal>asciimat(A)</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Si <literal>A</literal> est une matrice de bool�ens
         <literal>mtlb_double(A)</literal> peut �tre remplac� par <literal>bool2s(A)</literal>
         </para>
-      </listitem>
-
-      <listitem>
-        <para>
+          </listitem>
+          <listitem>
+            <para>
         Si <literal>A</literal> est une matrice de doubles
         <literal>mtlb_double(A)</literal> peut �tre remplac� par <literal>A</literal>
         </para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-    </listitem>
-    </itemizedlist>
-
     <para>Attention : <literal>mtlb_double</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>
-
   </refsection>
-
-  <refsection><title>Voir Aussi</title><simplelist type="inline">
-    <member> <link linkend="asciimat">asciimat</link> </member>
-    <member> <link linkend="bool2s">bool2s</link> </member>
-  </simplelist></refsection>
-
-  <refsection><title>Auteurs</title><simplelist type="vert">
-    <member>V.C.</member>
-  </simplelist></refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="asciimat">asciimat</link>
+      </member>
+      <member>
+        <link linkend="bool2s">bool2s</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
 </refentry>

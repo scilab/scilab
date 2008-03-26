@@ -10,15 +10,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findR"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>findR</refname><refpurpose> Preprocessor for estimating the matrices of a linear time-invariant dynamical system</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>[R,N [,SVAL,RCND]] = findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)
-[R,N] = findR(S,Y)</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findR">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>findR</refname>
+    <refpurpose> Preprocessor for estimating the matrices of a linear time-invariant dynamical system</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[R,N [,SVAL,RCND]] = findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)
+[R,N] = findR(S,Y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>S</term>
@@ -188,7 +194,8 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>
     findR   Preprocesses the input-output data for estimating the matrices 
     of a linear time-invariant dynamical system, using Cholesky or
@@ -218,7 +225,9 @@
     [R,N] = findR(S,Y)  assumes U = [] and default values for the
     remaining input arguments.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
@@ -236,25 +245,29 @@ Y=(flts(U,SYS)+0.5*rand(1,1000,'normal'));
 SVAL
 N
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="findABCD">findABCD</link>
-    </member>
-    <member>
-      <link linkend="findAC">findAC</link>
-    </member>
-    <member>
-      <link linkend="findBD">findBD</link>
-    </member>
-    <member>
-      <link linkend="findBDK">findBDK</link>
-    </member>
-    <member>
-      <link linkend="sorder">sorder</link>
-    </member>
-    <member>
-      <link linkend="sident">sident</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="findABCD">findABCD</link>
+      </member>
+      <member>
+        <link linkend="findAC">findAC</link>
+      </member>
+      <member>
+        <link linkend="findBD">findBD</link>
+      </member>
+      <member>
+        <link linkend="findBDK">findBDK</link>
+      </member>
+      <member>
+        <link linkend="sorder">sorder</link>
+      </member>
+      <member>
+        <link linkend="sident">sident</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -9,15 +9,22 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- --><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="save"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>save</refname><refpurpose> saving variables in binary files</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsynopsisdiv><title>Calling Sequence</title><synopsis>save(filename [,x1,x2,...,xn])
-save(fd [,x1,x2,...,xn])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="save">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>save</refname>
+    <refpurpose> saving variables in binary files</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>save(filename [,x1,x2,...,xn])
+save(fd [,x1,x2,...,xn])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>
@@ -39,7 +46,8 @@ save(fd [,x1,x2,...,xn])</synopsis></refsynopsisdiv>
       </varlistentry>
     </variablelist>
   </refsection>
-  <refsection><title>Description</title>
+  <refsection>
+    <title>Description</title>
     <para>The <literal>save</literal> command can be used to save Scilab current variables 
      in a binary file. If a variable is a graphic handle, the <literal>save</literal> function
       saves all the corresponding <link linkend="graphics_entities">graphics_entities</link> definition. </para>
@@ -53,7 +61,9 @@ save(fd [,x1,x2,...,xn])</synopsis></refsynopsisdiv>
     variables <literal>x</literal> and <literal>y</literal>.</para>
     <para>Saved  variables can be reloaded by the <literal>load</literal> command.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 a=eye(2,2);b=ones(a);
 save('val.dat',a,b);
@@ -77,16 +87,20 @@ save(fd,lst)
 mclose(fd)
 
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="load">load</link>
-    </member>
-    <member>
-      <link linkend="save_format">save_format</link>
-    </member>
-    <member>
-      <link linkend="mopen">mopen</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="load">load</link>
+      </member>
+      <member>
+        <link linkend="save_format">save_format</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -10,13 +10,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="colormap"><info><pubdate>$LastChangedDate$</pubdate></info><refnamediv><refname>colormap</refname><refpurpose> using colormaps</refpurpose></refnamediv>
-  
-  
-  
-  
-  
-  <refsection><title>Description</title>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="colormap">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>colormap</refname>
+    <refpurpose> using colormaps</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
     <para>
     A colormap <literal>cmap</literal> is defined by a m x 3 matrix. m is the number of colors.
     Color number i is given as a 3-uple <literal>cmap(i,1)</literal>, <literal>cmap(i,2)</literal> 
@@ -33,10 +36,12 @@
     <para>
     The functions <link linkend="hotcolormap">hotcolormap</link>, <link linkend="jetcolormap">jetcolormap</link> and  <link linkend="graycolormap">graycolormap</link> 
     provide colormaps with continuous variation of the colors.</para>
-     <para>
+    <para>
     You can get the default colormap by <literal>cmap=get(sdf(),"color_map")</literal>.</para>
   </refsection>
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
 n=64;
 r=linspace(0,1,n)';
@@ -47,22 +52,26 @@ f=gcf(); f.color_map=cmap;
 plot3d1()
 f.color_map=get(sdf(),"color_map");
  
-  ]]></programlisting></refsection>
-  <refsection><title>See Also</title><simplelist type="inline">
-    <member>
-      <link linkend="hotcolormap">hotcolormap</link>
-    </member>
-    <member>
-      <link linkend="graycolormap">graycolormap</link>
-    </member>
-    <member>
-      <link linkend="jetcolormap">jetcolormap</link>
-    </member>
-    <member>
-      <link linkend="color">color</link>
-    </member>
-    <member>
-      <link linkend="getcolor">getcolor</link>
-    </member>
-  </simplelist></refsection>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="hotcolormap">hotcolormap</link>
+      </member>
+      <member>
+        <link linkend="graycolormap">graycolormap</link>
+      </member>
+      <member>
+        <link linkend="jetcolormap">jetcolormap</link>
+      </member>
+      <member>
+        <link linkend="color">color</link>
+      </member>
+      <member>
+        <link linkend="getcolor">getcolor</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>
