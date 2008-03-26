@@ -1,3 +1,13 @@
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_func_elitist(Pop_in,Indiv1,Indiv2,FObj_Pop_in,FObj_Indiv1,FObj_Indiv2, ...
                                                                                       MO_Total_FObj_in,MO_FObj_Indiv1,MO_FObj_Indiv2,param)
 
