@@ -18,4 +18,8 @@ libparameters_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libparameters_la_etcdir = $(mydatadir)/etc
 libparameters_la_etc_DATA = etc/parameters.quit etc/parameters.start
 
+#### parameters : demos files ####
+libparameters_la_demosdir = $(mydatadir)/demos
+libparameters_la_demos_DATA = demos/params_demo.sce
+
 include $(top_srcdir)/Makefile.incl.am
