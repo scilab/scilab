@@ -1,85 +1,99 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "file://C:\PROGRA~1\SCILAB~1.1\man/manrev.dtd">
-<MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>remove_param</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>23-Aug-2007</DATE>
-  <SHORT_DESCRIPTION name="remove_param">  Remove a parameter and its associated value from a list of parameters </SHORT_DESCRIPTION>
-
-  <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>[ga_list,err] = remove_param(list_name,param_name)</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-
-  <PARAM>
-  <PARAM_INDENT>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>list_name</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the list of parameters. This list must have been initialize by a call to init_param.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>param_name</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : a string. The name of the parameter to be removed from the list of parameters. If the parameter doesn't exist, nothing happens.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>ga_list</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : the updated list of parameters.
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-
-    <PARAM_ITEM>
-    <PARAM_NAME>err</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>
-       : an error flag which is set to %T if list_name is not of type plist (this list hasn't been initialized by a call to init_param).
-       </SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
-  </PARAM>
- 
-  <DESCRIPTION>
-     <DESCRIPTION_INDENT>
-     <DESCRIPTION_ITEM>
-     <P>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="remove_param">
+  <info>
+    <pubdate>23-Aug-2007</pubdate>
+  </info>
+  <refnamediv>
+    <refname>remove_param</refname>
+    <refpurpose>  Remove a parameter and its associated value from a list of parameters </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[ga_list,err] = remove_param(list_name,param_name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>list_name</term>
+        <listitem>
+          <para>the list of parameters. This list must have been initialize by a call to init_param.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param_name</term>
+        <listitem>
+          <para>a string. The name of the parameter to be removed from the list of parameters. If the parameter doesn't exist, nothing happens.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ga_list</term>
+        <listitem>
+          <para>the updated list of parameters.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>err</term>
+        <listitem>
+          <para>an error flag which is set to %T if list_name is not of type plist (this list hasn't been initialized by a call to init_param).
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
       This function allows to remove a parameter and its associated value from a list of parameters.
-     </P>
-     </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
    mylist = init_param();
    mylist = add_param(mylist,'minbound',[0 0 0]);
    mylist = add_param(mylist,'maxbound',[0 0 0]);
    mylist = remove_param(mylist,'minbound');
-  ]]></EXAMPLE>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK> init_param </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> set_param </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> get_param </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> add_param </LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> is_param </LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-
-  <AUTHORS>
-    <AUTHORS_ITEM label='collette'>
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="init_param"> init_param </link>
+      </member>
+      <member>
+        <link linkend="set_param"> set_param </link>
+      </member>
+      <member>
+        <link linkend="get_param"> get_param </link>
+      </member>
+      <member>
+        <link linkend="add_param"> add_param </link>
+      </member>
+      <member>
+        <link linkend="is_param"> is_param </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>collette</term>
+        <listitem>
+          <para>
     ycollet@freesurf.fr
-    </AUTHORS_ITEM>
-  </AUTHORS>
-</MAN>
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>
