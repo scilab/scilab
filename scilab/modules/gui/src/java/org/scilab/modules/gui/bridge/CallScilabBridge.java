@@ -247,6 +247,15 @@ public class CallScilabBridge {
 	}
 	
 	/**
+	 * Create a new Font Chooser in Scilab GUIs
+	 * @return the ID of the Font Chooser in the UIElementMapper
+	 */
+	public static int newFontChooser() {
+		FontChooser fontChooser = ScilabFontChooser.createFontChooser();
+		return UIElementMapper.add(fontChooser);
+	}
+	
+	/**
 	 * Create a new MessageBox in Scilab GUIs
 	 * @return the ID of the MessageBox in the UIElementMapper
 	 */
@@ -1959,7 +1968,8 @@ public class CallScilabBridge {
 	 */
 	public static void changeConsoleFont() {
 		FontChooser fontChooser = ScilabFontChooser.createFontChooser(ScilabConsole.getConsole().getFont());
-
+		fontChooser.displayAndWait();
+		
 		Font selectedFont = fontChooser.getSelectedFont();
 		
 		if (selectedFont != null) {
@@ -2018,5 +2028,96 @@ public class CallScilabBridge {
 			/* Save new settings */
 			ConfigManager.saveConsoleBackground(selectedColor);
 		}
+	}
+	
+	/***********************/
+	/*                     */
+	/* FONT CHOOSER BRIDGE */
+	/*                     */
+	/***********************/
+	
+	/**
+	 * Set the default font name for a FileChooser
+	 * @param id the id of the FileChooser
+	 * @param fontName the name of the font
+	 */
+	public static void setFontChooserFontName(int id, String fontName) {
+		((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).setDefaultFontName(fontName);
+	}
+	
+	/**
+	 * Set the default font size for a FileChooser
+	 * @param id the id of the FileChooser
+	 * @param fontSize the size of the font
+	 */
+	public static void setFontChooserFontSize(int id, int fontSize) {
+		((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).setDefaultFontSize(fontSize);
+	}
+
+	/**
+	 * Set the default bold attribute for a FileChooser
+	 * @param id the id of the FileChooser
+	 * @param bold the bold attribute of the font
+	 */
+	public static void setFontChooserBold(int id, boolean bold) {
+		((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).setDefaultBold(bold);
+	}
+
+	/**
+	 * Set the default italic attribute for a FileChooser
+	 * @param id the id of the FileChooser
+	 * @param italic the italic attribute of the font
+	 */
+	public static void setFontChooserItalic(int id, boolean italic) {
+		((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).setDefaultItalic(italic);
+	}
+
+	/**
+	 * Get the selected font name for a FileChooser
+	 * @param id the id of the FileChooser
+	 * @return the name of the font
+	 */
+	public static String getFontChooserFontName(int id) {
+		Font selectedFont = ((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelectedFont();
+		if (selectedFont != null) {
+			return selectedFont.getFamily();
+		} else {
+			return "";
+		}
+	}
+	
+	/**
+	 * Get the selected font size for a FileChooser
+	 * @param id the id of the FileChooser
+	 * @return the size of the font
+	 */
+	public static int getFontChooserFontSize(int id) {
+		return ((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelectedFont().getSize();
+	}
+
+	/**
+	 * Get the selected bold attribute for a FileChooser
+	 * @param id the id of the FileChooser
+	 * @return the bold attribute of the font
+	 */
+	public static boolean getFontChooserBold(int id) {
+		return ((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelectedFont().isBold();
+	}
+
+	/**
+	 * Get the selected italic attribute for a FileChooser
+	 * @param id the id of the FileChooser
+	 * @return the italic attribute of the font
+	 */
+	public static boolean getFontChooserItalic(int id) {
+		return ((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelectedFont().isItalic();
+	}
+	
+	/**
+	 * Display this chooser and wait for user selection 
+	 * @param id the id of the FontChooser
+	 */
+	public static void fontChooserDisplayAndWait(int id) {
+		((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
 	}
 }

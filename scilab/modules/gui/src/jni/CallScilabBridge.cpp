@@ -236,6 +236,16 @@ voidsetWaitBarIndeterminateModejintjbooleanID=NULL;
 voidlaunchHelpBrowserjobjectArrayjstringID=NULL; 
 jbooleansearchKeywordjobjectArrayjstringjstringID=NULL; 
 voidsaveMainWindowSettingsID=NULL; 
+jintnewFontChooserID=NULL; 
+voidfontChooserDisplayAndWaitjintID=NULL; 
+voidsetFontChooserFontNamejintjstringID=NULL; 
+voidsetFontChooserFontSizejintjintID=NULL; 
+voidsetFontChooserBoldjintjbooleanID=NULL; 
+voidsetFontChooserItalicjintjbooleanID=NULL; 
+jstringgetFontChooserFontNamejintID=NULL; 
+jintgetFontChooserFontSizejintID=NULL; 
+jbooleangetFontChooserBoldjintID=NULL; 
+jbooleangetFontChooserItalicjintID=NULL; 
 
 
 }
@@ -395,6 +405,16 @@ voidsetWaitBarIndeterminateModejintjbooleanID=NULL;
 voidlaunchHelpBrowserjobjectArrayjstringID=NULL; 
 jbooleansearchKeywordjobjectArrayjstringjstringID=NULL; 
 voidsaveMainWindowSettingsID=NULL; 
+jintnewFontChooserID=NULL; 
+voidfontChooserDisplayAndWaitjintID=NULL; 
+voidsetFontChooserFontNamejintjstringID=NULL; 
+voidsetFontChooserFontSizejintjintID=NULL; 
+voidsetFontChooserBoldjintjbooleanID=NULL; 
+voidsetFontChooserItalicjintjbooleanID=NULL; 
+jstringgetFontChooserFontNamejintID=NULL; 
+jintgetFontChooserFontSizejintID=NULL; 
+jbooleangetFontChooserBoldjintID=NULL; 
+jbooleangetFontChooserItalicjintID=NULL; 
 
 
 }
@@ -3943,6 +3963,237 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
+}
+
+long CallScilabBridge::newFontChooser (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewFontChooserID = curEnv->GetStaticMethodID(cls, "newFontChooser", "()I" ) ;
+if (jintnewFontChooserID == NULL) {
+std::cerr << "Could not access to the method " << "newFontChooser" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewFontChooserID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void CallScilabBridge::fontChooserDisplayAndWait (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidfontChooserDisplayAndWaitjintID = curEnv->GetStaticMethodID(cls, "fontChooserDisplayAndWait", "(I)V" ) ;
+if (voidfontChooserDisplayAndWaitjintID == NULL) {
+std::cerr << "Could not access to the method " << "fontChooserDisplayAndWait" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidfontChooserDisplayAndWaitjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setFontChooserFontName (JavaVM * jvm_, long objID, char * fontName){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFontChooserFontNamejintjstringID = curEnv->GetStaticMethodID(cls, "setFontChooserFontName", "(ILjava/lang/String;)V" ) ;
+if (voidsetFontChooserFontNamejintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setFontChooserFontName" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring fontName_ = curEnv->NewStringUTF( fontName );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFontChooserFontNamejintjstringID ,objID, fontName_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setFontChooserFontSize (JavaVM * jvm_, long objID, long fontSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFontChooserFontSizejintjintID = curEnv->GetStaticMethodID(cls, "setFontChooserFontSize", "(II)V" ) ;
+if (voidsetFontChooserFontSizejintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setFontChooserFontSize" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFontChooserFontSizejintjintID ,objID, fontSize);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setFontChooserBold (JavaVM * jvm_, long objID, bool bold){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFontChooserBoldjintjbooleanID = curEnv->GetStaticMethodID(cls, "setFontChooserBold", "(IZ)V" ) ;
+if (voidsetFontChooserBoldjintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setFontChooserBold" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jboolean bold_ = ((bool) bold ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFontChooserBoldjintjbooleanID ,objID, bold_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setFontChooserItalic (JavaVM * jvm_, long objID, bool italic){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFontChooserItalicjintjbooleanID = curEnv->GetStaticMethodID(cls, "setFontChooserItalic", "(IZ)V" ) ;
+if (voidsetFontChooserItalicjintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setFontChooserItalic" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jboolean italic_ = ((bool) italic ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFontChooserItalicjintjbooleanID ,objID, italic_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+char * CallScilabBridge::getFontChooserFontName (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jstringgetFontChooserFontNamejintID = curEnv->GetStaticMethodID(cls, "getFontChooserFontName", "(I)Ljava/lang/String;" ) ;
+if (jstringgetFontChooserFontNamejintID == NULL) {
+std::cerr << "Could not access to the method " << "getFontChooserFontName" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetFontChooserFontNamejintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+
+return myStringBuffer;
+
+}
+
+long CallScilabBridge::getFontChooserFontSize (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintgetFontChooserFontSizejintID = curEnv->GetStaticMethodID(cls, "getFontChooserFontSize", "(I)I" ) ;
+if (jintgetFontChooserFontSizejintID == NULL) {
+std::cerr << "Could not access to the method " << "getFontChooserFontSize" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetFontChooserFontSizejintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+bool CallScilabBridge::getFontChooserBold (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleangetFontChooserBoldjintID = curEnv->GetStaticMethodID(cls, "getFontChooserBold", "(I)Z" ) ;
+if (jbooleangetFontChooserBoldjintID == NULL) {
+std::cerr << "Could not access to the method " << "getFontChooserBold" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleangetFontChooserBoldjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
+}
+
+bool CallScilabBridge::getFontChooserItalic (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleangetFontChooserItalicjintID = curEnv->GetStaticMethodID(cls, "getFontChooserItalic", "(I)Z" ) ;
+if (jbooleangetFontChooserItalicjintID == NULL) {
+std::cerr << "Could not access to the method " << "getFontChooserItalic" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleangetFontChooserItalicjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
 }
 
 }

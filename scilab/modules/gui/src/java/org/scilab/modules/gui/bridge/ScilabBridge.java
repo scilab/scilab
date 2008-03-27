@@ -4292,6 +4292,50 @@ public class ScilabBridge {
 		return ScilabFontChooserBridge.getSelectedFont(fontChooser);
 	}
 
+	/** 
+	 * Set the default font name 
+	 * @param fontChooser the FontChooser
+	 * @param fontName the default font name
+	 */
+	public static void setDefaultFontName(FontChooser fontChooser, String fontName) {
+		ScilabFontChooserBridge.setDefaultFontName(fontChooser, fontName);
+	}
+
+	/** 
+	 * Set the default font size 
+	 * @param fontChooser the FontChooser
+	 * @param fontSize the default font size
+	 */
+	public static void setDefaultFontSize(FontChooser fontChooser, int fontSize) {
+		ScilabFontChooserBridge.setDefaultFontSize(fontChooser, fontSize);
+	}
+
+	/** 
+	 * Set the default font bold attribute 
+	 * @param fontChooser the FontChooser
+	 * @param bold the default font bold attribute
+	 */
+	public static void setDefaultBold(FontChooser fontChooser, boolean bold) {
+		ScilabFontChooserBridge.setDefaultBold(fontChooser, bold);
+	}
+
+	/** 
+	 * Set the default font italic attribute 
+	 * @param fontChooser the FontChooser
+	 * @param italic the default font italic attribute
+	 */
+	public static void setDefaultItalic(FontChooser fontChooser, boolean italic) {
+		ScilabFontChooserBridge.setDefaultItalic(fontChooser, italic);
+	}
+	
+	/**
+	 * Display the font chooser and wait for a user input
+	 * @param fontChooser the FontChooser
+	 */
+	public static void displayAndWait(FontChooser fontChooser) {
+		ScilabFontChooserBridge.displayAndWait(fontChooser);
+	}
+
 	/***********************/
 	/* ColorChooser Bridge */
 	/***********************/

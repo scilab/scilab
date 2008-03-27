@@ -187,6 +187,16 @@ jmethodID voidsetWaitBarIndeterminateModejintjbooleanID; // cache method id
 jmethodID voidlaunchHelpBrowserjobjectArrayjstringID; // cache method id
 jmethodID jbooleansearchKeywordjobjectArrayjstringjstringID; // cache method id
 jmethodID voidsaveMainWindowSettingsID; // cache method id
+jmethodID jintnewFontChooserID; // cache method id
+jmethodID voidfontChooserDisplayAndWaitjintID; // cache method id
+jmethodID voidsetFontChooserFontNamejintjstringID; // cache method id
+jmethodID voidsetFontChooserFontSizejintjintID; // cache method id
+jmethodID voidsetFontChooserBoldjintjbooleanID; // cache method id
+jmethodID voidsetFontChooserItalicjintjbooleanID; // cache method id
+jmethodID jstringgetFontChooserFontNamejintID; // cache method id
+jmethodID jintgetFontChooserFontSizejintID; // cache method id
+jmethodID jbooleangetFontChooserBoldjintID; // cache method id
+jmethodID jbooleangetFontChooserItalicjintID; // cache method id
 
 
 /**
@@ -495,6 +505,26 @@ static void launchHelpBrowser(JavaVM * jvm_, char ** helps, int helpsSize, char 
 static bool searchKeyword(JavaVM * jvm_, char ** helps, int helpsSize, char * keyword, char * language);
 
 static void saveMainWindowSettings(JavaVM * jvm_);
+
+static long newFontChooser(JavaVM * jvm_);
+
+static void fontChooserDisplayAndWait(JavaVM * jvm_, long objID);
+
+static void setFontChooserFontName(JavaVM * jvm_, long objID, char * fontName);
+
+static void setFontChooserFontSize(JavaVM * jvm_, long objID, long fontSize);
+
+static void setFontChooserBold(JavaVM * jvm_, long objID, bool bold);
+
+static void setFontChooserItalic(JavaVM * jvm_, long objID, bool italic);
+
+static char * getFontChooserFontName(JavaVM * jvm_, long objID);
+
+static long getFontChooserFontSize(JavaVM * jvm_, long objID);
+
+static bool getFontChooserBold(JavaVM * jvm_, long objID);
+
+static bool getFontChooserItalic(JavaVM * jvm_, long objID);
 
 
                         /**

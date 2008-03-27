@@ -33,5 +33,33 @@ public interface FontChooser extends UIElement {
 	 * @return the selected font
 	 */
 	Font getSelectedFont();
+	
+	/** 
+	 * Set the default font name 
+	 * @param fontName the default font name
+	 */
+	void setDefaultFontName(String fontName);
 
+	/** 
+	 * Set the default font size 
+	 * @param fontSize the default font size
+	 */
+	void setDefaultFontSize(int fontSize);
+
+	/** 
+	 * Set the default font bold attribute 
+	 * @param bold the default font bold attribute
+	 */
+	void setDefaultBold(boolean bold);
+
+	/** 
+	 * Set the default font italic attribute 
+	 * @param italic the default font italic attribute
+	 */
+	void setDefaultItalic(boolean italic);
+	
+	/**
+	 * Display the font chooser and wait for a user input
+	 */
+	void displayAndWait();
 }

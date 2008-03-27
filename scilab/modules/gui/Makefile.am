@@ -35,6 +35,7 @@ src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallFileChooser.cpp \
+src/cpp/CallFontChooser.cpp \
 src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
 src/cpp/CallMainWindow.cpp \
@@ -129,7 +130,8 @@ sci_gateway/c/sci_mpopup.c \
 sci_gateway/c/sci_messagebox.c \
 sci_gateway/c/sci_waitbar.c \
 sci_gateway/c/sci_progressionbar.c \
-sci_gateway/c/sci_helpbrowser.c
+sci_gateway/c/sci_helpbrowser.c \
+sci_gateway/c/sci_uigetfont.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \
@@ -213,6 +215,7 @@ includes/sci_raise_window.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \
 includes/CallFileChooser.h \
+includes/CallFontChooser.h \
 includes/CallFigure.h \
 includes/CallJxclick.h \
 includes/CallJxgetmouse.h \

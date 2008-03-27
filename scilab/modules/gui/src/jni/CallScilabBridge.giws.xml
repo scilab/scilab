@@ -493,5 +493,39 @@
 <!-- Main settings -->
 	<method name="saveMainWindowSettings" returnType="void" modifier="static">
         </method>      
+<!-- Font Chooser -->
+	<method name="newFontChooser" returnType="int" modifier="static">
+        </method>      
+	<method name="fontChooserDisplayAndWait" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="setFontChooserFontName" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="String" name="fontName"/>
+        </method>      
+	<method name="setFontChooserFontSize" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="int" name="fontSize"/>
+        </method>      
+	<method name="setFontChooserBold" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="boolean" name="bold"/>
+        </method>      
+	<method name="setFontChooserItalic" returnType="void" modifier="static">
+           <parameter type="int" name="objID"/>
+         <parameter type="boolean" name="italic"/>
+        </method>      
+	<method name="getFontChooserFontName" returnType="String" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="getFontChooserFontSize" returnType="int" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="getFontChooserBold" returnType="boolean" modifier="static">
+           <parameter type="int" name="objID"/>
+       </method>      
+	<method name="getFontChooserItalic" returnType="boolean" modifier="static">
+           <parameter type="int" name="objID"/>
+       </method>      
   </object>
 </package>

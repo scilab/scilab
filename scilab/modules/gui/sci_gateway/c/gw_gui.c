@@ -45,7 +45,8 @@ static gw_generic_table Tab[]=
 	{sci_messagebox,"messagebox"},
 	{sci_waitbar,"waitbar"},
 	{sci_progressionbar,"progressionbar"},
-	{sci_helpbrowser,"helpbrowser"}
+	{sci_helpbrowser,"helpbrowser"},
+	{sci_uigetfont,"uigetfont"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

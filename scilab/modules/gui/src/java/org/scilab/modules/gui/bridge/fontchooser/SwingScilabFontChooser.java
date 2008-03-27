@@ -207,8 +207,6 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
 	    pack();
 	    
 	    setResizable(false);
-	    
-	    setVisible(true);
 	}
 
 	/**
@@ -254,6 +252,53 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
 		selectedFont = new Font(selectedFontName, attrs, selectedFontSize);
 		preview.setFont(selectedFont);
 		pack();
+	}
+
+	/** 
+	 * Set the default font name 
+	 * @param fontName the default font name
+	 */
+	public void setDefaultFontName(String fontName) {
+		for (int fontIndex = 0; fontIndex < availableFontNames.length; fontIndex++) {
+			if (availableFontNames[fontIndex].equalsIgnoreCase(fontName)) {
+				fontNameList.setSelectedIndex(fontIndex);
+			}
+		}
+	}
+
+	/** 
+	 * Set the default font size 
+	 * @param fontSize the default font size
+	 */
+	public void setDefaultFontSize(int fontSize) {
+		for (int sizeIndex = 0; sizeIndex < availableFontSizes.length; sizeIndex++) {
+			if (availableFontSizes[sizeIndex].equals(Integer.toString(fontSize))) {
+				fontSizeList.setSelectedIndex(sizeIndex);
+			}
+		}
+	}
+
+	/** 
+	 * Set the default font bold attribute 
+	 * @param bold the default font bold attribute
+	 */
+	public void setDefaultBold(boolean bold) {
+		boldCheckbox.setSelected(bold);
+	}
+
+	/** 
+	 * Set the default font italic attribute 
+	 * @param italic the default font italic attribute
+	 */
+	public void setDefaultItalic(boolean italic) {
+		italicCheckbox.setSelected(italic);
+	}
+	
+	/**
+	 * Display the font chooser and wait for a user input
+	 */
+	public void displayAndWait() {
+	    setVisible(true);
 	}
 
 }

@@ -56,4 +56,5 @@
 <PRIMITIVE gatewayId="25" primitiveId="23" primitiveName="waitbar" />
 <PRIMITIVE gatewayId="25" primitiveId="24" primitiveName="progressionbar" />
 <PRIMITIVE gatewayId="25" primitiveId="25" primitiveName="helpbrowser" />
+<PRIMITIVE gatewayId="25" primitiveId="26" primitiveName="uigetfont" />
 </GATEWAY>

@@ -388,6 +388,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CallFontChooser.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\CallHelpBrowser.cpp"
 				>
 			</File>
@@ -858,6 +862,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\CallFileChooser.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallFontChooser.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\CallFontChooser.hxx"
 				>
 			</File>
 			<File

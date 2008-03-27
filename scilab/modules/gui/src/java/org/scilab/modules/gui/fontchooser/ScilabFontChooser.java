@@ -69,6 +69,45 @@ public class ScilabFontChooser extends ScilabUIElement implements FontChooser {
 	public Font getSelectedFont() {
 		return ScilabBridge.getSelectedFont(this);
 	}
+	
+	/** 
+	 * Set the default font name 
+	 * @param fontName the default font name
+	 */
+	public void setDefaultFontName(String fontName) {
+		ScilabBridge.setDefaultFontName(this, fontName);
+	}
+
+	/** 
+	 * Set the default font size 
+	 * @param fontSize the default font size
+	 */
+	public void setDefaultFontSize(int fontSize) {
+		ScilabBridge.setDefaultFontSize(this, fontSize);
+	}
+
+	/** 
+	 * Set the default font bold attribute 
+	 * @param bold the default font bold attribute
+	 */
+	public void setDefaultBold(boolean bold) {
+		ScilabBridge.setDefaultBold(this, bold);
+	}
+
+	/** 
+	 * Set the default font italic attribute 
+	 * @param italic the default font italic attribute
+	 */
+	public void setDefaultItalic(boolean italic) {
+		ScilabBridge.setDefaultItalic(this, italic);
+	}
+	
+	/**
+	 * Display the font chooser and wait for a user input
+	 */
+	public void displayAndWait() {
+		ScilabBridge.displayAndWait(this);
+	}
 
 	/**
 	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
