@@ -750,7 +750,7 @@ endfunction
 
 function create_MD(dirs,titles,output_filename)
 
-	master_document = ["<?xml version=""1.0"" encoding=""ISO-8859-1""?>"; ..
+	master_document = ["<?xml version=""1.0"" encoding=""UTF-8""?>"; ..
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
 		
@@ -812,7 +812,7 @@ function create_MD_dir(my_dir,my_title,output_filename)
 	category_id = title2category(my_title);
 	my_title    = strsubst(my_title , "&"  , "&amp;" );
 	
-	master_document = ["<?xml version=""1.0"" encoding=""ISO-8859-1""?>"; ..
+	master_document = ["<?xml version=""1.0"" encoding=""UTF-8""?>"; ..
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
 		
