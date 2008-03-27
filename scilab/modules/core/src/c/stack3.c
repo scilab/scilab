@@ -926,7 +926,7 @@ void GetRhsCSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalEle
 	iAddrRealData		= iAddrColByRow + *_piTotalElem;
 	iAddrImgData		= iAddrColByRow + 2 * (*_piTotalElem);
 
-	for(iIndex = 0 ; iIndex < *_piTotalElem ; iIndex++)
+	for(iIndex = 0 ; iIndex < *_piRows ; iIndex++)
 	{
 		_piElemByRow[iIndex] = *istk(iAddElemByRow + iIndex);
 	}
