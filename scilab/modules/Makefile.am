@@ -70,7 +70,9 @@ helptools \
 fftw \
 umfpack \
 demo_tools \
-genetic_algorithms
+genetic_algorithms \
+simulated_annealing \
+parameters
 
 #umfpack
 
