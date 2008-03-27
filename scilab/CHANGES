@@ -195,6 +195,8 @@ Online Help management:
 	+ del_help_chapter
 	+ add_module_help_chapter
 	+ del_module_help_chapter
+ - New Java help browser
+ - New help system based on DocBook
 
 
 Metanet : graph and network toolbox
