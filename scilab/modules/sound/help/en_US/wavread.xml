@@ -60,9 +60,9 @@ y=wavread(wavfile,ext)
     and the number of bits per sample used to encode the data in the file.</para>
     <para><literal>wavread(wavfile,n)</literal> returns the first n samples from each channel.</para>
     <para><literal>wavread(wavfile,[n1,n2])</literal> returns samples n1 to n2.</para>
-    <para><literal>read(wavfile,'size')</literal> returns the size of the audio data contained
+    <para><literal>wavread(wavfile,'size')</literal> returns the size of the audio data contained
     in the file in place of the actual audio data, returning the
-    vector as [samples channels].</para>
+    vector as [channels samples].</para>
   </refsection>
   <refsection>
     <title>Examples</title>
