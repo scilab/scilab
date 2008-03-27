@@ -1,0 +1,47 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- Non-regression test for bug 332 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=332
+//
+// <-- Short Description -->
+//   When linpro is given an initial feasible solution
+//   such as the result of a previous run, the solution
+//   returned as X is incorrect.
+
+
+A_tmp  = [ -22.    0.     0.     0.     100.    0.;
+    22.  -10.    0.     0.     0.      0 ;
+    0.     10.  -22.    0.     0.      0 ;
+    0.     0.     22.  -9.5    0.      0 ;
+    0.     0.     0.   -9.5    0.      9.5 ;
+    1.     0.     1.     0.     0.    -1;
+    0.     1.     0.     0.     0.    -1;
+    0.     0.     0.     0.     1.    -1];
+
+b_tmp = [ - 10;
+    - 25;
+    - 35;
+    0;
+    - 100;
+    0;
+    0;
+    0];
+
+f=[0;0;0;0;0;1];
+
+[Xtmp,lgr,fval]=linpro(f,A_tmp,b_tmp,[],[],5,"g",7);
+[Xtmp1,lgr,fval]=linpro(f,A_tmp,b_tmp,[],[],5,Xtmp,7);
+
+if or(Xtmp-Xtmp1>1e-12) then pause; end
+
+[Xtmp2,lgr,fval]=linpro(f,A_tmp,b_tmp,[],[],5,"v",7);
+[Xtmp3,lgr,fval]=linpro(f,A_tmp,b_tmp,[],[],5,Xtmp2,7); 
+
+if or(Xtmp2-Xtmp3>1e-12) then pause; end
