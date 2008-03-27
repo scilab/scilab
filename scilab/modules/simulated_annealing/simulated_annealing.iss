@@ -28,4 +28,4 @@ Source: modules\{#SIMANNEALING}\macros\buildmacros.sce; DestDir: {app}\modules\{
 Source: modules\{#SIMANNEALING}\macros\buildmacros.bat; DestDir: {app}\modules\{#SIMANNEALING}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#SIMANNEALING}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SIMANNEALING}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 
-Source: modules\{#SIMANNEALING}\tests\*.*; DestDir: {app}\modules\{#SIMANNEALING}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+;Source: modules\{#SIMANNEALING}\tests\*.*; DestDir: {app}\modules\{#SIMANNEALING}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}

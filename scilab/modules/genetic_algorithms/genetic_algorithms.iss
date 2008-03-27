@@ -28,4 +28,4 @@ Source: modules\{#GENETICALGORITHMS}\macros\buildmacros.sce; DestDir: {app}\modu
 Source: modules\{#GENETICALGORITHMS}\macros\buildmacros.bat; DestDir: {app}\modules\{#GENETICALGORITHMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#GENETICALGORITHMS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#GENETICALGORITHMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 
-Source: modules\{#GENETICALGORITHMS}\tests\*.*; DestDir: {app}\modules\{#GENETICALGORITHMS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+;Source: modules\{#GENETICALGORITHMS}\tests\*.*; DestDir: {app}\modules\{#GENETICALGORITHMS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
