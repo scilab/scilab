@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="filter">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 08:50:39 +0000 (mer, 26 mar 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>filter</refname>
+    <refpurpose>filters a data sequence using a digital filter</refpurpose>
+  </refnamediv>
+ <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y,zf] = filter(num,den,x [,zi])</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>num</term>
+        <listitem>
+          <para>real vector : the coefficients of the filter numerator in decreasing power order, or a polynomial.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>den</term>
+        <listitem>
+          <para>real vector : the coefficients of the filter denominator in decreasing power order, or a polynomial.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real row vector : the input signal</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zi</term>
+        <listitem>
+          <para>real row vector of length
+          <literal>max(length(a),length(b))-1</literal>: the initial
+          condition relative to a "direct form II transposed" state
+          space representation. The default value is a vector filled
+          with zeros. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>real row vector : the filtered signal. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zf</term>
+        <listitem>
+          <para>real row vector : the final state. It can be used to
+          filter a next batch of the input signal. </para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      This function filters a data sequence using a digital
+      filter using a "direct form II transposed"
+      implementation
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>References</title>
+    <para>
+      Oppenheim, A. V. and R.W. Schafer. Discrete-Time Signal Processing, Englewood Cliffs, NJ: Prentice-Hall, 1989, pp. 311-312. 
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+	<link linkend="flts">flts</link>
+      </member>
+      <member>
+	<link linkend="rtitr">rtitr</link>
+      </member>
+      <member>
+	<link linkend="ltitr">ltitr</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>
