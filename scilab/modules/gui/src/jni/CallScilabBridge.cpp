@@ -246,6 +246,10 @@ jstringgetFontChooserFontNamejintID=NULL;
 jintgetFontChooserFontSizejintID=NULL; 
 jbooleangetFontChooserBoldjintID=NULL; 
 jbooleangetFontChooserItalicjintID=NULL; 
+jintnewColorChooserID=NULL; 
+voidcolorChooserDisplayAndWaitjintID=NULL; 
+voidsetColorChooserDefaultColorjintjintArrayID=NULL; 
+jintArraygetColorChooserSelectedColorjintID=NULL; 
 
 
 }
@@ -415,6 +419,10 @@ jstringgetFontChooserFontNamejintID=NULL;
 jintgetFontChooserFontSizejintID=NULL; 
 jbooleangetFontChooserBoldjintID=NULL; 
 jbooleangetFontChooserItalicjintID=NULL; 
+jintnewColorChooserID=NULL; 
+voidcolorChooserDisplayAndWaitjintID=NULL; 
+voidsetColorChooserDefaultColorjintjintArrayID=NULL; 
+jintArraygetColorChooserSelectedColorjintID=NULL; 
 
 
 }
@@ -4193,6 +4201,112 @@ curEnv->ExceptionDescribe() ;
 
                         
 return (res == JNI_TRUE);
+
+}
+
+long CallScilabBridge::newColorChooser (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewColorChooserID = curEnv->GetStaticMethodID(cls, "newColorChooser", "()I" ) ;
+if (jintnewColorChooserID == NULL) {
+std::cerr << "Could not access to the method " << "newColorChooser" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewColorChooserID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void CallScilabBridge::colorChooserDisplayAndWait (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidcolorChooserDisplayAndWaitjintID = curEnv->GetStaticMethodID(cls, "colorChooserDisplayAndWait", "(I)V" ) ;
+if (voidcolorChooserDisplayAndWaitjintID == NULL) {
+std::cerr << "Could not access to the method " << "colorChooserDisplayAndWait" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidcolorChooserDisplayAndWaitjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setColorChooserDefaultColor (JavaVM * jvm_, long objID, long * rgb, int rgbSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetColorChooserDefaultColorjintjintArrayID = curEnv->GetStaticMethodID(cls, "setColorChooserDefaultColor", "(I[I)V" ) ;
+if (voidsetColorChooserDefaultColorjintjintArrayID == NULL) {
+std::cerr << "Could not access to the method " << "setColorChooserDefaultColor" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jintArray rgb_ = curEnv->NewIntArray( rgbSize ) ;
+curEnv->SetIntArrayRegion( rgb_, 0, rgbSize, (jint*) rgb ) ;
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetColorChooserDefaultColorjintjintArrayID ,objID, rgb_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        curEnv->DeleteLocalRef(rgb_);
+
+}
+
+long * CallScilabBridge::getColorChooserSelectedColor (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintArraygetColorChooserSelectedColorjintID = curEnv->GetStaticMethodID(cls, "getColorChooserSelectedColor", "(I)[I" ) ;
+if (jintArraygetColorChooserSelectedColorjintID == NULL) {
+std::cerr << "Could not access to the method " << "getColorChooserSelectedColor" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod(cls, jintArraygetColorChooserSelectedColorjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+                        curEnv->DeleteLocalRef(res);
+
+return myArray;
 
 }
 

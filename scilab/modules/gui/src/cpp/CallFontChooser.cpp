@@ -41,7 +41,7 @@ void setFontChooserItalic(int fontChooserID, BOOL italic)
 
 void fontChooserDisplayAndWait(int fontChooserID)
 {
-CallScilabBridge::fontChooserDisplayAndWait(getScilabJavaVM(), fontChooserID);
+  CallScilabBridge::fontChooserDisplayAndWait(getScilabJavaVM(), fontChooserID);
 }
 
 char *getFontChooserFontName(int fontChooserID)

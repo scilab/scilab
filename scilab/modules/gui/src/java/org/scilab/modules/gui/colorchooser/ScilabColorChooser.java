@@ -70,6 +70,21 @@ public class ScilabColorChooser extends ScilabUIElement implements ColorChooser 
 		return ScilabBridge.getSelectedColor(this);
 	}
 
+	/** 
+	 * Set the default color 
+	 * @param color the default color
+	 */
+	public void setDefaultColor(Color color) {
+		ScilabBridge.setDefaultColor(this, color);
+	}
+	
+	/**
+	 * Display the font chooser and wait for a user input
+	 */
+	public void displayAndWait() {
+		ScilabBridge.displayAndWait(this);
+	}
+
 	/**
 	 * Should not be used, just here to implement org.scilab.modules.gui.UIElement#draw()
 	 */

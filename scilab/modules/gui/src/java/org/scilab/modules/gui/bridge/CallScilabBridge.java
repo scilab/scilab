@@ -238,6 +238,14 @@ public class CallScilabBridge {
 	}
 	
 	/**
+	 * Create a new Color Chooser in Scilab GUIs
+	 * @return the ID of the Color Chooser in the UIElementMapper
+	 */
+	public static int newColorChooser() {
+		ColorChooser colorChooser = ScilabColorChooser.createColorChooser();
+		return UIElementMapper.add(colorChooser);
+	}
+	/**
 	 * Create a new File Chooser in Scilab GUIs
 	 * @return the ID of the File Chooser in the UIElementMapper
 	 */
@@ -1998,8 +2006,8 @@ public class CallScilabBridge {
 	 * Opens a dialog to selected a new Foreground Color for the console
 	 */
 	public static void changeConsoleForeground() {
-		// TODO use console color as default
 		ColorChooser colorChooser = ScilabColorChooser.createColorChooser(ScilabConsole.getConsole().getForeground());
+		colorChooser.displayAndWait();
 
 		Color selectedColor = colorChooser.getSelectedColor();
 
@@ -2016,9 +2024,9 @@ public class CallScilabBridge {
 	 * Opens a dialog to selected a new Background Color for the console
 	 */
 	public static void changeConsoleBackground() {
-		// TODO use console color as default
 		ColorChooser colorChooser = ScilabColorChooser.createColorChooser(ScilabConsole.getConsole().getBackground());
-
+		colorChooser.displayAndWait();
+		
 		Color selectedColor = colorChooser.getSelectedColor();
 
 		if (selectedColor != null) {
@@ -2120,4 +2128,49 @@ public class CallScilabBridge {
 	public static void fontChooserDisplayAndWait(int id) {
 		((FontChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
 	}
+	
+	/************************/
+	/*                      */
+	/* COLOR CHOOSER BRIDGE */
+	/*                      */
+	/************************/
+	
+	/**
+	 * Set the default Color for a ColorChooser
+	 * @param id the id of the ColorChooser
+	 * @param rgb the default color
+	 */
+	public static void setColorChooserDefaultColor(int id, int[] rgb) {
+		((ColorChooser) UIElementMapper.getCorrespondingUIElement(id)).setDefaultColor(new Color(rgb[0], rgb[1], rgb[2]));
+	}
+
+	/**
+	 * Get the selected Color for a ColorChooser
+	 * @param id the id of the ColorChooser
+	 * @return the selected color
+	 */
+	public static int[] getColorChooserSelectedColor(int id) {
+		Color selectedColor = ((ColorChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelectedColor();
+		int[] returnedValues = new int[NB_COLORS];
+		if (selectedColor != null) {
+			returnedValues[0] = selectedColor.getRed();
+			returnedValues[1] = selectedColor.getGreen();
+			returnedValues[2] = selectedColor.getBlue();
+		} else {
+			returnedValues[0] = -1;
+			returnedValues[1] = -1;
+			returnedValues[2] = -1;
+		}
+		return returnedValues;
+		
+	}
+
+	/**
+	 * Display this chooser and wait for user selection 
+	 * @param id the id of the ColorChooser
+	 */
+	public static void colorChooserDisplayAndWait(int id) {
+		((ColorChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
+	}
+	
 }

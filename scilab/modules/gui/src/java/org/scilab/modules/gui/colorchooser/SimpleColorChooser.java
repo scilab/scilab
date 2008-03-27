@@ -39,4 +39,14 @@ public interface SimpleColorChooser {
 	 */
 	Color getSelectedColor();
 
+	/** 
+	 * Set the default color 
+	 * @param color the default color
+	 */
+	void setDefaultColor(Color color);
+	
+	/**
+	 * Display the font chooser and wait for a user input
+	 */
+	void displayAndWait();
 }

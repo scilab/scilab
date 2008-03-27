@@ -34,6 +34,7 @@ src/cpp/DestroyWaitBar.cpp \
 src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
+src/cpp/CallColorChooser.cpp \
 src/cpp/CallFileChooser.cpp \
 src/cpp/CallFontChooser.cpp \
 src/cpp/CallFigure.cpp \
@@ -131,7 +132,8 @@ sci_gateway/c/sci_messagebox.c \
 sci_gateway/c/sci_waitbar.c \
 sci_gateway/c/sci_progressionbar.c \
 sci_gateway/c/sci_helpbrowser.c \
-sci_gateway/c/sci_uigetfont.c
+sci_gateway/c/sci_uigetfont.c \
+sci_gateway/c/sci_uigetcolor.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \
@@ -214,6 +216,7 @@ libscigui_la_include_HEADERS = includes/gw_gui.h \
 includes/sci_raise_window.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \
+includes/CallColorChooser.h \
 includes/CallFileChooser.h \
 includes/CallFontChooser.h \
 includes/CallFigure.h \

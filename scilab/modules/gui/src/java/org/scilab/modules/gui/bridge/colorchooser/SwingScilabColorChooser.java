@@ -98,8 +98,6 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
 	    pack();
 	    
 	    setResizable(false);
-	    
-	    setVisible(true);
 	}
 	
 	/**
@@ -125,4 +123,21 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
 	public Color getSelectedColor() {
 		return selectedColor;
 	}
+	
+	/** 
+	 * Set the default color 
+	 * @param color the default color
+	 */
+	public void setDefaultColor(Color color) {
+		colorChooser.setColor(color);
+	}
+	
+	/**
+	 * Display the font chooser and wait for a user input
+	 */
+	public void displayAndWait() {
+	    setVisible(true);
+		
+	}
+
 }	

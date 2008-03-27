@@ -380,6 +380,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\CallColorChooser.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\CallFigure.cpp"
 				>
 			</File>
@@ -846,6 +850,14 @@
 			>
 			<File
 				RelativePath=".\buildMainWindowTitle.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallColorChooser.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\CallColorChooser.hxx"
 				>
 			</File>
 			<File

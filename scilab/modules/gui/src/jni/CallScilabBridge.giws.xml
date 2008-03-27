@@ -527,5 +527,18 @@
 	<method name="getFontChooserItalic" returnType="boolean" modifier="static">
            <parameter type="int" name="objID"/>
        </method>      
+<!-- Color Chooser -->
+	<method name="newColorChooser" returnType="int" modifier="static">
+        </method>      
+	<method name="colorChooserDisplayAndWait" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="setColorChooserDefaultColor" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="int[]" name="rgb"/>
+        </method>      
+	<method name="getColorChooserSelectedColor" returnType="int[]" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
   </object>
 </package>

@@ -197,6 +197,10 @@ jmethodID jstringgetFontChooserFontNamejintID; // cache method id
 jmethodID jintgetFontChooserFontSizejintID; // cache method id
 jmethodID jbooleangetFontChooserBoldjintID; // cache method id
 jmethodID jbooleangetFontChooserItalicjintID; // cache method id
+jmethodID jintnewColorChooserID; // cache method id
+jmethodID voidcolorChooserDisplayAndWaitjintID; // cache method id
+jmethodID voidsetColorChooserDefaultColorjintjintArrayID; // cache method id
+jmethodID jintArraygetColorChooserSelectedColorjintID; // cache method id
 
 
 /**
@@ -525,6 +529,14 @@ static long getFontChooserFontSize(JavaVM * jvm_, long objID);
 static bool getFontChooserBold(JavaVM * jvm_, long objID);
 
 static bool getFontChooserItalic(JavaVM * jvm_, long objID);
+
+static long newColorChooser(JavaVM * jvm_);
+
+static void colorChooserDisplayAndWait(JavaVM * jvm_, long objID);
+
+static void setColorChooserDefaultColor(JavaVM * jvm_, long objID, long * rgb, int rgbSize);
+
+static long * getColorChooserSelectedColor(JavaVM * jvm_, long objID);
 
 
                         /**

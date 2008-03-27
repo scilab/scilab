@@ -47,4 +47,20 @@ public class ScilabColorChooserBridge {
 		return colorChooser.getAsSimpleColorChooser().getSelectedColor();
 	}
 
+	/** 
+	 * Set the default color 
+	 * @param colorChooser the ColorChooser
+	 * @param color the default color
+	 */
+	public static void setDefaultColor(ColorChooser colorChooser, Color color) {
+		colorChooser.getAsSimpleColorChooser().setDefaultColor(color);
+	}
+	
+	/**
+	 * Display the font chooser and wait for a user input
+	 * @param colorChooser the ColorChooser
+	 */
+	public static void displayAndWait(ColorChooser colorChooser) {
+		colorChooser.getAsSimpleColorChooser().displayAndWait();
+	}
 }
