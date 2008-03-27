@@ -43,26 +43,24 @@ typedef struct commandRec
   char              *command;		/* command info one string two integers */
   int               flag; /* 1 if the command execution cannot be interrupted */
   struct commandRec *next;
-} CommandRec, *CommandRecPtr;
+} CommandRec;
 /*--------------------------------------------------------------------------*/
-extern void write_scilab  __PARAMS((char *s));
 
 /*
 ** Extern Signal to say we git a StoreCommand.
 */
 IMPORT_SIGNAL __threadSignal LaunchScilab;
 
-#ifdef _MSC_VER
-extern BOOL IsToThePrompt(void);
-#endif /*_MSC_VER*/
 /*--------------------------------------------------------------------------*/
 static CommandRec *commandQueue = NULL;
 static __threadLock commandQueueSingleAccess;
+
 /*--------------------------------------------------------------------------*/
 int StoreCommand ( char *command)
 {
   return (StoreCommandWithFlag (command, 0));
 }
+
 /*--------------------------------------------------------------------------*/
 /*
  * try to execute a command or add it to the end of command queue
@@ -72,9 +70,6 @@ int StoreCommand ( char *command)
 /*--------------------------------------------------------------------------*/
 int StoreCommandWithFlag (char *command,int flag)
 {
-#ifdef _MSC_VER
-  //if ( (flag == 1) && ( !IsToThePrompt () ) ) flag=0;
-#endif
   CommandRec *p, *q, *r;
 
 	p = (CommandRec *) MALLOC (sizeof (CommandRec));
@@ -102,11 +97,8 @@ int StoreCommandWithFlag (char *command,int flag)
 	    q->next = p;
 	    __UnLock(&commandQueueSingleAccess);
 	  }
-#ifdef _MSC_VER
-	//if (IsToThePrompt ()) write_scilab ("\n");
-#endif
 	//**
-	//** BLOUNO !!!!!!
+	//** We have something to do, awake Scilab !!!!!!
 	//**
 	__Signal(&LaunchScilab);
 	return (0);
@@ -151,6 +143,7 @@ integer ismenu(void)
   else
     return(1);
 }
+
 /*--------------------------------------------------------------------------*/
 /*
  * menu/button info for Scilab
