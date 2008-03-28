@@ -1,4 +1,4 @@
-je ##########
+##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006/2007
 ##########
@@ -7,7 +7,7 @@ je ##########
 
 # core is the main module of Scilab. All the compilation deps has been removed 
 # since it already linked almost the whole world
-SUBDIRS = core 
+SUBDIRS = core
 
 SUBDIRS += \
 output_stream \
