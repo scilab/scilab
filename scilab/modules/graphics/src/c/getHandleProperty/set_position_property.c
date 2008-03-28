@@ -30,7 +30,7 @@
 int set_position_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
 
-  if(sciGetEntityType(pobj) == SCI_UICONTROL)
+  if(sciGetEntityType(pobj) == SCI_UICONTROL || sciGetEntityType(pobj) == SCI_FIGURE)
   {
     SetUicontrolPosition(pobj, stackPointer, valueType, nbRow, nbCol);
     return SET_PROPERTY_SUCCEED ;
@@ -58,11 +58,6 @@ int set_position_property( sciPointObj * pobj, int stackPointer, int valueType, 
     double curPos[3];
     sciGetTextPos(pobj, curPos);
     return sciSetTextPos( pobj, values[0], values[1], curPos[2] ) ;
-  }
-  else if( sciGetEntityType(pobj) == SCI_FIGURE ) /* Added for compatibility with old TK figure */
-  {
-    double * values = getDoubleMatrixFromStack( stackPointer ) ;
-    return (int)(sciInitScreenPosition(pobj, (int)values[0], (int)values[1]) & sciSetWindowDim(pobj, (int)values[2], (int)values[3]));
   }
   else
   {

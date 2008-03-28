@@ -14,6 +14,7 @@
 #define __SETUICONTROLPOSITION_H__
 
 #include "ObjectStructure.h"
+#include "SetProperty.h"
 
 /**
  * Set the position of a uicontrol

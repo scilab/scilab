@@ -24,7 +24,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
 
   double * allValues = NULL;
   
-  double xDouble = 0.0, yDouble = 0.0, widthDouble = 0.0, heightDouble = 0.0;
+  float xDouble = 0.0, yDouble = 0.0, widthDouble = 0.0, heightDouble = 0.0;
   
   if (valueType == sci_strings)
     {
@@ -34,7 +34,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
           return SET_PROPERTY_ERROR;
         }
       
-      nbvalues = sscanf(getStringFromStack(stackPointer), "%e|%e|%e|%e", &xDouble, &xDouble, &widthDouble, &heightDouble);
+      nbvalues = sscanf(getStringFromStack(stackPointer), "%e|%e|%e|%e", &xDouble, &yDouble, &widthDouble, &heightDouble);
 
       if (nbvalues != 4)
         {
@@ -78,6 +78,10 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
                                           widthInt, 
                                           heightInt);
     }
+  else if( sciGetEntityType(sciObj) == SCI_FIGURE ) /* Uicontrol figure */
+  {
+    return (int)(sciInitScreenPosition(sciObj, xInt, yInt) & sciSetWindowDim(sciObj, widthInt, heightInt));
+  }
   else /* All other uicontrol styles */
     {
       CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
