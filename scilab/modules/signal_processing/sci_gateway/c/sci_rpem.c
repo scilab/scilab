@@ -15,11 +15,11 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(scirpem) _PARAMS((char *id));
+extern int C2F(scirpem) _PARAMS((char *id,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/
 int C2F(sci_rpem) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(scirpem)(fname);
+	C2F(scirpem)(fname,fname_len);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
