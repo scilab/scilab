@@ -50,7 +50,6 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
   end,
 
 //estimate correlations
- mode(3)
    if max(size(x))==1 then,
       nsects=int(x/(3*nlags));
       xlen=int(x/nsects);
@@ -89,5 +88,6 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
  
 //fourier transform to obtain spectral estimate
    wree=[wre 0*ones(1,ntp-2*nlags+1)];
-   sm=abs(fft(wree,-1));
+   sm=fft(wree,-1)
+   //sm=abs(fft(wree,-1));
 endfunction
