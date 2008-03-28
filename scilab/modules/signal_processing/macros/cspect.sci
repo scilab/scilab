@@ -88,6 +88,6 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
  
 //fourier transform to obtain spectral estimate
    wree=[wre 0*ones(1,ntp-2*nlags+1)];
-   sm=fft(wree,-1)
-   //sm=abs(fft(wree,-1));
+   //sm=fft(wree,-1)
+   sm=abs(fft(wree,-1));
 endfunction
