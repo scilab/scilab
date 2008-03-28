@@ -13,11 +13,11 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_differential_equations1.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(scibvode)(char *fname);
+extern int C2F(scibvode)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_bvode) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(scibvode)(fname);
+	C2F(scibvode)(fname, fname_len);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

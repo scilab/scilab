@@ -13,11 +13,11 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_data_structures1.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(scilist)();
+extern int C2F(scilist) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/
 int C2F(sci_scilist) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(scilist)(fname);
+	C2F(scilist)(fname,fname_len);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

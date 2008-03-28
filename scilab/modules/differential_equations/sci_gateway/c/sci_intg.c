@@ -13,11 +13,11 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_differential_equations1.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intg)(char *fname);
+extern int C2F(intg)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_intg) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(intg)(fname);
+	C2F(intg)(fname,fname_len);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -16,8 +16,8 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_odc) _PARAMS((char *fname,unsigned long l))
 {
-	extern int C2F(sciodc)(char *fname);
-	C2F(sciodc)(fname);
+	extern int C2F(sciodc)();
+	C2F(sciodc)();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
