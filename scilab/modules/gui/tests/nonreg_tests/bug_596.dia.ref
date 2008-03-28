@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- TEST WITH GRAPHIC -->
 //
 // <-- Non-regression test for bug 596 -->
@@ -13,29 +12,44 @@
 // http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=596
 //
 // <-- Short Description -->
-//    uicontrol has problem in parsing string arguments: 'string' and 'callback' arguments containing 
+//    uicontrol has problem in parsing string arguments: 'string' and 'callback' arguments containing
 //    spaces, apostrophes and doublequotes give strange (repeatable) results
-
-
 f = figure(1)
-
+ f  =
+ 
+Handle of type "Figure" with properties:
+========================================
+children: "Axes"
+figure_style = "new"
+figure_position = [200,200]
+figure_size = [610,461]
+axes_size = [606,344]
+auto_resize = "on"
+viewport = [0,0]
+figure_name = "Scilab Graphic"
+figure_id = 1
+info_message = ""
+color_map= matrix 33x3
+pixmap = "off"
+pixel_drawing_mode = "copy"
+immediate_drawing = "on"
+background =  33
+visible = "on"
+rotation_style = "unary"
+event_handler = ""
+event_handler_enable = "off"
+user_data = []
 uicontrol(f,"style","pushbutton","position",[10 10 150 20],..
           "string","Close figure","callback","close(f)");
-          
 uicontrol(f,"style","pushbutton",..
           "position",[10 40 150 20],"string","disp, space, """"",..
           "callback","disp(""second button"")");
-
 uicontrol(f,"style","pushbutton",..
           "position",[10 70 150 20],"string","disp,-,""""",..
           "callback","disp(""third-button"")");
-
 uicontrol(f,"callback","disp(""fourth button"")",..
            "string","disp, space, """"",..
            "Position",[10 100 150 20],"Style", "pushbutton");
-
 uicontrol(f,"callback","disp(""fifth-button"")",..
             "string","disp, -, """"",..
             "Position",[10 130 150 20],"Style", "pushbutton");
-
-

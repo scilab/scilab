@@ -5,6 +5,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+// Comment above added because clipboard linked to Java clipboard
+// 
 // <-- Non-regression test for bug 1590 -->
 //
 // <-- Bugzilla URL -->
