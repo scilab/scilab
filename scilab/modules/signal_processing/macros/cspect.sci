@@ -26,43 +26,42 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-   [lhs,rhs]=argn(0);
-   cross=0;
- 
-//construct window
- 
-   if rhs==4 then,
-      w=window(wtype,2*nlags-1);
-   else if rhs==5 then,
-      if wtype=='kr' then,
-         wpar=y;
-         w=window(wtype,2*nlags-1,wpar);
-      else if wtype=='ch' then,
-         wpar=y;
-         [w,cwp]=window(wtype,2*nlags-1,wpar);
-      else,
-         cross=1;
-         w=window(wtype,2*nlags-1);
-      end,
-      end,
-   else,
+  [lhs,rhs]=argn(0);
+  cross=0;
+  
+  //construct window
+
+  if rhs==4 then,
+    w=window(wtype,2*nlags-1);
+  elseif rhs==5 then,
+    if wtype=='kr' then,
+      wpar=y;
+      w=window(wtype,2*nlags-1,wpar);
+    elseif wtype=='ch' then,
+      wpar=y;
       [w,cwp]=window(wtype,2*nlags-1,wpar);
+    else,
       cross=1;
-   end,
-   end,
- 
+      w=window(wtype,2*nlags-1);
+    end,
+  else,
+    [w,cwp]=window(wtype,2*nlags-1,wpar);
+    cross=1;
+  end,
+
 //estimate correlations
- 
-   if maxi(size(x))==1 then,
+ mode(3)
+   if max(size(x))==1 then,
       nsects=int(x/(3*nlags));
       xlen=int(x/nsects);
-      ss=0*ones(1,2*nlags);
+      ss=zeros(1,2*nlags);
       if cross==1 then,
          for k=1:nsects,
             xk=getx(xlen,1+(k-1)*xlen);
             yk=gety(xlen,1+(k-1)*xlen);
             ss=corr('update',xk,yk,ss);
          end,
+
          re=fft(ss,1)/x;
          re=[re(nlags:-1:1) re(2:nlags)];
       else,
@@ -73,10 +72,11 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
          re=fft(ss,1)/x;
          re=[re(nlags:-1:1) re(2:nlags)];
       end,
-   else,
+   else
       if cross==1 then,
-         [re,me]=corr(x,y,nlags);
-         re=[re(nlags:-1:1) re(2:nlags)];
+         [re1,me]=corr(x,y,nlags);
+	 [re2,me]=corr(y,x,nlags);
+         re=[re1(nlags:-1:1) re2(2:nlags)];
       else,
          [re,me]=corr(x,nlags);
          re=[re(nlags:-1:1) re(2:nlags)];
@@ -88,7 +88,6 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
    wre=w.*re;
  
 //fourier transform to obtain spectral estimate
- 
    wree=[wre 0*ones(1,ntp-2*nlags+1)];
    sm=abs(fft(wree,-1));
 endfunction
