@@ -785,7 +785,7 @@ function create_MD(dirs,titles,output_filename)
 	
 	for k=1:size(dirs,"*");
 		
-		xml_files   = basename(listfiles(dirs(k)+"/*.xml"));
+		xml_files = gsort(basename(listfiles(dirs(k)+"/*.xml")),"lr","i");
 		
 		master_document    = [ master_document; ..
 			"<reference xml:id=''"+title2category(titles(k))+"''>"; ..
@@ -811,7 +811,7 @@ function create_MD_dir(my_dir,my_title,output_filename)
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
 		
-	xml_files          = listfiles(my_dir+"/*.xml");
+	xml_files = gsort(listfiles(my_dir+"/*.xml"),"lr","i");
 	
 	xml_files(grep(xml_files,"master_help.xml")) = [];
 	
