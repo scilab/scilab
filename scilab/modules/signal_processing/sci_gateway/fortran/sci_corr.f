@@ -12,7 +12,7 @@ c     =======================================
 c     implicit undefined (a-z)
       include 'stack.h'
       character*(*) fname
-      logical checkrhs,getrmat,getsmat,getscalar
+      logical checkrhs,getrmat,getscalar
       logical cremat,getexternal,getmat
       integer m1,n1,lr1,m2,n2,lr2,lr,top2, iadr,sadr
       integer topk,topw,gettype
@@ -52,6 +52,7 @@ C     getting nlags (last argument)
       lag=int(stk(lr))
       if (.not.cremat(fname,topk+1,0,1,lag,lcxy,lc)) return
       if (.not.cremat(fname,topk+2,0,1,2,lrxy,lc)) return
+
       if(rhs.eq.3) then
          top=top-1
          if (.not.getrmat(fname,topk,top,m2,n2,lr2)) return
