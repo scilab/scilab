@@ -676,7 +676,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_uigetcolor.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_uigetdir.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_uigetfont.c"
 				>
 			</File>
 			<File
