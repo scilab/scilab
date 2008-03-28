@@ -1,4 +1,4 @@
-##########
+je ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006/2007
 ##########
@@ -70,7 +70,9 @@ helptools \
 fftw \
 umfpack \
 demo_tools \
-genetic_algorithms
+genetic_algorithms \
+simulated_annealing \
+parameters
 
 #umfpack
 

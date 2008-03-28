@@ -14,13 +14,6 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
-##########
-
-# The order DOES matter !!!
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -177,7 +170,7 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	functions others overloading maple2scilab m2sci texmacs scipad \
 	scilab2fortran development_tools compatibility_functions \
 	helptools fftw umfpack demo_tools genetic_algorithms \
-	scicos_blocks scicos . javasci
+	simulated_annealing parameters scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -358,6 +351,11 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006/2007
+##########
+
+# The order DOES matter !!!
 
 # core is the main module of Scilab. All the compilation deps has been removed 
 # since it already linked almost the whole world
@@ -372,8 +370,8 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	randlib sparse windows_tools functions others overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
 	development_tools compatibility_functions helptools fftw \
-	umfpack demo_tools genetic_algorithms $(am__append_1) scicos . \
-	$(am__append_2)
+	umfpack demo_tools genetic_algorithms simulated_annealing \
+	parameters $(am__append_1) scicos . $(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -799,6 +797,7 @@ uninstall-am: uninstall-pkglibLTLIBRARIES
 	tags tags-recursive uninstall uninstall-am \
 	uninstall-pkglibLTLIBRARIES
 
+je ##########
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
