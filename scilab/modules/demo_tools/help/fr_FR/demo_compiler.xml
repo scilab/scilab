@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>N = datenum()</synopsis>
+    <synopsis>status = demo_compiler()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -37,8 +37,8 @@ select num,
  case 0
   return;
  case 2 then 
-  demo_compiler(); //The compiler will be used
-  if (ans==%t) then
+  st = demo_compiler(); //The compiler will be used
+  if (st==%t) then
 	  mode(0);
 	  wheel_build_and_load()
 	end
