@@ -14,5 +14,5 @@
 // ====================================================================
 
 path = SCI+'/modules/randlib/help/'+getlanguage();
-add_help_chapter("randlib",path,%T);
+add_help_chapter("Randlib",path,%T);
 clear path add_help_chapter;

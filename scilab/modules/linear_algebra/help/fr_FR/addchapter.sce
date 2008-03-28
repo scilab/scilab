@@ -14,5 +14,5 @@
 // ====================================================================
 
 path = SCI+'/modules/linear_algebra/help/'+getlanguage();
-add_help_chapter("Algebre Lineaire",path,%T);
+add_help_chapter("Algèbre Lineaire",path,%T);
 clear path add_help_chapter;

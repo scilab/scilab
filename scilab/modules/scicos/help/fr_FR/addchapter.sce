@@ -10,6 +10,6 @@
 
 // ====================================================================
 // path = SCI+'/modules/scicos/help/'+getlanguage();
-// add_help_chapter("Interface Tcl/Tk",path,%T);
+// add_help_chapter("Scicos",path,%T);
 // clear path add_help_chapter;
 // ====================================================================

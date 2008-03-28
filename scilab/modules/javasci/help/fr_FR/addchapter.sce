@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/javasci/help/'+getlanguage();
-add_help_chapter("Interface Java",path,%T);
+add_help_chapter("Interface avec Java",path,%T);
 clear path add_help_chapter;
 // ====================================================================

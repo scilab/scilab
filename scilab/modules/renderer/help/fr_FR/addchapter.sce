@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/renderer/help/'+getdefaultlanguage();
-add_help_chapter("renderer",path,%T);
+add_help_chapter("Renderer",path,%T);
 clear path add_help_chapter;
 // ====================================================================

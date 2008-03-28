@@ -11,6 +11,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 // ====================================================================
 path = SCI+'/modules/boolean/help/'+getlanguage();
-add_help_chapter("Booleen",path,%T);
+add_help_chapter("Booléens",path,%T);
 clear path add_help_chapter;
 // ====================================================================

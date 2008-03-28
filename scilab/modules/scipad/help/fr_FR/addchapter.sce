@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/scipad/help/'+getlanguage();
-add_help_chapter("scipad",path,%T);
+add_help_chapter("Scipad",path,%T);
 clear path add_help_chapter;
 // ====================================================================

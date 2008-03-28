@@ -14,5 +14,5 @@
 // ====================================================================
 
 path = SCI+'/modules/elementary_functions/help/'+getlanguage();
-add_help_chapter("Fonctions Elementaires",path,%T);
+add_help_chapter("Fonctions Elémentaires",path,%T);
 clear path add_help_chapter;

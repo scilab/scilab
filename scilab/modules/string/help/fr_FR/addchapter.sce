@@ -5,6 +5,6 @@
 // Allan CORNET
 // ====================================================================
 path = SCI+'/modules/string/help/'+getlanguage();
-add_help_chapter("ChaÃ®nes de caractÃ¨res",path,%T);
+add_help_chapter("Chaînes de caractères",path,%T);
 clear path add_help_chapter;
 // ====================================================================

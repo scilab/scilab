@@ -14,5 +14,5 @@
 // ====================================================================
 
 // path = SCI+'/modules/action_binding/help/'+getlanguage();
-// add_help_chapter("action_binding",path,%T);
+// add_help_chapter("Action Binding",path,%T);
 // clear path add_help_chapter;

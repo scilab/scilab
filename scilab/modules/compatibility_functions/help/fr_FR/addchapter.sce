@@ -12,6 +12,6 @@
 // Add chapter
 // ====================================================================
 path = SCI+'/modules/compatibility_functions/help/'+getlanguage();
-add_help_chapter("Fonctions De Compatibilitï¿½",path,%T);
+add_help_chapter("Fonctions de compatibilité",path,%T);
 clear path add_help_chapter;
 // ====================================================================

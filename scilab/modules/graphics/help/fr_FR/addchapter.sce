@@ -14,5 +14,5 @@
 // ====================================================================
 
 path = SCI+'/modules/graphics/help/'+getlanguage();
-add_help_chapter("Bibliothï¿½que graphique",path,%T);
+add_help_chapter("Bibliothèque graphique",path,%T);
 clear path add_help_chapter;

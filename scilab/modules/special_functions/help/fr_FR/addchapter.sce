@@ -14,5 +14,5 @@
 // ====================================================================
 
 path = SCI+'/modules/special_functions/help/'+getlanguage();
-add_help_chapter("Fonctions speciales",path,%T);
+add_help_chapter("Fonctions spéciales",path,%T);
 clear path add_help_chapter;

@@ -12,5 +12,5 @@
 // ====================================================================
 
 path = SCI+"/modules/genetic_algorithms/help/"+getlanguage();
-add_help_chapter("Algorithmes gÃ©nÃ©tiques",path,%T);
+add_help_chapter("Algorithmes génétiques",path,%T);
 clear path add_help_chapter;

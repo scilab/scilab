@@ -786,13 +786,10 @@ function create_MD(dirs,titles,output_filename)
 	for k=1:size(dirs,"*");
 		
 		xml_files   = basename(listfiles(dirs(k)+"/*.xml"));
-		category_id = title2category(titles(k));
-		
-		titles(k) = strsubst(titles(k) , "&"  , "&amp;" );
 		
 		master_document    = [ master_document; ..
-			"<reference xml:id=''"+category_id+"''>"; ..
-			"<title>"+titles(k)+"</title>"; ..
+			"<reference xml:id=''"+title2category(titles(k))+"''>"; ..
+			"<title>"+text2html(titles(k))+"</title>"; ..
 			"&"+xml_files+";"; ..
 			"</reference>"]
 			
@@ -809,8 +806,6 @@ endfunction
 function create_MD_dir(my_dir,my_title,output_filename)
 
 	xml_files   = basename(listfiles(my_dir+"/*.xml"));
-	category_id = title2category(my_title);
-	my_title    = strsubst(my_title , "&"  , "&amp;" );
 	
 	master_document = ["<?xml version=""1.0"" encoding=""ISO-8859-1""?>"; ..
 			"<!DOCTYPE book [";
@@ -840,8 +835,8 @@ function create_MD_dir(my_dir,my_title,output_filename)
 		"<!--Begin Reference-->"];
 		
 		master_document    = [ master_document; ..
-			"<reference xml:id=''"+category_id+"''>"; ..
-			"<title>"+my_title+"</title>"; ..
+			"<reference xml:id=''"+title2category(my_title)+"''>"; ..
+			"<title>"+text2html(my_title)+"</title>"; ..
 			"&"+basename(xml_files)+";"; ..
 			"</reference>"]
 			
@@ -858,13 +853,64 @@ function category = title2category(mytitle)
 		
 		category = mytitle;
 		category = strsubst(category , "&"  , "_" );
-		category = strsubst(category , "é"  , "e" );
-		category = strsubst(category , "è"  , "e" );
-		category = strsubst(category , "ê"  , "e" );
-		category = strsubst(category , "ù"  , "u" );
-		category = strsubst(category , "î"  , "i" );
-		category = strsubst(category , "ô"  , "o" );
+		
+		category = strsubst(category , "À"  , "A" );
+		category = strsubst(category , "Á"  , "A" );
+		category = strsubst(category , "Â"  , "A" );
+		category = strsubst(category , "Ã"  , "A" );
+		category = strsubst(category , "Ä"  , "A" );
+		category = strsubst(category , "Å"  , "A" );
+		category = strsubst(category , "Æ"  , "AE");
+		category = strsubst(category , "Ç"  , "C" );
+		category = strsubst(category , "È"  , "E" );
+		category = strsubst(category , "É"  , "E" );
+		category = strsubst(category , "Ê"  , "E" );
+		category = strsubst(category , "Ë"  , "E" );
+		category = strsubst(category , "Ì"  , "I" );
+		category = strsubst(category , "Í"  , "I" );
+		category = strsubst(category , "Î"  , "I" );
+		category = strsubst(category , "Ï"  , "I" );
+		category = strsubst(category , "Ð"  , "D" );
+		category = strsubst(category , "Ñ"  , "N" );
+		category = strsubst(category , "Ò"  , "O" );
+		category = strsubst(category , "Ó"  , "O" );
+		category = strsubst(category , "Ô"  , "O" );
+		category = strsubst(category , "Õ"  , "O" );
+		category = strsubst(category , "Ö"  , "O" );
+		category = strsubst(category , "Ù"  , "U" );
+		category = strsubst(category , "Ú"  , "U" );
+		category = strsubst(category , "Û"  , "U" );
+		category = strsubst(category , "Ü"  , "U" );
+		category = strsubst(category , "Ý"  , "Y" );
 		category = strsubst(category , "à"  , "a" );
+		category = strsubst(category , "á"  , "a" );
+		category = strsubst(category , "â"  , "a" );
+		category = strsubst(category , "ã"  , "a" );
+		category = strsubst(category , "ä"  , "a" );
+		category = strsubst(category , "å"  , "a" );
+		category = strsubst(category , "æ"  , "ae");
+		category = strsubst(category , "ç"  , "c" );
+		category = strsubst(category , "è"  , "e" );
+		category = strsubst(category , "é"  , "e" );
+		category = strsubst(category , "ê"  , "e" );
+		category = strsubst(category , "ë"  , "e" );
+		category = strsubst(category , "ì"  , "i" );
+		category = strsubst(category , "í"  , "i" );
+		category = strsubst(category , "î"  , "i" );
+		category = strsubst(category , "ï"  , "i" );
+		category = strsubst(category , "ñ"  , "n" );
+		category = strsubst(category , "ò"  , "o" );
+		category = strsubst(category , "ó"  , "o" );
+		category = strsubst(category , "ô"  , "o" );
+		category = strsubst(category , "õ"  , "o" );
+		category = strsubst(category , "ö"  , "o" );
+		category = strsubst(category , "ù"  , "u" );
+		category = strsubst(category , "ú"  , "u" );
+		category = strsubst(category , "û"  , "u" );
+		category = strsubst(category , "ü"  , "u" );
+		category = strsubst(category , "ý"  , "y" );
+		category = strsubst(category , "ÿ"  , "y" );
+		
 		category = strsubst(category , ":"  , ""  );
 		category = strsubst(category , "\"  , "_" );
 		category = strsubst(category , "/"  , "_" );
@@ -873,7 +919,109 @@ function category = title2category(mytitle)
 		category = strsubst(category , " "  , "_" );
 		category = strsubst(category , "["  , ""  );
 		category = strsubst(category , "]"  , ""  );
+		
 		category = convstr(category,"l");
 		category = "category_"+category;
 		
 endfunction
+
+
+function out = text2html(in)
+		
+		out = in;
+		out = strsubst(out , "&"  , "&amp;"    );
+		
+// 		
+// 		out = strsubst(out , """" , "&quot;"   );
+// 		out = strsubst(out , "&"  , "&amp;"    );
+// 		out = strsubst(out , "?"  , "&euro;"   );
+// 		out = strsubst(out , "À"  , "&Agrave;" );
+// 		out = strsubst(out , "Á"  , "&Aacute;" );
+// 		out = strsubst(out , "Â"  , "&Acirc;"  );
+// 		out = strsubst(out , "Ã"  , "&Atilde;" );
+// 		out = strsubst(out , "Ä"  , "&Auml;"   );
+// 		out = strsubst(out , "Å"  , "&Aring;"  );
+// 		out = strsubst(out , "Æ"  , "&Aelig"   );
+// 		out = strsubst(out , "Ç"  , "&Ccedil;" );
+// 		out = strsubst(out , "È"  , "&Egrave;" );
+// 		out = strsubst(out , "É"  , "&Eacute;" );
+// 		out = strsubst(out , "Ê"  , "&Ecirc;"  );
+// 		out = strsubst(out , "Ë"  , "&Euml;"   );
+// 		out = strsubst(out , "Ì"  , "&Igrave"  );;
+// 		out = strsubst(out , "Í"  , "&Iacute;" );
+// 		out = strsubst(out , "Î"  , "&Icirc;"  );
+// 		out = strsubst(out , "Ï"  , "&Iuml;"   );
+// 		out = strsubst(out , "Ð"  , "&eth;"    );
+// 		out = strsubst(out , "Ñ"  , "&Ntilde;" );
+// 		out = strsubst(out , "Ò"  , "&Ograve;" );
+// 		out = strsubst(out , "Ó"  , "&Oacute;" );
+// 		out = strsubst(out , "Ô"  , "&Ocirc;"  );
+// 		out = strsubst(out , "Õ"  , "&Otilde;" );
+// 		out = strsubst(out , "Ö"  , "&Ouml;"   );
+// 		out = strsubst(out , "Ù"  , "&Ugrave;" );
+// 		out = strsubst(out , "Ú"  , "&Uacute;" );
+// 		out = strsubst(out , "Û"  , "&Ucirc;"  );
+// 		out = strsubst(out , "Ü"  , "&Uuml;"   );
+// 		out = strsubst(out , "Ý"  , "&Yacute;" );
+// 		out = strsubst(out , "Þ"  , "&thorn;"  );
+// 		out = strsubst(out , "ß"  , "&szlig;"  );
+// 		out = strsubst(out , "à"  , "&agrave;" );
+// 		out = strsubst(out , "á"  , "&aacute;" );
+// 		out = strsubst(out , "â"  , "&acirc;"  );
+// 		out = strsubst(out , "ã"  , "&atilde;" );
+// 		out = strsubst(out , "ä"  , "&auml;"   );
+// 		out = strsubst(out , "å"  , "&aring;"  );
+// 		out = strsubst(out , "æ"  , "&aelig;"  );
+// 		out = strsubst(out , "ç"  , "&ccedil;" );
+// 		out = strsubst(out , "è"  , "&egrave"  );;
+// 		out = strsubst(out , "é"  , "&eacute;" );
+// 		out = strsubst(out , "ê"  , "&ecirc;"  );
+// 		out = strsubst(out , "ë"  , "&euml;"   );
+// 		out = strsubst(out , "ì"  , "&igrave"  );;
+// 		out = strsubst(out , "í"  , "&iacute;" );
+// 		out = strsubst(out , "î"  , "&icirc;"  );
+// 		out = strsubst(out , "ï"  , "&iuml;"   );
+// 		out = strsubst(out , "ð"  , "&eth;"    );
+// 		out = strsubst(out , "ñ"  , "&ntilde;" );
+// 		out = strsubst(out , "ò"  , "&ograve;" );
+// 		out = strsubst(out , "ó"  , "&oacute;" );
+// 		out = strsubst(out , "ô"  , "&ocirc;"  );
+// 		out = strsubst(out , "õ"  , "&otilde;" );
+// 		out = strsubst(out , "ö"  , "&ouml;"   );
+// 		out = strsubst(out , "ù"  , "&ugrave;" );
+// 		out = strsubst(out , "ú"  , "&uacute;" );
+// 		out = strsubst(out , "û"  , "&ucirc;"  );
+// 		out = strsubst(out , "ü"  , "&uuml;"   );
+// 		out = strsubst(out , "ý"  , "&yacute;" );
+// 		out = strsubst(out , "þ"  , "&thorn;"  );
+// 		out = strsubst(out , "ÿ"  , "&yuml;"   );
+// 		out = strsubst(out , "µ"  , "&micro;"  );
+		
+endfunction
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

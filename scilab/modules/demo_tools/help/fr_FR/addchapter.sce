@@ -14,5 +14,5 @@
 // =============================================================================
 
 path = SCI+'/modules/demo_tools/help/'+getlanguage();
-add_help_chapter("Outils pour les dÃ©monstrations",path,%T);
+add_help_chapter("Outils pour les démonstrations",path,%T);
 clear path add_help_chapter;

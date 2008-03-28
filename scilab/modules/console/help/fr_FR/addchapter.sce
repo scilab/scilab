@@ -14,6 +14,6 @@
 // Add chapter
 // ====================================================================
 //path = SCI+'/modules/console/help/'+getlanguage();
-//add_help_chapter("console",path,%T);
+//add_help_chapter("Console",path,%T);
 //clear path add_help_chapter;
 // ====================================================================
