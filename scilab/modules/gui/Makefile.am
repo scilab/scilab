@@ -200,6 +200,7 @@ libscigui_la_etc_DATA = etc/gui.quit \
 etc/gui.start \
 etc/graphics_menubar.xml \
 etc/graphics_toolbar.xml \
+etc/helpbrowser_menubar.xml \
 etc/main_menubar.xml \
 etc/main_toolbar.xml \
 etc/flexdock-themes.xml
@@ -308,7 +309,8 @@ images/icons/list-remove.png \
 images/icons/printer.png \
 images/icons/scilab.png \
 images/icons/view-refresh.png \
-images/icons/window-new.png
+images/icons/window-new.png \
+images/icons/edit-cut.png
 
 
 if GUI
