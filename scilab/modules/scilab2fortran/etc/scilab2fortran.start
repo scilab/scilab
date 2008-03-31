@@ -7,20 +7,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
 // ====================================================================
 // scilab2fortran module initialisation file
 // ====================================================================
+
 //Load  functions librarie
 load('SCI/modules/scilab2fortran/macros/lib');
-// ====================================================================
+
 //add help chapter
 add_module_help_chapter('scilab2fortran');
-// ====================================================================
-//add demo
-path = get_absolute_file_path('scilab2fortran.start');
-path = getshortpathname(path);
-pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/demotrad.dem',%f,%f);
-add_demo("Scilab to Fortran",pathdemos);
-clear path pathdemos;
-// ====================================================================
+
