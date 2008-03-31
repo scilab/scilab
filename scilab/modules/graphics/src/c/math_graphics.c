@@ -155,9 +155,28 @@ void iNormalize2d( int vect[2] )
 /*----------------------------------------------------------------------------*/
 void crossProduct( const double v1[3], const double v2[3], double res[3] )
 {
-  res[0] = v1[1] * v2[2] - v1[2] * v2[1] ;
-  res[1] = v1[2] * v2[0] - v1[0] * v2[2] ;
-  res[2] = v1[0] * v2[1] - v1[1] * v2[0] ;
+  /* save data to be able to use v1 o v2 as res */
+  double v10 = v1[0];
+  double v20 = v2[0];
+  double v11 = v1[1];
+  double v21 = v2[1];
+  res[0] = v11 * v2[2] - v1[2] * v21 ;
+  res[1] = v1[2] * v20 - v10 * v2[2] ;
+  res[2] = v10 * v21 - v11 * v20 ;
+}
+/*----------------------------------------------------------------------------*/
+void vectSubstract3D( double v1[3], double v2[3], double res[3])
+{
+  res[0] = v1[0] - v2[0];
+  res[1] = v1[1] - v2[1];
+  res[2] = v1[2] - v2[2];
+}
+/*----------------------------------------------------------------------------*/
+void scalarMult3D( double v[3], double scalar, double res[3])
+{
+  res[0] = scalar * v[0];
+  res[1] = scalar * v[1];
+  res[2] = scalar * v[2];
 }
 /*----------------------------------------------------------------------------*/
 void normalize3D( double vect[3] )
