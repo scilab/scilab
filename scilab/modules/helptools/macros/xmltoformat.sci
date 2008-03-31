@@ -749,11 +749,19 @@ endfunction
 
 
 function create_MD(dirs,titles,output_filename)
-
+	
+	// Sort dirs and titles
+	my_mat = [titles,dirs];
+	my_mat(grep(my_mat(:,2),"/(.)*core(.)*/","r"),1) = "AAA_Scilab";
+	my_mat = gsort(my_mat,"lr","i");
+	my_mat(grep(my_mat(:,2),"/(.)*core(.)*/","r"),1) = "Scilab";
+	titles = my_mat(:,1);
+	dirs   = my_mat(:,2);
+	
 	master_document = ["<?xml version=""1.0"" encoding=""ISO-8859-1""?>"; ..
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
-		
+	
 	xml_files          = listfiles(dirs+"/*.xml");
 	master_document    = [master_document; ..
 		"<!ENTITY "+basename(xml_files)+" SYSTEM """+xml_files+""">"];
@@ -998,30 +1006,3 @@ function out = text2html(in)
 // 		out = strsubst(out , "µ"  , "&micro;"  );
 		
 endfunction
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
