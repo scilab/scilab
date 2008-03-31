@@ -132,10 +132,10 @@ set bug2384_fixed true
 
 if {$tcl_platform(osVersion) == "6.0" && !$Tk85} {
     # don't use the -parent option in tk_get*File
-    set bug2671_shows_up true
+    set bug2672_shows_up true
 } else {
     # use the -parent option in tk_get*File
-    set bug2671_shows_up false
+    set bug2672_shows_up false
 }
 
 

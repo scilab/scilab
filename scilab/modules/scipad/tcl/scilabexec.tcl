@@ -165,7 +165,7 @@ proc execselection {} {
 proc importmatlab {} {
     global pad listoffile
     global tileprocalreadyrunning
-    global bug2671_shows_up
+    global bug2672_shows_up
 
     if {$tileprocalreadyrunning} {return}
 
@@ -176,7 +176,7 @@ proc importmatlab {} {
     set types [concat "{\"$matfiles\"" "{*.m}}" \
                       "{\"$allfiles\"" "{* *.*}}" ]
     set dtitle [mc "Matlab file to convert"]
-    if {$bug2671_shows_up} {
+    if {$bug2672_shows_up} {
         set sourcefile [tk_getOpenFile -filetypes $types -title "$dtitle"]
     } else {
         set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle"]
