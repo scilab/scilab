@@ -839,7 +839,7 @@
                        所開發\n 由 Scilab Consortium 修改.\n Enrico\
                        Segre 2003-2006 進一步改寫.\n\
                        其他貢獻者，,\n 偵錯工具:\n  François\
-                       Vogel 2004-2007 \n 各國語文翻譯:\n 瑞典文\
+                       Vogel 2004-2008 \n 各國語文翻譯:\n 瑞典文\
                        Gunnar Lindholm 2005.\n 挪威文 Torbjørn Pettersen\
                        2005.\n 德文   Dirk Reusch 2005.\n 波蘭文\
                        Bartosz Kosiorek 2005.\n 西班牙文 Juan Nicolás\

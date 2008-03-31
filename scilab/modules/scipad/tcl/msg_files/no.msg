@@ -519,7 +519,7 @@
                    "\n Lagd av Joseph Acosta, joeja@mindspring.com.\n\
                     Modifisert av Scilab Constortium.\n Revidert av Enrico\
                     Segre 2003-2006.\n Diverse forbedringer, spesielt\
-                    feilsøkingsverktøy av FranÃ§ois Vogel 2004-2007."
+                    feilsøkingsverktøy av FranÃ§ois Vogel 2004-2008."
 
 
 # infomessages.tcl

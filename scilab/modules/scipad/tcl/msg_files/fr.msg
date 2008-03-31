@@ -437,7 +437,7 @@
                    "\n Créé par Joseph Acosta, joeja@mindspring.com.\n\
                     Modifié par le Consortium Scilab.\n\
                     Amélioré par Enrico Segre 2003-2006.\n\
-                    Améliorations diverses, dont outils de débug, par François Vogel 2004-2007.\n\
+                    Améliorations diverses, dont outils de débug, par François Vogel 2004-2008.\n\
                     Traductions :\n\
                      . Suédois, Gunnar Lindholm 2005\n\
                      . Norvégien, Torbjørn Pettersen 2005\n\
@@ -446,6 +446,7 @@
                      . Espagnol, Juan Nicolás Quesada 2006\n\
                      . Chinois, Yung-Jang Lee 2007\n\
                      . Danois, Kim B. Hansen 2007."
+::msgcat::mcset fr Scipad_is_released_under_GPL "SciPad est un logiciel sous licence GPL"
 
 
 # infomessages.tcl

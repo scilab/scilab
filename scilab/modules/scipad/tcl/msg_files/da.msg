@@ -230,7 +230,7 @@
                     Modificeret af Scilab Consortium.\n\
                     Revideret af Enrico Segre 2003-2005.\n\
                     Diverse forbedringer, særligt værktøjer til debug,\
-                    af François Vogel 2004-2005.\n\
+                    af François Vogel 2004-2008.\n\
                     Svensk oversættelse af Gunnar Lindholm 2005.\n\
                     Norsk oversættelse af Torbjørn Pettersen 2005.\n\
                     Tysk oversættelse af Dirk Reusch 2005.\n\

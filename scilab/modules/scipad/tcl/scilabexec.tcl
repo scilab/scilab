@@ -165,6 +165,7 @@ proc execselection {} {
 proc importmatlab {} {
     global pad listoffile
     global tileprocalreadyrunning
+    global bug2671_shows_up
 
     if {$tileprocalreadyrunning} {return}
 
@@ -175,7 +176,11 @@ proc importmatlab {} {
     set types [concat "{\"$matfiles\"" "{*.m}}" \
                       "{\"$allfiles\"" "{* *.*}}" ]
     set dtitle [mc "Matlab file to convert"]
-    set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle"]
+    if {$bug2671_shows_up} {
+        set sourcefile [tk_getOpenFile -filetypes $types -title "$dtitle"]
+    } else {
+        set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle"]
+    }
     if {$sourcefile !=""} {
         set sourcedir [file dirname $sourcefile]
         set destfile [file rootname $sourcefile].sci

@@ -658,12 +658,18 @@ proc showopenwin {tiledisplay} {
     global pad winopened listoffile
     global startdir
     global tileprocalreadyrunning
+    global bug2671_shows_up
     if {$tileprocalreadyrunning} {return}
     showinfo [mc "Open file"]
     # remember the latest path used for opening files
     if {![info exists startdir]} {set startdir [pwd]}
-    set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad \
-                             -initialdir $startdir -multiple 1]
+    if {$bug2671_shows_up} {
+        set file [tk_getOpenFile -filetypes [knowntypes] \
+                                 -initialdir $startdir -multiple 1]
+    } else {
+        set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad \
+                                 -initialdir $startdir -multiple 1]
+    }
     if {[llength $file] > 0} {
         set startdir [file dirname [lindex $file 0]]
         openlistoffiles $file $tiledisplay
@@ -922,6 +928,7 @@ proc filesaveas {textarea} {
 # and do the save under that filename
     global listoffile pad
     global startdir
+    global bug2671_shows_up
 
     # filesaveas cannot be executed since it uses getallfunsintextarea
     # which needs the colorization results
@@ -944,15 +951,25 @@ proc filesaveas {textarea} {
     }
 
     set writesucceeded 0
-    set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
-                    -initialfile $proposedname -initialdir $startdir]
+    if {$bug2671_shows_up} {
+        set myfile [tk_getSaveFile -filetypes [knowntypes] \
+                        -initialfile $proposedname -initialdir $startdir]
+    } else {
+        set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
+                        -initialfile $proposedname -initialdir $startdir]
+    }
 
     if {$myfile != ""} {
         set startdir [file dirname $myfile]
         set writesucceeded [writesave $textarea $myfile]
         while {!$writesucceeded} {
-            set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
-                            -initialfile $proposedname -initialdir $startdir]
+            if {$bug2671_shows_up} {
+                set myfile [tk_getSaveFile -filetypes [knowntypes] \
+                                -initialfile $proposedname -initialdir $startdir]
+            } else {
+                set myfile [tk_getSaveFile -filetypes [knowntypes] -parent $pad \
+                                -initialfile $proposedname -initialdir $startdir]
+            }
             if {$myfile != ""} {
                 set startdir [file dirname $myfile]
                 set writesucceeded [writesave $textarea $myfile]

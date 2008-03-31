@@ -268,7 +268,7 @@
                    "\n Originado de tknotepad de Joseph Acosta,\
                     joeja@mindspring.com.\n Modificado por el consorcio\
                     Scilab.\n Mejoras por Enrico Segre 2003-2006\n y por\
-                    François Vogel (en particular el depurador) 2004-2007.\n\
+                    François Vogel (en particular el depurador) 2004-2008.\n\
                     Traducción: \n   noruego, Torbjrn Pettersen 2005; \n  \
                     polaco, Bartosz Kosiorek 2005; \n   sueco, Gunnar\
                     Lindholm 2005; \n   alemán, Dirk Reusch 2005; \n   español, Nicolás Quesada 2006."
@@ -446,7 +446,7 @@
 ::msgcat::mcset es "Scilab is working, wait for the prompt to execute the\
                     selection."\
                    "Scilab esta trabajando, por favor espere el aviso para\
-		    ejecutar la selección"
+                    ejecutar la selección"
 ::msgcat::mcset es "Scilab is working, wait for the prompt to convert a\
                     Matlab file."\
                    "Scilab esta trabajando, por favor espere el aviso para\
@@ -460,7 +460,7 @@
                     details -- Perhaps report the error text and the\
                     offending Matlab file to \
                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"\
-		   "La conversión del archivo falló vea la ventana de\
+                    "La conversión del archivo falló vea la ventana de\
                     Scilab para ver mas detalles -- Si desea reporte el error a \
                     http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi\
                     incluyendo el archivo matlab."

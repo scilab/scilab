@@ -112,7 +112,8 @@ set dev_debug false
 
 
 #############
-# Flags to adjust Scipad to the host Scilab version
+# Flags to adjust Scipad to the host environment (Scilab version,
+# host computer OS, underlying Tcl/Tk version...)
 
 # The break command can only be used with Scilab versions having bug 2384 fixed
 # Currently (30/04/07), this is done in svn trunk and BUILD4 branches
@@ -123,7 +124,39 @@ set dev_debug false
 
 set bug2384_fixed true
 
-# End of flags to adjust Scipad to the host Scilab version
+
+# On Vista (osVersion is 6.0) there is bug 2672 which happens with the 8.4
+# series of Tcl/Tk only
+# This flag allows for easy checking whether the workaround for this
+# bug must be geared in or not
+
+if {$tcl_platform(osVersion) == "6.0" && !$Tk85} {
+    # don't use the -parent option in tk_get*File
+    set bug2671_shows_up true
+} else {
+    # use the -parent option in tk_get*File
+    set bug2671_shows_up false
+}
+
+
+# On Linux with Tk8.5, there is bug 2776 which prevents from choosing
+# multiple files in the tk_getOpenFile dialog
+# This is a Tk bug, see the full details at:
+# http://sourceforge.net/tracker/index.php?func=detail&aid=1904322&group_id=12997&atid=112997
+# Here is the workaround - This should be removed when Tk bug 112997 gets
+# fixed in Tk 8.5.x or at least it should be tuned so that it is geared
+# in only for Tk 8.5.0 -> Tk 8.5.x but not in Tk 8.5.y with y > x
+
+if {$tcl_platform(platform) == "unix" && $Tk85} {
+    # gear in the workaround for Tk bug 112997
+    option add *__tk_filedialog*takeFocus 0
+} else {
+    # nothing to do
+}
+
+
+# End of flags to adjust Scipad to the host environment (Scilab version,
+# host computer OS, underlying Tcl/Tk version...)
 #############
 
 

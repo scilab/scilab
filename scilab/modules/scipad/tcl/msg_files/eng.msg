@@ -37,7 +37,7 @@
                     Modified by Scilab Consortium.\n\
                     Revised by Enrico Segre 2003-2006.\n\
                     Miscellaneous improvements, particularly debug tools,\
-                    by François Vogel 2004-2007.\n\
+                    by François Vogel 2004-2008.\n\
                     Swedish translation by Gunnar Lindholm 2005.\n\
                     Norwegian translation by Torbjørn Pettersen 2005.\n\
                     German translation by Dirk Reusch 2005.\n\
