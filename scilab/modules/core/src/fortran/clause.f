@@ -177,6 +177,11 @@ c
       else
          ids(1,pt)=iif
       endif
+      if(char1.eq.eol.or.char1.eq.comma.or.char1
+     $     .eq.semi.or.char1.eq.cmt) then
+         call error(34)
+         return
+      endif
 C      call putid(ids(1,pt),syn)
 
       pstk(pt) = lpt(4)-1
