@@ -10,9 +10,6 @@
 // Disable vertical scrolling
 lines(0);
 
-// Load function LAUNCHTEST
-exec("launchtest.sci");
-
 // Set base directory for non-regression tests
 if getversion() == "scilab-4.1.2" | getversion() == "Scilab-4.1.2-SVN"
 	// TODO:    do not depend on username and Scilab 5 path
@@ -26,11 +23,11 @@ end
 // Test existence of base directory
 [x,ierr] = fileinfo(baseDir);
 if ierr ~= -1 & ~isempty(x)
-	// Launch any available test (except skeleton.cos)
+	// Launch any available test
 	cosFiles   = gsort(basename(listfiles("*.cos")),"lr","i");
 	nbCosFiles = size(cosFiles,"*")
 	if nbCosFiles == 0
-		disp(msprintf(gettext("No test found in current directory: %s",pwd)))
+		error(mprintf(gettext("%s: No test found in current directory: %s"), "run.sce", pwd))
 	else
 		for k = 1:nbCosFiles
 			currentTestName = cosFiles(k);
@@ -38,7 +35,7 @@ if ierr ~= -1 & ~isempty(x)
 		end
 	end
 else
-	disp(msprintf("ERROR: base directory for tests does not exist: %s\n",baseDir))
+	error(mprintf(gettext("%s: Base directory for tests does not exist: %s\n"), "run.sce", baseDir))
 end
 
 exit
