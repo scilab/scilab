@@ -12,7 +12,6 @@
  */
 
 #include "XGridDrawerJoGL.hxx"
-#include "XGridDrawerJavaMapper.hxx"
 
 extern "C"
 {
@@ -26,7 +25,7 @@ namespace sciGraphics
 XGridDrawerJoGL::XGridDrawerJoGL(DrawableSubwin * subwin)
   : GridDrawerJoGL(subwin)
 {
-  setJavaMapper(new XGridDrawerJavaMapper());
+
 }
 /*------------------------------------------------------------------------------------------*/
 XGridDrawerJoGL::~XGridDrawerJoGL(void)
@@ -34,16 +33,16 @@ XGridDrawerJoGL::~XGridDrawerJoGL(void)
 
 }
 /*------------------------------------------------------------------------------------------*/
-void XGridDrawerJoGL::initializeDrawing(void)
+void XGridDrawerJoGL::drawGrid(void)
 {
-  GridDrawerJoGL::initializeDrawing();
-
   sciPointObj * pSubwin = getDrawer()->getDrawedObject();
 
   int xStyle;
   sciGetGridStyle(pSubwin, &xStyle, NULL, NULL);
   
   getGridDrawerJavaMapper()->setGridParameters(xStyle, (float)sciGetLineWidth(pSubwin));
+
+  getGridDrawerJavaMapper()->drawGrid();
 
 }
 /*------------------------------------------------------------------------------------------*/

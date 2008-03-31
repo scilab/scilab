@@ -25,7 +25,7 @@ namespace sciGraphics
 TicksDrawerJoGL::TicksDrawerJoGL(DrawableObject * drawer)
   : TicksDrawer(drawer), DrawableObjectJoGL(drawer)
 {
-
+  setJavaMapper(new TicksDrawerJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
 TicksDrawerJoGL::~TicksDrawerJoGL(void)
@@ -33,36 +33,57 @@ TicksDrawerJoGL::~TicksDrawerJoGL(void)
 
 }
 /*------------------------------------------------------------------------------------------*/
-double TicksDrawerJoGL::drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
-                                  int nbTicks, double subticksPositions[], int nbSubtics)
+void TicksDrawerJoGL::setTicksPosition(const double ticksPosX[],
+                                       const double ticksPosY[],
+                                       const double ticksPosZ[],
+                                       int nbTicks)
 {
-  if (labelsExponents == NULL)
-  {
-    return getTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels, nbTicks,
-                                                 subticksPositions, nbSubtics);
-  }
-  else
-  {
-    return getTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels,
-                                                 labelsExponents, nbTicks,
-                                                 subticksPositions, nbSubtics);
-  }
+  // convert them to pixel coordinates
   
+
+  getTicksDrawerJavaMapper()->setTicksPosition(ticksPosX, ticksPosY, ticksPosZ, nbTicks);
 }
 /*------------------------------------------------------------------------------------------*/
-bool TicksDrawerJoGL::checkTicks(double ticksPositions[], char * ticksLabels[],
-                                 char * labelsExponents[], int nbTicks)
+void TicksDrawerJoGL::setSubticksPosition(const double subticksPosX[],
+                                          const double subticksPosY[],
+                                          const double subticksPosZ[],
+                                          int nbSubticks)
 {
-  if (labelsExponents == NULL)
+  getTicksDrawerJavaMapper()->setSubticksPosition(subticksPosX, subticksPosY, subticksPosZ, nbSubticks);
+}
+/*------------------------------------------------------------------------------------------*/
+void TicksDrawerJoGL::setTicksLabels(char * ticksLabels[],
+                                     char * labelsExponent[],
+                                     int nbLabels)
+{
+  if (labelsExponent != NULL)
   {
-    return getTicksDrawerJavaMapper()->checkTicks(ticksPositions, ticksLabels, nbTicks);
+    getTicksDrawerJavaMapper()->setTicksLabels(ticksLabels, labelsExponent, nbLabels);
   }
   else
   {
-    return getTicksDrawerJavaMapper()->checkTicks(ticksPositions, ticksLabels,
-                                                  labelsExponents, nbTicks);
+    getTicksDrawerJavaMapper()->setTicksLabels(ticksLabels, nbLabels);
   }
-  
+}
+/*------------------------------------------------------------------------------------------*/
+void TicksDrawerJoGL::setAxisPosition(const double axisSegmentStart[3],
+                                      const double axisSegmentEnd[3],
+                                      const double ticksDirection[3])
+{
+
+  getTicksDrawerJavaMapper()->setAxisBounds(axisSegmentStart[0], axisSegmentStart[1], axisSegmentStart[2],
+                                            axisSegmentEnd[0], axisSegmentEnd[1], axisSegmentEnd[2]);
+  getTicksDrawerJavaMapper()->setTicksDirection(ticksDirection[0], ticksDirection[1], ticksDirection[2]);
+}
+/*------------------------------------------------------------------------------------------*/
+double TicksDrawerJoGL::concreteDrawTicks(void)
+{
+  return getTicksDrawerJavaMapper()->drawTicks();
+}
+/*------------------------------------------------------------------------------------------*/
+bool TicksDrawerJoGL::checkTicks(void)
+{
+  return getTicksDrawerJavaMapper()->checkTicks();
 }
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawerJoGL::initializeDrawing(void)
@@ -73,11 +94,6 @@ void TicksDrawerJoGL::initializeDrawing(void)
   // also set axis drawing parameters
   sciPointObj * pObj = getDrawer()->getDrawedObject();
 
-  // set axes bounds
-  double bounds[6];
-  sciGetRealDataBounds(sciGetParentSubwin(pObj), bounds);
-  getTicksDrawerJavaMapper()->setAxesBounds(bounds[0], bounds[1], bounds[2],
-                                            bounds[3], bounds[4], bounds[5]);
   // set other parameters
   getTicksDrawerJavaMapper()->setAxisParamerters(sciGetLineStyle(pObj),
                                                  (float) sciGetLineWidth(pObj),

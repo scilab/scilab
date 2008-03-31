@@ -110,6 +110,11 @@ CameraJavaMapper * CameraJoGL::getCameraJavaMapper(void)
   return dynamic_cast<CameraJavaMapper *>(getJavaMapper());
 }
 /*--------------------------------------------------------------------------*/
+void CameraJoGL::project(const double userCoord[3], double pixCoords[3])
+{
+  project(m_aProjMatrix3D, m_aViewPort, userCoord, pixCoords);
+}
+/*--------------------------------------------------------------------------*/
 void CameraJoGL::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
 { 
   // project point on the screen
@@ -191,6 +196,16 @@ void CameraJoGL::getViewingArea(int * xPos, int * yPos, int * width, int * heigh
 
   *width = (int)(m_aViewPort[2] * m_aViewingScale[0]);
   *height = (int)(m_aViewPort[3] * m_aViewingScale[1]);
+}
+/*--------------------------------------------------------------------------*/
+void CameraJoGL::usePixelCoordinates(void)
+{
+   getCameraJavaMapper()->usePixelCoordinates();
+}
+/*--------------------------------------------------------------------------*/
+void CameraJoGL::endPixelCoordinates(void)
+{
+  getCameraJavaMapper()->endPixelCoordinates();
 }
 /*--------------------------------------------------------------------------*/
 }

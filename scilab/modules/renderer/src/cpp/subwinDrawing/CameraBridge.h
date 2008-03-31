@@ -64,6 +64,12 @@ public:
    */
   void setAxesNormalizationScale(double scale[3]);
 
+
+  /**
+   * Convert user coordinates to pixel ones in OpenGL representation
+   */
+  virtual void project(const double userCoord[3], double pixCoords[3]) = 0;
+
   /**
    * Convert user coordinates to pixel coordinates.
    */
@@ -108,6 +114,16 @@ public:
    * Add an axes reverse strategy.
    */
   void setAxesReverse(bool axisReverseX, bool axisReverseY, bool axisReverseZ);
+
+  /**
+   * Switch to pixel coordinate view
+   */
+  virtual void usePixelCoordinates(void) = 0;
+
+  /**
+   * Switch back to standard 3D view
+   */
+  virtual void endPixelCoordinates(void) = 0;
 
 
 protected:

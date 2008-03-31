@@ -66,6 +66,9 @@ public:
   virtual void get2dViewProjectionMatrix(double mat[4][4]);
   virtual void get2dViewUnprojectMatrix(double mat[4][4]);
   virtual void getViewPort(double viewPort[4]);
+
+  virtual void usePixelCoordinates(void);
+  virtual void endPixelCoordinates(void);
   /*----------------------------------------------------------------------*/
 
 private:

@@ -15,6 +15,8 @@
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.renderer.drawers.MarkDrawerGL;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
@@ -58,6 +60,24 @@ public class RectangleMarkDrawerGL extends MarkDrawerGL implements RectangleDraw
 	}
 
 	/**
+	 * Draw the rectangle
+	 * @param gl current GL pipeline
+	 * @param corner1 first corner coordinates
+	 * @param corner2 second corner coordinates
+	 * @param corner3 third corner coordinates
+	 * @param corner4 fourth corner coordinates
+	 */
+	public void drawRectangle(GL gl, Vector3D corner1, Vector3D corner2, Vector3D corner3, Vector3D corner4) {
+		// save rectangle coordinates
+		cornersPos[0] = corner1;
+		cornersPos[1] = corner2;
+		cornersPos[2] = corner3;
+		cornersPos[NB_CORNERS - 1] = corner4;
+		
+		drawRectangle();
+	}
+	
+	/**
 	 * create the display list for the rectangle
 	 * @param corner1X first corner X coordinate
 	 * @param corner1Y first corner Y coordinate
@@ -79,13 +99,11 @@ public class RectangleMarkDrawerGL extends MarkDrawerGL implements RectangleDraw
 
 		
 		
-		// save rectangle coordinates
-		cornersPos[0] = new Vector3D(corner1X, corner1Y, corner1Z);
-		cornersPos[1] = new Vector3D(corner2X, corner2Y, corner2Z);
-		cornersPos[2] = new Vector3D(corner3X, corner3Y, corner3Z);
-		cornersPos[NB_CORNERS - 1] = new Vector3D(corner4X, corner4Y, corner4Z);
-		
-		drawRectangle();
+		drawRectangle(getGL(),
+				      new Vector3D(corner1X, corner1Y, corner1Z),
+				      new Vector3D(corner2X, corner2Y, corner2Z),
+				      new Vector3D(corner3X, corner3Y, corner3Z),
+				      new Vector3D(corner4X, corner4Y, corner4Z));
 		
 	}
 	

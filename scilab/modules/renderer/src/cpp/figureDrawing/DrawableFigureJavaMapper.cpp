@@ -234,4 +234,9 @@ void DrawableFigureJavaMapper::rubberBox(bool isClick, const int initialRect[4],
 
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::drawPixelCoordinatesCode(void)
+{
+  m_pJavaObject->drawPixelCoordinatesCode();
+}
+/*---------------------------------------------------------------------------------*/
 }

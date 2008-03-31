@@ -14,10 +14,16 @@
 package org.scilab.modules.renderer.textDrawing;
 
 import java.awt.Font;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.DrawableObjectGL;
+import org.scilab.modules.renderer.rectangleDrawing.RectangleDrawerStrategy;
+import org.scilab.modules.renderer.rectangleDrawing.RectangleFillDrawerGL;
+import org.scilab.modules.renderer.rectangleDrawing.RectangleLineDrawerGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.FontManager;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
@@ -37,6 +43,9 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	/** Rotation angle in radian */
 	private double rotationAngle;
 	private Vector3D textCenter;
+	private Vector3D textCenterPix;
+	
+	private List<RectangleDrawerStrategy> boxDrawers;
 	
 	/**
 	 * Default constructor
@@ -48,6 +57,7 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		fontType = null;
 		rotationAngle = 0.0;
 		textCenter = new Vector3D();
+		boxDrawers = new LinkedList<RectangleDrawerStrategy>();
 	}
 	
 	/**
@@ -68,6 +78,35 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		default:
 			textDrawer = new LeftAlignedTextGL();	
 			break;
+		}
+	}
+	
+	/**
+	 * Set parampeters for box drawing
+	 * @param isLine tell wether the line around the text should be drawn
+	 * @param isFill tell wether the box background should be drawn
+	 * @param background color index of the box background
+	 * @param foreground color index of the box line
+	 * @param lineWidth thickness of the line
+	 * @param lineStyle style of the line
+	 */
+	public void setBoxParameters(boolean isLine, boolean isFill, int background, int foreground,
+							     float lineWidth, int lineStyle) {
+		// remove pevious ones
+		boxDrawers.clear();
+		
+		if (isLine) {
+			// add line drawer
+			RectangleLineDrawerGL drawer = new RectangleLineDrawerGL();
+			drawer.setLineParameters(foreground, lineWidth, lineStyle);
+			boxDrawers.add(drawer);
+		}
+		
+		if (isFill) {
+			// add a box drawer
+			RectangleFillDrawerGL drawer = new RectangleFillDrawerGL();
+			drawer.setBackColor(background);
+			boxDrawers.add(drawer);
 		}
 	}
 	
@@ -162,6 +201,14 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	}
 	
 	/**
+	 * Specify the position of the text center in pixels
+	 * @param pixelPos center position
+	 */
+	public void setCenterPixelPos(Vector3D pixelPos) {
+		textCenterPix = new Vector3D(pixelPos);
+	}
+	
+	/**
 	 * @return text center.
 	 */
 	public Vector3D getTextCenter() {
@@ -224,32 +271,81 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 * Draw a text on the screen.
 	 */
 	public void drawTextContent() {
+		//long initTime = System.nanoTime();
+		GL gl = getGL();
 		
+		
+		
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+	
+		//Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
+		textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
+		
+		// switch to pixel coordinates
+//		GLTools.usePixelCoordinates(gl);
+//		
+//		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+//		
+//		
+//		textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
+//		
+//		// draw the text using the new coordinates
+//		drawTextContentPix(textCenterPix);
+//		
+//		
+//		
+//		GLTools.endPixelCoordinates(gl);
+//		
+//		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		
+		getParentFigureGL().callInPixelCoordinates(new Runnable() {
+			public void run() {
+				drawInPixels();
+			}
+		});
+ //long elapsedTime = System.nanoTime() - initTime;
+		
+		//System.err.println("elapsedTime = " + (elapsedTime * 1.0e-6));
+	}
+	
+	/**
+	 * Draw the text using pixel coordinates
+	 */
+	public void drawInPixels() {
+		//long initTime = System.nanoTime();
+		drawInPixels(textCenterPix);
+		
+		//long elapsedTime = System.nanoTime() - initTime;
+		
+		//System.err.println("elapsedTime = " + (elapsedTime * 1.0e-6));
+	}
+	
+	/**
+	 * Draw the text in pixel coordinates
+	 * @param pixelCenter position of text center
+	 */
+	public void drawInPixels(Vector3D pixelCenter) {
 		GL gl = getGL();
 		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 		
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-
-		//Put the text on the figure
-		/*gl.glRasterPos3d(getTextCenter().getX(), getTextCenter().getY(), getTextCenter().getZ());
-		GL2PS gl2ps = new GL2PS();
-		gl2ps.gl2psText("totototot", "Courier", (short) 12);*/
-	
-		
-		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
-		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl);
-		
-		textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
-		
 		// draw the text using the new coordinates
-		drawTextContentPix(textCenterPix);
-		
-		
-		GLTools.endPixelCoordinates(gl);
+		gl.glPushMatrix();
+		drawTextContentPix(pixelCenter);
+		gl.glPopMatrix();
 		
 		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 		
+		// draw box
+		if (!boxDrawers.isEmpty()) {
+			// get bounding box 2D
+			Vector3D[] boundingBox = getBoundingRectanglePix(pixelCenter);
+			for (Iterator<RectangleDrawerStrategy> it = boxDrawers.iterator(); it.hasNext();) {
+				RectangleDrawerStrategy rectangleDrawer = it.next();
+				((DrawableObjectGL) rectangleDrawer).initializeDrawing(getParentFigureGL().getFigureIndex());
+				rectangleDrawer.drawRectangle(gl, boundingBox[0], boundingBox[1], boundingBox[2], boundingBox[2 + 1]);
+				((DrawableObjectGL) rectangleDrawer).endDrawing();
+			}
+		}
 	}
 	
 	/**
@@ -302,18 +398,24 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	}
 	
 	/**
+	 * Compute the 4 corners of the bounding rectangle of the text in pixels coordinates.
+	 * @return array of size 4 with the four corners.
+	 */
+	public Vector3D[] getBoundingRectanglePix() {
+		return getBoundingRectanglePix(textCenterPix);
+	}
+	
+	/**
 	 * Get the screen position in pixels of the text bounding box.
 	 * @return array of size 4 containing the 4 vertices.
 	 */
 	public Vector3D[] getBoundingRectangle2D() {
 		GL gl = getGL();
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
+		Vector3D textCenterPixel = transform.getCanvasCoordinates(gl, getTextCenter());
 		GLTools.usePixelCoordinates(gl);
 		
-		textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
-		
-		Vector3D[] resPix = getBoundingRectanglePix(textCenterPix);
+		Vector3D[] resPix = getBoundingRectanglePix(textCenterPixel);
 		
 		// retrieve canvas coordinates
 		for (int i = 0; i < resPix.length; i++) {

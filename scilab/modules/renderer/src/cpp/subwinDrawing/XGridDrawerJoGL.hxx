@@ -29,10 +29,12 @@ public:
   virtual ~XGridDrawerJoGL(void);
 
 protected:
+
   /**
-   * Specify initialize drawing in setting all useful parameters.
+   * Draw the grid from the specified computed points
    */
-  virtual void initializeDrawing(void);
+  virtual void drawGrid(void);
+
 };
 
 }

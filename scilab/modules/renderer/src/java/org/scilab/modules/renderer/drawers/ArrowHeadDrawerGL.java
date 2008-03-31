@@ -47,6 +47,9 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	/** User might specify a diferent color for each arrow head */
 	private int[] colors;
 	
+	private Vector3D[] startPixCoords;
+	private Vector3D[] endPixCoords;
+	
 	/**
 	 * Default constructor
 	 */
@@ -203,14 +206,70 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
 		// need to perform this befaore swithching to pixel coordinates
-		Vector3D[] startPixCoords = transform.getCanvasCoordinates(gl, startPoints);
-		Vector3D[] endPixCoords = transform.getCanvasCoordinates(gl, endPoints);
+		//Vector3D[] startPixCoords = transform.getCanvasCoordinates(gl, startPoints);
+		//Vector3D[] endPixCoords = transform.getCanvasCoordinates(gl, endPoints);
+		startPixCoords = transform.getCanvasCoordinates(gl, startPoints);
+		endPixCoords = transform.getCanvasCoordinates(gl, endPoints);
 		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl);
-		transform.update(gl);
+		//GLTools.usePixelCoordinates(gl);
 		
-		// set color
+		getParentFigureGL().callInPixelCoordinates(new Runnable() {
+			public void run() {
+				drawPixelArrowHeads();
+			}
+		});
+		
+//		// set color
+//		double[] color = getArrowColor();
+//		gl.glColor3d(color[0], color[1], color[2]);
+//		
+//		gl.glBegin(GL.GL_TRIANGLES);
+//		// draw equilaterals triangles at the end of segments.
+//		for (int i = 0; i < startPixCoords.length; i++) {
+//			
+//			if (colors != null) {
+//				// specify a different color for each head
+//				double[] curColor = getColorMap().getColor(colors[i]);
+//				gl.glColor3d(curColor[0], curColor[1], curColor[2]);
+//			}
+//			
+//			double curArrowPixelSize;
+//			if (arrowPixelSizes != null) {
+//				curArrowPixelSize = arrowPixelSizes[i];
+//			} else {
+//				curArrowPixelSize = arrowPixelSize;
+//			}
+//			
+//			// compute the position of the three vertices of the triangle
+//			Vector3D segmentDir = endPixCoords[i].substract(startPixCoords[i]).getNormalized();
+//			Vector3D orthoDir = new Vector3D(-segmentDir.getY(), segmentDir.getX(), 0.0);
+//			
+//			// secondPoint = end - SIN60.dir + COS60.ortho
+//			// thirdPoint = end - SIN60.dir - cos60.ortho
+//			orthoDir.scalarMultSelf(COS60 * curArrowPixelSize);
+//			
+//			Vector3D projOnDir = endPixCoords[i].substract(segmentDir.scalarMult(SIN60 * curArrowPixelSize));
+//			Vector3D secondPoint = projOnDir.add(orthoDir);
+//			Vector3D thirdPoint = projOnDir.substract(orthoDir);
+//			
+//			// switch back to the new frame
+//			Vector3D firstPoint = transform.retrieveSceneCoordinates(gl, endPixCoords[i]);
+//			secondPoint = transform.retrieveSceneCoordinates(gl, secondPoint);
+//			thirdPoint = transform.retrieveSceneCoordinates(gl, thirdPoint);
+//			drawTriangle(gl, firstPoint, secondPoint, thirdPoint);
+//		}
+//		gl.glEnd();
+//		
+//		GLTools.endPixelCoordinates(gl);
+	}
+	
+	/**
+	 * Draw the marks in pixel positions;
+	 */
+	protected void drawPixelArrowHeads() {
+		GL gl = getGL();
+		//		 set color
 		double[] color = getArrowColor();
 		gl.glColor3d(color[0], color[1], color[2]);
 		
@@ -244,14 +303,12 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 			Vector3D thirdPoint = projOnDir.substract(orthoDir);
 			
 			// switch back to the new frame
-			Vector3D firstPoint = transform.retrieveSceneCoordinates(gl, endPixCoords[i]);
-			secondPoint = transform.retrieveSceneCoordinates(gl, secondPoint);
-			thirdPoint = transform.retrieveSceneCoordinates(gl, thirdPoint);
-			drawTriangle(gl, firstPoint, secondPoint, thirdPoint);
+			//Vector3D firstPoint = transform.retrieveSceneCoordinates(gl, endPixCoords[i]);
+			//secondPoint = transform.retrieveSceneCoordinates(gl, secondPoint);
+			//thirdPoint = transform.retrieveSceneCoordinates(gl, thirdPoint);
+			drawTriangle(gl, endPixCoords[i], secondPoint, thirdPoint);
 		}
 		gl.glEnd();
-		
-		GLTools.endPixelCoordinates(gl);
 	}
 	
 	/**

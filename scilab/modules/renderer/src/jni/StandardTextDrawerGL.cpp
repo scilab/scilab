@@ -109,6 +109,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
+voidsetBoxParametersjbooleanjbooleanjintjintjfloatjintID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -150,6 +151,7 @@ voidshowjintID=NULL;
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
 voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
+voidsetBoxParametersjbooleanjbooleanjintjintjfloatjintID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -308,6 +310,29 @@ exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoublejdoubleID ,textAlignment, color, fontStyle, fontSize, rotationAngle);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void StandardTextDrawerGL::setBoxParameters (bool isLine, bool isFill, long background, long foreground, float lineWidth, long lineStyle){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetBoxParametersjbooleanjbooleanjintjintjfloatjintID==NULL) { /* Use the cache Luke */ voidsetBoxParametersjbooleanjbooleanjintjintjfloatjintID = curEnv->GetMethodID(this->instanceClass, "setBoxParameters", "(ZZIIFI)V" ) ;
+if (voidsetBoxParametersjbooleanjbooleanjintjintjfloatjintID == NULL) {
+std::cerr << "Could not access to the method " << "setBoxParameters" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+jboolean isLine_ = ((bool) isLine ? JNI_TRUE : JNI_FALSE);
+
+jboolean isFill_ = ((bool) isFill ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetBoxParametersjbooleanjbooleanjintjintjfloatjintID ,isLine_, isFill_, background, foreground, lineWidth, lineStyle);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

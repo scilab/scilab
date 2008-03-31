@@ -95,4 +95,10 @@ long * CenteredTextDrawerJavaMapper::getScreenBoundingBox(void)
   return m_pJavaObject->getScreenBoundingBox();
 }
 /*---------------------------------------------------------------------------------*/
+void CenteredTextDrawerJavaMapper::setBoxParameters(bool isLine, bool isFill, int background, int foreground,
+                                                  float lineWidth, int lineStyle)
+{
+  m_pJavaObject->setBoxParameters(isLine, isFill, background, foreground, lineWidth, lineStyle);
+}
+/*---------------------------------------------------------------------------------*/
 }

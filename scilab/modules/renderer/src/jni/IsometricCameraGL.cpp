@@ -122,6 +122,8 @@ jdoubleArraygetUnprojectMatrixID=NULL;
 jdoubleArrayget2dViewProjectionMatrixID=NULL; 
 jdoubleArrayget2dViewUnprojectMatrixID=NULL; 
 jdoubleArraygetViewPortID=NULL; 
+voidusePixelCoordinatesID=NULL; 
+voidendPixelCoordinatesID=NULL; 
 
 
 }
@@ -167,6 +169,8 @@ jdoubleArraygetUnprojectMatrixID=NULL;
 jdoubleArrayget2dViewProjectionMatrixID=NULL; 
 jdoubleArrayget2dViewUnprojectMatrixID=NULL; 
 jdoubleArraygetViewPortID=NULL; 
+voidusePixelCoordinatesID=NULL; 
+voidendPixelCoordinatesID=NULL; 
 
 
 }
@@ -687,6 +691,44 @@ curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
 return myArray;
 
+}
+
+void IsometricCameraGL::usePixelCoordinates (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidusePixelCoordinatesID==NULL) { /* Use the cache Luke */ voidusePixelCoordinatesID = curEnv->GetMethodID(this->instanceClass, "usePixelCoordinates", "()V" ) ;
+if (voidusePixelCoordinatesID == NULL) {
+std::cerr << "Could not access to the method " << "usePixelCoordinates" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidusePixelCoordinatesID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void IsometricCameraGL::endPixelCoordinates (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidendPixelCoordinatesID==NULL) { /* Use the cache Luke */ voidendPixelCoordinatesID = curEnv->GetMethodID(this->instanceClass, "endPixelCoordinates", "()V" ) ;
+if (voidendPixelCoordinatesID == NULL) {
+std::cerr << "Could not access to the method " << "endPixelCoordinates" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidendPixelCoordinatesID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

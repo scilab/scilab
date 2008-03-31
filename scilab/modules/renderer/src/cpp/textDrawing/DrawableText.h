@@ -66,19 +66,9 @@ protected:
   virtual void show( void ) ;
 
   /**
-   * Draw the rectangle surrounding the text.
-   */
-  virtual void drawBox(void) = 0;
-
-  /**
    * Draw the text of the object.
    */
   virtual void drawTextContent(void) = 0;
-
-  /**
-   * Display the rectangle surrounding the text using display lists.
-   */
-  virtual void showBox(void) = 0;
 
   /**
    * Display the text using display lists.

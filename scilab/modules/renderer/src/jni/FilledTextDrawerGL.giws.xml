@@ -24,6 +24,14 @@
       <param type="int" name="boxWidth" />
       <param type="int" name="boxHeight" />
     </method>
+    <method name="setBoxParameters" returnType="void">
+      <param type="boolean" name="isLine" />
+      <param type="boolean" name="isFill" />
+      <param type="int" name="background" />
+      <param type="int" name="foreground" />
+      <param type="float" name="lineWidth" />
+      <param type="int" name="lineStyle" />
+    </method>
     <method name="setTextContent" returnType="void">
       <param type="String[]" name="text" />
       <param type="int" name="nbRow" />

@@ -15,6 +15,7 @@
 #define _TICKS_DRAWER_JAVA_MAPPER_HXX_
 
 #include "../DrawableObjectJavaMapper.hxx"
+#include "TicksDrawerGL.hxx"
 
 
 namespace sciGraphics
@@ -27,33 +28,54 @@ class TicksDrawerJavaMapper : public virtual DrawableObjectJavaMapper
 {
 public:
 
-  TicksDrawerJavaMapper(void) : DrawableObjectJavaMapper() {}
+  TicksDrawerJavaMapper(void);
 
-  virtual ~TicksDrawerJavaMapper(void) {}
+  virtual ~TicksDrawerJavaMapper(void);
 
   /*----------------------------------------------------------------------*/
+  // Inherited from DrawableObjectJavaMapper
+  virtual void display(void);
+
+  virtual void initializeDrawing(int figureIndex);
+  virtual void endDrawing(void);
+
+  virtual void show(int figureIndex);
+
+  virtual void destroy(int figureIndex);
+
+  virtual void setFigureIndex(int figureIndex);
+  /*----------------------------------------------------------------------*/
   // specific for TicksDrawer
-  virtual double drawTicks(const double ticksPositions[], char * ticksLabels[],
-                           int nbTicks, const double subticksPositions[], int nbSubticks) = 0;
+  virtual double drawTicks(void);
 
-  virtual bool checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks) = 0;
+  virtual bool checkTicks(void);
 
-  virtual double drawTicks(const double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
-                         int nbTicks, const double subticksPositions[], int nbSubticks) = 0;
+  virtual void setTicksPosition(const double ticksPosX[],
+                                const double ticksPosY[],
+                                const double ticksPosZ[],
+                                int nbTicks);
 
-  virtual bool checkTicks(const double ticksPositions[], char * ticksLabels[],
-                          char * labelsExponents[], int nbTicks) = 0;
+  virtual void setSubticksPosition(const double subticksPosX[],
+                                   const double subticksPosY[],
+                                   const double subticksPosZ[],
+                                   int nbSubticks);
 
-  virtual void setAxesBounds(double xMin, double xMax,
-                             double yMin, double yMax,
-                             double zMin, double zMax) = 0;
+  virtual void setTicksLabels(char * labels[],char * exponents[], int nbLabels);
 
+  virtual void setTicksLabels(char * labels[], int nbLabels);
+
+  virtual void setTicksDirection(double ticksDirX, double ticksDirY, double ticksDirZ);
+
+  virtual void setAxisBounds(double axisStartX, double axisStartY, double axisStartZ,
+                             double axisEndX, double axisEndY, double axisEndZ);
+  
   virtual void setAxisParamerters(int lineStyle, float lineWidth, int lineColor,
-                                  int fontType, double fontSize, int fontColor) = 0;
+                                  int fontType, double fontSize, int fontColor);
   /*----------------------------------------------------------------------*/
 
 protected:
 
+  org_scilab_modules_renderer_subwinDrawing::TicksDrawerGL * m_pJavaObject;
 
 };
 

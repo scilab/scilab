@@ -31,9 +31,9 @@ public final class GLTools {
 	 * Actually when using gluProject z may vary between 0 and 1 (relative to depth buffer)
 	 * 0 is front clip plane and 1 back clip plane.
 	 */
-	public static final double MIN_PIXEL_Z = -1.0;
+	public static final double MIN_PIXEL_Z = 0.0;
 	/** Disctane max */
-	public static final double MAX_PIXEL_Z = 1.0;
+	public static final double MAX_PIXEL_Z = -1.0;
 	
 	/** Contains the different line stipple pattern */
 	private static final short[] STIPPLE_PATTERN
@@ -109,14 +109,16 @@ public final class GLTools {
 	 * @param gl current OpenGL pipeline
 	 */
 	public static void usePixelCoordinates(GL gl) {
-		int[] viewPort = new int[VIEWPORT_LENGTH];
+		//int[] viewPort = new int[VIEWPORT_LENGTH];
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
 		// clipping planes must be modified
 		ClipPlane3DManager.pushPlanes(gl);
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		gl.glPushMatrix();
 		gl.glLoadIdentity();
-		gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
+		//gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
+		double[] viewPort = transform.getViewPort();
 		gl.glOrtho(0.0, viewPort[2], 0.0, viewPort[VIEWPORT_LENGTH - 1],
 				   MIN_PIXEL_Z, MAX_PIXEL_Z);
 		gl.glMatrixMode(GL.GL_MODELVIEW);
@@ -124,6 +126,7 @@ public final class GLTools {
 		gl.glLoadIdentity();
 		
 		// Coordinates have changed, we need to update the transformation matrix.
+
 		CoordinateTransformation.getTransformation(gl).update(gl);
 		
 		ClipPlane3DManager.changeAllPlanesFrame(gl);

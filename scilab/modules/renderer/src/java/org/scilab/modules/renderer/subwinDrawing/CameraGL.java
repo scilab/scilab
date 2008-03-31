@@ -17,6 +17,7 @@ package org.scilab.modules.renderer.subwinDrawing;
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 import org.scilab.modules.renderer.utils.glTools.UnitaryCubeGL;
 
 import javax.media.opengl.GL;
@@ -335,8 +336,12 @@ public abstract class CameraGL extends ObjectGL {
 	 * To be called at the end of camera use.
 	 */
 	public void replaceCamera() {
+		// end of axis drawing
+		// flush the code that need to be performed in pixel coordinates
+		//getParentFigureGL().drawPixelCoordinatesCode();
 		GL gl = getGL();
 		gl.glPopMatrix();
+		// not needed we won't draw any more
 		CoordinateTransformation.getTransformation(gl).update(gl);
 	}
 	
@@ -357,6 +362,21 @@ public abstract class CameraGL extends ObjectGL {
 		// get only the pixel coordinates
 		int[] res = {(int) screenCoordinate.getX(), (int) screenCoordinate.getY()};
 		return res;
+	}
+	
+	/**
+	 * Change camera position in order to use pixel coordinates
+	 */
+	public void usePixelCoordinates() {
+		GLTools.usePixelCoordinates(getGL());
+	}
+	
+	/**
+	 * End use of pixel coordinates
+	 * switch back to 3D view
+	 */
+	public void endPixelCoordinates() {
+		GLTools.endPixelCoordinates(getGL());
 	}
 	
 	/**

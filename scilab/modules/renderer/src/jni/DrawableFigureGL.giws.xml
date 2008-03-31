@@ -87,5 +87,7 @@
       <param type="boolean" name="isClick" />
       <param type="int[]" name="initialRect" />
     </method>
+    <method name="drawPixelCoordinatesCode" returnType="void">
+    </method>
   </object>
 </package>

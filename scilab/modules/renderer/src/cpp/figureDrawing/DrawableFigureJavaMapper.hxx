@@ -84,6 +84,8 @@ public:
   virtual void setBackgroundColor(int colorIndex);
 
   virtual void rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton);
+
+  virtual void drawPixelCoordinatesCode(void);
   /*----------------------------------------------------------------------*/
 
 protected:

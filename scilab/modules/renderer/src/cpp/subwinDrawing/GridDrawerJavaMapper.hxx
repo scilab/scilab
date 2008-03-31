@@ -15,6 +15,7 @@
 #define _GRID_DRAWER_JAVA_MAPPER_HXX_
 
 #include "../DrawableObjectJavaMapper.hxx"
+#include "GridDrawerGL.hxx"
 
 
 namespace sciGraphics
@@ -27,22 +28,47 @@ class GridDrawerJavaMapper : public virtual DrawableObjectJavaMapper
 {
 public:
 
-  GridDrawerJavaMapper(void) : DrawableObjectJavaMapper() {}
+  GridDrawerJavaMapper(void);
 
-  virtual ~GridDrawerJavaMapper(void) {}
+  virtual ~GridDrawerJavaMapper(void);
 
   /*----------------------------------------------------------------------*/
-  // specific for TicksDrawer
-  virtual void drawGrid(const double gridPositions[], int nbPositions) = 0;
+  // Inherited from DrawableObjectJavaMapper
+  virtual void display(void);
 
-  virtual void setGridParameters(int gridColor, float gridThickness) = 0;
+  virtual void initializeDrawing(int figureIndex);
+  virtual void endDrawing(void);
 
-  virtual void setAxesBounds(double xMin, double xMax,
-                             double yMin, double yMax,
-                             double zMin, double zMax) = 0;
+  virtual void show(int figureIndex);
+
+  virtual void destroy(int figureIndex);
+
+  virtual void setFigureIndex(int figureIndex);
+  /*----------------------------------------------------------------------*/
+  // specific for GridDrawer
+  virtual void drawGrid(void);
+
+  virtual void setGridParameters(int gridColor, float gridThickness);
+
+  virtual void setGridStartPoints(const double startPointsX[],
+                                  const double startPointsY[],
+                                  const double startPointsZ[],
+                                  int nbPoints);
+
+  virtual void setGridMiddlePoints(const double middlePointsX[],
+                                   const double middlePointsY[],
+                                   const double middlePointsZ[],
+                                   int nbPoints);
+
+  virtual void setGridEndPoints(const double endPointsX[],
+                                const double endPointsY[],
+                                const double endPointsZ[],
+                                int nbPoints);
   /*----------------------------------------------------------------------*/
 
 protected:
+
+  org_scilab_modules_renderer_subwinDrawing::GridDrawerGL * m_pJavaObject;
 
 
 };

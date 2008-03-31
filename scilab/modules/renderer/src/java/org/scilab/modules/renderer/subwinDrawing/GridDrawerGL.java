@@ -16,6 +16,7 @@ package org.scilab.modules.renderer.subwinDrawing;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.DrawableObjectGL;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
@@ -23,18 +24,25 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  * Parent class for drawing grid
  * @author Jean-Baptiste Silvy
  */
-public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
+public class GridDrawerGL extends DrawableObjectGL {
 
 	private int gridColor;
 	private float gridThickness;
 	
 	private double[] gridPositions;
 	
+	private Vector3D[] gridStartPoints;
+	private Vector3D[] gridMiddlePoints;
+	private Vector3D[] gridEndPoints;
+	
 	/**
 	 * Default constructor
 	 */
 	public GridDrawerGL() {
 		super();
+		gridMiddlePoints = null;
+		gridEndPoints = null;
+		gridStartPoints = null;
 	}
 	
 	/**
@@ -42,7 +50,9 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 	 * @param parentFigureIndex index of parent figure
 	 */
 	public void show(int parentFigureIndex) {
-		// should not be called
+		initializeDrawing(parentFigureIndex);
+		drawGrid();
+		endDrawing();
 	}
 	
 	/**
@@ -98,6 +108,48 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 	}
 	
 	/**
+	 * Set the starting points for grid drawingf
+	 * @param startPointsX X coordinate of points
+	 * @param startPointsY Y coordinate of points
+	 * @param startPointsZ Z coordinate of points
+	 */
+	public void setGridStartPoints(double[] startPointsX, double[] startPointsY, double[] startPointsZ) {
+		int nbPoints = startPointsX.length;
+		gridStartPoints = new Vector3D[nbPoints];
+		for (int i = 0; i < nbPoints; i++) {
+			gridStartPoints[i] = new Vector3D(startPointsX[i], startPointsY[i], startPointsZ[i]);
+		}
+	}
+	
+	/**
+	 * Set the middle points for grid drawingf
+	 * @param middlePointsX X coordinate of points
+	 * @param middlePointsY Y coordinate of points
+	 * @param middlePointsZ Z coordinate of points
+	 */
+	public void setGridMiddlePoints(double[] middlePointsX, double[] middlePointsY, double[] middlePointsZ) {
+		int nbPoints = middlePointsX.length;
+		gridMiddlePoints = new Vector3D[nbPoints];
+		for (int i = 0; i < nbPoints; i++) {
+			gridMiddlePoints[i] = new Vector3D(middlePointsX[i], middlePointsY[i], middlePointsZ[i]);
+		}
+	}
+	
+	/**
+	 * Set the starting points for grid drawingf
+	 * @param endPointsX X coordinate of points
+	 * @param endPointsY Y coordinate of points
+	 * @param endPointsZ Z coordinate of points
+	 */
+	public void setGridEndPoints(double[] endPointsX, double[] endPointsY, double[] endPointsZ) {
+		int nbPoints = endPointsX.length;
+		gridEndPoints = new Vector3D[nbPoints];
+		for (int i = 0; i < nbPoints; i++) {
+			gridEndPoints[i] = new Vector3D(endPointsX[i], endPointsY[i], endPointsZ[i]);
+		}
+	}
+	
+	/**
 	 * Set all the constant parameters of the grid
 	 * @param gridColor color index of the color
 	 * @param gridThickness thickness in pixels
@@ -105,15 +157,6 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 	public void setGridParameters(int gridColor, float gridThickness) {
 		setGridColor(gridColor);
 		setGridThickness(gridThickness);
-	}
-	
-	/**
-	 * Draw the grid
-	 * @param gridPositions starting points of grid along the concerned axis
-	 */
-	public void drawGrid(double[] gridPositions) {
-		this.gridPositions = gridPositions;
-		drawGrid();
 	}
 	
 	/**
@@ -160,6 +203,8 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 	/**
 	 * Draw the grid with already set positions
 	 */
-	public abstract void drawGrid();
+	public void drawGrid() {
+		drawGrid(gridStartPoints, gridMiddlePoints, gridEndPoints);
+	}
 
 }

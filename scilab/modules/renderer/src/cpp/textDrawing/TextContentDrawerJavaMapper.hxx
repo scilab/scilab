@@ -28,6 +28,8 @@ public:
   virtual ~TextContentDrawerJavaMapper( void ) {}
 
   virtual void setTextContent(char ** text, int nbRow, int nbCol) = 0;
+  virtual void setBoxParameters(bool isLine, bool isFill, int background, int foreground,
+                                float lineWidth, int lineStyle) = 0;
   virtual void setCenterPosition(double centerX, double centerY, double centerZ) = 0;
   virtual void drawTextContent(void) = 0;
 

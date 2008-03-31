@@ -101,6 +101,7 @@ void TextContentDrawerJoGL::drawTextContent(void)
 {
   initializeDrawing();
   setDrawerParameters();
+  setBoxParameters();
 
   getTextContentDrawerJavaMapper()->drawTextContent();
   endDrawing();
@@ -109,6 +110,20 @@ void TextContentDrawerJoGL::drawTextContent(void)
 void TextContentDrawerJoGL::showTextContent(void)
 {
   show();
+}
+/*---------------------------------------------------------------------------------*/
+void TextContentDrawerJoGL::setBoxParameters(void)
+{
+  sciPointObj * pText = m_pDrawed->getDrawedObject();
+  bool isLine = sciGetIsBoxed(pText) && sciGetIsLine(pText);
+  bool isFill = sciGetIsBoxed(pText) && sciGetIsFilled(pText);
+
+  getTextContentDrawerJavaMapper()->setBoxParameters(isLine,
+                                                     isFill,
+                                                     sciGetGraphicContext(pText)->backgroundcolor,
+                                                     sciGetGraphicContext(pText)->foregroundcolor,
+                                                     (float) sciGetLineWidth(pText),
+                                                     sciGetLineStyle(pText));
 }
 /*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::getPixelLength(sciPointObj * parentSubwin, const double startingPoint[3],

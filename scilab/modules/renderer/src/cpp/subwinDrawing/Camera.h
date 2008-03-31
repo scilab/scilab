@@ -38,6 +38,11 @@ public:
   void replaceCamera( void );
 
   /**
+   * Convert user coordinates to pixel ones in OpenGL representation
+   */
+  void project(const double userCoord[3], double pixCoords[3]);
+
+  /**
    * Convert user coordinates to pixel coordinates.
    */
   void getPixelCoordinates(const double userCoord[3], int pixCoord[2]);
@@ -66,6 +71,16 @@ public:
    * Find the projection of user coords on the 2D frame.
    */
   void get2dViewCoordinates(const double userCoords[3], double coord2D[2]);
+
+  /**
+   * Switch to pixel coordinate view
+   */
+  void usePixelCoordinates(void);
+
+  /**
+   * Switch back to standard 3D view
+   */
+  void endPixelCoordinates(void);
 
 
   /**

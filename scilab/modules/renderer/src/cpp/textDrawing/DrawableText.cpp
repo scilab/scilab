@@ -29,7 +29,6 @@ void DrawableText::draw( void )
   }
   
   clip();
-  drawBox();
   drawTextContent();
   unClip();
   endDrawing();
@@ -47,7 +46,6 @@ void DrawableText::show( void )
   }
   initializeDrawing();
   clip();
-  showBox();
   showTextContent();
   unClip();
   endDrawing();

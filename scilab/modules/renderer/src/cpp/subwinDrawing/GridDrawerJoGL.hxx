@@ -32,29 +32,28 @@ public:
 protected:
 
   /**
-   * Draw the grid
+   * Specify the starting points for grid
    */
-  void drawGrid(const double gridPositions[], int nbPositions);
+  virtual void setGridStartPoints(const double startPointsX[],
+                                  const double startPointsY[],
+                                  const double startPointsZ[],
+                                  int nbPoints);
 
   /**
-   * Specify initialize drawing in setting all useful parameters.
+   * Specify the middle point for grid
    */
-  virtual void initializeDrawing(void);
+  virtual void setGridMiddlePoints(const double middlePointsX[],
+                                   const double middlePointsY[],
+                                   const double middlePointsZ[],
+                                   int nbPoints);
 
   /**
-   * Specify end drawing in setting all useful parameters.
+   * Specify the end point for grid
    */
-  virtual void endDrawing(void);
-
-  /**
-   * Same as initialize drawing but doesn't set constant parameters
-   */
-  virtual void initializeShowing(void);
-
-  /**
-   * Same as end drawing but doesn't set constant parameters
-   */
-  virtual void endShowing(void);
+  virtual void setGridEndPoints(const double endPointsX[],
+                                const double endPointsY[],
+                                const double endPointsZ[],
+                                int nbPoints);
 
   /**
    * Get the object performing mapping with Java class.

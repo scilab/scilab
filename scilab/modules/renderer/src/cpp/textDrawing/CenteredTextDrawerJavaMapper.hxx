@@ -50,6 +50,8 @@ public:
   virtual double * getBoundingRectangle(void);
 
   virtual long * getScreenBoundingBox(void);
+  virtual void setBoxParameters(bool isLine, bool isFill, int background, int foreground,
+                                float lineWidth, int lineStyle);
   /*----------------------------------------------------------------------*/
   // specific for centered text drawer
   virtual void setTextParameters(int textAlignment, int color, int fontStyle,

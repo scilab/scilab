@@ -25,7 +25,7 @@ namespace sciGraphics
 GridDrawerJoGL::GridDrawerJoGL(DrawableSubwin * subwin)
 : GridDrawer(subwin), DrawableObjectJoGL(subwin)
 {
-
+  setJavaMapper(new GridDrawerJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
 GridDrawerJoGL::~GridDrawerJoGL(void)
@@ -33,36 +33,32 @@ GridDrawerJoGL::~GridDrawerJoGL(void)
 
 }
 /*------------------------------------------------------------------------------------------*/
-void GridDrawerJoGL::drawGrid(const double gridPositions[], int nbPositions)
+void GridDrawerJoGL::setGridStartPoints(const double startPointsX[],
+                                        const double startPointsY[],
+                                        const double startPointsZ[],
+                                        int nbPoints)
 {
-  getGridDrawerJavaMapper()->drawGrid(gridPositions, nbPositions);
+  getGridDrawerJavaMapper()->setGridStartPoints(startPointsX, startPointsY, startPointsZ, nbPoints);
 }
 /*------------------------------------------------------------------------------------------*/
-void GridDrawerJoGL::initializeDrawing(void)
+void GridDrawerJoGL::setGridMiddlePoints(const double middlePointsX[],
+                                         const double middlePointsY[],
+                                         const double middlePointsZ[],
+                                         int nbPoints)
 {
-  DrawableObjectJoGL::initializeDrawing();
-
-  sciPointObj * pSubwin = getDrawer()->getDrawedObject();
-
-  double bounds[6];
-  sciGetRealDataBounds(pSubwin, bounds);
-  getGridDrawerJavaMapper()->setAxesBounds(bounds[0], bounds[1], bounds[2],
-                                           bounds[3], bounds[4], bounds[5]);
+  getGridDrawerJavaMapper()->setGridMiddlePoints(middlePointsX,
+                                                 middlePointsY,
+                                                 middlePointsZ, nbPoints);
 }
 /*------------------------------------------------------------------------------------------*/
-void GridDrawerJoGL::endDrawing(void)
+void GridDrawerJoGL::setGridEndPoints(const double endPointsX[],
+                                      const double endPointsY[],
+                                      const double endPointsZ[],
+                                      int nbPoints)
 {
-  DrawableObjectJoGL::endDrawing();
-}
-/*------------------------------------------------------------------------------------------*/
-void GridDrawerJoGL::initializeShowing(void)
-{
-  DrawableObjectJoGL::initializeDrawing();
-}
-/*------------------------------------------------------------------------------------------*/
-void GridDrawerJoGL::endShowing(void)
-{
-  DrawableObjectJoGL::endDrawing();
+  getGridDrawerJavaMapper()->setGridEndPoints(endPointsX,
+                                              endPointsY,
+                                              endPointsZ, nbPoints);
 }
 /*------------------------------------------------------------------------------------------*/
 GridDrawerJavaMapper * GridDrawerJoGL::getGridDrawerJavaMapper(void)

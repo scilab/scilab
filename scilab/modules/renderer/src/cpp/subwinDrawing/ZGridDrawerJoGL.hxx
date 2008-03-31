@@ -29,10 +29,11 @@ public:
   virtual ~ZGridDrawerJoGL(void);
 
 protected:
+
   /**
-  * Specify initialize drawing in setting all useful parameters.
-  */
-  virtual void initializeDrawing(void);
+   * Draw the grid from the specified computed points
+   */
+  virtual void drawGrid(void);
 };
 
 }

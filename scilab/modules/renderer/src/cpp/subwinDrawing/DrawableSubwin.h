@@ -62,14 +62,16 @@ protected:
   virtual void show( void ) ;
 
   /**
-   * Draw the bounding box and ticks of the subwin object.
+   * Perform drawing of entities which must be draw using pixel coordinates.
+   * This include drawing of ticks
    */
-  void drawAxesBox(void);
+  virtual void pixelCoordinatesDraw(void) = 0;
 
   /**
-   * Draw the bounding box and ticks of a subwin object with alredy computed data.
+   * Perform showing of entities which must be draw using pixel coordinates.
+   * This include drawing of ticks.
    */
-  void showAxesBox(void);
+  virtual void pixelCoordinatesShow(void) = 0;
 
   /**
    * Draw the surrounding cube of the subwin object.

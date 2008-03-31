@@ -18,6 +18,7 @@
 #include "ComputeTicksStrategy.hxx"
 #include "DrawableSubwin.h"
 #include "GridDrawer.hxx"
+#include "PlaceTicksStrategy.hxx"
 
 namespace sciGraphics
 {
@@ -31,6 +32,8 @@ public:
   virtual ~TicksDrawer(void);
 
   void setTicksComputer(ComputeTicksStrategy * ticksComputer);
+
+  void setTicksPositioner(PlaceTicksStrategy * strategy);
 
   void setGridDrawer(GridDrawer * gridDrawer);
 
@@ -53,19 +56,57 @@ protected:
   double drawTicks(void);
 
   /**
-   * Draw the ticks on the right axis on computed positions.
-   * @return distance from ticks to the axis in pixels
+   * Draw the grif if requested
    */
-  virtual double drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
-                           int nbTicks, double subticksPositions[], int nbSubtics) = 0;
+  void drawGrid(const double ticksPos[], const double subticksPos[],
+                int nbTicks, int nbSubticks);
 
   /**
-   * Check if the ticks do not conceal each others.
+   * Set position of ticks and subTicks
    */
-  virtual bool checkTicks(double ticksPositions[], char * ticksLabels[],
-                          char * labelsExponents[], int nbTicks) = 0;
+  virtual void setTicksPosition(const double ticksPosX[],
+                                const double ticksPosY[],
+                                const double ticksPosZ[],
+                                int nbTicks) = 0;
+
+  /**
+   * Sepcify position of subticks
+   */
+  virtual void setSubticksPosition(const double subticksPosX[],
+                                   const double subticksPosY[],
+                                   const double subticksPosZ[],
+                                   int nbSubticks) = 0;
+
+  /**
+   * Specify labels to draw in front of ticks
+   */
+  virtual void setTicksLabels(char * ticksLabels[],
+                              char * labelsExponent[],
+                              int nbLabels) = 0;
+
+  /**
+   * Specify axis segment position and ticks segments
+   */
+  virtual void setAxisPosition(const double axisSegmentStart[3],
+                               const double axisSegmentEnd[3],
+                               const double ticksDirection[3]) = 0;
+
+  /**
+   * Draw the ticks using precomputed positions
+   * @return distance from ticks to the axis in pixels
+   */
+  virtual double concreteDrawTicks(void) = 0;
+
+  /**
+   * @return false if some of the ticks concealed and must be decimated
+   *         true if ticks are correct and can be displayed
+   */
+  virtual bool checkTicks(void) = 0;
+
   /*----------------------------------------------------------------------*/
   ComputeTicksStrategy * m_pTicksComputer;
+
+  PlaceTicksStrategy * m_pTicksPositioner;
 
   GridDrawer * m_pGridDrawer;
   /*----------------------------------------------------------------------*/
