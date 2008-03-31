@@ -69,7 +69,7 @@ jmethodID voidsetTicksLabelsjobjectArrayID; // cache method id
 jmethodID voidsetTicksLabelsjobjectArrayjobjectArrayID; // cache method id
 jmethodID voidsetTicksDirectionjdoublejdoublejdoubleID; // cache method id
 jmethodID voidsetAxisBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
-jmethodID voidsetAxisParametersjintjfloatjintjintjdoublejintID; // cache method id
+jmethodID voidsetAxisParametersjintjfloatjintjintjdoublejintjbooleanID; // cache method id
 
 
 /**
@@ -143,7 +143,7 @@ void setTicksDirection(double ticksDirX, double ticksDirY, double ticksDirZ);
 
 void setAxisBounds(double axesStartX, double axesStartY, double axesStartZ, double axesEndX, double axesEndY, double axesEndZ);
 
-void setAxisParameters(long lineStyle, float lineWidth, long lineColor, long fontType, double fontSize, long fontColor);
+void setAxisParameters(long lineStyle, float lineWidth, long lineColor, long fontType, double fontSize, long fontColor, bool drawAxisSegement);
 
 
                         /**

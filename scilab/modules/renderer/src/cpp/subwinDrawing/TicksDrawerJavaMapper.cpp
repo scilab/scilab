@@ -117,9 +117,11 @@ void TicksDrawerJavaMapper::setAxisBounds(double axisStartX, double axisStartY, 
 }
 /*--------------------------------------------------------------------------*/
 void TicksDrawerJavaMapper::setAxisParamerters(int lineStyle, float lineWidth, int lineColor,
-                                               int fontType, double fontSize, int fontColor)
+                                               int fontType, double fontSize, int fontColor,
+                                               bool drawAxisSegment)
 {
-  m_pJavaObject->setAxisParameters(lineStyle, lineWidth, lineColor, fontType, fontSize, fontColor);
+  m_pJavaObject->setAxisParameters(lineStyle, lineWidth, lineColor, fontType,
+                                   fontSize, fontColor, drawAxisSegment);
 }
 /*--------------------------------------------------------------------------*/
 }

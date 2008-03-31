@@ -33,6 +33,11 @@ XAxesPositioner::~XAxesPositioner(void)
 
 }
 /*---------------------------------------------------------------------------------*/
+bool XAxesPositioner::isAxisSegmentDrawn(void)
+{
+  return (pAXES_FEATURE(m_pDrawer->getDrawedObject())->seg == 1);
+}
+/*---------------------------------------------------------------------------------*/
 void XAxesPositioner::computeAxisBounds3D(const double ticksAbscissas[], int nbTicks, double axisStart[3], double axisEnd[3])
 {
   sciPointObj * pAxes = m_pDrawer->getDrawedObject();

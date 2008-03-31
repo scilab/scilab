@@ -66,6 +66,7 @@
       <param type="int" name="fontType" />
       <param type="double" name="fontSize" />
       <param type="int" name="fontColor" />
+      <param type="boolean" name="drawAxisSegement" />
     </method>
   </object>
 </package>

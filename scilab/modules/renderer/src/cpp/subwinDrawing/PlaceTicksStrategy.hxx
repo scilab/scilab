@@ -92,6 +92,12 @@ public:
                                     int nbSubticksin,
                                     int * nbTicksOut);
 
+  /**
+   * Specify wether the axis segment should be draw or not
+   * true by default
+   */
+  virtual bool isAxisSegmentDrawn(void) {return true;}
+
 
 protected:
 
@@ -105,6 +111,7 @@ protected:
    * Compute direction to be used by ticks in 3D coordinates
    */
   virtual void computeTicksDir3D(double ticksDir[3]) = 0;
+
 
   /**
    * Convert ticks abscissas along axis into positions in 3D coordinates

@@ -220,14 +220,17 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	 * @param fontType ndex of the font in the font array.
 	 * @param fontSize font size to use.
 	 * @param fontColor index of the color in the colormap for the font
+	 * @param drawAxisSegement specify wether the axis segment should be drawn or not
 	 */
 	public void setAxisParameters(int lineStyle, float lineWidth, int lineColor,
-								  int fontType, double fontSize, int fontColor) {
+								  int fontType, double fontSize, int fontColor,
+								  boolean drawAxisSegement) {
 		setLineStyle(lineStyle);
 		setThickness(lineWidth);
 		setLineColor(lineColor);
 		setFont(fontType, fontSize);
 		setFontColor(fontColor);
+		setAxisLineDrawing(drawAxisSegement);
 	}
 	
 	/**

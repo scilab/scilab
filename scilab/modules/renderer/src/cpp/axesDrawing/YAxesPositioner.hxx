@@ -27,9 +27,15 @@ class YAxesPositioner : public PlaceTicksStrategy
 {
 public:
 
-  YAxesPositioner(DrawableAxes* axes);
+  YAxesPositioner(DrawableAxes * axes);
 
   virtual ~YAxesPositioner(void);
+
+  /**
+   * Specify wether the axis segment should be draw or not
+   * true by default, but redefined here
+   */
+  virtual bool isAxisSegmentDrawn(void);
 
 protected:
 

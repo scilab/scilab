@@ -31,6 +31,12 @@ public:
 
   virtual ~XAxesPositioner(void);
 
+  /**
+   * Specify wether the axis segment should be draw or not
+   * true by default, but redefined here
+   */
+  virtual bool isAxisSegmentDrawn(void);
+
 protected:
 
   /**

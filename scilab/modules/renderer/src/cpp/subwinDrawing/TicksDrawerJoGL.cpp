@@ -100,7 +100,8 @@ void TicksDrawerJoGL::initializeDrawing(void)
                                                  sciGetGraphicContext(pObj)->foregroundcolor,
                                                  sciGetFontStyle(pObj),
                                                  sciGetFontSize(pObj),
-                                                 sciGetFontContext(pObj)->foregroundcolor);
+                                                 sciGetFontContext(pObj)->foregroundcolor,
+                                                 m_pTicksPositioner->isAxisSegmentDrawn());
 
   if (m_pGridDrawer != NULL)
   {

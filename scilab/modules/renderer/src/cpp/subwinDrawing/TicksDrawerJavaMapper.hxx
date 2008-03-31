@@ -70,7 +70,8 @@ public:
                              double axisEndX, double axisEndY, double axisEndZ);
   
   virtual void setAxisParamerters(int lineStyle, float lineWidth, int lineColor,
-                                  int fontType, double fontSize, int fontColor);
+                                  int fontType, double fontSize, int fontColor,
+                                  bool drawAxisSegment);
   /*----------------------------------------------------------------------*/
 
 protected:

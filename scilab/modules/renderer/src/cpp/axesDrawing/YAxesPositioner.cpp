@@ -33,6 +33,11 @@ YAxesPositioner::~YAxesPositioner(void)
 
 }
 /*---------------------------------------------------------------------------------*/
+bool YAxesPositioner::isAxisSegmentDrawn(void)
+{
+  return (pAXES_FEATURE(m_pDrawer->getDrawedObject())->seg == 1);
+}
+/*---------------------------------------------------------------------------------*/
 void YAxesPositioner::computeAxisBounds3D(const double ticksAbscissas[], int nbTicks, double axisStart[3], double axisEnd[3])
 {
   sciPointObj * pAxes = m_pDrawer->getDrawedObject();

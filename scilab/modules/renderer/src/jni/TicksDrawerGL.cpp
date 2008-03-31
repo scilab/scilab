@@ -122,7 +122,7 @@ voidsetTicksLabelsjobjectArrayID=NULL;
 voidsetTicksLabelsjobjectArrayjobjectArrayID=NULL; 
 voidsetTicksDirectionjdoublejdoublejdoubleID=NULL; 
 voidsetAxisBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
-voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL; 
+voidsetAxisParametersjintjfloatjintjintjdoublejintjbooleanID=NULL; 
 
 
 }
@@ -168,7 +168,7 @@ voidsetTicksLabelsjobjectArrayID=NULL;
 voidsetTicksLabelsjobjectArrayjobjectArrayID=NULL; 
 voidsetTicksDirectionjdoublejdoublejdoubleID=NULL; 
 voidsetAxisBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
-voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL; 
+voidsetAxisParametersjintjfloatjintjintjdoublejintjbooleanID=NULL; 
 
 
 }
@@ -670,17 +670,19 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void TicksDrawerGL::setAxisParameters (long lineStyle, float lineWidth, long lineColor, long fontType, double fontSize, long fontColor){
+void TicksDrawerGL::setAxisParameters (long lineStyle, float lineWidth, long lineColor, long fontType, double fontSize, long fontColor, bool drawAxisSegement){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voidsetAxisParametersjintjfloatjintjintjdoublejintID==NULL) { /* Use the cache Luke */ voidsetAxisParametersjintjfloatjintjintjdoublejintID = curEnv->GetMethodID(this->instanceClass, "setAxisParameters", "(IFIIDI)V" ) ;
-if (voidsetAxisParametersjintjfloatjintjintjdoublejintID == NULL) {
+if (voidsetAxisParametersjintjfloatjintjintjdoublejintjbooleanID==NULL) { /* Use the cache Luke */ voidsetAxisParametersjintjfloatjintjintjdoublejintjbooleanID = curEnv->GetMethodID(this->instanceClass, "setAxisParameters", "(IFIIDIZ)V" ) ;
+if (voidsetAxisParametersjintjfloatjintjintjdoublejintjbooleanID == NULL) {
 std::cerr << "Could not access to the method " << "setAxisParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voidsetAxisParametersjintjfloatjintjintjdoublejintID ,lineStyle, lineWidth, lineColor, fontType, fontSize, fontColor);
+jboolean drawAxisSegement_ = ((bool) drawAxisSegement ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetAxisParametersjintjfloatjintjintjdoublejintjbooleanID ,lineStyle, lineWidth, lineColor, fontType, fontSize, fontColor, drawAxisSegement_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
