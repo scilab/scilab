@@ -62,9 +62,9 @@ function check_nodes(nodes,checkgraphics)
   NodeFieldTypes=    ['constant','ngraphic','nodedata']
   NodeFieldSizes=    list([1 1],-1,-1);
   // - graphic nodes data structure
-  ttgnodes=          ['ngraphic','display','defaults','name','x','y','type','diam','border','colors','font']
-  GNodeFieldTypes=   ['string','nodedefs','string','constant','constant','constant','constant','constant','constant','constant']
-  GNodeFieldSizes=   list([1 1],6,[1 -1],[1 -1], [1 -1],[1 -1], [1 -1],[1 -1],[2 -1],[3 -1])
+  ttgnodes=          ['ngraphic','display','defaults','name','x','y','type','diam','border','colors','font','displaymode']
+  GNodeFieldTypes=   ['string','nodedefs','string','constant','constant','constant','constant','constant','constant','constant','string']
+  GNodeFieldSizes=   list([1 1],6,[1 -1],[1 -1], [1 -1],[1 -1], [1 -1],[1 -1],[2 -1],[3 -1],[1 1])
   // - default node graphic properties data structure
   ttdefnodes=        ['nodedefs','type','diam','border','colors','font']
   DefNodeFieldTypes= ['constant', 'constant', 'constant', 'constant', 'constant']
@@ -146,9 +146,9 @@ function check_edges(edges,checkgraphics)
   EdgeFieldTypes=    ['constant','constant','egraphic','edgedata']
   EdgeFieldSizes=    list([1 -1],[1 -1], -1,-1)
   // - graphic edges data structure
-  ttgedges=          ['egraphic','display','defaults','profiles','name','width','foreground','font','profile_index']
-  GEdgeFieldTypes=   ['string','edgedefs','list','string','constant', 'constant', 'constant', 'constant']
-  GEdgeFieldSizes=   list([1 1],5,-2,[1 -1],[1 -1],[1 -1],[3 -1],[1 -1])
+  ttgedges=          ['egraphic','display','defaults','profiles','name','width','foreground','font','profile_index','displaymode']
+  GEdgeFieldTypes=   ['string','edgedefs','list','string','constant', 'constant', 'constant', 'constant','string']
+  GEdgeFieldSizes=   list([1 1],5,-2,[1 -1],[1 -1],[1 -1],[3 -1],[1 -1],[1 1])
   // - default edge graphic properties data structure
   ttdefedges=        ['edgedefs','width','foreground','font','profile_index'];
   DefEdgeFieldTypes= ['constant', 'constant', 'constant', 'constant']
