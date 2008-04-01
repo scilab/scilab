@@ -26,7 +26,6 @@ extern double dsinhs(double _dblVal);
 int C2F(sci_sin) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
-#ifdef _NEW_TONIO_
 	int iRows = 0;
 	int iCols = 0;
 	int iRealData = 0;
@@ -62,8 +61,8 @@ int C2F(sci_sin) _PARAMS((char *fname,unsigned long fname_len))
 			pReturnImgData[iIndex]	= dcoss(pdblRealData[iIndex]) * dsinhs(pdblImgData[iIndex]);
 		}
 
-		CreateCVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
-		LhsVar(1) = 2;
+		CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
+		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 		free(pReturnRealData);
 		free(pReturnImgData);
@@ -82,14 +81,11 @@ int C2F(sci_sin) _PARAMS((char *fname,unsigned long fname_len))
 			pReturnRealData[iIndex] = dsins(pdblRealData[iIndex]);
 		}
 		
-		CreateVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-		LhsVar(1) = 2;
+		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 		free(pReturnRealData);
 	}
-#else
-	C2F(intsin)(id);
-#endif
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

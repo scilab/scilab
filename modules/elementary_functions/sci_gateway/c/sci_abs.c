@@ -25,7 +25,6 @@ extern int C2F(intabs) _PARAMS((int *id));
 int C2F(sci_abs) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
-#ifdef _NEW_TONIO_
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 	switch(GetType(1))
@@ -49,11 +48,6 @@ int C2F(sci_abs) _PARAMS((char *fname,unsigned long fname_len))
 		OverLoad(1);
 		break;
 	}
-
-
-#else
-	C2F(intabs)(id);
-#endif
 	return 0;
 }
 
@@ -83,8 +77,8 @@ int abs_double()
 		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
 			pReturnRealData[iIndex] = dabsz(pdblRealData[iIndex], pdblImgData[iIndex]);
 
-		CreateVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-		LhsVar(1) = 2;
+		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 		free(pReturnRealData);
 	}
@@ -102,8 +96,8 @@ int abs_double()
 		for(iIndex = 0 ; (iIndex < iRows * iCols) && (itr == 0) ; iIndex++)
 			pReturnRealData[iIndex] = dabss(pdblRealData[iIndex]);
 
-		CreateVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-		LhsVar(1) = 2;
+		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 		free(pReturnRealData);
 	}
@@ -162,8 +156,8 @@ int abs_poly()
 
 	}
 
-	CreatePolyVarFromPtr(2, &piVarName, iRows, iCols, piPow, pReturnRealData);
-	LhsVar(1) = 2;
+	CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData);
+	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
 	free(pReturnRealData);
 	free(piPow);
@@ -235,8 +229,8 @@ int abs_sparse()
 			pReturnRealData[iIndex] = fabs(pdblRealData[iIndex]);
 	}
 
-	CreateSparseVarFromPtr(2, iRows, iCols, iTotalElem, piElemByRow, piColByRow, pReturnRealData);
-	LhsVar(1) = 2;
+	CreateSparseVarFromPtr(Rhs + 1, iRows, iCols, iTotalElem, piElemByRow, piColByRow, pReturnRealData);
+	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
 
 	free(piElemByRow);

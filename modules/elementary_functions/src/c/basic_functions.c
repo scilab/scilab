@@ -530,3 +530,48 @@ double dceilsEx(double _dblVal, int _iPrecision)
 	return (double)dblTemp / iPow;
 
 }
+
+double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg)
+{
+	double dblRetVal = 0;
+	int iIndex = 0;
+
+	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex ++)
+		dblRetVal += dabss(_pdblReal[iIndex]) + dabss(_pdblImg[iIndex]);
+
+	return dblRetVal;
+}
+double dasums(int _iNbElem, double* _pdblReal)
+{
+	double dblRetVal = 0;
+	int iIndex = 0;
+	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex++)
+		dblRetVal += dabss(_pdblReal[iIndex]);
+	return dblRetVal;
+
+/*the original source code "Optimization" ?!?
+   20 m = mod(n,6)
+      if( m .eq. 0 ) go to 40
+      do 30 i = 1,m
+        dtemp = dtemp + dabs(dx(i))
+   30 continue
+      if( n .lt. 6 ) go to 60
+   40 mp1 = m + 1
+      do 50 i = mp1,n,6
+        dtemp = dtemp + dabs(dx(i)) + dabs(dx(i + 1)) + dabs(dx(i + 2))
+     *  + dabs(dx(i + 3)) + dabs(dx(i + 4)) + dabs(dx(i + 5))
+   50 continue
+   60 dasum = dtemp
+*/
+
+}
+
+/*scales a vector by a constant*/
+void ddscals(double* _pdblIn, int _iNbElem, double _dblMulti, double* _pdblOut)
+{
+	int iIndex = 0;
+	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex++)
+	{
+		_pdblOut[iIndex] = _dblMulti * _pdblIn[iIndex];
+	}
+}

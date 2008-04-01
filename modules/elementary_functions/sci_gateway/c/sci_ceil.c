@@ -20,7 +20,6 @@ extern int C2F(intceil) _PARAMS((int *id));
 int C2F(sci_ceil) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
-#ifdef _NEW_TONIO_
 	int iRows = 0;
 	int iCols = 0;
 	int iRealData = 0;
@@ -57,8 +56,8 @@ int C2F(sci_ceil) _PARAMS((char *fname,unsigned long fname_len))
 				pReturnImgData[iIndex] = dceils(pdblImgData[iIndex]);
 			}
 
-			CreateCVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
-			LhsVar(1) = 2;
+			CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
+			LhsVar(1) = Rhs + 1;
 			PutLhsVar();
 			free(pReturnRealData);
 			free(pReturnImgData);
@@ -73,8 +72,8 @@ int C2F(sci_ceil) _PARAMS((char *fname,unsigned long fname_len))
 			for(iIndex = 0 ; iIndex < iCols * iRows ; iIndex++)
 				pReturnRealData[iIndex] = dceils(pdblRealData[iIndex]);
 
-			CreateVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-			LhsVar(1) = 2;
+			CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+			LhsVar(1) = Rhs + 1;
 			PutLhsVar();
 			free(pReturnRealData);
 		}
@@ -100,8 +99,8 @@ int C2F(sci_ceil) _PARAMS((char *fname,unsigned long fname_len))
 				pReturnImgData[iIndex] = dceils(pdblImgData[iIndex]);
 			}
 
-			CreateCPolyVarFromPtr(2, &piVarName, iRows, iCols, piPow, pReturnRealData, pReturnImgData);
-			LhsVar(1) = 2;
+			CreateCPolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData, pReturnImgData);
+			LhsVar(1) = Rhs + 1;
 			PutLhsVar();
 			free(pReturnRealData);
 			free(pReturnImgData);
@@ -120,8 +119,8 @@ int C2F(sci_ceil) _PARAMS((char *fname,unsigned long fname_len))
 			for(iIndex = 0 ; iIndex < iMaxData ; iIndex++)
 				pReturnRealData[iIndex] = dceils(pdblRealData[iIndex]);
 
-			CreatePolyVarFromPtr(2, &piVarName, iRows, iCols, piPow, pReturnRealData);
-			LhsVar(1) = 2;
+			CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData);
+			LhsVar(1) = Rhs + 1;
 			PutLhsVar();
 			free(pReturnRealData);
 			free(piPow);
@@ -139,9 +138,6 @@ int C2F(sci_ceil) _PARAMS((char *fname,unsigned long fname_len))
 		OverLoad(1);
 		return 0;
 	}
-#else
-	C2F(intceil)(id);
-#endif
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

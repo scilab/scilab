@@ -38,5 +38,6 @@ void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 double dsigns(double _dblRef, double _dblVal);
 double dceilsEx(double _dblVal, int _iPrecision);
 int dceils(double _dblVal);
-
-
+double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
+double dasums(int _iNbElem, double* _pdblReal);
+void ddscals(double* _pdblIn, int _iNbElem, double _dblMulti, double* _pdblOut);

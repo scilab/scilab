@@ -21,7 +21,6 @@ extern int C2F(inttan) _PARAMS((int *id));
 int C2F(sci_tan) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
-#ifdef _NEW_TONIO_
 	int iRows1 = 0;
 	int iCols1 = 0;
 	int iRows2 = 0;
@@ -59,8 +58,8 @@ int C2F(sci_tan) _PARAMS((char *fname,unsigned long fname_len))
 		{
 			watan(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
 
-			CreateCVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &pReturnRealData, &pReturnImgData);
-			LhsVar(1) = 2;
+			CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &pReturnRealData, &pReturnImgData);
+			LhsVar(1) = Rhs + 1;
 			PutLhsVar();
 			free(pReturnRealData);
 			free(pReturnImgData);
@@ -78,14 +77,11 @@ int C2F(sci_tan) _PARAMS((char *fname,unsigned long fname_len))
 		for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
 			pReturnRealData[iIndex] = datans(pdblRealData[iIndex]);
 
-		CreateVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &pReturnRealData);
-		LhsVar(1) = 2;
+		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &pReturnRealData);
+		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 		free(pReturnRealData);
 	}
-#else
-	C2F(inttan)(id);
-#endif
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
