@@ -32,6 +32,7 @@
 #include "ListBox.h" /* setCurentFigureAsListBoxParent */
 #include "Frame.h" /* setCurentFigureAsFrameParent */
 #include "Scierror.h"
+#include "WindowList.h" /* getFigureFromIndex */
 /*--------------------------------------------------------------------------*/
 #define NBPROPERTIES 23
 /*--------------------------------------------------------------------------*/
@@ -81,7 +82,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
       if (VarType(1) != sci_handles)
         {
-			Scierror(999,_("%s: Wrong type for first input argument: Graphic handle expected.\n"),fname);
+          Scierror(999,_("%s: Wrong type for first input argument: Graphic handle expected.\n"),fname);
           return FALSE;
         }
       else /* Get parent ID */
@@ -133,8 +134,27 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         {
           if (VarType(1) != sci_handles)
             {
-              Scierror(999,_("%s: Wrong type for first input argument: Graphic handle expected.\n"),fname);
-              return FALSE;
+              if (VarType(1) == sci_matrix)
+                {
+                  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+                  if (nbRow*nbCol == 1)
+                    {
+                      pParent = getFigureFromIndex(*stk(stkAdr));
+
+                      /* First parameter is the parent */
+                      propertiesValuesIndices[1] = 1;
+                    }
+                  else
+                    {
+                      Scierror(999,_("%s: Wrong size for first input argument: Graphic handle expected.\n"),fname);
+                      return FALSE;
+                    }
+                }
+              else
+                {
+                  Scierror(999,_("%s: Wrong type for first input argument: Graphic handle expected.\n"),fname);
+                  return FALSE;
+                }
             }
           else /* Get parent ID */
             {
