@@ -15,10 +15,8 @@ package org.scilab.modules.gui.bridge.menu;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JMenu;
-import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -61,7 +59,6 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.MenuItem)
 	 */
 	public void add(MenuItem newMenuItem) {
-		final SwingScilabMenuItem tmpSMI = (SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem();
 		/* Back to Java Mouse Listeners */
 		if (customedMouseListener != null) {
 			removeMouseListener(customedMouseListener);
@@ -71,27 +68,8 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 				addMouseListener(nativeMouseListeners[i]);
 			}
 		}
-		
-		// HACK HERE TO GET SCICOS FUNCTIONNAL
-		// call add and remove within the Event thread
-		if (!SwingUtilities.isEventDispatchThread()) {
-			try {
-				SwingUtilities.invokeAndWait(new Runnable() {
-					public void run() {
-						add(tmpSMI);
-					}
-				});
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
-		}
-		//super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
+		super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
+		super.repaint();
 	}
 	
 	/**
@@ -111,6 +89,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 		}
 		
 		super.add((SwingScilabMenu) newSubMenu.getAsSimpleMenu());
+		super.repaint();
 	}
 
 	/**

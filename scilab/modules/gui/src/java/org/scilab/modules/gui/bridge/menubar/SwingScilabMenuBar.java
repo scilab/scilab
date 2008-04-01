@@ -54,28 +54,8 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 	 * @see org.scilab.modules.gui.widget.MenuBar#add(org.scilab.modules.gui.widget.ContextMenu)
 	 */
 	public void add(SwingScilabMenu newMenu) {
-		final SwingScilabMenu tmpMenu = newMenu;
-		
-		// HACK HERE TO GET SCICOS FUNCTIONNAL
-		// call add and remove within the Event thread
-		if (!SwingUtilities.isEventDispatchThread()) {
-			try {
-				SwingUtilities.invokeAndWait(new Runnable() {
-					public void run() {
-						add(tmpMenu);
-					}
-				});
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			super.add(newMenu);
-		}
-		//super.add(newMenu);
+		super.add(newMenu);
+		repaint();
 	}
 
 	/**
@@ -138,32 +118,24 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 	 */
 	public void removeMenu(String menuName) {
 		for (int menuIndex = 0; menuIndex < this.getMenuCount(); menuIndex++) {
-			final int tmpMenuIndex = menuIndex;
+			final int finalMenuIndex = menuIndex;
 			// Check the name of each menu until one matches the name
 			if (this.getMenu(menuIndex).getText().equals(menuName)) {
-				// HACK HERE TO GET SCICOS FUNCTIONNAL
-				// call add and remove within the Event thread
-				if (!SwingUtilities.isEventDispatchThread()) {
-					try {
-						SwingUtilities.invokeAndWait(new Runnable() {
-							public void run() {
-								remove(tmpMenuIndex);
-							}
-						});
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} else {
-					this.remove(menuIndex);
+				try {
+					SwingUtilities.invokeAndWait(new Runnable() {
+						public void run() {
+							remove(finalMenuIndex);
+						}
+					});
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				//this.remove(menuIndex);
 				// Redraw the menuBar to display the changes
-				this.repaint();
-				this.doLayout();
+				repaint();
 				break;
 			}
 		}
