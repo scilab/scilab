@@ -254,7 +254,10 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 		gl.glColor3d(backColor[0], backColor[1], backColor[2]);
 		
 		// push back polygons from the box lines
-		GLTools.pushPolygonsBack(gl);
+		// just draw them in the back otherwise it will cut objects
+		// which are drawn outside axes box
+		// depth test disable so no need to push polygons back
+		gl.glDisable(GL.GL_DEPTH_TEST);
 		
 		gl.glBegin(GL.GL_QUADS);
 		for (int i = 0; i < BACK_FACETS[concealedCornerIndex].length; i++) {
@@ -264,8 +267,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 			}
 		}
 		gl.glEnd();
-		
-		GLTools.endPushPolygonsBack(gl);
+		gl.glEnable(GL.GL_DEPTH_TEST);
 		
 		// the concealed line is draw wiht dashes
 		GLTools.beginDashMode(gl, 2, getThickness());
