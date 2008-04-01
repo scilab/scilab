@@ -154,12 +154,12 @@ public class MovableClipPlane3D extends ClipPlane3D {
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
 		// normal is a direction, not a point
-		Vector3D newNormal = transform.retrieveSceneCoordinates3D(gl, normal);
+		Vector3D newNormal = new Vector3D(normal);// transform.retrieveSceneCoordinates3D(gl, normal);
 		newNormal.normalize();
 		
-		Vector3D newPoint1 = transform.retrieveSceneCoordinates(gl, point1);
-		Vector3D newPoint2 = transform.retrieveSceneCoordinates(gl, point2);
-		Vector3D newPoint3 = transform.retrieveSceneCoordinates(gl, point3);
+		Vector3D newPoint1 = new Vector3D(point1);//transform.retrieveSceneCoordinates(gl, point1);
+		Vector3D newPoint2 = new Vector3D(point2);//transform.retrieveSceneCoordinates(gl, point2);
+		Vector3D newPoint3 = new Vector3D(point3);//transform.retrieveSceneCoordinates(gl, point3);
 		
 		// I've tried to use setEquation with a point and normal, but it doesn'r work
 		// for Y axis and I couldn't figure why. Otherwise, it seems to work with 3 points and a normal

@@ -150,8 +150,8 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		
 		for (int i = 0; i < marksPosition.length; i++) {
 			// switch back to the new frame
-			Vector3D curCoord = transform.retrieveSceneCoordinates(gl, pixCoords[i]);
-			getDrawer().drawMark(curCoord.getX(), curCoord.getY(), curCoord.getZ());
+			//Vector3D curCoord = transform.retrieveSceneCoordinates(gl, pixCoords[i]);
+			getDrawer().drawMark(pixCoords[i].getX(), pixCoords[i].getY(), pixCoords[i].getZ());
 		}
 		// we recreate the dl each time
 		getDrawer().clearDisplayList();

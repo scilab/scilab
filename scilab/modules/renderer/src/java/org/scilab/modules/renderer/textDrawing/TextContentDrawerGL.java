@@ -240,7 +240,9 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
 		
-		textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
+		
+		
+		//textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
 		
 		// draw the text using the new coordinates
 		drawTextContentPix(textCenterPix);
@@ -311,14 +313,14 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
 		GLTools.usePixelCoordinates(gl);
 		
-		textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
+		//textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
 		
 		Vector3D[] resPix = getBoundingRectanglePix(textCenterPix);
 		
 		// retrieve canvas coordinates
-		for (int i = 0; i < resPix.length; i++) {
+		/*for (int i = 0; i < resPix.length; i++) {
 			resPix[i] = transform.getCanvasCoordinates(gl, resPix[i]);
-		}
+		}*/
 		
 		GLTools.endPixelCoordinates(gl);
 		return resPix;

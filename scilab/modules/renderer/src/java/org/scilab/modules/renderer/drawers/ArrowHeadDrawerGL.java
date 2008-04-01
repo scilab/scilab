@@ -244,10 +244,10 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 			Vector3D thirdPoint = projOnDir.substract(orthoDir);
 			
 			// switch back to the new frame
-			Vector3D firstPoint = transform.retrieveSceneCoordinates(gl, endPixCoords[i]);
-			secondPoint = transform.retrieveSceneCoordinates(gl, secondPoint);
-			thirdPoint = transform.retrieveSceneCoordinates(gl, thirdPoint);
-			drawTriangle(gl, firstPoint, secondPoint, thirdPoint);
+			//Vector3D firstPoint = transform.retrieveSceneCoordinates(gl, endPixCoords[i]);
+			//secondPoint = transform.retrieveSceneCoordinates(gl, secondPoint);
+			//thirdPoint = transform.retrieveSceneCoordinates(gl, thirdPoint);
+			drawTriangle(gl, endPixCoords[i], secondPoint, thirdPoint);
 		}
 		gl.glEnd();
 		
