@@ -14,12 +14,9 @@
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
-import java.util.Vector;
-
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.drawers.LineDrawerGL;
-import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
@@ -33,34 +30,6 @@ public class RectangleLineDrawerGL extends LineDrawerGL implements RectangleDraw
 	 */
 	public RectangleLineDrawerGL() {
 		super();
-	}
-	
-	
-	/**
-	 * Draw the rectangle
-	 * @param gl current GL pipeline
-	 * @param corner1 first corner coordinates
-	 * @param corner2 second corner coordinates
-	 * @param corner3 third corner coordinates
-	 * @param corner4 fourth corner coordinates
-	 */
-	public void drawRectangle(GL gl, Vector3D corner1, Vector3D corner2, Vector3D corner3, Vector3D corner4) {
-		// set dash mode
-		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
-		
-		// set color
-		double[] color = getLineColor();
-		gl.glColor3d(color[0], color[1], color[2]);
-		
-		
-		gl.glBegin(GL.GL_LINE_LOOP);
-		gl.glVertex3d(corner1.getX(), corner1.getY(), corner1.getZ());
-		gl.glVertex3d(corner2.getX(), corner2.getY(), corner2.getZ());
-		gl.glVertex3d(corner3.getX(), corner3.getY(), corner3.getZ());
-		gl.glVertex3d(corner4.getX(), corner4.getY(), corner4.getZ());
-		gl.glEnd();
-		
-		GLTools.endDashMode(gl);
 	}
 	
 	/**
@@ -82,11 +51,24 @@ public class RectangleLineDrawerGL extends LineDrawerGL implements RectangleDraw
 							  double corner2X, double corner2Y, double corner2Z,
 							  double corner3X, double corner3Y, double corner3Z,
 							  double corner4X, double corner4Y, double corner4Z) {
-		drawRectangle(getGL(),
-				      new Vector3D(corner1X, corner1Y, corner1Z),
-				      new Vector3D(corner2X, corner2Y, corner2Z),
-				      new Vector3D(corner3X, corner3Y, corner3Z),
-				      new Vector3D(corner4X, corner4Y, corner4Z));
+		GL gl = getGL();
+		
+		// set dash mode
+		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
+		
+		// set color
+		double[] color = getLineColor();
+		gl.glColor3d(color[0], color[1], color[2]);
+		
+		
+		gl.glBegin(GL.GL_LINE_LOOP);
+		gl.glVertex3d(corner1X, corner1Y, corner1Z);
+		gl.glVertex3d(corner2X, corner2Y, corner2Z);
+		gl.glVertex3d(corner3X, corner3Y, corner3Z);
+		gl.glVertex3d(corner4X, corner4Y, corner4Z);
+		gl.glEnd();
+		
+		GLTools.endDashMode(gl);
 		
 	}
 	

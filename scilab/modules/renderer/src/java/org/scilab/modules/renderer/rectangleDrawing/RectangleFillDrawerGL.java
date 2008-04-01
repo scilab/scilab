@@ -16,7 +16,6 @@
 package org.scilab.modules.renderer.rectangleDrawing;
 
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
-import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 import javax.media.opengl.GL;
 
@@ -33,27 +32,6 @@ public class RectangleFillDrawerGL extends FillDrawerGL implements RectangleDraw
 		super();
 	}
 
-	/**
-	 * Draw the rectangle
-	 * @param gl current GL pipeline
-	 * @param corner1 first corner coordinates
-	 * @param corner2 second corner coordinates
-	 * @param corner3 third corner coordinates
-	 * @param corner4 fourth corner coordinates
-	 */
-	public void drawRectangle(GL gl, Vector3D corner1, Vector3D corner2, Vector3D corner3, Vector3D corner4) {
-		// set color
-		double[] color = getBackColor();
-		gl.glColor3d(color[0], color[1], color[2]);
-		
-		gl.glBegin(GL.GL_QUADS);
-		gl.glVertex3d(corner1.getX(), corner1.getY(), corner1.getZ());
-		gl.glVertex3d(corner2.getX(), corner2.getY(), corner2.getZ());
-		gl.glVertex3d(corner3.getX(), corner3.getY(), corner3.getZ());
-		gl.glVertex3d(corner4.getX(), corner4.getY(), corner4.getZ());
-		gl.glEnd();
-	}
-	
 	/**
 	 * create the display list for the rectangle
 	 * @param corner1X first corner X coordinate
@@ -73,11 +51,18 @@ public class RectangleFillDrawerGL extends FillDrawerGL implements RectangleDraw
 							  double corner2X, double corner2Y, double corner2Z,
 							  double corner3X, double corner3Y, double corner3Z,
 							  double corner4X, double corner4Y, double corner4Z) {
-		drawRectangle(getGL(),
-					  new Vector3D(corner1X, corner1Y, corner1Z),
-					  new Vector3D(corner2X, corner2Y, corner2Z),
-					  new Vector3D(corner3X, corner3Y, corner3Z),
-					  new Vector3D(corner4X, corner4Y, corner4Z));
+		GL gl = getGL();
+		
+		// set color
+		double[] color = getBackColor();
+		gl.glColor3d(color[0], color[1], color[2]);
+		
+		gl.glBegin(GL.GL_QUADS);
+		gl.glVertex3d(corner1X, corner1Y, corner1Z);
+		gl.glVertex3d(corner2X, corner2Y, corner2Z);
+		gl.glVertex3d(corner3X, corner3Y, corner3Z);
+		gl.glVertex3d(corner4X, corner4Y, corner4Z);
+		gl.glEnd();
 		
 	}
 }

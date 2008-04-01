@@ -139,6 +139,9 @@ src/jni/FilledTextDrawerGL.cpp \
 src/cpp/textDrawing/CenteredTextDrawerJavaMapper.cpp \
 src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
 src/jni/CenteredTextDrawerGL.cpp \
+src/cpp/textDrawing/DrawTextBoxStrategy.cpp \
+src/cpp/textDrawing/TextLineBoxDrawerJoGL.cpp \
+src/cpp/textDrawing/TextFillBoxDrawerJoGL.cpp \
 src/jni/IsoViewCameraGL.cpp \
 src/jni/IsometricCameraGL.cpp \
 src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
@@ -159,6 +162,7 @@ src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp \
 src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp \
 src/cpp/subwinDrawing/TicksDrawer.cpp \
+src/cpp/subwinDrawing/XTicksDrawerJoGL.cpp \
 src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
 src/cpp/subwinDrawing/TicksDrawerJoGL.cpp \
 src/cpp/BasicAlgos.cpp \
@@ -166,9 +170,31 @@ src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
 src/jni/GraphicSynchronizerJava.cpp \
 src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp \
 src/cpp/subwinDrawing/AutoLogTicksComputer.cpp \
+src/jni/MiddleXTicksDrawerGL.cpp \
+src/jni/TopXTicksDrawerGL.cpp \
+src/jni/BottomXTicksDrawerGL.cpp \
+src/cpp/subwinDrawing/MiddleXTicksDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/TopXTicksDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/BottomXTicksDrawerJavaMapper.cpp \
+src/jni/LeftYTicksDrawerGL.cpp \
+src/jni/RightYTicksDrawerGL.cpp \
+src/jni/MiddleYTicksDrawerGL.cpp \
+src/cpp/subwinDrawing/RightYTicksDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/MiddleYTicksDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp \
+src/cpp/subwinDrawing/LeftYTicksDrawerJavaMapper.cpp \
+src/jni/ZTicksDrawerGL.cpp \
+src/cpp/subwinDrawing/ZTicksDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/ZTicksDrawerJoGL.cpp \
+src/jni/XGridDrawerGL.cpp \
+src/jni/YGridDrawerGL.cpp \
+src/jni/ZGridDrawerGL.cpp \
 src/cpp/subwinDrawing/GridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
+src/cpp/subwinDrawing/XGridDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/GridDrawer.cpp \
+src/cpp/subwinDrawing/YGridDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/ZGridDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
 src/jni/YLabelPositionerGL.cpp \
@@ -235,29 +261,22 @@ src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
 src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
 src/cpp/fecDrawing/FecLineDrawerJoGL.cpp \
 src/jni/DrawableAxesGL.cpp \
+src/jni/XAxesDrawerGL.cpp \
+src/jni/YAxesDrawerGL.cpp \
 src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
 src/cpp/axesDrawing/AxesTicksComputer.cpp \
 src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
 src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
 src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
 src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
-src/cpp/segsDrawing/DecomposeSegsStrategy.cpp \
-src/cpp/subwinDrawing/BottomXTicksPositioner.cpp \
-src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/LeftYTicksPositioner.cpp \
-src/cpp/subwinDrawing/MiddleXTicksPositioner.cpp \
-src/cpp/subwinDrawing/MiddleYTicksPositioner.cpp \
-src/cpp/subwinDrawing/PlaceTicksStrategy.cpp \
-src/cpp/subwinDrawing/RightYTicksPositioner.cpp \
-src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/TopXTicksPositioner.cpp \
-src/cpp/subwinDrawing/XTicksPositioner.cpp \
-src/cpp/subwinDrawing/ZTicksPositioner.cpp \
-src/cpp/subwinDrawing/YTicksPositioner.cpp \
-src/cpp/axesDrawing/XAxesPositioner.cpp \
-src/cpp/axesDrawing/YAxesPositioner.cpp \
-src/jni/TicksDrawerGL.cpp \
-src/jni/GridDrawerGL.cpp
+src/cpp/axesDrawing/XAxesDrawerJavaMapper.cpp \
+src/cpp/axesDrawing/XAxesDrawerJoGL.cpp \
+src/cpp/axesDrawing/YAxesDrawerJavaMapper.cpp \
+src/cpp/axesDrawing/YAxesDrawerJoGL.cpp \
+src/cpp/segsDrawing/DecomposeSegsStrategy.cpp
+
+
+
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
@@ -288,6 +307,7 @@ libscirenderer_la_LIBADD =  $(top_builddir)/libs/doublylinkedlist/libscidoublyli
 GIWS_WRAPPERS=src/jni/ArcFillDrawerGL.giws.xml \
 src/jni/ArcLineDrawerGL.giws.xml \
 src/jni/BackTrihedronDrawerGL.giws.xml \
+src/jni/BottomXTicksDrawerGL.giws.xml \
 src/jni/CenteredTextDrawerGL.giws.xml \
 src/jni/DrawableArcGL.giws.xml \
 src/jni/DrawableAxesGL.giws.xml \
@@ -308,6 +328,9 @@ src/jni/GraphicSynchronizerJava.giws.xml \
 src/jni/HalfBoxDrawerGL.giws.xml \
 src/jni/IsometricCameraGL.giws.xml \
 src/jni/IsoViewCameraGL.giws.xml \
+src/jni/LeftYTicksDrawerGL.giws.xml \
+src/jni/MiddleXTicksDrawerGL.giws.xml \
+src/jni/MiddleYTicksDrawerGL.giws.xml \
 src/jni/PolylineArrrowDrawerGL.giws.xml \
 src/jni/PolylineBarDrawerGL.giws.xml \
 src/jni/PolylineFillDrawer.giws.xml \
@@ -317,6 +340,7 @@ src/jni/PolylineMarkdrawerGL.giws.xml \
 src/jni/RectangleFillDrawerGL.giws.xml \
 src/jni/RectangleLineDrawerGL.giws.xml \
 src/jni/RectangleMarkDrawerGL.giws.xml \
+src/jni/RightYTicksDrawerGL.giws.xml \
 src/jni/ScilabGraphicWindow.giws.xml \
 src/jni/SegsArrowDrawerGL.giws.xml \
 src/jni/SegsLineDrawerGL.giws.xml \
@@ -326,11 +350,16 @@ src/jni/SurfaceFacetDrawerGL.giws.xml \
 src/jni/SurfaceLineDrawerGL.giws.xml \
 src/jni/SurfaceMarkDrawerGL.giws.xml \
 src/jni/TitlePositionerGL.giws.xml \
+src/jni/TopXTicksDrawerGL.giws.xml \
+src/jni/XAxesDrawerGL.giws.xml \
+src/jni/XGridDrawerGL.giws.xml \
 src/jni/XLabelPositionerGL.giws.xml \
+src/jni/YAxesDrawerGL.giws.xml \
+src/jni/YGridDrawerGL.giws.xml \
 src/jni/YLabelPositionerGL.giws.xml \
+src/jni/ZGridDrawerGL.giws.xml \
 src/jni/ZLabelPositionerGL.giws.xml \
-src/jni/TicksDrawerGL.giws.xml \
-src/jni/GridDrawerGL.giws.xml
+src/jni/ZTicksDrawerGL.giws.xml
 
 else
 

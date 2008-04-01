@@ -12,6 +12,7 @@
  */
 
 #include "ZGridDrawerJoGL.hxx"
+#include "ZGridDrawerJavaMapper.hxx"
 
 extern "C"
 {
@@ -25,7 +26,7 @@ namespace sciGraphics
 ZGridDrawerJoGL::ZGridDrawerJoGL(DrawableSubwin * subwin)
   : GridDrawerJoGL(subwin)
 {
-
+  setJavaMapper(new ZGridDrawerJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
 ZGridDrawerJoGL::~ZGridDrawerJoGL(void)
@@ -33,16 +34,16 @@ ZGridDrawerJoGL::~ZGridDrawerJoGL(void)
 
 }
 /*------------------------------------------------------------------------------------------*/
-void ZGridDrawerJoGL::drawGrid(void)
+void ZGridDrawerJoGL::initializeDrawing(void)
 {
+  GridDrawerJoGL::initializeDrawing();
+
   sciPointObj * pSubwin = getDrawer()->getDrawedObject();
 
   int zStyle;
   sciGetGridStyle(pSubwin, NULL, NULL, &zStyle);
-  
-  getGridDrawerJavaMapper()->setGridParameters(zStyle, (float)sciGetLineWidth(pSubwin));
 
-  getGridDrawerJavaMapper()->drawGrid();
+  getGridDrawerJavaMapper()->setGridParameters(zStyle, (float)sciGetLineWidth(pSubwin));
 
 }
 /*------------------------------------------------------------------------------------------*/

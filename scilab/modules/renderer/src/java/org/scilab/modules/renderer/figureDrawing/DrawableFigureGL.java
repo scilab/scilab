@@ -15,9 +15,6 @@
 package org.scilab.modules.renderer.figureDrawing;
 
 import java.awt.Font;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
@@ -30,7 +27,6 @@ import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
 import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
 import org.scilab.modules.renderer.textDrawing.SciTextRenderer;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
-import org.scilab.modules.renderer.utils.glTools.GLTools;
 import org.scilab.modules.renderer.utils.selection.RubberBox;
 import org.scilab.modules.renderer.ObjectGLCleaner;
 
@@ -90,9 +86,6 @@ public class DrawableFigureGL extends ObjectGL {
 	/** Rubber box used when in rubber box mode */
 	private RubberBox rubberBox;
 	
-	/** list of all draw actions that must be performed in pixel mode */
-	private List<Runnable> pixelDraw;
-	
 	/**
 	 * Default Constructor
 	 */
@@ -110,7 +103,6 @@ public class DrawableFigureGL extends ObjectGL {
       	backGroundColorIndex = 0;
       	textWriter = null;
       	rubberBox = null;
-      	pixelDraw = new LinkedList<Runnable>();
     }
 	
 	/**
@@ -149,14 +141,6 @@ public class DrawableFigureGL extends ObjectGL {
 		// a chack will be performed to see if the figure is alredy here
 		FigureMapper.addMapping(figureId, this);
 		this.figureId = figureId;
-	}
-	
-	/**
-	 * Get the Scilab index for the figure
-	 * @return index
-	 */
-	public int getFigureIndex() {
-		return figureId;
 	}
 	
 	/**
@@ -624,36 +608,6 @@ public class DrawableFigureGL extends ObjectGL {
 		int button = getRendererProperties().rubberBox(isClick, realIntialRect, res);
 		res[res.length - 1] = button;
 		return res;
-	}
-	
-	/**
-	 * Schedule the displaying of some code using pixel coordinates.
-	 * The code will be run at the end of the displaying process
-	 * with other pixel coordinates code
-	 * @param runner contains code to run in pixel coordinates
-	 */
-	public void callInPixelCoordinates(Runnable runner) {
-		// push it in the list
-		pixelDraw.add(runner);
-	}
-	
-	/**
-	 * Call the code that must be drawn using pixel coordinates
-	 */
-	public void drawPixelCoordinatesCode() {
-		// switch to pixel coordinates
-		//GL gl = getGL();
-		//GLTools.usePixelCoordinates(gl);
-		
-		// call the code
-		for (Iterator<Runnable> it = pixelDraw.iterator(); it.hasNext();) {
-			it.next().run();
-		}
-		
-		//GLTools.endPixelCoordinates(gl);
-		
-		// everything has been run
-		pixelDraw.clear();
 	}
 	
 }

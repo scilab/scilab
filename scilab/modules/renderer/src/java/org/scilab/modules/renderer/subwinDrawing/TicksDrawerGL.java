@@ -16,10 +16,10 @@ package org.scilab.modules.renderer.subwinDrawing;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.DrawableObjectGL;
 import org.scilab.modules.renderer.textDrawing.CenteredTextDrawerGL;
 import org.scilab.modules.renderer.textDrawing.StandardTextDrawerGL;
 import org.scilab.modules.renderer.textDrawing.TextAlignementStrategy;
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.GeomAlgos;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
@@ -28,23 +28,23 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  * Class drawing ticks for the one axis
  * @author Jean-Baptiste Silvy
  */
-public class TicksDrawerGL extends DrawableObjectGL {
+public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 
+	/** Size in pixel of ticks */
+	public static final double TICKS_PIXEL_LENGTH = 0.02;
 	/** Size of subticks compared to ticks */
 	public static final double SUBTICKS_FACTOR = 0.6;
+	
+	/** Maximum accpetable value for dot product between axis direction and ticks direction */
+	private static final double MAX_COS = 0.99;
 	
 	/** Distance from labels to axis relative to ticks length */
 	private static final double LABEL_TO_AXIS_DISTANCE = 1.5;
 	
+	private double[] ticksPositions;
 	private String[] ticksLabels;
 	private String[] labelsExponents;
-	
-	private Vector3D[] ticksPosition;
-	private Vector3D[] subticksPosition;
-	
-	private Vector3D axisStart;
-	private Vector3D axisEnd;
-	private Vector3D ticksDirection;
+	private double[] subticksPositions;
 	
 	private int lineStyle;
 	private float thickness;
@@ -55,8 +55,6 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	
 	private CenteredTextDrawerGL labelsDrawer;
 	private StandardTextDrawerGL exponentDrawer;
-	
-	
 	
 	/**
 	 * Default constructor.
@@ -79,19 +77,6 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		lineColor = 0;
 		/* draw the line by default */
 		drawAxisLine = true;
-		axisStart = null;
-		axisEnd = null;
-		ticksDirection = null;
-	}
-	
-	/**
-	 * Show ticks
-	 * @param parentFigureIndex index of parent figure
-	 */
-	public void show(int parentFigureIndex) {
-		initializeDrawing(parentFigureIndex);
-		drawTicks();
-		endDrawing();
 	}
 	
 	/**
@@ -115,6 +100,21 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
+	 * @return Nummber of ticks to draw
+	 */
+	protected int getNbTicks() {
+		return ticksPositions.length;
+	}
+	
+	/**
+	 * @param tickIndex index of the tick
+	 * @return positions of ticks on its axis.
+	 */
+	protected double getTickPosition(int tickIndex) {
+		return ticksPositions[tickIndex];
+	}
+	
+	/**
 	 * @param tickIndex index of the tick
 	 * @return label to draw in front of the tick
 	 */
@@ -133,7 +133,36 @@ public class TicksDrawerGL extends DrawableObjectGL {
 			return "";
 		}
 	}
-
+	
+	/**
+	 * @return number of subticks to draw
+	 */
+	protected int getNbSubticks() {
+		return subticksPositions.length;
+	}
+	
+	/**
+	 * @param subtickIndex index of the subtick
+	 * @return position of the subtick to draw on its axis.
+	 */
+	protected double getSubtickPosition(int subtickIndex) {
+		return subticksPositions[subtickIndex];
+	}
+	
+	/**
+	 * @return positions of the subticks on their axis.
+	 */
+	protected double[] getSubTicksPositions() {
+		return subticksPositions;
+	}
+	
+	/**
+	 * @return positions of ticks on their axis.
+	 */
+	protected double[] getTicksPositions() {
+		return ticksPositions;
+	}
+	
 	/**
 	 * @return get the drawer for ticks labels
 	 */
@@ -220,17 +249,14 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	 * @param fontType ndex of the font in the font array.
 	 * @param fontSize font size to use.
 	 * @param fontColor index of the color in the colormap for the font
-	 * @param drawAxisSegement specify wether the axis segment should be drawn or not
 	 */
 	public void setAxisParameters(int lineStyle, float lineWidth, int lineColor,
-								  int fontType, double fontSize, int fontColor,
-								  boolean drawAxisSegement) {
+								  int fontType, double fontSize, int fontColor) {
 		setLineStyle(lineStyle);
 		setThickness(lineWidth);
 		setLineColor(lineColor);
 		setFont(fontType, fontSize);
 		setFontColor(fontColor);
-		setAxisLineDrawing(drawAxisSegement);
 	}
 	
 	/**
@@ -242,6 +268,52 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		this.drawAxisLine = drawAxisLine;
 	}
 	
+	
+	
+	/**
+	 * Check if the ticks labels does not concealed each other at the specified positions.
+	 * @param ticksPositions initial position of the ticks
+	 * @param ticksLabels labels to display in front of the ticks
+	 * @return true if the ticks can be displayed as if or false if the number of ticks needs to be reduced.
+	 */
+	public boolean checkTicks(double[] ticksPositions, String[] ticksLabels) {
+		this.ticksPositions = ticksPositions;
+		this.ticksLabels = ticksLabels;
+		this.labelsExponents = null;
+		return checkTicks();
+	}
+	
+	/**
+	 * Check if the ticks label does not concealed each other at the specified positions.
+	 * @param ticksPositions initial position of the ticks
+	 * @param ticksLabels labels to display in front of the ticks
+	 * @param labelsExponents exponent to draw on top of labels
+	 * @return true if the ticks can be displayed as if or false if the number of ticks needs to be reduced.
+	 */
+	public boolean checkTicks(double[] ticksPositions, String[] ticksLabels, String[] labelsExponents) {
+		this.ticksPositions = ticksPositions;
+		this.ticksLabels = ticksLabels;
+		this.labelsExponents = labelsExponents;
+		return checkTicks();
+	}
+	
+	/**
+	 * Draw a set of ticks
+	 * @param ticksPositions positions of each ticks on their axis.
+	 * @param ticksLabels labels to draw in front of ticks.
+	 *                    must have the same size with ticks positions.
+	 * @param subticksPositions positions of sub ticks on their axis.
+	 * @return maximum distance between labels and axis.
+	 */
+	public double drawTicks(double[] ticksPositions, String[] ticksLabels, double[] subticksPositions) {
+		this.ticksPositions = ticksPositions;
+		this.ticksLabels = ticksLabels;
+		this.subticksPositions = subticksPositions;
+		this.labelsExponents = null;
+		return drawTicks();
+		
+	}
+	
 	/**
 	 * Temporary function to set labels exponents
 	 * @param labelsExponents exponents to draw in top of labels
@@ -251,104 +323,48 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
-	 * Specify position of ticks along the axis in pixels
-	 * @param ticksPosX X coordinates of ticks positions
-	 * @param ticksPosY Y coordinates of ticks positions
-	 * @param ticksPosZ Z coordinates of ticks positions
+	 * Draw a set of ticks and labels with an exponent
+	 * @param ticksPositions positions of each ticks on their axis.
+	 * @param ticksLabels labels to draw in front of ticks.
+	 *                    must have the same size with ticks positions.
+	 * @param labelsExponents exponents to draw in top of labels
+	 * @param subticksPositions positions of sub ticks on their axis.
+	 * @return maximum distance between labels and axis.
 	 */
-	public void setTicksPosition(double[] ticksPosX, double[] ticksPosY, double[] ticksPosZ) {
-		int nbTicks = ticksPosX.length;
-		ticksPosition = new Vector3D[nbTicks];
-		for (int i = 0; i < nbTicks; i++) {
-			ticksPosition[i] = new Vector3D(ticksPosX[i], ticksPosY[i], ticksPosZ[i]);
-		}
+	public double drawTicks(double[] ticksPositions, String[] ticksLabels,
+						    String[] labelsExponents, double[] subticksPositions) {
+		this.ticksPositions = ticksPositions;
+		this.ticksLabels = ticksLabels;
+		this.labelsExponents = labelsExponents;
+		this.subticksPositions = subticksPositions;
 		
-		
+		return drawTicks();
 	}
-	
-	/**
-	 * Specify subticks positions alonng the axis in pixels
-	 * @param subticksPosX X coordinates of subticks positions 
-	 * @param subTicksPosY Y coordinates of subticks positions
-	 * @param subTicksPosZ Z coordinates of subticks positions
-	 */
-	public void setSubticksPosition(double[] subticksPosX, double[] subTicksPosY, double[] subTicksPosZ) {
-		int nbSubticks = subticksPosX.length;
-		subticksPosition = new Vector3D[nbSubticks];
-		for (int i = 0; i < nbSubticks; i++) {
-			subticksPosition[i] = new Vector3D(subticksPosX[i], subTicksPosY[i], subTicksPosZ[i]);
-		}
-	}
-	
-	/**
-	 * Specify ticks labels and exponents
-	 * @param labels labels to display in front of ticks
-	 * @param exponents exponent to display above labels
-	 */
-	public void setTicksLabels(String[] labels, String[] exponents) {
-		this.ticksLabels = labels;
-		this.labelsExponents = exponents;
-	}
-	
-	/**
-	 * Specify ticks labels with no exponent
-	 * @param labels labels to display in front of ticks
-	 */
-	public void setTicksLabels(String[] labels) {
-		this.ticksLabels = labels;
-		this.labelsExponents = null;
-	}
-	
-	
-	/**
-	 * Specify the vector defining ticks line
-	 * @param ticksDirX X coordinate for ticks line
-	 * @param ticksDirY Y coordinate for ticks line
-	 * @param ticksDirZ Z coordinate for ticks line
-	 */
-	public void setTicksDirection(double ticksDirX, double ticksDirY, double ticksDirZ) {
-		ticksDirection = new Vector3D(ticksDirX, ticksDirY, ticksDirZ);
-	}
-	
-	/**
-	 * Set the two bounds of the axis to draw
-	 * @param axisStartX X coordinate of one of the axis bound
-	 * @param axisStartY Y coordinate of one of the axis bound
-	 * @param axisStartZ Z coordinate of one of the axis bound
-	 * @param axisEndX X coordinate of the other bound
-	 * @param axisEndY Y coordinate of the other bound
-	 * @param axisEndZ Z coordinate of the other bound
-	 */
-	public void setAxisBounds(double axisStartX, double axisStartY, double axisStartZ,
-							  double axisEndX, double axisEndY, double axisEndZ) {
-		axisStart = new Vector3D(axisStartX, axisStartY, axisStartZ);
-		axisEnd = new Vector3D(axisEndX, axisEndY, axisEndZ);
-	}
-							
 	
 	/**
 	 * Draw ticks segment and the axis segment
 	 * @param ticksPositions starting edge of ticks lines.
 	 * @param subticksPositions positions of subticks
 	 * @param ticksDirection direction of ticks
-	 * @param axisSegmentStart one end of the axis segment
+	 * @param axisSegementStart one end of the axis segment
 	 * @param axisSegmentEnd the other end
 	 */
 	protected void drawTicksLines(Vector3D[] ticksPositions, Vector3D[] subticksPositions,
 								  Vector3D ticksDirection,
-								  Vector3D axisSegmentStart, Vector3D axisSegmentEnd) {
+								  Vector3D axisSegementStart, Vector3D axisSegmentEnd) {
 		GL gl = getGL();
 		
 		double[] color = getLineColor();
 		gl.glColor3d(color[0], color[1], color[2]);
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
 		
+		
 		gl.glBegin(GL.GL_LINES);
 		
 		
 		// draw axis segmentif
 		if (drawAxisLine) {
-			gl.glVertex3d(axisSegmentStart.getX(), axisSegmentStart.getY(), axisSegmentStart.getZ());
+			gl.glVertex3d(axisSegementStart.getX(), axisSegementStart.getY(), axisSegementStart.getZ());
 			gl.glVertex3d(axisSegmentEnd.getX(), axisSegmentEnd.getY(), axisSegmentEnd.getZ());
 		}
 		
@@ -385,14 +401,14 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	 */
 	private double computeLabelCenter(Vector3D tickPosition, Vector3D tickDirection,
 									  Vector3D centerPosition, Vector3D exponentPosition) {
-		
-		Vector3D ticksPosPix = new Vector3D(tickPosition);
-		Vector3D ticksEndPix = tickPosition.add(tickDirection);
+		GL gl = getGL();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		Vector3D ticksPosPix = transform.getCanvasCoordinates(gl, tickPosition);
+		Vector3D ticksEndPix = transform.getCanvasCoordinates(gl, tickPosition.add(tickDirection));
 		Vector3D ticksDirPix = ticksEndPix.substract(ticksPosPix);
 		
 		// get text bounding box
-		getLabelsDrawer().setCenterPixelPos(centerPosition);
-		Vector3D[] pixBoundingBox = getLabelsDrawer().getBoundingRectanglePix();
+		Vector3D[] pixBoundingBox = getLabelsDrawer().getBoundingRectangle2D();
 		double halfBoxWidth = Math.abs(pixBoundingBox[0].getX() - pixBoundingBox[2].getX()) / 2.0;
 		double halfBoxHeight = Math.abs(pixBoundingBox[0].getY() - pixBoundingBox[2].getY()) / 2.0;
 		
@@ -412,16 +428,17 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		}
 		
 		if (exponentPosition != null) {
-			exponentPosition.setValues(textCenter.add(new Vector3D(halfBoxWidth, halfBoxHeight, 0.0)));
+			Vector3D exponentPositionPix = textCenter.add(new Vector3D(halfBoxWidth, halfBoxHeight, 0.0));
+			exponentPosition.setValues(transform.retrieveSceneCoordinates(gl, exponentPositionPix));
 		}
 		
 		// font the farthest corner from the tick base.
 		double res = textCenter.substract(ticksPosPix).getNorm();
-		// we should find the farthest corner to compute the length but adding half of the box diagonal
+		// we should fin the farthest corner to compute the length but adding half of the box diagonal
 		// do it.
 		res += (new Vector3D(halfBoxWidth, halfBoxHeight, 0.0)).getNorm();
 		
-		centerPosition.setValues(textCenter);
+		centerPosition.setValues(transform.retrieveSceneCoordinates(gl, textCenter));
 		return res;
 	}
 	
@@ -432,15 +449,18 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	 * @return maximum distance of ticks from the axis in pixel
 	 */
 	protected double drawLabels(Vector3D[] ticksPosition, Vector3D ticksDirection) {
-		int nbLabels = ticksPosition.length;
+		int nbLabels = getNbTicks();
 		Vector3D exponentPosition = new Vector3D();
 		Vector3D textCenter = new Vector3D();
 		double maxDist = 0.0;
 		
 		for (int i = 0; i < nbLabels; i++) {
 			
+			if (ticksPosition[i] == null) { continue; }
+			
 			// set label text
 			getLabelsDrawer().setTextContent(getTickLabel(i));
+			
 			
 			
 			double curDist = computeLabelCenter(ticksPosition[i], ticksDirection, textCenter, exponentPosition);
@@ -451,14 +471,14 @@ public class TicksDrawerGL extends DrawableObjectGL {
 				maxDist = curDist;
 			}
 			
-			getLabelsDrawer().setCenterPixelPos(textCenter);
+			getLabelsDrawer().setCenterPosition(textCenter.getX(), textCenter.getY(), textCenter.getZ());
 			
-			getLabelsDrawer().drawInPixels();
+			getLabelsDrawer().drawTextContent();
 			
 			if (labelsExponents != null) {
 				getExponentDrawer().setTextContent(getLabelExponent(i));
-				getExponentDrawer().setCenterPixelPos(exponentPosition);
-				getExponentDrawer().drawInPixels();
+				getExponentDrawer().setCenterPosition(exponentPosition.getX(), exponentPosition.getY(), exponentPosition.getZ());
+				getExponentDrawer().drawTextContent();
 			}
 			
 		}
@@ -473,7 +493,7 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	 */
 	protected boolean checkLabels(Vector3D[] ticksPosition, Vector3D ticksDirection) {
 		
-		int nbLabels = ticksPosition.length;
+		int nbLabels = getNbTicks();
 		Vector3D[] curLabelBox;
 		Vector3D[] nextLabelBox;
 		int firstNonNullTicksIndex = 0;
@@ -493,20 +513,21 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		// get bouding box of current label
 		getLabelsDrawer().setTextContent(getTickLabel(firstNonNullTicksIndex));
 		computeLabelCenter(ticksPosition[firstNonNullTicksIndex], ticksDirection, textCenter, null);
-		getLabelsDrawer().setCenterPixelPos(textCenter);
-		curLabelBox = getLabelsDrawer().getBoundingRectanglePix();
+		getLabelsDrawer().setCenterPosition(textCenter.getX(), textCenter.getY(), textCenter.getZ());
+		curLabelBox = getLabelsDrawer().getBoundingRectangle2D();
 
 		
 		for (int i = firstNonNullTicksIndex + 1; i < nbLabels; i++) {
+			if (ticksPosition[i] == null) { continue; }
 			
 			// set label text
 			getLabelsDrawer().setTextContent(getTickLabel(i));
 			
 			computeLabelCenter(ticksPosition[i], ticksDirection, textCenter, null);
 			
-			getLabelsDrawer().setCenterPixelPos(textCenter);
+			getLabelsDrawer().setCenterPosition(textCenter.getX(), textCenter.getY(), textCenter.getZ());
 			
-			nextLabelBox = getLabelsDrawer().getBoundingRectanglePix();
+			nextLabelBox = getLabelsDrawer().getBoundingRectangle2D();
 			
 			// remove Z coordinate
 			for (int j = 0; j < GeomAlgos.RECTANGLE_NB_CORNERS; j++) {
@@ -524,20 +545,98 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
+	 * Chack if the ticks direction is not too close to the axis segment. That would lead to a bad displaying.
+	 * @param ticksDirection direction of ticks
+	 * @param axisSegmentStart one edge of the axis segment
+	 * @param axisSegmentEnd the other edge
+	 * @return true if ticks direction is OK, false otherwise
+	 */
+	public boolean checkTicksDirection(Vector3D ticksDirection, Vector3D axisSegmentStart, Vector3D axisSegmentEnd) {
+		
+		
+		GL gl = getGL();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		
+		// compute ticks direction in pixels
+		Vector3D origin = new Vector3D(0.0, 0.0, 0.0);
+		Vector3D ticksDirPix = transform.getCanvasCoordinates(gl, ticksDirection);
+		origin = transform.getCanvasCoordinates(gl, origin);
+		ticksDirPix = ticksDirPix.substract(origin);
+		ticksDirPix.normalize();
+		
+		// compute axis direction in pixels
+		Vector3D axisStartPix = transform.getCanvasCoordinates(gl, axisSegmentStart);
+		Vector3D axisEndPix = transform.getCanvasCoordinates(gl, axisSegmentEnd);
+		Vector3D axisDirPix = axisEndPix.substract(axisStartPix);
+		axisDirPix.normalize();
+		
+		if (Math.abs(axisDirPix.dotProduct(ticksDirPix)) > MAX_COS) {
+			return false;
+		}
+		
+		return true;
+		
+		
+	}
+	
+	/**
+	 * Compute a new vector with the same direction than ticksDirection but with the right length
+	 * @param ticksDirection initial direction of ticks whose length will be modified 
+	 * @return new direction with right length
+	 */
+	public Vector3D setTicksDirectionLength(Vector3D ticksDirection) {
+		GL gl = getGL();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		
+		Vector3D origin = new Vector3D(0.0, 0.0, 0.0);
+		origin = transform.getCanvasCoordinates(gl, origin);
+		
+		Vector3D pixDir = transform.getCanvasCoordinates(gl, ticksDirection);
+		// get length in pixels
+		pixDir = pixDir.substract(origin);
+		double pixelLength = pixDir.getNorm();
+		
+		double[] viewPort = transform.getViewPort();
+		
+		// compute sizes wich would apply if axes where along X or Y axis
+		double xSize = viewPort[2] * TICKS_PIXEL_LENGTH;
+		double ySize = viewPort[CoordinateTransformation.VIEW_PORT_SIZE - 1] * TICKS_PIXEL_LENGTH;
+		
+		// compute angle between ticks direction and x axis in pixel coordinates
+		double angle = Math.acos(Math.abs(pixDir.getNormalized().dotProduct(new Vector3D(1.0, 0.0, 0.0))));
+		
+		// push it between 0 and 1.
+		double fact = angle * 2.0 / Math.PI;
+		
+		// apply number of pixels 
+		return ticksDirection.scalarMult(((1.0 - fact) * xSize + fact * ySize) / pixelLength);
+		
+	}
+	
+	
+	/**
+	 * Find the height of the background facet
+	 * @return Z coordinate of the segment to draw
+	 */
+	protected double findUpperZCoordinate() {
+		// inverse of lower coordinate
+		if (findLowerZCoordinate() == getZmin()) {
+			return getZmax();
+		} else {
+			return getZmin();
+		}
+	}
+	
+	/**
 	 * Draw ticks from the recorded data.
 	 * @return maximum distance from ticks to the axis.
 	 */
-	public double drawTicks() {
-		drawTicksLines(ticksPosition, subticksPosition, ticksDirection, axisStart, axisEnd);
-		return drawLabels(ticksPosition, ticksDirection);
-	};
+	public abstract double drawTicks();
 	
 	/**
 	 * Check if labels can be displayed has if.
 	 * @return true if ticks can be displayed or false if we need to reduc number of ticks.
 	 */
-	public boolean checkTicks() {
-		return checkLabels(ticksPosition, ticksDirection);
-	}
+	public abstract boolean checkTicks();
 
 }

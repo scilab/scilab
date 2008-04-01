@@ -94,10 +94,4 @@ long * StandardTextDrawerJavaMapper::getScreenBoundingBox(void)
   return m_pJavaObject->getScreenBoundingBox();
 }
 /*---------------------------------------------------------------------------------*/
-void StandardTextDrawerJavaMapper::setBoxParameters(bool isLine, bool isFill, int background, int foreground,
-                                                  float lineWidth, int lineStyle)
-{
-  m_pJavaObject->setBoxParameters(isLine, isFill, background, foreground, lineWidth, lineStyle);
-}
-/*---------------------------------------------------------------------------------*/
 }

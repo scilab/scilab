@@ -12,7 +12,9 @@
  */
 
 #include "TicksDrawerFactory.hxx"
-#include "TicksDrawerJoGL.hxx"
+#include "XTicksDrawerJoGL.hxx"
+#include "YTicksDrawerJoGL.hxx"
+#include "ZTicksDrawerJoGL.hxx"
 #include "UserDefinedTicksComputer.hxx"
 #include "AutomaticTicksComputer.hxx"
 #include "AutoLogTicksComputer.hxx"
@@ -20,13 +22,6 @@
 #include "XGridDrawerJoGL.hxx"
 #include "YGridDrawerJoGL.hxx"
 #include "ZGridDrawerJoGL.hxx"
-#include "BottomXTicksPositioner.hxx"
-#include "MiddleXTicksPositioner.hxx"
-#include "TopXTicksPositioner.hxx"
-#include "LeftYTicksPositioner.hxx"
-#include "MiddleYTicksPositioner.hxx"
-#include "RightYTicksPositioner.hxx"
-#include "ZTicksPositioner.hxx"
 
 extern "C"
 {
@@ -54,9 +49,7 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
   sciGetAxesVisible(pSubwin, axesVisible);
   if (!axesVisible[0]) {return NULL;}
 
-  TicksDrawerJoGL * newTicksDrawer = new TicksDrawerJoGL(m_pDrawer);
-
-
+  XTicksDrawerJoGL * newTicksDrawer = new XTicksDrawerJoGL(m_pDrawer);
   
   BOOL autoTicks[3];
   sciGetAutoTicks(pSubwin, autoTicks);
@@ -67,7 +60,6 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
   int xGridStyle;
   sciGetGridStyle(pSubwin, &xGridStyle, NULL, NULL);
 
-  // set ticks computer
   if (!autoTicks[0])
   {
     // ticks defines by user
@@ -103,29 +95,20 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
     ticksComputer->setAxisBounds(bounds[0], bounds[1]);
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
-  
-  // set ticks positionner
-  switch(pSUBWIN_FEATURE(pSubwin)->axes.xdir)
-  {
-  case 'u':
-    newTicksDrawer->setTicksPositioner(new TopXTicksPositioner(m_pDrawer));
-    break;
-  case 'c':
-    newTicksDrawer->setTicksPositioner(new MiddleXTicksPositioner(m_pDrawer));
-    break;
-  case 'd':
-    newTicksDrawer->setTicksPositioner(new BottomXTicksPositioner(m_pDrawer));
-    break;
-  default:
-    newTicksDrawer->setTicksPositioner(new TopXTicksPositioner(m_pDrawer));
-    break;
-  }
 
   if (xGridStyle >= 0)
   {
     // xgrid enable
 
     XGridDrawerJoGL * gridDrawer = new XGridDrawerJoGL(m_pDrawer);
+    if (logFlags[0] == 'l')
+    {
+      gridDrawer->setLogMode(true);
+    }
+    else
+    {
+      gridDrawer->setLogMode(false);
+    }
     newTicksDrawer->setGridDrawer(gridDrawer);
   }
 
@@ -141,7 +124,7 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
   sciGetAxesVisible(pSubwin, axesVisible);
   if (!axesVisible[1]) {return NULL;}
 
-  TicksDrawerJoGL * newTicksDrawer = new TicksDrawerJoGL(m_pDrawer);
+  YTicksDrawerJoGL * newTicksDrawer = new YTicksDrawerJoGL(m_pDrawer);
 
   BOOL autoTicks[3];
   sciGetAutoTicks(pSubwin, autoTicks);
@@ -152,7 +135,6 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
   int yGridStyle;
   sciGetGridStyle(pSubwin, NULL, &yGridStyle, NULL);
 
-  // set ticks computer
   if (!autoTicks[1])
   {
     // ticks defines by user
@@ -189,44 +171,19 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
 
-  // set ticks positionner
-  switch(pSUBWIN_FEATURE(pSubwin)->axes.ydir)
-  {
-  case 'l':
-    // special case for 2D, y labels is drawn on the opposite side
-    if(sciGetIs3d(pSubwin))
-    {
-      newTicksDrawer->setTicksPositioner( new LeftYTicksPositioner(m_pDrawer));
-    }
-    else
-    {
-      newTicksDrawer->setTicksPositioner( new RightYTicksPositioner(m_pDrawer));
-    }
-    break;
-  case 'c':
-    newTicksDrawer->setTicksPositioner( new MiddleYTicksPositioner(m_pDrawer));
-    break;
-  case 'r':
-    // special case for 2D, y labels is drawn on the opposite side
-    if(sciGetIs3d(pSubwin))
-    {
-      newTicksDrawer->setTicksPositioner( new RightYTicksPositioner(m_pDrawer));
-    }
-    else
-    {
-      newTicksDrawer->setTicksPositioner( new LeftYTicksPositioner(m_pDrawer));
-    }
-    break;
-  default:
-    newTicksDrawer->setTicksPositioner( new LeftYTicksPositioner(m_pDrawer));
-    break;
-  }
-
   if (yGridStyle >= 0)
   {
     // ygrid enable
 
     YGridDrawerJoGL * gridDrawer = new YGridDrawerJoGL(m_pDrawer);
+    if (logFlags[1] == 'l')
+    {
+      gridDrawer->setLogMode(true);
+    }
+    else
+    {
+      gridDrawer->setLogMode(false);
+    }
     newTicksDrawer->setGridDrawer(gridDrawer);
   }
 
@@ -247,7 +204,7 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
     return NULL;
   }
 
-  TicksDrawerJoGL * newTicksDrawer = new TicksDrawerJoGL(m_pDrawer);
+  ZTicksDrawerJoGL * newTicksDrawer = new ZTicksDrawerJoGL(m_pDrawer);
 
   BOOL autoTicks[3];
   sciGetAutoTicks(pSubwin, autoTicks);
@@ -258,7 +215,6 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
   int zGridStyle;
   sciGetGridStyle(pSubwin, NULL, NULL, &zGridStyle);
 
-  // set ticks computer
   if (!autoTicks[2])
   {
     // ticks defines by user
@@ -295,15 +251,19 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
 
-  // set ticks positionner
-  // only one possible case here
-  newTicksDrawer->setTicksPositioner( new ZTicksPositioner(m_pDrawer));
-
   if (zGridStyle >= 0)
   {
     // ygrid enable
 
     ZGridDrawerJoGL * gridDrawer = new ZGridDrawerJoGL(m_pDrawer);
+    if (logFlags[2] == 'l')
+    {
+      gridDrawer->setLogMode(true);
+    }
+    else
+    {
+      gridDrawer->setLogMode(false);
+    }
     newTicksDrawer->setGridDrawer(gridDrawer);
   }
 

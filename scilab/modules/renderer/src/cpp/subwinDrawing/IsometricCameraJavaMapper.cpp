@@ -158,14 +158,4 @@ void IsometricCameraJavaMapper::getViewPort(double viewPort[4])
   delete[] javaViewPort;
 }
 /*--------------------------------------------------------------------------*/
-void IsometricCameraJavaMapper::usePixelCoordinates(void)
-{
-  m_pJavaObject->usePixelCoordinates();
-}
-/*--------------------------------------------------------------------------*/
-void IsometricCameraJavaMapper::endPixelCoordinates(void)
-{
-  m_pJavaObject->endPixelCoordinates();
-} 
-/*--------------------------------------------------------------------------*/
 }

@@ -32,8 +32,6 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	/** index of background color */
 	private MarkDrawer drawer;
 	
-	private Vector3D[] pixCoords;
-	
 	/**
 	 * Default Constructor
 	 */
@@ -142,47 +140,23 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
 		// need to perform this befaore swithching to pixel coordinates
-		//Vector3D[] pixCoords = transform.getCanvasCoordinates(gl, marksPosition);
-		pixCoords = transform.getCanvasCoordinates(gl, marksPosition);
-		
-		// switch to pixel coordinates
-		//GLTools.usePixelCoordinates(gl);
+		Vector3D[] pixCoords = transform.getCanvasCoordinates(gl, marksPosition);
 		
 		// mark are drawn with a line width of 1.
-//		gl.glLineWidth(1.0f);
-//		
-//		for (int i = 0; i < marksPosition.length; i++) {
-//			// switch back to the new frame
-//			Vector3D curCoord = transform.retrieveSceneCoordinates(gl, pixCoords[i]);
-//			getDrawer().drawMark(curCoord.getX(), curCoord.getY(), curCoord.getZ());
-//		}
-//		// we recreate the dl each time
-//		getDrawer().clearDisplayList();
-		
-		getParentFigureGL().callInPixelCoordinates(new Runnable() {
-			public void run() {
-				drawPixelMarks();
-			}
-		});
-		
-		//GLTools.endPixelCoordinates(gl);
-	}
-	
-	
-	/**
-	 * Draw the marks in pixel positions;
-	 */
-	protected void drawPixelMarks() {
-		GL gl = getGL();
 		gl.glLineWidth(1.0f);
 		
-		for (int i = 0; i < pixCoords.length; i++) {
+		// switch to pixel coordinates
+		GLTools.usePixelCoordinates(gl);
+		
+		for (int i = 0; i < marksPosition.length; i++) {
 			// switch back to the new frame
-			//Vector3D curCoord = transform.retrieveSceneCoordinates(gl, pixCoords[i]);
-			getDrawer().drawMark(pixCoords[i].getX(), pixCoords[i].getY(), pixCoords[i].getZ());
+			Vector3D curCoord = transform.retrieveSceneCoordinates(gl, pixCoords[i]);
+			getDrawer().drawMark(curCoord.getX(), curCoord.getY(), curCoord.getZ());
 		}
 		// we recreate the dl each time
 		getDrawer().clearDisplayList();
+		
+		GLTools.endPixelCoordinates(gl);
 	}
 	
 	/**

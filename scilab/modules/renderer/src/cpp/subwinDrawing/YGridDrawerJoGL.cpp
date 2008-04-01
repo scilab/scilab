@@ -12,6 +12,7 @@
  */
 
 #include "YGridDrawerJoGL.hxx"
+#include "YGridDrawerJavaMapper.hxx"
 
 extern "C"
 {
@@ -25,7 +26,7 @@ namespace sciGraphics
 YGridDrawerJoGL::YGridDrawerJoGL(DrawableSubwin * subwin)
   : GridDrawerJoGL(subwin)
 {
-
+  setJavaMapper(new YGridDrawerJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
 YGridDrawerJoGL::~YGridDrawerJoGL(void)
@@ -33,16 +34,16 @@ YGridDrawerJoGL::~YGridDrawerJoGL(void)
 
 }
 /*------------------------------------------------------------------------------------------*/
-void YGridDrawerJoGL::drawGrid(void)
+void YGridDrawerJoGL::initializeDrawing(void)
 {
+  GridDrawerJoGL::initializeDrawing();
+
   sciPointObj * pSubwin = getDrawer()->getDrawedObject();
 
   int yStyle;
   sciGetGridStyle(pSubwin, NULL, &yStyle, NULL);
-  
-  getGridDrawerJavaMapper()->setGridParameters(yStyle, (float)sciGetLineWidth(pSubwin));
 
-  getGridDrawerJavaMapper()->drawGrid();
+  getGridDrawerJavaMapper()->setGridParameters(yStyle, (float)sciGetLineWidth(pSubwin));
 
 }
 /*------------------------------------------------------------------------------------------*/

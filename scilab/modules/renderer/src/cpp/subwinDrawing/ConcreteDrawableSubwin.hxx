@@ -86,18 +86,6 @@ protected:
   virtual void computeRealDataBounds(void);
 
   /**
-   * Perform drawing of entities which must be draw using pixel coordinates.
-   * This include drawing of ticks
-   */
-  virtual void pixelCoordinatesDraw(void);
-
-  /**
-   * Perform showing of entities which must be draw using pixel coordinates.
-   * This include drawing of ticks.
-   */
-  virtual void pixelCoordinatesShow(void);
-
-  /**
    * Draw the surrounding cube of the subwin object.
    */
   virtual void drawBox(void);

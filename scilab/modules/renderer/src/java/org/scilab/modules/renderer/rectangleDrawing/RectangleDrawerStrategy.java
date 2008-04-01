@@ -14,10 +14,6 @@
 
 package org.scilab.modules.renderer.rectangleDrawing;
 
-import javax.media.opengl.GL;
-
-import org.scilab.modules.renderer.utils.geom3D.Vector3D;
-
 /**
  * Interface for rectangle drawing
  * @author Jean-Baptiste Silvy
@@ -43,15 +39,5 @@ public interface RectangleDrawerStrategy {
 					   double corner2X, double corner2Y, double corner2Z,
 					   double corner3X, double corner3Y, double corner3Z,
 					   double corner4X, double corner4Y, double corner4Z);
-	
-	/**
-	 * Draw the rectangle
-	 * @param gl current GL pipeline
-	 * @param corner1 first corner coordinates
-	 * @param corner2 second corner coordinates
-	 * @param corner3 third corner coordinates
-	 * @param corner4 fourth corner coordinates
-	 */
-	void drawRectangle(GL gl, Vector3D corner1, Vector3D corner2, Vector3D corner3, Vector3D corner4);
 	
 }

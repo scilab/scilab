@@ -172,11 +172,6 @@ void DrawableFigureJoGL::rubberBox(bool isClick, const int initialRect[4], int e
   getFigureJavaMapper()->rubberBox(isClick, initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::drawPixelCoordinatesCode(void)
-{
-  getFigureJavaMapper()->drawPixelCoordinatesCode();
-}
-/*---------------------------------------------------------------------------------*/
 DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )
 {
   return dynamic_cast<DrawableFigure *>(getDrawer()) ;

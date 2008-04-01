@@ -30,35 +30,27 @@ public:
   virtual ~GridDrawer(void);
 
   /**
-   * Draw the grid from the specified computed points
+   * Draw the grid for one axis
    */
-  virtual void drawGrid(void) = 0;
+  void draw(const double ticksPositions[], int nbTicks,
+            const double subticksPositions[], int nbSubticks);
 
   /**
-   * Specify the starting points for grid
+   * Set whether the logarithmic mode is on or of.
    */
-  virtual void setGridStartPoints(const double startPointsX[],
-                                  const double startPointsY[],
-                                  const double startPointsZ[],
-                                  int nbPoints) = 0;
-
-  /**
-   * Specify the middle point for grid
-   */
-  virtual void setGridMiddlePoints(const double middlePointsX[],
-                                   const double middlePointsY[],
-                                   const double middlePointsZ[],
-                                   int nbPoints) = 0;
-
-  /**
-   * Specify the end point for grid
-   */
-  virtual void setGridEndPoints(const double endPointsX[],
-                                const double endPointsY[],
-                                const double endPointsZ[],
-                                int nbPoints) = 0;
+  void setLogMode(bool isOn) {m_bIsLogModeOn = isOn;}
 
 protected:
+
+  /*----------------------------------------------------------------------*/
+  /**
+   * Draw the grid
+   */
+  virtual void drawGrid(const double gridPositions[], int nbPositions) = 0;
+  /*----------------------------------------------------------------------*/
+  /** To know if we need to draw subticks or not */
+  bool m_bIsLogModeOn;
+  /*----------------------------------------------------------------------*/
 
 };
 

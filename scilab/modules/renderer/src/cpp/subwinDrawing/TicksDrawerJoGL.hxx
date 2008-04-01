@@ -15,7 +15,6 @@
 #define _TICKS_DRAWER_JOGL_HXX_
 
 #include "../DrawableObjectJoGL.h"
-#include "DrawableSubwin.h"
 #include "TicksDrawer.hxx"
 #include "TicksDrawerJavaMapper.hxx"
 
@@ -32,50 +31,18 @@ public:
 
 protected:
 
-
-  
+  /**
+   * Draw the ticks on the right axis.
+   * @return distance from the ticks to axis in pixels
+   */
+  virtual double drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
+                           int nbTicks, double subticksPositions[], int nbSubtics);
 
   /**
-   * Set position of ticks and subTicks
+   * Check if the ticks do not conceal each others.
    */
-  virtual void setTicksPosition(const double ticksPosX[],
-                                const double ticksPosY[],
-                                const double ticksPosZ[],
-                                int nbTicks);
-
-  /**
-   * Sepcify position of subticks
-   */
-  virtual void setSubticksPosition(const double subticksPosX[],
-                                   const double subticksPosY[],
-                                   const double subticksPosZ[],
-                                   int nbSubticks);
-
-  /**
-   * Specify labels to draw in front of ticks
-   */
-  virtual void setTicksLabels(char * ticksLabels[],
-                              char * labelsExponent[],
-                              int nbLabels);
-
-  /**
-   * Specify axis segment position and ticks segments
-   */
-  virtual void setAxisPosition(const double axisSegmentStart[3],
-                               const double axisSegmentEnd[3],
-                               const double ticksDirection[3]);
-
-  /**
-   * Draw the ticks using precomputed positions
-   * @return distance from ticks to the axis in pixels
-   */
-  virtual double concreteDrawTicks(void);
-
-  /**
-   * @return false if some of the ticks concealed and must be decimated
-   *         true if ticks are correct and can be displayed
-   */
-  virtual bool checkTicks(void);
+  virtual bool checkTicks(double ticksPositions[], char * ticksLabels[],
+                          char * labelsExponents[], int nbTicks);
 
   /**
    * Specify initialize drawing in setting all useful parameters.

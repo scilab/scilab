@@ -93,11 +93,9 @@ void DrawableSubwin::draw( void )
     return;
   }
 
-  drawBox();
+  drawAxesBox();
 
   displayChildren() ;
-
-  pixelCoordinatesDraw();
 
   // needed
   m_pCamera->replaceCamera();
@@ -123,16 +121,26 @@ void DrawableSubwin::show( void )
     return;
   }
 
-  showBox();
+  showAxesBox();
 
   displayChildren() ;
-
-  pixelCoordinatesShow();
 
   // needed
   m_pCamera->replaceCamera();
 
   endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableSubwin::drawAxesBox(void)
+{
+  drawBox();
+  drawTicks();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableSubwin::showAxesBox(void)
+{
+  showBox();
+  showTicks();
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableSubwin::drawSingleObj(sciPointObj * pObj)

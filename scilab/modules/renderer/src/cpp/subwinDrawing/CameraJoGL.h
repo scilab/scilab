@@ -53,11 +53,6 @@ public:
   virtual void replaceCamera( void );
 
   /**
-   * Convert user coordinates to pixel ones in OpenGL representation
-   */
-  virtual void project(const double userCoord[3], double pixCoords[3]);
-
-  /**
    * Convert user coordinates to pixel coordinates.
    */
   virtual void getPixelCoordinates(const double userCoord[3], int pixCoord[2]);
@@ -86,16 +81,6 @@ public:
    * Get the position and size of the rectangle in which the axes box must fit
    */
   virtual void getViewingArea(int * xPos, int * yPos, int * width, int * height);
-
-  /**
-   * Switch to pixel coordinate view
-   */
-  virtual void usePixelCoordinates(void);
-
-  /**
-   * Switch back to standard 3D view
-   */
-  virtual void endPixelCoordinates(void);
 
 protected:
 

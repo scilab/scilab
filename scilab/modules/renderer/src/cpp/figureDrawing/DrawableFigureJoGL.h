@@ -158,11 +158,6 @@ public:
   virtual void rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton);
 
   /**
-   * Flush code which must be drawn using pixel coordinates
-   */
-  virtual void drawPixelCoordinatesCode(void);
-
-  /**
    * Return the drawn object
    */
   DrawableFigure * getFigureDrawer( void ) ;

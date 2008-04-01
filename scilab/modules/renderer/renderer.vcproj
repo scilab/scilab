@@ -6,7 +6,7 @@
 	ProjectGUID="{B23B01C1-A545-4BA0-9950-7BCADE201C5B}"
 	RootNamespace="renderer"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
+	
 	>
 	<Platforms>
 		<Platform
@@ -635,7 +635,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\BottomXTicksPositioner.cpp"
+					RelativePath=".\src\jni\BottomXTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\BottomXTicksDrawerJavaMapper.cpp"
 					>
 				</File>
 				<File
@@ -703,14 +707,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\jni\GridDrawerGL.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\subwinDrawing\GridDrawerJavaMapper.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\src\cpp\subwinDrawing\GridDrawerJoGL.cpp"
 					>
 				</File>
@@ -743,7 +739,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\LeftYTicksPositioner.cpp"
+					RelativePath=".\src\jni\LeftYTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\LeftYTicksDrawerJavaMapper.cpp"
 					>
 				</File>
 				<File
@@ -755,19 +755,27 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\MiddleXTicksPositioner.cpp"
+					RelativePath=".\src\jni\MiddleXTicksDrawerGL.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\MiddleYTicksPositioner.cpp"
+					RelativePath=".\src\cpp\subwinDrawing\MiddleXTicksDrawerJavaMapper.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\PlaceTicksStrategy.cpp"
+					RelativePath=".\src\jni\MiddleYTicksDrawerGL.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\RightYTicksPositioner.cpp"
+					RelativePath=".\src\cpp\subwinDrawing\MiddleYTicksDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\RightYTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\RightYTicksDrawerJavaMapper.cpp"
 					>
 				</File>
 				<File
@@ -779,19 +787,15 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\jni\TicksDrawerGL.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\subwinDrawing\TicksDrawerJavaMapper.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\src\cpp\subwinDrawing\TicksDrawerJoGL.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\TopXTicksPositioner.cpp"
+					RelativePath=".\src\jni\TopXTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\TopXTicksDrawerJavaMapper.cpp"
 					>
 				</File>
 				<File
@@ -803,11 +807,27 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\XGridDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XGridDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\XGridDrawerJoGL.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\XTicksPositioner.cpp"
+					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\YGridDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\YGridDrawerJavaMapper.cpp"
 					>
 				</File>
 				<File
@@ -815,7 +835,15 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\YTicksPositioner.cpp"
+					RelativePath=".\src\cpp\subwinDrawing\YTicksDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\ZGridDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZGridDrawerJavaMapper.cpp"
 					>
 				</File>
 				<File
@@ -823,7 +851,15 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\ZTicksPositioner.cpp"
+					RelativePath=".\src\jni\ZTicksDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZTicksDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZTicksDrawerJoGL.cpp"
 					>
 				</File>
 			</Filter>
@@ -1035,6 +1071,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\textDrawing\DrawTextBoxStrategy.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\FilledTextDrawerGL.cpp"
 					>
 				</File>
@@ -1060,6 +1100,14 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\TextContentDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\TextFillBoxDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\TextLineBoxDrawerJoGL.cpp"
 					>
 				</File>
 			</Filter>
@@ -1443,11 +1491,27 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\axesDrawing\XAxesPositioner.cpp"
+					RelativePath=".\src\jni\XAxesDrawerGL.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\axesDrawing\YAxesPositioner.cpp"
+					RelativePath=".\src\cpp\axesDrawing\XAxesDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\XAxesDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\YAxesDrawerGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\YAxesDrawerJavaMapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\YAxesDrawerJoGL.cpp"
 					>
 				</File>
 			</Filter>
@@ -1701,7 +1765,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\BottomXTicksPositioner.hxx"
+					RelativePath=".\src\jni\BottomXTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\BottomXTicksDrawerJavaMapper.hxx"
 					>
 				</File>
 				<File
@@ -1789,10 +1857,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\jni\GridDrawerGL.hxx"
-					>
-				</File>
-				<File
 					RelativePath=".\src\cpp\subwinDrawing\GridDrawerJavaMapper.hxx"
 					>
 				</File>
@@ -1829,7 +1893,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\LeftYTicksPositioner.hxx"
+					RelativePath=".\src\jni\LeftYTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\LeftYTicksDrawerJavaMapper.hxx"
 					>
 				</File>
 				<File
@@ -1841,19 +1909,27 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\MiddleXTicksPositioner.hxx"
+					RelativePath=".\src\jni\MiddleXTicksDrawerGL.hxx"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\MiddleYTicksPositioner.hxx"
+					RelativePath=".\src\cpp\subwinDrawing\MiddleXTicksDrawerJavaMapper.hxx"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\PlaceTicksStrategy.hxx"
+					RelativePath=".\src\jni\MiddleYTicksDrawerGL.hxx"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\RightYTicksPositioner.hxx"
+					RelativePath=".\src\cpp\subwinDrawing\MiddleYTicksDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\RightYTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\RightYTicksDrawerJavaMapper.hxx"
 					>
 				</File>
 				<File
@@ -1865,10 +1941,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\jni\TicksDrawerGL.hxx"
-					>
-				</File>
-				<File
 					RelativePath=".\src\cpp\subwinDrawing\TicksDrawerJavaMapper.hxx"
 					>
 				</File>
@@ -1877,7 +1949,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\TopXTicksPositioner.hxx"
+					RelativePath=".\src\jni\TopXTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\TopXTicksDrawerJavaMapper.hxx"
 					>
 				</File>
 				<File
@@ -1885,11 +1961,31 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\UserDefLogTicksComputer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\XGridDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XGridDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\XGridDrawerJoGL.hxx"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\XTicksPositioner.hxx"
+					RelativePath=".\src\cpp\subwinDrawing\XTicksDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\YGridDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\YGridDrawerJavaMapper.hxx"
 					>
 				</File>
 				<File
@@ -1897,7 +1993,15 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\YTicksPositioner.hxx"
+					RelativePath=".\src\cpp\subwinDrawing\YTicksDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\ZGridDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZGridDrawerJavaMapper.hxx"
 					>
 				</File>
 				<File
@@ -1905,7 +2009,15 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\subwinDrawing\ZTicksPositioner.hxx"
+					RelativePath=".\src\jni\ZTicksDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZTicksDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\ZTicksDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>
@@ -2185,6 +2297,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\textDrawing\DrawTextBoxStrategy.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\textDrawing\DrawTextContentStrategy.hxx"
 					>
 				</File>
@@ -2218,6 +2334,14 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\textDrawing\TextContentDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\TextFillBoxDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\textDrawing\TextLineBoxDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>
@@ -2641,11 +2765,27 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\axesDrawing\XAxesPositioner.hxx"
+					RelativePath=".\src\jni\XAxesDrawerGL.hxx"
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\axesDrawing\YAxesPositioner.hxx"
+					RelativePath=".\src\cpp\axesDrawing\XAxesDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\XAxesDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\YAxesDrawerGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\YAxesDrawerJavaMapper.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\YAxesDrawerJoGL.hxx"
 					>
 				</File>
 			</Filter>

@@ -246,9 +246,4 @@ void DrawableFigure::rubberBox(bool isClick, const int initialRect[4], int endRe
   getFigureImp()->rubberBox(isClick, initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::drawPixelCoordinatesCode(void)
-{
-  getFigureImp()->drawPixelCoordinatesCode();
-}
-/*---------------------------------------------------------------------------------*/
 }

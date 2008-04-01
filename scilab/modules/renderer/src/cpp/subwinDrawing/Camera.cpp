@@ -131,11 +131,6 @@ void Camera::replaceCamera( void )
   getCameraImp()->replaceCamera();
 }
 /*--------------------------------------------------------------------------*/
-void Camera::project(const double userCoord[3], double pixCoords[3])
-{
-  getCameraImp()->project(userCoord, pixCoords);
-}
-/*--------------------------------------------------------------------------*/
 void Camera::getPixelCoordinates(const double userCoord[3], int pixCoord[2])
 {
   getCameraImp()->getPixelCoordinates(userCoord, pixCoord);
@@ -169,16 +164,6 @@ void Camera::get2dViewCoordinates(const double userCoords[3], double coord2D[2])
 
   // convert pixel ones to 2d frame ones
   get2dViewCoordinates(pixCoords, coord2D);
-}
-/*--------------------------------------------------------------------------*/
-void Camera::usePixelCoordinates(void)
-{
-  getCameraImp()->usePixelCoordinates();
-}
-/*--------------------------------------------------------------------------*/
-void Camera::endPixelCoordinates(void)
-{
-  getCameraImp()->endPixelCoordinates();
 }
 /*--------------------------------------------------------------------------*/
 void Camera::draw( void )

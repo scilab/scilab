@@ -14,11 +14,10 @@
 
 #include "DrawableAxesFactory.h"
 #include "DrawableAxesBridgeFactory.hxx"
-#include "XAxesPositioner.hxx"
+#include "XAxesDrawerJoGL.hxx"
 #include "AxesTicksComputer.hxx"
 #include "getHandleDrawer.h"
-#include "YAxesPositioner.hxx"
-#include "subwinDrawing/TicksDrawerJoGL.hxx"
+#include "YAxesDrawerJoGL.hxx"
 
 extern "C"
 {
@@ -51,20 +50,16 @@ void DrawableAxesFactory::setStrategies( ConcreteDrawableAxes * axes )
   sciAxes * ppAxes = pAXES_FEATURE(pAxes);
 
   // create ticksDrawer
-  TicksDrawer * ticksDrawer = new TicksDrawerJoGL(axes);
+  TicksDrawer * ticksDrawer = NULL;
   
   if (ppAxes->nx > ppAxes->ny)
   {
-    ticksDrawer->setTicksPositioner(new XAxesPositioner(axes));
-  }
-  else
-  {
-    ticksDrawer->setTicksPositioner(new YAxesPositioner(axes));
+    ticksDrawer = new XAxesDrawerJoGL(axes);
+  } else {
+    ticksDrawer = new YAxesDrawerJoGL(axes);
   }
   
-
   ticksDrawer->setTicksComputer(new AxesTicksComputer(axes));
-
   
   axes->setTicksDrawer(ticksDrawer);
 

@@ -150,11 +150,6 @@ public:
    void rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton);
 
    /**
-    * Flush code which must be drawn using pixel coordinates
-    */
-   void drawPixelCoordinatesCode(void);
-
-   /**
     * Create the rendering canvas for the figure.
     */
    void openRenderingCanvas( void ) ;

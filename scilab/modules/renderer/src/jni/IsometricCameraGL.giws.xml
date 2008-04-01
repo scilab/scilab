@@ -71,9 +71,5 @@
     </method>
     <method name="getViewPort" returnType="double[]">
     </method>
-    <method name="usePixelCoordinates" returnType="void">
-    </method>
-    <method name="endPixelCoordinates" returnType="void">
-    </method>
   </object>
 </package>

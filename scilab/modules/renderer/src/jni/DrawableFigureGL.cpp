@@ -134,7 +134,6 @@ voidsetIsRenderingEnablejbooleanID=NULL;
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
 jintArrayrubberBoxjbooleanjintArrayID=NULL; 
-voiddrawPixelCoordinatesCodeID=NULL; 
 
 
 }
@@ -192,7 +191,6 @@ voidsetIsRenderingEnablejbooleanID=NULL;
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
 jintArrayrubberBoxjbooleanjintArrayID=NULL; 
-voiddrawPixelCoordinatesCodeID=NULL; 
 
 
 }
@@ -907,25 +905,6 @@ curEnv->DeleteLocalRef(initialRect_);
 
 return myArray;
 
-}
-
-void DrawableFigureGL::drawPixelCoordinatesCode (){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (voiddrawPixelCoordinatesCodeID==NULL) { /* Use the cache Luke */ voiddrawPixelCoordinatesCodeID = curEnv->GetMethodID(this->instanceClass, "drawPixelCoordinatesCode", "()V" ) ;
-if (voiddrawPixelCoordinatesCodeID == NULL) {
-std::cerr << "Could not access to the method " << "drawPixelCoordinatesCode" << std::endl;
-exit(EXIT_FAILURE);
-}
-}
-                         curEnv->CallVoidMethod( this->instance, voiddrawPixelCoordinatesCodeID );
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        
 }
 
 }

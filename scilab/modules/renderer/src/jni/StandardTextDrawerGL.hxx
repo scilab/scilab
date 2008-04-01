@@ -59,7 +59,6 @@ jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetTextParametersjintjintjintjdoublejdoubleID; // cache method id
-jmethodID voidsetBoxParametersjbooleanjbooleanjintjintjfloatjintID; // cache method id
 jmethodID voidsetTextContentjobjectArrayjintjintID; // cache method id
 jclass stringArrayClass;
 jmethodID voidsetCenterPositionjdoublejdoublejdoubleID; // cache method id
@@ -120,8 +119,6 @@ void destroy(long parentFigureIndex);
 void setFigureIndex(long figureIndex);
 
 void setTextParameters(long textAlignment, long color, long fontStyle, double fontSize, double rotationAngle);
-
-void setBoxParameters(bool isLine, bool isFill, long background, long foreground, float lineWidth, long lineStyle);
 
 void setTextContent(char ** text, int textSize, long nbRow, long nbCol);
 

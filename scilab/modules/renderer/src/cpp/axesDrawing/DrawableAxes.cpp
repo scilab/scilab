@@ -12,13 +12,6 @@
  */
 
 #include "DrawableAxes.h"
-#include "getHandleDrawer.h"
-#include "subwinDrawing/DrawableSubwin.h"
-
-extern "C"
-{
-#include "GetProperty.h"
-}
 
 namespace sciGraphics
 {
@@ -32,9 +25,7 @@ void DrawableAxes::draw( void )
   }
   initializeDrawing();
   clip();
-  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->getCamera()->usePixelCoordinates();
   drawAxes();
-  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->getCamera()->endPixelCoordinates();
   unClip();
   endDrawing();
 }
@@ -47,9 +38,7 @@ void DrawableAxes::show( void )
   }
   initializeDrawing();
   clip();
-  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->getCamera()->usePixelCoordinates();
   showAxes();
-  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->getCamera()->endPixelCoordinates();
   unClip();
   endDrawing();
 }

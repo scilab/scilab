@@ -52,15 +52,7 @@ public:
 
 protected:
 
-  /**
-   * Set the parameters for the text drawing
-   */
   virtual void setDrawerParameters(void) = 0;
-
-  /**
-   * Set the parameters for the box drawing.
-   */
-  virtual void setBoxParameters(void);
 
   /**
    * Convert distance in user mode to pixel.

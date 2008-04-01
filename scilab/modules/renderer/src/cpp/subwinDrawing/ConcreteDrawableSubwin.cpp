@@ -188,24 +188,6 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
 
 }
 /*------------------------------------------------------------------------------------------*/
-void ConcreteDrawableSubwin::pixelCoordinatesDraw(void)
-{
-  m_pCamera->usePixelCoordinates();
-  drawTicks();
-  // flush pixel coordinate code
-  getFigureDrawer(sciGetParentFigure(m_pDrawed))->drawPixelCoordinatesCode();
-  m_pCamera->endPixelCoordinates();
-}
-/*------------------------------------------------------------------------------------------*/
-void ConcreteDrawableSubwin::pixelCoordinatesShow(void)
-{
-  m_pCamera->usePixelCoordinates();
-  showTicks();
-  // flush pixel coordinate code
-  getFigureDrawer(sciGetParentFigure(m_pDrawed))->drawPixelCoordinatesCode();
-  m_pCamera->endPixelCoordinates();
-}
-/*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::drawBox(void)
 {
   // If axes is not displayed m_pAxesbox is not drawn.

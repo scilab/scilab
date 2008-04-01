@@ -72,8 +72,6 @@ jmethodID jdoubleArraygetUnprojectMatrixID; // cache method id
 jmethodID jdoubleArrayget2dViewProjectionMatrixID; // cache method id
 jmethodID jdoubleArrayget2dViewUnprojectMatrixID; // cache method id
 jmethodID jdoubleArraygetViewPortID; // cache method id
-jmethodID voidusePixelCoordinatesID; // cache method id
-jmethodID voidendPixelCoordinatesID; // cache method id
 
 
 /**
@@ -154,10 +152,6 @@ double * get2dViewProjectionMatrix();
 double * get2dViewUnprojectMatrix();
 
 double * getViewPort();
-
-void usePixelCoordinates();
-
-void endPixelCoordinates();
 
 
                         /**
