@@ -225,7 +225,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     elseif (btn==1118) then            //** [CTRL]+[v] --> Paste 
       Cmenu="Paste"; %pt = [xc,yc] ;   //** acquire the position for the "Paste"
     
-    elseif (btn==255)|(btn==65288)|(btn==65535)  then  // not sure what 255 is, | [Delete]   | [Backspace] 
+    elseif (btn==127)  then  //** [Delete] key 
       Cmenu="Delete"; %pt=[];
     
     //** ----- Mouse + Keyb. combos ---------------------------  
