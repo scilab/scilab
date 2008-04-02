@@ -169,12 +169,17 @@ public class Scilab {
 		System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, DISABLE);
 		
 		if (isWindowsPlateform()) {
-			if (findWindowsVersion() >= VISTA_VERSION) {
+		    if (System.getenv("SCILAB_MSTS_SESSION").equals("OK")) {
+		    // Microsoft Terminal Service Session detected
+		    }
+		    else {
+				if (findWindowsVersion() >= VISTA_VERSION) {
 				// don't enable OpenGL because of aero
 				System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, DISABLE);
+			    }
+				// desactivate direct3d and direct draw under windows
+				System.setProperty(DISABLE_DDRAW, ENABLE);
 			}
-			// desactivate direct3d and direct draw under windows
-			System.setProperty(DISABLE_DDRAW, ENABLE);
 		}
 
 	}

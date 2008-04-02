@@ -27,7 +27,8 @@ int sci_istssession(char *fname,unsigned long l)
 
 	Status = (int*)MALLOC(sizeof(int));
 
-	if ( GetSystemMetrics(SM_REMOTECONTROL) ) 
+	/* http://msdn2.microsoft.com/en-us/library/ms724385.aspx */
+	if ( GetSystemMetrics(SM_REMOTESESSION) ) 
 	{
 		*Status = TRUE;
 	}

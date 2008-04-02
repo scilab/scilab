@@ -256,7 +256,7 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 		putenv ("WIN64=OK");
 	#endif
 
-	if ( GetSystemMetrics(SM_REMOTECONTROL) ) 
+	if ( GetSystemMetrics(SM_REMOTESESSION) ) 
 	{
 		_putenv ("SCILAB_MSTS_SESSION=OK");
 	}
