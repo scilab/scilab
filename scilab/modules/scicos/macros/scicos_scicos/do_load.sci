@@ -24,7 +24,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 //** Load a Scicos diagram 
 //**
 
-  global %scicos_demo_mode ; 
+  global %scicos_demo_mode ; //** this flag is used to load a Scicos demo 
 
   [lhs,rhs] = argn(0) ;
   edited = %f         ;
@@ -34,28 +34,33 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   end
 
   if alreadyran & typ=="diagram" then
-    do_terminate(); //end current simulation
+    do_terminate(); // end current simulation
   end
 
-  scicos_debug(0); //set debug level to 0 for new diagram loaded
+  scicos_debug(0); // set debug level to 0 for new diagram loaded
 
   current_version = get_scicos_version() ;
   scicos_ver = "scicos2.2" //** default version,
                            //** for latter version scicos_ver is stored in files
 
   //** function [p] = tk_getfile(file_mask, path, Title, multip)	   
+  
   if %scicos_demo_mode==1 then 
       //** open a demo file 
-      if rhs<=0 then
-        file_mask = "*.cos*" ;  //** force the demos/scicos path 
-	path      =  SCI+"/demos/scicos" ; 
-	fname = getfile(file_mask, path) ; 
+      if rhs<=0 then //** additional security  
+        file_mask = "*.cos*" ;  //** put a filter 
+	path      =  SCI+"/modules/scicos/demos" ; //** force the demos/scicos path 
+        //** see xgetfile()
+	fname = getfile(file_mask, path, title="Open a Scicos demo diagram") ; 
       end
  
   else 
       //** conventional Open 
       if rhs<=0 then
-        fname = getfile('*.cos*') ; 
+        file_mask = "*.cos*" ;  //** put a filter 
+	path      =  getcwd() ; //** use the current working directory as default 
+        //** xgetfile()
+	fname = getfile(file_mask, path, title="Open a Scicos diagram") ;
       end
   end 
   %scicos_demo_mode = []; //** clear the variable  
@@ -64,10 +69,10 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   fname = stripblanks(fname) ; 
   
   if fname<>emptystr() then
-    %cpr=list()
-    scs_m=[]
-    [path,name,ext]=splitfilepath_cos(fname)
-    //first pass
+    %cpr = list()
+    scs_m = []
+    [path,name,ext] = splitfilepath_cos(fname)
+    // first pass
     if ext=='cos'|ext=='COS'|ext=='cosf'|ext=='COSF'|ext=='' then
       if ext=='' then  // to allow user not to enter necessarily the extension
 	fname=fname+'.cos'
@@ -112,7 +117,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
       return
     end
 
-    //check version
+    // check version
     if type(scs_m)==17 then
       if find(getfield(1,scs_m)=='version')<>[] then
         if scs_m.version<>'' then
@@ -123,7 +128,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
       end
     end
     if scicos_ver=='scicos2.2' then
-      if scs_m==[] then scs_m=x,end //for compatibility
+      if scs_m==[] then scs_m=x,end // for compatibility
     end
     if scicos_ver<>current_version then
       scs_m=do_version(scs_m,scicos_ver)
@@ -133,7 +138,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 
   else
     ok=%f
-    //scs_m=list()
+    // scs_m=list()
     return
   end
   scs_m.props.title=[scs_m.props.title(1),path]
@@ -143,8 +148,8 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 
       for jj=1:size(%cpr.sim.funtyp,'*')
 	if type(%cpr.corinv(jj))==15 then
-	  //force recompilation if diagram contains Modelica Blocks
-	  //Can be improved later, re-generating C code only...
+	  // force recompilation if diagram contains Modelica Blocks
+	  // Can be improved later, re-generating C code only...
 	  %cpr=list()
 	  edited=%t
 	  return
@@ -152,11 +157,11 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 	ft=modulo(%cpr.sim.funtyp(jj),10000)
 	if ft>999 then
 	  funam=%cpr.sim.funs(jj)
-	  //regenerate systematically dynamically linked blocks forsafety
-	  //[a,b]=c_link(funam); while a;  ulink(b);[a,b]=c_link(funam);end
-	  //should be better than
-	  //"if  ~c_link(funam) then"
-	  //but ulink remove .so files and Makefile doesnt depends on .so file...
+	  // regenerate systematically dynamically linked blocks forsafety
+	  // [a,b]=c_link(funam); while a;  ulink(b);[a,b]=c_link(funam);end
+	  // should be better than
+	  // "if  ~c_link(funam) then"
+	  // but ulink remove .so files and Makefile doesnt depends on .so file...
 	  if ~c_link(funam) then
 
 	    qqq=%cpr.corinv(jj)
