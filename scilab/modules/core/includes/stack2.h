@@ -242,6 +242,7 @@ char * ArgsPosition __PARAMS((int i,int j));
 int IsRef __PARAMS((int lw));
 int Ref2val __PARAMS((int from , int to )) ;
 
+void *GetVarPtr __PARAMS((int n));
 void *GetData __PARAMS((int lw));
 void *GetRawData __PARAMS((int lw));
 int GetDataSize __PARAMS((int lw));

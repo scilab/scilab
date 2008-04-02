@@ -1152,7 +1152,6 @@ int C2F(setworksize)(integer *number,integer *size)
     Scierror(999,_("%s: bad call to %s! (1rst argument).\n"),fname,"setworksize");
     return FALSE ;
   }
-  *istk(iadr(*Lstk(lw1)))=0;
   *Lstk(lw1+1) = *Lstk(lw1) + *size ;
   C2F(intersci).ntypes[*number - 1] = '$';
   C2F(intersci).iwhere[*number - 1] = *Lstk(lw1);
@@ -3065,6 +3064,16 @@ int C2F(copyvarfromsciptr)(integer lw, integer n,integer l)
   C2F(unsfdcopy)(&n,stk(l),&un,stk(*Lstk(lw + Top - Rhs)),&un);
   return TRUE;
 }
+
+void * GetVarPtr(int n)
+     /* return  the pointer on the first integer of the n th variable  data structure  */
+
+{
+  int l1 = *Lstk(n + Top - Rhs);
+  int *loci = (int *) stk(l1);
+  return loci;
+}
+
 
 void *GetData(int lw)
      /* Usage: header = (int *) GetData(lw); header[0] = type of variable lw etc */

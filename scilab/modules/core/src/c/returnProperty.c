@@ -176,7 +176,7 @@ int sciReturnUserData( const int * userData, int userDataSize )
   int * data_ptr = NULL ;
   int data_size = (userDataSize + 1 ) / 2 ;
   SetWorkSize(Rhs+1,&data_size);
-  data_ptr = GetData(Rhs+1);
+  data_ptr = GetRawData(Rhs+1);
   memcpy( data_ptr, userData, userDataSize * sizeof (int) );
   return 0 ;
 }
