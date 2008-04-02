@@ -24,7 +24,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
 
   int nbRow = 0, nbCol = 0;
 
-  int fontNameAdr = 0;
+  char **fontNameAdr = NULL;
   int fontSizeAdr = 0;
   int boldAdr = 0;
   int italicAdr = 0;
@@ -121,7 +121,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
   /* Default font */
   if (fontNameAdr != 0)
     {
-      setFontChooserFontName(fontChooserID, getStringMatrixFromStack(fontNameAdr)[0]);
+      setFontChooserFontName(fontChooserID, getStringMatrixFromStack((int)fontNameAdr)[0]);
     }
   
   /* Default size */
