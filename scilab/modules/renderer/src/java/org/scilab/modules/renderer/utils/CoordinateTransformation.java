@@ -177,6 +177,18 @@ public class CoordinateTransformation {
 	}
 	
 	/**
+	 * Convert a direction in pixels
+	 * @param gl current GL pipeline
+	 * @param direction direction to transform
+	 * @return direcyion in pixels
+	 */
+	public Vector3D getCanvasDirection(GL gl, Vector3D direction) {
+		Vector3D originPix = getCanvasCoordinates(gl, Vector3D.ORIGIN);
+		Vector3D res = getCanvasCoordinates(gl, direction);
+		return res.substract(originPix);
+	}
+	
+	/**
 	 * Opposite transformation od getCanvasCoordinates.
 	 * Compute back scene coordinates from window coordinates.
 	 * @param gl current OpengL pipeline
