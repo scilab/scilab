@@ -101,7 +101,13 @@ libscicompletion_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = libscicompletion_la-Completion_wrap.lo
+am__libscicompletion_la_SOURCES_DIST = src/jni/Completion_wrap.c \
+	src/c/completion.c src/c/completion_generic.c \
+	src/c/getfilesdictionary.c src/c/getfulldictionary.c \
+	src/c/getmacrosdictionary.c src/c/toolsdictionary.c \
+	src/c/completion_wrap_java.c sci_gateway/c/sci_completion.c \
+	sci_gateway/c/gw_completion.c
+@GUI_TRUE@am__objects_1 = libscicompletion_la-Completion_wrap.lo
 am__objects_2 = libscicompletion_la-completion.lo \
 	libscicompletion_la-completion_generic.lo \
 	libscicompletion_la-getfilesdictionary.lo \
@@ -131,7 +137,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscicompletion_la_SOURCES)
-DIST_SOURCES = $(libscicompletion_la_SOURCES)
+DIST_SOURCES = $(am__libscicompletion_la_SOURCES_DIST)
 libscicompletion_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscicompletion_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscicompletion_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -324,7 +330,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #List of the c files
-COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
+@GUI_TRUE@COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
 
 # List of the c files
 COMPLETION_C_SOURCES = src/c/completion.c \

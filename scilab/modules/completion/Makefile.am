@@ -7,8 +7,10 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+if GUI
 #List of the c files
 COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
+endif
 
 # List of the c files
 COMPLETION_C_SOURCES = src/c/completion.c \
