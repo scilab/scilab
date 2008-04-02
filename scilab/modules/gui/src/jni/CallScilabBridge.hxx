@@ -201,6 +201,7 @@ jmethodID jintnewColorChooserID; // cache method id
 jmethodID voidcolorChooserDisplayAndWaitjintID; // cache method id
 jmethodID voidsetColorChooserDefaultColorjintjintArrayID; // cache method id
 jmethodID jintArraygetColorChooserSelectedColorjintID; // cache method id
+jmethodID jintgetScreenResolutionID; // cache method id
 
 
 /**
@@ -537,6 +538,8 @@ static void colorChooserDisplayAndWait(JavaVM * jvm_, long objID);
 static void setColorChooserDefaultColor(JavaVM * jvm_, long objID, long * rgb, int rgbSize);
 
 static long * getColorChooserSelectedColor(JavaVM * jvm_, long objID);
+
+static long getScreenResolution(JavaVM * jvm_);
 
 
                         /**

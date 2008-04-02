@@ -172,7 +172,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/SetUicontrolVerticalAlignment.cpp \
 	src/cpp/GetUicontrolVerticalAlignment.cpp \
 	src/cpp/SetUicontrolSliderStep.cpp \
-	src/cpp/GetUicontrolSliderStep.cpp
+	src/cpp/GetUicontrolSliderStep.cpp src/cpp/UnitsConversion.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-setlookandfeel.lo \
@@ -282,7 +282,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-SetUicontrolVerticalAlignment.lo \
 @GUI_TRUE@	libscigui_la-GetUicontrolVerticalAlignment.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolSliderStep.lo \
-@GUI_TRUE@	libscigui_la-GetUicontrolSliderStep.lo
+@GUI_TRUE@	libscigui_la-GetUicontrolSliderStep.lo \
+@GUI_TRUE@	libscigui_la-UnitsConversion.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -654,7 +655,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/SetUicontrolVerticalAlignment.cpp \
 @GUI_TRUE@src/cpp/GetUicontrolVerticalAlignment.cpp \
 @GUI_TRUE@src/cpp/SetUicontrolSliderStep.cpp \
-@GUI_TRUE@src/cpp/GetUicontrolSliderStep.cpp
+@GUI_TRUE@src/cpp/GetUicontrolSliderStep.cpp \
+@GUI_TRUE@src/cpp/UnitsConversion.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/CallScilabBridge.giws.xml \
@@ -1007,6 +1009,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-TerminateGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Toolbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-UicontrolStyleToString.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-UnitsConversion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-buildMainWindowTitle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getMainWindowTitle.Plo@am__quote@
@@ -1899,6 +1902,13 @@ libscigui_la-GetUicontrolSliderStep.lo: src/cpp/GetUicontrolSliderStep.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolSliderStep.cpp' object='libscigui_la-GetUicontrolSliderStep.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolSliderStep.lo `test -f 'src/cpp/GetUicontrolSliderStep.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolSliderStep.cpp
+
+libscigui_la-UnitsConversion.lo: src/cpp/UnitsConversion.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-UnitsConversion.lo -MD -MP -MF $(DEPDIR)/libscigui_la-UnitsConversion.Tpo -c -o libscigui_la-UnitsConversion.lo `test -f 'src/cpp/UnitsConversion.cpp' || echo '$(srcdir)/'`src/cpp/UnitsConversion.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-UnitsConversion.Tpo $(DEPDIR)/libscigui_la-UnitsConversion.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/UnitsConversion.cpp' object='libscigui_la-UnitsConversion.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-UnitsConversion.lo `test -f 'src/cpp/UnitsConversion.cpp' || echo '$(srcdir)/'`src/cpp/UnitsConversion.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -14,6 +14,7 @@
 #define __GET_UICONTROL_FONTSIZE_HXX__
 
 #include "CallScilabBridge.hxx"
+#include "UnitsConversion.hxx"
 extern "C"{
 #include "getScilabJavaVM.h"
 #include "GetProperty.h"

@@ -851,6 +851,10 @@
 				RelativePath="..\jni\UIElementMapper.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\cpp\UnitsConversion.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1518,6 +1522,10 @@
 			</File>
 			<File
 				RelativePath="..\jni\UIElementMapper.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\UnitsConversion.hxx"
 				>
 			</File>
 			<File

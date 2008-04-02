@@ -19,7 +19,6 @@ int SetUicontrolMin(sciPointObj* sciObj, int stackPointer, int valueType, int nb
 {
   if (valueType == sci_matrix)
     {
-      int value = 0;
 
       if(nbCol != 1 || nbRow != 1)
         {
@@ -27,21 +26,9 @@ int SetUicontrolMin(sciPointObj* sciObj, int stackPointer, int valueType, int nb
           sciprint(_("%s property value must be single value.\n"), "Min");
           return SET_PROPERTY_ERROR;
         }
-      
-      value = (int) getDoubleFromStack(stackPointer);
 
-      /* Check if value is < to max property */
-      if (value < pUICONTROL_FEATURE(sciObj)->max)
-        {
-          /* Store the value in Scilab */
-          pUICONTROL_FEATURE(sciObj)->min = value;
-        }
-      else
-        {
-          /* Wrong value size */
-          sciprint(_("%s property value must be lesser than Max property value.\n"), "Min");
-          return SET_PROPERTY_ERROR;
-        }
+      /* Store the value in Scilab */
+      pUICONTROL_FEATURE(sciObj)->min = (int) getDoubleFromStack(stackPointer);
 
       /* Update Java Objects */
       if (pUICONTROL_FEATURE(sciObj)->style == SCI_SLIDER)
@@ -54,13 +41,17 @@ int SetUicontrolMin(sciPointObj* sciObj, int stackPointer, int valueType, int nb
           /* Ticks spacing: if not user defined */
           if (pUICONTROL_FEATURE(sciObj)->sliderStep == NULL)
             {
-              CallScilabBridge::setSliderMinorTickSpacing(getScilabJavaVM(),
-                                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                          (int) (0.01 * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min)));
-              
-              CallScilabBridge::setSliderMajorTickSpacing(getScilabJavaVM(), 
-                                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                          (int) (0.1 * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min)));
+              /* Check if min is < to max property */
+              if (pUICONTROL_FEATURE(sciObj)->min <= pUICONTROL_FEATURE(sciObj)->max)
+                {
+                  CallScilabBridge::setSliderMinorTickSpacing(getScilabJavaVM(),
+                                                              pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                              (int) (0.01 * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min)));
+                  
+                  CallScilabBridge::setSliderMajorTickSpacing(getScilabJavaVM(), 
+                                                              pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                              (int) (0.1 * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min)));
+                }
             }
        }
       else if (pUICONTROL_FEATURE(sciObj)->style == SCI_LISTBOX)

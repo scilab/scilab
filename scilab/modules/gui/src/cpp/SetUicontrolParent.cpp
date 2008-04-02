@@ -28,9 +28,18 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
       return SET_PROPERTY_ERROR;
     }
   
-  if (valueType == sci_handles)
+  if ((valueType == sci_handles) || (valueType == sci_matrix))
     {
-      figure = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
+      if (valueType == sci_handles)
+        {
+          figure = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
+        }
+
+      if (valueType == sci_matrix)
+        {
+          figure = getFigureFromIndex((int)getDoubleMatrixFromStack(stackPointer)[0]);
+        }
+
       if (sciGetEntityType(figure) == SCI_FIGURE)
         {
           // Scilab relationship

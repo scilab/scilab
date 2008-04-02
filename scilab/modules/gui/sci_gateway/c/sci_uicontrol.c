@@ -34,7 +34,7 @@
 #include "Scierror.h"
 #include "WindowList.h" /* getFigureFromIndex */
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 23
+#define NBPROPERTIES 24
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
 {
@@ -57,7 +57,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
-  char propertiesNames[NBPROPERTIES][20] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "position", "fontweight", "min", "max", "tag", "units", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontsize", "fontunits", "listboxtop", "user_data", "value"};
+  char propertiesNames[NBPROPERTIES][20] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "position", "fontweight", "min", "max", "tag", "units", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontsize", "fontunits", "listboxtop", "user_data", "value", "userdata"};
   int *propertiesValuesIndices = NULL;
 
   //CheckRhs(2,2);
@@ -141,6 +141,11 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                     {
                       pParent = getFigureFromIndex(*stk(stkAdr));
 
+                      if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
+                        {
+                          Scierror(999,_("%s: Wrong type for parent: Figure or uimenu expected.\n"),fname);
+                          return FALSE;
+                        }
                       /* First parameter is the parent */
                       propertiesValuesIndices[1] = 1;
                     }
@@ -168,8 +173,8 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
               if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
                 {
-					Scierror(999,_("%s: Wrong type for parent: Figure or uimenu expected.\n"),fname);
-					return FALSE;
+                  Scierror(999,_("%s: Wrong type for parent: Figure or uimenu expected.\n"),fname);
+                  return FALSE;
                 }
               /* First parameter is the parent */
               propertiesValuesIndices[1] = 1;
@@ -242,35 +247,45 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         {
            if(propertiesValuesIndices[inputIndex] != NOT_FOUND)
             {
-              /* Read property value */
-              switch (VarType(propertiesValuesIndices[inputIndex]))
+              if (inputIndex==21 || inputIndex==23) /* User data settings */
                 {
-                case sci_matrix:
-                  GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_DOUBLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                  stkAdr = 3; /* Special management */
+                  nbRow = -1; 
+                  nbCol = -1;
                   setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
-                  break;
-                case sci_strings:
-                  if (inputIndex == 4) /* Index for String property: Can be mon than one character string */
+                }
+              else /* All other properties */
+                {
+                  /* Read property value */
+                  switch (VarType(propertiesValuesIndices[inputIndex]))
                     {
-                      GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                    case sci_matrix:
+                      GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_DOUBLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                      setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                      break;
+                    case sci_strings:
+                      if (inputIndex == 4) /* Index for String property: Can be mon than one character string */
+                        {
+                          GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                        }
+                      else
+                        {
+                          GetRhsVar(propertiesValuesIndices[inputIndex],STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                        }
+                      setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                      break;
+                    case sci_handles:
+                      GetRhsVar(propertiesValuesIndices[inputIndex],GRAPHICAL_HANDLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                      setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                      break;
+                    default:
+                      setStatus = SET_PROPERTY_ERROR;
+                      break;
                     }
-                  else
-                    {
-                      GetRhsVar(propertiesValuesIndices[inputIndex],STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
-                    }
-                  setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
-                  break;
-                case sci_handles:
-                  GetRhsVar(propertiesValuesIndices[inputIndex],GRAPHICAL_HANDLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
-                  setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
-                  break;
-                default:
-                  setStatus = SET_PROPERTY_ERROR;
-                  break;
                 }
               if (setStatus == SET_PROPERTY_ERROR)
                 {
-                  Scierror(999, _("Could not set property %s.\n"), propertyName);
+                  Scierror(999, _("Could not set property: %s.\n"), (char*)propertiesNames[inputIndex]);
                   return FALSE;
                 }
             }

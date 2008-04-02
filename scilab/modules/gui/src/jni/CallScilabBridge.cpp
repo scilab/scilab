@@ -250,6 +250,7 @@ jintnewColorChooserID=NULL;
 voidcolorChooserDisplayAndWaitjintID=NULL; 
 voidsetColorChooserDefaultColorjintjintArrayID=NULL; 
 jintArraygetColorChooserSelectedColorjintID=NULL; 
+jintgetScreenResolutionID=NULL; 
 
 
 }
@@ -423,6 +424,7 @@ jintnewColorChooserID=NULL;
 voidcolorChooserDisplayAndWaitjintID=NULL; 
 voidsetColorChooserDefaultColorjintjintArrayID=NULL; 
 jintArraygetColorChooserSelectedColorjintID=NULL; 
+jintgetScreenResolutionID=NULL; 
 
 
 }
@@ -4307,6 +4309,29 @@ curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
                         curEnv->DeleteLocalRef(res);
 
 return myArray;
+
+}
+
+long CallScilabBridge::getScreenResolution (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintgetScreenResolutionID = curEnv->GetStaticMethodID(cls, "getScreenResolution", "()I" ) ;
+if (jintgetScreenResolutionID == NULL) {
+std::cerr << "Could not access to the method " << "getScreenResolution" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetScreenResolutionID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
 
 }
 

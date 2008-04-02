@@ -540,5 +540,8 @@
 	<method name="getColorChooserSelectedColor" returnType="int[]" modifier="static">
           <parameter type="int" name="objID"/>
         </method>      
+<!-- Misc -->
+	<method name="getScreenResolution" returnType="int" modifier="static">
+        </method>      
   </object>
 </package>

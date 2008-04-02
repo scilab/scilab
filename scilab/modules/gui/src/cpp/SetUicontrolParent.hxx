@@ -25,6 +25,7 @@ extern "C"
 #include "localization.h"
 #include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
+#include "WindowList.h"
 }
 
 #endif /* __SETUICONTROLPARENT_HXX__ */

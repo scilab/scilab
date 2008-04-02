@@ -96,7 +96,8 @@ src/cpp/GetUicontrolHorizontalAlignment.cpp \
 src/cpp/SetUicontrolVerticalAlignment.cpp \
 src/cpp/GetUicontrolVerticalAlignment.cpp \
 src/cpp/SetUicontrolSliderStep.cpp \
-src/cpp/GetUicontrolSliderStep.cpp
+src/cpp/GetUicontrolSliderStep.cpp \
+src/cpp/UnitsConversion.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \

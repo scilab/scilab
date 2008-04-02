@@ -2173,4 +2173,19 @@ public class CallScilabBridge {
 		((ColorChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
 	}
 	
+	/********/
+	/*      */
+	/* MISC */
+	/*      */
+	/********/
+	
+	/**
+	 * Get the screen resolution
+	 * @return the number of dot per inch
+	 */
+	public static int getScreenResolution() {
+		return Toolkit.getDefaultToolkit().getScreenResolution();
+	}
+	
+	
 }
