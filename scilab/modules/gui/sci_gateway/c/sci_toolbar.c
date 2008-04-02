@@ -17,7 +17,6 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "Toolbar.h"
-#include "getPropertyAssignedValue.h"
 #include "WindowList.h"
 #if _MSC_VER
   #include "strdup_windows.h"
@@ -72,9 +71,7 @@ int sci_toolbar(char *fname,unsigned long l)
     {
       if ((GetType(2) == sci_strings))
         {
-          GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&l1);
-          param = getStringMatrixFromStack(l1);
-
+          GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&param);
           if (m1*n1 != 1)
             {
               Scierror(999, _("%s: Wrong size for second input argument: 'on' or 'off' expected.\n"), fname);
