@@ -11,57 +11,57 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c     ====================================
 c     requires by f2c :(
 c     ====================================
-      subroutine writebufdgesv3(buffer,line)
+      subroutine writebufdgesv3(buffer,r)
       
       character*(*) buffer
-      character*(*) line
+      double precision r
       
-      write(buffer(1:4),'(1pd13.4)') line
+      write(buffer(1:13),'(1pd13.4)') r
+
+      end
+c     ====================================      
+      subroutine writebufdgesv4(buffer,r)
+      
+      character*(*) buffer
+      double precision r
+      
+      write(buffer(1:13),'(1pd13.4)') r
       
       end
 c     ====================================      
-      subroutine writebufdgesv4(buffer,line)
+      subroutine writebufdgetri(buffer,r)
       
       character*(*) buffer
-      character*(*) line
-      
-      write(buffer(1:13),'(1pd13.4)') line
-      
-      end
-c     ====================================      
-      subroutine writebufdgetri(buffer,rcond)
-      
-      character*(*) buffer
-      double precision rcond
+      double precision r
       
       write(buffer(1:13),'(1pd13.4)') rcond
       
       end
 c     ====================================      
-      subroutine writebufzgesv3(buffer,line)
+      subroutine writebufzgesv3(buffer,r)
       
       character*(*) buffer
-      character*(*) line
+      double precision r
       
-      write(buffer(1:13),'(1pd13.4)') line
+      write(buffer(1:13),'(1pd13.4)') r
       
       end
 c     ====================================      
-      subroutine writebufzgesv4(buffer,line)
+      subroutine writebufzgesv4(buffer,r)
       
       character*(*) buffer
-      character*(*) line
+      double precision r
       
-      write(buffer(1:13),'(1pd13.4)') line
+      write(buffer(1:13),'(1pd13.4)') r
       
       end
 c     ====================================      
-      subroutine writebufzgetri(buffer,line)
+      subroutine writebufzgetri(buffer,r)
       
       character*(*) buffer
-      character*(*) line
+      double precision r
       
-      write(buffer(1:13),'(1pd13.4)') line
+      write(buffer(1:13),'(1pd13.4)') r
       
       end
 c     ====================================      
