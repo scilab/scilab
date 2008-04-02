@@ -36,24 +36,20 @@ public final class GeomAlgos {
 	 * @param rectangle2 four corners of the second rectangle
 	 * @return true if the rectangle are concealing, false otherwise
 	 */
-	public static boolean areRectangleConcealing(Vector3D[] rectangle1, Vector3D[] rectangle2) {
+	public static boolean areRectangleConcealing(double[] rectangle1, double[] rectangle2) {
 		// get min and max in 2D for each rectangle
-		double xMin1 = Math.min(rectangle1[0].getX(), rectangle1[2].getX());
-		double yMin1 = Math.min(rectangle1[0].getY(), rectangle1[2].getY());
-		double xMax1 = Math.max(rectangle1[0].getX(), rectangle1[2].getX());
-		double yMax1 = Math.max(rectangle1[0].getY(), rectangle1[2].getY());
-		double xMin2 = Math.min(rectangle2[0].getX(), rectangle2[2].getX());
-		double yMin2 = Math.min(rectangle2[0].getY(), rectangle2[2].getY());
-		double xMax2 = Math.max(rectangle2[0].getX(), rectangle2[2].getX());
-		double yMax2 = Math.max(rectangle2[0].getY(), rectangle2[2].getY());
+		double xMin1 = rectangle1[0];
+		double yMin1 = rectangle1[2];
+		double xMax1 = rectangle1[1];
+		double yMax1 = rectangle1[RECTANGLE_NB_CORNERS - 1];
+		double xMin2 = rectangle2[0];
+		double yMin2 = rectangle2[2];
+		double xMax2 = rectangle2[1];
+		double yMax2 = rectangle2[RECTANGLE_NB_CORNERS - 1];
 		
-		// rectangle are concealing if 2 bounds are within the others
-		if (((xMin1 >= xMin2 && xMin1 <= xMax2) || (xMax1 >= xMin2 && xMax1 <= xMax2))
-			&& ((yMin1 >= yMin2 && yMin1 <= yMax2)  || (yMax1 >= yMin2 && yMax1 <= yMax2))) {
-			return true;
-		}
+		return (((xMin1 >= xMin2 && xMin1 <= xMax2) || (xMax1 >= xMin2 && xMax1 <= xMax2))
+				&& ((yMin1 >= yMin2 && yMin1 <= yMax2)  || (yMax1 >= yMin2 && yMax1 <= yMax2)));
 					
-		return false;
 	}
 	
 }

@@ -91,21 +91,18 @@ public class StringMatrixGL extends StringMatrix {
 	public void update(SciTextRenderer renderer) {
 		int nbCol = getNbCol();
 		int nbRow = getNbRow();
-		
-		
-		for (int i = 0; i < nbRow; i++) {
-			for (int j = 0; j < nbCol; j++) {
-				Rectangle2D curRect = renderer.getBounds(getMatrixElement(i, j));
-				width[i][j] = curRect.getWidth();
-				height[i][j] = curRect.getHeight();
-			}
-		}
+		String[][] data = getData();
 		
 		tallestString = 0.0;
-		widestStrings = new double[getNbCol()];
-		for (int j = 0; j < getNbCol(); j++) {
+		for (int j = 0; j < nbCol; j++) {
 			double maxWidth = 0.0;
-			for (int i = 0; i < getNbRow(); i++) {
+			for (int i = 0; i < nbRow; i++) {
+				
+				// get current size
+				Rectangle2D curRect = renderer.getBounds(data[i][j]);
+				width[i][j] = curRect.getWidth();
+				height[i][j] = curRect.getHeight();
+				
 				// update width
 				if (width[i][j] > maxWidth) {
 					maxWidth = width[i][j];

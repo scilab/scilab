@@ -109,6 +109,13 @@ public class StringMatrix {
 	}
 	
 	/**
+	 * @return data of the matrix
+	 */
+	protected String[][] getData() {
+		return data;
+	}
+	
+	/**
 	 * @return String representation of the object.
 	 */
 	@Override

@@ -23,6 +23,8 @@ import com.sun.opengl.util.j2d.TextRenderer;
  */
 public class SciTextRenderer extends TextRenderer {
 
+	private boolean isRendering;
+	
 	/**
 	 * Constructor from a Font to use.
 	 * @param font font to use.
@@ -35,6 +37,8 @@ public class SciTextRenderer extends TextRenderer {
 		
 		// apparently creates slow down on some computers if activated
 		this.setUseVertexArrays(false);
+		
+		isRendering = false;
 	}
 	
 	/**
@@ -59,6 +63,32 @@ public class SciTextRenderer extends TextRenderer {
 	}
 	
 	/**
+	 * Begin a sequence of text drawing
+	 */
+	public void begin3DRendering() {
+		isRendering = true;
+		super.begin3DRendering();
+	}
+	
+	/**
+	 * End a sequence of text rendering
+	 */
+	public void end3DRendering() {
+		super.end3DRendering();
+		isRendering = false;
+	}
+	
+	/**
+	 * Free ressources used by this component
+	 */
+	public void dispose() {
+		if (isRendering) {
+			end3DRendering();
+		}
+		super.dispose();
+	}
+	
+	/**
 	 * Display a string at the desired 3D location.
 	 * (x,y,z) is the baseline of the leftmost character.
 	 * @param str string to draw
@@ -67,7 +97,15 @@ public class SciTextRenderer extends TextRenderer {
 	 * @param z Z coordinate of the text
 	 */
 	public void draw3D(String str, double x, double y, double z) {
+		if (!isRendering) {
+			begin3DRendering();
+		}
+		
+		//long initTime = System.nanoTime();
 		super.draw3D(str, (float) x, (float) y, (float) z, 1.0f);
+//long elapsedTime = System.nanoTime() - initTime;
+		
+		//System.err.println("elapsedTime = " + (elapsedTime * 1.0e-6));
 	}
 	
 	/**
@@ -87,10 +125,7 @@ public class SciTextRenderer extends TextRenderer {
 	 * @return true if the fonts are the sames
 	 */
 	public boolean hasFont(Font font) {
-		Font thisFont = getFont();
-		
-		return   (thisFont.getSize2D() == font.getSize2D())
-			  && (thisFont.getFontName().equals(font.getFontName()));
+		return getFont().equals(font);
 	}
 
 }

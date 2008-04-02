@@ -14,12 +14,14 @@
 
 package org.scilab.modules.renderer.subwinDrawing;
 
+import java.awt.Font;
+import java.awt.geom.Rectangle2D;
+
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.textDrawing.CenteredTextDrawerGL;
-import org.scilab.modules.renderer.textDrawing.StandardTextDrawerGL;
-import org.scilab.modules.renderer.textDrawing.TextAlignementStrategy;
+import org.scilab.modules.renderer.textDrawing.SciTextRenderer;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
+import org.scilab.modules.renderer.utils.FontManager;
 import org.scilab.modules.renderer.utils.geom3D.GeomAlgos;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
@@ -41,6 +43,9 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	/** Distance from labels to axis relative to ticks length */
 	private static final double LABEL_TO_AXIS_DISTANCE = 1.5;
 	
+	/** Exponent size compared to label size */
+	private static final float EXPONENT_SIZE = 0.5f;
+	
 	private double[] ticksPositions;
 	private String[] ticksLabels;
 	private String[] labelsExponents;
@@ -53,30 +58,21 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	/** Specify wether the axis line (the long one) should be drawn */
 	private boolean drawAxisLine;
 	
-	private CenteredTextDrawerGL labelsDrawer;
-	private StandardTextDrawerGL exponentDrawer;
+	private Font labelFont;
+	private int labelColor;
 	
 	/**
 	 * Default constructor.
 	 */
 	public TicksDrawerGL() {
 		super();
-		labelsDrawer = new CenteredTextDrawerGL();
-		labelsDrawer.setRotationAngle(0.0);
-		labelsDrawer.setFont(1, 2.0);
-		labelsDrawer.setFilledBoxSize(0, 0);
-		labelsDrawer.setTextAlignement(TextAlignementStrategy.CENTERED_ALIGNED_INDEX);
-		labelsDrawer.setFontColor(1);
-		exponentDrawer = new StandardTextDrawerGL();
-		exponentDrawer.setRotationAngle(0.0);
-		exponentDrawer.setFont(1, 1.0);
-		exponentDrawer.setTextAlignement(TextAlignementStrategy.CENTERED_ALIGNED_INDEX);
-		exponentDrawer.setFontColor(1);
 		lineStyle = 0;
 		thickness = 0.0f;
 		lineColor = 0;
 		/* draw the line by default */
 		drawAxisLine = true;
+		labelColor = -1;
+		labelFont = null;
 	}
 	
 	/**
@@ -86,8 +82,6 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	 */
 	public void initializeDrawing(int parentFigureIndex) {
 		super.initializeDrawing(parentFigureIndex);
-		labelsDrawer.initializeDrawing(parentFigureIndex);
-		exponentDrawer.initializeDrawing(parentFigureIndex);
 	}
 	
 	/**
@@ -95,8 +89,6 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	 */
 	public void endDrawing() {
 		super.endDrawing();
-		labelsDrawer.endDrawing();
-		exponentDrawer.endDrawing();
 	}
 	
 	/**
@@ -162,20 +154,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	protected double[] getTicksPositions() {
 		return ticksPositions;
 	}
-	
-	/**
-	 * @return get the drawer for ticks labels
-	 */
-	protected CenteredTextDrawerGL getLabelsDrawer() {
-		return labelsDrawer;
-	}
-	
-	/**
-	 * @return get the drawer for ticks labels exponent
-	 */
-	protected StandardTextDrawerGL getExponentDrawer() {
-		return exponentDrawer;
-	}
+
 	
 	/**
 	 * Set a new line style for the line.
@@ -212,8 +191,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	 * @param colorIndex index of the color in the colormap
 	 */
 	public void setFontColor(int colorIndex) {
-		labelsDrawer.setFontColor(colorIndex);
-		exponentDrawer.setFontColor(colorIndex);
+		labelColor = colorIndex;
 	}
 	
 	/**
@@ -222,8 +200,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	 * @param fontSize font size to use.
 	 */
 	public void setFont(int fontTypeIndex, double fontSize) {
-		labelsDrawer.setFont(fontTypeIndex, fontSize);
-		exponentDrawer.setFont(fontTypeIndex, fontSize / 2.0);
+		labelFont = FontManager.getSciFontManager().getFontFromIndex(fontTypeIndex, fontSize);
 	}
 	
 	/**
@@ -393,52 +370,55 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	
 	/**
 	 * Compute label center from its ticks direction and location
+	 * @param text text to draw
+	 * @param renderer text renderer used to draw the text
 	 * @param tickPosition base of the ticks on the axis segment
-	 * @param tickDirection vector defining the ticks
+	 * @param ticksDirPix ticks direction in pixels
 	 * @param exponentPosition out argument giving the position to use for exponent drawing.
 	 * @param centerPosition out argument giving the postions to use for labels drawing.
 	 * @return distance from the label to the axis in pixels
 	 */
-	private double computeLabelCenter(Vector3D tickPosition, Vector3D tickDirection,
+	private double computeLabelCenter(String text, SciTextRenderer renderer, Vector3D tickPosition, Vector3D ticksDirPix,
 									  Vector3D centerPosition, Vector3D exponentPosition) {
 		GL gl = getGL();
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		Vector3D ticksPosPix = transform.getCanvasCoordinates(gl, tickPosition);
-		Vector3D ticksEndPix = transform.getCanvasCoordinates(gl, tickPosition.add(tickDirection));
-		Vector3D ticksDirPix = ticksEndPix.substract(ticksPosPix);
+
+		Rectangle2D rect = renderer.getBounds(text);
+		double halfBoxWidth = rect.getWidth() / 2.0;
+		double halfBoxHeight = rect.getHeight() / 2.0;
 		
-		// get text bounding box
-		Vector3D[] pixBoundingBox = getLabelsDrawer().getBoundingRectangle2D();
-		double halfBoxWidth = Math.abs(pixBoundingBox[0].getX() - pixBoundingBox[2].getX()) / 2.0;
-		double halfBoxHeight = Math.abs(pixBoundingBox[0].getY() - pixBoundingBox[2].getY()) / 2.0;
-		
-		ticksDirPix.scalarMultSelf(LABEL_TO_AXIS_DISTANCE);
 		Vector3D textCenter = ticksPosPix.add(ticksDirPix);
 		
 		// move text in order to put its box in front of ticks
 		// the aim is to put ticks segment and text center aligned
 		if (ticksDirPix.getX() > Math.abs(ticksDirPix.getY())) {
-			textCenter = textCenter.add(new Vector3D(halfBoxWidth, 0.0, 0.0));
+			textCenter.setY(textCenter.getY() - halfBoxHeight);
 		} else if (ticksDirPix.getX() < -Math.abs(ticksDirPix.getY())) {
-			textCenter = textCenter.add(new Vector3D(-halfBoxWidth, 0.0, 0.0));
+			textCenter.setX(textCenter.getX() - 2.0 * halfBoxWidth);
+			textCenter.setY(textCenter.getY() - halfBoxHeight);
 		} else if (ticksDirPix.getY() > Math.abs(ticksDirPix.getX())) {
-			textCenter = textCenter.add(new Vector3D(0.0, halfBoxHeight, 0.0));
+			textCenter.setX(textCenter.getX() - halfBoxWidth);
+			textCenter.setY(textCenter.getY() + halfBoxHeight);
 		} else {
-			textCenter = textCenter.add(new Vector3D(0.0, -halfBoxHeight, 0.0));
+			textCenter.setX(textCenter.getX() - halfBoxWidth);
+			textCenter.setY(textCenter.getY() - halfBoxHeight);
 		}
 		
 		if (exponentPosition != null) {
-			Vector3D exponentPositionPix = textCenter.add(new Vector3D(halfBoxWidth, halfBoxHeight, 0.0));
-			exponentPosition.setValues(transform.retrieveSceneCoordinates(gl, exponentPositionPix));
+			exponentPosition.setValues(textCenter.getX() + 2.0 * halfBoxWidth,
+									   textCenter.getY() + 2.0 * halfBoxHeight,
+									   textCenter.getZ());
 		}
 		
 		// font the farthest corner from the tick base.
 		double res = textCenter.substract(ticksPosPix).getNorm();
 		// we should fin the farthest corner to compute the length but adding half of the box diagonal
 		// do it.
-		res += (new Vector3D(halfBoxWidth, halfBoxHeight, 0.0)).getNorm();
+		//res += (new Vector3D(halfBoxWidth, halfBoxHeight, 0.0)).getNorm();
+		res += Math.sqrt(halfBoxWidth * halfBoxWidth + halfBoxHeight * halfBoxHeight);
 		
-		centerPosition.setValues(transform.retrieveSceneCoordinates(gl, textCenter));
+		centerPosition.setValues(textCenter);
 		return res;
 	}
 	
@@ -453,35 +433,45 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		Vector3D exponentPosition = new Vector3D();
 		Vector3D textCenter = new Vector3D();
 		double maxDist = 0.0;
+		SciTextRenderer renderer = getParentFigureGL().getTextWriter(labelFont, getColorMap().getColor(labelColor));
+		
+		GL gl = getGL();
+		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		Vector3D ticksDirPix = CoordinateTransformation.getTransformation(gl).getCanvasDirection(gl, ticksDirection);
+		ticksDirPix.scalarMultSelf(LABEL_TO_AXIS_DISTANCE);
+		
+		GLTools.usePixelCoordinates(gl);
 		
 		for (int i = 0; i < nbLabels; i++) {
 			
 			if (ticksPosition[i] == null) { continue; }
 			
-			// set label text
-			getLabelsDrawer().setTextContent(getTickLabel(i));
+			String currentLabel = getTickLabel(i);
 			
-			
-			
-			double curDist = computeLabelCenter(ticksPosition[i], ticksDirection, textCenter, exponentPosition);
-			
+			double curDist = computeLabelCenter(currentLabel, renderer, ticksPosition[i], ticksDirPix, textCenter, exponentPosition);
 			
 			// find the maximum distance
 			if (curDist > maxDist) {
 				maxDist = curDist;
 			}
 			
-			getLabelsDrawer().setCenterPosition(textCenter.getX(), textCenter.getY(), textCenter.getZ());
-			
-			getLabelsDrawer().drawTextContent();
+			renderer.draw3D(getTickLabel(i), textCenter.getX(), textCenter.getY(), textCenter.getZ());
 			
 			if (labelsExponents != null) {
-				getExponentDrawer().setTextContent(getLabelExponent(i));
-				getExponentDrawer().setCenterPosition(exponentPosition.getX(), exponentPosition.getY(), exponentPosition.getZ());
-				getExponentDrawer().drawTextContent();
+				renderer.draw3D(getLabelExponent(i),
+							    exponentPosition.getXf(),
+							    exponentPosition.getYf(),
+							    exponentPosition.getZf(),
+							    EXPONENT_SIZE);
 			}
 			
 		}
+		
+		renderer.end3DRendering();
+		
+		GLTools.endPixelCoordinates(gl);
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		
 		return maxDist;
 	}
 	
@@ -494,10 +484,14 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	protected boolean checkLabels(Vector3D[] ticksPosition, Vector3D ticksDirection) {
 		
 		int nbLabels = getNbTicks();
-		Vector3D[] curLabelBox;
-		Vector3D[] nextLabelBox;
+		//Vector3D[] curLabelBox;
+		//Vector3D[] nextLabelBox;
+		double[] curLabelBox = new double[GeomAlgos.RECTANGLE_NB_CORNERS]; // [xmin, xmax, ymin, ymax]
+		double[] nextLabelBox = new double[GeomAlgos.RECTANGLE_NB_CORNERS]; // [xmin, xmax, ymin, ymax]
 		int firstNonNullTicksIndex = 0;
-		Vector3D textCenter = new Vector3D();
+		Vector3D ticksPosPix;
+		GL gl = getGL();
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
 		// find first non null ticks
 		while (firstNonNullTicksIndex < nbLabels && ticksPosition[firstNonNullTicksIndex] == null) {
@@ -508,41 +502,46 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 			// no ticks, no conceal possible
 			return true;
 		}
+		GLTools.usePixelCoordinates(gl);
+
+		SciTextRenderer renderer = getParentFigureGL().getTextWriter(labelFont, getColorMap().getColor(labelColor));
+		ticksPosPix = transform.getCanvasCoordinates(gl, ticksPosition[firstNonNullTicksIndex]);
 		
 		
 		// get bouding box of current label
-		getLabelsDrawer().setTextContent(getTickLabel(firstNonNullTicksIndex));
-		computeLabelCenter(ticksPosition[firstNonNullTicksIndex], ticksDirection, textCenter, null);
-		getLabelsDrawer().setCenterPosition(textCenter.getX(), textCenter.getY(), textCenter.getZ());
-		curLabelBox = getLabelsDrawer().getBoundingRectangle2D();
-
+		Rectangle2D rect = renderer.getBounds(getTickLabel(firstNonNullTicksIndex));
+		curLabelBox[0] = ticksPosPix.getX();
+		curLabelBox[1] = curLabelBox[0] + rect.getWidth();
+		curLabelBox[2] = ticksPosPix.getY();
+		curLabelBox[2 + 1] = curLabelBox[2] + rect.getHeight();
 		
 		for (int i = firstNonNullTicksIndex + 1; i < nbLabels; i++) {
 			if (ticksPosition[i] == null) { continue; }
 			
 			// set label text
-			getLabelsDrawer().setTextContent(getTickLabel(i));
+			ticksPosPix = transform.getCanvasCoordinates(gl, ticksPosition[i]);
 			
-			computeLabelCenter(ticksPosition[i], ticksDirection, textCenter, null);
+			rect = renderer.getBounds(getTickLabel(i));
+			nextLabelBox[0] = ticksPosPix.getX();
+			nextLabelBox[1] = nextLabelBox[0] + rect.getWidth();
+			nextLabelBox[2] = ticksPosPix.getY();
+			nextLabelBox[2 + 1] = nextLabelBox[2] + rect.getHeight();
+
 			
-			getLabelsDrawer().setCenterPosition(textCenter.getX(), textCenter.getY(), textCenter.getZ());
-			
-			nextLabelBox = getLabelsDrawer().getBoundingRectangle2D();
-			
-			// remove Z coordinate
-			for (int j = 0; j < GeomAlgos.RECTANGLE_NB_CORNERS; j++) {
-				nextLabelBox[j].setZ(0.0);
-				curLabelBox[j].setZ(0.0);
-			}
-				
-			if (GeomAlgos.areRectangleConcealing(nextLabelBox, curLabelBox)) {			
+			if (GeomAlgos.areRectangleConcealing(nextLabelBox, curLabelBox)) {
+				GLTools.endPixelCoordinates(gl);
 				return false;
 			}
 			
-			curLabelBox = nextLabelBox;
+			curLabelBox[0] = nextLabelBox[0];
+			curLabelBox[1] = nextLabelBox[1];
+			curLabelBox[2] = nextLabelBox[2];
+			curLabelBox[2 + 1] = nextLabelBox[2 + 1];
 		}
+		GLTools.endPixelCoordinates(gl);
 		return true;
 	}
+	
 	
 	/**
 	 * Chack if the ticks direction is not too close to the axis segment. That would lead to a bad displaying.
