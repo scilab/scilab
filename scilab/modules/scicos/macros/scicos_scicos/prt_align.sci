@@ -20,13 +20,13 @@
 // See the file ../license.txt
 //
 
-function [scs_m] = prt_align(%pt,scs_m)
+function [scs_m] = prt_align(scs_m)
 //** 25/07/07: Al@n's patch for rotation of blocks
-  win = %win
-  xc1 = %pt(1)
-  yc1 = %pt(2)
-  // check if first click is on
-  // a block
+  
+  //** first click 
+  [btn, xc1 ,yc1 ,win ,str ] = xclick() ;    
+
+  //** check if first click is on a block
   k1 = getblock(scs_m,[xc1;yc1]);
   if k1<>[] then
     o1 = scs_m.objs(k1); 
@@ -36,10 +36,10 @@ function [scs_m] = prt_align(%pt,scs_m)
   //
   while %t
     [btn,%pt2,win,Cmenu] = cosclick() ;
-    //check if second click is on
-    //a block
+    // check if second click is on
+    // a block
     if Cmenu<>[] & Cmenu<>'SelectLink' then
-      [%win,Cmenu,%pt]=resume(win,Cmenu,%pt2)
+      [%win,Cmenu,%pt] = resume(win,Cmenu,%pt2)
     end
     xc2=%pt2(1);
     yc2=%pt2(2);
