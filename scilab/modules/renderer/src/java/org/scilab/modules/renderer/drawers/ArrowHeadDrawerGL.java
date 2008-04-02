@@ -208,7 +208,6 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
-		transform.update(gl);
 		
 		// set color
 		double[] color = getArrowColor();

@@ -55,7 +55,7 @@ public class CoordinateTransformation {
 	public static synchronized CoordinateTransformation getTransformation(GL gl) {
 		if (transform == null) {
 			transform = new CoordinateTransformation();
-			transform.update(gl);
+			//transform.update(gl);
 		}
 		//transform.update(gl);
 		return transform;

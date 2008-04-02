@@ -340,39 +340,6 @@ public abstract class CameraGL extends ObjectGL {
 		CoordinateTransformation.getTransformation(gl).update(gl);
 	}
 	
-	
-	/**
-	 * Convert scene coordinates to pixel coordinates.
-	 * @param userCoordX X coordinate of the scene coordinate.
-	 * @param userCoordY X coordinate of the scene coordinate.
-	 * @param userCoordZ Z coordinate of the scene coordinate.
-	 * @return array of size 2 containing the 2 coordinates.
-	 */
-	public int[] getPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ) {
-		GL gl = getGL();
-		Vector3D userPos = new Vector3D(userCoordX, userCoordY, userCoordZ);
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		Vector3D screenCoordinate = transform.project(gl, userPos);
-		
-		// get only the pixel coordinates
-		int[] res = {(int) screenCoordinate.getX(), (int) screenCoordinate.getY()};
-		return res;
-	}
-	
-	/**
-	 * Convert scene coordinates to pixel coordinates using the 2D view.
-	 * @param userCoordX X coordinate of the scene coordinate.
-	 * @param userCoordY Y coordinate of the scene coordinate.
-	 * @param userCoordZ Z coordinate of the scene coordinate.
-	 * @return array of size 2 containing the 2 coordinates.
-	 */
-	public int[] get2dViewPixelCoordinates(double userCoordX, double userCoordY, double userCoordZ) {
-		switchTo2DCoordinates();
-		int[] res = getPixelCoordinates(userCoordX, userCoordY, userCoordZ);
-		backTo3DCoordinates();
-		return res;
-	}
-	
 	/**
 	 * @return array of size 16 containing the current projection matrix
 	 */

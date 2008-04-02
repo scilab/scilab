@@ -141,8 +141,6 @@ public class MovableClipPlane3D extends ClipPlane3D {
 		point1 = transform.getCanvasCoordinates(gl, point1);
 		point2 = transform.getCanvasCoordinates(gl, point2);
 		point3 = transform.getCanvasCoordinates(gl, point3);
-		
-		
 	}
 	
 	/**
@@ -150,21 +148,11 @@ public class MovableClipPlane3D extends ClipPlane3D {
 	 * @param gl current OpenGL pipeline
 	 */
 	public void changeFrame(GL gl) {
-
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		
-		// normal is a direction, not a point
-		Vector3D newNormal = new Vector3D(normal);// transform.retrieveSceneCoordinates3D(gl, normal);
-		newNormal.normalize();
-		
-		Vector3D newPoint1 = new Vector3D(point1);//transform.retrieveSceneCoordinates(gl, point1);
-		Vector3D newPoint2 = new Vector3D(point2);//transform.retrieveSceneCoordinates(gl, point2);
-		Vector3D newPoint3 = new Vector3D(point3);//transform.retrieveSceneCoordinates(gl, point3);
 		
 		// I've tried to use setEquation with a point and normal, but it doesn'r work
 		// for Y axis and I couldn't figure why. Otherwise, it seems to work with 3 points and a normal
 		// with only 3 points normal can have the wrong direction (ie normal should be oppisite).
-		this.setEquation(newPoint1, newPoint2, newPoint3, newNormal);
+		this.setEquation(point1, point2, point3, normal);
 		super.clip(gl); // not just clip, otherwise the plane will be added to the list of clipped planes
 	}
 	

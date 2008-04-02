@@ -53,6 +53,7 @@ public class UnitaryCubeGL {
 		Vector3D[] screenCoordinates;
 		
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		// needed here since we are palcing the camera
 		transform.update(gl);
 		
 		screenCoordinates = transform.getCanvasCoordinates(gl, CUBE_DEFAULT_VERTICES);
