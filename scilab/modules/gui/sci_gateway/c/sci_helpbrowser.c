@@ -21,9 +21,12 @@
 /*--------------------------------------------------------------------------*/
 int sci_helpbrowser(char *fname,unsigned long fname_len)
 {
-  int nbRow = 0, nbCol = 0, keywordAdr = 0;
-  int nbRowHelp = 0, nbColHelp = 0, helpAdr = 0;
-  int languageAdr = 0;
+  int nbRow = 0, nbCol = 0;
+  char **keywordAdr = NULL;
+
+  int nbRowHelp = 0, nbColHelp = 0;
+  char **helpAdr = NULL;
+  char **languageAdr = NULL;
   
   CheckRhs(2,3);
   CheckLhs(0,1);
@@ -38,7 +41,7 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
         {
           if (nbRow*nbCol == 0)
             {
-              helpAdr = -1; /* No toolboxes installed */
+              helpAdr = NULL; /* No toolboxes installed */
             }
           else
             {
@@ -70,13 +73,13 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
           return FALSE;
         }
 
-      if (helpAdr == -1) /* No toolboxes loaded */
+      if (helpAdr == NULL) /* No toolboxes loaded */
         {
-          launchHelpBrowser(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack(languageAdr)[0]);
+          launchHelpBrowser(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack((int)languageAdr)[0]);
         }
       else
         {
-          launchHelpBrowser(getStringMatrixFromStack(helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack(languageAdr)[0]);
+          launchHelpBrowser(getStringMatrixFromStack((int)helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack((int)languageAdr)[0]);
         }
     }
   else
@@ -111,18 +114,18 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
           return FALSE;
         }
       
-      if (helpAdr == -1) /* No toolboxes loaded */
+      if (helpAdr == NULL) /* No toolboxes loaded */
         {
-          if (!searchKeyword(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack(keywordAdr)[0], getStringMatrixFromStack(languageAdr)[0]))
+          if (!searchKeyword(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack((int)keywordAdr)[0], getStringMatrixFromStack((int)languageAdr)[0]))
             {
-              sciprint(_("Could not find help page for function: %s.\n"),getStringMatrixFromStack(keywordAdr)[0]);
+              sciprint(_("Could not find help page for function: %s.\n"),getStringMatrixFromStack((int)keywordAdr)[0]);
             }
         }
       else
         {
-          if (!searchKeyword(getStringMatrixFromStack(helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack(keywordAdr)[0], getStringMatrixFromStack(languageAdr)[0]))
+          if (!searchKeyword(getStringMatrixFromStack((int)helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack((int)keywordAdr)[0], getStringMatrixFromStack((int)languageAdr)[0]))
             {
-              sciprint(_("Could not find help page for function: %s.\n"),getStringMatrixFromStack(keywordAdr)[0]);
+              sciprint(_("Could not find help page for function: %s.\n"),getStringMatrixFromStack((int)keywordAdr)[0]);
             }
         }
     }
