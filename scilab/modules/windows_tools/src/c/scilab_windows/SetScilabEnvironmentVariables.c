@@ -245,7 +245,6 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 	#ifdef _MSC_VER
 		putenv ("COMPILER=VC++");
 	#endif
-
 	
 	/* WIN32 variable Environment */
     #ifdef _WIN32
@@ -256,6 +255,11 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
     #ifdef _WIN64
 		putenv ("WIN64=OK");
 	#endif
+
+	if ( GetSystemMetrics(SM_REMOTECONTROL) ) 
+	{
+		_putenv ("SCILAB_MSTS_SESSION=OK");
+	}
 
 	return bOK;
 }
