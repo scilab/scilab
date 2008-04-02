@@ -30,10 +30,10 @@ int sci_messagebox(char *fname,unsigned long fname_len)
   int nbRowButtons = 0, nbColButtons = 0;
   int nbRowMessage = 0, nbColMessage = 0;
 
-  int buttonsTextAdr = 0;
-  int messageAdr = 0;
-  int titleAdr = 0;
-  int modalOptionAdr = 0;
+  char **buttonsTextAdr = 0;
+  char **messageAdr = 0;
+  char **titleAdr = 0;
+  char **modalOptionAdr = 0;
   int iconAdr = 0;
 
   /* Used to write output argument */
@@ -66,7 +66,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
               return FALSE;
             }
           /* The title argument can be used to give the modal option */
-          if (isModalOption(getStringMatrixFromStack(titleAdr)[0]))
+          if (isModalOption(getStringMatrixFromStack((int)titleAdr)[0]))
             {
               modalOptionAdr = titleAdr;
               titleAdr = 0;
@@ -88,14 +88,14 @@ int sci_messagebox(char *fname,unsigned long fname_len)
           if (nbRow*nbCol == 1)
             {
               /* The icon argument can be used to give the modal option or the buttons names */
-              if (isModalOption(getStringMatrixFromStack(iconAdr)[0]))
+              if (isModalOption(getStringMatrixFromStack((int)iconAdr)[0]))
                 {
-                  modalOptionAdr = iconAdr;
+                  modalOptionAdr = (char **)iconAdr;
                   iconAdr = 0;
                 }
-              else if(!isIconName(getStringMatrixFromStack(iconAdr)[0]))
+              else if(!isIconName(getStringMatrixFromStack((int)iconAdr)[0]))
                 {
-                  buttonsTextAdr = iconAdr;
+                  buttonsTextAdr = (char **)iconAdr;
                   nbRowButtons = nbRow;
                   nbColButtons = nbCol;
                   iconAdr = 0;
@@ -103,7 +103,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
             }
           else  /* More than one string --> buttons names */
             {
-              buttonsTextAdr = iconAdr;
+              buttonsTextAdr = (char **)iconAdr;
               nbRowButtons = nbRow;
               nbColButtons = nbCol;
               iconAdr = 0;
@@ -126,7 +126,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
           if (nbRow*nbCol == 1)
             {
               /* The buttons names argument can be used to give the modal option */
-              if (isModalOption(getStringMatrixFromStack(buttonsTextAdr)[0]))
+              if (isModalOption(getStringMatrixFromStack((int)buttonsTextAdr)[0]))
                 {
                   modalOptionAdr = buttonsTextAdr;
                   buttonsTextAdr = 0;
@@ -162,12 +162,12 @@ int sci_messagebox(char *fname,unsigned long fname_len)
   messageBoxID = createMessageBox();
 
   /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack(messageAdr), nbColMessage*nbRowMessage);
+  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((int)messageAdr), nbColMessage*nbRowMessage);
 
   /* Title */
   if (titleAdr != 0)
     {
-      setMessageBoxTitle(messageBoxID, getStringMatrixFromStack(titleAdr)[0]);
+      setMessageBoxTitle(messageBoxID, getStringMatrixFromStack((int)titleAdr)[0]);
     }
   else
     {
@@ -177,19 +177,19 @@ int sci_messagebox(char *fname,unsigned long fname_len)
   /* Icon */
   if (iconAdr != 0)
     {
-      setMessageBoxIcon(messageBoxID, getStringMatrixFromStack(iconAdr)[0]);
+      setMessageBoxIcon(messageBoxID, getStringMatrixFromStack((int)iconAdr)[0]);
     }
     
   /* Buttons */
   if (buttonsTextAdr != 0)
     {
-      setMessageBoxButtonsLabels(messageBoxID, getStringMatrixFromStack(buttonsTextAdr), nbColButtons*nbRowButtons);
+      setMessageBoxButtonsLabels(messageBoxID, getStringMatrixFromStack((int)buttonsTextAdr), nbColButtons*nbRowButtons);
     }
 
   /* Modal ? */
   if (modalOptionAdr != 0)
     {
-      setMessageBoxModal(messageBoxID, !stricmp(getStringMatrixFromStack(modalOptionAdr)[0],"modal"));
+      setMessageBoxModal(messageBoxID, !stricmp(getStringMatrixFromStack((int)modalOptionAdr)[0],"modal"));
     }
   else
     {
