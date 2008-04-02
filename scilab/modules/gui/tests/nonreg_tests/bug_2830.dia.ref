@@ -1,19 +1,18 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Vincent COUVERT
+// Copyright (C) 2008 - INRIA - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
 //
-// <-- Non-regression test for bug 2742 -->
+// <-- Non-regression test for bug 2830 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2742
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2830
 //
 // <-- Short Description -->
-//    edit uicontrols do not support callbacks
-// Callback on edit uicontrols available thanks Java version of uicontrols
-// Callback is executed when the edit looses focus or the user hits ENTER or TAB
-h=uicontrol("style","edit");
-set(h,"callback","disp(""You entered ""+ get(h,""string""))");
+//    crash clicking on show/hide toolbar (x64 build)
+scf(0);
+toolbar(0,'off');
+toolbar(0,'on');
