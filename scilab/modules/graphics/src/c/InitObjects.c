@@ -468,7 +468,7 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
   (ppSubWin->axes).reverse[1] = FALSE;
   (ppSubWin->axes).reverse[2] = FALSE;
   
-  ppSubWin->axes.rect = BT_ON;  
+  ppSubWin->axes.rect = BT_OFF;  
   ppSubWin->axes.ticscolor = -1;
   ppSubWin->axes.subint[0] =  1;
   ppSubWin->axes.subint[1] =  1;
@@ -574,7 +574,7 @@ int InitAxesModel()
   ppaxesmdl->axes.subint[2]  = 1;
   ppaxesmdl->axes.xdir='d'; 
   ppaxesmdl->axes.ydir='l';  
-  ppaxesmdl->axes.rect  = BT_ON;
+  ppaxesmdl->axes.rect  = BT_OFF;
   
   ppaxesmdl->user_data = (int *) NULL; /* to be complete */
   ppaxesmdl->size_of_user_data = 0;
