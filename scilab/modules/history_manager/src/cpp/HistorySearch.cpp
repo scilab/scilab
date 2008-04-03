@@ -113,13 +113,16 @@ BOOL HistorySearch::search(void)
 				if (this->my_lines) this->my_lines = (char**)REALLOC(this->my_lines,i*(sizeof(char*)));
 				else this->my_lines = (char**)MALLOC(i*(sizeof(char*)));
 
-				ptrLine = (char*)MALLOC(sizeof(char)*(strlen(line.c_str())+1));
-				strcpy(ptrLine,line.c_str());
-				this->my_lines[i-1] = ptrLine;
+				if (this->my_lines)
+				{
+					ptrLine = (char*)MALLOC(sizeof(char)*(strlen(line.c_str())+1));
+					if (ptrLine) strcpy(ptrLine,line.c_str());
+					this->my_lines[i-1] = ptrLine;
+				}
 
 				if (this->my_linenumbers) this->my_linenumbers = (int*)REALLOC(this->my_linenumbers,i*(sizeof(int)));
 				else this->my_linenumbers = (int*)MALLOC(i*(sizeof(int)));
-				this->my_linenumbers[i-1] = line_indice;
+				if (this->my_linenumbers) this->my_linenumbers[i-1] = line_indice;
 			}
 			line_indice++;
 		}
@@ -148,20 +151,22 @@ BOOL HistorySearch::search(void)
 				if (this->my_lines) this->my_lines = (char**)REALLOC(this->my_lines,i*(sizeof(char*)));
 				else this->my_lines = (char**)MALLOC(i*(sizeof(char*)));
 
-				ptrLine = (char*)MALLOC(sizeof(char)*(strlen(line.c_str())+1));
-				strcpy(ptrLine,line.c_str());
-				this->my_lines[i-1] = ptrLine;
+				if (this->my_lines)
+				{
+					ptrLine = (char*)MALLOC(sizeof(char)*(strlen(line.c_str())+1));
+					if (ptrLine) strcpy(ptrLine,line.c_str());
+					this->my_lines[i-1] = ptrLine;
+				}
 
 				if (this->my_linenumbers) this->my_linenumbers = (int*)REALLOC(this->my_linenumbers,i*(sizeof(int)));
 				else this->my_linenumbers = (int*)MALLOC(i*(sizeof(int)));
-				this->my_linenumbers[i-1] = line_indice;
+
+				if (this->my_linenumbers) this->my_linenumbers[i-1] = line_indice;
 			}
 
 			line_indice++;
 		}
 		this->my_sizearray = i;
-
-		//this->current_position = i - 1;
 		this->current_position = i ;
 	}
 
