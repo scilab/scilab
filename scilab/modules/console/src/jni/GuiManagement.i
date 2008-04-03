@@ -2,9 +2,12 @@
 /*  swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ GuiManagement.i */
 %module GuiManagement
 %{
+#include "MALLOC.h"
 #include "../c/GuiManagement.h"
 #include "../../../core/includes/SCIHOME.h"
 %}
+
+%include "../../../jvm/src/jni/scilab_typemaps.i"
 
 /* JavaDoc for GuiManagementJNI class */
 %pragma(java) jniclassclassmodifiers=%{

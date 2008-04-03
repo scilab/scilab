@@ -1,3 +1,4 @@
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET , Vincent COUVERT
@@ -10,6 +11,8 @@
  *
  */
 /* Utilities for writing JNIs which use datatypes not handled by SWIG */
+
+/* ------------------------------------------------------------------------- */
 
 /* String[] <--> char ** support */
 
@@ -51,10 +54,14 @@
     /* exception checking omitted */
 
     for (i=0; i<len; i++) {
-      temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+      temp_string = (*jenv)->NewStringUTF(jenv, $1[i]);
       (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
       (*jenv)->DeleteLocalRef(jenv, temp_string);
+      FREE($1[i]);
+      $1[i] = NULL;
     }
+    FREE($1);
+    $1 = NULL;
   }       
 }
 
@@ -63,6 +70,7 @@
 %typemap(jtype) char ** "String[]"
 %typemap(jstype) char ** "String[]"
 
+/* ------------------------------------------------------------------------- */
 
 /* These 2 typemaps handle the conversion of the jtype to jstype typemap type
    and visa versa */
@@ -72,6 +80,8 @@
   }
 
 /* String[] <--> char ** support */
+
+/* ------------------------------------------------------------------------- */
 
 /* boolean <--> BOOL support */
 
@@ -98,3 +108,18 @@
 %typemap(javain) BOOL "$javainput";
 
 /* boolean <--> BOOL support */
+
+/* ------------------------------------------------------------------------- */
+
+/* This allows a C function to return a char * as a Java String */
+/* free pointer used */
+%typemap(out) char * {
+  if ($1 != NULL)
+  {
+    jresult = (*jenv)->NewStringUTF(jenv, (const char *)$1);
+    FREE($1);
+    $1 = NULL;
+  }       
+}
+
+/* ------------------------------------------------------------------------- */

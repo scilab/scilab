@@ -206,10 +206,14 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
       /* exception checking omitted */
       
       for (i=0; i<len; i++) {
-        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
         (*jenv)->DeleteLocalRef(jenv, temp_string);
+        FREE(result[i]);
+        result[i] = NULL;
       }
+      FREE(result);
+      result = NULL;
     }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
@@ -243,10 +247,14 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
       /* exception checking omitted */
       
       for (i=0; i<len; i++) {
-        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
         (*jenv)->DeleteLocalRef(jenv, temp_string);
+        FREE(result[i]);
+        result[i] = NULL;
       }
+      FREE(result);
+      result = NULL;
     }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
@@ -280,10 +288,14 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
       /* exception checking omitted */
       
       for (i=0; i<len; i++) {
-        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
         (*jenv)->DeleteLocalRef(jenv, temp_string);
+        FREE(result[i]);
+        result[i] = NULL;
       }
+      FREE(result);
+      result = NULL;
     }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
@@ -317,10 +329,14 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
       /* exception checking omitted */
       
       for (i=0; i<len; i++) {
-        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
         (*jenv)->DeleteLocalRef(jenv, temp_string);
+        FREE(result[i]);
+        result[i] = NULL;
       }
+      FREE(result);
+      result = NULL;
     }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
@@ -354,10 +370,14 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
       /* exception checking omitted */
       
       for (i=0; i<len; i++) {
-        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
         (*jenv)->DeleteLocalRef(jenv, temp_string);
+        FREE(result[i]);
+        result[i] = NULL;
       }
+      FREE(result);
+      result = NULL;
     }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
@@ -391,10 +411,14 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
       /* exception checking omitted */
       
       for (i=0; i<len; i++) {
-        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
         (*jenv)->DeleteLocalRef(jenv, temp_string);
+        FREE(result[i]);
+        result[i] = NULL;
       }
+      FREE(result);
+      result = NULL;
     }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
@@ -428,10 +452,14 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
       /* exception checking omitted */
       
       for (i=0; i<len; i++) {
-        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
         (*jenv)->DeleteLocalRef(jenv, temp_string);
+        FREE(result[i]);
+        result[i] = NULL;
       }
+      FREE(result);
+      result = NULL;
     }       
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);

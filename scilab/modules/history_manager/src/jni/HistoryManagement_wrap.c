@@ -323,7 +323,14 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_history_1manager_HistoryManag
   (void)jenv;
   (void)jcls;
   result = (char *)getFilenameScilabHistory();
-  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  {
+    if (result != NULL)
+    {
+      jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+      FREE(result);
+      result = NULL;
+    }       
+  }
   return jresult;
 }
 
@@ -370,10 +377,14 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_history_1manager_History
       /* exception checking omitted */
       
       for (i=0; i<len; i++) {
-        temp_string = (*jenv)->NewStringUTF(jenv, *result++);
+        temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
         (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
         (*jenv)->DeleteLocalRef(jenv, temp_string);
+        FREE(result[i]);
+        result[i] = NULL;
       }
+      FREE(result);
+      result = NULL;
     }       
   }
   return jresult;
@@ -436,7 +447,14 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_history_1manager_HistoryManag
   (void)jenv;
   (void)jcls;
   result = (char *)getSearchedTokenInScilabHistory();
-  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  {
+    if (result != NULL)
+    {
+      jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+      FREE(result);
+      result = NULL;
+    }       
+  }
   return jresult;
 }
 
@@ -448,7 +466,14 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_history_1manager_HistoryManag
   (void)jenv;
   (void)jcls;
   result = (char *)getPreviousLineInScilabHistory();
-  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  {
+    if (result != NULL)
+    {
+      jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+      FREE(result);
+      result = NULL;
+    }       
+  }
   return jresult;
 }
 
@@ -460,7 +485,14 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_history_1manager_HistoryManag
   (void)jenv;
   (void)jcls;
   result = (char *)getNextLineInScilabHistory();
-  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  {
+    if (result != NULL)
+    {
+      jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+      FREE(result);
+      result = NULL;
+    }       
+  }
   return jresult;
 }
 
@@ -536,7 +568,14 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_history_1manager_HistoryManag
   (void)jcls;
   arg1 = (int)jarg1; 
   result = (char *)getNthLineInScilabHistory(arg1);
-  if(result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  {
+    if (result != NULL)
+    {
+      jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+      FREE(result);
+      result = NULL;
+    }       
+  }
   return jresult;
 }
 
