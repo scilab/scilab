@@ -23,6 +23,9 @@
 #include "inffic.h"
 #include "msgstore.h"
 #include "msgout.h"
+#ifdef _MSC_VER
+#include "strdup_Windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 extern int C2F(showstack)(); /* used in error 115 */
 extern int C2F(prntid)(); /* to print variables on stack */
@@ -1566,9 +1569,7 @@ static void strip_blank(char *source)
 static char *getConvertedNameFromStack(int cvnametype)
 {
 	int one = 1;
-	int lenString = 0;
 
-	char *returnedString = NULL;
 	char local_variable_buffer[bsiz];
 	
 	switch (cvnametype)
@@ -1611,6 +1612,7 @@ static char *getConvertedNameFromStack(int cvnametype)
 			local_variable_buffer[bsiz-1] = '\0';
 		}
 		break;
+
 	case CVNAME_READING_TYPE_6 :
 		{
 			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf, &one, nlgh+1);
@@ -1625,15 +1627,7 @@ static char *getConvertedNameFromStack(int cvnametype)
 	}
 
 	strip_blank(local_variable_buffer);
-
-	lenString = (int)strlen(local_variable_buffer);
-	if (lenString > 0)
-	{
-		returnedString = (char*)MALLOC(sizeof(char)*(lenString+1));
-		strcpy(returnedString,local_variable_buffer);
-	}
-
-	return returnedString ;
+	return strdup(local_variable_buffer);
 }
 /*--------------------------------------------------------------------------*/
 static void displayAndStoreError(const char *msg,...)
