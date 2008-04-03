@@ -827,4 +827,13 @@ public class GL2PSGL extends DebugGL {
 		return gl.glIsList(arg0);
 	}
 	
+	/**
+	 * glColor3dv
+	 * @param arg0 double[]
+	 * @param arg1 int
+	 */
+	public void glColor3dv(double[] arg0, int arg1) {
+		gl.glColor3dv(arg0, arg1);
+	}
+	
 }
