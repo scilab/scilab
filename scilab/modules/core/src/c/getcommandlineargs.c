@@ -30,11 +30,13 @@ char ** getCommandLineArgs(int *nbargs)
 		*nbargs = scilab_nbargs;
 
 		argv = (char **)MALLOC(sizeof(char*)*scilab_nbargs);
-		
-		for (i = 0;i < scilab_nbargs;i++)
+		if (argv)
 		{
-			argv[i] = (char *)MALLOC(sizeof(char)*(strlen(scilab_argv[i])+1));
-			strcpy(argv[i],scilab_argv[i]);
+			for (i = 0;i < scilab_nbargs;i++)
+			{
+				argv[i] = (char *)MALLOC(sizeof(char)*(strlen(scilab_argv[i])+1));
+				if (argv[i]) strcpy(argv[i],scilab_argv[i]);
+			}
 		}
 	}
 	return argv;
