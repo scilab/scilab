@@ -149,6 +149,8 @@ c     .     vect^scalar treated as  vect.^scalar (see matxpow)
          return
       endif
       nexp = nint(stk(l2))
+      print *, it2, stk(l2),nexp
+
       if (it2 .ne. 0) go to 39
       if (stk(l2) .ne. dble(nexp)) go to 39
       if (nexp.eq.1) return
@@ -227,7 +229,7 @@ c     la matrice est complexe
 c     
 c     puissance non entiere ou non positive
  39   fun = 6
-      fin = 29
+      fin = 28
       rhs=2
       top=top+1
       return
