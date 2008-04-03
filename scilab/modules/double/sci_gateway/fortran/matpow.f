@@ -149,7 +149,6 @@ c     .     vect^scalar treated as  vect.^scalar (see matxpow)
          return
       endif
       nexp = nint(stk(l2))
-      print *, it2, stk(l2),nexp
 
       if (it2 .ne. 0) go to 39
       if (stk(l2) .ne. dble(nexp)) go to 39
