@@ -20,22 +20,31 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>diary('file-name')</synopsis>
+    <synopsis>
+      diary(f)
+      diary(0)
+    </synopsis>
   </refsynopsisdiv>
+ <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>a character string, give the file name path.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>diary</literal> creates a file which contains a copy of the current Scilab
-    session. <literal>diary(0)</literal> interrupts the diary.</para>
+    <para><literal>diary(f)</literal> opens the file which path is given
+    in <literal>f</literal> and register all subsequent Scilab console
+    inputs and outputs. </para>
+    <para> The diary is terminated and the correspondig file is closed
+    either by a call to <literal>diary(0)</literal> or by opening a
+    new diary file.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="exec">exec</link>
-      </member>
-      <member>
-        <link linkend="unix">unix</link>
-      </member>
-    </simplelist>
-  </refsection>
+  
 </refentry>
