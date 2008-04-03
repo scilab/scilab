@@ -561,7 +561,7 @@ proc searchindirdisabled {} {
 proc getinitialdirforsearch {} {
     global find initdir
     set oldinitdir $initdir
-    set initdir [tk_chooseDirectory -parent $find -mustexist 1]
+    set initdir [tk_chooseDirectory -parent $find -mustexist 1 -initialdir $oldinitdir]
     if {$initdir == ""} {
         # the user clicked Cancel in the choose directory dialog
         set initdir $oldinitdir

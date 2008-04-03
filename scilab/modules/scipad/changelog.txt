@@ -3236,3 +3236,11 @@ Francois VOGEL, 31/03/08
   when opening multiple files at once
 * Scipad is GPL in the french About box too
 * version --> 6.136
+ 
+Francois VOGEL, 03/04/08
+ * Fixed bug 2856 (introduced in 6.136) - wrong order of variables
+   definition
+ * In find in files, the initial directory used when selecting the new
+   directory in which to search in is the previously selected directory
+   (instead of always the current directory of the application)
+* version --> 6.137
