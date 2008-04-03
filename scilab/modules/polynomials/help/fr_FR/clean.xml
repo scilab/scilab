@@ -24,7 +24,7 @@
       <varlistentry>
         <term>epsa,epsr  </term>
         <listitem>
-          <para>nombres réels (valeurs par défaut resp. 1.d-10 et 1.d-10)
+          <para>nombres réels. Tolérances (valeurs par défaut resp. 1.d-10 et 1.d-10)
 </para>
         </listitem>
       </varlistentry>
@@ -34,7 +34,7 @@
     <title>Description</title>
     <para>
     Cette fonction élimine (force à zéro) les coefficients 
-    de valeur absolue &lt; <literal>epsa</literal> et de valeur relative &lt; <literal>epsr</literal> 
+    de valeur absolue &lt; <literal>epsa</literal> ou de valeur relative &lt; <literal>epsr</literal> 
     (relative par rapport à la  norme 1 des coefficients)
     dans un polynôme (éventuellement matrice de polynôme ou rationnelle).
   </para>

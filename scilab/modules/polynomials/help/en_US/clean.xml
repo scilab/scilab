@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[B]=clean(A [,epsa [,epsr]])</synopsis>
+    <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -34,7 +34,7 @@
       <varlistentry>
         <term>epsa,epsr</term>
         <listitem>
-          <para>real numbers (default values resp. 1.d-10 and 1.d-10)</para>
+          <para>real numbers. Cleaning tolerances (default values resp. 1.d-10 and 1.d-10)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,7 +43,7 @@
     <title>Description</title>
     <para>
     This function eliminates (i.e. set to zero) all the coefficients
-    with absolute value &lt; <literal>epsa</literal> and relative value &lt; <literal>epsr</literal>
+    with absolute value &lt; <literal>epsa</literal> or relative value &lt; <literal>epsr</literal>
     (relative means relative w.r.t. 1-norm of coefficients)
     in a polynomial (possibly matrix polynomial or rational
     matrix).</para>
