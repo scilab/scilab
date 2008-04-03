@@ -14,7 +14,6 @@
 #define __SET_UICONTROL_FONTUNITS_HXX__
 
 #include "CallScilabBridge.hxx"
-#include "UnitsConversion.hxx"
 extern "C"
 {
 #include "SetUicontrolFontUnits.h"
