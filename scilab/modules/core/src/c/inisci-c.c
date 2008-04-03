@@ -71,20 +71,25 @@ int SetSci()
 {
 	int ierr,iflag=0;
 	int lbuf=PATH_MAX;
-	char *buf=MALLOC(PATH_MAX*sizeof(char));
-	C2F(getenvc)(&ierr,"SCI",buf,&lbuf,&iflag);
-
-	if ( ierr== 1) 
+	char *buf = MALLOC(PATH_MAX*sizeof(char));
+	if (buf)
 	{
+		C2F(getenvc)(&ierr,"SCI",buf,&lbuf,&iflag);
+
+		if ( ierr== 1) 
+		{
 		#ifdef  _MSC_VER
 		MessageBox(NULL,_("SCI environment variable not defined.\n"),"Warning",MB_ICONWARNING);
 		#else
 		fprintf(stderr, _("SCI environment variable not defined.\n"));
 		#endif
 		exit(1);
+		}
+		setSCIpath(buf);
+		FREE(buf);
+		buf = NULL;
 	}
-	setSCIpath(buf);
-	if (buf) {FREE(buf);buf=NULL;}
+	
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -110,7 +115,7 @@ int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
 int C2F(getscihome)(char *buf,int *nbuf,long int lbuf)
 {
 	char *pathtmp=NULL;
-	char *SCIHOME=getSCIHOME();
+	char *SCIHOME = getSCIHOME();
 	if (strcmp(SCIHOME,"empty_SCIHOME")==0)
 	{
 		if (!setSCIHOME())
@@ -129,11 +134,14 @@ int C2F(getscihome)(char *buf,int *nbuf,long int lbuf)
 		}
 	}
 
-	pathtmp=getSCIHOME();
-	strcpy(buf,pathtmp);
-	*nbuf = (int)strlen(buf);
-	if (pathtmp) {FREE(pathtmp);pathtmp=NULL;}
-
+	pathtmp = getSCIHOME();
+	if (pathtmp)
+	{
+		strcpy(buf,pathtmp);
+		*nbuf = (int)strlen(buf);
+		FREE(pathtmp);
+		pathtmp = NULL;
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

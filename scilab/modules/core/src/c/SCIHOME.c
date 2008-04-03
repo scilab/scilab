@@ -21,6 +21,9 @@
 #include "../../../fileio/includes/isdir.h"
 #include "../../../io/includes/getenvc.h"
 #include "scilabDefaults.h"
+#ifdef _MSC_VER
+#include "strdup_Windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #if (defined _MSC_VER) 
 #undef putenv
@@ -90,9 +93,6 @@ BOOL setSCIHOME(void)
 /*--------------------------------------------------------------------------*/
 char *getSCIHOME(void)
 {
-	char *retSCIHOME=NULL;
-	retSCIHOME=(char*)MALLOC(sizeof(char)*(strlen(SCIHOMEPATH)+1));
-	strcpy(retSCIHOME,SCIHOMEPATH);
-	return retSCIHOME;
+	return strdup(SCIHOMEPATH);
 }
 /*--------------------------------------------------------------------------*/
