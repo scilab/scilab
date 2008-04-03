@@ -588,7 +588,7 @@ void WriteFortranCall(FILE *f)
 
 	  if ( variables[ivar-1]->is_sciarg == 1)
 	    {
-		#ifdef WIN32
+		#ifdef _MSC_VER
 			_try
 			{
 				if (target == 'C' && variables[ivar-1]->C_name[0] != NULL)

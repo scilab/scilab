@@ -24,7 +24,7 @@
 #ifdef __STDC__
 #include <stdlib.h>
 #else 
-	#ifndef WIN32
+	#ifndef _MSC_VER
 		#include <malloc.h>
 	#endif
 #endif 
@@ -85,12 +85,12 @@ double Get_Jacobian_parameter(void);
 double Get_Scicos_SQUR(void);
 void Set_Jacobian_flag(int flag);
 
-#if WIN32
+#if _MSC_VER
 #undef min
 #undef max
 #endif
 
-#ifndef WIN32
+#ifndef _MSC_VER
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 #endif

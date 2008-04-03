@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#if WIN32
+#if _MSC_VER
 #define NULL    0
 #endif
 

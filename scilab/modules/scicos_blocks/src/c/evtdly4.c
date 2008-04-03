@@ -24,7 +24,7 @@
  *    event delay with discrete counter
  */
 
-#if WIN32
+#if _MSC_VER
 #define NULL    0
 #endif
 

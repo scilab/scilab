@@ -25,7 +25,7 @@ extern int C2F(riccms)();
 extern int C2F(ricdsl)();
 extern int C2F(ricdmf)();
 
-#if WIN32
+#if _MSC_VER
 #define NULL    0
 #endif
 

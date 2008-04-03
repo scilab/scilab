@@ -24,7 +24,7 @@
 extern int C2F(dgetrf)();
 extern int C2F(dlaswp)();
 
-#if WIN32
+#if _MSC_VER
 #define NULL    0
 #endif
 

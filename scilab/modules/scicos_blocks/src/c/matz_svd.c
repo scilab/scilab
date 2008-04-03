@@ -24,7 +24,7 @@
 extern int C2F(zgesvd)();
 extern int C2F(dlaset)();
 
-#if WIN32
+#if _MSC_VER
 #define NULL    0
 #endif
 

@@ -26,7 +26,7 @@ extern int C2F(dlaset)();
 extern int C2F(dlacpy)();
 extern int C2F(dmmul)();
 
-#if WIN32
+#if _MSC_VER
 #define NULL    0
 #endif
 

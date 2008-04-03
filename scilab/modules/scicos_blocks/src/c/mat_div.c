@@ -30,7 +30,7 @@ extern int C2F(dgecon)();
 extern int C2F(dgetrs)();
 extern int C2F(dgelsy1)();
 
-#if WIN32
+#if _MSC_VER
 #define NULL    0
 #endif
 

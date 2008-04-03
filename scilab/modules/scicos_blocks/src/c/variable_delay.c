@@ -22,7 +22,7 @@
 #include <math.h>
 #include "machine.h"
 
-#if WIN32
+#if _MSC_VER
 #define NULL    0
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
