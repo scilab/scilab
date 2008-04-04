@@ -324,7 +324,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 				window.setVisible(false);
 				focusOutComponent.grabFocus();
 			}
-		} else {
+		} else if (e.getKeyCode() != KeyEvent.VK_TAB) { // IGNORE TAB KEYS BECAUSE ALREADY IN COMPLETION MODE
 			// Add a character in Scilab input command view
 			if (e.getKeyChar() != KeyEvent.CHAR_UNDEFINED) {
 				// Add a key in input command line
