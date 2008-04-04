@@ -33,6 +33,8 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
 
 	private static final long serialVersionUID = 3435428345694647542L;
+	
+	private CallBack callback;
 
 	/**
 	 * Constructor
@@ -94,7 +96,11 @@ public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
 	 * @param callback the callback to set
 	 */
 	public void setCallback(CallBack callback) {
-		System.out.println("setCallback(CallBack callback) is not yet implemented for SwingScilabCheckBox");
+		if (this.callback != null) {
+			removeActionListener(this.callback);
+		}
+		this.callback = callback;
+		addActionListener(this.callback);
 	}
 
 	/**

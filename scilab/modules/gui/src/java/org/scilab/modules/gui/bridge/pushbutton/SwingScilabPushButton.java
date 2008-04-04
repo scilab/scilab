@@ -111,6 +111,9 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 * @param callback the callback to set.
 	 */
 	public void setCallback(CallBack callback) {
+		if (this.callback != null) {
+			removeActionListener(this.callback);
+		}
 		this.callback = callback;
 		addActionListener(this.callback);
 	}

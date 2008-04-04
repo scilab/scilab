@@ -442,7 +442,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @param callback the callback to set.
 	 */
 	public void setCallback(CallBack callback) {
-		System.out.println("setCallback(CallBack callback) is not yet implemented for SwingScilabFrame");
+		// Nothing to do...
 	}
 
 	/**

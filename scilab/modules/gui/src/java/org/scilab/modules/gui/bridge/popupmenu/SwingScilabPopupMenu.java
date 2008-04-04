@@ -35,6 +35,8 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 
 	private static final long serialVersionUID = -4366581303317502544L;
 
+	private CallBack callback;
+	
 	/**
 	 * Constructor
 	 */
@@ -92,7 +94,11 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 * @param callback the callback to set.
 	 */
 	public void setCallback(CallBack callback) {
-		System.out.println("setCallback(CallBack callback) is not yet implemented for SwingScilabPopupMenu");
+		if (this.callback != null) {
+			removeActionListener(this.callback);
+		}
+		this.callback = callback;
+		addActionListener(this.callback);
 	}
 
 	/**

@@ -14,6 +14,7 @@
 package org.scilab.modules.gui.bridge.listbox;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.util.StringTokenizer;
 
@@ -21,6 +22,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.listbox.SimpleListBox;
@@ -40,6 +43,10 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	
 	private static final long serialVersionUID = 3507396207331058895L;
 
+	private CallBack callback;
+	
+	private ListSelectionListener listSelectionListener;
+	
 	/**
 	 * the JList we use
 	 */
@@ -125,7 +132,7 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return new Position(getX(), getY());
+		return new Position(getX(), getY() + getDims().getHeight() - (int) getHorizontalScrollBar().getPreferredSize().getHeight());
 	}
 
 	/**
@@ -134,8 +141,9 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		getList().setSize(newSize.getWidth(), newSize.getHeight());
+		int absoluteY = getPosition().getY();
 		setSize(newSize.getWidth(), newSize.getHeight());
+		setPosition(new Position(getPosition().getX(), absoluteY));
 	}
 
 	/**
@@ -144,7 +152,8 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		setLocation(newPosition.getX(), newPosition.getY());
+		setLocation(newPosition.getX(), newPosition.getY() - getSize().height 
+				+ (int) getHorizontalScrollBar().getPreferredSize().getHeight());
 	}
 
 	/**
@@ -159,10 +168,21 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	
 	/**
 	 * Add a callback to the CheckBox
-	 * @param callback the callback to set.
+	 * @param cb the callback to set.
 	 */
-	public void setCallback(CallBack callback) {
-		System.out.println("setCallback(CallBack callback) is not yet implemented for SwingScilabListBox");
+	public void setCallback(CallBack cb) {
+		if (listSelectionListener != null) {
+			getList().removeListSelectionListener(listSelectionListener);
+		}
+		this.callback = cb;
+		
+		listSelectionListener = new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				callback.actionPerformed(null);
+			}
+		};
+		
+		getList().addListSelectionListener(listSelectionListener);
 	}
 
 	/**

@@ -34,6 +34,8 @@ public class SwingScilabRadioButton extends JRadioButton implements SimpleRadioB
 
 	private static final long serialVersionUID = -4094092157137686082L;
 
+	private CallBack callback;
+
 	/**
 	 * Constructor
 	 */
@@ -94,7 +96,11 @@ public class SwingScilabRadioButton extends JRadioButton implements SimpleRadioB
 	 * @param callback the callback to set.
 	 */
 	public void setCallback(CallBack callback) {
-		System.out.println("setCallback(CallBack callback) is not yet implemented for SwingScilabRadioButton");
+		if (this.callback != null) {
+			removeActionListener(this.callback);
+		}
+		this.callback = callback;
+		addActionListener(this.callback);
 	}
 
 	/**
