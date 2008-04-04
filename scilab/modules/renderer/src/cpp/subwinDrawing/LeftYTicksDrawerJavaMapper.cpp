@@ -72,12 +72,6 @@ double LeftYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char
                                   (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
-bool LeftYTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks)
-{
-  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                   ticksLabels, nbTicks);
-}
-/*--------------------------------------------------------------------------*/
 double LeftYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
                                              char * labelsExponents[], int nbTicks,
                                              const double subticksPositions[], int nbSubticks)
@@ -86,15 +80,6 @@ double LeftYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char
                                   ticksLabels, nbTicks,
                                   labelsExponents, nbTicks,
                                   (double *)subticksPositions, nbSubticks);
-}
-/*--------------------------------------------------------------------------*/
-bool LeftYTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[],
-                                            char * labelsExponents[], int nbTicks)
-{
-
-  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                   ticksLabels, nbTicks,
-                                   labelsExponents, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
 void LeftYTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,

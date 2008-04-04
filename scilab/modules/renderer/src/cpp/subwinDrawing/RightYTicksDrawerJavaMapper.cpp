@@ -72,12 +72,6 @@ double RightYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], cha
                                   (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
-bool RightYTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks)
-{
-  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                   ticksLabels, nbTicks);
-}
-/*--------------------------------------------------------------------------*/
 double RightYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
                                               char * labelsExponents[], int nbTicks,
                                               const double subticksPositions[], int nbSubticks)
@@ -86,15 +80,6 @@ double RightYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], cha
                                   ticksLabels, nbTicks,
                                   labelsExponents, nbTicks,
                                   (double *)subticksPositions, nbSubticks);
-}
-/*--------------------------------------------------------------------------*/
-bool RightYTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[],
-                                             char * labelsExponents[], int nbTicks)
-{
-
-  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                   ticksLabels, nbTicks,
-                                   labelsExponents, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
 void RightYTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,

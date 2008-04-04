@@ -14,6 +14,8 @@
 
 package org.scilab.modules.renderer.subwinDrawing;
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
@@ -70,11 +72,14 @@ public class ZTicksDrawerGL extends TicksDrawerGL {
 		int nbTicks = zCoordinates.length;
 		Vector3D[] res = new Vector3D[nbTicks];
 		
+		GL gl = getGL();
+		
 		for (int i = 0; i < nbTicks; i++) {
 			double zCoordinate = zCoordinates[i];
 			// remove ticks wich are out of bounds
 			if (yCoordinate <= getYmax() && yCoordinate >= getYmin()) {
 				res[i] = new Vector3D(xCoordinate, yCoordinate, zCoordinate);
+				res[i] = getTransform().getCanvasCoordinates(gl, res[i]);
 			} else {
 				res[i] = null;
 			}
@@ -102,20 +107,6 @@ public class ZTicksDrawerGL extends TicksDrawerGL {
 	protected Vector3D[] getSubTicksPositions(double xCoordinate, double yCoordinate) {
 		return getTicksPosition(xCoordinate, yCoordinate, getSubTicksPositions());
 	}
-	
-	/**
-	 * Check if labels can be displayed has if.
-	 * @return true if ticks can be displayed or false if we need to reduc number of ticks.
-	 */
-	public boolean checkTicks() {
-		double yCoordinate = findLeftMostYCoordinate();
-		double xCoordinate = findLeftMostXCoordinate();
-		
-		Vector3D[] ticksPosition = getTicksPositions(xCoordinate, yCoordinate);
-		Vector3D ticksDirection = findTicksDirection(xCoordinate, yCoordinate);
-		
-		return checkLabels(ticksPosition, ticksDirection);
-	}
 
 	/**
 	 * @return maximum distance from ticks to the axis.Draw ticks from the recorded data.
@@ -127,12 +118,13 @@ public class ZTicksDrawerGL extends TicksDrawerGL {
 		Vector3D[] ticksPosition = getTicksPositions(xCoordinate, yCoordinate);
 		Vector3D[] subticksPosition = getSubTicksPositions(xCoordinate, yCoordinate);
 		Vector3D ticksDirection = findTicksDirection(xCoordinate, yCoordinate);
-		drawTicksLines(ticksPosition, subticksPosition, ticksDirection,
-					   getAxisSegmentStart(xCoordinate, yCoordinate),
-					   getAxisSegmentEnd(xCoordinate, yCoordinate));
 		
-		return drawLabels(ticksPosition, ticksDirection);
-
+		GL gl = getGL();
+		Vector3D axisStartPix = getTransform().getCanvasCoordinates(gl, getAxisSegmentStart(xCoordinate, yCoordinate));
+		Vector3D axisStartEnd = getTransform().getCanvasCoordinates(gl, getAxisSegmentEnd(xCoordinate, yCoordinate));
+		
+		return drawTicks(ticksPosition, subticksPosition, ticksDirection,
+				         axisStartPix, axisStartEnd);
 		
 	}
 

@@ -71,12 +71,6 @@ double ZTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * t
                                   (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
-bool ZTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks)
-{
-  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                   ticksLabels, nbTicks);
-}
-/*--------------------------------------------------------------------------*/
 double ZTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
                                          char * labelsExponents[], int nbTicks,
                                          const double subticksPositions[], int nbSubticks)
@@ -85,15 +79,6 @@ double ZTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * t
                                   ticksLabels, nbTicks,
                                   labelsExponents, nbTicks,
                                  (double *)subticksPositions, nbSubticks);
-}
-/*--------------------------------------------------------------------------*/
-bool ZTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[],
-                                        char * labelsExponents[], int nbTicks)
-{
-
-  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                   ticksLabels, nbTicks,
-                                   labelsExponents, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
 void ZTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,

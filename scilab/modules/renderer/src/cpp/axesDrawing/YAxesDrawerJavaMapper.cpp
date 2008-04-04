@@ -71,12 +71,6 @@ double YAxesDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ti
                                   (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
-bool YAxesDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks)
-{
-  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                   ticksLabels, nbTicks);
-}
-/*--------------------------------------------------------------------------*/
 double YAxesDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
                                          char * labelsExponents[], int nbTicks,
                                          const double subticksPositions[], int nbSubticks)
@@ -85,15 +79,6 @@ double YAxesDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ti
                                   ticksLabels, nbTicks,
                                   labelsExponents, nbTicks,
                                  (double *)subticksPositions, nbSubticks);
-}
-/*--------------------------------------------------------------------------*/
-bool YAxesDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[],
-                                        char * labelsExponents[], int nbTicks)
-{
-
-  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                   ticksLabels, nbTicks,
-                                   labelsExponents, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
 void YAxesDrawerJavaMapper::setAxesBounds(double xMin, double xMax,

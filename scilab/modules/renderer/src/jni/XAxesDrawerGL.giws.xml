@@ -16,19 +16,10 @@
     <method name="setFigureIndex" returnType="void">
       <param type="int" name="figureIndex" />
     </method>
-    <method name="checkTicks" returnType="boolean">
-      <param type="double[]" name="ticksPositions" />
-      <param type="String[]" name="ticksLabels" />
-    </method>
     <method name="drawTicks" returnType="double">
       <param type="double[]" name="ticksPositions" />
       <param type="String[]" name="ticksLabels" />
       <param type="double[]" name="subticksPositions" />
-    </method>
-    <method name="checkTicks" returnType="boolean">
-      <param type="double[]" name="ticksPositions" />
-      <param type="String[]" name="ticksLabels" />
-      <param type="String[]" name="labelsExponents" />
     </method>
     <method name="drawTicks" returnType="double">
       <param type="double[]" name="ticksPositions" />

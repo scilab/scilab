@@ -13,6 +13,8 @@
 
 package org.scilab.modules.renderer.subwinDrawing;
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
@@ -113,12 +115,14 @@ public abstract class YTicksDrawerGL extends TicksDrawerGL {
 	private Vector3D[] getTicksPosition(double xCoordinate, double[] yCoordinates, double zCoordinate) {
 		int nbTicks = yCoordinates.length;
 		Vector3D[] res = new Vector3D[nbTicks];
+		GL gl = getGL();
 		
 		for (int i = 0; i < nbTicks; i++) {
 			double yCoordinate = yCoordinates[i];
 			// remove ticks wich are out of bounds
 			if (yCoordinate <= getYmax() && yCoordinate >= getYmin()) {
 				res[i] = new Vector3D(xCoordinate, yCoordinate, zCoordinate);
+				res[i] = getTransform().getCanvasCoordinates(gl, res[i]);
 			} else {
 				res[i] = null;
 			}
@@ -160,26 +164,13 @@ public abstract class YTicksDrawerGL extends TicksDrawerGL {
 		Vector3D[] ticksPosition = getTicksPositions(xCoordinate, zCoordinate);
 		Vector3D[] subticksPosition = getSubTicksPositions(xCoordinate, zCoordinate);
 		Vector3D ticksDirection = findTicksDirection(xCoordinate, zCoordinate);
-		drawTicksLines(ticksPosition, subticksPosition, ticksDirection,
-					   getAxisSegmentStart(xCoordinate, zCoordinate),
-					   getAxisSegmentEnd(xCoordinate, zCoordinate));
 		
-		return drawLabels(ticksPosition, ticksDirection);
+		GL gl = getGL();
+		Vector3D axisStartPix = getTransform().getCanvasCoordinates(gl, getAxisSegmentStart(xCoordinate, zCoordinate));
+		Vector3D axisStartEnd = getTransform().getCanvasCoordinates(gl, getAxisSegmentEnd(xCoordinate, zCoordinate));
 		
-	}
-	
-	/**
-	 * Check if labels can be displayed has if.
-	 * @return true if ticks can be displayed or false if we need to reduc number of ticks.
-	 */
-	public boolean checkTicks() {
-		double zCoordinate = findZCoordinate();
-		double xCoordinate = findXCoordinate(zCoordinate);
-		
-		Vector3D[] ticksPosition = getTicksPositions(xCoordinate, zCoordinate);
-		Vector3D ticksDirection = findTicksDirection(xCoordinate, zCoordinate);
-		
-		return checkLabels(ticksPosition, ticksDirection);
+		return drawTicks(ticksPosition, subticksPosition, ticksDirection,
+				         axisStartPix, axisStartEnd);
 	}
 
 	/**

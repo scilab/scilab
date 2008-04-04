@@ -72,12 +72,6 @@ double MiddleXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], ch
                                   (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
-bool MiddleXTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[], int nbTicks)
-{
-  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                   ticksLabels, nbTicks);
-}
-/*--------------------------------------------------------------------------*/
 double MiddleXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
                                                char * labelsExponents[], int nbTicks,
                                                const double subticksPositions[], int nbSubticks)
@@ -86,15 +80,6 @@ double MiddleXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], ch
                                   ticksLabels, nbTicks,
                                   labelsExponents, nbTicks,
                                   (double *)subticksPositions, nbSubticks);
-}
-/*--------------------------------------------------------------------------*/
-bool MiddleXTicksDrawerJavaMapper::checkTicks(const double ticksPositions[], char * ticksLabels[],
-                                              char * labelsExponents[], int nbTicks)
-{
-
-  return m_pJavaObject->checkTicks((double *)ticksPositions, nbTicks,
-                                   ticksLabels, nbTicks,
-                                   labelsExponents, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
 void MiddleXTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,

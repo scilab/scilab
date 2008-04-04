@@ -59,11 +59,6 @@ protected:
   virtual double drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
                            int nbTicks, double subticksPositions[], int nbSubtics) = 0;
 
-  /**
-   * Check if the ticks do not conceal each others.
-   */
-  virtual bool checkTicks(double ticksPositions[], char * ticksLabels[],
-                          char * labelsExponents[], int nbTicks) = 0;
   /*----------------------------------------------------------------------*/
   ComputeTicksStrategy * m_pTicksComputer;
 

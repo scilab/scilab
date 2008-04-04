@@ -50,21 +50,6 @@ double TicksDrawerJoGL::drawTicks(double ticksPositions[], char * ticksLabels[],
   
 }
 /*------------------------------------------------------------------------------------------*/
-bool TicksDrawerJoGL::checkTicks(double ticksPositions[], char * ticksLabels[],
-                                 char * labelsExponents[], int nbTicks)
-{
-  if (labelsExponents == NULL)
-  {
-    return getTicksDrawerJavaMapper()->checkTicks(ticksPositions, ticksLabels, nbTicks);
-  }
-  else
-  {
-    return getTicksDrawerJavaMapper()->checkTicks(ticksPositions, ticksLabels,
-                                                  labelsExponents, nbTicks);
-  }
-  
-}
-/*------------------------------------------------------------------------------------------*/
 void TicksDrawerJoGL::initializeDrawing(void)
 {
   // initialize drawing as usual

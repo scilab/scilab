@@ -108,13 +108,11 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
+jdoubledrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 stringArrayClass = (jclass) curEnv->NewGlobalRef(localStringArrayClass);
 curEnv->DeleteLocalRef(localStringArrayClass);
-jdoubledrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
-jbooleancheckTicksjdoubleArrayjobjectArrayjobjectArrayID=NULL; 
 jdoubledrawTicksjdoubleArrayjobjectArrayjobjectArrayjdoubleArrayID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL; 
@@ -149,13 +147,11 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-jbooleancheckTicksjdoubleArrayjobjectArrayID=NULL; 
+jdoubledrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 stringArrayClass = (jclass) curEnv->NewGlobalRef(localStringArrayClass);
 curEnv->DeleteLocalRef(localStringArrayClass);
-jdoubledrawTicksjdoubleArrayjobjectArrayjdoubleArrayID=NULL; 
-jbooleancheckTicksjdoubleArrayjobjectArrayjobjectArrayID=NULL; 
 jdoubledrawTicksjdoubleArrayjobjectArrayjobjectArrayjdoubleArrayID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL; 
@@ -297,57 +293,6 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-bool RightYTicksDrawerGL::checkTicks (double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (jbooleancheckTicksjdoubleArrayjobjectArrayID==NULL) { /* Use the cache Luke */ jbooleancheckTicksjdoubleArrayjobjectArrayID = curEnv->GetMethodID(this->instanceClass, "checkTicks", "([D[Ljava/lang/String;)Z" ) ;
-if (jbooleancheckTicksjdoubleArrayjobjectArrayID == NULL) {
-std::cerr << "Could not access to the method " << "checkTicks" << std::endl;
-exit(EXIT_FAILURE);
-}
-}
-jdoubleArray ticksPositions_ = curEnv->NewDoubleArray( ticksPositionsSize ) ;
-curEnv->SetDoubleArrayRegion( ticksPositions_, 0, ticksPositionsSize, (jdouble*) ticksPositions ) ;
-jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
-
-// create java array of strings.
-jobjectArray ticksLabels_ = curEnv->NewObjectArray( ticksLabelsSize, stringArrayClass, NULL);
-if (ticksLabels_ == NULL)
-{
-std::cerr << "Could not allocate Java string array, memory full." << std::endl;
-exit(EXIT_FAILURE);
-}
-
-// convert each char * to java strings and fill the java array.
-for ( int i = 0; i < ticksLabelsSize; i++)
-{
-jstring TempString = curEnv->NewStringUTF( ticksLabels[i] );
-if (TempString == NULL)
-{
-std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
-exit(EXIT_FAILURE);
-}
-
-curEnv->SetObjectArrayElement( ticksLabels_, i, TempString);
-
-// avoid keeping reference on to many strings
-curEnv->DeleteLocalRef(TempString);
-}
-                        jboolean res =  (jboolean) curEnv->CallBooleanMethod( this->instance, jbooleancheckTicksjdoubleArrayjobjectArrayID ,ticksPositions_, ticksLabels_);
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        curEnv->DeleteLocalRef(stringArrayClass);
-curEnv->DeleteLocalRef(ticksPositions_);
-curEnv->DeleteLocalRef(ticksLabels_);
-
-return (res == JNI_TRUE);
-
-}
-
 double RightYTicksDrawerGL::drawTicks (double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize, double * subticksPositions, int subticksPositionsSize){
 
 JNIEnv * curEnv = getCurrentEnv();
@@ -400,82 +345,6 @@ curEnv->DeleteLocalRef(ticksLabels_);
 curEnv->DeleteLocalRef(subticksPositions_);
 
 return res;
-
-}
-
-bool RightYTicksDrawerGL::checkTicks (double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize, char ** labelsExponents, int labelsExponentsSize){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (jbooleancheckTicksjdoubleArrayjobjectArrayjobjectArrayID==NULL) { /* Use the cache Luke */ jbooleancheckTicksjdoubleArrayjobjectArrayjobjectArrayID = curEnv->GetMethodID(this->instanceClass, "checkTicks", "([D[Ljava/lang/String;[Ljava/lang/String;)Z" ) ;
-if (jbooleancheckTicksjdoubleArrayjobjectArrayjobjectArrayID == NULL) {
-std::cerr << "Could not access to the method " << "checkTicks" << std::endl;
-exit(EXIT_FAILURE);
-}
-}
-jdoubleArray ticksPositions_ = curEnv->NewDoubleArray( ticksPositionsSize ) ;
-curEnv->SetDoubleArrayRegion( ticksPositions_, 0, ticksPositionsSize, (jdouble*) ticksPositions ) ;
-jclass stringArrayClass = curEnv->FindClass("Ljava/lang/String;");
-
-// create java array of strings.
-jobjectArray ticksLabels_ = curEnv->NewObjectArray( ticksLabelsSize, stringArrayClass, NULL);
-if (ticksLabels_ == NULL)
-{
-std::cerr << "Could not allocate Java string array, memory full." << std::endl;
-exit(EXIT_FAILURE);
-}
-
-// convert each char * to java strings and fill the java array.
-for ( int i = 0; i < ticksLabelsSize; i++)
-{
-jstring TempString = curEnv->NewStringUTF( ticksLabels[i] );
-if (TempString == NULL)
-{
-std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
-exit(EXIT_FAILURE);
-}
-
-curEnv->SetObjectArrayElement( ticksLabels_, i, TempString);
-
-// avoid keeping reference on to many strings
-curEnv->DeleteLocalRef(TempString);
-}
-
-// create java array of strings.
-jobjectArray labelsExponents_ = curEnv->NewObjectArray( labelsExponentsSize, stringArrayClass, NULL);
-if (labelsExponents_ == NULL)
-{
-std::cerr << "Could not allocate Java string array, memory full." << std::endl;
-exit(EXIT_FAILURE);
-}
-
-// convert each char * to java strings and fill the java array.
-for ( int i = 0; i < labelsExponentsSize; i++)
-{
-jstring TempString = curEnv->NewStringUTF( labelsExponents[i] );
-if (TempString == NULL)
-{
-std::cerr << "Could not convert C string to Java UTF string, memory full." << std::endl;
-exit(EXIT_FAILURE);
-}
-
-curEnv->SetObjectArrayElement( labelsExponents_, i, TempString);
-
-// avoid keeping reference on to many strings
-curEnv->DeleteLocalRef(TempString);
-}
-                        jboolean res =  (jboolean) curEnv->CallBooleanMethod( this->instance, jbooleancheckTicksjdoubleArrayjobjectArrayjobjectArrayID ,ticksPositions_, ticksLabels_, labelsExponents_);
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        curEnv->DeleteLocalRef(stringArrayClass);
-curEnv->DeleteLocalRef(ticksPositions_);
-curEnv->DeleteLocalRef(ticksLabels_);
-curEnv->DeleteLocalRef(labelsExponents_);
-
-return (res == JNI_TRUE);
 
 }
 

@@ -58,10 +58,8 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
-jmethodID jbooleancheckTicksjdoubleArrayjobjectArrayID; // cache method id
-jclass stringArrayClass;
 jmethodID jdoubledrawTicksjdoubleArrayjobjectArrayjdoubleArrayID; // cache method id
-jmethodID jbooleancheckTicksjdoubleArrayjobjectArrayjobjectArrayID; // cache method id
+jclass stringArrayClass;
 jmethodID jdoubledrawTicksjdoubleArrayjobjectArrayjobjectArrayjdoubleArrayID; // cache method id
 jmethodID voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID voidsetAxisParametersjintjfloatjintjintjdoublejintID; // cache method id
@@ -121,11 +119,7 @@ void destroy(long figureIndex);
 
 void setFigureIndex(long figureIndex);
 
-bool checkTicks(double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize);
-
 double drawTicks(double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize, double * subticksPositions, int subticksPositionsSize);
-
-bool checkTicks(double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize, char ** labelsExponents, int labelsExponentsSize);
 
 double drawTicks(double * ticksPositions, int ticksPositionsSize, char ** ticksLabels, int ticksLabelsSize, char ** labelsExponents, int labelsExponentsSize, double * subticksPositions, int subticksPositionsSize);
 

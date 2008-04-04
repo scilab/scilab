@@ -39,12 +39,6 @@ protected:
                            int nbTicks, double subticksPositions[], int nbSubtics);
 
   /**
-   * Check if the ticks do not conceal each others.
-   */
-  virtual bool checkTicks(double ticksPositions[], char * ticksLabels[],
-                          char * labelsExponents[], int nbTicks);
-
-  /**
    * Specify initialize drawing in setting all useful parameters.
    */
   virtual void initializeDrawing(void);

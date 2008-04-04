@@ -93,14 +93,21 @@ double TicksDrawer::drawTicks(void)
   }
 
   m_pTicksComputer->getTicksPosition(ticksPos, labels, labelsExponents);
-
   // final number of ticks
   int nbTicks = initNbTicks;
 
+  // ticks are computed, now we can get subticks
+  int initNbSubticks = m_pTicksComputer->getNbSubticks(ticksPos, nbTicks);
+  double * subticksPos = new double[initNbSubticks];
+  m_pTicksComputer->getSubticksPosition(ticksPos, nbTicks, subticksPos);
+  int nbSubticks = initNbSubticks;
+  
+
   // decimate ticks if needed
+  double dist = drawTicks(ticksPos, labels, labelsExponents, nbTicks, subticksPos, nbSubticks);
   if (m_pTicksComputer->needTicksDecimation())
   {
-    while(!checkTicks(ticksPos, labels, labelsExponents, nbTicks))
+    while(dist < 0.0)
     {
       m_pTicksComputer->reduceTicksNumber();
       // there is less ticks and positions, no need to reallocate smaller arrays
@@ -108,16 +115,25 @@ double TicksDrawer::drawTicks(void)
       // get new positions
       nbTicks = m_pTicksComputer->getNbTicks();
       m_pTicksComputer->getTicksPosition(ticksPos, labels, labelsExponents);
+
+      nbSubticks = m_pTicksComputer->getNbSubticks(ticksPos, nbTicks);
+      // unfortunately subticks numbers may increase
+      // so somtime we need to reallacote subticks
+      if (nbSubticks > initNbSubticks)
+      {
+        delete[] subticksPos;
+        subticksPos = new double[nbSubticks];
+        initNbSubticks = nbSubticks;
+      }
+      m_pTicksComputer->getSubticksPosition(ticksPos, nbTicks, subticksPos);
+
+      dist = drawTicks(ticksPos, labels, labelsExponents, nbTicks, subticksPos, nbSubticks);
+
     }
   }
 
-  // ticks are computed, now we can get subticks
-  int nbSubticks = m_pTicksComputer->getNbSubticks(ticksPos, nbTicks);
-  double * subticksPos = new double[nbSubticks];
-  m_pTicksComputer->getSubticksPosition(ticksPos, nbTicks, subticksPos);
-
   // everything is computed so draw!!!
-  double dist = drawTicks(ticksPos, labels, labelsExponents, nbTicks, subticksPos, nbSubticks);
+  //double dist = drawTicks(ticksPos, labels, labelsExponents, nbTicks, subticksPos, nbSubticks);
 
   // draw grid
   if (m_pGridDrawer != NULL)
