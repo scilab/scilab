@@ -58,7 +58,7 @@ public final class ConfigManager {
 	private static final String XCOORD = "x";
 	private static final String YCOORD = "y";
 	private static final String MAINWINPOSITION = "MainWindowPosition";
-	private static final String MAINWINSIZE = "MainWindoSize";
+	private static final String MAINWINSIZE = "MainWindowSize";
 	private static final String PROFILE = "Profile";
 	private static final String FOREGROUNDCOLOR = "ForegroundColor";
 	private static final String BACKGROUNDCOLOR = "BackgroundColor";
@@ -221,7 +221,8 @@ public final class ConfigManager {
 		if (mainWindowPosition == null) {
 			mainWindowPosition = document.createElement(MAINWINPOSITION);
 			scilabProfile.appendChild(mainWindowPosition);
-		}			
+		}
+		
 		mainWindowPosition.setAttribute(XCOORD, Integer.toString(position.getX()));
 		mainWindowPosition.setAttribute(YCOORD, Integer.toString(position.getY()));
 		
