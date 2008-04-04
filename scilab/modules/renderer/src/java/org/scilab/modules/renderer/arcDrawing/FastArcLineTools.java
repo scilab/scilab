@@ -26,7 +26,7 @@ public class FastArcLineTools extends ArcLineTools {
 	/**
 	 * To avoid drawing the circle several times
 	 */
-	private final static double TWO_PI = 2*Math.PI;
+	private static final double TWO_PI = 2 * Math.PI;
 
 
 	/**

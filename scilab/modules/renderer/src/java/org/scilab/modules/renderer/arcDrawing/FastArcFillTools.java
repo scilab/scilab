@@ -27,7 +27,7 @@ public class FastArcFillTools extends ArcFillTools {
 	/**
 	 * To avoid drawing the circle several times
 	 */
-	private final static double TWO_PI = 2*Math.PI;
+	private static final double TWO_PI = 2 * Math.PI;
 
 	/**
 	 * Constructor
