@@ -152,8 +152,7 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	sci_gateway/c/sci_scicos_time.c sci_gateway/c/sci_scicosim.c \
 	sci_gateway/c/sci_sctree.c sci_gateway/c/sci_set_blockerror.c \
 	sci_gateway/c/sci_set_xproperty.c sci_gateway/c/sci_var2vec.c \
-	sci_gateway/c/sci_vec2var.c sci_gateway/c/sci_xstringb2.c \
-	sci_gateway/fortran/sci_ctree.f \
+	sci_gateway/c/sci_vec2var.c sci_gateway/fortran/sci_ctree.f \
 	sci_gateway/fortran/sci_curblock.f \
 	sci_gateway/fortran/sci_debug_count.f \
 	sci_gateway/fortran/sci_getblocklabel.f \
@@ -207,8 +206,7 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 @SCICOS_TRUE@	libsciscicos_la-sci_set_blockerror.lo \
 @SCICOS_TRUE@	libsciscicos_la-sci_set_xproperty.lo \
 @SCICOS_TRUE@	libsciscicos_la-sci_var2vec.lo \
-@SCICOS_TRUE@	libsciscicos_la-sci_vec2var.lo \
-@SCICOS_TRUE@	libsciscicos_la-sci_xstringb2.lo
+@SCICOS_TRUE@	libsciscicos_la-sci_vec2var.lo
 @SCICOS_TRUE@am__objects_5 = sci_ctree.lo sci_curblock.lo \
 @SCICOS_TRUE@	sci_debug_count.lo sci_getblocklabel.lo \
 @SCICOS_TRUE@	sci_scicos_debug.lo sci_tree2.lo sci_tree3.lo \
@@ -616,8 +614,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@sci_gateway/c/sci_set_blockerror.c \
 @SCICOS_TRUE@sci_gateway/c/sci_set_xproperty.c \
 @SCICOS_TRUE@sci_gateway/c/sci_var2vec.c \
-@SCICOS_TRUE@sci_gateway/c/sci_vec2var.c \
-@SCICOS_TRUE@sci_gateway/c/sci_xstringb2.c 
+@SCICOS_TRUE@sci_gateway/c/sci_vec2var.c
 
 @SCICOS_TRUE@GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_ctree.f \
 @SCICOS_TRUE@sci_gateway/fortran/sci_curblock.f \
@@ -978,7 +975,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_set_xproperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_var2vec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_vec2var.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_xstringb2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sciblk2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sciblk2i.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sciblk4.Plo@am__quote@
@@ -1302,13 +1298,6 @@ libsciscicos_la-sci_vec2var.lo: sci_gateway/c/sci_vec2var.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_vec2var.c' object='libsciscicos_la-sci_vec2var.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_la-sci_vec2var.lo `test -f 'sci_gateway/c/sci_vec2var.c' || echo '$(srcdir)/'`sci_gateway/c/sci_vec2var.c
-
-libsciscicos_la-sci_xstringb2.lo: sci_gateway/c/sci_xstringb2.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -MT libsciscicos_la-sci_xstringb2.lo -MD -MP -MF $(DEPDIR)/libsciscicos_la-sci_xstringb2.Tpo -c -o libsciscicos_la-sci_xstringb2.lo `test -f 'sci_gateway/c/sci_xstringb2.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xstringb2.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscicos_la-sci_xstringb2.Tpo $(DEPDIR)/libsciscicos_la-sci_xstringb2.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xstringb2.c' object='libsciscicos_la-sci_xstringb2.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_la-sci_xstringb2.lo `test -f 'sci_gateway/c/sci_xstringb2.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xstringb2.c
 
 cvode.lo: src/scicos_sundials/cvode.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cvode.lo -MD -MP -MF $(DEPDIR)/cvode.Tpo -c -o cvode.lo `test -f 'src/scicos_sundials/cvode.c' || echo '$(srcdir)/'`src/scicos_sundials/cvode.c
