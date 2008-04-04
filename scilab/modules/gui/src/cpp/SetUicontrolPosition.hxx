@@ -14,6 +14,7 @@
 #define __SET_UICONTROL_POSITION_HXX__
 
 #include "CallScilabBridge.hxx"
+#include "UnitsConversion.hxx"
 extern "C"
 {
 #include "SetUicontrolPosition.h"

@@ -42,10 +42,10 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
           return SET_PROPERTY_ERROR;
         }
 
-      xInt = (int) (xDouble);
-      yInt = (int) (yDouble);
-      widthInt = (int) (widthDouble);
-      heightInt = (int) (heightDouble);
+      xInt = ConvertToPixel(xDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+      yInt = ConvertToPixel(yDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+      widthInt = ConvertToPixel(widthDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+      heightInt = ConvertToPixel(heightDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
       
     }
   else if (valueType == sci_matrix)
@@ -57,10 +57,10 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
         }
 
        allValues = getDoubleMatrixFromStack(stackPointer);
-       xInt = (int) (allValues[0]);
-       yInt = (int) (allValues[1]);
-       widthInt = (int) (allValues[2]);
-       heightInt = (int) (allValues[3]);
+       xInt = ConvertToPixel(allValues[0], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+       yInt = ConvertToPixel(allValues[1], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+       widthInt = ConvertToPixel(allValues[2], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+       heightInt = ConvertToPixel(allValues[3], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
      
     }
   else
@@ -71,12 +71,13 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
 
   if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
     {
+      sciprint("y = %d\n", sciGetHeight(sciGetParent(sciObj)) - yInt - 1);
       CallScilabBridge::setFramePosition(getScilabJavaVM(), 
                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                          xInt, 
-                                          sciGetHeight(sciGetParent(sciObj)) - yInt - heightInt, 
-                                          widthInt, 
-                                          heightInt);
+                                          xInt + 1, 
+                                          sciGetHeight(sciGetParent(sciObj)) - yInt - 1, 
+                                          widthInt + 1, 
+                                          heightInt + 1);
     }
   else if( sciGetEntityType(sciObj) == SCI_FIGURE ) /* Uicontrol figure */
   {
@@ -84,12 +85,13 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
   }
   else /* All other uicontrol styles */
     {
+      sciprint("y = %d\n", sciGetHeight(sciGetParent(sciObj)) - yInt - 1);
       CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                          xInt, 
-                                          sciGetHeight(sciGetParent(sciObj)) - yInt - heightInt, 
-                                          widthInt, 
-                                          heightInt);
+                                          xInt + 1, 
+                                          sciGetHeight(sciGetParent(sciObj)) - yInt - 1, 
+                                          widthInt + 1, 
+                                          heightInt + 1);
       
       /* Special case for Sliders: set orientation */
       if (pUICONTROL_FEATURE(sciObj)->style == SCI_SLIDER)

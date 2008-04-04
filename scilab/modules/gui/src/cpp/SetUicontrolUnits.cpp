@@ -58,16 +58,7 @@ int SetUicontrolUnits(sciPointObj* sciObj, int stackPointer, int valueType, int 
           sciprint(_("Units property value must be a single string: points, normalized, inches, centimeters or pixels.\n"));
           return SET_PROPERTY_ERROR;
         }
-      
-      // Update Java objects 
-      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
-        {
-          // TODO Change size and dimensions of the frame
-        }
-      else /* All other uicontrol styles */
-        {
-          // TODO Change size and dimensions of the widget
-        }
+
       return SET_PROPERTY_SUCCEED;
     }
   else
