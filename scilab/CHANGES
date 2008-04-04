@@ -91,6 +91,7 @@ Input/Output functions (files):
 
  - Profile changed:
 	+ ls under Linux/Unix has lost his second input argument (unix/linux command line option). It is now based on listfiles. ls in Scilab 5 will always return one file per line (2 per lines before)
+	+ cd and chdir now return a boolean instead of 0 or an error as it used to. T (true) means that operation was successful while F (false) means that operation failed
 	
  - Rewrite in native code:
 	+ isdir
