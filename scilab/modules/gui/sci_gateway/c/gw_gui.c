@@ -47,7 +47,8 @@ static gw_generic_table Tab[]=
 	{sci_progressionbar,"progressionbar"},
 	{sci_helpbrowser,"helpbrowser"},
 	{sci_uigetfont,"uigetfont"},
-	{sci_uigetcolor,"uigetcolor"}
+	{sci_uigetcolor,"uigetcolor"},
+        {sci_getcallbackobject, "getcallbackobject"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

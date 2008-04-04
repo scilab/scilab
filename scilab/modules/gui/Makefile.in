@@ -125,7 +125,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_messagebox.c sci_gateway/c/sci_waitbar.c \
 	sci_gateway/c/sci_progressionbar.c \
 	sci_gateway/c/sci_helpbrowser.c sci_gateway/c/sci_uigetfont.c \
-	sci_gateway/c/sci_uigetcolor.c src/cpp/InitUIMenu.cpp \
+	sci_gateway/c/sci_uigetcolor.c \
+	sci_gateway/c/sci_getcallbackobject.c src/cpp/InitUIMenu.cpp \
 	src/jni/CallScilabBridge.cpp src/jni/Jxclick.cpp \
 	src/cpp/DestroyUIControl.cpp src/cpp/DestroyWaitBar.cpp \
 	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
@@ -216,7 +217,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-sci_progressionbar.lo \
 @GUI_TRUE@	libscigui_la-sci_helpbrowser.lo \
 @GUI_TRUE@	libscigui_la-sci_uigetfont.lo \
-@GUI_TRUE@	libscigui_la-sci_uigetcolor.lo
+@GUI_TRUE@	libscigui_la-sci_uigetcolor.lo \
+@GUI_TRUE@	libscigui_la-sci_getcallbackobject.lo
 @GUI_TRUE@am__objects_3 = libscigui_la-InitUIMenu.lo \
 @GUI_TRUE@	libscigui_la-CallScilabBridge.lo \
 @GUI_TRUE@	libscigui_la-Jxclick.lo \
@@ -693,7 +695,8 @@ JARMASK = *.jar
 @GUI_TRUE@sci_gateway/c/sci_progressionbar.c \
 @GUI_TRUE@sci_gateway/c/sci_helpbrowser.c \
 @GUI_TRUE@sci_gateway/c/sci_uigetfont.c \
-@GUI_TRUE@sci_gateway/c/sci_uigetcolor.c
+@GUI_TRUE@sci_gateway/c/sci_uigetcolor.c \
+@GUI_TRUE@sci_gateway/c/sci_getcallbackobject.c
 
 @GUI_FALSE@libscigui_la_CFLAGS = -Iincludes/ \
 @GUI_FALSE@			-I$(top_srcdir)/modules/output_stream/includes
@@ -1021,6 +1024,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-nogui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_delmenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getcallbackobject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getlookandfeel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_helpbrowser.Plo@am__quote@
@@ -1384,6 +1388,13 @@ libscigui_la-sci_uigetcolor.lo: sci_gateway/c/sci_uigetcolor.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_uigetcolor.c' object='libscigui_la-sci_uigetcolor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_uigetcolor.lo `test -f 'sci_gateway/c/sci_uigetcolor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uigetcolor.c
+
+libscigui_la-sci_getcallbackobject.lo: sci_gateway/c/sci_getcallbackobject.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_getcallbackobject.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_getcallbackobject.Tpo -c -o libscigui_la-sci_getcallbackobject.lo `test -f 'sci_gateway/c/sci_getcallbackobject.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getcallbackobject.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_getcallbackobject.Tpo $(DEPDIR)/libscigui_la-sci_getcallbackobject.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getcallbackobject.c' object='libscigui_la-sci_getcallbackobject.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_getcallbackobject.lo `test -f 'sci_gateway/c/sci_getcallbackobject.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getcallbackobject.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

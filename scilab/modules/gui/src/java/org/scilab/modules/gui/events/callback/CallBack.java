@@ -1,8 +1,6 @@
 package org.scilab.modules.gui.events.callback;
 
 
-import java.awt.event.ActionListener;
-
 import javax.swing.AbstractAction;
 
 /**
@@ -72,6 +70,24 @@ public abstract class CallBack extends AbstractAction {
 			return JavaCallBack.create(command);
 		} else {
 			return ScilabCallBack.create(command);
+		}
+	}
+
+	/**
+	 * Create a Callback from Scilab data
+	 * @param command the instruction
+	 * @param callbackType the type of the instruction
+	 * @param objectIndex the index of the object in the UIElementMapper
+	 * @return the Callback
+	 */
+	public static CallBack createCallback(String command, int callbackType, int objectIndex) {
+		if (callbackType == CallBack.JAVA) {
+			return JavaCallBack.create(command);
+		} else {
+			return ScilabCallBack.create("%oldgcbo = []; if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
+					+ "gcbo = getcallbackobject(" + objectIndex + ");"
+					+ command 
+					+ "; gcbo = %oldgcbo;clear gcbo");
 		}
 	}
 

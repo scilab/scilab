@@ -134,7 +134,8 @@ sci_gateway/c/sci_waitbar.c \
 sci_gateway/c/sci_progressionbar.c \
 sci_gateway/c/sci_helpbrowser.c \
 sci_gateway/c/sci_uigetfont.c \
-sci_gateway/c/sci_uigetcolor.c
+sci_gateway/c/sci_uigetcolor.c \
+sci_gateway/c/sci_getcallbackobject.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \

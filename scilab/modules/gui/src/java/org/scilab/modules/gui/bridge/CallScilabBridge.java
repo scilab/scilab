@@ -766,7 +766,7 @@ public class CallScilabBridge {
 	 * @param callbackType the type of the callback
 	 */
 	public static void setWidgetCallback(int objID, String callbackString, int callbackType) {
-		((Widget) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(CallBack.createCallback(callbackString, callbackType));
+		((Widget) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(CallBack.createCallback(callbackString, callbackType, objID));
 	}
 	
 	/**
@@ -776,7 +776,7 @@ public class CallScilabBridge {
 	 * @param callbackType the type of the callback
 	 */
 	public static void setFrameCallback(int objID, String callbackString, int callbackType) {
-		System.out.println("setFrameCallback is not implemented");
+		((Frame) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(CallBack.createCallback(callbackString, callbackType, objID));
 	}
 	
 	/************************/

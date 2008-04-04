@@ -58,4 +58,5 @@
 <PRIMITIVE gatewayId="25" primitiveId="25" primitiveName="helpbrowser" />
 <PRIMITIVE gatewayId="25" primitiveId="26" primitiveName="uigetfont" />
 <PRIMITIVE gatewayId="25" primitiveId="27" primitiveName="uigetcolor" />
+<PRIMITIVE gatewayId="25" primitiveId="28" primitiveName="getcallbackobject" />
 </GATEWAY>

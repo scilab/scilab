@@ -33,6 +33,7 @@ extern int sciDelHandle (sciPointObj * pobj);
 extern long sciGetHandle (sciPointObj * pobj);
 extern sciHandleTab *sciGetHandleTabPointer (sciPointObj * pobj);
 extern sciPointObj *sciGetPointerFromHandle (long handle);
+sciPointObj *sciGetPointerFromJavaIndex (int javaIndex);
 
 extern sciRelationShip *sciGetRelationship (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern int sciSetParent (sciPointObj * pson, sciPointObj * pparent); /* HANDLE MANAGEMENT */

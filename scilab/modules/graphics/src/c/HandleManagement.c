@@ -204,6 +204,33 @@ sciGetPointerFromHandle (long handle)
     }
     
 }
+/**sciGetPointerFromJavaIndex
+ * Returns the object pointer form a Java UIElementMapper index
+ */
+sciPointObj *
+sciGetPointerFromJavaIndex (int javaIndex)
+{
+
+  sciHandleTab *phandletab;
+
+  phandletab = PENDOFHANDLETAB;
+  while (phandletab != NULL) 
+    {
+      if (sciGetEntityType(phandletab->pointobj) == SCI_UICONTROL
+          && pUICONTROL_FEATURE(phandletab->pointobj)->hashMapIndex == javaIndex)
+        {
+          return (sciPointObj *) phandletab->pointobj;
+        }
+      else if (sciGetEntityType(phandletab->pointobj) == SCI_UIMENU
+               && pUIMENU_FEATURE(phandletab->pointobj)->hashMapIndex == javaIndex)
+        {
+          return (sciPointObj *) phandletab->pointobj;
+        }
+      phandletab = phandletab->pprev;
+    }
+
+  return (sciPointObj *) NULL;
+}
 
 /************************************************ End Handle *************************************************/
 

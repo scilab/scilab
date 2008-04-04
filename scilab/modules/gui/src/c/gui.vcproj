@@ -464,6 +464,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\getcallbackobject.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getinstalledlookandfeels.c"
 				>
 			</File>
