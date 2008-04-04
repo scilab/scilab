@@ -224,8 +224,10 @@ Windows_tools:
 ===============
  - New functions:
 	+ consolebox          - show or hide console box
-	+ findfileassociation - Searches for and retrieves a file association-related string from the registry.
+	+ findfileassociation - searches for and retrieves a file association-related string from the registry.
 	+ dos                 - shell (cmd) command execution 
+	+ win64               - determine whether Windows x64 version of Scilab
+	+ istssession         - determine if scilab is launched from a ms terminal service session.
 
 History manager:
 ================
@@ -312,7 +314,7 @@ GNU/Linux - Unix:
 Windows:	
 ========
  - Compilation process :
-	+ Visual Studio 2008 solution (requires Intel Fortran 10.1) support
+	+ Visual Studio 2008 solution (requires Intel Fortran 10.1) support (x86 & x64)
 	+ Visual Studio 2008 express solution (fortran conversion with f2c) support
  - Dynamic libraries	
  - Atlas 3.8 support (Core 2 Duo and more support)
