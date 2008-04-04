@@ -14,7 +14,6 @@
 package org.scilab.modules.gui.bridge.listbox;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.util.StringTokenizer;
 
