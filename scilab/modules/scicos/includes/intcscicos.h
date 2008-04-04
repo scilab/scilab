@@ -42,7 +42,11 @@ static void duplicata();
 static void comp_size();
 int var2sci(void *x,int n,int m,int typ_var);
 int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int kfun);
-
+int intbuildouttb(char *fname,unsigned long fname_len);
+int intcurblkc(char *fname,unsigned long fname_len);
+int intgetscicosvarsc(char *fname,unsigned long fname_len);
+int intpermutobj_c(char *fname,unsigned long fname_len);
+int intscicosimc(char *fname,unsigned long fname_len);
 /* Definition of some global variables and structure */
 
 static int *il_state_save; /*n'est valable que dans inctscicos.c*/

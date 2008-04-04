@@ -78,8 +78,7 @@ sci_gateway/c/sci_sctree.c \
 sci_gateway/c/sci_set_blockerror.c \
 sci_gateway/c/sci_set_xproperty.c \
 sci_gateway/c/sci_var2vec.c \
-sci_gateway/c/sci_vec2var.c \
-sci_gateway/c/sci_xstringb2.c 
+sci_gateway/c/sci_vec2var.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_ctree.f \
 sci_gateway/fortran/sci_curblock.f \

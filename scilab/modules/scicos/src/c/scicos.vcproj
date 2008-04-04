@@ -504,10 +504,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_xstringb2.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sciblk2.c"
 				>
 			</File>

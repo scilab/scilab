@@ -49,7 +49,6 @@
 <PRIMITIVE gatewayId="45" primitiveId="23" primitiveName="curblockc" />
 <PRIMITIVE gatewayId="45" primitiveId="24" primitiveName="buildouttb" />
 <PRIMITIVE gatewayId="45" primitiveId="25" primitiveName="permutobj" />
-<PRIMITIVE gatewayId="45" primitiveId="26" primitiveName="xstringb2" />
-<PRIMITIVE gatewayId="45" primitiveId="27" primitiveName="end_scicosim" />
+<PRIMITIVE gatewayId="45" primitiveId="26" primitiveName="end_scicosim" />
 <!-- =================== -->
 </GATEWAY>

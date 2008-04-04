@@ -57,7 +57,6 @@ int C2F(sci_getscicosvars) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_curblockc) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_buildouttb) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_permutobj) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_xstringb2) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_end_scicosim) _PARAMS((char *fname,unsigned long fname_len));
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_SCICOS__ */

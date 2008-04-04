@@ -54,7 +54,6 @@ static gw_generic_table Tab[]={
 {C2F(sci_curblockc),"curblockc"},
 {C2F(sci_buildouttb),"buildouttb"},
 {C2F(sci_permutobj),"permutobj"},
-{C2F(sci_xstringb2),"xstringb2"},
 {C2F(sci_end_scicosim),"end_scicosim"}
 };
 /*--------------------------------------------------------------------------*/ 
