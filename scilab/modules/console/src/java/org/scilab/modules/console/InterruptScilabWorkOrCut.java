@@ -17,6 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 
@@ -25,18 +27,18 @@ import com.artenum.rosetta.util.StringConstants;
 
 /**
  * Stops Scilab current work to enter pause mode
- * Or copy selected text (if there is)
+ * Or cut selected text (if there is)
  * This event is configured in configuration.xml file
  * @author Vincent COUVERT
  */
-public class InterruptScilabWork extends AbstractConsoleAction {
+public class InterruptScilabWorkOrCut extends AbstractConsoleAction {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Constructor
 	 */
-	public InterruptScilabWork() {
+	public InterruptScilabWorkOrCut() {
 		super();
 
 	}
@@ -52,10 +54,14 @@ public class InterruptScilabWork extends AbstractConsoleAction {
 			/* Text selected in the input --> Copy */
 			StringSelection strSelected = new StringSelection(((JTextPane) configuration.getInputCommandView()).getSelectedText());
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
-		} else if (((JTextPane) configuration.getOutputView()).getSelectedText() != null) {
-			/* Text selected in the output --> Copy */
-			StringSelection strSelected = new StringSelection(((JTextPane) configuration.getOutputView()).getSelectedText());
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
+			JTextPane input = (JTextPane) configuration.getInputCommandView();
+			StyledDocument doc = input.getStyledDocument();
+			try {
+				doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
+			} catch (BadLocationException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		} else {
 			/* Interrupt Scilab */
 			InterpreterManagement.interruptScilab();

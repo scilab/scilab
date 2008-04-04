@@ -51,7 +51,7 @@
 			<Key name="VK_DOWN" mask="" action="NEXT_HISTORY_LINE"/>
                         <Key name="VK_A" mask="CTRL_MASK" action="LINE_BEGINNING"/>
                         <Key name="VK_B" mask="CTRL_MASK" action="PREVIOUS_CHAR"/>
-                        <Key name="VK_C" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK"/>
+                        <Key name="VK_C" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK_OR_COPY"/>
                         <Key name="VK_D" mask="CTRL_MASK" action="DEL_NEXT_CHAR"/>
                         <Key name="VK_E" mask="CTRL_MASK" action="LINE_END"/>
                         <Key name="VK_F" mask="CTRL_MASK" action="NEXT_CHAR"/>
@@ -61,7 +61,7 @@
 			<Key name="VK_P" mask="CTRL_MASK" action="PREVIOUS_HISTORY_LINE"/>
                         <Key name="VK_U" mask="CTRL_MASK" action="DEL_WHOLE_LINE"/>
                         <Key name="VK_W" mask="CTRL_MASK" action="DEL_LAST_WORD"/>
-                        <Key name="VK_X" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK"/>
+                        <Key name="VK_X" mask="CTRL_MASK" action="INTERRUPT_SCILAB_WORK_OR_CUT"/>
 		</KeyMapping>
 
 		<!-- Key mapping -->
@@ -80,7 +80,8 @@
 			<Action name="DEL_LAST_WORD" className="org.scilab.modules.console.DelLastWordAction"/>
 			<Action name="DEL_END_OF_LINE" className="org.scilab.modules.console.DelEndOfLineAction"/>
 			<Action name="DEL_WHOLE_LINE" className="org.scilab.modules.console.DelWholeLineAction"/>
-			<Action name="INTERRUPT_SCILAB_WORK" className="org.scilab.modules.console.InterruptScilabWork"/>
+			<Action name="INTERRUPT_SCILAB_WORK_OR_CUT" className="org.scilab.modules.console.InterruptScilabWorkOrCut"/>
+			<Action name="INTERRUPT_SCILAB_WORK_OR_COPY" className="org.scilab.modules.console.InterruptScilabWorkOrCopy"/>
 		</ActionMapping>
 
 	</Profile>
