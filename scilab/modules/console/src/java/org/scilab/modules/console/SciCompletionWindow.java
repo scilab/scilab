@@ -156,16 +156,11 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 				Dimension newDim = new Dimension(newWidth, newHeight);
 
 				((JTextPane) sciConsole.getConfiguration().getInputCommandView()).setPreferredSize(newDim);
+				
 		    	((JTextPane) sciConsole.getConfiguration().getInputCommandView()).invalidate();
 		    	((JTextPane) sciConsole.getConfiguration().getInputCommandView()).doLayout();
-
+		    	
 		    	sciConsole.setInputCommandViewSizeForced(true);
-
-		    	/* Scrollbar update before displaying completion window */
-		    	Point oldPosition = jSP.getViewport().getViewPosition();
-		    	Point newPosition = new Point(oldPosition.x, oldPosition.y + window.getHeight());
-		    	jSP.getViewport().setViewPosition(newPosition);
-				jSP.repaint();
 			}
 
 			model.updateData(list);
@@ -183,10 +178,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 
 	    	/* Scrollbar update after displaying completion window */
 			if (window.getHeight() > ((JTextPane) sciConsole.getConfiguration().getInputCommandView()).getHeight()) {
-				Point oldPosition = jSP.getViewport().getViewPosition();
-				Point newPosition = new Point(oldPosition.x, oldPosition.y + window.getHeight());
-				jSP.getViewport().setViewPosition(newPosition);
-				jSP.repaint();
+				sciConsole.updateScrollPosition();
 			}
 
 		}
