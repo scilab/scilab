@@ -464,7 +464,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\getcallbackobject.c"
+				RelativePath="..\..\sci_gateway\c\sci_getcallbackobject.c"
 				>
 			</File>
 			<File
