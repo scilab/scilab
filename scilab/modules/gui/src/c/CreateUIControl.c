@@ -73,11 +73,11 @@ sciPointObj * CreateUIControl(char *style)
 
   /* Font default */
   pUICONTROL_FEATURE(pobj)->fontWeight = NORMAL_FONT;
-  pUICONTROL_FEATURE(pobj)->fontUnits = POINTS_UNITS;
+  pUICONTROL_FEATURE(pobj)->fontUnits = PIXELS_UNITS;
   pUICONTROL_FEATURE(pobj)->fontAngle = NORMAL_FONT;
 
   /* Units default */
-  pUICONTROL_FEATURE(pobj)->units = POINTS_UNITS;
+  pUICONTROL_FEATURE(pobj)->units = PIXELS_UNITS;
 
   /* Relief default */
   if (style == NULL || strcmp(style,"pushbutton")==0)
