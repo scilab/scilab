@@ -38,7 +38,7 @@ int set_user_data_property( sciPointObj * pobj, int stackPointer,  int valueType
      nbRow, nbCol are not used */
   int *  size_ptr                                        ;
   int ** user_data_ptr                                   ;
-  int    data_size     = GetDataSize(stackPointer  ) * 2 ; /*GetDataSize returns the size of the variable in double words */
+  int    data_size     = GetDataSize( stackPointer ) * 2 ; /*GetDataSize returns the size of the variable in double words */
   int *  data_ptr      = GetData( stackPointer )         ;
 
   /* retrieve current user data matrix */

@@ -145,7 +145,7 @@ int sci_set(char *fname, unsigned long fname_len)
 			GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */ 
 
 			valueType = VarType(3) ;
-			if ( strcmp( cstk(l2), "user_data"  ) == 0 ) {
+			if ( (strcmp( cstk(l2), "user_data") == 0) || (stricmp( cstk(l2), "userdata") == 0)) {
 			  /* in this case set_user_data_property
 			     directly uses the  third position in the stack
 			     to get the variable which is to be set in

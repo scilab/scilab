@@ -49,7 +49,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 145
+#define NB_PROPERTIES 146
 
 /**
 * list of all property names and associated functions in scilab
@@ -169,6 +169,7 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
   { "triangles"           , set_triangles_property            },
   { "z_bounds"            , set_z_bounds_property             },
   { "user_data"           , set_user_data_property            },
+  { "userdata"            , set_user_data_property            }, /* Compatibility with TK uicontrols */
   { "handle_visible"      , set_handle_visible_property       },
   { "callback_type"       , set_callback_type_property        },
   { "menu_enable"         , set_menu_enable_property          },
