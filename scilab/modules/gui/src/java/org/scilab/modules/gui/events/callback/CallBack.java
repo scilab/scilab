@@ -84,10 +84,12 @@ public abstract class CallBack extends AbstractAction {
 		if (callbackType == CallBack.JAVA) {
 			return JavaCallBack.create(command);
 		} else {
-			return ScilabCallBack.create("%oldgcbo = []; if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
+			return ScilabCallBack.create("%oldgcbo = [];" 
+					+ "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
 					+ "gcbo = getcallbackobject(" + objectIndex + ");"
 					+ command 
-					+ "; gcbo = %oldgcbo;clear gcbo");
+					+ ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; end;"
+					+ "clear gcbo;");
 		}
 	}
 
