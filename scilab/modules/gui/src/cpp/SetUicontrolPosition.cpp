@@ -71,13 +71,12 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
 
   if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
     {
-      sciprint("y = %d\n", sciGetHeight(sciGetParent(sciObj)) - yInt - 1);
       CallScilabBridge::setFramePosition(getScilabJavaVM(), 
                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                          xInt + 1, 
-                                          sciGetHeight(sciGetParent(sciObj)) - yInt - 1, 
-                                          widthInt + 1, 
-                                          heightInt + 1);
+                                          xInt, 
+                                          sciGetHeight(sciGetParent(sciObj)) - yInt, 
+                                          widthInt, 
+                                          heightInt);
     }
   else if( sciGetEntityType(sciObj) == SCI_FIGURE ) /* Uicontrol figure */
   {
@@ -85,13 +84,12 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
   }
   else /* All other uicontrol styles */
     {
-      sciprint("y = %d\n", sciGetHeight(sciGetParent(sciObj)) - yInt - 1);
       CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                          xInt + 1, 
-                                          sciGetHeight(sciGetParent(sciObj)) - yInt - 1, 
-                                          widthInt + 1, 
-                                          heightInt + 1);
+                                          xInt, 
+                                          sciGetHeight(sciGetParent(sciObj)) - yInt, 
+                                          widthInt, 
+                                          heightInt);
       
       /* Special case for Sliders: set orientation */
       if (pUICONTROL_FEATURE(sciObj)->style == SCI_SLIDER)
