@@ -22,5 +22,7 @@ check_length
 callFunctionFromGateway
 gettype_
 freeArrayOfString
+getWarningMode
+
 ; elementary_functions
 icopy_

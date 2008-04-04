@@ -27,11 +27,16 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "getfastcode.h"
+#include "warningmode.h"
+#include "sciprint.h"
 /*----------------------------------------------------------------------------*/
 static int asciiStrings(char *fname);
 static int asciiMatrix(char *fname);
 static int asciiIntMatrix(char *fname);
 static int asciiOthers(char *fname);
+/*----------------------------------------------------------------------------*/
+#define ASCII_MIN 0
+#define ASCII_MAX 255
 /*----------------------------------------------------------------------------*/
 int C2F(sci_ascii) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -223,6 +228,7 @@ static int asciiMatrix(char *fname)
 	int Row_Num = 0,Col_Num = 0,Stack_Pos = 0;
 	int outIndex = 0 ;
 	int len = 0;
+	BOOL FirstWarning = TRUE;
 	/*When input vector of int ascii codes  */
 	GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&Row_Num,&Col_Num,&Stack_Pos);
 	len = Row_Num * Col_Num ;
@@ -235,11 +241,25 @@ static int asciiMatrix(char *fname)
 		char *Output_StringMatrix = NULL;
 
 		Input_IntMatrix = istk(Stack_Pos);
+
 		outIndex = 0 ;
 		CreateVar(Rhs+1,STRING_DATATYPE,&len,&one,&outIndex);
 		Output_StringMatrix = cstk(outIndex);
 		for (x = 0; x < len; x++) 
 		{
+			if ( FirstWarning ) 
+			{
+				if ( (Input_IntMatrix[x] < ASCII_MIN) || (Input_IntMatrix[x] > ASCII_MAX) )
+				{
+					if (getWarningMode())
+					{
+						sciprint(_("WARNING : \n"));
+						sciprint(_("%s: Wrong input argument. It must be in [%d,%d]\n"),fname,ASCII_MIN,ASCII_MAX);
+					}
+					FirstWarning = FALSE;
+				}
+			}
+			
 			Output_StringMatrix[x] = (char)toascii(Input_IntMatrix[x]);
 		}
 		Output_StringMatrix[len] = '\0';
