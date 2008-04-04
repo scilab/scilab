@@ -5,11 +5,11 @@
   </info>
   <refnamediv>
     <refname>integrate</refname>
-    <refpurpose> intégration numérique  </refpurpose>
+    <refpurpose> intégration numérique d'une expression  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>[x]=integrate(expr,v,x0,x1 [,ea [,er]])</synopsis>
+    <synopsis>x=integrate(expr,v,x0,x1 [,atol [,rtol]])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -17,36 +17,43 @@
       <varlistentry>
         <term>expr  </term>
         <listitem>
-          <para>chaîne de caractères (expression scilab)
-</para>
+          <para>chaîne de caractères, définit l'expression scilab </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>v  </term>
         <listitem>
-          <para>chaîne de caractères (variable d'intégration)
-</para>
+          <para>chaîne de caractères, le nom de la variable d'intégration.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>x0,x1  </term>
+        <term>x0 </term>
         <listitem>
-          <para>nombres réels (bornes d'intégration)
-</para>
+          <para>nombre réel, la borne inférieure de l'intégration.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>ea  </term>
+        <term>x1 </term>
         <listitem>
-          <para>nombre réel (borne sur l'erreur absolue) par défaut : 0
-</para>
+          <para>vecteur de nombres réels, les bornes supérieures d'intégration.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>er  </term>
+        <term>atol  </term>
         <listitem>
-          <para>nombre réel, (borne sur l'erreur relative) par défaut : 1.d-8
-</para>
+          <para>nombre réel positif (borne sur l'erreur absolue) par défaut : 1d-8</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rtol  </term>
+        <listitem>
+          <para>nombre réel positif (borne sur l'erreur relative) par défaut : 1.d-14</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+	  <para>vecteur de nombres réels, la valeur de l'intégrale pour chaque <literal>x1(i)</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -56,26 +63,38 @@
     <para>
     calcule :
   </para>
-    <programlisting><![CDATA[
+  <programlisting><![CDATA[
                        /x1
                       [
-                  x = I  f(v)dv
+                  x = I  f(v)dv , i=1:size(x1,'*'), 
                       ]
                      /x0
-]]></programlisting>
+		     ]]></programlisting>
+    où <literal>f(v)</literal> est donnée par l'expression <literal>expr</literal>
     <para>
-    L'approximation satisfait (on l'espère) l'affirmation suivante sur l'erreur :
-    <literal>abs(I-x)&lt;= max(ea,er*abs(I))</literal> où I représente la valeur exacte de l'intégrale.
+    L'approximation satisfait (on l'espère) l'affirmation suivante
+    sur l'erreur : <literal>abs(I-x)&lt;=
+    max(atol,rtol*abs(I))</literal> où <literal>I</literal>
+    représente la valeur exacte de l'intégrale.
   </para>
     <para>
   </para>
   </refsection>
   <refsection>
+    <title>Restriction</title>
+    <para>L'expression fournie ne doit pas référencer de variables dont le nom commence avec un  <literal>%</literal>. </para>
+  </refsection>
+  <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-integrate('sin(x)','x',0,%pi)
-integrate(['if x==0 then 1,';
-           'else sin(x)/x,end'],'x',0,%pi)
+    x0=0;x1=0:0.1:2*%pi;
+    X=integrate('sin(x)','x',x0,x1);
+    norm(cos(x1)-(1-X))
+
+    x1=-10:0.1:10;
+    X=integrate(['if x==0 then 1,';
+               'else sin(x)/x,end'],'x',0,x1)
+
  ]]></programlisting>
   </refsection>
   <refsection>

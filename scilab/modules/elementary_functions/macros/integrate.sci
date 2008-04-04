@@ -7,7 +7,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function x=integrate(expr,var,x0,x1,ea,er)
+function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
 // x=integrate(expr,v,x0,x1 [,ea [,er]])  computes
 //                      /x1
 //                     [
@@ -20,25 +20,63 @@ function x=integrate(expr,var,x0,x1,ea,er)
 //integrate('sin(x)','x',0,%pi)
 //integrate(['if x==0 then 1,';
 //           'else sin(x)/x,end'],'x',0,%pi)
+  select argn(2)
+  case 4 then
+    %ea=1d-14;%er=1.d-8 
+  case 5 then
+     %er=1d-14;
+  case 6 then
+  else
+    error(msprintf(gettext("%s: at least %d input arguments are requested.\n"),"integrate",4));
+  end
+  
+  if size(%x0,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for third input argument: Real scalar expected.\n"),"integrate"));
+  end
+  if size(%ea,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for fifth input argument: Real scalar expected.\n"),"integrate"));
+  end
+  if size(%er,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for sixth input argument: Real scalar expected.\n"),"integrate"));
+  end
+  if imag(%x0)<>0 then
+    error(msprintf(gettext("%s: Wrong value for third input argument: Real scalar expected.\n"),"integrate"));
+  end
 
-	[lhs,rhs]=argn(0)
-	if size(x0,'*')<>1 then
-		error(msprintf(gettext("%s: Wrong size for third input argument: Real scalar expected.\n"),"integrate"));
-	end
-	if imag(x0)<>0 then
-		error(msprintf(gettext("%s: Wrong value for third input argument: Real scalar expected.\n"),"integrate"));
-	end
-	[m,n]=size(x1),x1=matrix(x1,1,m*n)
-	if norm(imag(x1),1)<>0 then
-		error(msprintf(gettext("%s: Wrong value for fourth input argument: Real scalar expected.\n"),"integrate"));
-	end
-	//
-	deff('[ans]=func('+var+')',expr,'n')
-	x=[]
-	select rhs
-	case 4 then for xk=x1,x=[x,intg(x0,xk,func)],end,
-	case 5 then for xk=x1,x=[x,intg(x0,xk,func,ea)],end,
-	case 6 then for xk=x1,x=[x,intg(x0,xk,func,ea,er)],end,
-	else error(39), end,
-	x=matrix(x,m,n)
+  if norm(imag(%x1),1)<>0 then
+    error(msprintf(gettext("%s: Wrong value for fourth input argument: Real scalar expected.\n"),"integrate"));
+  else
+    %x1=real(%x1)
+  end
+  //
+
+  try
+    if %expr==%var then 
+      deff(%var+'=%func('+%var+')',%expr)
+    else
+      deff('ans=%func('+%var+')',%expr)
+    end	
+  catch
+    error(msprintf(gettext("%s: syntax error in given expression:\n"),"integrate"));
+  end
+  
+  [%x1,%ks]=gsort(%x1,'g','i')
+  %x=zeros(%x1)
+
+  %kkk=find((%x1(1:$-1)<%x0) & (%x1(2:$)>=%x0))
+  if %kkk <>[] then
+    %xx0=%x0;
+    for %kk=1:%kkk
+      %x(%kk)=-intg(%xx0,%x1(%kk),%func,%ea,%er);
+      %xx0=%x1(%kk);
+    end
+  end
+  %xx0=%x0;
+  for %kk=1:size(%x1,'*')
+    %x(%kk)=intg(%xx0,%x1(%kk),%func,%ea,%er);
+    %xx0=%x1(%kk);
+  end
+  %x=cumsum(%x)
+  %x=matrix(%x(%ks),size(%x1));
+ 
 endfunction

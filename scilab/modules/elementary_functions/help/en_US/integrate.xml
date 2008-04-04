@@ -16,11 +16,11 @@
   </info>
   <refnamediv>
     <refname>integrate</refname>
-    <refpurpose> integration by quadrature</refpurpose>
+    <refpurpose> integration of an expression by quadrature</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[x]=integrate(expr,v,x0,x1 [,ea [,er]])</synopsis>
+    <synopsis>x=integrate(expr,v,x0,x1 [,atol [,rtol]])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -28,31 +28,44 @@
       <varlistentry>
         <term>expr</term>
         <listitem>
-          <para>external Scilab</para>
+          <para>Character string defining a Scilab expression.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>string (integration variable)</para>
+          <para>Character string, the integration variable name)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>x0,x1</term>
+        <term>x0</term>
         <listitem>
-          <para>real numbers (bounds of integration)</para>
+          <para>real number, the lower bound of integration</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>ea,er</term>
+        <term>x1</term>
         <listitem>
-          <para>real numbers (absolute  error bound) Default value: 0</para>
+          <para>vector of real numbers, upper bounds of integration</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>atol</term>
+        <listitem>
+          <para>real number (absolute  error bound) Default value: 1.-8</para>
+        </listitem>
+      </varlistentry>
+     <varlistentry>
+        <term>rtol</term>
+        <listitem>
+          <para>real number, (relative  error bound) Default value: 1e-14</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>er</term>
+        <term>x</term>
         <listitem>
-          <para>real number, (relative error bound) Default value: 1.d-8</para>
+	  <para>vector of real numbers, the integral value for each  <literal>x1(i)</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -62,24 +75,32 @@
     <para>
     computes :</para>
     <programlisting><![CDATA[
-                       /x1
+                       /x1(i)
                       [
-                  x = I  f(v)dv
+                  x = I  f(v)dv , i=1:size(x1,'*'),
                       ]
                      /x0
       ]]></programlisting>
+    where <literal>f(v)</literal> is given by the expression <literal>expr</literal>
     <para>
     The evaluation hopefully satisfies following claim for accuracy:
-    <literal>abs(I-x)&lt;= max(ea,er*abs(I))</literal> where I stands for the
+    <literal>abs(I-x)&lt;= max(atol,rtol*abs(I))</literal> where <literal>I</literal> stands for the
     exact value of the integral.</para>
+  </refsection>
+  <refsection>
+    <title>Restriction</title>
+    <para>the given expression should not use variable names with a leading <literal>%</literal>. </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
+    x0=0;x1=0:0.1:2*%pi;
+    X=integrate('sin(x)','x',x0,x1);
+    norm(cos(x1)-(1-X))
 
-integrate('sin(x)','x',0,%pi)
-integrate(['if x==0 then 1,';
-           'else sin(x)/x,end'],'x',0,%pi)
+    x1=-10:0.1:10;
+    X=integrate(['if x==0 then 1,';
+               'else sin(x)/x,end'],'x',0,x1)
  
   ]]></programlisting>
   </refsection>
