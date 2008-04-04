@@ -73,7 +73,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 				}
 				else if ( strcmp(param2,"variables") == 0 )
 				{
-					Results = completionOnVariables(partOfWord, &sizeResults);
+					Results = completionOnVariablesWithoutMacros(partOfWord, &sizeResults);
 				}
 				else if( strcmp(param2,"macros") == 0 )
 				{
@@ -136,7 +136,7 @@ int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
 			char **VariablesList = NULL;
 			int sizeVariablesList = 0;
 
-			VariablesList = completionOnVariables(partOfWord, &sizeVariablesList);
+			VariablesList = completionOnVariablesWithoutMacros(partOfWord, &sizeVariablesList);
 			putResultOnStack(3,VariablesList,sizeVariablesList);
 
 			freePointerDictionary(VariablesList,sizeVariablesList);

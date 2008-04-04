@@ -167,6 +167,122 @@ char **completionOnVariables(char *somechars, int *sizeArrayReturned)
 	return ListWords;
 }
 /*--------------------------------------------------------------------------*/
+char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturned)
+{
+	int i = 0;
+	int j = 0;
+	int nbWordsAlreadyInMacros = 0;
+
+	char **ListWords = NULL;
+	int sizeListWords = 0;
+
+	char **dictionaryVariables = NULL;
+	int sizedictionaryVariables = 0;
+	
+
+	dictionaryVariables = completionOnVariables(somechars,&sizedictionaryVariables);
+
+	if (sizedictionaryVariables)
+	{
+		char **dictionaryMacros = NULL;
+		int sizedictionaryMacros = 0;
+
+		dictionaryMacros = getmacrosdictionary(&sizedictionaryMacros);
+		dictionaryMacros = SortDictionary(dictionaryMacros,sizedictionaryMacros);	
+	
+		/* Search if we have more than one definition */
+		for ( i = 0; i < sizedictionaryVariables; i++)
+		{
+			for ( j = 0; j < sizedictionaryMacros; j++)
+			{
+				if ( strcmp(dictionaryVariables[i],dictionaryMacros[j]) == 0 )
+				{
+					nbWordsAlreadyInMacros++;
+				}
+			}
+		}
+
+		if (nbWordsAlreadyInMacros)
+		{
+			sizeListWords = sizedictionaryVariables - nbWordsAlreadyInMacros;
+			if (sizeListWords)
+			{
+				char **ListWordsTmp = (char**)MALLOC(sizeof(char*)*sizedictionaryVariables);
+				if (ListWordsTmp)
+				{
+					int k = 0;
+
+					/* do a copy of dictionnary of Variables */
+					for ( i = 0; i < sizedictionaryVariables; i++)
+					{
+						ListWordsTmp[i] = (char*)MALLOC(sizeof(char)*(strlen(dictionaryVariables[i])+1));
+						if (ListWordsTmp[i]) strcpy(ListWordsTmp[i],dictionaryVariables[i]);
+					}
+
+					for ( i = 0; i < sizedictionaryVariables; i++)
+					{
+						for ( j = 0; j < sizedictionaryMacros; j++)
+						{
+							if ( strcmp(dictionaryVariables[i],dictionaryMacros[j]) == 0 )
+							{
+								FREE(ListWordsTmp[i]);
+								ListWordsTmp[i] = NULL;
+							}
+						}
+					}
+
+					ListWords = (char**)MALLOC(sizeof(char*)*(sizeListWords+1));
+					if (ListWords)
+					{
+						for ( i = 0; i < sizedictionaryVariables; i++)
+						{
+							if (ListWordsTmp[i])
+							{
+								ListWords[k] = (char*)MALLOC(sizeof(char)*(strlen(ListWordsTmp[i])+1));
+								if (ListWords[k]) strcpy(ListWords[k],ListWordsTmp[i]);
+								if (k <= sizeListWords) k++;
+							}
+						}
+						/* Add a NULL element at the end (to get number of items from JNI) */
+						ListWords[sizeListWords] = NULL;
+
+						*sizeArrayReturned = sizeListWords;
+					}
+					else
+					{
+						ListWords = NULL;
+						*sizeArrayReturned = 0;
+					}
+				}
+				else
+				{
+					ListWords = NULL;
+					*sizeArrayReturned = 0;
+				}
+			}
+			else
+			{
+				ListWords = NULL;
+				*sizeArrayReturned = 0;
+			}
+		}
+		else
+		{
+			ListWords = dictionaryVariables;
+			*sizeArrayReturned = sizedictionaryVariables;
+		}
+
+		freePointerDictionary(dictionaryMacros,sizedictionaryMacros);
+	}
+	else
+	{
+		ListWords = NULL;
+		*sizeArrayReturned = 0;
+	}
+
+	return ListWords;
+}
+/*--------------------------------------------------------------------------*/
 char **completionOnFiles(char *somechars, int *sizeArrayReturned)
 {
 	char **ListWords = NULL;

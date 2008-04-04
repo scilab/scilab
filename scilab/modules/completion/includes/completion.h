@@ -54,6 +54,15 @@ char **completionOnMacros(char *somechars, int *sizeArrayReturned);
 char **completionOnVariables(char *somechars, int *sizeArrayReturned);
 
 /**
+* completion function on Variables for scilab
+* Macros already defined as variables are removed
+* @param[in] somechars first characters of a word
+* @param[out] sizeArrayReturned
+* @return a array of chars 
+*/
+char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturned);
+
+/**
 * completion function on files for scilab
 * @param[in] somechars first characters of a word
 * @param[out] sizeArrayReturned

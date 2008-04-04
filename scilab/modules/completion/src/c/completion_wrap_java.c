@@ -39,7 +39,7 @@ char **searchMacrosDictionary(char *somechars)
 char **searchVariablesDictionary(char *somechars)
 {
 	int nbrElements = 0;
-	return completionOnVariables(somechars,&nbrElements);
+	return completionOnVariablesWithoutMacros(somechars,&nbrElements);
 }
 /*--------------------------------------------------------------------------*/
 char **searchFilesDictionary(char *somechars)

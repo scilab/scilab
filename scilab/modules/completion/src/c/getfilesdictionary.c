@@ -63,12 +63,12 @@ char **getfilesdictionary(char *somechars,int *sizearray)
 		dictionary = findfiles(path,filespec,&sizeListReturned);
 		*sizearray = sizeListReturned;
 
-                /* Add a NULL element at the end (to get number of items from JNI) */
-                if (dictionary != NULL)
-                  {
-                    dictionary = (char**)REALLOC(dictionary,sizeof(char*)*(sizeListReturned+1));
-                    dictionary[sizeListReturned] = NULL;
-                  }
+        /* Add a NULL element at the end (to get number of items from JNI) */
+        if (dictionary != NULL)
+        {
+			dictionary = (char**)REALLOC(dictionary,sizeof(char*)*(sizeListReturned+1));
+			dictionary[sizeListReturned] = NULL;
+		}
 	}
 	else
 	{
