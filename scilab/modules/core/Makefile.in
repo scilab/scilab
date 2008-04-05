@@ -143,9 +143,9 @@ am__objects_1 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-freeArrayOfString.lo \
 	libscicore_la-getstaticdebuginfo.lo \
 	libscicore_la-getdynamicdebuginfo.lo \
-	libscicore_la-gw_dynamic_scicos.lo \
 	libscicore_la-callDynamicGateway.lo \
-	libscicore_la-gw_dynamic_generic.lo
+	libscicore_la-gw_dynamic_generic.lo \
+	libscicore_la-dynamic_gateways.lo
 am__objects_2 = algebre.lo clunit.lo getlin.lo allowptr.lo dldsp.lo \
 	isany.lo hmcreate.lo nextj.lo functionsforbasout.lo \
 	setgetmode.lo showstack.lo misops.lo iseye.lo chkvar.lo \
@@ -498,9 +498,9 @@ src/c/commandwords.c \
 src/c/freeArrayOfString.c \
 src/c/getstaticdebuginfo.c \
 src/c/getdynamicdebuginfo.c \
-src/c/gw_dynamic_scicos.c \
 src/c/callDynamicGateway.c \
-src/c/gw_dynamic_generic.c
+src/c/gw_dynamic_generic.c \
+src/c/dynamic_gateways.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -986,6 +986,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-coretable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cs2st.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-csignal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_gateways.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-expr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-filesmanagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-freeArrayOfString.Plo@am__quote@
@@ -1000,7 +1001,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getvariablesname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-gw_core.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-gw_dynamic_generic.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-gw_dynamic_scicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-gw_user.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-gw_user2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-hashtable_core.Plo@am__quote@
@@ -1612,13 +1612,6 @@ libscicore_la-getdynamicdebuginfo.lo: src/c/getdynamicdebuginfo.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-getdynamicdebuginfo.lo `test -f 'src/c/getdynamicdebuginfo.c' || echo '$(srcdir)/'`src/c/getdynamicdebuginfo.c
 
-libscicore_la-gw_dynamic_scicos.lo: src/c/gw_dynamic_scicos.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-gw_dynamic_scicos.lo -MD -MP -MF $(DEPDIR)/libscicore_la-gw_dynamic_scicos.Tpo -c -o libscicore_la-gw_dynamic_scicos.lo `test -f 'src/c/gw_dynamic_scicos.c' || echo '$(srcdir)/'`src/c/gw_dynamic_scicos.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-gw_dynamic_scicos.Tpo $(DEPDIR)/libscicore_la-gw_dynamic_scicos.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gw_dynamic_scicos.c' object='libscicore_la-gw_dynamic_scicos.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-gw_dynamic_scicos.lo `test -f 'src/c/gw_dynamic_scicos.c' || echo '$(srcdir)/'`src/c/gw_dynamic_scicos.c
-
 libscicore_la-callDynamicGateway.lo: src/c/callDynamicGateway.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-callDynamicGateway.lo -MD -MP -MF $(DEPDIR)/libscicore_la-callDynamicGateway.Tpo -c -o libscicore_la-callDynamicGateway.lo `test -f 'src/c/callDynamicGateway.c' || echo '$(srcdir)/'`src/c/callDynamicGateway.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-callDynamicGateway.Tpo $(DEPDIR)/libscicore_la-callDynamicGateway.Plo
@@ -1632,6 +1625,13 @@ libscicore_la-gw_dynamic_generic.lo: src/c/gw_dynamic_generic.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gw_dynamic_generic.c' object='libscicore_la-gw_dynamic_generic.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-gw_dynamic_generic.lo `test -f 'src/c/gw_dynamic_generic.c' || echo '$(srcdir)/'`src/c/gw_dynamic_generic.c
+
+libscicore_la-dynamic_gateways.lo: src/c/dynamic_gateways.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-dynamic_gateways.lo -MD -MP -MF $(DEPDIR)/libscicore_la-dynamic_gateways.Tpo -c -o libscicore_la-dynamic_gateways.lo `test -f 'src/c/dynamic_gateways.c' || echo '$(srcdir)/'`src/c/dynamic_gateways.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-dynamic_gateways.Tpo $(DEPDIR)/libscicore_la-dynamic_gateways.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dynamic_gateways.c' object='libscicore_la-dynamic_gateways.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-dynamic_gateways.lo `test -f 'src/c/dynamic_gateways.c' || echo '$(srcdir)/'`src/c/dynamic_gateways.c
 
 libscicore_la-sci_stacksize.lo: sci_gateway/c/sci_stacksize.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_stacksize.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_stacksize.Tpo -c -o libscicore_la-sci_stacksize.lo `test -f 'sci_gateway/c/sci_stacksize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_stacksize.c
