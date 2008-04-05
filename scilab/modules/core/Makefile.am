@@ -79,9 +79,9 @@ src/c/commandwords.c \
 src/c/freeArrayOfString.c \
 src/c/getstaticdebuginfo.c \
 src/c/getdynamicdebuginfo.c \
-src/c/gw_dynamic_scicos.c \
 src/c/callDynamicGateway.c \
-src/c/gw_dynamic_generic.c
+src/c/gw_dynamic_generic.c \
+src/c/dynamic_gateways.c
 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \

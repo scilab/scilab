@@ -1,0 +1,145 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+#include <stdlib.h>
+#include "machine.h"
+#include "dynamic_gateways.h"
+#include "callDynamicGateway.h"
+#include "gw_dynamic_generic.h"
+/*--------------------------------------------------------------------------*/
+/* UMFPACK module */
+#define UMFPACK_MODULE_NAME "umfpack"
+static DynLibHandle hUmfpackLib = NULL;
+static PROC_GATEWAY ptr_gw_umfpack = NULL;
+static char* dynlibname_umfpack = NULL;
+static char* gatewayname_umfpack = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_umfpack(void)
+{
+	return gw_dynamic_generic(UMFPACK_MODULE_NAME,
+		                      &dynlibname_umfpack,
+							  &gatewayname_umfpack,
+							  &hUmfpackLib,
+							  &ptr_gw_umfpack);
+}
+/*--------------------------------------------------------------------------*/
+/* spreadsheet module */
+#define SPREADSHEET_MODULE_NAME "spreadsheet"
+static DynLibHandle hSpreadsheetLib = NULL;
+static PROC_GATEWAY ptr_gw_spreadsheet = NULL;
+static char* dynlibname_spreadsheet = NULL;
+static char* gatewayname_spreadsheet = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_spreadsheet(void)
+{
+	return gw_dynamic_generic(SPREADSHEET_MODULE_NAME,
+		                      &dynlibname_spreadsheet,
+							  &gatewayname_spreadsheet,
+							  &hSpreadsheetLib,
+							  &ptr_gw_spreadsheet);
+}
+/*--------------------------------------------------------------------------*/
+/* sound module */
+#define SOUND_MODULE_NAME "sound"
+static DynLibHandle hSoundLib = NULL;
+static PROC_GATEWAY ptr_gw_sound = NULL;
+static char* dynlibname_sound = NULL;
+static char* gatewayname_sound = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_sound(void)
+{
+	return gw_dynamic_generic(SOUND_MODULE_NAME,
+		                      &dynlibname_sound,
+							  &gatewayname_sound,
+							  &hSoundLib,
+							  &ptr_gw_sound);
+}
+/*--------------------------------------------------------------------------*/
+/* scicos module */
+#define SCICOS_MODULE_NAME "scicos"
+static DynLibHandle hScicosLib = NULL;
+static PROC_GATEWAY ptr_gw_scicos = NULL;
+static char* dynlibname_scicos = NULL;
+static char* gatewayname_scicos = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_scicos(void)
+{
+	return gw_dynamic_generic(SCICOS_MODULE_NAME,
+		                      &dynlibname_scicos,
+							  &gatewayname_scicos,
+							  &hScicosLib,
+							  &ptr_gw_scicos);
+}
+/*--------------------------------------------------------------------------*/
+/* randlib module */
+#define RANDLIB_MODULE_NAME "randlib"
+static DynLibHandle hRandlibLib = NULL;
+static PROC_GATEWAY ptr_gw_randlib = NULL;
+static char* dynlibname_randlib = NULL;
+static char* gatewayname_randlib = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_randlib(void)
+{
+	return gw_dynamic_generic(RANDLIB_MODULE_NAME,
+		                      &dynlibname_randlib,
+							  &gatewayname_randlib,
+							  &hRandlibLib,
+							  &ptr_gw_randlib);
+}
+/*--------------------------------------------------------------------------*/
+/* arnoldi module */
+#define ARNOLDI_MODULE_NAME "arnoldi"
+static DynLibHandle hArnoldiLib = NULL;
+static PROC_GATEWAY ptr_gw_arnoldi = NULL;
+static char* dynlibname_arnoldi = NULL;
+static char* gatewayname_arnoldi = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_arnoldi(void)
+{
+	return gw_dynamic_generic(ARNOLDI_MODULE_NAME,
+		                      &dynlibname_arnoldi,
+							  &gatewayname_arnoldi,
+							  &hArnoldiLib,
+							  &ptr_gw_arnoldi);
+}
+/*--------------------------------------------------------------------------*/
+/* symbolic module */
+#define SYMBOLIC_MODULE_NAME "symbolic"
+static DynLibHandle hSymbolicLib = NULL;
+static PROC_GATEWAY ptr_gw_symbolic = NULL;
+static char* dynlibname_symbolic = NULL;
+static char* gatewayname_symbolic = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_symbolic(void)
+{
+	return gw_dynamic_generic(SYMBOLIC_MODULE_NAME,
+		                      &dynlibname_symbolic,
+							  &gatewayname_symbolic,
+							  &hSymbolicLib,
+							  &ptr_gw_symbolic);
+}
+/*--------------------------------------------------------------------------*/
+/* metanet module */
+#define METANET_MODULE_NAME "metanet"
+static DynLibHandle hMetanetLib = NULL;
+static PROC_GATEWAY ptr_gw_metanet = NULL;
+static char* dynlibname_metanet = NULL;
+static char* gatewayname_metanet = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_metanet(void)
+{
+	return gw_dynamic_generic(METANET_MODULE_NAME,
+		                      &dynlibname_metanet,
+							  &gatewayname_metanet,
+							  &hMetanetLib,
+							  &ptr_gw_metanet);
+}
+/*--------------------------------------------------------------------------*/

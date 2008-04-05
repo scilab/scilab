@@ -21,7 +21,7 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "gw_dynamic_scicos.h"
+
 
 static  jmp_buf jmp_env;
 
@@ -47,14 +47,14 @@ static OpTab Interfaces[] = {
 	/* 12  */ {gw_differential_equations1},
 	/* 13  */ {gw_core},
 	/* 14  */ {gw_user},
-	/* 15  */ {gw_metanet},
+	/* 15  */ {gw_dynamic_metanet},
 	/* 16  */ {gw_polynomials},
 	/* 17  */ {gw_data_structures1},
 	/* 18  */ {gw_signal},
 	/* 19  */ {gw_interpolation},
 	/* 20  */ {gw_cacsd3},
 	/* 21  */ {gw_string},
-	/* 22  */ {gw_symbolic},
+	/* 22  */ {gw_dynamic_symbolic},
 	/* 23  */ {gw_boolean},
 	/* 24  */ {gw_user2},
 	/* 25  */ {gw_gui},
@@ -67,10 +67,10 @@ static OpTab Interfaces[] = {
 	/* 32  */ {gw_differential_equations6},
 	/* 33  */ {gw_user2}, /* free position may be used */
 	/* 34  */ {gw_fileio},
-	/* 46  */ {gw_arnoldi},
+	/* 46  */ {gw_dynamic_arnoldi},
 	/* 36  */ {gw_special_functions1},
 	/* 37  */ {gw_statistics},
-	/* 38  */ {gw_randlib},
+	/* 38  */ {gw_dynamic_randlib},
 	/* 39  */ {gw_special_functions2},
 	/* 40  */ {gw_tclsci},
 	/* 41  */ {gw_data_structures2},
@@ -81,19 +81,16 @@ static OpTab Interfaces[] = {
 	/* 46  */ {gw_dynamic_link},
 	/* 47  */ {gw_windows_tools},
 	/* 48  */ {gw_time},
-	/* 49  */ {gw_sound},
+	/* 49  */ {gw_dynamic_sound},
 	/* 50  */ {gw_localization},
 	/* 51  */ {gw_fftw},
 	/* 52  */ {gw_jvm},
 	/* 53  */ {gw_shell},
 	/* 54  */ {gw_completion},
 	/* 55  */ {gw_history_manager},
-	/* 56  */ {gw_spreadsheet},
-	/* 57  */ {gw_graphic_export}
-#ifdef _MSC_VER
-	/* 58  */ ,{gw_umfpack}
-#endif
-
+	/* 56  */ {gw_dynamic_spreadsheet},
+	/* 57  */ {gw_graphic_export},
+	/* 58  */ {gw_dynamic_umfpack}
 };
 
 

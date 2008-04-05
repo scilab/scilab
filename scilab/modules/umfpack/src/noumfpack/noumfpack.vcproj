@@ -6,7 +6,7 @@
 	ProjectGUID="{6B557C09-7D85-42A4-A2B3-E952E00ACD28}"
 	RootNamespace="noumfpack"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -69,14 +69,14 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
 				AdditionalDependencies=" ../../../../bin/libintl.lib"
-				OutputFile="../../../../bin/nosciumfpack.dll"
+				OutputFile="../../../../bin/noumfpack.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="noumfpack.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/nosciumfpack.lib"
+				ImportLibrary="../../../../bin/noumfpack.lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -153,14 +153,14 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
 				AdditionalDependencies=" ../../../../bin/libintl.lib"
-				OutputFile="../../../../bin/nosciumfpack.dll"
+				OutputFile="../../../../bin/noumfpack.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="noumfpack.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/nosciumfpack.lib"
+				ImportLibrary="../../../../bin/noumfpack.lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -238,7 +238,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies=" ../../../../bin/libintl.lib"
-				OutputFile="../../../../bin/nosciumfpack.dll"
+				OutputFile="../../../../bin/noumfpack.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="noumfpack.def"
 				GenerateDebugInformation="false"
@@ -248,7 +248,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/nosciumfpack.lib"
+				ImportLibrary="../../../../bin/noumfpack.lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -327,7 +327,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies=" ../../../../bin/libintl.lib"
-				OutputFile="../../../../bin/nosciumfpack.dll"
+				OutputFile="../../../../bin/noumfpack.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="noumfpack.def"
 				GenerateDebugInformation="false"
@@ -337,7 +337,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/nosciumfpack.lib"
+				ImportLibrary="../../../../bin/noumfpack.lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>

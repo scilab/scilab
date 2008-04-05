@@ -10,9 +10,9 @@
 ;
 #define UMFPACK "umfpack"
 ;
-Source: bin\nosciumfpack.dll; DestDir: {app}\bin; DestName: sciumfpack.dll; Components: not ({#COMPN_UMFPACK})
+Source: bin\noumfpack.dll; DestDir: {app}\bin; DestName: umfpack.dll; Components: not ({#COMPN_UMFPACK})
 Source: bin\libumfpack.dll; DestDir: {app}\bin; Components: {#COMPN_UMFPACK}
-Source: bin\sciumfpack.dll; DestDir: {app}\bin; Components: {#COMPN_UMFPACK}
+Source: bin\umfpack.dll; DestDir: {app}\bin; Components: {#COMPN_UMFPACK}
 ;
 Source: modules\{#UMFPACK}\VERSION.xml; DestDir: {app}\modules\{#UMFPACK}; Components: {#COMPN_UMFPACK}
 Source: modules\{#UMFPACK}\readme.txt; DestDir: {app}\modules\{#UMFPACK}; Components: {#COMPN_UMFPACK}

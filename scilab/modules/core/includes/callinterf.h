@@ -36,14 +36,14 @@
 /* 12 */						#include "../../differential_equations/includes/gw_differential_equations1.h"
 /* 13 */						#include "gw_core.h"
 /* 14  gw_user(); FREE */
-/* 15 */						#include "../../metanet/includes/gw_metanet.h"
+/* 15 */						#include "dynamic_gateways.h" /* metanet */
 /* 16 */						#include "../../polynomials/includes/gw_polynomials.h"
 /* 17 */						#include "../../data_structures/includes/gw_data_structures1.h"
 /* 18 */						#include "../../signal_processing/includes/gw_signal.h"
 /* 19 */						#include "../../interpolation/includes/gw_interpolation.h"
 /* 20 */						#include "../../cacsd/includes/gw_cacsd3.h"
 /* 21 */						#include "../../string/includes/gw_string.h"
-/* 22 */						#include "../../symbolic/includes/gw_symbolic.h"
+/* 22 */						#include "dynamic_gateways.h" /* symbolic */
 /* 23 */						#include "../../boolean/includes/gw_boolean.h"
 /* 24  gw_user2(); FREE */	    #include "gw_user2.h"
 /* 25 */						#include "../../gui/includes/gw_gui.h"
@@ -52,14 +52,14 @@
 /* 28 */						#include "../../cacsd/includes/gw_slicot.h"
 /* 29 */						#include "../../differential_equations/includes/gw_differential_equations3.h"
 /* 30 */						#include "../../differential_equations/includes/gw_differential_equations4.h"
-///* 31 */						#include "../../differential_equations/includes/gw_differential_equations5.h"
+/* 31 FREE */						
 /* 32 */						#include "../../differential_equations/includes/gw_differential_equations6.h"
 /* 33  gw_user(); FREE */
 /* 34 */						#include "../../fileio/includes/gw_fileio.h"
-/* 35 */						#include "../../arnoldi/includes/gw_arnoldi.h"
+/* 35 */						#include "dynamic_gateways.h" /* arnoldi */
 /* 36 */						#include "../../special_functions/includes/gw_special_functions1.h"
 /* 37 */						#include "../../statistics/includes/gw_statistics.h"
-/* 38 */						#include "../../randlib/includes/gw_randlib.h"
+/* 38 */						#include "dynamic_gateways.h" /* randlib */
 /* 39 */						#include "../../special_functions/includes/gw_special_functions2.h"
 
 /* 40 */						#include "../../tclsci/includes/gw_tclsci.h"
@@ -71,14 +71,14 @@
 /* 43 */						#include "../../integer/includes/gw_integer.h"
 /* 44 */						#include "../../linear_algebra/includes/gw_linear_algebra2.h"
 
-/* 45 */						#include "gw_dynamic_scicos.h"
+/* 45 */						#include "dynamic_gateways.h" /* scicos */
 
 /* 46 */						#include "../../dynamic_link/includes/gw_dynamic_link.h"
 
 /* 47 */						#include "../../windows_tools/includes/gw_windows_tools.h"
 
 /* 48 */						#include "../../time/includes/gw_time.h"
-/* 49 */						#include "../../sound/includes/gw_sound.h"
+/* 49 */						#include "dynamic_gateways.h"  /* sound */
 /* 50 */						#include "../../localization/includes/gw_localization.h"
 
 /* 51 */						#include "../../fftw/includes/gw_fftw.h"
@@ -88,12 +88,12 @@
 /* 54 */						#include "../../completion/includes/gw_completion.h"
 /* 55 */						#include "../../history_manager/includes/gw_history_manager.h"
 
-/* 56 */						#include "../../spreadsheet/includes/gw_spreadsheet.h"
+/* 56 */						#include "dynamic_gateways.h" /* spreadsheet */
 
 /* 57 */						#include "../../graphic_export/includes/gw_graphic_export.h"
 
-/* 58 */						#include "../../umfpack/includes/gw_umfpack.h"
-/* 58 *///                        #include "../../mpi/includes/gw_mpi.h"
+/* 58 */						#include "dynamic_gateways.h" /* UMFPACK */
+
 
 
 /*-------------------------------------

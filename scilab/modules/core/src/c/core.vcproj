@@ -5,7 +5,7 @@
 	Name="core"
 	ProjectGUID="{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 	RootNamespace="core"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -375,6 +375,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dynamic_gateways.c"
+				>
+			</File>
+			<File
 				RelativePath=".\ExceptionMessage.c"
 				>
 			</File>
@@ -472,10 +476,6 @@
 			</File>
 			<File
 				RelativePath=".\gw_dynamic_generic.c"
-				>
-			</File>
-			<File
-				RelativePath=".\gw_dynamic_scicos.c"
 				>
 			</File>
 			<File
@@ -960,6 +960,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dynamic_gateways.h"
+				>
+			</File>
+			<File
 				RelativePath=".\dynamic_menus.h"
 				>
 			</File>
@@ -988,11 +992,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -1045,10 +1049,6 @@
 			</File>
 			<File
 				RelativePath=".\gw_dynamic_generic.h"
-				>
-			</File>
-			<File
-				RelativePath=".\gw_dynamic_scicos.h"
 				>
 			</File>
 			<File

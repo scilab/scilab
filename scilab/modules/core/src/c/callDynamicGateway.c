@@ -91,13 +91,13 @@ void displayErrorGateway(dynamic_gateway_error_code err,char *libraryname,char *
 		/* NO ERROR */
 		break;
 	case DYN_GW_LOAD_LIBRARY_ERROR :
-		Scierror(999,_("Impossible to load %s library: %s.\n"),libraryname,GetLastDynLibError());
+		Scierror(999,_("Impossible to load %s library: %s\n"),libraryname,GetLastDynLibError());
 		break;
 	case DYN_GW_PTR_FUNCTION_ERROR :
-		Scierror(999,_("Impossible to load %s function in %s library: %s.\n"),functionname,libraryname, GetLastDynLibError());
+		Scierror(999,_("Impossible to load %s function in %s library: %s\n"),functionname,libraryname, GetLastDynLibError());
 		break;
 	case DYN_GW_CALL_FUNCTION_ERROR :
-		Scierror(999,_("Impossible to call %s in %s library: %s.\n"),functionname,libraryname,GetLastDynLibError());
+		Scierror(999,_("Impossible to call %s in %s library: %s\n"),functionname,libraryname,GetLastDynLibError());
 		break;
 	}
 }

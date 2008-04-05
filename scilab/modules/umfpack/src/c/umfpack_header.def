@@ -1,4 +1,4 @@
-LIBRARY    sciumfpack.dll
+LIBRARY    umfpack.dll
 
 
 EXPORTS
