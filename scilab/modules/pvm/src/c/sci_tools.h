@@ -86,7 +86,7 @@ typedef struct {
  * @param lp
  * @return <ReturnValue>
  */
-int F2C(mycmatptr) __PARAMS((char *name,int *m, int *n, int *type, int *lp));
+int F2C(mycmatptr)(char *name,int *m, int *n, int *type, int *lp);
 
 /**
  * <long-description>
@@ -95,6 +95,6 @@ int F2C(mycmatptr) __PARAMS((char *name,int *m, int *n, int *type, int *lp));
  * @param ip
  * @param op
  */
-void C2F(ccomplexf) __PARAMS((int *n, double **ip, double *op));
+void C2F(ccomplexf)(int *n, double **ip, double *op);
 
 #endif /* __SCI_TOOLS */

@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_xgetfile)(char *fname,unsigned long fname_len)
 {
   int fileChooserID = 0;
   

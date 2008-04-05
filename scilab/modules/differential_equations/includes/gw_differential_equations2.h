@@ -18,9 +18,9 @@
 /*--------------------------------------------------------------------------*/ 
 int gw_differential_equations2(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(sciimpl) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(dassli) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(dasrti) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sciimpl)(char *fname,unsigned long fname_len);
+int C2F(dassli)(char *fname,unsigned long fname_len);
+int C2F(dasrti)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif  /* __GW_DIFFERENTIAL_EQUATIONS2__ */
 /*--------------------------------------------------------------------------*/

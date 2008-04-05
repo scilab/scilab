@@ -387,7 +387,7 @@ void OutANY(FILE *f,VARPTR var,int insidelist,int nel)
 
 typedef  struct  {
   int type;
-  void  (*fonc) __PARAMS((FILE *f,VARPTR var,int insidelist,int nel));} OutRhsTab ;
+  void  (*fonc)(FILE *f,VARPTR var,int insidelist,int nel);} OutRhsTab ;
 
 
 

@@ -28,7 +28,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intree4) (char *fname,unsigned long fname_len); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sci_tree4) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_sci_tree4)(char *fname,unsigned long fname_len)
 {
 	CheckLhs(2,2);
 	CheckRhs(5,5);

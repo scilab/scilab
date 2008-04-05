@@ -14,7 +14,7 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_semidef) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_semidef)(char *fname,unsigned long fname_len)
 {
 	C2F(scisemidef)(fname,fname_len);
 	return 0;

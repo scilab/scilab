@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_tidtohost, fin = 13
  ******************************************/
-int intspvm_tidtohost _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_tidtohost(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,un=1,l2;
   CheckRhs(1,1);

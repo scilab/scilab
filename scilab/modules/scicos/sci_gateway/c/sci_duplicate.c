@@ -27,7 +27,7 @@
 #include "intcscicos.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_duplicate) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_duplicate)(char *fname,unsigned long fname_len)
 {
 	intduplicate(fname,fname_len);
 	C2F(putlhsvar)();

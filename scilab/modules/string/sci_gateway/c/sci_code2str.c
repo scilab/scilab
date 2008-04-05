@@ -25,7 +25,7 @@
 #include "code2str.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_code2str)(char *fname,unsigned long fname_len)
 {
 	char **Output_Matrix = NULL;
 	int Row_Num = 0,Col_Num = 0;

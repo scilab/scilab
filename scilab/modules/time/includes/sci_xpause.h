@@ -28,7 +28,7 @@
 
 
 
-int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_xpause)(char *fname,unsigned long fname_len);
 
 #endif /*SCI_XPAUSE*/
 /*--------------------------------------------------------------------------*/ 

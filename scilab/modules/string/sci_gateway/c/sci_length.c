@@ -42,7 +42,7 @@ static int lengthMlist(void);
 static int lengthTlist(void);
 static int lengthOthers(char *fname);
 /*----------------------------------------------------------------------------*/
-int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_length)(char *fname,unsigned long fname_len)
 {
   CheckRhs(1,1);
   CheckLhs(1,1);

@@ -16,7 +16,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_filesep) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_filesep)(char *fname,unsigned long fname_len)
 {
 	static int n1,m1;
 	char *separator=NULL;

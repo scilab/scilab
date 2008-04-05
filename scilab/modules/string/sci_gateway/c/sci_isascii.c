@@ -26,7 +26,7 @@
 static int isasciiStrings(char *fname);
 static int isasciiMatrix(char *fname);
 /*----------------------------------------------------------------------------*/
-int C2F(sci_isascii) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_isascii)(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,1);
 	CheckLhs(0,1);

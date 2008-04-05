@@ -20,7 +20,7 @@
 #include "Scierror.h"
 #include "dynamic_link.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ulink) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_ulink)(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
 

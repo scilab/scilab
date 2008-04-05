@@ -16,7 +16,7 @@
 #include "wav.h" 
 #include "machine.h"
 
-int C2F(playsound) __PARAMS((char *filename,char *command,unsigned long fname_len));
-int C2F(loadwave) __PARAMS((char *filename, double *res, integer *size_res, integer flag,WavInfo *, integer *ierr));
-int C2F(savewave) __PARAMS((char *filename, double *res, integer *rate, integer *size_res,integer *nchannels, integer *ierr));
+int C2F(playsound)(char *filename,char *command,unsigned long fname_len);
+int C2F(loadwave)(char *filename, double *res, integer *size_res, integer flag,WavInfo *, integer *ierr);
+int C2F(savewave)(char *filename, double *res, integer *rate, integer *size_res,integer *nchannels, integer *ierr);
 #endif

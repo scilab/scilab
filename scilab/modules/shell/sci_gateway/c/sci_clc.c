@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_clc) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_clc)(char *fname,unsigned long fname_len)
 {
 	BOOL res = FALSE;
 	int nblines = -1;

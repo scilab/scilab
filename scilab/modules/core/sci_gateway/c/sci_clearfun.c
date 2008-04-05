@@ -19,7 +19,7 @@
 #include "Funtab.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_clearfun) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_clearfun)(char *fname,unsigned long fname_len)
 {
 	static int l1 = 0,n1 = 0,m1 = 0;
 	int *Status = NULL;

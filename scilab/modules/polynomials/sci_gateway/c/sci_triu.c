@@ -15,11 +15,11 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intptriu) _PARAMS((int *job,int *id));
+extern int C2F(intptriu)(int *job,int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ptriu) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_ptriu)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ptriu) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_ptriu)(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	int job=1;

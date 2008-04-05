@@ -15,7 +15,7 @@
 #include "stack-c.h"
 #include "getlookandfeel.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getlookandfeel) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getlookandfeel)(char *fname,unsigned long fname_len)
 {
 	static int n1 = 0,m1 = 0;
 	char *look= NULL;

@@ -34,7 +34,7 @@ static int sci_emptystr_no_rhs(void);
 static int sci_emptystr_one_rhs(char *fname);
 static int sci_emptystr_two_rhs(char *fname);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_emptystr) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_emptystr)(char *fname,unsigned long fname_len)
 {
 	Rhs = Max(0, Rhs);
 	

@@ -23,7 +23,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_createdir) _PARAMS((char *fname,unsigned long l))
+int C2F(sci_createdir)(char *fname,unsigned long l)
 {
 	CheckRhs(1,1);
 	CheckLhs(0,1);

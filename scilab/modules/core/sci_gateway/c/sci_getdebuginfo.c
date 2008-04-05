@@ -24,7 +24,7 @@
 #include "getstaticdebuginfo.h"
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getdebuginfo) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getdebuginfo)(char *fname,unsigned long fname_len)
 {
 	char **outputDynamicList = NULL;
 	char **outputStaticList = NULL;

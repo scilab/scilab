@@ -35,7 +35,7 @@
 #define Min(x,y)	(((x)<(y))?(x):(y))
 #define Max(x,y)	(((x)>(y))?(x):(y))
 
-typedef  void (scicos0_block) __PARAMS((ARGS_scicos0));
+typedef  void (scicos0_block) (ARGS_scicos0);
 extern scicos0_block F2C(absblk), F2C(andlog), F2C(bidon), F2C(gain);
 extern scicos0_block F2C(dband), F2C(cosblk);
 

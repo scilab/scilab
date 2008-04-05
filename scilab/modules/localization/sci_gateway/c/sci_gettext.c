@@ -17,7 +17,7 @@
 #include "gw_localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_gettext) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_gettext)(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,1);
 	CheckLhs(1,1);

@@ -19,14 +19,6 @@
 /**
  * @TODO add comment
  *
- * @param intfromc  
- * @return <ReturnValue>
- */
-int C2F(intfromc) _PARAMS((char *fname));
-
-/**
- * @TODO add comment
- *
  * @param void  
  */
 void SetFromCToON(void);

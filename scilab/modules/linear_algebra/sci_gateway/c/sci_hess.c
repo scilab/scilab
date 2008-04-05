@@ -17,8 +17,8 @@
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intdgehrd) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzgehrd) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intdgehrd)(char *fname, unsigned long fname_len);
+extern int C2F(intzgehrd)(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 int C2F(inthess)(char *fname,unsigned long fname_len)
 {

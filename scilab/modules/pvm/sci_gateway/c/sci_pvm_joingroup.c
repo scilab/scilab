@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_joingroup, fin = 1
  ******************************************/
-int intspvm_joingroup _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_joingroup(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,un=1,l2;
   CheckRhs(1,1);

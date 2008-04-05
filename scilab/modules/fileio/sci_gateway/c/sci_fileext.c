@@ -18,7 +18,7 @@
 #include "FindFileExtension.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_fileext) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_fileext)(char *fname,unsigned long fname_len)
 {
 	Rhs=Max(Rhs,0);
 

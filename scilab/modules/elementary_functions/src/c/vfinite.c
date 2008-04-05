@@ -14,7 +14,7 @@
 
 /* checks if all entries of a vector are finite */
 
-extern int finite __PARAMS( (double v));
+extern int finite(double v);
 
 int C2F(vfinite)(int *n, double *v);
 

@@ -20,7 +20,7 @@
 #include "core_math.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
+extern double C2F(dlamch)(char *CMACH, unsigned long int);
 extern int C2F(ab01od)();
 /*--------------------------------------------------------------------------*/
 int intab01od(char* fname)

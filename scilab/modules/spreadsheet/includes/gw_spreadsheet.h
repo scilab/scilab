@@ -18,8 +18,8 @@
 /*--------------------------------------------------------------------------*/ 
 int gw_spreadsheet(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_xls_read) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_xls_read)(char *fname,unsigned long fname_len);
+int C2F(sci_xls_open)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_SPREADSHEET__ */
 /*--------------------------------------------------------------------------*/

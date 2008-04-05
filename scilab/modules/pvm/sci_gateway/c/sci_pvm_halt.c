@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_halt 
  ******************************************/
-int intspvm_halt _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_halt(char *fname,unsigned long fname_len)
 {
   int res,un=1;
   CheckRhs(0,0);

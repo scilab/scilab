@@ -22,7 +22,7 @@
 /******************************************
  * SCILAB function : pvm_addhosts, fin = 10
  ******************************************/
-int intspvm_addhosts _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_addhosts(char *fname,unsigned long fname_len)
 {
   int m1,n1,un=1,mn2,l2;
   char  **Str1;

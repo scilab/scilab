@@ -17,7 +17,7 @@
 #include "MALLOC.h"
 #include "getdrives.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getdrives) _PARAMS((char *fname,unsigned long l))
+int C2F(sci_getdrives)(char *fname,unsigned long l)
 {
 	static int l1=0,n1=0,m1=0;
 	char **Drives=NULL;

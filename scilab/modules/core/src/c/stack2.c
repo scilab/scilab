@@ -45,11 +45,11 @@
 static integer cx1 = 1;
 static integer cx0 = 0;
 
-static char *Get_Iname __PARAMS((void));
-static int C2F(mvfromto) __PARAMS((integer *itopl,integer *));
+static char *Get_Iname(void);
+static int C2F(mvfromto)(integer *itopl,integer *);
 
-static int rhs_opt_find __PARAMS((char *name,rhs_opts opts[]));
-static void rhs_opt_print_names __PARAMS((rhs_opts opts[]));
+static int rhs_opt_find(char *name,rhs_opts opts[]);
+static void rhs_opt_print_names(rhs_opts opts[]);
 
 /*------------------------------------------------*/
 void strcpy_tws(char *str1,char *str2, int len);
@@ -2988,7 +2988,7 @@ static int check_list_prop(char *mes, int lpos,int posi, int m)
   return TRUE;
 }
 
-int check_list_square __PARAMS((int lpos,int posi,int m,int n))
+int check_list_square(int lpos,int posi,int m,int n)
 {
   return check_list_prop(_("square"),lpos,posi, (m != n));
 }

@@ -22,7 +22,7 @@
 /******************************************
  * SCILAB function : pvm_bcast, fin = 7
  ******************************************/
-int intspvm_bcast _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_bcast(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m3,n3,l3,un=1,l4,size,l5,used,ierr;
   int *Ipack,address,*header;

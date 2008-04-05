@@ -31,7 +31,7 @@
  *          wisdom can't be read by fftw
  *
  */
-int sci_set_fftw_wisdom __PARAMS((char *fname,unsigned long fname_len))
+int sci_set_fftw_wisdom(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,1);
 

@@ -69,12 +69,12 @@
 
 static char *the_current_mex_name;
 
-extern int  C2F(hmcreate)  __PARAMS((int *lw,int *nz,int *sz,int *typv,int *iflag,int *retval));
-extern int  C2F(stcreate)  __PARAMS((int *lw1,int *ndim,int *dims, int *nfields, char **field_names, int *retval));
-extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
-extern int arr2num __PARAMS(( mxArray  *ptr ));
-extern int arr2numcst __PARAMS((const mxArray  *ptr ));
-extern int IsReference  __PARAMS((mxArray *array_ptr));
+extern int  C2F(hmcreate)(int *lw,int *nz,int *sz,int *typv,int *iflag,int *retval);
+extern int  C2F(stcreate)(int *lw1,int *ndim,int *dims, int *nfields, char **field_names, int *retval);
+extern double C2F(dlamch)(char *CMACH, unsigned long int);
+extern int arr2num( mxArray  *ptr );
+extern int arr2numcst(const mxArray  *ptr );
+extern int IsReference  (mxArray *array_ptr);
 
 #define DOUBLEMATRIX sci_matrix
 #define INTMATRIX sci_ints
@@ -918,7 +918,7 @@ void mxAssert(int expr, char *error_message)
   if (!expr) mexErrMsgTxt(error_message);
 }
 
-mxArray *mxCreateDoubleMatrix __PARAMS((int m, int n, mxComplexity it))
+mxArray *mxCreateDoubleMatrix (int m, int n, mxComplexity it)
 {
   static int lw, lr, lc;
   int k;
@@ -1947,7 +1947,7 @@ bool mxIsLogicalScalar(mxArray *pa)
   in Scilab window
 */
 
-void mexPrintf __PARAMS((char *fmt,...))
+void mexPrintf (char *fmt,...)
 {
   va_list args;
   char buf[2048];

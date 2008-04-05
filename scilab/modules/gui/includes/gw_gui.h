@@ -18,25 +18,25 @@
 /*--------------------------------------------------------------------------*/
 int gw_gui(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_x_dialog) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_x_choice) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_x_dialog)(char *fname,unsigned long fname_len);
+int C2F(sci_x_choose)(char *fname,unsigned long fname_len);
+int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len);
+int C2F(sci_x_choice)(char *fname,unsigned long fname_len);
 int sci_delmenu(char *fname,unsigned long fname_len);
 int sci_setmenu(char *fname,unsigned long fname_len);
 int sci_unsetmenu(char *fname,unsigned long fname_len);
-int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_xgetfile)(char *fname,unsigned long fname_len);
 int sci_uigetdir(char *fname,unsigned long l);
-int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len )) ;
-int C2F(sci_getlookandfeel) _PARAMS(( char * fname, unsigned long fname_len )) ;
-int C2F(sci_getinstalledlookandfeels) _PARAMS(( char * fname, unsigned long fname_len )) ;
-int C2F(sci_setlookandfeel) _PARAMS(( char * fname, unsigned long fname_len )) ;
-int C2F(sci_ClipBoard) _PARAMS((char *fname,unsigned long l));
+int C2F(sci_raise_window)( char * fname, unsigned long fname_len ) ;
+int C2F(sci_getlookandfeel)( char * fname, unsigned long fname_len ) ;
+int C2F(sci_getinstalledlookandfeels)( char * fname, unsigned long fname_len ) ;
+int C2F(sci_setlookandfeel)( char * fname, unsigned long fname_len ) ;
+int C2F(sci_ClipBoard)(char *fname,unsigned long l);
 int sci_toolbar(char *fname,unsigned long l);
 int sci_uicontrol(char *fname,unsigned long l);
 int sci_uimenu(char *fname,unsigned long l);
 int sci_mpopup(char *fname,unsigned long l);
-int C2F(sci_x_choose_modeless) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_x_choose_modeless)(char *fname,unsigned long fname_len);
 int sci_uicontextmenu(char *fname,unsigned long l);
 int sci_uiwait(char *fname,unsigned long l);
 int sci_messagebox(char *fname,unsigned long l);

@@ -16,9 +16,9 @@
 #include "stack-c.h"
 #include "gw_polynomials.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intsimpmd) _PARAMS((int *id));
+extern int C2F(intsimpmd)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_simp_mode) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_simp_mode)(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intsimpmd)(id);

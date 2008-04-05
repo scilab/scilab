@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(where)(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_where) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_where)(char *fname,unsigned long fname_len)
 {
 	if (Rhs > 0)
 	{

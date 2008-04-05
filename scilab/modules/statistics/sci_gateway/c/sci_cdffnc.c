@@ -18,7 +18,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(cdffnc) __PARAMS((int *,double *,double *,double *,double *,double *,double *, int *,double *));
+extern int C2F(cdffnc)(int *,double *,double *,double *,double *,double *,double *, int *,double *);
 /*--------------------------------------------------------------------------*/
 static void cdffncErr(int status,double bound);
 /*--------------------------------------------------------------------------*/

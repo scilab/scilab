@@ -21,7 +21,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int NumTokens __PARAMS((char *string))
+int NumTokens(char *string)
 {
 	char buf[128];
 	int n      = 1;
@@ -78,7 +78,7 @@ int StringConvert(char *str)
   return count;
 }
 /*--------------------------------------------------------------------------*/
-int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval_s))
+int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 {
   int cur_i,i,j,i1,one=1,zero=0,k,l,iarg,colcount;
   sfdir cur_type;
@@ -230,7 +230,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
  *   Store data scanned by a single call to do_scan in line rowcount of data
  *   table
  ************************************************************************/
-int Store_Scan __PARAMS((int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, int *retval_s, rec_entry *buf, entry **data, int rowcount, int n))
+int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, int *retval_s, rec_entry *buf, entry **data, int rowcount, int n)
 {
   int i,j,nr,nc,err;
   entry * Data;
@@ -327,7 +327,7 @@ int Store_Scan __PARAMS((int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *
   return err;
 }
 /*--------------------------------------------------------------------------*/
-void Free_Scan __PARAMS((int nrow, int ncol, sfdir *type_s, entry **data))
+void Free_Scan(int nrow, int ncol, sfdir *type_s, entry **data)
 {
   int i,j;
   entry * Data;
@@ -351,7 +351,7 @@ void Free_Scan __PARAMS((int nrow, int ncol, sfdir *type_s, entry **data))
  * entries of the original array are catenated, separated by
  * '\n'   char
  ********************************************************/
-int SciStrtoStr __PARAMS((int *Scistring, int *nstring, int *ptrstrings, char **strh))
+int SciStrtoStr (int *Scistring, int *nstring, int *ptrstrings, char **strh)
 {
   char *s,*p;
   int li,ni,*SciS,i,job=1;

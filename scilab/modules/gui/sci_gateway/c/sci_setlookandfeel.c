@@ -17,7 +17,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_setlookandfeel) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_setlookandfeel)(char *fname,unsigned long fname_len)
 {
 	Rhs = Max(Rhs,0);
 	CheckRhs(0,1);

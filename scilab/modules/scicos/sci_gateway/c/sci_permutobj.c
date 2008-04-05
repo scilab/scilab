@@ -27,7 +27,7 @@
 #include "intcscicos.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_permutobj) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_permutobj)(char *fname,unsigned long fname_len)
 {
 	intpermutobj_c(fname,fname_len);
 	C2F(putlhsvar)();

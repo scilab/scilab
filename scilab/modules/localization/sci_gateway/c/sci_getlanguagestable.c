@@ -16,7 +16,7 @@
 #include "tableslanguages.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_getlanguagestable) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getlanguagestable)(char *fname,unsigned long fname_len)
 {
 	static int n1,m1;
 	char **Output=NULL;

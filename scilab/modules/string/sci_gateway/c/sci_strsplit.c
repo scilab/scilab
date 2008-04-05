@@ -28,7 +28,7 @@ extern int C2F(icopy)(int *nbelements, int *arrayInput, int *incBetweenElementsI
 					  int *arrayOutput, int *incBetweenElementsOutputs);
 /* fortran function defined in SCI/modules/elementary_functions/src/fortran */
 /*----------------------------------------------------------------------------*/
-int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
 {
 	#define I_STK ((integer *)&C2F(stack))
 
@@ -207,7 +207,7 @@ int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
 #undef I_STK
 }
 /*----------------------------------------------------------------------------*/
-//int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len))
+//int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
 //{
 //	CheckRhs(2,2);
 //	CheckLhs(1,1);

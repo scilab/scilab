@@ -29,7 +29,7 @@ static long ymd_to_scalar (unsigned year, unsigned month, unsigned day);
 /*--------------------------------------------------------------------------*/
 int days[12]    = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 /*--------------------------------------------------------------------------*/
-int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_calendar)(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
 

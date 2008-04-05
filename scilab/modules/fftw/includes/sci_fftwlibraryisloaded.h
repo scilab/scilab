@@ -22,7 +22,7 @@
 #include "stack-c.h"
 #include "version.h"
 
-int sci_fftwlibraryisloaded __PARAMS((char *fname,unsigned long fname_len));
+int sci_fftwlibraryisloaded(char *fname,unsigned long fname_len);
 
 #endif /* __INTFFTWLIBRARYISLOADED__ */
 /*--------------------------------------------------------------------------*/

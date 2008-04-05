@@ -45,13 +45,12 @@
 #define TNm1      ptr->workt[nPoints-1]
 #define TP        (TNm1-0)
 
-extern int C2F(cvstr) __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
+extern int C2F(cvstr)(integer *,integer *,char *,integer *,unsigned long int);
 extern int C2F(mgetnc)();
 extern void C2F(mopen)();
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,
-                                long int nams_len));
-extern void C2F(mclose) __PARAMS((integer *fd, double *res));
-extern void sciprint __PARAMS((char *fmt,...));
+extern int C2F(cluni0)(char *name, char *nams, integer *ln, long int name_len,long int nams_len);
+extern void C2F(mclose)(integer *fd, double *res);
+extern void sciprint(char *fmt,...);
 int Mytridiagldltsolve(double *d, double * l, double * b, int n);
 int Myevalhermite2(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
 /*int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);*/

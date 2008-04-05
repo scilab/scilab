@@ -23,7 +23,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#if WIN32
+#if _MSC_VER
 #include <Windows.h>
 #include "../os_specific/win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
@@ -31,23 +31,23 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 /*-----------------------------------------------------------------------------------*/
 /* interface for the previous function Table */ 
 /*-----------------------------------------------------------------------------------*/ 
-extern int intendscicosim _PARAMS((char *fname, unsigned long l));
-extern int inttimescicos _PARAMS((char *fname,unsigned long l));
-extern int intduplicate _PARAMS((char *fname,unsigned long l));
-extern int intdiffobjs _PARAMS((char *fname,unsigned long l));
-extern int intxproperty _PARAMS((char *fname,unsigned long l));
-extern int intphasesim _PARAMS((char *fname,unsigned long l));
-extern int intsetxproperty _PARAMS((char *fname,unsigned long l));
-extern int intsetblockerror _PARAMS((char *fname,unsigned long l));
-extern int inttree2 _PARAMS((char *fname,unsigned long l));
-extern int inttree3 _PARAMS((char *fname,unsigned long l));
-extern int inttree4 _PARAMS((char *fname,unsigned long l));
-extern int intscicosimc _PARAMS((char *fname, unsigned long l));
-extern int intgetscicosvarsc _PARAMS((char *fname, unsigned long l));
-extern int intcurblkc _PARAMS((char *fname, unsigned long l));
-extern int intbuildouttb _PARAMS((char *fname, unsigned long l));
-extern int intpermutobj_c _PARAMS((char *fname,unsigned long l));
-extern int intscixstringb _PARAMS((char *fname,unsigned long l));
+extern int intendscicosim(char *fname, unsigned long l);
+extern int inttimescicos(char *fname,unsigned long l);
+extern int intduplicate(char *fname,unsigned long l);
+extern int intdiffobjs(char *fname,unsigned long l);
+extern int intxproperty(char *fname,unsigned long l);
+extern int intphasesim (char *fname,unsigned long l);
+extern int intsetxproperty(char *fname,unsigned long l);
+extern int intsetblockerror(char *fname,unsigned long l);
+extern int inttree2 (char *fname,unsigned long l);
+extern int inttree3(char *fname,unsigned long l);
+extern int inttree4(char *fname,unsigned long l);
+extern int intscicosimc(char *fname, unsigned long l);
+extern int intgetscicosvarsc(char *fname, unsigned long l);
+extern int intcurblkc(char *fname, unsigned long l);
+extern int intbuildouttb(char *fname, unsigned long l);
+extern int intpermutobj_c(char *fname,unsigned long l);
+extern int intscixstringb(char *fname,unsigned long l);
 /*-----------------------------------------------------------------------------------*/ 
 static intcscicosTable Tab[]={
   {inttimescicos,"scicos_time"},

@@ -16,7 +16,7 @@
 #include "gw_linear_algebra.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/ 
-static int C2F(intvoid) _PARAMS((char *fname, unsigned long fname_len))
+static int C2F(intvoid)(char *fname, unsigned long fname_len)
 {
 	return 0;
 }

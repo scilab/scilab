@@ -18,7 +18,7 @@ int gw_completion(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
-int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_completion)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_COMPLETION_H__ */
 

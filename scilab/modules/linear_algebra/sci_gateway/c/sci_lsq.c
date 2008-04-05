@@ -17,9 +17,9 @@
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(complexify)  __PARAMS((int *num));
-extern int C2F(intdgelsy) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzgelsy) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(complexify)(int *num);
+extern int C2F(intdgelsy)(char *fname, unsigned long fname_len);
+extern int C2F(intzgelsy)(char *fname, unsigned long fname_len);
 
 /*--------------------------------------------------------------------------*/
 int C2F(intlsq)(char *fname,unsigned long fname_len)

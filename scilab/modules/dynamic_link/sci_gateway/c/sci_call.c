@@ -16,14 +16,14 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intfort) _PARAMS((char *fname,unsigned long fname_len)); /* fortran */
+extern int C2F(intfort)(char *fname,unsigned long fname_len); /* fortran */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_fort) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_fort)(char *fname,unsigned long fname_len)
 {
 	return C2F(sci_call)(fname,fname_len);
 }
 /*--------------------------------------------------------------------------*/
-int C2F(sci_call) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_call)(char *fname,unsigned long fname_len)
 {
 	if (Rhs == 0)
 	{

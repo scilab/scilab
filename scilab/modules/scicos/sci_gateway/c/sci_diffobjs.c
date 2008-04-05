@@ -27,7 +27,7 @@
 #include "intcscicos.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_diffobjs) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_diffobjs)(char *fname,unsigned long fname_len)
 {
 	intdiffobjs(fname,fname_len);
 	C2F(putlhsvar)();

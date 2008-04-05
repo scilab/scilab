@@ -22,7 +22,7 @@
 #include "stack-c.h"
 #include "version.h"
 
-int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len));
+int sci_fftw_flags(char *fname,unsigned long fname_len);
 
 #endif /* __INTFFTW_FLAGS__ */
 /*--------------------------------------------------------------------------*/

@@ -13,9 +13,9 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(scildivf) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(scildivf)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ldivf) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_ldivf)(char *fname,unsigned long fname_len)
 {
 	C2F(scildivf)(fname,fname_len);
 	return 0;

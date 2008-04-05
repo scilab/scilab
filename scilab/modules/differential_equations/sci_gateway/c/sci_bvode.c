@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(scibvode)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_bvode) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_bvode)(char *fname,unsigned long fname_len)
 {
 	C2F(scibvode)(fname, fname_len);
 	return 0;

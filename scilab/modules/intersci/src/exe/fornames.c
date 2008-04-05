@@ -178,7 +178,7 @@ void ForDIMFOREXT(VARPTR var)
 
 typedef  struct  {
   int type;
-  void  (*fonc) __PARAMS((VARPTR var));} ForRhsTab ;
+  void  (*fonc) (VARPTR var);} ForRhsTab ;
 
 
 ForRhsTab FORTAB[] = {

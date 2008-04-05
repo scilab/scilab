@@ -46,7 +46,7 @@ extern unsigned cur_fftw_flags;
 *          gives the result of the transform.
 *
 */
-int sci_fftw __PARAMS((char *fname,unsigned long fname_len))
+int sci_fftw(char *fname,unsigned long fname_len)
 {
   /* declaration of variables to store scilab parameters address */
   static int lr1 = 0,li1 = 0,it1 = 0,m1 = 0, n1 = 0; /* Rhs(1) */

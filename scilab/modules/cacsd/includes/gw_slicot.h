@@ -20,7 +20,7 @@
 #ifndef __DEF_MXARRAY__
 #define __DEF_MXARRAY__
 typedef int mxArray;
-typedef int Gatefunc __PARAMS((int nlhs,mxArray *plhs[],int nrhs,mxArray *prhs[]));
+typedef int Gatefunc (int nlhs,mxArray *plhs[],int nrhs,mxArray *prhs[]);
 #endif
 /*--------------------------------------------------------------------------*/ 
 extern Gatefunc C2F(sident);

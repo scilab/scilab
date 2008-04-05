@@ -77,7 +77,7 @@ extern void updateScaleIfRequired(sciPointObj * pSubWin);
  * int intdiffobjs(fname,fname_len)
  * int inttree2(fname,fname_len)
  * int inttree3(fname,fname_len)
- * int inttree4 _PARAMS((char *fname,unsigned long fname_len))
+ * int inttree4 (char *fname,unsigned long fname_len)
  * int intxproperty(fname,fname_len)
  * int intphasesim(fname,fname_len)
  * int intsetxproperty(fname,fname_len)
@@ -281,7 +281,7 @@ int inttree3(fname,fname_len)
   return 0;
 }
 
-int inttree4 _PARAMS((char *fname,unsigned long fname_len))
+int inttree4(char *fname,unsigned long fname_len)
      /* [r1,r2]=ctree4(vec,outoin,outoinptr,nd,ddd) */
 {
   int un=1,ipvec,nvec,mvec,noin,moin,ipoin,noinr,moinr,ipoinr;
@@ -549,7 +549,7 @@ int intscicosimc(char *fname,unsigned long fname_len)
   * external structure and function declaration
   *********************************************/
  /*declaration of funnum (in scicos.c)*/
- extern int C2F(funnum) __PARAMS((char *fname));
+ extern int C2F(funnum)(char *fname);
 
  /************************************
   * variables and constants d?inition

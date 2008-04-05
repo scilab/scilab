@@ -27,7 +27,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intgetlabel)(char *fname,unsigned long fname_len); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getblocklabel) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getblocklabel)(char *fname,unsigned long fname_len)
 {
 	return C2F(intgetlabel)(fname,fname_len);
 }

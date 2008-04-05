@@ -34,10 +34,7 @@
 #define CHAR_R 'r'
 #define STR_ONCE 'o'
 /*------------------------------------------------------------------------*/
-/* TODO : Add tests !!! man , bench , search memory leak , and optimize ... */
-/* Not finish !!! :( */
-/*------------------------------------------------------------------------*/
-int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 {
 	char typ = CHAR_S;
      char **Str = NULL;

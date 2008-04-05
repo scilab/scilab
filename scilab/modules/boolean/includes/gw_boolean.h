@@ -17,10 +17,10 @@
 /*--------------------------------------------------------------------------*/
 int gw_boolean(void);
 /*--------------------------------------------------------------------------*/
-int C2F(intor) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(intand) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_find) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_bool2s) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(intor)(char *fname,unsigned long fname_len);
+int C2F(intand)(char *fname,unsigned long fname_len);
+int C2F(sci_find)(char *fname,unsigned long fname_len);
+int C2F(sci_bool2s)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_BOOLEAN__ */
 /*--------------------------------------------------------------------------*/

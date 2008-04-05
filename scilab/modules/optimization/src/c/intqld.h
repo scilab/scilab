@@ -17,7 +17,7 @@
 #include "stack-c.h"
 #include "Scierror.h"
 
-extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
+extern double C2F(dlamch)  (char *CMACH, unsigned long int);
 
 extern int C2F(ql0001)(int *m,int *me,int *mmax,int *n,int *nmax,int *mnn,
             double *c,double *d,double *a,double *b,double *xl,

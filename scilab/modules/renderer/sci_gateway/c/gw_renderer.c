@@ -18,7 +18,7 @@
 #include "gw_renderer.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-typedef int (*Renderer_Interf) __PARAMS((char *fname,unsigned long l));
+typedef int (*Renderer_Interf) (char *fname,unsigned long l);
 
 typedef struct table_struct
 {

@@ -431,7 +431,7 @@ void OutExtANY(FILE *f,VARPTR var,int insidelist,int nel)
 
 typedef  struct  {
   int type;
-  void (*fonc) __PARAMS((FILE *f,VARPTR var,int insidelist,int nel));} OutExtRhsTab ;
+  void (*fonc)(FILE *f,VARPTR var,int insidelist,int nel);} OutExtRhsTab ;
 
 
 

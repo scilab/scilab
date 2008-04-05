@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getio) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getio)(char *fname,unsigned long fname_len)
 {
 	int one = 1;
 	int four = 4;

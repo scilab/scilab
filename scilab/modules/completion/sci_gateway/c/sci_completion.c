@@ -21,7 +21,7 @@
 static int returnEmptyMatrix(int pos);
 static int putResultOnStack(int pos,char **result,int sizeresult);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_completion) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_completion)(char *fname,unsigned long fname_len)
 {
 	int l1 = 0, m1 = 0, n1 = 0;
 	char *partOfWord = NULL;

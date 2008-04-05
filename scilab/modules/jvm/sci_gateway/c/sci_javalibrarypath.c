@@ -22,7 +22,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_javalibrarypath) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_javalibrarypath)(char *fname,unsigned long fname_len)
 {
 	Rhs = Max(Rhs,0);
 	CheckRhs(0,1);

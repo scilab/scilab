@@ -22,7 +22,7 @@ void BeepLinuxWindows(void);
 /*--------------------------------------------------------------------------*/
 /* SCILAB function : beep */
 /*--------------------------------------------------------------------------*/
-int sci_Beep __PARAMS((char *fname,unsigned long fname_len))
+int sci_Beep(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
 	char *output=NULL ;

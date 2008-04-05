@@ -22,7 +22,7 @@
 /******************************************
  * SCILAB function : pvm_delhosts, fin = 11
  ******************************************/
-int intspvm_delhosts _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_delhosts(char *fname,unsigned long fname_len)
 {
   int m1,n1,un=1,mn2,l2;
   char  **Str1;

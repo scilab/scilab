@@ -13,7 +13,7 @@
 #include "gw_io.h"
 #include "intfilestat.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_fileinfo) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_fileinfo)(char *fname,unsigned long fname_len)
 {
 	C2F(intfilestat)(fname,fname_len);
 	return 0;

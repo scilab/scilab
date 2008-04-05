@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_spawn, fin = 19
  ******************************************/
-int intspvm_spawn _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_spawn (char *fname,unsigned long fname_len)
 {
   char *nw, *where ; 
   static char def_nw[]=""; 

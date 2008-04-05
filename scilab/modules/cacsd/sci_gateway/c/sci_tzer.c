@@ -18,9 +18,9 @@
 #include "localization.h"
 #include "gw_cacsd2.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(scitzer) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(scitzer)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_tzer) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_tzer)(char *fname,unsigned long fname_len)
 {
 	CheckRhs(4,4);
 	CheckLhs(2,3);

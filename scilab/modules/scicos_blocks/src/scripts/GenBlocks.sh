@@ -38,11 +38,11 @@ echo "/******* Please do not edit (file automatically generated) *************/"
 
 links=`cat $Fin`
 for i in $links
-	do ( echo "extern void F2C($i) __PARAMS((ARGS_scicos));"  >> $fout ;); done
+	do ( echo "extern void F2C($i) (ARGS_scicos);"  >> $fout ;); done
 
 links=`cat $Cin`
 for i in $links
-	do ( echo "extern void $i __PARAMS((ARGS_scicos));"  >> $fout ;); done
+	do ( echo "extern void $i (ARGS_scicos);"  >> $fout ;); done
 
 echo " " >> $fout 
 echo "OpTab tabsim[] ={" >> $fout

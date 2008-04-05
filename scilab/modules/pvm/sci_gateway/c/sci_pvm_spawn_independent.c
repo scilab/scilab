@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_spawn_independent, fin = 20
  ******************************************/
-int intspvm_spawn_independent _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_spawn_independent(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,mn1,m2,n2,l2,un=1,m3,n3,l3,lwhere,tids,res;
   static char def_where[]="null"; 

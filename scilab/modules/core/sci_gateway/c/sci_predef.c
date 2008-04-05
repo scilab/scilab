@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intpredef)(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_predef) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_predef)(char *fname,unsigned long fname_len)
 {
 	C2F(intpredef)();
 	return 0;

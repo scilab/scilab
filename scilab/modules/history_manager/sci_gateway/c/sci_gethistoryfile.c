@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_gethistoryfile) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_gethistoryfile)(char *fname,unsigned long fname_len)
 {
 	char *filename = NULL;
 	int m1 = 0, n1 = 0;

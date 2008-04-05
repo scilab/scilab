@@ -25,19 +25,19 @@
 #include "scicos_block4.h"
 
 /* function declaration */
-int MlistGetFieldNumber __PARAMS((int *ptr, const char *string));
-int C2F(intcscicos)  _PARAMS((void));
-int intendscicosim _PARAMS((char *fname, unsigned long fname_len));
-int inttimescicos _PARAMS((char *fname, unsigned long fname_len));
-int intduplicate  _PARAMS((char *fname, unsigned long fname_len));
-int intdiffobjs  _PARAMS((char *fname, unsigned long fname_len));
-int intxproperty  _PARAMS((char *fname, unsigned long fname_len));
-int intphasesim  _PARAMS((char *fname, unsigned long fname_len));
-int intsetxproperty  _PARAMS((char *fname, unsigned long fname_len));
-int intsetblockerror _PARAMS((char *fname, unsigned long fname_len));
-int inttree2 _PARAMS((char *fname, unsigned long fname_len));
-int inttree3 _PARAMS((char *fname, unsigned long fname_len));
-int inttree4 _PARAMS((char *fname, unsigned long fname_len));
+int MlistGetFieldNumber(int *ptr, const char *string);
+int C2F(intcscicos)(void);
+int intendscicosim(char *fname, unsigned long fname_len);
+int inttimescicos(char *fname, unsigned long fname_len);
+int intduplicate(char *fname, unsigned long fname_len);
+int intdiffobjs(char *fname, unsigned long fname_len);
+int intxproperty(char *fname, unsigned long fname_len);
+int intphasesim(char *fname, unsigned long fname_len);
+int intsetxproperty(char *fname, unsigned long fname_len);
+int intsetblockerror(char *fname, unsigned long fname_len);
+int inttree2(char *fname, unsigned long fname_len);
+int inttree3(char *fname, unsigned long fname_len);
+int inttree4(char *fname, unsigned long fname_len);
 static void duplicata();
 static void comp_size();
 int var2sci(void *x,int n,int m,int typ_var);

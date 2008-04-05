@@ -14,7 +14,7 @@
 #include "machine.h"
 #include "gw_boolean.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_bool2s) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_bool2s)(char *fname,unsigned long fname_len)
 {
 	extern int C2F(intsbool2s)();
 	C2F(intsbool2s)();

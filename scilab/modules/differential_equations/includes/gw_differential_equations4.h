@@ -18,10 +18,10 @@
 /*--------------------------------------------------------------------------*/
 int gw_differential_equations4(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_intg) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_int2d) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_int3d) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_feval) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_intg)(char *fname,unsigned long fname_len);
+int C2F(sci_int2d)(char *fname,unsigned long fname_len);
+int C2F(sci_int3d)(char *fname,unsigned long fname_len);
+int C2F(sci_feval)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif  /* __GW_DIFFERENTIAL_EQUATIONS4__ */
 /*--------------------------------------------------------------------------*/

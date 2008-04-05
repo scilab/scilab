@@ -18,36 +18,36 @@
 /*--------------------------------------------------------------------------*/ 
 int gw_string(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_length) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_string) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_emptystr) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_str2code) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_code2str) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strcat) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_ascii) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_grep) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strsplit) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_isletter) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_isdigit) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_isalphanum) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_isascii) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strcspn) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strncpy) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strrchr) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strchr) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strstr) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strrev) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strtok) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strspn) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_strtod) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_regexp) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_length)(char *fname,unsigned long fname_len);
+int C2F(sci_part)(char *fname,unsigned long fname_len);
+int C2F(sci_string)(char *fname,unsigned long fname_len);
+int C2F(sci_convstr)(char *fname,unsigned long fname_len);
+int C2F(sci_emptystr)(char *fname,unsigned long fname_len);
+int C2F(sci_str2code)(char *fname,unsigned long fname_len);
+int C2F(sci_code2str)(char *fname,unsigned long fname_len);
+int C2F(sci_strcat)(char *fname,unsigned long fname_len);
+int C2F(sci_strindex)(char *fname,unsigned long fname_len);
+int C2F(sci_strsubst)(char *fname,unsigned long fname_len);
+int C2F(sci_ascii)(char *fname,unsigned long fname_len);
+int C2F(sci_grep)(char *fname,unsigned long fname_len);
+int C2F(sci_tokens)(char *fname,unsigned long fname_len);
+int C2F(sci_strsplit)(char *fname,unsigned long fname_len);
+int C2F(sci_stripblanks)(char *fname,unsigned long fname_len);
+int C2F(sci_strcmp)(char *fname,unsigned long fname_len);
+int C2F(sci_isletter)(char *fname,unsigned long fname_len);
+int C2F(sci_isdigit)(char *fname,unsigned long fname_len);
+int C2F(sci_isalphanum)(char *fname,unsigned long fname_len);
+int C2F(sci_isascii)(char *fname,unsigned long fname_len);
+int C2F(sci_strcspn)(char *fname,unsigned long fname_len);
+int C2F(sci_strncpy)(char *fname,unsigned long fname_len);
+int C2F(sci_strrchr)(char *fname,unsigned long fname_len);
+int C2F(sci_strchr)(char *fname,unsigned long fname_len);
+int C2F(sci_strstr)(char *fname,unsigned long fname_len);
+int C2F(sci_strrev)(char *fname,unsigned long fname_len);
+int C2F(sci_strtok)(char *fname,unsigned long fname_len);
+int C2F(sci_strspn)(char *fname,unsigned long fname_len);
+int C2F(sci_strtod)(char *fname,unsigned long fname_len);
+int C2F(sci_regexp)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_STRING__ */
 /*--------------------------------------------------------------------------*/

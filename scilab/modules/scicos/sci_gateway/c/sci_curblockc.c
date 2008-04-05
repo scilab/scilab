@@ -27,7 +27,7 @@
 #include "intcscicos.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_curblockc) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_curblockc)(char *fname,unsigned long fname_len)
 {
 	intcurblkc(fname,fname_len);
 	C2F(putlhsvar)();

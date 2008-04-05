@@ -18,7 +18,7 @@
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_x_choose_modeless) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_x_choose_modeless)(char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0;
   int nbRowItems = 0, nbColItems = 0;

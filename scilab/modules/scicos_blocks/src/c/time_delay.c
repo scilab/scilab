@@ -26,7 +26,7 @@
 #define NULL    0
 #endif
 
-extern void sciprint __PARAMS((char *fmt,...));
+extern void sciprint(char *fmt,...);
 
 void time_delay(scicos_block *block,int flag)
 {/*  rpar[0]=delay, rpar[1]=init value, ipar[0]=buffer length */

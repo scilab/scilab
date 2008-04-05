@@ -19,9 +19,9 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intstring) _PARAMS((int *id)); /* fortran routine */
+extern int C2F(intstring) (int *id); /* fortran routine */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_string) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_string)(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,1);
 	CheckLhs(1,3);

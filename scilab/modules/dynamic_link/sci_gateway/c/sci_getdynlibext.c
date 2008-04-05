@@ -17,7 +17,7 @@
 #include "stack-c.h"
 #include "gw_dynamic_link.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getdynlibext) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getdynlibext)(char *fname,unsigned long fname_len)
 {
 	static int n1 = 0, m1 = 0;
 	int outIndex = 0 ;

@@ -15,11 +15,11 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intpoly) _PARAMS((int *id));
+extern int C2F(intpoly)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_poly) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_poly)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_poly) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_poly)(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intpoly)(id);

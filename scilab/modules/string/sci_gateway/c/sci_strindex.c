@@ -45,7 +45,7 @@ return (*(struct In *)a).data > (*(struct In *)b).data ? 1 : -1;
 }
 
 /*------------------------------------------------------------------------*/
-int C2F(sci_strindex) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 {
 	BOOL bStrindex_with_pattern = FALSE;
 	int outIndex = 0;

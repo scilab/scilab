@@ -45,14 +45,14 @@ except every 100th isn't, and every 400th is).  */
 	#endif
 #endif
 /*--------------------------------------------------------------------------*/
-static int week_number __PARAMS ((struct tm *tp));
+static int week_number (struct tm *tp);
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
     static struct __timeb64 timebufferW;
 #else
   static struct timeval timebufferU;
 #endif
-static int week_days __PARAMS ((int yday, int wday));
+static int week_days (int yday, int wday);
 /*--------------------------------------------------------------------------*/
 static int ChronoFlag=0;
 /*--------------------------------------------------------------------------*/

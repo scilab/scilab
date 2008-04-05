@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intdispbpt)(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_dispbpt) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_dispbpt)(char *fname,unsigned long fname_len)
 {
 	C2F(intdispbpt)();
 	return 0;

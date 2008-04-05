@@ -34,7 +34,7 @@
 #define BLANK_CODE 32
 #define EMPTY_STRING ""
 /*--------------------------------------------------------------------------*/
-int C2F(sci_tokens) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_tokens)(char *fname,unsigned long fname_len)
 {
 	char **Output_String = NULL;
 

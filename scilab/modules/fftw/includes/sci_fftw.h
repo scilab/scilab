@@ -22,7 +22,7 @@
 #include "stack-c.h"
 #include "version.h"
 
-int sci_fftw __PARAMS((char *fname,unsigned long fname_len));
+int sci_fftw(char *fname,unsigned long fname_len);
 
 #endif /* __INTFFTW__ */
 /*--------------------------------------------------------------------------*/

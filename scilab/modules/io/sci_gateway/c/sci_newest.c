@@ -26,7 +26,7 @@
 /*--------------------------------------------------------------------------*/
 static int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_newest)(char *fname,unsigned long fname_len)
 {
 	CheckLhs(1,1);
 	if (Rhs == 0)

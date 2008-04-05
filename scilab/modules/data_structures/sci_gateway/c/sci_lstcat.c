@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlstcat)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_lstcat) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_lstcat)(char *fname,unsigned long fname_len)
 {
     C2F(intlstcat)();
 	return 0;

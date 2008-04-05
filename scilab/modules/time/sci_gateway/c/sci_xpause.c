@@ -21,7 +21,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_xpause)(char *fname,unsigned long fname_len)
 {
 	integer m1,n1,l1,sec=0;
 

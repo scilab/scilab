@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intiserror)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_iserror) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_iserror)(char *fname,unsigned long fname_len)
 {
  	C2F(intiserror)();
 	return 0;

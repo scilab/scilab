@@ -9,7 +9,7 @@
 #include "filesmanagement.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
-int int_objfprintf __PARAMS((char *fname,unsigned long fname_len))
+int int_objfprintf(char *fname,unsigned long fname_len)
 {
 	FILE *f;
 	static int l1, m1, n1,l2,m2,n2,lcount,rval, mx, mk, nk, k;

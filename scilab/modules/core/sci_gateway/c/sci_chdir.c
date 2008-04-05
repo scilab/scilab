@@ -18,7 +18,7 @@
 #include "localization.h"
 #include "cluni0.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_chdir) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_chdir)(char *fname,unsigned long fname_len)
 {
 	Rhs = Max(0, Rhs);
 	CheckRhs(0,1);

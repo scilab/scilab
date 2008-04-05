@@ -27,7 +27,7 @@
 #define CHAR_R "r"
 #define CHAR_S "s"
 /*-------------------------------------------------------------------------------------*/
-int C2F(sci_strsubst) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 {
 	BOOL bStrsubst_with_pattern = FALSE;
 	CheckRhs(3,4);

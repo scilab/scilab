@@ -21,7 +21,7 @@
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
 #if (defined(sun) && !defined(SYSV)) 
-char *strerror __PARAMS((int errcode));
+char *strerror (int errcode);
 #endif
 /*--------------------------------------------------------------------------*/
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)

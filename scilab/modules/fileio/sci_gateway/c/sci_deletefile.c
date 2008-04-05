@@ -18,7 +18,7 @@
 #include "deleteafile.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_deletefile) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_deletefile)(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,1);
 	CheckLhs(1,1);

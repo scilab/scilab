@@ -24,7 +24,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_xls_read) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_xls_read)(char *fname,unsigned long fname_len)
 {
 	int m1 = 0,n1 = 0,l1 = 0,zero = 0,ierr = 0;
 	double *data = NULL;

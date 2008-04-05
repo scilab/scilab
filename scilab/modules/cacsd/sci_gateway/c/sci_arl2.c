@@ -16,11 +16,11 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(sciarl2) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciarl2)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_arl2) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_arl2)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_arl2) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_arl2)(char *fname,unsigned long fname_len)
 {
 	C2F(sciarl2)(fname,fname_len);
 	return 0;

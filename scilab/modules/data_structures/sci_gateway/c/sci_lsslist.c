@@ -16,7 +16,7 @@
 extern int C2F(mtlist)();
 extern int C2F(lsstyp)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_lsslist) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_lsslist)(char *fname,unsigned long fname_len)
 {
    C2F(mtlist)(C2F(lsstyp));
    return 0;

@@ -14,7 +14,7 @@
 #include <string.h>
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern void vect_and __PARAMS((int *v,int m,int n,int *r,int opt));
+extern void vect_and(int *v,int m,int n,int *r,int opt);
 /*--------------------------------------------------------------------------*/
 int C2F(intand)(char *fname,unsigned long l);
 /*--------------------------------------------------------------------------*/

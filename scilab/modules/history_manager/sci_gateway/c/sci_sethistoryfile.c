@@ -17,7 +17,7 @@
 #include "stack-c.h"
 #include "HistoryManager.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sethistoryfile) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_sethistoryfile)(char *fname,unsigned long fname_len)
 {
 	char  *filename = NULL;
 

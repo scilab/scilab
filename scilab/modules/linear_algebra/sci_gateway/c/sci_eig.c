@@ -19,18 +19,14 @@
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(complexify)  __PARAMS((int *num));
+extern int C2F(complexify)(int *num);
 
-/* Gonna kill all externs with clear definition !!! */
-/* extern int C2F(issymmetric)  __PARAMS((int *num)); */
-
-extern int C2F(intdgeev) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intdsyev) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzgeev) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzheev) __PARAMS((char *fname, unsigned long fname_len));
-
-extern int C2F(intdggev) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzggev) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intdgeev)(char *fname, unsigned long fname_len);
+extern int C2F(intdsyev)(char *fname, unsigned long fname_len);
+extern int C2F(intzgeev)(char *fname, unsigned long fname_len);
+extern int C2F(intzheev)(char *fname, unsigned long fname_len);
+extern int C2F(intdggev)(char *fname, unsigned long fname_len);
+extern int C2F(intzggev)(char *fname, unsigned long fname_len);
 
 /*--------------------------------------------------------------------------*/
 int C2F(inteig)(char *fname,unsigned long fname_len);

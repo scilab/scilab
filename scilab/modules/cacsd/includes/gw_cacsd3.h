@@ -19,9 +19,9 @@
 /*--------------------------------------------------------------------------*/
 int gw_cacsd3(void);
 /*--------------------------------------------------------------------------*/
-extern int C2F(sci_arl2) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_residu) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_ldiv) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_arl2)(char *fname,unsigned long fname_len);
+extern int C2F(sci_residu)(char *fname,unsigned long fname_len);
+extern int C2F(sci_ldiv)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_CACSD3__ */
 /*--------------------------------------------------------------------------*/

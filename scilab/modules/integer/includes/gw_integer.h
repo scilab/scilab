@@ -19,31 +19,31 @@
 /*--------------------------------------------------------------------------*/ 
 int gw_integer(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(sciint32) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciint16) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciint8) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciinttype) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(scidouble) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciuint32) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciuint16) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciuint8) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(scimgeti) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciimput) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciiconvert) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciiabs) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciidiag) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciitriu) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciitril) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciisum) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciicumsum) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciimax) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciimin) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciimaxi) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciimini) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciip) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciimatrix) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciiprod) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciicumprod) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sciint32)(char *fname,unsigned long fname_len);
+int C2F(sciint16)(char *fname,unsigned long fname_len);
+int C2F(sciint8)(char *fname,unsigned long fname_len);
+int C2F(sciinttype)(char *fname,unsigned long fname_len);
+int C2F(scidouble)(char *fname,unsigned long fname_len);
+int C2F(sciuint32)(char *fname,unsigned long fname_len);
+int C2F(sciuint16)(char *fname,unsigned long fname_len);
+int C2F(sciuint8)(char *fname,unsigned long fname_len);
+int C2F(scimgeti)(char *fname,unsigned long fname_len);
+int C2F(sciimput)(char *fname,unsigned long fname_len);
+int C2F(sciiconvert)(char *fname,unsigned long fname_len);
+int C2F(sciiabs)(char *fname,unsigned long fname_len);
+int C2F(sciidiag)(char *fname,unsigned long fname_len);
+int C2F(sciitriu)(char *fname,unsigned long fname_len);
+int C2F(sciitril)(char *fname,unsigned long fname_len);
+int C2F(sciisum)(char *fname,unsigned long fname_len);
+int C2F(sciicumsum)(char *fname,unsigned long fname_len);
+int C2F(sciimax)(char *fname,unsigned long fname_len);
+int C2F(sciimin)(char *fname,unsigned long fname_len);
+int C2F(sciimaxi)(char *fname,unsigned long fname_len);
+int C2F(sciimini)(char *fname,unsigned long fname_len);
+int C2F(sciip)(char *fname,unsigned long fname_len);
+int C2F(sciimatrix)(char *fname,unsigned long fname_len);
+int C2F(sciiprod)(char *fname,unsigned long fname_len);
+int C2F(sciicumprod)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_INTEGER__ */
 /*--------------------------------------------------------------------------*/

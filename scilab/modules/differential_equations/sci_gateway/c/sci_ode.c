@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(sciode)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ode) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_ode)(char *fname,unsigned long fname_len)
 {
 	C2F(sciode)();
 	return 0;

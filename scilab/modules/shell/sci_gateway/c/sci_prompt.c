@@ -18,7 +18,7 @@
 /*--------------------------------------------------------------------------*/
 #define PROMPT_SIZE_MAX 64
 /*--------------------------------------------------------------------------*/
-int C2F(sci_prompt) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_prompt)(char *fname,unsigned long fname_len)
 {
 	char currentPrompt[PROMPT_SIZE_MAX];
 	static int n1 = 0, m1 = 0;

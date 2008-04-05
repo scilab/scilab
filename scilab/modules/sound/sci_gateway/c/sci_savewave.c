@@ -22,7 +22,7 @@ static long int lout;
 /*--------------------------------------------------------------------------*/
 /* SCILAB function : savewave */
 /*--------------------------------------------------------------------------*/
-int sci_savewave __PARAMS((char *fname,unsigned long fname_len))
+int sci_savewave(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,mn2,l2,m3,n3,l3,l4,err,rate=22050,channels;
   int un=1;

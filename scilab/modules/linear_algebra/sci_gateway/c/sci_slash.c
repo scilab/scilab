@@ -17,10 +17,10 @@
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(complexify)  __PARAMS((int *num));
+extern int C2F(complexify)(int *num);
 
-extern int C2F(intdgesv4) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzgesv4) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intdgesv4)(char *fname, unsigned long fname_len);
+extern int C2F(intzgesv4)(char *fname, unsigned long fname_len);
 
 /*--------------------------------------------------------------------------*/
 int C2F(intslash)(char *fname,unsigned long fname_len)

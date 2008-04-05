@@ -22,9 +22,9 @@
 #include <string.h>
 
 #include "machine.h"
-extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
-extern void sciprint __PARAMS((char *fmt,...));
-extern void mget2 __PARAMS((FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr));
+extern  int C2F(cvstr)(integer *,integer *,char *,integer *,unsigned long int);
+extern void sciprint(char *fmt,...);
+extern void mget2(FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr);
 
 
 int worldsize(type)

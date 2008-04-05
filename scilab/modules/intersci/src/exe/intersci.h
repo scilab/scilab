@@ -10,7 +10,7 @@
  *
  */
 
-#include "PARAMS.h"
+
 
 /* VERSION et DATE */
 #define VERSION "2.2"
@@ -163,59 +163,59 @@ char *funNames[MAXFUN]; /* array of function names */
 
 /** functions **/
 
-void WriteInfoCode __PARAMS((FILE *f));
-int GetNumberInScilabCall __PARAMS((int ivar));
-int GetNumberInFortranCall __PARAMS((int ivar));
-char *SGetSciType __PARAMS((int type));
-char *SGetForType __PARAMS((int type));
-void AddForName __PARAMS((IVAR ivar, char *name));
-void ChangeForName __PARAMS((IVAR ivar, char *name));
-void Copyright __PARAMS((void));
-char *Forname2Int __PARAMS((char *str));
-void GenFundef __PARAMS((char *file, int interf));
-int GetBasType __PARAMS((char *sname));
-int GetForType __PARAMS((char *type));
-IVAR GetExistOutVar __PARAMS((void));
-IVAR GetExistVar __PARAMS((char *name));
-IVAR GetOutVar __PARAMS((char *name));
-IVAR GetVar __PARAMS((char *name, int p));
-void OptVar __PARAMS(());
-int ParseLine __PARAMS((char *s, char **words));
-int ParseScilabLine __PARAMS((char *s, char **words));
-int ReadListElement __PARAMS((FILE *f, char *varlistname, IVAR iivar, int nel));
-void ReadListFile __PARAMS((char *listname, char *varlistname, IVAR ivar));
-void ISCIReadFile __PARAMS((char *file));
-int ReadFunction __PARAMS((FILE *f));
-int TypeToBas __PARAMS(());
-void WriteArgCheck __PARAMS((FILE *f, int i));
-void WriteCall __PARAMS(());
-void WriteCallRest __PARAMS((FILE *f, IVAR ivar, int farg, char *call));
-void WriteCallConvertion __PARAMS((FILE *f, IVAR ivar, char *farg, char *barg, char *call));
-void WriteCrossCheck __PARAMS((FILE *f));
-void WriteEqualCheck __PARAMS((FILE *f));
-void WriteExternalVariableOutput __PARAMS((FILE *f, VARPTR var, int farg, int insidelist, int nel));
-void WriteFortranCall __PARAMS((FILE *f));
-void WriteFunctionCode __PARAMS((FILE *f));
-void WriteHeader __PARAMS((FILE *f, char *fname0, char *fname));
-void WriteMainHeader __PARAMS((FILE *f, char *fname));
-void WriteListAnalysis __PARAMS((FILE *f, int i));
-void WriteOutput __PARAMS((FILE *f));
-void WriteVariable __PARAMS((FILE *f, VARPTR var, IVAR ivar, int insidelist, int nel));
-void WriteVariableOutput __PARAMS((FILE *f, VARPTR var, int barg, int farg, int convert, int insidelist, int nel));
-void AddForName1 __PARAMS((IVAR ivar, char *name));
-void ForNameClean __PARAMS((void));
-void InitDeclare  __PARAMS((void));
-void ResetDeclare __PARAMS((void));
-void WriteMain  __PARAMS((FILE *f,char *file));
-void  FCprintf __PARAMS((FILE*,char *fmt,...));
-void  Fprintf __PARAMS((FILE*,int,char *format,...));
-void white __PARAMS( (FILE *f, int ind));
-void AddDeclare __PARAMS((int type, char *declaration));
-void InitDeclare __PARAMS((void));
-void ResetDeclare __PARAMS((void));
-void WriteDeclaration  __PARAMS((FILE*f));
-void WriteCallRestCheck __PARAMS((FILE *f, VARPTR var, int farg, char *name, int iel, int flag));
-int CreatePredefVar __PARAMS((char *name));
-void Check __PARAMS((FILE *f, char *str, VARPTR var, int i1, int nel));
-void OptvarGetSize __PARAMS((char *optvar, char *size, char *data));
-void WriteAddInter __PARAMS((char *file));
+void WriteInfoCode (FILE *f);
+int GetNumberInScilabCall (int ivar);
+int GetNumberInFortranCall (int ivar);
+char *SGetSciType (int type);
+char *SGetForType (int type);
+void AddForName (IVAR ivar, char *name);
+void ChangeForName (IVAR ivar, char *name);
+void Copyright (void);
+char *Forname2Int (char *str);
+void GenFundef (char *file, int interf);
+int GetBasType (char *sname);
+int GetForType (char *type);
+IVAR GetExistOutVar (void);
+IVAR GetExistVar (char *name);
+IVAR GetOutVar (char *name);
+IVAR GetVar (char *name, int p);
+void OptVar ();
+int ParseLine (char *s, char **words);
+int ParseScilabLine (char *s, char **words);
+int ReadListElement (FILE *f, char *varlistname, IVAR iivar, int nel);
+void ReadListFile (char *listname, char *varlistname, IVAR ivar);
+void ISCIReadFile (char *file);
+int ReadFunction (FILE *f);
+int TypeToBas ();
+void WriteArgCheck (FILE *f, int i);
+void WriteCall ();
+void WriteCallRest (FILE *f, IVAR ivar, int farg, char *call);
+void WriteCallConvertion (FILE *f, IVAR ivar, char *farg, char *barg, char *call);
+void WriteCrossCheck (FILE *f);
+void WriteEqualCheck (FILE *f);
+void WriteExternalVariableOutput (FILE *f, VARPTR var, int farg, int insidelist, int nel);
+void WriteFortranCall (FILE *f);
+void WriteFunctionCode (FILE *f);
+void WriteHeader (FILE *f, char *fname0, char *fname);
+void WriteMainHeader (FILE *f, char *fname);
+void WriteListAnalysis (FILE *f, int i);
+void WriteOutput (FILE *f);
+void WriteVariable (FILE *f, VARPTR var, IVAR ivar, int insidelist, int nel);
+void WriteVariableOutput (FILE *f, VARPTR var, int barg, int farg, int convert, int insidelist, int nel);
+void AddForName1 (IVAR ivar, char *name);
+void ForNameClean (void);
+void InitDeclare  (void);
+void ResetDeclare (void);
+void WriteMain  (FILE *f,char *file);
+void  FCprintf (FILE*,char *fmt,...);
+void  Fprintf (FILE*,int,char *format,...);
+void white  (FILE *f, int ind);
+void AddDeclare (int type, char *declaration);
+void InitDeclare (void);
+void ResetDeclare (void);
+void WriteDeclaration  (FILE*f);
+void WriteCallRestCheck (FILE *f, VARPTR var, int farg, char *name, int iel, int flag);
+int CreatePredefVar (char *name);
+void Check (FILE *f, char *str, VARPTR var, int i1, int nel);
+void OptvarGetSize (char *optvar, char *size, char *data);
+void WriteAddInter (char *file);

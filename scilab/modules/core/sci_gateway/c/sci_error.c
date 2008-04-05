@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(interror)(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_error) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_error)(char *fname,unsigned long fname_len)
 {
 	C2F(interror)();
 	return 0;

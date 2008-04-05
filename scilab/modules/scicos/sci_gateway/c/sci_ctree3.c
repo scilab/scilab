@@ -27,7 +27,7 @@
 #include "intcscicos.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ctree3) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_ctree3)(char *fname,unsigned long fname_len)
 {
 	inttree3(fname,fname_len);
 	C2F(putlhsvar)();

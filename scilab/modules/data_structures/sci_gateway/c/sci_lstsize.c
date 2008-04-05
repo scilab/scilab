@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlstsize)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_lstsize) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_lstsize)(char *fname,unsigned long fname_len)
 {
     C2F(intlstsize)();
 	return 0;

@@ -21,9 +21,9 @@
 #define DOUBLE(x)	( stk(x))
 #define CMPLX(x)	(zstk(x))
 /*--------------------------------------------------------------------------*/
-extern int C2F(dseupd) __PARAMS((int *rvec, char *howmny, int *select, double *d, double *z, int *ldz, double *sigma, char *bmat, int *n, char *which, int *nev ,double *tol, double *resid, int *ncv, double *v ,int *ldv, int *iparam,int *ipntr, double *workd,double *workl,int *lworkl,int *info, unsigned long rvec_length, unsigned long howmany_length, unsigned long bmat_length, unsigned long which_len));
+extern int C2F(dseupd)(int *rvec, char *howmny, int *select, double *d, double *z, int *ldz, double *sigma, char *bmat, int *n, char *which, int *nev ,double *tol, double *resid, int *ncv, double *v ,int *ldv, int *iparam,int *ipntr, double *workd,double *workl,int *lworkl,int *info, unsigned long rvec_length, unsigned long howmany_length, unsigned long bmat_length, unsigned long which_len);
 /*--------------------------------------------------------------------------*/
-int C2F(intdseupd) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(intdseupd)(char *fname,unsigned long fname_len)
 {
   int RVEC,     mRVEC,     nRVEC,      pRVEC;
   int HOWMANY,  mHOWMANY,  nHOWMANY,   pHOWMANY;

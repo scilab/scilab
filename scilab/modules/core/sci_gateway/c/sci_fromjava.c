@@ -15,15 +15,7 @@
 #include "MALLOC.h"
 #include "fromjava.h"
 /*--------------------------------------------------------------------------*/
-int C2F(intfromjava) _PARAMS((char *fname));
-/*--------------------------------------------------------------------------*/
-int C2F(sci_fromjava) _PARAMS((char *fname,unsigned long fname_len))
-{
-	C2F(intfromjava)(fname);
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
-int C2F(intfromjava) _PARAMS((char *fname))
+int C2F(sci_fromjava)(char *fname,unsigned long fname_len)
 {
 	static int n1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int)+1);

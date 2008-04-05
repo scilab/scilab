@@ -27,7 +27,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intvec2var)(char *fname,unsigned long fname_len); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_vec2var) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_vec2var)(char *fname,unsigned long fname_len)
 {
 	C2F(intvec2var)(fname,fname_len);
 	return 0;

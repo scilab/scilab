@@ -26,7 +26,7 @@
 #define _fullpath(a,r,l)        realpath(r,a)
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(sci_fullpath) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
 {
 	Rhs=Max(Rhs,0);
 	CheckRhs(1,1) ;

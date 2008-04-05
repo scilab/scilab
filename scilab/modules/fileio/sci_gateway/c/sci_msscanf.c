@@ -13,7 +13,7 @@
 #include "localization.h"
 
 /*--------------------------------------------------------------------------*/
-int int_objsscanf __PARAMS((char *fname,unsigned long fname_len))
+int int_objsscanf(char *fname,unsigned long fname_len)
 {
 	static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
 	int args,retval,retval_s,err,n_count,lw,il1,ild1,skip;

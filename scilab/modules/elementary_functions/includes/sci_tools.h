@@ -32,10 +32,10 @@
 
 typedef struct {double re, im;} complex16;
 
-extern int  F2C(mycmatptr) __PARAMS((char *name,int *m, int *n, int *type, int *lp));
-extern void C2F(ccomplexf) __PARAMS((int *n, double **ip, double *op));
-extern void (SciToF77)  __PARAMS((double *ptr, int size, int lda));
-extern void (F77ToSci)  __PARAMS((double *ptr, int size, int lda));
+extern int  F2C(mycmatptr)(char *name,int *m, int *n, int *type, int *lp);
+extern void C2F(ccomplexf)(int *n, double **ip, double *op);
+extern void (SciToF77)(double *ptr, int size, int lda);
+extern void (F77ToSci)(double *ptr, int size, int lda);
 
 void double2z(double *ptr, double *ptr77z, int size, int lda);
 void z2double(double *ptrz, double *ptrsci, int size, int lda);

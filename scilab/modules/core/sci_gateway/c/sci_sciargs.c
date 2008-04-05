@@ -16,7 +16,7 @@
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sciargs) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_sciargs)(char *fname,unsigned long fname_len)
 {
 	char **arguments = NULL;
 	int nb_arguments = 0;

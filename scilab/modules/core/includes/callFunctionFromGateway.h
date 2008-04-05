@@ -15,7 +15,7 @@
 
 #include "machine.h"
 
-typedef int (*function_Interf) __PARAMS((char *fname,unsigned long l));
+typedef int (*function_Interf)(char *fname,unsigned long l);
 
 /** 
  * See SCI/modules/<module_name>/sci_gateway/c/gw_<module_name>.c for example 

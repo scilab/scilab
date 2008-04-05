@@ -12,9 +12,9 @@
 
 #include "gw_sparse.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intspmax) _PARAMS((char *minmax,int *id));
+extern int C2F(intspmax)(char *minmax,int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_spmin) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_spmin)(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	char job[]="min";

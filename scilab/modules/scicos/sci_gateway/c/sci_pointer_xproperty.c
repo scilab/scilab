@@ -27,7 +27,7 @@
 #include "intcscicos.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_pointer_xproperty) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_pointer_xproperty)(char *fname,unsigned long fname_len)
 {
 	intxproperty(fname,fname_len);
 	C2F(putlhsvar)();

@@ -29,11 +29,11 @@
 #include "Scierror.h"
 #include "freeArrayOfString.h"
 /*----------------------------------------------------------------------------*/
-int C2F(sci_convstr) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_convstr)(char *fname,unsigned long fname_len)
 {
 	char **Input_Matrix = NULL;
 	char **Output_Matrix = NULL;
-	char typ = LOW; /* define a constant in convstr.h */
+	char typ = LOW;
 	int numRow = 0;
 	int numCol = 0;
 	int Row_Num_One = 0;

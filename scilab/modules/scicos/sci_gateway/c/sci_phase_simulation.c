@@ -27,7 +27,7 @@
 #include "intcscicos.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_phase_simulation) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_phase_simulation)(char *fname,unsigned long fname_len)
 {
 	intphasesim(fname,fname_len);
 	C2F(putlhsvar)();

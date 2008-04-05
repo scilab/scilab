@@ -22,16 +22,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intgetos) _PARAMS((char *fname));
-/*--------------------------------------------------------------------------*/
-int C2F(sci_getos) _PARAMS((char *fname,unsigned long fname_len))
-{
-	C2F(intgetos)(fname);
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
-/* Allan CORNET INRIA 2004 */
-int C2F(intgetos) _PARAMS((char *fname))
+int C2F(sci_getos)(char *fname,unsigned long fname_len)
 {
 	static int n1,m1;
 	char OperatingSystem[256];

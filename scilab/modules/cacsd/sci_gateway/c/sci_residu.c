@@ -16,9 +16,9 @@
 #include "stack-c.h"
 #include "gw_cacsd3.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(sciresidu) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciresidu)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_residu) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_residu)(char *fname,unsigned long fname_len)
 {
 	C2F(sciresidu)(fname,fname_len);
 	return 0;

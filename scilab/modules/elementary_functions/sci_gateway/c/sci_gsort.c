@@ -24,7 +24,7 @@
 #include "freeArrayOfString.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_gsort) _PARAMS((char *fname, unsigned long fname_len))
+int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 {
 	char iord[2] ;
 	char typex[10];

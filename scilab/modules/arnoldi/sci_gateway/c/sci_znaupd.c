@@ -23,7 +23,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(znaupd)();
 /*--------------------------------------------------------------------------*/
-int C2F(intznaupd) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(intznaupd)(char *fname,unsigned long fname_len)
 {
   int IDO,   mIDO,   nIDO,    pIDO;
   int BMAT,  mBMAT,  nBMAT,   pBMAT;

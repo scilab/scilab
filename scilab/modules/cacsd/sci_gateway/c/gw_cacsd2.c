@@ -15,7 +15,7 @@
 #include "gw_cacsd2.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static int C2F(sci_xxxx)_PARAMS((char *fname,unsigned long fname_len))
+static int C2F(sci_xxxx)(char *fname,unsigned long fname_len)
 {
 	/* not used */
 	return 0;

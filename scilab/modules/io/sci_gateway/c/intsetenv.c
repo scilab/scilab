@@ -24,7 +24,7 @@
 /*--------------------------------------------------------------------------*/
 static int ReturnValueSetenv(int value);
 /*--------------------------------------------------------------------------*/
-int	C2F(intsetenv) _PARAMS((char *fname, unsigned long len))
+int	C2F(intsetenv)(char *fname, unsigned long len)
 {
 	static int l1,n1,m1;
 	int TypeVar1=GetType(1);

@@ -18,12 +18,12 @@
 /*--------------------------------------------------------------------------*/
 int gw_arnoldi(void);
 /*--------------------------------------------------------------------------*/
-int C2F(intdsaupd) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(intdnaupd) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(intznaupd) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(intdseupd) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(intdneupd) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(intzneupd) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(intdsaupd)(char *fname,unsigned long fname_len);
+int C2F(intdnaupd)(char *fname,unsigned long fname_len);
+int C2F(intznaupd)(char *fname,unsigned long fname_len);
+int C2F(intdseupd)(char *fname,unsigned long fname_len);
+int C2F(intdneupd)(char *fname,unsigned long fname_len);
+int C2F(intzneupd)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_ARNOLDI_H__ */
 /*--------------------------------------------------------------------------*/

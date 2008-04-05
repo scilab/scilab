@@ -21,7 +21,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_x_choice) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_x_choice)(char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0;
   int nbRowDefaultValues = 0, nbColDefaultValues = 0;

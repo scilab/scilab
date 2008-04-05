@@ -19,6 +19,6 @@
  * @param[in]
  */
 
-int	C2F(intsetenv) _PARAMS((char *fname, unsigned long len));
+int	C2F(intsetenv)(char *fname, unsigned long len);
 
 #endif /* __INTSETENV_H__ */

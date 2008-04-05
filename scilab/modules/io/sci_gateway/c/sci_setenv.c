@@ -14,7 +14,7 @@
 #include "setenvc.h"
 #include "intsetenv.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_setenv) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_setenv)(char *fname,unsigned long fname_len)
 {
 	C2F(intsetenv)(fname,fname_len);
 	return 0;

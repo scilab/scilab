@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_mytid, fin = 16
  ******************************************/
-int intspvm_mytid _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_mytid(char *fname,unsigned long fname_len)
 {
   int un=1,l1;
   CheckRhs(0,0);

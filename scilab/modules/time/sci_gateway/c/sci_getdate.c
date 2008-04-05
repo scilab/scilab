@@ -31,7 +31,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getdate)(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
 	int i=0;

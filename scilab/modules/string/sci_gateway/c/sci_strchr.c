@@ -23,7 +23,7 @@
 #include "freeArrayOfString.h"
 #include "stringsstrrchr.h"
 /*----------------------------------------------------------------------------*/
-int C2F(sci_strchr) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_strchr)(char *fname,unsigned long fname_len)
 {
 	CheckRhs(2,2);
 	CheckLhs(0,1);

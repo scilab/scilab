@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_x_choose) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_x_choose)(char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0;
   int nbRowItems = 0, nbColItems = 0;

@@ -12,7 +12,7 @@
 
 #include "gw_io.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_read4b) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_read4b)(char *fname,unsigned long fname_len)
 {
 	C2F(intread4b)();
 	return 0;

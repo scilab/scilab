@@ -12,9 +12,9 @@
 
 #include "gw_sparse.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intmfull) _PARAMS((int *id));
+extern int C2F(intmfull)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_mfull) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_mfull)(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intmfull)(id);

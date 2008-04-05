@@ -15,9 +15,9 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(scisyredi) _PARAMS((char *id,unsigned long fname_len));
+extern int C2F(scisyredi)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_syredi) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_syredi)(char *fname,unsigned long fname_len)
 {
 	C2F(scisyredi)(fname,fname_len);
 	return 0;

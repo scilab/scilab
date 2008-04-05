@@ -37,7 +37,7 @@ extern integer C2F(adjuststacksize)();
 * sz : 2-vector [total used]
 */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
 

@@ -14,11 +14,10 @@
 #define __SET_XXPRINTF_H__
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
-#include "PARAMS.h"
 #include "stack-def.h" /* bsiz */
 /*--------------------------------------------------------------------------*/
-typedef int (*XXPRINTF) __PARAMS((FILE *, char *,...));
-typedef int (*FLUSH) __PARAMS((FILE *));
+typedef int (*XXPRINTF)(FILE *, char *,...);
+typedef int (*FLUSH)(FILE *);
 /*--------------------------------------------------------------------------*/
 #define  MAX_SPRINTF_SIZE  bsiz
 /*--------------------------------------------------------------------------*/

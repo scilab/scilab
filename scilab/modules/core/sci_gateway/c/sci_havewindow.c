@@ -15,7 +15,7 @@
 #include "MALLOC.h"
 #include "scilabmode.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_havewindow) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_havewindow)(char *fname,unsigned long fname_len)
 {
 	static int n1,m1;
 	int *Status=NULL;

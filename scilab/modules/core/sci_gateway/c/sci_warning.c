@@ -22,7 +22,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_warning)(char *fname,unsigned long fname_len)
 {
 	static int l1 = 0,n1 = 0,m1 = 0;
 

@@ -16,7 +16,7 @@
 #include "stack-c.h"
 #include "getinstalledlookandfeels.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getinstalledlookandfeels) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getinstalledlookandfeels)(char *fname,unsigned long fname_len)
 {
 	
 	char **lookandfeels = NULL;

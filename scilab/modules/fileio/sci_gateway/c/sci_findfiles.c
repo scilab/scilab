@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_FILESPEC "*.*"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_findfiles) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
 	char *path=NULL;

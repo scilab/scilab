@@ -21,8 +21,8 @@
 #include "stack-c.h"
 #include "version.h"
 
-int C2F(sci_realtimeinit) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_realtime) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_realtimeinit)(char *fname,unsigned long fname_len);
+int C2F(sci_realtime)(char *fname,unsigned long fname_len);
 
 #endif /*__INTREALTIME__*/
 /*--------------------------------------------------------------------------*/ 

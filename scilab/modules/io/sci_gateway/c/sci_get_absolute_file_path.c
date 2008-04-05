@@ -33,7 +33,7 @@
 #include "getfileinfo.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_get_absolute_file_path) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_get_absolute_file_path)(char *fname,unsigned long fname_len)
 {
 	int l1,n1,m1;
 

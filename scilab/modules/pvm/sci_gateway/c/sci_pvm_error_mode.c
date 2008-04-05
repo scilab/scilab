@@ -24,7 +24,7 @@
 /*--------------------------------------------------------------------------*/ 
 static int pvm_error = 0;
 /*--------------------------------------------------------------------------*/ 
-int intspvm_error_mode _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_error_mode(char *fname,unsigned long fname_len)
 { 
   char *loc;
   static char stop[]="stop"; 
@@ -63,7 +63,7 @@ int intspvm_error_mode _PARAMS((char *fname,unsigned long fname_len))
   return 0;
 }
 /*--------------------------------------------------------------------------*/ 
-void pvm_error_check _PARAMS((char *fname,int err, unsigned long fname_len))
+void pvm_error_check(char *fname,int err, unsigned long fname_len)
 {
   if ( pvm_error == 1 && err != 0 ) 
     {

@@ -23,8 +23,8 @@
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"
-extern int C2F(dmcopy)  __PARAMS((double *a, integer *na, double *b, integer *nb, integer *m, integer *n));
-extern int C2F(stackp)  __PARAMS((integer *id, integer *macmod));
+extern int C2F(dmcopy)(double *a, integer *na, double *b, integer *nb, integer *m, integer *n);
+extern int C2F(stackp)(integer *id, integer *macmod);
 
 /*------------------------------------------------------*/
 void *Name2ptr(char *namex);

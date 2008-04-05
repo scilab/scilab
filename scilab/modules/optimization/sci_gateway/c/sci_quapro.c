@@ -14,7 +14,7 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_quapro) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_quapro)(char *fname,unsigned long fname_len)
 {
 	C2F(sciquapro)(fname,fname_len);
 	return 0;

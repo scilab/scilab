@@ -28,7 +28,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(scicosdebug) (char *fname,unsigned long fname_len); /* fortran */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_scicos_debug) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_scicos_debug)(char *fname,unsigned long fname_len)
 {
 	C2F(scicosdebug)(fname,fname_len);
 	C2F(putlhsvar)();

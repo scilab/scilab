@@ -13,9 +13,9 @@
 
 #include "stack-c.h"
 
-extern int C2F(dgemm) __PARAMS((char *,char *,integer *,integer *,integer *,
+extern int C2F(dgemm)(char *,char *,integer *,integer *,integer *,
 			    double *,double *,integer *,double *,integer *,
-			    double *,double *,integer *));
+			    double *,double *,integer *);
 
 int intcdgemm(fname)
      char* fname;

@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intwhereis)(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_whereis) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_whereis)(char *fname,unsigned long fname_len)
 {
 	C2F(intwhereis)();
 	return 0;

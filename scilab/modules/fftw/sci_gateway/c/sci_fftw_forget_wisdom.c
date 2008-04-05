@@ -31,7 +31,7 @@ extern FFTW_Plan_struct Sci_Backward_Plan;
  * Output : Nothing
  *
  */
-int sci_fftw_forget_wisdom __PARAMS((char *fname,unsigned long fname_len))
+int sci_fftw_forget_wisdom(char *fname,unsigned long fname_len)
 {
  CheckRhs(0,0);
 

@@ -21,7 +21,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_system_setproperty) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_system_setproperty)(char *fname,unsigned long fname_len)
 {
 	Rhs = Max(Rhs,0);
 	CheckRhs(2,2);

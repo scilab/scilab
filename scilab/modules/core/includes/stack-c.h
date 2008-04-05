@@ -343,7 +343,7 @@ typedef struct { double r, i; } doublecomplex;
 
 #define VarPtr(x) C2F(intersci).lad[x-1]
 
-typedef int (*interfun) __PARAMS((char *fname,unsigned long l));
+typedef int (*interfun)(char *fname,unsigned long l);
 
 typedef struct tagTabF {
   interfun f;
@@ -385,7 +385,7 @@ typedef struct rhs_opts__ {
   unsigned long int l;
 } rhs_opts;
 
-int get_optionals __PARAMS((char *name,rhs_opts opts[]));
+int get_optionals(char *name,rhs_opts opts[]);
 
 
 /*-------------------------------------
@@ -405,15 +405,15 @@ int get_optionals __PARAMS((char *name,rhs_opts opts[]));
  * prototypes
  *-----------------------------*/
 
-extern int C2F(firstopt) __PARAMS((void));
-extern int C2F(findopt) __PARAMS((char *, rhs_opts *));
+extern int C2F(firstopt)(void);
+extern int C2F(findopt)(char *, rhs_opts *);
 
-extern int C2F(isopt) __PARAMS((integer *,char *,unsigned long));
+extern int C2F(isopt)(integer *,char *,unsigned long);
 
-extern int C2F(checkrhs)  __PARAMS((char *fname, integer *imin, integer *imax, unsigned long fname_len));
-extern int C2F(checklhs)  __PARAMS((char *fname, integer *imin, integer *imax, unsigned long fname_len));
+extern int C2F(checkrhs)(char *fname, integer *imin, integer *imax, unsigned long fname_len);
+extern int C2F(checklhs)(char *fname, integer *imin, integer *imax, unsigned long fname_len);
 
-extern void C2F(freeptr) __PARAMS((double *ip[]));
+extern void C2F(freeptr)(double *ip[]);
 
 #endif /*  STACK_SCI  */
 

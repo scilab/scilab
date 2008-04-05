@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intresume)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_resume) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_resume)(char *fname,unsigned long fname_len)
 {
 	C2F(intresume)();
 	return 0;

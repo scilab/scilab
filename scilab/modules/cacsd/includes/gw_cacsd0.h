@@ -19,10 +19,10 @@
 /*--------------------------------------------------------------------------*/
 int gw_cacsd0(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_gschur) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_gspec) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_ereduc) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_fstair) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_gschur)(char *fname,unsigned long fname_len);
+int C2F(sci_gspec)(char *fname,unsigned long fname_len);
+int C2F(sci_ereduc)(char *fname,unsigned long fname_len);
+int C2F(sci_fstair)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_CACSD0__ */
 /*--------------------------------------------------------------------------*/

@@ -22,8 +22,8 @@
 #include "do_xxprintf.h"
 #include "core_math.h"
 /*--------------------------------------------------------------------------*/
-typedef int (*XXSCANF) __PARAMS((FILE *, char *,...));
-typedef int (*FLUSH) __PARAMS((FILE *));
+typedef int (*XXSCANF)(FILE *, char *,...);
+typedef int (*FLUSH)(FILE *);
 /*--------------------------------------------------------------------------*/
 static void set_xxscanf(FILE *fp,XXSCANF *xxscanf,char **target,char **strv)
 {

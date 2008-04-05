@@ -16,7 +16,7 @@
 #include "timer.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_timer) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_timer)(char *fname,unsigned long fname_len)
 {
 	static int l1,n1;
 	double timeval=0;

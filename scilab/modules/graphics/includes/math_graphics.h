@@ -30,7 +30,7 @@
 	/** This should only be provided when finite prototype is missing **/
 	/** XXX : to be tested **/
 	#ifndef __cplusplus
-	int finite __PARAMS((double));
+	int finite (double);
 	#endif
 #endif /* _MSC_VER */
 
@@ -82,7 +82,7 @@ double Mini(double *vect, integer n) ;
 
 double Maxi(double *vect,integer n) ;
 
-extern double exp10 __PARAMS((double));
+
 
 /* prototypes */
 

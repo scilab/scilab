@@ -16,11 +16,11 @@
 #include "stack-c.h"
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(intsfact) _PARAMS((int *id));
+extern int C2F(intsfact)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sfact) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_sfact)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sfact) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_sfact)(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intsfact)(id);

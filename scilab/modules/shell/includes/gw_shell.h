@@ -19,10 +19,10 @@ int gw_shell(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
-int C2F(sci_clc) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_tohome) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_prompt) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_clc)(char *fname,unsigned long fname_len);
+int C2F(sci_tohome)(char *fname,unsigned long fname_len);
+int C2F(sci_lines)(char *fname,unsigned long fname_len);
+int C2F(sci_prompt)(char *fname,unsigned long fname_len);
 int sci_iswaitingforinput(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SHELL_H__ */

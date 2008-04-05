@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_saveconsecutivecommands) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_saveconsecutivecommands)(char *fname,unsigned long fname_len)
 {
 	CheckRhs(0,1) ;
 	CheckLhs(0,1) ;

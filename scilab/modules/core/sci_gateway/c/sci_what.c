@@ -30,7 +30,7 @@ static void SortStrings(char **Strs,int SizeOfStrs);
 /*--------------------------------------------------------------------------*/
 extern char **GetFunctionsList(int *sizeList);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_what) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_what)(char *fname,unsigned long fname_len)
 {
 	int sizecommandwords = 0;
 	char **commandwords = getcommandkeywords(&sizecommandwords);

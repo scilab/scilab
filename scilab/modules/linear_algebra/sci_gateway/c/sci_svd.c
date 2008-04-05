@@ -17,12 +17,12 @@
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intdgesvd1) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzgesvd1) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intdgesvd2) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzgesvd2) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intdoldsvd) __PARAMS((double *tol, char *fname, unsigned long fname_len));
-extern int C2F(intzoldsvd) __PARAMS((double *tol, char *fname, unsigned long fname_len));
+extern int C2F(intdgesvd1)(char *fname, unsigned long fname_len);
+extern int C2F(intzgesvd1)(char *fname, unsigned long fname_len);
+extern int C2F(intdgesvd2)(char *fname, unsigned long fname_len);
+extern int C2F(intzgesvd2)(char *fname, unsigned long fname_len);
+extern int C2F(intdoldsvd)(double *tol, char *fname, unsigned long fname_len);
+extern int C2F(intzoldsvd)(double *tol, char *fname, unsigned long fname_len);
 
 /*--------------------------------------------------------------------------*/
 int C2F(intsvd)(char *fname,unsigned long fname_len)

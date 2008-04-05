@@ -27,7 +27,7 @@
 #define CHAR_I 'i'
 #define CHAR_S 's'
 /*----------------------------------------------------------------------------*/
-int C2F(sci_strcmp) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_strcmp)(char *fname,unsigned long fname_len)
 {
 	int Type_One = 0;
 	int Type_Two = 0;

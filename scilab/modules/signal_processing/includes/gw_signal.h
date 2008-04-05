@@ -17,15 +17,15 @@
 /*--------------------------------------------------------------------------*/
 int gw_signal(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ffir) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_fft) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_corr) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_fiir) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_rpem) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_amell) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_delip) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_remez) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_syredi) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_ffir)(char *fname,unsigned long fname_len);
+int C2F(sci_fft)(char *fname,unsigned long fname_len);
+int C2F(sci_corr)(char *fname,unsigned long fname_len);
+int C2F(sci_fiir)(char *fname,unsigned long fname_len);
+int C2F(sci_rpem)(char *fname,unsigned long fname_len);
+int C2F(sci_amell)(char *fname,unsigned long fname_len);
+int C2F(sci_delip)(char *fname,unsigned long fname_len);
+int C2F(sci_remez)(char *fname,unsigned long fname_len);
+int C2F(sci_syredi)(char *fname,unsigned long fname_len);
 #endif /*  __GW_SIGNAL__ */
 /*--------------------------------------------------------------------------*/
 

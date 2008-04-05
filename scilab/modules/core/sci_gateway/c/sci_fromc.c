@@ -15,13 +15,7 @@
 #include "MALLOC.h"
 #include "../../src/c/fromc.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_fromc) _PARAMS((char *fname,unsigned long fname_len))
-{
-	C2F(intfromc)(fname);
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
-int C2F(intfromc) _PARAMS((char *fname))
+int C2F(sci_fromc)(char *fname,unsigned long fname_len)
 {
 	static int n1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));

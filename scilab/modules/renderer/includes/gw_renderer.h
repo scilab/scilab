@@ -20,7 +20,7 @@
 /*--------------------------------------------------------------------------*/
 int gw_renderer(void);
 /*--------------------------------------------------------------------------*/
-//int C2F(sci_skeleton_c) _PARAMS((char *fname,unsigned long fname_len));
+//int C2F(sci_skeleton_c) (char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_RENDERER__ */
 

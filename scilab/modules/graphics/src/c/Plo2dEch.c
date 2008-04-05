@@ -52,13 +52,13 @@ extern void xclick_2(char *fname, char *str, integer *ibutton, integer *iflag, i
  * A List for storing Window scaling information 
  *----------------------------------------------*/
 
-static void scale_copy __PARAMS((WCScaleList *s1, WCScaleList *s2));
-static integer curwin __PARAMS((void));
-static void set_scale_win __PARAMS((ScaleList **listptr, integer i, WCScaleList *s));
-static WCScaleList *new_wcscale __PARAMS(( WCScaleList *val));
-static WCScaleList *check_subwin_wcscale __PARAMS((WCScaleList *listptr, double *));
-static int same_subwin __PARAMS((double lsubwin_rect[4],double subwin_rect[4]));
-static void set_window_scale __PARAMS((integer i,WCScaleList  *scale));
+static void scale_copy (WCScaleList *s1, WCScaleList *s2);
+static integer curwin (void);
+static void set_scale_win (ScaleList **listptr, integer i, WCScaleList *s);
+static WCScaleList *new_wcscale ( WCScaleList *val);
+static WCScaleList *check_subwin_wcscale (WCScaleList *listptr, double *);
+static int same_subwin (double lsubwin_rect[4],double subwin_rect[4]);
+static void set_window_scale (integer i,WCScaleList  *scale);
 int C2F(setscale2d)(double WRect[4],double FRect[4], char * logscale, integer l1) ;
 void get_margin_in_pixel(integer Margin[]) ;
 int C2F(xechelle2d)(double x[], integer x1[], integer *  n1,char dir[],integer lstr) ;
@@ -137,7 +137,7 @@ void set_window_scale_with_default( int i ) { set_window_scale(i,&Defscale);}
  *   
  *-------------------------------------------------------------*/
 
-static int get_scale_win __PARAMS((ScaleList *listptr, integer wi, double *subwin));
+static int get_scale_win (ScaleList *listptr, integer wi, double *subwin);
 
 int get_window_scale( integer i, double * subwin )
 { 
@@ -291,7 +291,7 @@ static int same_subwin( lsubwin_rect,subwin_rect)
  * delete the scales associated to window i 
  *-------------------------------------------------------------*/
 
-static void DeleteWCScale __PARAMS((WCScaleList *l));
+static void DeleteWCScale (WCScaleList *l);
 
 void del_window_scale( integer i )
 { 
@@ -388,7 +388,7 @@ static integer curwin( void )
  * show the recorded scales 
  *-------------------------------------------*/
 
-static void show_scales __PARAMS((ScaleList *listptr));
+static void show_scales (ScaleList *listptr);
 
 void ShowScales( void )
 { 

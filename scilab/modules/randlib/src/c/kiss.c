@@ -45,7 +45,7 @@ unsigned long kiss()
   return ( KISS );
 }
 
-extern void sciprint __PARAMS((char *fmt,...));
+extern void sciprint(char *fmt,...);
 
 int set_state_kiss(double g1, double g2, double g3, double g4)
 {

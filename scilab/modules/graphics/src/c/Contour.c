@@ -28,35 +28,32 @@
 #include "GetProperty.h"
 #include "localization.h"
 
-typedef void (level_f) __PARAMS((integer ival, double Cont, double xncont,
-			       double yncont));
-typedef void (*ptr_level_f) __PARAMS((integer ival, double Cont, double xncont,
-			       double yncont));
+typedef void (level_f)(integer ival, double Cont, double xncont,double yncont);
+typedef void (*ptr_level_f)(integer ival, double Cont, double xncont,double yncont);
 
 
 static void 
-contourI __PARAMS((ptr_level_f,double *, double *, double *,
-		  double *, integer *, integer *, integer *));
-static void
-look __PARAMS((ptr_level_f, integer i, integer j, integer ib,
-	      integer jb, integer qq,double Cont, integer style));
+contourI (ptr_level_f,double *, double *, double *, double *, integer *, integer *, integer *);
 
-static integer ffnd __PARAMS((ptr_level_f,integer,integer,integer,integer,integer,
+static void
+look(ptr_level_f, integer i, integer j, integer ib,integer jb, integer qq,double Cont, integer style);
+
+static integer ffnd (ptr_level_f,integer,integer,integer,integer,integer,
 			     integer,integer,integer,integer,integer,
-			     double,integer *));
+			     double,integer *);
 
 static int Gcont_size = 0;
 
 static level_f GContStore2;
-static void GContStore2Last __PARAMS((void));
-static double x_cont __PARAMS((integer i));
-static double y_cont __PARAMS((integer i));
-static double phi_cont __PARAMS((integer, integer)); 
-static double f_intercept  __PARAMS((double, double, double, double, double ));
-static integer not_same_sign  __PARAMS((double val1, double val2)); 
-static integer get_itg_cont  __PARAMS((integer i, integer j)); 
-static void inc_itg_cont  __PARAMS((integer i, integer j, integer val)); 
-static integer oddp  __PARAMS((integer i));
+static void GContStore2Last(void);
+static double x_cont(integer i);
+static double y_cont (integer i);
+static double phi_cont (integer, integer); 
+static double f_intercept  (double, double, double, double, double );
+static integer not_same_sign  (double val1, double val2); 
+static integer get_itg_cont  (integer i, integer j); 
+static void inc_itg_cont  (integer i, integer j, integer val); 
+static integer oddp  (integer i);
 
 /*-----------------------------------------------------------------------
  *  Level curves 

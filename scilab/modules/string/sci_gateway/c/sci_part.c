@@ -29,7 +29,7 @@
 /*--------------------------------------------------------------------------*/
 #define BLANK_CHAR ' '
 /*--------------------------------------------------------------------------*/
-int C2F(sci_part) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_part)(char *fname,unsigned long fname_len)
 {
 	int i = 0;
 

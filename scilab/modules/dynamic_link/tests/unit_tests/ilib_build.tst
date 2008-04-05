@@ -38,7 +38,7 @@ mputl(f2,TMP_DIR+filesep()+'fun2.c');
 //creating the interface file
 i=['#include ""stack-c.h""'
 	'#include ""stackTypeVariable.h""'
-   'extern int fun1 _PARAMS(( double *x, double *y));'
+   'extern int fun1 ( double *x, double *y);'
    'int intfun1(fname)' 
    'char * fname;'
    '{'

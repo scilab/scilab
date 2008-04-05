@@ -29,7 +29,7 @@ static int DoOneLhs(void);
 * Maximum 100
 * Default 20
 */
-int C2F(sci_maxfiles) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_maxfiles)(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
 

@@ -14,16 +14,9 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(intbanner) _PARAMS((char *fname));
 extern void banner(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_banner) _PARAMS((char *fname,unsigned long fname_len))
-{
-	C2F(intbanner)(fname);
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
-int C2F(intbanner) _PARAMS((char *fname))
+int C2F(sci_banner)(char *fname,unsigned long fname_len)
 {
 	Rhs=Max(Rhs,0);
 	CheckRhs(0,0) ;

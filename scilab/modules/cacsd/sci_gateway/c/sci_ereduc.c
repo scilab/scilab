@@ -16,9 +16,9 @@
 #include "stack-c.h"
 #include "gw_cacsd0.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intereduc) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intereduc)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ereduc) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_ereduc)(char *fname,unsigned long fname_len)
 {
 	C2F(intereduc)(fname,fname_len);
 	return 0;

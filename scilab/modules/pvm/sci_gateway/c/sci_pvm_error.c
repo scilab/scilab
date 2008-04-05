@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_error
  ******************************************/
-int intspvm_error _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_error(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,mres,nres=1;
   char *res; 

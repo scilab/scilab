@@ -17,7 +17,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len ))
+int C2F(sci_raise_window)( char * fname, unsigned long fname_len )
 {
 	  Scierror(999,_("Not yet implemented.\n"));	
 	  return 0;

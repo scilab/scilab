@@ -15,7 +15,7 @@
 #include "librarieslist.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_librarieslist) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_librarieslist)(char *fname,unsigned long fname_len)
 {
 	char **libraries = NULL;
 	int sizelibraries = 0;

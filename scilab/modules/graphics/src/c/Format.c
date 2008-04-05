@@ -45,27 +45,27 @@ static int ticks[18] = {11,7,8,4,9,10,11,6,7,8,9,10,11,7,8,9,10,11};
 static double width[18] = {1,2,2,5,2,2,2,5,5,5,5,5,5,10,10,10,10,10};
 /* end here */
 
-extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
+extern double C2F(dlamch)  (char *CMACH, unsigned long int);
 
-static void FormatPrec __PARAMS((char *fmt, integer *desres, double xmin, double xmax, 
-				double xpas));
-static void FormatPrec1 __PARAMS((char *fmt, integer *desres, double *xx, integer nx));
-static int Fsepare __PARAMS((char *fmt, integer dec, integer *l, double xmin, double xmax, 
-			    double xpas));
-static int Fsepare1 __PARAMS((char *fmt, integer dec, integer *l, double *xx, integer nx));
-static void graduate1 __PARAMS((double *xmi,double * xma,double * xi,double * xa,
-			       integer * np1,integer * np2,integer * kminr,integer * kmaxr,integer * ar,int count));
+static void FormatPrec (char *fmt, integer *desres, double xmin, double xmax, 
+				double xpas);
+static void FormatPrec1 (char *fmt, integer *desres, double *xx, integer nx);
+static int Fsepare (char *fmt, integer dec, integer *l, double xmin, double xmax, 
+			    double xpas);
+static int Fsepare1 (char *fmt, integer dec, integer *l, double *xx, integer nx);
+static void graduate1 (double *xmi,double * xma,double * xi,double * xa,
+			       integer * np1,integer * np2,integer * kminr,integer * kmaxr,integer * ar,int count);
 
-static void gradua __PARAMS(( double *xmi, double *xma,integer * kminr,integer *kmaxr,integer *ar,integer *npr,integer *b));
-static void decompSup __PARAMS((double x,integer * xk,integer *  xa,integer   b));
-static void decompInf __PARAMS((double x,integer * xk,integer *  xa,integer   b));
+static void gradua ( double *xmi, double *xma,integer * kminr,integer *kmaxr,integer *ar,integer *npr,integer *b);
+static void decompSup (double x,integer * xk,integer *  xa,integer   b);
+static void decompInf (double x,integer * xk,integer *  xa,integer   b);
 
-static void flexpo1  __PARAMS((double *x, double *f, double *sg, double *scale));
-static void newbnds  __PARAMS((double *xminv,double *xmaxv,double *xmin, double *xmax, double *scale));
-static int  gradu    __PARAMS((double *xmin, double *xmax, double *grads, int *nticks, double *thewidth, int *tst0, double *scal));
-static int  gradu2   __PARAMS((double *xmax, double *thewidth, double *scal));
-static void grds     __PARAMS((double *xminv, double *xmaxv, double *gr, int *nticks, double *thewidth, int *tst0, double *scal));
-static int  agrandir __PARAMS((double *xmin, double *xmax, double *xlow, double *xup));
+static void flexpo1  (double *x, double *f, double *sg, double *scale);
+static void newbnds  (double *xminv,double *xmaxv,double *xmin, double *xmax, double *scale);
+static int  gradu    (double *xmin, double *xmax, double *grads, int *nticks, double *thewidth, int *tst0, double *scal);
+static int  gradu2   (double *xmax, double *thewidth, double *scal);
+static void grds     (double *xminv, double *xmaxv, double *gr, int *nticks, double *thewidth, int *tst0, double *scal);
+static int  agrandir (double *xmin, double *xmax, double *xlow, double *xup);
 
 int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads) ;
 
@@ -972,7 +972,7 @@ int GradLog( double   _min   ,
 
 
   size = log_max - log_min +1;
-  /*  tab=(int *)MALLOC(size*sizeof(int)); */
+  /*  tab=(int *)MALLOC(size*sizeof(int); */
 
   /*   for(i=0;i<size;i++) tab[i]=log_min+i; */
 

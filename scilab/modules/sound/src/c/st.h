@@ -247,23 +247,23 @@ IMPORT int soxpreview;	/* Preview mode: be fast and ugly */
 #include "machine.h" 
 
 #if defined(__alpha)|defined(__ia64__)
-int wavread __PARAMS((ft_t ft, int *buf, long int len));
+int wavread (ft_t ft, int *buf, long int len);
 #else
-int wavread __PARAMS((ft_t ft, long int *buf, long int len));
+int wavread (ft_t ft, long int *buf, long int len);
 #endif
 
 
-void  wavstartread __PARAMS((ft_t ft,WavInfo *,int flag));
-void wavwrite __PARAMS((ft_t ft, long int *buf, long int len));
-void wavstartwrite __PARAMS((ft_t ft));
-void wavstopwrite  __PARAMS((ft_t ft));
-void wavwritehdr  __PARAMS((ft_t ft));
+void  wavstartread (ft_t ft,WavInfo *,int flag);
+void wavwrite (ft_t ft, long int *buf, long int len);
+void wavstartwrite(ft_t ft);
+void wavstopwrite (ft_t ft);
+void wavwritehdr(ft_t ft);
 
 #if defined(__alpha)|defined(__ia64__)
-int rawread __PARAMS((ft_t ft,int * buf,long nsamp));
+int rawread (ft_t ft,int * buf,long nsamp);
 #else
-int rawread __PARAMS((ft_t ft,long * buf,long nsamp));
+int rawread (ft_t ft,long * buf,long nsamp);
 #endif
-void rawwrite __PARAMS((ft_t ft,long *buf, long nsamp) );
+void rawwrite (ft_t ft,long *buf, long nsamp) ;
 
 #endif 

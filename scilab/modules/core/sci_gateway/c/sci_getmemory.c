@@ -14,7 +14,7 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getmemory) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getmemory) (char *fname,unsigned long fname_len)
 {
 	static int l1,one=1;
 

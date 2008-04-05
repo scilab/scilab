@@ -16,9 +16,9 @@
 #include "stack-c.h"
 #include "gw_cacsd2.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(scifreq) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(scifreq)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_freq) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_freq)(char *fname,unsigned long fname_len)
 {
 	C2F(scifreq)(fname,fname_len);
 	return 0;

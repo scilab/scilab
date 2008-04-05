@@ -31,17 +31,17 @@ typedef unsigned long int vraiptrst;
 #ifndef __DEF_MXARRAY__
 #define __DEF_MXARRAY__
 typedef int mxArray;
-typedef int Gatefunc __PARAMS((int nlhs,mxArray *plhs[],int nrhs,mxArray *prhs[]));
+typedef int Gatefunc (int nlhs,mxArray *plhs[],int nrhs,mxArray *prhs[]);
 #endif
 
-typedef int (*GatefuncH) __PARAMS((int nlhs,mxArray *plhs[],int nrhs,
-                                 mxArray *prhs[]));
+typedef int (*GatefuncH) (int nlhs,mxArray *plhs[],int nrhs,
+                                 mxArray *prhs[]);
 
-typedef int (*FGatefuncH) __PARAMS((int *nlhs,mxArray *plhs[],int *nrhs,
-                                 mxArray *prhs[]));
+typedef int (*FGatefuncH) (int *nlhs,mxArray *plhs[],int *nrhs,
+                                 mxArray *prhs[]);
 
-typedef int (*GatefuncS) __PARAMS((char *fname, int l));
-typedef int (*Myinterfun) __PARAMS((char *, GatefuncH F));
+typedef int (*GatefuncS) (char *fname, int l);
+typedef int (*Myinterfun) (char *, GatefuncH F);
 
 typedef int (*GT) ();
 
@@ -68,11 +68,11 @@ typedef struct table_struct {
 #define bool int
 
 #define mexGetMatrixPtr(name) mexGetArrayPtr(name, "caller")
-/** XXXX A finir **/
+
 #define mexGetArrayPtr(name,type) mexGetArray(name,type) 
 
 
-void mexPrintf __PARAMS((char *fmt,...));
+void mexPrintf (char *fmt,...);
 
 /** Put a matrix in Scilab Workspace */ 
 #define mexPutFull(name,m,n,ptrM,tag) \
@@ -81,59 +81,58 @@ void mexPrintf __PARAMS((char *fmt,...));
 
 /* prototypes */
 
-void mexInfo __PARAMS((char *)); 
-int mexCheck __PARAMS((char *,int )); 
-mxArray *mxCreateCharMatrixFromStrings __PARAMS((int m, const char **str));
-mxArray *mxCreateString __PARAMS((const char *string));
-mxArray *C2F(mxcreatestring)  __PARAMS((char *string, long int l));
-mxArray *C2F(mxcreatefull)  __PARAMS((int *m, int *n, int *it));
-/* mxArray *mxCreateFull __PARAMS((int m, int n, int it)); */
-mxArray *mxCreateCharArray __PARAMS((int ND, const int *size));
+void mexInfo (char *); 
+int mexCheck (char *,int ); 
+mxArray *mxCreateCharMatrixFromStrings (int m, const char **str);
+mxArray *mxCreateString (const char *string);
+mxArray *C2F(mxcreatestring)  (char *string, long int l);
+mxArray *C2F(mxcreatefull)  (int *m, int *n, int *it);
+mxArray *mxCreateCharArray (int ND, const int *size);
 
-mxArray *mxCreateCellArray __PARAMS((int ND, const int *size));
-mxArray *mxCreateCellMatrix __PARAMS((int m, int n));
+mxArray *mxCreateCellArray (int ND, const int *size);
+mxArray *mxCreateCellMatrix (int m, int n);
 
-mxArray *mxCreateStructArray __PARAMS((int ndim, const int *dims, int nfields, const char **field_names));
-mxArray *mxCreateStructMatrix __PARAMS((int m, int n, int nfields, const char **field_names));
+mxArray *mxCreateStructArray (int ndim, const int *dims, int nfields, const char **field_names);
+mxArray *mxCreateStructMatrix (int m, int n, int nfields, const char **field_names);
 
 
-mxArray *mxGetCell __PARAMS((const mxArray *ptr, int index));
+mxArray *mxGetCell (const mxArray *ptr, int index);
 
-double C2F(mxgetscalar)  __PARAMS((mxArray *ptr));
-double * C2F(mxgetpi)  __PARAMS((mxArray *ptr));
-double * C2F(mxgetpr)  __PARAMS((mxArray *ptr));
-double *mxGetPi __PARAMS((const mxArray *ptr));
-double *mxGetPr __PARAMS((const mxArray *ptr));
-double mxGetScalar __PARAMS((const mxArray *ptr));
-double mxGetInf __PARAMS((void));
-double mxGetNaN __PARAMS((void));
-double mxGetEps __PARAMS((void));
-bool mxIsNaN __PARAMS((double x));
-bool mxIsInf __PARAMS((double x));
-bool mxIsFinite __PARAMS((double x));
-int *mxGetDimensions __PARAMS((const mxArray *ptr));
-int mxCalcSingleSubscript __PARAMS((const mxArray *ptr, int nsubs, const int *subs));
-int mxGetNumberOfElements __PARAMS((const mxArray *ptr));
-int mxGetNumberOfDimensions __PARAMS((const mxArray *ptr));
-int mxGetNumberOfFields __PARAMS((const mxArray *ptr));
-void *mxGetData __PARAMS((const mxArray *ptr));
-void *mxGetImagData __PARAMS((const mxArray *ptr));
-extern void diary_nnl __PARAMS((char *str,int *n));
-extern int getdiary __PARAMS(());
+double C2F(mxgetscalar)  (mxArray *ptr);
+double * C2F(mxgetpi)  (mxArray *ptr);
+double * C2F(mxgetpr)  (mxArray *ptr);
+double *mxGetPi (const mxArray *ptr);
+double *mxGetPr (const mxArray *ptr);
+double mxGetScalar (const mxArray *ptr);
+double mxGetInf (void);
+double mxGetNaN (void);
+double mxGetEps (void);
+bool mxIsNaN (double x);
+bool mxIsInf (double x);
+bool mxIsFinite (double x);
+int *mxGetDimensions (const mxArray *ptr);
+int mxCalcSingleSubscript (const mxArray *ptr, int nsubs, const int *subs);
+int mxGetNumberOfElements (const mxArray *ptr);
+int mxGetNumberOfDimensions(const mxArray *ptr);
+int mxGetNumberOfFields(const mxArray *ptr);
+void *mxGetData(const mxArray *ptr);
+void *mxGetImagData(const mxArray *ptr);
+extern void diary_nnl(char *str,int *n);
+extern int getdiary();
 
 void clear_mex(integer nlhs, mxArray **plhs, integer nrhs, mxArray **prhs);
 
-extern void errjump __PARAMS((int n));
-int  C2F(mxgetm)  __PARAMS((mxArray *ptr));
-int  C2F(mxgetn)  __PARAMS((mxArray *ptr));
-int  C2F(mxgetstring)  __PARAMS((mxArray *ptr, char *str, int *strl));
-int  C2F(mxiscomplex)  __PARAMS((mxArray *ptr));
-int  C2F(mxisfull)  __PARAMS((mxArray *ptr));
-int  C2F(mxisnumeric)  __PARAMS((mxArray *ptr));
-int  C2F(mxissparse)  __PARAMS((mxArray *ptr));
-int  C2F(mxisstring)  __PARAMS((mxArray *ptr));
-int *mxGetIr __PARAMS((const mxArray *ptr));
-int *mxGetJc __PARAMS((const mxArray *ptr));
+extern void errjump (int n);
+int  C2F(mxgetm)  (mxArray *ptr);
+int  C2F(mxgetn)  (mxArray *ptr);
+int  C2F(mxgetstring)  (mxArray *ptr, char *str, int *strl);
+int  C2F(mxiscomplex)  (mxArray *ptr);
+int  C2F(mxisfull)  (mxArray *ptr);
+int  C2F(mxisnumeric)  (mxArray *ptr);
+int  C2F(mxissparse)  (mxArray *ptr);
+int  C2F(mxisstring)  (mxArray *ptr);
+int *mxGetIr (const mxArray *ptr);
+int *mxGetJc (const mxArray *ptr);
 
 /**
  * TODO : comment
@@ -146,7 +145,7 @@ int *mxGetJc __PARAMS((const mxArray *ptr));
  * @param type_len
  * @return
 */
-int C2F(createptr)  __PARAMS((char *type, int *m, int *n, int *it, int *lr, int *ptr, long int type_len));
+int C2F(createptr)  (char *type, int *m, int *n, int *it, int *lr, int *ptr, long int type_len);
 
 /**
  * TODO : comment
@@ -154,7 +153,7 @@ int C2F(createptr)  __PARAMS((char *type, int *m, int *n, int *it, int *lr, int 
  * @param ptr
  * @return
 */
-int C2F(createstkptr)  __PARAMS((integer *m, vraiptrst *ptr));
+int C2F(createstkptr)  (integer *m, vraiptrst *ptr);
 
 
 /**
@@ -165,7 +164,7 @@ int C2F(createstkptr)  __PARAMS((integer *m, vraiptrst *ptr));
  * @param prhs
  * @return
 */
-int C2F(endmex)  __PARAMS((integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs));
+int C2F(endmex)  (integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs);
 
 
 /**
@@ -176,88 +175,88 @@ int C2F(endmex)  __PARAMS((integer *nlhs, mxArray **plhs, integer *nrhs, mxArray
  * @param prhs
  * @return
 */
-int C2F(initmex)  __PARAMS((integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs));
+int C2F(initmex)  (integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs);
 
-int C2F(mexcallscilab)  __PARAMS((integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs, char *name, int namelen));
-int C2F(mxcopyptrtoreal8)  __PARAMS((mxArray *ptr, double *y, integer *n));
-int C2F(mxcopyreal8toptr)  __PARAMS((double *y, mxArray *ptr, integer *n));
-int fortran_mex_gateway __PARAMS((char *fname, FGatefuncH F));
-int mexAtExit __PARAMS((mxArray *ptr));
-int mexCallSCILAB __PARAMS((int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name));
-int mexCallMATLAB __PARAMS((int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name));
-int mex_gateway __PARAMS((char *fname, GatefuncH F));
-int mxGetElementSize __PARAMS((const mxArray *ptr));
-int mxGetM __PARAMS((const mxArray *ptr));
-int mxGetN __PARAMS((const mxArray *ptr));
-int mxGetNzmax __PARAMS((const mxArray *ptr));
-int mxGetString __PARAMS((const mxArray *ptr, char *str, int strl));
-char *mxArrayToString __PARAMS((const mxArray *array_ptr));
-bool mxIsComplex __PARAMS((const mxArray *ptr));
-bool mxIsDouble __PARAMS((const mxArray *ptr));
-bool mxIsSingle __PARAMS((const mxArray *ptr));
-bool mxIsFull __PARAMS((const mxArray *ptr));
-bool mxIsNumeric __PARAMS((const mxArray *ptr));
-bool mxIsSparse __PARAMS((const mxArray *ptr));
-bool mxIsLogical __PARAMS((const mxArray *ptr));
-bool mexIsGloball __PARAMS((const mxArray *ptr));
-void mxSetLogical __PARAMS((mxArray *ptr));
-void mxClearLogical __PARAMS((mxArray *ptr));
-bool mxIsString __PARAMS((const mxArray *ptr));
-bool mxIsChar __PARAMS((const mxArray *ptr));
-bool mxIsEmpty __PARAMS((const mxArray *ptr));
-bool mxIsClass __PARAMS((const mxArray *ptr, const char *name));
-bool mxIsCell __PARAMS((const mxArray *ptr));
-bool mxIsStruct __PARAMS((const mxArray *ptr));
+int C2F(mexcallscilab)  (integer *nlhs, mxArray **plhs, integer *nrhs, mxArray **prhs, char *name, int namelen);
+int C2F(mxcopyptrtoreal8)  (mxArray *ptr, double *y, integer *n);
+int C2F(mxcopyreal8toptr)  (double *y, mxArray *ptr, integer *n);
+int fortran_mex_gateway (char *fname, FGatefuncH F);
+int mexAtExit (mxArray *ptr);
+int mexCallSCILAB (int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name);
+int mexCallMATLAB (int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name);
+int mex_gateway (char *fname, GatefuncH F);
+int mxGetElementSize (const mxArray *ptr);
+int mxGetM (const mxArray *ptr);
+int mxGetN (const mxArray *ptr);
+int mxGetNzmax (const mxArray *ptr);
+int mxGetString (const mxArray *ptr, char *str, int strl);
+char *mxArrayToString (const mxArray *array_ptr);
+bool mxIsComplex (const mxArray *ptr);
+bool mxIsDouble (const mxArray *ptr);
+bool mxIsSingle (const mxArray *ptr);
+bool mxIsFull (const mxArray *ptr);
+bool mxIsNumeric (const mxArray *ptr);
+bool mxIsSparse (const mxArray *ptr);
+bool mxIsLogical (const mxArray *ptr);
+bool mexIsGloball (const mxArray *ptr);
+void mxSetLogical (mxArray *ptr);
+void mxClearLogical (mxArray *ptr);
+bool mxIsString (const mxArray *ptr);
+bool mxIsChar (const mxArray *ptr);
+bool mxIsEmpty (const mxArray *ptr);
+bool mxIsClass (const mxArray *ptr, const char *name);
+bool mxIsCell (const mxArray *ptr);
+bool mxIsStruct (const mxArray *ptr);
 
-bool mxIsInt8 __PARAMS((const mxArray *ptr));
-bool mxIsInt16 __PARAMS((const mxArray *ptr));
-bool mxIsInt32 __PARAMS((const mxArray *ptr));
-bool mxIsUint8 __PARAMS((const mxArray *ptr));
-bool mxIsUint16 __PARAMS((const mxArray *ptr));
-bool mxIsUint32 __PARAMS((const mxArray *ptr));
+bool mxIsInt8(const mxArray *ptr);
+bool mxIsInt16(const mxArray *ptr);
+bool mxIsInt32(const mxArray *ptr);
+bool mxIsUint8(const mxArray *ptr);
+bool mxIsUint16(const mxArray *ptr);
+bool mxIsUint32(const mxArray *ptr);
 
-void mxSetM __PARAMS((mxArray *ptr, int m));
-void mxSetN __PARAMS((mxArray *ptr, int n));
-void mxSetJc  __PARAMS((mxArray *array_ptr, int *jc_data));
-void mxSetIr  __PARAMS((mxArray *array_ptr, int *ir_data));
-void mxSetNzmax  __PARAMS((mxArray *array_ptr, int nzmax));
-void mxSetCell __PARAMS((mxArray *pa, int i, mxArray *value));
+void mxSetM(mxArray *ptr, int m);
+void mxSetN(mxArray *ptr, int n);
+void mxSetJc(mxArray *array_ptr, int *jc_data);
+void mxSetIr(mxArray *array_ptr, int *ir_data);
+void mxSetNzmax(mxArray *array_ptr, int nzmax);
+void mxSetCell(mxArray *pa, int i, mxArray *value);
 
-int sci_gateway __PARAMS((char *fname, GatefuncS F));
-mxArray *mexGetArray __PARAMS((char *name, char *workspace));
+int sci_gateway(char *fname, GatefuncS F);
+mxArray *mexGetArray(char *name, char *workspace);
 
-mxArray *mexGetVariable __PARAMS((const char *workspace, const char *name));
-const mxArray *mexGetVariablePtr __PARAMS((const char *workspace, const char *name));
+mxArray *mexGetVariable(const char *workspace, const char *name);
+const mxArray *mexGetVariablePtr(const char *workspace, const char *name);
 
-unsigned long int C2F(mxcalloc)  __PARAMS((unsigned int *n, unsigned int *size));
-/*void  C2F(mexprintf)   __PARAMS((char *fmt,...) );*/
-void  C2F(mexprintf)  __PARAMS((char *error_msg, int len));
+unsigned long int C2F(mxcalloc)(unsigned int *n, unsigned int *size);
 
-void *mxCalloc __PARAMS((size_t n, size_t size));
-void *mxMalloc __PARAMS((size_t nsize));
+void  C2F(mexprintf)(char *error_msg, int len);
 
-void *mxCalloc_m __PARAMS((unsigned int n, unsigned int size));
-void *mxMalloc_m __PARAMS((unsigned int nsize));
-void  mxFree_m __PARAMS((void *));
+void *mxCalloc(size_t n, size_t size);
+void *mxMalloc(size_t nsize);
 
-void C2F(mexerrmsgtxt)  __PARAMS((char *error_msg, int len));
-void C2F(mxfreematrix)  __PARAMS((mxArray *ptr));
-void mexErrMsgTxt __PARAMS((char *error_msg));
-int  mexEvalString __PARAMS((char *name));
-void mexWarnMsgTxt __PARAMS((char *error_msg));
-void mexprint __PARAMS((char* fmt,...));
-void mxFree __PARAMS((void *ptr));
-void mxFreeMatrix __PARAMS((mxArray *ptr));
-void mxDestroyArray __PARAMS((mxArray *ptr));
-int mxGetFieldNumber __PARAMS((const mxArray *ptr, const char *string));
-mxArray *mxGetField __PARAMS((const mxArray *pa, int i, const char *fieldname));
-void  mxSetFieldByNumber __PARAMS((mxArray *array_ptr, int index, int field_number, mxArray *value));
-void mxSetField __PARAMS((mxArray *pa, int i, const char *fieldname, mxArray *value));
+void *mxCalloc_m(unsigned int n, unsigned int size);
+void *mxMalloc_m(unsigned int nsize);
+void  mxFree_m(void *);
+
+void C2F(mexerrmsgtxt)(char *error_msg, int len);
+void C2F(mxfreematrix)(mxArray *ptr);
+void mexErrMsgTxt(char *error_msg);
+int  mexEvalString(char *name);
+void mexWarnMsgTxt(char *error_msg);
+void mexprint(char* fmt,...);
+void mxFree(void *ptr);
+void mxFreeMatrix(mxArray *ptr);
+void mxDestroyArray(mxArray *ptr);
+int mxGetFieldNumber(const mxArray *ptr, const char *string);
+mxArray *mxGetField(const mxArray *pa, int i, const char *fieldname);
+void  mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray *value);
+void mxSetField (mxArray *pa, int i, const char *fieldname, mxArray *value);
 
 
-mxArray *mxGetFieldByNumber __PARAMS((const mxArray *ptr, int index, int field_number));
-const char *mxGetFieldNameByNumber __PARAMS((const mxArray *array_ptr, int field_number));
-mxLOGICAL *mxGetLogicals __PARAMS((mxArray *array_ptr));
+mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number);
+const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number);
+mxLOGICAL *mxGetLogicals (mxArray *array_ptr);
 
 
 /**
@@ -265,7 +264,7 @@ mxLOGICAL *mxGetLogicals __PARAMS((mxArray *array_ptr));
  * @param x
  * @return
 */
-vraiptrst C2F(locptr) __PARAMS((void *x));
+vraiptrst C2F(locptr)(void *x);
 
 typedef enum {
 	mxCELL_CLASS = 1,
@@ -288,19 +287,19 @@ typedef enum { mxREAL, mxCOMPLEX } mxComplexity;
 
 
 
-mxClassID mxGetClassID __PARAMS((const mxArray *ptr));
-const char *mxGetName __PARAMS((const mxArray *array_ptr));
-void mxSetName __PARAMS(( mxArray    *pa,    const char *s ));
-void mxSetPr __PARAMS((mxArray *array_ptr, double *pr));
-void mxSetPi __PARAMS((mxArray *array_ptr, double *pi));
-void mxSetData __PARAMS((mxArray *array_ptr, void *pr));
-mxArray *mxCreateNumericArray __PARAMS((int ndim, const int *dims, mxClassID classid, mxComplexity flag));
-mxArray *mxCreateNumericMatrix __PARAMS((int m, int n, mxClassID classid, int cmplx_flag));
-int mxSetDimensions __PARAMS((mxArray *array_ptr, const int *dims, int ndim));
-mxArray *mxCreateDoubleMatrix __PARAMS((int m, int n, mxComplexity it));
-mxArray *mxCreateDoubleScalar __PARAMS((double value));
-mxArray *mxCreateSparse __PARAMS((int m, int n, int nzmax, mxComplexity cmplx));
-mxArray *mxDuplicateArray __PARAMS((const mxArray *ptr));
+mxClassID mxGetClassID(const mxArray *ptr);
+const char *mxGetName(const mxArray *array_ptr);
+void mxSetName( mxArray    *pa,    const char *s );
+void mxSetPr(mxArray *array_ptr, double *pr);
+void mxSetPi(mxArray *array_ptr, double *pi);
+void mxSetData(mxArray *array_ptr, void *pr);
+mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID classid, mxComplexity flag);
+mxArray *mxCreateNumericMatrix(int m, int n, mxClassID classid, int cmplx_flag);
+int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim);
+mxArray *mxCreateDoubleMatrix(int m, int n, mxComplexity it);
+mxArray *mxCreateDoubleScalar(double value);
+mxArray *mxCreateSparse(int m, int n, int nzmax, mxComplexity cmplx);
+mxArray *mxDuplicateArray(const mxArray *ptr);
 
 /* typedef uint16_T mxChar; */
 

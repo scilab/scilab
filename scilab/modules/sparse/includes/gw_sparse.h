@@ -16,32 +16,32 @@
 /*--------------------------------------------------------------------------*/
 int gw_sparse(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sparsefunc) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_spget) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_full) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_lufact) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_lusolve) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_ludel) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_luget) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_spclean) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_nnz) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_spmax) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_spmin) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_spmatrix) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_spchol) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_readmps) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_fadj2sp) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_spcompa) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_ordmmd) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_blkfc1i) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_blkslvi) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_inpnvi) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_sfinit) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_symfcti) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_bfinit) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_msparse) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_mspget) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_mfull) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_sparsefunc) (char *fname,unsigned long fname_len);
+int C2F(sci_spget) (char *fname,unsigned long fname_len);
+int C2F(sci_full) (char *fname,unsigned long fname_len);
+int C2F(sci_lufact) (char *fname,unsigned long fname_len);
+int C2F(sci_lusolve) (char *fname,unsigned long fname_len);
+int C2F(sci_ludel) (char *fname,unsigned long fname_len);
+int C2F(sci_luget) (char *fname,unsigned long fname_len);
+int C2F(sci_spclean) (char *fname,unsigned long fname_len);
+int C2F(sci_nnz) (char *fname,unsigned long fname_len);
+int C2F(sci_spmax) (char *fname,unsigned long fname_len);
+int C2F(sci_spmin) (char *fname,unsigned long fname_len);
+int C2F(sci_spmatrix) (char *fname,unsigned long fname_len);
+int C2F(sci_spchol) (char *fname,unsigned long fname_len);
+int C2F(sci_readmps) (char *fname,unsigned long fname_len);
+int C2F(sci_fadj2sp) (char *fname,unsigned long fname_len);
+int C2F(sci_spcompa) (char *fname,unsigned long fname_len);
+int C2F(sci_ordmmd) (char *fname,unsigned long fname_len);
+int C2F(sci_blkfc1i) (char *fname,unsigned long fname_len);
+int C2F(sci_blkslvi) (char *fname,unsigned long fname_len);
+int C2F(sci_inpnvi) (char *fname,unsigned long fname_len);
+int C2F(sci_sfinit) (char *fname,unsigned long fname_len);
+int C2F(sci_symfcti) (char *fname,unsigned long fname_len);
+int C2F(sci_bfinit) (char *fname,unsigned long fname_len);
+int C2F(sci_msparse) (char *fname,unsigned long fname_len);
+int C2F(sci_mspget) (char *fname,unsigned long fname_len);
+int C2F(sci_mfull) (char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SPARSE__ */
 /*--------------------------------------------------------------------------*/

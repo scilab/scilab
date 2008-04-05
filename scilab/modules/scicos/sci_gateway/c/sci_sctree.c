@@ -27,7 +27,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intctree)(char *fname,unsigned long fname_len); /* fortran */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sctree) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_sctree)(char *fname,unsigned long fname_len)
 {
 	C2F(intctree)(fname,fname_len);
 	return 0;

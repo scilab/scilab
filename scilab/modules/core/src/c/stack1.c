@@ -31,12 +31,12 @@ static int c_true = TRUE;
 static int c_false = FALSE;
 
 /* Static function declarations ... Function only used here */
-static int C2F(getwsmati) __PARAMS((char * fname, integer *topk, integer * spos,integer * lw,integer * m, integer *n,integer * ilr,integer * ilrd ,int * inlistx,integer* nel,unsigned long fname_len));
+static int C2F(getwsmati)(char * fname, integer *topk, integer * spos,integer * lw,integer * m, integer *n,integer * ilr,integer * ilrd ,int * inlistx,integer* nel,unsigned long fname_len);
 static int C2F(gethmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *m,integer *n,integer *lr,int *inlistx,integer *nel,unsigned long fname_len);
-static int C2F(getsmati)  __PARAMS((char *fname, integer *topk, integer *spos, integer *lw, integer *m, integer *n, integer *i__, integer *j, integer *lr, integer *nlr, int *inlist__, integer *nel, unsigned long fname_len));
-static int C2F(getpointeri)  __PARAMS((char *fname, integer *topk, integer *spos, integer *lw, integer *lr, int *inlist__, integer *nel, unsigned long fname_len));
-static int C2F(getimati) __PARAMS((char *fname, integer *topk, integer *spos, integer *lw, integer *it, integer *m, integer *n, integer *lr, int *inlistx, integer *nel, long unsigned int fname_len));
-static int C2F(getbmati)  __PARAMS((char *fname, integer *topk, integer *spos, integer *lw, integer *m, integer *n, integer *lr, int *inlist__, integer *nel, unsigned long fname_len));
+static int C2F(getsmati) (char *fname, integer *topk, integer *spos, integer *lw, integer *m, integer *n, integer *i__, integer *j, integer *lr, integer *nlr, int *inlist__, integer *nel, unsigned long fname_len);
+static int C2F(getpointeri) (char *fname, integer *topk, integer *spos, integer *lw, integer *lr, int *inlist__, integer *nel, unsigned long fname_len);
+static int C2F(getimati)(char *fname, integer *topk, integer *spos, integer *lw, integer *it, integer *m, integer *n, integer *lr, int *inlistx, integer *nel, long unsigned int fname_len);
+static int C2F(getbmati) (char *fname, integer *topk, integer *spos, integer *lw, integer *m, integer *n, integer *lr, int *inlist__, integer *nel, unsigned long fname_len);
 static int C2F(cremati)(char *fname,integer *stlw,integer *it,integer *m,integer *n,integer *lr,integer *lc,int *flagx,unsigned long fname_len);
 static int C2F(getmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *it,integer *m,integer *n,integer *lr,integer *lc,int *inlistx,integer *nel,unsigned long fname_len);
 static int C2F(crebmati)(char *fname,integer *stlw,integer *m,integer *n,integer *lr,int *flagx,unsigned long fname_len);
@@ -75,7 +75,7 @@ int C2F(getlistmat)(char *fname,integer *topk,integer *spos,integer *lnum,intege
 {
   integer nv, ili;
 
-  if ( C2F(getilist)(fname, topk, spos, &nv, lnum, &ili, fname_len) == FALSE)
+  if ( C2F(getilist)(fname, topk, spos, &nv, lnum, &ili, fname_len) == FALSE )
     return FALSE;
 
   if (*lnum > nv) {
@@ -2912,7 +2912,7 @@ int C2F(objvide)(char *fname,integer *lw,unsigned long fname_len)
  *       et type est mise a true 
  *------------------------------------------------ */
 
-int C2F(getexternal)(char *fname,integer *topk,integer *lw,char *namex,int *typex,void (*setfun) __PARAMS((char *,int *)),unsigned long fname_len,unsigned long name_len)
+int C2F(getexternal)(char *fname,integer *topk,integer *lw,char *namex,int *typex,void (*setfun)(char *,int *),unsigned long fname_len,unsigned long name_len)
 {
   int ret_value;
   integer irep;

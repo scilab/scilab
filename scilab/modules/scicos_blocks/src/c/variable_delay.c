@@ -28,7 +28,7 @@
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 #endif
 
-extern void sciprint __PARAMS((char *fmt,...));
+extern void sciprint(char *fmt,...);
 
 void variable_delay(scicos_block *block,int flag)
 {/*  rpar[0]=max delay, rpar[1]=init value, ipar[0]=buffer length */

@@ -24,7 +24,7 @@
 #include "isdigit.h"
 #include "MALLOC.h"
 /*----------------------------------------------------------------------------*/
-int C2F(sci_isdigit) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_isdigit)(char *fname,unsigned long fname_len)
 {
 	int Type_One = 0;
 	

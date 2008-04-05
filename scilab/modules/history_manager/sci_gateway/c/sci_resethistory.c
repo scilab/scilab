@@ -16,7 +16,7 @@
 #include "stack-c.h"
 #include "HistoryManager.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_resethistory) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_resethistory)(char *fname,unsigned long fname_len)
 {
 	CheckRhs(0,0) ;
 	CheckLhs(0,1) ;

@@ -24,7 +24,7 @@
 //
 // scilab interface to getrelativefilename
 /* ================================================================================== */
-int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
+int C2F(sci_getrelativefilename)(char *fname, unsigned long l)
 {
 	static int l1,n1,m1,l2,n2,m2;
 

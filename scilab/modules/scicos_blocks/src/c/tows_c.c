@@ -61,14 +61,13 @@
         ptr_i[38]  = nu2; \
         ptr_i[39]  = nz;
 
-extern int C2F(cvstr) __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
+extern int C2F(cvstr)(integer *,integer *,char *,integer *,unsigned long int);
 extern int C2F(mputnc)();
 extern int C2F(namstr)();
 extern void C2F(mopen)();
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,
-                                long int nams_len));
-extern void C2F(mclose) __PARAMS((integer *fd, double *res));
-extern void sciprint __PARAMS((char *fmt,...));
+extern int C2F(cluni0)(char *name, char *nams, integer *ln, long int name_len,long int nams_len);
+extern void C2F(mclose)(integer *fd, double *res);
+extern void sciprint(char *fmt,...);
 
 static int id[nsiz];
 static char fmtd[3]  = {'d','l','\000'};

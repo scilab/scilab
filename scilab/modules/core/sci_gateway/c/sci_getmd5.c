@@ -21,7 +21,7 @@
 #include "freeArrayOfString.h"
 #include "cluni0.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 {
 	static int l1 = 0;
 	static int m1 = 0;

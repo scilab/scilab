@@ -31,7 +31,7 @@ static int getversion_two_rhs(void);
 /*--------------------------------------------------------------------------*/
 #define VERSION_STRING "string_info"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getversion) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getversion)(char *fname,unsigned long fname_len)
 {
 	Rhs=Max(0,Rhs);
 

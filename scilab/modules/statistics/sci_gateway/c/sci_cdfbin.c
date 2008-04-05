@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(cdfbin) __PARAMS((int *,double *,double *,double *,double *,double *,double *, int *,double *));
+extern int C2F(cdfbin)(int *,double *,double *,double *,double *,double *,double *, int *,double *);
 /*--------------------------------------------------------------------------*/
 static void cdfbinErr(int status,double bound);
 /*--------------------------------------------------------------------------*/

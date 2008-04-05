@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intmtlbmode)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_mtlb_mode) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_mtlb_mode)(char *fname,unsigned long fname_len)
 {
  	C2F(intmtlbmode)();
 	return 0;

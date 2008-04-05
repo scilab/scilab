@@ -28,7 +28,7 @@
 /*--------------------------------------------------------------------------*/  
 static int firstentry = 0;
 /*--------------------------------------------------------------------------*/  
-extern int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int));
+extern int C2F(cvname)(integer *,char *,integer *, unsigned long int);
 /*--------------------------------------------------------------------------*/  
 static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data);
 static BOOL Load_primitives_from_file(char *filename);

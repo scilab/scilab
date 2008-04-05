@@ -16,9 +16,9 @@
 #include "stack-c.h"
 #include <string.h>
 /*--------------------------------------------------------------------------*/
-extern int C2F(intsbesseli) _PARAMS((char *id,unsigned long fname_len));
+extern int C2F(intsbesseli)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_oldbesseli) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_oldbesseli)(char *fname,unsigned long fname_len)
 {
 	C2F(intsbesseli)(fname,fname_len);
 	return 0;

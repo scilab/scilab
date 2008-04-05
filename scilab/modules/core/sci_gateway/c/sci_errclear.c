@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(interrclear)(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_errclear) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_errclear)(char *fname,unsigned long fname_len)
 {
 	C2F(interrclear)();
 	return 0;

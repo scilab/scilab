@@ -21,7 +21,7 @@
 #include "MALLOC.h"
 #include "cluni0.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_loadhistory) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_loadhistory)(char *fname,unsigned long fname_len)
 {
 	CheckRhs(0,1) ;
 	CheckLhs(0,1) ;

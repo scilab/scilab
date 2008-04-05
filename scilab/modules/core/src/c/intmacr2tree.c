@@ -36,7 +36,7 @@ static int CreateRecursiveIndex2List(int *data,int *index2);
 /****************************************************************
  Function name: macr2tree
 ****************************************************************/
-int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(macr2tree) (char *fname,unsigned long fname_len)
 {
   /* Returned value parameters */
   int m_pgrm_tlist = 1,n_pgrm_tlist = 6;

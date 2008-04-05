@@ -43,7 +43,7 @@
 /*********************************************
  * external structure and function declaration
  *********************************************/
-extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
+extern  int C2F(cvstr)(integer *,integer *,char *,integer *,unsigned long int);
 extern struct {integer kfun;} C2F(curblk);
 
 ScicosImport  scicos_imp={

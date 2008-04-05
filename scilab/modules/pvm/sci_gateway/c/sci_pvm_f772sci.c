@@ -24,7 +24,7 @@
 /******************************************
  * SCILAB function : pvm_f772sci
  ******************************************/
-int intspvm_f772sci _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_f772sci (char *fname,unsigned long fname_len)
 {
   int *header;
   CheckRhs(1,1);

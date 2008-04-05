@@ -17,7 +17,7 @@
 #include "stack-c.h"
 #include "HistoryManager.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_displayhistory) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_displayhistory)(char *fname,unsigned long fname_len)
 {
 	displayScilabHistory();
 	LhsVar(1) = 0;

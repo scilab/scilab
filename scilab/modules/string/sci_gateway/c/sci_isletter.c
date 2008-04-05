@@ -24,7 +24,7 @@
 #include "isletter.h"
 #include "MALLOC.h"
 /*----------------------------------------------------------------------------*/
-int C2F(sci_isletter) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_isletter)(char *fname,unsigned long fname_len)
 {
 	int Type_One = 0;
 	

@@ -33,7 +33,7 @@ static int NoRhs(struct VariableStruct* GVstruct,int GlenStructArray,struct Vari
 static int OneLhs(struct VariableStruct* Vstruct,int lenStructArray,BOOL Sorted);
 static int TwoLhs(struct VariableStruct* Vstruct,int lenStructArray,BOOL Sorted);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_who) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_who)(char *fname,unsigned long fname_len)
  {
 	 static int l1,n1,m1;
 

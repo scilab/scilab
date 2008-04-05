@@ -17,26 +17,26 @@
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intdgees0) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzgees0) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intoschur) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzschur) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intdgees1) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzgees1) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intfschur) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzfschur) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intdgees0)(char *fname, unsigned long fname_len);
+extern int C2F(intzgees0)(char *fname, unsigned long fname_len);
+extern int C2F(intoschur)(char *fname, unsigned long fname_len);
+extern int C2F(intzschur)(char *fname, unsigned long fname_len);
+extern int C2F(intdgees1)(char *fname, unsigned long fname_len);
+extern int C2F(intzgees1)(char *fname, unsigned long fname_len);
+extern int C2F(intfschur)(char *fname, unsigned long fname_len);
+extern int C2F(intzfschur)(char *fname, unsigned long fname_len);
 
-extern int C2F(intdgges) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzgges) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intogschur) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intozgschur) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intzgschur) __PARAMS((char *fname, unsigned long fname_len));
-extern int C2F(intgschur) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intdgges)(char *fname, unsigned long fname_len);
+extern int C2F(intzgges)(char *fname, unsigned long fname_len);
+extern int C2F(intogschur)(char *fname, unsigned long fname_len);
+extern int C2F(intozgschur)(char *fname, unsigned long fname_len);
+extern int C2F(intzgschur)(char *fname, unsigned long fname_len);
+extern int C2F(intgschur)(char *fname, unsigned long fname_len);
 
-extern int schtst __PARAMS((int longueur, int *header));
+extern int schtst(int longueur, int *header);
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(complexify)  __PARAMS((int *num));
+extern int C2F(complexify)(int *num);
 /*--------------------------------------------------------------------------*/
 int C2F(intschur)(char *fname,unsigned long fname_len)
 {

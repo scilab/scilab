@@ -28,7 +28,7 @@ tabs : if TRUE then tabs are also stripped (default value is FALSE)*/
 #include "freeArrayOfString.h"
 #include "localization.h"
 /*----------------------------------------------------------------------------*/
-int C2F(sci_stripblanks) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_stripblanks)(char *fname,unsigned long fname_len)
 {
 	char **Input_String_Matrix_One = NULL;
 	char **Output_String_Matrix = NULL;

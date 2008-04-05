@@ -17,7 +17,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getmodules) (char *fname,unsigned long fname_len)
 {
 	struct MODULESLIST *Modules=NULL;
 

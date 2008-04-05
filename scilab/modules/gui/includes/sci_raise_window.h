@@ -25,6 +25,6 @@
 * @param[in] fname_len length of fname
 * @return 0 if success, -1 otherwise
 */
-int C2F(sci_raise_window) _PARAMS(( char * fname, unsigned long fname_len )) ;
+int C2F(sci_raise_window) ( char * fname, unsigned long fname_len ) ;
 
 #endif /* _INT_SHOW_WINDOW_H_ */

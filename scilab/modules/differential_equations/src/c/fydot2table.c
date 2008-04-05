@@ -12,7 +12,7 @@
  */
 #include "AddFunctionInTable.h"
 
-extern int C2F(getcodc) __PARAMS((integer *nd1, integer *iflag1));
+extern int C2F(getcodc)(integer *nd1, integer *iflag1);
 
 /***********************************
 * Search Table for odedc

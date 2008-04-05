@@ -17,7 +17,7 @@
 extern int C2F(realtime)(double *t);
 extern int C2F(realtimeinit)(double *t,double *scale); 
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_realtimeinit) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_realtimeinit)(char *fname,unsigned long fname_len)
 {
  int m1,n1,l1;
  double zer=0.0;
@@ -32,7 +32,7 @@ int C2F(sci_realtimeinit) _PARAMS((char *fname,unsigned long fname_len))
  return 0;
 }
 /*--------------------------------------------------------------------------*/  
-int C2F(sci_realtime) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_realtime)(char *fname,unsigned long fname_len)
 {
  int m1,n1,l1;
  CheckRhs(1,1);

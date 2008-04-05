@@ -16,7 +16,7 @@
 extern int C2F(mtlist)();
 extern int C2F(rattyp)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_rlist) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_rlist)(char *fname,unsigned long fname_len)
 {
 	C2F(mtlist)(C2F(rattyp));
 	return 0;

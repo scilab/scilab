@@ -12,9 +12,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intsign) _PARAMS((int *id));
+extern int C2F(intsign)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sign) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_sign)(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intsign)(id);

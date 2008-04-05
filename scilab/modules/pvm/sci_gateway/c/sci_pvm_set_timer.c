@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_set_timer, fin = 14
  ******************************************/
-int intspvm_set_timer _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_set_timer(char *fname,unsigned long fname_len)
 {
   int un=1,l1;
   CheckRhs(0,0);

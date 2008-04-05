@@ -18,14 +18,14 @@
 /*--------------------------------------------------------------------------*/ 
 int gw_special_functions1(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_oldbesseli) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_oldbesselj) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_oldbesselk) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_oldbessely) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_gamma) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_lgamma) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_dlgamma) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_calerf) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_oldbesseli)(char *fname,unsigned long fname_len);
+int C2F(sci_oldbesselj)(char *fname,unsigned long fname_len);
+int C2F(sci_oldbesselk)(char *fname,unsigned long fname_len);
+int C2F(sci_oldbessely)(char *fname,unsigned long fname_len);
+int C2F(sci_gamma)(char *fname,unsigned long fname_len);
+int C2F(sci_lgamma)(char *fname,unsigned long fname_len);
+int C2F(sci_dlgamma)(char *fname,unsigned long fname_len);
+int C2F(sci_calerf)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_SPECIAL_FUNCTIONS__ */
 /*--------------------------------------------------------------------------*/

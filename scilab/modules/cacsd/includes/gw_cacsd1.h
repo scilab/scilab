@@ -19,9 +19,9 @@
 /*--------------------------------------------------------------------------*/
 int gw_cacsd1(void);
 /*--------------------------------------------------------------------------*/
-int C2F(scilyap) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(scisylv) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(intricc)  _PARAMS((char *fname,unsigned long fname_len));
+int C2F(scilyap)(char *fname,unsigned long fname_len);
+int C2F(scisylv)(char *fname,unsigned long fname_len);
+int C2F(intricc)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_CACSD1__ */
 /*--------------------------------------------------------------------------*/

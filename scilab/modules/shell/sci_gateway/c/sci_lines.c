@@ -19,7 +19,7 @@
 #include "MALLOC.h"
 #include "gw_shell.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_lines) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_lines)(char *fname,unsigned long fname_len)
 {
 	CheckRhs(0,2);
 	CheckLhs(1,1);

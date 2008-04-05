@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_parent, fin = 12
  ******************************************/
-int intspvm_parent _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_parent(char *fname,unsigned long fname_len)
 {
   int un=1,l1;
   CheckRhs(0,0);

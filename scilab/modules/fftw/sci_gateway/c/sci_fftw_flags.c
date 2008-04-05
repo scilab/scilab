@@ -39,7 +39,7 @@ extern unsigned cur_fftw_flags;
 *  This should be done before calling fftw function.
 *  (default is FFTW_ESTIMATE)
 */
-int sci_fftw_flags __PARAMS((char *fname,unsigned long fname_len))
+int sci_fftw_flags(char *fname,unsigned long fname_len)
 {
 	/* declaration of variables to store scilab parameters address */
 	static int l1 = 0, m1 = 0, n1 = 0;

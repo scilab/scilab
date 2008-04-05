@@ -19,7 +19,7 @@
 #include "HistoryManager.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_historysize) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_historysize)(char *fname,unsigned long fname_len)
 {
 	int *paramoutINT=NULL;
 	int n = 1;

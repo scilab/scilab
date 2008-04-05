@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(interrcatch)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_errcatch) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_errcatch)(char *fname,unsigned long fname_len)
 {
 	C2F(interrcatch)();
 	return 0;

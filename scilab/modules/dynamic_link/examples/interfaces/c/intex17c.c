@@ -27,10 +27,10 @@ typedef struct {
 
 #define ARGS_ex17c double,double, double *
 
-typedef int (*funcex) __PARAMS((ARGS_ex17c));
-extern int f1c __PARAMS((ARGS_ex17c));
-extern int f2c __PARAMS((ARGS_ex17c));
-extern int ex17c __PARAMS((double *,integer ,double *,integer,double *, funcex));
+typedef int (*funcex)(ARGS_ex17c);
+extern int f1c(ARGS_ex17c);
+extern int f2c(ARGS_ex17c);
+extern int ex17c(double *,integer ,double *,integer,double *, funcex);
  
 FTAB FTab_ex17c[] ={
   {"f1c", (voidf) f1c},
@@ -54,7 +54,7 @@ static int sci_f, lhs_f, rhs_f;
  * Functions 
  ***************************************************/
 
-static int sciex17c __PARAMS((ARGS_ex17c));
+static int sciex17c (ARGS_ex17c);
 static funcex Argex17c;
 
 /***************************************************

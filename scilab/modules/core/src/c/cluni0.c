@@ -24,7 +24,7 @@ static char *SCI_a[]  = {  "SCI/"   , "sci/"   , "$SCI"   , "SCI\\"    , "sci\\"
 static char *HOME_a[] = {  "HOME/"  , "home/"  , "~/"     , "HOME\\"   , "home\\"  , "~\\" , "$HOME" , (char *) 0};
 static char *TMP_a[]  = {  "TMPDIR/", "tmpdir/","TMPDIR\\", "tmpdir\\" , "$TMPDIR" , (char *) 0};
 
-static int Cluni0 __PARAMS((char *env,char **alias,char* in_name,char *out_name, long int lin));
+static int Cluni0(char *env,char **alias,char* in_name,char *out_name, long int lin);
 
 static int n=0;
 

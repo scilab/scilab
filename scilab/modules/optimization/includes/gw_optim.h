@@ -17,18 +17,18 @@
 /*--------------------------------------------------------------------------*/
 int gw_optim(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_optim) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_semidef) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_fsolve) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_sqrsolve) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_qld) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sciquapro) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_quapro) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(intqld)_PARAMS((char *fname,unsigned long fname_len));
-int C2F(intlsqrsolve) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(scioptim) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(scisolv)  _PARAMS((char *fname,unsigned long fname_len));
-int C2F(scisemidef)_PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_optim) (char *fname,unsigned long fname_len);
+int C2F(sci_semidef) (char *fname,unsigned long fname_len);
+int C2F(sci_fsolve) (char *fname,unsigned long fname_len);
+int C2F(sci_sqrsolve) (char *fname,unsigned long fname_len);
+int C2F(sci_qld) (char *fname,unsigned long fname_len);
+int C2F(sciquapro) (char *fname,unsigned long fname_len);
+int C2F(sci_quapro) (char *fname,unsigned long fname_len);
+int C2F(intqld)(char *fname,unsigned long fname_len);
+int C2F(intlsqrsolve) (char *fname,unsigned long fname_len);
+int C2F(scioptim) (char *fname,unsigned long fname_len);
+int C2F(scisolv)  (char *fname,unsigned long fname_len);
+int C2F(scisemidef)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_OPTIM__ */
 /*--------------------------------------------------------------------------*/

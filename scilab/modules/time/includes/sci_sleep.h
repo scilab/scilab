@@ -29,7 +29,7 @@
 #include "version.h"
 
 
-int C2F(sci_sleep) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_sleep)(char *fname,unsigned long fname_len);
 
 #endif /*SCI_SLEEP*/
 /*--------------------------------------------------------------------------*/ 

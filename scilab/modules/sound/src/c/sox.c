@@ -29,11 +29,11 @@
 struct soundstream informat;
 ft_t ft;
 /*--------------------------------------------------------------------------*/ 
-static void checkformat __PARAMS((ft_t ft));
-static void cleanup  __PARAMS((void));
-static void init  __PARAMS((void));
+static void checkformat (ft_t ft);
+static void cleanup (void);
+static void init (void);
 #ifndef _MSC_VER
-static int filetype __PARAMS((int fd));
+static int filetype (int fd);
 #endif
 /*--------------------------------------------------------------------------*/ 
 /************************************************************

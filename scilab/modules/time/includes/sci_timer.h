@@ -24,7 +24,7 @@
 #include "stack-c.h"
 #include "version.h"
 
-int C2F(sci_timer) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_timer) (char *fname,unsigned long fname_len);
 
 #endif /* __SCI_TIMER__ */
 /*--------------------------------------------------------------------------*/ 

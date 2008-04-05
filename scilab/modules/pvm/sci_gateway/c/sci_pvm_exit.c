@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_exit, fin = 17
  ******************************************/
-int intspvm_exit _PARAMS((char *fname,unsigned long fname_len))
+int intspvm_exit(char *fname,unsigned long fname_len)
 {
   int un=1,l1;
   CheckRhs(0,0);

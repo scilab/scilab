@@ -34,7 +34,7 @@ char *funNames[MAXFUN]; /* array of function names */
 char str1[4*MAXNAM];
 char str2[4*MAXNAM];
 
-static void GenBuilder __PARAMS(( char *file,char *files,char *libs ));
+static void GenBuilder ( char *file,char *files,char *libs );
 void CheckCreateOrder(void);
 /* local variables */
 

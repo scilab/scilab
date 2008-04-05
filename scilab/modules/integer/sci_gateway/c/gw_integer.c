@@ -17,7 +17,7 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static int C2F(scivoid) _PARAMS((char *fname,unsigned long fname_len))
+static int C2F(scivoid)(char *fname,unsigned long fname_len)
 {
 	return 0;
 }
