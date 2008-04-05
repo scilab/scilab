@@ -147,13 +147,15 @@ int C2F(sci_part)(char *fname,unsigned long fname_len)
 		Output_StringMatrix[i][position_in_string] ='\0';
 	}
 
+	/* free pointer */
+	freeArrayOfString(Input_StringMatrix,m1n1);
+
 	/* put values on stack */
 	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n, Output_StringMatrix );
 	LhsVar(1) = Rhs+1 ;
 	C2F(putlhsvar)();
 
-	/* free pointers */
-	freeArrayOfString(Input_StringMatrix,m1n1);
+	/* free pointer */
 	freeArrayOfString(Output_StringMatrix,mn);
 
     return 0;
