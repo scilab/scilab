@@ -90,7 +90,7 @@ c     strip blanks at the beginning of the line
  16   m=m+1
       if(buf(m:m).eq.' ') goto 16
 c
-      if(buf(m:m+10).eq.'endfunction') then
+      if(buf(m:m+10).eq.'endfunction'.and.m+11.gt.n) then
          if(first.eq.0) then  
             istk(l)=blank
             istk(l+1)=eol
@@ -98,7 +98,7 @@ c
             goto 61
          endif
       endif
-      if(buf(m:m+7).eq.'function') then
+      if(buf(m:m+8).eq.'function ') then
          if(first.eq.1) then
             j=m+7
             goto 25            
