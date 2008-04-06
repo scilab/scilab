@@ -234,6 +234,8 @@ function [txt,ilst]=cod2sci(lst,ilst)
       txt=catcode(txt,'abort,')
     case '15' then ,//eol
       txt($+1)=''
+    case '17' then //quit
+      txt=catcode(txt,'quit,')
     case '18' then  
     case '25' then   
     case '28' then //continue
@@ -303,10 +305,14 @@ function [txt,ilst]=cod2sci(lst,ilst)
     case '99' then //return
       txt=catcode(txt,'return,')
     else
-      [stk,t1,ilst]=exp2sci(lst,ilst);
-      if size(t1,1)==1 then t1=splitexp(t1),end
-      txt=catcode(txt,t1);t1=''
-      ilst=ilst-1
+      if op(1)=='20'&size(op,'*')==1 then //exit
+	txt=catcode(txt,'exit,')
+      else
+	[stk,t1,ilst]=exp2sci(lst,ilst);
+	if size(t1,1)==1 then t1=splitexp(t1),end
+	txt=catcode(txt,t1);t1=''
+	ilst=ilst-1
+      end
     end
   end
   ilst=ilst+1
@@ -792,8 +798,11 @@ function lst=mmodlst(lst)
 	end
 
       elseif opn=='20' then
-	if size(op,'*')<4 then pause,end
-	rhs=max(evstr(op(3)),0);lhs=evstr(op(4))
+	if size(op,'*')<4 then//exit 
+	  rhs=0;lhs=1
+	else
+	  rhs=max(evstr(op(3)),0);lhs=evstr(op(4))
+	end
 	pos((top-rhs+1):(top-rhs+lhs))=ones(lhs,1)*ilst
 	top=top-rhs+lhs
 	pos(top+1:$)=[]

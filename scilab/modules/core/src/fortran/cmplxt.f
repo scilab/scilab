@@ -92,8 +92,8 @@ c     try/catch
             nc=istk(lc+1)+istk(lc+2)
             lc=lc+3+nc
             goto 10
-         elseif((op.ge.12.and.op.le.15).or.op.eq.28) then
-c     pause,break,abort,eol,continue
+         elseif((op.ge.12.and.op.le.15).or.op.eq.28.or.op.eq.17) then
+c     pause,break,abort,eol,continue;quit
             lc=lc+1
             goto 10
          elseif(op.eq.16) then 
