@@ -75,6 +75,7 @@ int C2F(sci_librarieslist)(char *fname,unsigned long fname_len);
 int C2F(sci_libraryinfo)(char *fname,unsigned long fname_len);
 int C2F(sci_getvariablesonstack)(char *fname,unsigned long fname_len);
 int C2F(sci_getdebuginfo)(char *fname,unsigned long fname_len);
+int C2F(sci_readgateway)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_CORE__ */
 /*--------------------------------------------------------------------------*/
