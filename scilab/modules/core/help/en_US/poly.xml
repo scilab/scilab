@@ -9,7 +9,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>p=poly(a,"x", ["flag"])</synopsis>
+    <synopsis>p=poly(a,vname, ["flag"])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -21,9 +21,10 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>x</term>
+        <term>vname</term>
         <listitem>
-          <para>symbolic variable</para>
+          <para>String, the symbolic variable name. If the string have more
+than 4 characters only the first 4 are taken into account.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

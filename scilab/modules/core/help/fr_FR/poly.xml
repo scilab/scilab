@@ -9,7 +9,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>[p]=poly(a,"x", ["flag"])</synopsis>
+    <synopsis>[p]=poly(a,vname, ["flag"])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -21,9 +21,11 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>x  </term>
+        <term>vname </term>
         <listitem>
-          <para>indéterminée du polynôme.</para>
+          <para>chaîne de caractères, nom de l'indéterminée du
+polynôme.Si la chaîne comprend plus de 4 caractères, seuls les 4
+premiers sont pris en compte.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
