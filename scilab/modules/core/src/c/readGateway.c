@@ -104,7 +104,13 @@ static struct gateway_struct *readGatewayXmlFile(char *filenameXml)
 			if (encoding) {FREE(encoding);encoding=NULL;}
 			return NULL;
 		}
-		else gateway->dimLists = 0;
+		else 
+		{
+			gateway->dimLists = 0;
+			gateway->gatewayIdList = NULL;
+			gateway->primitivesList = NULL;
+			gateway->primiviteIdList = NULL;
+		}
 
 		xpathCtxt = xmlXPathNewContext(doc);
 		xpathObj = xmlXPathEval((const xmlChar*)"//GATEWAY/PRIMITIVE", xpathCtxt);
