@@ -18,7 +18,7 @@
       <varlistentry>
         <term>macros</term>
         <listitem>
-          <para>a string matrix (all macros of the library)</para>
+          <para>a string matrix (all main functions of the library)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -41,7 +41,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>get macros and path of a scilab library.</para>
+    <para>get functions names  and path of a scilab library.The function names
+returned correspond to those which correspond to the associated .sci or .bin
+file names. The other ones are subsidiary functions.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
