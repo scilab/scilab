@@ -47,6 +47,7 @@ if orient==0 then
 else
   if orient>ndims(x) then y=x; return;  end
   xsize=size(x);
+  if xsize(orient)==1 then  y=x; return;  end
   orient_above_size=xsize(orient+1:$);N=prod(orient_above_size)
   orient_below_size=xsize(1:orient-1);M=prod(orient_below_size)
   orient_size=xsize(1:orient);P=prod(orient_size)
