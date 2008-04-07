@@ -408,6 +408,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_getsystemmetrics.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_istssession.c"
 				>
 			</File>
