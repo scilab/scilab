@@ -844,7 +844,6 @@ void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, 
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
 	int iValType		= *istk(iAddrBase);
 	int iAddrOffset		= 0;
-	int iAddrData		= 0;
 	int iIndex			= 0;
 
 	if(iValType < 0)
@@ -902,7 +901,6 @@ void GetRhsCSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalEle
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
 	int iValType		= *istk(iAddrBase);
 	int iAddrColByRow	= 0;
-	int iAddrData		= 0;
 	int iAddElemByRow	= 0;
 	int iAddrRealData	= 0;
 	int iAddrImgData	= 0;
@@ -957,8 +955,6 @@ void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCol
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iNewVal));
 	int iAddrPtr		= 0;
 	int iAddrData		= 0;
-
-	int *toto = istk(iAddrBase);
 
 	*istk(iAddrBase)	= 2;
 	*istk(iAddrBase + 1)= _iRows;
