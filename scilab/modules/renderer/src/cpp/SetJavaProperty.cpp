@@ -54,9 +54,16 @@ void sciSetJavaRenderingEnable(sciPointObj * pFigure, BOOL isEnable)
   getFigureDrawer(pFigure)->setRenderingEnable(isEnable == TRUE);
 }
 /*---------------------------------------------------------------------------------*/
-void sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height)
+BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height)
 {
-  getSubwinDrawer(pSubwin)->getCamera()->zoomRect(posX, posY, width, height);
+  if (getSubwinDrawer(pSubwin)->getCamera()->zoomRect(posX, posY, width, height))
+  {
+    return TRUE;
+  }
+  else
+  {
+    return FALSE;
+  }
 }
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaAutoResizeMode(sciPointObj * pFigure, BOOL resizeMode)

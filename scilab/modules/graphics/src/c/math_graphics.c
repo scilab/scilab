@@ -165,14 +165,21 @@ void crossProduct( const double v1[3], const double v2[3], double res[3] )
   res[2] = v10 * v21 - v11 * v20 ;
 }
 /*----------------------------------------------------------------------------*/
-void vectSubstract3D( double v1[3], double v2[3], double res[3])
+void vectSubstract3D(const double v1[3] ,const double v2[3], double res[3])
 {
   res[0] = v1[0] - v2[0];
   res[1] = v1[1] - v2[1];
   res[2] = v1[2] - v2[2];
 }
 /*----------------------------------------------------------------------------*/
-void scalarMult3D( double v[3], double scalar, double res[3])
+void vectAdd3D(const double v1[3], const double v2[3], double res[3])
+{
+  res[0] = v1[0] + v2[0];
+  res[1] = v1[1] + v2[1];
+  res[2] = v1[2] + v2[2];
+}
+/*----------------------------------------------------------------------------*/
+void scalarMult3D(const double v[3], const double scalar, double res[3])
 {
   res[0] = scalar * v[0];
   res[1] = scalar * v[1];

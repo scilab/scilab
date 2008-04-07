@@ -181,57 +181,174 @@ void Camera::show( void )
   endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
-void Camera::zoomRect(int posX, int posY, int width, int height)
+bool Camera::zoomRect(int posX, int posY, int width, int height)
 {
   double rectCorners[4][2] = {{posX        , posY + height},
                               {posX        , posY         },
                               {posX + width, posY         },
                               {posX + width, posY + height}};
 
-  zoomRect(rectCorners);
+  return zoomRect(rectCorners);
 
 }
 /*------------------------------------------------------------------------------------------*/
-void Camera::zoomRect(const double corners[4][2])
+bool Camera::zoomRect(const double corners[4][2])
 {
 
+  // the aim of thi salgorithm is to perform zomming inside a 3D axes
+  // knowing a rectangle in pixels
+  // In 3d the selection rectangle can be extended as a infinite
+  // tube with a rectangular section aligned with view
+  // Ideally, the viewing area after the zoom should be the intersection
+  // of the selection volume and the axes box.
+  // However, in Scilab the axes box always remains a box.
+  // Consequently to perform a zoom, we compute the extreme bounds of the intersection
+  // in the 3 directions and use them as new bounds for the axes box.
+
   double oldDataBounds[6];
-  double newDataBounds[6];
 
+  // get data bounds, already scaled
   sciGetRealDataBounds(m_pDrawed, oldDataBounds);
+ 
+  // first step compute the 4 lines composing the selection area
+  // in 3d coordinates
+  // the selection area is an infinite cone (tube)
+  // of rectangular section.
+  double selectionLines[4][2][3]; // contains 4 lines which are actually 2 points
+  computeZoomAreaLines(corners, selectionLines);
+
   
-  // x axis
 
-  // (xmin, ymin zmin)
-  double xAxisBound1[3] = {oldDataBounds[0], oldDataBounds[2], oldDataBounds[4]};
-  // (xmax, ymin zmin)
-  double xAxisBound2[3] = {oldDataBounds[1], oldDataBounds[2], oldDataBounds[4]};
+  // second step project lines on each of the 6 axes cube plane
+  // actually we just need the found the bounds of the intersection of
+  // the selectionArea and the axes cube. And the bounds are found on the cube.
+  // So we just need to focus on the 6 faces of the cube
 
-  getNewBounds(corners, xAxisBound1, xAxisBound2, oldDataBounds[0], oldDataBounds[1],
-               &(newDataBounds[0]), &(newDataBounds[1]));
+  // set initial bounds
+  // set the otherbound since we wants to found minima
+  // and maxima
+  double oldXmin = oldDataBounds[0];
+  double oldXmax = oldDataBounds[1];
+  double oldYmin = oldDataBounds[2];
+  double oldYmax = oldDataBounds[3];
+  double oldZmin = oldDataBounds[4];
+  double oldZmax = oldDataBounds[5];
+
+  double newXmin = oldDataBounds[1]; // oldXmax
+  double newXmax = oldDataBounds[0]; // oldXmin
+  double newYmin = oldDataBounds[3]; // oldYmax
+  double newYmax = oldDataBounds[2]; // oldYmin
+  double newZmin = oldDataBounds[5]; // oldZMax
+  double newZmax = oldDataBounds[4]; // oldZmin
+
+  // the four intersections with one plane
+  double intersections[4][3];
+
+  // intersection with x = Xmin axis
+  if (   getXaxisIntersections(selectionLines, oldXmin, intersections)
+      && checkXIntersections(intersections, oldYmin, oldYmax, oldZmin, oldZmax))
+  {
+    // ok we found points and the selection intersect the side of the cube
+    // update Y and Z coordinates
+    // don't try to update X here, it's just xMin
+    updateYCoordinate(intersections, oldYmin, oldYmax, newYmin, newYmax);
+    updateZCoordinate(intersections, oldZmin, oldZmax, newZmin, newZmax);
+
+    newXmin = oldXmin;
+  }
+
+ 
+
+  // same with x = Xmax axis
+  if (   getXaxisIntersections(selectionLines, oldXmax, intersections)
+      && checkXIntersections(intersections, oldYmin, oldYmax, oldZmin, oldZmax))
+  {
+    updateYCoordinate(intersections, oldYmin, oldYmax, newYmin, newYmax);
+    updateZCoordinate(intersections, oldZmin, oldZmax, newZmin, newZmax);
+
+    newXmax = newXmax;
+  }
+
+  // same with y = Ymin axis
+  if (   getYaxisIntersections(selectionLines, oldYmin, intersections)
+      && checkYIntersections(intersections, oldXmin, oldXmax, oldZmin, oldZmax))
+  {
+    updateXCoordinate(intersections, oldXmin, oldXmax, newXmin, newXmax);
+    updateZCoordinate(intersections, oldZmin, oldZmax, newZmin, newZmax);
+
+    newYmin = oldYmin;
+  }
+
+  // same with y = Ymax axis
+  if (   getYaxisIntersections(selectionLines, oldYmax, intersections)
+      && checkYIntersections(intersections, oldXmin, oldXmax, oldZmin, oldZmax))
+  {
+    updateXCoordinate(intersections, oldXmin, oldXmax, newXmin, newXmax);
+    updateZCoordinate(intersections, oldZmin, oldZmax, newZmin, newZmax);
+
+    newYmax = oldYmax;
+  }
+
+  // same with z = Zmin axis
+  if (   getZaxisIntersections(selectionLines, oldZmin, intersections)
+      && checkZIntersections(intersections, oldXmin, oldXmax, oldYmin, oldYmax))
+  {
+    updateXCoordinate(intersections, oldXmin, oldXmax, newXmin, newXmax);
+    updateYCoordinate(intersections, oldYmin, oldYmax, newYmin, newYmax);
+
+    newZmin = oldZmin;
+  }
+
+  // same with z = Zmax axis
+  if (   getZaxisIntersections(selectionLines, oldZmax, intersections)
+      && checkZIntersections(intersections, oldXmin, oldXmax, oldYmin, oldYmax))
+  {
+    updateXCoordinate(intersections, oldXmin, oldXmax, newXmin, newXmax);
+    updateYCoordinate(intersections, oldYmin, oldYmax, newYmin, newYmax);
+
+    newZmax = oldZmax;
+  }
+
+  // check that the view was not outside
+  // that would mean that the newBounds were not updated
+  if (newXmin >= newXmax && newYmin >= newYmax && newZmin >= newZmax)
+  {
+    // selection was ousite all this work for nothing
+    return false;
+  }
+
+  // some of the bounds have been updated, find which ones.
+  if (newXmin >= newXmax)
+  {
+    // no update here
+    newXmin = oldXmin;
+    newXmax = oldXmax;
+  }
+
+  if (newYmin >= newYmax)
+  {
+    // no update here
+    newYmin = oldYmin;
+    newYmax = oldYmax;
+  }
+
+  if (newZmin >= newZmax)
+  {
+    // no update here
+    newZmin = oldZmin;
+    newZmax = oldZmax;
+  }
 
 
-  // y axis
-
-  // (xmin, ymin zmin)
-  double yAxisBound1[3] = {oldDataBounds[0], oldDataBounds[2], oldDataBounds[4]};
-  // (xmin, ymax zmin)
-  double yAxisBound2[3] = {oldDataBounds[0], oldDataBounds[3], oldDataBounds[4]};
-
-  getNewBounds(corners, yAxisBound1, yAxisBound2, oldDataBounds[2], oldDataBounds[3],
-              &(newDataBounds[2]), &(newDataBounds[3]));
-
-  // z axis
-
-  // (xmin, ymin zmin)
-  double zAxisBound1[3] = {oldDataBounds[0], oldDataBounds[2], oldDataBounds[4]};
-  // (xmin, ymin zmax)
-  double zAxisBound2[3] = {oldDataBounds[0], oldDataBounds[2], oldDataBounds[5]};
-
-  getNewBounds(corners, zAxisBound1, zAxisBound2, oldDataBounds[4], oldDataBounds[5],
-               &(newDataBounds[4]), &(newDataBounds[5]));
+  // ooray we found new bounds
+  // switch back to Scilab coordinates
+  inversePointScale(newXmin, newYmin, newZmin, &newXmin, &newYmin, &newZmin);
+  inversePointScale(newXmax, newYmax, newZmax, &newXmax, &newYmax, &newZmax);
+  double newDataBounds[6] = {newXmin, newXmax, newYmin, newYmax, newZmin, newZmax};
 
   sciSetZoomBox(m_pDrawed, newDataBounds);
+
+  return true;
 
 }
 /*--------------------------------------------------------------------------*/
@@ -239,58 +356,210 @@ void Camera::getViewingArea(int * xPos, int * yPos, int * width, int * height)
 {
   getCameraImp()->getViewingArea(xPos, yPos, width, height);
 }
-/*------------------------------------------------------------------------------------------*/
-void Camera::getNewBounds(const double corners[4][2], const double axisPoint1[3], const double axisPoint2[3],
-                          double oldMinBound, double oldMaxBound, double * newMinBound, double * newMaxBound)
+/*--------------------------------------------------------------------------*/
+void Camera::computeZoomAreaLines(const double areaPixCorners[4][2], double areaLines[4][2][3])
 {
-  // convert axis points into pixels
-  
-  int pixPoint[2];
-  getPixelCoordinates(axisPoint1, pixPoint);
-  double pixPoint1[2] = {pixPoint[0], pixPoint[1]};
-
-  getPixelCoordinates(axisPoint2, pixPoint);
-  double pixPoint2[2] = {pixPoint[0], pixPoint[1]};
-
-  // compute the distance between the two points
-  double p1p2[2];
-  vectSubstract2D(pixPoint2, pixPoint1, p1p2);
-  if (NORM_2D(p1p2) < 5.0)
-  {
-    // axes too short for projection
-    *newMinBound = oldMinBound;
-    *newMaxBound = oldMaxBound;
-    return;
-  }
-
-  getNewBoundsPix(corners, pixPoint1, pixPoint2, oldMinBound, oldMaxBound, newMinBound, newMaxBound);
-
-}
-/*------------------------------------------------------------------------------------------*/
-void Camera::getNewBoundsPix(const double corners[4][2], const double axisPoint1[2], const double axisPoint2[2],
-                             double oldMinBound, double oldMaxBound, double * newMinBound, double * newMaxBound)
-{
-  double axisVector[2];
-  vectSubstract2D(axisPoint2, axisPoint1, axisVector);
-
-  // get the projection of the four pixels on the axis
-  // for each compute its abscissa along the axis
-  // get the two extreme as new bounds
-  *newMinBound = oldMaxBound;
-  *newMaxBound = oldMinBound;
   for (int i = 0; i < 4; i++)
   {
-    double point1Corner[2];
-    vectSubstract2D(corners[i], axisPoint1, point1Corner);
-    // get the projection between 0 and 1
-    double proj = DOT_PROD_2D(axisVector, point1Corner) / SQUARE_NORM_2D(axisVector);
+    // get two points along the axis line in pixel coordinates
+    // in pixel coordinates lines are along Z coordinates
+    // so we can specify everything for as Z
+    // let say 0 and 1
+    double point1[3] = {areaPixCorners[i][0], areaPixCorners[i][1], 0.0};
+    double point2[3] = {areaPixCorners[i][0], areaPixCorners[i][1], -1.0};
 
-    // then find its abscissa along the axis
-    double abscissa = (oldMaxBound - oldMinBound) * proj + oldMinBound;
-    
-    if (abscissa > *newMaxBound) { *newMaxBound = abscissa ;}
-    if (abscissa < *newMinBound) { *newMinBound = abscissa ;}
+    // retrieve scene coordinate
+    getSceneCoordinates(point1, areaLines[i][0]);
+    getSceneCoordinates(point2, areaLines[i][1]);
+    pointScale(areaLines[i][0][0], areaLines[i][0][1], areaLines[i][0][2],
+               &areaLines[i][0][0], &areaLines[i][0][1], &areaLines[i][0][2]);
+    pointScale(areaLines[i][1][0], areaLines[i][1][1], areaLines[i][1][2],
+               &areaLines[i][1][0], &areaLines[i][1][1], &areaLines[i][1][2]);
   }
+}
+/*--------------------------------------------------------------------------*/
+bool Camera::getXaxisIntersections(const double areaLines[4][2][3], double planeXCoord, double intersections[4][3])
+{
+  for (int i = 0; i < 4; i++)
+  {
+    // for any plane the result of the intersection is is I = (P1 + a.P2) / (a - 1)
+    // where P1 and P2 are 2 points on the line
+    // and a = ||P1P1'|| / ||P2P2'|| where P1' and P2' are the orthogonal projections
+    // of P1 and P2 on the plane
+
+    // It's not needed to care about ||P2P2'|| being 0 with the value we choose for it
+    const double * p1 = areaLines[i][0];
+    const double * p2 = areaLines[i][1];
+    double alpha = (p1[0] - planeXCoord) / (p2[0] - planeXCoord);
+
+    if (alpha == 1.0)
+    {
+      return false;
+    }
+    
+    getIntersection(p1, p2, alpha, intersections[i]);
+  }
+  return true;
+}
+/*--------------------------------------------------------------------------*/
+bool Camera::getYaxisIntersections(const double areaLines[4][2][3], double planeYCoord, double intersections[4][3])
+{
+  for (int i = 0; i < 4; i++)
+  {
+    // for any plane the result of the intersection is is I = (P1 + a.P2) / (a - 1)
+    // where P1 and P2 are 2 points on the line
+    // and a = ||P1P1'|| / ||P2P2'|| where P1' and P2' are the orthogonal projections
+    // of P1 and P2 on the plane
+
+    // It's not needed to care about ||P2P2'|| being 0 with the value we choose for it
+    const double * p1 = areaLines[i][0];
+    const double * p2 = areaLines[i][1];
+    double alpha = (p1[1] - planeYCoord) / (p2[1] - planeYCoord);
+
+    if (alpha == 1.0)
+    {
+      return false;
+    }
+    
+    getIntersection(p1, p2, alpha, intersections[i]);
+  }
+  return true;
+}
+/*--------------------------------------------------------------------------*/
+bool Camera::getZaxisIntersections(const double areaLines[4][2][3], double planeZCoord, double intersections[4][3])
+{
+  for (int i = 0; i < 4; i++)
+  {
+    // for any plane the result of the intersection is is I = (a.P2 - P1) / (a - 1)
+    // where P1 and P2 are 2 points on the line
+    // and a = ||P1P1'|| / ||P2P2'|| where P1' and P2' are the orthogonal projections
+    // of P1 and P2 on the plane
+
+    // It's not needed to care about ||P2P2'|| being 0 with the value we choose for it
+    const double * p1 = areaLines[i][0];
+    const double * p2 = areaLines[i][1];
+    double alpha = (p1[2] - planeZCoord) / (p2[2] - planeZCoord);
+
+    if (alpha == 1.0)
+    {
+      return false;
+    }
+    
+    getIntersection(p1, p2, alpha, intersections[i]);
+  }
+  return true;
+}
+/*--------------------------------------------------------------------------*/
+void Camera::getIntersection(const double p1[3], const double p2[3], double alpha, double intersection[3])
+{
+  scalarMult3D(p2, alpha, intersection); // I = a.P2
+  vectSubstract3D(intersection, p1, intersection); // I = a.P2 - P1
+  scalarMult3D(intersection, 1.0 / (alpha - 1.0), intersection); // I = (P1 + a.P2) / (a - 1)
+}
+/*--------------------------------------------------------------------------*/
+void Camera::updateXCoordinate(const double intersections[4][3],
+                               double oldXmin, double oldXmax,
+                               double & newXmin, double & newXmax)
+{
+  for (int i = 0; i < 4; i++)
+  {
+    if (intersections[i][0] < newXmin)
+    {
+      // it's a zoom don't set bounds outside of old ones
+      newXmin = Max(intersections[i][0], oldXmin);
+    }
+    else if (intersections[i][0] > newXmax)
+    {
+      // it's a zoom don't set bounds outside of old ones
+      newXmax = Min(intersections[i][0], oldXmax);
+    }
+  }
+}
+/*--------------------------------------------------------------------------*/
+void Camera::updateYCoordinate(const double intersections[4][3],
+                               double oldYmin, double oldYmax,
+                               double & newYmin, double & newYmax)
+{
+  for (int i = 0; i < 4; i++)
+  {
+    if (intersections[i][1] < newYmin)
+    {
+      // it's a zoom don't set bounds outside of old ones
+      newYmin = Max(intersections[i][1], oldYmin);
+    }
+    else if (intersections[i][1] > newYmax)
+    {
+      // it's a zoom don't set bounds outside of old ones
+      newYmax = Min(intersections[i][1], oldYmax);
+    }
+  }
+}
+/*--------------------------------------------------------------------------*/
+void Camera::updateZCoordinate(const double intersections[4][3],
+                               double oldZmin, double oldZmax,
+                               double & newZmin, double & newZmax)
+{
+  for (int i = 0; i < 4; i++)
+  {
+    if (intersections[i][2] < newZmin)
+    {
+      // it's a zoom don't set bounds outside of old ones
+      newZmin = Max(intersections[i][2], oldZmin);
+    }
+    else if (intersections[i][2] > newZmax)
+    {
+      // it's a zoom don't set bounds outside of old ones
+      newZmax = Min(intersections[i][2], oldZmax);
+    }
+  }
+}
+/*--------------------------------------------------------------------------*/
+bool Camera::checkXIntersections(const double intersections[4][3],
+                                 double oldYmin, double oldYmax,
+                                 double oldZmin, double oldZmax)
+{
+  for (int i = 0; i < 4; i++)
+  {
+    if (   intersections[i][1] >= oldYmin && intersections[i][1] <= oldYmax
+        && intersections[i][2] >= oldZmin && intersections[i][2] <= oldZmax)
+    {
+      // at least one point in the side
+      return true;
+    }
+  }
+  return false;
+}
+/*--------------------------------------------------------------------------*/
+bool Camera::checkYIntersections(const double intersections[4][3],
+                                 double oldXmin, double oldXmax,
+                                 double oldZmin, double oldZmax)
+{
+  for (int i = 0; i < 4; i++)
+  {
+    if (   intersections[i][0] >= oldXmin && intersections[i][0] <= oldXmax
+        && intersections[i][2] >= oldZmin && intersections[i][2] <= oldZmax)
+    {
+      // at least one point in the side
+      return true;
+    }
+  }
+  return false;
+}
+/*--------------------------------------------------------------------------*/
+bool Camera::checkZIntersections(const double intersections[4][3],
+                                 double oldXmin, double oldXmax,
+                                 double oldYmin, double oldYmax)
+{
+  for (int i = 0; i < 4; i++)
+  {
+    if (   intersections[i][0] >= oldXmin && intersections[i][0] <= oldXmax
+        && intersections[i][1] >= oldYmin && intersections[i][1] <= oldYmax)
+    {
+      // at least one point in the side
+      return true;
+    }
+  }
+  return false;
 }
 /*--------------------------------------------------------------------------*/
 CameraBridge * Camera::getCameraImp( void )

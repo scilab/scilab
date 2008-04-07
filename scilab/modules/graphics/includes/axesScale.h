@@ -39,8 +39,10 @@ int trans3d( sciPointObj * pobj,
 int sciZoom2D(sciPointObj * pObj, const double zoomRect[4]);
 int sciZoom3D(sciPointObj * pObj, const double zoomBox[6]);
 void sciGetZoom3D(sciPointObj * pObj, double zoomBox[6]);
-void sciZoomRect(sciPointObj * pObj, int posX, int posY, int width, int height);
-void sciUnzoom(sciPointObj * subwins[], int nbSubwins);
+void sciZoomRect(void);
+void sciUnzoom(sciPointObj * subwin);
+void sciUnzoomAll(void);
+void sciUnzoomArray(unsigned long * subwinHandles, int nbSubwin);
 /*------------------------------------------------------------------------------*/
 BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
                      double yMin, double yMax, double zMin, double zMax);

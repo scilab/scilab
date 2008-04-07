@@ -134,3 +134,7 @@ sciGetIsAutoDrawable
 sciSetXorMode
 getPixelModeIndex
 sciGetTextBoundingBox
+vectAdd3D
+scalarMult3D
+vectSubstract3D
+sciSetZooming

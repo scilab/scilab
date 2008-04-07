@@ -132,6 +132,11 @@ unsigned long getHandleFromStack( int stackPointer )
   return (unsigned long) *(hstk( stackPointer )) ;
 }
 /*--------------------------------------------------------------------------*/
+unsigned long * getHandleVectorFromStack(int stackPointer)
+{
+  return (unsigned long *) hstk(stackPointer);
+}
+/*--------------------------------------------------------------------------*/
 BOOL isStringParamEqual( int stackPointer, const char * str )
 {
   if ( strcmp( getStringFromStack( stackPointer ), str ) == 0 )

@@ -33,7 +33,12 @@
 #include "GraphicSynchronizerInterface.h"
 #include "DrawingBridge.h"
 #include "CurrentObjectsManagement.h"
+#include "Interaction.h"
+#include "DoublyLinkedList.h"
 
+/*------------------------------------------------------------------------------*/
+void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height);
+void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int height);
 /*------------------------------------------------------------------------------*/
 double InvAxis( double min, double max, double u )
 {
@@ -421,12 +426,74 @@ void sciGetZoom3D(sciPointObj * pObj, double zoomBox[6])
 }
 /*------------------------------------------------------------------------------*/
 /**
- *  Zoom on a subwidow using a rectangle specified by user in pixels
+ * Try to zoom on a single subwindow using a selection area
  */
-void sciZoomRect(sciPointObj * pObj, int posX, int posY, int width, int height)
+void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height)
 {
-  sciJavaZoomRect(pObj, posX, posY, width, height);
-  sciSetZooming(pObj, TRUE);
+  if (sciJavaZoomRect(pSubwin, posX, posY, width, height))
+  {
+    /* subwindow has been zoomed */
+    /* force zooming */
+    sciSetZooming(pSubwin, TRUE);
+
+    // window has changed
+    forceRedraw(pSubwin);
+  }
+}
+/*------------------------------------------------------------------------------*/
+/**
+ * Zoom a figure using an already computed selection area
+ */
+void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int height)
+{
+  /* try to zoom on all the subwindows */
+  sciSons * pSons = sciGetSons(pFigure);
+  while (pSons != NULL)
+  {
+    sciPointObj * curObj = pSons->pointobj;
+    if (sciGetEntityType(curObj) == SCI_SUBWIN)
+    {
+      zoomSubwin(curObj, posX, posY, width, height);
+    }
+    pSons = pSons->pnext;
+  }
+}
+/*------------------------------------------------------------------------------*/
+/**
+ * Perform a zoom rect (rectangular selection + zoom) on the current figure
+ */
+void sciZoomRect(void)
+{
+  int selectionRectangleCorners[4];
+  int x;
+  int y;
+  int w;
+  int h;
+  int button;
+  sciPointObj * curFigure;
+  sciPointObj * curSubWin;
+
+  startGraphicDataWriting();
+  curFigure = sciGetCurrentFigure();
+  curSubWin = sciGetCurrentSubWin();
+  endGraphicDataWriting();
+
+  /* create a ruuber box to select a rectangular area */
+  pixelRubberBox(curFigure, TRUE, NULL, selectionRectangleCorners, &button);
+
+  /* convert found data to [x,y,w,h] */
+  x = Min(selectionRectangleCorners[0], selectionRectangleCorners[2]);
+  y = Min(selectionRectangleCorners[1], selectionRectangleCorners[3]);
+  w = Abs(selectionRectangleCorners[0] - selectionRectangleCorners[2]);
+  h = Abs(selectionRectangleCorners[1] - selectionRectangleCorners[3]); 
+
+  /* Zoom using the found pixels */
+  startFigureDataWriting(curFigure);
+  zoomFigure(curFigure, x, y, w, h);
+  endFigureDataWriting(curFigure);
+
+  /* redraw */
+  sciDrawObj(curFigure);
 }
 /*------------------------------------------------------------------------------*/
 /**
@@ -471,18 +538,79 @@ BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
 }
 /*------------------------------------------------------------------------------*/
 /**
- * Unzoom several subwindows in the same time
+ * Unzoom a single subwindow
  */
-void sciUnzoom(sciPointObj * subwins[], int nbSubwins)
+void sciUnzoom(sciPointObj * subwin)
+{
+  int currentStatus;
+  sciPointObj * parentFig = sciGetParentFigure(subwin);
+  startFigureDataWriting(parentFig);
+  currentStatus = sciSetZooming(subwin, FALSE);
+  endFigureDataWriting(parentFig);
+
+  if (currentStatus == 0)
+  {
+    /* redraw only if needed */
+    forceRedraw(subwin);
+  }
+
+}
+/*------------------------------------------------------------------------------*/
+/**
+ * Un zoom all the subwindow of a figure
+ */
+void sciUnzoomAll(void)
+{
+  sciPointObj * pFigure = NULL;
+  sciSons * pSons = NULL;
+
+  startGraphicDataWriting();
+  pFigure = sciGetCurrentFigure();
+  endGraphicDataWriting();
+
+  /* Copy subwins into the array */ 
+  pSons = sciGetSons(pFigure);
+  while (pSons != NULL)
+  {
+    sciPointObj * curObj = pSons->pointobj;
+    if (sciGetEntityType(curObj) == SCI_SUBWIN)
+    {
+      sciUnzoom(curObj);
+    }
+    pSons = pSons->pnext;
+  }
+
+  sciDrawObj(pFigure);
+}
+/*------------------------------------------------------------------------------*/
+/**
+ * Unzoom a set of subwindows given by their handles
+ */
+void sciUnzoomArray(unsigned long * subwinHandles, int nbSubwin)
 {
   int i;
-  for (i = 0; i < nbSubwins; i++)
+  /* list of parent figure to redraw */
+  DoublyLinkedList * redrawnFigures = DoublyLinkedList_new();
+  for (i = 0; i < nbSubwin; i++)
   {
-    sciPointObj * parentFig = sciGetParentFigure(subwins[i]);
-    startFigureDataWriting(parentFig);
-    sciSetZooming(subwins[i], FALSE);
-    endFigureDataWriting(parentFig);
-    sciDrawObj(subwins[i]);
+    sciPointObj * curSubwin = sciGetPointerFromHandle(subwinHandles[i]);
+    sciPointObj * parentFigure = sciGetParentFigure(curSubwin);
+    sciUnzoom(curSubwin);
+    if (List_find(redrawnFigures, parentFigure) == NULL)
+    {
+      /* figure not already added for redraw */
+      redrawnFigures = List_push(redrawnFigures, parentFigure);
+    }
   }
+
+  /* redraw only needed figures */
+  while (!List_is_empty(redrawnFigures))
+  {
+    sciPointObj * curFigure = NULL;
+    redrawnFigures = List_pop(redrawnFigures, &curFigure);
+    sciDrawObj(curFigure);
+  }
+
+  List_free(redrawnFigures);
 }
 /*------------------------------------------------------------------------------*/

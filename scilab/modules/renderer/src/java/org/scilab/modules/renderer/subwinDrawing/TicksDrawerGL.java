@@ -506,7 +506,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		int firstNonNullTicksIndex = 0;
 		
 		// find first non null ticks
-		while (ticksPosPix[firstNonNullTicksIndex] == null) {
+		while (firstNonNullTicksIndex < nbLabels && ticksPosPix[firstNonNullTicksIndex] == null) {
 			firstNonNullTicksIndex++;
 		}
 		

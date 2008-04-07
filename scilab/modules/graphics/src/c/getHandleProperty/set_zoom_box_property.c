@@ -54,7 +54,7 @@ int set_zoom_box_property( sciPointObj * pobj, int stackPointer, int valueType, 
   }
   else if ( nbCol * nbRow == 0 )
   {
-    sciUnzoom(&pobj, 1);
+    sciUnzoom(pobj);
   }
   else
   {

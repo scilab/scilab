@@ -63,8 +63,9 @@ void sciSetJavaRenderingEnable(sciPointObj * pFigure, BOOL isEnable);
 
 /**
  * Zoom a subwin object with the specified rectangle in pixels
+ * @return TRUE if the axes box has been zoomed, FALSE otherwise
  */
-void sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height);
+ BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height);
 
 /**
  * Set the auto_resize mode of a figure

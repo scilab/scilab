@@ -86,8 +86,9 @@ public:
    * @param posY Y coordinate of the lower left point of the zoom box in pixels.
    * @param width width of the zooming rectangle.
    * @param height height of the zooming rectangle.
+   * @return true if the axes box has been zoomed, false otherwise
    */
-  void zoomRect(int posX, int posY, int width, int height);
+  bool zoomRect(int posX, int posY, int width, int height);
 
   /**
    * Get the position and size of the rectangle in which the axes box must fit
@@ -133,34 +134,113 @@ protected:
   /**
    * Apply a zoom square on the axes box
    * @param corners the 4 corners of the zooming rectangle in pixel
+   * @return true if the axes box has been zoomed, false otherwise
    */
-  void zoomRect(const double corners[4][2]);
+  bool zoomRect(const double corners[4][2]);
 
   /**
-   * Compute new bounds for one axis.
-   * @param corners coordinates of the zooming rectangle in pixels
-   * @param axisPoint1 coordinates of a point on the axis in user coordinates.
-   * @param axisPoint2 coordinate of an other point on the axis in user coordinates.
-   * @param minBound old minimum bound on the axis
-   * @param maxNound old maximum bound on the axis
-   * @param[out] newMinBound newly computed minimum bound
-   * @param[out] newMaxBound newly computed maximum bound.
+   * Compute the lines composing the zooming selection area
+   * @param areaPixCorners corners of the selction rectangle in pixels
+   * @param areaLines 4 line composing the selection area in 3D
    */
-  void getNewBounds(const double corners[4][2], const double axisPoint1[3], const double axisPoint2[3],
-                    double oldMinBound, double oldMaxBound, double * newMinBound, double * newMaxBound);
+  void computeZoomAreaLines(const double areaPixCorners[4][2], double areaLines[4][2][3]);
 
   /**
-   * Compute new bounds for one axis.
-   * @param corners coordinates of the zooming rectangle in pixels
-   * @param axisPoint1 coordinates of a point on the axis in pixels
-   * @param axisPoint2 coordinate of an other point on the axis in pixels
-   * @param minBound old minimum bound on the axis
-   * @param maxNound old maximum bound on the axis
-   * @param[out] newMinBound newly computed minimum bound
-   * @param[out] newMaxBound newly computed maximum bound.
+   * Compute the 4 intersections of the lines with an x = planeXcoord plane
+   * @param areaLines 4 lines composing the selection area in 3D
+   * @param planeXcoord either xMin or xMax
+   * @return false if no intersections could be computed (lines and plane are parallel)
    */
-  void getNewBoundsPix(const double corners[4][2], const double axisPoint1[2], const double axisPoint2[2],
-                       double oldMinBound, double oldMaxBound, double * newMinBound, double * newMaxBound);
+  bool getXaxisIntersections(const double areaLines[4][2][3], double planeXCoord, double intersections[4][3]);
+
+  /**
+   * Compute the 4 intersections of the lines with an y = planeYcoord plane
+   * @param areaLines 4 lines composing the selection area in 3D
+   * @param planeXcoord either yMin or yMax
+   * @return false if no intersections could be computed (lines and plane are parallel)
+   */
+  bool getYaxisIntersections(const double areaLines[4][2][3], double planeYCoord, double intersections[4][3]);
+
+  /**
+   * Compute the 4 intersections of the lines with an z = planeZcoord plane
+   * @param areaLines 4 lines composing the selection area in 3D
+   * @param planeXcoord either zMin or zMax
+   * @return false if no intersections could be computed (lines and plane are parallel)
+   */
+  bool getZaxisIntersections(const double areaLines[4][2][3], double planeZCoord, double intersections[4][3]);
+
+  /**
+   * Compute the intersection of the line defined by p1 and p2 knowing the alpha value
+   * @param intersection coordinates of the intersection
+   * @param alpha shuld be different than 1
+   */
+  void getIntersection(const double p1[3], const double p2[3], double alpha, double intersection[3]);
+
+  /**
+   * Update the new X bounds with 4 new intersections
+   * @param intersections intesection of the selection volume with a plane
+   * @param oldXMin previous minimal bound along X axis
+   * @param oldXMax previous maximal bound along X axis
+   * @param[in/out] newYmin currently computed minimum X bound
+   * @param[in/out] newYmax currently computed maximum X bound
+   */
+  void updateXCoordinate(const double intersections[4][3],
+                         double oldXmin, double oldXmax,
+                         double & newXmin, double & newXmax);
+
+  /**
+   * Update the new Y bounds with 4 new intersections
+   * @param intersections intesection of the selection volume with a plane
+   * @param oldYMin previous minimal bound along Y axis
+   * @param oldYMax previous maximal bound along Y axis
+   * @param[in/out] newYmin currently computed minimum Y bound
+   * @param[in/out] newYmax currently computed maximum Y bound
+   */
+  void updateYCoordinate(const double intersections[4][3],
+                         double oldYmin, double oldYmax,
+                         double & newYmin, double & newYmax);
+
+  /**
+   * Update the new z bounds with 4 new intersections
+   * @param intersections intesection of the selection volume with a plane
+   * @param oldMin previous minimal bound along Z axis
+   * @param oldMax previous maximal bound along Z axis
+   * @param[in/out] newYmin currently computed minimum Z bound
+   * @param[in/out] newYmax currently computed maximum Z bound
+   */
+  void updateZCoordinate(const double intersections[4][3],
+                         double oldZmin, double oldZmax,
+                         double & newZmin, double & newZmax);
+
+  /**
+   * test if part of the intersections is within a cube side
+   * with equatuion x = cst
+   * @return true if the intersection are within the side and
+   *              that intersections may be used to update data bounds
+   */
+  bool checkXIntersections(const double intersections[4][3],
+                           double oldYmin, double oldYmax,
+                           double oldZmin, double oldZmax);
+
+  /**
+   * test if part of the intersections is within a cube side
+   * with equatuion x = cst
+   * @return true if the intersection are within the side and
+   *              that intersections may be used to update data bounds
+   */
+  bool checkYIntersections(const double intersections[4][3],
+                           double oldXmin, double oldXmax,
+                           double oldZmin, double oldZmax);
+
+  /**
+   * test if part of the intersections is within a cube side
+   * with equatuion x = cst
+   * @return true if the intersection are within the side and
+   *              that intersections may be used to update data bounds
+   */
+  bool checkZIntersections(const double intersections[4][3],
+                           double oldXmin, double oldXmax,
+                           double oldYmin, double oldYmax);
 
 
   /**

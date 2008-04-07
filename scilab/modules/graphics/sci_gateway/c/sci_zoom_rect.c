@@ -27,6 +27,7 @@
 #include "DrawingBridge.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
+#include "Interaction.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_zoom_rect(char *fname,unsigned long fname_len)
@@ -37,7 +38,7 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
   CheckLhs(0,1) ;
   if (Rhs <= 0) 
   {
-    zoom();
+    sciZoomRect();
   }
   else
   {
@@ -48,15 +49,12 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
 
     GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&stackPointer); 
     CheckLength(1,4,m*n);
-    /*sciZoom2D(sciGetCurrentSubWin(), getDoubleMatrixFromStack(stackPointer));*/
-    rectData = getDoubleMatrixFromStack(stackPointer);
-    
+
     curFigure = sciGetCurrentFigure();
     curSubWin = sciGetCurrentSubWin();
 
     startFigureDataWriting(curFigure);
-    sciZoomRect(curSubWin, (int) rectData[0], (int) rectData[1],
-                (int) rectData[2], (int) rectData[3]);
+    sciZoom2D(sciGetCurrentSubWin(), getDoubleMatrixFromStack(stackPointer));
     endFigureDataWriting(curFigure);
 
     sciDrawObj(curSubWin);

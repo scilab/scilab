@@ -32,55 +32,37 @@
 /*--------------------------------------------------------------------------*/
 int sci_unzoom(char *fname,unsigned long fname_len)
 {
-  sciPointObj ** unzoomedSubwins = NULL;
-  int nbUnzoomedSubwins = 0;
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
   if ( Rhs == 0 )
   {
-    sciPointObj * curSubwin = sciGetCurrentSubWin();
-    unzoomedSubwins = &curSubwin;
-    nbUnzoomedSubwins = 1;
+    sciUnzoomAll();
   }
   else
   {
+    int nbUnzoomedSubwins = 0;
     int m,n,i;
     int stackPointer;
+    unsigned long * subwinHandles = NULL;
     GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m,&n,&stackPointer);
     
     nbUnzoomedSubwins = m * n;
+    subwinHandles = getHandleVectorFromStack(stackPointer);
 
-    unzoomedSubwins = MALLOC( nbUnzoomedSubwins * sizeof(sciPointObj *));
-    
-    if (unzoomedSubwins == NULL)
-    {
-      sciprint(_("%s: no more memory.\n"),fname);
-      LhsVar(1)=0; 
-      return 0;
-    }
-
+    /* first pass, check that all the handles are subwindows */
     for ( i = 0 ; i < nbUnzoomedSubwins ; i++ )
     {
-      unzoomedSubwins[i] = sciGetPointerFromHandle(getHandleFromStack(stackPointer + i));
-      if (sciGetEntityType(unzoomedSubwins[i]) != SCI_SUBWIN)
+      sciPointObj * curSubwin = sciGetPointerFromHandle(subwinHandles[i]);
+      if (sciGetEntityType(curSubwin) != SCI_SUBWIN)
       {
-        sciprint(_("%s: Wrong type for input argument: vector of axes handles expected.\n"),fname);
-        FREE(unzoomedSubwins);
+        sciprint(_("%s: Wrong type for input argument: vector of Axes handles expected.\n"),fname);
         LhsVar(1)=0; 
         return 0;
       }
-      //sciSetZooming(sciGetPointerFromHandle(getHandleFromStack(stackPointer + i)), FALSE); /** Correction Bug 1476 + Warning Windows **/
     }
-    
-    
 
-  }
+    sciUnzoomArray(subwinHandles, nbUnzoomedSubwins);
 
-  sciUnzoom(unzoomedSubwins, nbUnzoomedSubwins);
-
-  if (Rhs != 0) 
-  {
-    FREE(unzoomedSubwins);
   }
   
 

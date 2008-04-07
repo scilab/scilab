@@ -186,13 +186,19 @@ void crossProduct( const double v1[3], const double v2[3], double res[3] ) ;
  * substraction of two vector
  * @param res result of v1 - v2
  */
-void vectSubstract3D( double v1[3], double v2[3], double res[3]);
+void vectSubstract3D(const double v1[3], const double v2[3], double res[3]);
+
+/**
+ * substraction of two vector
+ * @param res result of v1 + v2
+ */
+void vectAdd3D(const double v1[3], const double v2[3], double res[3]);
 
 /**
  * Multiply a vector by a scalar
  * @param res scalar.v
  */
-void scalarMult3D( double v[3], double scalar, double res[3]);
+void scalarMult3D(const double v[3], const double scalar, double res[3]);
 
 /**
  * Normalize a 3D vector
