@@ -997,7 +997,7 @@ void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCol
 	C2F(intersci).iwhere[Top - Rhs + _iNewVal - 1]	= *Lstk(_iNewVal);
 	C2F(intersci).lad[Top - Rhs + _iNewVal - 1]		= sadr(iAddrData);
 
-	if(_pdblImgData = NULL)
+	if(_pdblImgData == NULL)
 		*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrData) + iIndex;
 	else
 		*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols) + iIndex;
