@@ -284,6 +284,7 @@ c
             fin=-fin
             return
          endif
+         ityp=istk(il3)
       else
          ityp=istk(il4)
       endif
