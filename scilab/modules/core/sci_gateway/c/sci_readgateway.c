@@ -18,6 +18,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "with_module.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_readgateway)(char *fname,unsigned long fname_len)
 {

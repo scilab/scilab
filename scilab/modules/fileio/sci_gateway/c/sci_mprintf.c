@@ -10,7 +10,7 @@
 /*--------------------------------------------------------------------------*/ 
 int int_objprintf(char *fname,unsigned long fname_len)
 {
-	static int l1, m1, n1, lcount, rval, k, mk, nk;
+	static int l1, m1, n1, lcount, rval, k ;
 	
 	char *ptrFormat   = NULL;
 	int i             = 0;
