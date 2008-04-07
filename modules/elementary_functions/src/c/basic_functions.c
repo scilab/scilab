@@ -575,3 +575,134 @@ void ddscals(double* _pdblIn, int _iNbElem, double _dblMulti, double* _pdblOut)
 		_pdblOut[iIndex] = _dblMulti * _pdblIn[iIndex];
 	}
 }
+
+void vCupro(int _iNbElem, double* _piIn, double* _piOut)
+{
+	int iIndex = 0;
+	double dblCoeff = 1;
+	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex++)
+	{
+		_piOut[iIndex] = _piIn[iIndex] * dblCoeff;
+		dblCoeff = _piOut[iIndex];
+	}
+}
+
+void vCuproi(int _iNbElem, double* _piRealIn, double* _piImgIn, double* _piRealOut, double* _piImgOut)
+{
+	int iIndex = 0;
+	double dblRealCoeff = 1, dblImgCoeff = 0;
+	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex++)
+	{
+		double dblTemp		= _piRealIn[iIndex];
+		_piRealOut[iIndex]	= dblTemp * dblRealCoeff - dblImgCoeff * _piImgIn[iIndex];
+		_piImgOut[iIndex]	= dblRealCoeff * _piImgIn[iIndex] + dblImgCoeff * dblTemp;
+		dblRealCoeff		= _piRealOut[iIndex];
+		dblImgCoeff			= _piImgOut[iIndex];
+	}
+}
+
+/*
+etant donne un vecteur _piIn1 et un vecteur _piIn2,
+ cette subroutine fait:
+               _piOut = _piIn1 * _piIn2
+quand les deux increments sont egaux a 1, cette
+subroutine emploie des boucles "epanouis". dans le cas ou
+les increments sont negatifs, cette subroutine prend
+les composantes en ordre inverse.
+*/
+void vDvmul(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iIncIn2, double* _piOut)
+{
+	int iIndex = 0;
+	if(_iIncIn1 == 1 && _iIncIn2 == 1)
+	{
+		for(iIndex = 0; iIndex < _iNbElem ; iIndex++)
+			_piOut[iIndex] = _piIn1[iIndex] * _piIn2[iIndex];
+	}
+	else
+	{
+		int iIndex1 = 1;
+		int iIndex2 = 1;
+		if(_iIncIn1 < 0)
+			iIndex1 = (-_iNbElem + 1) * _iIncIn1 + 1;
+		if(_iIncIn2 < 0)
+			iIndex1 = (-_iNbElem + 1) * _iIncIn2 + 1;
+
+		for(iIndex = 0; iIndex < _iNbElem ; iIndex++)
+		{
+			_piOut[iIndex2] = _piIn1[iIndex1] * _piIn2[iIndex2];
+			iIndex1			+= _iIncIn1;
+			iIndex2			+= _iIncIn2;
+		}
+	}
+}
+
+void vWvmul(int _iNbElem, double* _piRealIn1, double* _piImgIn1, double* _piRealIn2, double* _piImgIn2, int _iIncIn1, int _iIncIn2, double* _piRealOut, double* _piImgOut)
+{
+	int iIndex = 0;
+	if(_iIncIn1 == 1 && _iIncIn2 == 1)
+	{
+		for(iIndex = 0; iIndex < _iNbElem ; iIndex++)
+		{
+			double dblTemp		= _piRealIn2[iIndex];
+			_piRealOut[iIndex]	= dblTemp * _piRealIn1[iIndex] - _piImgIn2[iIndex] * _piImgIn1[iIndex];
+			_piImgOut[iIndex]	= dblTemp * _piImgIn1[iIndex] + _piImgIn2[iIndex] * _piRealIn1[iIndex];
+		}
+	}
+	else
+	{
+		int iIndex1 = 1;
+		int iIndex2 = 1;
+		if(_iIncIn1 < 0)
+			iIndex1 = (-_iNbElem + 1) * _iIncIn1 + 1;
+		if(_iIncIn2 < 0)
+			iIndex1 = (-_iNbElem + 1) * _iIncIn2 + 1;
+
+		for(iIndex = 0; iIndex < _iNbElem ; iIndex++)
+		{
+			double dblTemp	= _piRealIn2[iIndex2];
+			_piRealOut[iIndex2] = dblTemp * _piRealIn1[iIndex1] - _piImgIn2[iIndex2] * _piImgIn1[iIndex1];
+			_piImgOut[iIndex2]	= dblTemp * _piImgIn1[iIndex1] + _piImgIn2[iIndex2] * _piRealIn1[iIndex1];
+			iIndex1			+= _iIncIn1;
+			iIndex2			+= _iIncIn2;
+		}
+	}
+}
+
+void vCusum(int _iNbElem, double *_pdblIn, double *_pdblOut)
+{
+	double dblTemp = 0;
+	int iIndex = 0;
+
+	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex++)
+	{
+		_pdblOut[iIndex] = dblTemp + _pdblIn[iIndex];
+		dblTemp = _pdblOut[iIndex];
+	}
+}
+
+/*Add two vectors*/
+void vDadd(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iIncIn2, double* _piOut)
+{
+	int iIndex = 0;
+	if(_iIncIn1 == 1 && _iIncIn2 == 1)
+	{
+		for(iIndex = 0; iIndex < _iNbElem ; iIndex++)
+			_piOut[iIndex] = _piIn1[iIndex] + _piIn2[iIndex];
+	}
+	else
+	{
+		int iIndex1 = 1;
+		int iIndex2 = 1;
+		if(_iIncIn1 < 0)
+			iIndex1 = (-_iNbElem + 1) * _iIncIn1 + 1;
+		if(_iIncIn2 < 0)
+			iIndex1 = (-_iNbElem + 1) * _iIncIn2 + 1;
+
+		for(iIndex = 0; iIndex < _iNbElem ; iIndex++)
+		{
+			_piOut[iIndex2] = _piIn1[iIndex1] + _piIn2[iIndex2];
+			iIndex1			+= _iIncIn1;
+			iIndex2			+= _iIncIn2;
+		}
+	}
+}
