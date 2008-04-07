@@ -52,7 +52,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for second input argument: Real values expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for second input argument: Matrix of floating point numbers expected.\n"),fname);
 		return 0;
 	}
 
