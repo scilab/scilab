@@ -6,7 +6,7 @@
 	ProjectGUID="{45CA5B12-7601-4968-AE16-16069FD1A152}"
 	RootNamespace="gui"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -464,10 +464,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_getcallbackobject.c"
-				>
-			</File>
-			<File
 				RelativePath=".\getinstalledlookandfeels.c"
 				>
 			</File>
@@ -480,7 +476,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\GetScreenProperties.cpp"
+				RelativePath="..\cpp\GetScreenProperty.cpp"
 				>
 			</File>
 			<File
@@ -629,6 +625,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_delmenu.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_getcallbackobject.c"
 				>
 			</File>
 			<File

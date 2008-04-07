@@ -74,4 +74,5 @@ DestroyUIControl
 setFigureEventHandler
 setFigureEventHandlerEnabled
 DestroyWaitBar
+GetScreenProperty
 ;

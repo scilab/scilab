@@ -84,11 +84,11 @@ int sci_get(char *fname,unsigned long fname_len)
             {
               GetRhsVar(2,  MATRIX_OF_STRING_DATATYPE, &m1, &n1, &stkAdr);
               
-              status = GetScreenProperty(stkAdr, VarType(2), m1, n1);
+              status = GetScreenProperty((int)stkAdr, VarType(2), m1, n1);
               
               if(status != SET_PROPERTY_SUCCEED) /* Return property */
                 {
-                  Scierror(999, _("%s: could not read property '%s' for root object.\n"), "get", getStringMatrixFromStack(stkAdr)[0]);
+                  Scierror(999, _("%s: could not read property '%s' for root object.\n"), "get", getStringMatrixFromStack((int)stkAdr)[0]);
                   return FALSE;
                 }
             }
