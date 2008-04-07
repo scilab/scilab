@@ -79,11 +79,9 @@ public abstract class AxesTicksDrawerGL extends TicksDrawerGL {
 		Vector3D[] ticksPosition = findTicksPositions();
 		Vector3D[] subticksPosition = findSubticksPositions();
 		Vector3D ticksDir = getTicksDirection();
-		drawTicksLines(ticksPosition, subticksPosition, ticksDir,
-					   getAxisSegmentStart(),
-					   getAxisSegmentEnd());
 		
-		return drawLabels(ticksPosition, ticksDir);
+		return drawTicks(ticksPosition, subticksPosition, ticksDir,
+					getAxisSegmentStart(), getAxisSegmentEnd());
 	}
 	
 	/**
