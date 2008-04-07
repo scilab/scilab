@@ -90,7 +90,11 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 							C2F(scimem)( (int *)&MEMSTACKSIZE,&ptr);
 							if (ptr) 
 								{
+									LhsVar(1) = 0;
+									C2F(putlhsvar)();
+
 									C2F(adjuststacksize)(&MEMSTACKSIZE,&ptr);
+									return 0;
 								}
 							else
 							{
@@ -165,7 +169,11 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 					C2F(scimem)(&newmaxstack,&ptr);
 					if (ptr)
 					{
+						LhsVar(1) = 0;
+						C2F(putlhsvar)();
+
 						C2F(adjuststacksize)(&newmaxstack,&ptr);
+						return 0;
 					}
 
 					LhsVar(1) = 0;
@@ -194,7 +202,11 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 					C2F(scimem)(&newminstack,&ptr);
 					if (ptr)
 					{
+						LhsVar(1) = 0;
+						C2F(putlhsvar)();
+
 						C2F(adjuststacksize)(&newminstack,&ptr);
+						return 0;
 					}
 					LhsVar(1) = 0;
 					C2F(putlhsvar)();

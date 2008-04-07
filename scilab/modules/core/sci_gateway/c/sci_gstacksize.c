@@ -94,7 +94,14 @@ int C2F(sci_gstacksize)(char *fname,unsigned long fname_len)
 							C2F(scigmem)((int *)&MEMGSTACKSIZE,&ptr);
 							l = C2F(vstk).lstk[C2F(vstk).gtop] - C2F(vstk).lstk[C2F(vstk).isiz + 1];
 
-							if (ptr) C2F(adjustgstacksize)(&MEMGSTACKSIZE,&ptr,&l);
+							if (ptr) 
+							{
+								LhsVar(1) = 0;
+								C2F(putlhsvar)();
+
+								C2F(adjustgstacksize)(&MEMGSTACKSIZE,&ptr,&l);
+								return 0;
+							}
 							else
 							{
 								Scierror(999,_("%s: Cannot alloc more memory.\nTry gstacksize('max').\n"),fname);
@@ -166,7 +173,11 @@ int C2F(sci_gstacksize)(char *fname,unsigned long fname_len)
 					C2F(scigmem)(&newmaxgstack,&ptr);
 					if (ptr)
 					{
+						LhsVar(1) = 0;
+						C2F(putlhsvar)();
+
 						C2F(adjustgstacksize)(&newmaxgstack,&ptr,&l);
+						return 0;
 					}
 
 					LhsVar(1) = 0;
@@ -198,7 +209,11 @@ int C2F(sci_gstacksize)(char *fname,unsigned long fname_len)
 					C2F(scigmem)(&newmingstack,&ptr);
 					if (ptr)
 					{
+						LhsVar(1) = 0;
+						C2F(putlhsvar)();
+
 						C2F(adjustgstacksize)(&newmingstack,&ptr,&l);
+						return 0;
 					}
 					LhsVar(1) = 0;
 					C2F(putlhsvar)();
