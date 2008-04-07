@@ -543,5 +543,11 @@
 <!-- Misc -->
 	<method name="getScreenResolution" returnType="int" modifier="static">
         </method>      
+	<method name="getScreenWidth" returnType="double" modifier="static">
+        </method>      
+	<method name="getScreenHeight" returnType="double" modifier="static">
+        </method>      
+	<method name="getScreenDepth" returnType="int" modifier="static">
+        </method>      
   </object>
 </package>

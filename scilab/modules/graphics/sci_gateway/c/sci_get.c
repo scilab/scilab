@@ -34,6 +34,10 @@
 
 #include "localization.h"
 #include "Scierror.h"
+
+#include "SetPropertyStatus.h"
+#include "GetScreenProperty.h"
+#include "getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
 int sciGet(sciPointObj *pobj,char *marker);
 /*--------------------------------------------------------------------------*/
@@ -58,6 +62,10 @@ int sci_get(char *fname,unsigned long fname_len)
   int lw;
   sciPointObj *pobj;
 
+  /* Root properties */
+  char **stkAdr = NULL;
+  int status = SET_PROPERTY_ERROR;
+  
   CheckRhs(1,2);
   CheckLhs(0,1);
   
@@ -68,8 +76,34 @@ int sci_get(char *fname,unsigned long fname_len)
   switch(VarType(1))
     {
     case 1: /* tclsci handle */
-      lw = 1 + Top - Rhs;
-      C2F(overload)(&lw,"get",3);
+      GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE , &m1, &n1, &l1);
+      if ((int) *stk(l1) == 0) /* Root property */
+        {
+          CheckRhs(2,2);
+          if (VarType(2) == sci_strings)
+            {
+              GetRhsVar(2,  MATRIX_OF_STRING_DATATYPE, &m1, &n1, &stkAdr);
+              
+              status = GetScreenProperty(stkAdr, VarType(2), m1, n1);
+              
+              if(status != SET_PROPERTY_SUCCEED) /* Return property */
+                {
+                  Scierror(999, _("%s: could not read property '%s' for root object.\n"), "get", getStringMatrixFromStack(stkAdr)[0]);
+                  return FALSE;
+                }
+            }
+          else
+            {
+              Scierror(999, _("%s: Wrong type for property name: single string expected.\n"), "get");
+              return FALSE;
+            }
+          LhsVar(1)=Rhs+1;
+      }
+      else /* tclsci handle: should no more happen */
+        {
+          lw = 1 + Top - Rhs;
+          C2F(overload)(&lw,"get",3);
+        }
       return 0;
       break;
     case sci_handles: /* scalar argument (hdl + string) */

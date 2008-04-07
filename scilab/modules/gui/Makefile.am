@@ -15,7 +15,6 @@ src/c/getinstalledlookandfeels.c \
 src/c/TerminateGui.c \
 src/c/buildMainWindowTitle.c \
 src/c/getMainWindowTitle.c \
-src/c/getScreenProperties.c \
 src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
@@ -97,7 +96,8 @@ src/cpp/SetUicontrolVerticalAlignment.cpp \
 src/cpp/GetUicontrolVerticalAlignment.cpp \
 src/cpp/SetUicontrolSliderStep.cpp \
 src/cpp/GetUicontrolSliderStep.cpp \
-src/cpp/UnitsConversion.cpp
+src/cpp/UnitsConversion.cpp \
+src/cpp/GetScreenProperty.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \

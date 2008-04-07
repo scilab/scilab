@@ -480,7 +480,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\getScreenProperties.c"
+				RelativePath="..\cpp\GetScreenProperties.cpp"
 				>
 			</File>
 			<File
@@ -1026,6 +1026,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\GetScreenProperty.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetScreenProperty.hxx"
 				>
 			</File>
 			<File

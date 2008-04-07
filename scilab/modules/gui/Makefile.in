@@ -104,9 +104,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/c/getlookandfeel.c src/c/setlookandfeel.c \
 	src/c/getinstalledlookandfeels.c src/c/TerminateGui.c \
 	src/c/buildMainWindowTitle.c src/c/getMainWindowTitle.c \
-	src/c/getScreenProperties.c src/c/InitializeGUI.c \
-	src/c/setMainWindowTitle.c src/c/addmenu.c \
-	src/c/CreateUIControl.c src/c/InitWaitBar.c \
+	src/c/InitializeGUI.c src/c/setMainWindowTitle.c \
+	src/c/addmenu.c src/c/CreateUIControl.c src/c/InitWaitBar.c \
 	src/c/InitProgressionBar.c src/c/CreateUIContextMenu.c \
 	src/c/UicontrolStyleToString.c src/c/messageboxoptions.c \
 	sci_gateway/c/sci_x_choice.c sci_gateway/c/gw_gui.c \
@@ -173,7 +172,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/SetUicontrolVerticalAlignment.cpp \
 	src/cpp/GetUicontrolVerticalAlignment.cpp \
 	src/cpp/SetUicontrolSliderStep.cpp \
-	src/cpp/GetUicontrolSliderStep.cpp src/cpp/UnitsConversion.cpp
+	src/cpp/GetUicontrolSliderStep.cpp src/cpp/UnitsConversion.cpp \
+	src/cpp/GetScreenProperty.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-setlookandfeel.lo \
@@ -181,7 +181,6 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-TerminateGui.lo \
 @GUI_TRUE@	libscigui_la-buildMainWindowTitle.lo \
 @GUI_TRUE@	libscigui_la-getMainWindowTitle.lo \
-@GUI_TRUE@	libscigui_la-getScreenProperties.lo \
 @GUI_TRUE@	libscigui_la-InitializeGUI.lo \
 @GUI_TRUE@	libscigui_la-setMainWindowTitle.lo \
 @GUI_TRUE@	libscigui_la-addmenu.lo \
@@ -285,7 +284,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-GetUicontrolVerticalAlignment.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolSliderStep.lo \
 @GUI_TRUE@	libscigui_la-GetUicontrolSliderStep.lo \
-@GUI_TRUE@	libscigui_la-UnitsConversion.lo
+@GUI_TRUE@	libscigui_la-UnitsConversion.lo \
+@GUI_TRUE@	libscigui_la-GetScreenProperty.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -576,7 +576,6 @@ JARMASK = *.jar
 @GUI_TRUE@src/c/TerminateGui.c \
 @GUI_TRUE@src/c/buildMainWindowTitle.c \
 @GUI_TRUE@src/c/getMainWindowTitle.c \
-@GUI_TRUE@src/c/getScreenProperties.c \
 @GUI_TRUE@src/c/InitializeGUI.c \
 @GUI_TRUE@src/c/setMainWindowTitle.c \
 @GUI_TRUE@src/c/addmenu.c \
@@ -658,7 +657,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/GetUicontrolVerticalAlignment.cpp \
 @GUI_TRUE@src/cpp/SetUicontrolSliderStep.cpp \
 @GUI_TRUE@src/cpp/GetUicontrolSliderStep.cpp \
-@GUI_TRUE@src/cpp/UnitsConversion.cpp
+@GUI_TRUE@src/cpp/UnitsConversion.cpp \
+@GUI_TRUE@src/cpp/GetScreenProperty.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/CallScilabBridge.giws.xml \
@@ -953,6 +953,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyWaitBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-EditBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Frame.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetScreenProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolBackgroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontAngle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUicontrolFontName.Plo@am__quote@
@@ -1016,7 +1017,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-buildMainWindowTitle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getMainWindowTitle.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getScreenProperties.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getinstalledlookandfeels.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getlookandfeel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-gw_gui.Plo@am__quote@
@@ -1122,13 +1122,6 @@ libscigui_la-getMainWindowTitle.lo: src/c/getMainWindowTitle.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getMainWindowTitle.c' object='libscigui_la-getMainWindowTitle.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-getMainWindowTitle.lo `test -f 'src/c/getMainWindowTitle.c' || echo '$(srcdir)/'`src/c/getMainWindowTitle.c
-
-libscigui_la-getScreenProperties.lo: src/c/getScreenProperties.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-getScreenProperties.lo -MD -MP -MF $(DEPDIR)/libscigui_la-getScreenProperties.Tpo -c -o libscigui_la-getScreenProperties.lo `test -f 'src/c/getScreenProperties.c' || echo '$(srcdir)/'`src/c/getScreenProperties.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-getScreenProperties.Tpo $(DEPDIR)/libscigui_la-getScreenProperties.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getScreenProperties.c' object='libscigui_la-getScreenProperties.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-getScreenProperties.lo `test -f 'src/c/getScreenProperties.c' || echo '$(srcdir)/'`src/c/getScreenProperties.c
 
 libscigui_la-InitializeGUI.lo: src/c/InitializeGUI.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-InitializeGUI.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitializeGUI.Tpo -c -o libscigui_la-InitializeGUI.lo `test -f 'src/c/InitializeGUI.c' || echo '$(srcdir)/'`src/c/InitializeGUI.c
@@ -1920,6 +1913,13 @@ libscigui_la-UnitsConversion.lo: src/cpp/UnitsConversion.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/UnitsConversion.cpp' object='libscigui_la-UnitsConversion.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-UnitsConversion.lo `test -f 'src/cpp/UnitsConversion.cpp' || echo '$(srcdir)/'`src/cpp/UnitsConversion.cpp
+
+libscigui_la-GetScreenProperty.lo: src/cpp/GetScreenProperty.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetScreenProperty.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetScreenProperty.Tpo -c -o libscigui_la-GetScreenProperty.lo `test -f 'src/cpp/GetScreenProperty.cpp' || echo '$(srcdir)/'`src/cpp/GetScreenProperty.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetScreenProperty.Tpo $(DEPDIR)/libscigui_la-GetScreenProperty.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetScreenProperty.cpp' object='libscigui_la-GetScreenProperty.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetScreenProperty.lo `test -f 'src/cpp/GetScreenProperty.cpp' || echo '$(srcdir)/'`src/cpp/GetScreenProperty.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

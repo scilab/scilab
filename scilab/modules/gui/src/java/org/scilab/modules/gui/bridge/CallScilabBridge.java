@@ -2188,5 +2188,27 @@ public class CallScilabBridge {
 		return Toolkit.getDefaultToolkit().getScreenResolution();
 	}
 	
+	/**
+	 * Get the screen Width in pixels
+	 * @return the screen Width
+	 */
+	public static double getScreenWidth() {
+		return Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+	}
 	
+	/**
+	 * Get the screen Height in pixels
+	 * @return the screen Height
+	 */
+	public static double getScreenHeight() {
+		return Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+	}
+	
+	/**
+	 * Get the screen Depth
+	 * @return the screen Depth
+	 */
+	public static int getScreenDepth() {
+		return Toolkit.getDefaultToolkit().getColorModel().getPixelSize();
+	}
 }

@@ -251,6 +251,9 @@ voidcolorChooserDisplayAndWaitjintID=NULL;
 voidsetColorChooserDefaultColorjintjintArrayID=NULL; 
 jintArraygetColorChooserSelectedColorjintID=NULL; 
 jintgetScreenResolutionID=NULL; 
+jdoublegetScreenWidthID=NULL; 
+jdoublegetScreenHeightID=NULL; 
+jintgetScreenDepthID=NULL; 
 
 
 }
@@ -425,6 +428,9 @@ voidcolorChooserDisplayAndWaitjintID=NULL;
 voidsetColorChooserDefaultColorjintjintArrayID=NULL; 
 jintArraygetColorChooserSelectedColorjintID=NULL; 
 jintgetScreenResolutionID=NULL; 
+jdoublegetScreenWidthID=NULL; 
+jdoublegetScreenHeightID=NULL; 
+jintgetScreenDepthID=NULL; 
 
 
 }
@@ -4325,6 +4331,75 @@ exit(EXIT_FAILURE);
 }
 
                         jint res =  (jint) curEnv->CallIntMethod(cls, jintgetScreenResolutionID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+double CallScilabBridge::getScreenWidth (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jdoublegetScreenWidthID = curEnv->GetStaticMethodID(cls, "getScreenWidth", "()D" ) ;
+if (jdoublegetScreenWidthID == NULL) {
+std::cerr << "Could not access to the method " << "getScreenWidth" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jdouble res =  (jdouble) curEnv->CallStaticDoubleMethod(cls, jdoublegetScreenWidthID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+double CallScilabBridge::getScreenHeight (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jdoublegetScreenHeightID = curEnv->GetStaticMethodID(cls, "getScreenHeight", "()D" ) ;
+if (jdoublegetScreenHeightID == NULL) {
+std::cerr << "Could not access to the method " << "getScreenHeight" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jdouble res =  (jdouble) curEnv->CallStaticDoubleMethod(cls, jdoublegetScreenHeightID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+long CallScilabBridge::getScreenDepth (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintgetScreenDepthID = curEnv->GetStaticMethodID(cls, "getScreenDepth", "()I" ) ;
+if (jintgetScreenDepthID == NULL) {
+std::cerr << "Could not access to the method " << "getScreenDepth" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetScreenDepthID );
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
