@@ -56,8 +56,9 @@ public class YAxesDrawerGL extends AxesTicksDrawerGL {
 		int nbTicks = yCoordinates.length;
 		Vector3D[] res = new Vector3D[nbTicks];
 		for (int i = 0; i < nbTicks; i++) {
-			// only x coordinate is changing
-			res[i] = new Vector3D(xCoordinate, yCoordinates[i], zCoordinate);
+			// only y coordinate is changing
+			res[i] = new Vector3D(xCoordinates, yCoordinates[i], zCoordinate);
+			res[i] = getTransform().getCanvasCoordinates(getGL(), res[i]);
 		}
 		return res;
 	}
@@ -80,7 +81,7 @@ public class YAxesDrawerGL extends AxesTicksDrawerGL {
 	 * @return position of the beginning of the axis
 	 */
 	protected Vector3D getAxisSegmentStart() {
-		return new Vector3D(xCoordinate, getTicksPositions()[0], zCoordinate);
+		return getTransform().getCanvasCoordinates(getGL(), new Vector3D(xCoordinate, getTicksPositions()[0], zCoordinate));
 	}
 	
 	/**
@@ -88,9 +89,10 @@ public class YAxesDrawerGL extends AxesTicksDrawerGL {
 	 */
 	protected Vector3D getAxisSegmentEnd() {
 		double[] yCoordinates = getTicksPositions();
-		return new Vector3D(xCoordinate,
-							yCoordinates[yCoordinates.length - 1],
-							zCoordinate);
+		return getTransform().getCanvasCoordinates(getGL(),
+												   new Vector3D(xCoordinate,
+												   yCoordinates[yCoordinates.length - 1],
+												   zCoordinate));
 	}
 	
 	
