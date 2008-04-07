@@ -83,14 +83,20 @@ int sci_get(char *fname,unsigned long fname_len)
           if (VarType(2) == sci_strings)
             {
               GetRhsVar(2,  MATRIX_OF_STRING_DATATYPE, &m1, &n1, &stkAdr);
-              
-              status = GetScreenProperty((int)stkAdr, VarType(2), m1, n1);
-              
-              if(status != SET_PROPERTY_SUCCEED) /* Return property */
+ 
+             if (m1*n1 != 1)
                 {
-                  Scierror(999, _("%s: could not read property '%s' for root object.\n"), "get", getStringMatrixFromStack((int)stkAdr)[0]);
-                  return FALSE;
+                  Scierror(999, _("%s: Wrong type for property name: single string expected.\n"), "get");
+                  return SET_PROPERTY_ERROR;
                 }
+             
+             status = GetScreenProperty(getStringMatrixFromStack(stkAdr)[0]);
+             
+             if(status != SET_PROPERTY_SUCCEED) /* Return property */
+               {
+                 Scierror(999, _("%s: could not read property '%s' for root object.\n"), "get", getStringMatrixFromStack((int)stkAdr)[0]);
+                 return FALSE;
+               }
             }
           else
             {

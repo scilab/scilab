@@ -21,7 +21,6 @@ extern "C"
 {
 #include "getScilabJavaVM.h"
 #include "GetProperty.h"
-#include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "stricmp.h"
 #include "returnProperty.h"

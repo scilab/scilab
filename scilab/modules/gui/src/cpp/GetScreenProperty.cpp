@@ -15,24 +15,13 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int GetScreenProperty(int stackPointer, int valueType, int nbRow, int nbCol)
+int GetScreenProperty(char *propertyName)
 {
   double *value = new double[4];
 
   int flag = SET_PROPERTY_ERROR;
-  
-  if (valueType != sci_strings)
-    {
-      sciprint(_("Property name must be a character string.\n"));
-      return SET_PROPERTY_ERROR;
-    }
-  if (nbRow*nbCol != 1)
-    {
-      sciprint(_("Property name must be a single character string.\n"));
-      return SET_PROPERTY_ERROR;
-    }
 
-  if(!stricmp(getStringMatrixFromStack(stackPointer)[0],"screensize_px"))
+  if(!stricmp(propertyName,"screensize_px"))
     {
       value[0] = 1.0;
       value[1] = 1.0;
@@ -46,7 +35,7 @@ int GetScreenProperty(int stackPointer, int valueType, int nbRow, int nbCol)
       return flag;
       
     }
-  else if(!stricmp(getStringMatrixFromStack(stackPointer)[0],"screensize_mm"))
+  else if(!stricmp(propertyName,"screensize_mm"))
     {
       value[0] = 0.0;
       value[1] = 0.0;
@@ -59,7 +48,7 @@ int GetScreenProperty(int stackPointer, int valueType, int nbRow, int nbCol)
 
       return flag;
     }
-  else if(!stricmp(getStringMatrixFromStack(stackPointer)[0],"screensize_cm"))
+  else if(!stricmp(propertyName,"screensize_cm"))
     {
       value[0] = 0.0;
       value[1] = 0.0;
@@ -72,7 +61,7 @@ int GetScreenProperty(int stackPointer, int valueType, int nbRow, int nbCol)
 
       return flag;
     }
-  else if(!stricmp(getStringMatrixFromStack(stackPointer)[0],"screensize_in"))
+  else if(!stricmp(propertyName,"screensize_in"))
     {
       value[0] = 0.0;
       value[1] = 0.0;
@@ -85,7 +74,7 @@ int GetScreenProperty(int stackPointer, int valueType, int nbRow, int nbCol)
 
       return flag;
     }
-  else if(!stricmp(getStringMatrixFromStack(stackPointer)[0],"screensize_pt"))
+  else if(!stricmp(propertyName,"screensize_pt"))
     {
       value[0] = 0.0;
       value[1] = 0.0;
@@ -98,7 +87,7 @@ int GetScreenProperty(int stackPointer, int valueType, int nbRow, int nbCol)
 
       return flag;
     }
-  else if(!stricmp(getStringMatrixFromStack(stackPointer)[0],"screensize_norm"))
+  else if(!stricmp(propertyName,"screensize_norm"))
     {
       value[0] = 0.0;
       value[1] = 0.0;
@@ -111,7 +100,7 @@ int GetScreenProperty(int stackPointer, int valueType, int nbRow, int nbCol)
 
       return flag;
     }
-  else if(!stricmp(getStringMatrixFromStack(stackPointer)[0],"screendepth"))
+  else if(!stricmp(propertyName,"screendepth"))
     {
       value[0] = CallScilabBridge::getScreenDepth(getScilabJavaVM());
       

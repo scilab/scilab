@@ -18,11 +18,9 @@
  * Get a screen (root) property
  * 
  * @param stack address where the property name is stored
- * @param valueType type of the property name
- * @param nbRow number of row of the property name
- * @param nbCol number of column of the property name
+ * @param propertyName the name of the property to get
  * @return execution status
  */
-int GetScreenProperty(int stackPointer, int valueType, int nbRow, int nbCol);
+int GetScreenProperty(char *propertyName);
 
 #endif /* !__GETSCREENPROPERTY_H__ */
