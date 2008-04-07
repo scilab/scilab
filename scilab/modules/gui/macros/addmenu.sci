@@ -188,9 +188,9 @@ endfunction
 function addSingleMenu(fig, menulabel)
 h = uimenu("parent", fig, "label", menulabel);
 if type(fig)==1
-  set(h, "callback", list(0, "execstr("+menulabel+"(1))"));
+  set(h, "callback", list(4, "execstr("+menulabel+"(1))"));
 else
-  set(h, "callback", list(0, "execstr("+menulabel+"_"+string(get(fig,"figure_id"))+"(1))"));
+  set(h, "callback", list(4, "execstr("+menulabel+"_"+string(get(fig,"figure_id"))+"(1))"));
 end
 endfunction
 //------------------------------------------------------------------------------
@@ -207,9 +207,9 @@ h = uimenu("parent", fig, "label", menulabel);
 
 if callbackType == 0 then
   if type(fig)==1
-    set(h, "callback", list(0, "execstr("+callbackStr+"(1))"));
+    set(h, "callback", list(4, "execstr("+callbackStr+"(1))"));
   else
-    set(h, "callback", list(0, "execstr("+callbackStr+"_"+string(get(fig,"figure_id"))+"(1))"));
+    set(h, "callback", list(4, "execstr("+callbackStr+"_"+string(get(fig,"figure_id"))+"(1))"));
   end
 elseif callbackType == 1 then
   if type(fig)==1
@@ -223,12 +223,12 @@ elseif callbackType == 1 then
 	string(get(fig,"figure_id"))+ ",2,""d""," +..
 	"1,3,""d"")";
   end
-  set(h, "callback", list(0, "execstr("+cb+")"));
+  set(h, "callback", list(4, "execstr("+cb+")"));
 elseif callbackType == 2 then
   if type(fig)==1
-    set(h, "callback", list(0, callbackStr+"(1)"));
+    set(h, "callback", list(4, callbackStr+"(1)"));
   else
-    set(h, "callback", list(0, callbackStr+"("+string(get(fig,"figure_id"))+",1)"));
+    set(h, "callback", list(4, callbackStr+"("+string(get(fig,"figure_id"))+",1)"));
   end
 end
 
@@ -245,9 +245,9 @@ h0 = uimenu("parent", fig, "label", menulabel);
 
 for K=1:size(submenuslabels,"*")
   if type(fig)==1
-    uimenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"("+string(K)+"))");
+    uimenu("parent", h0, "label", submenuslabels(K), "callback", list(4, "execstr("+menulabel+"("+string(K)+"))"));
   else
-    uimenu("parent", h0, "label", submenuslabels(K), "callback", "execstr("+menulabel+"_"+string(get(fig,"figure_id"))+"("+string(K)+"))");
+    uimenu("parent", h0, "label", submenuslabels(K), "callback", list(4, "execstr("+menulabel+"_"+string(get(fig,"figure_id"))+"("+string(K)+"))"));
   end
 end
 
@@ -269,9 +269,9 @@ for k=1:size(submenuslabels,"*")
 
   if callbackType == 0 then
     if type(fig)==1
-      set(h, "callback", list(0, "execstr("+callbackStr+"("+string(k)+"))"));
+      set(h, "callback", list(4, "execstr("+callbackStr+"("+string(k)+"))"));
     else
-      set(h, "callback", list(0, "execstr("+callbackStr+"_"+string(get(fig,"figure_id"))+"("+string(k)+"))"));
+      set(h, "callback", list(4, "execstr("+callbackStr+"_"+string(get(fig,"figure_id"))+"("+string(k)+"))"));
     end
   elseif callbackType == 1 then
     if type(fig)==1
@@ -285,12 +285,12 @@ for k=1:size(submenuslabels,"*")
 	  string(get(fig,"figure_id")) + ",2,""d""," + ..
 	  string(k)+ ",3,""d"")";
     end
-    set(h, "callback", list(0, "execstr("+cb+")"));
+    set(h, "callback", list(4, "execstr("+cb+")"));
   elseif callbackType == 2 then
     if type(fig)==1
-      set(h, "callback", list(0, callbackStr+"("+string(k)+")"));
+      set(h, "callback", list(4, callbackStr+"("+string(k)+")"));
     else
-      set(h, "callback", list(0, callbackStr+"("+string(k)+","+string(get(fig,"figure_id"))+")"));
+      set(h, "callback", list(4, callbackStr+"("+string(k)+","+string(get(fig,"figure_id"))+")"));
     end
   end
 end

@@ -766,15 +766,8 @@ public class CallScilabBridge {
 	 * @param callbackType the type of the callback
 	 */
 	public static void setWidgetCallback(int objID, String callbackString, int callbackType) {
-		if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
-			((Menu) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(CallBack.createCallback(callbackString, callbackType));
-		} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
-			((MenuItem) UIElementMapper.getCorrespondingUIElement(objID))
-								.setCallback(CallBack.createCallback(callbackString, callbackType));
-		} else {
-			((Widget) UIElementMapper.getCorrespondingUIElement(objID))
+		((Widget) UIElementMapper.getCorrespondingUIElement(objID))
 								.setCallback(CallBack.createCallback(callbackString, callbackType, objID));
-		}
 	}
 	
 	/**

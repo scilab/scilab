@@ -35,6 +35,11 @@ public abstract class CallBack extends AbstractAction {
 	public static final int JAVA = 3;	
 	
 	/**
+	 * Scilab instruction without GCBO setting (old addmenu compatibility)
+	 */
+	public static final int SCILAB_INSTRUCTION_WITHOUT_GCBO = 4;	
+	
+	/**
 	 * The Command to Store and remember.
 	 */
 	protected String command;
@@ -83,6 +88,8 @@ public abstract class CallBack extends AbstractAction {
 	public static CallBack createCallback(String command, int callbackType, int objectIndex) {
 		if (callbackType == CallBack.JAVA) {
 			return JavaCallBack.create(command);
+		} else if (callbackType == CallBack.SCILAB_INSTRUCTION_WITHOUT_GCBO) {
+			return ScilabCallBack.create(command);
 		} else {
 			return ScilabCallBack.create("%oldgcbo = [];" 
 					+ "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
