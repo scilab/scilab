@@ -185,6 +185,16 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
 	if (str_info)
 	{
+		SYSTEM_INFO siSysInfo;
+		GetSystemInfo(&siSysInfo); 
+		sprintf(str_info,_("Number of processors : %d"),  siSysInfo.dwNumberOfProcessors);
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
+
+	str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
+	if (str_info)
+	{
 		sprintf(str_info,_("Video card : %s"),  GetRegKeyVideoCard());
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
