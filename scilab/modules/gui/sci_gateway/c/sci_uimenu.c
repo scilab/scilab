@@ -29,6 +29,7 @@
 #include "SetHashTable.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "stricmp.h"
 #include "InitUIMenu.h"
 /*--------------------------------------------------------------------------*/
 int sci_uimenu( char *fname,unsigned long fname_len )
@@ -46,6 +47,8 @@ int sci_uimenu( char *fname,unsigned long fname_len )
   sciPointObj *pParent=NULL;
 
   unsigned long GraphicHandle = 0;
+
+  int parentDefined = FALSE;
 
   /* Create a new menu */
   GraphicHandle=sciGetHandle(ConstructUimenu (pParent,labelmenu,callbackmenu,TRUE));
@@ -117,6 +120,11 @@ int sci_uimenu( char *fname,unsigned long fname_len )
         {
           GetRhsVar(inputIndex,STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
           propertyName = cstk(stkAdr);
+
+          if (stricmp(propertyName, "parent") == 0)
+            {
+              parentDefined = TRUE;
+            }
         }
 
       /* Read property value */
@@ -142,6 +150,13 @@ int sci_uimenu( char *fname,unsigned long fname_len )
           Scierror(999, _("Could not set property %s.\n"), propertyName);
           return FALSE;
         }
+    }
+
+  /* If the parent is not given, the current figure is set as parent */
+  if (!parentDefined)
+    {
+      // Set the parent property
+      setMenuParent((sciPointObj*) GraphicHandle, -1, sci_handles, nbRow, nbCol);
     }
 
   /* Create return variable */
