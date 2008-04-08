@@ -12,6 +12,16 @@ public class ColoredTriangle {
 		SIDE_BC, SIDE_AC, SIDE_AB;
 	}
 	
+	/** Number of side of the polygon */
+	private final int SIDE_1 = 0;
+	private final int SIDE_2 = 1;
+	private final int SIDE_3 = 2;
+	private final int SIDE_4 = 3;
+	private final int SIDE_5 = 4;
+	
+	/** gap for color */
+	private final double GAP = 0.5;
+	
 	/** Summit of triangle */
 	private Vector3D a;
 	private Vector3D b;
@@ -102,7 +112,7 @@ public class ColoredTriangle {
 		//ColorB & ColorC should not be the same
 		int tempColor;
 		Vector3D tempVector = new Vector3D();
-		if(colorC == colorB) {
+		if (colorC == colorB) {
 			tempColor = colorB;
 			colorB = colorA;
 			colorA = tempColor;
@@ -124,7 +134,7 @@ public class ColoredTriangle {
 		min = Math.min(Math.min(colorC, colorB), colorA);
 		
 		//if all colors are the same
-		if(colorA == colorB && colorA == colorC) {
+		if (colorA == colorB && colorA == colorC) {
 			int nbPolygons = 1;
 			res.setNbPolygons(nbPolygons);	
 			int curColor = colorC;		
@@ -144,7 +154,7 @@ public class ColoredTriangle {
 			prevSideI1 = Side.SIDE_BC;
 			prevSideI2 = Side.SIDE_AC;
 
-			for(int i = 0 ; i < nbPolygons - 1 ; i++) {			
+			for (int i = 0; i < nbPolygons - 1; i++) {			
 				// color of the next polygon
 				int curColor = min + i;			
 
@@ -195,7 +205,7 @@ public class ColoredTriangle {
 	 * @param curColor int
 	 * @return border of the current polygon
 	 */
-	public Vector3D[] getBorder(Vector3D vertexA, Vector3D vertexB,Vector3D vertexC, 
+	public Vector3D[] getBorder(Vector3D vertexA, Vector3D vertexB, Vector3D vertexC, 
 			int colorA, int colorB, int colorC, int curColor) {		
 
 		Vector3D CB = vertexB.substract(vertexC);
@@ -230,8 +240,9 @@ public class ColoredTriangle {
 	
 	/**
 	 * Get intersections which separates polygons in the triangle
-	 * @param curColor double
-	 * @return intersections
+	 * @param curColor current color
+	 * @param intersections coordinates of intersections
+	 * @param intersectionSides sides of intersections
 	 */
 	public void intersectionsManager(double curColor, Vector3D[] intersections, Side[] intersectionSides) {
 		
@@ -240,7 +251,7 @@ public class ColoredTriangle {
 		/** Test for (P1, P2) & (BC) */
 		if (colorB != colorC) {
 			double res1 = (colorC - curColor) / (colorC - colorB);
-			if(res1 >= 0 && res1 <= 1) {
+			if (res1 >= 0 && res1 <= 1) {
 				Vector3D i1 = new Vector3D(res1, 0.0, 0.0);
 				intersections[nbIntersections] = i1;
 				intersectionSides[nbIntersections] = Side.SIDE_BC;
@@ -252,7 +263,7 @@ public class ColoredTriangle {
 		if (colorA != colorC) {
 			double res2 = (colorC - curColor) / (colorC - colorA);
 
-			if(res2 >= 0 && res2 <= 1 && colorC != colorA) {
+			if (res2 >= 0 && res2 <= 1 && colorC != colorA) {
 				Vector3D i2 = new Vector3D(0.0, res2, 0.0);
 				intersections[nbIntersections] = i2;
 				intersectionSides[nbIntersections] = Side.SIDE_AC;
@@ -265,7 +276,7 @@ public class ColoredTriangle {
 			double res3 = (colorA - curColor) / (colorA - colorB);
 			double res4 = (colorB - curColor) / (colorB - colorA);
 
-			if(res3 >= 0 && res4 >= 0 && colorA != colorB) {
+			if (res3 >= 0 && res4 >= 0 && colorA != colorB) {
 				Vector3D i3 = new Vector3D(res3, res4, 0.0);
 				intersections[nbIntersections] = i3;
 				intersectionSides[nbIntersections] = Side.SIDE_AB;
@@ -309,7 +320,7 @@ public class ColoredTriangle {
 		
 		
 		//finding nextI1 and nextI2	
-		intersectionsManager(curColor + 0.5, intersections, intersectionsSides);		
+		intersectionsManager(curColor + GAP, intersections, intersectionsSides);		
 		nextI1 = intersections[0];
 		nextI2 = intersections[1];
 		nextSideI1 = intersectionsSides[0];
@@ -321,28 +332,28 @@ public class ColoredTriangle {
 		if (prevSideI1 == nextSideI1 && prevSideI2 == nextSideI2) {
 			polygons = new Vector3D[4];
 			
-			polygons[0] = prevI1;
-			polygons[1] = prevI2;
-			polygons[2] = nextI2;
-			polygons[3] = nextI1;
+			polygons[SIDE_1] = prevI1;
+			polygons[SIDE_2] = prevI2;
+			polygons[SIDE_3] = nextI2;
+			polygons[SIDE_4] = nextI1;
 			
-		} else if(prevSideI1 != nextSideI1) {
+		} else if (prevSideI1 != nextSideI1) {
 			p = findIntersection(prevSideI1, nextSideI1);
 			polygons = new Vector3D[5];
-			polygons[0] = prevI1;
-			polygons[1] = prevI2;			
-			polygons[2] = nextI2;
-			polygons[3] = nextI1;
-			polygons[4] = p;
+			polygons[SIDE_1] = prevI1;
+			polygons[SIDE_2] = prevI2;			
+			polygons[SIDE_3] = nextI2;
+			polygons[SIDE_4] = nextI1;
+			polygons[SIDE_5] = p;
 			
-		} else if(prevSideI2 != nextSideI2) {
+		} else if (prevSideI2 != nextSideI2) {
 			p = findIntersection(prevSideI2, nextSideI2);
 			polygons = new Vector3D[5];
-			polygons[0] = prevI1;
-			polygons[1] = prevI2;	
-			polygons[2] = p;
-			polygons[3] = nextI2;
-			polygons[4] = nextI1;
+			polygons[SIDE_1] = prevI1;
+			polygons[SIDE_2] = prevI2;	
+			polygons[SIDE_3] = p;
+			polygons[SIDE_4] = nextI2;
+			polygons[SIDE_5] = nextI1;
 		}
 				
 		return polygons;

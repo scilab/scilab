@@ -25,6 +25,8 @@ import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
 import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
+import org.scilab.modules.renderer.polylineDrawing.JOGLShadeFacetDrawer;
+import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
 import org.scilab.modules.renderer.textDrawing.SciTextRenderer;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.selection.RubberBox;
@@ -86,6 +88,9 @@ public class DrawableFigureGL extends ObjectGL {
 	/** Rubber box used when in rubber box mode */
 	private RubberBox rubberBox;
 	
+	/** Choose the type of polygon's paint */
+	private ShadeFacetDrawer shadeFacetDrawer;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -100,6 +105,7 @@ public class DrawableFigureGL extends ObjectGL {
       	renderingTarget = null;
       	setDefaultTextRenderer();
       	setDefaultArcRendererFactory();
+      	setDefaultShadeFacetDrawer();
       	backGroundColorIndex = 0;
       	textWriter = null;
       	rubberBox = null;
@@ -118,6 +124,14 @@ public class DrawableFigureGL extends ObjectGL {
 	public void setDefaultArcRendererFactory() {
 		arcRendererFactory = new NurbsArcRendererFactory();
 	}
+	
+	/**
+	 * Set the default ShadeFacetDrawer
+	 */
+	public void setDefaultShadeFacetDrawer() {
+		shadeFacetDrawer = new JOGLShadeFacetDrawer();
+	}
+	
 	/**
 	 * Specify a new state for the rendering enable mode
 	 * @param isEnalbe if true figure can no be rendered
@@ -518,6 +532,23 @@ public class DrawableFigureGL extends ObjectGL {
 		
 	}
 	
+	/**
+	 * Get the type of the facet we have decomposed on a triangle
+	 * @return shadeFacetDrawer type of facet (JOGL or GL2PS)
+	 */
+	public ShadeFacetDrawer getShadeFacetDrawer() {
+		return shadeFacetDrawer;
+	}
+
+	/**
+	 * Display facets that we decompose on a triangle
+	 * there is 2 type of facets(JOGL & GL2PS)
+	 * @param shadeFacetDrawer type of facet (JOGL or GL2PS)
+	 */
+	public void setShadeFacetDrawer(ShadeFacetDrawer shadeFacetDrawer) {
+		this.shadeFacetDrawer = shadeFacetDrawer;
+	}
+
 	/**
 	 * Get a text renderer with the specified color and font
 	 * @param font specified font
