@@ -91,12 +91,10 @@ public abstract class CallBack extends AbstractAction {
 		} else if (callbackType == CallBack.SCILAB_INSTRUCTION_WITHOUT_GCBO) {
 			return ScilabCallBack.create(command);
 		} else {
-			return ScilabCallBack.create("%oldgcbo = [];" 
-					+ "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
+			return ScilabCallBack.create("if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
 					+ "gcbo = getcallbackobject(" + objectIndex + ");"
 					+ command 
-					+ ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; end;"
-					+ "clear gcbo;");
+					+ ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;");
 		}
 	}
 
