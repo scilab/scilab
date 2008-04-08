@@ -177,6 +177,8 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 			
 		end
 		
+        
+        
 		// On transforme le ou les chemins donnés en chemin absolu
 		// ---------------------------------------------------------------------
 		
@@ -266,7 +268,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 			printf(_("\tHTML files are up-to-date\n"));
 			return;
 		end
-		
+        
 		// Nombre de répertoire ayant besoin d'une modification
 		// ---------------------------------------------------------------------
 		
@@ -277,7 +279,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		//----------------------------------------------------------------------
 		
 		displaydone = 0;
-		
+        
 		if all_scilab_help then
 			
 			if or(need_to_be_build_tab_m) then
@@ -293,25 +295,27 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 					end
 				end
 			end
-			
+            
 			if or(need_to_be_build_tab_c) then
-				if need_to_be_build_tab_c(k) & language_system_c(k) then
-					default_language_path = pathconvert(dirs_c(k)+"/../"+default_language_c(k),%f,%f);
-					if nb_dir > 1 then
-						if displaydone == 0 then
-							printf(_("\nCopying missing files copied from\n"));
-							displaydone = 1;
-						end
-						printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-					else
-						printf(_("\nCopying missing from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-					end
-					complete_with_df_lang(dirs_c(k),directory_language_c(k),default_language_c(k));
-				end
+				for k=1:size(dirs_c,'*')
+                    if need_to_be_build_tab_c(k) & language_system_c(k) then
+                        default_language_path = pathconvert(dirs_c(k)+"/../"+default_language_c(k),%f,%f);
+                        if nb_dir > 1 then
+                            if displaydone == 0 then
+                                printf(_("\nCopying missing files copied from\n"));
+                                displaydone = 1;
+                            end
+                            printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+                        else
+                            printf(_("\nCopying missing from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+                        end
+                        complete_with_df_lang(dirs_c(k),directory_language_c(k),default_language_c(k));
+                    end
+                end
 			end
 			
 		end
-		
+        
 		//----------------------------------------------------------------------
 		// build all the Master document
 		//----------------------------------------------------------------------
@@ -353,7 +357,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 			end
 		
 		end
-		
+        
 		//----------------------------------------------------------------------
 		// perform the jar generation
 		//----------------------------------------------------------------------
@@ -472,19 +476,21 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 			end
 			
 			if or(need_to_be_build_tab_c) then
-				if need_to_be_build_tab_c(k) & language_system_c(k) then
-					default_language_path = pathconvert(dirs_c(k)+"/../"+default_language_c(k),%f,%f);
-					if nb_dir > 1 then
-						if displaydone == 0 then
-							printf(_("\nDeleting files copied from\n"));
-							displaydone = 1;
-						end
-						printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-					else
-						printf(_("\nDeleting files copied from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
-					end
-					del_df_lang_xml_files(dirs_c(k),directory_language_c(k),default_language_c(k));
-				end
+				for k=1:size(dirs_c,'*')
+                    if need_to_be_build_tab_c(k) & language_system_c(k) then
+                        default_language_path = pathconvert(dirs_c(k)+"/../"+default_language_c(k),%f,%f);
+                        if nb_dir > 1 then
+                            if displaydone == 0 then
+                                printf(_("\nDeleting files copied from\n"));
+                                displaydone = 1;
+                            end
+                            printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+                        else
+                            printf(_("\nDeleting files copied from %s\n"),strsubst(default_language_path,SCI_long,"SCI"));
+                        end
+                        del_df_lang_xml_files(dirs_c(k),directory_language_c(k),default_language_c(k));
+                    end
+                end
 			end
 			
 		end
