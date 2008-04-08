@@ -706,3 +706,17 @@ void vDadd(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iInc
 		}
 	}
 }
+
+void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc)
+{
+	int iIndex = 0;
+	int iIndex2 = 1;
+	if(_iInc < 0 )
+		iIndex2 = (-_iNbElem+1) * _iInc + 1;
+
+	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex++)
+	{
+		_pdblIn[iIndex2] = _dblVal;
+		iIndex2 += _iInc;
+	}
+}

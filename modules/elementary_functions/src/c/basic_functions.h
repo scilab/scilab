@@ -59,4 +59,5 @@ void vDvmul(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iIn
 void vWvmul(int _iNbElem, double* _piRealIn1, double* _piImgIn1, double* _piRealIn2, double* _piImgIn2, int _iIncIn1, int _iIncIn2, double* _piRealOut, double* _piImgOut);
 void vCusum(int _iNbElem, double *_dblIn, double *_dblOut);
 void vDadd(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iIncIn2, double* _piOut);
+void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
 
