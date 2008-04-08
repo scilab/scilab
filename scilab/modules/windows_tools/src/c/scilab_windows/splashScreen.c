@@ -18,6 +18,8 @@
 #include "WndThread.h"
 /*--------------------------------------------------------------------------*/ 
 static DWORD WINAPI ThreadSplashScreen( LPVOID lpParam ) ;
+static BOOL stopSplashScreen(void);
+static int timeSplashScreen = 0;
 /*--------------------------------------------------------------------------*/ 
 void splashScreen(void)
 {
@@ -36,27 +38,49 @@ void splashScreen(void)
 /*--------------------------------------------------------------------------*/ 
 static DWORD WINAPI ThreadSplashScreen( LPVOID lpParam ) 
 { 
-	int i = 0;
-	char titleMainWindow[MAX_PATH];
-	HWND hWndMainScilab = NULL;
 	HINSTANCE hInstanceThisDll = (HINSTANCE)GetModuleHandle("scilab_windows");
 	HWND hdlg = CreateDialog(hInstanceThisDll, MAKEINTRESOURCE(IDD_SPLASHSCREEN), NULL,NULL);
-
-	wsprintf(titleMainWindow,"%s (%d)",SCI_VERSION_STRING,getCurrentScilabId());
 
 	ShowWindow(hdlg, SW_SHOWNORMAL);
 	UpdateWindow(hdlg);
 
 	SetWindowPos(hdlg,HWND_TOPMOST,0,0,0,0,SWP_NOSIZE|SWP_NOMOVE);
-	
-	while ( (i< 1500) || (hWndMainScilab == NULL) ) 
+
+	while ( !stopSplashScreen() )
 	{
-		hWndMainScilab = FindWindow(NULL,titleMainWindow);
-		if (hWndMainScilab) break;
-		else Sleep(1);
-		i++;
+		Sleep(20);
 	}
+
 	DestroyWindow(hdlg);
 	return 0; 
 } 
+/*--------------------------------------------------------------------------*/ 
+static BOOL stopSplashScreen(void)
+{
+	HWND hWndMainScilab = NULL;
+	char titleMainWindow[MAX_PATH];
+
+	wsprintf(titleMainWindow,"%s (%d)",SCI_VERSION_STRING,getCurrentScilabId());
+	hWndMainScilab = FindWindow(NULL,titleMainWindow);
+
+	if ( hWndMainScilab && (timeSplashScreen > 1000) )
+	{
+		return TRUE;
+	}
+	else
+	{
+		wsprintf(titleMainWindow,"Console");
+		hWndMainScilab = FindWindow(NULL,titleMainWindow);
+
+		if ( hWndMainScilab && (timeSplashScreen > 1000) )
+		{
+			return TRUE;
+		}
+		else
+		{
+			timeSplashScreen = timeSplashScreen + 50;
+		}
+	}
+	return FALSE;
+}
 /*--------------------------------------------------------------------------*/ 
