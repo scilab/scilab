@@ -30,8 +30,6 @@ Source: modules\{#COMPLETION}\help\addchapter.sce; DestDir: {app}\modules\{#COMP
 Source: modules\{#COMPLETION}\etc\{#COMPLETION}.quit; DestDir: {app}\modules\{#COMPLETION}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#COMPLETION}\etc\{#COMPLETION}.start; DestDir: {app}\modules\{#COMPLETION}\etc; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#COMPLETION}\help\*.htm; DestDir: {app}\modules\{#COMPLETION}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;
 ;
 ;Source: modules\{#COMPLETION}\macros\buildmacros.sce; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#COMPLETION}\macros\buildmacros.bat; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}

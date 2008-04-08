@@ -20,9 +20,6 @@ Source: modules\{#SCIPAD}\etc\{#SCIPAD}.start; DestDir: {app}\modules\{#SCIPAD}\
 ;
 Source: modules\{#SCIPAD}\help\addchapter.sce; DestDir: {app}\modules\{#SCIPAD}\help; Flags: recursesubdirs; Components:  {#COMPN_SCIPAD}
 ;
-;Source: modules\{#SCIPAD}\help\*.htm; DestDir: {app}\modules\{#SCIPAD}\help; Flags: recursesubdirs; Components: {#COMPN_SCIPAD}
-;
-;
 Source: modules\{#SCIPAD}\macros\lib; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\macros\names; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\macros\*.bin; DestDir: {app}\modules\{#SCIPAD}\macros; Components: {#COMPN_SCIPAD}

@@ -28,9 +28,6 @@ Source: modules\{#MAP2SCI}\etc\{#MAP2SCI}.start; DestDir: {app}\modules\{#MAP2SC
 ;
 Source: modules\{#MAP2SCI}\help\addchapter.sce; DestDir: {app}\modules\{#MAP2SCI}\help; Flags: recursesubdirs; Components:  {#COMPN_MAP2SCI}
 ;
-;Source: modules\{#MAP2SCI}\help\*.htm; DestDir: {app}\modules\{#MAP2SCI}\help; Flags: recursesubdirs; Components: {#COMPN_MAP2SCI}
-;
-;
 Source: modules\{#MAP2SCI}\src\maple\*.mpl; DestDir: {app}\modules\{#MAP2SCI}\src\maple; Components: {#COMPN_MAP2SCI}
 ;
 Source: modules\{#MAP2SCI}\macros\lib; DestDir: {app}\modules\{#MAP2SCI}\macros; Components: {#COMPN_MAP2SCI}

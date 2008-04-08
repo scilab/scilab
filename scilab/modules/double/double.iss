@@ -28,9 +28,6 @@ Source: modules\{#DOUBLE}\etc\{#DOUBLE}.start; DestDir: {app}\modules\{#DOUBLE}\
 ;
 Source: modules\{#DOUBLE}\help\addchapter.sce; DestDir: {app}\modules\{#DOUBLE}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-;Source: modules\{#DOUBLE}\help\*.htm; DestDir: {app}\modules\{#DOUBLE}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;
-;
 ;Source: modules\{#DOUBLE}\includes\*.h; DestDir: {app}\modules\{#DOUBLE}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DOUBLE}\macros\buildmacros.sce; DestDir: {app}\modules\{#DOUBLE}\macros; Components: {#COMPN_SCILAB}

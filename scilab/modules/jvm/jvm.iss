@@ -35,8 +35,6 @@ Source: modules\{#JVM}\includes\*.h; DestDir: {app}\modules\{#JVM}\includes; Com
 Source: modules\{#JVM}\etc\{#JVM}.quit; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\etc\{#JVM}.start; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#JVM}\help\*.htm; DestDir: {app}\modules\{#JVM}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#JVM}\macros\buildmacros.sce; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\macros\buildmacros.bat; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\macros\cleanmacros.bat; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_SCILAB}

@@ -23,9 +23,6 @@ Source: modules\{#M2SCI}\etc\{#M2SCI}.start; DestDir: {app}\modules\{#M2SCI}\etc
 ;
 Source: modules\{#M2SCI}\help\addchapter.sce; DestDir: {app}\modules\{#M2SCI}\help; Flags: recursesubdirs; Components:  {#COMPN_M2SCI}
 ;
-;Source: modules\{#M2SCI}\help\*.htm; DestDir: {app}\modules\{#M2SCI}\help; Flags: recursesubdirs; Components: {#COMPN_M2SCI}
-;
-;
 Source: modules\{#M2SCI}\tcl\*.tcl; DestDir: {app}\modules\{#M2SCI}\tcl; Components: {#COMPN_M2SCI}
 ;
 Source: modules\{#M2SCI}\macros\lib; DestDir: {app}\modules\{#M2SCI}\macros; Flags: recursesubdirs; Components: {#COMPN_M2SCI}

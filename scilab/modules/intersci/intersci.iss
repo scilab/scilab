@@ -28,9 +28,6 @@ Source: modules\{#INTERSCI}\etc\{#INTERSCI}.start; DestDir: {app}\modules\{#INTE
 ;
 Source: modules\{#INTERSCI}\help\addchapter.sce; DestDir: {app}\modules\{#INTERSCI}\help; Flags: recursesubdirs; Components:  {#COMPN_INTERSCI}
 ;
-;Source: modules\{#INTERSCI}\help\*.htm; DestDir: {app}\modules\{#INTERSCI}\help; Flags: recursesubdirs; Components: {#COMPN_INTERSCI}
-;
-;
 ;Source: modules\{#INTERSCI}\macros\lib; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
 ;Source: modules\{#INTERSCI}\macros\names; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
 ;Source: modules\{#INTERSCI}\macros\*.bin; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}

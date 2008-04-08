@@ -25,9 +25,6 @@ Source: modules\{#SYMBOLIC}\etc\{#SYMBOLIC}.start; DestDir: {app}\modules\{#SYMB
 ;
 Source: modules\{#SYMBOLIC}\help\addchapter.sce; DestDir: {app}\modules\{#SYMBOLIC}\help; Flags: recursesubdirs; Components:   {#COMPN_SYMB}
 ;
-;Source: modules\{#SYMBOLIC}\help\*.htm; DestDir: {app}\modules\{#SYMBOLIC}\help; Flags: recursesubdirs; Components: {#COMPN_SYMB}
-;
-;
 Source: modules\{#SYMBOLIC}\includes\*.h; DestDir: {app}\modules\{#SYMBOLIC}\includes; Components: {#COMPN_SYMB}
 ;
 ;Source: modules\{#SYMBOLIC}\macros\lib; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}

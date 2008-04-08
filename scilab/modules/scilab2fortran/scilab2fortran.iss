@@ -28,8 +28,6 @@ Source: modules\{#SCI2FOR}\etc\{#SCI2FOR}.start; DestDir: {app}\modules\{#SCI2FO
 ;
 Source: modules\{#SCI2FOR}\help\addchapter.sce; DestDir: {app}\modules\{#SCI2FOR}\help; Flags: recursesubdirs; Components:  {#COMPN_SCI2FOR}
 ;
-;Source: modules\{#SCI2FOR}\help\*.htm; DestDir: {app}\modules\{#SCI2FOR}\help; Flags: recursesubdirs; Components: {#COMPN_SCI2FOR}
-;
 ;
 Source: modules\{#SCI2FOR}\macros\lib; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}
 Source: modules\{#SCI2FOR}\macros\names; DestDir: {app}\modules\{#SCI2FOR}\macros; Components: {#COMPN_SCI2FOR}

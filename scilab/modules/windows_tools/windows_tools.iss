@@ -36,9 +36,6 @@ Source: modules\{#WINDOWS_TOOLS}\help\addchapter.sce; DestDir: {app}\modules\{#W
 Source: modules\{#WINDOWS_TOOLS}\etc\{#WINDOWS_TOOLS}.quit; DestDir: {app}\modules\{#WINDOWS_TOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#WINDOWS_TOOLS}\etc\{#WINDOWS_TOOLS}.start; DestDir: {app}\modules\{#WINDOWS_TOOLS}\etc; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#WINDOWS_TOOLS}\help\*.htm; DestDir: {app}\modules\{#WINDOWS_TOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;
-;
 Source: modules\{#WINDOWS_TOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#WINDOWS_TOOLS}\macros\buildmacros.bat; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#WINDOWS_TOOLS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#WINDOWS_TOOLS}\macros; Components: {#COMPN_SCILAB}

@@ -28,9 +28,6 @@ Source: modules\{#OTHERS}\etc\{#OTHERS}.start; DestDir: {app}\modules\{#OTHERS}\
 ;
 Source: modules\{#OTHERS}\help\addchapter.sce; DestDir: {app}\modules\{#OTHERS}\help; Flags: recursesubdirs; Components:  {#COMPN_OTHERS}
 ;
-;Source: modules\{#OTHERS}\help\*.htm; DestDir: {app}\modules\{#OTHERS}\help; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
-;
-;
 ;Source: modules\{#OTHERS}\includes\*.h; DestDir: {app}\modules\{#OTHERS}\includes; Components: {#COMPN_OTHERS}
 ;
 Source: modules\{#OTHERS}\macros\lib; DestDir: {app}\modules\{#OTHERS}\macros; Flags: recursesubdirs; Components: {#COMPN_OTHERS}

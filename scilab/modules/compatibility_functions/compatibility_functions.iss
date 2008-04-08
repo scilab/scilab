@@ -23,9 +23,6 @@ Source: modules\{#COMPATFUNCTIONS}\etc\{#COMPATFUNCTIONS}.start; DestDir: {app}\
 ;
 Source: modules\{#COMPATFUNCTIONS}\help\addchapter.sce; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help; Flags: recursesubdirs; Components:  {#COMPN_COMPATFUNCTIONS}
 ;
-;Source: modules\{#COMPATFUNCTIONS}\help\*.htm; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help; Flags: recursesubdirs; Components: {#COMPN_COMPATFUNCTIONS}
-;
-;
 ;Source: modules\{#COMPATFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#COMPATFUNCTIONS}\includes; Components: {#COMPN_COMPATFUNCTIONS}
 ;
 Source: modules\{#COMPATFUNCTIONS}\macros\lib; DestDir: {app}\modules\{#COMPATFUNCTIONS}\macros; Components: {#COMPN_COMPATFUNCTIONS}

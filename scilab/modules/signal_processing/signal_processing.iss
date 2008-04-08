@@ -22,9 +22,6 @@ Source: modules\{#SIGPROC}\etc\{#SIGPROC}.start; DestDir: {app}\modules\{#SIGPRO
 ;
 Source: modules\{#SIGPROC}\help\addchapter.sce; DestDir: {app}\modules\{#SIGPROC}\help; Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
 ;
-;Source: modules\{#SIGPROC}\help\*.htm; DestDir: {app}\modules\{#SIGPROC}\help;Flags: recursesubdirs; Components: {#COMPN_SIGPROC}
-;
-;
 Source: modules\{#SIGPROC}\macros\lib; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\macros\names; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\macros\*.bin; DestDir: {app}\modules\{#SIGPROC}\macros; Components: {#COMPN_SIGPROC}

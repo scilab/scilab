@@ -31,9 +31,6 @@ Source: modules\{#SOUND}\etc\{#SOUND}.start; DestDir: {app}\modules\{#SOUND}\etc
 ;
 Source: modules\{#SOUND}\help\addchapter.sce; DestDir: {app}\modules\{#SOUND}\help; Flags: recursesubdirs; Components:  {#COMPN_SOUND}
 ;
-;Source: modules\{#SOUND}\help\*.htm; DestDir: {app}\modules\{#SOUND}\help; Flags: recursesubdirs; Components: {#COMPN_SOUND}
-;
-;
 Source: modules\{#SOUND}\macros\buildmacros.sce; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\macros\buildmacros.bat; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}
 Source: modules\{#SOUND}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SOUND}

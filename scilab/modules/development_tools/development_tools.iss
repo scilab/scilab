@@ -28,8 +28,6 @@ Source: modules\{#DEVTOOLS}\etc\{#DEVTOOLS}.start; DestDir: {app}\modules\{#DEVT
 ;
 Source: modules\{#DEVTOOLS}\help\addchapter.sce; DestDir: {app}\modules\{#DEVTOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_DEVTOOLS}
 ;
-;Source: modules\{#DEVTOOLS}\help\*.htm; DestDir: {app}\modules\{#DEVTOOLS}\help; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
-;
 ;Source: modules\{#DEVTOOLS}\includes\*.h; DestDir: {app}\modules\{#DEVTOOLS}\includes; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;
 Source: modules\{#DEVTOOLS}\macros\lib; DestDir: {app}\modules\{#DEVTOOLS}\macros; Components: {#COMPN_DEVTOOLS}

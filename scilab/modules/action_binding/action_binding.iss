@@ -39,8 +39,6 @@ Source: modules\{#ACTION_BINDING}\help\addchapter.sce; DestDir: {app}\modules\{#
 Source: modules\{#ACTION_BINDING}\etc\{#ACTION_BINDING}.quit; DestDir: {app}\modules\{#ACTION_BINDING}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#ACTION_BINDING}\etc\{#ACTION_BINDING}.start; DestDir: {app}\modules\{#ACTION_BINDING}\etc; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#ACTION_BINDING}\help\*.htm; DestDir: {app}\modules\{#ACTION_BINDING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;
 ;
 Source: modules\{#ACTION_BINDING}\macros\buildmacros.sce; DestDir: {app}\modules\{#ACTION_BINDING}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#ACTION_BINDING}\macros\buildmacros.bat; DestDir: {app}\modules\{#ACTION_BINDING}\macros; Components: {#COMPN_SCILAB}

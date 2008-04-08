@@ -26,10 +26,6 @@ Source: modules\{#GRAPHICS}\etc\{#GRAPHICS}.start; DestDir: {app}\modules\{#GRAP
 ;
 Source: modules\{#GRAPHICS}\help\addchapter.sce; DestDir: {app}\modules\{#GRAPHICS}\help; Flags: recursesubdirs; Components:  {#COMPN_GRAPHICS}
 ;
-;Source: modules\{#GRAPHICS}\help\*.htm; DestDir: {app}\modules\{#GRAPHICS}\help; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
-;Source: modules\{#GRAPHICS}\help\images\*.gif; DestDir: {app}\modules\{#GRAPHICS}\help\images; Components: {#COMPN_GRAPHICS}
-;
-;
 Source: modules\{#GRAPHICS}\includes\*.h; DestDir: {app}\modules\{#GRAPHICS}\includes; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHICS}\macros\buildmacros.sce; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}

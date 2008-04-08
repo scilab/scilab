@@ -22,9 +22,6 @@ Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.start; DestDir: {app}\modules\{#DIFFEQ
 ;
 Source: modules\{#DIFFEQU}\help\addchapter.sce; DestDir: {app}\modules\{#DIFFEQU}\help; Flags: recursesubdirs; Components:  {#COMPN_EQUDIF}
 ;
-;Source: modules\{#DIFFEQU}\help\*.htm; DestDir: {app}\modules\{#DIFFEQU}\help; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
-;
-;
 ;Source: modules\{#DIFFEQU}\includes\*.h; DestDir: {app}\modules\{#DIFFEQU}\includes; Components: {#COMPN_EQUDIF}
 ;
 Source: modules\{#DIFFEQU}\macros\lib; DestDir: {app}\modules\{#DIFFEQU}\macros; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
