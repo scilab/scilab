@@ -108,6 +108,7 @@ public class GL2PSRenderer extends ExportRenderer {
 		exportedFigure.setArcRendererFactory(new FastArcRendererFactory());
 		
 		sciRend.init(gLDrawable);
+		sciRend.display(gLDrawable);
 		gl2ps.gl2psEndPage();
 		gLDrawable.setGL(gl);
 		exportedFigure.setDefaultArcRendererFactory();
