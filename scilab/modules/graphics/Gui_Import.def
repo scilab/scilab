@@ -75,4 +75,6 @@ setFigureEventHandler
 setFigureEventHandlerEnabled
 DestroyWaitBar
 GetScreenProperty
+GetUiobjectVisible
+SetUiobjectVisible
 ;
