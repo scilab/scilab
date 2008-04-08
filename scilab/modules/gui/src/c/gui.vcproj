@@ -568,6 +568,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUiobjectVisible.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_gui.c"
 				>
 			</File>
@@ -829,6 +833,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUiobjectTag.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectVisible.cpp"
 				>
 			</File>
 			<File
@@ -1209,6 +1217,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetUiobjectVisible.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUiobjectVisible.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GraphicWindow.h"
 				>
 			</File>
@@ -1498,6 +1514,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUiobjectTag.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUiobjectVisible.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectVisible.hxx"
 				>
 			</File>
 			<File

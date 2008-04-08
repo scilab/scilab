@@ -13,6 +13,10 @@
 
 #include "GetUiobjectVisible.hxx"
 
+#ifdef _MSC_VER
+#include "strdup_Windows.h"
+#endif
+
 using namespace org_scilab_modules_gui_bridge;
 
 int GetUiobjectVisible(sciPointObj* sciObj)

@@ -28,7 +28,15 @@
 	* @param[in] string source
 	* @return a pointer to the storage location for the copied string 
 	*/
-	char *strdup_windows(const char *strSource);
+#ifdef __cplusplus
+	extern "C"
+	{
+#endif
+		char *strdup_windows(const char *strSource);
+#ifdef __cplusplus
+	};
+#endif
+
 #endif
 
 #endif /* __STRDUP_WIN_H__ */
