@@ -41,15 +41,15 @@ double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj)
   switch(newUnit)
     {
     case POINTS_UNITS:
-      return (double) value;
+       return (double) value;
     case NORMALIZED_UNITS:
-      return ((double) value) / (height * POINT_PER_INCH / CallScilabBridge::getScreenResolution(getScilabJavaVM()));
+       return ((double) value) / (height * POINT_PER_INCH / CallScilabBridge::getScreenResolution(getScilabJavaVM()));
     case INCHES_UNITS:
-      return ((double) value) / POINT_PER_INCH;
+       return ((double) value) / POINT_PER_INCH;
     case CENTIMETERS_UNITS:
-      return ((double) value) / POINT_PER_INCH * CM_PER_INCH;
+       return ((double) value) * CM_PER_INCH / POINT_PER_INCH;
     case PIXELS_UNITS:
-      return ((double) value) / POINT_PER_INCH * CallScilabBridge::getScreenResolution(getScilabJavaVM());
+       return ((double) value) * CallScilabBridge::getScreenResolution(getScilabJavaVM()) / POINT_PER_INCH;
     default:
       sciprint(_("FontUnits property value must be a single string: points, normalized, inches, centimeters or pixels.\n"));
       return 0.0;
@@ -103,7 +103,7 @@ double ConvertFromPixel(int value, int newUnit, sciPointObj *sciObj)
     {
       newUnit = PIXELS_UNITS;
     }
-  return ConvertFromPoint(value / CallScilabBridge::getScreenResolution(getScilabJavaVM()) * POINT_PER_INCH, newUnit, sciObj);
+  return ConvertFromPoint(ConvertToPoint(value, PIXELS_UNITS, NULL), newUnit, sciObj);
 }
 
 int ConvertToPixel(double value, int oldUnit, sciPointObj *sciObj)
@@ -112,6 +112,6 @@ int ConvertToPixel(double value, int oldUnit, sciPointObj *sciObj)
     {
       oldUnit = PIXELS_UNITS;
     }
-  return ConvertToPoint(value, oldUnit, sciObj) * CallScilabBridge::getScreenResolution(getScilabJavaVM()) / POINT_PER_INCH;
+  return ConvertFromPoint(ConvertToPoint(value, oldUnit, sciObj), PIXELS_UNITS, NULL);
 }
 
