@@ -5,7 +5,7 @@
 	Name="localization"
 	ProjectGUID="{ECFFEB0C-1EDA-45EE-9A10-B18143852E17}"
 	RootNamespace="localization"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -76,9 +76,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib io.lib msvcrtd.lib libcmtd.lib"
+				AdditionalDependencies="Libscilab.lib io.lib msvcrtd.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libcmtd.lib"
 				ModuleDefinitionFile="localization.def"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
@@ -168,9 +169,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib io.lib msvcrtd.lib libcmtd.lib"
+				AdditionalDependencies="Libscilab.lib io.lib msvcrtd.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libcmtd.lib"
 				ModuleDefinitionFile="localization.def"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
@@ -261,8 +263,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib io.lib msvcrt.lib libcmt.lib"
+				AdditionalDependencies="Libscilab.lib io.lib msvcrt.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
+				IgnoreDefaultLibraryNames=" libcmt.lib "
 				ModuleDefinitionFile="localization.def"
 				OptimizeForWindows98="1"
 				RandomizedBaseAddress="1"
@@ -353,8 +356,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib io.lib msvcrt.lib libcmt.lib"
+				AdditionalDependencies="Libscilab.lib io.lib msvcrt.lib"
 				OutputFile="..\..\..\bin\scilocalization.dll"
+				IgnoreDefaultLibraryNames=" libcmt.lib "
 				ModuleDefinitionFile="localization.def"
 				OptimizeForWindows98="1"
 				RandomizedBaseAddress="1"

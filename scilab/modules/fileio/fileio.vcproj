@@ -6,7 +6,7 @@
 	ProjectGUID="{4FC72D4A-80EE-4B1A-8724-0201C1A35621}"
 	RootNamespace="fileio"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -53,6 +53,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -68,9 +69,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="libscilab.lib libcmtd.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="msvcrtd.lib"
 				ModuleDefinitionFile="fileio.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -136,6 +138,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -151,9 +154,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="libscilab.lib libcmtd.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="msvcrtd.lib"
 				ModuleDefinitionFile="fileio.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -221,6 +225,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -235,9 +240,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib libcmt.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="msvcrt.lib"
 				ModuleDefinitionFile="fileio.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -310,6 +316,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -324,9 +331,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib"
+				AdditionalDependencies="LibScilab.lib libcmt.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="msvcrt.lib"
 				ModuleDefinitionFile="fileio.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"

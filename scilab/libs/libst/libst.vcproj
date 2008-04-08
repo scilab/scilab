@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="libst"
 	ProjectGUID="{FBF44619-6C9B-4400-940C-9147D81EB340}"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -47,6 +47,7 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="../intl"
 				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
@@ -58,7 +59,7 @@
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="0"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -75,10 +76,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="msvcrtd.lib libcmtd.lib"
+				AdditionalDependencies="msvcrtd.lib"
 				OutputFile="..\..\bin\libst.dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames=""
+				IgnoreDefaultLibraryNames="libcmtd.lib"
 				ModuleDefinitionFile="..\..\bin\libst.def"
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"
@@ -139,6 +140,7 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="../intl"
 				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
@@ -150,7 +152,7 @@
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="0"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -167,10 +169,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="msvcrtd.lib libcmtd.lib"
+				AdditionalDependencies="msvcrtd.lib"
 				OutputFile="..\..\bin\libst.dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames=""
+				IgnoreDefaultLibraryNames="libcmtd.lib"
 				ModuleDefinitionFile="..\..\bin\libst.def"
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"
@@ -244,7 +246,7 @@
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
-				CompileAs="0"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -260,9 +262,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msvcrt.lib libcmt.lib"
+				AdditionalDependencies="msvcrt.lib "
 				OutputFile="..\..\bin\libst.dll"
-				IgnoreDefaultLibraryNames=""
+				IgnoreDefaultLibraryNames="libcmt.lib"
 				ModuleDefinitionFile="..\..\bin\libst.def"
 				OptimizeForWindows98="1"
 				RandomizedBaseAddress="1"
@@ -337,7 +339,7 @@
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
-				CompileAs="0"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -353,9 +355,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msvcrt.lib libcmt.lib"
+				AdditionalDependencies="msvcrt.lib "
 				OutputFile="..\..\bin\libst.dll"
-				IgnoreDefaultLibraryNames=""
+				IgnoreDefaultLibraryNames="libcmt.lib"
 				ModuleDefinitionFile="..\..\bin\libst.def"
 				OptimizeForWindows98="1"
 				RandomizedBaseAddress="1"
