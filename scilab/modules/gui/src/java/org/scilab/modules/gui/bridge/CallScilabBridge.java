@@ -92,7 +92,7 @@ public class CallScilabBridge {
 	private static final String OBLIQUEFONT = "oblique";
 	private static final String ITALICFONT = "italic";
 	private static final String BOLDFONT = "bold";
-	private static final int DEFAULTFONTSIZE = 12;
+	private static final int DEFAULTFONTSIZE = 10;
 	private static final String DEFAULTFONTNAME = "helvetica";
 
 	private static final double DEFAULT_RED_BACKGROUND = 0.8 * 255;
