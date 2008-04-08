@@ -17,9 +17,4 @@ MACROSDIRSEXT =  macros/kernel macros/percent macros/sci_files
 libm2sci_la_etcdir = $(mydatadir)/etc
 libm2sci_la_etc_DATA = etc/m2sci.quit etc/m2sci.start
 
-### m2sci : TCL macros ###
-libm2sci_la_tcldir = $(mydatadir)/tcl
-libm2sci_la_tcl_DATA = tcl/m2sci.tcl
-
-
 include $(top_srcdir)/Makefile.incl.am

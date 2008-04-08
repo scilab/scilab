@@ -21,7 +21,7 @@ if rhs<5 then verbose_mode=3,end
 if rhs<4 then only_double=%F,end
 if rhs<3 then Recmode=%F,end
 if rhs<2 then res_path="./",end
-if rhs<1 then res=m2sci_gui();return;end
+if rhs<1 then m2sci_gui();res=[];return;end
 if MSDOS then
   fil=strsubst(fil,filesep(),"/")
   res_path=strsubst(res_path,"\","/")

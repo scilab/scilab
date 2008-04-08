@@ -26,7 +26,7 @@ function   transorder=translatepaths(Paths,res_path)
 
 [lhs,rhs]=argn(0)
 if rhs<2 then res_path="./",end
-if rhs<1 then m2sci_gui();return;end
+if rhs<1 then m2sci_gui();transorder=[];return;end
 
 // Loads libraries related to m2sci
 if exists("m2skernellib")==0 then load("SCI/modules/m2sci/macros/kernel/lib"),end
