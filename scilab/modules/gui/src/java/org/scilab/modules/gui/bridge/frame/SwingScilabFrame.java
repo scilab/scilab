@@ -90,7 +90,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return new Position(this.getX(), this.getY());
+		return new Position(this.getX(), this.getY() + getDims().getHeight());
 	}
 
 	/**
@@ -99,7 +99,9 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
+		int absoluteY = getPosition().getY() + getSize().height;
 		this.setSize(newSize.getWidth(), newSize.getHeight());
+		setPosition(new Position(getPosition().getX(), absoluteY));
 	}
 
 	/**
@@ -108,7 +110,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		this.setLocation(newPosition.getX(), newPosition.getY());
+		this.setLocation(newPosition.getX(), newPosition.getY() - getSize().height);
 	}
 
 	// TODO : Check wether we want a Console in a Frame or not.
