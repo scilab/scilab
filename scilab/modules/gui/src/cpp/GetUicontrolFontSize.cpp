@@ -33,7 +33,7 @@ int GetUicontrolFontSize(sciPointObj* sciObj)
                                                                  pUICONTROL_FEATURE(sciObj)->hashMapIndex);
         }
 
-      return sciReturnDouble(ConvertFromPoint(fontSize, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj));
+      return sciReturnDouble(ConvertFromPixel(fontSize, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj));
     }
   else
     {
