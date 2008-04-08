@@ -117,7 +117,7 @@ public class SciRenderer
       
 	  if (curFigure.getIsRenderingEnable()) {
 		  curFigure.getColorMap().clearTexture();
-		  curFigure.destroyTextWriter();
+		  curFigure.reinitTextWriter();
 		  FigureScilabCall.redrawFigure(renderedFigure);
       }
 

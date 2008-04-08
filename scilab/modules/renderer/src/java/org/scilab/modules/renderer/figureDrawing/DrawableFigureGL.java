@@ -553,6 +553,16 @@ public class DrawableFigureGL extends ObjectGL {
 	}
 	
 	/**
+	 * To be called fromthe init method
+	 * The text renderer must be created again
+	 * But its ressources has alredy been destroyed
+	 * so just set it to null
+	 */
+	protected void reinitTextWriter() {
+		textWriter = null;
+	}
+	
+	/**
 	 * Switch to rubber box mode by specifying a rubber box to use
 	 * @param rb rubber box to use
 	 */
