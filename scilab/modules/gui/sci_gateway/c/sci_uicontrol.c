@@ -139,7 +139,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
                   if (nbRow*nbCol == 1)
                     {
-                      pParent = getFigureFromIndex(*stk(stkAdr));
+                      pParent = getFigureFromIndex((int)(*stk(stkAdr)));
 
                       if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
                         {

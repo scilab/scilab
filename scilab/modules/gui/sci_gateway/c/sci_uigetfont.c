@@ -127,7 +127,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
   /* Default size */
   if (fontSizeAdr != 0)
     {
-      setFontChooserFontSize(fontChooserID, stk(fontSizeAdr)[0]);
+      setFontChooserFontSize(fontChooserID, (int)stk(fontSizeAdr)[0]);
     }
   
   /* Default bold */

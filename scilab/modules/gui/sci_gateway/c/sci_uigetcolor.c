@@ -121,7 +121,7 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
     {
       if (greenAdr !=0 ) /* All values given in first input argument */
         {
-          setColorChooserDefaultRGBSeparateValues(colorChooserID, stk(redAdr)[0], stk(greenAdr)[0], stk(blueAdr)[0]);
+          setColorChooserDefaultRGBSeparateValues(colorChooserID, (int)stk(redAdr)[0], (int)stk(greenAdr)[0], (int)stk(blueAdr)[0]);
         }
       else
         {
