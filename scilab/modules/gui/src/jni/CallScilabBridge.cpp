@@ -250,6 +250,10 @@ jintnewColorChooserID=NULL;
 voidcolorChooserDisplayAndWaitjintID=NULL; 
 voidsetColorChooserDefaultColorjintjintArrayID=NULL; 
 jintArraygetColorChooserSelectedColorjintID=NULL; 
+voidsetWidgetVisiblejintjbooleanID=NULL; 
+voidsetFrameVisiblejintjbooleanID=NULL; 
+jbooleanisWidgetVisiblejintID=NULL; 
+jbooleanisFrameVisiblejintID=NULL; 
 jintgetScreenResolutionID=NULL; 
 jdoublegetScreenWidthID=NULL; 
 jdoublegetScreenHeightID=NULL; 
@@ -427,6 +431,10 @@ jintnewColorChooserID=NULL;
 voidcolorChooserDisplayAndWaitjintID=NULL; 
 voidsetColorChooserDefaultColorjintjintArrayID=NULL; 
 jintArraygetColorChooserSelectedColorjintID=NULL; 
+voidsetWidgetVisiblejintjbooleanID=NULL; 
+voidsetFrameVisiblejintjbooleanID=NULL; 
+jbooleanisWidgetVisiblejintID=NULL; 
+jbooleanisFrameVisiblejintID=NULL; 
 jintgetScreenResolutionID=NULL; 
 jdoublegetScreenWidthID=NULL; 
 jdoublegetScreenHeightID=NULL; 
@@ -4315,6 +4323,98 @@ curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
                         curEnv->DeleteLocalRef(res);
 
 return myArray;
+
+}
+
+void CallScilabBridge::setWidgetVisible (JavaVM * jvm_, long objID, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetWidgetVisiblejintjbooleanID = curEnv->GetStaticMethodID(cls, "setWidgetVisible", "(IZ)V" ) ;
+if (voidsetWidgetVisiblejintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setWidgetVisible" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetWidgetVisiblejintjbooleanID ,objID, status_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setFrameVisible (JavaVM * jvm_, long objID, bool status){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetFrameVisiblejintjbooleanID = curEnv->GetStaticMethodID(cls, "setFrameVisible", "(IZ)V" ) ;
+if (voidsetFrameVisiblejintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setFrameVisible" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jboolean status_ = ((bool) status ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetFrameVisiblejintjbooleanID ,objID, status_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+bool CallScilabBridge::isWidgetVisible (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleanisWidgetVisiblejintID = curEnv->GetStaticMethodID(cls, "isWidgetVisible", "(I)Z" ) ;
+if (jbooleanisWidgetVisiblejintID == NULL) {
+std::cerr << "Could not access to the method " << "isWidgetVisible" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanisWidgetVisiblejintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
+}
+
+bool CallScilabBridge::isFrameVisible (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleanisFrameVisiblejintID = curEnv->GetStaticMethodID(cls, "isFrameVisible", "(I)Z" ) ;
+if (jbooleanisFrameVisiblejintID == NULL) {
+std::cerr << "Could not access to the method " << "isFrameVisible" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanisFrameVisiblejintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
 
 }
 

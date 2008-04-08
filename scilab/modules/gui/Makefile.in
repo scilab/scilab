@@ -172,8 +172,9 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/SetUicontrolVerticalAlignment.cpp \
 	src/cpp/GetUicontrolVerticalAlignment.cpp \
 	src/cpp/SetUicontrolSliderStep.cpp \
-	src/cpp/GetUicontrolSliderStep.cpp src/cpp/UnitsConversion.cpp \
-	src/cpp/GetScreenProperty.cpp
+	src/cpp/GetUicontrolSliderStep.cpp \
+	src/cpp/SetUiobjectVisible.cpp src/cpp/GetUiobjectVisible.cpp \
+	src/cpp/UnitsConversion.cpp src/cpp/GetScreenProperty.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-setlookandfeel.lo \
@@ -284,6 +285,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-GetUicontrolVerticalAlignment.lo \
 @GUI_TRUE@	libscigui_la-SetUicontrolSliderStep.lo \
 @GUI_TRUE@	libscigui_la-GetUicontrolSliderStep.lo \
+@GUI_TRUE@	libscigui_la-SetUiobjectVisible.lo \
+@GUI_TRUE@	libscigui_la-GetUiobjectVisible.lo \
 @GUI_TRUE@	libscigui_la-UnitsConversion.lo \
 @GUI_TRUE@	libscigui_la-GetScreenProperty.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
@@ -657,6 +660,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/GetUicontrolVerticalAlignment.cpp \
 @GUI_TRUE@src/cpp/SetUicontrolSliderStep.cpp \
 @GUI_TRUE@src/cpp/GetUicontrolSliderStep.cpp \
+@GUI_TRUE@src/cpp/SetUiobjectVisible.cpp \
+@GUI_TRUE@src/cpp/GetUiobjectVisible.cpp \
 @GUI_TRUE@src/cpp/UnitsConversion.cpp \
 @GUI_TRUE@src/cpp/GetScreenProperty.cpp
 
@@ -804,6 +809,7 @@ includes/GetUimenuLabel.h \
 includes/GetUiobjectCallback.h \
 includes/GetUiobjectForegroundColor.h \
 includes/GetUiobjectTag.h \
+includes/GetUiobjectVisible.h \
 includes/InitUIMenu.h \
 includes/Label.h \
 includes/ListBox.h \
@@ -837,6 +843,7 @@ includes/SetUimenuLabel.h \
 includes/SetUiobjectCallback.h \
 includes/SetUiobjectForegroundColor.h \
 includes/SetUiobjectTag.h \
+includes/SetUiobjectVisible.h \
 includes/Slider.h \
 includes/TerminateGui.h \
 includes/write_scilab.h \
@@ -976,6 +983,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectCallback.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectForegroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectTag.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-GetUiobjectVisible.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitProgressionBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitUIMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitWaitBar.Plo@am__quote@
@@ -1009,6 +1017,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectCallback.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectForegroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectTag.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUiobjectVisible.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Slider.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-TerminateGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Toolbar.Plo@am__quote@
@@ -1906,6 +1915,20 @@ libscigui_la-GetUicontrolSliderStep.lo: src/cpp/GetUicontrolSliderStep.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUicontrolSliderStep.cpp' object='libscigui_la-GetUicontrolSliderStep.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUicontrolSliderStep.lo `test -f 'src/cpp/GetUicontrolSliderStep.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolSliderStep.cpp
+
+libscigui_la-SetUiobjectVisible.lo: src/cpp/SetUiobjectVisible.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-SetUiobjectVisible.lo -MD -MP -MF $(DEPDIR)/libscigui_la-SetUiobjectVisible.Tpo -c -o libscigui_la-SetUiobjectVisible.lo `test -f 'src/cpp/SetUiobjectVisible.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectVisible.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-SetUiobjectVisible.Tpo $(DEPDIR)/libscigui_la-SetUiobjectVisible.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectVisible.cpp' object='libscigui_la-SetUiobjectVisible.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-SetUiobjectVisible.lo `test -f 'src/cpp/SetUiobjectVisible.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectVisible.cpp
+
+libscigui_la-GetUiobjectVisible.lo: src/cpp/GetUiobjectVisible.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-GetUiobjectVisible.lo -MD -MP -MF $(DEPDIR)/libscigui_la-GetUiobjectVisible.Tpo -c -o libscigui_la-GetUiobjectVisible.lo `test -f 'src/cpp/GetUiobjectVisible.cpp' || echo '$(srcdir)/'`src/cpp/GetUiobjectVisible.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-GetUiobjectVisible.Tpo $(DEPDIR)/libscigui_la-GetUiobjectVisible.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUiobjectVisible.cpp' object='libscigui_la-GetUiobjectVisible.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetUiobjectVisible.lo `test -f 'src/cpp/GetUiobjectVisible.cpp' || echo '$(srcdir)/'`src/cpp/GetUiobjectVisible.cpp
 
 libscigui_la-UnitsConversion.lo: src/cpp/UnitsConversion.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-UnitsConversion.lo -MD -MP -MF $(DEPDIR)/libscigui_la-UnitsConversion.Tpo -c -o libscigui_la-UnitsConversion.lo `test -f 'src/cpp/UnitsConversion.cpp' || echo '$(srcdir)/'`src/cpp/UnitsConversion.cpp

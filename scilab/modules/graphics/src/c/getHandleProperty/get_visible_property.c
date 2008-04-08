@@ -23,11 +23,18 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
+#include "GetUiobjectVisible.h"
+#include "GetProperty.h"
 
 /*------------------------------------------------------------------------*/
 
 int get_visible_property( sciPointObj * pobj )
 {
+
+  if ( (sciGetEntityType(pobj) == SCI_UIMENU) || (sciGetEntityType(pobj) == SCI_UICONTROL) )
+    {
+      return GetUiobjectVisible(pobj);
+    }
 
   if ( sciGetVisibility( pobj ) )
   {

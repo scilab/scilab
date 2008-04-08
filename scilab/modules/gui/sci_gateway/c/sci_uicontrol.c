@@ -34,7 +34,7 @@
 #include "Scierror.h"
 #include "WindowList.h" /* getFigureFromIndex */
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 24
+#define NBPROPERTIES 25
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
 {
@@ -57,7 +57,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
-  char propertiesNames[NBPROPERTIES][20] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata"};
+  char propertiesNames[NBPROPERTIES][20] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible"};
   int *propertiesValuesIndices = NULL;
 
   //CheckRhs(2,2);

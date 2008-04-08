@@ -96,6 +96,8 @@ src/cpp/SetUicontrolVerticalAlignment.cpp \
 src/cpp/GetUicontrolVerticalAlignment.cpp \
 src/cpp/SetUicontrolSliderStep.cpp \
 src/cpp/GetUicontrolSliderStep.cpp \
+src/cpp/SetUiobjectVisible.cpp \
+src/cpp/GetUiobjectVisible.cpp \
 src/cpp/UnitsConversion.cpp \
 src/cpp/GetScreenProperty.cpp
 
@@ -254,6 +256,7 @@ includes/GetUimenuLabel.h \
 includes/GetUiobjectCallback.h \
 includes/GetUiobjectForegroundColor.h \
 includes/GetUiobjectTag.h \
+includes/GetUiobjectVisible.h \
 includes/InitUIMenu.h \
 includes/Label.h \
 includes/ListBox.h \
@@ -287,6 +290,7 @@ includes/SetUimenuLabel.h \
 includes/SetUiobjectCallback.h \
 includes/SetUiobjectForegroundColor.h \
 includes/SetUiobjectTag.h \
+includes/SetUiobjectVisible.h \
 includes/Slider.h \
 includes/TerminateGui.h \
 includes/write_scilab.h \

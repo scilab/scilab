@@ -2174,6 +2174,48 @@ public class CallScilabBridge {
 		((ColorChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
 	}
 	
+	/******************/
+	/*                */
+	/* WIDGET VISIBLE */
+	/*                */
+	/******************/
+	
+	/**
+	 * Set the visibility of the Widget
+	 * @param id the id of the Widget
+	 * @param status the new status
+	 */
+	public static void setWidgetVisible(int id, boolean status) {
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setVisible(status);
+	}
+	
+	/**
+	 * Set the visibility of the Frame
+	 * @param id the id of the Frame
+	 * @param status the new status
+	 */
+	public static void setFrameVisible(int id, boolean status) {
+		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setVisible(status);
+	}
+	
+	/**
+	 * Get the visibility of the Widget
+	 * @param id the id of the Widget
+	 * @return the status
+	 */
+	public static boolean isWidgetVisible(int id) {
+		return ((Widget) UIElementMapper.getCorrespondingUIElement(id)).isVisible();
+	}
+	
+	/**
+	 * Get the visibility of the Frame
+	 * @param id the id of the Frame
+	 * @return the status
+	 */
+	public static boolean isFrameVisible(int id) {
+		return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).isVisible();
+	}
+	
 	/********/
 	/*      */
 	/* MISC */

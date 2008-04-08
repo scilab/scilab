@@ -540,6 +540,21 @@
 	<method name="getColorChooserSelectedColor" returnType="int[]" modifier="static">
           <parameter type="int" name="objID"/>
         </method>      
+<!-- Widget visible -->
+	<method name="setWidgetVisible" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="boolean" name="status"/>
+        </method>      
+	<method name="setFrameVisible" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="boolean" name="status"/>
+        </method>      
+	<method name="isWidgetVisible" returnType="boolean" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="isFrameVisible" returnType="boolean" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
 <!-- Misc -->
 	<method name="getScreenResolution" returnType="int" modifier="static">
         </method>      

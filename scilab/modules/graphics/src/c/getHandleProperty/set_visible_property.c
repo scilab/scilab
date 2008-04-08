@@ -24,6 +24,8 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "SetUiobjectVisible.h"
+#include "GetProperty.h"
 
 /*------------------------------------------------------------------------*/
 int set_visible_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
@@ -35,6 +37,11 @@ int set_visible_property( sciPointObj * pobj, int stackPointer, int valueType, i
     sciprint(_("Incompatible type for property %s.\n"),"visible") ;
     return SET_PROPERTY_ERROR ;
   }
+
+  if ( (sciGetEntityType(pobj) == SCI_UIMENU) || (sciGetEntityType(pobj) == SCI_UICONTROL) )
+    {
+      return SetUiobjectVisible(pobj, stackPointer, valueType, nbRow, nbCol);
+    }
 
   if ( isStringParamEqual( stackPointer, "on" ) )
   {

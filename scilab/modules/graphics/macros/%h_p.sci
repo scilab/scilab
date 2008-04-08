@@ -698,6 +698,7 @@ function %h_p(h)
   "position = "+sci2exp(h.position,0)
   "menu_enable = "+sci2exp(h.menu_enable)
   "foregroundcolor = "+sci2exp(h.foregroundcolor,0)
+  "Visible = "+sci2exp(h.visible)
   "Tag = "+h.tag
   ]
   case "uicontrol"

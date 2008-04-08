@@ -201,6 +201,10 @@ jmethodID jintnewColorChooserID; // cache method id
 jmethodID voidcolorChooserDisplayAndWaitjintID; // cache method id
 jmethodID voidsetColorChooserDefaultColorjintjintArrayID; // cache method id
 jmethodID jintArraygetColorChooserSelectedColorjintID; // cache method id
+jmethodID voidsetWidgetVisiblejintjbooleanID; // cache method id
+jmethodID voidsetFrameVisiblejintjbooleanID; // cache method id
+jmethodID jbooleanisWidgetVisiblejintID; // cache method id
+jmethodID jbooleanisFrameVisiblejintID; // cache method id
 jmethodID jintgetScreenResolutionID; // cache method id
 jmethodID jdoublegetScreenWidthID; // cache method id
 jmethodID jdoublegetScreenHeightID; // cache method id
@@ -541,6 +545,14 @@ static void colorChooserDisplayAndWait(JavaVM * jvm_, long objID);
 static void setColorChooserDefaultColor(JavaVM * jvm_, long objID, long * rgb, int rgbSize);
 
 static long * getColorChooserSelectedColor(JavaVM * jvm_, long objID);
+
+static void setWidgetVisible(JavaVM * jvm_, long objID, bool status);
+
+static void setFrameVisible(JavaVM * jvm_, long objID, bool status);
+
+static bool isWidgetVisible(JavaVM * jvm_, long objID);
+
+static bool isFrameVisible(JavaVM * jvm_, long objID);
 
 static long getScreenResolution(JavaVM * jvm_);
 

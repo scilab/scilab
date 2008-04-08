@@ -112,6 +112,6 @@ int ConvertToPixel(double value, int oldUnit, sciPointObj *sciObj)
     {
       oldUnit = PIXELS_UNITS;
     }
-  return (int)ConvertFromPoint(ConvertToPoint(value, oldUnit, sciObj), PIXELS_UNITS, NULL);
+  return (int) ConvertFromPoint(ConvertToPoint(value, oldUnit, sciObj), PIXELS_UNITS, NULL);
 }
 
