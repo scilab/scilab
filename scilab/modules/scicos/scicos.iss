@@ -42,6 +42,7 @@ Source: modules\{#SCICOS}\etc\{#SCICOS}.start; DestDir: {app}\modules\{#SCICOS}\
 ;
 ;
 Source: modules\{#SCICOS}\help\addchapter.sce; DestDir: {app}\modules\{#SCICOS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCICOS}
+Source: modules\{#SCICOS}\help\scicos_help.jar; DestDir: {app}\modules\{#SCICOS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCICOS}
 ;
 Source: modules\{#SCICOS}\includes\*.h; DestDir: {app}\modules\{#SCICOS}\includes; Components: {#COMPN_SCICOS}
 ;
