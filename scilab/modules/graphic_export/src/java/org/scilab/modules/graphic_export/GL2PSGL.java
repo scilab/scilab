@@ -836,4 +836,14 @@ public class GL2PSGL extends DebugGL {
 		gl.glColor3dv(arg0, arg1);
 	}
 	
+	/**
+	 * glDeleteTextures
+	 * @param arg0 int
+	 * @param arg1 int[]
+	 * @param arg2 int
+	 */
+	public void glDeleteTextures(int arg0, int[] arg1, int arg2) {
+		gl.glDeleteTextures(arg0, arg1, arg2);
+	}
+	
 }

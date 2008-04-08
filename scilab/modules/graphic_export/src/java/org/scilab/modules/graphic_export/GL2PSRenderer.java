@@ -19,6 +19,7 @@ import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.arcDrawing.FastArcRendererFactory;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
+import org.scilab.modules.renderer.polylineDrawing.GL2PSShadeFacetDrawer;
 
 /**
  * 
@@ -94,7 +95,7 @@ public class GL2PSRenderer extends ExportRenderer {
 		
 		gl2ps.gl2psBeginPage("MyTitle", "MySoftware", null, format, 
 							  GL2PS.GL2PS_BSP_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
-							  | GL2PS.GL2PS_OCCLUSION_CULL | GL2PS.GL2PS_LANDSCAPE | GL2PS.GL2PS_DRAW_BACKGROUND,
+							  /*| GL2PS.GL2PS_OCCLUSION_CULL | GL2PS.GL2PS_LANDSCAPE | GL2PS.GL2PS_DRAW_BACKGROUND*/,
 							  GL.GL_RGBA, 0, null, null, null, null, 
 							  0, 0, 0, buffsize, ExportRenderer.getFileName());		
 		
@@ -106,13 +107,25 @@ public class GL2PSRenderer extends ExportRenderer {
 		DrawableFigureGL exportedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
 		exportedFigure.setTextRendererFactory(new PSTextRendererFactory());
 		exportedFigure.setArcRendererFactory(new FastArcRendererFactory());
+		exportedFigure.setShadeFacetDrawer(new GL2PSShadeFacetDrawer());
 		
+		long init = System.nanoTime();
 		sciRend.init(gLDrawable);
 		sciRend.display(gLDrawable);
+		long end = System.nanoTime();
+		long elapsedTime = end - init;
+		System.err.println("JOGL time = " + (elapsedTime * 1.0e-6));
+		
+		init = System.nanoTime();
 		gl2ps.gl2psEndPage();
+		end = System.nanoTime();
+		elapsedTime = end - init;
+		System.err.println("GL2PS time = " + (elapsedTime * 1.0e-6));
+		
 		gLDrawable.setGL(gl);
 		exportedFigure.setDefaultArcRendererFactory();
 		exportedFigure.setDefaultTextRenderer();
+		exportedFigure.setDefaultShadeFacetDrawer();
 		
 		sciRend.init(gLDrawable);
 		sciRend.display(gLDrawable);
