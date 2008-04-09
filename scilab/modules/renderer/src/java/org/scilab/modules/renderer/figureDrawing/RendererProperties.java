@@ -1,6 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ * 
  * desc : Properties needed by a figure from its rendering canvas
  * 
  * This file must be used under the terms of the CeCILL.
@@ -165,5 +167,17 @@ public interface RendererProperties {
 	 * @return Scilab code of the pressed button
 	 */
 	int rubberBox(boolean isClick, int[] initialRect, int[] endRect);
+	
+	/**
+	 * Set the title of the figure
+	 * @param title the title
+	 */
+	void setTitle(String title);
+	
+	/**
+	 * Get the title of the figure
+	 * @return the title
+	 */
+	String getTitle();
 	
 }

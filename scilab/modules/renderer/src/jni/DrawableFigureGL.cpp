@@ -134,6 +134,7 @@ voidsetIsRenderingEnablejbooleanID=NULL;
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
 jintArrayrubberBoxjbooleanjintArrayID=NULL; 
+voidsetTitlejstringID=NULL; 
 
 
 }
@@ -191,6 +192,7 @@ voidsetIsRenderingEnablejbooleanID=NULL;
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
 jintArrayrubberBoxjbooleanjintArrayID=NULL; 
+voidsetTitlejstringID=NULL; 
 
 
 }
@@ -905,6 +907,27 @@ curEnv->DeleteLocalRef(initialRect_);
 
 return myArray;
 
+}
+
+void DrawableFigureGL::setTitle (char * title){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetTitlejstringID==NULL) { /* Use the cache Luke */ voidsetTitlejstringID = curEnv->GetMethodID(this->instanceClass, "setTitle", "(Ljava/lang/String;)V" ) ;
+if (voidsetTitlejstringID == NULL) {
+std::cerr << "Could not access to the method " << "setTitle" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+jstring title_ = curEnv->NewStringUTF( title );
+
+                         curEnv->CallVoidMethod( this->instance, voidsetTitlejstringID ,title_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

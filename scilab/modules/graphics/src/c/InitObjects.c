@@ -499,8 +499,8 @@ int InitFigureModel( void )
     /* F.Leray 10.06.04 */
     return -1 ;
   }
-  strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic", sizeof ("Scilab Graphic") + 4);
-  pFIGURE_FEATURE (pfiguremdl)->namelen = Min (sizeof ("Scilab Graphic") + 4, 14); 
+  strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Graphic window number %d", sizeof ("Graphic window number %d") + 4);
+  pFIGURE_FEATURE (pfiguremdl)->namelen = Min (sizeof ("Graphic window number %d") + 4, 24); 
   pFIGURE_FEATURE (pfiguremdl)->number          = 0   ;
 
   /* Set figure model attributes */

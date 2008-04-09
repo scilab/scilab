@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Class containing the driver dependant routines to draw a figure object    
  * 
  * This file must be used under the terms of the CeCILL.
@@ -154,6 +155,11 @@ public:
    * @param[out] usedButton Scilab code of the button used to terminate the rubber box
    */
   virtual void rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton) = 0;
+
+  /**
+   * Set the title of the window
+   */
+  virtual void setTitle( const char * title ) = 0 ;
 
   /**
    * Return the drawed object

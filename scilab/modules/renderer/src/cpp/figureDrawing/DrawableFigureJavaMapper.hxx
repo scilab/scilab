@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Contains mapping of java method used by DrawableFigure
  * 
  * This file must be used under the terms of the CeCILL.
@@ -84,6 +85,9 @@ public:
   virtual void setBackgroundColor(int colorIndex);
 
   virtual void rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton);
+
+  virtual void setTitle(char * title);
+
   /*----------------------------------------------------------------------*/
 
 protected:

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Class containing the drawing routine for a figure object  
  * 
  * This file must be used under the terms of the CeCILL.
@@ -159,6 +160,11 @@ public:
     */
    void drawBackground(void);
 
+  /**
+   * Set the figure title
+   * @param[in] title the figure title
+   */
+  void setTitle(const char * title);
 
   /*-----------------------------------------------------------------------------*/
    /**

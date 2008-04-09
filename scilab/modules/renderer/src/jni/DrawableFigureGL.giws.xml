@@ -87,5 +87,8 @@
       <param type="boolean" name="isClick" />
       <param type="int[]" name="initialRect" />
     </method>
+    <method name="setTitle" returnType="void">
+      <param type="String" name="title" />
+    </method>
   </object>
 </package>

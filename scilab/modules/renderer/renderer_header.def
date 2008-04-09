@@ -35,6 +35,7 @@ sciSetJavaFigureSize
 sciSetJavaWindowSize
 sciSetJavaWindowPosition
 sciSetJavaInfoMessage
+sciSetJavaTitle
 endFigureDataWriting
 startFigureDataWriting
 sciGetJava2dViewPixelCoordinates

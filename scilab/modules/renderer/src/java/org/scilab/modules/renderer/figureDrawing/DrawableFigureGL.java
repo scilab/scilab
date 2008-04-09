@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Class containing the driver dependant routines to draw a 
  * figure object with JoGL
  * 
@@ -204,6 +205,22 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void setInfoMessage(String infoMessage) {
 		guiProperties.setInfoMessage(infoMessage);
+	}
+
+	/**
+   	 * Get the title of the figure
+   	 * @return the title
+   	 */
+	public String getTitle() {
+		return guiProperties.getTitle();
+	}
+	
+	/**
+	 * Set the title of the figure
+	 * @param title the title of the figure
+	 */
+	public void setTitle(String title) {
+		guiProperties.setTitle(title);
 	}
 
 	/**

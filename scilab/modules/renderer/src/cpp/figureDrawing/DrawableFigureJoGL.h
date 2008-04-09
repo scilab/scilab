@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Class containing the driver dependant routines to draw a 
  * figure object with JoGL 
  * 
@@ -156,6 +157,11 @@ public:
    * @param[out] usedButton Scilab code of the button used to terminate the rubber box
    */
   virtual void rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton);
+
+  /**
+   * Set the title of the figure.
+   */
+  virtual void setTitle( const char * title ) ;
 
   /**
    * Return the drawn object

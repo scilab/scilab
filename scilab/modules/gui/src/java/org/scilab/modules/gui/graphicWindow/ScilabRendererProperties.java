@@ -1,7 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2007-2008 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * 
  * desc : Properties needed by a figure from its rendering canvas 
  * 
  * This file must be used under the terms of the CeCILL.
@@ -84,7 +85,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#getInfoMessage()
 	 */
 	public String getInfoMessage() {
-		return parentTab.getName();
+		return parentTab.getInfoBar().getText();
 	}
 
 	/**
@@ -264,4 +265,20 @@ public class ScilabRendererProperties implements RendererProperties {
 		return parentCanvas.rubberBox(isClick, initialRect, endRect);
 	}
 	
+	/**
+	 * Set the title of the figure
+	 * @param title the title
+	 */
+	public void setTitle(String title) {
+		parentTab.setName(title);
+	}
+	
+	/**
+	 * Get the title of the figure
+	 * @return the title
+	 */
+	public String getTitle() {
+		return parentTab.getName();
+	}
+
 }

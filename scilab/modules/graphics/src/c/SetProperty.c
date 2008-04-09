@@ -2216,6 +2216,10 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
           sprintf( str, pvalue, figureNumber ) ;
           length = realLength - 1 ;
         }
+
+        /* set the java title */
+        sciSetJavaTitle(pobj, str);
+
         FREE(str) ;
       }
       

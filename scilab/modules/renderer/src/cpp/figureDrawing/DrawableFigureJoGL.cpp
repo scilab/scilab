@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Class containing the driver dependant routines to draw a figure object with JoGL
  * 
  * This file must be used under the terms of the CeCILL.
@@ -180,6 +181,15 @@ DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )
 DrawableFigureJavaMapper * DrawableFigureJoGL::getFigureJavaMapper(void)
 {
   return dynamic_cast<DrawableFigureJavaMapper *>(getJavaMapper());
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setTitle( const char * title )
+{
+  // we need to create a not const char
+  char * constTitle = new char[strlen(title)+1];
+  strcpy(constTitle, title);
+  getFigureJavaMapper()->setTitle(constTitle);
+  delete[] constTitle;
 }
 /*---------------------------------------------------------------------------------*/
 }

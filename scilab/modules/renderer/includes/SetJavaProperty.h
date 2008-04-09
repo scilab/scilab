@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Interface functions between between SetProperty functions and
  * the C++/Java part of module
  * 
@@ -82,6 +83,11 @@ void sciSetJavaViewport(sciPointObj * pFigure, const int viewport[4]);
  * Set the background color of canvas
  */
 void sciSetJavaBackground(sciPointObj * pFigure, int backColor);
+
+/**
+ * Set the title of a figure.
+ */
+void sciSetJavaTitle( sciPointObj * pFigure, const char * title ) ;
 
 #ifdef __cplusplus
 }

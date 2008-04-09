@@ -106,6 +106,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 */
 	public void setName(String newTabName) {
 		setTitle(newTabName, true);
+		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
 	}
 
 	/**

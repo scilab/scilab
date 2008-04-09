@@ -1,6 +1,7 @@
-/*
+ /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Class containing the drawing routine for a figure object
  * 
  * This file must be used under the terms of the CeCILL.
@@ -244,6 +245,11 @@ void DrawableFigure::setBackgroundColor(int backColor)
 void DrawableFigure::rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton)
 {
   getFigureImp()->rubberBox(isClick, initialRect, endRect, usedButton);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::setTitle( const char * title )
+{
+  getFigureImp()->setTitle(title) ;
 }
 /*---------------------------------------------------------------------------------*/
 }
