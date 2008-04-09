@@ -75,15 +75,16 @@ public:
                               double startingPointsX[], double startingPointsY[],
                               double startingPointsZ[], double vectorLength);
 
-
-protected:
-
-  /*---------------------------------------------------------------------*/
   /**
    * Compute real data bounds from the user ones.
    * ie fills Frect.
    */
   virtual void computeRealDataBounds(void);
+
+
+protected:
+
+  /*---------------------------------------------------------------------*/
 
   /**
    * Draw the surrounding cube of the subwin object.
@@ -123,6 +124,13 @@ protected:
 
   DrawAxesBoxStrategy * m_pAxesBoxDrawer;
   /*---------------------------------------------------------------------*/
+
+private:
+
+  /**
+   * Modify range si it includes 0
+   */
+  void addZeroInRange(double range[2]);
 
   
 };

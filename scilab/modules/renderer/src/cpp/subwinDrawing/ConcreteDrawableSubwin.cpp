@@ -176,6 +176,18 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
   m_pYBoundsStrategy->applyScaleModification(userYBounds, bestYBounds);
   m_pZBoundsStrategy->applyScaleModification(userZBounds, bestZBounds);
 
+    // if the X or Y axis are middle then we need to add 0
+  if (pSUBWIN_FEATURE(m_pDrawed)->axes.xdir == 'c')
+  {
+    addZeroInRange(bestYBounds);
+  }
+
+  // same for Y axis
+  if (pSUBWIN_FEATURE(m_pDrawed)->axes.ydir == 'c')
+  {
+    addZeroInRange(bestXBounds);
+  }
+
   // fit them if needed
   if (!sciGetTightLimitsOn(m_pDrawed))
   {
@@ -265,6 +277,20 @@ void ConcreteDrawableSubwin::setLabelsDistanceToAxis(double xLabelDist, double y
 
   sciPointObj * titleLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_title;
   getLabelDrawer(titleLabel)->setDistanceToAxis(titleDist);
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::addZeroInRange(double range[2])
+{
+  if (range[0] > 0.0 && range[1] > 0.0)
+  {
+    // both are greater than 0, so put the lowest to 0
+    range[0] = 0.0;
+  }
+  else if (range[0] < 0.0 && range[1] < 0.0)
+  {
+    // both are lower than 0, so put the gretestt to 0
+    range[1] = 0.0;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 

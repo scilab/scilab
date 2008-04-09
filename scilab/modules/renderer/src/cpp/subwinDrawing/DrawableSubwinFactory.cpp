@@ -115,6 +115,8 @@ void DrawableSubwinFactory::setStrategies(ConcreteDrawableSubwin * subwin)
     break;
   }
 
+  // update of data bounds needed
+  subwin->computeRealDataBounds();
   TicksDrawerFactory tdf(subwin);
   subwin->setXTicksDrawer(tdf.createXTicksDrawer());
   subwin->setYTicksDrawer(tdf.createYTicksDrawer());
