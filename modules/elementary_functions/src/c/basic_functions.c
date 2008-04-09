@@ -299,7 +299,6 @@ void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 */
 void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 {
-	static double sdblPi		= 3.1415926535897932384626433;
 	static double sdblPi_2		= 1.5707963267948966192313216;
 	static double sdblLn2		= 0.6931471805599453094172321;
 	static double sdblAcross	= 1.5;
@@ -720,3 +719,180 @@ void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc)
 		iIndex2 += _iInc;
 	}
 }
+
+
+
+/*
+PURPOSE
+   val(0..n) being an array (with strict increasing order and n >=1)
+   representing intervals, this routine, by the mean of a 
+   dichotomic search, computes :
+      
+      a/ for each X(i) its interval number indX(i) :
+                indX(i) = j if  X(i) in (val(j-1), val(j)]
+                        = 1 if  X(i) = val(0)
+                        = 0 if  X(i) is not in [val(0),val(n)]
+
+      b/ the number of points falling in the interval j :
+
+         occ(j) = # { X(i) such that X(i) in (val(j-1), val(j)] } for j>1
+    and  occ(1) = # { X(i) such that X(i) in [val(0), val(1)] }
+        
+PARAMETERS
+   inputs :
+      m         integer
+      X(1..m)   double float array
+      n         integer
+      val(0..n) double float array (val(0) < val(1) < ....)
+   outputs
+      indX(1..m) integer array
+      occ(1..n)  integer array
+      info       integer (number of X(i) not in [val(0), val(n)])
+
+AUTHOR
+   Bruno Pincon
+
+TRANSLATION TO C
+	Antoine Elias
+
+	PARAMETERS
+	Inputs :
+		m			-> _iNbElemX
+		X(1..m)		-> _pdblX[_iNbElemX]
+		n			-> _iNbElemVal
+		val(0..n)	-> _pdblVal[_iNbElemVal]
+
+	Outputs :
+		indX(1..m)	-> _pdblInd[_iNbElemX]
+		occ(1..n)	-> _pdblOcc[_iNbElemVal]
+		info		-> _pdblInfo
+*/
+
+void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo)
+{
+	int iLoop = 0;
+
+	memset(_pdblOcc, 0x00, _iNbElemVal * sizeof(double));
+	*_pdblInfo	= 0;
+	for(iLoop = 0 ; iLoop < _iNbElemX ; iLoop++)
+	{
+		if(_pdblVal[0] <= _pdblX[iLoop] && _pdblX[iLoop] <= _pdblVal[_iNbElemVal-1])
+		{
+			int iIndex = 0;
+			int iIndex1 = 0;
+			int iIndex2 = _iNbElemVal;
+			while(iIndex2 - iIndex1 > 1)
+			{
+				iIndex = (iIndex1 + iIndex2) / 2;
+				if( _pdblX[iLoop] <= _pdblVal[iIndex])
+					iIndex2 = iIndex;
+				else
+					iIndex1 = iIndex;
+			}
+			_pdblOcc[iIndex2]++;
+			_pdblInd[iLoop]	= iIndex2;
+		}
+		else
+		{
+			*_pdblInfo++;
+			_pdblInd[iLoop] = 0;
+		}
+	}
+}
+
+/*
+ PURPOSE
+    val(1..n) being a strictly increasing array, this
+    routines by the mean of a dichotomic search computes :
+
+    a/ the number of occurences (occ(j)) of each value val(j) 
+       in the array X :
+
+          occ(j) = #{ X(i) such that X(i) = val(j) }
+
+    b/ the array indX :  if X(i) = val(j) then indX(i) = j
+       (if X(i) is not in val then indX(i) = 0)
+
+ PARAMETERS
+    inputs :
+       m         integer
+       X(1..m)   double float array
+       n         integer
+       val(1..n) double float array (must be in a strict increasing order)
+    outputs :
+       occ(1..n)  integer array
+       indX(1..m) integer array
+       info       integer  (number of X(i) which are not in val(1..n))
+
+ AUTHOR
+    Bruno Pincon
+
+TRANSLATION TO C
+	Antoine Elias
+
+	PARAMETERS
+	Inputs :
+		m			-> _iNbElemX
+		X(1..m)		-> _pdblX[_iNbElemX]
+		n			-> _iNbElemVal
+		val(1..n)	-> _pdblVal[_iNbElemVal]
+
+	Outputs :
+		occ(1..n)	-> _pdblOcc[_iNbElemVal]
+		indX(1..m)	-> _pdblInd[_iNbElemX]
+		info		-> _pdblInfo
+*/
+
+void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo)
+{
+	int iLoop = 0;
+
+	memset(_pdblOcc, 0x00, _iNbElemVal * sizeof(double));
+	*_pdblInfo	= 0;
+	for(iLoop = 0 ; iLoop < _iNbElemX ; iLoop++)
+	{
+		if(_pdblVal[0] <= _pdblX[iLoop] && _pdblX[iLoop] <= _pdblVal[_iNbElemVal-1])
+		{
+			int iIndex = 0;
+			int iIndex1 = 0;
+			int iIndex2 = _iNbElemVal;
+			while(iIndex2 - iIndex1 > 1)
+			{
+				iIndex = (iIndex1 + iIndex2) / 2;
+				if( _pdblX[iLoop] <= _pdblVal[iIndex])
+					iIndex2 = iIndex;
+				else
+					iIndex1 = iIndex;
+			}
+			if(_pdblX[iLoop] == _pdblVal[iIndex1])
+			{
+				_pdblOcc[iIndex1]++;
+				_pdblInd[iLoop]	= iIndex1;
+			}
+			else if(_pdblX[iLoop] == _pdblVal[iIndex2])
+			{
+				_pdblOcc[iIndex2]++;
+				_pdblInd[iLoop]	= iIndex2;
+			}
+			else
+			{
+				*_pdblInfo++;
+				_pdblInd[iLoop] = 0;
+			}
+		}
+		else
+		{
+			*_pdblInfo++;
+			_pdblInd[iLoop] = 0;
+		}
+	}
+	{
+		int iTotal = 0;
+		for(iLoop = 0 ; iLoop < _iNbElemVal ; iLoop++)
+		{
+			iTotal += (int)_pdblOcc[iLoop];
+		}
+		iTotal++;
+	}
+}
+
