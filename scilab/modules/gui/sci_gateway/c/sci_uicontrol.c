@@ -50,6 +50,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
   char *styleProperty=NULL;
 
   sciPointObj *pParent=NULL;
+  sciPointObj *pUicontrol=NULL;
 
   unsigned long GraphicHandle = 0;
 
@@ -240,7 +241,13 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         }
 
       /* Create a new uicontrol */
-      GraphicHandle=sciGetHandle(CreateUIControl(styleProperty));
+      pUicontrol = CreateUIControl(styleProperty);
+      if (pUicontrol == NULL) /* Error in creation */
+        {
+          Scierror(999, _("%s: Could not create uicontrol object.\n"), fname);
+          return FALSE;
+        }
+      GraphicHandle=sciGetHandle(pUicontrol);
 
       /* Read and set all properties */
       for(inputIndex = 1; inputIndex<NBPROPERTIES; inputIndex++) /* Style has already been set */
