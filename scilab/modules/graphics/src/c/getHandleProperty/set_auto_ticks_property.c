@@ -83,9 +83,9 @@ int set_auto_ticks_property( sciPointObj * pobj, int stackPointer, int valueType
         sciprint(_("%s: Wrong second input argument: '%s' or '%s' expected."),"set_auto_ticks_property","on","off");
         return SET_PROPERTY_ERROR ;
       }
-      sciSetAutoTicks(pobj, autoTicks[0], autoTicks[1], autoTicks[2]);
-      return SET_PROPERTY_SUCCEED ;
-    }	
+    }
+    sciSetAutoTicks(pobj, autoTicks[0], autoTicks[1], autoTicks[2]);
+    return SET_PROPERTY_SUCCEED ;
   }
   else
   {
