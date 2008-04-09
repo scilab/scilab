@@ -391,6 +391,10 @@ for i=1:numplot
       curPolyline.line_style = LineStyle;
     end
 
+    // force drawing of box like in matlab
+    curAxes = gca();
+    curAxes.box = "on";
+
   end
 end
 

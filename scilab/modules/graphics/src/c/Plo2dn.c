@@ -667,7 +667,6 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[0] = TRUE;
       ppsubwin->axes.axes_visible[1] = TRUE;
       ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-      ppsubwin->axes.rect = BT_ON;
       haschanged = TRUE;
     }
   }
