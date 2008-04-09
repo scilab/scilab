@@ -84,7 +84,7 @@
         </submenu>
         <separator/>
         <submenu label="Close" mnemonic="C">
-            <callback instruction="delete(scf([SCILAB_FIGURE_ID]));" type="0"/>
+            <callback instruction="delete(get_figure_handle([SCILAB_FIGURE_ID]));" type="0"/>
         </submenu> 
     </menu>
 
@@ -120,7 +120,7 @@
             <callback instruction="xbasr([SCILAB_FIGURE_ID]);" type="0"/>
         </submenu> 
         <submenu label="Clear figure" mnemonic="C">
-            <callback instruction="clf(scf([SCILAB_FIGURE_ID]));" type="0"/>
+            <callback instruction="clf(get_figure_handle([SCILAB_FIGURE_ID]));" type="0"/>
         </submenu> 
         <separator/>
         <submenu label="Figure properties" mnemonic="F"> 
