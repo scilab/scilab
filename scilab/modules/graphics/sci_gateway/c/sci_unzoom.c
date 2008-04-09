@@ -40,28 +40,39 @@ int sci_unzoom(char *fname,unsigned long fname_len)
   }
   else
   {
-    int nbUnzoomedSubwins = 0;
+    int nbUnzoomedObjects = 0;
     int m,n,i;
     int stackPointer;
-    unsigned long * subwinHandles = NULL;
+    sciPointObj ** zoomedObjects = NULL; /* array of object to unzoom */
     GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m,&n,&stackPointer);
     
-    nbUnzoomedSubwins = m * n;
-    subwinHandles = getHandleVectorFromStack(stackPointer);
-
-    /* first pass, check that all the handles are subwindows */
-    for ( i = 0 ; i < nbUnzoomedSubwins ; i++ )
+    nbUnzoomedObjects = m * n;
+    zoomedObjects = MALLOC(nbUnzoomedObjects * sizeof(sciPointObj *));
+    if (zoomedObjects == NULL)
     {
-      sciPointObj * curSubwin = sciGetPointerFromHandle(subwinHandles[i]);
-      if (sciGetEntityType(curSubwin) != SCI_SUBWIN)
+      sciprint(_("%s: No more memory.\n"),fname);
+      LhsVar(1)=0; 
+      return 0;
+    }
+
+    /* first pass, check that all the handles are subwindows or figures */
+    /* and copy them into an array of objects */
+    for ( i = 0 ; i < nbUnzoomedObjects ; i++ )
+    {
+      zoomedObjects[i] = sciGetPointerFromHandle(getHandleFromStack(stackPointer + i));
+      if (sciGetEntityType(zoomedObjects[i]) != SCI_SUBWIN && sciGetEntityType(zoomedObjects[i]) != SCI_FIGURE)
       {
-        sciprint(_("%s: Wrong type for input argument: vector of Axes handles expected.\n"),fname);
+        FREE(zoomedObjects);
+        sciprint(_("%s: Wrong type for input argument: vector of Axes and Figure handles expected.\n"),fname);
         LhsVar(1)=0; 
         return 0;
       }
     }
 
-    sciUnzoomArray(subwinHandles, nbUnzoomedSubwins);
+    /* second pass draw the objects */
+    sciUnzoomArray(zoomedObjects, nbUnzoomedObjects);
+
+    FREE(zoomedObjects);
 
   }
   

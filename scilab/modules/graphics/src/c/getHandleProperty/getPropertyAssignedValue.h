@@ -94,12 +94,6 @@ char ** createCopyStringMatrixFromStack( int stackPointer, int nbElement ) ;
 unsigned long getHandleFromStack( int stackPointer ) ;
 
 /**
- * Retreive an array of handle from the stack
- */
-unsigned long * getHandleVectorFromStack(int stackPointer);
-
-
-/**
  * compare the string stored in the stack with str
  * @return TRUE is the string are equal (using strcmp)
  *         FALSE otherwise

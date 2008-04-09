@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,7 +30,7 @@ unzoom(H)</synopsis>
       <varlistentry>
         <term>H</term>
         <listitem>
-          <para>A handle on an axes or a vector of handle on axes.</para>
+          <para>A vector of Figure or Axes handle.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -39,7 +40,10 @@ unzoom(H)</synopsis>
     <para><literal>unzoom()</literal> is used to remove the zoom effect for all the axes of the
       current graphic figure: </para>
     <para><literal>unzoom(H)</literal> is used to remove the zoom effect for all the
-      axes given by the vector of handles on axes <literal>H</literal>.</para>
+	    Figures and Axes given by the vector of handles <literal>H</literal>.
+	    Removing zoom effect for a Figure is the equivalent of removing zoom effect
+	    on all its Axes children.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -60,12 +64,12 @@ unzoom(H)</synopsis>
     subplot(212)
     plot2d(x,cos(2*x))
     a2=gca();
-    rect=[3 -2 7 10]; //a rectangle specified in the current axes (last one) coordinates
+    rect=[3 -2 7 10]; // a rectangle specified in the current axes (last one) coordinates
     zoom_rect(rect) 
-    unzoom(a1) //unzoom first plot only
-    unzoom(a2) //unzoom second plot only
-    zoom_rect(rect) //zoom again
-    unzoom() //unzoom all the axes
+    unzoom(a1) // unzoom first plot only
+    unzoom(a2) // unzoom second plot only
+    zoom_rect(rect) // zoom again
+    unzoom(gcf())) // unzoom all the axes, equivalent to unzoom()
 
 ]]></programlisting>
   </refsection>
@@ -83,5 +87,6 @@ unzoom(H)</synopsis>
   <refsection>
     <title>Authors</title>
     <para>Serge Steer INRIA </para>
+    <para>Jean-Baptiste Silvy INRIA </para>
   </refsection>
 </refentry>
