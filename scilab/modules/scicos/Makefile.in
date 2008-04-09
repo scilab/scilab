@@ -97,6 +97,8 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(libsciscicos_la_etcdir)" \
+	"$(DESTDIR)$(libsciscicos_la_help_en_USdir)" \
+	"$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)" \
 	"$(DESTDIR)$(libsciscicos_la_rootdir)" \
 	"$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsciscicos_la_cosfdir)" \
@@ -287,6 +289,8 @@ DIST_SOURCES = $(am__libsciscicos_la_SOURCES_DIST) \
 	$(am__libscisundials_la_SOURCES_DIST) \
 	$(am__modelicac_SOURCES_DIST)
 libsciscicos_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libsciscicos_la_help_en_USDATA_INSTALL = $(INSTALL_DATA)
+libsciscicos_la_help_fr_FRDATA_INSTALL = $(INSTALL_DATA)
 libsciscicos_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libsciscicos_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libsciscicos_la_cosfDATA_INSTALL = $(install_sh_DATA)
@@ -294,7 +298,9 @@ nobase_libsciscicos_la_demosDATA_INSTALL = $(install_sh_DATA)
 nobase_libsciscicos_la_demosCodeGenDATA_INSTALL = $(install_sh_DATA)
 nobase_libsciscicos_la_demosElectricalDATA_INSTALL = $(install_sh_DATA)
 nobase_libsciscicos_la_demosMBlockDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_root_DATA) \
+DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_help_en_US_DATA) \
+	$(libsciscicos_la_help_fr_FR_DATA) \
+	$(libsciscicos_la_root_DATA) \
 	$(libsciscicos_la_sci_gateway_DATA) \
 	$(nobase_libsciscicos_la_cosf_DATA) \
 	$(nobase_libsciscicos_la_demos_DATA) \
@@ -807,7 +813,13 @@ JARMASK = *.jar
 
 @SCICOS_TRUE@libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
 
-######### Modelica #############
+#### scicos : help files scripts ####
+@SCICOS_TRUE@libsciscicos_la_help_en_USdir = $(mydatadir)/help/en_US
+@SCICOS_TRUE@libsciscicos_la_help_en_US_DATA = help/en_US/scicos_help.jar
+@SCICOS_TRUE@libsciscicos_la_help_fr_FRdir = $(mydatadir)/help/fr_FR
+@SCICOS_TRUE@libsciscicos_la_help_fr_FR_DATA = help/fr_FR/scicos_help.jar
+
+#########ï¿½Modelica #############
 @OCAML_TRUE@@SCICOS_TRUE@TARGET = modelicac
 @OCAML_TRUE@@SCICOS_TRUE@modelicac_SOURCES = $(MLS)
 @OCAML_TRUE@@SCICOS_TRUE@OCAMLLIBS = nums.cma
@@ -1483,6 +1495,40 @@ uninstall-libsciscicos_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libsciscicos_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsciscicos_la_etcdir)/$$f"; \
 	done
+install-libsciscicos_la_help_en_USDATA: $(libsciscicos_la_help_en_US_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciscicos_la_help_en_USdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_help_en_USdir)"
+	@list='$(libsciscicos_la_help_en_US_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciscicos_la_help_en_USDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscicos_la_help_en_USdir)/$$f'"; \
+	  $(libsciscicos_la_help_en_USDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscicos_la_help_en_USdir)/$$f"; \
+	done
+
+uninstall-libsciscicos_la_help_en_USDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscicos_la_help_en_US_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciscicos_la_help_en_USdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscicos_la_help_en_USdir)/$$f"; \
+	done
+install-libsciscicos_la_help_fr_FRDATA: $(libsciscicos_la_help_fr_FR_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsciscicos_la_help_fr_FRdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)"
+	@list='$(libsciscicos_la_help_fr_FR_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsciscicos_la_help_fr_FRDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)/$$f'"; \
+	  $(libsciscicos_la_help_fr_FRDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)/$$f"; \
+	done
+
+uninstall-libsciscicos_la_help_fr_FRDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciscicos_la_help_fr_FR_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)/$$f"; \
+	done
 install-libsciscicos_la_rootDATA: $(libsciscicos_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciscicos_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciscicos_la_rootdir)"
@@ -1710,7 +1756,7 @@ check: check-am
 all-am: Makefile $(LTLIBRARIES) $(PROGRAMS) $(DATA) $(HEADERS) \
 		all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(libsciscicos_la_etcdir)" "$(DESTDIR)$(libsciscicos_la_rootdir)" "$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libsciscicos_la_cosfdir)" "$(DESTDIR)$(libsciscicos_la_demosdir)" "$(DESTDIR)$(libsciscicos_la_demosCodeGendir)" "$(DESTDIR)$(libsciscicos_la_demosElectricaldir)" "$(DESTDIR)$(libsciscicos_la_demosMBlockdir)" "$(DESTDIR)$(libsciscicos_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(libsciscicos_la_etcdir)" "$(DESTDIR)$(libsciscicos_la_help_en_USdir)" "$(DESTDIR)$(libsciscicos_la_help_fr_FRdir)" "$(DESTDIR)$(libsciscicos_la_rootdir)" "$(DESTDIR)$(libsciscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libsciscicos_la_cosfdir)" "$(DESTDIR)$(libsciscicos_la_demosdir)" "$(DESTDIR)$(libsciscicos_la_demosCodeGendir)" "$(DESTDIR)$(libsciscicos_la_demosElectricaldir)" "$(DESTDIR)$(libsciscicos_la_demosMBlockdir)" "$(DESTDIR)$(libsciscicos_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1760,6 +1806,8 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libsciscicos_la_etcDATA \
+	install-libsciscicos_la_help_en_USDATA \
+	install-libsciscicos_la_help_fr_FRDATA \
 	install-libsciscicos_la_includeHEADERS \
 	install-libsciscicos_la_rootDATA \
 	install-libsciscicos_la_sci_gatewayDATA \
@@ -1806,6 +1854,8 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
+	uninstall-libsciscicos_la_help_en_USDATA \
+	uninstall-libsciscicos_la_help_fr_FRDATA \
 	uninstall-libsciscicos_la_includeHEADERS \
 	uninstall-libsciscicos_la_rootDATA \
 	uninstall-libsciscicos_la_sci_gatewayDATA \
@@ -1828,6 +1878,8 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libsciscicos_la_etcDATA \
+	install-libsciscicos_la_help_en_USDATA \
+	install-libsciscicos_la_help_fr_FRDATA \
 	install-libsciscicos_la_includeHEADERS \
 	install-libsciscicos_la_rootDATA \
 	install-libsciscicos_la_sci_gatewayDATA install-man \
@@ -1843,6 +1895,8 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-binPROGRAMS \
 	uninstall-libsciscicos_la_etcDATA \
+	uninstall-libsciscicos_la_help_en_USDATA \
+	uninstall-libsciscicos_la_help_fr_FRDATA \
 	uninstall-libsciscicos_la_includeHEADERS \
 	uninstall-libsciscicos_la_rootDATA \
 	uninstall-libsciscicos_la_sci_gatewayDATA \
