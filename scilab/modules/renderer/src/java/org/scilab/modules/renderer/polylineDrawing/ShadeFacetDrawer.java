@@ -15,10 +15,10 @@ public interface ShadeFacetDrawer {
 	/**
 	 * Paint the polygon given with the table of color
 	 * @param coords coordinates of triangle & square
-	 * @param colors table of color
+	 * @param color table of color
 	 * @param gl GL 
 	 * @param colorMap TexturedColorMap
 	 */
-	public void paintPolygon(Vector3D[] coords, int[]color, GL gl, TexturedColorMap colorMap);
+	void paintPolygon(Vector3D[] coords, int[] color, GL gl, TexturedColorMap colorMap);
 
 }

@@ -19,6 +19,11 @@ public class ColoredTriangle {
 	private final int SIDE_4 = 3;
 	private final int SIDE_5 = 4;
 	
+	/** Numbers of sides of the polygon */
+	private final int POLY_SIDE3 = 3;
+	private final int POLY_SIDE4 = 4;
+	private final int POLY_SIDE5 = 5;
+	
 	/** gap for color */
 	private final double GAP = 0.5;
 	
@@ -170,7 +175,7 @@ public class ColoredTriangle {
 			}	
 
 			//ending the polygon decomposition with the biggest color
-			Vector3D[] lastPoly = new Vector3D[3];
+			Vector3D[] lastPoly = new Vector3D[POLY_SIDE3];
 			lastPoly[0] = prevI1;
 			lastPoly[1] = prevI2;
 			lastPoly[2] = findIntersection(prevSideI1, prevSideI2);
@@ -224,8 +229,6 @@ public class ColoredTriangle {
 	 * Convert barycentric coordinates to 3D coordinates 
 	 * @param x double
 	 * @param y double
-	 * @param vectorCB Vector3D
-	 * @param vectorCA Vector3D
 	 * @return barycentric coordinates converted into 3D coordinates 
 	 */
 	public Vector3D barycentricCoordTo3D(double x, double y) {
@@ -330,8 +333,7 @@ public class ColoredTriangle {
 		//if the decomposed polygon have 4 or 5 summits
 		//coordinates are ordered in the reverse sense of the watch
 		if (prevSideI1 == nextSideI1 && prevSideI2 == nextSideI2) {
-			polygons = new Vector3D[4];
-			
+			polygons = new Vector3D[POLY_SIDE4];			
 			polygons[SIDE_1] = prevI1;
 			polygons[SIDE_2] = prevI2;
 			polygons[SIDE_3] = nextI2;
@@ -339,7 +341,7 @@ public class ColoredTriangle {
 			
 		} else if (prevSideI1 != nextSideI1) {
 			p = findIntersection(prevSideI1, nextSideI1);
-			polygons = new Vector3D[5];
+			polygons = new Vector3D[POLY_SIDE5];
 			polygons[SIDE_1] = prevI1;
 			polygons[SIDE_2] = prevI2;			
 			polygons[SIDE_3] = nextI2;
@@ -348,7 +350,7 @@ public class ColoredTriangle {
 			
 		} else if (prevSideI2 != nextSideI2) {
 			p = findIntersection(prevSideI2, nextSideI2);
-			polygons = new Vector3D[5];
+			polygons = new Vector3D[POLY_SIDE5];
 			polygons[SIDE_1] = prevI1;
 			polygons[SIDE_2] = prevI2;	
 			polygons[SIDE_3] = p;

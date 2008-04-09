@@ -85,7 +85,7 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 		ColoredTriangle ct = new ColoredTriangle(a, b, c, color1, color2, color3);
 		TriangleDecomposition td = ct.decomposeTriangle();	
 
-		for (int i = 0 ; i < td.getNbPolygons() ; i++) {
+		for (int i = 0; i < td.getNbPolygons(); i++) {
 			int color = td.getPolygonColor(i);	
 
 			gl.glBegin(GL.GL_POLYGON);
@@ -94,7 +94,7 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 			gl.glColor3d(polyColor[0], polyColor[1], polyColor[2]);
 			Vector3D[] polygon = td.getPolygon(i);
 			
-			for (int j = 0 ; j < polygon.length ; j++) {
+			for (int j = 0; j < polygon.length; j++) {
 				gl.glVertex3d(polygon[j].getX(), polygon[j].getY(), polygon[j].getZ());
 			}
 
