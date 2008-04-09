@@ -42,8 +42,6 @@ end
 CurColor = 0; // current color used if no color specified via LineSpec
 // nor PropertyName
 
-// check if a graphic window alredy exists
-isFirstPlot = (winsid() == []);
 
 
 ListArg = varargin;
@@ -181,6 +179,9 @@ current_figure=gcf();
 cur_draw_mode = current_figure.immediate_drawing;
 current_figure.immediate_drawing = 'off';
 
+// check wether this is the first plot for the axes in which we will draw
+curAxes = gca();
+isFirstPlot = (curAxes.children == [])
 
 //Now, we plot the decomposed plots one by one with their own linespec
 // provided_data = 2 : x and y are provided
@@ -342,7 +343,6 @@ for i=1:numplot
     [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail] = getLineSpec(ListArg(xyIndexLineSpec(i,3)),current_figure,cur_draw_mode); 
   end
 
-  
   // The plot is made now :
   err = execstr('plot2d(X,Y)','errcatch','m');
   
@@ -436,7 +436,6 @@ end
 
 // force drawing of box like in matlab
 if isFirstPlot then
-  curAxes = gca();
   curAxes.box = "on";
 end
 
