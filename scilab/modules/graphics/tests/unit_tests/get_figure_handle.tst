@@ -1,0 +1,26 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// test get_figure_handle function
+
+// create some figures
+f0 = scf(0);
+f45 = scf(45);
+f200 = scf(200);
+
+// gcf is f200
+f45bis = get_figure_handle(45);
+// check that this is the same handle
+if (f45bis <> f45) then pause; end;
+// check that gcf did not change
+if (gcf() <> f200) then pause; end;
+
+// try to find a figure that does not exists
+if (get_figure_handle(12) <> []) then pause; end
+
