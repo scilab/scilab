@@ -63,19 +63,31 @@ public class GL2PSGL extends DebugGL {
 	 */
 	public void glEnable(int enable) {
 		gl.glEnable(enable);
-		if (enable == GL.GL_LINE_STIPPLE) {
+		switch (enable) {
+		case GL.GL_LINE_STIPPLE:
 			gl2ps.gl2psEnable(GL2PS.GL2PS_LINE_STIPPLE);
-		}
-		if (enable == GL.GL_POLYGON_OFFSET_FILL) {
+			break;
+		case GL.GL_POLYGON_OFFSET_FILL:
 			gl2ps.gl2psEnable(GL2PS.GL2PS_POLYGON_OFFSET_FILL);
-		}
-		if (enable == GL.GL_BLEND) {
+			break;
+		case GL.GL_BLEND:
 			gl2ps.gl2psEnable(GL2PS.GL2PS_BLEND);
+			break;
+	    // not yet implemented in GL2PS
+		//case GL.GL_POLYGON_BOUNDARY):
+			//gl2ps.gl2psEnable(GL2PS.GL2PS_POLYGON_BOUNDARY);
+			//break;
+		case GL.GL_DEPTH_TEST:
+			// workaround here for GL2PS
+			// glEnable(GL_DEPTH_TEST) does not work in GL2PS for know
+			// we use the workaround found here http://www.geuz.org/pipermail/gl2ps/2007/000266.html
+			// all primitives drawn with dpeth test are drawn using the depth range [0,0.95] and
+			// the one without depth test with the range [0.95,1], so they are always put behind
+			gl.glDepthRange(0.0, 0.95);
+			break;
+		default:
+			break;
 		}
-//		not yet implemented in GL2PS
-//		if (enable == GL.GL_POLYGON_BOUNDARY) {
-//			gl2ps.gl2psEnable(GL2PS.GL2PS_POLYGON_BOUNDARY);
-//		}
 	}
 	
 	/**
@@ -84,19 +96,32 @@ public class GL2PSGL extends DebugGL {
 	 */
 	public void glDisable(int disable) {
 		gl.glDisable(disable);
-		if (disable == GL.GL_LINE_STIPPLE) {
+		
+		switch (disable) {
+		case GL.GL_LINE_STIPPLE:
 			gl2ps.gl2psDisable(GL2PS.GL2PS_LINE_STIPPLE);
-		}
-		if (disable == GL.GL_POLYGON_OFFSET_FILL) {
+			break;
+		case GL.GL_POLYGON_OFFSET_FILL:
 			gl2ps.gl2psDisable(GL2PS.GL2PS_POLYGON_OFFSET_FILL);
-		}
-		if (disable == GL.GL_BLEND) {
+			break;
+		case GL.GL_BLEND:
 			gl2ps.gl2psDisable(GL2PS.GL2PS_BLEND);
+			break;
+	    // not yet implemented in GL2PS
+		//case GL.GL_POLYGON_BOUNDARY):
+			//gl2ps.gl2psDisable(GL2PS.GL2PS_POLYGON_BOUNDARY);
+			//break;
+		case GL.GL_DEPTH_TEST:
+			// workaround here for GL2PS
+			// glEnable(GL_DEPTH_TEST) does not work in GL2PS for know
+			// we use the workaround found here http://www.geuz.org/pipermail/gl2ps/2007/000266.html
+			// all primitives drawn with dpeth test are drawn using the depth range [0,0.95] and
+			// the one without depth test with the range [0.95,1], so they are always put behind
+			gl.glDepthRange(0.95, 1.0);
+			break;
+		default:
+			break;
 		}
-//		not yet implemented in GL2PS
-//		if (disable == GL.GL_POLYGON_BOUNDARY) {
-//			gl2ps.gl2psDisable(GL2PS.GL2PS_POLYGON_BOUNDARY);
-//		}
 
 	}
 	
