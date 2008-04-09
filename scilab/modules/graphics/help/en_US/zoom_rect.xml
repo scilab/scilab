@@ -22,9 +22,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>zoom_rect()
-              zoom_rect(rect)
-	      zooom_rect(h)
-	      zoom_rect(h,rect)
+zoom_rect(rect)
+zooom_rect(h)
+zoom_rect(h,rect)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -36,6 +36,8 @@
           <para>Vector of size 4 <literal>[xmin,ymin,xmax,ymax]</literal> give the
 		  rectangle to be zoomed.</para>
         </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>h</term>
         <listitem>
 		<para>Graphic handle of type Figure or Axes. Specify on which Axes
