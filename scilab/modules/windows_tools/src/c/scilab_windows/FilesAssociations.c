@@ -23,127 +23,77 @@
 #include "win_mem_alloc.h" /* MALLOC */
 #include "FindScilab.h"
 #include "wmcopydata.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 extern void PrintFile(char *filename);
 /*--------------------------------------------------------------------------*/
 static void ReplaceSlash(char *pathout,char *pathin);
+static BOOL isGoodExtension(char *chainefichier,char *ext);
 /*--------------------------------------------------------------------------*/
 #define MSG_SCIMSG1 "%s -e load(getlongpathname('%s'));disp(getlongpathname('%s')+ascii(32)+'loaded');"
 #define MSG_SCIMSG2 "%s -e scicos(getlongpathname('%s'));"
 #define MSG_SCIMSG3 "%s -e edit_graph(getlongpathname('%s'));"
 #define MSG_SCIMSG4 "%s -e exec(getlongpathname('%s'));"
-#define MSG_SCIMSG5 "%s -e scipad(getlongpathname('%s')); "
-#define MSG_SCIMSG6 "scipad('%s'); "
+#define MSG_SCIMSG5 "%s -e scipad(getlongpathname('%s'));"
+/* we try to launch scipad */
+#define MSG_SCIMSG6 "execstr('scipad(''%s'');','errcatch');"
 #define MSG_SCIMSG7 "Scilab Communication"
-#define MSG_SCIMSG8 "%s -e scipad(getlongpathname('%s')); "
 /*--------------------------------------------------------------------------*/
 /* teste si la chaine de caractere correspond à un fichier*/
 /* retourne TRUE si c'est le cas sinon FALSE */
 BOOL IsAFile(char *chainefichier)
 {
-     BOOL retour=FALSE;	
-	
      WIN32_FIND_DATA FindFileData;
      HANDLE handle = FindFirstFile (chainefichier, &FindFileData);
      if (handle != INVALID_HANDLE_VALUE)
      {
          FindClose (handle);
-         retour=TRUE;
+         return TRUE;
      }
-     else retour=FALSE;
-
-     return retour;
+     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 /* Teste si le fichier a une extension .sav ou .bin*/
 /* retourne TRUE si c'est le cas sinon FALSE */
 BOOL IsABinOrSavFile(char *chainefichier)
 {
-	BOOL retour=FALSE;
-	char *ExtensionFilename=NULL;
-
-	ExtensionFilename=PathFindExtension(chainefichier);
-	
-	/* Comparaison avec les extension BIN et SAV */
-	if ( (_stricmp(ExtensionFilename,".BIN")==0) || (_stricmp(ExtensionFilename,".SAV")==0) ) retour=TRUE;
-
-	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
-	return retour;
-
+	if ( isGoodExtension(chainefichier,".BIN") || isGoodExtension(chainefichier,".SAV") )
+	{
+		return TRUE;
+	}
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL IsAGraphFile(char *chainefichier)
 {
-	BOOL retour=FALSE;
-	
-	if ( IsAGraphFilegraphb(chainefichier) || IsAGraphFilegraph(chainefichier) ) retour=TRUE;
-	
-	return retour;
+	if ( IsAGraphFilegraphb(chainefichier) || IsAGraphFilegraph(chainefichier) ) return TRUE;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL IsAGraphFilegraph(char *chainefichier)
 {
-	BOOL retour=FALSE;
-	char *ExtensionFilename=NULL;
-
-	ExtensionFilename=PathFindExtension(chainefichier);
-
-	/* Comparaison avec l'extension Graph */
-	if (_stricmp(ExtensionFilename,".GRAPH")==0) retour=TRUE;
-
-	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
-	return retour;
+	return isGoodExtension(chainefichier,".GRAPH");
 }
 /*--------------------------------------------------------------------------*/
 BOOL IsAGraphFilegraphb(char *chainefichier)
 {
-	BOOL retour=FALSE;
-	char *ExtensionFilename=NULL;
-
-	ExtensionFilename=PathFindExtension(chainefichier);
-
-	/* Comparaison avec l'extension Graphb */
-	if (_stricmp(ExtensionFilename,".GRAPHB")==0) retour=TRUE;
-
-	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
-	return retour;
+	return isGoodExtension(chainefichier,".GRAPHB");
 }
 /*--------------------------------------------------------------------------*/
 BOOL IsAScicosFile(char *chainefichier)
 {
-	BOOL retour=FALSE;
-	
-	if ( IsAScicosFileCOS(chainefichier) || IsAScicosFileCOSF(chainefichier) ) retour=TRUE;
-	
-	return retour;
+	if ( IsAScicosFileCOS(chainefichier) || IsAScicosFileCOSF(chainefichier) ) return TRUE;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL IsAScicosFileCOS(char *chainefichier)
 {
-	BOOL retour=FALSE;
-	char *ExtensionFilename=NULL;
-
-	ExtensionFilename=PathFindExtension(chainefichier);
-
-	/* Comparaison avec l'extension cos */
-	if (_stricmp(ExtensionFilename,".COS")==0) retour=TRUE;
-
-	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
-	return retour;
+	return isGoodExtension(chainefichier,".COS");
 }
 /*--------------------------------------------------------------------------*/
 BOOL IsAScicosFileCOSF(char *chainefichier)
 {
-	BOOL retour=FALSE;
-	char *ExtensionFilename=NULL;
-
-	ExtensionFilename=PathFindExtension(chainefichier);
-
-	/* Comparaison avec l'extension cosf */
-	if (_stricmp(ExtensionFilename,".COSF")==0) retour=TRUE;
-
-	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
-	return retour;
+	return isGoodExtension(chainefichier,".COSF");
 }
 /*--------------------------------------------------------------------------*/
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
@@ -232,7 +182,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					}
 					else
 					{
-						wsprintf(Cmd,MSG_SCIMSG8,PathWScilex,FinalFileName);
+						wsprintf(Cmd,MSG_SCIMSG5,PathWScilex,FinalFileName);
 					}
 				}
 			}
@@ -248,14 +198,12 @@ void ExtensionFileIntoLowerCase(char *fichier)
 	char *buffer=NULL;
 	char *lastdot=NULL;
 	char *ext=NULL;
-	
-	tmpfile=(char*)MALLOC(strlen(fichier)*sizeof(char));
-	strcpy(tmpfile,fichier);
-	
+
+	tmpfile = strdup(fichier);
 	buffer=strtok(tmpfile,".");
 	while ( buffer = strtok(NULL,"."))
 	{
-		lastdot=buffer;
+		lastdot = buffer;
 	}
 	/* le dernier . permet d'avoir l'extension */
 	ext=_strlwr(lastdot); /* Fichier en Majuscule */
@@ -267,12 +215,26 @@ void ExtensionFileIntoLowerCase(char *fichier)
 /*--------------------------------------------------------------------------*/
 static void ReplaceSlash(char *pathout,char *pathin)
 {
-	int i=0;
-	for (i=0;i < (int)strlen(pathin);i++)
+	int i = 0;
+	for ( i = 0; i < (int)strlen(pathin); i++)
 	{
-		if (pathin[i]=='\\') pathout[i]='/';
-		else pathout[i]=pathin[i];
+		if ( pathin[i]=='\\' ) pathout[i] = '/';
+		else pathout[i] = pathin[i];
 	}
-	pathout[i]='\0';
+	pathout[i] = '\0';
+}
+/*--------------------------------------------------------------------------*/
+static BOOL isGoodExtension(char *chainefichier,char *ext)
+{
+	BOOL retour = FALSE;
+	char *ExtensionFilename = NULL;
+
+	ExtensionFilename = PathFindExtension(chainefichier);
+
+	/* Comparaison avec l'extension */
+	if ( _stricmp(ExtensionFilename,ext) == 0 ) retour=TRUE;
+
+	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
+	return retour;
 }
 /*--------------------------------------------------------------------------*/

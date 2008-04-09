@@ -128,7 +128,10 @@ static BOOL ON_WND_HIDDEN_WM_COPYDATA(HWND hwnd,HWND hWndSend,PCOPYDATASTRUCT My
 
 	ReceiveFromAnotherScilab(hWndSend,MyCopyDataStruct);
 
-	if ( GetCommandFromAnotherScilab(TitleWndSend,Command) ) StoreCommand (Command);
+	if ( GetCommandFromAnotherScilab(TitleWndSend,Command) ) 
+	{
+		StoreCommand (Command);
+	}
 
 	return TRUE;
 }
