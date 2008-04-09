@@ -92,14 +92,13 @@ public class GL2PSRenderer extends ExportRenderer {
 		//gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
 		
 
-		
 		gl2ps.gl2psBeginPage("MyTitle", "MySoftware", null, format, 
-							  GL2PS.GL2PS_BSP_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
+							  GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
 							  /*| GL2PS.GL2PS_OCCLUSION_CULL | GL2PS.GL2PS_LANDSCAPE | GL2PS.GL2PS_DRAW_BACKGROUND*/,
 							  GL.GL_RGBA, 0, null, null, null, null, 
 							  0, 0, 0, buffsize, ExportRenderer.getFileName());		
 		
-
+		
 		GL gl = gLDrawable.getGL();
 		GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
 		gLDrawable.setGL(newGL);
@@ -109,18 +108,10 @@ public class GL2PSRenderer extends ExportRenderer {
 		exportedFigure.setArcRendererFactory(new FastArcRendererFactory());
 		exportedFigure.setShadeFacetDrawer(new GL2PSShadeFacetDrawer());
 		
-		long init = System.nanoTime();
 		sciRend.init(gLDrawable);
 		sciRend.display(gLDrawable);
-		long end = System.nanoTime();
-		long elapsedTime = end - init;
-		System.err.println("JOGL time = " + (elapsedTime * 1.0e-6));
 		
-		init = System.nanoTime();
 		gl2ps.gl2psEndPage();
-		end = System.nanoTime();
-		elapsedTime = end - init;
-		System.err.println("GL2PS time = " + (elapsedTime * 1.0e-6));
 		
 		gLDrawable.setGL(gl);
 		exportedFigure.setDefaultArcRendererFactory();
