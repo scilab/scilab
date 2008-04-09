@@ -18,13 +18,16 @@
 #include "localization.h"
 #include "Toolbar.h"
 #include "WindowList.h"
+#include "ObjectStructure.h"
+#include "HandleManagement.h"
+#include "GetProperty.h"
 #if _MSC_VER
   #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/
 int sci_toolbar(char *fname,unsigned long l)
 {
-  static int l1,n1,m1;
+  static int stkAdr,nbCol,nbRow;
   
   char *Output = NULL;
 
@@ -32,19 +35,21 @@ int sci_toolbar(char *fname,unsigned long l)
   
   int figNum = -2;
 
+  sciPointObj *pObj = NULL;;
+
   CheckRhs(1,2);
   CheckLhs(0,1);
   
   /* Figure number */
   if ( GetType(1) == sci_matrix )
     {
-      GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-      if (m1*n1 != 1)
+      GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&nbRow,&nbCol,&stkAdr);
+      if (nbRow*nbCol != 1)
         {
           Scierror(999, _("%s: Wrong size for first input argument: Scalar expected.\n"), fname);
           return FALSE;
         }
-      figNum = *istk(l1);
+      figNum = *istk(stkAdr);
       
       if (figNum < -1)
         {
@@ -61,9 +66,34 @@ int sci_toolbar(char *fname,unsigned long l)
             }
         }
     }
+  else if ( GetType(1) == sci_handles )
+    {
+      GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+
+          if (nbRow*nbCol != 1)
+            {
+              Scierror(999,_("%s: Wrong size for first input argument: Single handle expected.\n"),fname);
+              return FALSE;
+            }
+          pObj=sciGetPointerFromHandle((long)*hstk(stkAdr));
+          
+          if (pObj == NULL)
+            {
+              Scierror(999, _("%s: Wrong value for first input argument: this handle does not exist.\n"), fname);
+              return FALSE;
+            }
+          
+          if ( (sciGetEntityType (pObj) != SCI_FIGURE) )
+            {
+              Scierror(999, _("%s: Wrong type for first input argument: Double value or Figure handle expected.\n"), fname);
+              return FALSE;
+            }
+
+          figNum = pFIGURE_FEATURE(pObj)->number;
+    }
   else
     {
-      Scierror(999, _("%s: Wrong type for first input argument: Double value expected.\n"), fname);
+      Scierror(999, _("%s: Wrong type for first input argument: Double value or Figure handle expected.\n"), fname);
       return FALSE;
     }
 
@@ -71,8 +101,8 @@ int sci_toolbar(char *fname,unsigned long l)
     {
       if ((GetType(2) == sci_strings))
         {
-          GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&param);
-          if (m1*n1 != 1)
+          GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&param);
+          if (nbRow*nbCol != 1)
             {
               Scierror(999, _("%s: Wrong size for second input argument: 'on' or 'off' expected.\n"), fname);
               return FALSE;
@@ -105,9 +135,9 @@ int sci_toolbar(char *fname,unsigned long l)
       Output = strdup("off");
     }
   
-  n1 = 1;
-  m1 = (int)strlen(Output);
-  CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,&m1,&n1,&Output);
+  nbCol = 1;
+  nbRow = (int)strlen(Output);
+  CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,&nbRow,&nbCol,&Output);
   LhsVar(1) = Rhs+1;
   C2F(putlhsvar)();	
 
