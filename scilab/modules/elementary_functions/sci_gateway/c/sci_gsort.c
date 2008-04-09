@@ -188,25 +188,61 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
       /* Can not find a example , so can not just remove it */
     case sci_ints:               
       {
+
+	int lr;
+	int i=0;
+	lr=Im.it;
+	CreateVar(Rhs+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&lr);
+
 	switch(Im.it) /* Type defined in stack-c.h */
 	  {
 	  case I_CHAR :
-	    C2F(gsortchar)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
+	    {
+	      char *matrix = Im.D;
+	      char *tmp_matrix = (char*) istk(lr);
+	      for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+	      C2F(gsortchar)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+	    }
 	    break;
 	  case I_INT32 :
-	    C2F(gsortint)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
+	    {
+	      int *matrix = Im.D;
+	      int *tmp_matrix = istk(lr);
+	      for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+	      C2F(gsortint)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+	    }
 	    break;
 	  case I_UCHAR :
-	    C2F(gsortuchar)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
+	    {
+	      unsigned char *matrix = Im.D;
+	      unsigned char *tmp_matrix = (unsigned char*) istk(lr);
+	      for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+	      C2F(gsortuchar)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+	    }
 	    break;
 	  case I_INT16 :
-	    C2F(gsortshort)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
+	    {
+	      short *matrix = Im.D;
+	      short *tmp_matrix = (short*) istk(lr);
+	      for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+	      C2F(gsortshort)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+	    }
 	    break;
 	  case I_UINT16 :
-	    C2F(gsortushort)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
+	    {
+	      unsigned short *matrix = Im.D;
+	      unsigned short *tmp_matrix = (short*) istk(lr);
+	      for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+	      C2F(gsortushort)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+	    }
 	    break;
 	  case I_UINT32 :
-	    C2F(gsortuint)(Im.D,indices,&iflag,&m1,&n1,typex,iord);
+	    {
+	      unsigned int *matrix = Im.D;
+	      unsigned int *tmp_matrix = (unsigned int *)istk(lr);
+	      for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+	      C2F(gsortuint)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+	    }
 	    break;
 	  default:
 	    Scierror(999,_("%s: Wrong type for first input argument: Unknown type.\n"),fname);
@@ -217,11 +253,11 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 
 	if (Lhs == 2)
 	  {
-	    CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)
-	      LhsVar(2)= Rhs+2 ;
+	    CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices);
+	    LhsVar(2)= Rhs+2 ;
 	  }
-	C2F(putlhsvar)();
 	if (indices) {FREE(indices); indices = NULL;}
+	C2F(putlhsvar)();
       }
       break;
 
