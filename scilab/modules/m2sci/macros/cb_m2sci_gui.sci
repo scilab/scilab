@@ -122,9 +122,10 @@ elseif or(get(gcbo, "tag")==["ppradioyes","ppradiono"]) then
 //
 // --- Cancel conversion ---
 //
-elseif get(gcbo, "tag")=="cancelbtn" then
+elseif get(gcbo, "tag")=="cancelbtn" | get(gcbo, "tag")=="close_menu" then
   //delete(findobj("tag", "m2scifig"));
   delete(gcf())
+
 //
 // --- Launch conversion ---
 //
@@ -149,13 +150,33 @@ elseif get(gcbo, "tag")=="convertbtn" then
   
   if get(findobj("tag", "fileradio"), "value") == 1 then // Single file conversion
     inputfile = get(findobj("tag", "fileedit"), "string");
+    //delete(findobj("tag", "m2scifig"));
     delete(gcf());
     mfile2sci(inputfile, outputdir, rec, doub, verb, pp);
   else // Directory conversion
     inputdir = get(findobj("tag", "diredit"), "string");
+    //delete(findobj("tag", "m2scifig"));
     delete(gcf());
     translatepaths(inputdir, outputdir);
   end
+
+//
+// --- mfile2sci help ---
+//
+elseif get(gcbo, "tag")=="mfile2sci_help_menu" then
+  help mfile2sci
+
+//
+// --- translatepaths help ---
+//
+elseif get(gcbo, "tag")=="translatepaths_help_menu" then
+  help translatepaths
+  
+//
+// --- About M2SCI ---
+//
+elseif get(gcbo, "tag")=="about_m2sci_menu" then
+  help(gettext("About_M2SCI_tools"))
 end
 
 endfunction

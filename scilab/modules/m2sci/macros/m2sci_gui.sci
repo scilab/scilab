@@ -18,7 +18,7 @@ btnw = 80;
 defaultfont = "arial";
 margin = 13;
 figw = 500;
-figh = 17*margin + btnh + 7*widgeth + 70; // 70 = size of the status bar and the menu bar
+figh = 17*margin + btnh + 7*widgeth + 90; // 70 = size of the status bar and the menu bar
 
 // Figure creation
 m2scifig = figure("position", [0 0 figw figh], "figure_name", gettext("Matlab to Scilab conversion tool"));
@@ -29,6 +29,14 @@ delmenu(m2scifig.figure_id, gettext("Tools"));
 delmenu(m2scifig.figure_id, gettext("Edit"));
 delmenu(m2scifig.figure_id, gettext("?"));
 toolbar(m2scifig.figure_id, "off");
+
+h = uimenu("parent", m2scifig, "label", gettext("File"));
+uimenu("parent", h, "label", gettext("Close"), "callback", "cb_m2sci_gui", "tag", "close_menu");
+
+h = uimenu("parent", m2scifig, "label", gettext("?"));
+uimenu("parent", h, "label", gettext("Mfile2sci help page"), "callback", "cb_m2sci_gui", "tag", "mfile2sci_help_menu");
+uimenu("parent", h, "label", gettext("Translatepaths help page"), "callback", "cb_m2sci_gui", "tag", "translatepaths_help_menu");
+uimenu("parent", h, "label", gettext("About M2SCI tools..."), "callback", "cb_m2sci_gui", "tag", "about_m2sci_menu");
 
 //-------------------
 // --- Validation ---
