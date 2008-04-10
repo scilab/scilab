@@ -2066,7 +2066,7 @@ y3ref=[
 y3=erf(x3);
 e3=max( norm((y3ref-y3)./abs(y3ref),1),  norm((y3ref+erf(-x3))./abs(y3ref),1));
 
-if or([e1 e2 e3]>1d-13) then pause,end
+if or([e1 e2 e3]>1d-12) then pause,end
 
 if (abs(erf(0))>1d-15) then pause,end
 

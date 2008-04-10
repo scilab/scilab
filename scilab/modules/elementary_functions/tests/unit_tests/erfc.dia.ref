@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 //maple code
 //writeto("erfc.tst"):interface(prettyprint=0):
 //for i from 0 to 40 do print(evalf[30](erfc(10^(-(200-i*5))),30)): od:
@@ -4115,3 +4121,12 @@ y3ref=[1.01128341555584961691590952355
 y3=erfc(x3);
 e3=norm((y3ref-y3)./abs(y3ref),1);
 if or([e1 e2 e3]>1d-13) then bugmes();quit;end
+if (abs(erfc(0)-1)>1d-15) then bugmes();quit;end
+if (abs(erfc(%inf))>1d-15) then bugmes();quit;end
+x4=4;
+w4=4.1;
+z4=3.9;
+deff("y=f(t)","y=exp(-t^2)");
+if (abs(erf(x4)-2/sqrt(%pi)*intg(0,x4,f))>1d-15) then bugmes();quit;end
+if (abs(erf(w4)-2/sqrt(%pi)*intg(0,w4,f))>1d-15) then bugmes();quit;end
+if (abs(erf(z4)-2/sqrt(%pi)*intg(0,z4,f))>1d-15) then bugmes();quit;end
