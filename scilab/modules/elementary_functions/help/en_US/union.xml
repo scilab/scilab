@@ -20,8 +20,10 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[v, [ka,kb]]=union(a,b)
-</synopsis>
+    <synopsis>
+      [v [,ka, kb] ] = union(a,b)
+      [v [,ka, kb] ] = union(a,b,orient)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -29,7 +31,7 @@
       <varlistentry>
         <term>a</term>
         <listitem>
-          <para>vector of real numbers or strings</para>
+          <para>vector or matrix of  numbers or strings</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -39,9 +41,15 @@
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>orient</term>
+        <listitem>
+          <para>flag with possible values : 1 or "r", 2 or "c".</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>v</term>
         <listitem>
-          <para>row vector  of real numbers or strings</para>
+          <para>row vector  or matrix of  numbers or strings</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -62,6 +70,19 @@
     <title>Description</title>
     <para><literal>union(a,b)</literal> returns a sorted row vector which retains the unique entries
     of <literal>[a(:);b(:)]</literal>.</para>
+    <para><literal>union(a,b,"r")</literal> or
+    <literal>union(a,b,1)</literal>returns the matrix formed by the
+    union of the unique rows of <literal>a</literal> and
+    <literal>b</literal> sorted in lexicographic ascending
+    order. In this case  matrices  <literal>a</literal> and
+    <literal>b</literal> must have the same number of columns. </para>
+    <para><literal>union(a,b,"c")</literal> or
+    <literal>union(a,b,2)</literal>returns the matrix formed by the
+    union of the unique columns of <literal>a</literal> and
+    <literal>b</literal> sorted in lexicographic ascending
+    order. In this case  matrices  <literal>a</literal> and
+    <literal>b</literal> must have the same number of rows.</para>
+
     <para><literal>[v,ka,kb]=union(a,b)</literal> also returns index vectors <literal>ka</literal> and
     <literal>kb</literal> such that <literal>v</literal> is a sorted combination of the entries
     <literal>a(ka)</literal> and <literal>b(kb)</literal>.</para>
@@ -88,7 +109,7 @@ union('a'+string(A),'b'+string(B))
         <link linkend="unique">unique</link>
       </member>
       <member>
-        <link linkend="sort">sort</link>
+        <link linkend="gsort">gsort</link>
       </member>
     </simplelist>
   </refsection>

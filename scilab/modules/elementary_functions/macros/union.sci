@@ -7,21 +7,45 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [x,ka,kb]=union(a,b)
-
+function [x,ka,kb]=union(a,b,orient)
 // returns the union of  unique components of  vector a and b
-[lhs,rhs]=argn()
-if lhs==1 then
-  [x,k]=unique([a(:);b(:)])
-  x=x';k=k'
-else
-  na=size(a,'*')
-  kab=[1:na,na+(1:size(b,'*'))]
-  [x,k]=unique([a(:);b(:)])
-  x=x'
-  kab=kab(k)
-  ka=kab(kab<na+1)
-  kb=kab(kab>na)
-  if kb<>[] then kb=kb-na,end
-end
+// author Serge Steer INRIA
+  if argn(2)<3 then
+    if argn(1)==1 then
+      x=unique([a(:);b(:)])
+      x=x';
+    else
+      kab=[1:size(a,'*'), -(1:size(b,'*'))]
+      [x,k]=unique([a(:);b(:)])
+      x=x'
+      kab=kab(k)
+      ka=kab(kab>0)
+      kb=kab(kab<0)
+    end
+  else
+    if  orient==1|orient=="r" then
+      if argn(1)==1 then
+	x=unique([a;b],'r')
+      else
+	kab=[1:size(a,'r'), -(1:size(b,'r'))]
+	[x,k]=unique([a;b],'r')
+	kab=kab(k)
+	ka=kab(kab>0)
+	kb=kab(kab<0)
+      end  
+    elseif orient==2|orient=="c" then
+      if argn(1)==1 then
+	x=unique([a b],'c')
+      else
+	kab=[1:size(a,'c'), -(1:size(b,'c'))]
+	[x,k]=unique([a b],'c')
+	kab=kab(k)
+	ka=kab(kab>0)
+	kb=kab(kab<0)
+      end  
+      
+    else
+       error(msprintf(gettext("%s: second argument has incorrect value\n"),'unique'))
+    end
+  end
 endfunction

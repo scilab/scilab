@@ -5,23 +5,37 @@
   </info>
   <refnamediv>
     <refname>unique</refname>
-    <refpurpose> extrait les composantes distinctes d'un vecteur  </refpurpose>
+    <refpurpose> extrait les composantes distinctes d'un vecteur ou d'une matrice </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>[N, [k]]=unique(M)
-</synopsis>
+    <synopsis>
+      [N [,k]]=unique(M)
+      [N [,k]]=unique(M,orient)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-        <term>M,N  </term>
+        <term>M</term>
         <listitem>
-          <para>vecteur réel ou vecteur de chaînes de caractères
-</para>
+          <para>vecteur ou matrice de nombres ou  de chaînes de caractères</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>orient</term>
+        <listitem>
+          <para>flag qui peut prendre les valeurs  : 1 ou "r", 2 ou "c"</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>N</term>
+        <listitem>
+          <para>vecteur ou matrice de nombres ou  de chaînes de caractères </para>
+        </listitem>
+      </varlistentry>
+    
       <varlistentry>
         <term>k  </term>
         <listitem>
@@ -35,6 +49,11 @@
     <title>Description</title>
     <para><literal>unique(M)</literal> renvoie un vecteur contenant les valeurs distinctes contenues dans les termes de <literal>M</literal> classées par ordre croissant.
   </para>
+  <para><literal>unique(M,"r")</literal> ou <literal>unique(M,1)</literal>retourne les lignes uniques de <literal>M</literal>
+    triées dans l'ordre lexicographique croissant.</para>
+    <para><literal>unique(M,"c")</literal> or <literal>unique(M,2)</literal>retourne les colonnes uniques <literal>M</literal>
+    triées dans l'ordre lexicographique croissant.</para>
+
     <para>
     S'il est présent l'argument de sortie <literal>k</literal> contient la position de la première occurrence de chaque valeur distincte dans <literal>M</literal>.
   </para>
@@ -52,6 +71,23 @@ unique(M)
 unique(string(M))
 [N,k]=unique(string(M))
 
+A = [0,0,1,1;
+     0,1,1,1;
+     2,0,1,1;
+     0,2,2,2;
+     2,0,1,1;
+     0,0,1,1];
+T='x'+string(A);
+
+//unique rows
+
+[m,k]=unique(A,'r')
+unique(T,'r')
+
+//unique columns
+[m,k]=unique(T,'c')
+unique(A,'c')
+ 
  ]]></programlisting>
   </refsection>
   <refsection>
@@ -61,7 +97,10 @@ unique(string(M))
         <link linkend="union">union</link>
       </member>
       <member>
-        <link linkend="sort">sort</link>
+        <link linkend="intersect">intersect</link>
+      </member>
+      <member>
+        <link linkend="gsort">gsort</link>
       </member>
       <member>
         <link linkend="lex_sort">lex_sort</link>
