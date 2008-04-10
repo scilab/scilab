@@ -1,6 +1,6 @@
 
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Scilab
+// Copyright (C) 2008 - INRIA - Vincent COUVERT
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -11,16 +11,9 @@
 // ====================================================================
 // matio module initialisation file 
 // ====================================================================
-//Load  functions librarie
-//load('SCI/modules/matio/macros/lib');
+// Load  functions library
+load("SCI/modules/matio/macros/lib");
 // ====================================================================
 //add help chapter
-//add_module_help_chapter('matio');
-// ====================================================================
-//add demos
-//path = get_absolute_file_path('matio.start');
-//path = getshortpathname(path);
-//pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/matio.dem',%f,%f);
-//add_demo('Matio',pathdemos);
-//clear path pathdemos;
+add_module_help_chapter("matio");
 // ====================================================================

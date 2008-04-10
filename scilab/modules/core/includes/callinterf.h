@@ -94,7 +94,7 @@
 
 /* 58 */						#include "dynamic_gateways.h" /* UMFPACK */
 
-/* 59 */						#include "../../compatibility_functions/includes/gw_matio.h"
+/* 59 */						#include "../../matio/includes/gw_matio.h"
 
 /*-------------------------------------
  * long jump to stop interface computation

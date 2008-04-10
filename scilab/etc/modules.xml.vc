@@ -82,4 +82,5 @@
 <module name="genetic_algorithms" activate="yes"/>
 <module name="simulated_annealing" activate="yes"/>
 <module name="parameters" activate="yes"/>
+<module name="matio" activate="yes"/>
 </modules>

@@ -36,7 +36,6 @@
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -78,60 +77,21 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
+SOURCES =
+DIST_SOURCES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(pkglibdir)" \
+am__installdirs =  \
 	"$(DESTDIR)$(libscicompatibility_functions_la_etcdir)" \
 	"$(DESTDIR)$(libscicompatibility_functions_la_rootdir)"
-pkglibLTLIBRARIES_INSTALL = $(INSTALL)
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscicompatibility_functions_la_LIBADD =
-am__objects_1 = libscicompatibility_functions_la-matfile_manager.lo \
-	libscicompatibility_functions_la-CreateMatlabVariable.lo \
-	libscicompatibility_functions_la-CreateCharVariable.lo \
-	libscicompatibility_functions_la-CreateDoubleVariable.lo \
-	libscicompatibility_functions_la-CreateIntegerVariable.lo \
-	libscicompatibility_functions_la-CreateHyperMatrixVariable.lo \
-	libscicompatibility_functions_la-CreateStructVariable.lo \
-	libscicompatibility_functions_la-CreateSparseVariable.lo \
-	libscicompatibility_functions_la-CreateCellVariable.lo
-am__objects_2 = libscicompatibility_functions_la-gw_matio.lo \
-	libscicompatibility_functions_la-sci_matfile_open.lo \
-	libscicompatibility_functions_la-sci_matfile_close.lo \
-	libscicompatibility_functions_la-sci_matfile_listvar.lo \
-	libscicompatibility_functions_la-sci_matfile_varreadnext.lo
-am_libscicompatibility_functions_la_OBJECTS = $(am__objects_1) \
-	$(am__objects_2)
-libscicompatibility_functions_la_OBJECTS =  \
-	$(am_libscicompatibility_functions_la_OBJECTS)
-libscicompatibility_functions_la_LINK = $(LIBTOOL) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) \
-	$(libscicompatibility_functions_la_LDFLAGS) $(LDFLAGS) -o $@
-DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
-depcomp = $(SHELL) $(top_srcdir)/config/depcomp
-am__depfiles_maybe = depfiles
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-CCLD = $(CC)
-LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
-SOURCES = $(libscicompatibility_functions_la_SOURCES)
-DIST_SOURCES = $(libscicompatibility_functions_la_SOURCES)
 libscicompatibility_functions_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscicompatibility_functions_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libscicompatibility_functions_la_etc_DATA) \
 	$(libscicompatibility_functions_la_root_DATA)
-ETAGS = etags
-CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -376,37 +336,6 @@ JARDIR = jar/
 # JAR files
 JARMASK = *.jar
 
-#### List of the gateway files ####
-GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
-		    sci_gateway/c/sci_matfile_open.c \
-		    sci_gateway/c/sci_matfile_close.c \
-		    sci_gateway/c/sci_matfile_listvar.c \
-		    sci_gateway/c/sci_matfile_varreadnext.c
-
-
-#### List of the C files ####
-COMPATIBILITY_FUNCTIONS_C_SOURCES = src/c/matfile_manager.c \
-				    src/c/CreateMatlabVariable.c \
-				    src/c/CreateCharVariable.c \
-				    src/c/CreateDoubleVariable.c \
-				    src/c/CreateIntegerVariable.c \
-				    src/c/CreateHyperMatrixVariable.c \
-				    src/c/CreateStructVariable.c \
-				    src/c/CreateSparseVariable.c \
-				    src/c/CreateCellVariable.c
-
-libscicompatibility_functions_la_CFLAGS = -Iincludes/ \
-					-Isrc/c/ \
-					-Isrc/cpp/ \
-					-Isrc/matio/ \
-					-I$(top_srcdir)/modules/output_stream/includes/ \
-					-I$(top_srcdir)/modules/string/includes/ \
-					$(MATIO_INC_PATH)
-
-libscicompatibility_functions_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)  $(MATIO_LIB)
-pkglib_LTLIBRARIES = libscicompatibility_functions.la
-libscicompatibility_functions_la_SOURCES = $(COMPATIBILITY_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
-
 #### Target ######
 modulename = compatibility_functions
 
@@ -420,7 +349,7 @@ libscicompatibility_functions_la_etc_DATA = etc/compatibility_functions.quit etc
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .lo .o .obj
+.SUFFIXES: .sci .bin
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -450,175 +379,6 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
-	@$(NORMAL_INSTALL)
-	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
-	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
-	  if test -f $$p; then \
-	    f=$(am__strip_dir) \
-	    echo " $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(pkglibdir)/$$f'"; \
-	    $(LIBTOOL) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(pkglibdir)/$$f"; \
-	  else :; fi; \
-	done
-
-uninstall-pkglibLTLIBRARIES:
-	@$(NORMAL_UNINSTALL)
-	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
-	  p=$(am__strip_dir) \
-	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(pkglibdir)/$$p'"; \
-	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(pkglibdir)/$$p"; \
-	done
-
-clean-pkglibLTLIBRARIES:
-	-test -z "$(pkglib_LTLIBRARIES)" || rm -f $(pkglib_LTLIBRARIES)
-	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
-	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
-	  test "$$dir" != "$$p" || dir=.; \
-	  echo "rm -f \"$${dir}/so_locations\""; \
-	  rm -f "$${dir}/so_locations"; \
-	done
-libscicompatibility_functions.la: $(libscicompatibility_functions_la_OBJECTS) $(libscicompatibility_functions_la_DEPENDENCIES) 
-	$(libscicompatibility_functions_la_LINK) -rpath $(pkglibdir) $(libscicompatibility_functions_la_OBJECTS) $(libscicompatibility_functions_la_LIBADD) $(LIBS)
-
-mostlyclean-compile:
-	-rm -f *.$(OBJEXT)
-
-distclean-compile:
-	-rm -f *.tab.c
-
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-CreateCellVariable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-CreateCharVariable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-CreateDoubleVariable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-CreateHyperMatrixVariable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-CreateIntegerVariable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-CreateMatlabVariable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-CreateSparseVariable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-CreateStructVariable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-gw_matio.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-matfile_manager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-sci_matfile_close.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-sci_matfile_listvar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-sci_matfile_open.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompatibility_functions_la-sci_matfile_varreadnext.Plo@am__quote@
-
-.c.o:
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(COMPILE) -c $<
-
-.c.obj:
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
-
-.c.lo:
-@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libscicompatibility_functions_la-matfile_manager.lo: src/c/matfile_manager.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-matfile_manager.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-matfile_manager.Tpo -c -o libscicompatibility_functions_la-matfile_manager.lo `test -f 'src/c/matfile_manager.c' || echo '$(srcdir)/'`src/c/matfile_manager.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-matfile_manager.Tpo $(DEPDIR)/libscicompatibility_functions_la-matfile_manager.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matfile_manager.c' object='libscicompatibility_functions_la-matfile_manager.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-matfile_manager.lo `test -f 'src/c/matfile_manager.c' || echo '$(srcdir)/'`src/c/matfile_manager.c
-
-libscicompatibility_functions_la-CreateMatlabVariable.lo: src/c/CreateMatlabVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-CreateMatlabVariable.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-CreateMatlabVariable.Tpo -c -o libscicompatibility_functions_la-CreateMatlabVariable.lo `test -f 'src/c/CreateMatlabVariable.c' || echo '$(srcdir)/'`src/c/CreateMatlabVariable.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-CreateMatlabVariable.Tpo $(DEPDIR)/libscicompatibility_functions_la-CreateMatlabVariable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateMatlabVariable.c' object='libscicompatibility_functions_la-CreateMatlabVariable.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-CreateMatlabVariable.lo `test -f 'src/c/CreateMatlabVariable.c' || echo '$(srcdir)/'`src/c/CreateMatlabVariable.c
-
-libscicompatibility_functions_la-CreateCharVariable.lo: src/c/CreateCharVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-CreateCharVariable.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-CreateCharVariable.Tpo -c -o libscicompatibility_functions_la-CreateCharVariable.lo `test -f 'src/c/CreateCharVariable.c' || echo '$(srcdir)/'`src/c/CreateCharVariable.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-CreateCharVariable.Tpo $(DEPDIR)/libscicompatibility_functions_la-CreateCharVariable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateCharVariable.c' object='libscicompatibility_functions_la-CreateCharVariable.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-CreateCharVariable.lo `test -f 'src/c/CreateCharVariable.c' || echo '$(srcdir)/'`src/c/CreateCharVariable.c
-
-libscicompatibility_functions_la-CreateDoubleVariable.lo: src/c/CreateDoubleVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-CreateDoubleVariable.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-CreateDoubleVariable.Tpo -c -o libscicompatibility_functions_la-CreateDoubleVariable.lo `test -f 'src/c/CreateDoubleVariable.c' || echo '$(srcdir)/'`src/c/CreateDoubleVariable.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-CreateDoubleVariable.Tpo $(DEPDIR)/libscicompatibility_functions_la-CreateDoubleVariable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateDoubleVariable.c' object='libscicompatibility_functions_la-CreateDoubleVariable.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-CreateDoubleVariable.lo `test -f 'src/c/CreateDoubleVariable.c' || echo '$(srcdir)/'`src/c/CreateDoubleVariable.c
-
-libscicompatibility_functions_la-CreateIntegerVariable.lo: src/c/CreateIntegerVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-CreateIntegerVariable.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-CreateIntegerVariable.Tpo -c -o libscicompatibility_functions_la-CreateIntegerVariable.lo `test -f 'src/c/CreateIntegerVariable.c' || echo '$(srcdir)/'`src/c/CreateIntegerVariable.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-CreateIntegerVariable.Tpo $(DEPDIR)/libscicompatibility_functions_la-CreateIntegerVariable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateIntegerVariable.c' object='libscicompatibility_functions_la-CreateIntegerVariable.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-CreateIntegerVariable.lo `test -f 'src/c/CreateIntegerVariable.c' || echo '$(srcdir)/'`src/c/CreateIntegerVariable.c
-
-libscicompatibility_functions_la-CreateHyperMatrixVariable.lo: src/c/CreateHyperMatrixVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-CreateHyperMatrixVariable.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-CreateHyperMatrixVariable.Tpo -c -o libscicompatibility_functions_la-CreateHyperMatrixVariable.lo `test -f 'src/c/CreateHyperMatrixVariable.c' || echo '$(srcdir)/'`src/c/CreateHyperMatrixVariable.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-CreateHyperMatrixVariable.Tpo $(DEPDIR)/libscicompatibility_functions_la-CreateHyperMatrixVariable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateHyperMatrixVariable.c' object='libscicompatibility_functions_la-CreateHyperMatrixVariable.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-CreateHyperMatrixVariable.lo `test -f 'src/c/CreateHyperMatrixVariable.c' || echo '$(srcdir)/'`src/c/CreateHyperMatrixVariable.c
-
-libscicompatibility_functions_la-CreateStructVariable.lo: src/c/CreateStructVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-CreateStructVariable.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-CreateStructVariable.Tpo -c -o libscicompatibility_functions_la-CreateStructVariable.lo `test -f 'src/c/CreateStructVariable.c' || echo '$(srcdir)/'`src/c/CreateStructVariable.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-CreateStructVariable.Tpo $(DEPDIR)/libscicompatibility_functions_la-CreateStructVariable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateStructVariable.c' object='libscicompatibility_functions_la-CreateStructVariable.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-CreateStructVariable.lo `test -f 'src/c/CreateStructVariable.c' || echo '$(srcdir)/'`src/c/CreateStructVariable.c
-
-libscicompatibility_functions_la-CreateSparseVariable.lo: src/c/CreateSparseVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-CreateSparseVariable.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-CreateSparseVariable.Tpo -c -o libscicompatibility_functions_la-CreateSparseVariable.lo `test -f 'src/c/CreateSparseVariable.c' || echo '$(srcdir)/'`src/c/CreateSparseVariable.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-CreateSparseVariable.Tpo $(DEPDIR)/libscicompatibility_functions_la-CreateSparseVariable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateSparseVariable.c' object='libscicompatibility_functions_la-CreateSparseVariable.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-CreateSparseVariable.lo `test -f 'src/c/CreateSparseVariable.c' || echo '$(srcdir)/'`src/c/CreateSparseVariable.c
-
-libscicompatibility_functions_la-CreateCellVariable.lo: src/c/CreateCellVariable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-CreateCellVariable.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-CreateCellVariable.Tpo -c -o libscicompatibility_functions_la-CreateCellVariable.lo `test -f 'src/c/CreateCellVariable.c' || echo '$(srcdir)/'`src/c/CreateCellVariable.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-CreateCellVariable.Tpo $(DEPDIR)/libscicompatibility_functions_la-CreateCellVariable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateCellVariable.c' object='libscicompatibility_functions_la-CreateCellVariable.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-CreateCellVariable.lo `test -f 'src/c/CreateCellVariable.c' || echo '$(srcdir)/'`src/c/CreateCellVariable.c
-
-libscicompatibility_functions_la-gw_matio.lo: sci_gateway/c/gw_matio.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-gw_matio.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-gw_matio.Tpo -c -o libscicompatibility_functions_la-gw_matio.lo `test -f 'sci_gateway/c/gw_matio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_matio.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-gw_matio.Tpo $(DEPDIR)/libscicompatibility_functions_la-gw_matio.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_matio.c' object='libscicompatibility_functions_la-gw_matio.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-gw_matio.lo `test -f 'sci_gateway/c/gw_matio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_matio.c
-
-libscicompatibility_functions_la-sci_matfile_open.lo: sci_gateway/c/sci_matfile_open.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-sci_matfile_open.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_open.Tpo -c -o libscicompatibility_functions_la-sci_matfile_open.lo `test -f 'sci_gateway/c/sci_matfile_open.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_open.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_open.Tpo $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_open.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matfile_open.c' object='libscicompatibility_functions_la-sci_matfile_open.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-sci_matfile_open.lo `test -f 'sci_gateway/c/sci_matfile_open.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_open.c
-
-libscicompatibility_functions_la-sci_matfile_close.lo: sci_gateway/c/sci_matfile_close.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-sci_matfile_close.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_close.Tpo -c -o libscicompatibility_functions_la-sci_matfile_close.lo `test -f 'sci_gateway/c/sci_matfile_close.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_close.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_close.Tpo $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_close.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matfile_close.c' object='libscicompatibility_functions_la-sci_matfile_close.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-sci_matfile_close.lo `test -f 'sci_gateway/c/sci_matfile_close.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_close.c
-
-libscicompatibility_functions_la-sci_matfile_listvar.lo: sci_gateway/c/sci_matfile_listvar.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-sci_matfile_listvar.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_listvar.Tpo -c -o libscicompatibility_functions_la-sci_matfile_listvar.lo `test -f 'sci_gateway/c/sci_matfile_listvar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_listvar.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_listvar.Tpo $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_listvar.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matfile_listvar.c' object='libscicompatibility_functions_la-sci_matfile_listvar.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-sci_matfile_listvar.lo `test -f 'sci_gateway/c/sci_matfile_listvar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_listvar.c
-
-libscicompatibility_functions_la-sci_matfile_varreadnext.lo: sci_gateway/c/sci_matfile_varreadnext.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -MT libscicompatibility_functions_la-sci_matfile_varreadnext.lo -MD -MP -MF $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_varreadnext.Tpo -c -o libscicompatibility_functions_la-sci_matfile_varreadnext.lo `test -f 'sci_gateway/c/sci_matfile_varreadnext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_varreadnext.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_varreadnext.Tpo $(DEPDIR)/libscicompatibility_functions_la-sci_matfile_varreadnext.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_matfile_varreadnext.c' object='libscicompatibility_functions_la-sci_matfile_varreadnext.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompatibility_functions_la_CFLAGS) $(CFLAGS) -c -o libscicompatibility_functions_la-sci_matfile_varreadnext.lo `test -f 'sci_gateway/c/sci_matfile_varreadnext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_varreadnext.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -659,54 +419,12 @@ uninstall-libscicompatibility_functions_la_rootDATA:
 	  echo " rm -f '$(DESTDIR)$(libscicompatibility_functions_la_rootdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscicompatibility_functions_la_rootdir)/$$f"; \
 	done
-
-ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
-	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
-	unique=`for i in $$list; do \
-	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
-	  done | \
-	  $(AWK) '    { files[$$0] = 1; } \
-	       END { for (i in files) print i; }'`; \
-	mkid -fID $$unique
 tags: TAGS
+TAGS:
 
-TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
-		$(TAGS_FILES) $(LISP)
-	tags=; \
-	here=`pwd`; \
-	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
-	unique=`for i in $$list; do \
-	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
-	  done | \
-	  $(AWK) '    { files[$$0] = 1; } \
-	       END { for (i in files) print i; }'`; \
-	if test -z "$(ETAGS_ARGS)$$tags$$unique"; then :; else \
-	  test -n "$$unique" || unique=$$empty_fix; \
-	  $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
-	    $$tags $$unique; \
-	fi
 ctags: CTAGS
-CTAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
-		$(TAGS_FILES) $(LISP)
-	tags=; \
-	here=`pwd`; \
-	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
-	unique=`for i in $$list; do \
-	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
-	  done | \
-	  $(AWK) '    { files[$$0] = 1; } \
-	       END { for (i in files) print i; }'`; \
-	test -z "$(CTAGS_ARGS)$$tags$$unique" \
-	  || $(CTAGS) $(CTAGSFLAGS) $(AM_CTAGSFLAGS) $(CTAGS_ARGS) \
-	     $$tags $$unique
+CTAGS:
 
-GTAGS:
-	here=`$(am__cd) $(top_builddir) && pwd` \
-	  && cd $(top_srcdir) \
-	  && gtags -i $(GTAGS_ARGS) $$here
-
-distclean-tags:
-	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
@@ -737,9 +455,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
+all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicompatibility_functions_la_etcdir)" "$(DESTDIR)$(libscicompatibility_functions_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libscicompatibility_functions_la_etcdir)" "$(DESTDIR)$(libscicompatibility_functions_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -768,14 +486,11 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+clean-am: clean-generic clean-libtool clean-local mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
-distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+distclean-am: clean-am distclean-generic
 
 dvi: dvi-am
 
@@ -793,7 +508,7 @@ install-data-am: install-data-local \
 
 install-dvi: install-dvi-am
 
-install-exec-am: install-pkglibLTLIBRARIES
+install-exec-am:
 
 install-html: install-html-am
 
@@ -810,14 +525,12 @@ install-ps: install-ps-am
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool
+mostlyclean-am: mostlyclean-generic mostlyclean-libtool
 
 pdf: pdf-am
 
@@ -828,31 +541,26 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscicompatibility_functions_la_etcDATA \
-	uninstall-libscicompatibility_functions_la_rootDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libscicompatibility_functions_la_rootDATA
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
-	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am \
+.PHONY: all all-am all-local check check-am check-local clean \
+	clean-generic clean-libtool clean-local distclean \
+	distclean-generic distclean-libtool distdir dvi dvi-am html \
+	html-am info info-am install install-am install-data \
+	install-data-am install-data-local install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
 	install-libscicompatibility_functions_la_etcDATA \
 	install-libscicompatibility_functions_la_rootDATA install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am \
+	uninstall uninstall-am \
 	uninstall-libscicompatibility_functions_la_etcDATA \
-	uninstall-libscicompatibility_functions_la_rootDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libscicompatibility_functions_la_rootDATA
 
 
 # This target enables tests for Scilab
