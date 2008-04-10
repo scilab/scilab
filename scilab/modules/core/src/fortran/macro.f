@@ -128,8 +128,7 @@ c     set input variable name
          l = l + nsiz*mrhs + 1
          lf= l+istk(l-1)+1
          if(mrhs.eq.0.and.rhs.le.1) then
-            if(comp(1).eq.0.and.rhs.eq.1) top=top-1
-            rhs=0
+            if(comp(1).ne.0)  rhs=0
          endif
          vargin=.false.
          if(mrhs.gt.0) vargin=eqid(istk(l-nsiz-1),varargin)
