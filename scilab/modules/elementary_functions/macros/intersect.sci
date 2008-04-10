@@ -16,7 +16,6 @@ function [x_out,ka_out,kb_out]=intersect(a_in,b_in,orient)
     kb_out=[];
     return
   end
-
   if argn(2)<3 then
     //remove duplicate values in a_in and b_in
     [a,ka]=unique(matrix(a_in,1,-1));
@@ -52,8 +51,6 @@ function [x_out,ka_out,kb_out]=intersect(a_in,b_in,orient)
 	//I was'nt able to find a simple way.
 	[s,k]=gsort(a_in(ka_out),'g','i'); ka_out=ka_out(k)
 	[s,k]=gsort(b_in(kb_out),'g','i'); kb_out=kb_out(k)
-	
-	
       end
     end
   elseif  orient==1|orient=="r" then
@@ -61,8 +58,9 @@ function [x_out,ka_out,kb_out]=intersect(a_in,b_in,orient)
     [a,ka]=unique(a_in,"r");
     
     [b,kb]=unique(b_in,"r");
-    kab=[ka, -kb];
+    kab=[ka; -kb];
     //find duplicated rows in [a_in;b_in], 
+    
     [x,ksort] = gsort([a;b],'lr','i'); //sort the rows
     
     kab = kab(ksort);//apply [a_in,b_in] sorting permutation to kab
