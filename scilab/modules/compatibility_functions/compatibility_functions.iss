@@ -1,6 +1,6 @@
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) 2007 - INRIA - Allan CORNET
-; 
+;
 ; This file is distributed under the same license as the Scilab package.
 ;
 ;##############################################################################################################
@@ -13,6 +13,9 @@
 ;
 #define COMPATFUNCTIONS "compatibility_functions"
 ;
+Source: bin\{#COMPATFUNCTIONS}.dll; DestDir: {app}\bin; Components: {#COMPN_COMPATFUNCTIONS};
+Source: bin\matio.dll; DestDir: {app}\bin; Components: {#COMPN_COMPATFUNCTIONS};
+
 Source: modules\{#COMPATFUNCTIONS}\VERSION.xml; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\readme.txt; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\license.txt; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
@@ -23,7 +26,7 @@ Source: modules\{#COMPATFUNCTIONS}\etc\{#COMPATFUNCTIONS}.start; DestDir: {app}\
 ;
 Source: modules\{#COMPATFUNCTIONS}\help\addchapter.sce; DestDir: {app}\modules\{#COMPATFUNCTIONS}\help; Flags: recursesubdirs; Components:  {#COMPN_COMPATFUNCTIONS}
 ;
-;Source: modules\{#COMPATFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#COMPATFUNCTIONS}\includes; Components: {#COMPN_COMPATFUNCTIONS}
+Source: modules\{#COMPATFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#COMPATFUNCTIONS}\includes; Components: {#COMPN_COMPATFUNCTIONS}
 ;
 Source: modules\{#COMPATFUNCTIONS}\macros\lib; DestDir: {app}\modules\{#COMPATFUNCTIONS}\macros; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\macros\names; DestDir: {app}\modules\{#COMPATFUNCTIONS}\macros; Components: {#COMPN_COMPATFUNCTIONS}
