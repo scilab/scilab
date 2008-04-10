@@ -50,13 +50,14 @@ int set_y_location_property( sciPointObj * pobj, int stackPointer, int valueType
   {
     pSUBWIN_FEATURE(pobj)->axes.ydir = 'r' ;
   }
-  else if ( isStringParamEqual( stackPointer, "middle" ) )
+  else if ( isStringParamEqual( stackPointer, "middle" ) || isStringParamEqual( stackPointer, "origin" ) )
   {
+    /* old value middle kept for compatibility with scilab 4 */
     pSUBWIN_FEATURE(pobj)->axes.ydir = 'c' ;
   }
   else  
   {
-    sciprint(_("%s: Wrong type for second input argument: '%s', '%s' or '%s' expected.\n"), "set_y_location_property","left","right","middle") ;
+    sciprint(_("%s: Wrong type for second input argument: '%s', '%s' or '%s' expected.\n"), "set_y_location_property","left","right","origin") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

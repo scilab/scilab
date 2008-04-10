@@ -42,7 +42,7 @@ int get_y_location_property( sciPointObj * pobj )
     return sciReturnString( "right" ) ;
     break;
   case 'c': 
-    return sciReturnString( "middle" ) ;
+    return sciReturnString( "origin" ) ;
     break;
   default : 
     sciprint(_("%s is not correctly defined.\n"), "y_location") ;
