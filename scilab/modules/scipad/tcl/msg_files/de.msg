@@ -775,12 +775,12 @@
 ::msgcat::mcset de "Conversion of the file failed, see the Scilab window for\
                     details -- Perhaps report the error text and the\
                     offending Matlab file to \
-                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"\
+                    http://bugzilla.scilab.org"\
                    "Der Import der Datei ist fehlgeschlagen, siehe\
                     Scilab-Fenster f\u00FCr weitere Details -- Vielleicht\
                     sollten Sie die Fehlermeldungen und die verantwortliche\
                     Matlab-Datei an \
-                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi\
+                    http://bugzilla.scilab.org\
                     weiterleiten."
 ::msgcat::mcset de "Please select destination path for the xml source of the\
                     help file"\

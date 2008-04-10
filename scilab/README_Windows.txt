@@ -34,7 +34,7 @@ I - TO RUN SCILAB (BINARY VERSION)
         You can download at http://www.cs.virginia.edu/~lcc-win32/
     
     6 - If you have any problems or suggestions concerning Scilab,
-        http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi        
+        http://bugzilla.scilab.org/index.cgi        
         or better post a message to newsgroup:
                          comp.soft-sys.math.scilab
 

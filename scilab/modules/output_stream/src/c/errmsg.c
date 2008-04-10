@@ -500,7 +500,7 @@ try,catch */
 			displayAndStoreError(_("Fatal error!!! Your variables have been saved in the file : %s\n\
 Bad call to a scilab function ?\n\
 Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
-			displayAndStoreError("http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi\n");
+			displayAndStoreError("http://bugzilla.scilab.org/index.cgi\n");
 		}
 		break;
 		case 69:
@@ -829,7 +829,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		case 115:
 		{
 			displayAndStoreError(_("Stack problem detected within a loop.\nA primitive function has been called with a wrong number of output arguments.\nNo output argument test has been made for this function.\nPlease report this bug :\n"));
-			displayAndStoreError("http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi\n");
+			displayAndStoreError("http://bugzilla.scilab.org/index.cgi\n");
 
 			C2F(showstack)(); /* display of calling tree */
 		}

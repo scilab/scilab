@@ -8,7 +8,7 @@
 ##########
 
 # Initialise autoconf
-AC_INIT([scilab],[0],[http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi])
+AC_INIT([scilab],[0],[http://bugzilla.scilab.org/index.cgi])
 
 # Initialise automake (foreign is low strictness)
 AM_INIT_AUTOMAKE([foreign]) 

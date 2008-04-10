@@ -1920,7 +1920,7 @@ public class CallScilabBridge {
 	 * Open a Browser on Bugzilla Web Site
 	 */
 	public static void openBugzillaWebSite() {
-		WebBrowser.openUrl("http://www.scilab.org/cgi-bin/bugzilla_bug_II/index.cgi");
+		WebBrowser.openUrl("http://bugzilla.scilab.org/index.cgi");
 	}
 	
 	/**

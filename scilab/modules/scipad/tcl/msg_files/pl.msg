@@ -455,13 +455,13 @@
 ::msgcat::mcset pl "Conversion of the file failed, see\
                    the Scilab window for details -- Perhaps report the error\
                    text and the offending Matlab file to \
-                   http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"\
+                   http://bugzilla.scilab.org"\
                    "Konwersja pliku nie powiod\u0142a\
                    si\u0119, zobacz okno Scilab-a aby uzyska\u0107\
                    szczeg\u00F3\u0142y -- Spr\u00F3buj wys\u0142a\u0107\
                    tekst z b\u0142\u0119dem oraz niedzia\u0142aj\u0105cy\
                    plik Matlab-a na stron\u0119\
-                   http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"
+                   http://bugzilla.scilab.org"
 ::msgcat::mcset pl "Please select destination path for\
                    the xml source of the help file"\
                    "Wska\u017C \u015Bcie\u017Ck\u0119\

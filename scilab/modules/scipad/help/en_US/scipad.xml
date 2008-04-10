@@ -358,7 +358,7 @@ scipad f1 f2 ...</synopsis>
           <para/>
           <para>There are still a few... Details can be found in file
         <literal>SCI/modules/scipad/BUGS</literal>. Officially reported bugs are filed in the
-        Bugzilla http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.cgi
+        Bugzilla http://bugzilla.scilab.org
         and can be easily retrieved by filtering entries wrt the "Scipad
         Editor" element.</para>
           <para/>

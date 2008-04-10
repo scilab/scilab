@@ -697,10 +697,10 @@
 ::msgcat::mcset zh_cn "Conversion of the file failed, see the Scilab window\
                        for details -- Perhaps report the error text and the\
                        offending Matlab file to \
-                      http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"\
+                      http://bugzilla.scilab.org"\
                       "文件转换失败，详情请参考 Scilab\
                        窗口内容 -- 也许可到\
-                       http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi\
+                       http://bugzilla.scilab.org\
                        报告错误信息及对应的 Matlab 文件。"
 ::msgcat::mcset zh_cn "Please select destination path for the xml source of\
                        the help file"\

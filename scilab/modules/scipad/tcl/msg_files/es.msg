@@ -459,10 +459,10 @@
 ::msgcat::mcset es "Conversion of the file failed, see the Scilab window for\
                     details -- Perhaps report the error text and the\
                     offending Matlab file to \
-                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"\
+                    http://bugzilla.scilab.org"\
                     "La conversión del archivo falló vea la ventana de\
                     Scilab para ver mas detalles -- Si desea reporte el error a \
-                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi\
+                    http://bugzilla.scilab.org\
                     incluyendo el archivo matlab."
 
 

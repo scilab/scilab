@@ -751,10 +751,10 @@
 ::msgcat::mcset it "Conversion of the file failed, see the Scilab window for\
                     details -- Perhaps report the error text and the\
                     offending Matlab file to \
-                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi"\
+                    http://bugzilla.scilab.org"\
                    "La traduzione del file è fallita, vedere la finestra\
                     Scilab per dettagli -- Il baco può essere riportato a\
-                    http://scilabsoft.inria.fr/bugzilla_bug_II/index.cgi\
+                    http://bugzilla.scilab.org\
                     includendo il file incriminato ed il messagggio di\
                     errore."
 ::msgcat::mcset it "Please select destination path for the xml source of the\
