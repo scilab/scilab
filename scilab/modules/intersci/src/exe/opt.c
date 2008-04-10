@@ -128,12 +128,12 @@ void WriteOptArgPhase2(FILE *f,IVAR i)
 	  OptMATRIX(f,var);
 	  break;
 	case STRING:
-	  sprintf(size,"%d",strlen(var->opt_name));
+	  sprintf(size,"%d",(int)strlen(var->opt_name));
 	  sprintf(data,"\"%s\"",var->opt_name);
 	  OptMATRIX(f,var);
 	  break;
 	case SCIOPOINTER  :
-	  sprintf(size,"size-[%d]",strlen(var->opt_name));
+	  sprintf(size,"size-[%d]",(int)strlen(var->opt_name));
 	  strcpy(data,var->opt_name);
 	  OptOpointer(f,var);
 	  break;

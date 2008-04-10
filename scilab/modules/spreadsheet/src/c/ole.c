@@ -682,7 +682,7 @@ static int OLE_header_sanity_check( struct OLE_object *ole )
 
   if (h->sector_shift > 20) insanity++;
   if (h->mini_sector_shift > 10) insanity++;
-  if (h->fat_sector_count < 0) insanity++;
+  if ((int)h->fat_sector_count < 0) insanity++;
   if (h->fat_sector_count > (unsigned int)max_sectors) insanity++;
   if (h->directory_stream_start_sector > (unsigned int) max_sectors) insanity++;
 
@@ -1075,7 +1075,7 @@ int OLE_load_FAT( struct OLE_object *ole )
 		{
 		  current_sector = get_4byte_value( fat_block_end );
 		  DOLE LOGGER_log("%s:%d:OLE_load_FAT:DEBUG: Next DIF/XBAT index sector located at 0x%x",FL,current_sector);
-		  if (current_sector < 0) break;
+		  if ((int)current_sector < 0) break;
 		}
 	    } /* For every DIF/XBAT sector we're supposed to read*/
 

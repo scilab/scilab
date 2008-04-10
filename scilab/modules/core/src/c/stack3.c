@@ -1048,7 +1048,7 @@ void CreateCSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalEl
 	C2F(intersci).iwhere[Top - Rhs + _iNewVal - 1]	= *Lstk(_iNewVal);
 	C2F(intersci).lad[Top - Rhs + _iNewVal - 1]		= sadr(iAddrRealData);
 
-	if(_pdblImgData = NULL)
+	if(_pdblImgData == NULL)
 		*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrRealData) + iIndex;
 	else
 		*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrRealData) + _iTotalElem + iIndex;

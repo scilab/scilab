@@ -705,7 +705,7 @@ void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbObjects)
   while (!List_is_empty(redrawnFigures))
   {
     sciPointObj * curFigure = NULL;
-    redrawnFigures = List_pop(redrawnFigures, &curFigure);
+    redrawnFigures = List_pop(redrawnFigures, (void**)&curFigure);
     sciDrawObj(curFigure);
   }
 
