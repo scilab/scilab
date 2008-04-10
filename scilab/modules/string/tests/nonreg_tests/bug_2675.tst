@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2675 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2675
+// http://bugzilla.scilab.org/show_bug.cgi?id=2675
 //
 // <-- Short Description -->
 // grep(["hat";"cat"],'/[hc]+at/','r') hangs scilab with 100% cpu load

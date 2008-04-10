@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 973 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=973
+// http://bugzilla.scilab.org/show_bug.cgi?id=973
 //
 // <-- Short Description -->
 //    matlab file conversion problem (apparently: Extraction of

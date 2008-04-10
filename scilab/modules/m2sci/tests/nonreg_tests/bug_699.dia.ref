@@ -1,7 +1,7 @@
 // <-- Non-regression test for bug 699 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=699
+// http://bugzilla.scilab.org/show_bug.cgi?id=699
 //
 // <-- Short Description -->
 //    m2sci crashes for a very simple input file

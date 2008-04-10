@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 201 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=201
+// http://bugzilla.scilab.org/show_bug.cgi?id=201
 //
 // <-- Short Description -->
 //     modulo function error

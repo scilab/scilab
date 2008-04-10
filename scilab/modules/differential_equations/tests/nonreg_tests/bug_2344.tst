@@ -1,7 +1,7 @@
 // <-- Non-regression test for bug 2344 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2344
+// http://bugzilla.scilab.org/show_bug.cgi?id=2344
 //
 // <-- Short Description -->
 //    dassl interface bug with the info parameter

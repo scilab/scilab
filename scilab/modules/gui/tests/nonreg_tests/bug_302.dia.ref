@@ -9,7 +9,7 @@
 // <-- Non-regression test for bug 302 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=302
+// http://bugzilla.scilab.org/show_bug.cgi?id=302
 //
 // <-- Short Description -->
 //    You can't have space inside the string put in 'callback' unless you put a pair of curly brackets ('{}') around them.

@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1736 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1736
+// http://bugzilla.scilab.org/show_bug.cgi?id=1736
 //
 // <-- Short Description -->
 //    Actually this is the same bug as 608, but it has been 

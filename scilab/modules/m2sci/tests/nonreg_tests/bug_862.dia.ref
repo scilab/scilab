@@ -1,7 +1,7 @@
 // <-- Non-regression test for bug 862 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=862
+// http://bugzilla.scilab.org/show_bug.cgi?id=862
 //
 // <-- Short Description -->
 //    Conversion si bad for instructions such as:

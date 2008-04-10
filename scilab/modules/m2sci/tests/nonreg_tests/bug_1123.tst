@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1123 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1123
+// http://bugzilla.scilab.org/show_bug.cgi?id=1123
 //
 // <-- Short Description -->
 //    I think this bug is related to other ones but the matlab

@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2707 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2707
+// http://bugzilla.scilab.org/show_bug.cgi?id=2707
 //
 // <-- Short Description -->
 // The getmd5 function does not handle the SCI/ ~/ ...  shortcuts

@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 629 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=629
+// http://bugzilla.scilab.org/show_bug.cgi?id=629
 //
 // <-- Short Description -->
 //    When trying to use the wavread function I get these errors

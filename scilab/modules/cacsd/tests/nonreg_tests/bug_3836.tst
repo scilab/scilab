@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 3836 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=3836
+// http://bugzilla.scilab.org/show_bug.cgi?id=3836
 //
 // <-- Short Description -->
 //Problem with the function csim when using state space form. When using this

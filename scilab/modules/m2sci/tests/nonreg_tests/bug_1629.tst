@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1629 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1629
+// http://bugzilla.scilab.org/show_bug.cgi?id=1629
 //
 // <-- Short Description -->
 //    Scila freezes when trying to convert the following m-file:

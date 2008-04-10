@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 169 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=169
+// http://bugzilla.scilab.org/show_bug.cgi?id=169
 //
 // <-- Short Description -->
 //    L'utilisation de variables globales entre ma fonction et la fenetre de commande occassionne inmanquablement des plantages de scilab a un endroit precis, lors de l'execution de la fonction

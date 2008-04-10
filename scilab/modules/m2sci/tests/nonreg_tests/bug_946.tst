@@ -9,7 +9,7 @@
 // <-- Non-regression test for bug 946 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=946
+// http://bugzilla.scilab.org/show_bug.cgi?id=946
 //
 // <-- Short Description -->
 //    Code badly converted by mfile2sci when using particular 

@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 600 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=600
+// http://bugzilla.scilab.org/show_bug.cgi?id=600
 //
 // <-- Short Description -->
 //    I am not able to hear the sounds using either the 'Sound'

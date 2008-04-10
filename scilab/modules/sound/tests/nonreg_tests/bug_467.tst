@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 467 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=467
+// http://bugzilla.scilab.org/show_bug.cgi?id=467
 //
 // <-- Short Description -->
 //    Bug Report Id: 12022200362265140

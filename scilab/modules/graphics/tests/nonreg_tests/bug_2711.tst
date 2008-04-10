@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 2711 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2708
+// http://bugzilla.scilab.org/show_bug.cgi?id=2708
 //
 // <-- Short Description -->
 // The plot obtained with "champ" function is bad

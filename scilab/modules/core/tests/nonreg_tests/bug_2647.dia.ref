@@ -1,7 +1,7 @@
 // <-- Non-regression test for bug 2647 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2647
+// http://bugzilla.scilab.org/show_bug.cgi?id=2647
 //
 // <-- Short Description -->
 //    I did the following "experiment" in Scilab-4.1.1 under FreeBSD-6.2

@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 2722 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2722
+// http://bugzilla.scilab.org/show_bug.cgi?id=2722
 //
 // <-- Short Description -->
 // It is impossible to put the "box" graphics property to "off" before issuing a

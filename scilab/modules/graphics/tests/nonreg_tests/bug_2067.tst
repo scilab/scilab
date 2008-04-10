@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 2067 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2067
+// http://bugzilla.scilab.org/show_bug.cgi?id=2067
 //
 // <-- Short Description -->
 //    Scilab dies when the Plot command is given a large numerical value.

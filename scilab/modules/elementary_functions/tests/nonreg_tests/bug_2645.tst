@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2645 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2645
+// http://bugzilla.scilab.org/show_bug.cgi?id=2645
 //
 // <-- Short Description -->
 // integration of an expression reduced to the variable name

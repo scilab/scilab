@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 1448 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1448
+// http://bugzilla.scilab.org/show_bug.cgi?id=1448
 //
 // <-- Short Description -->
 //    Bug detected in 3.1.1 under Windows XP.

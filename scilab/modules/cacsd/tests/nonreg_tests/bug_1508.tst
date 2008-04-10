@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1508 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1508
+// http://bugzilla.scilab.org/show_bug.cgi?id=1508
 //
 // <-- Short Description -->
 //    A transfer function with small numeric values is assumed not to be SISO, when used in 'csim'.

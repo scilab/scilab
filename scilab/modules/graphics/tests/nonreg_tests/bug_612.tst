@@ -9,7 +9,7 @@
 // <-- TEST WITH GRAPHIC -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=612
+// http://bugzilla.scilab.org/show_bug.cgi?id=612
 //
 // <-- Short Description -->
 //    under unix the dimension of graphic window is limited to 

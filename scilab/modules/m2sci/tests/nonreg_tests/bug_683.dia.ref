@@ -1,7 +1,7 @@
 // <-- Non-regression test for bug 683 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=683
+// http://bugzilla.scilab.org/show_bug.cgi?id=683
 //
 // <-- Short Description -->
 //    problem with makecell : when a makecell input is an input of

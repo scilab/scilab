@@ -1,7 +1,7 @@
 // <-- Non-regression test for bug 2270 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2270
+// http://bugzilla.scilab.org/show_bug.cgi?id=2270
 //
 // <-- Short Description -->
 //    datenum(Y,M,D) issues an incorrect error message when the third

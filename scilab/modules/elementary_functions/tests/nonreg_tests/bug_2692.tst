@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2692 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2692
+// http://bugzilla.scilab.org/show_bug.cgi?id=2692
 //
 // <-- Short Description -->
 //   bitand( int8(x) , int8(y) ) doesn't return an int8 object.

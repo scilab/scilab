@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1526 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1526
+// http://bugzilla.scilab.org/show_bug.cgi?id=1526
 //
 // <-- Short Description -->
 //   An ascii file (created 'by hand' or a fprintfMat primitive with Scilab/Windows)

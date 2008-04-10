@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 596 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=596
+// http://bugzilla.scilab.org/show_bug.cgi?id=596
 //
 // <-- Short Description -->
 //    uicontrol has problem in parsing string arguments: 'string' and 'callback' arguments containing 

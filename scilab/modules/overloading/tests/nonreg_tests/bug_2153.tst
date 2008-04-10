@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2153 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2153
+// http://bugzilla.scilab.org/show_bug.cgi?id=2153
 //
 // <-- Short Description -->
 //    addition and subtraction of matrix and hypermatrix of same dimension and size do not work

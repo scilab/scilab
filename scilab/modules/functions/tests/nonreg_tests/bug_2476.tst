@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2476 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2476
+// http://bugzilla.scilab.org/show_bug.cgi?id=2476
 //
 // <-- Short Description -->
 //    Problems with quit and exit when using fun2string

@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 174 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=174
+// http://bugzilla.scilab.org/show_bug.cgi?id=174
 //
 // <-- Short Description -->
 //   Sur des images de grandes tailles, Matplot trace plein de lignes blanches, ce qui est assez genant. 

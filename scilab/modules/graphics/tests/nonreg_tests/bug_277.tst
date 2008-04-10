@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 277 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=277
+// http://bugzilla.scilab.org/show_bug.cgi?id=277
 //
 // <-- Short Description -->
 //  Definition of a plot frame by plotframe (subwin argument) leads to messy coordinates.

@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 140 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=140
+// http://bugzilla.scilab.org/show_bug.cgi?id=140
 //
 // <-- Short Description -->
 //     4th input is invalid (waiting for real or complex matrix) seems to be a bug

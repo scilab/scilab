@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1057 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1057
+// http://bugzilla.scilab.org/show_bug.cgi?id=1057
 //
 // <-- Short Description -->
 //    Crash when entering the following in the command window:

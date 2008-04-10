@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2407 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2407
+// http://bugzilla.scilab.org/show_bug.cgi?id=2407
 //
 // <-- Short Description -->
 //    stdev and st_deviation are not available for hypermatrix.

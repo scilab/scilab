@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2333 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2333
+// http://bugzilla.scilab.org/show_bug.cgi?id=2333
 //
 // <-- Short Description -->
 //    I am trying to convert a large number of Matlab files to Scilab. Either 

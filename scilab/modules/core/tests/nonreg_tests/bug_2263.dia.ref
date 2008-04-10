@@ -1,7 +1,7 @@
 // <-- Non-regression test for bug 2263 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2263
+// http://bugzilla.scilab.org/show_bug.cgi?id=2263
 //
 // <-- Short Description -->
 //    Suppose you want to call a arbitrary scilab function "test". But you want the

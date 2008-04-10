@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 577 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=577
+// http://bugzilla.scilab.org/show_bug.cgi?id=577
 //
 // <-- Short Description -->
 //    It can't save imaginary in MATLAB format (SCILAB 2.7.x and

@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 126 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=126
+// http://bugzilla.scilab.org/show_bug.cgi?id=126
 //
 // <-- Short Description -->
 //    x_message() does not accept the second argument (list of buttons).  With only one argument, the string is displayed correctly, but x_message() does not return a value indicating which button ("OK" or "Cancel") was pressed.

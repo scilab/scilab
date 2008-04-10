@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1200 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1200
+// http://bugzilla.scilab.org/show_bug.cgi?id=1200
 //
 // <-- Short Description -->
 //    Incoherence dans le format d'un nombre.

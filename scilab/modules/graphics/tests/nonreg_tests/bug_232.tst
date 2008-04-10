@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 232 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=232
+// http://bugzilla.scilab.org/show_bug.cgi?id=232
 //
 // <-- Short Description -->
 //   Ces deux groupes de trois lignes font quasiment la meme chose. Dans le premier cas, la fenetre est correctement reajustee et dans le second un truc affreux est fait alors qu'il ne faut rien faire!!!

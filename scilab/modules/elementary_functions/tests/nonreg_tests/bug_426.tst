@@ -1,7 +1,7 @@
 // <-- Non-regression test for bug 426 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=426
+// http://bugzilla.scilab.org/show_bug.cgi?id=426
 //
 // <-- Short Description -->
 // Wrong permutation

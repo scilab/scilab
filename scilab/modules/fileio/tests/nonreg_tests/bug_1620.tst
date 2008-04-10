@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1620 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1620
+// http://bugzilla.scilab.org/show_bug.cgi?id=1620
 //
 // <-- Short Description -->
 //    Lorsque j'essaie de lire une matrice de taille 500x148, soit:

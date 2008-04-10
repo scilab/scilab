@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2848 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2848
+// http://bugzilla.scilab.org/show_bug.cgi?id=2848
 //
 // <-- Short Description -->
 //    When using the TAB key for completion in the console, after using once a Scilab

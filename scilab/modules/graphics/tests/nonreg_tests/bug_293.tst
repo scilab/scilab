@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 293 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=293
+// http://bugzilla.scilab.org/show_bug.cgi?id=293
 //
 // <-- Short Description -->
 //     plot() doesn't seem to like to plot large arrays.

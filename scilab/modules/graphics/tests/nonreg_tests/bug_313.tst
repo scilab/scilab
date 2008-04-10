@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 313 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=313
+// http://bugzilla.scilab.org/show_bug.cgi?id=313
 //
 // <-- Short Description -->
 // clipping does not work in 2.6

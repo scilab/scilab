@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2665 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2665
+// http://bugzilla.scilab.org/show_bug.cgi?id=2665
 //
 // <-- Short Description -->
 // The example provided with the on-line help of grep crashes Scilab

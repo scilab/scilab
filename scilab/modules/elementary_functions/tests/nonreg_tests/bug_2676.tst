@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2676 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2676
+// http://bugzilla.scilab.org/show_bug.cgi?id=2676
 //
 // <-- Short Description -->
 // oct2dec gives wrong results when first argument is a matrix.

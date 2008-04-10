@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2378 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2378
+// http://bugzilla.scilab.org/show_bug.cgi?id=2378
 //
 // <-- Short Description -->
 //     fun2string produces erroneous output (an extra 2 character appears) when there is a comment after an assignment.

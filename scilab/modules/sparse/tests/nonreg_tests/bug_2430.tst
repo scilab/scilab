@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2430 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2430
+// http://bugzilla.scilab.org/show_bug.cgi?id=2430
 //
 // <-- Short Description -->
 //    Wrong results when solving linear systems when the matrix

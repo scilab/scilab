@@ -9,7 +9,7 @@
 // <-- Non-regression test for bug 942 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=942
+// http://bugzilla.scilab.org/show_bug.cgi?id=942
 //
 // <-- Short Description -->
 //    Adding a comment character '%' at the end of a function 

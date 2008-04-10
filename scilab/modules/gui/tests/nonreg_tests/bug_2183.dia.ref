@@ -9,7 +9,7 @@
 // <-- Non-regression test for bug 2183 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2183
+// http://bugzilla.scilab.org/show_bug.cgi?id=2183
 //
 // <-- Short Description -->
 //    The content typed into an 'edit' uicontrol cannot be retrieved if initially unset

@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2694 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2694
+// http://bugzilla.scilab.org/show_bug.cgi?id=2694
 //
 // <-- Short Description -->
 //   bitget() only support unsigned integers. This function has to be extended

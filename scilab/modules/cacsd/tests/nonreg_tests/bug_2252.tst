@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2252 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2252
+// http://bugzilla.scilab.org/show_bug.cgi?id=2252
 //
 // <-- Short Description -->
 //   csim produces unusual results for the following nonminimum phase system

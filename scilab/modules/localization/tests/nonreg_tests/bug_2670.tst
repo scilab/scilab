@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2670 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2670
+// http://bugzilla.scilab.org/show_bug.cgi?id=2670
 //
 // <-- Short Description -->
 //    getlanguage() returns a empty string (occurs both under Linux and Windows).

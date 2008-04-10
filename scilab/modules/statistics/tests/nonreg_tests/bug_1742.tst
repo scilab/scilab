@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1742 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1742
+// http://bugzilla.scilab.org/show_bug.cgi?id=1742
 //
 // <-- Short Description -->
 //    function [m]=msd(x,orien)

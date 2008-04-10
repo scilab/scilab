@@ -1,7 +1,7 @@
 // <-- Non-regression test for bug 2414 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2414
+// http://bugzilla.scilab.org/show_bug.cgi?id=2414
 //
 // <-- Short Description -->
 //    assignment of empty string an empty variable has disastrous results. Probably a

@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 120 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=120
+// http://bugzilla.scilab.org/show_bug.cgi?id=120
 //
 // <-- Short Description -->
 //  It seems that function bode doesn't work properly.

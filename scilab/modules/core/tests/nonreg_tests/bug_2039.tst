@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2039 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2039
+// http://bugzilla.scilab.org/show_bug.cgi?id=2039
 //
 // <-- Short Description -->
 //    non empty lasterror on Scilab startup

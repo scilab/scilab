@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2699 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2699
+// http://bugzilla.scilab.org/show_bug.cgi?id=2699
 //
 // <-- Short Description -->
 // strcat('') produces an error. In scilab-4.1.2, strcat('') returns an empty string

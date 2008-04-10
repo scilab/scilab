@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1957 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1957
+// http://bugzilla.scilab.org/show_bug.cgi?id=1957
 //
 // <-- Short Description -->
 //    Non fonctionnement de intersci pour les variables optionnelles (au 

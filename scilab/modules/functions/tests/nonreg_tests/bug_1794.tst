@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1794 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1794
+// http://bugzilla.scilab.org/show_bug.cgi?id=1794
 //
 // <-- Short Description -->
 //    Problem encountered when redefining builtin function

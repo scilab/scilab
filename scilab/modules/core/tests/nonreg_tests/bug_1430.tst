@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 1430 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1430
+// http://bugzilla.scilab.org/show_bug.cgi?id=1430
 //
 // <-- Short Description -->
 //in errcatch(n,'continue') if an error arises in a for loop variable

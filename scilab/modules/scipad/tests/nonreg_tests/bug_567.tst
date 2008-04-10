@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 567 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=567
+// http://bugzilla.scilab.org/show_bug.cgi?id=567
 //
 // <-- Short Description -->
 //    When I accidentally closed scilab while scipad editor was

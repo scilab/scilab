@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 2250 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2250
+// http://bugzilla.scilab.org/show_bug.cgi?id=2250
 //
 // <-- Short Description -->
 //   I can not save or load user_data of a figure to or from a file

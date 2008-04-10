@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 631 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=631
+// http://bugzilla.scilab.org/show_bug.cgi?id=631
 //
 // <-- Short Description -->
 //    linpro with initial guess does not work correctly.

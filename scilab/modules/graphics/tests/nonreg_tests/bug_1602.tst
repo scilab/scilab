@@ -10,7 +10,7 @@
 // <-- Non-regression test for bug 1602 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1602
+// http://bugzilla.scilab.org/show_bug.cgi?id=1602
 //
 // <-- Short Description -->
 //    contour2d don't work well with frameflag=4 (while the workaround

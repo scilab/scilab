@@ -9,7 +9,7 @@
 // <-- Non-regression test for bug 2618  -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2618
+// http://bugzilla.scilab.org/show_bug.cgi?id=2618
 //
 // <-- Short Description -->
 // try/catch statement makes Scilab unstable, 

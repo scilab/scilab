@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 205 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=205
+// http://bugzilla.scilab.org/show_bug.cgi?id=205
 //
 // <-- Short Description -->
 //    Bug Report Id: 04062001110115540

@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2014 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2014
+// http://bugzilla.scilab.org/show_bug.cgi?id=2014
 //
 // <-- Short Description -->
 //    The function isequal doesn't work properly with list.

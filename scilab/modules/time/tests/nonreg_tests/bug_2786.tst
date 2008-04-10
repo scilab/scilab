@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 2786 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2786
+// http://bugzilla.scilab.org/show_bug.cgi?id=2786
 //
 // <-- Short Description -->
 //    There are two calendar functions with uncompatible syntaxes :

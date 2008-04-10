@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 300 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=300
+// http://bugzilla.scilab.org/show_bug.cgi?id=300
 //
 // <-- Short Description -->
 //    Bug when too big matrix

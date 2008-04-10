@@ -1,7 +1,7 @@
 // <-- Non-regression test for bug 1684 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=1684
+// http://bugzilla.scilab.org/show_bug.cgi?id=1684
 //
 // <-- Short Description -->
 //    I can't compute the following expression:

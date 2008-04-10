@@ -1,7 +1,7 @@
 // <-- Non-regression test for bug 2636 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=2636
+// http://bugzilla.scilab.org/show_bug.cgi?id=2636
 //
 // <-- Short Description -->
 //    Scilab is not able to copy a file in an empty Directory.

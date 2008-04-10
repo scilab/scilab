@@ -11,7 +11,7 @@
 // <-- Non-regression test for bug 562 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=562
+// http://bugzilla.scilab.org/show_bug.cgi?id=562
 //
 // <-- Short Description -->
 //    Scilab crashes 99% of the time when the content of a 

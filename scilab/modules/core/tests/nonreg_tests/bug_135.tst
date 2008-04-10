@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 135 -->
 //
 // <-- Bugzilla URL -->
-// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=135
+// http://bugzilla.scilab.org/show_bug.cgi?id=135
 //
 // <-- Short Description -->
 //    Il semble que l'affectation directe dans un element de vecteur ne soit pas possible!?
