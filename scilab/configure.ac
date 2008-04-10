@@ -918,6 +918,31 @@ if test "$with_tk" != no; then
 fi
 AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
 
+#################
+## MATIO LIBRARY
+#################
+save_LDFLAGS="$LDFLAGS"
+
+LDFLAGS="$LDFLAGS -L$SCI_SRCDIR_FULL/bin/ -lmatio -lz"
+
+AC_CHECK_LIB([matio], Mat_Open, 
+                      [MATIO_LIB='-L$(top_srcdir)/bin/'" -lmatio"],
+                      [AC_MSG_ERROR([MATIO library is missing. Please update your Scilab Prerequirements.])])
+
+LDFLAGS="$save_LDFLAGS"
+
+save_CFLAGS="$CFLAGS"
+
+CFLAGS="$CFLAGS -I$SCI_SRCDIR_FULL/libs/matio/includes/"
+
+AC_CHECK_HEADERS([matio.h matioConfig.h],
+                 [MATIO_INC_PATH='-I$(top_srcdir)/libs/matio/includes/'],
+                 [AC_MSG_ERROR([Cannot find headers (matio.h and matioConfig.h) of the library MATIO. Please update your Scilab Prerequirements.])])
+
+CFLAGS="$save_CFLAGS"
+
+AC_SUBST(MATIO_LIB)
+AC_SUBST(MATIO_INC_PATH)
 
 #################
 ## Man management
@@ -1330,6 +1355,11 @@ echo "  TCL_INC_PATH ....... = $TCL_INC_PATH"
 echo "  TCLTK_LIBS ......... = $TCLTK_LIBS"
 echo "  TCL_SERIAL_VERSION . = $TCL_SERIAL_VERSION"
 echo "  TK_SERIAL_VERSION .. = $TK_SERIAL_VERSION"
+
+echo "" 
+echo "MATIO configuration:"
+echo "  MATIO_INC_PATH ..... = $MATIO_INC_PATH"
+echo "  MATIO_LIB .......... = $MATIO_LIB"
 
 echo "" 
 echo "XML configuration:"

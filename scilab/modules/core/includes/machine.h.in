@@ -121,6 +121,12 @@
 /* Define to 1 if you have the <malloc.h> header file. */
 #undef HAVE_MALLOC_H
 
+/* Define to 1 if you have the <matioConfig.h> header file. */
+#undef HAVE_MATIOCONFIG_H
+
+/* Define to 1 if you have the <matio.h> header file. */
+#undef HAVE_MATIO_H
+
 /* Define to 1 if you have the `memmove' function. */
 #undef HAVE_MEMMOVE
 

@@ -155,7 +155,8 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/modules/compatibility_functions/libscicompatibility_functions.la
 
 # Temp stuff
 libscilab_la_LIBADD +=	$(top_builddir)/modules/string/libscistring.la
