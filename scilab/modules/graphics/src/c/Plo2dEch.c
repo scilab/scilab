@@ -2078,7 +2078,7 @@ void convertUserCoordToPixelCoords(const double xCoords[], const double yCoords[
     // specify a default value for Z
     double curCoords[3] = {xCoords[i], yCoords[i], 0.0};
     int curPixCoords[2];
-    sciGetPixelCoordinate(selectedSubwin, curCoords, curPixCoords);
+    sciGet2dViewPixelCoordinates(selectedSubwin, curCoords, curPixCoords);
     xPixCoords[i] = curPixCoords[0];
     yPixCoords[i] = curPixCoords[1];
   }
