@@ -1,0 +1,35 @@
+// <-- Non-regression test for bug 426 -->
+//
+// <-- Bugzilla URL -->
+// http://www.scilab.org/cgi-bin/bugzilla_bug_II/show_bug.cgi?id=426
+//
+// <-- Short Description -->
+// Wrong permutation
+// Scilab Project - Sylvestre LEDRU
+// Copyright INRIA 2008
+// Date : March 2008
+a = ['aaa';'eee';'ccc';'bbb';'ddd';'rrr'];
+trueValue=[1; 4; 3; 5; 2; 6];
+[a result] = sort(a)
+ result  =
+ 
+    1.  
+    4.  
+    3.  
+    5.  
+    2.  
+    6.  
+ a  =
+ 
+!aaa  !
+!     !
+!bbb  !
+!     !
+!ccc  !
+!     !
+!ddd  !
+!     !
+!eee  !
+!     !
+!rrr  !
+if result <> trueValue then bugmes();quit;end
