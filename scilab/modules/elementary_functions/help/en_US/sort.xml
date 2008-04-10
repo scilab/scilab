@@ -20,9 +20,11 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[s, [k]]=sort(v)
-[s, [k]]=sort(v,'r')
-[s, [k]]=sort(v,'c')</synopsis>
+    <synopsis>
+      [s, [k]]=sort(v)
+      [s, [k]]=sort(v,'r')
+      [s, [k]]=sort(v,'c')
+</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -49,6 +51,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
+    <para> the <literal>sort</literal>  function is now obsolete. It can be replaced by the function <link linkend="gsort">gsort</link>. </para>
     <para><literal>s=sort(v)</literal> sorts <literal>v</literal>  in decreasing order. 
     If <literal>v</literal> is a matrix, sorting is done columnwise, <literal>v</literal> being seen as the stacked vector <literal>v(:)</literal>.
     If <literal>v</literal> is a string, sort is increasing order.
@@ -89,6 +92,8 @@ sort(v,'c')
     <simplelist type="inline">
       <member>
         <link linkend="find">find</link>
+      </member>      <member>
+        <link linkend="gsort">gsort</link>
       </member>
     </simplelist>
   </refsection>
