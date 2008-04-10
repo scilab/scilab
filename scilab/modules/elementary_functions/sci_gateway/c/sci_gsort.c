@@ -24,6 +24,15 @@
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "isanan.h"
+
+/* Next define intruction put here instead of stack-c.h waiting for
+ more genral usage stack-c.h macros CreateVarFromPtr and CreateVar
+ contains a "return 0" which make impossible to free indices in case
+ of error
+*/
+#define CreateVarFromPtrNoCheck(n,ct,mx,nx,lx) C2F(createvarfromptr)((c_local=n,&c_local),ct,mx,nx,(void *)lx,1L)
+#define CreateVarNoCheck(n,ct,mx,nx,lx) C2F(createvar)((c_local=n,&c_local),ct,mx,nx,(void *)lx, 1L)
+
 /*--------------------------------------------------------------------------*/
 int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 {
@@ -38,6 +47,7 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
   int ind_m1 = 0, ind_n1 = 0, ind_l1 =0;
   int *indices = NULL;
   int iflag = 0;
+  int i;
 
   iord[0] = DECREASE_COMMAND; 
   iord[1]='\0';
@@ -59,7 +69,6 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 	  break;
 	case sci_matrix :
 	  {
-	    int i;
 	    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 	    if ( (m1 * n1) == 0 ) /* [] returns []*/
 	      {
@@ -76,13 +85,6 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 		C2F(putlhsvar)();
 		return 0;
 	      }
-	    for (i=0; i<(m1 * n1); i++) {
-	      if (C2F(isanan)(stk(l1+i)) == 1) {
-		Scierror(999,_("%s: First input argument must not contain NaNs.\n"),fname);
-		return 0;
-	      }
-	    }
-
 	  }
 	
 	  break;
@@ -157,42 +159,45 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
     {
     case sci_matrix:
       {
-	double *matrix = stk(l1);
-	double *tmp_matrix = NULL;
 	if ( m1*n1 != 0 ) 
 	  {
-	    tmp_matrix = (double*)MALLOC(sizeof(double)*(m1*n1));
-	    if (tmp_matrix)
+	    double *matrix = stk(l1);
+	    double *tmp_matrix = NULL;
+	    /* next CreateVar and corresponding copy not needed if arg1 is not passed by reference */
+	    if (!CreateVarNoCheck(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&lr)) {
+	      if (indices) {FREE(indices); indices = NULL;}
+	      return 0;
+	    }
+	    tmp_matrix = stk(lr);
+	    for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+
+	    C2F(gsortd)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+	    LhsVar(1)= Rhs+1 ;
+
+	    if (Lhs == 2)
 	      {
-		int i = 0;
-		for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-
-		C2F(gsortd)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-
-		CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&tmp_matrix);
-		LhsVar(1)= Rhs+1 ;
-
-		if (Lhs == 2)
-		  {
-		    CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)
-		      LhsVar(2)= Rhs+2 ;
-		  }
-		C2F(putlhsvar)();
-		if (indices) {FREE(indices); indices = NULL;}
-		if (tmp_matrix)	{ FREE(tmp_matrix); tmp_matrix = NULL;}
+		if (!CreateVarFromPtrNoCheck(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)) {
+		  if (indices) {FREE(indices); indices = NULL;}
+		  return 0;
+		}
+		LhsVar(2)= Rhs+2 ;
 	      }
+	    C2F(putlhsvar)();
+	    if (indices) {FREE(indices); indices = NULL;}
 	  }
       }
       break;
 
-      /* Can not find a example , so can not just remove it */
     case sci_ints:               
       {
 
 	int lr;
-	int i=0;
 	lr=Im.it;
-	CreateVar(Rhs+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&lr);
+	/* next CreateVar and corresponding copy not needed if arg1 is not passed by reference */
+	if (!CreateVarNoCheck(Rhs+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&lr)) {
+	  if (indices) {FREE(indices); indices = NULL;}
+	  return 0;
+	}
 
 	switch(Im.it) /* Type defined in stack-c.h */
 	  {
@@ -245,6 +250,7 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 	    }
 	    break;
 	  default:
+	    if (indices) {FREE(indices); indices = NULL;}
 	    Scierror(999,_("%s: Wrong type for first input argument: Unknown type.\n"),fname);
 	    return 0;
 	  }
@@ -253,7 +259,10 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 
 	if (Lhs == 2)
 	  {
-	    CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices);
+	    if (!CreateVarFromPtrNoCheck(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)) {
+	      if (indices) {FREE(indices); indices = NULL;}
+	      return 0;
+	    }
 	    LhsVar(2)= Rhs+2 ;
 	  }
 	if (indices) {FREE(indices); indices = NULL;}
@@ -264,13 +273,19 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
     case sci_strings:
       {
 	C2F(gsorts)(S,indices,&iflag,&m1,&n1,typex,iord);
-	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, S);
+	if (!CreateVarFromPtrNoCheck(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, S){
+	  if (indices) {FREE(indices); indices = NULL;}
+	  return 0;
+	}
 	LhsVar(1)=Rhs+1;
 
 	if (Lhs == 2)
 	  {
-	    CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)
-	      LhsVar(2)= Rhs+2 ;
+	    if (!CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices){
+	      if (indices) {FREE(indices); indices = NULL;}
+	      return 0;
+	    }
+	    LhsVar(2)= Rhs+2 ;
 	  }
 	C2F(putlhsvar)();
 	if (indices) {FREE(indices); indices = NULL;}
@@ -279,6 +294,7 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
       break;
 
     default:
+      if (indices) {FREE(indices); indices = NULL;}
       Scierror(999,_("%s: Wrong type for first input argument.\n"),fname);
       return 0;
       break;
