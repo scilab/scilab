@@ -15,6 +15,22 @@
 #include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
 /*--------------------------------------------------------------------------*/
+/* matio module */
+#define MATIO_MODULE_NAME "matio"
+static DynLibHandle hMatioLib = NULL;
+static PROC_GATEWAY ptr_gw_matio = NULL;
+static char* dynlibname_matio = NULL;
+static char* gatewayname_matio = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_matio(void)
+{
+	return gw_dynamic_generic(MATIO_MODULE_NAME,
+		&dynlibname_matio,
+		&gatewayname_matio,
+		&hMatioLib,
+		&ptr_gw_matio);
+}
+/*--------------------------------------------------------------------------*/
 /* UMFPACK module */
 #define UMFPACK_MODULE_NAME "umfpack"
 static DynLibHandle hUmfpackLib = NULL;

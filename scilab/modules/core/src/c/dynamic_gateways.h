@@ -12,6 +12,14 @@
 #ifndef __DYNAMIC_GATEWAYS_H__
 #define __DYNAMIC_GATEWAYS_H__
 
+
+/**
+* matio gateway
+* matio is loaded dynamically at runtime
+* load gw_matio in SCI/modules/matio/sci_gateway/gw_matio.c
+*/
+int gw_dynamic_matio(void);
+
 /**
 * UMFPACK gateway
 * UMFPACK is loaded dynamically at runtime
