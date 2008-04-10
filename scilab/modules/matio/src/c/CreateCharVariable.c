@@ -11,6 +11,7 @@
  */
 
 #include "CreateMatlabVariable.h"
+#include "freeArrayOfString.h"
 
 int CreateCharVariable(int stkPos, matvar_t *matVariable)
 {
@@ -56,7 +57,7 @@ int CreateCharVariable(int stkPos, matvar_t *matVariable)
 
       CreateVarFromPtr(stkPos, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, charData);
       
-      freeArrayOfString(charData);
+      freeArrayOfString(charData,nbRow*nbCol);
     }
   else /* Multi-dimension array -> Scilab HyperMatrix */
     {

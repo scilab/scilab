@@ -11,7 +11,9 @@
  */
 
 #include "CreateMatlabVariable.h"
-
+#ifdef _MSC_VER
+#include "strdup_Windows.h"
+#endif
 int CreateStructVariable(int stkPos, matvar_t *matVariable)
 {
   char **fieldNames = NULL;

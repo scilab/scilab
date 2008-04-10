@@ -50,9 +50,8 @@ int CreateDoubleVariable(int stkPos, matvar_t *matVariable)
         }
       else
         {
-#ifndef _MSC_VER
-          CreateHyperMatrixVariable(stkPos, MATRIX_OF_DOUBLE_DATATYPE,  &matVariable->isComplex, &matVariable->rank, matVariable->dims, matVariable->data, &(matVariable->data[nbRow*nbCol]));
-#endif
+		  complexData = &(((unsigned char *)matVariable->data)[matVariable->nbytes/2]);
+          CreateHyperMatrixVariable(stkPos, MATRIX_OF_DOUBLE_DATATYPE,  &matVariable->isComplex, &matVariable->rank, matVariable->dims, matVariable->data, complexData);
         }
     }
   return TRUE;

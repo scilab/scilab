@@ -39,7 +39,7 @@ int sci_matfile_close(char *fname,unsigned long fname_len)
           Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
           return FALSE;
         }
-      fileIndex = *stk(stkAdr);
+      fileIndex = (int)*stk(stkAdr);
     }
   else
     {

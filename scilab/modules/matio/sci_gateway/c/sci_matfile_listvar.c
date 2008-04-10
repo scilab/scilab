@@ -16,6 +16,10 @@
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
+#ifdef _MSC_VER
+#include "strdup_Windows.h"
+#endif
 
 int sci_matfile_listvar(char *fname,unsigned long fname_len)
 {
@@ -45,7 +49,7 @@ int sci_matfile_listvar(char *fname,unsigned long fname_len)
           Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
           return FALSE;
         }
-      fileIndex = *stk(stkAdr);
+      fileIndex = (int)*stk(stkAdr);
     }
   else
     {
