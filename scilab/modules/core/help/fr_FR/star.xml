@@ -5,18 +5,26 @@
   </info>
   <refnamediv>
     <refname>star (*)</refname>
-    <refpurpose> opÈrateur de multiplication  </refpurpose>
+    <refpurpose> op√rateur dde multiplication  </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    Multiplication. Signification habituelle. Valide pour les matrices rÈelles, complexes, polynomiales, rationnelles et pour les listes de type <literal>syslin</literal> (dans ce dernier cas "*" dÈsigne une connection en sÈrie). 
+    Multiplication. Signification habituelle. Valide pour les matrices
+    r√©elles, complexes, polynomiales, rationnelles et pour les
+    listes de type <literal>syslin</literal> (dans ce dernier cas "*"
+    d√©signe une connection en √©rie).
   </para>
     <para>
-    La multiplication ÈlÈment par ÈlÈment est notÈe <literal>x.*y</literal>. Si
-    <literal>x</literal> ou <literal>y</literal> est un scalaire (matrice 1x1) <literal> .* </literal>
-    est Èquivalent ‡ <literal>*</literal>.
+    La multiplication √l√©ment par√l√©ment est
+    no√©e <literal>x.*y</literal>. Si <literal>x</literal> ou
+    <literal>y</literal> est un scalaire (matrice 1x1) <literal> .*
+    </literal> est √©quivalent√† <literal>*</literal>.
   </para>
+  <para><literal>A*.B</literal> est un op√©rateur dont la
+  signification n'est pas pr√©√©f©©øΩiniepeut √tre utilis√ ©Ωpour√føΩinir de
+  nouveaux op√rateurs voir "overloading") avec la  m√me priorit√©que <literal>*</literal></para>
+
     <para>
   </para>
     <para>
@@ -27,7 +35,7 @@
     <title>Voir Aussi</title>
     <simplelist type="inline">
       <member>
-        <link linkend="mulf">mulf</link>
+        <link linkend="slash">slash</link>
       </member>
       <member>
         <link linkend="syslin">syslin</link>
