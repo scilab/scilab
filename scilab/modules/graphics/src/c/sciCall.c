@@ -161,8 +161,6 @@ void Objpoly ( double  * x     ,
    endFigureDataWriting(pFigure);
    pobj = sciGetCurrentObj();
    *hdl=sciGetHandle(pobj);
-
-   sciDrawObj(sciGetCurrentObj());
 }
   
 
