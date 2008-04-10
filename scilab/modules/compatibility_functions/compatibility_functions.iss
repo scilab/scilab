@@ -13,9 +13,6 @@
 ;
 #define COMPATFUNCTIONS "compatibility_functions"
 ;
-Source: bin\{#COMPATFUNCTIONS}.dll; DestDir: {app}\bin; Components: {#COMPN_COMPATFUNCTIONS};
-Source: bin\matio.dll; DestDir: {app}\bin; Components: {#COMPN_COMPATFUNCTIONS};
-
 Source: modules\{#COMPATFUNCTIONS}\VERSION.xml; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\readme.txt; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\license.txt; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
