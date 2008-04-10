@@ -383,14 +383,6 @@
 			<File
 				RelativePath=".\src\c\CreateDoubleVariable.c"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="1"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\src\c\CreateHyperMatrixVariable.c"
@@ -411,17 +403,9 @@
 			<File
 				RelativePath=".\src\c\CreateStructVariable.c"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="1"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\src\c\DllMainmatio.c"
+				RelativePath=".\src\c\DllmainMatio.c"
 				>
 			</File>
 			<File
@@ -459,10 +443,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\gw_matio.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\matfile_manager.h"
 				>
 			</File>
@@ -476,6 +456,10 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+			<File
+				RelativePath=".\src\c\matio.rc"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="localization"
@@ -502,7 +486,15 @@
 			</Filter>
 		</Filter>
 		<File
+			RelativePath=".\Makefile.am"
+			>
+		</File>
+		<File
 			RelativePath=".\matio.iss"
+			>
+		</File>
+		<File
+			RelativePath=".\src\c\matio.rc.bak"
 			>
 		</File>
 		<File
@@ -510,7 +502,7 @@
 			>
 		</File>
 		<File
-			RelativePath=".\Makefile.am"
+			RelativePath=".\src\c\resource.h.bak"
 			>
 		</File>
 		<File

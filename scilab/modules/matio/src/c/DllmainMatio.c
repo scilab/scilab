@@ -13,7 +13,7 @@
 #include <windows.h> 
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../bin/libintl.lib")
-#pragma comment(lib,"../../bin/matio.lib")
+#pragma comment(lib,"../../bin/libmatio.lib")
 /*--------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
