@@ -6,7 +6,6 @@
 	ProjectGUID="{7757B22F-9512-4380-9E40-EFD50575028D}"
 	RootNamespace="compatibility_functions"
 	Keyword="Win32Proj"
-	
 	>
 	<Platforms>
 		<Platform
@@ -44,7 +43,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/matio;../../libs/zlib"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMPATIBILITY_FUNCTIONS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -127,7 +126,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/matio;../../libs/zlib"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMPATIBILITY_FUNCTIONS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -212,7 +211,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/matio;../../libs/zlib"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMPATIBILITY_FUNCTIONS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -302,7 +301,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/matio;../../libs/zlib"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMPATIBILITY_FUNCTIONS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -373,39 +372,63 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\c\Dllmaincompatibility_functions.c"
+				RelativePath=".\src\c\CreateCellVariable.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\gw_compatibility_functions.c"
+				RelativePath=".\src\c\CreateCharVariable.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\raw.c"
+				RelativePath=".\src\c\CreateDoubleVariable.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_beep.c"
+				RelativePath=".\src\c\CreateHyperMatrixVariable.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_loadwave.c"
+				RelativePath=".\src\c\CreateIntegerVariable.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_Playcompatibility_functions.c"
+				RelativePath=".\src\c\CreateMatlabVariable.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_savewave.c"
+				RelativePath=".\src\c\CreateSparseVariable.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\sox.c"
+				RelativePath=".\src\c\CreateStructVariable.c"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\wav.c"
+				RelativePath=".\src\c\DllMainCompatibility_functions.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\gw_matio.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\matfile_manager.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_matfile_close.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_matfile_listvar.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_matfile_open.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_matfile_varreadnext.c"
 				>
 			</File>
 		</Filter>
@@ -415,31 +438,19 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\src\c\CreateMatlabVariable.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\gw_compatibility_functions.h"
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\matfile_manager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\sizes.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\sox.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\st.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\styles.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\wav.h"
 				>
 			</File>
 		</Filter>
@@ -448,10 +459,6 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
-			<File
-				RelativePath=".\src\c\compatibility_functions.rc"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="localization"
@@ -478,15 +485,15 @@
 			</Filter>
 		</Filter>
 		<File
-			RelativePath=".\Makefile.am"
-			>
-		</File>
-		<File
 			RelativePath=".\compatibility_functions.iss"
 			>
 		</File>
 		<File
 			RelativePath=".\sci_gateway\compatibility_functions_gateway.xml"
+			>
+		</File>
+		<File
+			RelativePath=".\Makefile.am"
 			>
 		</File>
 		<File
