@@ -56,14 +56,13 @@ int C2F(sci_tan) _PARAMS((char *fname,unsigned long fname_len))
 		for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
 		{
 			ztans(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
-
-			CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &pReturnRealData, &pReturnImgData);
-			LhsVar(1) = Rhs + 1;
-			PutLhsVar();
-			free(pReturnRealData);
-			free(pReturnImgData);
 		}
 
+		CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &pReturnRealData, &pReturnImgData);
+		LhsVar(1) = Rhs + 1;
+		PutLhsVar();
+		free(pReturnRealData);
+		free(pReturnImgData);
 	}
 	else
 	{// case real
