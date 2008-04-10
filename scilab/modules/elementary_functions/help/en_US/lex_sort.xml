@@ -48,6 +48,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
+    <para> the <literal>lex_sort</literal>  function is now obsolete. It can be replaced by functions <link linkend="gsort">gsort</link> and
+    <link linkend="unique">unique</link>. </para>
     <para><literal>N=lex_sort(M)</literal> sorts the rows (as a group) of the matrix <literal>M</literal>
     in ascending order. If required the output argument <literal>k</literal> contains
     the ordering: <literal>[N,k]=lex_sort(M)</literal> returns <literal>k</literal>  such as <literal>N</literal>  is
@@ -81,8 +83,11 @@ lex_sort(M,'unique')
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
+     <member>
+        <link linkend="gsort">gsort</link>
+      </member>
       <member>
-        <link linkend="sort">sort</link>
+        <link linkend="unique">unique</link>
       </member>
     </simplelist>
   </refsection>

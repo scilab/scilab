@@ -33,17 +33,27 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>N=lex_sort(M)</literal> trie les lignes de la matrice <literal>M</literal>
-    dans l'ordre croissant. Si nécessaire l'argument de sortie <literal>k</literal> permet de retrouver l'ordre du tri : <literal>[N,k]=lex_sort(M)</literal> renvoie <literal>k</literal> tel que <literal>N</literal> est égal à <literal>M(k,:)</literal> .
-  </para>
-    <para><literal>N=lex_sort(M,sel [,'unique'])</literal> produit le même résultat que la suite d'instructions suivante :
-  </para>
+    <para> la fonction  <literal>lex_sort</literal>  est désormais obsolete elle peut être
+    remplacée par les fonctions <link linkend="gsort">gsort</link> et
+    <link linkend="unique">unique</link>. </para>
+    <para><literal>N=lex_sort(M)</literal> trie les lignes de la
+    matrice <literal>M</literal> dans l'ordre croissant. Si
+    nécessaire l'argument de sortie <literal>k</literal> permet de
+    retrouver l'ordre du tri : <literal>[N,k]=lex_sort(M)</literal>
+    renvoie <literal>k</literal> tel que <literal>N</literal> est
+    égal à <literal>M(k,:)</literal> .</para>
+    <para><literal>N=lex_sort(M,sel [,'unique'])</literal> produit le
+    même résultat que la suite d'instructions suivante :</para>
     <programlisting><![CDATA[
 [N,k]=lex_sort(M(:,sel) [,'unique']);
 N=M(k,:)
    ]]></programlisting>
     <para>
-    La chaîne de caractères <literal>'unique'</literal> doit être utilisée si on ne veut retenir que les lignes uniques dans le résultat. Noter que <literal>lex_sort(M,sel,'unique')</literal> ne retient que les lignes de M telles que M(:,sel) est unique.
+    La chaîne de caractères <literal>'unique'</literal> doit
+    être utilisée si on ne veut retenir que les lignes uniques
+    dans le résultat. Noter que
+    <literal>lex_sort(M,sel,'unique')</literal> ne retient que les
+    lignes de M telles que M(:,sel) est unique.
   </para>
     <para>
   </para>
@@ -63,7 +73,10 @@ lex_sort(M,'unique')
     <title>Voir Aussi</title>
     <simplelist type="inline">
       <member>
-        <link linkend="sort">sort</link>
+        <link linkend="gsort">gsort</link>
+      </member>
+      <member>
+        <link linkend="unique">unique</link>
       </member>
     </simplelist>
   </refsection>

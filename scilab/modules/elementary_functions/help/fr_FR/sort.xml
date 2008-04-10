@@ -34,6 +34,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
+    <para> la fonction  <literal>sort</literal>  est désormais obsolete elle peut être
+    remplacée par la fonction <link linkend="gsort">gsort</link>. </para>
     <para><literal>s=sort(v)</literal> trie <literal>v</literal> par ordre décroissant.
     Si <literal>v</literal> est une matrice, cette instruction produit un tri de la 
     matrice <literal>v</literal> vue comme un vecteur <literal>v(:)</literal> (les colonnes sont empilées).
@@ -74,6 +76,9 @@ sort(v,'c')
     <simplelist type="inline">
       <member>
         <link linkend="find">find</link>
+      </member>
+      <member>
+        <link linkend="gsort">gsort</link>
       </member>
     </simplelist>
   </refsection>
