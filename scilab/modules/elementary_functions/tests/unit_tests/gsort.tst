@@ -1918,3 +1918,49 @@ t=b(2:$,:)>b(1:$-1,:);
 if or(t(:,1)) then pause,end
 if or(t(b(2:$,1)==b(1:$-1,1),2)) then pause,end
 if or(a(ind,:)<>b) then pause,end
+
+
+//testing gsort with Nan's
+
+b=gsort([1 2 %nan 3 4],'g','i');
+if or(b(1:4)<>(1:4)) then pause,end
+if find(isnan(b))<>5 then pause,end
+
+b=gsort([1 2 %nan 1 3 ],'g','i');
+if or(b(1:4)<>[1 1 2 3]) then pause,end
+if find(isnan(b))<>5 then pause,end
+
+
+
+b=gsort([1 2 %nan 1 3 ],'g','d');
+if or(b(2:$)<>[3 2 1 1]) then pause,end
+if find(isnan(b))<>1 then pause,end
+
+
+
+b=gsort([1 2 %nan 1 3 %nan 2 3],'g','d');
+if or(b(3:$)<>[3,3,2,2,1,1]) then pause,end
+if or(find(isnan(b))<>[1 2]) then pause,end
+
+
+
+b=gsort([1 2 %nan 1 3 %nan 2 3],'g','i');
+if or(b(1:$-2)<>[1,1,2,2,3,3]) then pause,end
+if or(find(isnan(b))<>[7 8]) then pause,end
+
+
+m=[1 2 %nan;1 3 %nan;1 2 3];
+b=gsort(m,'lr','i');
+if sci2exp(b,0)<>'[1,2,%nan;1,2,3;1,3,%nan]' then pause,end
+
+b=gsort(m,'lr','d');
+if sci2exp(b,0)<>'[1,3,%nan;1,2,%nan;1,2,3]' then pause,end
+
+m=m(:,[3 1 2]);
+
+b=gsort(m,'lc','i');
+if sci2exp(b,0)<>'[1,2,%nan;1,3,%nan;1,2,3]' then pause,end
+
+
+b=gsort(m,'lc','d');
+if sci2exp(b,0)<>'[%nan,2,1;%nan,3,1;3,2,1]' then pause,end
