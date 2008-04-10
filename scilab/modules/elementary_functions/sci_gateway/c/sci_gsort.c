@@ -161,6 +161,7 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
       {
 	if ( m1*n1 != 0 ) 
 	  {
+	    int lr;
 	    double *matrix = stk(l1);
 	    double *tmp_matrix = NULL;
 	    /* next CreateVar and corresponding copy not needed if arg1 is not passed by reference */
@@ -273,7 +274,7 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
     case sci_strings:
       {
 	C2F(gsorts)(S,indices,&iflag,&m1,&n1,typex,iord);
-	if (!CreateVarFromPtrNoCheck(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, S){
+	if (!CreateVarFromPtrNoCheck(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, S)) {
 	  if (indices) {FREE(indices); indices = NULL;}
 	  return 0;
 	}
@@ -281,7 +282,7 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 
 	if (Lhs == 2)
 	  {
-	    if (!CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices){
+	    if (!CreateVarFromPtrNoCheck(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)) {
 	      if (indices) {FREE(indices); indices = NULL;}
 	      return 0;
 	    }
