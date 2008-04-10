@@ -76,89 +76,6 @@ double lnp1m1(double _dblVar)
 }
 
 
-/*abs*/
-double dabss(double _dblVal)
-{
-	return fabs(_dblVal);
-}
-
-/*module of complex*/
-double dabsz(double _dblRealVal, double _dblImgVal)
-{
-	double dblAbsReal	= dabss(_dblRealVal);
-	double dblAbsImg	= dabss(_dblImgVal);
-	double dblMax		= Max(dblAbsReal, dblAbsImg);
-	double dblMin		= Min(dblAbsReal, dblAbsImg);
-	if(dblMin == 0)
-	{
-		return dblMax;
-	}
-	else
-	{
-		return dblMax * (sqrt(1 + pow(dblMin / dblMax, 2)));
-	}
-	/*
-	W = MAX( XABS, YABS )
-	Z = MIN( XABS, YABS )
-	*/
-
-	return 0;
-}
-
-/*cos*/
-double dcoss(double _dblVal)
-{
-	return cos(_dblVal);
-}
-
-/*sin*/
-double dsins(double _dblVal)
-{
-	return sin(_dblVal);
-}
-
-/*tan*/
-double dtans(double _dblVal)
-{
-	return tan(_dblVal);
-}
-
-/*cosh*/
-double dcoshs(double _dblVal)
-{
-	return cosh(_dblVal);
-}
-
-/*sinh*/
-double dsinhs(double _dblVal)
-{
-	return sinh(_dblVal);
-}
-
-/*acos*/
-double dacoss(double _dblVal)
-{
-	return acos(_dblVal);
-}
-
-/*asin*/
-double dasins(double _dblVal)
-{
-	return asin(_dblVal);
-}
-
-/*atan*/
-double datans(double _dblVal)
-{
-	return atan(_dblVal);
-}
-
-/*atan2*/
-double datan2s(double _dblValX, double _dblValY)
-{
-	return atan2(_dblValX, _dblValY);
-}
-
 /*sqrt*/
 double dsqrts(double _dblVal)
 {
@@ -171,328 +88,7 @@ double dlogs(double _dblVal)
   return log(_dblVal);
 }
 
-/*This fonction is a translation of fortran wacos write by Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
-*     REFERENCE
-*        This is a Fortran-77 translation of an algorithm by
-*        T.E. Hull, T. F. Fairgrieve and P.T.P. Tang which
-*        appears in their article :
-*          "Implementing the Complex Arcsine and Arccosine
-*           Functions Using Exception Handling", ACM, TOMS,
-*           Vol 23, No. 3, Sept 1997, p. 299-335
-*/
-void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
-{
-	static double sdblPi		= 3.1415926535897932384626433;
-	static double sdblPi_2		= 1.5707963267948966192313216;
-	static double sdblLn2		= 0.6931471805599453094172321;
-	static double sdblAcross	= 1.5;
-	static double sdblBcross	= 0.6417;
-
-	double dblLsup = sqrt(F2C(dlamch)("o",1L))/8.0;
-	double dblLinf = 4 * sqrt(F2C(dlamch)("u",1L));
-	double dblEpsm = sqrt(F2C(dlamch)("e",1L));
-
-	double dblAbsReal	= fabs(_dblReal);
-	double dblAbsImg	= fabs(_dblImg);
-	double dblSignReal	= dsigns(1, _dblReal);
-	double dblSignImg	= dsigns(1, _dblImg);
-
-	double dblR = 0, dblS = 0, dblA = 0, dblB = 0;
-
-	double dblTemp = 0;
-
-	if( Min(dblAbsReal, dblAbsImg) > dblLinf && Max(dblAbsReal, dblAbsImg) <= dblLsup)
-	{//we are in the safe region
-		dblR = sqrt( pow((dblAbsReal + 1 ), 2) + pow(dblAbsImg, 2));
-		dblS = sqrt( pow((dblAbsReal - 1 ), 2) + pow(dblAbsImg, 2));
-		dblA = 0.5 * ( dblR + dblS );
-		dblB = dblAbsReal / dblA;
-
-
-	//compute the real part
-		if(dblB <= sdblBcross)
-			*_pdblReal = acos(dblB);
-		else if( dblAbsReal <= 1)
-			*_pdblReal = atan(sqrt(0.5 * (dblA + dblAbsReal) * (pow(dblAbsImg, 2) / (dblR + (dblAbsReal + 1)) + (dblS + (1 - dblAbsReal)))) / dblAbsReal);
-		else
-			*_pdblReal = atan((dblAbsImg * sqrt(0.5 * ((dblA + dblAbsReal) / (dblR + (dblAbsReal + 1)) + (dblA + dblAbsReal) / (dblS + (dblAbsReal - 1))))) / dblAbsReal);
-
-		//compute the imaginary part
-		if(dblA <= sdblAcross)
-		{
-			double dblImg1 = 0;
-
-			if(dblAbsReal < 1)
-				//Am1 = 0.5d0*((y**2)/(R+(x+1.d0))+(y**2)/(S+(1.d0-x)))
-				dblImg1 = 0.5 * (pow(dblAbsImg, 2) / (dblR + (dblAbsReal + 1)) + pow(dblAbsImg, 2) / (dblS + (1 - dblAbsReal)));
-			else
-				//Am1 = 0.5d0*((y**2)/(R+(x+1.d0))+(S+(x-1.d0)))
-				dblImg1 = 0.5 * (pow(dblAbsImg, 2) / (dblR + (dblAbsReal + 1)) + (dblS + (dblAbsReal - 1)));
-			//ai = logp1(Am1 + sqrt(Am1*(A+1.d0)))
-			dblTemp = dblImg1 + sqrt(dblImg1 *( dblA + 1));
-			*_pdblImg = F2C(logp1)(&dblTemp);
-		}
-		else
-			//ai = log(A + sqrt(A**2 - 1.d0))
-			*_pdblImg = log(dblA + sqrt(pow(dblA, 2) - 1));
-	}
-	else
-	{//evaluation in the special regions ...
-		if(dblAbsImg <= dblEpsm * fabs(dblAbsReal - 1))
-		{
-			if(dblAbsReal < 1)
-			{
-				*_pdblReal	= acos(dblAbsReal);
-				*_pdblImg	= dblAbsImg / sqrt((1 + dblAbsReal) * (1 - dblAbsReal));
-			}
-			else
-			{
-				*_pdblReal = 0;
-				if(dblAbsReal <= dblLsup)
-				{
-					dblTemp		= (dblAbsReal - 1) + sqrt((dblAbsReal - 1) * (dblAbsReal + 1));
-					*_pdblImg	= F2C(logp1)(&dblTemp);
-				}
-				else
-					*_pdblImg	= sdblLn2 + log(dblAbsReal);
-			}
-		}
-		else if(dblAbsImg < dblLinf)
-		{
-			*_pdblReal	= sqrt(dblAbsImg);
-			*_pdblImg	= *_pdblReal;
-		}
-		else if((dblEpsm * dblAbsImg - 1 >= dblAbsReal))
-		{
-			*_pdblReal	= sdblPi_2;
-			*_pdblImg	= sdblLn2 + log(dblAbsImg);
-		}
-		else if(dblAbsReal > 1)
-		{
-			*_pdblReal	= atan(dblAbsImg / dblAbsReal);
-			dblTemp		= pow((dblAbsReal / dblAbsImg), 2);
-			*_pdblImg	= sdblLn2 + log(dblAbsImg) + 0.5 * F2C(logp1)(&dblTemp);
-		}
-		else
-		{
-			double dblTemp2 = sqrt(1 + pow(dblAbsImg, 2));
-			*_pdblReal	= sdblPi_2;
-			dblTemp		= 2 * dblAbsImg * (dblAbsImg + dblTemp2);
-			*_pdblImg	= 0.5 * F2C(logp1)(&dblTemp);
-		}
-	}
-	if(dblSignReal < 0)
-		*_pdblReal = sdblPi - *_pdblReal;
-
-	if(dblAbsImg != 0 || dblSignReal < 0)
-		*_pdblImg = - dblSignImg * (*_pdblImg);
-}
-
-/*This fonction is a translation of fortran wasin write by Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
-*     REFERENCE
-*        This is a Fortran-77 translation of an algorithm by
-*        T.E. Hull, T. F. Fairgrieve and P.T.P. Tang which
-*        appears in their article :
-*          "Implementing the Complex Arcsine and Arccosine
-*           Functions Using Exception Handling", ACM, TOMS,
-*           Vol 23, No. 3, Sept 1997, p. 299-335
-*/
-void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
-{
-	static double sdblPi_2		= 1.5707963267948966192313216;
-	static double sdblLn2		= 0.6931471805599453094172321;
-	static double sdblAcross	= 1.5;
-	static double sdblBcross	= 0.6417;
-
-	double dblLsup = sqrt(F2C(dlamch)("o",1L))/8.0;
-	double dblLinf = 4 * sqrt(F2C(dlamch)("u",1L));
-	double dblEpsm = sqrt(F2C(dlamch)("e",1L));
-
-	double dblAbsReal	= fabs(_dblReal);
-	double dblAbsImg	= fabs(_dblImg);
-	int iSignReal		= _dblReal < 0 ? -1 : 1;
-	int iSignImg		= _dblImg < 0 ? -1 : 1;
-
-	double dblR = 0, dblS = 0, dblA = 0, dblB = 0;
-
-	double dblTemp = 0;
-
-	if( Min(dblAbsReal, dblAbsImg) > dblLinf && Max(dblAbsReal, dblAbsImg) <= dblLsup)
-	{//we are in the safe region
-		dblR = sqrt( pow((dblAbsReal + 1 ), 2) + pow(dblAbsImg, 2));
-		dblS = sqrt( pow((dblAbsReal - 1 ), 2) + pow(dblAbsImg, 2));
-		dblA = 0.5 * ( dblR + dblS );
-		dblB = dblAbsReal / dblA;
-
-
-	//compute the real part
-		if(dblB <= sdblBcross)
-			*_pdblReal = asin(dblB);
-		else if( dblAbsReal <= 1)
-			*_pdblReal = atan(dblAbsReal / sqrt( 0.5 * (dblA + dblAbsReal) * ( pow(dblAbsImg, 2) / (dblR + (dblAbsReal + 1)) + (dblS + (1 - dblAbsReal)))));
-		else
-			*_pdblReal = atan(dblAbsReal / (dblAbsImg * sqrt(0.5 * ((dblA + dblAbsReal) / (dblR + (dblAbsReal + 1)) + (dblA + dblAbsReal) / (dblS + (dblAbsReal-1))))));
-
-		//compute the imaginary part
-		if(dblA <= sdblAcross)
-		{
-			double dblImg1 = 0;
-
-			if(dblAbsReal < 1)
-				//Am1 = 0.5d0*((y**2)/(R+(x+1.d0))+(y**2)/(S+(1.d0-x)))
-				dblImg1 = 0.5 * (pow(dblAbsImg, 2) / (dblR + (dblAbsReal + 1)) + pow(dblAbsImg, 2) / (dblS + (dblAbsReal - 1)));
-			else
-				//Am1 = 0.5d0*((y**2)/(R+(x+1.d0))+(S+(x-1.d0)))
-				dblImg1 = 0.5 * (pow(dblAbsImg, 2) / (dblR + (dblAbsReal + 1)) + (dblS + (dblAbsReal - 1)));
-			//ai = logp1(Am1 + sqrt(Am1*(A+1.d0)))
-			dblTemp = dblImg1 + sqrt(dblImg1 * dblA + 1);
-			*_pdblImg = F2C(logp1)(&dblTemp);
-		}
-		else
-			//ai = log(A + sqrt(A**2 - 1.d0))
-			*_pdblImg = log(dblA + sqrt(pow(dblA, 2) - 1));
-	}
-	else
-	{//evaluation in the special regions ...
-		if(dblAbsImg <= dblEpsm * fabs(dblAbsReal - 1))
-		{
-			if(dblAbsReal < 1)
-			{
-				*_pdblReal	= asin(dblAbsReal);
-				*_pdblImg	= dblAbsImg / sqrt((1 + dblAbsReal) * (1 - dblAbsReal));
-			}
-			else
-			{
-				*_pdblReal = sdblPi_2;
-				if(dblAbsReal <= dblLsup)
-				{
-					dblTemp		= (dblAbsReal - 1) + sqrt((dblAbsReal - 1) * (dblAbsReal + 1));
-					*_pdblImg	= F2C(logp1)(&dblTemp);
-				}
-				else
-					*_pdblImg	= sdblLn2 + log(dblAbsReal);
-			}
-		}
-		else if(dblAbsImg < dblLinf)
-		{
-			*_pdblReal	= sdblPi_2 - sqrt(dblAbsImg);
-			*_pdblImg	= sqrt(dblAbsImg);
-		}
-		else if((dblEpsm * dblAbsImg - 1 >= dblAbsReal))
-		{
-			*_pdblReal	= dblAbsReal * dblAbsImg;
-			*_pdblImg	= sdblLn2 + log(dblAbsReal);
-		}
-		else if(dblAbsReal > 1)
-		{
-			*_pdblReal	= atan(dblAbsReal / dblAbsImg);
-			dblTemp		= pow((dblAbsReal / dblAbsImg), 2);
-			*_pdblImg	= sdblLn2 + log(dblAbsReal) + 0.5 * F2C(logp1)(&dblTemp);
-		}
-		else
-		{
-			double dblTemp2 = sqrt(1 + pow(dblAbsImg, 2));
-			*_pdblReal	= dblAbsReal / dblTemp2;
-			dblTemp		= 2 * dblAbsImg * (dblAbsImg + dblTemp2);
-			*_pdblImg	= 0.5 * F2C(logp1)(&dblTemp);
-		}
-	}
-	*_pdblReal *= iSignReal;
-	*_pdblImg *= iSignImg;
-}
-
-/*
-watan compute the arctangent of a complex number
-	COPYRIGHT (C) 2001 Bruno Pincon and Lydia van Dijk
-	Written by Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr> so
-	as to get more precision.  Also to fix the
-	behavior at the singular points and at the branch cuts.
-	Polished by Lydia van Dijk 
-	<lvandijk@hammersmith-consulting.com>
-
-*/
-void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
-{
-	static double sdblSlim		= 0.2;
-	static double sdblAlim		= 1E-150;
-	static double sdblTol		= 0.3;
-	static double sdblLn2		= 0.6931471805599453094172321;
-
-	double dblRMax				= F2C(dlamch)("O",1L);
-	double dblPi_2				= 2.0 * datans(1);
-
-
-	//Temporary variables
-	double dblR2 = 0;
-	double dblS = 0;
-
-
-	if(_dblImg == 0)
-	{
-		*_pdblReal	= datans(_dblReal);
-		*_pdblImg	= 0;
-	}
-	else
-	{
-		dblR2 = _dblReal * _dblReal + _dblImg * _dblImg; // Oo
-		if(dblR2 > dblRMax)
-		{
-			if( dabss(_dblImg) > dblRMax)
-				dblS = 0;
-			else
-				dblS = 1 / (((0.5 * _dblReal) / _dblImg) * _dblReal + 0.5 * _dblImg );
-		}
-		else
-			dblS = (2 * _dblImg) / (1+dblR2);
-
-		if(dabss(dblS) < sdblSlim)
-		{
-			/*
-			s is small: |s| < SLIM  <=>  |z| outside the following disks:
-			D+ = D(center = [0;  1/slim], radius = sqrt(1/slim**2 - 1)) if b > 0
-			D- = D(center = [0; -1/slim], radius = sqrt(1/slim**2 - 1)) if b < 0
-			use the special evaluation of log((1+s)/(1-s)) (5)
-			*/
-			*_pdblImg = lnp1m1(dblS) * 0.25;
-		}
-		else
-		{
-			if(dabss(dblS) == 1 && dabss(_dblReal) <= sdblAlim)
-			{
-				//|s| >= SLIM  => |z| is inside D+ or D-
-				*_pdblImg = dsigns(0.5,_dblImg) * ( sdblLn2 - log(dabss(_dblReal)));
-			}
-			else
-			{
-				*_pdblImg = 0.25 * log((pow(_dblReal,2) + pow((_dblImg + 1),2)) / pow(_dblReal,2) + pow((_dblImg - 1),2));
-			}
-		}
-		if(_dblReal == 0)
-		{//z is purely imaginary
-			if( dabss(_dblImg) > 1)
-			{//got sign(b) * pi/2
-				*_pdblReal = dsigns(1, _dblImg) * dblPi_2;
-			}
-			else if( dabss(_dblImg) == 1)
-			{//got a Nan with 0/0
-				*_pdblReal = (_dblReal - _dblReal) / (_dblReal - _dblReal); // Oo
-			}
-			else
-				*_pdblReal = 0;
-		}
-		else if(dblR2 > dblRMax)
-		{//_pdblImg is necessarily very near sign(a)* pi/2 
-			*_pdblReal = dsigns(1, _dblReal) * dblPi_2;
-		}
-		else if(dabss(1 - dblR2) + dabss(_dblReal) <= sdblTol)
-		{//|b| is very near 1 (and a is near 0)  some cancellation occur in the (next) generic formula 
-			*_pdblReal = 0.5 * atan2(2 * _dblReal, (1-_dblImg) * (1 + _dblImg) - pow(_dblReal,2));
-		}
-		else
-			*_pdblReal = 0.5 * atan2(2 * _dblReal, 1 - dblR2);
-	}
-}
-
+/*sign*/
 double dsigns(double _dblRef, double _dblVal)
 {
 	if( _dblVal >= 0)
@@ -501,6 +97,7 @@ double dsigns(double _dblRef, double _dblVal)
 		return -_dblRef;
 }
 
+/*up round*/
 int dceils(double _dblVal)
 {
 	/*
@@ -519,6 +116,7 @@ int dceils(double _dblVal)
 	return (int)(_dblVal);
 }
 
+/*up round with precision*/
 double dceilsEx(double _dblVal, int _iPrecision)
 {
 	double iPow = pow(10, _iPrecision);
@@ -530,6 +128,7 @@ double dceilsEx(double _dblVal, int _iPrecision)
 
 }
 
+/*absolute complex sum*/
 double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg)
 {
 	double dblRetVal = 0;
@@ -540,6 +139,8 @@ double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg)
 
 	return dblRetVal;
 }
+
+/*absolute sum*/
 double dasums(int _iNbElem, double* _pdblReal)
 {
 	double dblRetVal = 0;
@@ -575,6 +176,7 @@ void ddscals(double* _pdblIn, int _iNbElem, double _dblMulti, double* _pdblOut)
 	}
 }
 
+/*Cumulative product*/
 void vCupro(int _iNbElem, double* _piIn, double* _piOut)
 {
 	int iIndex = 0;
@@ -586,6 +188,7 @@ void vCupro(int _iNbElem, double* _piIn, double* _piOut)
 	}
 }
 
+/*Cumulative product complex*/
 void vCuproi(int _iNbElem, double* _piRealIn, double* _piImgIn, double* _piRealOut, double* _piImgOut)
 {
 	int iIndex = 0;
@@ -634,7 +237,7 @@ void vDvmul(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iIn
 		}
 	}
 }
-
+/* vDvmul complex*/
 void vWvmul(int _iNbElem, double* _piRealIn1, double* _piImgIn1, double* _piRealIn2, double* _piImgIn2, int _iIncIn1, int _iIncIn2, double* _piRealOut, double* _piImgOut)
 {
 	int iIndex = 0;
@@ -667,6 +270,7 @@ void vWvmul(int _iNbElem, double* _piRealIn1, double* _piImgIn1, double* _piReal
 	}
 }
 
+/*Cumulative sum*/
 void vCusum(int _iNbElem, double *_pdblIn, double *_pdblOut)
 {
 	double dblTemp = 0;
@@ -706,6 +310,7 @@ void vDadd(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iInc
 	}
 }
 
+/*memset on vector*/
 void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc)
 {
 	int iIndex = 0;
@@ -776,11 +381,11 @@ void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 	*_pdblInfo	= 0;
 	for(iLoop = 0 ; iLoop < _iNbElemX ; iLoop++)
 	{
-		if(_pdblVal[0] <= _pdblX[iLoop] && _pdblX[iLoop] <= _pdblVal[_iNbElemVal-1])
+		if(_pdblVal[0] <= _pdblX[iLoop] && _pdblX[iLoop] <= _pdblVal[_iNbElemVal])
 		{
 			int iIndex = 0;
 			int iIndex1 = 0;
-			int iIndex2 = _iNbElemVal;
+			int iIndex2 = _iNbElemVal+1;
 			while(iIndex2 - iIndex1 > 1)
 			{
 				iIndex = (iIndex1 + iIndex2) / 2;
@@ -789,12 +394,12 @@ void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 				else
 					iIndex1 = iIndex;
 			}
-			_pdblOcc[iIndex2]++;
+			_pdblOcc[iIndex2 - 1]++;
 			_pdblInd[iLoop]	= iIndex2;
 		}
 		else
 		{
-			*_pdblInfo++;
+			(*_pdblInfo)++;
 			_pdblInd[iLoop] = 0;
 		}
 	}
@@ -855,11 +460,11 @@ void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 		{
 			int iIndex = 0;
 			int iIndex1 = 0;
-			int iIndex2 = _iNbElemVal;
+			int iIndex2 = _iNbElemVal-1;
 			while(iIndex2 - iIndex1 > 1)
 			{
 				iIndex = (iIndex1 + iIndex2) / 2;
-				if( _pdblX[iLoop] <= _pdblVal[iIndex])
+				if( _pdblX[iLoop] < _pdblVal[iIndex])
 					iIndex2 = iIndex;
 				else
 					iIndex1 = iIndex;
@@ -867,16 +472,16 @@ void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 			if(_pdblX[iLoop] == _pdblVal[iIndex1])
 			{
 				_pdblOcc[iIndex1]++;
-				_pdblInd[iLoop]	= iIndex1;
+				_pdblInd[iLoop]	= iIndex1 + 1;
 			}
 			else if(_pdblX[iLoop] == _pdblVal[iIndex2])
 			{
 				_pdblOcc[iIndex2]++;
-				_pdblInd[iLoop]	= iIndex2;
+				_pdblInd[iLoop]	= iIndex2 + 1;
 			}
 			else
 			{
-				*_pdblInfo++;
+				(*_pdblInfo)++;
 				_pdblInd[iLoop] = 0;
 			}
 		}
@@ -885,14 +490,6 @@ void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 			*_pdblInfo++;
 			_pdblInd[iLoop] = 0;
 		}
-	}
-	{
-		int iTotal = 0;
-		for(iLoop = 0 ; iLoop < _iNbElemVal ; iLoop++)
-		{
-			iTotal += (int)_pdblOcc[iLoop];
-		}
-		iTotal++;
 	}
 }
 

@@ -12,17 +12,11 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
-#include "stdlib.h"
 #include "basic_functions.h"
 
-#define _NEW_TONIO_
-/*--------------------------------------------------------------------------*/
-extern int C2F(intconj) _PARAMS((int *id));
-/*--------------------------------------------------------------------------*/
 int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
-#ifdef _NEW_TONIO_
 	int iRows		= 0;
 	int iCols		= 0;
 	int iRealData	= 0;
@@ -129,10 +123,6 @@ int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
 			free(piPow);
 		}
 	}
-
-#else
-	C2F(intconj)(id);
-#endif
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

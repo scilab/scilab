@@ -335,11 +335,35 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\abs.c"
+				>
+			</File>
+			<File
+				RelativePath=".\acos.c"
+				>
+			</File>
+			<File
+				RelativePath=".\asin.c"
+				>
+			</File>
+			<File
+				RelativePath=".\atan.c"
+				>
+			</File>
+			<File
 				RelativePath=".\basic_functions.c"
 				>
 			</File>
 			<File
 				RelativePath=".\cmp.c"
+				>
+			</File>
+			<File
+				RelativePath=".\cos.c"
+				>
+			</File>
+			<File
+				RelativePath=".\cosh.c"
 				>
 			</File>
 			<File
@@ -416,10 +440,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_ceil.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_chinesehat.c"
 				>
 			</File>
 			<File
@@ -599,7 +619,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sin.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sinh.c"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\sortTemplate.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\tan.c"
 				>
 			</File>
 			<File

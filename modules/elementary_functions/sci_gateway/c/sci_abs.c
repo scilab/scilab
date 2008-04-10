@@ -12,7 +12,6 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
-#include "stdlib.h"
 #include "basic_functions.h"
 
 int abs_double();

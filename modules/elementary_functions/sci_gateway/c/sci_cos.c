@@ -12,11 +12,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
-#include "stdlib.h"
 #include "basic_functions.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intcos) _PARAMS((int *id));
-extern 
 /*--------------------------------------------------------------------------*/
 
 
@@ -55,8 +53,9 @@ int C2F(sci_cos) _PARAMS((char *fname,unsigned long fname_len))
 
 		for(iIndex = 0 ; iIndex < iCols * iRows ; iIndex++)
 		{
-			pReturnRealData[iIndex] = dcoss(pdblRealData[iIndex]) * dcoshs(pdblImgData[iIndex]);
-			pReturnImgData[iIndex]	= -dsins(pdblRealData[iIndex]) * dsinhs(pdblImgData[iIndex]);
+			zcoss(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
+//			pReturnRealData[iIndex] = dcoss(pdblRealData[iIndex]) * dcoshs(pdblImgData[iIndex]);
+//			pReturnImgData[iIndex]	= -dsins(pdblRealData[iIndex]) * dsinhs(pdblImgData[iIndex]);
 		}
 
 		CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);

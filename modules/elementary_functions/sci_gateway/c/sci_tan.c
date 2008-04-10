@@ -12,7 +12,6 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
-#include "stdlib.h"
 #include "basic_functions.h"
 
 /*--------------------------------------------------------------------------*/
@@ -56,7 +55,7 @@ int C2F(sci_tan) _PARAMS((char *fname,unsigned long fname_len))
 
 		for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
 		{
-			watan(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
+			ztans(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
 
 			CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &pReturnRealData, &pReturnImgData);
 			LhsVar(1) = Rhs + 1;
@@ -75,7 +74,7 @@ int C2F(sci_tan) _PARAMS((char *fname,unsigned long fname_len))
 		pdblRealData		= stk(iRealData1);
 		pReturnRealData		= (double*)malloc(iRows1 * iCols1 * sizeof(double));
 		for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
-			pReturnRealData[iIndex] = datans(pdblRealData[iIndex]);
+			pReturnRealData[iIndex] = dtans(pdblRealData[iIndex]);
 
 		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &pReturnRealData);
 		LhsVar(1) = Rhs + 1;
