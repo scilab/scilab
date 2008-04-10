@@ -384,6 +384,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\httpdownloadfile.c"
+				>
+			</File>
+			<File
 				RelativePath=".\InitializeWindows_tools.c"
 				>
 			</File>
@@ -436,6 +440,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_winhttpdownload.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_winopen.c"
 				>
 			</File>
@@ -474,6 +482,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_windows_tools.h"
+				>
+			</File>
+			<File
+				RelativePath=".\httpdownloadfile.h"
 				>
 			</File>
 			<File

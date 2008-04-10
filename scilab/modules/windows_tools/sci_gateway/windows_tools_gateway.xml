@@ -47,4 +47,5 @@
 <PRIMITIVE gatewayId="47" primitiveId="11" primitiveName="win64" />
 <PRIMITIVE gatewayId="47" primitiveId="12" primitiveName="istssession" />
 <PRIMITIVE gatewayId="47" primitiveId="13" primitiveName="getsystemmetrics" />
+<PRIMITIVE gatewayId="47" primitiveId="14" primitiveName="winhttpdownload" />
 </GATEWAY>
