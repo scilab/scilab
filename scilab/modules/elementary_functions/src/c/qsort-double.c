@@ -17,6 +17,7 @@
  */
 #include "qsort.h"
 #include "qsort-double.h"
+#include "isanan.h"
 
 static int swapcodedouble(char *  parmi,char * parmj, int  n, int inc)  
 { 		
@@ -36,15 +37,15 @@ static int swapcodedouble(char *  parmi,char * parmj, int  n, int inc)
 /*--------------------------------------------------------------------------*/ 
 static int compareCdouble(char *i,char *j)
 {
-  if ( *((double *)i) > *((double *)j)) return (1);
-  if ( *((double *)i) < *((double *)j)) return (-1);
+  if ( *((double *)i) > *((double *)j) || C2F(isanan)((double *)i)==1) return (1);
+  if ( *((double *)i) < *((double *)j) || C2F(isanan)((double *)j)==1) return (-1);
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 
 static int compareDdouble(char *i,char *j)
 {
-  if ( *((double *)i) < *((double *)j)) return (1);
-  if ( *((double *)i) > *((double *)j)) return (-1);
+  if ( *((double *)i) < *((double *)j)|| C2F(isanan)((double *)j)==1) return (1);
+  if ( *((double *)i) > *((double *)j)|| C2F(isanan)((double *)i)==1) return (-1);
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 
