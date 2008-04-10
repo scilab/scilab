@@ -34,3 +34,25 @@ plot2d(x,sin(x));
 // axes box should be off
 if (axes.box <> "off") then pause; end
 
+// for plot
+sda();
+dAxes = gda();
+dAxes.x_location = "origin";
+dAxes.y_location = "origin";
+clf();
+plot(1:10);
+axes = gca();
+// box should be "off" since axes at at origin
+if (axes.box <> "off") then pause; end
+
+// for plot
+sda();
+clf();
+dAxes = gda();
+dAxes.x_location = "top";
+dAxes.y_location = "left";
+plot(1:10);
+axes = gca();
+// box should be "on"
+if (axes.box <> "on") then pause; end
+

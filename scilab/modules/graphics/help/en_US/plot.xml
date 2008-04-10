@@ -161,6 +161,16 @@ plot(&lt;axes_handle&gt;,...)</synopsis>
     the default mode, edit your default axes doing:</para>
     <para>da=gda();</para>
     <para>da.auto_clear = 'on'</para>
+    <para>
+      For a better display <literal>plot</literal> function may modify the <literal>box</literal> property of
+      its parent Axes. This happens when the parent Axes were created by the call to <literal>plot</literal> or were empty
+      before the call. If one of the axis is centered at origin,
+      the box is disable.
+      Otherwise, the box is enable.
+    </para>
+    <para>
+      For more information about box property and axis positionning see <link linkend="axes_properties">axes_properties</link>
+    </para>
     <para>A default color table is used to color plotted curves if you do not
     specify a color. When drawing multiple lines, the plot command
     automatically cycles through this table. Here are the used colors:</para>

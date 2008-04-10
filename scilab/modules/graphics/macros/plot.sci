@@ -14,8 +14,6 @@ function plot(varargin)
 
 [lhs,rhs]=argn(0);
 
-
-
 if ~rhs
 	//LineSpec and PropertySpec examples:
 	title_demo = [
@@ -435,7 +433,10 @@ while (Property <= nv-1)
 end
 
 // force drawing of box like in matlab
-if isFirstPlot then
+// for a first plot
+// unless we are using centered axes
+// to keep compatibility with Scilab 4
+if  isFirstPlot & curAxes.x_location <> "origin" & curAxes.y_location <> "origin" then
   curAxes.box = "on";
 end
 
