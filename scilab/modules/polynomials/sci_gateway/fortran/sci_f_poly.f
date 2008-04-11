@@ -79,15 +79,26 @@ c     formal variable
       endif
       n=istk(il+5)-1
       if(n.gt.4) call msgs(109,0)
-      do 12 i=1,4
-         id(i)=blank
-         if(i.le.n) id(i)=istk(il+5+i)
- 12   continue
-      if(abs(id(1)).lt.10.or.abs(id(1)).ge.blank) then
+      if (abs(istk(il+5+1)).lt.10) then
          err=2
-         call error(116)
+         call error(248)
          return
       endif
+      do 12 i=1,4
+         id(i)=blank
+         if(i.le.n) then
+            if (abs(istk(il+5+i)).ge.blank) then
+               err=2
+               call error(248)
+               return
+            endif
+            id(i)=istk(il+5+i)
+         else 
+c     .     fill with space
+            id(i)=blank
+         endif
+ 12   continue
+
 c
 c     first argument
       top=top-1
@@ -99,7 +110,7 @@ c     first argument
       itr=it1
 
       if(.not.roots) goto 17
- 13   if(mn1.eq.1.or.m1.ne.n1) goto 14
+      if(mn1.eq.1.or.m1.ne.n1) goto 14
 c     polynome caracteristique,decomposition spectrale de la matrice
 
       if(ref) then
