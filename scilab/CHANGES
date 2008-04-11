@@ -133,9 +133,9 @@ String manipulation:
 Functions:
 ==========
  - New functions:
-	+ getdebuginfo
-	+ getscilabmode		    - returns scilab mode
-	+ getvariablesonstack	- get variable names on stack of scilab
+	+ getdebuginfo          - returns informations about scilab and your system
+	+ getscilabmode         - returns scilab mode
+	+ getvariablesonstack   - get variable names on stack of scilab
 	+ getmd5                - get the MD5 checksum of strings or files.
 	+ getmodules            - returns list of modules installed in Scilab
 	+ with_module           - Checks if a Scilab module is installed
@@ -228,6 +228,8 @@ Windows_tools:
 	+ dos                 - shell (cmd) command execution 
 	+ win64               - determine whether Windows x64 version of Scilab
 	+ istssession         - determine if scilab is launched from a ms terminal service session.
+	+ getsystemmetrics    - retrieves the specified system metric or system configuration setting.
+	+ winhttpdownload     - download a file from a URL.
 
 History manager:
 ================
