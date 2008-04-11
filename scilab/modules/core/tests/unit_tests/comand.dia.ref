@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 clear //sdfdgd
 clear//sdfdgd
 a=1;
@@ -31,7 +37,7 @@ foo aaa bbb cc//qdsddfd
  aaabbbcc   
 if ans<>'aaabbbcc' then bugmes();quit;end
 deff('y=foo(a,b,c)','y=a+b+c')
-Warning : redefining function: foo                     
+Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
 
 foo aaa bbb   cc
  ans  =

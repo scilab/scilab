@@ -1,4 +1,9 @@
-// Copyright INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // simple
 //
 deff('[x,y]=t1(a,b)','x=a+b,y=a-b','n')
@@ -108,7 +113,7 @@ text = ['if n>0 then x=1'
                     'end'];
 deff('[x]=b(a)','x=a,prod([1 1])','n')
 deff('[x,y]=t5(n)',text,'n')
-Warning : redefining function: t5                      
+Warning : redefining function: t5                      . Use funcprot(0) to avoid this message
 
 [u,v]=t5(5);
 if u<>'pos' then bugmes();quit;end
@@ -184,7 +189,7 @@ if u<>'neg' then bugmes();quit;end
 if exists('tt')==1 then bugmes();quit;end
 //more complex
 deff('[x]=b(a)','if a==1 then x=1,else x=a,prod([1 1]),end','n')
-Warning : redefining function: b                       
+Warning : redefining function: b                       . Use funcprot(0) to avoid this message
 
 //
 deff('[x,y]=t5(n)',text,'n')
@@ -326,7 +331,7 @@ if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
 //
 text(2)='y=ode(a*(k-1),k-1,k,list(simul,a)),';
 deff('[x]=calcul(n)',text,'n')
-Warning : redefining function: calcul                  
+Warning : redefining function: calcul                  . Use funcprot(0) to avoid this message
 
 deff('[ydot]=simul(t,y,a)','ydot=a','n')
 x=[];
@@ -344,7 +349,7 @@ x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
 //resume in external
 deff('[ydot]=simul(t,y,a)','ydot=a,tt=resume([tt,t])','n')
-Warning : redefining function: simul                   
+Warning : redefining function: simul                   . Use funcprot(0) to avoid this message
 
 tt=[]
  tt  =
@@ -352,7 +357,7 @@ tt=[]
      []
 deff('[x]=calcul(n)',text,'n')
 deff('[ydot]=simul(t,y,a)','ydot=a','n')
-Warning : redefining function: simul                   
+Warning : redefining function: simul                   . Use funcprot(0) to avoid this message
 
 x=[];
 x=calcul(3);
@@ -371,7 +376,7 @@ if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
 //external calls a macro
 //
 deff('[x]=b(a)','if a==1 then x=a,prod([1 1]),else x=a,prod([1 1]),end','n')
-Warning : redefining function: b                       
+Warning : redefining function: b                       . Use funcprot(0) to avoid this message
 
 text=['for k=1:n,'
      'y=ode(a*(k-1),k-1,k,simul),'
@@ -379,10 +384,10 @@ text=['for k=1:n,'
      'end'];
 //
 deff('[x]=calcul(n)',text,'n')
-Warning : redefining function: calcul                  
+Warning : redefining function: calcul                  . Use funcprot(0) to avoid this message
 
 deff('[ydot]=simul(t,y,a)','ydot=b(a)','n')
-Warning : redefining function: simul                   
+Warning : redefining function: simul                   . Use funcprot(0) to avoid this message
 
 x=[];
 x=calcul(3);
@@ -400,7 +405,7 @@ if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
 //
 text(2)='y=ode(a*(k-1),k-1,k,list(simul,a)),';
 deff('[x]=calcul(n)',text,'n')
-Warning : redefining function: calcul                  
+Warning : redefining function: calcul                  . Use funcprot(0) to avoid this message
 
 deff('[ydot]=simul(t,y,a)','ydot=b(a)','n')
 x=[];
@@ -418,7 +423,7 @@ x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
 //
 deff('[ydot]=simul(t,y,a)','ydot=b(a),tt=resume([tt,t])','n')
-Warning : redefining function: simul                   
+Warning : redefining function: simul                   . Use funcprot(0) to avoid this message
 
 tt=[]
  tt  =
@@ -426,7 +431,7 @@ tt=[]
      []
 deff('[x]=calcul(n)',text,'n')
 deff('[ydot]=simul(t,y,a)','ydot=b(a)','n')
-Warning : redefining function: simul                   
+Warning : redefining function: simul                   . Use funcprot(0) to avoid this message
 
 x=[];
 x=calcul(3);
@@ -447,7 +452,7 @@ text=['for k=1:n,'
      'end'];
 //
 deff('[x]=calcul(n)',text,'n')
-Warning : redefining function: calcul                  
+Warning : redefining function: calcul                  . Use funcprot(0) to avoid this message
 
 deff('[ydot]=simul(t,y,a)','ydot=b(a)','n')
 x=[];
@@ -466,7 +471,7 @@ if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
 //
 text(2)='y=ode(a*(k-1),k-1,k,list(simul,a)),';
 deff('[x]=calcul(n)',text,'n')
-Warning : redefining function: calcul                  
+Warning : redefining function: calcul                  . Use funcprot(0) to avoid this message
 
 deff('[ydot]=simul(t,y,a)','ydot=b(a)','n')
 x=[];
@@ -484,7 +489,7 @@ x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
 //
 deff('[ydot]=simul(t,y,a)','ydot=b(a),tt=resume([tt,t])','n')
-Warning : redefining function: simul                   
+Warning : redefining function: simul                   . Use funcprot(0) to avoid this message
 
 tt=[]
  tt  =
@@ -492,7 +497,7 @@ tt=[]
      []
 deff('[x]=calcul(n)',text,'n')
 deff('[ydot]=simul(t,y,a)','ydot=b(a)','n')
-Warning : redefining function: simul                   
+Warning : redefining function: simul                   . Use funcprot(0) to avoid this message
 
 x=[];
 x=calcul(3);
@@ -542,14 +547,14 @@ deff('[r]=horner(p,x)',['if type(p)==15|type(p)==16 then';
                         'for k=1:d,';
                           'r=r*x+coeff(p,d-k)*eye();';
                         'end;'],'n')
-Warning : redefining function: horner                  
+Warning : redefining function: horner                  . Use funcprot(0) to avoid this message
 
 deff('[f]=%p_r_p(p1,p2)',['[l,c]=size(p2);';
                         'if l*c <>1 then f=p1*invr(p2),return,end;';
                         '[l,c]=size(p1);';
                         '[p1 p2]=simp(p1,p2*ones(l,c));';
                         'f=tlist([''r'',''num'',''den'',''dt''],p1,p2,[]);'],'n')
-Warning : redefining function: %p_r_p                  
+Warning : redefining function: %p_r_p                  . Use funcprot(0) to avoid this message
 
 horn=horner;
 h=1/s;
@@ -580,10 +585,9 @@ fic=file('open',TMPDIR+"/test_macro_exec",'unknown');
 write(fic,text)
 file('close',fic)
 deff('[x]=b(a)','x=a,prod([1 1])','n')
-Warning : redefining function: b                       
+Warning : redefining function: b                       . Use funcprot(0) to avoid this message
 
 y=t9(2)
- 
  aa=1,if a==2 then aa=b(a),end
  aa  =
  
@@ -591,14 +595,12 @@ y=t9(2)
  aa  =
  
     2.  
- 
  y  =
  
     2.  
 if y<>2 then bugmes();quit;end
 file('rewind',fic)
 y=t9(2)
- 
  aa=1,if a==2 then aa=b(a),end
  aa  =
  
@@ -606,14 +608,12 @@ y=t9(2)
  aa  =
  
     2.  
- 
  y  =
  
     2.  
 if y<>2 then bugmes();quit;end
 //
 y=t9(2)
- 
  aa=1,if a==2 then aa=b(a),end
  aa  =
  
@@ -621,13 +621,11 @@ y=t9(2)
  aa  =
  
     2.  
- 
  y  =
  
     2.  
 if y<>2 then bugmes();quit;end
 y=t9(2)
- 
  aa=1,if a==2 then aa=b(a),end
  aa  =
  
@@ -635,7 +633,6 @@ y=t9(2)
  aa  =
  
     2.  
- 
  y  =
  
     2.  
