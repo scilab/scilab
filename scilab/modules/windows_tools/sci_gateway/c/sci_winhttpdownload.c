@@ -35,16 +35,7 @@ int sci_winhttpdownload(char *fname,unsigned long l)
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 
-		Status = (int*)MALLOC(sizeof(int));
-
 		result = httpDownloadFile(cstk(l1),cstk(l2));
-
-		if (result == 0) *Status = TRUE;
-		else *Status = FALSE;
-
-		m1 = 1;n1 = 1;
-		CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
-		LhsVar(1)=Rhs+1;
 
 		if (Lhs == 2)
 		{
@@ -53,7 +44,19 @@ int sci_winhttpdownload(char *fname,unsigned long l)
 			int outIndex = 0 ;
 			CreateVar( Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &numRow, &numCol, &outIndex );
 			*stk(outIndex) = (int)result ;
+			
 		}
+
+		Status = (int*)MALLOC(sizeof(int));
+
+		if (result == 0) *Status = TRUE;
+		else *Status = FALSE;
+
+		m1 = 1;n1 = 1;
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
+
+		if (Lhs == 2) LhsVar(2)=Rhs+2;
+		LhsVar(1)=Rhs+1;
 
 		C2F(putlhsvar)();
 		if (Status) {FREE(Status);Status=NULL;}
