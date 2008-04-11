@@ -179,6 +179,12 @@ c
          call error(5)
          return
       endif
+      if (istk(il1).ne.istk(il2)) then
+         top=top +1
+         fin=-fin
+         return
+      endif
+
 c     
       call unsfdcopy(mn2,stk(l2),1,stk(l1+mn1),1)
       n=n1+n2
@@ -233,6 +239,13 @@ c     .  [[];b]
          call error(6)
          return
       endif
+
+      if (istk(il1).ne.istk(il2)) then
+         top=top +1
+         fin=-fin
+         return
+      endif
+
       m=m1+m2
       mn=m*n1
       if(n1.eq.1) then
