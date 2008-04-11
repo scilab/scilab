@@ -34,7 +34,7 @@ val=get(n,prop)</synopsis>
         <listitem>
           <para>handle, the handle of the entity to retrieve a property.
           <literal>h</literal> can be a vector of handles, in which case get returns
-          the property's value for all objects identified by h(i).</para>
+          the property's value for all objects identified by h(i). <literal>h</literal> can also be <emphasis>0</emphasis> to get the root object properties.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -121,6 +121,9 @@ val=get(n,prop)</synopsis>
     <simplelist type="inline">
       <member>
         <link linkend="uicontrol">uicontrol</link>
+      </member>
+      <member>
+        <link linkend="root_properties">root_properties</link>
       </member>
       <member>
         <link linkend="set">set</link>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Vincent Couvert
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="root_properties">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>root_properties</refname>
+    <refpurpose>Description des propriétés de l'objet root.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>L'objet root est un objet virtuel utilisé pour obtenir les propriétés de l'écran de l'ordinateur. Utilisez la fonction <literal>get</literal> avec <emphasis>0</emphasis> comme premier paramètre pour accéder à ses propriétés.</para>
+    <variablelist>
+      <varlistentry>
+        <term>Propriétés de l'objet root</term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>screensize_px : </term>
+              <listitem>
+                <para>La taille de l'écran en pixels.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screensize_pt : </term>
+              <listitem>
+                <para>La taille de l'écran en points.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screensize_mm : </term>
+              <listitem>
+                <para>La taille de l'écran en millimètres.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screensize_cm : </term>
+              <listitem>
+                <para>La taille de l'écran en centimètres.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screensize_in : </term>
+              <listitem>
+                <para>La taille de l'écran en pouces.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screensize_norm : </term>
+              <listitem>
+                <para>La taille normalisée de l'écran.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>screendepth : </term>
+              <listitem>
+                <para>Le nombre de bits utilisés pour coder les couleurs.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+    get(0, "screensize_px")
+    get(0, "screeendepth")
+]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="get">get</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteur</title>
+    <para>Vincent COUVERT</para>
+  </refsection>
+</refentry>
