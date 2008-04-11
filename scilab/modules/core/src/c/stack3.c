@@ -1055,3 +1055,49 @@ void CreateCSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalEl
 
 
 }
+
+int GetDimFromVar(int _iVarNum, int _iNum/*Oo*/, int* _piVal)
+{
+	int iType				= GetType(_iVarNum);
+	int iRows				= 0;
+	int iCols				= 0;
+	int iRealData			= 0;
+	double *pdblRealData	= NULL;
+	int *piRealData			= NULL;
+
+	if(iType == sci_matrix)
+	{
+		if(iIsComplex(_iVarNum))
+		{
+			Error(89);
+			return _iNum;
+		}
+		GetRhsVar(_iVarNum, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
+		pdblRealData = stk(iRealData);
+		*_piVal = (int)Max(pdblRealData[0], 0);
+	}
+	else if(iType == sci_ints)
+	{
+		int iComplex	= iIsComplex(_iVarNum);
+		int iYType		= 4;
+		int iXInc		= 1;
+		int iYInc		= 1;
+
+		GetRhsVar(_iVarNum, MATRIX_OF_INTEGER_DATATYPE, &iRows, &iCols, &iRealData);
+		if(iRows * iCols != 1)
+		{
+			Error(89);
+			return _iNum;
+		}
+		iRows = 1;
+		piRealData = istk(iRealData);
+		C2F(tpconv)(&iComplex, &iYType, &iRows, piRealData, &iXInc, _piVal, &iYInc);
+		*_piVal = Max(*_piVal, 0);
+	}
+	else
+	{
+		Error(89);
+		return _iNum;
+	}
+	return 0;
+}
