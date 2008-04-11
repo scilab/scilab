@@ -15,8 +15,8 @@
 
 x = [1,2,3;4,5,6];
 
-if or(size(x)<>[2,3]) then pause; end
+if or(size(x)<>[2,3]) then pause,end
 
-if size(x,1)<>2 then pause; end
+if size(x,1)<>2 then pause,end
 
-if size(x,2)<>3 then pause; end
+if size(x,2)<>3 then pause,end

@@ -18,5 +18,5 @@ s=poly(0,"s");
 t=0:1e-25:1e-20;
 s1=syslin("c",1/(1+1e-21*s));
 
-if execstr("s2=csim(""step"",t,s1);","errcatch")<>0 then pause;end	
+if execstr("s2=csim(""step"",t,s1);","errcatch")<>0 then pause,end
 

@@ -16,4 +16,4 @@
 M = [1 2;3 4];
 
 // Check the result is the same as Matlab one
-if or(mtlb_fftshift(M)<>[4 3;2 1]) then pause; end
+if or(mtlb_fftshift(M)<>[4 3;2 1]) then pause,end

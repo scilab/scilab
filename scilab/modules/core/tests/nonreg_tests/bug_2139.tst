@@ -22,7 +22,7 @@ global A
 
 A=zeros(2,4);
 
-if execstr("reshapeA", "errcatch")<>0 then pause; end
+if execstr("reshapeA", "errcatch")<>0 then pause,end
 
 
 

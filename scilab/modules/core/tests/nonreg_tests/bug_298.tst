@@ -14,5 +14,5 @@
 //     Using size() without giving any argument messes up Scilab
 
 
-if execstr("size()","errcatch")==0 then pause; end
+if execstr("size()","errcatch")==0 then pause,end
 

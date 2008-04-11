@@ -14,5 +14,4 @@
 //    Il semble que l'affectation directe dans un element de vecteur ne soit pas possible!?
 
 a = [];
-if execstr("[a(1) a(2)]=size([1,2]);", "errcatch")<>0 then pause; end
-
+if execstr("[a(1) a(2)]=size([1,2]);", "errcatch")<>0 then pause,end

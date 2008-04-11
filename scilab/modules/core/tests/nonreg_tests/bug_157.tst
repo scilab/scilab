@@ -14,5 +14,4 @@
 //    Recursive extraction is not valid in this context
 
 name = 1;
-if execstr("name()(1)", "errcatch")<>0 then pause; end
-
+if execstr("name()(1)", "errcatch")<>0 then pause,end

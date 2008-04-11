@@ -18,5 +18,4 @@ for k=1:2000
   a($+1) = 1;
 end
 
-if execstr("b = list(a(1:1000));", "errcatch")<>0 then pause; end
-
+if execstr("b = list(a(1:1000));", "errcatch")<>0 then pause,end
