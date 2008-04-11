@@ -86,7 +86,9 @@ static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *as
 		break;
 
 		case choosetype (0, PF_D):
-		retval += (*xxprintf) ((VPTR) target, p, (int) dval);
+		{
+			retval += (*xxprintf) ((VPTR) target, p, (long long)dval);
+		}
 		break;
 
 		case choosetype (1, PF_D):
