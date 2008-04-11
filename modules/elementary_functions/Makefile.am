@@ -24,7 +24,16 @@ src/c/qsort-int.c \
 src/c/qsort-short.c \
 src/c/qsort-string.c \
 src/c/IsEqualVar.c \
-src/c/basic_functions.c
+src/c/basic_functions.c \
+src/c/abs.c \
+src/c/acos.c \
+src/c/asin.c \
+src/c/atan.c \
+src/c/cos.c \
+src/c/cosh.c \
+src/c/sin.c \
+src/c/sinh.c \
+src/c/tan.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp
