@@ -127,7 +127,7 @@ c     .  for matlab compatiblity: for (k=1:n)
          pstk(pt) = lpt(4)
          char1=blank
       else
-         call error(35)
+         call error(34)
          return
       endif
 c     on recherche le "end" pour s'assurer que toutes les lignes relatives 
