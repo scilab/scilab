@@ -57,7 +57,9 @@ c
          call error(18)
          goto 97
       endif
-      toperr=top-max(0,rhs)
+c     ireftop used to reset top if an error occurs during the function evaluation
+      ireftop=top-max(0,rhs)
+
       goto 91
 c     
  90   if(err.gt.0) goto 97
@@ -75,13 +77,14 @@ c
       if (.not.allowptr(k)) call ref2val
       krec=k
 
+
       call callinterf(k,iflagint)
 C      if (k.eq.krec) krec=99999
       krec=-1
       if(fun.ge.0) then
          if (top-lhs+1.gt.0) call iset(rhs,0,infstk(top-lhs+1),1)
          if(paus.gt.0) goto 91
-	 if (err1.gt.0) top=toperr
+	 if (err1.gt.0) top=ireftop
          goto 90
       endif
 c     called interface ask for a scilab function to perform the function (fun=-1)
