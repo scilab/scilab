@@ -15,6 +15,18 @@
 #ifndef __HTTPDOWNLOADFILE_H__
 #define __HTTPDOWNLOADFILE_H__
 
+typedef enum {
+	
+	HTTP_DOWNLOAD_ERROR_OK = 0,
+	HTTP_DOWNLOAD_ERROR_INVALID_URL = -1,
+	HTTP_DOWNLOAD_ERROR_INTERNET_OPEN = -2,
+	HTTP_DOWNLOAD_ERROR_OPEN_URL = -3,
+	HTTP_DOWNLOAD_ERROR_CREATEFILE = -4,
+	HTTP_DOWNLOAD_ERROR_INVALID_FILE_SIZE = -5,
+	HTTP_DOWNLOAD_ERROR_INTERNET_READFILE = -6,
+	HTTP_DOWNLOAD_ERROR_WRITEFILE = -7,
+} httpdownloadfile_error_code;
+
 /**
 * download a file by http (uses wininet library)
 * http://msdn2.microsoft.com/en-us/library/aa385473(VS.85).aspx
@@ -22,7 +34,7 @@
 * @param[in] szURL string url file to download
 * @param[in] szSaveFilePath string filename destination
 */
-BOOL httpDownloadFile(char * szURL,char * szSaveFilePath);
+httpdownloadfile_error_code httpDownloadFile(char * szURL,char * szSaveFilePath);
 
 #endif /* __HTTPDOWNLOADFILE_H__ */
 /*--------------------------------------------------------------------------*/

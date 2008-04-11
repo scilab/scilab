@@ -15,6 +15,8 @@
 #include "stack-c.h"
 #include "httpdownloadfile.h"
 #include "MALLOC.h"
+#include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_winhttpdownload(char *fname,unsigned long l)
 {
@@ -23,24 +25,44 @@ int sci_winhttpdownload(char *fname,unsigned long l)
 	int *Status = NULL;
 
 	CheckRhs(2,2);
-	CheckLhs(1,1);
+	CheckLhs(1,2);
 
 	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) ) 
+	{
+		int *Status = NULL;
+		httpdownloadfile_error_code result;
 
-	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-	GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 
-	Status = (int*)MALLOC(sizeof(int));
+		Status = (int*)MALLOC(sizeof(int));
 
-	*Status = (BOOL) httpDownloadFile(cstk(l1),cstk(l2));
-	
-	m1 = 1;n1 = 1;
-	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
-	LhsVar(1)=Rhs+1;
+		result = httpDownloadFile(cstk(l1),cstk(l2));
 
-	C2F(putlhsvar)();
-	if (Status) {FREE(Status);Status=NULL;}
+		if (result == 0) *Status = TRUE;
+		else *Status = FALSE;
 
+		m1 = 1;n1 = 1;
+		CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
+		LhsVar(1)=Rhs+1;
+
+		if (Lhs == 2)
+		{
+			int numRow   = 1 ;
+			int numCol   = 1 ;
+			int outIndex = 0 ;
+			CreateVar( Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &numRow, &numCol, &outIndex );
+			*stk(outIndex) = (int)result ;
+		}
+
+		C2F(putlhsvar)();
+		if (Status) {FREE(Status);Status=NULL;}
+
+	}
+	else
+	{
+		Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname);
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
