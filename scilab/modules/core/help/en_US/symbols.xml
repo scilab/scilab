@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>symbols</refname>
-    <refpurpose> scilab operator names</refpurpose>
+    <refpurpose> scilab operator names </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -109,6 +109,15 @@
         <td>kron</td>
       </tr>
     </informaltable>
+  </refsection>
+  <refsection>
+    <title>Remark</title>
+    <para>For historical reasons, different symbols may represent the same operator:</para>
+    <para> <literal>{</literal> as the same meaning as <literal>[</literal></para>
+    <para> <literal>}</literal> as the same meaning as <literal>]</literal></para>
+    <para> <literal>@</literal> as the same meaning as <literal>~</literal></para>
+    <para> <literal>`</literal> as the same meaning as &lt;</para>
+    <para> It is highly recommended not to use these features because they will be removed in the future </para>
   </refsection>
   <refsection>
     <title>See Also</title>
