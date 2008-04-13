@@ -32,7 +32,7 @@ int CreateDoubleVariable(int stkPos, matvar_t *matVariable)
         {
           if(matVariable->fp->version==MAT_FT_MAT4) /* MATLAB4: data is a table of value */
             {
-              complexData =  &(((unsigned char *)matVariable->data)[matVariable->nbytes/2]); //&((matVariable->data)[nbRow*nbCol]);
+              complexData =  (double *)&(((unsigned char *)matVariable->data)[matVariable->nbytes/2]); //&((matVariable->data)[nbRow*nbCol]);
               CreateCVarFromPtr(stkPos, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &nbRow, &nbCol, &matVariable->data, &complexData);
             }
           else /* MATLAB5 file: data is a ComplexSplit */
@@ -50,7 +50,7 @@ int CreateDoubleVariable(int stkPos, matvar_t *matVariable)
         }
       else
         {
-		  complexData = &(((unsigned char *)matVariable->data)[matVariable->nbytes/2]);
+		  complexData = (double *)&(((unsigned char *)matVariable->data)[matVariable->nbytes/2]);
           CreateHyperMatrixVariable(stkPos, MATRIX_OF_DOUBLE_DATATYPE,  &matVariable->isComplex, &matVariable->rank, matVariable->dims, matVariable->data, complexData);
         }
     }
