@@ -308,7 +308,11 @@ c
          call error(227)
          return
       endif
-      if(rhs.gt.2) goto 55
+      if(rhs.eq.3) goto 55
+      if(rhs.gt.3) then
+         fin=-fin
+         return
+      endif
 c     arg2(arg1)
 c     get arg2
       il2=iadr(lstk(top))
@@ -404,10 +408,7 @@ c     form resulting variable
       go to 999
 c     
 c     arg3(arg1,arg2)
- 55   if(rhs.gt.3) then
-         call error(36)
-         return
-      endif
+ 55   continue
 c     get arg3
       il3=iadr(lstk(top))
       if(istk(il3).lt.0) il3=iadr(istk(il3+1))
