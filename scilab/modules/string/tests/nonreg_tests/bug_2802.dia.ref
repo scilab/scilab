@@ -26,3 +26,4 @@ refu
  
  BUG CONVSTR : GÈNÈRATION DE L'AIDE   
 if refu <> resu then bugmes();quit;end
+if convstr('È','u') <> 'È' then bugmes();quit;end

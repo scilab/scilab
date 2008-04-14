@@ -26,3 +26,4 @@ resu = convstr(ref,'u')
 refu
 if refu <> resu then pause,end
 
+if convstr('é','u') <> 'é' then pause,end
