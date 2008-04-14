@@ -19,13 +19,13 @@
 // See the file ../license.txt
 //
 
-function add_entity_menu(win,emen)
+function add_entity_menu(win, emen)
   if argn(2)<1 then 
-    win=get(gcf(),'figure_id')
+    win = get(gcf(),'figure_id')
     scf(win)
   end
   if argn(2)<2 then emen='Edit',end
-  old=gcf()
+  old = gcf()
   EntityMenus=["Browser","Copy","Paste",'Move","Delete","Insert","Ok","Cancel"];
   //delmenu(win,'Entities')
  
