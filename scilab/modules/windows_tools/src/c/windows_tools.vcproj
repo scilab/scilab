@@ -372,6 +372,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\createGUID.c"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainWindows_Tools.c"
 				>
 			</File>
@@ -401,6 +405,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_consolebox.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_createGUID.c"
 				>
 			</File>
 			<File
@@ -476,6 +484,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\createGUID.h"
+				>
+			</File>
 			<File
 				RelativePath=".\FindFileAssociation.h"
 				>

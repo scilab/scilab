@@ -34,6 +34,7 @@ int sci_win64(char *fname,unsigned long l);
 int sci_istssession(char *fname,unsigned long l);
 int sci_getsystemmetrics(char *fname,unsigned long l);
 int sci_winhttpdownload(char *fname,unsigned long l);
+int sci_createGUID(char *fname,unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_WINDOWS_TOOLS_H__ */
 

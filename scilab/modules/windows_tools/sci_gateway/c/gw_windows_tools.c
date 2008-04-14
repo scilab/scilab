@@ -31,7 +31,8 @@ static gw_generic_table Tab[]=
 {sci_win64,"win64"},
 {sci_istssession,"istssession"},
 {sci_getsystemmetrics,"getsystemmetrics"},
-{sci_winhttpdownload,"winhttpdownload"}
+{sci_winhttpdownload,"winhttpdownload"},
+{sci_createGUID,"createGUID"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_windows_tools(void)
