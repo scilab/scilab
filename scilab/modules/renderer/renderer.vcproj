@@ -17,9 +17,6 @@
 		/>
 	</Platforms>
 	<ToolFiles>
-		<ToolFile
-			RelativePath="..\..\Visual-Studio-settings\swig.rules"
-		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -34,9 +31,6 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="swig rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -120,9 +114,6 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="swig rule"
-			/>
-			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -204,9 +195,6 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="swig rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -295,9 +283,6 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="swig rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
