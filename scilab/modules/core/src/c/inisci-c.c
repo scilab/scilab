@@ -99,12 +99,23 @@ int SetSci()
  */
 int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
 {
-	char *pathtmp=NULL;
+	char *pathtmp = NULL;
+
 	SetSci();
-	pathtmp=getSCIpath();
-	strcpy(buf,pathtmp);
-	*nbuf = (int)strlen(buf);
-	if (pathtmp) {FREE(pathtmp);pathtmp=NULL;}
+
+	pathtmp = getSCIpath();
+	if (pathtmp)
+	{
+		strcpy(buf,pathtmp);
+		*nbuf = (int)strlen(buf);
+		FREE(pathtmp);
+		pathtmp = NULL;
+	}
+	else
+	{
+		*buf = NULL;
+		*nbuf = 0;
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
