@@ -23,7 +23,9 @@ function OpenSet_()
 
   global inactive_windows
 
-  if or(curwin==winsid()) then gh_current_window=gcf(curwin);end
+  if or(curwin==winsid()) then 
+    gh_current_window = scf(curwin);
+  end
 
   if ~%diagram_open then
     %kk=Select(1)
@@ -64,7 +66,11 @@ function OpenSet_()
                         //otherwise the undo returns to an unpredictable past
       needcompile = max(needcompile, needcompileb)
       %Path = list('objs',%kk)
-      if or(curwin==winsid()) then gh_current_window=gcf(curwin);end
+      
+      if or(curwin==winsid()) then 
+        gh_current_window = scf(curwin);
+      end
+      
       scs_m = update_redraw_obj(scs_m, %Path,o) ;//scs_m.objs(%kk)=o
     end
     
@@ -129,7 +135,11 @@ function OpenSet_()
       if ~pal_mode then
 	needcompile = max(needcompile, needcompileb)
       end
-      if or(curwin==winsid()) then gh_current_window=gcf(curwin);end
+      
+      if or(curwin==winsid()) then
+        gh_current_window = scf(curwin);
+      end
+      
       scs_m = update_redraw_obj(scs_m, %Path,o) ; //** DANGER DANGER DANGER
       
     end
