@@ -31,9 +31,11 @@ function [%scs_wgrid]=do_grid(%scs_wgrid)
      %scs_wgrid(2)=b2
      %scs_wgrid(3)=colorr
      drawgrid();
-     gh_window=gcf(%win)
+     
+     gh_window = scf(%win)
+     
      swap_handles(gh_window.children.children($),...
-                gh_window.children.children(1));
+                  gh_window.children.children(1));
      delete(gh_window.children.children(1));
      drawnow();
      //** show_pixmap() ; //** not useful on Scilab 5
