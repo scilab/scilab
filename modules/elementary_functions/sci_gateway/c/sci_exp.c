@@ -13,15 +13,10 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
-/*--------------------------------------------------------------------------*/
 
-#define _NEW_TONIO_
-extern int C2F(intexp) _PARAMS((int *id));
-/*--------------------------------------------------------------------------*/
 int C2F(sci_exp) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
-#ifdef _NEW_TONIO_
 	int iRows = 0;
 	int iCols = 0;
 	int iRealData = 0;
@@ -37,10 +32,47 @@ int C2F(sci_exp) _PARAMS((char *fname,unsigned long fname_len))
 		return 0;
 	}
 
+	if(iIsComplex(1))
+	{
+		double *pdblRealData = 0;
+		double *pdblImgData = 0;
+		double *pReturnRealData = NULL;
+		double *pReturnImgData = NULL;
+		int iComplex = 1;
 
-#else
-	C2F(intexp)(id);
-#endif
+		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
+		pdblRealData	= stk(iRealData);
+		pdblImgData		= stk(iImgData);
+
+		pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
+		pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
+
+		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
+			zexps(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
+
+		CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
+		LhsVar(1) = Rhs + 1;
+		PutLhsVar();
+		free(pReturnRealData);
+		free(pReturnImgData);
+	}
+	else
+	{
+		double *pdblRealData = 0;
+		double *pReturnRealData = NULL;
+
+		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
+		pdblRealData		= stk(iRealData);
+		pReturnRealData		= (double*)malloc(iRows * iCols * sizeof(double));
+
+		for(iIndex = 0 ; iIndex < iCols * iRows ; iIndex++)
+			pReturnRealData[iIndex] = dexps(pdblRealData[iIndex]);
+		
+		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		LhsVar(1) = Rhs + 1;
+		PutLhsVar();
+		free(pReturnRealData);
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -314,7 +314,7 @@ void vDadd(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iInc
 void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc)
 {
 	int iIndex = 0;
-	int iIndex2 = 1;
+	int iIndex2 = 0;
 	if(_iInc < 0 )
 		iIndex2 = (-_iNbElem+1) * _iInc + 1;
 
@@ -492,4 +492,3 @@ void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 		}
 	}
 }
-

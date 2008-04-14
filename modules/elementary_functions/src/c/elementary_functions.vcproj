@@ -367,6 +367,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\exp.c"
+				>
+			</File>
+			<File
 				RelativePath=".\finite.c"
 				>
 			</File>

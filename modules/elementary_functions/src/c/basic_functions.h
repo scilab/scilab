@@ -54,6 +54,8 @@ double datans(double _dblVal);
 double datan2s(double _dblValX, double _dblValY);
 void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
 
+double dexps(double _dblVal);
+void zexps(double _dblRealIn, double _dblImgIn, double *_pdblRealOut, double *_pdblImgOut);
 
 double dcoshs(double _dblVal);
 double dsinhs(double _dblVal);
@@ -75,5 +77,6 @@ void vDadd(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iInc
 void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
 void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
+
 
 #endif //__BASIC_FUNCTION__

@@ -25,6 +25,8 @@ int C2F(sci_asin) _PARAMS((char *fname,unsigned long fname_len))
 	int iImgData = 0;
 	int iIndex;
 	
+	C2F(intasin)(id);
+	return 0;
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 

@@ -58,7 +58,7 @@ void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 
 			if(dblAbsReal < 1)
 				//Am1 = 0.5d0*((y**2)/(R+(x+1.d0))+(y**2)/(S+(1.d0-x)))
-				dblImg1 = 0.5 * (pow(dblAbsImg, 2) / (dblR + (dblAbsReal + 1)) + pow(dblAbsImg, 2) / (dblS + (dblAbsReal - 1)));
+				dblImg1 = 0.5 * (pow(dblAbsImg, 2) / (dblR + (dblAbsReal + 1)) + pow(dblAbsImg, 2) / (dblS + (1 - dblAbsReal)));
 			else
 				//Am1 = 0.5d0*((y**2)/(R+(x+1.d0))+(S+(x-1.d0)))
 				dblImg1 = 0.5 * (pow(dblAbsImg, 2) / (dblR + (dblAbsReal + 1)) + (dblS + (dblAbsReal - 1)));
@@ -68,7 +68,7 @@ void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 		}
 		else
 			//ai = log(A + sqrt(A**2 - 1.d0))
-			*_pdblImg = log(dblA + sqrt(pow(dblA, 2) - 1));
+			*_pdblImg = log(dblA + sqrt(pow(dblA, 2) - 1)); 
 	}
 	else
 	{//evaluation in the special regions ...
