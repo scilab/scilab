@@ -35,7 +35,7 @@
 //**                   in trigonometric wise
 //**
 //** output : nothing. This function directly work in the figure handle
-//**          gcf(curwin)
+//**          gh_ = scf(curwin)
 //**
 //** 25/07/07, Alan
 function rotate_compound(sel_x, sel_y, sel_w, sel_h, blk, theta)

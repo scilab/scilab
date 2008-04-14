@@ -20,8 +20,9 @@
 //
 
 function Grid_()
-  Cmenu=[]
-  gh_window = gcf(%win);
+  Cmenu = [] ;
+  
+  gh_window = scf(%win);
 
   if exists('%scicos_with_grid') then
     %scicos_with_grid = ~%scicos_with_grid;
