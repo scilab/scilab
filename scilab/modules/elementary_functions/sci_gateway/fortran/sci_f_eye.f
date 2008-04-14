@@ -38,13 +38,9 @@ c     eye sans argument
       elseif(rhs.eq.1) then
          il=iadr(lstk(top))
          
-         if(abs(istk(il)).gt.10) then
+         if(abs(istk(il)).gt.10.or.abs(istk(il)).eq.5.
+     1    or.abs(istk(il)).eq.6) then
             call funnam(ids(1,pt+1),'eye',il)
-            fun=-1
-            return
-         endif
-         if(abs(istk(il)).eq.5.or.abs(istk(il)).eq.6) then
-            call putid(ids(1,pt+1),speye)
             fun=-1
             return
          endif
