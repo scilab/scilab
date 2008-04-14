@@ -45,10 +45,14 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
        end
 
     //** the double click is the  main window
-    elseif win==curwin then //click dans la fenetre courante
-      k=getblocktext(scs_m,[xc;yc])
+    elseif win==curwin then 
+      
+
+      k = getblocktext(scs_m,[xc;yc]); 
+      
+
       if k<>[] then
-          o=disconnect_ports(scs_m.objs(k)) // mark ports disconnected
+          o = disconnect_ports(scs_m.objs(k)) //** mark ports as disconnected
       end
 
     //** double click in a superblock ?

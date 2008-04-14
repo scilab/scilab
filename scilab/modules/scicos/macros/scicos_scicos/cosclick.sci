@@ -200,6 +200,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       //**      execstr( <Diagram_1000(1)>  )
       execstr('Cmenu='+part(str,9:length(str)-1));   //**
       //**  Cmenu = menus('Diagram')(1)      ; //** needs explanation  
+      disp (Cmenu);
       execstr('Cmenu='+Cmenu) ;
       //**  At the end 'Cmenu' contains the string show in the dinamic selection menu (e.g. "Replot")   
       return ; //** ---> EXIT POINT  
