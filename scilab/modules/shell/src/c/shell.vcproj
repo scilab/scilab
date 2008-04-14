@@ -6,7 +6,7 @@
 	ProjectGUID="{805AA73F-EF7B-4177-BF46-200B72D8F83A}"
 	RootNamespace="shell"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -394,6 +394,14 @@
 			<File
 				RelativePath=".\GetCommandLine.c"
 				>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						FavorSizeOrSpeed="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\windows\gotoxy_nw.c"

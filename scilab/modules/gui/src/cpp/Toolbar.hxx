@@ -23,6 +23,7 @@ extern "C"{
 #include "SetPropertyStatus.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "BOOL.h"
 }
 
 #endif /* !__TOOLBAR_HXX__ */

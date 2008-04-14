@@ -31,6 +31,6 @@ void setWaitBarMessage(int ID, char **message, int nbLine)
 
 void setWaitBarIndeterminateMode(int ID, BOOL status)
 {
-  CallScilabBridge::setWaitBarIndeterminateMode(getScilabJavaVM(), ID, status);
+  CallScilabBridge::setWaitBarIndeterminateMode(getScilabJavaVM(), ID, BOOLtobool(status));
 }
 

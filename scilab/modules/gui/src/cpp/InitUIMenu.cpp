@@ -97,22 +97,22 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
 
 void EnableRootMenu(char *name, BOOL status)
 {
-  CallScilabBridge::setRootMenuEnabled(getScilabJavaVM(), name, status);
+  CallScilabBridge::setRootMenuEnabled(getScilabJavaVM(), name, BOOLtobool(status));
 }
 
 void EnableRootSubMenu(char *name, int position, BOOL status)
 {
-  CallScilabBridge::setRootSubMenuEnabled(getScilabJavaVM(), name, position, status);
+  CallScilabBridge::setRootSubMenuEnabled(getScilabJavaVM(), name, position, BOOLtobool(status));
 }
 
 void EnableFigureMenu(int figurenum, char *name, BOOL status)
 {
-  CallScilabBridge::setFigureMenuEnabled(getScilabJavaVM(), figurenum, name, status);
+  CallScilabBridge::setFigureMenuEnabled(getScilabJavaVM(), figurenum, name, BOOLtobool(status));
 }
 
 void EnableFigureSubMenu(int figurenum, char *name, int position, BOOL status)
 {
-  CallScilabBridge::setFigureSubMenuEnabled(getScilabJavaVM(), figurenum, name, position, status);
+  CallScilabBridge::setFigureSubMenuEnabled(getScilabJavaVM(), figurenum, name, position, BOOLtobool(status));
 }
 
 void DeleteRootMenu(char *name)

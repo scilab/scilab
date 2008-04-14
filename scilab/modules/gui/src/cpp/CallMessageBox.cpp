@@ -101,7 +101,7 @@ void setMessageBoxDefaultInput(int ID, char** values, int nbValues)
 
 void setMessageBoxModal(int ID, BOOL status)
 {
-  CallScilabBridge::setMessageBoxModal(getScilabJavaVM(), ID, status);
+  CallScilabBridge::setMessageBoxModal(getScilabJavaVM(), ID, BOOLtobool(status));
 }
 
 void setMessageBoxIcon(int ID, char *name)

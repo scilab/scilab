@@ -22,7 +22,7 @@ void CallJxgetmouse()
 
 void CallJxgetmouseWithOptions(int withMotion, int withRelease)
 {
-  Jxgetmouse::xgetmouse(getScilabJavaVM(), withMotion, withRelease);
+  Jxgetmouse::xgetmouse(getScilabJavaVM(), BOOLtobool((BOOL)withMotion), BOOLtobool((BOOL)withRelease));
 }
 
 int getJxgetmouseMouseButtonNumber()

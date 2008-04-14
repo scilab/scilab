@@ -21,6 +21,6 @@ void setFigureEventHandler(int ID, char * command)
 
 void setFigureEventHandlerEnabled(int ID, BOOL status)
 {
-   CallScilabBridge::setEventHandlerEnabled(getScilabJavaVM(), ID, status);
+   CallScilabBridge::setEventHandlerEnabled(getScilabJavaVM(), ID, BOOLtobool(status));
 }
 

@@ -17,6 +17,7 @@
 extern "C" {
 #include "getScilabJavaVM.h"
 #include "CallJxgetmouse.h"
+#include "BOOL.h"
 }
 
 #endif

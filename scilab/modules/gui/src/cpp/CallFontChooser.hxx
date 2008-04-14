@@ -14,6 +14,7 @@
 
 #include "CallScilabBridge.hxx"
 extern "C" {
+#include "BOOL.h"
 #include "getScilabJavaVM.h"
 #include "CallFontChooser.h"
 }

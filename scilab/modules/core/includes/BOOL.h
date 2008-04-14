@@ -31,5 +31,11 @@ typedef int BOOL ;
 #endif
 #define FALSE 0
 
+/* converts BOOL to bool */
+#define BOOLtobool(w)     ((w == TRUE) ? true : false)
+
+/* converts bool to BOOL */
+#define booltoBOOL(w)     ((w == true) ? TRUE : FALSE)          
+
 #endif /* __BOOL_H__ */
 /*--------------------------------------------------------------------------*/

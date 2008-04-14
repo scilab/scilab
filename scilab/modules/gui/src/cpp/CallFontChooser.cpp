@@ -31,12 +31,12 @@ void setFontChooserFontSize(int fontChooserID, int fontSize)
 
 void setFontChooserBold(int fontChooserID, BOOL bold)
 {
-  CallScilabBridge::setFontChooserBold(getScilabJavaVM(), fontChooserID, bold);
+  CallScilabBridge::setFontChooserBold(getScilabJavaVM(), fontChooserID, BOOLtobool(bold));
 }
 
 void setFontChooserItalic(int fontChooserID, BOOL italic)
 {
-  CallScilabBridge::setFontChooserItalic(getScilabJavaVM(), fontChooserID, italic);
+  CallScilabBridge::setFontChooserItalic(getScilabJavaVM(), fontChooserID, BOOLtobool(italic));
 }
 
 void fontChooserDisplayAndWait(int fontChooserID)
