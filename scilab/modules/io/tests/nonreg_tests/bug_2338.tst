@@ -14,6 +14,5 @@
 //    string(overloadinglib) contains one empty element: that shouldn't be
 
 
-a=string(overloadinglib);       
- 
-if ~isempty(find(a=="")) then pause; end
+a=string(overloadinglib);
+if ~isempty(find(a=="")) then pause,end

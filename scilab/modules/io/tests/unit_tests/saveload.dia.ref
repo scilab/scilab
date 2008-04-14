@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+funcprot(0);
 global filename;
 filename = TMPDIR+'mysave';
 deff('r=Check(a,b,c,d)',[
@@ -72,29 +79,13 @@ a=uint32(1:9);if ~Check(a) then bugmes();quit;end
 a=uint32(1:10000);if ~Check(a) then bugmes();quit;end
 deff('x=a(n)','x=n+1','n');if ~Check(a) then bugmes();quit;end
 deff('x=a(n)','x=n+1');if ~Check(a) then bugmes();quit;end
-Warning : redefining function: a                       
-
 deff('x=a','x=n+1','n');if ~Check(a) then bugmes();quit;end
-Warning : redefining function: a                       
-
 deff('x=a','x=n+1');if ~Check(a) then bugmes();quit;end
-Warning : redefining function: a                       
-
 deff('a(n)','x=n+1','n');if ~Check(a) then bugmes();quit;end
-Warning : redefining function: a                       
-
 deff('a(n)','x=n+1');if ~Check(a) then bugmes();quit;end
-Warning : redefining function: a                       
-
 deff('a()','x=n+1','n');if ~Check(a) then bugmes();quit;end
-Warning : redefining function: a                       
-
 deff('a()','x=n+1');if ~Check(a) then bugmes();quit;end
-Warning : redefining function: a                       
-
 a=list();if ~Check(a) then bugmes();quit;end
-Warning : redefining function: a                       
-
 a=list(1);if ~Check(a) then bugmes();quit;end
 a=list(1,rand(10,10),'asdfsf');if ~Check(a) then bugmes();quit;end
 a=list(1,rand(10,10),'asdfsf',poly(rand(10,10),'s'));if ~Check(a) then bugmes();quit;end

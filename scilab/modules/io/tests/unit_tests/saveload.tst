@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+funcprot(0);
+
 global filename;
 filename = TMPDIR+'mysave';
 

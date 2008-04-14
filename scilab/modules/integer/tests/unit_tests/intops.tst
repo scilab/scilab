@@ -5,6 +5,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+
+funcprot(0);
+
 //extractions
 v=int8([1 2 3]);
 if v(2)<>int8(2) then pause,end

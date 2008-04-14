@@ -13,9 +13,6 @@
 // <-- Short Description -->
 //     pol2str produces empty output (instead of '0') for null polynomials
 
-
 p = poly([0,10,1+%i,1-%i],"x");
-
-if stripblanks(pol2str(p))<>"-20*x+22*x^2-12*x^3+x^4" then pause; end
- 
-if pol2str(0*p)<>"0" then pause; end
+if stripblanks(pol2str(p))<>"-20*x+22*x^2-12*x^3+x^4" then pause,end
+if pol2str(0*p)<>"0" then pause,end

@@ -38,7 +38,7 @@ SCIFILECONTENTSREF=["";
 "// Display warning for floating point exception";
 "ieee(1);";
 "";
-"// L.1: No simple equivalent, so mtlb_fprintf() is called";
+"// L.1: No simple equivalent, so mtlb_fprintf() is called.";
 "mtlb_fprintf(""qsdfsdcvwqghcv"")";
 ]
 

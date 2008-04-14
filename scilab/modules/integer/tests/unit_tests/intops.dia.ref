@@ -1,4 +1,10 @@
-// Copyright INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+funcprot(0);
 //extractions
 v=int8([1 2 3]);
 if v(2)<>int8(2) then bugmes();quit;end
@@ -208,24 +214,18 @@ if or(sum(x')<>INT(sum(X'))) then bugmes();quit;end
 if or(cumsum(x)<>INT(cumsum(X))) then bugmes();quit;end
 if or(cumsum(x')<>INT(cumsum(X'))) then bugmes();quit;end
 deff('y=INT(x)','y=uint16(x)')
-Warning : redefining function: INT                     
-
 x=INT(X);
 if or(sum(x)<>INT(sum(X))) then bugmes();quit;end
 if or(sum(x')<>INT(sum(X'))) then bugmes();quit;end
 if or(cumsum(x)<>INT(cumsum(X))) then bugmes();quit;end
 if or(cumsum(x')<>INT(cumsum(X'))) then bugmes();quit;end
 deff('y=INT(x)','y=uint8(x)')
-Warning : redefining function: INT                     
-
 x=INT(X);
 if or(sum(x)<>INT(sum(X))) then bugmes();quit;end
 if or(sum(x')<>INT(sum(X'))) then bugmes();quit;end
 if or(cumsum(x)<>INT(cumsum(X))) then bugmes();quit;end
 if or(cumsum(x')<>INT(cumsum(X'))) then bugmes();quit;end
 deff('y=INT(x)','y=int8(x)')
-Warning : redefining function: INT                     
-
 x=INT(X);
 if or(sum(x)<>INT(sum(X))) then bugmes();quit;end
 if or(sum(x')<>INT(sum(X'))) then bugmes();quit;end
@@ -238,24 +238,18 @@ if or(sum(x',1)<>INT(sum(X',1))) then bugmes();quit;end
 if or(cumsum(x,1)<>INT(cumsum(X,1))) then bugmes();quit;end
 if or(cumsum(x',1)<>INT(cumsum(X',1))) then bugmes();quit;end
 deff('y=INT(x)','y=uint16(x)')
-Warning : redefining function: INT                     
-
 x=INT(X);
 if or(sum(x,1)<>INT(sum(X,1))) then bugmes();quit;end
 if or(sum(x',1)<>INT(sum(X',1))) then bugmes();quit;end
 if or(cumsum(x,1)<>INT(cumsum(X,1))) then bugmes();quit;end
 if or(cumsum(x',1)<>INT(cumsum(X',1))) then bugmes();quit;end
 deff('y=INT(x)','y=uint8(x)')
-Warning : redefining function: INT                     
-
 x=INT(X);
 if or(sum(x,1)<>INT(sum(X,1))) then bugmes();quit;end
 if or(sum(x',1)<>INT(sum(X',1))) then bugmes();quit;end
 if or(cumsum(x,1)<>INT(cumsum(X,1))) then bugmes();quit;end
 if or(cumsum(x',1)<>INT(cumsum(X',1))) then bugmes();quit;end
 deff('y=INT(x)','y=int8(x)')
-Warning : redefining function: INT                     
-
 x=INT(X);
 if or(sum(x,1)<>INT(sum(X,1))) then bugmes();quit;end
 if or(sum(x',1)<>INT(sum(X',1))) then bugmes();quit;end
@@ -267,24 +261,18 @@ if or(sum(x','c')<>INT(sum(X','c'))) then bugmes();quit;end
 if or(cumsum(x,'c')<>INT(cumsum(X,'c'))) then bugmes();quit;end
 if or(cumsum(x','c')<>INT(cumsum(X','c'))) then bugmes();quit;end
 deff('y=INT(x)','y=uint16(x)')
-Warning : redefining function: INT                     
-
 x=INT(X);
 if or(sum(x,'c')<>INT(sum(X,'c'))) then bugmes();quit;end
 if or(sum(x','c')<>INT(sum(X','c'))) then bugmes();quit;end
 if or(cumsum(x,'c')<>INT(cumsum(X,'c'))) then bugmes();quit;end
 if or(cumsum(x','c')<>INT(cumsum(X','c'))) then bugmes();quit;end
 deff('y=INT(x)','y=uint8(x)')
-Warning : redefining function: INT                     
-
 x=INT(X);
 if or(sum(x,'c')<>INT(sum(X,'c'))) then bugmes();quit;end
 if or(sum(x','c')<>INT(sum(X','c'))) then bugmes();quit;end
 if or(cumsum(x,'c')<>INT(cumsum(X,'c'))) then bugmes();quit;end
 if or(cumsum(x','c')<>INT(cumsum(X','c'))) then bugmes();quit;end
 deff('y=INT(x)','y=int8(x)')
-Warning : redefining function: INT                     
-
 x=INT(X);
 if or(sum(x,'c')<>INT(sum(X,'c'))) then bugmes();quit;end
 if or(sum(x','c')<>INT(sum(X','c'))) then bugmes();quit;end
@@ -292,8 +280,6 @@ if or(cumsum(x,'c')<>INT(cumsum(X,'c'))) then bugmes();quit;end
 if or(cumsum(x','c')<>INT(cumsum(X','c'))) then bugmes();quit;end
 //diag triu tril
 deff('y=INT(x)','y=int16(x)')
-Warning : redefining function: INT                     
-
 X=round(10*rand(1,30));
 x=INT(X);
 if or(diag(x)<>diag(X)) then bugmes();quit;end
@@ -317,8 +303,6 @@ if or(tril(x)<>tril(X)) then bugmes();quit;end
 if or(tril(x,2)<>tril(X,2)) then bugmes();quit;end
 if or(tril(x,-2)<>tril(X,-2)) then bugmes();quit;end
 deff('y=INT(x)','y=uint8(x)')
-Warning : redefining function: INT                     
-
 X=round(10*rand(1,30));
 x=INT(X);
 if or(diag(x)<>diag(X)) then bugmes();quit;end
@@ -343,8 +327,6 @@ if or(tril(x,2)<>tril(X,2)) then bugmes();quit;end
 if or(tril(x,-2)<>tril(X,-2)) then bugmes();quit;end
 // save load
 deff('y=INT(x)','y=uint8(x)')
-Warning : redefining function: INT                     
-
 X=round(10*rand(1,30));
 x=INT(X);
 save(TMPDIR+'/foo',x)
@@ -352,8 +334,6 @@ clear x;load(TMPDIR+'/foo');if or(x<>INT(X)) then bugmes();quit;end
 x=list(1,x,2);save(TMPDIR+'/foo',x)
 clear x;load(TMPDIR+'/foo');if or(x<>list(1,INT(X),2)) then bugmes();quit;end
 deff('y=INT(x)','y=int32(x)')
-Warning : redefining function: INT                     
-
 X=round(10*rand(1,30));
 x=INT(X);
 save(TMPDIR+'/foo',x)
@@ -362,29 +342,21 @@ x=list(1,x,2);save(TMPDIR+'/foo',x)
 clear x;load(TMPDIR+'/foo');if or(x<>list(1,INT(X),2)) then bugmes();quit;end
 //abs
 deff('y=INT(x)','y=int8(x)')
-Warning : redefining function: INT                     
-
 X=round(10*rand(1,30))-5;
 x=INT(X);
 if or(abs(x)<>INT(abs(X))) then bugmes();quit;end
 deff('y=INT(x)','y=int16(x)')
-Warning : redefining function: INT                     
-
 X=round(10*rand(1,30))-5;
 x=INT(X);
 if or(abs(x)<>INT(abs(X))) then bugmes();quit;end
 //matrix
 deff('y=INT(x)','y=int8(x)')
-Warning : redefining function: INT                     
-
 X=round(10*rand(1,30))-5;
 x=INT(X);
 if or(matrix(x,10,-1)<>INT(matrix(X,10,-1))) then bugmes();quit;end
 if or(matrix(x,10,3)<>INT(matrix(X,10,3))) then bugmes();quit;end
 if or(matrix(x,-1,3)<>INT(matrix(X,-1,3))) then bugmes();quit;end
 deff('y=INT(x)','y=uint8(x)')
-Warning : redefining function: INT                     
-
 X=round(10*rand(1,30))-5;
 x=INT(X);
 if or(matrix(x,10,-1)<>INT(matrix(X,10,-1))) then bugmes();quit;end
@@ -392,8 +364,6 @@ if or(matrix(x,10,3)<>INT(matrix(X,10,3))) then bugmes();quit;end
 if or(matrix(x,-1,3)<>INT(matrix(X,-1,3))) then bugmes();quit;end
 //max min
 deff('y=INT(x)','y=int8(x)')
-Warning : redefining function: INT                     
-
 X=round(10*rand(2,30))-5;
 Y=ones(2,30);
 x=INT(X);

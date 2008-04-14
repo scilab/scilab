@@ -13,5 +13,8 @@
 // <-- Short Description -->
 //    sprintf error
 
-if sprintf("%e", 1e-10)<>"1.000000e-10" then pause; end
-
+if MSDOS then
+	if sprintf("%e", 1e-10) <> "1.000000e-010" then pause; end
+else
+	if sprintf("%e", 1e-10) <> "1.000000e-10" then pause; end
+end
