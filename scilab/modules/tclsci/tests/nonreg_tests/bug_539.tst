@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- INTERACTIVE TEST -->
+
 // <-- Non-regression test for bug 539 -->
 //
 // <-- Bugzilla URL -->
@@ -41,4 +43,4 @@ tcl_script=['toplevel .w1'
 'pack .w1.b ']
 mputl(tcl_script,TMPDIR+'/test.tcl')
 // Execute the tcl script
-TK_EvalFile(TMPDIR+'/test.tcl')
+TCL_EvalFile(TMPDIR+'/test.tcl')

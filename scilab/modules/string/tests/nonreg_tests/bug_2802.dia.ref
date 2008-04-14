@@ -14,15 +14,15 @@
 // The returned string is cut before the first accented character.
 ref  = 'Bug convstr : GÈnÈration de l'+ascii(39)+'aide';
 refl = 'bug convstr : gÈnÈration de l'+ascii(39)+'aide';
-refu = 'BUG CONVSTR : G…N…RATION DE L'+ascii(39)+'AIDE';
+refu = 'BUG CONVSTR : GÈNÈRATION DE L'+ascii(39)+'AIDE';
 resl = convstr(ref,'l');
 if refl <> resl then bugmes();quit;end
 resu = convstr(ref,'u')
  resu  =
  
- BUG CONVSTR : G…N…RATION DE L'AIDE   
+ BUG CONVSTR : GÈNÈRATION DE L'AIDE   
 refu
  refu  =
  
- BUG CONVSTR : G…N…RATION DE L'AIDE   
+ BUG CONVSTR : GÈNÈRATION DE L'AIDE   
 if refu <> resu then bugmes();quit;end

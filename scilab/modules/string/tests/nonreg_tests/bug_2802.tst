@@ -17,7 +17,7 @@
 ref  = 'Bug convstr : Génération de l'+ascii(39)+'aide';
 
 refl = 'bug convstr : génération de l'+ascii(39)+'aide';
-refu = 'BUG CONVSTR : GÉNÉRATION DE L'+ascii(39)+'AIDE';
+refu = 'BUG CONVSTR : GéNéRATION DE L'+ascii(39)+'AIDE';
 
 resl = convstr(ref,'l');
 if refl <> resl then pause,end
