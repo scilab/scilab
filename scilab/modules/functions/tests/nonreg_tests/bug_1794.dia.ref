@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 1794 -->
 //
 // <-- Bugzilla URL -->
@@ -5,12 +11,8 @@
 //
 // <-- Short Description -->
 //    Problem encountered when redefining builtin function
-// Copyright INRIA
-// Scilab Project - Serge Steer
-// Copyright INRIA 2005
-// Date : 30 janvier 2006
 beta=5;
-Warning : redefining function: beta                    
+Warning : redefining function: beta                    . Use funcprot(0) to avoid this message
 
 try
 	beta
@@ -26,7 +28,7 @@ function y=foo()
 endfunction
 try
 	foo()
-Warning : redefining function: beta                    
+Warning : redefining function: beta                    . Use funcprot(0) to avoid this message
 
  ans  =
  

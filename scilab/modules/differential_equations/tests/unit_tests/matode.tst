@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+funcprot(0);
+
 // Copyright INRIA
 Leps=1.e-6;
 //     dy1/dt = -.04*y1 + 1.e4*y2*y3

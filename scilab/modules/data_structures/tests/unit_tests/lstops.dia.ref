@@ -1,4 +1,9 @@
-// Copyright INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 mode(5)
 //-----------------------
 //-- extractions tests --
@@ -66,7 +71,7 @@ if type(list(a(1:2)))<>15 then bugmes();quit;end
 deff('[a,b]=foo(x,y)','a=x;b=y')
 [u,v]=foo(a(1:2));if u<>a(1)|v<>a(2) then bugmes();quit;end
 deff('[a]=foo(x,y)','a=x+y')
-Warning : redefining function: foo                     
+Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
 
 if abs(foo(a(1:2)))<>3 then bugmes();quit;end
 //---------------------

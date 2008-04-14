@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+funcprot(0);
 // Copyright INRIA
 Leps=1.e-6;
 //     dy1/dt = -.04*y1 + 1.e4*y2*y3
@@ -61,8 +62,6 @@ if (y6-yref) > 2*0.00001 then bugmes();quit;end
 //
 a=rand(3,3);ea=expm(a);
 deff('[ydot]=f(t,y)','ydot=a*y')
-Warning : redefining function: f                       
-
 t1=1;y=ode('adams',eye(a),t0,t1,f);
 if maxi(ea-y) > Leps then bugmes();quit;end
 //
@@ -87,11 +86,7 @@ deff('[p]=dgbydy(t,y,s)','[-0.04,1.d4*y(3),1.d4*y(2);...
 rand('seed',0);rand('normal');
 nx=20;A=rand(nx,nx);A=A-4.5*eye();
 deff('y=f(t,x)','y=A*x')
-Warning : redefining function: f                       
-
 deff('J=j(t,x)','J=A')
-Warning : redefining function: j                       
-
 x0=ones(nx,1);t0=0;t=[1,2,3,4,5];
 nt=size(t,'*');
 eAt=expm(A*t(nt));
@@ -105,7 +100,7 @@ xf=ode(x0,t0,t,f);   //lsoda
 if norm(xf(:,nt)-eAt*x0)>Leps then bugmes();quit;end
 xfj=ode(x0,t0,t,f,j);   //lsoda with jacobian
 Warning: Jacobian external is given, but
- not used!,  see ODEOPTIONS(6).
+ not used!,  see %ODEOPTIONS(6).
 
 if norm(xfj(:,nt)-eAt*x0)>Leps then bugmes();quit;end
 //itask=2;   --->  solution at mesh points  ---> t=tmax
@@ -156,14 +151,14 @@ if norm(x61-xf,1)>10*Leps then bugmes();quit;end
 %ODEOPTIONS(6)=0; // jacobian nor called nor estimated
 x60=ode('st',x0,t0,t,f,j);   //Jacobian not used (warning)
 Warning: Jacobian external is given, but
- not used!,  see ODEOPTIONS(6).
+ not used!,  see %ODEOPTIONS(6).
 
 x60=ode('st',x0,t0,t,f);    //Jacobian not used
 if norm(x60-x61,1)>10*Leps then bugmes();quit;end
 %ODEOPTIONS(6)=1;//Jacobian estimated
 x60=ode('st',x0,t0,t,f)  ;
 Warning: No Jacobian external given but
- one is required by ODEOPTIONS(6) value !
+ one is required by %ODEOPTIONS(6) value !
 
 if norm(x60-x61,1)>10*Leps then bugmes();quit;end
 //test of %ODEOPTIONS(6)=jacflag   (adams)
@@ -173,7 +168,7 @@ if norm(x60-x61,1)>10*Leps then bugmes();quit;end
 %ODEOPTIONS(6)=0;// jacobian nor called nor estimated
 x60=ode('ad',x0,t0,t,f,j);   //Jacobian not used (warning)
 Warning: Jacobian external is given, but
- not used!,  see ODEOPTIONS(6).
+ not used!,  see %ODEOPTIONS(6).
 
 x60=ode('ad',x0,t0,t,f);    //Jacobian not used
 if norm(x60-x61,1)>10*Leps then bugmes();quit;end
@@ -184,7 +179,7 @@ if norm(x60-x61,1)>10*Leps then bugmes();quit;end
 %ODEOPTIONS(6)=1;//Jacobian estimated
 x60=ode(x0,t0,t,f);
 Warning: No Jacobian external given but
- one is required by ODEOPTIONS(6) value !
+ one is required by %ODEOPTIONS(6) value !
 
 if norm(x60-x61,1)>10*Leps then bugmes();quit;end
 //   Banded Jacobian
@@ -201,16 +196,12 @@ for k=1:nx-1, A(k+1,k)=-1;end
 for k=1:nx-2, A(k+2,k)=2;end
 for k=1:nx-3, A(k+3,k)=-3;end
 deff('xd=f(t,x)','xd=A*x')
-Warning : redefining function: f                       
-
 ml=3;mu=2;
 %ODEOPTIONS(11:12)=[ml,mu];
 for i=1:nx;
     for j=1:nx;
 if A(i,j)<>0 then J(i-j+mu+1,j)=A(i,j);end
 end;end;
-Warning : redefining function: j                       
-
 // J is a ml+mu+1 x ny matrix.
 // Column 1 of J is made of mu zeros followed by df1/dx1, df2/dx1, df3/dx1,
 // i.e. 1 + ml possibly nonzeros entries.
@@ -229,7 +220,7 @@ if norm(xnotband-xband,1)>Leps then bugmes();quit;end
 deff('jj=j(t,x)','jj=J')
 xband=ode('st',x0,t0,t,f,j);
 Warning: Jacobian external is given, but
- not used!,  see ODEOPTIONS(6).
+ not used!,  see %ODEOPTIONS(6).
 
 if norm(xnotband-xband,1)>Leps then bugmes();quit;end
 //            Test of %ODEOPTIONS(7)
@@ -275,8 +266,6 @@ A=diag([-10,-0.01,-1]);
 deff('uu=u(t)','uu=sin(t)');
 B=rand(3,1);
 deff('y=f(t,x)','y=A*x+B*u(t)')
-Warning : redefining function: f                       
-
 %ODEOPTIONS(1)=2;
 yy1=ode('stiff',[1;1;1],0,1,f);
 yy2=ode('stiff',[1;1;1],0,2,f);
@@ -287,11 +276,7 @@ clear %ODEOPTIONS;
 rand('seed',0);rand('normal');
 nx=20;A=rand(nx,nx);A=A-4.5*eye();
 deff('y=f(t,x)','y=A*x')
-Warning : redefining function: f                       
-
 deff('J=j(t,x)','J=A')
-Warning : redefining function: j                       
-
 //%ODEOPTIONS(1)=1;
 y2=ode('stiff',ones(nx,1),0,2,f,j);
 [y1,w,iw]=ode('stiff',ones(nx,1),0,1,f,j);
@@ -303,8 +288,6 @@ yaj=ode('adams',ones(nx,1),0,2,f,j);
 ysf=ode('stiff',ones(nx,1),0,2,f,j);
 ysj=ode('stiff',ones(nx,1),0,2,f,j);
 deff('xd=f(t,x)','xd=A*x+B*sin(3*t)')
-Warning : redefining function: f                       
-
 A=rand(10,10)-4.5*eye();B=rand(10,1);
 x=ode(ones(10,1),0,[1,2,3],f);
 //link('fexab.o','fexab')
