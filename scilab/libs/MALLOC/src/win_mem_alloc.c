@@ -9,60 +9,59 @@
 /* bench show that HeapAlloc is faster than malloc on Windows */
 /* http://denisbider.blogspot.com/2007/10/heap-allocation-on-multi-core-systems.html */
 /*-----------------------------------------------------------------------------------*/
-#define MEMDISPO (MEM_COMMIT | MEM_TOP_DOWN)
+#define FREE_FLAGS 0
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 {
- LPVOID NewPointer=NULL;
- SIZE_T precSize=0;
+	LPVOID NewPointer = NULL;
+	SIZE_T precSize = 0;
 
- if (lpAddress)
- {
-	 _try
-	 {
-		 NewPointer=HeapReAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,lpAddress,dwSize);
-	 }
-	 _except (EXCEPTION_EXECUTE_HANDLER)
-	 {
-	 }
- }
- else
- {
+	if (lpAddress)
+	{
+		_try
+		{
+			NewPointer = HeapReAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,lpAddress,dwSize);
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
+	}
+	else
+	{
 	#ifdef _DEBUG
 		char MsgError[1024];
 		wsprintf(MsgError,"REALLOC (1) Error File %s Line %d ",fichier,ligne);
 		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 	#endif
-		NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+		NewPointer = HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
 
-	if (NewPointer==NULL)
-	{
-		#ifdef _DEBUG
+		if (NewPointer == NULL)
+		{
+			#ifdef _DEBUG
 			char MsgError[1024];
 			wsprintf(MsgError,"REALLOC (2) Error File %s Line %d ",fichier,ligne);
 			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-		#endif
+			#endif
+		}
 	}
- }
- return NewPointer;
+	return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 {
-	LPVOID NewPointer=NULL;
+	LPVOID NewPointer = NULL;
 
 	if (dwSize>0)
 	{
 		_try
 		{
-			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+			NewPointer = HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{
 		}
 
-
-		if (NewPointer==NULL)
+		if (NewPointer == NULL)
 		{
 			#ifdef _DEBUG
 			char MsgError[1024];
@@ -74,18 +73,17 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int lign
 	else
 	{
 		#ifdef _DEBUG
-			char MsgError[1024];
-			wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ",fichier,ligne);
-			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+		char MsgError[1024];
+		wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ",fichier,ligne);
+		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 		#endif
-			_try
-			{
-				NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
-			}
-			_except (EXCEPTION_EXECUTE_HANDLER)
-			{
-			}
-
+		_try
+		{
+			NewPointer = HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
+		}
+		_except (EXCEPTION_EXECUTE_HANDLER)
+		{
+		}
 	}
 	return NewPointer;
 }
@@ -94,7 +92,7 @@ IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(LPVOID lpAddress,char *fichier,int lign
 {
 	_try
 	{
-		HeapFree(GetProcessHeap(),HEAP_NO_SERIALIZE,lpAddress);
+		HeapFree(GetProcessHeap(),FREE_FLAGS,lpAddress);
 	}
 	_except (EXCEPTION_EXECUTE_HANDLER)
 	{
@@ -114,12 +112,7 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int l
 	{
 		_try
 		{
-#ifdef _WIN64
-			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
-#else
-			NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
-#endif
-
+			NewPointer = HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{
@@ -144,11 +137,7 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int l
 
 		_try
 		{
-#ifdef _WIN64
-			NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
-#else
-			NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
-#endif
+			NewPointer = HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{
@@ -165,17 +154,11 @@ IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int l
 	{
 		_try
 		{
-#ifdef _WIN64
-			HeapFree(GetProcessHeap(),HEAP_NO_SERIALIZE,lpAddress);
-#else
-			VirtualFree(lpAddress,0,MEM_RELEASE);
-#endif
-			
+			HeapFree(GetProcessHeap(),FREE_FLAGS,lpAddress);
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{
 		}
-
 	}
 }
 /*-----------------------------------------------------------------------------------*/
