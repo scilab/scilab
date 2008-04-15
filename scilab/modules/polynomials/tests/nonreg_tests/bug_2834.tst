@@ -16,5 +16,5 @@
 
 n1=poly([4/3 1-%eps/2],'x','c');
 d1=poly([4/3 1],'x','c');
-[n,d]=simp(n1,d1) 
+[n,d]=simp(n1,d1);
 if or(abs(coeff(n)-1)>10*%eps) then pause,end

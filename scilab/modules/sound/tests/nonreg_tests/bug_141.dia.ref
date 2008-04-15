@@ -4,17 +4,14 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
-// <-- Non-regression test for bug 421 -->
+// <-- Non-regression test for bug 141 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=421
+// http://bugzilla.scilab.org/show_bug.cgi?id=141
 //
 // <-- Short Description -->
-//    gamma gives wrong results
-
-
-if gamma(200)<>%inf then pause,end
-
-if gamma(1000)<>%inf then pause,end
-
+//    savewave crashes my machine
+if execstr("savewave(TMPDIR+""/toto.WAV"", rand(1:10000), 11025);", "errcatch")<>0 then pause; end
+Writing Wave file: Microsoft PCM format, 1 channel, 11025 samp/sec
+        22050 byte/sec, 2 block align, 16 bits/samp
+Finished writing Wave file, 20000 data bytes

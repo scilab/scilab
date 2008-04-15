@@ -14,5 +14,5 @@
 //    bessely(0,1) produces convergence error
 
 
-if execstr("bessely(0,1);", "errcatch")<>0 then pause; end
+if execstr("bessely(0,1);", "errcatch")<>0 then pause,end
 
