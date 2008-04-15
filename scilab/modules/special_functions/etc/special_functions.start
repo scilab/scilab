@@ -13,7 +13,7 @@
 // ====================================================================
 
 //Load  functions librarie
-//load('SCI/modules/special_functions/macros/lib');
+load('SCI/modules/special_functions/macros/lib');
 
 //add help chapter
 add_module_help_chapter('special_functions');
