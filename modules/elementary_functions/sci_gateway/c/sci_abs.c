@@ -85,7 +85,6 @@ int abs_double()
 	{
 		double *pdblRealData	= 0;
 		double *pReturnRealData = NULL;
-		double *pReturnImgData	= NULL;
 		int		itr				= 0;
 
 		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
@@ -203,7 +202,7 @@ int abs_sparse()
 	else
 	{//void GetRhsSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piRowsElem, int* _piColsElem, int* _piReal);
 		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, NULL, NULL, &iRealData);
-		piElemByRow	= (int*)malloc(iTotalElem * sizeof(int));
+		piElemByRow	= (int*)malloc(iRows * sizeof(int));
 		piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
 		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, piElemByRow, piColByRow, &iRealData);
 
