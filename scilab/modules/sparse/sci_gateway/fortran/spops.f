@@ -1262,7 +1262,7 @@ c     get arg1
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
       m1=istk(il1+1)
 
-      if(mn3.eq.0) then 
+      if(m3.eq.0.or.n3.eq.0) then 
 c     .  arg3=[]
          ilrs=iadr(lstk(top))
          istk(ilrs)=1
