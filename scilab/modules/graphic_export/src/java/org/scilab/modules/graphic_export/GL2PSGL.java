@@ -26,6 +26,9 @@ import javax.media.opengl.GL;
  */
 public class GL2PSGL extends DebugGL {
 	
+	private static double[] GL2PS_DEPTH_TEST_RANGE = {0.0, 0.95};
+	private static double[] GL2PS_NO_DEPTH_TEST_RANGE = {0.95, 1.0};
+	
 	private GL gl;
 	private GL2PS gl2ps;
 	
@@ -83,7 +86,7 @@ public class GL2PSGL extends DebugGL {
 			// we use the workaround found here http://www.geuz.org/pipermail/gl2ps/2007/000266.html
 			// all primitives drawn with dpeth test are drawn using the depth range [0,0.95] and
 			// the one without depth test with the range [0.95,1], so they are always put behind
-			gl.glDepthRange(0.0, 0.95);
+			gl.glDepthRange(GL2PS_DEPTH_TEST_RANGE[0], GL2PS_DEPTH_TEST_RANGE[1]);
 			break;
 		default:
 			break;
@@ -117,7 +120,7 @@ public class GL2PSGL extends DebugGL {
 			// we use the workaround found here http://www.geuz.org/pipermail/gl2ps/2007/000266.html
 			// all primitives drawn with dpeth test are drawn using the depth range [0,0.95] and
 			// the one without depth test with the range [0.95,1], so they are always put behind
-			gl.glDepthRange(0.95, 1.0);
+			gl.glDepthRange(GL2PS_NO_DEPTH_TEST_RANGE[0], GL2PS_NO_DEPTH_TEST_RANGE[1]);
 			break;
 		default:
 			break;
