@@ -4,5 +4,6 @@
 EXPORTS 
   getYConsoleScreenSize
   getXConsoleScreenSize
+  strdup_windows
   LaunchScilab
   LaunchScilabLock

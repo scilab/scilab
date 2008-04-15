@@ -33,6 +33,7 @@
 #include "completion.h"
 #include "freeArrayOfString.h"
 #include "scilines.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 #define MAXBUF	512
 #define BACKSPACE 0x08		/* ^H */
@@ -292,9 +293,7 @@ char * readline_nw (char *prompt)
 			cur_line[0] = -1;
 			cur_line[1] = '\0';
 		}
-		new_line = (char *) MALLOC (sizeof(char)*(strlen (cur_line) + 1));
-		if (new_line) strcpy (new_line, cur_line);
-		return (new_line);
+		return strdup(cur_line);
 	}
 
 	/* print the prompt */
@@ -685,9 +684,7 @@ static void doCompletion(const char *current_line,const char *prompt)
 			char *wordtodisp = completionDictionary[0];
 			if ( strcmp(wordtodisp,wordToFind) != 0)
 			{
-				backup_line = (char *) MALLOC (sizeof(char)*(strlen (cur_line) +strlen (wordtodisp)+ 1));
-				if (backup_line) strcpy (backup_line , cur_line);
-				
+				backup_line = strdup( cur_line);
 				backup_line[strlen (cur_line) - strlen(wordToFind)] = '\0';
 				
 				doNewLine(FALSE);
@@ -704,8 +701,7 @@ static void doCompletion(const char *current_line,const char *prompt)
 		else
 		{
 			int i = 0;
-			backup_line = (char *) MALLOC (sizeof(char)*(strlen (cur_line) + 1));
-			if (backup_line) strcpy (backup_line , cur_line);
+			backup_line = strdup(cur_line);
 			
 			doNewLine(FALSE);
 			fputs ("\n", stdout);
