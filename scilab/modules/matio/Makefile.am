@@ -10,7 +10,8 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
 		    sci_gateway/c/sci_matfile_open.c \
 		    sci_gateway/c/sci_matfile_close.c \
 		    sci_gateway/c/sci_matfile_listvar.c \
-		    sci_gateway/c/sci_matfile_varreadnext.c
+		    sci_gateway/c/sci_matfile_varreadnext.c \
+		    sci_gateway/c/sci_matfile_varwrite.c
 
 #### List of the C files ####
 MATIO_C_SOURCES = src/c/matfile_manager.c \
@@ -21,7 +22,15 @@ MATIO_C_SOURCES = src/c/matfile_manager.c \
 		  src/c/CreateHyperMatrixVariable.c \
 		  src/c/CreateStructVariable.c \
 		  src/c/CreateSparseVariable.c \
-		  src/c/CreateCellVariable.c
+		  src/c/CreateCellVariable.c \
+		  src/c/GetMatlabVariable.c \
+		  src/c/GetDoubleVariable.c \
+		  src/c/GetCharVariable.c \
+		  src/c/GetIntegerVariable.c \
+		  src/c/GetMlistVariable.c \
+		  src/c/GetCellVariable.c \
+		  src/c/GetStructVariable.c \
+		  src/c/GetSparseVariable.c
 
 libscimatio_la_CFLAGS = -Iincludes/ \
 			-Isrc/c/ \

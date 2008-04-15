@@ -405,6 +405,38 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\GetCellVariable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\GetCharVariable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\GetDoubleVariable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\GetIntegerVariable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\GetMatlabVariable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\GetMlistVariable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\GetSparseVariable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\GetStructVariable.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\DllmainMatio.c"
 				>
 			</File>
@@ -432,6 +464,10 @@
 				RelativePath=".\sci_gateway\c\sci_matfile_varreadnext.c"
 				>
 			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_matfile_varwrite.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -440,6 +476,10 @@
 			>
 			<File
 				RelativePath=".\src\c\CreateMatlabVariable.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\GetMatlabVariable.h"
 				>
 			</File>
 			<File

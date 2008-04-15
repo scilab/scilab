@@ -24,5 +24,6 @@ int sci_matfile_open(char *fname,unsigned long fname_len);
 int sci_matfile_close(char *fname,unsigned long fname_len);
 int sci_matfile_listvar(char *fname,unsigned long fname_len);
 int sci_matfile_varreadnext(char *fname,unsigned long fname_len);
+int sci_matfile_varwrite(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __GW_MATIO_H__ */

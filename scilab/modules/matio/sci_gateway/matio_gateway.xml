@@ -36,4 +36,5 @@
 <PRIMITIVE gatewayId="59" primitiveId="2" primitiveName="matfile_close"/>
 <PRIMITIVE gatewayId="59" primitiveId="3" primitiveName="matfile_listvar"/>
 <PRIMITIVE gatewayId="59" primitiveId="4" primitiveName="matfile_varreadnext"/>
+<PRIMITIVE gatewayId="59" primitiveId="5" primitiveName="matfile_varwrite"/>
 </GATEWAY>
