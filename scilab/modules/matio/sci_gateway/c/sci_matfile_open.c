@@ -94,12 +94,6 @@ int sci_matfile_open(char *fname,unsigned long fname_len)
   /* Try to open the file (as a Matlab 5 file) */
   matfile = Mat_Open(filename, option);
   
-  /* Try to open the file as a Matlab 4 file if opening failed */
-  if(matfile==NULL)
-    {
-      matfile = Mat_Open(filename, option|MAT_FT_MAT4);
-    }
-    
   if(matfile==NULL) /* Opening failed */
     {
       /* Function returns -1 */
@@ -116,9 +110,6 @@ int sci_matfile_open(char *fname,unsigned long fname_len)
   nbCol = 1;
   CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
   *stk(stkAdr) = fileIndex;
-  
-  /* Just for debug */
-  //matfile_manager(MATFILEMANAGER_VIEWFILE, NULL, NULL);
 
   LhsVar(1) = Rhs + 1;
   PutLhsVar();
