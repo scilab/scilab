@@ -88,7 +88,7 @@ int sci_matfile_varreadnext(char *fname,unsigned long fname_len)
   
   /* Return the variable name */
   varname = strdup(matvar->name);
-  nbRow = strlen(varname);
+  nbRow = (int)strlen(varname);
   nbCol = 1;
   CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &nbRow, &nbCol, &varname);
 

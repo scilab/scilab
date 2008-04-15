@@ -21,3 +21,4 @@ vartype_
 getrhsvar_
 callFunctionFromGateway
 getrhsvar_
+getrhscvar_
