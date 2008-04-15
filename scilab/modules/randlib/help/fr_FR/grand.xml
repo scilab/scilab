@@ -225,11 +225,18 @@ S=grand(action [,q1,....,ql])</synopsis>
       <varlistentry>
         <term>geometrique</term>
         <listitem>
-          <para>   : <literal>Y=grand(m,n,'geom', p)</literal> génère des nombres aléatoires suivant la loi geométrique
-     de paramètre <literal>p</literal> : nombre d'épreuves de Bernouilli (de probabilité de succès 
-     <literal>p</literal>) jusqu'à obtenir un succès (<literal>p</literal> doit appartenir
-     à l'intervalle <literal>[pmin,1]</literal> (avec <literal>pmin = 1.3
-	    10^(-307)</literal>).</para>
+          <para> : <literal>Y=grand(m,n,'geom', p)</literal>
+          génère des nombres aléatoires suivant la loi
+          geométrique de paramètre <literal>p</literal> : nombre
+          d'épreuves de Bernouilli (de probabilité de succès
+          <literal>p</literal>) jusqu'à obtenir un succès
+          (<literal>p</literal> doit appartenir à l'intervalle
+          <literal>[pmin,1]</literal> (avec <literal>pmin = 1.3
+          10^(-307)</literal>).</para>
+	  <para><literal>Y</literal> contient des nombres réels
+	  positifs à valeur entière qui sont "le nombre de
+	  tentatives nécessaire pour obtenir un succès" pour
+	  chaque tirage.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
