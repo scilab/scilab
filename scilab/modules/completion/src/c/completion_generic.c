@@ -12,6 +12,9 @@
 #include <string.h>
 #include "completion_generic.h"
 #include "MALLOC.h"
+#if _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 char **completion_generic(char **dictionary,int sizedictionary,
 						  char *somechars, int *sizeArrayReturned)
@@ -26,21 +29,16 @@ char **completion_generic(char **dictionary,int sizedictionary,
 		{
 			if ( strncmp(dictionary[i],somechars,strlen(somechars)) == 0)
 			{
-				char *copybuf = NULL;
-
 				nbElements++;
-                                /* +1 in MALLOC because a NULL element is inserted at the end of the array */
-                                /* This NULL element is used in Java wrapper to know the size of the array */
+				/* +1 in MALLOC because a NULL element is inserted at the end of the array */
+                /* This NULL element is used in Java wrapper to know the size of the array */
 				if (results) 
-                                  results = (char**)REALLOC(results,sizeof(char*)*(nbElements+1)); 
+                   results = (char**)REALLOC(results,sizeof(char*)*(nbElements+1)); 
 				else 
-                                  results = (char**)MALLOC(sizeof(char*)*(nbElements+1));
-                                
-                                results[nbElements]=NULL; /* Last element set to NULL */
-				
-                                copybuf = (char*)MALLOC(sizeof(char)*(strlen(dictionary[i])+1));
-				if (copybuf) strcpy(copybuf,dictionary[i]);
-				results[nbElements-1] = copybuf;
+                   results = (char**)MALLOC(sizeof(char*)*(nbElements+1));
+                               
+                results[nbElements] = NULL; /* Last element set to NULL */
+				results[nbElements-1] = strdup(dictionary[i]);
 			}
 			else
 			{

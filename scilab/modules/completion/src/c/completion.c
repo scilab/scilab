@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 #include <stdlib.h>
 #include "machine.h"
 #include "completion.h"
@@ -23,6 +24,9 @@
 #include "getDictionarySetProperties.h"
 #include "getDictionaryGetProperties.h"
 #include "toolsdictionary.h"
+#if _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 char **completionOnDictionary(char **dictionary,int sizedictionary,char *somechars,int *sizearrayreturned);
 /*--------------------------------------------------------------------------*/
@@ -215,8 +219,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 					/* do a copy of dictionnary of Variables */
 					for ( i = 0; i < sizedictionaryVariables; i++)
 					{
-						ListWordsTmp[i] = (char*)MALLOC(sizeof(char)*(strlen(dictionaryVariables[i])+1));
-						if (ListWordsTmp[i]) strcpy(ListWordsTmp[i],dictionaryVariables[i]);
+						ListWordsTmp[i] = strdup(dictionaryVariables[i]);
 					}
 
 					for ( i = 0; i < sizedictionaryVariables; i++)
@@ -238,8 +241,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 						{
 							if (ListWordsTmp[i])
 							{
-								ListWords[k] = (char*)MALLOC(sizeof(char)*(strlen(ListWordsTmp[i])+1));
-								if (ListWords[k]) strcpy(ListWords[k],ListWordsTmp[i]);
+								ListWords[k] = strdup(ListWordsTmp[i]);
 								if (k <= sizeListWords) k++;
 							}
 						}
