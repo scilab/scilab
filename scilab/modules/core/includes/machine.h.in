@@ -393,6 +393,9 @@
 /* With the JAVA stuff (GUI, Console, JOGL... */
 #undef WITH_GUI
 
+/* With the MATIO library */
+#undef WITH_MATIO
+
 /* With OCAML */
 #undef WITH_OCAML
 
