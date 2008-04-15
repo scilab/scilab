@@ -230,7 +230,7 @@ Windows_tools:
 	+ win64               - determine whether Windows x64 version of Scilab
 	+ istssession         - determine if scilab is launched from a ms terminal service session.
 	+ getsystemmetrics    - retrieves the specified system metric or system configuration setting.
-	+ winhttpdownload     - download a file from a URL.
+	+ createGUID          - creates a Globally Unique IDentifier (GUID)
 
 History manager:
 ================
