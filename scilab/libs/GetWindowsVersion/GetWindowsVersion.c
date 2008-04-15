@@ -30,8 +30,8 @@ IMPORT_EXPORT_GETWINDOWSVERSION_DLL int GetWindowsVersion(void)
 				}
 				else
 				{
-					if (IsWow64()) return OS_WIN32_WINDOWS_LONGHORN_64;
-					else return  OS_WIN32_WINDOWS_LONGHORN;
+					if (IsWow64()) return OS_WIN32_WINDOWS_SERVER_2008_64;
+					else return  OS_WIN32_WINDOWS_SERVER_2008;
 				}
 			}
 

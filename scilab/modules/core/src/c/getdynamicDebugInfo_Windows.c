@@ -170,10 +170,10 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 		case OS_WIN32_WINDOWS_VISTA_64 :
 			strcat(str_info ,"Windows Vista x64");
 		break;
-		case OS_WIN32_WINDOWS_LONGHORN :
+		case OS_WIN32_WINDOWS_SERVER_2008 :
 			strcat(str_info ,"Windows Server 2008");
 		break;
-		case OS_WIN32_WINDOWS_LONGHORN_64 :
+		case OS_WIN32_WINDOWS_SERVER_2008_64 :
 			strcat(str_info ,"Windows Server 2008 x64");
 		break;
 		}

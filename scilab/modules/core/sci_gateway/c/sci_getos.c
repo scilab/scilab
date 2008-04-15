@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 #ifdef _MSC_VER
 #include <windows.h>
 #include "../../../libs/GetWindowsVersion/GetWindowsVersion.h"
@@ -21,6 +22,9 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getos)(char *fname,unsigned long fname_len)
 {
@@ -86,11 +90,11 @@ int C2F(sci_getos)(char *fname,unsigned long fname_len)
 	case OS_WIN32_WINDOWS_VISTA_64 :
 		strcpy(Release,"Vista x64");
 		break;
-	case OS_WIN32_WINDOWS_LONGHORN :
-		strcpy(Release,"Longhorn");
+	case OS_WIN32_WINDOWS_SERVER_2008 :
+		strcpy(Release,"Server 2008");
 		break;
-	case OS_WIN32_WINDOWS_LONGHORN_64 :
-		strcpy(Release,"Longhorn x64");
+	case OS_WIN32_WINDOWS_SERVER_2008_64 :
+		strcpy(Release,"Server 2008 x64");
 		break;
 
 	}
@@ -100,9 +104,7 @@ int C2F(sci_getos)(char *fname,unsigned long fname_len)
 	strcpy(Release,uname_pointer.release);
 #endif
 
-
-	output=(char*)MALLOC((strlen(OperatingSystem)+1)*sizeof(char));
-	strcpy(output,OperatingSystem);
+	output = strdup(OperatingSystem);
 	n1=1;
 	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 	if (output) {FREE(output);output=NULL;}
@@ -110,9 +112,7 @@ int C2F(sci_getos)(char *fname,unsigned long fname_len)
 
 	if (Lhs==2)
 	{
-		char *output2=NULL;
-		output2=(char*)MALLOC((strlen(Release)+1)*sizeof(char));
-		strcpy(output2,Release);
+		char *output2 = strdup(Release);
 		n1=1;
 		CreateVarFromPtr(Rhs+ 2,STRING_DATATYPE,(m1=(int)strlen(output2), &m1),&n1,&output2);
 		if (output2) {FREE(output2);output2=NULL;}

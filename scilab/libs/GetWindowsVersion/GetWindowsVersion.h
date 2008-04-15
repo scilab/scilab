@@ -24,8 +24,8 @@
 #define OS_WIN32_WINDOWS_SERVER_2003_64		10
 #define OS_WIN32_WINDOWS_VISTA				11
 #define OS_WIN32_WINDOWS_VISTA_64			12
-#define OS_WIN32_WINDOWS_LONGHORN			13
-#define OS_WIN32_WINDOWS_LONGHORN_64		14
+#define OS_WIN32_WINDOWS_SERVER_2008		13
+#define OS_WIN32_WINDOWS_SERVER_2008_64		14
 
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_GETWINDOWSVERSION_DLL int GetWindowsVersion(void);
