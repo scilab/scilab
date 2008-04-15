@@ -25,7 +25,9 @@
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
 #include "BOOL.h"
-
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 BOOL TK_Started=FALSE;
 
@@ -174,8 +176,8 @@ int OpenTCLsci(void)
 BOOL CloseTCLsci(void)
 {
   if ( getScilabMode() != SCILAB_NWNI )
-    {
-      if (isTkStarted())
+  {
+    if (isTkStarted())
 	{
 	  setTkStarted(FALSE);
 	  __Terminate(TclThread);
@@ -184,7 +186,7 @@ BOOL CloseTCLsci(void)
 	  TKmainWindow=NULL;
 	  return TRUE;
 	}
-    }
+  }
   return FALSE;
 }
 /*--------------------------------------------------------------------------*/
@@ -198,24 +200,24 @@ static char *GetSciPath(void)
   SciPathTmp=getSCIpath();
 
   if (SciPathTmp)
-    {
-      PathUnix=(char*)MALLOC( ((int)strlen(SciPathTmp)+1)*sizeof(char) );
-
-      strcpy(PathUnix,SciPathTmp);
+  {
+      PathUnix = strdup(SciPathTmp);
       for (i=0;i<(int)strlen(PathUnix);i++)
-	{
-	  if (PathUnix[i]=='\\') PathUnix[i]='/';
-	}
-    }
+	  {
+	    if (PathUnix[i]=='\\') PathUnix[i]='/';
+	  }
+  }
   if (SciPathTmp) {FREE(SciPathTmp);SciPathTmp=NULL;}
   return PathUnix;
 }
 /*--------------------------------------------------------------------------*/
-BOOL isTkStarted(void){
-  return TK_Started;
+BOOL isTkStarted(void)
+{
+	return TK_Started;
 }
 /*--------------------------------------------------------------------------*/
-void setTkStarted(BOOL isTkSet){
-  TK_Started=isTkSet;
+void setTkStarted(BOOL isTkSet)
+{
+	TK_Started = isTkSet;
 }
 /*--------------------------------------------------------------------------*/

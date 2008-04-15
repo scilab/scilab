@@ -22,6 +22,9 @@
 #include "TCL_ArrayGetVar.h"
 #include "MALLOC.h"
 #include "GlobalTclInterp.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int sci_TCL_GetVar(char *fname,unsigned long l)
 {
@@ -115,9 +118,8 @@ int sci_TCL_GetVar(char *fname,unsigned long l)
 	      char *output=NULL ;
 
 	      AsciiFromUTF8=UTF8toANSI(TCLinterpreter,RetStr);
+		  output = strdup(AsciiFromUTF8);
 
-	      output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
-	      strcpy(output,AsciiFromUTF8);
 	      n1=1;
 	      CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 

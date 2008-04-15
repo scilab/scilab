@@ -14,6 +14,9 @@
 #include <stdio.h>
 #include "TCL_ArrayGetVar.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #define TCL_NOT_DEFINE "#NOT DEF.#"
 /*--------------------------------------------------------------------------*/
@@ -29,13 +32,11 @@ char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,int i,int j)
 
 	if (RetStr)
 	{
-		StrValue=MALLOC((strlen(RetStr)+1)*sizeof(char));
-		strcpy(StrValue,RetStr);
+		StrValue = strdup(RetStr);
 	}
 	else
 	{
-		StrValue=MALLOC((strlen(TCL_NOT_DEFINE)+1)*sizeof(char));
-		strcpy(StrValue,TCL_NOT_DEFINE);
+		StrValue = strdup(TCL_NOT_DEFINE);
 	}
 
 	return StrValue;
