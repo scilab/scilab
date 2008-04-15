@@ -6,17 +6,26 @@
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+function f=%hm_s_r(m,f)
+//f=  m-f
+  //author Serge Steer INRIA
+//!
+[num,den]=f(['num','den'])
+szf=size(den)
+szm=size(m)
 
-function f2=%r_i_p(varargin)
-// /author Serge Steer INRIA
-//
-  f2=varargin($-1)
-  n= varargin($)
-  // f2=%r_i_p(i,j,f2,p)   insertion
-  d=ones(n);
-  n(varargin(1:$-2))=f2.num;
-  d=ones(n);
-  d(varargin(1:$-2))=f2.den;
+if and(szf>=0)&and(szm>=0) then
+  num=num(:);den=den(:);m=m(:)
+  if prod(szf)==1&prod(szm)>1 then
+    den=den(ones(m))
+  end
+  [num,den]=simp(-num+m.*den,den)
+  num=matrix(num,szf)
+  den=matrix(den,szf)
+  f=rlist(num,den,f.dt)
+else
+  error(9)
+end
 
-  f2=rlist(n,d,f2('dt'))
 endfunction
+

@@ -9,7 +9,16 @@
 
 function r=%p_x_r(p,r)
 // r=%p_x_r(p,r)  <=> r=p.*r   polynomial.* rational
+//author Serge Steer, INRIA
 //!
 
-r('num')=p.*r('num')
+  r.num=p.*r.num
+  sz=size(r.num)
+  if size(sz,'*')<=2 then
+    r=simp(r)
+  else
+    [num,den]=simp(r.num.entries,r.den.entries)
+    r.num=matrix(num,sz)
+    r.den=matrix(den,sz)
+  end
 endfunction

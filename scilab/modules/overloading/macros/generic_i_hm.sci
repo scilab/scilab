@@ -36,7 +36,7 @@ function M=generic_i_hm(default_value,varargin)
     // corresponding dimension
     // if yes insertion is the extraction of the complement.
     ok=[];
-    for k=1:rhs-3
+    for k=1:rhs-2
       dk=varargin(k)
       if or(type(dk)==[2 129]) then 
 	dk=horner(dk,dims(k)),
@@ -57,13 +57,20 @@ function M=generic_i_hm(default_value,varargin)
       end
       
     end
+
     if size(ok,'*')==0 then
       M=[]
     else //use extraction
       [Ndims,I]=convertindex(dims,varargin(1:$-2));
       dims(ok)=size(I1,'*')
+      while dims($)==1&size(dims,'*')>2, dims($)=[],end
       M.entries=M.entries(I);
-      M.dims=int32(dims')
+      if size(dims,'*')==2 then
+	M=matrix(M.entries,dims)
+      else
+	M.dims=int32(dims')
+      end
+      
       //M=M(varargin(1:rhs-2))
     end
     

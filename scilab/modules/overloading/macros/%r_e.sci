@@ -7,15 +7,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function f=%r_e(i,j,f)
+function r=%r_e(varargin)
 // %r_e(i,j,f) extraction f(i,j) in a rational matrix
+//author Serge Steer, INRIA
 //!
-
-[lhs,rhs]=argn(0)
-if rhs==2 then 
-  f=rlist(j('num')(i),j('den')(i),j('dt'))
-elseif rhs==3 then
-  f=rlist(f('num')(i,j),f('den')(i,j),f('dt'))
-end
-if f('num')==[] then f=[],end
+  f=varargin($)
+  num=f.num
+  den=f.den
+  r=rlist(num(varargin(1:$-1)),den(varargin(1:$-1)),f.dt)
+  if r.num==[] then r=[],end
 endfunction

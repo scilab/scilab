@@ -7,39 +7,25 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function f=%r_s_s(f,m)
-//f = f-m, 
-//f: transfer matrix, m : scalar or scalar matrix
-//author Serge Steer INRIA
+function f=%r_a_hm(f,m)
+//f = f+m, 
+//f: transfer matrix, m : hypermatrix
+  //author Serge Steer INRIA
 //!
   [num,den]=f(['num','den'])
   szf=size(den)
   szm=size(m)
 
   if and(szf>=0)&and(szm>=0) then
+    num=num(:);den=den(:);m=m(:)
     if prod(szf)==1&prod(szm)>1 then
       den=den(ones(m))
-      szf=szm
     end
-
-    if size(szf,'*')>2 then
-      num=num(:);den=den(:);m=m(:)
-    end
-    [num,den]=simp(num-m.*den,den)
+    [num,den]=simp(num+m.*den,den)
     num=matrix(num,szf)
     den=matrix(den,szf)
+    f=rlist(num,den,f.dt)
   else
-    //at leat one matrix is eye*x
-    if size(szf,'*')>2|size(szm,'*')>2 then
-      error(9)
-    end
-    if or(szf<0)&or(szm<0) then
-      [num,den]=simp(num-m.*den,den)
-    elseif or(szf<0) then
-      [num,den]=simp(num-m.*den,den*ones(m))
-    elseif or(szm<0) then
-      [num,den]=simp(num-(m+0)*eye(den).*den,den)
-    end
+    error(8)
   end
-  f=rlist(num,den,f.dt)
 endfunction

@@ -7,22 +7,28 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function s1=%r_i_r(varargin)
+function f2=%hm_m_r(n1,f2)
+// %s_m_r(n1,f2)  
+//operation  f2=n1*f2
 //author Serge Steer INRIA
-  s1=varargin($-1)
-  s2=varargin($)
-// %r_i_r(i,j,s1,s2) insertion  s2(i,j)=s1
+//!
+[n2,d2]=f2(['num','den']);
+sz2=size(n2);
+if prod(sz2)==0 then  f2=[],return,end
+sz1=size(n1);
+n1=n1(:)
 
-  [s1,s2]=sysconv(s1,s2)
-  n=s2.num;
-  n(varargin(1:$-2))=s1.num,
-  if ndims(s2.den)<=2 then
-    d=ones(n);
-    [n1,n2]=size(s2.den)
-    d(1:n1,1:n2)=s2.den;
-    d(varargin(1:$-2))=s1.den
-  else
-    d=generic_i_hm(1,varargin(1:$-2),s1.den,s2.den)
-  end
-  s1=rlist(n,d,s1.dt)
+if  or(sz2==-1) then 
+  n2=n2+0;d2=d2+0;
+end  
+
+//
+if prod(sz2)==1 then
+    num=n1*n2,
+    den=d2(ones(n1))
+else,
+  error(10)
+end,
+
+f2=rlist(matrix(num,sz1),matrix(den,sz1),f2.dt)
 endfunction

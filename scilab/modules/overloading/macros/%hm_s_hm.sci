@@ -8,10 +8,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function M1=%hm_s_hm(M1,M2)
-
 // hypermatrix substraction
-if or(M1('dims')<>M2('dims')) then
-  error(8)
-end
-M1('entries')=M1('entries')-M2('entries')
+//author Serge Steer
+  if or(M1('dims')<>M2('dims')) then
+    error(9)
+  end
+  M1('entries')=M1('entries')-M2('entries')
 endfunction

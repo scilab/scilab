@@ -10,8 +10,17 @@
 function f=%r_d_r(s1,s2)
 // f=s1./s2
 //!
-
-[s1,s2]=sysconv(s1,s2)
-[num,den]=simp(s1('num').*s2('den'),s1('den').*s2('num'))
-f=rlist(num,den,s1('dt'))
+  if ndims(s1)<=2& ndims(s2)<=2 then
+    [s1,s2]=sysconv(s1,s2)
+    [num,den]=simp(s1.num.*s2.den,s1.den.*s2.num)
+    f=rlist(num,den,s1.dt)
+  else
+    if size(s1,'*')==1 then 
+      sz=size(s2)
+    else
+      sz=size(s1)
+    end
+    [num,den]=simp(s1.num(:).*s2.den(:),s1.den(:).*s2.num(:))
+    f=rlist(matrix(num,sz),matrix(den,sz),s1.dt)
+  end  
 endfunction

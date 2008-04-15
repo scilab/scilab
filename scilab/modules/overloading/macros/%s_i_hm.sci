@@ -14,6 +14,8 @@ function M=%s_i_hm(varargin)
   select type(M.entries) 
   case 1 then //destination is an hypermat of double
     M=generic_i_hm(0,varargin(:))
+  case 2 then //destination is an hypermat of polynomials
+    M=generic_i_hm(0,varargin(:))
   case 4 then //destination is an hypermat of boolean
     N=varargin($-1)
     if N<>[] then N=N<>0,end

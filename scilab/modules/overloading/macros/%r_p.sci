@@ -10,6 +10,11 @@
 function %r_p(h)
 //used to display rational fraction with complex coefficients
 //The real case is hard coded
+if size(size(h),'*')>2 then
+  //hypermatrix case 
+  %hmr_p(h)
+  return
+end
 
 [m,n]=size(h)
 del='!'
@@ -162,4 +167,25 @@ elseif l1<l2 then
 else
   txt=[t1;part(dash,ones(1,l1));t2]
 end
+endfunction
+
+function   %hmr_p(h)
+// hypermatrix display
+  dims=size(h)
+  num=h.num
+  den=h.den
+  nd=size(dims,'*')
+  I=(1:dims(3));
+  for k=4:nd
+    I=[ones(1,dims(k)).*.I;
+       (1:dims(k)).*.ones(1,size(I,2))];
+  end
+  k=1;sz=dims(1)*dims(2)
+  for II=I
+    tit='(:,:,'+strcat(string(II'),',')+')'
+    write(%io(2),tit)
+    hb=rlist(matrix(num.entries(k:k-1+sz),dims(1),dims(2)),matrix(den.entries(k:k-1+sz),dims(1),dims(2)),h.dt)
+    disp(hb)
+    k=k+sz
+  end
 endfunction

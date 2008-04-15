@@ -14,7 +14,6 @@ function r=%s_b_s(varargin)
   select type(varargin(3))
   case 8 then
     it=inttype(varargin(3))
-    pause
     r=iconvert(varargin(1),it):iconvert(varargin(2),it):varargin(3)
   else
     error('Not yet implemented')

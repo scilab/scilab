@@ -11,6 +11,6 @@ function r=%r_d_s(r,m)
 // r=r./m
 //!
 
-if size(m,'*')==0 then r=[],return,end
-r=rlist(r('num').*ones(m),r('den').*m,r('dt'))
+  if size(m,'*')==0 then r=[],return,end
+  r=rlist(r.num./m,r.den.*ones(m),r.dt)
 endfunction
