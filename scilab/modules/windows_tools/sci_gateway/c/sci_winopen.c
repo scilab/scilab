@@ -26,14 +26,14 @@ int sci_winopen(char *fname,unsigned long l)
 	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
 	if (winopen(cstk(l1))) 
-		{ 
-			LhsVar(1) = 0;
-		}
+	{ 
+		LhsVar(1) = 0;
+	}
 	else
-		{
-			Scierror(999,_("%s: Cannot open file %s.\n"),fname,cstk(l1));
-			return 0;
-		}
+	{
+		Scierror(999,_("%s: Cannot open file %s.\n"),fname,cstk(l1));
+		return 0;
+	}
 	
 	C2F(putlhsvar)();
 	return 0;

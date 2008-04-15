@@ -16,6 +16,7 @@
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib, "winmm.lib")
 /*--------------------------------------------------------------------------*/
@@ -56,14 +57,12 @@ int sci_mcisendstring(char *fname,unsigned long l)
 				wsprintf(ErrorText,"%s","Unknown MCI error");
 			}
 
-			Output=(char*)MALLOC((strlen(ErrorText)+1)*sizeof(char));
-			wsprintf(Output,"%s",ErrorText);
+			Output = strdup(ErrorText);
 		}
 		else
 		{
 			*BoolOutput=(int)TRUE;
-			Output=(char*)MALLOC((strlen("OK")+1)*sizeof(char));
-			wsprintf(Output,"%s","OK");
+			Output = strdup("OK");
 		}
 
 		n1=1;

@@ -15,6 +15,7 @@
 #include "FindFileAssociation.h"
 #include "MALLOC.h"
 #include "machine.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"shlwapi.lib") /* AssocQueryString */
 /*--------------------------------------------------------------------------*/ 
@@ -29,11 +30,7 @@ char *FindFileAssociation (char *ptrFindStr,char *Extra)
 		HRESULT rc = AssocQueryString (0, ASSOCSTR_EXECUTABLE,ptrFindStr, Extra, szDefault, &ccDefault);
 		if (ccDefault)
 		{
-			if (rc == S_OK)
-			{
-				ptrResult=(char*)MALLOC(sizeof(char)*(strlen(szDefault)+1));
-				strcpy(ptrResult,szDefault);
-			}
+			if (rc == S_OK) ptrResult = strdup(szDefault);
 		}
 	}
 	return ptrResult;

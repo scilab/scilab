@@ -29,6 +29,7 @@
 #include "StartupMessageBox.h"
 #include "splashScreen.h"
 #include "WndThread.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/ 
 #define MIN_STACKSIZE 180000
 #define WSCILEX "wscilex.exe"
@@ -107,13 +108,11 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			GetShortPathName(LINE,ShortPath,PATH_MAX);
 			strcat(ShortPath,PathCmdLineCopy);
 
-			pFullCmdLine=(char*)MALLOC(sizeof(char)*(strlen(ShortPath)+1));
-			strcpy(pFullCmdLine,ShortPath);
+			pFullCmdLine = strdup(ShortPath);
 		}
 		else
 		{
-			pFullCmdLine=(char*)MALLOC(sizeof(char)*(strlen(LineCommandBis)+1));
-			strcpy(pFullCmdLine,LineCommandBis);
+			pFullCmdLine = strdup(LineCommandBis);
 		}
 
 	}
