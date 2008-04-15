@@ -31,133 +31,144 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_part)(char *fname,unsigned long fname_len)
 {
-	int i = 0;
+  int i = 0;
 
-	int m1 = 0, n1 = 0;
-	char **Input_StringMatrix = NULL;
-	int m1n1 = 0; /* m1 * n1 */
+  int m1 = 0, n1 = 0;
+  char **Input_StringMatrix = NULL;
+  int m1n1 = 0; /* m1 * n1 */
 
-	int m2 = 0, n2 = 0;
-	int StackPosTwo = 0;
-	int *SecondParamaterValue = NULL;
-	int m2n2 = 0; /* m2 * n2 */
+  int m2 = 0, n2 = 0;
+  int StackPosTwo = 0;
+  int *SecondParamaterValue = NULL;
+  int m2n2 = 0; /* m2 * n2 */
 
-	int m = 0, n = 0;
-	char **Output_StringMatrix = NULL;
-	int mn = 0; /* m * n */
+  int m = 0, n = 0;
+  char **Output_StringMatrix = NULL;
+  int mn = 0; /* m * n */
 
-    CheckRhs(2,2);
-    CheckLhs(1,1);
+  CheckRhs(2,2);
+  CheckLhs(1,1);
 
-	if (VarType(1) != sci_strings)
-	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
-		return 0;
-	}
-
-	if (VarType(2) != sci_matrix)
-	{
-		Scierror(999,_("%s: Wrong type for second input argument: Matrix expected.\n"),fname);
-		return 0;
-	}
-
-    GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_StringMatrix);
-	m1n1 = m1 * n1;
-	
-	GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&StackPosTwo);
-
-	if ( (m2 == n2) && (n2 == 0) )
-	{
-		/* part('something',[]) */
-		int l = 0;
-		m = 0;
-		n = 0;
-
-		freeArrayOfString(Input_StringMatrix,m1n1);
-		CreateVar(Rhs+1,STRING_DATATYPE,  &m, &n, &l);
-		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
-		return 0;
-	}
-	
-	if ( !( (m2 == 1 && n2 > 0) || (m2 > 0 && n2 == 1) ) )
-	{
-		Scierror(89,_("%s: Wrong size for second input argument.\n"),fname);
-		return 0;
-	}
-
-	m2n2 = m2 * n2;
-	SecondParamaterValue = istk(StackPosTwo);
-
-	/* check values of second parameter */
-	for (i = 0;i < m2n2 ;i++)
-	{
-		if (SecondParamaterValue[i] < 1)
-		{
-			freeArrayOfString(Input_StringMatrix,m1n1);
-			Scierror(36,_("%s: Wrong values for second input argument: Must be >= 1.\n"),fname);
-			return 0;
-		}
-	}
-
-	m = m1;
-	n = n1;
-	mn = m * n ;
-
-	/* memory allocation output */
-
-	Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(mn));
-	if (Output_StringMatrix == NULL)
-	{
-		freeArrayOfString(Input_StringMatrix,m1n1);
-		Scierror(999,_("%s: No more memory.\n"),fname);
-		return 0;
-	}
-		
-	for (i = 0;i < mn; i++)
-	{
-		Output_StringMatrix[i] = (char*)MALLOC(sizeof(char)*((m2n2)+1));
-		if (Output_StringMatrix[i] == NULL)
-		{
-			freeArrayOfString(Input_StringMatrix,m1n1);
-			freeArrayOfString(Output_StringMatrix,i);
-			Scierror(999,_("%s: No more memory.\n"),fname);
-			return 0;
-		}
-	}
-
-	/* output */
-	for (i = 0;i < m1n1; i++)
-	{
-		int j = 0;
-		int position_in_string = 0;
-		for (j = 0;j < m2n2; j++)
-		{
-			if ( SecondParamaterValue[j] <= (int)strlen(Input_StringMatrix[i]) )
-			{
-				Output_StringMatrix[i][position_in_string] = Input_StringMatrix[i][SecondParamaterValue[j]-1];
-			}
-			else
-			{
-				Output_StringMatrix[i][position_in_string] = BLANK_CHAR;
-			}
-			position_in_string++;
-		}
-
-		Output_StringMatrix[i][position_in_string] ='\0';
-	}
-
-	/* free pointer */
-	freeArrayOfString(Input_StringMatrix,m1n1);
-
-	/* put values on stack */
-	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n, Output_StringMatrix );
-	LhsVar(1) = Rhs+1 ;
+  if (VarType(1) == sci_matrix) 
+    { /*Check for an empty matrix */
+      GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&StackPosTwo);
+      if (m1 * n1 == 0) {
+	LhsVar(1) = 1 ;
 	C2F(putlhsvar)();
+	return 0;
+      }
+    }
+  if (VarType(1) != sci_strings)
+    {
+      OverLoad(1);
+	/*Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);*/
+      return 0;
+    }
 
-	/* free pointer */
-	freeArrayOfString(Output_StringMatrix,mn);
+  if (VarType(2) != sci_matrix)
+    {
+      OverLoad(2);
+	/*Scierror(999,_("%s: Wrong type for second input argument: Matrix expected.\n"),fname);*/
+      return 0;
+    }
 
-    return 0;
+  GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_StringMatrix);
+  m1n1 = m1 * n1;
+	
+  GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&StackPosTwo);
+
+  if ( (m2 == n2) && (n2 == 0) )
+    {
+      /* part('something',[]) */
+      int l = 0;
+      m = 0;
+      n = 0;
+
+      freeArrayOfString(Input_StringMatrix,m1n1);
+      CreateVar(Rhs+1,STRING_DATATYPE,  &m, &n, &l);
+      LhsVar(1)=Rhs+1;
+      C2F(putlhsvar)();
+      return 0;
+    }
+	
+  if ( !( (m2 == 1 && n2 > 0) || (m2 > 0 && n2 == 1) ) )
+    {
+      Scierror(89,_("%s: Wrong size for second input argument.\n"),fname);
+      return 0;
+    }
+
+  m2n2 = m2 * n2;
+  SecondParamaterValue = istk(StackPosTwo);
+
+  /* check values of second parameter */
+  for (i = 0;i < m2n2 ;i++)
+    {
+      if (SecondParamaterValue[i] < 1)
+	{
+	  freeArrayOfString(Input_StringMatrix,m1n1);
+	  Scierror(36,_("%s: Wrong values for second input argument: Must be >= 1.\n"),fname);
+	  return 0;
+	}
+    }
+
+  m = m1;
+  n = n1;
+  mn = m * n ;
+
+  /* memory allocation output */
+
+  Output_StringMatrix = (char**)MALLOC(sizeof(char*)*(mn));
+  if (Output_StringMatrix == NULL)
+    {
+      freeArrayOfString(Input_StringMatrix,m1n1);
+      Scierror(999,_("%s: No more memory.\n"),fname);
+      return 0;
+    }
+		
+  for (i = 0;i < mn; i++)
+    {
+      Output_StringMatrix[i] = (char*)MALLOC(sizeof(char)*((m2n2)+1));
+      if (Output_StringMatrix[i] == NULL)
+	{
+	  freeArrayOfString(Input_StringMatrix,m1n1);
+	  freeArrayOfString(Output_StringMatrix,i);
+	  Scierror(999,_("%s: No more memory.\n"),fname);
+	  return 0;
+	}
+    }
+
+  /* output */
+  for (i = 0;i < m1n1; i++)
+    {
+      int j = 0;
+      int position_in_string = 0;
+      for (j = 0;j < m2n2; j++)
+	{
+	  if ( SecondParamaterValue[j] <= (int)strlen(Input_StringMatrix[i]) )
+	    {
+	      Output_StringMatrix[i][position_in_string] = Input_StringMatrix[i][SecondParamaterValue[j]-1];
+	    }
+	  else
+	    {
+	      Output_StringMatrix[i][position_in_string] = BLANK_CHAR;
+	    }
+	  position_in_string++;
+	}
+
+      Output_StringMatrix[i][position_in_string] ='\0';
+    }
+
+  /* free pointer */
+  freeArrayOfString(Input_StringMatrix,m1n1);
+
+  /* put values on stack */
+  CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n, Output_StringMatrix );
+  LhsVar(1) = Rhs+1 ;
+  C2F(putlhsvar)();
+
+  /* free pointer */
+  freeArrayOfString(Output_StringMatrix,mn);
+
+  return 0;
 }
 /*--------------------------------------------------------------------------*/
