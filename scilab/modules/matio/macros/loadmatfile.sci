@@ -49,7 +49,7 @@ else // Try to find type binary or ASCII ?
       end
     else 
       if isempty(fil) then // Filename
-      	fil=varargin(k)
+      	fil=pathconvert(varargin(k),%f,%t);
       	if fileparts(fil,"extension")==".mat" & isempty(bin) then // extension .mat and bin not already fixed by options
       	  bin=%T
       	elseif isempty(bin) then
@@ -97,30 +97,28 @@ if bin then
   
   // --- LEVEL 5 BINARY FILE (This part already existed in old version) ---
   if level==5 then
-    //--set constants
-    exec(LoadMatConstants,-1);
+    // Close the file
+    mclose(fd)
     
     //--loop on the stored variables
     Name='';Names=[];Matrices=list()
-    while %t 
-      ierr=execstr('[Matrix,Name]=ReadmiMatrix(fd)','errcatch') //read next variable
-      if ierr<>0 then
-        mclose(fd)
-        disp(lasterror())
-        return
-      end 
-      if meof(fd) then
-        break
-      end //EOF reached 
-      
+    fd = matfile_open(fil, "r");
+    if fd==-1 then
+      error(msprintf(gettext("%s: Cannot open file %s.\n"),"loadmatfile",fil));
+    end
+    [Name, Matrix, Class] = matfile_varreadnext(fd);
+    while Name<>""
+
       // Old version compatibility | Name has been given
       if isempty(varnames) | or(Name==varnames) then
       	Names=[Names,Name];Matrices($+1)=Matrix
       end
       
+      [Name, Matrix, Class] = matfile_varreadnext(fd);
+      
     end
     //--file closing
-    mclose(fd)
+    matfile_close(fd)
     
     //return variables in the calling context
     execstr('['+strcat(Names,',')+']=resume(Matrices(:))')

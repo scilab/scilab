@@ -26,7 +26,7 @@ end
 mtlb_opts=[]; // Options for ASCII format
 mtlb_thefile=[]; // Name of file to write
 mtlb_names=[]; // Variable names to save
-version=[]; // MAT-file version (4 or 6, miCOMPRESSED not yet implemented)
+version=[]; // MAT-file version: 4 or 6 or 7 (7.3 not yet implemented)
 bin=[]; // %T is binary file %F if ASCII file
 
 // Default format is binary
@@ -81,6 +81,14 @@ while k<=lstsize(varargin)
     version=6;
     bin=%T;
     k=k+1
+  case "-v7"
+    version=7;
+    bin=%T;
+    k=k+1
+  case "-v7.3"
+    version=7.3;
+    bin=%T;
+    k=k+1
   case "-tabs"
     bin=%F;
     mtlb_opts=[mtlb_opts varargin(k)];
@@ -96,7 +104,7 @@ while k<=lstsize(varargin)
     end
   else 
     if isempty(mtlb_thefile) then // Filename
-      mtlb_thefile=varargin(k)
+      mtlb_thefile=pathconvert(varargin(k),%f,%t);
       if fileparts(mtlb_thefile,"extension")==".mat" & isempty(bin) then // extension .mat and bin not already fixed by options
 	bin=%T
       end
@@ -107,10 +115,10 @@ while k<=lstsize(varargin)
   end
 end
 
-// Default version 6 for binary files
+// Default version 7 for binary files
 if isempty(version) & bin then
-  version=6;
-  warning(gettext("Option -v6 added."));
+  version=7;
+  warning(gettext("Option -v7 added."));
 end
 
 // If no name given then all workspace saved
@@ -250,21 +258,11 @@ if bin then
     // End of loop written by SS
   // LEVEL 6 MAT-file  
   elseif version==6 then
-    // Load functions
-    ReadmiMatrix=ReadmiMatrix;
-    WritemiMatrix=WritemiMatrix;
-    
     // Open file for writing
-    mtlb_fd=open_matfile_wb(mtlb_thefile);
-    
-    // Write header
-    endian=write_matfile_header(mtlb_fd);
-  
-    //--set constants
-    exec(LoadMatConstants,-1);
-    
+    mtlb_fd=matfile_open(mtlb_thefile, "w");
+
     // Clear variable wich are no more used to avoid name conflicts
-    for k=["endian","varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
+    for k=["varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
       if or(mtlb_names==k) then
 	error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k))
       end
@@ -275,13 +273,37 @@ if bin then
     for k=1:size(mtlb_names,"*")
       %var=evstr(mtlb_names(k));
       if and(type(%var)<>[9 11 13]) then
-        WritemiMatrix(mtlb_fd,evstr(mtlb_names(k)),mtlb_names(k));
+	if ~matfile_varwrite(mtlb_fd, mtlb_names(k), evstr(mtlb_names(k)), %F) then
+	  error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
+	end
       end
     end
     
-    mclose(mtlb_fd);
-  else
-    // This part should contain miCOMPRESSED data type handling
+    matfile_close(mtlb_fd);
+  elseif version==7
+    // Open file for writing
+    mtlb_fd=matfile_open(mtlb_thefile, "w");
+
+    // Clear variable wich are no more used to avoid name conflicts
+    for k=["varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
+      if or(mtlb_names==k) then
+	error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k))
+      end
+    end
+    clear("x","k","rhs","lhs","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
+
+    // Write variables as miCOMPRESSED data type
+    for k=1:size(mtlb_names,"*")
+      %var=evstr(mtlb_names(k));
+      if and(type(%var)<>[9 11 13]) then
+	if ~matfile_varwrite(mtlb_fd, mtlb_names(k), evstr(mtlb_names(k)), %T) then
+	  error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
+	end
+      end
+    end
+    
+    matfile_close(mtlb_fd);
+  else // Version 7.3 ???
     error(msprintf(gettext("Version %d MAT-file not implemented."),version));
   end
   
