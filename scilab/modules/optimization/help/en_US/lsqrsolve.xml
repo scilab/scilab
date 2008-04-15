@@ -156,25 +156,58 @@ nonlinear functions, levenberg-marquardt algorithm</refpurpose>
             <varlistentry>
               <term>1</term>
               <listitem>
-                <para>algorithm estimates that the relative error between x and the solution  is at most tol.</para>
+                <para>algorithm estimates that the relative error
+                between <literal>x</literal> and the solution is at
+                most <literal>tol</literal>.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>2</term>
               <listitem>
-                <para>number of calls to fcn reached</para>
+                <para>number of calls to <literal>fcn</literal> reached</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>3</term>
               <listitem>
-                <para>tol is too small. No further improvement in the approximate solution  x is possible.</para>
+                <para><literal>tol</literal> is too small. No further
+                improvement in the approximate solution
+                <literal>x</literal> is possible.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>4</term>
               <listitem>
                 <para>iteration is not making good progress.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>5</term>
+              <listitem>
+                <para>number of calls to <literal>fcn</literal> has
+                reached or exceeded <literal>maxfev</literal></para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>6</term>
+              <listitem>
+                <para><literal>ftol</literal> is too small. no further reduction in
+		the sum of squares is possible.</para>
+              </listitem>
+            </varlistentry>
+	    <varlistentry>
+              <term>7</term>
+              <listitem>
+                <para><literal>xtol</literal> is too small. no further improvement in
+		the approximate solution<literal>x</literal> is possible.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>8</term>
+              <listitem>
+                <para><literal>gtol</literal> is too
+                small. <literal>fvec</literal> is orthogonal to the
+                columns of the jacobian to machine precision.</para>
               </listitem>
             </varlistentry>
           </variablelist>
