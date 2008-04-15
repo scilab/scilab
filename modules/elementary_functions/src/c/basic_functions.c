@@ -492,3 +492,19 @@ void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 		}
 	}
 }
+
+/*floor*/
+double dfloors(double _dblVal)
+{
+	return floor(_dblVal);
+}
+
+/*frexp*/
+double dfrexps(double _dblVal, double *_pdblExp)
+{
+	int iExp = 0;
+	double dblCoef = 0;
+	dblCoef = frexp(_dblVal, &iExp);
+	*_pdblExp = iExp;
+	return dblCoef;
+}

@@ -77,6 +77,7 @@ void vDadd(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iInc
 void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
 void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
-
+double dfloors(double _dblVal);
+double dfrexps(double _dblVal, double *_pdblExp);
 
 #endif //__BASIC_FUNCTION__
