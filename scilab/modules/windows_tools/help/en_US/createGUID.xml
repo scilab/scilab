@@ -10,46 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="win64" xml:lang="en">
+<refentry version="5.0-subset Scilab" xml:id="createGUID" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate: 2008-03-14 11:58:09 +0100 (ven., 14 mars 2008)
     $</pubdate>
   </info>
+
   <refnamediv>
-    <refname>win64</refname>
-    <refpurpose>Determine whether Windows x64 version of Scilab</refpurpose>
+    <refname>createGUID</refname>
+
+    <refpurpose>Creates a GUID (Windows only)</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>win64()
+
+    <synopsis>res = createGUID(number_of_GUID)
 </synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Description</title>
-    <para>tf =win64() returns boolean (%t) for Windows x64 of Scilab and
-    boolean (%f) otherwise.</para>
+
+    <para>createGUID creates a Globally Unique IDentifier (GUID), , a unique
+    128-bit integer used for CLSIDs and interface identifiers .</para>
   </refsection>
+
   <refsection>
     <title>Example</title>
+
     <programlisting role="example">if MSDOS then
-  if win64() then
-    disp('Scilab built for Windows x64.');
-  else
-    disp('Scilab built for Windows 32 bits.');
-  end
+    disp(createGUID(1));
 end
 </programlisting>
   </refsection>
+
   <refsection>
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="msdos">MSDOS</link>
-      </member>
-    </simplelist>
+    <title></title>
+
+    <simplelist type="inline"></simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <simplelist type="vert">
       <member>Allan CORNET</member>
     </simplelist>
