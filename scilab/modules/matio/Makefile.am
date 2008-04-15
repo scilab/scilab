@@ -1,9 +1,12 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) 2008 - INRIA - Vincent Couvert <vincent.couvert@inria.fr>
+# Copyright (C) 2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+# Copyright (C) 2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # 
 # This file is distributed under the same license as the Scilab package.
 
 include $(top_srcdir)/Makefile.incl.am
+
+if MATIO
 
 #### List of the gateway files ####
 GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
@@ -32,16 +35,20 @@ MATIO_C_SOURCES = src/c/matfile_manager.c \
 		  src/c/GetStructVariable.c \
 		  src/c/GetSparseVariable.c
 
+libscimatio_la_LDFLAGS = $(MATIO_LIB)
+
+else
+
+MATIO_C_SOURCES = src/nomatio/nomatio.c
+
+endif
+
 libscimatio_la_CFLAGS = -Iincludes/ \
 			-Isrc/c/ \
-			-Isrc/cpp/ \
 			-Isrc/matio/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
-			$(MATIO_INC_PATH)
-
-libscimatio_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)  $(MATIO_LIB)
-
+			$(MATIO_CFLAGS)
 
 pkglib_LTLIBRARIES = libscimatio.la
 

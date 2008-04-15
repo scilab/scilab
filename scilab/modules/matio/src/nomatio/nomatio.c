@@ -13,10 +13,12 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h" 
 #include "Scierror.h"
+#include "localization.h"
+#include "gw_matio.h"
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(gw_matio)()
+int gw_matio(void)
 {
-	Scierror(999,"matio interface not installed.\r\n");
+	Scierror(999,_("Scilab matio module not installed.\n"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

@@ -15,7 +15,8 @@
 @SET_MAKE@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) 2008 - INRIA - Vincent Couvert <vincent.couvert@inria.fr>
+# Copyright (C) 2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+# Copyright (C) 2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # 
 # This file is distributed under the same license as the Scilab package.
 
@@ -67,12 +68,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/matio.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -92,29 +93,45 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscimatio_la_LIBADD =
-am__objects_1 = libscimatio_la-matfile_manager.lo \
-	libscimatio_la-CreateMatlabVariable.lo \
-	libscimatio_la-CreateCharVariable.lo \
-	libscimatio_la-CreateDoubleVariable.lo \
-	libscimatio_la-CreateIntegerVariable.lo \
-	libscimatio_la-CreateHyperMatrixVariable.lo \
-	libscimatio_la-CreateStructVariable.lo \
-	libscimatio_la-CreateSparseVariable.lo \
-	libscimatio_la-CreateCellVariable.lo \
-	libscimatio_la-GetMatlabVariable.lo \
-	libscimatio_la-GetDoubleVariable.lo \
-	libscimatio_la-GetCharVariable.lo \
-	libscimatio_la-GetIntegerVariable.lo \
-	libscimatio_la-GetMlistVariable.lo \
-	libscimatio_la-GetCellVariable.lo \
-	libscimatio_la-GetStructVariable.lo \
-	libscimatio_la-GetSparseVariable.lo
-am__objects_2 = libscimatio_la-gw_matio.lo \
-	libscimatio_la-sci_matfile_open.lo \
-	libscimatio_la-sci_matfile_close.lo \
-	libscimatio_la-sci_matfile_listvar.lo \
-	libscimatio_la-sci_matfile_varreadnext.lo \
-	libscimatio_la-sci_matfile_varwrite.lo
+am__libscimatio_la_SOURCES_DIST = src/nomatio/nomatio.c \
+	src/c/matfile_manager.c src/c/CreateMatlabVariable.c \
+	src/c/CreateCharVariable.c src/c/CreateDoubleVariable.c \
+	src/c/CreateIntegerVariable.c \
+	src/c/CreateHyperMatrixVariable.c src/c/CreateStructVariable.c \
+	src/c/CreateSparseVariable.c src/c/CreateCellVariable.c \
+	src/c/GetMatlabVariable.c src/c/GetDoubleVariable.c \
+	src/c/GetCharVariable.c src/c/GetIntegerVariable.c \
+	src/c/GetMlistVariable.c src/c/GetCellVariable.c \
+	src/c/GetStructVariable.c src/c/GetSparseVariable.c \
+	sci_gateway/c/gw_matio.c sci_gateway/c/sci_matfile_open.c \
+	sci_gateway/c/sci_matfile_close.c \
+	sci_gateway/c/sci_matfile_listvar.c \
+	sci_gateway/c/sci_matfile_varreadnext.c \
+	sci_gateway/c/sci_matfile_varwrite.c
+@MATIO_FALSE@am__objects_1 = libscimatio_la-nomatio.lo
+@MATIO_TRUE@am__objects_1 = libscimatio_la-matfile_manager.lo \
+@MATIO_TRUE@	libscimatio_la-CreateMatlabVariable.lo \
+@MATIO_TRUE@	libscimatio_la-CreateCharVariable.lo \
+@MATIO_TRUE@	libscimatio_la-CreateDoubleVariable.lo \
+@MATIO_TRUE@	libscimatio_la-CreateIntegerVariable.lo \
+@MATIO_TRUE@	libscimatio_la-CreateHyperMatrixVariable.lo \
+@MATIO_TRUE@	libscimatio_la-CreateStructVariable.lo \
+@MATIO_TRUE@	libscimatio_la-CreateSparseVariable.lo \
+@MATIO_TRUE@	libscimatio_la-CreateCellVariable.lo \
+@MATIO_TRUE@	libscimatio_la-GetMatlabVariable.lo \
+@MATIO_TRUE@	libscimatio_la-GetDoubleVariable.lo \
+@MATIO_TRUE@	libscimatio_la-GetCharVariable.lo \
+@MATIO_TRUE@	libscimatio_la-GetIntegerVariable.lo \
+@MATIO_TRUE@	libscimatio_la-GetMlistVariable.lo \
+@MATIO_TRUE@	libscimatio_la-GetCellVariable.lo \
+@MATIO_TRUE@	libscimatio_la-GetStructVariable.lo \
+@MATIO_TRUE@	libscimatio_la-GetSparseVariable.lo
+@MATIO_TRUE@am__objects_2 = libscimatio_la-gw_matio.lo \
+@MATIO_TRUE@	libscimatio_la-sci_matfile_open.lo \
+@MATIO_TRUE@	libscimatio_la-sci_matfile_close.lo \
+@MATIO_TRUE@	libscimatio_la-sci_matfile_listvar.lo \
+@MATIO_TRUE@	libscimatio_la-sci_matfile_varreadnext.lo \
+@MATIO_TRUE@	libscimatio_la-sci_matfile_varwrite.lo
 am_libscimatio_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscimatio_la_OBJECTS = $(am_libscimatio_la_OBJECTS)
 libscimatio_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -133,7 +150,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscimatio_la_SOURCES)
-DIST_SOURCES = $(libscimatio_la_SOURCES)
+DIST_SOURCES = $(am__libscimatio_la_SOURCES_DIST)
 libscimatio_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscimatio_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscimatio_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -211,7 +228,8 @@ LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANGENERATOR = @MANGENERATOR@
-MATIO_INC_PATH = @MATIO_INC_PATH@
+MATIO_CFLAGS = @MATIO_CFLAGS@
+MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIB = @MATIO_LIB@
 MKDIR_P = @MKDIR_P@
 MSGCAT = @MSGCAT@
@@ -388,42 +406,42 @@ JARDIR = jar/
 JARMASK = *.jar
 
 #### List of the gateway files ####
-GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
-		    sci_gateway/c/sci_matfile_open.c \
-		    sci_gateway/c/sci_matfile_close.c \
-		    sci_gateway/c/sci_matfile_listvar.c \
-		    sci_gateway/c/sci_matfile_varreadnext.c \
-		    sci_gateway/c/sci_matfile_varwrite.c
+@MATIO_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
+@MATIO_TRUE@		    sci_gateway/c/sci_matfile_open.c \
+@MATIO_TRUE@		    sci_gateway/c/sci_matfile_close.c \
+@MATIO_TRUE@		    sci_gateway/c/sci_matfile_listvar.c \
+@MATIO_TRUE@		    sci_gateway/c/sci_matfile_varreadnext.c \
+@MATIO_TRUE@		    sci_gateway/c/sci_matfile_varwrite.c
 
+@MATIO_FALSE@MATIO_C_SOURCES = src/nomatio/nomatio.c
 
 #### List of the C files ####
-MATIO_C_SOURCES = src/c/matfile_manager.c \
-		  src/c/CreateMatlabVariable.c \
-		  src/c/CreateCharVariable.c \
-		  src/c/CreateDoubleVariable.c \
-		  src/c/CreateIntegerVariable.c \
-		  src/c/CreateHyperMatrixVariable.c \
-		  src/c/CreateStructVariable.c \
-		  src/c/CreateSparseVariable.c \
-		  src/c/CreateCellVariable.c \
-		  src/c/GetMatlabVariable.c \
-		  src/c/GetDoubleVariable.c \
-		  src/c/GetCharVariable.c \
-		  src/c/GetIntegerVariable.c \
-		  src/c/GetMlistVariable.c \
-		  src/c/GetCellVariable.c \
-		  src/c/GetStructVariable.c \
-		  src/c/GetSparseVariable.c
+@MATIO_TRUE@MATIO_C_SOURCES = src/c/matfile_manager.c \
+@MATIO_TRUE@		  src/c/CreateMatlabVariable.c \
+@MATIO_TRUE@		  src/c/CreateCharVariable.c \
+@MATIO_TRUE@		  src/c/CreateDoubleVariable.c \
+@MATIO_TRUE@		  src/c/CreateIntegerVariable.c \
+@MATIO_TRUE@		  src/c/CreateHyperMatrixVariable.c \
+@MATIO_TRUE@		  src/c/CreateStructVariable.c \
+@MATIO_TRUE@		  src/c/CreateSparseVariable.c \
+@MATIO_TRUE@		  src/c/CreateCellVariable.c \
+@MATIO_TRUE@		  src/c/GetMatlabVariable.c \
+@MATIO_TRUE@		  src/c/GetDoubleVariable.c \
+@MATIO_TRUE@		  src/c/GetCharVariable.c \
+@MATIO_TRUE@		  src/c/GetIntegerVariable.c \
+@MATIO_TRUE@		  src/c/GetMlistVariable.c \
+@MATIO_TRUE@		  src/c/GetCellVariable.c \
+@MATIO_TRUE@		  src/c/GetStructVariable.c \
+@MATIO_TRUE@		  src/c/GetSparseVariable.c
 
+@MATIO_TRUE@libscimatio_la_LDFLAGS = $(MATIO_LIB)
 libscimatio_la_CFLAGS = -Iincludes/ \
 			-Isrc/c/ \
-			-Isrc/cpp/ \
 			-Isrc/matio/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
-			$(MATIO_INC_PATH)
+			$(MATIO_CFLAGS)
 
-libscimatio_la_LDFLAGS = $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)  $(MATIO_LIB)
 pkglib_LTLIBRARIES = libscimatio.la
 libscimatio_la_SOURCES = $(MATIO_C_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -532,6 +550,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-GetStructVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-gw_matio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-matfile_manager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-nomatio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_close.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_listvar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_open.Plo@am__quote@
@@ -558,6 +577,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscimatio_la-nomatio.lo: src/nomatio/nomatio.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-nomatio.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-nomatio.Tpo -c -o libscimatio_la-nomatio.lo `test -f 'src/nomatio/nomatio.c' || echo '$(srcdir)/'`src/nomatio/nomatio.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimatio_la-nomatio.Tpo $(DEPDIR)/libscimatio_la-nomatio.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nomatio/nomatio.c' object='libscimatio_la-nomatio.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-nomatio.lo `test -f 'src/nomatio/nomatio.c' || echo '$(srcdir)/'`src/nomatio/nomatio.c
 
 libscimatio_la-matfile_manager.lo: src/c/matfile_manager.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-matfile_manager.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-matfile_manager.Tpo -c -o libscimatio_la-matfile_manager.lo `test -f 'src/c/matfile_manager.c' || echo '$(srcdir)/'`src/c/matfile_manager.c
