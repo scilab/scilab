@@ -27,6 +27,9 @@ int sci_matfile_close(char *fname,unsigned long fname_len)
   mat_t *matfile = NULL;
   int fileIndex = 0; 
   int nbRow = 0, nbCol = 0, stkAdr = 0;
+
+  int flag = 1;
+
   CheckRhs(1, 1);
   CheckLhs(1, 1);
 
@@ -54,13 +57,19 @@ int sci_matfile_close(char *fname,unsigned long fname_len)
   /* If the file has not already been closed, it's closed */
   if(matfile!=NULL)
     {
-      Mat_Close(matfile);
+      flag = Mat_Close(matfile);
     }
   else /* The user is informed */
     sciprint("File already closed.\n");
 
-  /* Just for debugging purpose */
-  //matfile_manager(MATFILEMANAGER_VIEWFILE, NULL, NULL);
+  /* Return execution flag */
+  nbRow = 1; nbCol = 1;
+  CreateVar(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &stkAdr);
+  *istk(stkAdr) = flag==0;
+
+  LhsVar(1) = Rhs + 1;
+
+  PutLhsVar();
 
   return TRUE;
 }
