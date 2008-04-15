@@ -24,10 +24,10 @@ Source: modules\{#SPFUNCTIONS}\help\addchapter.sce; DestDir: {app}\modules\{#SPF
 ;
 ;Source: modules\{#SPFUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#SPFUNCTIONS}\includes; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#SPFUNCTIONS}\macros\lib; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;Source: modules\{#SPFUNCTIONS}\macros\names; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;Source: modules\{#SPFUNCTIONS}\macros\*.bin; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;Source: modules\{#SPFUNCTIONS}\macros\*.sci; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\macros\lib; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\macros\names; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\macros\*.bin; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#SPFUNCTIONS}\macros\*.sci; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\macros\buildmacros.sce; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\macros\buildmacros.bat; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#SPFUNCTIONS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SPFUNCTIONS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
