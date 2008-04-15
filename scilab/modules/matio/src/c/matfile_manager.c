@@ -46,7 +46,14 @@ void matfile_manager(int action, int *fileIndex, mat_t **matfile)
       if(numberOfMatfiles==0) /* No file opened */
         {
           numberOfMatfiles++;
-          openedMatfiles = (mat_t**)REALLOC(openedMatfiles, numberOfMatfiles*sizeof(mat_t*));
+		  if (openedMatfiles)
+		  {
+			  openedMatfiles = (mat_t**)REALLOC(openedMatfiles, numberOfMatfiles*sizeof(mat_t*));
+		  }
+		  else
+		  {
+			  openedMatfiles = (mat_t**)MALLOC(numberOfMatfiles*sizeof(mat_t*));
+		  }
           *fileIndex = numberOfMatfiles-1;
           openedMatfiles[*fileIndex] = *matfile;
         }
