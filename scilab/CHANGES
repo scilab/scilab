@@ -31,7 +31,7 @@ Graphics:
  - New functions:
 	* swap_handles - Permute two handles in the graphic hierarchy.
 	* relocate_handle - Move handles inside the graphic hierarchy.
-	* get_figure_handle - Get a figure handle from its id.
+	* get_figure_handle - Get a figure handle from its id without changing current figure.
  - Obsolete functions:
   * Using xgetmouse with a flag to avoid the event queue to be cleared is now obsolete. This functionnality will be removed in Scilab 5.1.
 
