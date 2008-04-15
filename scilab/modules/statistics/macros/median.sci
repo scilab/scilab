@@ -37,6 +37,7 @@ else
 end
   
 if orient==0 then
+  if x==[] then y=%nan,return,end
   n=size(x,'*');
   x=gsort(x(:),'g','i')
   if 2*int(n/2)==n then
@@ -45,6 +46,7 @@ if orient==0 then
     y = x((n+1)/2);
   end  
 else
+  if x==[] then y=[],return,end
   if orient>ndims(x) then y=x; return;  end
   xsize=size(x);
   if xsize(orient)==1 then  y=x; return;  end
