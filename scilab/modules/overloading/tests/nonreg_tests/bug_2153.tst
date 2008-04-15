@@ -13,7 +13,4 @@
 // <-- Short Description -->
 //    addition and subtraction of matrix and hypermatrix of same dimension and size do not work
 
-if execstr("zeros(1,3) + hypermat([1 3])", "errcatch")<>0 then pause; end
-
-
-
+if execstr("zeros(1,3) + hypermat([1 3])", "errcatch")<>0 then pause,end

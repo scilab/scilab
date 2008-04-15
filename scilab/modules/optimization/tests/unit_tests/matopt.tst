@@ -122,17 +122,17 @@ comp(sipn);
               'b',bi,bs,[1 1],'ar',20,20,1.e-15);
 if norm(x-[0.5 0.5]) + norm(g) > 0.1 then pause,end
 //********************************************************************
-deff('[f,g,ind]=ndsim(x,ind)', 'y=A*x-b;f=norm(y,2)^2;g=2*A''*y')
+deff('[f,g,ind]=ndsim1(x,ind)', 'y=A*x-b;f=norm(y,2)^2;g=2*A''*y')
 A=rand(2,2);b=eye(A);
-[f,X,g]=optim(ndsim,eye(2,2));
+[f,X,g]=optim(ndsim1,eye(2,2));
 if norm(X-inv(A))>Leps then pause,end
 
-deff('[f,g,ind]=ndsim(x,ind)', 'y=A*x-b;f=sum(abs(y));g=A''*sign(y)')
+deff('[f,g,ind]=ndsim2(x,ind)', 'y=A*x-b;f=sum(abs(y));g=A''*sign(y)')
 A=rand(2,2);b=[1;0];Ai=inv(A);
-[f,x,g]=optim(ndsim,[1;0],'nd');
+[f,x,g]=optim(ndsim2,[1;0],'nd');
 if norm(x-Ai(:,1))>Leps then pause,end
 
-deff('[f,g,ind]=ndsim(x,ind)', [
+deff('[f,g,ind]=ndsim3(x,ind)', [
 'y=A*x-b;f=max(abs(y)),sel=abs(y)==f'
 'g=A(sel,:)''*sign(y(sel))']);
 //A=rand(2,2);b=[1;0];Ai=inv(A);
