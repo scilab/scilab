@@ -57,7 +57,7 @@ int sci_matfile_open(char *fname,unsigned long fname_len)
     {
       if (VarType(2) == sci_strings)
         {
-          GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
+          GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
           if (nbCol != 1) 
             {
               Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"), fname);
