@@ -1024,10 +1024,12 @@ void CreateCSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalEl
 	iAddrRealData		= iAddrColByRow + _iTotalElem;
 	iAddrImgData		= iAddrColByRow + 2 * _iTotalElem;
 
+	for(iIndex = 0 ; iIndex < _iRows ; iIndex++)
+		*istk(iAddElemByRow + iIndex) = _piElemByRow[iIndex];
+	
 	for(iIndex = 0 ; iIndex < _iTotalElem ; iIndex++)
 	{
 		int iTemp		= 0;
-		*istk(iAddElemByRow + iIndex) = _piElemByRow[iIndex];
 		*istk(iAddrColByRow + iIndex) = _piColByRow[iIndex];
 		iTemp			= sadr(iAddrRealData) + iIndex;
 		*stk(iTemp)		= _pdblRealData[iIndex];
