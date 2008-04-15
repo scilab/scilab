@@ -12,7 +12,7 @@ AC_DEFUN([AC_CHECK_PROG_OCAML],[
 	OCAMLDEP=
 	AC_CHECK_PROG(OCAMLC,ocamlc,ocamlc,no)
 	if test "$OCAMLC" = no; then
-		AC_MSG_ERROR([ocamlc not found. Mandatory to build Scicos.])
+		AC_MSG_ERROR([ocamlc not found. Mandatory to build Scicos (Use --without-ocaml to disable the Modelica compiler).])
 	fi
 	AC_CHECK_PROG(OCAMLOPT,ocamlopt,ocamlopt,no)
 	if test "$OCAMLOPT" = no; then
