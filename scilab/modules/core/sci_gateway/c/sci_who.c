@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -17,6 +18,9 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 struct VariableStruct
 {
@@ -336,8 +340,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 
 	 for (i=0;i<lenStructArray;i++)
 	 {
-		 Tab[i] = (char*)MALLOC(sizeof(char)*(strlen(Vstruct[i].NameVariable)+1));
-		 strcpy(Tab[i],Vstruct[i].NameVariable);
+		 Tab[i] = strdup(Vstruct[i].NameVariable);
 		 Size[i]=Vstruct[i].SizeVariable;
 	 }
 
@@ -385,8 +388,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 {
 		 if (strlen(Vstruct[i].NameVariable)>0)
 		 {
-			 LocalTab[i] = (char*)MALLOC(sizeof(char)*strlen(Vstruct[i].NameVariable)+1);
-			 strcpy(LocalTab[i],Vstruct[i].NameVariable);
+			 LocalTab[i] = strdup(Vstruct[i].NameVariable);
 		 }
 	 }
 

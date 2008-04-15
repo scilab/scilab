@@ -23,6 +23,9 @@
 #include "MALLOC.h"
 #include "cvstr.h"
 #include "cluni0.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 char *getlibrarypath(char *libraryname)
 {
@@ -81,8 +84,7 @@ char **getlistmacrosfromlibrary(char *libraryname,int *sizearray)
 					if (macroslist) macroslist = (char**)REALLOC(macroslist,sizeof(char*)*(nbElements+1));
 					else macroslist =(char**)MALLOC(sizeof(char*)*(nbElements+1));
 
-					macroslist[nbElements] = (char*)MALLOC(sizeof(char)*(strlen(line)+1));
-					if (macroslist[nbElements]) strcpy(macroslist[nbElements],line);
+					macroslist[nbElements] = strdup(line);
 					nbElements++;
 				}
 				fclose(pFile);

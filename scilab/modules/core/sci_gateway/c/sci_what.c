@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 #include <stdio.h>
 #include "gw_core.h"
 #include "machine.h"
@@ -18,6 +19,9 @@
 #include "Scierror.h"
 #include "commandwords.h"
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 static char **LocalFunctionsTab=NULL;
 static int SizeLocalFunctionsTab=0;
@@ -173,8 +177,7 @@ static int CreateLocalFunctionsTab(void)
 		{
 			if ( !IsACommand(LocalFunctionsTabTmp[i]) ) 
 			{
-				LocalFunctionsTab[j]=(char*)MALLOC( (strlen(LocalFunctionsTabTmp[i])+1)*sizeof(char) );
-				strcpy(LocalFunctionsTab[j],LocalFunctionsTabTmp[i]);
+				LocalFunctionsTab[j] = strdup(LocalFunctionsTabTmp[i]);
 				j++;
 			}
 		}

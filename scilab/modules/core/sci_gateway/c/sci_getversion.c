@@ -24,6 +24,9 @@
 #include "withtk.h"
 #include "localization.h"
 #include "with_pvm.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 static int getversion_no_rhs(void);
 static int getversion_one_rhs(void);
@@ -268,8 +271,7 @@ static int getversion_two_rhs(void)
 			if (strcmp(ParamRhs1,"scilab") == 0)
 			{
 				char *output=NULL ;
-				output=(char*)MALLOC((strlen(SCI_VERSION_STRING)+1)*sizeof(char));
-				strcpy(output,SCI_VERSION_STRING);
+				output = strdup(SCI_VERSION_STRING);
 
 				n1=1;
 				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
@@ -291,9 +293,8 @@ static int getversion_two_rhs(void)
 
 				if (getversionmodule(ParamRhs1,&version_module_major,&version_module_minor,&version_module_maintenance,versionstring,&version_module_revision))
 				{
-					char *output=NULL ;
-					output=(char*)MALLOC((LineMax+1)*sizeof(char));
-					strcpy(output,versionstring);
+					char *output = NULL ;
+					output = strdup(versionstring);
 
 					n1=1;
 					CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);

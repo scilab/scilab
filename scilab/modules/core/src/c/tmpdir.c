@@ -10,6 +10,7 @@
  *
  */
 #include <stdio.h>
+#include <string.h>
 #include "machine.h"
 #include "../../../fileio/includes/removedir.h"
 #include "../../../fileio/includes/createdirectory.h"
@@ -35,6 +36,7 @@ extern  char  *getenv();
 
 #ifdef _MSC_VER
 #include <process.h>
+#include "strdup_windows.h"
 #endif
 #include "prompt.h"
 #include "tmpdir.h"
@@ -119,10 +121,6 @@ void C2F(tmpdirc)(void)
 /*--------------------------------------------------------------------------*/
 char *getTMPDIR(void)
 {
-	char *TMPDIR=NULL;
-	TMPDIR=(char*)MALLOC(sizeof(char)*(strlen(tmp_dir)+1));
-	strcpy(TMPDIR,tmp_dir);
-
-	return TMPDIR;
+	return strdup(tmp_dir);
 }
 /*--------------------------------------------------------------------------*/

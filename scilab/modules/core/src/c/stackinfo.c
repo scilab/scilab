@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 #ifdef HAVE_LIMITS_H
 #include <limits.h>
 #define MAXLONG LONG_MAX
@@ -21,6 +22,9 @@
 #include "stack-def.h"
 #include "stack-c.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #ifndef MAXLONG
 #define MAXLONG LONG_MAX
@@ -114,8 +118,7 @@ char *getLocalNamefromId(int n)
 
 	if (strlen(fortranName) > 0)
 	{
-		Name = (char*)MALLOC(sizeof(char)*(strlen(fortranName)+1));
-		if (Name) strcpy(Name,fortranName);
+		Name = strdup(fortranName);
 	}
 	return Name;
 }
@@ -136,8 +139,7 @@ char *getGlobalNamefromId(int n)
 
 	if (strlen(fortranName) > 0)
 	{
-		Name = (char*)MALLOC(sizeof(char)*(strlen(fortranName)+1));
-		if (Name) strcpy(Name,fortranName);
+		Name = strdup(fortranName);
 	}
 	return Name;
 }

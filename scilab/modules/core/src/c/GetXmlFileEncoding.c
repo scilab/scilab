@@ -9,9 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 #include "GetXmlFileEncoding.h"
 #include "libxml/xmlreader.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 char *GetXmlFileEncoding(const char *filename)
 {
@@ -20,8 +24,7 @@ char *GetXmlFileEncoding(const char *filename)
 	xmlDocPtr doc = NULL;
 
 	/* default */
-	encoding=(char *)MALLOC(sizeof(char)*(strlen(DEFAULT_ENCODING)+1));
-	strcpy(encoding,DEFAULT_ENCODING);
+	encoding = strdup(DEFAULT_ENCODING);
 
 	doc = xmlParseFile (filename);
 	if (doc) 
@@ -29,8 +32,7 @@ char *GetXmlFileEncoding(const char *filename)
 		if (doc->encoding)
 		{
 			if (encoding) {FREE(encoding);encoding=NULL;}
-			encoding=(char *)MALLOC(sizeof(char)*(strlen(doc->encoding)+1));
-			strcpy(encoding,doc->encoding);
+			encoding = strdup(doc->encoding);
 		}
 	}
 

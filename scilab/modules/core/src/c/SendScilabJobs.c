@@ -13,6 +13,9 @@
 #include "MALLOC.h"
 #include "scirun.h"
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line,char CharToRemove);
 static BOOL RemoveComments(char *line);
@@ -101,10 +104,9 @@ static BOOL SetLastJob(char *JOB)
 
 	if (JOB)
 	{
-		lastjob = MALLOC(sizeof(char)*(strlen(JOB)+1));	
+		lastjob = strdup(JOB);
 		if (lastjob)
 		{
-			strcpy(lastjob,JOB);
 			return TRUE;
 		}
 	}
@@ -149,12 +151,8 @@ int SendScilabJobs(char **jobs,int numberjobs)
 				if (jobs[i])
 				{
 					nbcharsjobs = nbcharsjobs+(int)strlen(jobs[i]);
-					LOCALJOBS[i]=(char*)MALLOC( sizeof(char)*(strlen(jobs[i])+BUFFERSECURITYSIZE) );
-					if (LOCALJOBS[i])
-					{
-						strcpy(LOCALJOBS[i],jobs[i]);
-					}
-					else
+					LOCALJOBS[i] = strdup(jobs[i]);
+					if (LOCALJOBS[i] == NULL)
 					{
 						CleanBuffers(bufCommands,LOCALJOBS,numberjobs);
 						fprintf(stderr,"Error : SendScilabJobs (1) 'LOCALJOBS[%d] MALLOC'.\n",i);	

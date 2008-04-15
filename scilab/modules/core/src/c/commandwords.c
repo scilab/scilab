@@ -13,6 +13,10 @@
 #include "machine.h" 
 #include "commandwords.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
 /*--------------------------------------------------------------------------*/ 
 /* if you update command.f , please update this file too ... */
 /*--------------------------------------------------------------------------*/ 
@@ -49,13 +53,7 @@ char **getcommandkeywords(int *sizearray)
 		int i = 0;
 		for (i = 0;i < nbrCommands; i++)
 		{
-			char *commandword = NULL;
-			commandword = (char*)MALLOC(sizeof(char)*(strlen(CommandWords[i])+1));
-			if (commandword) 
-			{
-				strcpy(commandword,CommandWords[i]);
-				keywords[i] = commandword;
-			}
+			keywords[i] = strdup(CommandWords[i]);
 		}
 		*sizearray =  nbrCommands;
 

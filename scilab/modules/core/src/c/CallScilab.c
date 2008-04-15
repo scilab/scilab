@@ -27,13 +27,13 @@
 #ifdef _MSC_VER
 #include "../../../windows_tools/src/c/scilab_windows/SetScilabEnvironmentVariables.h"
 #include "../../../windows_tools/src/c/scilab_windows/getScilabDirectory.h"
+#include "strdup_windows.h"
 #endif
 #include "localization.h"
 
 #ifdef _MSC_VER
 #define putenv _putenv
 #endif
-
 /*--------------------------------------------------------------------------*/
 static int StartScilabIsOK=FALSE;
 /*--------------------------------------------------------------------------*/
@@ -97,13 +97,11 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	if (ScilabStartup==NULL)
 	{
-		ScilabStartupUsed=(char*)MALLOC((strlen(DEFAULTSCILABSTARTUP)+1)*sizeof(char));
-		strcpy(ScilabStartupUsed,DEFAULTSCILABSTARTUP);
+		ScilabStartupUsed = strdup(DEFAULTSCILABSTARTUP);
 	}
 	else
 	{
-		ScilabStartupUsed=(char*)MALLOC((strlen(DEFAULTSCILABSTARTUP)+1)*sizeof(char));
-		strcpy(ScilabStartupUsed,ScilabStartup);
+		ScilabStartupUsed = strdup(ScilabStartup);
 	}
 
 	if (Stacksize==NULL)

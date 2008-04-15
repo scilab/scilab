@@ -17,7 +17,10 @@
 #include "machine.h"
 #include "filesmanagement.h"
 #include "core_math.h" /* Min Max */
-#include "MALLOC.h" 
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 #define _fullpath(a,r,l) realpath(r,a)
@@ -114,10 +117,9 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 	/* no filename */
 	if ( strcmp(name,"") == 0 )
 	{
-		ptrName=(char*)MALLOC(sizeof(char)*(strlen(name)+1));
+		ptrName = strdup(name);
 		if (ptrName)
 		{
-			strcpy(ptrName,name);
 			bOK=TRUE;
 		}
 	}
@@ -125,19 +127,17 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 	{
 		if( _fullpath( fullpath, name, PATH_MAX*4 ) != NULL )
 		{
-			ptrName=(char*)MALLOC(sizeof(char)*(strlen(fullpath)+1));
+			ptrName = strdup(fullpath);
 			if (ptrName) 
 			{
-				strcpy(ptrName,fullpath);
 				bOK=TRUE;
 			}
 		}
 		else
 		{
-			ptrName=(char*)MALLOC(sizeof(char)*(strlen(name)+1));
+			ptrName = strdup(name);
 			if (ptrName) 
 			{
-				strcpy(ptrName,name);
 				bOK=TRUE;
 			}
 		}

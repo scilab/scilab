@@ -15,6 +15,9 @@
 #include "hashtable_core.h"
 #include "getfunctionslist.h"
 #include "existfunction.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 static _ENTRY   * htable = NULL;
 static unsigned   hashtableSize;
@@ -216,8 +219,7 @@ char **GetFunctionsList(int *sizeList)
 	{
 		if (htable[i].entry.namefunction)
 		{
-			ListFunctions[j]=(char*)MALLOC(sizeof(char)*(strlen(htable[i].entry.namefunction)+1));
-			strcpy(ListFunctions[j],htable[i].entry.namefunction);
+			ListFunctions[j] = strdup(htable[i].entry.namefunction);
 			j++;
 		}
 	}

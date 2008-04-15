@@ -13,8 +13,9 @@
 #include <string.h>
 #include "getcommandlineargs.h"
 #include "MALLOC.h"
-/*--------------------------------------------------------------------------*/ 
-
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 static int scilab_nbargs = 0;
 static char *scilab_argv[MAXCMDTOKENS];
@@ -34,8 +35,7 @@ char ** getCommandLineArgs(int *nbargs)
 		{
 			for (i = 0;i < scilab_nbargs;i++)
 			{
-				argv[i] = (char *)MALLOC(sizeof(char)*(strlen(scilab_argv[i])+1));
-				if (argv[i]) strcpy(argv[i],scilab_argv[i]);
+				argv[i] = strdup(scilab_argv[i]);
 			}
 		}
 	}

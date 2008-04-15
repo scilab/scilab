@@ -21,6 +21,9 @@
 #include "localization.h"
 #include "stricmp.h"
 #include "../../../fileio/includes/FileExist.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 BOOL getversionmodule(char *modulename,
 					  int *sci_version_major,
@@ -106,9 +109,8 @@ BOOL getversionmodule(char *modulename,
 							else if (xmlStrEqual (attrib->name, (const xmlChar*)"string"))
 								{
 									/* we found <string> */
-									const char *str=(const char*)attrib->children->content;
-									version_string=(char*)MALLOC(sizeof(char)*(strlen((const char*)str)+1));
-									strcpy(version_string,str);
+									const char *str = (const char*)attrib->children->content;
+									version_string= strdup(str);
 								}
 
 							attrib = attrib->next;
