@@ -3,7 +3,7 @@
 <!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure --> 
     <!-- Rotate -->
     <button icon="view-refresh.png" tooltiptext="Rotate">
-        <callback instruction="notavailablemessage();" type="0"/>
+        <callback instruction="rotate_axes(get_figure_handle([SCILAB_FIGURE_ID]))" type="0"/>
     </button>
 
     <separator/>
