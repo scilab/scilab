@@ -37,6 +37,23 @@ extern "C" {
  */
 void javaRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton);
 
+/**
+ * Get current displacement in the graphic window, to be used for axes rotation.
+ * @param pFigure figure corresponding to the window
+ * @param displacement [dx, dy] is the mouse displacement in pixels
+ *         or the position of the mouse with the first call.
+ * @return FALSE if the displacement tracking has ended, TRUE otherwise.
+ */
+BOOL getJavaRotationDisplacement(sciPointObj * pFigure, int displacement[2]);
+
+/**
+ * If a rotation displacement is recording, cancel it.
+ * @param pFigure figure corresponding to the window
+ */
+void stopJavaRotationRecording(sciPointObj * pFigure);
+
+
+
 #ifdef __cplusplus
 }
 #endif

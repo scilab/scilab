@@ -248,4 +248,20 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 		return ScilabBridge.rubberBox(this, isClick, initialRect, endRect);
 	}
 	
+	/**
+	 * Get the displacement in pixel that should be used for rotating axes
+	 * @param displacement out parameter, [x,y] array of displacement in pixels
+	 * @return true if the diplacement recording continue, false otherwise
+	 */
+	public boolean getRotationDisplacement(int[] displacement) {
+		return ScilabBridge.getRotationDisplacement(this, displacement);
+	}
+	
+	/**
+	 * Ansynchrnous stop of rotation tracking.
+	 */
+	public void stopRotationRecording() {
+		ScilabBridge.stopRotationRecording(this);
+	}
+	
 }

@@ -192,4 +192,14 @@ void DrawableFigureJoGL::setTitle( const char * title )
   delete[] constTitle;
 }
 /*---------------------------------------------------------------------------------*/
+bool DrawableFigureJoGL::getRotationDisplacement(int displacement[2])
+{
+  return getFigureJavaMapper()->getRotationDisplacement(displacement);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::stopRotationRecording(void)
+{
+  getFigureJavaMapper()->stopRotationRecording();
+}
+/*---------------------------------------------------------------------------------*/
 }

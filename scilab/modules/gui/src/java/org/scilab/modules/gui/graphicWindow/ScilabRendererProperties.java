@@ -280,5 +280,21 @@ public class ScilabRendererProperties implements RendererProperties {
 	public String getTitle() {
 		return parentTab.getName();
 	}
+	
+	/**
+	 * Get the displacement in pixel that should be used for rotating axes
+	 * @param displacement out parameter, [x,y] array of displacement in pixels
+	 * @return true if the diplacement recording continue, false otherwise
+	 */
+	public boolean getRotationDisplacement(int[] displacement) {
+		return parentCanvas.getRotationDisplacement(displacement);
+	}
+
+	/**
+	 * Ansynchrnous stop of rotation tracking.
+	 */
+	public void stopRotationRecording() {
+		parentCanvas.stopRotationRecording();
+	}
 
 }

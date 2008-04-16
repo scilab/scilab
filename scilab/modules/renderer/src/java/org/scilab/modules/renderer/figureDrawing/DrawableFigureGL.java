@@ -668,4 +668,32 @@ public class DrawableFigureGL extends ObjectGL {
 		return res;
 	}
 	
+	/**
+	 * Get current displacement in the graphic window, to be used for axes rotation.
+	 * @return array [dx, dy, stop] where [dx, dy] is the mouse displacement in pixels
+	 *         or the position of the mouse with the first call. And stop is 0 if the
+	 *         tracking is finished, 1 otherwise.
+	 */
+	public int[] getRotationDisplacement() {
+		int[] res = new int[2 + 1];
+		
+		// get [dx, dy] displacement
+		boolean stop = getRendererProperties().getRotationDisplacement(res);
+		
+		if (stop) {
+			res[2] = 1;
+		} else {
+			res[2] = 0;
+		}
+		
+		return res;
+	}
+	
+	/**
+	 * If a rotation displacement is recording, cancel it.
+	 */
+	public void stopRotationRecording() {
+		getRendererProperties().stopRotationRecording();
+	}
+	
 }

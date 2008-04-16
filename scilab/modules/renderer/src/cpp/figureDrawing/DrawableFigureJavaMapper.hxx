@@ -88,6 +88,9 @@ public:
 
   virtual void setTitle(char * title);
 
+  virtual bool getRotationDisplacement(int displacement[2]);
+  virtual void stopRotationRecording(void);
+
   /*----------------------------------------------------------------------*/
 
 protected:

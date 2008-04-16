@@ -96,7 +96,8 @@ static gw_generic_table Tab[]={
         {sci_swap_handles,"swap_handles"},
 	{sci_help_gtk,"help_gtk"},
 	{sci_showalluimenushandles,"showalluimenushandles"},
-        {sci_rubberbox,"rubberbox"}
+        {sci_rubberbox,"rubberbox"},
+        {sci_rotate_axes,"rotate_axes"}
 };
 
 /*--------------------------------------------------------------------------*/ 

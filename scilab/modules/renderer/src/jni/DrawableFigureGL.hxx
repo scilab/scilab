@@ -85,6 +85,8 @@ jmethodID jintArraygetViewportID; // cache method id
 jmethodID voidsetViewportjintjintjintjintID; // cache method id
 jmethodID jintArrayrubberBoxjbooleanjintArrayID; // cache method id
 jmethodID voidsetTitlejstringID; // cache method id
+jmethodID jintArraygetRotationDisplacementID; // cache method id
+jmethodID voidstopRotationRecordingID; // cache method id
 
 
 /**
@@ -191,6 +193,10 @@ void setViewport(long posX, long posY, long width, long height);
 long * rubberBox(bool isClick, long * initialRect, int initialRectSize);
 
 void setTitle(char * title);
+
+long * getRotationDisplacement();
+
+void stopRotationRecording();
 
 
                         /**

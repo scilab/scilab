@@ -47,5 +47,12 @@ BOOL checkRedrawing( void ) ;
  */
 void updateSubwinScale(sciPointObj * pSubwin);
 
+/**
+ * Find which subwindow is selected by clincking at pixel coordinates (xCoord, yCoord).
+ * @param pFigure index of parent figure in which the subwindow will be selected
+ * @return NULL if no subwindow could be selected, the seleceted subwindow otherwise
+ */
+sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord);
+
 /*-----------------------------------------------------------------------------*/
 #endif /*__SCI_AXES_H_*/

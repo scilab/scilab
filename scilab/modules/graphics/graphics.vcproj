@@ -6,7 +6,7 @@
 	ProjectGUID="{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}"
 	RootNamespace="graphics"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -1155,6 +1155,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_rotate_axes.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_rubberbox.c"
 				>
 			</File>
@@ -2166,6 +2170,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_relocate_handle.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_rotate_axes.h"
 				>
 			</File>
 			<File

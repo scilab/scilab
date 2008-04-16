@@ -388,7 +388,8 @@ sci_gateway/c/sci_xdel.c \
 sci_gateway/c/sci_winsid.c \
 sci_gateway/c/sci_addcb.c \
 sci_gateway/c/sci_fec.c \
-sci_gateway/c/sci_rubberbox.c
+sci_gateway/c/sci_rubberbox.c \
+sci_gateway/c/sci_rotate_axes.c
 
 libscigraphics_la_CFLAGS +=	$(JAVA_JNI_INCLUDE) \
 				-Isrc/cpp \
@@ -545,7 +546,8 @@ includes/GrayPlot.h \
 includes/sci_xload.h \
 includes/sci_xsave.h \
 includes/TerminateGraphics.h \
-includes/sci_rubberbox.h
+includes/sci_rubberbox.h \
+includes/sci_rotate_axes.h
 
 ### graphics : ged files ###
 libscigraphics_la_geddir = $(mydatadir)/tcl/ged

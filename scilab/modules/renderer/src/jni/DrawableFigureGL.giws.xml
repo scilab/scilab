@@ -90,5 +90,9 @@
     <method name="setTitle" returnType="void">
       <param type="String" name="title" />
     </method>
+    <method name="getRotationDisplacement" returnType="int[]">
+    </method>
+    <method name="stopRotationRecording" returnType="void">
+    </method>
   </object>
 </package>

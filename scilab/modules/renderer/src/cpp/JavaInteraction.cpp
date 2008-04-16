@@ -22,3 +22,20 @@ void javaRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4]
   getFigureDrawer(pFigure)->rubberBox((isClick == TRUE), initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
+BOOL getJavaRotationDisplacement(sciPointObj * pFigure, int displacement[2])
+{
+  if (getFigureDrawer(pFigure)->getRotationDisplacement(displacement))
+  {
+    return TRUE;
+  }
+  else
+  {
+    return FALSE;
+  }
+}
+/*---------------------------------------------------------------------------------*/
+void stopJavaRotationRecording(sciPointObj * pFigure)
+{
+  getFigureDrawer(pFigure)->stopRotationRecording();
+}
+/*---------------------------------------------------------------------------------*/

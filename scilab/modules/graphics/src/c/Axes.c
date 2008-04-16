@@ -32,6 +32,7 @@
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "pixel_mode.h"
+#include "DoublyLinkedList.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -156,5 +157,103 @@ void updateSubwinScale(sciPointObj * pSubwin)
   sciDrawSingleObj(pSubwin);
   sciSetVisibility(pSubwin, visible);
   sciSetXorMode(parentFigure, pixelMode);
+}
+/*--------------------------------------------------------------------------------*/
+/**
+ * Return the square distance between the center of axes box anf point (xCoord, yCoord);
+ */
+int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord)
+{
+  int xPos;
+  int yPos;
+  int width;
+  int height;
+  /* get area used by the subwindow */
+  sciGetViewingArea(pSubwin, &xPos, &yPos, &width, &height);
+
+  /* get coordinate sof middle */
+  xPos = xPos + width / 2;
+  yPos = yPos + height / 2;
+
+  return (xCoord - xPos) * (xCoord - xPos) + (yCoord - yPos) * (yCoord - yPos);
+
+}
+/*--------------------------------------------------------------------------------*/
+/**
+ * @return TRUE if the point in pixel (xCoord, yCoord) is above the subwin
+ */
+BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord)
+{
+  int xPos;
+  int yPos;
+  int width;
+  int height;
+  /* get area used by the subwindow */
+  sciGetViewingArea(pSubwin, &xPos, &yPos, &width, &height);
+
+  return (   xCoord > xPos && xCoord < xPos + width
+          && yCoord > yPos && yCoord < yPos + height); 
+}
+/*--------------------------------------------------------------------------------*/
+sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
+{
+  int nbItem;
+  sciPointObj * res = NULL;
+
+  /* First get the list of subwindow that are under the click */
+  /* Might be several if some are hidding others */
+  DoublyLinkedList * foundSubwins = DoublyLinkedList_new();
+  sciSons * pSons = sciGetSons(pFigure);
+  while (pSons != NULL)
+  {
+    sciPointObj * curObj = pSons->pointobj;
+    if (sciGetEntityType(curObj) == SCI_SUBWIN)
+    {
+      updateSubwinScale(curObj);
+      if (isSubwinUnderPixel(curObj, xCoord, yCoord))
+      {
+        foundSubwins = List_push(foundSubwins, curObj);
+      }
+    }
+    pSons = pSons->pnext;
+  }
+
+  /* all the subwindows that are under the clicked pixel has been found */
+  
+  nbItem = List_nb_item(foundSubwins);
+  if (nbItem == 0)
+  {
+    res = NULL;
+  }
+  else if (nbItem == 1)
+  {
+    /* index starts to 1 */
+    res = List_item(foundSubwins, 1);
+  }
+  else
+  {
+    /* select the one whose middle is closer the point */
+    int minDist = 0;
+    int i;
+
+    res = (sciPointObj *) List_item(foundSubwins, 1);
+    minDist = getSqDistanceToCenter(res, xCoord, yCoord);
+
+    for (i = 2; i <= nbItem; i++)
+    {
+      sciPointObj * curSubwin = (sciPointObj *) List_item(foundSubwins, i);
+      int curDist = getSqDistanceToCenter(curSubwin, xCoord, yCoord);
+      if (curDist < minDist)
+      {
+        res = curSubwin;
+        minDist = curDist;
+      }
+    }
+  }
+
+  List_free(foundSubwins);
+
+  return res;
+
 }
 /*--------------------------------------------------------------------------------*/

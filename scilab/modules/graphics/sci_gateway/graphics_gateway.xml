@@ -100,4 +100,5 @@
 <PRIMITIVE gatewayId="7" primitiveId="74" primitiveName="help_gtk" />
 <PRIMITIVE gatewayId="7" primitiveId="75" primitiveName="showalluimenushandles" />
 <PRIMITIVE gatewayId="7" primitiveId="76" primitiveName="rubberbox" />
+<PRIMITIVE gatewayId="7" primitiveId="77" primitiveName="rotate_axes" />
 </GATEWAY>

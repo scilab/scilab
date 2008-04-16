@@ -113,4 +113,16 @@ public interface Canvas extends Dockable {
 	  * @return Scilab code of the pressed button
 	  */
 	 int rubberBox(boolean isClick, int[] initialRect, int[] endRect);
+	 
+	 /**
+	  * Get the displacement in pixel that should be used for rotating axes
+	  * @param displacement out parameter, [x,y] array of displacement in pixels
+	  * @return true if the diplacement recording continue, false otherwise
+	  */
+	 boolean getRotationDisplacement(int[] displacement);
+
+	 /**
+	  * Ansynchrnous stop of rotation tracking.
+	  */
+	 void stopRotationRecording();
 }

@@ -61,4 +61,15 @@ void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4
 void rubberBox(sciPointObj * pSubwin, BOOL isClick, const double initialRect[4], double endRect[4], int * usedButton);
 
 
+/**
+ * Interactive rotation of a subwin within the figure.
+ */
+void interactiveRotation(sciPointObj * pFigure);
+
+/**
+ * Interactive rotation of a subwindow
+ */
+void interactiveSubwinRotation(sciPointObj * pSubiwn);
+
+
 #endif /* __SCI_INTERACTION__ */

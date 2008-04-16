@@ -135,6 +135,8 @@ jintArraygetViewportID=NULL;
 voidsetViewportjintjintjintjintID=NULL; 
 jintArrayrubberBoxjbooleanjintArrayID=NULL; 
 voidsetTitlejstringID=NULL; 
+jintArraygetRotationDisplacementID=NULL; 
+voidstopRotationRecordingID=NULL; 
 
 
 }
@@ -193,6 +195,8 @@ jintArraygetViewportID=NULL;
 voidsetViewportjintjintjintjintID=NULL; 
 jintArrayrubberBoxjbooleanjintArrayID=NULL; 
 voidsetTitlejstringID=NULL; 
+jintArraygetRotationDisplacementID=NULL; 
+voidstopRotationRecordingID=NULL; 
 
 
 }
@@ -922,6 +926,60 @@ exit(EXIT_FAILURE);
 jstring title_ = curEnv->NewStringUTF( title );
 
                          curEnv->CallVoidMethod( this->instance, voidsetTitlejstringID ,title_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long * DrawableFigureGL::getRotationDisplacement (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jintArraygetRotationDisplacementID==NULL) { /* Use the cache Luke */ jintArraygetRotationDisplacementID = curEnv->GetMethodID(this->instanceClass, "getRotationDisplacement", "()[I" ) ;
+if (jintArraygetRotationDisplacementID == NULL) {
+std::cerr << "Could not access to the method " << "getRotationDisplacement" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArraygetRotationDisplacementID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jint *resultsArray = (jint *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+long * myArray= new long[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+                        curEnv->DeleteLocalRef(res);
+
+return myArray;
+
+}
+
+void DrawableFigureGL::stopRotationRecording (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidstopRotationRecordingID==NULL) { /* Use the cache Luke */ voidstopRotationRecordingID = curEnv->GetMethodID(this->instanceClass, "stopRotationRecording", "()V" ) ;
+if (voidstopRotationRecordingID == NULL) {
+std::cerr << "Could not access to the method " << "stopRotationRecording" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidstopRotationRecordingID );
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

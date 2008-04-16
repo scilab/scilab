@@ -164,6 +164,19 @@ public:
   virtual void setTitle( const char * title ) ;
 
   /**
+  * Get current displacement in the graphic window, to be used for axes rotation.
+  * @param displacement [dx, dy] is the mouse displacement in pixels
+  *         or the position of the mouse with the first call.
+  * @return false if the displacement tracking has ended, true otherwise.
+  */
+  virtual bool getRotationDisplacement(int displacement[2]);
+
+  /**
+   * If a rotation displacement is recording, cancel it.
+   */
+  virtual void stopRotationRecording(void);
+
+  /**
    * Return the drawn object
    */
   DrawableFigure * getFigureDrawer( void ) ;

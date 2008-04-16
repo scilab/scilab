@@ -22,6 +22,7 @@ import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.canvas.SimpleCanvas;
+import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabRubberBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -47,6 +48,8 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	private int figureIndex;
 	
+	private AxesRotationTracker rotationTracker;
+	
 	/**
 	 * Constructor
 	 * 
@@ -66,6 +69,8 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		this.setFocusable(true);
 		// Enable mouse Events sensitivity...
 		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK);
+		
+		rotationTracker = new AxesRotationTracker(this);
 	}
 
 	/**
@@ -228,6 +233,22 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	public int rubberBox(boolean isClick, int[] initialRect, int[] endRect) {
 		return ScilabRubberBox.getRectangle(this, isClick, initialRect, endRect);
+	}
+	
+	/**
+	 * Get the displacement in pixel that should be used for rotating axes
+	 * @param displacement out parameter, [x,y] array of displacement in pixels
+	 * @return true if the diplacement recording continue, false otherwise
+	 */
+	public boolean getRotationDisplacement(int[] displacement) {
+		return rotationTracker.getDisplacement(displacement);
+	}
+	
+	/**
+	 * Ansynchrnous stop of rotation tracking.
+	 */
+	public void stopRotationRecording() {
+		rotationTracker.cancelRecording();
 	}
 
 }

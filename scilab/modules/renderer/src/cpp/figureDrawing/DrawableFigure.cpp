@@ -252,4 +252,14 @@ void DrawableFigure::setTitle( const char * title )
   getFigureImp()->setTitle(title) ;
 }
 /*---------------------------------------------------------------------------------*/
+bool DrawableFigure::getRotationDisplacement(int displacement[2])
+{
+  return getFigureImp()->getRotationDisplacement(displacement);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::stopRotationRecording(void)
+{
+  return getFigureImp()->stopRotationRecording();
+}
+/*---------------------------------------------------------------------------------*/
 }

@@ -127,6 +127,7 @@ void Obj_RedrawNewAngle( sciPointObj * pSubWin, double theta, double alpha )
       if ( curSubWin->entitytype == SCI_SUBWIN )
       {
         setSubWinAngles( curSubWin, theta, alpha ) ;
+        forceRedraw(curSubWin);
       }
       subWins = subWins->pnext ;
     }
@@ -135,6 +136,7 @@ void Obj_RedrawNewAngle( sciPointObj * pSubWin, double theta, double alpha )
   {
     /* modify angles only for this axes */
     setSubWinAngles( pSubWin, theta, alpha ) ;
+    forceRedraw(pSubWin);
   }
 }
 

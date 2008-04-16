@@ -240,4 +240,23 @@ void DrawableFigureJavaMapper::setTitle(char * title)
   m_pJavaObject->setTitle(title);
 }
 /*---------------------------------------------------------------------------------*/
+bool DrawableFigureJavaMapper::getRotationDisplacement(int displacement[2])
+{
+  long * javaRes = m_pJavaObject->getRotationDisplacement();
+
+  displacement[0] = javaRes[0];
+  displacement[1] = javaRes[1];
+
+  bool res = (javaRes[2] != 0);
+
+  delete[] javaRes;
+
+  return res;
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::stopRotationRecording(void)
+{
+  m_pJavaObject->stopRotationRecording();
+}
+/*---------------------------------------------------------------------------------*/
 }
