@@ -36,6 +36,8 @@ public class SciFileFilter extends FileFilter {
 			description = "Scilab SCE files";
 		} else if (fileMask.equals("*.bin")) {
 			description = "Scilab binary files";
+		} else if (fileMask.equals("*.sc*")) {
+			description = "All Scilab files";
 		} else if (fileMask.equals("*.cos*")) {
 			description = "Scicos files";
 		} else {
