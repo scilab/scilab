@@ -40,41 +40,49 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
   int stackPointer;
 
   /* check size of input and output */
-  CheckRhs(1,1);
+  CheckRhs(0,1);
   CheckLhs(0,1);
 
-  /* Get figure or subwin handle */
-  if (GetType(1) != sci_handles)
+  if (Rhs == 0)
   {
-    sciprint(_("%s: Wrong type for first input argument: Single Figure or Axes handle expected.\n"), fname);
-    LhsVar(1) = 0;
-    return 0;
-  }
-
-  GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
-
-  if (nbRow * nbCol != 1)
-  {
-    sciprint(_("%s: Wrong type for first input argument: Single Figure or Axes handle expected.\n"), fname);
-    LhsVar(1) = 0;
-    return 0;
-  }
-
-  rotatedObject = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
-  
-  if (sciGetEntityType(rotatedObject) == SCI_FIGURE)
-  {
-    interactiveRotation(rotatedObject);
-  }
-  else if (sciGetEntityType(rotatedObject) == SCI_SUBWIN)
-  {
-    interactiveSubwinRotation(rotatedObject);
+    /* rotate current figure */
+    interactiveRotation(sciGetCurrentFigure());
   }
   else
   {
-    sciprint(_("%s: Wrong type for first input argument: Single Figure or Axes handle expected.\n"), fname);
-    LhsVar(1) = 0;
-    return 0;
+    /* Get figure or subwin handle */
+    if (GetType(1) != sci_handles)
+    {
+      sciprint(_("%s: Wrong type for first input argument: Single Figure or Axes handle expected.\n"), fname);
+      LhsVar(1) = 0;
+      return 0;
+    }
+
+    GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
+
+    if (nbRow * nbCol != 1)
+    {
+      sciprint(_("%s: Wrong type for first input argument: Single Figure or Axes handle expected.\n"), fname);
+      LhsVar(1) = 0;
+      return 0;
+    }
+
+    rotatedObject = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
+
+    if (sciGetEntityType(rotatedObject) == SCI_FIGURE)
+    {
+      interactiveRotation(rotatedObject);
+    }
+    else if (sciGetEntityType(rotatedObject) == SCI_SUBWIN)
+    {
+      interactiveSubwinRotation(rotatedObject);
+    }
+    else
+    {
+      sciprint(_("%s: Wrong type for first input argument: Single Figure or Axes handle expected.\n"), fname);
+      LhsVar(1) = 0;
+      return 0;
+    }
   }
 
   LhsVar(1) = 0;

@@ -39,6 +39,7 @@
 #include "JavaInteraction.h"
 #include "Axes.h"
 #include "GetJavaProperty.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*-------------------------------------------------------------------------------------*/
 static int moveObj(sciPointObj * pobj, double displacement[], int displacementSize);
@@ -887,8 +888,10 @@ void trackSubwinRotation(sciPointObj * pSubwin)
     theta -= mouseDisplacement[0] / 4.0;
 
     /* redraw */
+    startFigureDataWriting(parentFigure);
     Obj_RedrawNewAngle(pSubwin, theta, alpha);
     setInfoMessageWithRotationAngles(parentFigure, alpha, theta);
+    endFigureDataWriting(parentFigure);
 
     /* several subwins may have been rotated */
     sciDrawObj(parentFigure);
