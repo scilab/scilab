@@ -141,6 +141,10 @@ int sci_uimenu( char *fname,unsigned long fname_len )
         GetRhsVar(inputIndex + 1,GRAPHICAL_HANDLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
         setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, propertyName);
         break;
+      case sci_list:
+        GetRhsVar(inputIndex + 1,LIST_DATATYPE,&nbRow,&nbCol,&stkAdr);
+        setStatus = callSetProperty((sciPointObj*) GraphicHandle, inputIndex + 1, sci_list, nbRow, nbCol, propertyName);
+        break;
       default:
         setStatus = SET_PROPERTY_ERROR;
         break;
