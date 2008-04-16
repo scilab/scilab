@@ -5,10 +5,10 @@
 
 help_dir = get_absolute_file_path('build_help.sce');
 
-xmltohtml(help_dir,'Toolbox Skeleton');
+xmltojar(help_dir,'Toolbox Skeleton');
 
 // ====================================================================
-clear xmltohtml;
+clear xmltojar;
 clear need_to_be_build;
 clear dl_df_lang_xml_files;
 clear complete_with_df_lang;

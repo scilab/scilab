@@ -28,10 +28,11 @@ exec( root_tlbx + '/sci_gateway/loader_gateway.sce' );
 warning(warning_mode);
 
 disp('Load help');
+
 //add help chapter
 path_addchapter = root_tlbx+"/help/"+getlanguage()+"/addchapter.sce";
  if ( fileinfo(path_addchapter) == [] ) then
-   path_addchapter = root_tlbx+"/help/"+"+getdefaultlanguage()+"/addchapter.sce";
+   path_addchapter = root_tlbx+"/help/"+getdefaultlanguage()+"/addchapter.sce";
  end
 exec(path_addchapter);
 
