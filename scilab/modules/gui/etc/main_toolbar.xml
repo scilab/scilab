@@ -1,12 +1,5 @@
 <?xml version="1.0"?>
 <toolbar>
-    <!-- New Scilab -->
-    <button icon="window-new.png" tooltiptext="New Scilab">
-        <callback instruction="notavailablemessage();" type="0"/>
-    </button>
-
-    <separator/>
-
     <!-- Scipad -->
     <button icon="accessories-text-editor.png" tooltiptext="Launch Scipad">
         <callback instruction="scipad();" type="0"/>

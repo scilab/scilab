@@ -12,12 +12,24 @@
               %fileToLoad = xgetfile('*.scg', getcwd(), 'Select a file to load');
               if ~isempty(%fileToLoad) then 
                 xload(%fileToLoad,[SCILAB_FIGURE_ID]);
+                disp('Figure loaded.');
               end
               clear %fileToLoad"
             type="0"/>
         </submenu> 
         <submenu label="Save..." mnemonic="S"> 
-            <callback instruction="notavailablemessage();" type="0"/>
+             <callback 
+            instruction="
+              %fileToSave = xgetfile('*.scg', getcwd(), 'Select a file to write');
+              if ~isempty(%fileToSave) then
+                if isempty(fileparts(%fileToSave, 'extension')) then
+                  %fileToSave = %fileToSave + '.scg';
+                end
+                xsave(%fileToSave, get_figure_handle([SCILAB_FIGURE_ID]));
+                disp('Figure saved.');
+              end
+              clear %fileToSave isempty fileparts"
+            type="0"/>
         </submenu>
         <separator/>
 		<submenu label="Export to ..." mnemonic="E">
@@ -101,10 +113,10 @@
         </submenu>
         <separator/>
         <submenu label="Zoom" mnemonic="Z"> 
-            <callback instruction="notavailablemessage();" type="0"/>
+          <callback instruction="zoom_rect(get_figure_handle([SCILAB_FIGURE_ID]))" type="0"/>
         </submenu>
         <submenu label="UnZoom" mnemonic="U"> 
-            <callback instruction="notavailablemessage();" type="0"/>
+          <callback instruction="unzoom(get_figure_handle([SCILAB_FIGURE_ID]))" type="0"/>
         </submenu>
         <separator/>
         <submenu label="2D/3D Rotation" mnemonic="R"> 
@@ -131,12 +143,10 @@
         </submenu> 
         <separator/>
         <submenu label="Start entity picker" mnemonic="S"> 
-            <callback instruction="notavailablemessage();" type="0"/>
-            <!--<callback instruction="ged(6,[SCILAB_FIGURE_ID]);" type="0"/>-->
+            <callback instruction="ged(10,[SCILAB_FIGURE_ID]);" type="0"/>
         </submenu> 
         <submenu label="Stop entity picker" mnemonic="T"> 
-            <callback instruction="notavailablemessage();" type="0"/>
-            <!--<callback instruction="ged(7,[SCILAB_FIGURE_ID]);" type="0"/>-->
+            <callback instruction="ged(11,[SCILAB_FIGURE_ID]);" type="0"/>
         </submenu>
     </menu>
 

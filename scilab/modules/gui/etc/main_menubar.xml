@@ -5,45 +5,52 @@
 
    <!-- File menu -->
    <menu label="File" mnemonic="F" enabled="false">
-        <submenu label="Launch new Scilab" mnemonic="N"> 
-            <callback instruction="notavailablemessage();" type="0"/>
-        </submenu>
-        <separator/>
         <submenu label="Exec..." mnemonic="E">
             <callback 
             instruction="
-              %fileToExec = xgetfile('*.sci', getcwd(), 'Select a file to exec');
+              %fileToExec = xgetfile('*.sc*', getcwd(), 'Select a file to exec');
               if ~isempty(%fileToExec) then 
                 exec(%fileToExec);
                 disp('Exec done.');
               end
-              clear %fileToExec"
+              clear %fileToExec isempty"
             type="0"/>
         </submenu> 
         <separator/>
         <submenu label="Open..." mnemonic="O"> 
             <callback 
             instruction="
-              %fileToOpen = xgetfile('*.sci', getcwd(), 'Select a file to open with Scipad');
+              %fileToOpen = xgetfile('*.sc*', getcwd(), 'Select a file to open with Scipad');
               if ~isempty(%fileToOpen) then 
                 scipad(%fileToOpen);
               end
-              clear %fileToOpen"
+              clear %fileToOpen isempty"
             type="0"/>
         </submenu> 
-        <submenu label="Load..." mnemonic="L"> 
+        <submenu label="Load environment..." mnemonic="L"> 
             <callback 
             instruction="
-              %fileToLoad = xgetfile('*.bin', getcwd(), 'Select a file to load');
+              %fileToLoad = xgetfile('*.sav', getcwd(), 'Select a file to load');
               if ~isempty(%fileToLoad) then 
-                exec(%fileToLoad);
-                disp('File loaded.');
+                load(%fileToLoad);
+                disp('Environment loaded.');
               end
-              clear %fileToLoad"
+              clear %fileToLoad isempty"
             type="0"/>
         </submenu> 
-        <submenu label="Save..." mnemonic="S"> 
-            <callback instruction="notavailablemessage();" type="0"/>
+        <submenu label="Save environment..." mnemonic="S"> 
+            <callback 
+            instruction="
+              %fileToSave = xgetfile('*.sav', getcwd(), 'Select a file to write');
+              if ~isempty(%fileToSave) then
+                if isempty(fileparts(%fileToSave, 'extension')) then
+                  %fileToSave = %fileToSave + '.sav';
+                end
+                save(%fileToSave);
+                disp('Environment saved.');
+              end
+              clear %fileToSave isempty fileparts"
+            type="0"/>
         </submenu>
         <separator/>
         <submenu label="Change current directory..." mnemonic="C"> 
@@ -53,7 +60,7 @@
               if ~isempty(%newDir) then 
                 cd(%newDir);
               end
-              clear %newDir"
+              clear %newDir isempty"
             type="0"/>
         </submenu> 
         <submenu label="Display current directory" mnemonic="D">
