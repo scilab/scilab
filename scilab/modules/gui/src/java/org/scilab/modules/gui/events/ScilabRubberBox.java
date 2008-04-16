@@ -12,6 +12,10 @@
 
 package org.scilab.modules.gui.events;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.HierarchyEvent;
+import java.awt.event.HierarchyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -24,9 +28,11 @@ import org.scilab.modules.renderer.utils.selection.RubberBox;
  * @author Jean-Baptiste Silvy
  */
 public abstract class ScilabRubberBox extends RubberBox
-	implements MouseListener, MouseMotionListener {
+	implements MouseListener, MouseMotionListener, HierarchyListener {
 	
 	private static final int INITIAL_RECT_SIZE = 4;
+	
+	private static final int CLOSE_ACTION_BUTTON = -100;
 
 	private boolean drawingMode;
 	
@@ -105,6 +111,7 @@ public abstract class ScilabRubberBox extends RubberBox
 		// for know we just track mouse button events
 		// until we begin to dragg the rectangle
 		selectedCanvas.addMouseListener(this);
+		selectedCanvas.addHierarchyListener(this);
 		
 		if (initialRect != null) {
 			// don't wait any click to start getting rectangle
@@ -121,6 +128,7 @@ public abstract class ScilabRubberBox extends RubberBox
 		}
 		
 		selectedCanvas.removeMouseListener(this);
+		selectedCanvas.removeHierarchyListener(this);
 		
 		endRect[0] = getFirstPointX();
 		endRect[1] = getFirstPointY();
@@ -202,6 +210,25 @@ public abstract class ScilabRubberBox extends RubberBox
 		selectedCanvas.removeMouseMotionListener(this);
 		
 		// wake up calling thread
+		synchronized (lock) {
+			lock.notifyAll();
+		}
+	}
+	
+	/**
+	 * Event called when hierarchy changed. It is for example called when the
+	 * canvas is destroyed.
+	 * @param event hierarchy event
+	 */
+	public void hierarchyChanged(HierarchyEvent event) {
+		// we should stop recording here
+		if (isDragging()) {
+			endDragging();
+		}
+		selectedCanvas.removeMouseListener(this);
+		selectedCanvas.removeHierarchyListener(this);
+		/* specify that canvas has been closed*/
+		setUsedButton(CLOSE_ACTION_BUTTON);
 		synchronized (lock) {
 			lock.notifyAll();
 		}
