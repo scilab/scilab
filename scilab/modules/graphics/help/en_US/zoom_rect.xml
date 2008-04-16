@@ -49,7 +49,7 @@ zoom_rect(h,rect)
   <refsection>
     <title>Description</title>
     <para>
-      <literal>zoom_rect</literal> funtion is used to to perform a zoom inside a set of Axes Objects.
+      <literal>zoom_rect</literal> funtion is used to perform a zoom inside a set of Axes Objects.
     </para>
     <para>
       The <literal>h</literal> input argument specifies on which Axes the zoom will apply.

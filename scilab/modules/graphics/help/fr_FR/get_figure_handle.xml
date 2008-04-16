@@ -48,7 +48,7 @@
     </para>
   </refsection>
   <refsection>
-    <title>Examples</title>
+    <title>Exemples</title>
     <programlisting role="example"><![CDATA[
     // Création de quelques figures.
     scf(0);
@@ -65,7 +65,7 @@
   ]]></programlisting>
   </refsection>
   <refsection>
-    <title>See Also</title>
+    <title>Voir Aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="set">set</link>
@@ -85,7 +85,7 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
+    <title>Auteurs</title>
     <para>Jean-Baptiste Silvy INRIA</para>
   </refsection>
 </refentry>
