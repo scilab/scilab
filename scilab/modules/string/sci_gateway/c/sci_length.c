@@ -105,6 +105,7 @@ static int lengthStrings(char *fname)
 	ilrd = il + 4;
 	
 	/* readjust stack before to call createvar */
+	/* @TODO rewrite this without using intersci */
 	C2F(intersci).ntypes[RHSPOS - 1] = '$';
 	C2F(intersci).iwhere[RHSPOS - 1] = l1;
 	C2F(intersci).lad[RHSPOS - 1] = l1;
