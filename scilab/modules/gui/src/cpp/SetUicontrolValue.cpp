@@ -19,6 +19,7 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
 {
   double *allValues = NULL;
   int K = 0;
+  int nbValue = 0, value = 0;
   
   if (valueType == sci_matrix)
     {
@@ -50,7 +51,39 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
               pUICONTROL_FEATURE(sciObj)->value[K] = (int) allValues[K];
             }
         }
+    }
+  else if (valueType == sci_strings) // Ascendant compatibility
+    {
+      if(nbCol > 1 || nbRow > 1)
+        {
+          /* Wrong value size */
+          sciprint(_("%s property value must be single string.\n"), "Value");
+          return SET_PROPERTY_ERROR;
+        }
 
+      nbValue = sscanf(getStringFromStack(stackPointer), "%d", &value);
+
+      if(nbValue != 1)
+        {
+          /* Wrong value size */
+          sciprint(_("%s property value must be single string.\n"), "Value");
+          return SET_PROPERTY_ERROR;
+        }
+
+      pUICONTROL_FEATURE(sciObj)->valueSize = 1;
+      pUICONTROL_FEATURE(sciObj)->value = new int[1];
+      pUICONTROL_FEATURE(sciObj)->value[0] = (int) value;
+    }
+  else
+    {
+      /* Wrong datatype */
+      sciprint(_("%s property value must be single value.\n"), "Value");
+      return SET_PROPERTY_ERROR;
+    }
+
+
+  if (allValues != NULL || nbValue==1)
+    {
       // Set the Java object property if necessary
       switch(pUICONTROL_FEATURE(sciObj)->style)
         {
@@ -59,7 +92,7 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
             {
               CallScilabBridge::setListBoxSelectedIndices(getScilabJavaVM(), 
                                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                          (long int*) allValues,
+                                                          (long int*) pUICONTROL_FEATURE(sciObj)->value,
                                                           -1); /* No value selected */
             }
           else
@@ -77,13 +110,13 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
               sciprint(_("%s property value must be a single value.\n"), "Value");
               return SET_PROPERTY_ERROR;
             }
-            else
-              {
-                CallScilabBridge::setPopupMenuSelectedIndex(getScilabJavaVM(), 
-                                                            pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                            pUICONTROL_FEATURE(sciObj)->value[0]);
-                return SET_PROPERTY_SUCCEED;
-              }
+          else
+            {
+              CallScilabBridge::setPopupMenuSelectedIndex(getScilabJavaVM(), 
+                                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                          pUICONTROL_FEATURE(sciObj)->value[0]);
+              return SET_PROPERTY_SUCCEED;
+            }
         case SCI_CHECKBOX:
           if (pUICONTROL_FEATURE(sciObj)->valueSize != 0)
             {
@@ -93,7 +126,7 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
             }
           return SET_PROPERTY_SUCCEED;
         case SCI_RADIOBUTTON:
-           if (pUICONTROL_FEATURE(sciObj)->valueSize != 0)
+          if (pUICONTROL_FEATURE(sciObj)->valueSize != 0)
             {
               CallScilabBridge::setRadioButtonChecked(getScilabJavaVM(), 
                                                       pUICONTROL_FEATURE(sciObj)->hashMapIndex,
@@ -113,12 +146,7 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
           return SET_PROPERTY_SUCCEED;
         }
     }
-  else
-    {
-      /* Wrong datatype */
-      sciprint(_("%s property value must be single value.\n"), "Value");
-      return SET_PROPERTY_ERROR;
-    }
-
+  return SET_PROPERTY_ERROR;
+  
 }
 
