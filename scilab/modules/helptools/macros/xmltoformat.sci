@@ -39,6 +39,12 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 	%helps_save         = %helps;
 	%helps_modules_save = %helps_modules;
 	
+	//------------------------------------------------------------------
+	// Patch because scicos is not written in xml
+	//------------------------------------------------------------------
+	%helps(grep(%helps,"/modules\/scicos/","r"),:) = [];
+	
+	
 	all_scilab_help     = %F;
 	
 	try
