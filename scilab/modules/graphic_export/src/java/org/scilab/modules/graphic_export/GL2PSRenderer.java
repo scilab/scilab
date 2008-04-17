@@ -98,7 +98,6 @@ public class GL2PSRenderer extends ExportRenderer {
 							  GL.GL_RGBA, 0, null, null, null, null, 
 							  0, 0, 0, buffsize, ExportRenderer.getFileName());		
 		
-		
 		GL gl = gLDrawable.getGL();
 		GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
 		gLDrawable.setGL(newGL);
