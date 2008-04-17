@@ -10,8 +10,7 @@
 
 function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	
-	mprintf("This function has been temporary disabled \n");
-	return;
+	warnobsolete("xmltojar", "5.1");
 	
 	// =========================================================================
 	// Authors : Pierre MARECHAL
