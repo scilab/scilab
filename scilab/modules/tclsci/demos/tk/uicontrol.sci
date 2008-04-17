@@ -19,15 +19,22 @@ function myuidialog()
   e1=0;l1 =0
   initial=strcat(list_item,'|')
 
-  f = figure("Position",[50 50 300 330],...
-	     "BackgroundColor",[0.9 0.9 0.9],...
-	     "Units", "pixels");
-
-  m=uimenu(f,'label', 'menu');
+  f = figure("figure_name", "Uicontrols demo",...
+      "Position",[50 50 300 330],...
+      "BackgroundColor",[0.9 0.9 0.9],...
+      "Units", "pixels");
+  
+  // Remove Scilab menus
+  delmenu(f.figure_id, gettext("File"));
+  delmenu(f.figure_id, gettext("Tools"));
+  delmenu(f.figure_id, gettext("Edit"));
+  delmenu(f.figure_id, gettext("?"));
+  
+  m=uimenu(f,"label", "Menu");
   // create an item on the menu bar
-  m1=uimenu(m,'label', 'launch plot3d1', 'callback', "plot3d1()");
-  m2=uimenu(m,'label', 'Exit figure', 'callback', "fin=%t;");
-  m3=uimenu(m,'label', 'quit scilab', 'callback', "exit");
+  m1=uimenu(m,"label", "Launch plot3d1", "callback", "plot3d1()");
+  m2=uimenu(m,"label", "Exit figure", "callback", "fin=%t;");
+  m3=uimenu(m,"label", "Quit scilab", "callback", "exit");
 
   fr1= uicontrol(f, "Position"  , [5 5 160 100],...
 		 "Style"     , "frame",...
