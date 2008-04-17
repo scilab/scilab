@@ -111,7 +111,7 @@ int sci_delete(char *fname,unsigned long fname_len)
       }
     else if(objType == SCI_UICONTROL)
       {
-        DestroyUIControl(pobj); /* Java object */
+        DestroyJavaUicontrol(pobj); /* Java object */
         DestroyUicontrol(pobj); /* Scilab Object */
         sciStandardDestroyOperations(pobj);
       }

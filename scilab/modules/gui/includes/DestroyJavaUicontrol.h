@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef __DESTROY_UICONTROL_H__
-#define __DESTROY_UICONTROL_H__
+#ifndef __DESTROY_JAVAUICONTROL_H__
+#define __DESTROY_JAVAUICONTROL_H__
 
 #include "ObjectStructure.h"
 #include "returnProperty.h"
@@ -21,6 +21,6 @@
  *
  * @param pobj Scilab object corresponding to the uicontrol
  */
-void DestroyUIControl(sciPointObj * pobj);
+void DestroyJavaUicontrol(sciPointObj * pobj);
 
 #endif

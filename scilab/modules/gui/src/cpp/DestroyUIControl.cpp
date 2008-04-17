@@ -15,7 +15,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-void DestroyUIControl(sciPointObj * sciObj)
+void DestroyJavaUicontrol(sciPointObj * sciObj)
 {
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
