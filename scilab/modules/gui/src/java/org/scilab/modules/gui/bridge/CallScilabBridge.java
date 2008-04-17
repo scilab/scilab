@@ -16,8 +16,12 @@ package org.scilab.modules.gui.bridge;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -2214,6 +2218,58 @@ public class CallScilabBridge {
 	 */
 	public static boolean isFrameVisible(int id) {
 		return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).isVisible();
+	}
+	
+	/************************/
+	/*                      */
+	/* CLIPBOARD MANAGEMENT */
+	/*                      */
+	/************************/
+	
+	/**
+	 * Get the contents of the clipboard
+	 * @return the string contained in the clipboard or null
+	 */
+	public static String getClipboardContents() {
+		// Gets the contents of the clipboard
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Clipboard systemClipboard = toolkit.getSystemClipboard();
+		String clipboardContents = "";
+
+		// Verify that clibpboard data is of text type
+		boolean dataAvailable;
+		try {
+			dataAvailable = systemClipboard.isDataFlavorAvailable(DataFlavor.stringFlavor);
+		} catch (IllegalStateException exception) {
+			return clipboardContents;
+		}
+
+		// Exit if text data not available
+		if (!dataAvailable) {
+			return clipboardContents;
+		}
+
+		// Read data
+		try {
+			clipboardContents = (String) systemClipboard.getData(DataFlavor.stringFlavor);
+		} catch (UnsupportedFlavorException e1) {
+			// Should never be here
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// Should never be here
+			e1.printStackTrace();
+		}
+		
+		return clipboardContents;
+	}
+	
+	/**
+	 * Set the contents of the clipboard
+	 * @param text the string to put in the clipboard
+	 */
+	public static void setClipboardContents(String text) {
+		Transferable contents = new StringSelection(text);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(contents, null);
 	}
 	
 	/********/

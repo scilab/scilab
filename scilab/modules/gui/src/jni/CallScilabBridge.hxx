@@ -205,6 +205,11 @@ jmethodID voidsetWidgetVisiblejintjbooleanID; // cache method id
 jmethodID voidsetFrameVisiblejintjbooleanID; // cache method id
 jmethodID jbooleanisWidgetVisiblejintID; // cache method id
 jmethodID jbooleanisFrameVisiblejintID; // cache method id
+jmethodID jstringgetClipboardContentsID; // cache method id
+jmethodID voidpasteClipboardIntoConsoleID; // cache method id
+jmethodID voidcopyConsoleSelectionID; // cache method id
+jmethodID voidemptyClipboardID; // cache method id
+jmethodID voidsetClipboardContentsjstringID; // cache method id
 jmethodID jintgetScreenResolutionID; // cache method id
 jmethodID jdoublegetScreenWidthID; // cache method id
 jmethodID jdoublegetScreenHeightID; // cache method id
@@ -553,6 +558,16 @@ static void setFrameVisible(JavaVM * jvm_, long objID, bool status);
 static bool isWidgetVisible(JavaVM * jvm_, long objID);
 
 static bool isFrameVisible(JavaVM * jvm_, long objID);
+
+static char * getClipboardContents(JavaVM * jvm_);
+
+static void pasteClipboardIntoConsole(JavaVM * jvm_);
+
+static void copyConsoleSelection(JavaVM * jvm_);
+
+static void emptyClipboard(JavaVM * jvm_);
+
+static void setClipboardContents(JavaVM * jvm_, char * text);
 
 static long getScreenResolution(JavaVM * jvm_);
 

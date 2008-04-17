@@ -102,7 +102,8 @@ src/cpp/GetUicontrolSliderStep.cpp \
 src/cpp/SetUiobjectVisible.cpp \
 src/cpp/GetUiobjectVisible.cpp \
 src/cpp/UnitsConversion.cpp \
-src/cpp/GetScreenProperty.cpp
+src/cpp/GetScreenProperty.cpp \
+src/cpp/CallClipboard.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -299,7 +300,8 @@ includes/TerminateGui.h \
 includes/write_scilab.h \
 includes/Toolbar.h \
 includes/DestroyUicontrol.h \
-includes/DestroyUimenu.h
+includes/DestroyUimenu.h \
+includes/CallClipboard.h
 
 #### gui : demos files ####
 libscigui_la_demosdir=$(mydatadir)/demos/

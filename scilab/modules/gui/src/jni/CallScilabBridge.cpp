@@ -254,6 +254,11 @@ voidsetWidgetVisiblejintjbooleanID=NULL;
 voidsetFrameVisiblejintjbooleanID=NULL; 
 jbooleanisWidgetVisiblejintID=NULL; 
 jbooleanisFrameVisiblejintID=NULL; 
+jstringgetClipboardContentsID=NULL; 
+voidpasteClipboardIntoConsoleID=NULL; 
+voidcopyConsoleSelectionID=NULL; 
+voidemptyClipboardID=NULL; 
+voidsetClipboardContentsjstringID=NULL; 
 jintgetScreenResolutionID=NULL; 
 jdoublegetScreenWidthID=NULL; 
 jdoublegetScreenHeightID=NULL; 
@@ -435,6 +440,11 @@ voidsetWidgetVisiblejintjbooleanID=NULL;
 voidsetFrameVisiblejintjbooleanID=NULL; 
 jbooleanisWidgetVisiblejintID=NULL; 
 jbooleanisFrameVisiblejintID=NULL; 
+jstringgetClipboardContentsID=NULL; 
+voidpasteClipboardIntoConsoleID=NULL; 
+voidcopyConsoleSelectionID=NULL; 
+voidemptyClipboardID=NULL; 
+voidsetClipboardContentsjstringID=NULL; 
 jintgetScreenResolutionID=NULL; 
 jdoublegetScreenWidthID=NULL; 
 jdoublegetScreenHeightID=NULL; 
@@ -4416,6 +4426,120 @@ curEnv->ExceptionDescribe() ;
                         
 return (res == JNI_TRUE);
 
+}
+
+char * CallScilabBridge::getClipboardContents (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jstringgetClipboardContentsID = curEnv->GetStaticMethodID(cls, "getClipboardContents", "()Ljava/lang/String;" ) ;
+if (jstringgetClipboardContentsID == NULL) {
+std::cerr << "Could not access to the method " << "getClipboardContents" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringgetClipboardContentsID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+
+return myStringBuffer;
+
+}
+
+void CallScilabBridge::pasteClipboardIntoConsole (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidpasteClipboardIntoConsoleID = curEnv->GetStaticMethodID(cls, "pasteClipboardIntoConsole", "()V" ) ;
+if (voidpasteClipboardIntoConsoleID == NULL) {
+std::cerr << "Could not access to the method " << "pasteClipboardIntoConsole" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidpasteClipboardIntoConsoleID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::copyConsoleSelection (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidcopyConsoleSelectionID = curEnv->GetStaticMethodID(cls, "copyConsoleSelection", "()V" ) ;
+if (voidcopyConsoleSelectionID == NULL) {
+std::cerr << "Could not access to the method " << "copyConsoleSelection" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidcopyConsoleSelectionID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::emptyClipboard (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidemptyClipboardID = curEnv->GetStaticMethodID(cls, "emptyClipboard", "()V" ) ;
+if (voidemptyClipboardID == NULL) {
+std::cerr << "Could not access to the method " << "emptyClipboard" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidemptyClipboardID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setClipboardContents (JavaVM * jvm_, char * text){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetClipboardContentsjstringID = curEnv->GetStaticMethodID(cls, "setClipboardContents", "(Ljava/lang/String;)V" ) ;
+if (voidsetClipboardContentsjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setClipboardContents" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring text_ = curEnv->NewStringUTF( text );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetClipboardContentsjstringID ,text_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 long CallScilabBridge::getScreenResolution (JavaVM * jvm_){

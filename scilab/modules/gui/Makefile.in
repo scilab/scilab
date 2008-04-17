@@ -176,7 +176,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/SetUicontrolSliderStep.cpp \
 	src/cpp/GetUicontrolSliderStep.cpp \
 	src/cpp/SetUiobjectVisible.cpp src/cpp/GetUiobjectVisible.cpp \
-	src/cpp/UnitsConversion.cpp src/cpp/GetScreenProperty.cpp
+	src/cpp/UnitsConversion.cpp src/cpp/GetScreenProperty.cpp \
+	src/cpp/CallClipboard.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-setlookandfeel.lo \
@@ -293,7 +294,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-SetUiobjectVisible.lo \
 @GUI_TRUE@	libscigui_la-GetUiobjectVisible.lo \
 @GUI_TRUE@	libscigui_la-UnitsConversion.lo \
-@GUI_TRUE@	libscigui_la-GetScreenProperty.lo
+@GUI_TRUE@	libscigui_la-GetScreenProperty.lo \
+@GUI_TRUE@	libscigui_la-CallClipboard.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -674,7 +676,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/SetUiobjectVisible.cpp \
 @GUI_TRUE@src/cpp/GetUiobjectVisible.cpp \
 @GUI_TRUE@src/cpp/UnitsConversion.cpp \
-@GUI_TRUE@src/cpp/GetScreenProperty.cpp
+@GUI_TRUE@src/cpp/GetScreenProperty.cpp \
+@GUI_TRUE@src/cpp/CallClipboard.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/CallScilabBridge.giws.xml \
@@ -860,7 +863,8 @@ includes/TerminateGui.h \
 includes/write_scilab.h \
 includes/Toolbar.h \
 includes/DestroyUicontrol.h \
-includes/DestroyUimenu.h
+includes/DestroyUimenu.h \
+includes/CallClipboard.h
 
 
 #### gui : demos files ####
@@ -954,6 +958,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallClipboard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallColorChooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFileChooser.Plo@am__quote@
@@ -1980,6 +1985,13 @@ libscigui_la-GetScreenProperty.lo: src/cpp/GetScreenProperty.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetScreenProperty.cpp' object='libscigui_la-GetScreenProperty.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GetScreenProperty.lo `test -f 'src/cpp/GetScreenProperty.cpp' || echo '$(srcdir)/'`src/cpp/GetScreenProperty.cpp
+
+libscigui_la-CallClipboard.lo: src/cpp/CallClipboard.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallClipboard.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallClipboard.Tpo -c -o libscigui_la-CallClipboard.lo `test -f 'src/cpp/CallClipboard.cpp' || echo '$(srcdir)/'`src/cpp/CallClipboard.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-CallClipboard.Tpo $(DEPDIR)/libscigui_la-CallClipboard.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallClipboard.cpp' object='libscigui_la-CallClipboard.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallClipboard.lo `test -f 'src/cpp/CallClipboard.cpp' || echo '$(srcdir)/'`src/cpp/CallClipboard.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

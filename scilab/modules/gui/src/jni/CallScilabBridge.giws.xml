@@ -555,6 +555,18 @@
 	<method name="isFrameVisible" returnType="boolean" modifier="static">
           <parameter type="int" name="objID"/>
         </method>      
+<!-- Clipboard management -->
+	<method name="getClipboardContents" returnType="String" modifier="static">
+        </method>      
+	<method name="pasteClipboardIntoConsole" returnType="void" modifier="static">
+        </method>      
+	<method name="copyConsoleSelection" returnType="void" modifier="static">
+        </method>      
+	<method name="emptyClipboard" returnType="void" modifier="static">
+        </method>      
+	<method name="setClipboardContents" returnType="void" modifier="static">
+          <parameter type="String" name="text"/>
+        </method>      
 <!-- Misc -->
 	<method name="getScreenResolution" returnType="int" modifier="static">
         </method>      
