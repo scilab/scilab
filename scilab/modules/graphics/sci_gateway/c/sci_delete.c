@@ -32,6 +32,8 @@
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 #include "DestroyJavaUicontrol.h"
+#include "DestroyUimenu.h"
+#include "DestroyUIControl.h"
 #include "DestroyWaitBar.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/

@@ -77,4 +77,7 @@ DestroyWaitBar
 GetScreenProperty
 GetUiobjectVisible
 SetUiobjectVisible
+DestroyUimenu
+DestroyJavaUicontrol
+DestroyUicontrol
 ;
