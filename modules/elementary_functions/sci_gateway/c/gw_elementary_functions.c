@@ -33,9 +33,9 @@ static gw_generic_table Tab[]=
 	{C2F(sci_maxi),"maxi"},
 	{C2F(sci_maxi),"mini"},
 	{C2F(sci_kron),"kron"},
-	{C2F(sci_kron),"!!! USELESS : Must be reordered !!!"},
-	{C2F(sci_kron),"!!! USELESS : Must be reordered !!!"},
-	{C2F(sci_scimatrix),"matrix"},
+	{C2F(sci_kron),".*."},
+	{C2F(sci_kron),"./."},
+	{C2F(sci_kron),".\\."},
 	{C2F(sci_sin),"sin"},
 	{C2F(sci_cos),"cos"},
 	{C2F(sci_atan),"atan"},
@@ -65,7 +65,8 @@ static gw_generic_table Tab[]=
 	{C2F(sci_isequal),"isequal"},
 	{C2F(sci_spones),"spones"},
 	{C2F(sci_gsort),"gsort"},
-	{C2F(sci_isequalbitwise),"isequalbitwise"}
+	{C2F(sci_isequalbitwise),"isequalbitwise"},
+	{C2F(sci_scimatrix),"matrix"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
