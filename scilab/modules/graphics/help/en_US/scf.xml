@@ -89,6 +89,9 @@ f = scf(num)</synopsis>
         <link linkend="clf">clf</link>
       </member>
       <member>
+        <link linkend="get_figure_handle">get_figure_handle</link>
+      </member>
+      <member>
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
