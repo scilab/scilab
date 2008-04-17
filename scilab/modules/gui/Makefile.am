@@ -31,7 +31,7 @@ src/c/messageboxoptions.c
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
-src/cpp/DestroyUIControl.cpp \
+src/cpp/DestroyJavaUicontrol.cpp \
 src/cpp/DestroyWaitBar.cpp \
 src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \

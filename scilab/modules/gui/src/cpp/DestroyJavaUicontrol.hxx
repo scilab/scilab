@@ -9,8 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef __DESTROY_UICONTROL_HXX__
-#define __DESTROY_UICONTROL_HXX__
+#ifndef __DESTROY_JAVAUICONTROL_HXX__
+#define __DESTROY_JAVAUICONTROL_HXX__
 
 #include "CallScilabBridge.hxx"
 extern "C"
@@ -22,4 +22,4 @@ extern "C"
 #include "UicontrolStyleToString.h"
 #include "sciprint.h"
 }
-#endif /* !__DESTROY_UICONTROL_HXX__ */
+#endif /* !__DESTROY_JAVAUICONTROL_HXX__ */
