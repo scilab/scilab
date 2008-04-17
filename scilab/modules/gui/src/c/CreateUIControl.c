@@ -23,6 +23,7 @@
 #include "PopupMenu.h"
 #include "ListBox.h"
 #include "Frame.h"
+#include "DestroyObjects.h" /* sciStandardDestroyOperations */
 
 /**CreateUIControl
  * This function creates Uicontrol structure.

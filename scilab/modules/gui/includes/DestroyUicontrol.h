@@ -10,9 +10,11 @@
  *
  */
 
+#ifndef __DESTROY_UICONTROL_H__
+#define __DESTROY_UICONTROL_H__
+
 #include "ObjectStructure.h" /* sciPointObj */
 #include "MALLOC.h" /* MALLOC */
-#include "DestroyObjects.h" /* sciStandardDestroyOperations */
 
 /**
  * DestroyUicontrol
@@ -21,3 +23,6 @@
  * @return execution status
  */
 int DestroyUicontrol (sciPointObj * pthis);
+
+#endif
+

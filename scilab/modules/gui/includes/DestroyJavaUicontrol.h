@@ -13,6 +13,10 @@
 #ifndef __DESTROY_JAVAUICONTROL_H__
 #define __DESTROY_JAVAUICONTROL_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -21,6 +25,11 @@
  *
  * @param pobj Scilab object corresponding to the uicontrol
  */
-void DestroyJavaUicontrol(sciPointObj * pobj);
+  void DestroyJavaUicontrol(sciPointObj * pobj);
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

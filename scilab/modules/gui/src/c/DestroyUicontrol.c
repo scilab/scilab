@@ -12,6 +12,7 @@
  */
 
 #include "DestroyUicontrol.h"
+#include "DestroyObjects.h"
 
 /**
  * DestroyUicontrol
@@ -19,9 +20,9 @@
  * @param sciPointObj * pthis pointer to the object structure
  * @return execution status
  */
-int DestroyUicontrol (sciPointObj * pthis)
+int  DestroyUicontrol (sciPointObj * pthis)
 {
-  if (pUICONTROL_FEATURE (pthis)->backgroundcolor != NULL)
+  if  (pUICONTROL_FEATURE (pthis)->backgroundcolor != NULL)
     {
       FREE (pUICONTROL_FEATURE (pthis)->backgroundcolor);
     }
