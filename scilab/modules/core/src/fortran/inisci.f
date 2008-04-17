@@ -227,22 +227,26 @@ c     7 booleans
       k=bot
       lstk(k)=lstk(1)-1+l
 C     . COMPILER
-      vname =  "COMPILER"
+      vname = ' '
+      vname(1:8) =  "COMPILER"
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,bufcomp,nbcomp)
       k=k+1
 c     . SCI
-      vname =  "SCI"
+      vname = ' '
+      vname(1:3) =  "SCI"
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,bufsci,nbsci)
       k=k+1
 c     . SCIHOME
-      vname =  "SCIHOME"
+      vname = ' '
+      vname(1:7) =  "SCIHOME"
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,bufscihome,nbscihome)
       k=k+1      
 c     . TMPDIR
-      vname = "TMPDIR"
+      vname = ' '
+      vname(1:6) = "TMPDIR"
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,buftmp,nbtmpdir)
       k=k+1
