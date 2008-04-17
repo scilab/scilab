@@ -104,7 +104,12 @@ int sci_delete(char *fname,unsigned long fname_len)
     
     sciEntityType objType = sciGetEntityType( pobj ) ;
 
-    if (objType == SCI_UIMENU || objType == SCI_UICONTROL)
+    if (objType == SCI_UIMENU)
+      {
+        DestroyUimenu(pobj);
+        sciStandardDestroyOperations(pobj);
+      }
+    else if(objType == SCI_UICONTROL)
       {
         DestroyUIControl(pobj);
         sciStandardDestroyOperations(pobj);

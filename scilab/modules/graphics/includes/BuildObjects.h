@@ -108,8 +108,6 @@ sciPointObj *ConstructCompoundSeq (int number); /* BUILD */
 
 sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type); /* BUILD */
 
-sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback,BOOL handle_visible) ;
-
 sciPointObj * sciConstructConsole(     sciPointObj * pparent ) ;
 sciPointObj * sciConstructFrame(       sciPointObj * pparent ) ;
 sciPointObj * sciConstructWindow(      sciPointObj * pparent ) ;

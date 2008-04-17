@@ -64,7 +64,6 @@ extern int sciUnCompound (sciPointObj * pobj); /* DESTROY */
 extern int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
 
 extern int DestroyLabel (sciPointObj * pthis); /* DESTROY */
-extern int DestroyUimenu (sciPointObj * pthis); /* DESTROY */
 int sciDestroyConsole(     sciPointObj * pthis ) ; /* DESTROY */
 int sciDestroyFrame(       sciPointObj * pThis ) ;
 int sciDestroyWindow(      sciPointObj * pThis ) ;
@@ -85,8 +84,6 @@ extern int updateMerge( sciPointObj * pSubwin ) ;
 void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4) ;
 
 int sciStandardDestroyOperations( sciPointObj * pThis ) ;
-
-int DestroyUicontrol (sciPointObj * pthis);
 
 void destroyGraphicPointer(void * pointer);
 

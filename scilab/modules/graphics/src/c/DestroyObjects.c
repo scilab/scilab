@@ -31,6 +31,8 @@
 #include <time.h>
 
 #include "DestroyObjects.h"
+#include "DestroyUicontrol.h"
+#include "DestroyUimenu.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "SetProperty.h"
@@ -217,12 +219,10 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-
     case SCI_AXES:
     case SCI_AGREG:
     case SCI_TEXT:
     case SCI_LABEL:
-    case SCI_UIMENU:
     case SCI_FIGURE:
     case SCI_CONSOLE:
     case SCI_FRAME:
@@ -694,27 +694,6 @@ int DestroyLabel (sciPointObj * pthis)
   FREE(pthis) ;
   return 0 ;
 }
-
-int DestroyUimenu (sciPointObj * pthis)
-{
-  if (pUIMENU_FEATURE (pthis)->callback != NULL)
-    {
-      FREE (pUIMENU_FEATURE (pthis)->callback);
-    }
-
-  return sciStandardDestroyOperations(pthis) ;
-}
-
-int DestroyUicontrol (sciPointObj * pthis)
-{
-  if (pUICONTROL_FEATURE (pthis)->callback != NULL)
-    {
-      FREE (pUICONTROL_FEATURE (pthis)->callback);
-    }
-
-  return sciStandardDestroyOperations(pthis) ;
-}
-
 
 /**delete_sgwin_entities(int win_num)
  * @memo This function is to be called after window deletion 

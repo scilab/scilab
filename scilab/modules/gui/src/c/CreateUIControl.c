@@ -103,7 +103,7 @@ sciPointObj * CreateUIControl(char *style)
   pUICONTROL_FEATURE(pobj)->sliderStep = NULL;
 
   sciStandardBuildOperations(pobj, NULL);
-      
+
   /* Default Style is PushButton */
   if (style == NULL || strcmp(style,"pushbutton")==0)
     {

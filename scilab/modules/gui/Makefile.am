@@ -19,6 +19,9 @@ src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
 src/c/CreateUIControl.c \
+src/c/DestroyUicontrol.c \
+src/c/CreateUimenu.c \
+src/c/DestroyUimenu.c \
 src/c/InitWaitBar.c \
 src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
@@ -294,7 +297,9 @@ includes/SetUiobjectVisible.h \
 includes/Slider.h \
 includes/TerminateGui.h \
 includes/write_scilab.h \
-includes/Toolbar.h
+includes/Toolbar.h \
+includes/DestroyUicontrol.h \
+includes/DestroyUimenu.h
 
 #### gui : demos files ####
 libscigui_la_demosdir=$(mydatadir)/demos/

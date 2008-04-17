@@ -30,7 +30,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "stricmp.h"
-#include "InitUIMenu.h"
+#include "CreateUimenu.h"
 /*--------------------------------------------------------------------------*/
 int sci_uimenu( char *fname,unsigned long fname_len )
 {
@@ -40,8 +40,6 @@ int sci_uimenu( char *fname,unsigned long fname_len )
 
   int inputIndex = 0, beginIndex = 0;
 
-  char *labelmenu=NULL;
-  char *callbackmenu=NULL;
   char *propertyName=NULL;
 
   sciPointObj *pParent=NULL;
@@ -51,7 +49,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
   int parentDefined = FALSE;
 
   /* Create a new menu */
-  GraphicHandle=sciGetHandle(ConstructUimenu (pParent,labelmenu,callbackmenu,TRUE));
+  GraphicHandle=sciGetHandle(CreateUimenu());
 
   /* If no Rhs -> current figure is the parent (Ascendant compatibility) */
   if (Rhs==0)
@@ -91,6 +89,9 @@ int sci_uimenu( char *fname,unsigned long fname_len )
 
           // Set the parent property
           callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, "parent");
+          
+          // Set the flag to avoid setting the parent two times
+          parentDefined = TRUE;
         }
 
       // First input parameter which is a property name

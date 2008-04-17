@@ -49,7 +49,6 @@
 #include "DrawingBridge.h"
 #include "WindowList.h"
 #include "localization.h"
-#include "InitUIMenu.h" /* Used for ConstructUIMenu */
 #include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h" /* MALLOC */
@@ -2508,86 +2507,6 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
     sciprint(_("The parent has to be a SUBWIN\n"));
     return (sciPointObj *) NULL;
   }
-}
-
-
-/**ConstructUimenu
- * This function creates Uimenu structure.
- * @param  sciPointObj *pparentfigure
- * @param  char label[] : intial label string.
- * @param  char callback[] : intial text callback string .
- * @param  BOOL handle_visible : handle visibility in child list .
- * @return  : pointer sciPointObj if ok , NULL if not
- */
-sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback,BOOL handle_visible)
-{
-  int ** userData = NULL ;
-  int *  udSize   = NULL ;
-
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  sciUimenu *ppobj=NULL;
-
-  if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;
-
-  sciSetEntityType (pobj, SCI_UIMENU);
-
-  if ((pobj->pfeatures = MALLOC ((sizeof (sciUimenu)))) == NULL)
-    {
-      FREE(pobj);
-      return (sciPointObj *) NULL;
-    }
-
-  sciSetParent(pobj, NULL);
-  ppobj=pUIMENU_FEATURE (pobj);
-
-  /* Color property */
-  pUIMENU_FEATURE (pobj)->foregroundcolor = NULL;
-
-  /* Callback property */
-  /* Callback getter returns "" if callback is NULL */
-  pUIMENU_FEATURE (pobj)->callback = NULL;
-  pUIMENU_FEATURE (pobj)->callbackType=0;
-
-  pUIMENU_FEATURE (pobj)->MenuPosition=0;
-
-  pUIMENU_FEATURE (pobj)->Enable=TRUE;
-
-  /* Initialize the tag */
-  /* NULL value is displayed as "" in tag getter */
-  pUIMENU_FEATURE (pobj)->tag = NULL;
-
-  /* add the handle in the handle list */
-  if ( sciAddNewHandle(pobj) == -1 )
-    {
-      FREE( pobj->pfeatures ) ;
-      FREE( pobj ) ;
-      return NULL ;
-    }
-
-  /* no sons for now */
-  sciInitSelectedSons( pobj ) ;
-      
-  sciGetRelationship(pobj)->psons        = NULL ;
-  sciGetRelationship(pobj)->plastsons    = NULL ;
-  sciGetRelationship(pobj)->pSelectedSon = NULL ;
-      
-  sciInitVisibility( pobj, TRUE ) ;
-      
-  sciGetPointerToUserData( pobj, &userData, &udSize ) ;
-  *userData = NULL ;
-  *udSize   = 0    ;
-      
-      
-  pobj->pObservers = DoublyLinkedList_new() ;
-  createDrawingObserver( pobj ) ;
-      
-      
-  pobj->pDrawer = NULL ;
-      
- 
-  InitUIMenu((sciPointObj *) pobj);
-      
-  return (sciPointObj *) pobj;
 }
 /*----------------------------------------------------------------------------*/
 sciPointObj * sciConstructConsole( sciPointObj * pparent )

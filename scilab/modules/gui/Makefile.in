@@ -105,7 +105,9 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/c/getinstalledlookandfeels.c src/c/TerminateGui.c \
 	src/c/buildMainWindowTitle.c src/c/getMainWindowTitle.c \
 	src/c/InitializeGUI.c src/c/setMainWindowTitle.c \
-	src/c/addmenu.c src/c/CreateUIControl.c src/c/InitWaitBar.c \
+	src/c/addmenu.c src/c/CreateUIControl.c \
+	src/c/DestroyUicontrol.c src/c/CreateUimenu.c \
+	src/c/DestroyUimenu.c src/c/InitWaitBar.c \
 	src/c/InitProgressionBar.c src/c/CreateUIContextMenu.c \
 	src/c/UicontrolStyleToString.c src/c/messageboxoptions.c \
 	sci_gateway/c/sci_x_choice.c sci_gateway/c/gw_gui.c \
@@ -186,6 +188,9 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-setMainWindowTitle.lo \
 @GUI_TRUE@	libscigui_la-addmenu.lo \
 @GUI_TRUE@	libscigui_la-CreateUIControl.lo \
+@GUI_TRUE@	libscigui_la-DestroyUicontrol.lo \
+@GUI_TRUE@	libscigui_la-CreateUimenu.lo \
+@GUI_TRUE@	libscigui_la-DestroyUimenu.lo \
 @GUI_TRUE@	libscigui_la-InitWaitBar.lo \
 @GUI_TRUE@	libscigui_la-InitProgressionBar.lo \
 @GUI_TRUE@	libscigui_la-CreateUIContextMenu.lo \
@@ -586,6 +591,9 @@ JARMASK = *.jar
 @GUI_TRUE@src/c/setMainWindowTitle.c \
 @GUI_TRUE@src/c/addmenu.c \
 @GUI_TRUE@src/c/CreateUIControl.c \
+@GUI_TRUE@src/c/DestroyUicontrol.c \
+@GUI_TRUE@src/c/CreateUimenu.c \
+@GUI_TRUE@src/c/DestroyUimenu.c \
 @GUI_TRUE@src/c/InitWaitBar.c \
 @GUI_TRUE@src/c/InitProgressionBar.c \
 @GUI_TRUE@src/c/CreateUIContextMenu.c \
@@ -850,7 +858,9 @@ includes/SetUiobjectVisible.h \
 includes/Slider.h \
 includes/TerminateGui.h \
 includes/write_scilab.h \
-includes/Toolbar.h
+includes/Toolbar.h \
+includes/DestroyUicontrol.h \
+includes/DestroyUimenu.h
 
 
 #### gui : demos files ####
@@ -959,7 +969,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-ContextMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUIContextMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUIControl.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUimenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyUIControl.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyUicontrol.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyUimenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyWaitBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-EditBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Frame.Plo@am__quote@
@@ -1162,6 +1175,27 @@ libscigui_la-CreateUIControl.lo: src/c/CreateUIControl.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateUIControl.c' object='libscigui_la-CreateUIControl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-CreateUIControl.lo `test -f 'src/c/CreateUIControl.c' || echo '$(srcdir)/'`src/c/CreateUIControl.c
+
+libscigui_la-DestroyUicontrol.lo: src/c/DestroyUicontrol.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-DestroyUicontrol.lo -MD -MP -MF $(DEPDIR)/libscigui_la-DestroyUicontrol.Tpo -c -o libscigui_la-DestroyUicontrol.lo `test -f 'src/c/DestroyUicontrol.c' || echo '$(srcdir)/'`src/c/DestroyUicontrol.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-DestroyUicontrol.Tpo $(DEPDIR)/libscigui_la-DestroyUicontrol.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/DestroyUicontrol.c' object='libscigui_la-DestroyUicontrol.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-DestroyUicontrol.lo `test -f 'src/c/DestroyUicontrol.c' || echo '$(srcdir)/'`src/c/DestroyUicontrol.c
+
+libscigui_la-CreateUimenu.lo: src/c/CreateUimenu.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-CreateUimenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CreateUimenu.Tpo -c -o libscigui_la-CreateUimenu.lo `test -f 'src/c/CreateUimenu.c' || echo '$(srcdir)/'`src/c/CreateUimenu.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-CreateUimenu.Tpo $(DEPDIR)/libscigui_la-CreateUimenu.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateUimenu.c' object='libscigui_la-CreateUimenu.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-CreateUimenu.lo `test -f 'src/c/CreateUimenu.c' || echo '$(srcdir)/'`src/c/CreateUimenu.c
+
+libscigui_la-DestroyUimenu.lo: src/c/DestroyUimenu.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-DestroyUimenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-DestroyUimenu.Tpo -c -o libscigui_la-DestroyUimenu.lo `test -f 'src/c/DestroyUimenu.c' || echo '$(srcdir)/'`src/c/DestroyUimenu.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-DestroyUimenu.Tpo $(DEPDIR)/libscigui_la-DestroyUimenu.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/DestroyUimenu.c' object='libscigui_la-DestroyUimenu.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-DestroyUimenu.lo `test -f 'src/c/DestroyUimenu.c' || echo '$(srcdir)/'`src/c/DestroyUimenu.c
 
 libscigui_la-InitWaitBar.lo: src/c/InitWaitBar.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-InitWaitBar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitWaitBar.Tpo -c -o libscigui_la-InitWaitBar.lo `test -f 'src/c/InitWaitBar.c' || echo '$(srcdir)/'`src/c/InitWaitBar.c

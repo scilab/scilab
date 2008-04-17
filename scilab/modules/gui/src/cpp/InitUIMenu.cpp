@@ -45,7 +45,7 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
     {
       if (sciGetEntityType(sciGetPointerFromHandle(getHandleFromStack(stackPointer))) == SCI_FIGURE)
         {
-          
+
           // If the parent is a figure
           parentFigureIndex = sciGetNum(sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
           CallScilabBridge::setFigureAsParent(getScilabJavaVM(), parentFigureIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
@@ -62,6 +62,9 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
           // If the parent is a menu
           CallScilabBridge::setMenuAsParent(getScilabJavaVM(), pUIMENU_FEATURE(sciGetPointerFromHandle(getHandleFromStack(stackPointer)))->hashMapIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
           
+          // Scilab relationship
+          sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
+          
           return SET_PROPERTY_SUCCEED;
 
         } 
@@ -70,6 +73,9 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
 
           // If the parent is a context menu
           CallScilabBridge::setMenuAsParent(getScilabJavaVM(), pUICONTEXTMENU_FEATURE(sciGetPointerFromHandle(getHandleFromStack(stackPointer)))->hashMapIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
+          
+          // Scilab relationship
+          sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
           
           return SET_PROPERTY_SUCCEED;
 
