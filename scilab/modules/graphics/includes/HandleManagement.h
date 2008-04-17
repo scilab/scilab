@@ -49,4 +49,9 @@ extern int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned 
 extern BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent ) ;
 extern int swapHandles( unsigned long firstHdl, unsigned long secondHdl ) ;
 
+/**
+ * Check if a handle is still valid
+ */
+BOOL isHandleValid(long handle);
+
 #endif /* __SCI_HANDLE_MANAGEMENT__ */

@@ -94,6 +94,9 @@ delete("all")</synopsis>
         <link linkend="move">move</link>
       </member>
       <member>
+        <link linkend="is_handle_valid">is_handle_valid</link>
+      </member>
+      <member>
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>

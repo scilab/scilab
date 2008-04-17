@@ -840,3 +840,8 @@ int swapHandles( unsigned long firstHdl, unsigned long secondHdl )
 
 }
 /*--------------------------------------------------------------------------*/
+BOOL isHandleValid(long handle)
+{
+  return (sciGetPointerFromHandle(handle) != NULL);
+}
+/*--------------------------------------------------------------------------*/

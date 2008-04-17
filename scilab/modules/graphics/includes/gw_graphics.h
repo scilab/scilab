@@ -86,6 +86,7 @@
 #include "sci_contour2di.h"
 #include "sci_rubberbox.h"
 #include "sci_rotate_axes.h"
+#include "sci_is_handle_valid.h"
 /*--------------------------------------------------------------------------*/ 
 int gw_graphics(void);
 /*--------------------------------------------------------------------------*/ 

@@ -1115,6 +1115,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_is_handle_valid.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_matplot.c"
 				>
 			</File>
@@ -2130,6 +2134,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_help_gtk.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_is_handle_valid.h"
 				>
 			</File>
 			<File
