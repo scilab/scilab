@@ -31,7 +31,7 @@
 #include "DrawingBridge.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
-#include "DestroyUIControl.h"
+#include "DestroyJavaUicontrol.h"
 #include "DestroyWaitBar.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
@@ -111,7 +111,8 @@ int sci_delete(char *fname,unsigned long fname_len)
       }
     else if(objType == SCI_UICONTROL)
       {
-        DestroyUIControl(pobj);
+        DestroyUIControl(pobj); /* Java object */
+        DestroyUicontrol(pobj); /* Scilab Object */
         sciStandardDestroyOperations(pobj);
       }
     else if (objType == SCI_WAITBAR || objType == SCI_PROGRESSIONBAR)

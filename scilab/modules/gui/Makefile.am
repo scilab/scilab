@@ -233,7 +233,7 @@ includes/CallJxgetmouse.h \
 includes/CallMessageBox.h \
 includes/CheckBox.h \
 includes/ContextMenu.h \
-includes/DestroyUIControl.h \
+includes/DestroyJavaUicontrol.h \
 includes/EditBox.h \
 includes/Frame.h \
 includes/GetScreenProperty.h \
