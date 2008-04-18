@@ -304,7 +304,6 @@ c     .  write(6,'(30(i2,1x))') (lin(l4+ii),ii=0,n-1)
          goto 71
       endif
 c
- 73   continue
       il=ilc
       ilp1=il+2
       ilc1=ilp1+nr+1

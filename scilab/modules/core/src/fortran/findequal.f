@@ -36,7 +36,7 @@ c initialize counters (parenthesis, quote and brackets)
       bcount=0
 
  10   psym=sym
-      call getsym
+      call getsym1(1)
       if(strcnt.ne.0) then
          if(sym.eq.eol) then
             call error(3)
@@ -46,7 +46,7 @@ c initialize counters (parenthesis, quote and brackets)
             qcount=0
  11        qcount=qcount+1
             if(abs(char1).ne.quote) goto 12
-            call getsym
+            call getsym1(1)
             goto 11
  12        continue
             if(2*int(qcount/2).ne.qcount)  strcnt=0
@@ -79,7 +79,7 @@ c     .  check if transpose or beginning of a string
       else if(pcount.eq.0.and.bcount.eq.0) then
          if(sym.eq.equal) then
             if(char1.eq.equal) then
-               call getsym
+               call getsym1(1)
             else
                if(psym.ne.less.and.psym.ne.great.and.psym.ne.not)  then
 c     .           single equal sign found
