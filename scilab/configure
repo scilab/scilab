@@ -41803,14 +41803,14 @@ echo ""
 #   echo "Not using MPI"
 #fi
 
-if test "$with_openmpi" != "no"; then
-   echo "OpenMPI Configuration:"
-   echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
-   echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
-   echo "OpenMPI F77 Compiler ... = $MPIF77"
-else
-   echo "Not using MPI"
-fi
+#if test "$with_openmpi" != "no"; then
+#   echo "OpenMPI Configuration:"
+#   echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
+#   echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
+#   echo "OpenMPI F77 Compiler ... = $MPIF77"
+#else
+#   echo "Not using MPI"
+#fi
 
 echo ""
 if test $with_localization != no; then
