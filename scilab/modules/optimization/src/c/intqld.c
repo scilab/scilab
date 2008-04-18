@@ -19,7 +19,7 @@ int C2F(intqld)(char *fname)
   static double eps1;
 
   /*   Check rhs and lhs   */
-  CheckRhs(7,9) ;
+  CheckRhs(7,8) ;
   CheckLhs(1,3) ;
 
   /* RhsVar: qld(Q,p,C,b,lb,ub,me,eps) */
@@ -99,7 +99,7 @@ int C2F(intqld)(char *fname)
   lwar = 3*n*n/2+10*n+2*mmax+2;
   CreateVar(next+4,MATRIX_OF_DOUBLE_DATATYPE, &lwar, &un, &war);
   CreateVar(next+5,MATRIX_OF_INTEGER_DATATYPE, &n, &un, &iwar);
-  istk(iwar)[0]=0;
+  istk(iwar)[0]=1;/*Cholesky fcatorisation required*/
 
   /* extend C and B to add a row and change the sign of C*/
   CreateVar(next+6,MATRIX_OF_DOUBLE_DATATYPE, &mmax, &n, &C_mmax);
