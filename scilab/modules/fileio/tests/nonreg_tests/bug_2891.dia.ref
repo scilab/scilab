@@ -1,0 +1,16 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - allan.cornet@inria.fr
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+cd('home');
+mkdir('testdir');
+cd('testdir');
+mputl('Scilab can do it :p','files.txt')
+cd('home');
+res = ls('home/testdir');
+if res <> 'files.txt' then bugmes();quit;end
+cd('home');
+if removedir('testdir') <> %t then bugmes();quit;end
+cd('SCI');
