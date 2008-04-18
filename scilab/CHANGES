@@ -36,6 +36,8 @@ Graphics:
 	* is_handle_valid - Check wether a set of graphic handles is still valid.
  - Obsolete functions:
   * Using xgetmouse with a flag to avoid the event queue to be cleared is now obsolete. This functionnality will be removed in Scilab 5.1.
+  * xclea function has been removed because of its imcompatibility with new graphic syntax.
+  * xaxis function has been removed because of its imcompatibility with new graphic syntax. 
 
 
 Graphic file export:
