@@ -53,7 +53,7 @@
 #include "sci_param3d1.h"
 #include "sci_xstringb.h"
 #include "sci_xname.h"
-#include "sci_xaxis.h"
+#include "sci_clear_pixmap.h"
 #include "sci_set.h"
 #include "sci_get.h"
 #include "sci_delete.h"
