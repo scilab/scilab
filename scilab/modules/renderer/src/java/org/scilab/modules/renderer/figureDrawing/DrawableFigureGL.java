@@ -70,8 +70,6 @@ public class DrawableFigureGL extends ObjectGL {
 	/** To know if the figure can be displayed */
 	private boolean isReadyForRendering;
 	
-	private boolean pixmapModeOn;
-	
 	private SciTextRenderer textWriter;
 	
 	/** Keep a pointer on the OpenGL rendering target (Canvas, pBuffer, ...). */
@@ -102,7 +100,6 @@ public class DrawableFigureGL extends ObjectGL {
       	figureId = -1; // figure ids should be greater than 0.
       	destroyedObjects = new ObjectGLCleaner();
       	isReadyForRendering = false;
-      	pixmapModeOn = true;
       	renderingTarget = null;
       	setDefaultTextRenderer();
       	setDefaultArcRendererFactory();
@@ -448,20 +445,6 @@ public class DrawableFigureGL extends ObjectGL {
 		return guiProperties.getGLPipeline();
 	}
 	
-	
-	/**
-	 * @param onOrOff specify if we set the pixmap on or off
-	 */
-	public void setPixmapMode(boolean onOrOff) {
-		pixmapModeOn = onOrOff;
-	}
-	
-	/**
-	 * @return wether the pixmap mode is on ar off.
-	 */
-	public boolean getPixmapMode() {
-		return pixmapModeOn;
-	}
 	
 	/**
      * Specify wether the canvas should fit the parent tab size
