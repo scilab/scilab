@@ -18,12 +18,15 @@
 #include "localization.h"
 #include "../../../core/src/c/scicurdir.h" /* C2F(scigetcwd) */
 #include "Scierror.h"
+#include "cluni0.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_FILESPEC "*.*"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
+	char pathextented[PATH_MAX];
+	int out_n = 0;
 	char *path=NULL;
 	char *filespec=NULL;
 	char **FilesList=NULL;
@@ -101,7 +104,8 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 		break;
 	}
 
-	FilesList=findfiles(path,filespec,&sizeListReturned);
+	C2F(cluni0)(path,pathextented,&out_n,(long)strlen(path),PATH_MAX);
+	FilesList=findfiles(pathextented,filespec,&sizeListReturned);
 	if ( (filespec) && needtofreefilespec ) {FREE(filespec);filespec = NULL;}
 	if ( (path) && needtofreepath ) {FREE(path);path=NULL;}
 

@@ -28,6 +28,13 @@ function files=ls(varargin)
 		warning(msprintf(gettext("%s: Options ignored"),"ls"));
 	end
 	
+	if or(path==['PWD' 'SCIHOME']) then path=evstr(path),end
+	
+	if MSDOS then 
+    if or(path==['WSCI']) then path=evstr(path),end
+  end
+  if or(path==['SCI' '~' 'TMPDIR' 'home' ]) path=path+'/',end
+	
 	// dir returns names without the dirname
 	files = listfiles(path);
 	
