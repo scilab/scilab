@@ -78,7 +78,7 @@
 <PRIMITIVE gatewayId="7" primitiveId="52" primitiveName="xtitle" />
 <PRIMITIVE gatewayId="7" primitiveId="53" primitiveName="xgraduate" />
 <PRIMITIVE gatewayId="7" primitiveId="54" primitiveName="xname" />
-<PRIMITIVE gatewayId="7" primitiveId="55" primitiveName="xaxis" />
+<PRIMITIVE gatewayId="7" primitiveId="55" primitiveName="clear_pixmap" />
 <PRIMITIVE gatewayId="7" primitiveId="56" primitiveName="set_posfig_dim" />
 <PRIMITIVE gatewayId="7" primitiveId="57" primitiveName="zoom_rect" />
 <PRIMITIVE gatewayId="7" primitiveId="58" primitiveName="unzoom" />

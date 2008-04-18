@@ -132,4 +132,9 @@ extern int computeRealArrowSize( sciPointObj * pSegs,
  */
 void showPixmap(sciPointObj * pFigure);
 
+/**
+ * Clear the pixmap buffer of a figure
+ */
+void clearPixmap(sciPointObj * pFigure);
+
 #endif /* __SCI_DRAWINGS__ */

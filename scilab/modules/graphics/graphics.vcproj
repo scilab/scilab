@@ -1055,6 +1055,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_clear_pixmap.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_contour2di.c"
 				>
 			</File>
@@ -1216,10 +1220,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_xarrows.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xaxis.c"
 				>
 			</File>
 			<File
@@ -2077,6 +2077,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_clear_pixmap.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\sci_contour2di.h"
 				>
 			</File>
@@ -2238,10 +2242,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xarrows.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xaxis.h"
 				>
 			</File>
 			<File

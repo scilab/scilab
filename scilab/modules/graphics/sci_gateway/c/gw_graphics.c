@@ -75,7 +75,7 @@ static gw_generic_table Tab[]={
 	{sci_xtitle,"xtitle"},
 	{sci_xgraduate,"xgraduate"},
 	{sci_xname,"xname"},
-	{sci_xaxis,"xaxis"},
+	{sci_clear_pixmap,"clear_pixmap"},
 	{sci_set_posfig_dim,"set_posfig_dim"},
 	{sci_zoom_rect,"zoom_rect"},
 	{sci_unzoom,"unzoom"},

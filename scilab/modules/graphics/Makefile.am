@@ -336,7 +336,7 @@ sci_gateway/c/sci_set_posfig_dim.c \
 sci_gateway/c/sci_xgetech.c \
 sci_gateway/c/sci_unzoom.c \
 sci_gateway/c/sci_xsegs.c \
-sci_gateway/c/sci_xaxis.c \
+sci_gateway/c/sci_clear_pixmap.c \
 sci_gateway/c/sci_glue.c \
 sci_gateway/c/sci_xarc.c \
 sci_gateway/c/sci_xpolys.c \
@@ -451,7 +451,7 @@ includes/graphicSession.h \
 includes/sci_xgraduate.h \
 includes/sci_unzoom.h \
 includes/sci_xsegs.h \
-includes/sci_xaxis.h \
+includes/sci_clear_pixmap.h \
 includes/sci_xarc.h \
 includes/sci_xpolys.h \
 includes/sci_xstring.h \

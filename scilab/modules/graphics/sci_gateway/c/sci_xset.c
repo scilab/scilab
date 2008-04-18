@@ -313,7 +313,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if (strcmp(cstk(l1),"wwpc") == 0) {
       // clear pixmap
-      // nothing to do with current implementation
+      clearPixmap(sciGetParentFigure(subwin));
     }
     else if(strcmp(cstk(l1),"line mode") == 0)
     {

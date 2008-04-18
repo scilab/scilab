@@ -1074,5 +1074,10 @@ void showPixmap(sciPointObj * pFigure)
   }
 }
 /*---------------------------------------------------------------------------------*/
+void clearPixmap(sciPointObj * pFigure)
+{
+  // nothing to do with the hack
+}
+/*---------------------------------------------------------------------------------*/
 
 #undef round
