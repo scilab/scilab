@@ -36,23 +36,23 @@ c
       ka1=1-ia
       kk1=-nb
       do 30 ja=1,na
-      kb=1
-      ka1=ka1+ia
-      kk1=kk1+nb
-      do 20 jb=1,nb
-      ka=ka1
-      kk=1+(jb-1+kk1)*ik
-      do 10 i=1,ma
-      do 5 l=1,mb
-      l1=l-1
-      pkr(kk+l1)=ar(ka)*br(kb+l1)-ai(ka)*bi(kb+l1)
-      pki(kk+l1)=ar(ka)*bi(kb+l1)+ai(ka)*br(kb+l1)
-   5  continue
-      kk=kk+mb
-      ka=ka+1
-   10 continue
-      kb=kb+ib
-   20 continue
+        kb=1
+        ka1=ka1+ia
+        kk1=kk1+nb
+        do 20 jb=1,nb
+            ka=ka1
+            kk=1+(jb-1+kk1)*ik
+            do 10 i=1,ma
+                do 5 l=1,mb
+                    l1=l-1
+                    pkr(kk+l1)=ar(ka)*br(kb+l1)-ai(ka)*bi(kb+l1)
+                    pki(kk+l1)=ar(ka)*bi(kb+l1)+ai(ka)*br(kb+l1)
+   5            continue
+                kk=kk+mb
+                ka=ka+1
+   10       continue
+            kb=kb+ib
+   20   continue
    30 continue
       return
       end
