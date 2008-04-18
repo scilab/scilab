@@ -1577,8 +1577,8 @@ static char *getConvertedNameFromStack(int cvnametype)
 	case CVNAME_READING_TYPE_1 : 
 		{
 			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf, &one, bsiz);
-			strncpy(local_variable_buffer, C2F(cha1).buf,bsiz);
-			local_variable_buffer[bsiz-1] = '\0';
+			strncpy(local_variable_buffer, C2F(cha1).buf,nlgh);
+			local_variable_buffer[nlgh-1] = '\0';
 		}
 		break;
 
@@ -1592,8 +1592,8 @@ static char *getConvertedNameFromStack(int cvnametype)
 	case CVNAME_READING_TYPE_3 :
 		{
 			C2F(cvname)(&C2F(recu).ids[C2F(recu).pt * nsiz - nsiz], C2F(cha1).buf, &one, bsiz);
-			strncpy(local_variable_buffer, C2F(cha1).buf,bsiz);
-			local_variable_buffer[bsiz-1] = '\0';
+			strncpy(local_variable_buffer, C2F(cha1).buf,nlgh);
+			local_variable_buffer[nlgh-1] = '\0';
 		}
 		break;
 
