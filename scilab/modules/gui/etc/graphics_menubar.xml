@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure --> 
 <menubar>
-    <menu label="File" mnemonic="F">
-        <submenu label="New figure..." mnemonic="N"> 
+    <menu label="&amp;File">
+        <submenu label="&amp;New figure..."> 
             <callback instruction="scf();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Load..." mnemonic="L"> 
+        <submenu label="&amp;Load..."> 
             <callback 
             instruction="
               %fileToLoad = xgetfile('*.scg', getcwd(), 'Select a file to load');
@@ -17,7 +17,7 @@
               clear %fileToLoad"
             type="0"/>
         </submenu> 
-        <submenu label="Save..." mnemonic="S"> 
+        <submenu label="&amp;Save..."> 
              <callback 
             instruction="
               %fileToSave = xgetfile('*.scg', getcwd(), 'Select a file to write');
@@ -32,8 +32,8 @@
             type="0"/>
         </submenu>
         <separator/>
-		<submenu label="Export to ..." mnemonic="E">
-			<submenu label="BMP" mnemonic="E"> 
+		<submenu label="&amp;Export to ...">
+			<submenu label="&amp;BMP"> 
 				<callback 
 				instruction="
 				%fileToWrite = xgetfile('*.bmp', getcwd(), 'Select a file name');
@@ -43,7 +43,7 @@
 				clear %fileToWrite"
 				type="0"/>
 			</submenu>
-			<submenu label="GIF" mnemonic="E"> 
+			<submenu label="&amp;GIF"> 
 				<callback 
 				instruction="
 				%fileToWrite = xgetfile('*.gif', getcwd(), 'Select a file name');
@@ -53,7 +53,7 @@
 				clear %fileToWrite"
 				type="0"/>
 			</submenu>
-			<submenu label="JPG" mnemonic="E"> 
+			<submenu label="&amp;JPG"> 
 				<callback 
 				instruction="
 				%fileToWrite = xgetfile('*.jpg', getcwd(), 'Select a file name');
@@ -63,7 +63,7 @@
 				clear %fileToWrite"
 				type="0"/>
 			</submenu>
-			<submenu label="PNG" mnemonic="E"> 
+			<submenu label="P &amp;NG"> 
 				<callback 
 				instruction="
 				%fileToWrite = xgetfile('*.png', getcwd(), 'Select a file name');
@@ -73,7 +73,7 @@
 				clear %fileToWrite"
 				type="0"/>
 			</submenu>
-			<submenu label="PPM" mnemonic="E"> 
+			<submenu label="&amp;PPM"> 
 				<callback 
 				instruction="
 				%fileToWrite = xgetfile('*.ppm', getcwd(), 'Select a file name');
@@ -84,24 +84,24 @@
 				type="0"/>
 			</submenu>
 		</submenu>
-        <submenu label="Copy to clipboard" mnemonic="C"> 
+        <submenu label="&amp;Copy to clipboard"> 
+            <callback instruction="clipboard([SCILAB_FIGURE_ID], 'EMF');" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="P &amp;rint setup..."> 
+            <callback instruction="notavailablemessage();" type="0"/>
+        </submenu>
+        <submenu label="&amp;Print"> 
             <callback instruction="notavailablemessage();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Print setup..." mnemonic="R"> 
-            <callback instruction="notavailablemessage();" type="0"/>
-        </submenu>
-        <submenu label="Print" mnemonic="P"> 
-            <callback instruction="notavailablemessage();" type="0"/>
-        </submenu>
-        <separator/>
-        <submenu label="Close" mnemonic="C">
+        <submenu label="C &amp;lose">
             <callback instruction="delete(get_figure_handle([SCILAB_FIGURE_ID]));" type="0"/>
         </submenu> 
     </menu>
 
-    <menu label="Tools" mnemonic="T">
-        <submenu label="Show/Hide Toolbar" mnemonic="T"> 
+    <menu label="&amp;Tools">
+        <submenu label="Show/Hide  &amp;Toolbar"> 
              <callback 
              instruction="
                if toolbar([SCILAB_FIGURE_ID])=='on' then
@@ -112,50 +112,50 @@
              type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Zoom" mnemonic="Z"> 
+        <submenu label="&amp;Zoom"> 
           <callback instruction="zoom_rect(get_figure_handle([SCILAB_FIGURE_ID]))" type="0"/>
         </submenu>
-        <submenu label="UnZoom" mnemonic="U"> 
+        <submenu label="&amp;UnZoom"> 
           <callback instruction="unzoom(get_figure_handle([SCILAB_FIGURE_ID]))" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="2D/3D Rotation" mnemonic="R"> 
+        <submenu label="2D/3D  &amp;Rotation"> 
             <callback instruction="rotate_axes(get_figure_handle([SCILAB_FIGURE_ID]))" type="0"/>
         </submenu>
     </menu>
 
-    <menu label="Edit" mnemonic="E">
-        <submenu label="Select as current figure" mnemonic="S"> 
+    <menu label="&amp;Edit">
+        <submenu label="&amp;Select as current figure"> 
             <callback instruction="scf([SCILAB_FIGURE_ID]);" type="0"/>
         </submenu> 
-        <submenu label="Redraw figure" mnemonic="R"> 
+        <submenu label="&amp;Redraw figure"> 
             <callback instruction="xbasr([SCILAB_FIGURE_ID]);" type="0"/>
         </submenu> 
-        <submenu label="Clear figure" mnemonic="C">
+        <submenu label="&amp;Clear figure">
             <callback instruction="clf(get_figure_handle([SCILAB_FIGURE_ID]));" type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="Figure properties" mnemonic="F"> 
+        <submenu label="&amp;Figure properties"> 
             <callback instruction="ged(8,[SCILAB_FIGURE_ID]);" type="0"/>
         </submenu> 
-        <submenu label="Axes properties" mnemonic="A"> 
+        <submenu label="&amp;Axes properties"> 
             <callback instruction="ged(9,[SCILAB_FIGURE_ID]);" type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="Start entity picker" mnemonic="S"> 
+        <submenu label="&amp;Start entity picker"> 
             <callback instruction="ged(10,[SCILAB_FIGURE_ID]);" type="0"/>
         </submenu> 
-        <submenu label="Stop entity picker" mnemonic="T"> 
+        <submenu label="S &amp;top entity picker"> 
             <callback instruction="ged(11,[SCILAB_FIGURE_ID]);" type="0"/>
         </submenu>
     </menu>
 
-    <menu label="?" mnemonic="?">
-        <submenu label="Scilab Help" mnemonic="S"> 
+    <menu label="&amp;?">
+        <submenu label="&amp;Scilab Help"> 
             <callback instruction="help();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="About Scilab..." mnemonic="A"> 
+        <submenu label="&amp;About Scilab..."> 
             <callback instruction="about()" type="0"/>
         </submenu>
     </menu>

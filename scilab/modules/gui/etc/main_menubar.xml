@@ -4,8 +4,8 @@
    <!-- All "main" menus are disabled when created and then enabled in scilab.start file after all macros are loaded -->
 
    <!-- File menu -->
-   <menu label="File" mnemonic="F" enabled="false">
-        <submenu label="Execute..." mnemonic="E">
+   <menu label="&amp;File" enabled="false">
+        <submenu label="&amp;Execute...">
             <callback 
             instruction="
               %fileToExec = xgetfile('*.sc*', getcwd(), 'Select a file to execute');
@@ -17,7 +17,7 @@
             type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="Open a file..." mnemonic="O"> 
+        <submenu label="&amp;Open a file..."> 
             <callback 
             instruction="
               %fileToOpen = xgetfile('*.sc*', getcwd(), 'Select a file to open with Scipad');
@@ -27,7 +27,7 @@
               clear %fileToOpen isempty"
             type="0"/>
         </submenu> 
-        <submenu label="Load environment..." mnemonic="L"> 
+        <submenu label="&amp;Load environment..."> 
             <callback 
             instruction="
               %fileToLoad = xgetfile('*.sav', getcwd(), 'Select a file to load');
@@ -38,7 +38,7 @@
               clear %fileToLoad isempty"
             type="0"/>
         </submenu> 
-        <submenu label="Save environment..." mnemonic="S"> 
+        <submenu label="&amp;Save environment..."> 
             <callback 
             instruction="
               %fileToSave = xgetfile('*.sav', getcwd(), 'Select a file to write');
@@ -53,7 +53,7 @@
             type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Change current directory..." mnemonic="C"> 
+        <submenu label="&amp;Change current directory..."> 
             <callback 
             instruction="
               %newDir = uigetdir(getcwd(), 'Select a directory');
@@ -63,60 +63,57 @@
               clear %newDir isempty"
             type="0"/>
         </submenu> 
-        <submenu label="Display current directory" mnemonic="D">
+        <submenu label="&amp;Display current directory">
             <callback instruction="if iswaitingforinput() then printf('\n%s\n\n%s\n',prompt(),getcwd()); else printf('\n\n%s\n\n',getcwd());end" type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="Print setup..." mnemonic="R"> 
+        <submenu label="P &amp;rint setup..."> 
              <callback instruction="notavailablemessage();" type="0"/>
         </submenu>
-        <submenu label="Print" mnemonic="P"> 
+        <submenu label="&amp;Print"> 
              <callback instruction="notavailablemessage();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Quit" mnemonic="Q"> 
+        <submenu label="&amp;Quit"> 
             <callback instruction="exit();" type="0"/>
         </submenu>
     </menu>
 
     <!-- Edit menu -->
-    <menu label="Edit" mnemonic="E" enabled="false">
-        <submenu label="Cut" mnemonic="U"> 
+    <menu label="&amp;Edit" enabled="false">
+        <submenu label="C &amp;ut"> 
             <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection" type="3"/>
         </submenu>
-        <submenu label="Copy" mnemonic="C"> 
+        <submenu label="&amp;Copy"> 
             <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection" type="3"/>
         </submenu>
-        <submenu label="Paste" mnemonic="P"> 
+        <submenu label="&amp;Paste"> 
             <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole" type="3"/>
         </submenu>
         <separator/>
-        <submenu label="Empty clipboard" mnemonic="L"> 
+        <submenu label="&amp;Empty clipboard"> 
             <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.emptyClipboard" type="3"/>
         </submenu>
         <separator/>
-        <submenu label="Select all" mnemonic="S"> 
+        <submenu label="&amp;Select all"> 
             <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents" type="3"/>
         </submenu>
     </menu>
 
     <!-- Preferences menu -->
-    <menu label="Preferences" mnemonic="P" enabled="false">
-        <submenu label="Language" mnemonic="L"> 
-              <callback instruction="notavailablemessage();" type="0"/>
-        </submenu>
-        <submenu label="Colors" mnemonic="C"> 
-            <submenu label="Console Background..." mnemonic="B"> 
+    <menu label="&amp;Preferences" enabled="false">
+        <submenu label="&amp;Colors"> 
+            <submenu label="Console  &amp;Background..."> 
                 <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleBackground" type="3"/>
             </submenu>
-            <submenu label="Console Font..." mnemonic="B"> 
+            <submenu label="Console  &amp;Font..."> 
                 <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleForeground" type="3"/>
             </submenu>
         </submenu>
-        <submenu label="Font..." mnemonic="N"> 
+        <submenu label="&amp;Font..."> 
             <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleFont" type="3"/>
         </submenu>
-        <submenu label="Show/Hide Toolbar" mnemonic="L"> 
+        <submenu label="Show/Hide  &amp;Toolbar"> 
               <callback 
               instruction="
                 if toolbar(-1)=='on' then
@@ -127,76 +124,76 @@
               type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Clear History" mnemonic="H"> 
+        <submenu label="Clear  &amp;History"> 
            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory" type="3"/>
         </submenu>
-        <submenu label="Clear Console" mnemonic="O"> 
+        <submenu label="Clear C &amp;onsole"> 
           <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clear" type="3"/>
         </submenu>
     </menu>
 
     <!-- Control menu -->
-    <menu label="Control" mnemonic="C" enabled="false">
-        <submenu label="Resume" mnemonic="R"> 
+    <menu label="&amp;Control" enabled="false">
+        <submenu label="&amp;Resume"> 
             <callback instruction="resume;" type="0"/>
         </submenu>
-        <submenu label="Abort" mnemonic="A"> 
+        <submenu label="&amp;Abort"> 
             <callback instruction="abort;" type="0"/>
         </submenu>
-        <submenu label="Interrupt" mnemonic="I"> 
+        <submenu label="&amp;Interrupt"> 
             <callback instruction="pause;" type="0"/>
         </submenu>
     </menu>
 
     <!-- Applications menu -->
-    <menu label="Applications" mnemonic="A" enabled="false">
-        <submenu label="Editor" mnemonic="S"> 
+    <menu label="&amp;Applications" enabled="false">
+        <submenu label="&amp;Editor"> 
             <callback instruction="scipad();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Scicos" mnemonic="S"> 
+        <submenu label="&amp;Scicos"> 
             <callback instruction="scicos();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="EditGraph" mnemonic="E"> 
+        <submenu label="Edit &amp;Graph"> 
             <callback instruction="edit_graph();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Matlab to Scilab translator" mnemonic="M"> 
+        <submenu label="&amp;Matlab to Scilab translator"> 
             <callback instruction="mfile2sci();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Variable Editor" mnemonic="V"> 
+        <submenu label="&amp;Variable Editor"> 
             <callback instruction="browsevar();" type="0"/>
         </submenu>
     </menu>
 
     <!-- Help menu -->
-    <menu label="?" mnemonic="?" enabled="false">
-        <submenu label="Scilab Help" mnemonic="S"> 
+    <menu label="&amp;?" enabled="false">
+        <submenu label="Scilab  &amp;Help"> 
             <callback instruction="help();" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Scilab demonstrations" mnemonic="D">
+        <submenu label="Scilab  &amp;Demonstrations">
              <callback instruction="scilab_demos();" type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="Web links" mnemonic="W"> 
-            <submenu label="Scilab Web Site" mnemonic="W"> 
+        <submenu label="&amp;Web links"> 
+            <submenu label="Scilab  &amp;Web Site"> 
                 <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite" type="3"/>
             </submenu>
-            <submenu label="Contributions" mnemonic="C"> 
+            <submenu label="&amp;Contributions"> 
                 <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openContributionsWebSite" type="3"/>
             </submenu>
-            <submenu label="Bug And Request database" mnemonic="R"> 
+            <submenu label="&amp;Bug And Request database"> 
                 <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openBugzillaWebSite" type="3"/>
             </submenu>
-            <submenu label="Newsgroup Archives" mnemonic="N"> 
+            <submenu label="&amp;Newsgroup Archives"> 
                 <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openNewsgroupWebSite" type="3"/>
             </submenu>
         </submenu>
         <separator/>
-        <submenu label="About Scilab..." mnemonic="A"> 
+        <submenu label="&amp;About Scilab..."> 
               <callback instruction="about()" type="0"/>
         </submenu>
     </menu>
