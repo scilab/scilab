@@ -19,6 +19,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c
       data local/21/
       data nolocal/23/
+      data all/10/
 c    
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -33,8 +34,17 @@ c
       if(rhs.eq.2) then
          if(.not.getsmat('exists',topk,top,m,n,1,1,il,n1)) return
          if(.not.checkval('exists',m*n,1) ) return
-         if(istk(il).eq.local) flag=1
-         if(istk(il).eq.nolocal) flag=2
+c     on the first char ist tested
+         if(istk(il).eq.local)then
+            flag=1
+         elseif(istk(il).eq.nolocal) then
+            flag=2
+         elseif(istk(il).eq.all) then
+            flag=0
+         else
+            err=2
+            call error(36)
+         endif
          top=top-1
       endif
 
