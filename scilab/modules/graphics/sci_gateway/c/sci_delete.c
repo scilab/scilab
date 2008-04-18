@@ -109,13 +109,11 @@ int sci_delete(char *fname,unsigned long fname_len)
     if (objType == SCI_UIMENU)
       {
         DestroyUimenu(pobj);
-        sciStandardDestroyOperations(pobj);
       }
     else if(objType == SCI_UICONTROL)
       {
         DestroyJavaUicontrol(pobj); /* Java object */
         DestroyUicontrol(pobj); /* Scilab Object */
-        sciStandardDestroyOperations(pobj);
       }
     else if (objType == SCI_WAITBAR || objType == SCI_PROGRESSIONBAR)
       {

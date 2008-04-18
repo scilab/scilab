@@ -50,6 +50,8 @@ sciPointObj * CreateUimenu (void)
 
   sciStandardBuildOperations(pobj, NULL);
 
+  sciInitSelectedSons(pobj);
+    
   InitUIMenu((sciPointObj *) pobj);
       
   return (sciPointObj *) pobj;
