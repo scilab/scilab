@@ -1,4 +1,3 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002 - INRIA - Carlos Klimann
 // 
@@ -7,8 +6,6 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-// 
-
 function t=trimmean(x,discard,orien)
 //
 //A  trimmed mean  is calculated  by discarding  a certain
@@ -68,39 +65,46 @@ function t=trimmean(x,discard,orien)
 //Gordaliza,  Robustness Properties  of Means  and Trimmed
 //Means, JASA, Volume 94, Number 447, Sept 1999, pp956-969
 //
+
 //
-  [lhs,rhs]=argn(0)
-  if rhs==0 then error('trimmean requires at least two input parameters.'), end
-  if x==[] then t=%nan;return,end
-  if rhs==1 then  error('trimmean requires at least two input parameters.'), end
-  if rhs==2 then 
-    if type(discard)<>1 then error('2nd input parameter must be a number'), end
-    if discard > 100 | discard <0 then
-      error('second input parameter must be in the 0-100 range.'), end
-      sizx=size(x,'*')
-      nomdis=sizx*discard/200
-      if floor(nomdis)==0 then nomdis=1, end
-      disp(nomdis)
-      x=sort(x)
-      t=sum(x(floor(nomdis):ceil(sizx-nomdis))) / (2*nomdis)
-      return,
+// modified by Bruno Pincon 2006-08-12 (to fix bug 2083)
+
+  [lhs,rhs]=argn()
+  if rhs < 2 | rhs > 3 then error('trimmean requires two or three input parameters.'), end
+    
+  if type(discard)~=1 | ~isreal(discard) | length(discard) ~=1 | discard > 100 | discard < 0 then 
+    error('2nd input parameter must be a real number in the 0-100 range.')
   end
-  if rhs==3 then
-    if orien=='r' | orien==1 then
-      sizx=size(x,'r')
-      nomdis=sizx*discard/200
-      if floor(nomdis)==0 then nomdis=1, end
-      x=sort(x,'r')
-      t=sum(x(floor(nomdis):ceil(sizx-nomdis),:),'r') / (2*nomdis)
-      return,
-    end
-    if orien=='c' | orien==2 then
-      sizx=size(x,'c')
-      nomdis=sizx*discard/200
-      if floor(nomdis)==0 then nomdis=1, end
-      t=sum(x(:,floor(nomdis):ceil(sizx-nomdis)),'c') / (2*nomdis)
-      return,
-    end,
+ 
+  if rhs == 3 then
+     if orien=='r' | orien==1 then
+        sizx=size(x,'r'); orient = 'r'
+     elseif orien=='c' | orien==2 then
+        sizx=size(x,'c'); orient = 'c'
+     else
+        error('bad third input parameter.')
+     end
+  else
+     sizx = length(x); orient = 'all'
   end
-  error('trimmean requires at most three input parameters')
+  
+  if sizx==0 then, t=%nan, return, end
+  
+  nomdis = floor(sizx*discard/200)
+  k1 = 1 + nomdis
+  k2 = sizx - nomdis
+  if k2 < k1 then, [k1,k2] = (k2,k1), end
+  nb = k2-k1+1
+  
+  if orient == 'all' then
+     x = sort(x)
+     t = sum(x(k1:k2)) / nb
+  elseif orient == 'r' then
+     x = sort(x,'r')
+     t = sum(x(k1:k2,:),'r') / nb
+  else
+     x = sort(x,'c')
+     t = sum(x(:,k1:k2),'c') / nb
+  end
 endfunction
+
