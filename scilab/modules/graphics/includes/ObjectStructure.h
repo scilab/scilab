@@ -487,6 +487,7 @@ typedef struct
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
   
+  char * tag;
 }/** */
 sciFigure;  
 

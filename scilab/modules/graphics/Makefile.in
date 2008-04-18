@@ -433,7 +433,8 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	sci_gateway/c/sci_driver.c sci_gateway/c/sci_xdel.c \
 	sci_gateway/c/sci_winsid.c sci_gateway/c/sci_addcb.c \
 	sci_gateway/c/sci_fec.c sci_gateway/c/sci_rubberbox.c \
-	sci_gateway/c/sci_rotate_axes.c
+	sci_gateway/c/sci_rotate_axes.c \
+	sci_gateway/c/sci_is_handle_valid.c
 @GUI_FALSE@am__objects_1 = libscigraphics_la-nographics.lo
 @GUI_TRUE@am__objects_1 = libscigraphics_la-GetCommandArg.lo \
 @GUI_TRUE@	libscigraphics_la-WindowList.lo \
@@ -809,7 +810,8 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-sci_addcb.lo \
 @GUI_TRUE@	libscigraphics_la-sci_fec.lo \
 @GUI_TRUE@	libscigraphics_la-sci_rubberbox.lo \
-@GUI_TRUE@	libscigraphics_la-sci_rotate_axes.lo
+@GUI_TRUE@	libscigraphics_la-sci_rotate_axes.lo \
+@GUI_TRUE@	libscigraphics_la-sci_is_handle_valid.lo
 @GUI_FALSE@am_libscigraphics_la_OBJECTS = $(am__objects_1)
 @GUI_TRUE@am_libscigraphics_la_OBJECTS = $(am__objects_1) \
 @GUI_TRUE@	$(am__objects_2)
@@ -894,7 +896,7 @@ am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/getDictionarySetProperties.h includes/GrayPlot.h \
 	includes/sci_xload.h includes/sci_xsave.h \
 	includes/TerminateGraphics.h includes/sci_rubberbox.h \
-	includes/sci_rotate_axes.h
+	includes/sci_rotate_axes.h includes/sci_is_handle_valid.h
 libscigraphics_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscigraphics_la_include_HEADERS)
 ETAGS = etags
@@ -1467,7 +1469,8 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@sci_gateway/c/sci_addcb.c \
 @GUI_TRUE@sci_gateway/c/sci_fec.c \
 @GUI_TRUE@sci_gateway/c/sci_rubberbox.c \
-@GUI_TRUE@sci_gateway/c/sci_rotate_axes.c
+@GUI_TRUE@sci_gateway/c/sci_rotate_axes.c \
+@GUI_TRUE@sci_gateway/c/sci_is_handle_valid.c
 
 @GUI_TRUE@libscigraphics_la_CXXFLAGS = -Iincludes/ \
 @GUI_TRUE@				-Isrc/c/ $(JAVA_JNI_INCLUDE) \
@@ -1614,7 +1617,8 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_xsave.h \
 @GUI_TRUE@includes/TerminateGraphics.h \
 @GUI_TRUE@includes/sci_rubberbox.h \
-@GUI_TRUE@includes/sci_rotate_axes.h
+@GUI_TRUE@includes/sci_rotate_axes.h \
+@GUI_TRUE@includes/sci_is_handle_valid.h
 
 
 ### graphics : ged files ###
@@ -2108,6 +2112,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_glue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_grayplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_help_gtk.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_is_handle_valid.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_matplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_matplot1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_move.Plo@am__quote@
@@ -4938,6 +4943,13 @@ libscigraphics_la-sci_rotate_axes.lo: sci_gateway/c/sci_rotate_axes.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_rotate_axes.c' object='libscigraphics_la-sci_rotate_axes.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_rotate_axes.lo `test -f 'sci_gateway/c/sci_rotate_axes.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rotate_axes.c
+
+libscigraphics_la-sci_is_handle_valid.lo: sci_gateway/c/sci_is_handle_valid.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_is_handle_valid.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_is_handle_valid.Tpo -c -o libscigraphics_la-sci_is_handle_valid.lo `test -f 'sci_gateway/c/sci_is_handle_valid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_is_handle_valid.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_is_handle_valid.Tpo $(DEPDIR)/libscigraphics_la-sci_is_handle_valid.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_is_handle_valid.c' object='libscigraphics_la-sci_is_handle_valid.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_is_handle_valid.lo `test -f 'sci_gateway/c/sci_is_handle_valid.c' || echo '$(srcdir)/'`sci_gateway/c/sci_is_handle_valid.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

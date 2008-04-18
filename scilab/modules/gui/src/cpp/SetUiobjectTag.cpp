@@ -57,6 +57,21 @@ int SetUiobjectTag(sciPointObj* sciObj, int stackPointer, int valueType, int nbR
       
       return SET_PROPERTY_SUCCEED;
     }
+  else if (sciGetEntityType( sciObj ) == SCI_FIGURE)
+    {
+      // No test needed about the style because not implemented in Java code
+
+      // Free old tag is exists
+      if(pFIGURE_FEATURE(sciObj)->tag != NULL)
+        {
+          delete (pFIGURE_FEATURE(sciObj)->tag);
+        }
+      // Set the new tag
+      pFIGURE_FEATURE(sciObj)->tag = new char[strlen(getStringFromStack(stackPointer)) + 1];
+      strcpy(pFIGURE_FEATURE(sciObj)->tag, getStringFromStack(stackPointer));
+      
+      return SET_PROPERTY_SUCCEED;
+    }
   else
     {
       sciprint(_("No %s property for this object.\n"), "Tag");

@@ -200,6 +200,12 @@
             figure data structure, and to retreive it.</para>
               </listitem>
             </varlistentry>
+            <varlistentry>
+              <term>tag: </term>
+              <listitem>
+                <para>This field can be use to store a character string generally used to identify the control. It allows to give it a "name". Mainly used in conjontion with findobj().</para>
+              </listitem>
+            </varlistentry>
           </variablelist>
         </listitem>
       </varlistentry>

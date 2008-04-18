@@ -525,6 +525,8 @@ int InitFigureModel( void )
   pFIGURE_FEATURE(pfiguremdl)->eventHandler = NULL ;
   sciInitEventHandler( pfiguremdl, "" ) ;
 
+  pFIGURE_FEATURE(pfiguremdl)->tag = NULL ;
+
   pfiguremdl->pObservers = NULL ;
   pfiguremdl->pDrawer = NULL ;
   colorMap = MALLOC( m * 3 * sizeof(double) ) ;

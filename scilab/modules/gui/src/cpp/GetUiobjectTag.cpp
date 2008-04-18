@@ -41,6 +41,18 @@ int GetUiobjectTag(sciPointObj* sciObj)
           return sciReturnString(pUICONTROL_FEATURE(sciObj)->tag);
         }
     }
+  else if (sciGetEntityType( sciObj ) == SCI_FIGURE)
+    {
+      // Get the tag from Scilab
+      if (pFIGURE_FEATURE(sciObj)->tag == NULL)
+        {
+          return sciReturnString("");
+        }
+      else
+        {
+          return sciReturnString(pFIGURE_FEATURE(sciObj)->tag);
+        }
+    }
   else
     {
       sciprint(_("No %s property for this object.\n"), "Tag");

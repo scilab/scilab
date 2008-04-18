@@ -43,6 +43,8 @@ function save_graphichandle(h,fd)
     mput(h.viewport,'sl',fd) // viewport
     mput(length(h.info_message),'c',fd) ; // info_message
     mput(ascii(h.info_message),'c',fd) ;
+    mput(length(h.tag),'c',fd) ; // tag
+    mput(ascii(h.tag),'c',fd) ;
     mput(bool2s(h.auto_resize=='on'),'c',fd) // auto_resize
     mput(length(h.figure_name),'c',fd); // figure_name
     mput(ascii(h.figure_name),'c',fd);

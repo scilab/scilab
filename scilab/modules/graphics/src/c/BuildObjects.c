@@ -208,6 +208,8 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   ppFigure->infoMessage = NULL ; /* needed otherwise it will be realloc */
   sciSetInfoMessage( pobj, sciGetInfoMessage(pfiguremdl) ) ;
 
+  ppFigure->tag = NULL;
+
   sciInitPixmapMode(pobj, sciGetPixmapMode(pfiguremdl));
 
   /* Colormap */

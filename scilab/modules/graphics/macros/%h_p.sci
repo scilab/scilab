@@ -260,6 +260,7 @@ function %h_p(h)
        "event_handler = " + sci2exp( h.event_handler ) ;
        "event_handler_enable = " + sci2exp( h.event_handler_enable ) ;
 	 "user_data = "+fmtuser_data(u)
+	 "tag = "+sci2exp(h.tag)
 	]
     case "Grayplot"
       Data = h.data

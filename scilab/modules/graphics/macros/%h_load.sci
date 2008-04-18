@@ -60,6 +60,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       if ( is_higher_than([4 1 2 0]) ) then
         viewport = mget(2,'sl',fd) ; // viewport
         info_message = ascii(mget(mget(1,'c',fd),'c',fd)) ; // info_message
+        tag = ascii(mget(mget(1,'c',fd),'c',fd)) ; // tag
       end
       auto_resize=toggle(mget(1,'c',fd)); // auto_resize
       figure_name=ascii(mget(mget(1,'c',fd),'c',fd)) // figure_name
@@ -94,6 +95,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       if ( is_higher_than([4 1 2 0]) ) then
         h.viewport = viewport // should be set before auto_resize
         h.info_message = info_message ;
+        h.tag = tag ;
       end
       h.auto_resize=auto_resize
       h.figure_name=figure_name

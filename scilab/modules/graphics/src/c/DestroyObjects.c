@@ -293,6 +293,10 @@ int DestroyFigure (sciPointObj * pthis)
 
   FREE( pFIGURE_FEATURE(pthis)->infoMessage ) ;
   
+  if (pFIGURE_FEATURE(pthis)->tag != NULL)
+  {
+    FREE( pFIGURE_FEATURE(pthis)->tag ) ;
+  }
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
   pFIGURE_FEATURE(pthis)->pModelData = NULL;
   sciStandardDestroyOperations(pthis) ;
