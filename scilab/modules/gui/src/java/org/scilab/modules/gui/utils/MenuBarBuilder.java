@@ -38,6 +38,8 @@ import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 
+import org.scilab.modules.localization.Messages;
+
 /**
  * Create a menuBar from an XML file
  * @author Vincent COUVERT
@@ -194,7 +196,7 @@ public final class MenuBarBuilder {
 			Menu menu = ScilabMenu.createMenu();
 			for (int i = 0; i < menus.getLength(); i++) {				
 				menu = ScilabMenu.createMenu();				
-				menu.setText(menus.item(i).getAttributes().getNamedItem(LABEL).getNodeValue());
+				menu.setText(Messages.getText(menus.item(i).getAttributes().getNamedItem(LABEL).getNodeValue()));
 				if (menus.item(i).getAttributes().getNamedItem(MNEMONIC) != null) {
 					menu.setMnemonic(menus.item(i).getAttributes().getNamedItem(MNEMONIC).getNodeValue().charAt(0));
 				}
@@ -231,7 +233,7 @@ public final class MenuBarBuilder {
 					
 					for (int i = 0; i < attributes.getLength(); i++) {
 						if (attributes.item(i).getNodeName() == LABEL) {
-							menuItem.setText(attributes.item(i).getNodeValue());
+							menuItem.setText(Messages.getText(attributes.item(i).getNodeValue()));
 						} else if (attributes.item(i).getNodeName() == MNEMONIC) {
 							menuItem.setMnemonic(attributes.item(i).getNodeValue().charAt(0));
 						} else if (attributes.item(i).getNodeName() == ENABLED) {
@@ -281,8 +283,8 @@ public final class MenuBarBuilder {
 			
 			for (int i = 0; i < attributes.getLength(); i++) {
 				if (attributes.item(i).getNodeName() == LABEL) {
-					subMenuItem.setText(attributes.item(i).getNodeValue());
-					subMenuItem.setText(attributes.item(i).getNodeValue());
+					subMenuItem.setText(Messages.getText(attributes.item(i).getNodeValue()));
+					subMenuItem.setText(Messages.getText(attributes.item(i).getNodeValue()));
 				} else if (attributes.item(i).getNodeName() == MNEMONIC) {
 					subMenuItem.setMnemonic(attributes.item(i).getNodeValue().charAt(0));
 				} else if (attributes.item(i).getNodeName() == ENABLED) {
