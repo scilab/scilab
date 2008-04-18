@@ -136,7 +136,7 @@ localization:
 	for LOCALE in $(ALL_LINGUAS); do \
 		echo "        -- Building for $$LOCALE --"; \
 		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
-		PATHTO=$(top_srcdir)/locale/$$LOCALE/$$LC/; \
+		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
 		if test ! -d $$PATHTO; then \
 			echo "        Creating $$PATHTO"; \
 			mkdir -p $$PATHTO; \
@@ -144,6 +144,8 @@ localization:
 		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
 		$(MSGCAT) -o $$POFILE $$FILES; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
+		$(MSGFMT) $(MSGFMT_OPTS) --statistics --locale $$LOCALE -r org.scilab.modules.localization.Messages --java2 -d $(top_builddir)/modules/localization/build/classes/ $$POFILE; \
+		(cd $(top_srcdir)/modules/localization/; $(ANT) jar); \
 	done
 endif
 
