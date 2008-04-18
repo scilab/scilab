@@ -23,7 +23,7 @@ public class Messages {
     private static final String defaultLocale = "en_US"; 
 	private static final String pathToTheClass = "org.scilab.modules.localization.Messages";
     private static ResourceBundle resourceBundle=null;
-	
+    private static boolean failedToLoad=false;
     /**
      * Private method to load the bundle file
      *
@@ -39,7 +39,7 @@ public class Messages {
 			try {
 				resourceBundle = ResourceBundle.getBundle(pathToTheClass,new Locale(defaultLocale));
 			} catch (java.util.MissingResourceException e2) {
-				
+                            failedToLoad=true;
 			}
 		}
 	}
@@ -52,14 +52,22 @@ public class Messages {
      * @return <ReturnValue>
 	 */
     public static String getText(String key) {
-		/* Load the bundle the first call to this (static) method */
-		if (resourceBundle==null) {
-			loadBundle();
-		}
+        /* If the bundle failed to load, just return the key */
+        if (failedToLoad) {
+            return key;
+        }
+        /* Load the bundle the first call to this (static) method */
+        if (resourceBundle==null) {
+            loadBundle();
+        /* If the bundle failed to load, just return the key */
+        if (failedToLoad) {
+            return key;
+        }
+        }
         try {
             return resourceBundle.getString(key);
         } catch (MissingResourceException e) {
-			/* Not found, return the same message */
+            /* Not found in the bundle, return the same message */
             return key;
         }
     }
