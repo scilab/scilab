@@ -46,8 +46,8 @@ static int  CURRENTLANGUAGECODE=SCILABDEFAULTLANGUAGECODE;
 static int FindLanguageCode(char *lang);
 static BOOL setlanguagecode(char *lang);
 static char *FindAlias(char *lang);
-static void putEnvLC_ALL(char *locale);
 static char *GetLanguageFromAlias(char *langAlias);
+static BOOL exportLocaleToSystem(char *locale);
 
 #ifdef _MSC_VER
 /**
@@ -74,13 +74,8 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 				char *ret=NULL;
 
 				/* Load the locale from the system */
-#ifndef _MSC_VER
-				ret=setlocale(LC_MESSAGES,lang);
-#else
-				/* MS VS (setlocale) doesn't know LC_MESSAGES */
-				/* http://msdn2.microsoft.com/en-us/library/x99tb11d(vs.71).aspx */
-				ret = setlocale(LC_CTYPE,lang);
-#endif
+				ret=setlocale(EXPORTENVLOCALE,lang);
+
 				/*
 				  This stuff causes pb when locales have been compiled 
 				if (ret==NULL){
@@ -88,8 +83,6 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 					return FALSE;
 				}
 				*/
-
-				putEnvLC_ALL(lang);
 
 				/* change language */
 				if (strcmp(lang,"C")==0){
@@ -107,6 +100,7 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 					}
 				}
 				setlanguagecode(CURRENTLANGUAGESTRING);
+				exportLocaleToSystem(CURRENTLANGUAGESTRING);
 				/*
 				  Commented since we want the user to restart scilab when the locale is changed
 				if (updateHelpIndex)
@@ -274,17 +268,19 @@ char *convertlanguagealias(char *strlanguage)
 }
 /*--------------------------------------------------------------------------*/
 /**
- * Export the variable LC_ALL to the system
+ * Export the variable LC_XXXX to the system
  *
  * @param locale the locale (ex : fr_FR or en_US)
  */
-static void putEnvLC_ALL(char *locale){
+static BOOL exportLocaleToSystem(char *locale){
 
 	/* It will put in the env something like LC_ALL=fr_FR */
 	if ( !setenvc(EXPORTENVLOCALE,locale))
 	{
-		fprintf(stderr,"Localization: Failed to declare the system variable LC_ALL\n");
+		fprintf(stderr,"Localization: Failed to declare the system variable %s\n", EXPORTENVLOCALE);
+		return FALSE;
 	}
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER

@@ -44,18 +44,6 @@
 /* Where the system properties are */
 #define XMLSYSTEMPROPERTIES "%s/modules/jvm/etc/jvm-property.xml"
 
-/* Name of the localisation XML file containing the errors message strings */
-#define FILELOCALIZATIONERROR "errors"
-
-/* Name of the localisation XML file containing the message strings */
-#define FILELOCALIZATIONMSGS "messages"
-
-/* Name of the localisation XML file containing the menu strings */
-#define FILELOCALIZATIONMENUS "menus"
-
-/* Where the localizations files can be found */
-#define FILELOCALIZATIONFORMATPATH "%s/modules/%s/locales/%s/%s.xml"
-
 /* Where is the gateway file of a module */
 #define FORMATGATEWAYFILENAME "%s/modules/%s/sci_gateway/%s_gateway.xml"
 
@@ -81,8 +69,14 @@
 //#define DefaultScilabQuit "SCI/etc/scilab.quit"
 //static char DefaultSCIenv[]="../..";
 
+#ifndef _MSC_VER
 /* What is the variable to export for the language */
-#define EXPORTENVLOCALE "LC_ALL"
+#define EXPORTENVLOCALE "LC_MESSAGES"
+#else
+/* MS VS (setlocale) doesn't know LC_MESSAGES */
+/* http://msdn2.microsoft.com/en-us/library/x99tb11d(vs.71).aspx */
+#define EXPORTENVLOCALE "LC_CTYPE"
+#endif
 
 /* Name of the main localization domain */
 #define NAMELOCALIZATIONDOMAIN "scilab"
