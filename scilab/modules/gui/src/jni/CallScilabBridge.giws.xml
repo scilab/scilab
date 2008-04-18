@@ -567,6 +567,9 @@
 	<method name="setClipboardContents" returnType="void" modifier="static">
           <parameter type="String" name="text"/>
         </method>      
+	<method name="copyFigureToClipBoard" returnType="void" modifier="static">
+          <parameter type="int" name="figID"/>
+        </method>      
 <!-- Misc -->
 	<method name="getScreenResolution" returnType="int" modifier="static">
         </method>      

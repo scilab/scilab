@@ -39,4 +39,9 @@ void setClipboardContents(char *text)
   CallScilabBridge::setClipboardContents(getScilabJavaVM(), text);
 }
 
+void copyFigureToClipBoard(int figID)
+{
+  CallScilabBridge::copyFigureToClipBoard(getScilabJavaVM(), figID);
+}
+
 

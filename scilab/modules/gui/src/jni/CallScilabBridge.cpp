@@ -259,6 +259,7 @@ voidpasteClipboardIntoConsoleID=NULL;
 voidcopyConsoleSelectionID=NULL; 
 voidemptyClipboardID=NULL; 
 voidsetClipboardContentsjstringID=NULL; 
+voidcopyFigureToClipBoardjintID=NULL; 
 jintgetScreenResolutionID=NULL; 
 jdoublegetScreenWidthID=NULL; 
 jdoublegetScreenHeightID=NULL; 
@@ -445,6 +446,7 @@ voidpasteClipboardIntoConsoleID=NULL;
 voidcopyConsoleSelectionID=NULL; 
 voidemptyClipboardID=NULL; 
 voidsetClipboardContentsjstringID=NULL; 
+voidcopyFigureToClipBoardjintID=NULL; 
 jintgetScreenResolutionID=NULL; 
 jdoublegetScreenWidthID=NULL; 
 jdoublegetScreenHeightID=NULL; 
@@ -4534,6 +4536,27 @@ exit(EXIT_FAILURE);
 jstring text_ = curEnv->NewStringUTF( text );
 
                          curEnv->CallStaticVoidMethod(cls, voidsetClipboardContentsjstringID ,text_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::copyFigureToClipBoard (JavaVM * jvm_, long figID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidcopyFigureToClipBoardjintID = curEnv->GetStaticMethodID(cls, "copyFigureToClipBoard", "(I)V" ) ;
+if (voidcopyFigureToClipBoardjintID == NULL) {
+std::cerr << "Could not access to the method " << "copyFigureToClipBoard" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidcopyFigureToClipBoardjintID ,figID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

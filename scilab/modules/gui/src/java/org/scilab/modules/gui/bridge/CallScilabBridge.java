@@ -15,6 +15,7 @@ package org.scilab.modules.gui.bridge;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -65,6 +66,7 @@ import org.scilab.modules.gui.slider.ScilabSlider;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ConfigManager;
+import org.scilab.modules.gui.utils.ImageExporter;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
@@ -2270,6 +2272,61 @@ public class CallScilabBridge {
 	public static void setClipboardContents(String text) {
 		Transferable contents = new StringSelection(text);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(contents, null);
+	}
+	
+	/**
+	 * Copy figure to clipboard
+	 * @param figID the ID of the figure
+	 */
+	public static void copyFigureToClipBoard(int figID) {
+		Image figureImage = ImageExporter.imageExport(figID);
+		Transferable clipboardImage = new ClipboardImage(figureImage);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(clipboardImage, null);
+	}
+	
+	/**
+	 * Class used to store Images in the clipboard
+	 */
+	public static class ClipboardImage implements Transferable {
+        private Image image;
+    
+        /**
+         * Default constructor
+         * @param image the image 
+         */
+        public ClipboardImage(Image image) {
+            this.image = image;
+        }
+    
+        /**
+         * DataFlavors of this transferable
+         * @return the DataFlavors accepeted
+         */
+        public DataFlavor[] getTransferDataFlavors() {
+            return new DataFlavor[]{DataFlavor.imageFlavor};
+        }
+    
+        /**
+         * Test supproted DataFlavors
+         * @param flavor the flavor to test
+         * @return true if the flavor is supported
+         */
+        public boolean isDataFlavorSupported(DataFlavor flavor) {
+            return DataFlavor.imageFlavor.equals(flavor);
+        }
+    
+        /**
+         * Get the contents of this transferable
+         * @param flavor the flavor to test
+         * @return the contents
+         * @throws UnsupportedFlavorException if the flavor is not supported by this transferable
+         */
+        public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException {
+            if (!DataFlavor.imageFlavor.equals(flavor)) {
+                throw new UnsupportedFlavorException(flavor);
+            }
+            return image;
+        }
 	}
 	
 	/********/

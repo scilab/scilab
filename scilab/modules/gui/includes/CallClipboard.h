@@ -49,6 +49,13 @@ void emptyClipboard(void);
  */
 void setClipboardContents(char *text);
 
+/**
+ * Set the clipboard contents with Scilab figure contents
+ *
+ * @param figID the source figure
+ */
+void copyFigureToClipBoard(int figID);
+
 #ifdef __cplusplus
 }
 #endif

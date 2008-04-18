@@ -209,11 +209,10 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                   num_win=*istk(l1);
                   if (num_win>=0)
                     {
-                      /* TODO manage export of the graphic windows */
-                      sciprint(_("Not yet implemented.\n"));
+                      /* Call Java */
+                      copyFigureToClipBoard(num_win);
                       m1=0;
                       n1=0;
-                      l1=0;
                       CreateVar(1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
                       LhsVar(1)=1;
                       C2F(putlhsvar)();	
@@ -251,50 +250,24 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
               num_win=*istk(l1);
               if (num_win>=0)
                 {
-                  /*
-                  // 					struct BCG *ScilabGC=NULL;
-                  // 					ScilabGC = getWindowXgcNumber (num_win);
-                  // 
-                  // 					if (ScilabGC)
-                  // 					{
-                  // 						if ( strcmp(param2,"EMF") == 0 )
-                  // 						{
-                  // 							CopyToClipboardEMF (ScilabGC);
-                  // 						}
-                  // 						else
-                  // 						{
-                  // 							CopyToClipboardBitmap (ScilabGC);
-                  // 						}
-                  */
-                  /* TO DO interface with java */
-                  /* copy in clipboard EMF or DIB */
-                  {
-
-                    sciprint(_("Not yet implemented.\n"));
-
-                    m1=0;
-                    n1=0;
-                    l1=0;
-                    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
-                    LhsVar(1)=Rhs+1;
-                    C2F(putlhsvar)();	
-                    return 0;
-                  }
-                  //else
-                  //{
-                  //	Scierror(999,"Invalid Windows number.");
-                  //	return 0;
-                  //}
+                  /* Call Java */
+                  copyFigureToClipBoard(num_win);
+                  m1=0;
+                  n1=0;
+                  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
+                  LhsVar(1)=Rhs+1;
+                  C2F(putlhsvar)();	
+                  return 0;
                 }
               else
                 {
-                  Scierror(999,_("Input argument must be >= 0."));
+                  Scierror(999,_("%s: Wrong value for first input argument: must be >= 0 .\n"));
                   return 0;
                 }
             }
           else
             {
-              Scierror(999,_("Second input argument must be 'EMF' or 'DIB'.\n"));
+              Scierror(999,_("%s: Wrong value for second input argument: must be ""EMF"" or ""DIB"".\n"));
               return 0;
             }
         }

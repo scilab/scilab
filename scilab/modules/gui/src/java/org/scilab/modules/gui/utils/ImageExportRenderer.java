@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.graphic_export;
+package org.scilab.modules.gui.utils;
 
 import java.awt.image.BufferedImage;
 

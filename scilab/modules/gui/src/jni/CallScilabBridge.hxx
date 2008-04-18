@@ -210,6 +210,7 @@ jmethodID voidpasteClipboardIntoConsoleID; // cache method id
 jmethodID voidcopyConsoleSelectionID; // cache method id
 jmethodID voidemptyClipboardID; // cache method id
 jmethodID voidsetClipboardContentsjstringID; // cache method id
+jmethodID voidcopyFigureToClipBoardjintID; // cache method id
 jmethodID jintgetScreenResolutionID; // cache method id
 jmethodID jdoublegetScreenWidthID; // cache method id
 jmethodID jdoublegetScreenHeightID; // cache method id
@@ -568,6 +569,8 @@ static void copyConsoleSelection(JavaVM * jvm_);
 static void emptyClipboard(JavaVM * jvm_);
 
 static void setClipboardContents(JavaVM * jvm_, char * text);
+
+static void copyFigureToClipBoard(JavaVM * jvm_, long figID);
 
 static long getScreenResolution(JavaVM * jvm_);
 
