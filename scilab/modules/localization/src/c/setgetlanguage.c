@@ -275,11 +275,16 @@ char *convertlanguagealias(char *strlanguage)
 static BOOL exportLocaleToSystem(char *locale){
 
 	/* It will put in the env something like LC_ALL=fr_FR */
+#if _MSC_VER
+	if ( !setenvc(EXPORTENVLOCALESTR,locale))
+#else
 	if ( !setenvc(EXPORTENVLOCALE,locale))
+#endif
 	{
 		fprintf(stderr,"Localization: Failed to declare the system variable %s\n", EXPORTENVLOCALE);
 		return FALSE;
 	}
+
 	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
