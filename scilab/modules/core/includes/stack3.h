@@ -105,6 +105,14 @@ void CreatePolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCols
 void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double* _pdblRealData, double* _pdblImgData);
 void CreateSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int* _piElemByRow, int* _piColByRow, double* _pdblRealData);
 void CreateCSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int* _piElemByRow, int* _piColByRow, double* _pdblRealData, double* _pdblImgData);
+void CreateBooleanVarFromPtr(int _iNewVal, int _iRows, int _iCols, int* _piBoolData);
+
+
+
 int GetDimFromVar(int _iVarNum, int _iNum/*Oo*/, int* _piVal);
+void CheckVarUsed(int _iVarNum);
+void CheckAllVarUsed(int _iStart, int _iEnd);
+void GetVarDimension(int _iVarNum, int* _piRows, int* _piCols);
+
 
 #endif 

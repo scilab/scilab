@@ -1103,3 +1103,86 @@ int GetDimFromVar(int _iVarNum, int _iNum/*Oo*/, int* _piVal)
 	}
 	return 0;
 }
+
+void CreateBooleanVarFromPtr(int _iNewVal, int _iRows, int _iCols, int* _piBoolData)
+{
+	int iIndex			= 0;
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iNewVal));
+	int iAddrRealData	= 0;
+
+	*istk(iAddrBase)	= sci_boolean;
+	*istk(iAddrBase + 1)= _iRows;
+	*istk(iAddrBase + 2)= _iCols;
+	iAddrRealData		= iAddrBase + 3;
+
+	for(iIndex = 0 ; iIndex < _iRows*_iCols ; iIndex++)
+		*istk(iAddrRealData + iIndex) = _piBoolData[iIndex];
+
+	C2F(intersci).ntypes[Top - Rhs + _iNewVal - 1]	= '$';
+	C2F(intersci).iwhere[Top - Rhs + _iNewVal - 1]	= *Lstk(_iNewVal);
+	C2F(intersci).lad[Top - Rhs + _iNewVal - 1]		= sadr(iAddrRealData);
+}
+
+void CheckVarUsed(int _iVarNum)
+{
+	int iType = GetType(_iVarNum);
+	int iVar = Top - Rhs + _iVarNum;
+
+	int iAddress = iadr(*Lstk(iVar));
+	if (*istk(iAddress ) < 0) 
+		iAddress = iadr(*istk(iAddress +1));
+
+
+	switch(iType)
+	{
+	case sci_matrix :
+		iAddress += 4;
+		break;
+	case sci_poly : 
+		iAddress += 9 + (*istk(iAddress + 1) * *istk(iAddress + 2));
+		break;
+	case sci_boolean :
+		iAddress += 3;
+		break;
+	case sci_sparse :
+		iAddress += 5 + *istk(iAddress + 1) + *istk(iAddress + 4);
+		break;
+	case sci_ints :
+		iAddress += 4;
+		break;
+	default:
+		break;
+	}
+
+	C2F(intersci).ntypes[iVar - 1] = '$' ;
+	C2F(intersci).iwhere[iVar - 1] = *Lstk(iVar);
+	C2F(intersci).lad[iVar - 1] = sadr(iAddress);
+
+}
+
+void CheckAllVarUsed(int _iStart, int _iEnd)
+{
+	int iIndex = 0;
+	int iEnd = _iEnd;
+	int iStart = _iStart;
+	if(iEnd == -1)
+		iEnd = Rhs;
+	if(iStart == -1)
+		iStart = 1;
+
+	for(iIndex = iStart ; iIndex <= iEnd ; iIndex++)
+		CheckVarUsed(iIndex);
+}
+
+
+void GetVarDimension(int _iVarNum, int* _piRows, int* _piCols)
+{
+	int iVar = Top - Rhs + _iVarNum;
+
+	int iAddress = iadr(*Lstk(iVar));
+	if (*istk(iAddress ) < 0) 
+		iAddress = iadr(*istk(iAddress +1));
+
+	*_piRows = *istk(iAddress + 1);
+	*_piCols = *istk(iAddress + 2);
+}
