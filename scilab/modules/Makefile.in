@@ -169,16 +169,16 @@ CTAGS = ctags
 DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	elementary_functions string dynamic_link history_manager \
 	fileio spreadsheet tclsci renderer shell completion console \
-	gui jvm graphics graphic_export optimization symbolic randlib \
-	statistics special_functions interpolation linear_algebra \
-	integer data_structures mexlib differential_equations cacsd \
-	polynomials boolean double pvm io localization intersci \
-	metanet signal_processing sound time sparse windows_tools \
-	functions others overloading maple2scilab m2sci texmacs scipad \
-	scilab2fortran development_tools compatibility_functions \
-	helptools fftw umfpack demo_tools genetic_algorithms \
-	simulated_annealing parameters matio scicos_blocks scicos . \
-	javasci
+	localization gui jvm graphics graphic_export optimization \
+	symbolic randlib statistics special_functions interpolation \
+	linear_algebra integer data_structures mexlib \
+	differential_equations cacsd polynomials boolean double pvm io \
+	intersci metanet signal_processing sound time sparse \
+	windows_tools functions others overloading maple2scilab m2sci \
+	texmacs scipad scilab2fortran development_tools \
+	compatibility_functions helptools fftw umfpack demo_tools \
+	genetic_algorithms simulated_annealing parameters matio \
+	scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -368,12 +368,12 @@ top_srcdir = @top_srcdir@
 SUBDIRS = core output_stream action_binding arnoldi \
 	elementary_functions string dynamic_link history_manager \
 	fileio spreadsheet tclsci renderer shell completion console \
-	gui jvm graphics graphic_export optimization symbolic randlib \
-	statistics special_functions interpolation linear_algebra \
-	integer data_structures mexlib differential_equations cacsd \
-	polynomials boolean double pvm io localization intersci \
-	metanet signal_processing core interpolation sound time \
-	randlib sparse windows_tools functions others overloading \
+	localization gui jvm graphics graphic_export optimization \
+	symbolic randlib statistics special_functions interpolation \
+	linear_algebra integer data_structures mexlib \
+	differential_equations cacsd polynomials boolean double pvm io \
+	intersci metanet signal_processing core interpolation sound \
+	time randlib sparse windows_tools functions others overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \

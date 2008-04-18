@@ -24,6 +24,7 @@ renderer \
 shell \
 completion \
 console \
+localization \
 gui \
 jvm \
 graphics \
@@ -45,7 +46,6 @@ boolean \
 double \
 pvm \
 io \
-localization \
 intersci \
 metanet \
 signal_processing \
