@@ -92,6 +92,9 @@ function [y1,...,yn]=foo(x1,...,xm)
     <literal>exec</literal>. A noter que dans ce cas l'usage des mots-clé
     <literal>endfunction</literal> est impératif. L'usage de
     <literal>exec</literal> sous entend l'option<literal>opt=='c'</literal>.</para>
+   <para>Pour préparer la fonction pour la collecte des
+   statistiques d'appel, il faut désormais utiliser la fonction <link linkend="add_profiling">add_profiling</link>
+  .</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -124,6 +127,9 @@ function [y1,...,yn]=foo(x1,...,xm)
       </member>
       <member>
         <link linkend="comp">comp</link>
+      </member>
+      <member>
+	<link linkend="add_profiling">add_profiling</link>
       </member>
     </simplelist>
   </refsection>
