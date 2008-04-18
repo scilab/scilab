@@ -1061,5 +1061,18 @@ void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2]
 
 }
 /*---------------------------------------------------------------------------------*/
+void showPixmap(sciPointObj * pFigure)
+{
+  /* Hack here. Pixmap has same action as drawlater() */
+  /* So we just draw the figure here to make it appear */
+  if (sciGetPixmapMode(pFigure))
+  {
+    sciSetPixmapMode(pFigure, FALSE);
+    sciDrawObj(pFigure);
+    sciSetPixmapMode(pFigure, TRUE);
+    sciDrawObj(pFigure);
+  }
+}
+/*---------------------------------------------------------------------------------*/
 
 #undef round

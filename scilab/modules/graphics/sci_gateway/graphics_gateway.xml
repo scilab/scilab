@@ -49,7 +49,7 @@
 <PRIMITIVE gatewayId="7" primitiveId="23" primitiveName="xarrows" />
 <PRIMITIVE gatewayId="7" primitiveId="24" primitiveName="drawaxis" />
 <PRIMITIVE gatewayId="7" primitiveId="25" primitiveName="xchange" />
-<PRIMITIVE gatewayId="7" primitiveId="26" primitiveName="xclea" />
+<PRIMITIVE gatewayId="7" primitiveId="26" primitiveName="show_pixmap" />
 <PRIMITIVE gatewayId="7" primitiveId="27" primitiveName="oldxclear" />
 <PRIMITIVE gatewayId="7" primitiveId="28" primitiveName="xclick" />
 <PRIMITIVE gatewayId="7" primitiveId="29" primitiveName="xdel" />

@@ -1175,6 +1175,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_show_pixmap.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_show_window.c"
 				>
 			</File>
@@ -1220,10 +1224,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_xchange.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xclea.c"
 				>
 			</File>
 			<File
@@ -2197,6 +2197,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_show_pixmap.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\sci_show_window.h"
 				>
 			</File>
@@ -2242,10 +2246,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xchange.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xclea.h"
 				>
 			</File>
 			<File

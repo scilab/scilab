@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Fabrice Leray
- * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,21 +11,21 @@
  */
 
 /*------------------------------------------------------------------------*/
-/* file: sci_xclea.h                                                      */
-/* desc : interface for xclea routine                                     */
+/* file: sci_show_pixmap.h                                                */
+/* desc : interface for show_pixmap routine                               */
 /*------------------------------------------------------------------------*/
 
-#ifndef _INT_XCLEA_H_
-#define _INT_XCLEA_H_
+#ifndef _SCI_SHOW_PIXMAP_H_
+#define _SCI_SHOW_PIXMAP_H_
 
 /**
-* interface function for the xclea routine :
-* xclea(x,y,w,h) etendu a xclea([x,y,w,h])
+* interface function for the show_pixmap routine :
+* show_pixmap()
 *
-* @param[in] fname     name of the routine (ie xclea)
+* @param[in] fname     name of the routine (ie show_pixmap)
 * @param[in] fname_len length of fname
 * @return 0 if success, -1 otherwise
 */
-int sci_xclea( char * fname, unsigned long fname_len ) ;
+int sci_show_pixmap( char * fname, unsigned long fname_len ) ;
 
-#endif /* _INT_XCHANGE_H_ */
+#endif /* _SCI_SHOW_PIXMAP_H_ */

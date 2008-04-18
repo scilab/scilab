@@ -305,14 +305,7 @@ int sci_xset( char *fname, unsigned long fname_len )
       sciSetPixmapMode(sciGetParent(subwin), x[0]);
     }
     else if ( strcmp(cstk(l1),"wshow") == 0) { /* a supprimer ce n'est pas une propriete mais une action */
-      sciPointObj * parentFigure = sciGetParentFigure(subwin);
-      /* sciSetVisibility (subwin, TRUE); */
-      if (sciGetPixmapMode(parentFigure))
-      {
-        sciSetPixmapMode(parentFigure, FALSE);
-        sciDrawObj(parentFigure);
-        sciSetPixmapMode(parentFigure, TRUE);
-      }
+      showPixmap(sciGetParentFigure(subwin));
     }
     else if (strcmp(cstk(l1),"viewport") == 0) {
       int viewport[4] = {x[0], x[1], 0, 0};

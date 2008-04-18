@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Fabrice Leray
- * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,46 +11,28 @@
  */
 
 /*------------------------------------------------------------------------*/
-/* file: sci_drawnow.c                                                    */
-/* desc : interface for drawnow routine                                   */
+/* file: sci_show_pixmap.c                                                */
+/* desc : interface for show_pixmap routine                               */
 /*------------------------------------------------------------------------*/
 
-#include "sci_drawnow.h"
+#include "sci_show_pixmap.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "GetProperty.h"
-#include "ObjectStructure.h"
 #include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
-#include "DrawingBridge.h"
-#include "GraphicSynchronizerInterface.h"
-#include "SetProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_drawnow(char *fname,unsigned long fname_len)
-{ 
-  sciPointObj *pfigure = NULL;
-
-  
+int sci_show_pixmap(char *fname, unsigned long fname_len )
+{
+  /* call show_pixmap */
 
   CheckRhs(0,0);
-  CheckLhs(0,1); 
+  CheckLhs(0,1);
 
+  /* call show_pixmap function */
+  showPixmap(sciGetCurrentFigure());
 
-  if (Rhs <= 0) {
-    startGraphicDataWriting();
-    pfigure = sciGetCurrentFigure() ;
-    sciSetImmediateDrawingMode(pfigure, TRUE);
-    endGraphicDataWriting();
-
-    sciDrawObj(pfigure);
-    LhsVar(1) = 0;
-    return 0;
-  }
-
-  LhsVar(1) = 0;
-
+  LhsVar(1)=0;
   return 0;
 }
 /*--------------------------------------------------------------------------*/
