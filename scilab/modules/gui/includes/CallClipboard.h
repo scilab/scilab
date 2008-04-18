@@ -13,6 +13,10 @@
  *
  */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "machine.h"
 
 /**
@@ -44,6 +48,10 @@ void emptyClipboard(void);
  * @param text the contents to set
  */
 void setClipboardContents(char *text);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !__CALLCLIPBOARD_H__ */
 
