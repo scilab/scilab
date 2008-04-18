@@ -75,7 +75,7 @@
 #else
 /* MS VS (setlocale) doesn't know LC_MESSAGES */
 /* http://msdn2.microsoft.com/en-us/library/x99tb11d(vs.71).aspx */
-#define EXPORTENVLOCALESTR "LC_CTYPE"
+#define EXPORTENVLOCALESTR "LC_MESSAGES"
 #define EXPORTENVLOCALE LC_CTYPE
 #endif
 
