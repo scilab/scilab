@@ -57,7 +57,7 @@ public class GL2PSRenderer extends ExportRenderer {
 	 * @return ExportRenderer.INVALID_FILE if the file is not valid
 	 */
 	public int setGL2PSFile(String fileName, int fileType) {
-		
+				
 		switch (getFileType()) {
 		case ExportRenderer.EPS_EXPORT:  setFileName(ExportRenderer.getFileName() + ".eps");
 									   format = GL2PS.GL2PS_EPS;
