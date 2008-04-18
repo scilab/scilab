@@ -18,6 +18,9 @@
 #include <ctype.h>
 #include "stringsstrrchr.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*----------------------------------------------------------------------------*/
 char ** strings_strrchr(char **InputStrings,int Dim_InputStrings,char** InputChar,int Dim_InputChar,BOOL do_strrchr)
 {
@@ -42,13 +45,11 @@ char ** strings_strrchr(char **InputStrings,int Dim_InputStrings,char** InputCha
 
 				if (ptrStr)
 				{
-					Output_Strings[i] = (char*)MALLOC(sizeof(char)*(strlen(ptrStr)+1));
-					if (Output_Strings[i]) strcpy(Output_Strings[i],ptrStr);
+					Output_Strings[i] = strdup(ptrStr);
 				}
 				else
 				{
-					Output_Strings[i] = (char*)MALLOC(sizeof(char)*(strlen("")+1));
-					if (Output_Strings[i]) strcpy(Output_Strings[i],"");
+					Output_Strings[i] = strdup("");
 				}
 			}
 		}

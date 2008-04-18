@@ -22,6 +22,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*----------------------------------------------------------------------------*/
 int C2F(sci_strstr)(char *fname,unsigned long fname_len)
 {
@@ -93,12 +96,8 @@ int C2F(sci_strstr)(char *fname,unsigned long fname_len)
 						char *ptrstrstr = strstr(InputString_Parameter1[j],InputString_Parameter2[i]);
 						if (ptrstrstr)
 						{
-							OutputStrings[j] = (char *)MALLOC(sizeof(char)*(strlen(ptrstrstr)+1));
-							if (OutputStrings[j])
-							{
-								strcpy(OutputStrings[j],ptrstrstr);
-							}
-							else
+							OutputStrings[j] = strdup(ptrstrstr);
+							if (OutputStrings[j] == NULL)
 							{
 								freeArrayOfString(OutputStrings,m1n1);
 								freeArrayOfString(InputString_Parameter1,m1n1);
@@ -109,12 +108,8 @@ int C2F(sci_strstr)(char *fname,unsigned long fname_len)
 						}
 						else
 						{
-							OutputStrings[j] = (char *)MALLOC(sizeof(char)*(strlen("")+1));
-							if (OutputStrings[j])
-							{
-								strcpy(OutputStrings[j],"");
-							}
-							else
+							OutputStrings[j] = strdup("");
+							if (OutputStrings[j] == NULL)
 							{
 								freeArrayOfString(OutputStrings,m1n1);
 								freeArrayOfString(InputString_Parameter1,m1n1);

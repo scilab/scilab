@@ -18,6 +18,9 @@
 #include "strsubst.h"
 #include "MALLOC.h"
 #include "pcre_private.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 char **strsubst(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string)
 {
@@ -65,17 +68,13 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 
 	if (string_to_search == NULL || replacement_string == NULL) 
 	{
-		replacedString = (char *)MALLOC(sizeof(input_string)*(strlen(input_string)+1));
-		if (replacedString) strcpy(replacedString,input_string);
-		return replacedString;
+		return strdup(input_string);
 	}
 
 	occurrence_str = strstr (input_string, string_to_search);
 	if (occurrence_str == NULL)
 	{
-		replacedString = (char *)MALLOC(sizeof(input_string)*(strlen(input_string)+1));
-		if (replacedString) strcpy(replacedString,input_string);
-		return replacedString;
+		return strdup(input_string);
 	}
 
 	if (strlen (replacement_string) > strlen (string_to_search)) 
@@ -134,16 +133,12 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 
 	if (string_to_search == NULL || replacement_string == NULL) 
 	{
-		replacedString = (char *)MALLOC(sizeof(input_string)*(strlen(input_string)+1));
-		if (replacedString) strcpy(replacedString,input_string);
-		return replacedString;
+		return strdup(input_string);
 	}
     w = pcre_private(input_string,(char*)string_to_search,&Output_Start,&Output_End);
 	if (w != 0)
 	{
-		replacedString = (char *)MALLOC(sizeof(input_string)*(strlen(input_string)+1));
-		if (replacedString) strcpy(replacedString,input_string);
-		return replacedString;
+		return strdup(input_string);
 	}
 
 	if (w==0) 

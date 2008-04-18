@@ -24,6 +24,9 @@
 #include "Scierror.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*-------------------------------------------------------------------------------------*/ 
 #define STAR '*'
 #define COL 'c'
@@ -132,13 +135,14 @@ static int sci_strcat_three_rhs(char *fname)
 				nchars = 0;
 				for ( j = 0 ; j < Col_One ; j++ ) nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
 				nchars += (Col_One-1)*(int)strlen(Input_String_Two); 
-				if ( (Output_String[i]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
+
+				Output_String[i] = strdup(Input_String_One[i]);
+				if ( Output_String[i] == NULL) 
 				{
 					Scierror(999,_("%s: No more memory.\n"),fname);
 					return 0;
 				} 
-				/* fill the string */ 
-				strcpy(Output_String[i],Input_String_One[i]); 
+
 				for ( j = 1 ; j < Col_One ; j++ ) 
 				{
 					strcat(Output_String[i],Input_String_Two); 
@@ -168,16 +172,21 @@ static int sci_strcat_three_rhs(char *fname)
 				/* length of col j */ 
 				nchars = 0;
 				for ( i = 0 ; i < Row_One ; i++ ) 
+				{
 					nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
+				}
 				nchars += (Row_One-1)*(int)strlen(Input_String_Two); 
-				if ( (Output_String[j]=MALLOC((nchars+1)*sizeof(char)))==NULL) 
+
+				Output_String[j] = strdup(Input_String_One[j*Row_One]);
+
+				if ( Output_String[j] == NULL) 
 				{
 					Scierror(999,_("%s: No more memory.\n"),fname);
 					return 0;
 				} 
-				/* fill the string */ 
-				strcpy(Output_String[j],Input_String_One[j*Row_One]); 
-				for ( i = 1 ; i < Row_One ; i++ ) {
+
+				for ( i = 1 ; i < Row_One ; i++ ) 
+				{
 					strcat(Output_String[j],Input_String_Two); 
 					strcat(Output_String[j],Input_String_One[i+ Row_One*j]);
 				}

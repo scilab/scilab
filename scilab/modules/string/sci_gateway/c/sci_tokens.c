@@ -30,6 +30,9 @@
 #include "tokens.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #define BLANK_CODE 32
 #define EMPTY_STRING ""
@@ -89,7 +92,7 @@ int C2F(sci_tokens)(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-        Input_MatrixTwo[0] = (char*)MALLOC(sizeof(char*)*((int)strlen(EMPTY_STRING)+1));
+		Input_MatrixTwo[0] = strdup(EMPTY_STRING);
 
 		if (Input_MatrixTwo[0] == NULL)
 		{
@@ -98,8 +101,6 @@ int C2F(sci_tokens)(char *fname,unsigned long fname_len)
 			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
 		}
-
-        strcpy(Input_MatrixTwo[0],EMPTY_STRING);
         Input_MatrixTwo[0][0] = BLANK_CODE;
 
         Row_Two = 1;
