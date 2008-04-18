@@ -84,11 +84,10 @@
   <PRIMITIVE gatewayId="13" primitiveId="53" primitiveName="getmd5" />
   <PRIMITIVE gatewayId="13" primitiveId="54" primitiveName="getmodules" />
   <PRIMITIVE gatewayId="13" primitiveId="55" primitiveName="with_module" />
-  <PRIMITIVE gatewayId="13" primitiveId="56" primitiveName="islittleendian" />
-  <PRIMITIVE gatewayId="13" primitiveId="57" primitiveName="librarieslist" />
-  <PRIMITIVE gatewayId="13" primitiveId="58" primitiveName="libraryinfo" />
-  <PRIMITIVE gatewayId="13" primitiveId="59" primitiveName="getdebuginfo" />
-  <PRIMITIVE gatewayId="13" primitiveId="60" primitiveName="readgateway" />
+  <PRIMITIVE gatewayId="13" primitiveId="56" primitiveName="librarieslist" />
+  <PRIMITIVE gatewayId="13" primitiveId="57" primitiveName="libraryinfo" />
+  <PRIMITIVE gatewayId="13" primitiveId="58" primitiveName="getdebuginfo" />
+  <PRIMITIVE gatewayId="13" primitiveId="59" primitiveName="readgateway" />
   <PRIMITIVE gatewayId="14" primitiveId="1" primitiveName="user" />
   
 </GATEWAY>

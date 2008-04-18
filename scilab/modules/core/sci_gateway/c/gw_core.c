@@ -71,7 +71,6 @@ static gw_generic_table Tab[]=
 {C2F(sci_getmd5),"getmd5"},
 {C2F(sci_getmodules),"getmodules"},
 {C2F(sci_with_module),"with_module"},
-{C2F(sci_islittleendian),"islittleendian"},
 {C2F(sci_librarieslist),"librarieslist"},
 {C2F(sci_libraryinfo),"libraryinfo"},
 {C2F(sci_getdebuginfo),"getdebuginfo"},
