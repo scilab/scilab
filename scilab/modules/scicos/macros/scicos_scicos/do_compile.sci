@@ -20,9 +20,9 @@
 //
 
 function  [%cpr,ok] = do_compile(scs_m)
-show_trace = %t //** tracing and profiling (probably by Alan L. )
+show_trace = %f //** tracing and profiling (probably by Alan L. )
     if show_trace then 
-         disp("c_pass0:"+string(timer()))
+         disp("c_pass0:"+string(timer())); 
     end
 
 if exists('%scicos_solver')==0 then 
