@@ -5,10 +5,10 @@
 
    <!-- File menu -->
    <menu label="File" mnemonic="F" enabled="false">
-        <submenu label="Exec..." mnemonic="E">
+        <submenu label="Execute..." mnemonic="E">
             <callback 
             instruction="
-              %fileToExec = xgetfile('*.sc*', getcwd(), 'Select a file to exec');
+              %fileToExec = xgetfile('*.sc*', getcwd(), 'Select a file to execute');
               if ~isempty(%fileToExec) then 
                 exec(%fileToExec);
                 disp('Exec done.');
@@ -17,7 +17,7 @@
             type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="Open..." mnemonic="O"> 
+        <submenu label="Open a file..." mnemonic="O"> 
             <callback 
             instruction="
               %fileToOpen = xgetfile('*.sc*', getcwd(), 'Select a file to open with Scipad');
