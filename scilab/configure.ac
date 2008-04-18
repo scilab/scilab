@@ -355,7 +355,7 @@ fi
 if test "$CXX" = "g++"; then
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CXXFLAGS="$CXXFLAGS -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wstrict-aliasing -Wextra -Wall "
+	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -fdiagnostics-show-option -Wextra -Wall "
    else
 	  CXXFLAGS="$CXXFLAGS -DNDEBUG"
    fi
@@ -367,13 +367,14 @@ fi
 
 #LDFLAGS="$LIEEE $LDFLAGS"
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
-CPU_64_BITS=false
+IS_64_BITS_CPU=false
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
-	  CFLAGS="$CFLAGS -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall "
+	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -fdiagnostics-show-option -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing"
 	  # used to be -O
 	  # -D_FORTIFY_SOURCE=2
+	  LDFLAGS="$LDFLAGS -Wl,--warn-common,-x"
    else
 	  CFLAGS="$CFLAGS  -DNDEBUG"
    fi
@@ -385,19 +386,19 @@ if test "$CC" = "gcc"; then
 	;;
 	 x86_64-*-linux-gnu)
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64"
-		CPU_64_BITS=enabled
+		IS_64_BITS_CPU=true
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
 	;;		
 	 ia64-*-linux-gnu )
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
-		CPU_64_BITS=enabled
+		IS_64_BITS_CPU=true
     ;;
 	 alpha-*-linux-gnu)
 		CFLAGS="$CFLAGS  -mieee-with-inexact -Dlinux -fwritable-strings"
 		LDFLAGS="$LDFLAGS -mieee-with-inexact"
-		CPU_64_BITS=enabled
+		IS_64_BITS_CPU=true
 	;;
 	 powerpc-*-linux-gnu)
 		CFLAGS="$CFLAGS -D_GNU_SOURCE -Dlinux -fwritable-strings"
@@ -479,7 +480,11 @@ CFLAGS="$CFLAGS "'-I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/
 CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
-AM_CONDITIONAL(CPU_64_BITS, test "$CPU_64_BITS" = "enabled")
+if test $IS_64_BITS_CPU = true; then
+   AC_DEFINE([IS_64_BITS_CPU], [], [If we are building a 64 bits version])
+fi
+
+AM_CONDITIONAL(IS_64_BITS_CPU, test "$IS_64_BITS_CPU" = true)
 
 #######################
 ## test for underscores (name mangling issues between C and fortran)
@@ -1415,7 +1420,7 @@ echo "  host_cpu ....... = $host_cpu"
 echo "  host_vendor .... = $host_vendor"
 echo "  host_os ... .... = $host_os"
 echo "  hostname ....... = $ac_hostname"
-echo "  64 bits CPU .... = $CPU_64_BITS"
+echo "  CPU 64 bits .... = $IS_64_BITS_CPU"
 
 echo ""
 echo "Options used to compile and link:"

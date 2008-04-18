@@ -5,7 +5,7 @@
 
 MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c 
 
-if CPU_64_BITS
+if IS_64_BITS_CPU
 MALLOC_C_SOURCES += src/malloc.c
 endif
 

@@ -54,7 +54,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@CPU_64_BITS_TRUE@am__append_1 = src/malloc.c
+@IS_64_BITS_CPU_TRUE@am__append_1 = src/malloc.c
 DIST_COMMON = $(libscimalloc_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 @GUI_TRUE@am__append_2 = java
@@ -91,7 +91,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscimalloc_la_DEPENDENCIES =
 am__libscimalloc_la_SOURCES_DIST = src/sci_mem_alloc.c \
 	src/getmaxMALLOC.c src/malloc.c
-@CPU_64_BITS_TRUE@am__objects_1 = libscimalloc_la-malloc.lo
+@IS_64_BITS_CPU_TRUE@am__objects_1 = libscimalloc_la-malloc.lo
 am__objects_2 = libscimalloc_la-sci_mem_alloc.lo \
 	libscimalloc_la-getmaxMALLOC.lo $(am__objects_1)
 am_libscimalloc_la_OBJECTS = $(am__objects_2)
