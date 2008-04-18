@@ -97,7 +97,7 @@ setenv("VERSION",getversion())
 // Set the preferred browser  ==========================================
 global %browsehelp
 %browsehelp=loaddefaultbrowser();
-clear %browsehelp with_tk with_gtk loaddefaultbrowser //remove the local variable
+clear %browsehelp with_tk with_gtk loaddefaultbrowser  pathconvert//remove the local variable
 
 // Protect variable previously defined  ================================
 predef('all')
