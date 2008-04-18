@@ -54,6 +54,9 @@ public class ColoredTriangle {
 	private Side nextSideI2;
 	
 	
+	private Vector3D orientation;
+	
+	
 	/** 
 	 * Constructor
 	 * First we orderer coordinates and colors (smallest to the biggest)
@@ -71,61 +74,65 @@ public class ColoredTriangle {
 		/** Swap v1, v2 & v3 in the right order */				
 		if (colorV1 <= colorV2 && colorV1 <= colorV3) {
 			colorC = colorV1;
-			c = v1;		
+			c = new Vector3D(v1);		
 			if (colorV2 <= colorV3) {
 				colorB = colorV2;	
 				colorA = colorV3;
-				b = v2;
-				a = v3;
+				b = new Vector3D(v2);
+				a = new Vector3D(v3);
 				
 			} else {
 				colorB = colorV3;
 				colorA = colorV2;
-				b = v3;
-				a = v2;
+				b = new Vector3D(v3);
+				a = new Vector3D(v2);
 			}
 		} else if (colorV2 <= colorV1 && colorV2 <= colorV3) {
 			colorC = colorV2;
-			c = v2;		
+			c = new Vector3D(v2);		
 			if (colorV1 <= colorV3) {
 				colorB = colorV1;	
 				colorA = colorV3;
-				b = v1;
-				a = v3;
+				b = new Vector3D(v1);
+				a = new Vector3D(v3);
 			} else {
 				colorB = colorV3;
 				colorA = colorV1;
-				b = v3;
-				a = v1;
+				b = new Vector3D(v3);
+				a = new Vector3D(v1);
 			}			
 		} else if (colorV3 <= colorV1 && colorV3 <= colorV2) {
 			colorC = colorV3;
-			c = v3;		
+			c = new Vector3D(v3);		
 			if (colorV1 <= colorV2) {
 				colorB = colorV1;	
 				colorA = colorV2;
-				b = v1;
-				a = v2;
+				b = new Vector3D(v1);
+				a = new Vector3D(v2);
 			} else {
 				colorB = colorV2;
 				colorA = colorV1;
-				b = v2;
-				a = v1;
+				b = new Vector3D(v2);
+				a = new Vector3D(v1);
 			}			
-		}	
-		
-		//ColorB & ColorC should not be the same
-		int tempColor;
-		Vector3D tempVector = new Vector3D();
-		if (colorC == colorB) {
-			tempColor = colorB;
-			colorB = colorA;
-			colorA = tempColor;
-			
-			tempVector = b;
-			b = a;
-			a = tempVector;
 		}		
+		
+		Vector3D CB = b.substract(c);
+		Vector3D CA = a.substract(c);
+		Vector3D V1V2 = v2.substract(v1);
+		Vector3D V1V3 = v3.substract(v1);
+		
+		orientation = V1V2.crossProduct(V1V3);
+		
+		if ((CB.crossProduct(CA).dotProduct(V1V2.crossProduct(V1V3))) < 0) {
+			int tempCol = colorB;
+			colorB = colorA;
+			colorA = tempCol;
+			
+			Vector3D tempVec = b;
+			b = a;
+			a = tempVec;
+		}
 	}
 	
 	/** 
@@ -158,6 +165,7 @@ public class ColoredTriangle {
 			
 			prevSideI1 = Side.SIDE_BC;
 			prevSideI2 = Side.SIDE_AC;
+			
 
 			for (int i = 0; i < nbPolygons - 1; i++) {			
 				// color of the next polygon
@@ -175,10 +183,26 @@ public class ColoredTriangle {
 			}	
 
 			//ending the polygon decomposition with the biggest color
-			Vector3D[] lastPoly = new Vector3D[POLY_SIDE3];
-			lastPoly[0] = prevI1;
-			lastPoly[1] = prevI2;
-			lastPoly[2] = findIntersection(prevSideI1, prevSideI2);
+			Vector3D[] lastPoly;
+			Vector3D intersect = findIntersection(prevSideI1, prevSideI2);
+			if (intersect.equals(c)) {
+				lastPoly = new Vector3D[POLY_SIDE4];
+				lastPoly[0] = prevI2;
+				lastPoly[1] = prevI1;
+				lastPoly[2] = b;
+				lastPoly[3] = a;
+			} else {
+				lastPoly = new Vector3D[POLY_SIDE3];
+				lastPoly[0] = prevI1;
+				lastPoly[1] = prevI2;
+				lastPoly[2] = intersect;
+			}
+			
+			if (!checkTriangleOrientation(lastPoly[0], lastPoly[1], lastPoly[2], orientation)) {
+				Vector3D tempOrientation = lastPoly[1];
+				lastPoly[1] = lastPoly[2];
+				lastPoly[2] = tempOrientation;				
+			}
 			
 			res.setPolygonColor(max, nbPolygons - 1);
 			res.setPolygon(lastPoly, nbPolygons - 1);
@@ -287,17 +311,6 @@ public class ColoredTriangle {
 			}
 		}
 		
-		//compare i1 & i2
-		if (intersections[0].getY() > intersections[1].getY()) {
-			Vector3D tempVector = null;
-			tempVector = intersections[0];
-			intersections[0] = intersections[1];
-			intersections[1] = tempVector;
-			Side tmpSide = intersectionSides[0];
-			intersectionSides[0] = intersectionSides[1];
-			intersectionSides[1] = tmpSide;			
-		} 	
-		
 		//Convert barycentric intersections coordinates to 3D coordinates 
 		for (int i = 0; i < nbIntersections; i++) {
 			intersections[i] = barycentricCoordTo3D(intersections[i].getX(), intersections[i].getY());
@@ -319,8 +332,7 @@ public class ColoredTriangle {
 		Vector3D p = new Vector3D();	
 		
 		Vector3D[] intersections = new Vector3D[2];
-		Side[] intersectionsSides = new Side[2];
-		
+		Side[] intersectionsSides = new Side[2];		
 		
 		//finding nextI1 and nextI2	
 		intersectionsManager(curColor + GAP, intersections, intersectionsSides);		
@@ -329,6 +341,14 @@ public class ColoredTriangle {
 		nextSideI1 = intersectionsSides[0];
 		nextSideI2 = intersectionsSides[1];
 		
+		if (prevSideI1 == nextSideI2 || prevSideI2 == nextSideI1) {
+			Vector3D temp = nextI1;
+			nextI1 = nextI2;
+			nextI2 = temp;
+			Side tempSide = nextSideI1;
+			nextSideI1 = nextSideI2;
+			nextSideI2 = tempSide;
+		}
 		
 		//if the decomposed polygon have 4 or 5 summits
 		//coordinates are ordered in the reverse sense of the watch
@@ -357,7 +377,37 @@ public class ColoredTriangle {
 			polygons[SIDE_4] = nextI2;
 			polygons[SIDE_5] = nextI1;
 		}
-				
+		
+		//Test for the orientation of the triangle
+		int polyLength = polygons.length;
+		
+		for (int i = 0; i < polyLength - 2; i++) {
+			if (!checkTriangleOrientation(polygons[i], polygons[i + 1], polygons[i + 2], orientation)) {
+				Vector3D tempOrientation = polygons[i + 1];
+				polygons[i + 1] = polygons[i + 2];
+				polygons[i + 2] = tempOrientation;				
+			}
+		}
+		if (!checkTriangleOrientation(polygons[polyLength - 2], polygons[polyLength - 1], polygons[0], orientation)) {
+			Vector3D tempOrientation = polygons[polyLength - 1];
+			polygons[polyLength - 1] = polygons[0];
+			polygons[0] = tempOrientation;				
+		}
+		
+		if (!checkTriangleOrientation(polygons[polyLength - 1], polygons[0], polygons[1], orientation)) {
+			Vector3D tempOrientation = polygons[0];
+			polygons[0] = polygons[1];
+			polygons[1] = tempOrientation;				
+		}		
+		
+		for (int i = 1; i < polyLength - 1; i++) {
+			if (!checkTriangleOrientation(polygons[0], polygons[i], polygons[i + 1], orientation)) {
+				Vector3D tempOrientation = polygons[i];
+				polygons[i] = polygons[i + 1];
+				polygons[i + 1] = tempOrientation;				
+			}
+		}
+		
 		return polygons;
 	}
 	
@@ -368,7 +418,7 @@ public class ColoredTriangle {
 	 * @return intersection vector3D
 	 */
 	public Vector3D findIntersection(Side side1, Side side2) {
-		Vector3D p = new Vector3D();
+		Vector3D p = null;
 		
 		//finding intersection among the sides
 		if ((side1 == Side.SIDE_AC &&  side2 == Side.SIDE_AB)
@@ -390,6 +440,20 @@ public class ColoredTriangle {
 			return p;
 		}	
 		
-	}
+	}	
+	
+	/**
+	 * Check the triangle orientation (front or back)
+	 * @param a Vector3D
+	 * @param b Vector3D
+	 * @param c Vector3D
+	 * @param orientation Vector3Ds
+	 * @return the orientation of the triangle
+	 */
+	public boolean checkTriangleOrientation(Vector3D a, Vector3D b, Vector3D c, Vector3D orientation) {
+		Vector3D AB = b.substract(a);
+		Vector3D AC = c.substract(a);		
+		return (AB.crossProduct(AC)).dotProduct(orientation) >= 0;
+	}	
 
 }

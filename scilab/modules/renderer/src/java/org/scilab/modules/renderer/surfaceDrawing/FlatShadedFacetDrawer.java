@@ -16,6 +16,8 @@ package org.scilab.modules.renderer.surfaceDrawing;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
+import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
@@ -24,6 +26,7 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Jean-Baptiste Silvy
  */
 public class FlatShadedFacetDrawer extends FacetDrawerGL {
+	
 
 	
 	/**
@@ -43,24 +46,34 @@ public class FlatShadedFacetDrawer extends FacetDrawerGL {
 	public void drawFacet(GL gl, Vector3D[] vertices, int[] colors) {
 		
 		
+		gl.glBegin(GL.GL_POLYGON);
+		
 		// draw one facet with only one color
 		double[] color = getColorMap().getColor(colors[0]);
 		gl.glColor3d(color[0], color[1], color[2]);
 		
-		for (int i = getNbVertices() - 1; i >= 0; i--) {
+		for (int i = 0; i < getNbVertices(); i++) {
 			gl.glVertex3d(vertices[i].getX(), vertices[i].getY(), vertices[i].getZ());
 		}
+		
+		gl.glEnd();
+		
 		
 		if (getHiddenColor() != null) {
 			// draw hidden color
 			double[] hiddenColor = getHiddenColor();
 			gl.glColor3d(hiddenColor[0], hiddenColor[1], hiddenColor[2]);
 			
+			gl.glBegin(GL.GL_POLYGON);
+			
 			// draw on reverse since back face culling is enable
-			for (int i = 0; i < getNbVertices(); i++) {
+			for (int i = getNbVertices() - 1; i >= 0; i--) {
 				gl.glVertex3d(vertices[i].getX(), vertices[i].getY(), vertices[i].getZ());
 			}
+			gl.glEnd();
 		}
+		
+		
 
 	}
 

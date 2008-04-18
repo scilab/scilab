@@ -78,7 +78,7 @@ public class SurfaceFacetDrawerGL extends AutoDrawableObjectGL {
 		colorComputer = FacetColorComputer.create(colorFlag, getColorMap(), decomposer);
 		decomposer.setColorComputer(colorComputer);
 		
-		drawer = FacetDrawerGL.create(colorFlag, getColorMap());
+		drawer = FacetDrawerGL.create(colorFlag, getColorMap(), getParentFigureGL().getShadeFacetDrawer());
 	}
 	
 	/**

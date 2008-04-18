@@ -16,6 +16,8 @@ package org.scilab.modules.renderer.surfaceDrawing;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.polylineDrawing.GL2PSShadeFacetDrawer;
+import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
@@ -45,20 +47,21 @@ public abstract class FacetDrawerGL {
 	
 	/**
 	 * Create a new instance of facetDrawerGL
-	 * @param colorFlag specify the kinf of facetdrawert to create
+	 * @param colorFlag specify the kind of facet drawers to create
 	 * @param colorMap colormap to use
 	 * @return new instance of facetDrawerGL
 	 */
-	public static FacetDrawerGL create(int colorFlag, TexturedColorMap colorMap) {
+	public static FacetDrawerGL create(int colorFlag, TexturedColorMap colorMap, ShadeFacetDrawer sfd) {
+		
 		if (colorFlag == FacetColorComputer.INTERPOLATED_SHADING) {
-			return new LinearShadedFacetDrawerGL(colorMap);
+			return new LinearShadedFacetDrawerGL(colorMap, sfd);
 		} else {
 			return new FlatShadedFacetDrawer(colorMap);
 		}
 	}
 
 	/**
-	 * @return color array containin gthe 3 channels of the color
+	 * @return color array containing the 3 channels of the color
 	 */
 	public double[] getHiddenColor() {
 		if (hiddenColor >= 0 && hiddenColor < colorMap.getSize()) {
@@ -81,7 +84,7 @@ public abstract class FacetDrawerGL {
 	 * @param gl current OpenGL pipeline
 	 */
 	public void endDrawing(GL gl) {
-		gl.glEnd();
+		//gl.glEnd();
 		gl.glDisable(GL.GL_CULL_FACE);
 		GLTools.pushPolygonsBack(gl);
 	}
@@ -95,7 +98,10 @@ public abstract class FacetDrawerGL {
 			// we must draw one face with computed color
 			// and one face with hidden color
 			gl.glEnable(GL.GL_CULL_FACE);
-			gl.glCullFace(GL.GL_BACK);
+			
+			// in Scilab vertex order in clockwise so
+			// facing back
+			gl.glCullFace(GL.GL_FRONT);
 		}
 		
 		// enable polygon offset because we need to draw lines on polygons
@@ -104,10 +110,10 @@ public abstract class FacetDrawerGL {
 		
 		if (getNbVertices() == TRIANGLE_NB_FACETS) {
 			// triangle
-			gl.glBegin(GL.GL_TRIANGLES);
+			//gl.glBegin(GL.GL_TRIANGLES);
 		} else if (getNbVertices() == QUAD_NB_FACETS) {
 			// quad
-			gl.glBegin(GL.GL_QUADS);
+			//gl.glBegin(GL.GL_QUADS);
 		}
 	}
 
