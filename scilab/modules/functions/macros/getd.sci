@@ -9,7 +9,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function getd(path)
+function getd(path,option)
   
 // get all .sci files in the specified directory
   
