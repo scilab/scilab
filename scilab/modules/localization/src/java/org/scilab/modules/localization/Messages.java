@@ -36,7 +36,11 @@ public class Messages {
 		}catch (java.util.MissingResourceException e){
 			System.err.println("Could not file localization file for "+systemLocale);
 			System.err.println("Switch back to the default language " + defaultLocale);
-			resourceBundle = ResourceBundle.getBundle(pathToTheClass,new Locale(defaultLocale));
+			try {
+				resourceBundle = ResourceBundle.getBundle(pathToTheClass,new Locale(defaultLocale));
+			} catch (java.util.MissingResourceException e2) {
+				
+			}
 		}
 	}
 
