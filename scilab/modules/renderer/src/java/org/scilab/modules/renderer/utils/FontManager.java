@@ -24,15 +24,21 @@ import java.util.ArrayList;
  */
 public class FontManager {
 
+  // empiric values :(
 	private static final float[] SCI_SIZE_2_AWT_SIZE_POLYNOM = {0.4f, 1.2f, 8.0f};
 	
 	// logical awt fonts
-	private static final String DIALOG = "Dialog";
-	private static final String DIALOG_INPUT = "DialogInput";
-	private static final String MONOSPACED = "Monospaced";
-	private static final String SERIF = "Serif";
-	private static final String SANS_SERIF = "SansSerif";
+	// JRE Java guaranteed: "Dialog", "DialogInput", "Monospaced","Serif", "SansSerif", "Symbol", "Lucida"
+	// Scilab 4.x fonts --> fonts with JRE 1.5 ore more
+	// Times            --> Serif
+	// Helvetica        --> SansSerif
+	// Courier          --> Monospaced
+	// Symbol           --> Symbol
 	
+	private static final String MONOSPACED = "Monospaced";
+	private static final String SANSSERIF = "SansSerif";
+	private static final String SYMBOL = "Symbol";
+	private static final String SERIF = "Serif";
 	private static final Font DEFAULT_FONT = new Font("Default", Font.PLAIN, 1);
 	
 	/** Singleton instance */
@@ -63,17 +69,37 @@ public class FontManager {
 	protected FontManager() {
 		sciFonts = new FontList();
 		// set default font
-		sciFonts.add(createFont(DIALOG));
-		sciFonts.add(createFont(DIALOG_INPUT));
-		sciFonts.add(createFont(MONOSPACED));
-		sciFonts.add(createFont(SERIF));
-		sciFonts.add(createFont(SERIF, true, false));
-		sciFonts.add(createFont(SERIF, false, true));
-		sciFonts.add(createFont(SANS_SERIF));
-		sciFonts.add(createFont(SANS_SERIF, true, false));
-		sciFonts.add(createFont(SANS_SERIF, false, true));
-		sciFonts.add(createFont(SANS_SERIF, true, true));
-		sciFonts.add(createFont(MONOSPACED, true, false));
+    /* Fonts order in Scilab 4.x for compatibility */
+    /* Courrier --> Monospaced
+   	   Symbol --> Symbol
+   	   Times --> Serif
+   	   Times Italic --> Serif Italic
+   	   Times Bold --> Serif Bold
+   	   Times Bold Italic --> Serif Bold Italic
+   	   Helvetica --> SansSerif
+   	   Helvetica Italic --> SansSerif Italic
+   	   Helvetica Bold --> SansSerif Bold
+   	   Helveticas Bold Italic --> SansSerif bold Italic
+     */
+       
+   	   sciFonts.add(createFont(MONOSPACED));           /* scilab font_style 0 */
+   	   /* Problem with Symbol font */
+   	   /* on scilab 4.x a --> alpha symbol */
+   	   /* with java , symbols are not ascii codes */
+   	   sciFonts.add(createFont(SYMBOL));               /* scilab font_style 1 */
+   	   sciFonts.add(createFont(SERIF));                /* scilab font_style 2 */
+   	   sciFonts.add(createFont(SERIF,false,true));     /* scilab font_style 3 */
+   	   sciFonts.add(createFont(SERIF,true,false));     /* scilab font_style 4 */
+   	   sciFonts.add(createFont(SERIF,true,true));      /* scilab font_style 5 */
+   	   sciFonts.add(createFont(SANSSERIF));            /* scilab font_style 6 */
+   	   sciFonts.add(createFont(SANSSERIF,true,true));  /* scilab font_style 7 */
+   	   sciFonts.add(createFont(SANSSERIF,true,false)); /* scilab font_style 8 */
+   	   sciFonts.add(createFont(SANSSERIF,true,true));  /* scilab font_style 9 */
+   	   sciFonts.add(createFont(SANSSERIF,true,true));  /* scilab font_style 10 */
+   	   /* font 10 was defined by user in Scilab 4.x */
+   	   /* @TO DO add a method to do same thing in Scilab 5.x */
+   	   
+   	   
 	}
 	
 	/**
