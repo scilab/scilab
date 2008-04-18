@@ -126,8 +126,6 @@ jintgetWindowWidthID=NULL;
 jintgetWindowHeightID=NULL; 
 voidsetWindowSizejintjintID=NULL; 
 voidsetInfoMessagejstringID=NULL; 
-voidsetPixmapModejbooleanID=NULL; 
-jbooleangetPixmapModeID=NULL; 
 voidsetAutoResizeModejbooleanID=NULL; 
 jbooleangetAutoResizeModeID=NULL; 
 voidsetIsRenderingEnablejbooleanID=NULL; 
@@ -186,8 +184,6 @@ jintgetWindowWidthID=NULL;
 jintgetWindowHeightID=NULL; 
 voidsetWindowSizejintjintID=NULL; 
 voidsetInfoMessagejstringID=NULL; 
-voidsetPixmapModejbooleanID=NULL; 
-jbooleangetPixmapModeID=NULL; 
 voidsetAutoResizeModejbooleanID=NULL; 
 jbooleangetAutoResizeModeID=NULL; 
 voidsetIsRenderingEnablejbooleanID=NULL; 
@@ -711,48 +707,6 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
-}
-
-void DrawableFigureGL::setPixmapMode (bool onOrOff){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (voidsetPixmapModejbooleanID==NULL) { /* Use the cache Luke */ voidsetPixmapModejbooleanID = curEnv->GetMethodID(this->instanceClass, "setPixmapMode", "(Z)V" ) ;
-if (voidsetPixmapModejbooleanID == NULL) {
-std::cerr << "Could not access to the method " << "setPixmapMode" << std::endl;
-exit(EXIT_FAILURE);
-}
-}
-jboolean onOrOff_ = ((bool) onOrOff ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallVoidMethod( this->instance, voidsetPixmapModejbooleanID ,onOrOff_);
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        
-}
-
-bool DrawableFigureGL::getPixmapMode (){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (jbooleangetPixmapModeID==NULL) { /* Use the cache Luke */ jbooleangetPixmapModeID = curEnv->GetMethodID(this->instanceClass, "getPixmapMode", "()Z" ) ;
-if (jbooleangetPixmapModeID == NULL) {
-std::cerr << "Could not access to the method " << "getPixmapMode" << std::endl;
-exit(EXIT_FAILURE);
-}
-}
-                        jboolean res =  (jboolean) curEnv->CallBooleanMethod( this->instance, jbooleangetPixmapModeID );
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        
-return (res == JNI_TRUE);
-
 }
 
 void DrawableFigureGL::setAutoResizeMode (bool onOrOff){

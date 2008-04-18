@@ -157,16 +157,6 @@ void DrawableFigureJavaMapper::setInfoMessage(char * infoMessage)
   m_pJavaObject->setInfoMessage(infoMessage);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::setPixmapMode(bool onOrOff)
-{
-  m_pJavaObject->setPixmapMode(onOrOff);  
-}
-/*---------------------------------------------------------------------------------*/
-bool DrawableFigureJavaMapper::getPixmapMode(void)
-{
- return m_pJavaObject->getPixmapMode();
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::setRenderingEnable(bool isEnable)
 {
   m_pJavaObject->setIsRenderingEnable(isEnable);

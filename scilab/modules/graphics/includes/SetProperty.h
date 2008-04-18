@@ -263,6 +263,9 @@ int sciSetRenderingEnable(sciPointObj * pObj, BOOL enable); /* SET */
 
 int sciSetZoomBox(sciPointObj * pObj, const double zoomBox[6]); /* SET */
 
+int sciInitImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw);
+int sciSetImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw);
+
 BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/

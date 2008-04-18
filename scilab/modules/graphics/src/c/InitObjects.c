@@ -510,14 +510,14 @@ int InitFigureModel( void )
   pFIGURE_FEATURE (pfiguremdl)->isselected = TRUE;
   pFIGURE_FEATURE (pfiguremdl)->rotstyle = 0;
   pFIGURE_FEATURE (pfiguremdl)->visible = TRUE;
-  pFIGURE_FEATURE (pfiguremdl)->auto_redraw = TRUE; /* by default, we draw live */ /* F.Leray 29.12.04 modified on 04.01.05 */
+  sciInitImmediateDrawingMode(pfiguremdl, TRUE);/* by default, we draw live */
 
   pFIGURE_FEATURE (pfiguremdl)->user_data = (int *) NULL; /* pour completude */
   pFIGURE_FEATURE (pfiguremdl)->size_of_user_data = 0; /* pour completude */
 
   pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0;
   sciInitPixmapMode(pfiguremdl, FALSE);
-  pFIGURE_FEATURE (pfiguremdl)->wshow = 0 ;
+  pFIGURE_FEATURE (pfiguremdl)->pixmapMode = 0 ;
 
   pFIGURE_FEATURE(pfiguremdl)->infoMessage = NULL ;
   sciSetInfoMessage( pfiguremdl, "" ) ;
@@ -797,10 +797,9 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   pFIGURE_FEATURE (pobj)->isselected = pFIGURE_FEATURE (pfiguremdl)->isselected; 
   pFIGURE_FEATURE (pobj)->rotstyle = pFIGURE_FEATURE (pfiguremdl)->rotstyle;
   pFIGURE_FEATURE (pobj)->visible = pFIGURE_FEATURE (pfiguremdl)->visible;
-  pFIGURE_FEATURE (pobj)->auto_redraw = pFIGURE_FEATURE (pfiguremdl)->auto_redraw;
+  sciInitImmediateDrawingMode(pobj, sciGetImmediateDrawingMode(pfiguremdl));
   pFIGURE_FEATURE (pobj)->numsubwinselected = pFIGURE_FEATURE (pfiguremdl)->numsubwinselected;
   sciInitPixmapMode(pobj, sciGetPixmapMode(pfiguremdl));
-  pFIGURE_FEATURE (pobj)->wshow = pFIGURE_FEATURE (pfiguremdl)->wshow ; 
 
   return 0;
 }
@@ -983,7 +982,6 @@ FigureModelData * newFigureModelData( void )
   modelData->windowPosition[1] = 200 ;
   modelData->colorMap = NULL ;
   modelData->numColors = 0 ;
-  modelData->pixmapMode = FALSE;
   modelData->autoResizeMode = TRUE;
   modelData->viewport[0] = 0;
   modelData->viewport[1] = 0;

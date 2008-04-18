@@ -3674,6 +3674,11 @@ int sciGetHiddenAxisColor( sciPointObj * pObj )
  */
 BOOL sciGetIsAutoDrawable( sciPointObj * pobj )
 {
+  return (sciGetImmediateDrawingMode(pobj) && !sciGetPixmapMode(pobj));
+}
+/*----------------------------------------------------------------------------------*/
+BOOL sciGetImmediateDrawingMode(sciPointObj * pobj)
+{
   return pFIGURE_FEATURE(sciGetParentFigure(pobj))->auto_redraw ;
 }
 /*----------------------------------------------------------------------------------*/
@@ -3964,14 +3969,7 @@ BOOL sciGetPixmapMode(sciPointObj * pObj)
   switch(sciGetEntityType(pObj))
   {
   case SCI_FIGURE:
-    if (pObj == getFigureModel())
-    {
-      return pFIGURE_FEATURE(pObj)->pModelData->pixmapMode;
-    }
-    else
-    {
-      return sciGetJavaPixmapMode(pObj);
-    }
+    return pFIGURE_FEATURE(pObj)->pixmapMode;
     break;
   default:
     printSetGetErrorMessage("pixmap");

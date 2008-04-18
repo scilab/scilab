@@ -71,9 +71,6 @@ public:
 
   virtual void setInfoMessage(char * infoMessage);
 
-  virtual void setPixmapMode(bool onOrOff);
-  virtual bool getPixmapMode(void);
-
   virtual void setRenderingEnable(bool isEnable);
 
   virtual void setAutoResizeMode(bool onOrOff);

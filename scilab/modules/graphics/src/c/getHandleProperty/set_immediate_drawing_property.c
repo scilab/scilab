@@ -44,12 +44,12 @@ int set_immediate_drawing_property( sciPointObj * pobj, int stackPointer, int va
   
   if ( isStringParamEqual( stackPointer, "on" ) )
   {
-    pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = TRUE ;
+    sciSetImmediateDrawingMode(pobj, TRUE);
     return SET_PROPERTY_SUCCEED ;
   }
   else if ( isStringParamEqual( stackPointer, "off" ) )
   {
-    pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = FALSE ;
+    sciSetImmediateDrawingMode(pobj, FALSE);
     return SET_PROPERTY_SUCCEED ;
   }
   else

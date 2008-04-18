@@ -41,7 +41,7 @@ int sci_drawnow(char *fname,unsigned long fname_len)
   if (Rhs <= 0) {
     startGraphicDataWriting();
     pfigure = sciGetCurrentFigure() ;
-    pFIGURE_FEATURE(pfigure)->auto_redraw = TRUE;
+    sciSetImmediateDrawingMode(pfigure, TRUE);
     endGraphicDataWriting();
 
     sciDrawObj(pfigure);

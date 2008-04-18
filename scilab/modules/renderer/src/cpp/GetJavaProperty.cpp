@@ -38,18 +38,6 @@ void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] )
   getFigureDrawer(pFigure)->getWindowPosition(pos) ;
 }
 /*---------------------------------------------------------------------------------*/
-BOOL sciGetJavaPixmapMode(sciPointObj * pFigure)
-{
-  if (getFigureDrawer(pFigure)->getPixmapMode())
-  {
-    return TRUE;
-  }
-  else
-  {
-    return FALSE;
-  }
-}
-/*---------------------------------------------------------------------------------*/
 void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2])
 {
   getSubwinDrawer(pSubwin)->getCamera()->getPixelCoordinates(userCoord, pixCoord);

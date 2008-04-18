@@ -189,10 +189,10 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   ppFigure->isselected = ppModel->isselected; 
   ppFigure->rotstyle = ppModel->rotstyle;
   ppFigure->visible = ppModel->visible;
-  ppFigure->auto_redraw = ppModel->auto_redraw;
+  sciInitImmediateDrawingMode(pobj, sciGetImmediateDrawingMode(pfiguremdl));
 
   ppFigure->numsubwinselected = ppModel->numsubwinselected;
-  ppFigure->wshow = ppModel->wshow ; 
+  ppFigure->pixmapMode = ppModel->pixmapMode ; 
   ppFigure->allredraw = ppModel->allredraw;
   ppFigure->pModelData = NULL;
 

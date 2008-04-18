@@ -62,11 +62,6 @@
     <method name="setInfoMessage" returnType="void">
       <param type="String" name="infoMessage" />
     </method>
-    <method name="setPixmapMode" returnType="void">
-      <param type="boolean" name="onOrOff" />
-    </method>
-    <method name="getPixmapMode" returnType="boolean">
-    </method>
     <method name="setAutoResizeMode" returnType="void">
       <param type="boolean" name="onOrOff" />
     </method>

@@ -20,8 +20,6 @@ forceRedraw
 sciSetJavaColormap
 sciGetJavaColormap
 createDrawer
-sciSetJavaPixmapMode
-sciGetJavaPixmapMode
 sciGetJavaFigureSize
 sciGetJavaWindowSize
 sciGetJavaWindowPosition

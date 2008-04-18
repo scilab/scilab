@@ -438,7 +438,6 @@ typedef struct
   int viewport[4]; /* 4 but for now only two are used */
   double * colorMap ;
   int numColors ;
-  BOOL pixmapMode ;
   BOOL autoResizeMode;
 }
 FigureModelData ;
@@ -472,7 +471,7 @@ typedef struct
   /** specifies the number of the selected son         */
   int numsubwinselected;
   /** specifies the current pixmap status         */
-  int wshow ;
+  int pixmapMode ;
   
   BOOL allredraw;
   

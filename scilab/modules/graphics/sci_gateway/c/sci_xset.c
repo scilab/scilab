@@ -195,7 +195,7 @@ int sci_xset( char *fname, unsigned long fname_len )
       Scierror(999,_("%s: It was not possible to create the requested figure"),fname);
     }
   }
-  else if ( strcmp(cstk(l1),"wshow") != 0 )
+  else
   {
     subwin = sciGetCurrentSubWin();
     if (( strcmp(cstk(l1),"foreground") == 0) || (strcmp(cstk(l1),"color") == 0) ||( strcmp(cstk(l1),"pattern") == 0) ) {
@@ -305,15 +305,22 @@ int sci_xset( char *fname, unsigned long fname_len )
       sciSetPixmapMode(sciGetParent(subwin), x[0]);
     }
     else if ( strcmp(cstk(l1),"wshow") == 0) { /* a supprimer ce n'est pas une propriete mais une action */
-      pFIGURE_FEATURE(sciGetParent(subwin))->wshow=1;
-      sciSetVisibility (subwin, TRUE); 
+      sciPointObj * parentFigure = sciGetParentFigure(subwin);
+      /* sciSetVisibility (subwin, TRUE); */
+      if (sciGetPixmapMode(parentFigure))
+      {
+        sciSetPixmapMode(parentFigure, FALSE);
+        sciDrawObj(parentFigure);
+        sciSetPixmapMode(parentFigure, TRUE);
+      }
     }
     else if (strcmp(cstk(l1),"viewport") == 0) {
       int viewport[4] = {x[0], x[1], 0, 0};
       sciSetViewport(sciGetParentFigure(subwin), viewport);
     }
     else if (strcmp(cstk(l1),"wwpc") == 0) {
-      // TODO
+      // clear pixmap
+      // nothing to do with current implementation
     }
     else if(strcmp(cstk(l1),"line mode") == 0)
     {
@@ -332,8 +339,9 @@ int sci_xset( char *fname, unsigned long fname_len )
       sciprint(_("%s: Unrecognized input argument: \"%s\".\n"), fname, cstk(l1));
     }
 
-    if(strcmp(cstk(l1),"window") != 0)
+    if(strcmp(cstk(l1),"window") != 0 && strcmp(cstk(l1),"wshow") != 0)
     {
+      // for wshow redraw already done
       sciRedrawFigure();
     }
   }

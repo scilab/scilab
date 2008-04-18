@@ -46,11 +46,6 @@ void sciGetJavaWindowSize( sciPointObj * pFigure, int size[2] ) ;
 void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] ) ;
 
 /**
- * Get the pixmap mode for figures.
- */
-BOOL sciGetJavaPixmapMode(sciPointObj * pFigure);
-
-/**
  * Convert user Coordinate to pixel coordinates.
  */
 void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2]);

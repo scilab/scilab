@@ -98,7 +98,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 	{
 
 		sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
-	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->wshow = 1;
+	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->pixmapMode = 1;
 
 
 	  for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(*pScopeMemory, 0) ; i++)

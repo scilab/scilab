@@ -3934,14 +3934,7 @@ int sciInitPixmapMode(sciPointObj * pObj, BOOL onOrOff)
   switch(sciGetEntityType(pObj))
   {
   case SCI_FIGURE:
-    if (pObj == getFigureModel())
-    {
-      pFIGURE_FEATURE(pObj)->pModelData->pixmapMode = onOrOff;
-    }
-    else
-    {
-      sciSetJavaPixmapMode(pObj, onOrOff);
-    }
+    pFIGURE_FEATURE(pObj)->pixmapMode = onOrOff;
     return 0;
   default:
     printSetGetErrorMessage("pixmap");
@@ -4103,6 +4096,29 @@ int sciSetZoomBox(sciPointObj * pObj, const double zoomBox[6])
     printSetGetErrorMessage("zoom_box");
     return -1;
   }
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_FIGURE:
+    pFIGURE_FEATURE(pObj)->auto_redraw = autoRedraw;
+    return 0;
+  default:
+    printSetGetErrorMessage("immediate_drawing");
+    return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+int sciSetImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw)
+{
+  if (sciGetImmediateDrawingMode(pObj) == autoRedraw)
+  {
+    // nothing to do
+    return 1;
+  }
+  return sciInitImmediateDrawingMode(pObj, autoRedraw);
 }
 /*----------------------------------------------------------------------------------*/
 /**

@@ -128,16 +128,6 @@ void DrawableFigureJoGL::setInfoMessage( const char * message )
   delete[] infoMessage;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::setPixmapMode(bool onOrOff)
-{
-  getFigureJavaMapper()->setPixmapMode(onOrOff);
-}
-/*---------------------------------------------------------------------------------*/
-bool DrawableFigureJoGL::getPixmapMode(void)
-{
-  return getFigureJavaMapper()->getPixmapMode();
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setRenderingEnable(bool isEnable)
 {
   getFigureJavaMapper()->setRenderingEnable(isEnable);

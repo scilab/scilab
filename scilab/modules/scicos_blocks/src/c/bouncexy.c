@@ -110,7 +110,7 @@ void bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   sciSetIsBoxed(pAxes, FALSE);
   sciSetPixmapMode(pTemp, TRUE);
 
-  pFIGURE_FEATURE(pTemp)->wshow = 1;
+  pFIGURE_FEATURE(pTemp)->pixmapMode = 1;
 
   for(j = 0 ; j < number_of_curves_by_subwin ; j++)
     {

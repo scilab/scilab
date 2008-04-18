@@ -45,11 +45,6 @@ void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage )
   getFigureDrawer(pFigure)->setInfoMessage(infoMessage);
 }
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaPixmapMode(sciPointObj * pFigure, BOOL onOrOff)
-{
-  getFigureDrawer(pFigure)->setPixmapMode(onOrOff == TRUE);
-}
-/*---------------------------------------------------------------------------------*/
 void sciSetJavaRenderingEnable(sciPointObj * pFigure, BOOL isEnable)
 {
   getFigureDrawer(pFigure)->setRenderingEnable(isEnable == TRUE);

@@ -187,6 +187,8 @@ int sciGetHiddenColor( sciPointObj * pObj ) ; /* GET */
 int sciGetHiddenAxisColor( sciPointObj * pObj ) ; /* GET */
 
 BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
+BOOL sciGetImmediateDrawingMode( sciPointObj * pobj ) ;
+
 
 void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zStyle ) ;
 

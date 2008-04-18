@@ -106,16 +106,6 @@ public:
   virtual void setInfoMessage( const char * infoMessage ) = 0 ;
 
   /**
-   * Set pixmap mode to on or off
-   */
-  virtual void setPixmapMode(bool onOrOff) = 0;
-
-  /**
-   * Get the pixmap status (on or off).
-   */
-  virtual bool getPixmapMode(void) = 0;
-
-  /**
    * Specify if the figure can be render or not.
    */
   virtual void setRenderingEnable(bool isEnable) = 0;

@@ -685,7 +685,7 @@ void DrawAxesIfRequired(sciPointObj * pobj)
 {
   sciPointObj * pfigure = sciGetParentFigure(pobj);
   
-  if( pFIGURE_FEATURE(pfigure)->auto_redraw && pFIGURE_FEATURE(pfigure)->visible )
+  if( sciGetIsAutoDrawable(pfigure) && sciGetVisibility(pfigure) )
   {
     DrawAxes(pobj);
   }
@@ -804,7 +804,7 @@ sciDrawObjIfRequired (sciPointObj * pobj)
 {
   /*sciPointObj * pfigure = sciGetParentFigure(pobj);
 
-  if( pFIGURE_FEATURE(pfigure)->auto_redraw && pFIGURE_FEATURE(pfigure)->visible )
+  if( sciGetIsAutoDrawable(pfigure) && sciGetVisibility(pfigure) )
   {
     sciDrawObj( pobj ) ;
   }*/

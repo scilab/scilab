@@ -37,7 +37,7 @@ int sci_drawlater( char * fname, unsigned long fname_len )
   if (Rhs <= 0) {
     startGraphicDataWriting();
     pfigure = sciGetCurrentFigure ();
-    pFIGURE_FEATURE(pfigure)->auto_redraw = FALSE;
+    sciSetImmediateDrawingMode(pfigure, FALSE);
     endGraphicDataWriting();
 
     LhsVar(1) = 0;

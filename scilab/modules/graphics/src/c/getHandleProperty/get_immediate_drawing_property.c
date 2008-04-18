@@ -32,7 +32,7 @@ int get_immediate_drawing_property( sciPointObj * pobj )
     sciprint(_("%s undefined for this object.\n"), "immediate_drawing") ;
     return -1;
   }
-  if ( pFIGURE_FEATURE(pobj)->auto_redraw )
+  if ( sciGetImmediateDrawingMode(pobj) )
   {
     return sciReturnString( "on" ) ;
   }
