@@ -1,6 +1,6 @@
 
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA
+// Copyright (C) 2008 - INRIA - Vincent COUVERT
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,102 +8,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ==========================================================================
-// apropos
-// ==========================================================================
-
 function apropos(key)
-	
-	if argn(2)<>1 then
-		error(39);
-	end
-	
-	change_old_man()
-	INDEX=make_help_index()
-	
-	global %helps %helps_modules INDEX
-	global %browsehelp;
-	
-	[lhs,rhs]=argn(0);
-	
-	// list relevant man for key
-	if %browsehelp=="Scilab Browser" then
-		browsehelp(" ",key);
-	else
-		key=convstr(key);
-		provpath =apropos_gener(key);
-		browsehelp(provpath,key);
-	end
-	
-endfunction
 
+if argn(2)<>1 then
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "apropos", 1));
+end
 
-// ==========================================================================
-// apropos_gener
-// ==========================================================================
-
-function [provpath]=apropos_gener(key)
-	
-	// generate html file for apropos key
-	// provpath is the path of generated html file
-	
-	global %helps %helps_modules INDEX
-	%HELPS=[%helps_modules,%helps]
-	
-	sep="/";
-	key1=key
-	K=[' ','(',')','[',']','{','}','""','/','\','.','<','>']
-	for k=K,key1=strsubst(key1,k,'_'),end
-	
-	l=length(key)
-	found=[];foundkey=[]
-	
-	for k=1:size(%HELPS,1)
-		[fd,ierr]=mopen(%HELPS(k,1)+sep+"whatis.htm","r");
-		if ierr==0 then
-			whatis=mgetl(fd);mclose(fd)
-			ind=grep(whatis,'</A>');
-			whatis=whatis(ind);
-			if whatis<>[] then
-				f=grep(convstr(whatis),key);
-				lwhatis=strsubst(whatis(f),"HREF=""", "HREF="""+%HELPS(k,1)+sep)
-				found=[found;lwhatis];
-				for k1=f
-					i=strindex(whatis(k1),">"); j=strindex(whatis(k1),"</A>")
-					lkey=part(whatis(k1),i(2)+1:j-1)
-					foundkey=[foundkey;lkey]
-				end
-			end
-		end
-	end
-	
-	if found==[] then
-		select getlanguage()
-		case "en"
-			found="<H3>No man found for: "+key+"</H3>";
-		case "fr"
-			found="<H3>Pas de manuel trouvé pour : "+key+"</H3>";
-		end
-	else
-		[s,k]=sort(foundkey);
-		found= found(k);
-	end
-	
-	provpath=TMPDIR+sep+"apropos_"+key1;
-	
-	if MSDOS then
-		provpath=provpath+'.htm';
-	end
-	
-	apropos_txt =["<html>";
-		"<head>";
-		"  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">";
-		"    <title>Apropos "+key+"</title>";
-		"</head>";
-		"<body bgcolor=""FFFFFF"">";
-		found;
-		"</body></html>"];
-	
-	mputl(apropos_txt,provpath)
+global %helps
+helpbrowser(%helps(:,1), key, getlanguage(), %T);
 	
 endfunction

@@ -1889,10 +1889,14 @@ public class CallScilabBridge {
 	 * @param keyword the keyword to search
 	 * @param helps help chapters and directories
 	 * @param language Scilab current language
-	 * @return true if the keyword is a function name
+	 * @param fullText true for a full-text search
 	 */
-	public static boolean searchKeyword(String[] helps, String keyword, String language) {
-		return ScilabHelpBrowser.createHelpBrowser(helps, language).searchKeywork(keyword);
+	public static void searchKeyword(String[] helps, String keyword, String language, boolean fullText) {
+		if (fullText) {
+			ScilabHelpBrowser.createHelpBrowser(helps, language).fullTextSearch(keyword);
+		} else {
+			ScilabHelpBrowser.createHelpBrowser(helps, language).searchKeywork(keyword);
+		}
 	}
 
 	/**

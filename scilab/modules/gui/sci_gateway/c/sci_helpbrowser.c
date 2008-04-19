@@ -27,8 +27,9 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
   int nbRowHelp = 0, nbColHelp = 0;
   char **helpAdr = NULL;
   char **languageAdr = NULL;
+  int fullTextAdr = 0;
   
-  CheckRhs(2,3);
+  CheckRhs(2,4);
   CheckLhs(0,1);
 
   if (VarType(1) == sci_strings)
@@ -82,7 +83,7 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
           launchHelpBrowser(getStringMatrixFromStack((int)helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack((int)languageAdr)[0]);
         }
     }
-  else
+  else if (Rhs == 4)
     {
       if (VarType(2) == sci_strings)
         {
@@ -114,20 +115,34 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
           return FALSE;
         }
       
-      if (helpAdr == NULL) /* No toolboxes loaded */
+      if (VarType(4) == sci_boolean)
         {
-          if (!searchKeyword(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack((int)keywordAdr)[0], getStringMatrixFromStack((int)languageAdr)[0]))
+          GetRhsVar(4, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &fullTextAdr);
+          if (nbRow*nbCol != 1)
             {
-              sciprint(_("Could not find help page for function: %s.\n"),getStringMatrixFromStack((int)keywordAdr)[0]);
+              Scierror(999, _("%s: Wrong size for fourth input argument: Single boolean expected.\n"), "helpbrowser");
+              return FALSE;
             }
         }
       else
         {
-          if (!searchKeyword(getStringMatrixFromStack((int)helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack((int)keywordAdr)[0], getStringMatrixFromStack((int)languageAdr)[0]))
-            {
-              sciprint(_("Could not find help page for function: %s.\n"),getStringMatrixFromStack((int)keywordAdr)[0]);
-            }
+          Scierror(999, _("%s: Wrong type for fourth second argument: Single boolean expected.\n"), "helpbrowser");
+          return FALSE;
         }
+      
+      if (helpAdr == NULL) /* No toolboxes loaded */
+        {
+          searchKeyword(NULL, nbRowHelp*nbColHelp, getStringMatrixFromStack((int)keywordAdr)[0], getStringMatrixFromStack((int)languageAdr)[0], *istk(fullTextAdr)==1);
+        }
+      else
+        {
+          searchKeyword(getStringMatrixFromStack((int)helpAdr), nbRowHelp*nbColHelp, getStringMatrixFromStack((int)keywordAdr)[0], getStringMatrixFromStack((int)languageAdr)[0], *istk(fullTextAdr)==1);
+        }
+    }
+  else
+    {
+      Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "helpbrowser", 2, 4);
+      return FALSE;
     }
   
   LhsVar(1) = 0;

@@ -32,11 +32,16 @@ public interface HelpBrowser extends Dockable {
 	void display();
 	
 	/**
-	 * Display the matching items for a specified keyword
+	 * Display help page for a specified keyword
 	 * @param keyword the keyword
-	 * @return true if the keyword exists
 	 */
-	boolean searchKeywork(String keyword);
+	void searchKeywork(String keyword);
+	
+	/**
+	 * Display the result of a full-text search for a specified word
+	 * @param keyword the keyword
+	 */
+	void fullTextSearch(String keyword);
 	
 	/**
 	 * Close the HelpBrowser

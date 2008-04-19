@@ -234,7 +234,7 @@ voidsetWaitBarValuejintjintID=NULL;
 voiddestroyWaitBarjintID=NULL; 
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
 voidlaunchHelpBrowserjobjectArrayjstringID=NULL; 
-jbooleansearchKeywordjobjectArrayjstringjstringID=NULL; 
+voidsearchKeywordjobjectArrayjstringjstringjbooleanID=NULL; 
 voidsaveMainWindowSettingsID=NULL; 
 jintnewFontChooserID=NULL; 
 voidfontChooserDisplayAndWaitjintID=NULL; 
@@ -421,7 +421,7 @@ voidsetWaitBarValuejintjintID=NULL;
 voiddestroyWaitBarjintID=NULL; 
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
 voidlaunchHelpBrowserjobjectArrayjstringID=NULL; 
-jbooleansearchKeywordjobjectArrayjstringjstringID=NULL; 
+voidsearchKeywordjobjectArrayjstringjstringjbooleanID=NULL; 
 voidsaveMainWindowSettingsID=NULL; 
 jintnewFontChooserID=NULL; 
 voidfontChooserDisplayAndWaitjintID=NULL; 
@@ -3927,14 +3927,14 @@ curEnv->DeleteLocalRef(helps_);
 
 }
 
-bool CallScilabBridge::searchKeyword (JavaVM * jvm_, char ** helps, int helpsSize, char * keyword, char * language){
+void CallScilabBridge::searchKeyword (JavaVM * jvm_, char ** helps, int helpsSize, char * keyword, char * language, bool fullText){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jbooleansearchKeywordjobjectArrayjstringjstringID = curEnv->GetStaticMethodID(cls, "searchKeyword", "([Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z" ) ;
-if (jbooleansearchKeywordjobjectArrayjstringjstringID == NULL) {
+jmethodID voidsearchKeywordjobjectArrayjstringjstringjbooleanID = curEnv->GetStaticMethodID(cls, "searchKeyword", "([Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V" ) ;
+if (voidsearchKeywordjobjectArrayjstringjstringjbooleanID == NULL) {
 std::cerr << "Could not access to the method " << "searchKeyword" << std::endl;
 exit(EXIT_FAILURE);
 }
@@ -3967,7 +3967,9 @@ jstring keyword_ = curEnv->NewStringUTF( keyword );
 
 jstring language_ = curEnv->NewStringUTF( language );
 
-                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleansearchKeywordjobjectArrayjstringjstringID ,helps_, keyword_, language_);
+jboolean fullText_ = ((bool) fullText ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidsearchKeywordjobjectArrayjstringjstringjbooleanID ,helps_, keyword_, language_, fullText_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -3975,8 +3977,6 @@ curEnv->ExceptionDescribe() ;
 
                         curEnv->DeleteLocalRef(stringArrayClass);
 curEnv->DeleteLocalRef(helps_);
-
-return (res == JNI_TRUE);
 
 }
 

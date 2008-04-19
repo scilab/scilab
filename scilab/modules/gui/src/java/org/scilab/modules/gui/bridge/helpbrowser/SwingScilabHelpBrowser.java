@@ -16,12 +16,19 @@ import java.io.FilenameFilter;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.Enumeration;
+import java.util.Locale;
 
 import javax.help.BadIDException;
 import javax.help.DefaultHelpModel;
 import javax.help.HelpSet;
 import javax.help.HelpSetException;
 import javax.help.JHelp;
+import javax.help.JHelpIndexNavigator;
+import javax.help.JHelpSearchNavigator;
+import javax.help.JHelpTOCNavigator;
+import javax.help.plaf.basic.BasicSearchNavigatorUI;
+import javax.help.search.SearchQuery;
 
 import org.scilab.modules.gui.helpbrowser.SimpleHelpBrowser;
 
@@ -36,6 +43,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	private String jarExtension = "_help.jar";
 	private String mainJarPath = System.getenv("SCI") + "/modules/helptools/jar/scilab_";
 	private String defaultLanguage = "en_US";
+	private String currentLanguage = "";
     private HelpSet helpSet;
 
     /**
@@ -55,8 +63,10 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 
 	    /* Main Jar file */
 	    File mainJar = new File(mainJarPath + language + jarExtension);
+	    currentLanguage = language;
 	    if (!mainJar.exists()) {
 	    	mainJar = new File(mainJarPath + defaultLanguage + jarExtension);
+	    	currentLanguage = defaultLanguage;
 	    }
 	    
 	    int nbFilesToLoad = 0;
@@ -123,7 +133,6 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 			}
 			this.getModel().getHelpSet().add(helpSet);
         }
-
 	}
 	
 	/**
@@ -136,15 +145,33 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	/**
 	 * Display the matching items for a specified keyword
 	 * @param keyword the keyword
-	 * @return true if the keyword exists
 	 */
-	public boolean searchKeywork(String keyword) {
+	public void searchKeywork(String keyword) {
 		try {
+			Enumeration navigators = getHelpNavigators();
+			setCurrentNavigator((JHelpTOCNavigator) navigators.nextElement());
 			setCurrentID(keyword);
-			return true;
 		} catch (BadIDException e) {
-			return false;
+			fullTextSearch(keyword);
 		}
+	}
+    
+	/**
+	 * Display the matching help pages for a specified keyword
+	 * @param keyword the keyword to search
+	 */
+	public void fullTextSearch(String keyword) {
+		Enumeration navigators = getHelpNavigators();
+    
+		navigators.nextElement(); // JHelpTOCNavigator
+		navigators.nextElement();	// JHelpIndexNavigator 
+		JHelpSearchNavigator searchNav = (JHelpSearchNavigator) navigators.nextElement();
+
+		setCurrentNavigator(searchNav);
+    
+		SearchQuery query = searchNav.getSearchEngine().createQuery();
+		query.addSearchListener((BasicSearchNavigatorUI) searchNav.getUI());
+		query.start(keyword, new Locale(currentLanguage));
 	}
 	
 	/**

@@ -48,12 +48,20 @@ public class ScilabHelpBrowserBridge {
 	 * Display the matching items for a specified keyword
 	 * @param browser the Help Browser
 	 * @param keyword the keyword
-	 * @return true if the keyword exists
 	 */
-	public static boolean searchKeywork(HelpBrowser browser, String keyword) {
-		return browser.getAsSimpleHelpBrowser().searchKeywork(keyword);
+	public static void searchKeywork(HelpBrowser browser, String keyword) {
+		browser.getAsSimpleHelpBrowser().searchKeywork(keyword);
 	}
 
+	/**
+	 * Display the result of a full-text search for a specified word
+	 * @param browser the Help Browser
+	 * @param keyword the keyword
+	 */
+	public static void fullTextSearch(HelpBrowser browser, String keyword) {
+		browser.getAsSimpleHelpBrowser().fullTextSearch(keyword);
+	}
+	
 	/**
 	 * Close the HelpBrowser
 	 * @param browser the Help Browser

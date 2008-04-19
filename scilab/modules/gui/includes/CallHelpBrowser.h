@@ -32,8 +32,9 @@ void launchHelpBrowser(char **helps, int helpsSize, char *language);
  * @param helpsSize number of entries in helps
  * @param keyword the keyword to search
  * @param language Scilab current locale
+ * @param fullText true to execute a full-text search
  */
-BOOL searchKeyword(char **helps, int helpsSize, char *keyword, char *language);
+void searchKeyword(char **helps, int helpsSize, char *keyword, char *language, BOOL fullText);
 
 #endif /* !__CALLHELPBROWSER_H__ */
 

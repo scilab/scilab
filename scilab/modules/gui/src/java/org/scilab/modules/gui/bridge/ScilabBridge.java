@@ -4274,12 +4274,20 @@ public class ScilabBridge {
 	 * Display the matching items for a specified keyword
 	 * @param browser the Help Browser
 	 * @param keyword the keyword
-	 * @return true if the keyword exists
 	 */
-	public static boolean searchKeywork(HelpBrowser browser, String keyword) {
-		return ScilabHelpBrowserBridge.searchKeywork(browser, keyword);
+	public static void searchKeywork(HelpBrowser browser, String keyword) {
+		ScilabHelpBrowserBridge.searchKeywork(browser, keyword);
 	}
 	
+	/**
+	 * Display the result of a full-text search for a specified word
+	 * @param browser the Help Browser
+	 * @param keyword the keyword
+	 */
+	public static void fullTextSearch(HelpBrowser browser, String keyword) {
+		ScilabHelpBrowserBridge.fullTextSearch(browser, keyword);
+	}
+
 	/**
 	 * Close the HelpBrowser
 	 * @param browser the Help Browser

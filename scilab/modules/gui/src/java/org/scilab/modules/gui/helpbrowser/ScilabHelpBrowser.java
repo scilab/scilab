@@ -99,14 +99,21 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 	}
 	
 	/**
-	 * Display the matching items for a specified keyword
+	 * Display the help page for a specified keyword
 	 * @param keyword the keyword
-	 * @return true if the keyword exists
 	 */
-	public boolean searchKeywork(String keyword) {
-		return ScilabBridge.searchKeywork(this, keyword);
+	public void searchKeywork(String keyword) {
+		ScilabBridge.searchKeywork(this, keyword);
 	}
 	
+	/**
+	 * Display the result of a full-text search for a specified word
+	 * @param keyword the keyword
+	 */
+	public void fullTextSearch(String keyword) {
+		ScilabBridge.fullTextSearch(this, keyword);
+	}
+
 	/**
 	 * Close the HelpBrowser
 	 */

@@ -19,7 +19,7 @@ void launchHelpBrowser(char **helps, int helpsSize, char* language)
   CallScilabBridge::launchHelpBrowser(getScilabJavaVM(), helps, helpsSize, language);
 }
 
-BOOL searchKeyword(char **helps, int helpsSize, char *keyword, char* language)
+void searchKeyword(char **helps, int helpsSize, char *keyword, char* language, BOOL fullText)
 {
-  return CallScilabBridge::searchKeyword(getScilabJavaVM(), helps, helpsSize, keyword, language);
+  CallScilabBridge::searchKeyword(getScilabJavaVM(), helps, helpsSize, keyword, language, fullText);
 }

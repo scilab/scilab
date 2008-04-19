@@ -485,10 +485,11 @@
           <parameter type="String[]" name="helps"/>
           <parameter type="String" name="language"/>
         </method>      
-        <method name="searchKeyword" returnType="boolean" modifier="static">
+        <method name="searchKeyword" returnType="void" modifier="static">
           <parameter type="String[]" name="helps"/>
           <parameter type="String" name="keyword"/>
           <parameter type="String" name="language"/>
+          <parameter type="boolean" name="fullText"/>
         </method>
 <!-- Main settings -->
 	<method name="saveMainWindowSettings" returnType="void" modifier="static">
