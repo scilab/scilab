@@ -670,11 +670,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-Ant", "modules\java
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui-Ant", "modules\gui\src\java\gui-JAVA.vcproj", "{F01C26E3-E409-4E74-BA84-C7C4A71A7FDC}"
 	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
 		{4235A847-ED0E-43A3-B62B-E59CB857EDE9} = {4235A847-ED0E-43A3-B62B-E59CB857EDE9}
 		{251D7C8F-9B69-4CE9-959E-57F343DDC883} = {251D7C8F-9B69-4CE9-959E-57F343DDC883}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shell-Ant", "modules\shell\src\java\shell-JAVA.vcproj", "{2EA61E81-0F0C-4006-985C-12785093CD2F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dynamiclibrary", "libs\dynamiclibrary\dynamiclibrary.vcproj", "{77154919-8A20-4F35-B7C7-6B3B957BDCA1}"
 EndProject
@@ -690,6 +694,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographics", "modules\graph
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "renderer-Ant", "modules\renderer\src\java\renderer-JAVA.vcproj", "{4235A847-ED0E-43A3-B62B-E59CB857EDE9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "renderer", "modules\renderer\renderer.vcproj", "{B23B01C1-A545-4BA0-9950-7BCADE201C5B}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -712,6 +719,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console", "modules\console\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console-Ant", "modules\console\src\java\console-JAVA.vcproj", "{251D7C8F-9B69-4CE9-959E-57F343DDC883}"
 	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
 		{B2911268-79E2-4FE5-AD59-2C3CB7CB794E} = {B2911268-79E2-4FE5-AD59-2C3CB7CB794E}
 		{63965A84-E354-4CBC-BFAC-FDFC8224573F} = {63965A84-E354-4CBC-BFAC-FDFC8224573F}
 		{B5E4D0C2-8C6A-4437-81BF-DBFA95900C9D} = {B5E4D0C2-8C6A-4437-81BF-DBFA95900C9D}
@@ -733,6 +741,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "completion", "modules\compl
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "completion-Ant", "modules\completion\src\java\completion-JAVA.vcproj", "{B5E4D0C2-8C6A-4437-81BF-DBFA95900C9D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nocompletion", "modules\completion\src\nocompletion\nocompletion.vcproj", "{D1586C83-3F16-467B-85C6-6A12A08CCB8D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -808,6 +819,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "action_binding", "modules\a
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "action_binding-Ant", "modules\action_binding\src\java\action_binding-JAVA.vcproj", "{B2911268-79E2-4FE5-AD59-2C3CB7CB794E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "output_stream", "modules\output_stream\src\c\output_stream.vcproj", "{A5911CD7-F8E8-440C-A23E-4843A0636F3A}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -839,6 +853,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographic_export", "modules
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphic_export-Ant", "modules\graphic_export\src\java\graphic_export-JAVA.vcproj", "{3E4EF47F-2284-4B43-ABBB-20593FF0B51D}"
 	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
 		{4235A847-ED0E-43A3-B62B-E59CB857EDE9} = {4235A847-ED0E-43A3-B62B-E59CB857EDE9}
 	EndProjectSection
 EndProject
