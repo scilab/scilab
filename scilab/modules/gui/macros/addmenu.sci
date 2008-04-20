@@ -28,13 +28,13 @@ case 1
     end
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Single string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for first input argument: Single character string expected.\n"),"addmenu"));
     end
 
     addSingleMenu(0, varargin(1));
 
   else
-    error(msprintf(_("%s: Wrong type for first input argument: String expected.\n"),"addmenu"));
+    error(msprintf(_("%s: Wrong type for first input argument: Single character string expected.\n"),"addmenu"));
   end
 case 2
   if type(varargin(1))==10 & type(varargin(2))==10
@@ -48,7 +48,7 @@ case 2
     end
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Single string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for first input argument: Single character string expected.\n"),"addmenu"));
     end
 
     // No verification for submenus labels
@@ -66,7 +66,7 @@ case 2
     end
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Single string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for first input argument: Single character string expected.\n"),"addmenu"));
     end
 
     if size(varargin(2)) <> 2
@@ -81,11 +81,11 @@ case 2
     // The callback is the variable named menu_label
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Single value expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for first input argument: Scalar value expected.\n"),"addmenu"));
     end
 
     if size(varargin(2),"*") <> 1
-      error(msprintf(_("%s: Wrong type for second input argument: Single string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for second input argument: Single character string expected.\n"),"addmenu"));
     end
 
     addSingleMenu(scf(varargin(1)), varargin(2))
@@ -105,7 +105,7 @@ case 3
     end
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Single value expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for first input argument: Scalar value expected.\n"),"addmenu"));
     end
 
     // No verification for submenus labels size
@@ -122,11 +122,11 @@ case 3
     // The callbacks are the items of variable named menu_label
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Single value expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for first input argument: Scalar value expected.\n"),"addmenu"));
     end
 
     if size(varargin(2),"*") <> 1
-      error(msprintf(_("%s: Wrong type for second input argument: Single string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for second input argument: Single character string expected.\n"),"addmenu"));
     end
 
     // No verification for submenus labels
@@ -139,11 +139,11 @@ case 3
     // The callbacks are the items of variable named menu_label
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Single value expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for first input argument: Scalar value expected.\n"),"addmenu"));
     end
 
     if size(varargin(2),"*") <> 1
-      error(msprintf(_("%s: Wrong type for second input argument: Single string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for second input argument: Single character string expected.\n"),"addmenu"));
     end
 
     if size(varargin(3)) <> 2
@@ -161,11 +161,11 @@ case 4
     // The callbacks are given in a list
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Single value expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for first input argument: Scalar value expected.\n"),"addmenu"));
     end
 
     if size(varargin(2),"*") <> 1
-      error(msprintf(_("%s: Wrong type for second input argument: Single string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for second input argument: Single character string expected.\n"),"addmenu"));
     end
 
     // No verification for submenus labels

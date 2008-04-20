@@ -23,7 +23,7 @@ int SetUicontrolMax(sciPointObj* sciObj, int stackPointer, int valueType, int nb
       if(nbCol != 1 || nbRow != 1)
         {
           /* Wrong value size */
-          sciprint(_("%s property value must be single value.\n"), "Max");
+          sciprint(_("%s property value must be scalar value.\n"), "Max");
           return SET_PROPERTY_ERROR;
         }
 
@@ -83,7 +83,7 @@ int SetUicontrolMax(sciPointObj* sciObj, int stackPointer, int valueType, int nb
   else
     {
       /* Wrong datatype */
-      sciprint(_("%s property value must be single value.\n"), "Max");
+      sciprint(_("%s property value must be scalar value.\n"), "Max");
       return SET_PROPERTY_ERROR;
     }
 

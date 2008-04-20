@@ -24,7 +24,7 @@ int SetUicontrolListboxTop(sciPointObj* sciObj, int stackPointer, int valueType,
       if(nbCol > 1 || nbRow > 1)
         {
           /* Wrong value size */
-          sciprint(_("%s property value must be single value.\n"), "ListboxTop");
+          sciprint(_("%s property value must be scalar value.\n"), "ListboxTop");
           return SET_PROPERTY_ERROR;
         }
 
@@ -35,7 +35,7 @@ int SetUicontrolListboxTop(sciPointObj* sciObj, int stackPointer, int valueType,
       if(nbCol > 1 || nbRow > 1)
         {
           /* Wrong value size */
-          sciprint(_("%s property value must be single string.\n"), "ListboxTop");
+          sciprint(_("%s property value must be single character string.\n"), "ListboxTop");
           return SET_PROPERTY_ERROR;
         }
 
@@ -44,14 +44,14 @@ int SetUicontrolListboxTop(sciPointObj* sciObj, int stackPointer, int valueType,
       if(nbValue != 1)
         {
           /* Wrong value size */
-          sciprint(_("%s property value must be single string.\n"), "ListboxTop");
+          sciprint(_("%s property value must be single character string.\n"), "ListboxTop");
           return SET_PROPERTY_ERROR;
         }
     }
   else
     {
       /* Wrong datatype */
-      sciprint(_("%s property value must be single value.\n"), "ListboxTop");
+      sciprint(_("%s property value must be scalar value.\n"), "ListboxTop");
       return SET_PROPERTY_ERROR;
     }
 

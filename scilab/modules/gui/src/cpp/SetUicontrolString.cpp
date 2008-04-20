@@ -19,7 +19,7 @@ int SetUicontrolString(sciPointObj* sciObj, int stackPointer, int valueType, int
 {
   // Label must be a character string
   if (valueType != sci_strings) {
-    sciprint(_("%s property value must be a single string.\n"), "String");
+    sciprint(_("%s property value must be a single character string.\n"), "String");
     return SET_PROPERTY_ERROR;
   }
 
@@ -31,7 +31,7 @@ int SetUicontrolString(sciPointObj* sciObj, int stackPointer, int valueType, int
         case SCI_UIFRAME:
           // String must be only one character string
           if (nbCol * nbRow > 1) {
-            sciprint(_("%s property value must be a single string.\n"), "String");
+            sciprint(_("%s property value must be a single character string.\n"), "String");
             return SET_PROPERTY_ERROR;
           }
           // Send the label to Java
@@ -43,7 +43,7 @@ int SetUicontrolString(sciPointObj* sciObj, int stackPointer, int valueType, int
           // String can be single value or vector of character
           if (nbCol > 1 && nbRow > 1)
             {
-              sciprint(_("%s property value must be a single string or a vector of strings.\n"), "String");
+              sciprint(_("%s property value must be a single character string or a vector of character strings.\n"), "String");
               return SET_PROPERTY_ERROR;
             }
           else
@@ -58,7 +58,7 @@ int SetUicontrolString(sciPointObj* sciObj, int stackPointer, int valueType, int
           // String can be single value or vector of character
           if (nbCol > 1 && nbRow > 1)
             {
-              sciprint(_("%s property value must be a single string or a vector of strings.\n"), "String");
+              sciprint(_("%s property value must be a single character string or a vector of character strings.\n"), "String");
               return SET_PROPERTY_ERROR;
             }
           else
@@ -72,7 +72,7 @@ int SetUicontrolString(sciPointObj* sciObj, int stackPointer, int valueType, int
         default:
           // String must be only one character string
           if (nbCol * nbRow > 1) {
-            sciprint(_("%s property value must be a single string.\n"), "String");
+            sciprint(_("%s property value must be a single character string.\n"), "String");
             return SET_PROPERTY_ERROR;
           }
           // Send the label to Java

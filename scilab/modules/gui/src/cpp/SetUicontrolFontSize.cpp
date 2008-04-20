@@ -26,7 +26,7 @@ int SetUicontrolFontSize(sciPointObj* sciObj, int stackPointer, int valueType, i
       if(nbCol != 1 || nbRow != 1)
         {
           /* Wrong value size */
-          sciprint(_("%s property value must be single value.\n"), "FontSize");
+          sciprint(_("%s property value must be scalar value.\n"), "FontSize");
           return SET_PROPERTY_ERROR;
         }
 
@@ -47,7 +47,7 @@ int SetUicontrolFontSize(sciPointObj* sciObj, int stackPointer, int valueType, i
   else
     {
       /* Wrong datatype */
-      sciprint(_("%s property value must be single value.\n"), "FontSize");
+      sciprint(_("%s property value must be scalar value.\n"), "FontSize");
       return SET_PROPERTY_ERROR;
     }
 

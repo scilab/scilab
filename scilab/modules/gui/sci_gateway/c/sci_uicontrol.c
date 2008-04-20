@@ -115,7 +115,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
       /* Allocate memory to store the position of properties in uicontrol call */
       if((propertiesValuesIndices = (int*)MALLOC(sizeof(int)*NBPROPERTIES))==NULL)
         {
-          Scierror(999,_("No more memory.\n"));
+          Scierror(999,_("%s: No more memory.\n"), fname);
           return FALSE;
         }
 
@@ -201,7 +201,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
           /* Read property name */
           if (VarType(inputIndex) != sci_strings)
             {
-              Scierror(999, _("Property name must be a character string."));
+              Scierror(999, _("Property name must be a character string.\n"));
               return FALSE;
             }
           else
@@ -220,7 +220,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 }
               if (found == 0)
                 {
-                  Scierror(999, _("%s: Unknown property: %s for uicontrols."), fname, propertyName);
+                  Scierror(999, _("%s: Unknown property: %s for uicontrols.\n"), fname, propertyName);
                   return FALSE;
                 }
             }

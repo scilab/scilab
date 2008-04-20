@@ -29,13 +29,13 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
   if (valueType == sci_strings)
     {
       if (nbCol != 1) {
-        sciprint(_("%s property value must be a single string.\n"), "Callback");
+        sciprint(_("%s property value must be a single character string.\n"), "Callback");
         return SET_PROPERTY_ERROR;
       }
       
       if (nbRow == 0) {
         // This case should never happen because if nbRow==0 then nbCol is also 0
-        sciprint(_("%s property value must be a single string.\n"), "Callback");
+        sciprint(_("%s property value must be a single character string.\n"), "Callback");
         return SET_PROPERTY_ERROR;
       }
 
@@ -52,7 +52,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
       GetListRhsVar(stackPointer, 1, MATRIX_OF_DOUBLE_DATATYPE, &typeNbRow, &typeNbCol, &typeStackPointer);
       if (typeNbRow * typeNbCol !=1)
         {
-          sciprint(_("%s property value must be a single value.\n"), "CallbackType");
+          sciprint(_("%s property value must be a scalar value.\n"), "CallbackType");
           return SET_PROPERTY_ERROR;
         }
       else
@@ -63,7 +63,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
       GetListRhsVar(stackPointer, 2, STRING_DATATYPE, &strNbRow, &strNbCol, &stringStackPointer);
       if (strNbCol !=1)
         {
-          sciprint(_("%s property value must be a single string.\n"), "Callback");
+          sciprint(_("%s property value must be a single character string.\n"), "Callback");
           return SET_PROPERTY_ERROR;
         }
       else
