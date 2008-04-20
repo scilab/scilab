@@ -46,6 +46,7 @@ int sci_getcallbackobject(char *fname,unsigned long fname_len);
 #include "sci_uicontextmenu.h"
 #include "sci_uiwait.h"
 #include "sci_mpopup.h"
+int sci_printfigure(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/
