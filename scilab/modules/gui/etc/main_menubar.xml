@@ -67,11 +67,11 @@
             <callback instruction="if iswaitingforinput() then printf('\n%s\n\n%s\n',prompt(),getcwd()); else printf('\n\n%s\n\n',getcwd());end" type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="P &amp;rint setup..."> 
-             <callback instruction="notavailablemessage();" type="0"/>
+        <submenu label="P &amp;age setup..."> 
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pageSetup" type="3"/>
         </submenu>
-        <submenu label="&amp;Print"> 
-             <callback instruction="notavailablemessage();" type="0"/>
+        <submenu label="&amp;Print..."> 
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.printConsoleContents" type="3"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Quit"> 

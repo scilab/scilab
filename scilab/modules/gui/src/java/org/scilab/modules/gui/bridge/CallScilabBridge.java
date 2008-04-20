@@ -15,6 +15,8 @@ package org.scilab.modules.gui.bridge;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -22,8 +24,16 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.IOException;
 
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
+
+import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -112,6 +122,8 @@ public class CallScilabBridge {
 	private static final double DEFAULT_RED_FOREGROUND = 0;
 	private static final double DEFAULT_GREEN_FOREGROUND = 0;
 	private static final double DEFAULT_BLUE_FOREGROUND = 0;
+	
+	private static PageFormat scilabPageFormat;
 	/**
 	 * Constructor
 	 */
@@ -2049,6 +2061,90 @@ public class CallScilabBridge {
 		}
 	}
 	
+	/**
+	 * Display a dialog to print the console text contents
+	 */
+	public static void printConsoleContents() {
+	    // Get the PrinterJob object
+	    PrinterJob job = PrinterJob.getPrinterJob();
+	    if (scilabPageFormat == null) {
+	    	scilabPageFormat = job.defaultPage();
+	    }
+	    // Tell the PrinterJob what to print
+	    job.setPrintable(new Printable() {
+
+			public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
+		        Graphics2D g2d = (Graphics2D) g;
+		        g2d.translate(pf.getImageableX(), pf.getImageableY());
+		        SciConsole scilabConsole = ((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole());
+		        StyledDocument doc = scilabConsole.getConfiguration().getOutputViewStyledDocument();
+		        String textToPrint;
+				try {
+					textToPrint = doc.getText(0, doc.getLength());
+			        g.drawString(textToPrint, 0, 0);
+			        return PAGE_EXISTS;
+				} catch (BadLocationException e) {
+					e.printStackTrace();
+					return NO_SUCH_PAGE;
+				}
+			}
+	    	
+	    }, scilabPageFormat);
+	    // Ask the user to confirm, and then begin the printing process
+	    if (job.printDialog()) {
+			try {
+				job.print();
+			} catch (PrinterException e) {
+				e.printStackTrace();
+			}
+	    }
+	}
+	
+	/**
+	 * Display a dialog to print a figure
+	 * @param figID the ID of the figure to print
+	 */
+	public static void printFigure(int figID) {
+		final int figureID = figID;
+	    // Get the PrinterJob object
+	    PrinterJob job = PrinterJob.getPrinterJob();
+	    if (scilabPageFormat == null) {
+	    	scilabPageFormat = job.defaultPage();
+	    }
+	    // Tell the PrinterJob what to print
+	    job.setPrintable(new Printable() {
+
+			public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
+		        Graphics2D g2d = (Graphics2D) g;
+		        g2d.translate(pf.getImageableX(), pf.getImageableY());
+		        Image figureImage = ImageExporter.imageExport(figureID);
+			    g.drawImage(figureImage, 0, 0, null);
+			    return PAGE_EXISTS;
+			}
+	    }, scilabPageFormat);
+	    // Ask the user to confirm, and then begin the printing process
+	    if (job.printDialog()) {
+			try {
+				job.print();
+			} catch (PrinterException e) {
+				e.printStackTrace();
+			}
+	    }
+	}
+
+	/**
+	 * Display a page setup dialog for printing
+	 */
+	public static void pageSetup() {
+	    // Get the PrinterJob object
+	    PrinterJob job = PrinterJob.getPrinterJob();
+	    if (scilabPageFormat == null) {
+	    	scilabPageFormat = job.defaultPage();
+	    }
+	    // Get the default page format, then allow the user to modify it
+	    scilabPageFormat = job.pageDialog(scilabPageFormat);
+	}
+
 	/***********************/
 	/*                     */
 	/* FONT CHOOSER BRIDGE */
