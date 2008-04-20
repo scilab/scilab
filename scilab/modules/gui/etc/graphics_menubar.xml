@@ -88,11 +88,11 @@
             <callback instruction="clipboard([SCILAB_FIGURE_ID], 'EMF');" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="P &amp;rint setup..."> 
-            <callback instruction="notavailablemessage();" type="0"/>
+        <submenu label="P &amp;age setup..."> 
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pageSetup" type="3"/>
         </submenu>
-        <submenu label="&amp;Print"> 
-            <callback instruction="notavailablemessage();" type="0"/>
+        <submenu label="&amp;Print..."> 
+            <callback instruction="printfigure([SCILAB_FIGURE_ID]);" type="0"/>
         </submenu>
         <separator/>
         <submenu label="C &amp;lose">

@@ -51,8 +51,8 @@
         <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleFont" type="3"/>
     </button>
     <!-- Print -->
-    <button icon="printer.png" tooltiptext="Print">
-        <callback instruction="notavailablemessage();" type="0"/>
+    <button icon="printer.png" tooltiptext="Print...">
+        <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.printConsoleContents" type="3"/>
     </button>
 
     <separator/>
