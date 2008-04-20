@@ -48,7 +48,8 @@ static gw_generic_table Tab[]=
 	{sci_helpbrowser,"helpbrowser"},
 	{sci_uigetfont,"uigetfont"},
 	{sci_uigetcolor,"uigetcolor"},
-        {sci_getcallbackobject, "getcallbackobject"}
+        {sci_getcallbackobject, "getcallbackobject"},
+        {sci_printfigure, "printfigure"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

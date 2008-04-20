@@ -45,7 +45,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 		//
 		InterpreterManagement.requestScilabExec(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
 		//
-		//System.err.println(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
+		System.out.println("call " + callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
 	}
 
 	private void invokeScilab() {
@@ -53,7 +53,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 		//
 		InterpreterManagement.requestScilabExec(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
 		//
-		//System.err.println(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
+		System.out.println("invoke " + callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
 	}
 
 	public void keyPressed(KeyEvent keyEvent) {
@@ -144,7 +144,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		if (eventTranslator.getClickAction() == SciTranslator.UNMANAGED || eventTranslator.getClickAction() == SciTranslator.MOVED) {
+		if (eventTranslator.getClickAction() == SciTranslator.UNMANAGED) {
 			eventTranslator.setClickAction(
 					SciTranslator.javaButton2Scilab(arg0.getButton(),
 							SciTranslator.RELEASED,
@@ -163,10 +163,16 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 	}
 
 	public void mouseMoved(MouseEvent arg0) {
-		eventTranslator.setClickAction(SciTranslator.SCIMOVED);
+		// To unlock javaClick2Scilab done in launchfilter
+		synchronized (eventTranslator) {
+			eventTranslator.notify();
+		}
+		if (this.freedom) {
+			eventTranslator.setClickAction(SciTranslator.SCIMOVED);
 		mouseX = arg0.getX();
 		mouseY = arg0.getY();
 		callScilab();
+		}
 	}
 
 

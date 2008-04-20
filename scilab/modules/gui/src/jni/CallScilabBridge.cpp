@@ -264,6 +264,7 @@ jintgetScreenResolutionID=NULL;
 jdoublegetScreenWidthID=NULL; 
 jdoublegetScreenHeightID=NULL; 
 jintgetScreenDepthID=NULL; 
+voidprintFigurejintID=NULL; 
 
 
 }
@@ -451,6 +452,7 @@ jintgetScreenResolutionID=NULL;
 jdoublegetScreenWidthID=NULL; 
 jdoublegetScreenHeightID=NULL; 
 jintgetScreenDepthID=NULL; 
+voidprintFigurejintID=NULL; 
 
 
 }
@@ -4655,6 +4657,27 @@ curEnv->ExceptionDescribe() ;
                         
 return res;
 
+}
+
+void CallScilabBridge::printFigure (JavaVM * jvm_, long figID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidprintFigurejintID = curEnv->GetStaticMethodID(cls, "printFigure", "(I)V" ) ;
+if (voidprintFigurejintID == NULL) {
+std::cerr << "Could not access to the method " << "printFigure" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidprintFigurejintID ,figID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

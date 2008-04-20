@@ -127,7 +127,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_progressionbar.c \
 	sci_gateway/c/sci_helpbrowser.c sci_gateway/c/sci_uigetfont.c \
 	sci_gateway/c/sci_uigetcolor.c \
-	sci_gateway/c/sci_getcallbackobject.c src/cpp/InitUIMenu.cpp \
+	sci_gateway/c/sci_getcallbackobject.c \
+	sci_gateway/c/sci_printfigure.c src/cpp/InitUIMenu.cpp \
 	src/jni/CallScilabBridge.cpp src/jni/Jxclick.cpp \
 	src/cpp/DestroyJavaUicontrol.cpp src/cpp/DestroyWaitBar.cpp \
 	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
@@ -135,14 +136,15 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/CallFileChooser.cpp src/cpp/CallFontChooser.cpp \
 	src/cpp/CallFigure.cpp src/cpp/CallMessageBox.cpp \
 	src/cpp/CallMainWindow.cpp src/cpp/CallWaitBar.cpp \
-	src/cpp/CallHelpBrowser.cpp src/cpp/PushButton.cpp \
-	src/cpp/EditBox.cpp src/cpp/Label.cpp src/cpp/CheckBox.cpp \
-	src/cpp/RadioButton.cpp src/cpp/Slider.cpp \
-	src/cpp/PopupMenu.cpp src/cpp/ContextMenu.cpp \
-	src/cpp/ListBox.cpp src/cpp/Frame.cpp src/cpp/Toolbar.cpp \
-	src/cpp/SetUimenuLabel.cpp src/cpp/GetUimenuLabel.cpp \
-	src/cpp/GetUicontrolStyle.cpp src/cpp/SetUicontrolString.cpp \
-	src/cpp/GetUicontrolString.cpp src/cpp/SetUicontrolParent.cpp \
+	src/cpp/CallHelpBrowser.cpp src/cpp/PrinterManagement.cpp \
+	src/cpp/PushButton.cpp src/cpp/EditBox.cpp src/cpp/Label.cpp \
+	src/cpp/CheckBox.cpp src/cpp/RadioButton.cpp \
+	src/cpp/Slider.cpp src/cpp/PopupMenu.cpp \
+	src/cpp/ContextMenu.cpp src/cpp/ListBox.cpp src/cpp/Frame.cpp \
+	src/cpp/Toolbar.cpp src/cpp/SetUimenuLabel.cpp \
+	src/cpp/GetUimenuLabel.cpp src/cpp/GetUicontrolStyle.cpp \
+	src/cpp/SetUicontrolString.cpp src/cpp/GetUicontrolString.cpp \
+	src/cpp/SetUicontrolParent.cpp \
 	src/cpp/SetUicontrolBackgroundColor.cpp \
 	src/cpp/GetUicontrolBackgroundColor.cpp \
 	src/cpp/SetUiobjectForegroundColor.cpp \
@@ -224,7 +226,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-sci_helpbrowser.lo \
 @GUI_TRUE@	libscigui_la-sci_uigetfont.lo \
 @GUI_TRUE@	libscigui_la-sci_uigetcolor.lo \
-@GUI_TRUE@	libscigui_la-sci_getcallbackobject.lo
+@GUI_TRUE@	libscigui_la-sci_getcallbackobject.lo \
+@GUI_TRUE@	libscigui_la-sci_printfigure.lo
 @GUI_TRUE@am__objects_3 = libscigui_la-InitUIMenu.lo \
 @GUI_TRUE@	libscigui_la-CallScilabBridge.lo \
 @GUI_TRUE@	libscigui_la-Jxclick.lo \
@@ -241,6 +244,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-CallMainWindow.lo \
 @GUI_TRUE@	libscigui_la-CallWaitBar.lo \
 @GUI_TRUE@	libscigui_la-CallHelpBrowser.lo \
+@GUI_TRUE@	libscigui_la-PrinterManagement.lo \
 @GUI_TRUE@	libscigui_la-PushButton.lo libscigui_la-EditBox.lo \
 @GUI_TRUE@	libscigui_la-Label.lo libscigui_la-CheckBox.lo \
 @GUI_TRUE@	libscigui_la-RadioButton.lo libscigui_la-Slider.lo \
@@ -618,6 +622,7 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/CallMainWindow.cpp \
 @GUI_TRUE@src/cpp/CallWaitBar.cpp \
 @GUI_TRUE@src/cpp/CallHelpBrowser.cpp \
+@GUI_TRUE@src/cpp/PrinterManagement.cpp \
 @GUI_TRUE@src/cpp/PushButton.cpp \
 @GUI_TRUE@src/cpp/EditBox.cpp \
 @GUI_TRUE@src/cpp/Label.cpp \
@@ -715,7 +720,8 @@ JARMASK = *.jar
 @GUI_TRUE@sci_gateway/c/sci_helpbrowser.c \
 @GUI_TRUE@sci_gateway/c/sci_uigetfont.c \
 @GUI_TRUE@sci_gateway/c/sci_uigetcolor.c \
-@GUI_TRUE@sci_gateway/c/sci_getcallbackobject.c
+@GUI_TRUE@sci_gateway/c/sci_getcallbackobject.c \
+@GUI_TRUE@sci_gateway/c/sci_printfigure.c
 
 @GUI_FALSE@libscigui_la_CFLAGS = -Iincludes/ \
 @GUI_FALSE@			-I$(top_srcdir)/modules/output_stream/includes
@@ -864,7 +870,8 @@ includes/write_scilab.h \
 includes/Toolbar.h \
 includes/DestroyUicontrol.h \
 includes/DestroyUimenu.h \
-includes/CallClipboard.h
+includes/CallClipboard.h \
+includes/PrinterManagement.h
 
 
 #### gui : demos files ####
@@ -1014,6 +1021,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Label.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-ListBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PopupMenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PrinterManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PushButton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-RadioButton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolBackgroundColor.Plo@am__quote@
@@ -1060,6 +1068,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_helpbrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_messagebox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_mpopup.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_printfigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_progressionbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_raise_window.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_setlookandfeel.Plo@am__quote@
@@ -1440,6 +1449,13 @@ libscigui_la-sci_getcallbackobject.lo: sci_gateway/c/sci_getcallbackobject.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_getcallbackobject.lo `test -f 'sci_gateway/c/sci_getcallbackobject.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getcallbackobject.c
 
+libscigui_la-sci_printfigure.lo: sci_gateway/c/sci_printfigure.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_printfigure.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_printfigure.Tpo -c -o libscigui_la-sci_printfigure.lo `test -f 'sci_gateway/c/sci_printfigure.c' || echo '$(srcdir)/'`sci_gateway/c/sci_printfigure.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_printfigure.Tpo $(DEPDIR)/libscigui_la-sci_printfigure.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_printfigure.c' object='libscigui_la-sci_printfigure.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_printfigure.lo `test -f 'sci_gateway/c/sci_printfigure.c' || echo '$(srcdir)/'`sci_gateway/c/sci_printfigure.c
+
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
@@ -1572,6 +1588,13 @@ libscigui_la-CallHelpBrowser.lo: src/cpp/CallHelpBrowser.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallHelpBrowser.cpp' object='libscigui_la-CallHelpBrowser.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallHelpBrowser.lo `test -f 'src/cpp/CallHelpBrowser.cpp' || echo '$(srcdir)/'`src/cpp/CallHelpBrowser.cpp
+
+libscigui_la-PrinterManagement.lo: src/cpp/PrinterManagement.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-PrinterManagement.lo -MD -MP -MF $(DEPDIR)/libscigui_la-PrinterManagement.Tpo -c -o libscigui_la-PrinterManagement.lo `test -f 'src/cpp/PrinterManagement.cpp' || echo '$(srcdir)/'`src/cpp/PrinterManagement.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-PrinterManagement.Tpo $(DEPDIR)/libscigui_la-PrinterManagement.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/PrinterManagement.cpp' object='libscigui_la-PrinterManagement.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-PrinterManagement.lo `test -f 'src/cpp/PrinterManagement.cpp' || echo '$(srcdir)/'`src/cpp/PrinterManagement.cpp
 
 libscigui_la-PushButton.lo: src/cpp/PushButton.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-PushButton.lo -MD -MP -MF $(DEPDIR)/libscigui_la-PushButton.Tpo -c -o libscigui_la-PushButton.lo `test -f 'src/cpp/PushButton.cpp' || echo '$(srcdir)/'`src/cpp/PushButton.cpp

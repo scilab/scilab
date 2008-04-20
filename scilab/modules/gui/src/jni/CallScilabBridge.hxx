@@ -215,6 +215,7 @@ jmethodID jintgetScreenResolutionID; // cache method id
 jmethodID jdoublegetScreenWidthID; // cache method id
 jmethodID jdoublegetScreenHeightID; // cache method id
 jmethodID jintgetScreenDepthID; // cache method id
+jmethodID voidprintFigurejintID; // cache method id
 
 
 /**
@@ -579,6 +580,8 @@ static double getScreenWidth(JavaVM * jvm_);
 static double getScreenHeight(JavaVM * jvm_);
 
 static long getScreenDepth(JavaVM * jvm_);
+
+static void printFigure(JavaVM * jvm_, long figID);
 
 
                         /**

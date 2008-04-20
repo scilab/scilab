@@ -44,6 +44,7 @@ src/cpp/CallMessageBox.cpp \
 src/cpp/CallMainWindow.cpp \
 src/cpp/CallWaitBar.cpp \
 src/cpp/CallHelpBrowser.cpp \
+src/cpp/PrinterManagement.cpp \
 src/cpp/PushButton.cpp \
 src/cpp/EditBox.cpp \
 src/cpp/Label.cpp \
@@ -141,7 +142,8 @@ sci_gateway/c/sci_progressionbar.c \
 sci_gateway/c/sci_helpbrowser.c \
 sci_gateway/c/sci_uigetfont.c \
 sci_gateway/c/sci_uigetcolor.c \
-sci_gateway/c/sci_getcallbackobject.c
+sci_gateway/c/sci_getcallbackobject.c \
+sci_gateway/c/sci_printfigure.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \
@@ -301,7 +303,8 @@ includes/write_scilab.h \
 includes/Toolbar.h \
 includes/DestroyUicontrol.h \
 includes/DestroyUimenu.h \
-includes/CallClipboard.h
+includes/CallClipboard.h \
+includes/PrinterManagement.h
 
 #### gui : demos files ####
 libscigui_la_demosdir=$(mydatadir)/demos/

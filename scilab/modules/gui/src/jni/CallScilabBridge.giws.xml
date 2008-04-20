@@ -580,5 +580,8 @@
         </method>      
 	<method name="getScreenDepth" returnType="int" modifier="static">
         </method>      
+	<method name="printFigure" returnType="void" modifier="static">
+          <parameter type="int" name="figID"/>
+        </method>      
   </object>
 </package>

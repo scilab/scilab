@@ -632,6 +632,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\PrinterManagement.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\PushButton.cpp"
 				>
 			</File>
@@ -669,6 +673,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_mpopup.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_printfigure.c"
 				>
 			</File>
 			<File
@@ -1322,6 +1330,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\PushButton.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\PrinterManagement.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\PrinterManagement.h"
 				>
 			</File>
 			<File
