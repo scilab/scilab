@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <menubar>
-    <menu label="File" mnemonic="F">
-        <submenu label="Close" mnemonic="C">
+    <menu label="&amp;File">
+        <submenu label="&amp;Close">
             <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.closeHelpBrowser" type="3"/>
         </submenu> 
     </menu>
 
-    <menu label="?" mnemonic="?">
-        <submenu label="About Scilab..." mnemonic="A"> 
+    <menu label="&amp;?">
+        <submenu label="&amp;About Scilab..."> 
             <callback instruction="about()" type="0"/>
         </submenu>
     </menu>
