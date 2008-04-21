@@ -71,18 +71,13 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 		{
 			if (needtochangelanguage(lang))
 			{
-				char *ret=NULL;
-
 				/* Load the locale from the system */
-				ret=setlocale(EXPORTENVLOCALE,lang);
-
-				/*
-				  This stuff causes pb when locales have been compiled 
+				char *ret=setlocale(LC_MESSAGES,lang);
+				//				printf("export %s\n",EXPORTENVLOCALE);
+				//				  This stuff causes pb when locales have been compiled 
 				if (ret==NULL){
-					fprintf(stderr, "Localization: Doesn't support the locale '%s'.\n",lang);
-					return FALSE;
+					fprintf(stderr, "Warning: Localization issue. Doesn't support the locale '%s'.\n",lang);
 				}
-				*/
 
 				/* change language */
 				if (strcmp(lang,"C")==0){
@@ -101,6 +96,7 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 				}
 				setlanguagecode(CURRENTLANGUAGESTRING);
 				exportLocaleToSystem(CURRENTLANGUAGESTRING);
+
 				/*
 				  Commented since we want the user to restart scilab when the locale is changed
 				if (updateHelpIndex)
@@ -273,13 +269,9 @@ char *convertlanguagealias(char *strlanguage)
  * @param locale the locale (ex : fr_FR or en_US)
  */
 static BOOL exportLocaleToSystem(char *locale){
-
+	//	printf("exporting %s to %s\n",EXPORTENVLOCALE, locale);
 	/* It will put in the env something like LC_ALL=fr_FR */
-#if _MSC_VER
 	if ( !setenvc(EXPORTENVLOCALESTR,locale))
-#else
-	if ( !setenvc(EXPORTENVLOCALE,locale))
-#endif
 	{
 		fprintf(stderr,"Localization: Failed to declare the system variable %s\n", EXPORTENVLOCALE);
 		return FALSE;
