@@ -10,17 +10,17 @@
 
     <!-- Zoom In -->
     <button icon="list-add.png" tooltiptext="Zoom In">
-        <callback instruction="zoom_rect(get_figure_handle([SCILAB_FIGURE_ID]))" type="0"/>
+        <callback instruction='zoom_rect(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
     </button>
     <!-- Zoom Out -->
     <button icon="list-remove.png" tooltiptext="Zoom Out">
-        <callback instruction="unzoom(get_figure_handle([SCILAB_FIGURE_ID]))" type="0"/>
+        <callback instruction='unzoom(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
     </button>
 
     <separator/>
 
     <!-- Help -->
     <button icon="help-browser.png" tooltiptext="Help Browser">
-        <callback instruction="help();" type="0"/>
+        <callback instruction='help();' type="0"/>
     </button>
 </toolbar>
