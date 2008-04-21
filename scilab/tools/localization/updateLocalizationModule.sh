@@ -25,7 +25,7 @@ fi
 
 MODULES=$1
 
-if test "$MODULES" == "process_all"; then
+if test "$MODULES" = "process_all"; then
 	echo ".. Process all the modules one by one"
 	PROCESS_ALL=1
 else
@@ -36,7 +36,7 @@ fi
 XGETTEXT=/usr/bin/xgettext
 MSGMERGE=/usr/bin/msgmerge
 FROM_CODE=ISO-8859-1
-EXTENSIONS=( c h cpp hxx java sci start )
+EXTENSIONS=( c h cpp hxx java sci start quit)
 TARGETDIR=locales/
 LANGS=( fr_FR )
 HEADER_TEMPLATE=$SCI/modules/localization/locales/en_US/header.pot
