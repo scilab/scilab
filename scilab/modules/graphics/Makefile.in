@@ -419,17 +419,16 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	sci_gateway/c/sci_copy.c sci_gateway/c/sci_relocate_handle.c \
 	sci_gateway/c/sci_get.c sci_gateway/c/sci_xarcs.c \
 	sci_gateway/c/sci_xfpoly.c sci_gateway/c/sci_drawlater.c \
-	sci_gateway/c/sci_champ.c sci_gateway/c/sci_xinit.c \
-	sci_gateway/c/sci_help_gtk.c sci_gateway/c/sci_set.c \
+	sci_gateway/c/sci_champ.c sci_gateway/c/sci_help_gtk.c \
+	sci_gateway/c/sci_set.c \
 	sci_gateway/c/sci_showalluimenushandles.c \
-	sci_gateway/c/sci_xend.c sci_gateway/c/sci_unglue.c \
-	sci_gateway/c/gw_graphics.c sci_gateway/c/sci_zoom_rect.c \
-	sci_gateway/c/sci_delete.c sci_gateway/c/sci_plot2d.c \
-	sci_gateway/c/sci_xrects.c sci_gateway/c/sci_xtitle.c \
-	sci_gateway/c/sci_StringBox.c sci_gateway/c/sci_xgetmouse.c \
-	sci_gateway/c/sci_drawnow.c sci_gateway/c/sci_xfarcs.c \
-	sci_gateway/c/sci_param3d.c sci_gateway/c/sci_contour2di.c \
-	sci_gateway/c/sci_driver.c sci_gateway/c/sci_xdel.c \
+	sci_gateway/c/sci_unglue.c sci_gateway/c/gw_graphics.c \
+	sci_gateway/c/sci_zoom_rect.c sci_gateway/c/sci_delete.c \
+	sci_gateway/c/sci_plot2d.c sci_gateway/c/sci_xrects.c \
+	sci_gateway/c/sci_xtitle.c sci_gateway/c/sci_StringBox.c \
+	sci_gateway/c/sci_xgetmouse.c sci_gateway/c/sci_drawnow.c \
+	sci_gateway/c/sci_xfarcs.c sci_gateway/c/sci_param3d.c \
+	sci_gateway/c/sci_contour2di.c sci_gateway/c/sci_xdel.c \
 	sci_gateway/c/sci_winsid.c sci_gateway/c/sci_addcb.c \
 	sci_gateway/c/sci_fec.c sci_gateway/c/sci_rubberbox.c \
 	sci_gateway/c/sci_rotate_axes.c \
@@ -785,11 +784,9 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-sci_xfpoly.lo \
 @GUI_TRUE@	libscigraphics_la-sci_drawlater.lo \
 @GUI_TRUE@	libscigraphics_la-sci_champ.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xinit.lo \
 @GUI_TRUE@	libscigraphics_la-sci_help_gtk.lo \
 @GUI_TRUE@	libscigraphics_la-sci_set.lo \
 @GUI_TRUE@	libscigraphics_la-sci_showalluimenushandles.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xend.lo \
 @GUI_TRUE@	libscigraphics_la-sci_unglue.lo \
 @GUI_TRUE@	libscigraphics_la-gw_graphics.lo \
 @GUI_TRUE@	libscigraphics_la-sci_zoom_rect.lo \
@@ -803,7 +800,6 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-sci_xfarcs.lo \
 @GUI_TRUE@	libscigraphics_la-sci_param3d.lo \
 @GUI_TRUE@	libscigraphics_la-sci_contour2di.lo \
-@GUI_TRUE@	libscigraphics_la-sci_driver.lo \
 @GUI_TRUE@	libscigraphics_la-sci_xdel.lo \
 @GUI_TRUE@	libscigraphics_la-sci_winsid.lo \
 @GUI_TRUE@	libscigraphics_la-sci_addcb.lo \
@@ -864,13 +860,12 @@ am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/sci_showalluimenushandles.h includes/sci_get.h \
 	includes/InitObjects.h includes/sci_xfpoly.h \
 	includes/sci_drawlater.h includes/Format.h \
-	includes/sci_xinit.h includes/sci_set_posfig_dim.h \
-	includes/sci_set.h includes/sci_help_gtk.h \
-	includes/sci_delete.h includes/sci_plot2d.h \
-	includes/sci_StringBox.h includes/sci_xgetmouse.h \
-	includes/Interaction.h includes/sci_xfarcs.h \
-	includes/sci_contour2di.h includes/HandleManagement.h \
-	includes/sci_driver.h includes/sci_fec.h \
+	includes/sci_set_posfig_dim.h includes/sci_set.h \
+	includes/sci_help_gtk.h includes/sci_delete.h \
+	includes/sci_plot2d.h includes/sci_StringBox.h \
+	includes/sci_xgetmouse.h includes/Interaction.h \
+	includes/sci_xfarcs.h includes/sci_contour2di.h \
+	includes/HandleManagement.h includes/sci_fec.h \
 	includes/sci_matplot1.h includes/XsetXgetParameters.h \
 	includes/sci_xfpolys.h includes/WindowList.h \
 	includes/sci_xget.h includes/sci_swap_handles.h \
@@ -885,14 +880,13 @@ am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/BuildObjects.h includes/CloneObjects.h \
 	includes/sci_xarcs.h includes/pixel_mode.h \
 	includes/sci_champ.h includes/Champ.h includes/StringMatrix.h \
-	includes/sci_xend.h includes/sci_unglue.h \
-	includes/gw_graphics.h includes/sci_zoom_rect.h \
-	includes/DestroyObjects.h includes/sci_xrects.h \
-	includes/sci_xtitle.h includes/math_graphics.h \
-	includes/sci_drawnow.h includes/sci_param3d.h \
-	includes/CurrentObjectsManagement.h includes/ObjectSelection.h \
-	includes/axesScale.h includes/Contour.h \
-	includes/getDictionaryGetProperties.h \
+	includes/sci_unglue.h includes/gw_graphics.h \
+	includes/sci_zoom_rect.h includes/DestroyObjects.h \
+	includes/sci_xrects.h includes/sci_xtitle.h \
+	includes/math_graphics.h includes/sci_drawnow.h \
+	includes/sci_param3d.h includes/CurrentObjectsManagement.h \
+	includes/ObjectSelection.h includes/axesScale.h \
+	includes/Contour.h includes/getDictionaryGetProperties.h \
 	includes/getDictionarySetProperties.h includes/GrayPlot.h \
 	includes/sci_xload.h includes/sci_xsave.h \
 	includes/TerminateGraphics.h includes/sci_rubberbox.h \
@@ -1445,11 +1439,9 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@sci_gateway/c/sci_xfpoly.c \
 @GUI_TRUE@sci_gateway/c/sci_drawlater.c \
 @GUI_TRUE@sci_gateway/c/sci_champ.c \
-@GUI_TRUE@sci_gateway/c/sci_xinit.c \
 @GUI_TRUE@sci_gateway/c/sci_help_gtk.c \
 @GUI_TRUE@sci_gateway/c/sci_set.c \
 @GUI_TRUE@sci_gateway/c/sci_showalluimenushandles.c \
-@GUI_TRUE@sci_gateway/c/sci_xend.c \
 @GUI_TRUE@sci_gateway/c/sci_unglue.c \
 @GUI_TRUE@sci_gateway/c/gw_graphics.c \
 @GUI_TRUE@sci_gateway/c/sci_zoom_rect.c \
@@ -1463,7 +1455,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@sci_gateway/c/sci_xfarcs.c \
 @GUI_TRUE@sci_gateway/c/sci_param3d.c \
 @GUI_TRUE@sci_gateway/c/sci_contour2di.c \
-@GUI_TRUE@sci_gateway/c/sci_driver.c \
 @GUI_TRUE@sci_gateway/c/sci_xdel.c \
 @GUI_TRUE@sci_gateway/c/sci_winsid.c \
 @GUI_TRUE@sci_gateway/c/sci_addcb.c \
@@ -1550,7 +1541,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_xfpoly.h \
 @GUI_TRUE@includes/sci_drawlater.h \
 @GUI_TRUE@includes/Format.h \
-@GUI_TRUE@includes/sci_xinit.h \
 @GUI_TRUE@includes/sci_set_posfig_dim.h \
 @GUI_TRUE@includes/sci_set.h \
 @GUI_TRUE@includes/sci_help_gtk.h \
@@ -1562,7 +1552,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_xfarcs.h \
 @GUI_TRUE@includes/sci_contour2di.h \
 @GUI_TRUE@includes/HandleManagement.h \
-@GUI_TRUE@includes/sci_driver.h \
 @GUI_TRUE@includes/sci_fec.h \
 @GUI_TRUE@includes/sci_matplot1.h \
 @GUI_TRUE@includes/XsetXgetParameters.h \
@@ -1596,7 +1585,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_champ.h \
 @GUI_TRUE@includes/Champ.h \
 @GUI_TRUE@includes/StringMatrix.h \
-@GUI_TRUE@includes/sci_xend.h \
 @GUI_TRUE@includes/sci_unglue.h \
 @GUI_TRUE@includes/gw_graphics.h \
 @GUI_TRUE@includes/sci_zoom_rect.h \
@@ -2107,7 +2095,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_drawaxis.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_drawlater.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_drawnow.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_driver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_fec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_geom3d.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_get.Plo@am__quote@
@@ -2143,7 +2130,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xclear.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xclick.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xdel.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xend.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xfarcs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xfpoly.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xfpolys.Plo@am__quote@
@@ -2152,7 +2138,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xgetmouse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xgraduate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xgrid.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xinit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xlfont.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xpoly.Plo@am__quote@
@@ -4763,13 +4748,6 @@ libscigraphics_la-sci_champ.lo: sci_gateway/c/sci_champ.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_champ.lo `test -f 'sci_gateway/c/sci_champ.c' || echo '$(srcdir)/'`sci_gateway/c/sci_champ.c
 
-libscigraphics_la-sci_xinit.lo: sci_gateway/c/sci_xinit.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xinit.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xinit.Tpo -c -o libscigraphics_la-sci_xinit.lo `test -f 'sci_gateway/c/sci_xinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xinit.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xinit.Tpo $(DEPDIR)/libscigraphics_la-sci_xinit.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xinit.c' object='libscigraphics_la-sci_xinit.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xinit.lo `test -f 'sci_gateway/c/sci_xinit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xinit.c
-
 libscigraphics_la-sci_help_gtk.lo: sci_gateway/c/sci_help_gtk.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_help_gtk.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_help_gtk.Tpo -c -o libscigraphics_la-sci_help_gtk.lo `test -f 'sci_gateway/c/sci_help_gtk.c' || echo '$(srcdir)/'`sci_gateway/c/sci_help_gtk.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_help_gtk.Tpo $(DEPDIR)/libscigraphics_la-sci_help_gtk.Plo
@@ -4790,13 +4768,6 @@ libscigraphics_la-sci_showalluimenushandles.lo: sci_gateway/c/sci_showalluimenus
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_showalluimenushandles.c' object='libscigraphics_la-sci_showalluimenushandles.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_showalluimenushandles.lo `test -f 'sci_gateway/c/sci_showalluimenushandles.c' || echo '$(srcdir)/'`sci_gateway/c/sci_showalluimenushandles.c
-
-libscigraphics_la-sci_xend.lo: sci_gateway/c/sci_xend.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xend.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xend.Tpo -c -o libscigraphics_la-sci_xend.lo `test -f 'sci_gateway/c/sci_xend.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xend.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xend.Tpo $(DEPDIR)/libscigraphics_la-sci_xend.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xend.c' object='libscigraphics_la-sci_xend.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xend.lo `test -f 'sci_gateway/c/sci_xend.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xend.c
 
 libscigraphics_la-sci_unglue.lo: sci_gateway/c/sci_unglue.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_unglue.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_unglue.Tpo -c -o libscigraphics_la-sci_unglue.lo `test -f 'sci_gateway/c/sci_unglue.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unglue.c
@@ -4888,13 +4859,6 @@ libscigraphics_la-sci_contour2di.lo: sci_gateway/c/sci_contour2di.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_contour2di.c' object='libscigraphics_la-sci_contour2di.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_contour2di.lo `test -f 'sci_gateway/c/sci_contour2di.c' || echo '$(srcdir)/'`sci_gateway/c/sci_contour2di.c
-
-libscigraphics_la-sci_driver.lo: sci_gateway/c/sci_driver.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_driver.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_driver.Tpo -c -o libscigraphics_la-sci_driver.lo `test -f 'sci_gateway/c/sci_driver.c' || echo '$(srcdir)/'`sci_gateway/c/sci_driver.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_driver.Tpo $(DEPDIR)/libscigraphics_la-sci_driver.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_driver.c' object='libscigraphics_la-sci_driver.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_driver.lo `test -f 'sci_gateway/c/sci_driver.c' || echo '$(srcdir)/'`sci_gateway/c/sci_driver.c
 
 libscigraphics_la-sci_xdel.lo: sci_gateway/c/sci_xdel.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xdel.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xdel.Tpo -c -o libscigraphics_la-sci_xdel.lo `test -f 'sci_gateway/c/sci_xdel.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xdel.c
