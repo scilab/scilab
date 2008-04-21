@@ -13,6 +13,8 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
+#include "sciprint.h"
+#include "localization.h"
 
 #define _NEW_TONIO_
 
@@ -80,81 +82,18 @@ int C2F(sci_kron) _PARAMS((char *fname,unsigned long fname_len))
 		GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows2, &iCols2, &iRealData2);
 		pdblRealData2 = stk(iRealData2);
 	}
-	
-	/*I think this part if for know how returns data ... or not*/
+
+	/*Specials cases ./. and .\. */
 	if(Fin == 20) // operator is ./.
 	{
-		/*Prepare data to process a .*. */
-		if(iIsComplex(2))
-		{
-			int iIndex = 0;
-			for(iIndex = 0 ; iIndex < iRows2 * iCols2 ; iIndex++)
-			{
-				double dblReal	= pdblRealData2[iIndex];
-				double dblImg	= pdblImgData2[iIndex];
-				double dblTemp	= dblReal * dblReal + dblImg * dblImg;
-				if(dblTemp == 0)
-				{
-					Error(27);
-					return 0;
-				}
-				pdblRealData2[iIndex]	= dblReal / dblTemp;
-				pdblImgData2[iIndex]	= - dblImg / dblTemp;
-			}
-		}
-		else
-		{
-			int iIndex = 0;
-			for(iIndex = 0 ; iIndex < iRows2 * iCols2 ; iIndex++)
-			{
-				if(pdblRealData2[iIndex] == 0)
-				{
-					Error(27);
-					return 0;
-				}
-				else
-					pdblRealData2[iIndex] = 1/pdblRealData2[iIndex];
-			}
-		}
+		OverLoad(1);
+		return 0;
 	}
 	else if(Fin == 21) // operator is .\.
 	{
-		/*Prepare data to process a .*. */
-		if(iIsComplex(1))
-		{
-			int iIndex = 0;
-			for(iIndex = 0 ; iIndex < iRows2 * iCols2 ; iIndex++)
-			{
-				double dblReal	= pdblRealData1[iIndex];
-				double dblImg	= pdblImgData1[iIndex];
-				double dblTemp	= dblReal * dblReal + dblImg * dblImg;
-				if(dblTemp == 0)
-				{
-					Error(27);
-					return 0;
-				}
-				pdblRealData1[iIndex]	= dblReal / dblTemp;
-				pdblImgData1[iIndex]	= - dblImg / dblTemp;
-			}
-		}
-		else
-		{
-			int iIndex = 0;
-			for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
-			{
-				if(pdblRealData1[iIndex] == 0)
-				{
-					Error(27);
-					return 0;
-				}
-				else
-					pdblRealData1[iIndex] = 1/pdblRealData1[iIndex];
-			}
-		}
+		OverLoad(1);
+		return 0;
 	}
-
-
-
 
 	if(iComplex1 == 0 && iComplex2 == 0)
 	{//A rela and B real
