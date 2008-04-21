@@ -444,7 +444,67 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			backupcurrentchar = *currentchar;
 			*currentchar = 0;
 
-			call_printf(xxprintf,target,p,sval,asterisk,asterisk_count,conversion_type,dval );
+			/* print is not a string or a char */
+			if ( (conversion_type != PF_S) && (conversion_type != PF_C) )
+			{
+				if (ISNAN(dval)) /* it is a %nan */
+				{
+					char formatnan[3] = "%s";
+					char valuenan[5];
+					conversion_type = 1;
+					dval = 0.;
+					if (fp == (FILE *) 0)
+					{
+						/* sprintf */
+						strcpy(valuenan,"%nan");
+					}
+					if ( fp == stdout )
+					{
+						/* sciprint2 */
+						strcpy(valuenan,"%%nan");
+					}
+					else
+					{
+						/* fprintf */
+						strcpy(valuenan,"%nan");
+					}
+					call_printf(xxprintf,target,formatnan,valuenan,asterisk,asterisk_count,conversion_type,dval );
+				}
+				else
+				{
+					if (finite(dval) != 0) /* not %inf */
+					{
+						call_printf(xxprintf,target,p,sval,asterisk,asterisk_count,conversion_type,dval );
+					}
+					else /* %inf */
+					{
+						char formatinf[3] = "%s";
+						char valueinf[5];
+						conversion_type = 1;
+						dval = 0.;
+						if (fp == (FILE *) 0)
+						{
+							/* sprintf */
+							strcpy(valueinf,"%inf");
+						}
+						if ( fp == stdout )
+						{
+							/* sciprint2 */
+							strcpy(valueinf,"%%inf");
+						}
+						else
+						{
+							/* fprintf */
+							strcpy(valueinf,"%inf");
+						}
+						call_printf(xxprintf,target,formatinf,valueinf,asterisk,asterisk_count,conversion_type,dval );
+					}
+				}
+			}
+			else
+			{
+				call_printf(xxprintf,target,p,sval,asterisk,asterisk_count,conversion_type,dval );
+			}
 
 			if (fp == (FILE *) 0) while (*target) target++;
 			*currentchar = backupcurrentchar;
