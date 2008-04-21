@@ -72,7 +72,13 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 			if (needtochangelanguage(lang))
 			{
 				/* Load the locale from the system */
+				#ifndef _MSC_VER
 				char *ret=setlocale(LC_MESSAGES,lang);
+				#else
+				/* Visual Studio DOES NOT KNOW LC_MESSAGES !!! */
+				char *ret=setlocale(LC_CTYPE,lang);
+				#endif
+
 				//				printf("export %s\n",EXPORTENVLOCALE);
 				//				  This stuff causes pb when locales have been compiled 
 				if (ret==NULL){
