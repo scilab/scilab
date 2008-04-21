@@ -45,7 +45,7 @@ check =   driverName == "Rec"..
         | driverName == "X11"..
         | driverName == "Pos"..
         | driverName == "GIF"..
-        | driverName == "PPM");
+        | driverName == "PPM";
 
 endfunction
 
