@@ -23,24 +23,24 @@
   <refnamediv>
     <refname>reset_profiling</refname>
 
-    <refpurpose>remet à zéro les compteurs  de profil du code d'une fonction </refpurpose>
+    <refpurpose>remet Ã  zÃ©ro les compteurs  de profil du code d'une fonction</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>reset_profiling(funname)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>funname</term>
 
         <listitem>
-          <para>Une chaine de caractères: le nom de la fonction</para>
+          <para>Une chaine de caractÃ¨res: le nom de la fonction</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -49,9 +49,9 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>reset_profiling(funname)</literal> remet à
-    zéro les compteurs de profil du code de la fonction dont le nom
-    est donné par <literal>funname</literal>.</para>
+    <para><literal>reset_profiling(funname)</literal> remet Ã 
+    zÃ©ro les compteurs de profil du code de la fonction dont le nom
+    est donnÃ© par <literal>funname</literal>.</para>
   </refsection>
 
   <refsection>
@@ -100,8 +100,8 @@ profile(foo) //extraction des informations de profil
   </refsection>
 
   <refsection>
-    <title>Fonctions utilisées</title>
-    <para>Cette fonction utilise les fonctions Scilab  <literal>bytecode</literal> and
+    <title>Fonctions utilisÃ©es</title>
+    <para>Cette fonction utilise les fonctions Scilab <literal>bytecode</literal> and
     <literal>walkbytecode</literal></para>
   </refsection>
 </refentry>

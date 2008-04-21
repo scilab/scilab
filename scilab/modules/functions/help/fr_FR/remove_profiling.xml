@@ -27,20 +27,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>remove_profiling(funname)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>funname</term>
 
         <listitem>
-          <para>Une chaine de caractères: le nom de la fonction</para>
+          <para>Une chaine de caractÃ¨res: le nom de la fonction</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -51,7 +51,7 @@
 
     <para><literal>remove_profiling(funname)</literal> supprime les
     instructions de "profiling" du code de la fonction dont le nom est
-    donné par <literal>funname</literal>.</para>
+    donnÃ© par <literal>funname</literal>.</para>
   </refsection>
 
   <refsection>
@@ -98,7 +98,7 @@ remove_profiling("foo")
   </refsection>
 
   <refsection>
-    <title>Fonctions utilisées</title>
+    <title>Fonctions utilisÃ©es</title>
     <para>Cette fonction utilise les fonctions Scilab  <literal>bytecode</literal> and
     <literal>walkbytecode</literal></para>
   </refsection>
