@@ -25,6 +25,7 @@
 #include "getPropertyAssignedValue.h"
 #include "returnProperty.h"
 #include "GetProperty.h"
+#include "CurrentObjectsManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_rotate_axes(char *fname,unsigned long fname_len)

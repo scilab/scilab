@@ -11,6 +11,7 @@
  */
 
 #include "CallHelpBrowser.hxx"
+#include "BOOL.h"
 
 using namespace org_scilab_modules_gui_bridge;
 
@@ -21,5 +22,5 @@ void launchHelpBrowser(char **helps, int helpsSize, char* language)
 
 void searchKeyword(char **helps, int helpsSize, char *keyword, char* language, BOOL fullText)
 {
-  CallScilabBridge::searchKeyword(getScilabJavaVM(), helps, helpsSize, keyword, language, fullText);
+  CallScilabBridge::searchKeyword(getScilabJavaVM(), helps, helpsSize, keyword, language, BOOLtobool(fullText));
 }
