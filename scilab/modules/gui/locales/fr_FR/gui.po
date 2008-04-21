@@ -1262,7 +1262,7 @@ msgstr "&amp;Fermer"
 #
 # File: scilab_fake_localization_file.c, line: 36
 msgid "&amp;Execute..."
-msgstr "&amp;Executer..."
+msgstr "&amp;Exécuter..."
 
 #
 # File: scilab_fake_localization_file.c, line: 37
@@ -1509,7 +1509,7 @@ msgstr "Sélectionner un fichier à charger"
 #
 # File: etc/graphics_menubar.xml, line: 15
 msgid "Figure loaded.\n"
-msgstr "Figure chargée."
+msgstr "Figure chargée.\n"
 
 #
 # File: etc/graphics_menubar.xml, line: 23
@@ -1520,7 +1520,7 @@ msgstr "Sélectionner un fichier à écrire"
 #
 # File: etc/graphics_menubar.xml, line: 29
 msgid "Figure saved.\n"
-msgstr "Figure sauvegarder.\n"
+msgstr "Figure sauvegardée.\n"
 
 #
 # File: etc/graphics_menubar.xml, line: 39
@@ -1539,7 +1539,7 @@ msgstr "Sélectionner un fichier à exécuter"
 #
 # File: etc/main_menubar.xml, line: 14
 msgid "Execution done.\n"
-msgstr "Execution terminée.\n"
+msgstr "Exécution terminée.\n"
 
 #
 # File: etc/main_menubar.xml, line: 23
