@@ -1093,3 +1093,471 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for third input argument: Single value expected.\n"
 msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1
+# File: scilab_fake_localization_file.c, line: 31
+# File: scilab_fake_localization_file.c, line: 35
+msgid "&amp;File"
+msgstr "&amp;Fichier"
+
+#
+# File: scilab_fake_localization_file.c, line: 2
+msgid "&amp;New figure..."
+msgstr "&amp;Nouvelle figure..."
+
+#
+# File: scilab_fake_localization_file.c, line: 3
+msgid "&amp;Load..."
+msgstr "&amp;Charger..."
+
+#
+# File: scilab_fake_localization_file.c, line: 4
+msgid "&amp;Save..."
+msgstr "&amp;Sauvegarder..."
+
+#
+# File: scilab_fake_localization_file.c, line: 5
+msgid "&amp;Export to..."
+msgstr "&amp;Exporter vers..."
+
+#
+# File: scilab_fake_localization_file.c, line: 6
+msgid "&amp;BMP"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 7
+msgid "&amp;GIF"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 8
+msgid "&amp;JPG"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 9
+msgid "P &amp;NG"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 10
+msgid "&amp;PPM"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 11
+msgid "&amp;Copy to clipboard"
+msgstr "&amp;Copier vers le presse-papier"
+
+#
+# File: scilab_fake_localization_file.c, line: 12
+# File: scilab_fake_localization_file.c, line: 42
+msgid "P &amp;age setup..."
+msgstr "&amp;Mise en page"
+
+#
+# File: scilab_fake_localization_file.c, line: 13
+# File: scilab_fake_localization_file.c, line: 43
+msgid "&amp;Print..."
+msgstr "&Imprimer..."
+
+#
+# File: scilab_fake_localization_file.c, line: 14
+msgid "C &amp;lose"
+msgstr "&amp;Fermer"
+
+#
+# File: scilab_fake_localization_file.c, line: 15
+msgid "&amp;Tools"
+msgstr "&amp;Outils"
+
+#
+# File: scilab_fake_localization_file.c, line: 16
+# File: scilab_fake_localization_file.c, line: 56
+msgid "Show/Hide  &amp;Toolbar"
+msgstr "Montrer/Cacher la &amp;barre d'outils"
+
+#
+# File: scilab_fake_localization_file.c, line: 17
+msgid "&amp;Zoom"
+msgstr "&amp;Zoom avant"
+
+#
+# File: scilab_fake_localization_file.c, line: 18
+msgid "&amp;UnZoom"
+msgstr "&amp;Zoom  &amp;arrière"
+
+#
+# File: scilab_fake_localization_file.c, line: 19
+msgid "2D/3D  &amp;Rotation"
+msgstr "&amp;Rotation 2D/3D"
+
+#
+# File: scilab_fake_localization_file.c, line: 20
+# File: scilab_fake_localization_file.c, line: 45
+msgid "&amp;Edit"
+msgstr "&amp;Editer"
+
+#
+# File: scilab_fake_localization_file.c, line: 21
+msgid "&amp;Select as current figure"
+msgstr "&amp;Selectionner comme figure courante"
+
+#
+# File: scilab_fake_localization_file.c, line: 22
+msgid "&amp;Redraw figure"
+msgstr "&amp;Redessiner la figure"
+
+#
+# File: scilab_fake_localization_file.c, line: 23
+msgid "&amp;Clear figure"
+msgstr "&amp;Effacer la figure"
+
+#
+# File: scilab_fake_localization_file.c, line: 24
+msgid "&amp;Figure properties"
+msgstr "Propriétés de la  &amp;figure"
+
+#
+# File: scilab_fake_localization_file.c, line: 25
+msgid "&amp;Axes properties"
+msgstr "Propriétés de l' &amp;axe"
+
+#
+# File: scilab_fake_localization_file.c, line: 26
+msgid "&amp;Start entity picker"
+msgstr "&amp;Démarrer le sélectionneur d'objets"
+
+#
+# File: scilab_fake_localization_file.c, line: 27
+msgid "S &amp;top entity picker"
+msgstr "&amp;Arrêter le sélectionneur d'objets"
+
+#
+# File: scilab_fake_localization_file.c, line: 28
+# File: scilab_fake_localization_file.c, line: 33
+# File: scilab_fake_localization_file.c, line: 69
+msgid "&amp;?"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 29
+msgid "&amp;Scilab Help"
+msgstr "&amp;Aide de Scilab"
+
+#
+# File: scilab_fake_localization_file.c, line: 30
+# File: scilab_fake_localization_file.c, line: 34
+# File: scilab_fake_localization_file.c, line: 77
+msgid "&amp;About Scilab..."
+msgstr "&amp;A propos de Scilab"
+
+#
+# File: scilab_fake_localization_file.c, line: 32
+msgid "&amp;Close"
+msgstr "&amp;Fermer"
+
+#
+# File: scilab_fake_localization_file.c, line: 36
+msgid "&amp;Execute..."
+msgstr "&amp;Executer..."
+
+#
+# File: scilab_fake_localization_file.c, line: 37
+msgid "&amp;Open a file..."
+msgstr "&amp;Ouvrir un fichier..."
+
+#
+# File: scilab_fake_localization_file.c, line: 38
+msgid "&amp;Load environment..."
+msgstr "&amp;Changer un environnement..."
+
+#
+# File: scilab_fake_localization_file.c, line: 39
+msgid "&amp;Save environment..."
+msgstr "&amp;Sauvegarder l'environnement..."
+
+#
+# File: scilab_fake_localization_file.c, line: 40
+msgid "&amp;Change current directory..."
+msgstr "&amp;Changer le répertoire courant"
+
+#
+# File: scilab_fake_localization_file.c, line: 41
+msgid "&amp;Display current directory"
+msgstr "&amp;Afficher le répertoire courant"
+
+#
+# File: scilab_fake_localization_file.c, line: 44
+msgid "&amp;Quit"
+msgstr "&amp;Quitter"
+
+#
+# File: scilab_fake_localization_file.c, line: 46
+msgid "C &amp;ut"
+msgstr "Co &amp;uper"
+
+#
+# File: scilab_fake_localization_file.c, line: 47
+msgid "&amp;Copy"
+msgstr "&amp;Copier"
+
+#
+# File: scilab_fake_localization_file.c, line: 48
+msgid "&amp;Paste"
+msgstr "C &amp;oller"
+
+#
+# File: scilab_fake_localization_file.c, line: 49
+msgid "&amp;Empty clipboard"
+msgstr "&amp;Vider le presse-papier"
+
+#
+# File: scilab_fake_localization_file.c, line: 50
+msgid "&amp;Select all"
+msgstr "&amp;Selectionner tout"
+
+#
+# File: scilab_fake_localization_file.c, line: 51
+msgid "&amp;Preferences"
+msgstr "&amp;Préferences"
+
+#
+# File: scilab_fake_localization_file.c, line: 52
+msgid "&amp;Colors"
+msgstr "&amp;Couleurs"
+
+#
+# File: scilab_fake_localization_file.c, line: 53
+msgid "Console  &amp;Background..."
+msgstr "&amp;Fond de la Console"
+
+#
+# File: scilab_fake_localization_file.c, line: 54
+msgid "&amp;Police de la Console..."
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 55
+msgid "&amp;Font..."
+msgstr "&amp;Police..."
+
+#
+# File: scilab_fake_localization_file.c, line: 57
+msgid "Clear  &amp;History"
+msgstr "Effacer  l' &amp;Historique"
+
+#
+# File: scilab_fake_localization_file.c, line: 58
+msgid "Clear C &amp;onsole"
+msgstr "Effacer la C &amp;onsole"
+
+#
+# File: scilab_fake_localization_file.c, line: 59
+msgid "&amp;Control"
+msgstr "&amp;Contrôle"
+
+#
+# File: scilab_fake_localization_file.c, line: 60
+msgid "&amp;Resume"
+msgstr "&amp;Reprendre"
+
+#
+# File: scilab_fake_localization_file.c, line: 61
+msgid "&amp;Abort"
+msgstr "&amp;Arrêter"
+
+#
+# File: scilab_fake_localization_file.c, line: 62
+msgid "&amp;Interrupt"
+msgstr "&amp;Interrompre"
+
+#
+# File: scilab_fake_localization_file.c, line: 63
+msgid "&amp;Applications"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 64
+msgid "&amp;Editor"
+msgstr "&amp;Editeur"
+
+#
+# File: scilab_fake_localization_file.c, line: 65
+msgid "&amp;Scicos"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 66
+msgid "Edit &amp;Graph"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 67
+msgid "&amp;Matlab to Scilab translator"
+msgstr "Convertisseur &amp;Matlab vers Scilab"
+
+#
+# File: scilab_fake_localization_file.c, line: 68
+msgid "&amp;Variable Editor"
+msgstr "Editeur de  &amp;Variable"
+
+#
+# File: scilab_fake_localization_file.c, line: 70
+msgid "Scilab  &amp;Help"
+msgstr "&amp;Aide de Scilab"
+
+#
+# File: scilab_fake_localization_file.c, line: 71
+msgid "Scilab  &amp;Demonstrations"
+msgstr "&amp;Démonstrations Scilab"
+
+#
+# File: scilab_fake_localization_file.c, line: 72
+msgid "&amp;Web links"
+msgstr "Liens  &amp;Web"
+
+#
+# File: scilab_fake_localization_file.c, line: 73
+msgid "Scilab  &amp;Web Site"
+msgstr "Site  &amp;Web Scilab"
+
+#
+# File: scilab_fake_localization_file.c, line: 74
+msgid "&amp;Contributions"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 75
+msgid "&amp;Bug And Request database"
+msgstr "Base de données de  &amp;Bugs et de Requêtes"
+
+#
+# File: scilab_fake_localization_file.c, line: 76
+msgid "&amp;Newsgroup Archives"
+msgstr "Archives du &amp;Newsgroup"
+
+#
+# File: scilab_fake_localization_file.c, line: 78
+msgid "Rotate"
+msgstr "Rotation"
+
+#
+# File: scilab_fake_localization_file.c, line: 79
+msgid "Zoom In"
+msgstr "Zoom avant"
+
+#
+# File: scilab_fake_localization_file.c, line: 80
+msgid "Zoom Out"
+msgstr "Zoom arrière"
+
+#
+# File: scilab_fake_localization_file.c, line: 81
+# File: scilab_fake_localization_file.c, line: 90
+msgid "Help Browser"
+msgstr "Navigateur d'aide"
+
+#
+# File: scilab_fake_localization_file.c, line: 82
+msgid "Launch Scipad"
+msgstr "Lancer Scipad"
+
+#
+# File: scilab_fake_localization_file.c, line: 83
+msgid "Open a file"
+msgstr "Ouvrir un fichier"
+
+#
+# File: scilab_fake_localization_file.c, line: 84
+msgid "Cut"
+msgstr "Couper"
+
+#
+# File: scilab_fake_localization_file.c, line: 85
+msgid "Copy"
+msgstr "Copier"
+
+#
+# File: scilab_fake_localization_file.c, line: 86
+msgid "Paste"
+msgstr "Coller"
+
+#
+# File: scilab_fake_localization_file.c, line: 87
+msgid "Change Current Directory"
+msgstr "Changer le répertoire courant"
+
+#
+# File: scilab_fake_localization_file.c, line: 88
+msgid "Choose Font..."
+msgstr "Police de la Console..."
+
+#
+# File: scilab_fake_localization_file.c, line: 89
+msgid "Print..."
+msgstr "Imprimer..."
+
+#
+# File: etc/graphics_menubar.xml, line: 12
+# File: etc/main_menubar.xml, line: 33
+msgid "Select a file to load"
+msgstr "Sélectionner un fichier à charger"
+
+#
+# File: etc/graphics_menubar.xml, line: 15
+msgid "Figure loaded.\n"
+msgstr "Figure chargée."
+
+#
+# File: etc/graphics_menubar.xml, line: 23
+# File: etc/main_menubar.xml, line: 44
+msgid "Select a file to write"
+msgstr "Sélectionner un fichier à écrire"
+
+#
+# File: etc/graphics_menubar.xml, line: 29
+msgid "Figure saved.\n"
+msgstr "Figure sauvegarder.\n"
+
+#
+# File: etc/graphics_menubar.xml, line: 39
+# File: etc/graphics_menubar.xml, line: 49
+# File: etc/graphics_menubar.xml, line: 59
+# File: etc/graphics_menubar.xml, line: 69
+# File: etc/graphics_menubar.xml, line: 79
+msgid "Select a file name"
+msgstr "Sélectionner un nom de fichier"
+
+#
+# File: etc/main_menubar.xml, line: 11
+msgid "Select a file to execute"
+msgstr "Sélectionner un fichier à exécuter"
+
+#
+# File: etc/main_menubar.xml, line: 14
+msgid "Execution done.\n"
+msgstr "Execution terminée.\n"
+
+#
+# File: etc/main_menubar.xml, line: 23
+msgid "Select a file to open with Scipad"
+msgstr "Sélectionner un fichier à ouvrir avec Scipad"
+
+#
+# File: etc/main_menubar.xml, line: 36
+msgid "Environment loaded.\n"
+msgstr "Environnement chargé.\n"
+
+#
+# File: etc/main_menubar.xml, line: 50
+msgid "Environment saved.\n"
+msgstr "Environnement sauvegardé.\n"
+
+#
+# File: etc/main_menubar.xml, line: 59
+# File: etc/main_toolbar.xml, line: 39
+msgid "Select a directory"
+msgstr "Sélectionner un répertoire"
