@@ -25,7 +25,8 @@ function %zoom = restore(gh_curwin)
   gh_current_window = gh_curwin ; 
   
   clf(gh_curwin) ;
-  gh_curwin.pixmap = "on"
+  //** gh_curwin.pixmap = "on"
+  gh_curwin.pixmap = "off"
   
   if ~set_cmap(scs_m.props.options('Cmap')) then // add colors if required
     scs_m.props.options('3D')(1)=%f //disable 3D block shape
