@@ -355,7 +355,13 @@ fi
 if test "$CXX" = "g++"; then
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -fdiagnostics-show-option -Wextra -Wall "
+	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall "
+          case "$host" in
+          *-linux-gnu )
+          # Only doing that under Linux
+                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option"
+          ;;
+	  esac
    else
 	  CXXFLAGS="$CXXFLAGS -DNDEBUG"
    fi
@@ -371,10 +377,16 @@ IS_64_BITS_CPU=false
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
-	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -fdiagnostics-show-option -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing"
+	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing"
 	  # used to be -O
 	  # -D_FORTIFY_SOURCE=2
-	  LDFLAGS="$LDFLAGS -Wl,--warn-common,-x"
+	  case "$host" in
+	  *-linux-gnu )
+	  # Only doing that under Linux
+	  	  LDFLAGS="$LDFLAGS -Wl,--warn-common,-x"
+		  CFLAGS="$CFLAGS -fdiagnostics-show-option"
+		  ;;
+		  esac
    else
 	  CFLAGS="$CFLAGS  -DNDEBUG"
    fi
