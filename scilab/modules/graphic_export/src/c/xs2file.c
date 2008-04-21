@@ -24,8 +24,6 @@
 /*--------------------------------------------------------------------------*/
 int xs2file(char * fname, ExportFileType fileType )
 {
-  CheckRhs(2,3);
-
   CheckLhs(0,1);
   CheckRhs(2,2);
   if ( (GetType(2) == sci_strings) && IsAScalar(1) )
@@ -63,7 +61,8 @@ int xs2file(char * fname, ExportFileType fileType )
       return 0;
     }
   }
-  C2F(putlhsvar)();
+
+  LhsVar(1)=0;
   return 0;
 }
 /*--------------------------------------------------------------------------*/
