@@ -23,7 +23,7 @@ public class Messages {
     private static final String defaultLocale = "en_US"; 
 	private static final String pathToTheClass = "org.scilab.modules.localization.Messages";
     private static ResourceBundle resourceBundle=null;
-    private static boolean failedToLoad=false;
+    private static boolean failedToLoadBundle=false;
     /**
      * Private method to load the bundle file
      *
@@ -31,7 +31,6 @@ public class Messages {
 	private static void loadBundle(){
 		try{
 			String locale=System.getenv(systemLocale);
-
 			resourceBundle = ResourceBundle.getBundle(pathToTheClass,new Locale(locale));
 		}catch (java.util.MissingResourceException e){
 			System.err.println("Could not file localization file for "+systemLocale);
@@ -39,7 +38,7 @@ public class Messages {
 			try {
 				resourceBundle = ResourceBundle.getBundle(pathToTheClass,new Locale(defaultLocale));
 			} catch (java.util.MissingResourceException e2) {
-                            failedToLoad=true;
+				failedToLoadBundle=true;
 			}
 		}
 	}
@@ -53,16 +52,16 @@ public class Messages {
 	 */
     public static String getText(String key) {
         /* If the bundle failed to load, just return the key */
-        if (failedToLoad) {
+        if (failedToLoadBundle) {
             return key;
         }
         /* Load the bundle the first call to this (static) method */
         if (resourceBundle==null) {
             loadBundle();
-        /* If the bundle failed to load, just return the key */
-        if (failedToLoad) {
-            return key;
-        }
+			/* If the bundle failed to load, just return the key */
+			if (failedToLoadBundle) { /* Should be used only on the first start */
+				return key;
+			}
         }
         try {
             return resourceBundle.getString(key);
