@@ -7,13 +7,13 @@
    <menu label="&amp;File" enabled="false">
         <submenu label="&amp;Execute...">
             <callback 
-            instruction="
-              %fileToExec = xgetfile('*.sc*', getcwd(), 'Select a file to execute');
+            instruction='
+              %fileToExec = xgetfile("*.sc*", getcwd(), gettext("Select a file to execute"));
               if ~isempty(%fileToExec) then 
                 exec(%fileToExec);
-                disp('Exec done.');
+                disp("Exec done.");
               end
-              clear %fileToExec isempty"
+              clear %fileToExec isempty'
             type="0"/>
         </submenu> 
         <separator/>
