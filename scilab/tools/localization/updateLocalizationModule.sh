@@ -49,8 +49,9 @@ process_XML_files(){
 # Second expression =>  extract the content of the label and switch it to a gettext fake instruction
 # Third expression => remove empty lines
 # Please note that it will only extract string from the label tag
-	sed  -e '/label/!s/.*//'  -e 's/.*label="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' $GUI_FILES > $FAKE_C_FILE
-	sed  -e '/tooltiptext/!s/.*//'  -e 's/.*tooltiptext="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' $GUI_FILES >> $FAKE_C_FILE
+	COMMON_SED='s/&amp;/\&/g'
+	sed  -e '/label/!s/.*//'  -e 's/.*label="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $GUI_FILES > $FAKE_C_FILE
+	sed  -e '/tooltiptext/!s/.*//'  -e 's/.*tooltiptext="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $GUI_FILES >> $FAKE_C_FILE
 }
 
 #
