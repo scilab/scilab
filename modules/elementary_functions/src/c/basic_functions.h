@@ -61,7 +61,11 @@ double dcoshs(double _dblVal);
 double dsinhs(double _dblVal);
 
 double dsqrts(double _dblVal);
+
 double dlogs(double _dblVal);
+void wlog(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
+double dlog1ps(double _dblVal);
+
 double dsigns(double _dblRef, double _dblVal);
 double dceilsEx(double _dblVal, int _iPrecision);
 int dceils(double _dblVal);
@@ -79,5 +83,6 @@ void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 double dfloors(double _dblVal);
 double dfrexps(double _dblVal, double *_pdblExp);
+double dpythags(double _dblVal1, double _dblVal2);
 
 #endif //__BASIC_FUNCTION__

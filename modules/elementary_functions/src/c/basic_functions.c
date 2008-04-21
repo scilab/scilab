@@ -9,72 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
 #include "basic_functions.h"
-
-
-/*
-	PURPOSE :  Compute   v = log ( (1 + s)/(1 - s) )
-	for small s, this is for |s| < SLIM = 0.20
-
-	ALGORITHM : 
-	1/ if |s| is "very small" we use a truncated
-	taylor dvp (by keeping 3 terms) from : 
-	2        4          6
-	t = 2 * s * ( 1 + 1/3 s  + 1/5 s  + [ 1/7 s  + ....] )
-	2        4      
-	t = 2 * s * ( 1 + 1/3 s  + 1/5 s  + er)
-
-	The limit E until we use this formula may be simply
-	gotten so that the negliged part er is such that :
-	2        4
-	(#) er <= epsm * ( 1 + 1/3 s  + 1/5 s )   for all |s|<= E
-
-	As  er  = 1/7 s^6 + 1/9 s^8 + ... 
-	er <= 1/7 * s^6 ( 1 + s^2 + s^4 + ...) = 1/7  s^6/(1-s^2)
-
-	the inequality (#) is forced if :
-
-	1/7  s^6 / (1-s^2)  <= epsm * ( 1 + 1/3 s^2  + 1/5 s^4 )
-
-	s^6 <= 7 epsm * (1 - 2/3 s^2 - 3/15 s^4 - 1/5 s^6)
-
-	So that E is very near (7 epsm)^(1/6) (approximately 3.032d-3):
-
-	2/ For larger |s| we used a minimax polynome :
-
-	yi = s * (2  + d3 s^3 + d5 s^5 .... + d13 s^13 + d15 s^15)
-
-	This polynome was computed (by some remes algorithm) following 
-	(*) the sin(x) example (p 39) of the book :
-
-	"ELEMENTARY FUNCTIONS"
-	"Algorithms and implementation"
-	J.M. Muller (Birkhauser)
-
-	(*) without the additionnal raffinement to get the first coefs
-	very near floating point numbers)
-*/
-double lnp1m1(double _dblVar)
-{
-	static double sdblD3	= 0.66666666666672679472;
-	static double sdblD5	= 0.39999999996176889299;
-	static double sdblD7	= 0.28571429392829380980;
-	static double sdblD9	= 0.22222138684562683797;
-	static double sdblD11	= 0.18186349187499222459;
-	static double sdblD13	= 0.15250315884469364710;
-	static double sdblD15	= 0.15367270224757008114;
-	static double sdblE		= 3.032E-3;
-	static double sdblC3	= 2.0/3.0;
-	static double sdblC5	= 2.0/5.0;
-
-	double dblS2 = _dblVar * _dblVar;
-	if( dabss(_dblVar) <= sdblE)
-		return _dblVar * (2 + dblS2 * (sdblC3 + sdblC5 * dblS2));
-	else
-		return _dblVar * (2 + dblS2 * (sdblD3 + dblS2 * (sdblD5 + dblS2 * (sdblD7 + dblS2 * (sdblD9 + dblS2 * (sdblD11 + dblS2 * (sdblD13 + dblS2 * sdblD15)))))));
-}
-
 
 /*sqrt*/
 double dsqrts(double _dblVal)
@@ -82,10 +17,86 @@ double dsqrts(double _dblVal)
     return sqrt(_dblVal);
 }
 
-/*log*/
-double dlogs(double _dblVal)
+
+/*
+*     PURPOSE
+*        computes sqrt(a^2 + b^2) with accuracy and
+*        without spurious underflow / overflow problems
+*
+*     MOTIVATION
+*        This work was motivated by the fact that the original Scilab
+*        PYTHAG, which implements Moler and Morrison's algorithm is slow.
+*        Some tests showed that the Kahan's algorithm, is superior in
+*        precision and moreover faster than the original PYTHAG.  The speed
+*        gain partly comes from not calling DLAMCH.
+*
+*     REFERENCE
+*        This is a Fortran-77 translation of an algorithm by William Kahan,
+*        which appears in his article "Branch cuts for complex elementary
+*        functions, or much ado about nothing's sign bit",
+*        Editors: Iserles, A. and Powell, M. J. D. 
+*        in "States of the Art in Numerical Analysis"
+*        Oxford, Clarendon Press, 1987
+*        ISBN 0-19-853614-3
+*
+*     AUTHOR
+*        Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>, 
+*        Thanks to Lydia van Dijk <lvandijk@hammersmith-consulting.com>
+*/
+double dpythags(double _dblVal1, double _dblVal2)
 {
-  return log(_dblVal);
+	double dblSqrt2		= 1.41421356237309504;
+	double dblSqrt2p1	= 2.41421356237309504;
+	double dblEsp		= 1.25371671790502177E-16;
+	double dblRMax		= F2C(dlamch)("o",1L);
+
+	double dblAbs1 = 0;
+	double dblAbs2 = 0;
+	double dblTemp = 0;
+
+	if(ISNAN(_dblVal1) == 1)
+		return _dblVal2;
+
+	if(ISNAN(_dblVal2) == 1)
+		return _dblVal1;
+
+	dblAbs1 = dabss(_dblVal1);
+	dblAbs2 = dabss(_dblVal2);
+
+	//Order x and y such that 0 <= y <= x
+	if(dblAbs1 < dblAbs2)
+	{
+		dblTemp = dblAbs1;
+		dblAbs1 = dblAbs2;
+		dblAbs2 = dblTemp;
+	}
+
+	//Test for overflowing x
+	if( dblAbs1 >= dblRMax)
+		return dblAbs1;
+
+	//Handle generic case
+	dblTemp = dblAbs1 - dblAbs2;
+	if(dblTemp != dblAbs1)
+	{
+		double dblS = 0;
+		if(dblTemp > dblAbs2)
+		{
+			dblS = dblAbs1 / dblAbs2;
+			dblS += dsqrts(1 + dblS * dblS);
+		}
+		else
+		{
+			dblS	= dblTemp / dblAbs2;
+			dblTemp = (2 + dblS) * dblS;
+			dblS	= ((dblEsp + dblTemp / (dblSqrt2 + dsqrts(2 + dblTemp))) + dblS) + dblSqrt2p1;
+		}
+		return dblAbs1 + dblAbs2 / dblS;
+	}
+	else
+		return dblAbs1;
+
+	return 0;
 }
 
 /*sign*/
