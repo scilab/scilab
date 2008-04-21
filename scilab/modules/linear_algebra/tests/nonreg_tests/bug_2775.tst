@@ -1,0 +1,17 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- Non-regression test for bug 2775 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2775
+//
+res_1 = 0.0 * %nan;
+res_2 = %nan * 0.0;
+
+if ~isnan(res_1) then pause,end
+if ~isnan(res_2) then pause,end
