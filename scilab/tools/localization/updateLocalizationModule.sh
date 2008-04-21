@@ -36,11 +36,21 @@ fi
 XGETTEXT=/usr/bin/xgettext
 MSGMERGE=/usr/bin/msgmerge
 FROM_CODE=ISO-8859-1
-EXTENSIONS=( c h cpp hxx java sci start quit)
+EXTENSIONS=( c h cpp hxx java sci start quit )
 TARGETDIR=locales/
 LANGS=( fr_FR )
 HEADER_TEMPLATE=$SCI/modules/localization/locales/en_US/header.pot
+GUI_FILES="etc/*.xml"
+FAKE_C_FILE=scilab_fake_localization_file.c
 TIMEZONE="+0100"
+
+process_XML_files(){
+# First expression => remove line which does NOT contain label
+# Second expression =>  extract the content of the label and switch it to a gettext fake instruction
+# Third expression => remove empty lines
+# Please note that it will only extract string from the label tag
+	sed  -e '/label/!s/.*//'  -e 's/.*label="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' $GUI_FILES > $FAKE_C_FILE
+}
 
 #
 # Retrieve all the sources files
@@ -76,8 +86,11 @@ for MODULE in $MODULES; do
 	echo "... Processing module $MODULE"
 
 	cd $PATHTOPROCESS
-
+# Extract label from xml files
+	process_XML_files
 	FILES=`eval $FILESCMD|tr "\n" " "`
+	# Also extract string straight from the XML because we have some gettext calls in it
+	FILES="$FILES `ls etc/*.xml`"
 	MODULE_NAME=`echo $MODULE|sed -e 's|./||'` # avoid to have ./module_name
 
 	echo "..... Parsing all sources in $PATHTOPROCESS"
@@ -119,6 +132,7 @@ for MODULE in $MODULES; do
 			fi
 		done #Browse langs
 	fi
-	
+	# Remove fake file used to extract string from XML
+	rm $FAKE_C_FILE
 	cd $SCI/
 done # Browse modules
