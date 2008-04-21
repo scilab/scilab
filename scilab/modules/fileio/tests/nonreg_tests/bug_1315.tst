@@ -5,10 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- Non-regression test for bug 1275 -->
+// <-- Non-regression test for bug 1315 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=1275
+// http://bugzilla.scilab.org/show_bug.cgi?id=1315
 //
 
 format('v',20)
