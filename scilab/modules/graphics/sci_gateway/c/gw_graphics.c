@@ -23,7 +23,6 @@
 static gw_generic_table Tab[]={
 	{sci_champ,"champ"},	
 	{sci_champ1,"champ1"},
-	{sci_driver,"driver"},
 	{sci_fec,"scifec"},
 	{sci_geom3d,"geom3d"},
 	{sci_grayplot,"grayplot"},
@@ -50,7 +49,6 @@ static gw_generic_table Tab[]={
 	{sci_xclear,"xclear"},
 	{sci_xclick,"xclick"},
 	{sci_xdel,"xdel"},
-	{sci_xend,"xend"},
 	{sci_xarc,"xfarc"},
 	{sci_xfarcs,"xfarcs"},
 	{sci_xfpoly,"xfpoly"},
@@ -60,7 +58,6 @@ static gw_generic_table Tab[]={
 	{sci_xgetech,"xgetech"},
 	{sci_xgetmouse,"xgetmouse"},
 	{sci_xgrid,"xgrid"},
-	{sci_xinit,"xinit"},
 	{sci_xlfont,"xlfont"},
 	{sci_xpoly,"xpoly"},
 	{sci_xpolys,"xpolys"},

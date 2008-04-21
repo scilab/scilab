@@ -3,6 +3,19 @@
 // Copyright INRIA 2008
 // ====================================================================
 
+// =============================================================================
+//Load  functions libraries
+// =============================================================================
+if (getscilabmode() <> 'NWNI') then
+	load(SCI+"/modules/graphic_export/macros/lib");
+end
+
 //add help chapter
 add_module_help_chapter("graphic_export");
 clear add_module_help_chapter;
+
+// global variable for export
+global %driverName;
+global %exportFileName;
+%driverName = "Rec";
+%exportFileName = [];

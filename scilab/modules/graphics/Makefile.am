@@ -364,11 +364,9 @@ sci_gateway/c/sci_xarcs.c \
 sci_gateway/c/sci_xfpoly.c \
 sci_gateway/c/sci_drawlater.c \
 sci_gateway/c/sci_champ.c \
-sci_gateway/c/sci_xinit.c \
 sci_gateway/c/sci_help_gtk.c \
 sci_gateway/c/sci_set.c \
 sci_gateway/c/sci_showalluimenushandles.c \
-sci_gateway/c/sci_xend.c \
 sci_gateway/c/sci_unglue.c \
 sci_gateway/c/gw_graphics.c \
 sci_gateway/c/sci_zoom_rect.c \
@@ -382,7 +380,6 @@ sci_gateway/c/sci_drawnow.c \
 sci_gateway/c/sci_xfarcs.c \
 sci_gateway/c/sci_param3d.c \
 sci_gateway/c/sci_contour2di.c \
-sci_gateway/c/sci_driver.c \
 sci_gateway/c/sci_xdel.c \
 sci_gateway/c/sci_winsid.c \
 sci_gateway/c/sci_addcb.c \
@@ -480,7 +477,6 @@ includes/InitObjects.h \
 includes/sci_xfpoly.h \
 includes/sci_drawlater.h \
 includes/Format.h \
-includes/sci_xinit.h \
 includes/sci_set_posfig_dim.h \
 includes/sci_set.h \
 includes/sci_help_gtk.h \
@@ -492,7 +488,6 @@ includes/Interaction.h \
 includes/sci_xfarcs.h \
 includes/sci_contour2di.h \
 includes/HandleManagement.h \
-includes/sci_driver.h \
 includes/sci_fec.h \
 includes/sci_matplot1.h \
 includes/XsetXgetParameters.h \
@@ -526,7 +521,6 @@ includes/pixel_mode.h \
 includes/sci_champ.h \
 includes/Champ.h \
 includes/StringMatrix.h \
-includes/sci_xend.h \
 includes/sci_unglue.h \
 includes/gw_graphics.h \
 includes/sci_zoom_rect.h \

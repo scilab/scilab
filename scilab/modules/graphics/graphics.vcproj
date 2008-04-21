@@ -1091,10 +1091,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_driver.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_fec.c"
 				>
 			</File>
@@ -1239,10 +1235,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_xend.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_xfarcs.c"
 				>
 			</File>
@@ -1272,10 +1264,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_xgrid.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xinit.c"
 				>
 			</File>
 			<File
@@ -2113,10 +2101,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_driver.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sci_fec.h"
 				>
 			</File>
@@ -2261,10 +2245,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_xend.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sci_xfarcs.h"
 				>
 			</File>
@@ -2294,10 +2274,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xgrid.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xinit.h"
 				>
 			</File>
 			<File
