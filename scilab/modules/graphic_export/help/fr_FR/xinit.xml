@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xinit">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xinit</refname>
+    <refpurpose> initialisation of a graphics driver</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xinit([driver-name])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>driver-name</term>
+        <listitem>
+          <para>string.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Initialisation of the given driver.</para>
+    <para>
+    For X Window
+    <literal>driver-name</literal> can be a string which gives the name of a display
+    and a new graphics window is created. If the argument is omitted 
+    the value of the environment variable DISPLAY is used if it exists or 
+    the value "unix:0.0" is used.</para>
+    <para>
+    For the Postscript, Xfig or Gif driver, <literal>driver-name</literal> is a name of 
+    the file where all the graphics operations are recorded.</para>
+    <para>Note that in Postscript case the generated file is not a complete
+      postscript file. It should be converted using the BEpsf or Blatexpr shell
+      programs (see printing)</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+driver("Pos")
+xinit("foo.ps")
+plot2d()
+xend()
+driver("X11")
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xbasimp">xbasimp</link>
+      </member>
+      <member>
+        <link linkend="xend">xend</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>
