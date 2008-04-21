@@ -83,7 +83,7 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 		
 		for (int menuIndex = 0; menuIndex < this.getMenuCount(); menuIndex++) {
 			// Check the name of each menu until one matches the name
-			if (this.getMenu(menuIndex).getText().equals(menuName)) {
+			if (this.getMenu(menuIndex).getText().equals(removeMnemonicFromName(menuName))) {
 				this.getMenu(menuIndex).setEnabled(status);
 				break;
 			}
@@ -102,7 +102,7 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 		
 		for (int menuIndex = 0; menuIndex < this.getMenuCount(); menuIndex++) {
 			// Check the name of each menu until one matches the name
-			if (this.getMenu(menuIndex).getText().equals(parentMenuName)) {
+			if (this.getMenu(menuIndex).getText().equals(removeMnemonicFromName(parentMenuName))) {
 				parentMenu = this.getMenu(menuIndex);
 				break;
 			}
@@ -120,7 +120,7 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 		for (int menuIndex = 0; menuIndex < this.getMenuCount(); menuIndex++) {
 			final int finalMenuIndex = menuIndex;
 			// Check the name of each menu until one matches the name
-			if (this.getMenu(menuIndex).getText().equals(menuName)) {
+			if (this.getMenu(menuIndex).getText().equals(removeMnemonicFromName(menuName))) {
 				try {
 					SwingUtilities.invokeAndWait(new Runnable() {
 						public void run() {
@@ -139,6 +139,41 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 				break;
 			}
 		}
+		
+	}
+	
+	/**
+	 * Remove Mnemonic & from name
+	 * @param menuName the name of the menu
+	 * @return the name without & used to set Mnemonics
+	 */
+	private String removeMnemonicFromName(String menuName) {
+		String label = menuName;
+		
+		// Try to set a mnemonic according to text (character preeceded by a &)
+		for (int charIndex = 0; charIndex < menuName.length(); charIndex++) {
+			if (menuName.charAt(charIndex) == '&') {
+				
+				boolean canBeAMnemonic = true;
+				
+				// Previous char must not be a &
+				if ((charIndex != 0) && (menuName.charAt(charIndex - 1) == '&')) {
+					canBeAMnemonic = false;
+				}
+
+				if (canBeAMnemonic && menuName.charAt(charIndex + 1) != '&') {
+					// A mnemonic
+					// Have to remove the & used to set a Mnemonic
+					String firstPart = menuName.substring(0, Math.max(charIndex - 1, 0)); // Before &
+					String secondPart = menuName.substring(Math.min(charIndex + 1, menuName.length()), menuName.length());
+					label = firstPart + secondPart; 
+					break;
+				}
+
+			}
+		}
+
+		return label.replaceAll("&&", "&");
 		
 	}
 }
