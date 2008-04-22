@@ -32,7 +32,7 @@ c
       include 'stack.h'
 c
       integer job, menusflag
-      integer lrecl,eol,slash,dot,blank,comma
+      integer lrecl,eol,slash,dot,blank,comma,tab
       integer retu(6)
       integer r,quit(4),lnblnk, ncont
       logical isinstring,eof,continued,incomment
@@ -40,7 +40,7 @@ c
       external isinstring,lnblnk, getfastcode
       integer getfastcode
 
-      data eol/99/,dot/51/,blank/40/,comma/52/
+      data eol/99/,dot/51/,blank/40/,comma/52/,tab/-40/
       data retu/27,14,29,30,27,23/
       data slash/48/,lrecl/512/
       data quit/26,30,18,29/
@@ -55,7 +55,7 @@ c
 c     continued is set to true when continuation mark found at the end of a line
       continued=.false.
       ncont=0
- 10   l1=lpt(1)
+      l1=lpt(1)
       lct(8)=lct(8)+1
 c     next line to preserve end-of-line marks (eol)
       if(job.eq.1) then
@@ -103,6 +103,7 @@ c        check if getlin is call in a macro or an exec
          n=n-1
          n=lnblnk(buf(1:n))
       endif
+
       eof=.false.
  12   l0=l
       if(n.le.0) goto 45
@@ -125,6 +126,8 @@ c     loop on read characters
 *     modif bruno : appel a getfastcode au lieu de la boucle
       k = getfastcode(buf(j:j))
       if (k .eq. eol) go to 45
+      if (k.eq.tab) k=blank
+
 
 c     special cases        //    ..
       if(buf(j+1:j+1).ne.buf(j:j)) goto 31
@@ -170,7 +173,7 @@ c     increase the line counter to take the contuation lines into acount
          call error(108)
          return
       endif
- 40   goto 17
+      goto 17
 c
  45   continue
       if(l.eq.l0) then
