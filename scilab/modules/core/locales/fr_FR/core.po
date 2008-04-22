@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2008-01-29 16:53+0100\n"
+"POT-Creation-Date: 2008-02-27 18:16+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: 2008-01-29 16:53+0100\n"
 
@@ -156,6 +156,144 @@ msgid "%s called at line %s of macro %s"
 msgstr ""
 
 #
+# File: src/c/intmacr2tree.c, line: 80
+#, c-format
+msgid "%s: Wrong input argument: Named variable expected.\n"
+msgstr ""
+
+#
+# File: src/c/intmacr2tree.c, line: 91
+#, c-format
+msgid "%s: Wrong type for input argument: Compiled macro expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack2.c, line: 1866
+# File: src/c/stack2.c, line: 2102
+# File: src/c/intmacr2tree.c, line: 98
+# File: src/c/intmacr2tree.c, line: 153
+# File: src/c/intmacr2tree.c, line: 321
+# File: src/c/intmacr2tree.c, line: 326
+# File: src/c/intmacr2tree.c, line: 408
+# File: src/c/intmacr2tree.c, line: 413
+# File: src/c/intmacr2tree.c, line: 544
+# File: src/c/intmacr2tree.c, line: 551
+# File: src/c/intmacr2tree.c, line: 554
+# File: src/c/intmacr2tree.c, line: 674
+# File: src/c/intmacr2tree.c, line: 679
+# File: src/c/intmacr2tree.c, line: 983
+# File: src/c/intmacr2tree.c, line: 988
+# File: src/c/intmacr2tree.c, line: 993
+# File: src/c/intmacr2tree.c, line: 1021
+# File: src/c/intmacr2tree.c, line: 1026
+# File: src/c/intmacr2tree.c, line: 1049
+# File: src/c/intmacr2tree.c, line: 1127
+# File: src/c/intmacr2tree.c, line: 1132
+# File: src/c/intmacr2tree.c, line: 1259
+# File: src/c/intmacr2tree.c, line: 1264
+# File: src/c/intmacr2tree.c, line: 1425
+# File: src/c/intmacr2tree.c, line: 1430
+# File: src/c/intmacr2tree.c, line: 1437
+# File: src/c/intmacr2tree.c, line: 1442
+# File: src/c/intmacr2tree.c, line: 1471
+# File: src/c/intmacr2tree.c, line: 1476
+# File: src/c/intmacr2tree.c, line: 1486
+# File: src/c/intmacr2tree.c, line: 1491
+# File: src/c/intmacr2tree.c, line: 1501
+# File: src/c/intmacr2tree.c, line: 1506
+# File: src/c/intmacr2tree.c, line: 1600
+# File: src/c/intmacr2tree.c, line: 1605
+# File: src/c/intmacr2tree.c, line: 1643
+# File: src/c/intmacr2tree.c, line: 1648
+# File: src/c/intmacr2tree.c, line: 1676
+# File: src/c/intmacr2tree.c, line: 1681
+# File: src/c/intmacr2tree.c, line: 1743
+# File: src/c/stack1.c, line: 2222
+# File: src/c/stack1.c, line: 2304
+# File: src/c/stack1.c, line: 2335
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: src/c/intmacr2tree.c, line: 103
+# File: src/c/intmacr2tree.c, line: 231
+#, c-format
+msgid "%s: Out of code\n"
+msgstr ""
+
+#
+# File: src/c/intmacr2tree.c, line: 179
+# File: src/c/stack1.c, line: 252
+# File: src/c/stack1.c, line: 520
+# File: src/c/stack1.c, line: 709
+# File: src/c/stack1.c, line: 891
+# File: src/c/stack1.c, line: 1377
+# File: src/c/stack1.c, line: 1422
+# File: src/c/stack1.c, line: 1480
+# File: src/c/stack1.c, line: 1572
+# File: src/c/stack1.c, line: 1697
+# File: src/c/stack1.c, line: 1776
+# File: src/c/stack1.c, line: 2087
+# File: src/c/stack1.c, line: 2164
+# File: src/c/stack1.c, line: 2273
+# File: src/c/stack1.c, line: 2555
+# File: src/c/stack1.c, line: 2675
+# File: src/c/stack1.c, line: 3017
+# File: src/c/stack1.c, line: 3042
+#, c-format
+msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
+msgstr ""
+
+#
+# File: src/c/intmacr2tree.c, line: 246
+#, c-format
+msgid "%s: Wrong Top value %d instead of %d\n"
+msgstr ""
+
+#
+# File: src/c/intmacr2tree.c, line: 585
+#, c-format
+msgid "%s: Unknown code %d at index2 %d.\n"
+msgstr ""
+
+#
+# File: src/c/intmacr2tree.c, line: 774
+#, c-format
+msgid "%s: old version of if and while not yet implemented.\n"
+msgstr ""
+
+#
+# File: src/c/intmacr2tree.c, line: 1082
+#, c-format
+msgid "%s: Wrong type value.\n"
+msgstr ""
+
+#
+# File: src/c/intmacr2tree.c, line: 1158
+#, c-format
+msgid "%s: unknown operator %d.\n"
+msgstr ""
+
+#
+# File: src/c/intmacr2tree.c, line: 1336
+#, c-format
+msgid "%s: wrong fromwhat value %s\n"
+msgstr ""
+
+#
+# File: src/c/intmacr2tree.c, line: 1697
+#, c-format
+msgid "%s: Wrong fromwhat value %s\n"
+msgstr ""
+
+#
+# File: src/c/intmacr2tree.c, line: 1981
+#, c-format
+msgid "%s: wrong code %d.\n"
+msgstr ""
+
+#
 # File: src/c/tmpdir.c, line: 53
 # File: src/c/tmpdir.c, line: 74
 # File: src/c/CallScilab.c, line: 42
@@ -166,6 +304,535 @@ msgstr ""
 # File: src/c/tmpdir.c, line: 73
 #, c-format
 msgid "Impossible to create : %s"
+msgstr ""
+
+#
+# File: src/c/run.c, line: 345
+# File: src/c/run.c, line: 353
+msgid "Unexpected opcode, please report"
+msgstr ""
+
+#
+# File: src/c/run.c, line: 498
+msgid "Functions compiled with very old versions are no more handled"
+msgstr ""
+
+#
+# File: src/c/inisci-c.c, line: 110
+# File: src/c/inisci-c.c, line: 112
+#, c-format
+msgid "SCI environment variable not defined.\n"
+msgstr ""
+
+#
+# File: src/c/inisci-c.c, line: 150
+# File: src/c/inisci-c.c, line: 153
+#, c-format
+msgid "SCIHOME not defined.\n"
+msgstr ""
+
+#
+# File: src/c/inisci-c.c, line: 150
+# File: src/c/inisci-c.c, line: 178
+msgid "Warning"
+msgstr ""
+
+#
+# File: src/c/inisci-c.c, line: 178
+# File: src/c/inisci-c.c, line: 180
+#, c-format
+msgid "TMPDIR not defined.\n"
+msgstr ""
+
+#
+# File: src/c/LoadFunctionsTab.c, line: 97
+# File: src/c/loadversion.c, line: 62
+# File: src/c/getmodules.c, line: 151
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr ""
+
+#
+# File: src/c/loadversion.c, line: 118
+#, c-format
+msgid ""
+"Error : Not a valid version file %s (should start with <MODULE_VERSION> and "
+"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+msgstr ""
+
+#
+# File: src/c/loadversion.c, line: 132
+#, c-format
+msgid ""
+"Error : Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+
+#
+# File: src/c/version.c, line: 17
+# File: src/c/version.c, line: 29
+#, c-format
+msgid "Scilab version \"%d.%d.%d.%d\"\n"
+msgstr ""
+
+#
+# File: src/c/version.c, line: 25
+#, c-format
+msgid ""
+"Scilab version \"%d.%d.%d.%d\"\n"
+"%s\n"
+msgstr ""
+
+#
+# File: src/c/version.c, line: 26
+msgid "Scilab Version Info."
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 66
+# File: src/c/stack1.c, line: 407
+# File: src/c/stack1.c, line: 556
+# File: src/c/stack1.c, line: 750
+# File: src/c/stack1.c, line: 1016
+# File: src/c/stack1.c, line: 1085
+# File: src/c/stack1.c, line: 1147
+# File: src/c/stack1.c, line: 2356
+# File: src/c/stack1.c, line: 2413
+# File: src/c/stack1.c, line: 2469
+# File: src/c/stack1.c, line: 2505
+# File: src/c/stack1.c, line: 3130
+#, c-format
+msgid "%s: argument %d should be a list of size at least %d.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 102
+# File: src/c/stack1.c, line: 119
+# File: src/c/stack1.c, line: 786
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 138
+# File: src/c/stack1.c, line: 592
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 170
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
+"expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 157
+# File: src/c/stack1.c, line: 444
+# File: src/c/stack1.c, line: 1202
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack2.c, line: 1927
+# File: src/c/stack2.c, line: 2153
+#, c-format
+msgid "%s: Too many names.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 408
+#, c-format
+msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 454
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 557
+# File: src/c/stack1.c, line: 751
+# File: src/c/stack1.c, line: 1017
+# File: src/c/stack1.c, line: 1086
+# File: src/c/stack1.c, line: 1148
+# File: src/c/stack1.c, line: 2358
+# File: src/c/stack1.c, line: 2415
+# File: src/c/stack1.c, line: 2471
+# File: src/c/stack1.c, line: 2507
+# File: src/c/stack1.c, line: 3132
+#, c-format
+msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 623
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 613
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 817
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 807
+#, c-format
+msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 944
+#, c-format
+msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 956
+#, c-format
+msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 973
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 993
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 1039
+#, c-format
+msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 1051
+#, c-format
+msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 1189
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Matrix of strings "
+"expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 1179
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 1212
+# File: src/c/stack1.c, line: 2378
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 1954
+#, c-format
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 1996
+#, c-format
+msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2037
+#, c-format
+msgid "%s: Wrong type for argument %d : Polygon expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2196
+#, c-format
+msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2397
+#, c-format
+msgid "%s: Wrong type for argument %d: Row vector expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2421
+#, c-format
+msgid "%s: argument %d >(%d) should be a column vector.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2455
+#, c-format
+msgid "%s: Wrong type for argument %d: Column vector expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2537
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2527
+#, c-format
+msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack2.c, line: 1178
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2924
+#, c-format
+msgid "%s: entry point %s not found in predefined tables or link table.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2932
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d: Function or string (external function) "
+"expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2946
+#, c-format
+msgid "%s: Incompatible sizes.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2967
+#, c-format
+msgid "%s: Optional argument %d not given and default value %s not found.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 2993
+#, c-format
+msgid "%f: No more space to store string arguments.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 3178
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Matrix of handle "
+"expected.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 3168
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
+msgstr ""
+
+#
+# File: src/c/scicurdir.c, line: 34
+#, c-format
+msgid "Can't go to directory %s .\n"
+msgstr ""
+
+#
+# File: src/c/scicurdir.c, line: 49
+msgid "Can't get current directory.\n"
+msgstr ""
+
+#
+# File: src/c/stack3.c, line: 73
+# File: src/c/stack3.c, line: 122
+# File: src/c/stack3.c, line: 261
+# File: src/c/stack3.c, line: 318
+# File: src/c/stack3.c, line: 417
+# File: src/c/stack3.c, line: 469
+# File: src/c/stack3.c, line: 515
+# File: src/c/stack3.c, line: 545
+# File: src/c/stack3.c, line: 582
+# File: src/c/stack3.c, line: 652
+# File: src/c/stack3.c, line: 698
+#, c-format
+msgid "Undefined variable %s.\n"
+msgstr ""
+
+#
+# File: src/c/stack3.c, line: 271
+#, c-format
+msgid "%s: argument must be a string.\n"
+msgstr ""
+
+#
+# File: src/c/getmodules.c, line: 72
+msgid "The SCI environment variable is not set.\n"
+msgstr ""
+
+#
+# File: src/c/getmodules.c, line: 89
+#, c-format
+msgid "Cannot load the module declaration file : %s.\n"
+msgstr ""
+
+#
+# File: src/c/getmodules.c, line: 72
+# File: src/c/getmodules.c, line: 107
+msgid "The SCI environment variable is not set\n"
+msgstr ""
+
+#
+# File: src/c/getmodules.c, line: 202
+#, c-format
+msgid "%s module not found.\n"
+msgstr ""
+
+#
+# File: src/c/getmodules.c, line: 213
+#, c-format
+msgid ""
+"Error : Not a valid module file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+
+#
+# File: src/c/returnPropertyList.c, line: 22
+msgid "Error returning tlist, memory full.\n"
+msgstr ""
+
+#
+# File: src/c/returnPropertyList.c, line: 44
+msgid "tlist not completely filled.\n"
+msgstr ""
+
+#
+# File: src/c/returnPropertyList.c, line: 59
+# File: src/c/returnPropertyList.c, line: 76
+# File: src/c/returnPropertyList.c, line: 92
+# File: src/c/returnPropertyList.c, line: 109
+msgid "list full.\n"
+msgstr ""
+
+#
+# File: src/c/prompt.c, line: 26
+msgid ""
+"Type 'resume' or 'abort' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+
+#
+# File: src/c/banier.c, line: 28
+msgid "                 Copyright (c) 1989-2008                   \n"
+msgstr ""
+
+#
+# File: src/c/banier.c, line: 29
+msgid "              Consortium Scilab (INRIA, ENPC)              \n"
+msgstr ""
+
+#
+# File: src/c/banier.c, line: 33
+msgid "!!! WARNING !!!\n"
+msgstr "!!! ATTENTION !!!\n"
+
+#
+# File: src/c/banier.c, line: 34
+msgid ""
+"This software is being provided \"as is\", without any express or\n"
+"implied warranty.\n"
+msgstr ""
+"Ce logiciel est fourni \"en l'état\", sans garantie d'aucune sorte, "
+"expresse\n"
+"ou implicite.\n"
+
+#
+# File: src/c/banier.c, line: 35
+msgid ""
+"This is a development and not at all a final or stable version of Scilab "
+"5.0\n"
+"that will be released in the future. A lot of features are missing and "
+"buggy.\n"
+msgstr ""
+"C'est une version de développment et en aucun cas une version finale ou "
+"stable de Scilab 5.0\n"
+"qui sera distribuée dans le futur. Certaines fonctionnalités sont manquantes "
+"ou bugguées.\n"
+
+#
+# File: src/c/banier.c, line: 36
+msgid ""
+"In no event will the authors be held liable for any damages arising from,\n"
+"out of or in connection with the software or the use or other dealings\n"
+"in the software.\n"
+msgstr ""
+"Les auteurs ne sauraient en aucun cas être tenus responsable de tout "
+"dommage,\n"
+"indirect ou consécutif, ou de tout autre dommage dûs ou liés à "
+"l'utilisation\n"
+"de ce logiciel.\n"
+
+#
+# File: src/c/banier.c, line: 45
+msgid ""
+"Warning: the operational team of the Scilab Consortium\n"
+"doesn't provide and doesn't support this version of Scilab built with\n"
+msgstr ""
+
+#
+# File: src/c/InitializeCore.c, line: 28
+msgid "Fatal Error : Can't create table for scilab functions.\n"
+msgstr ""
+
+#
+# File: src/c/scimem.c, line: 34
+# File: src/c/scimem.c, line: 61
+msgid "No space to allocate Scilab stack.\n"
+msgstr ""
+
+#
+# File: src/c/callinterf.c, line: 133
+msgid "SIGSTP: aborting current computation\n"
+msgstr ""
+
+#
+# File: src/c/callinterf.c, line: 155
+msgid "Trying to stop scilab in the middle of an interface.\n"
+msgstr ""
+
+#
+# File: src/c/callinterf.c, line: 156
+msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr ""
 
 #
@@ -276,12 +943,6 @@ msgid "%s: (%s) bad third argument!\n"
 msgstr ""
 
 #
-# File: src/c/stack2.c, line: 1178
-#, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr ""
-
-#
 # File: src/c/stack2.c, line: 1262
 #, c-format
 msgid "%s: Wrong type for argument: Complex expected.\n"
@@ -291,12 +952,6 @@ msgstr ""
 # File: src/c/stack2.c, line: 1460
 #, c-format
 msgid "%s: bad call to %s!\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 1954
-#, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
 msgstr ""
 
 #
@@ -326,67 +981,12 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/stack2.c, line: 1866
-# File: src/c/stack2.c, line: 2102
-# File: src/c/intmacr2tree.c, line: 98
-# File: src/c/intmacr2tree.c, line: 153
-# File: src/c/intmacr2tree.c, line: 321
-# File: src/c/intmacr2tree.c, line: 326
-# File: src/c/intmacr2tree.c, line: 408
-# File: src/c/intmacr2tree.c, line: 413
-# File: src/c/intmacr2tree.c, line: 544
-# File: src/c/intmacr2tree.c, line: 551
-# File: src/c/intmacr2tree.c, line: 554
-# File: src/c/intmacr2tree.c, line: 674
-# File: src/c/intmacr2tree.c, line: 679
-# File: src/c/intmacr2tree.c, line: 983
-# File: src/c/intmacr2tree.c, line: 988
-# File: src/c/intmacr2tree.c, line: 993
-# File: src/c/intmacr2tree.c, line: 1021
-# File: src/c/intmacr2tree.c, line: 1026
-# File: src/c/intmacr2tree.c, line: 1049
-# File: src/c/intmacr2tree.c, line: 1127
-# File: src/c/intmacr2tree.c, line: 1132
-# File: src/c/intmacr2tree.c, line: 1259
-# File: src/c/intmacr2tree.c, line: 1264
-# File: src/c/intmacr2tree.c, line: 1425
-# File: src/c/intmacr2tree.c, line: 1430
-# File: src/c/intmacr2tree.c, line: 1437
-# File: src/c/intmacr2tree.c, line: 1442
-# File: src/c/intmacr2tree.c, line: 1471
-# File: src/c/intmacr2tree.c, line: 1476
-# File: src/c/intmacr2tree.c, line: 1486
-# File: src/c/intmacr2tree.c, line: 1491
-# File: src/c/intmacr2tree.c, line: 1501
-# File: src/c/intmacr2tree.c, line: 1506
-# File: src/c/intmacr2tree.c, line: 1600
-# File: src/c/intmacr2tree.c, line: 1605
-# File: src/c/intmacr2tree.c, line: 1643
-# File: src/c/intmacr2tree.c, line: 1648
-# File: src/c/intmacr2tree.c, line: 1676
-# File: src/c/intmacr2tree.c, line: 1681
-# File: src/c/intmacr2tree.c, line: 1743
-# File: src/c/stack1.c, line: 2222
-# File: src/c/stack1.c, line: 2304
-# File: src/c/stack1.c, line: 2335
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr ""
-
-#
 # File: src/c/stack2.c, line: 1923
 # File: src/c/stack2.c, line: 1942
 # File: src/c/stack2.c, line: 2149
 # File: src/c/stack2.c, line: 2168
 #, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
-msgstr ""
-
-#
-# File: src/c/stack2.c, line: 1927
-# File: src/c/stack2.c, line: 2153
-#, c-format
-msgid "%s: Too many names.\n"
 msgstr ""
 
 #
@@ -586,635 +1186,6 @@ msgid "%s: Variable %s not found.\n"
 msgstr ""
 
 #
-# File: src/c/run.c, line: 345
-# File: src/c/run.c, line: 353
-msgid "Unexpected opcode, please report"
-msgstr ""
-
-#
-# File: src/c/run.c, line: 498
-msgid "Functions compiled with very old versions are no more handled"
-msgstr ""
-
-#
-# File: src/c/callinterf.c, line: 133
-msgid "SIGSTP: aborting current computation\n"
-msgstr ""
-
-#
-# File: src/c/callinterf.c, line: 155
-msgid "Trying to stop scilab in the middle of an interface.\n"
-msgstr ""
-
-#
-# File: src/c/callinterf.c, line: 156
-msgid "Do you really want to abort computation (y or n ?) \n"
-msgstr ""
-
-#
-# File: src/c/LoadFunctionsTab.c, line: 97
-# File: src/c/loadversion.c, line: 62
-# File: src/c/getmodules.c, line: 151
-#, c-format
-msgid "Error: could not parse file %s\n"
-msgstr ""
-
-#
-# File: src/c/LoadFunctionsTab.c, line: 153
-#, c-format
-msgid ""
-"Error : Not a valid gateway file %s (should start with <GATEWAY> and contain "
-"<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
-msgstr ""
-
-#
-# File: src/c/LoadFunctionsTab.c, line: 167
-#, c-format
-msgid ""
-"Error : Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-
-#
-# File: src/c/inisci-c.c, line: 110
-# File: src/c/inisci-c.c, line: 112
-#, c-format
-msgid "SCI environment variable not defined.\n"
-msgstr ""
-
-#
-# File: src/c/inisci-c.c, line: 150
-# File: src/c/inisci-c.c, line: 153
-#, c-format
-msgid "SCIHOME not defined.\n"
-msgstr ""
-
-#
-# File: src/c/inisci-c.c, line: 150
-# File: src/c/inisci-c.c, line: 178
-msgid "Warning"
-msgstr ""
-
-#
-# File: src/c/inisci-c.c, line: 178
-# File: src/c/inisci-c.c, line: 180
-#, c-format
-msgid "TMPDIR not defined.\n"
-msgstr ""
-
-#
-# File: src/c/stack3.c, line: 73
-# File: src/c/stack3.c, line: 122
-# File: src/c/stack3.c, line: 261
-# File: src/c/stack3.c, line: 318
-# File: src/c/stack3.c, line: 417
-# File: src/c/stack3.c, line: 469
-# File: src/c/stack3.c, line: 515
-# File: src/c/stack3.c, line: 545
-# File: src/c/stack3.c, line: 582
-# File: src/c/stack3.c, line: 652
-# File: src/c/stack3.c, line: 698
-#, c-format
-msgid "Undefined variable %s.\n"
-msgstr ""
-
-#
-# File: src/c/stack3.c, line: 271
-#, c-format
-msgid "%s: argument must be a string.\n"
-msgstr ""
-
-#
-# File: src/c/returnPropertyList.c, line: 22
-msgid "Error returning tlist, memory full.\n"
-msgstr ""
-
-#
-# File: src/c/returnPropertyList.c, line: 44
-msgid "tlist not completely filled.\n"
-msgstr ""
-
-#
-# File: src/c/returnPropertyList.c, line: 59
-# File: src/c/returnPropertyList.c, line: 76
-# File: src/c/returnPropertyList.c, line: 92
-# File: src/c/returnPropertyList.c, line: 109
-msgid "list full.\n"
-msgstr ""
-
-#
-# File: src/c/prompt.c, line: 26
-msgid ""
-"Type 'resume' or 'abort' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 80
-#, c-format
-msgid "%s: Wrong input argument: Named variable expected.\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 91
-#, c-format
-msgid "%s: Wrong type for input argument: Compiled macro expected.\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 103
-# File: src/c/intmacr2tree.c, line: 231
-#, c-format
-msgid "%s: Out of code\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 179
-# File: src/c/stack1.c, line: 252
-# File: src/c/stack1.c, line: 520
-# File: src/c/stack1.c, line: 709
-# File: src/c/stack1.c, line: 891
-# File: src/c/stack1.c, line: 1377
-# File: src/c/stack1.c, line: 1422
-# File: src/c/stack1.c, line: 1480
-# File: src/c/stack1.c, line: 1572
-# File: src/c/stack1.c, line: 1697
-# File: src/c/stack1.c, line: 1776
-# File: src/c/stack1.c, line: 2087
-# File: src/c/stack1.c, line: 2164
-# File: src/c/stack1.c, line: 2273
-# File: src/c/stack1.c, line: 2555
-# File: src/c/stack1.c, line: 2675
-# File: src/c/stack1.c, line: 3017
-# File: src/c/stack1.c, line: 3042
-#, c-format
-msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 246
-#, c-format
-msgid "%s: Wrong Top value %d instead of %d\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 585
-#, c-format
-msgid "%s: Unknown code %d at index2 %d.\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 774
-#, c-format
-msgid "%s: old version of if and while not yet implemented.\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 1082
-#, c-format
-msgid "%s: Wrong type value.\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 1158
-#, c-format
-msgid "%s: unknown operator %d.\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 1336
-#, c-format
-msgid "%s: wrong fromwhat value %s\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 1697
-#, c-format
-msgid "%s: Wrong fromwhat value %s\n"
-msgstr ""
-
-#
-# File: src/c/intmacr2tree.c, line: 1981
-#, c-format
-msgid "%s: wrong code %d.\n"
-msgstr ""
-
-#
-# File: src/c/callDynamicGateway.c, line: 94
-#, c-format
-msgid "Impossible to load %s library: %s.\n"
-msgstr ""
-
-#
-# File: src/c/callDynamicGateway.c, line: 97
-#, c-format
-msgid "Impossible to load %s function in %s library: %s.\n"
-msgstr ""
-
-#
-# File: src/c/callDynamicGateway.c, line: 100
-#, c-format
-msgid "Impossible to call %s in %s library: %s.\n"
-msgstr ""
-
-#
-# File: src/c/loadversion.c, line: 118
-#, c-format
-msgid ""
-"Error : Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
-msgstr ""
-
-#
-# File: src/c/loadversion.c, line: 132
-#, c-format
-msgid ""
-"Error : Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-
-#
-# File: src/c/version.c, line: 17
-# File: src/c/version.c, line: 29
-#, c-format
-msgid "Scilab version \"%d.%d.%d.%d\"\n"
-msgstr ""
-
-#
-# File: src/c/version.c, line: 25
-#, c-format
-msgid ""
-"Scilab version \"%d.%d.%d.%d\"\n"
-"%s\n"
-msgstr ""
-
-#
-# File: src/c/version.c, line: 26
-msgid "Scilab Version Info."
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 66
-# File: src/c/stack1.c, line: 407
-# File: src/c/stack1.c, line: 556
-# File: src/c/stack1.c, line: 750
-# File: src/c/stack1.c, line: 1016
-# File: src/c/stack1.c, line: 1085
-# File: src/c/stack1.c, line: 1147
-# File: src/c/stack1.c, line: 2356
-# File: src/c/stack1.c, line: 2413
-# File: src/c/stack1.c, line: 2469
-# File: src/c/stack1.c, line: 2505
-# File: src/c/stack1.c, line: 3130
-#, c-format
-msgid "%s: argument %d should be a list of size at least %d.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 102
-# File: src/c/stack1.c, line: 119
-# File: src/c/stack1.c, line: 786
-#, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 138
-# File: src/c/stack1.c, line: 592
-#, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 170
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
-"expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 157
-# File: src/c/stack1.c, line: 444
-# File: src/c/stack1.c, line: 1202
-#, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 408
-#, c-format
-msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 454
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 557
-# File: src/c/stack1.c, line: 751
-# File: src/c/stack1.c, line: 1017
-# File: src/c/stack1.c, line: 1086
-# File: src/c/stack1.c, line: 1148
-# File: src/c/stack1.c, line: 2358
-# File: src/c/stack1.c, line: 2415
-# File: src/c/stack1.c, line: 2471
-# File: src/c/stack1.c, line: 2507
-# File: src/c/stack1.c, line: 3132
-#, c-format
-msgid "%s: Wrong size for argument %d: At least %d expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 623
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 613
-#, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 817
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 807
-#, c-format
-msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 944
-#, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 956
-#, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 973
-#, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 993
-#, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 1039
-#, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 1051
-#, c-format
-msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 1189
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of strings "
-"expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 1179
-#, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 1212
-# File: src/c/stack1.c, line: 2378
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 1996
-#, c-format
-msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2037
-#, c-format
-msgid "%s: Wrong type for argument %d : Polygon expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2196
-#, c-format
-msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2397
-#, c-format
-msgid "%s: Wrong type for argument %d: Row vector expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2421
-#, c-format
-msgid "%s: argument %d >(%d) should be a column vector.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2455
-#, c-format
-msgid "%s: Wrong type for argument %d: Column vector expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2537
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2527
-#, c-format
-msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2924
-#, c-format
-msgid "%s: entry point %s not found in predefined tables or link table.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2932
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
-"expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2946
-#, c-format
-msgid "%s: Incompatible sizes.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2967
-#, c-format
-msgid "%s: Optional argument %d not given and default value %s not found.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2993
-#, c-format
-msgid "%f: No more space to store string arguments.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 3178
-#, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of handle "
-"expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 3168
-#, c-format
-msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
-msgstr ""
-
-#
-# File: src/c/scicurdir.c, line: 34
-#, c-format
-msgid "Can't go to directory %s .\n"
-msgstr ""
-
-#
-# File: src/c/scicurdir.c, line: 49
-msgid "Can't get current directory.\n"
-msgstr ""
-
-#
-# File: src/c/getmodules.c, line: 72
-msgid "The SCI environment variable is not set.\n"
-msgstr ""
-
-#
-# File: src/c/getmodules.c, line: 89
-#, c-format
-msgid "Cannot load the module declaration file : %s.\n"
-msgstr ""
-
-#
-# File: src/c/getmodules.c, line: 72
-# File: src/c/getmodules.c, line: 107
-msgid "The SCI environment variable is not set\n"
-msgstr ""
-
-#
-# File: src/c/getmodules.c, line: 202
-#, c-format
-msgid "%s module not found.\n"
-msgstr ""
-
-#
-# File: src/c/getmodules.c, line: 213
-#, c-format
-msgid ""
-"Error : Not a valid module file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-
-#
-# File: src/c/banier.c, line: 28
-msgid "                 Copyright (c) 1989-2008                   \n"
-msgstr ""
-
-#
-# File: src/c/banier.c, line: 29
-msgid "              Consortium Scilab (INRIA, ENPC)              \n"
-msgstr ""
-
-#
-# File: src/c/banier.c, line: 33
-msgid "!!! WARNING !!!\n"
-msgstr ""
-
-#
-# File: src/c/banier.c, line: 34
-msgid ""
-"This software is being provided \"as is\", without any express or\n"
-"implied warranty.\n"
-msgstr ""
-
-#
-# File: src/c/banier.c, line: 35
-msgid ""
-"This is a development and not at all a final or stable version of Scilab "
-"5.0\n"
-"that will be released in the future. A lot of features are missing and "
-"buggy.\n"
-msgstr ""
-
-#
-# File: src/c/banier.c, line: 36
-msgid ""
-"In no event will the authors be held liable for any damages arising from,\n"
-"out of or in connection with the software or the use or other dealings\n"
-"in the software.\n"
-msgstr ""
-
-#
-# File: src/c/banier.c, line: 40
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support the port of Scilab to MacOS.\n"
-msgstr ""
-
-#
-# File: src/c/banier.c, line: 45
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support this version of Scilab built with\n"
-msgstr ""
-
-#
-# File: src/c/InitializeCore.c, line: 28
-msgid "Fatal Error : Can't create table for scilab functions.\n"
-msgstr ""
-
-#
-# File: src/c/scimem.c, line: 34
-# File: src/c/scimem.c, line: 61
-msgid "No space to allocate Scilab stack.\n"
-msgstr ""
-
-#
 # File: src/c/getstaticDebugInfo_Windows.c, line: 40
 #, c-format
 msgid "Version : %s"
@@ -1230,6 +1201,13 @@ msgstr ""
 # File: src/c/getstaticDebugInfo_Windows.c, line: 54
 #, c-format
 msgid "Compilation time : %s"
+msgstr ""
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 62
+# File: src/c/getstaticDebugInfo_Windows.c, line: 64
+#, c-format
+msgid "Compiler Architecture : %s"
 msgstr ""
 
 #
@@ -1335,6 +1313,12 @@ msgid "Operating System : "
 msgstr ""
 
 #
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 190
+#, c-format
+msgid "Number of processors : %d"
+msgstr ""
+
+#
 # File: src/c/getdynamicDebugInfo_Windows.c, line: 188
 #, c-format
 msgid "Video card : %s"
@@ -1348,12 +1332,51 @@ msgid "%s : %d x %d %d bits"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_stacksize.c, line: 90
-# File: sci_gateway/c/sci_gstacksize.c, line: 93
+# File: src/c/readGateway.c, line: 103
+#, c-format
+msgid "Error: Memory allocation.\n"
+msgstr ""
+
+#
+# File: src/c/LoadFunctionsTab.c, line: 153
 #, c-format
 msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
+"Error : Not a valid gateway file %s (should start with <GATEWAY> and contain "
+"<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
+msgstr ""
+
+#
+# File: src/c/LoadFunctionsTab.c, line: 167
+#, c-format
+msgid ""
+"Error : Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+
+#
+# File: src/c/callDynamicGateway.c, line: 94
+#, c-format
+msgid "Impossible to load %s library: %s\n"
+msgstr ""
+
+#
+# File: src/c/callDynamicGateway.c, line: 97
+#, c-format
+msgid "Impossible to load %s function in %s library: %s\n"
+msgstr ""
+
+#
+# File: src/c/callDynamicGateway.c, line: 100
+#, c-format
+msgid "Impossible to call %s in %s library: %s\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 101
+#, c-format
+msgid ""
+"%s: Cannot allocate more memory.\n"
+"Try stacksize('max').\n"
 msgstr ""
 
 #
@@ -1395,19 +1418,6 @@ msgstr ""
 # File: sci_gateway/c/sci_getmd5.c, line: 61
 #, c-format
 msgid "%s: Wrong type of first input argument: String expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_getmd5.c, line: 99
-#, c-format
-msgid "%s: Wrong type for second input argument: String expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_getmd5.c, line: 104
-# File: sci_gateway/c/sci_getversion.c, line: 324
-#, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
 
 #
@@ -1467,6 +1477,12 @@ msgid "Your global variables are:"
 msgstr ""
 
 #
+# File: sci_gateway/c/sci_newfun.c, line: 78
+#, c-format
+msgid "%s: Invalid \"nameptr\" value.\n"
+msgstr ""
+
+#
 # File: sci_gateway/c/sci_newfun.c, line: 51
 #, c-format
 msgid "%s: function-name is incorrect.\n"
@@ -1505,6 +1521,15 @@ msgid "%s: Wrong type for first input argument: String expected.\n"
 msgstr ""
 
 #
+# File: sci_gateway/c/sci_stacksize.c, line: 90
+# File: sci_gateway/c/sci_gstacksize.c, line: 93
+#, c-format
+msgid ""
+"%s: Cannot alloc more memory.\n"
+"Try gstacksize('max').\n"
+msgstr ""
+
+#
 # File: sci_gateway/c/sci_gstacksize.c, line: 115
 # File: sci_gateway/c/sci_gstacksize.c, line: 202
 #, c-format
@@ -1516,6 +1541,19 @@ msgstr ""
 # File: sci_gateway/c/sci_gstacksize.c, line: 209
 #, c-format
 msgid "%s: Wrong type for first argument: Scalar, '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_getmd5.c, line: 99
+#, c-format
+msgid "%s: Wrong type for second input argument: String expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_getmd5.c, line: 104
+# File: sci_gateway/c/sci_getversion.c, line: 324
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
 
 #
@@ -1571,6 +1609,18 @@ msgid "%s: Wrong file VERSION in %s.\n"
 msgstr ""
 
 #
+# File: sci_gateway/c/sci_readgateway.c, line: 115
+#, c-format
+msgid "%s : Impossible to read %s gateway.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_readgateway.c, line: 120
+#, c-format
+msgid "%s: Invalid module name : %s.\n"
+msgstr ""
+
+#
 # File: includes/stack-c.h, line: 318
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -1579,39 +1629,39 @@ msgstr ""
 #
 # File: etc/scilab.start, line: 35
 msgid "Startup execution:"
-msgstr ""
+msgstr "Exécution du fichier de démarrage :"
 
 #
 # File: etc/scilab.start, line: 42
 msgid "  loading initial environment"
+msgstr "  Chargement de l'environnement initial"
+
+#
+# File: etc/scilab.start, line: 149
+msgid "&File"
+msgstr ""
+
+#
+# File: etc/scilab.start, line: 150
+msgid "&Edit"
 msgstr ""
 
 #
 # File: etc/scilab.start, line: 151
-msgid "File"
+msgid "&Preferences"
 msgstr ""
 
 #
 # File: etc/scilab.start, line: 152
-msgid "Edit"
+msgid "&Control"
 msgstr ""
 
 #
 # File: etc/scilab.start, line: 153
-msgid "Preferences"
+msgid "&Applications"
 msgstr ""
 
 #
 # File: etc/scilab.start, line: 154
-msgid "Control"
-msgstr ""
-
-#
-# File: etc/scilab.start, line: 155
-msgid "Applications"
-msgstr ""
-
-#
-# File: etc/scilab.start, line: 156
-msgid "?"
+msgid "&?"
 msgstr ""

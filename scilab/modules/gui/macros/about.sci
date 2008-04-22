@@ -13,11 +13,11 @@ function about(h)
 
 [a, b] = getversion();
 
-x_message(msprintf(gettext("Scilab 5 alpha and future versions are released under the terms of the CeCILL license.\n" +..
-    "Some Scilab modules are released under the GPLv2 license.\n\n" +..
-    "Authors:\nScilab Consortium / INRIA / ENPC / Contributors\n\n" +..
-    "Version %s (%s)\n\n" +..
-    "http://www.scilab.org/"), a, b($-1)));
+x_message(msprintf(gettext("Scilab 5 alpha and future versions are released under the terms of the CeCILL license.\n") +..
+    gettext("Some Scilab modules are released under the GPLv2 license.\n\n") +..
+    gettext("Authors:\nScilab Consortium / INRIA / ENPC / Contributors\n\n") +..
+    gettext("Version %s (%s)\n\n") +..
+    gettext("http://www.scilab.org/"), a, b($-1)));
 
 endfunction
 
