@@ -647,7 +647,9 @@ C
             w(i)=b(mi+l-n)
          end if
 110   continue
-      if((iopt.eq.1 .and. mr.lt.m) .or. iopt.eq.0) then
+c     next line changed to fix bug 2572
+c     if ((iopt.eq.1 .and. mr.lt.m) .or. iopt.eq.0) then
+      if (m.gt.0.and.((iopt.eq.1 .and. mr.lt.m) .or. iopt.eq.0)) then
          ind=1
          call anrs01(r,ir,m,w,w,ind,io)
          call dmmul(q,iq,w,m,x,n,n,m,1)

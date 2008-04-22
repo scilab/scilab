@@ -1,0 +1,18 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 2572 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2572
+//
+// <-- Short Description -->
+//   quapro make scilab stop if C and b are zero
+Q=[1 0.5;0.5 1];p=[1;2];
+C=zeros(1,2);b=0;
+s1=quapro(Q,p,C,b);
+s2=quapro(Q,p,[],[]);
+if norm(s1-s2)>1d-12 then bugmes();quit;end
