@@ -478,6 +478,9 @@ macros/Sinks \
 macros/Sources \
 macros/Threshold
 
+TESTS_DIREXT= tests/unit_tests/Linear
+
+
 else
 
 libsciscicos_blocks_la_SOURCES =
