@@ -52,24 +52,17 @@
   <refsection>
     <title>Description</title>
     <para><literal>xbasimp</literal> sends the recorded graphics of the window
-    <literal>win_num</literal> into the Postscript file <literal>filen. </literal>Note
-    that the generated Postscript file cannot be direcly printed since it
-    requires a header file. The Scilab command <literal>BEpsf</literal>,
-    <literal>Blpr</literal> or others can be used to add a header file. The function
-    <literal>xs2eps</literal> can be used to directly produce an encapsulated
-    Postscript file with an header. If a printer is specified, the Postscript
-    file is printed with the command <literal>Blpr</literal>. This function works
-    only if the selected driver is <literal>"Rec"</literal>.</para>
+    <literal>win_num</literal> into the Postscript file <literal>filen</literal>. If a printer is specified,
+    the graphic windows content is also printed.</para>
     <para>If <literal>win_num</literal> is a vector, several files are generated, one
-    for each selected window (with names <literal>filenxx</literal>), and the files
-    are printed on a unique page with the command <literal>Blpr</literal>.</para>
+    for each selected window (with names <literal>filenxx</literal>).</para>
     <para>The window number is appended to <literal>filen</literal>.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="printing">printing</link>
+        <link linkend="printfigure">printfigure</link>
       </member>
       <member>
         <link linkend="xs2fig">xs2fig</link>
