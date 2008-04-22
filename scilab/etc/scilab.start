@@ -146,12 +146,12 @@ clear startup ierr
 
 // Menu can now be enabled ===========================================
 if ( getscilabmode() == 'STD') then
-        setmenu(gettext("File"));
-        setmenu(gettext("Edit"));
-        setmenu(gettext("Preferences"));
-        setmenu(gettext("Control"));
-        setmenu(gettext("Applications"));
-        setmenu(gettext("?"));
+        setmenu(gettext("&File"));
+        setmenu(gettext("&Edit"));
+        setmenu(gettext("&Preferences"));
+        setmenu(gettext("&Control"));
+        setmenu(gettext("&Applications"));
+        setmenu(gettext("&?"));
 end
 // =====================================================================
 
