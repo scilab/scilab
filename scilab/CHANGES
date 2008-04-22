@@ -149,7 +149,7 @@ Functions:
 	+ completion            - returns words that start with the text you pass as parameter.
 
  - Rewrite in native code:
-  + warning 
+  + warning
 
 
 Time and date functions:
@@ -202,6 +202,15 @@ Online Help management:
 	+ del_help_chapter
 	+ add_module_help_chapter
 	+ del_module_help_chapter
+	+ xmltojar
+	+ xmltopdf
+	+ xmltops
+	+ xmltochm
+ - xmltohtml function is now deprecated
+ - For more information, have a look to :
+    + http://wiki.scilab.org/howto/scilab_documentation_kit
+    + SCI/modules/helptools/doc directory
+
 
 Metanet : graph and network toolbox
 ===================================
@@ -234,6 +243,7 @@ Windows_tools:
 	+ getsystemmetrics    - retrieves the specified system metric or system configuration setting.
 	+ createGUID          - creates a Globally Unique IDentifier (GUID)
 
+
 History manager:
 ================
  - New functions:
@@ -252,6 +262,7 @@ History manager:
 	+ savehistory
 	+ gethistory
 	+ resethistory
+
 
 Consoles:
 =========
@@ -286,7 +297,7 @@ New Scilab Functions:
 =====================
  - Function rewrited from Fortran to C for better maintenance
 
- 
+
 Scilab modes:
 =============
  - Scilab is now available in four modes:
@@ -315,7 +326,7 @@ GNU/Linux - Unix:
 	+ Debug
 	+ Profiling (valgrind)
 
-	
+
 Windows:	
 ========
  - Compilation process :
@@ -358,6 +369,10 @@ Tests:
 	+ Unitary
 	+ Non regression
 	+ Benchmarks
+ - New functions:
+    + test_run
+    + unitary_test_run
+    + nonreg_test_run
 
 
 Internal API:
