@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-04-22 10:12+0100\n"
+"Revision-Date: 2008-04-22 16:51+0100\n"
 
 # File: macros/x_choices.sci, line: 29
 #, c-format
@@ -979,8 +979,8 @@ msgid "%s: Wrong type for third input argument: Single value expected.\n"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 1
-# File: scilab_fake_localization_file.c, line: 31
 # File: scilab_fake_localization_file.c, line: 35
+# File: scilab_fake_localization_file.c, line: 39
 msgid "&File"
 msgstr ""
 #
@@ -997,7 +997,7 @@ msgid "&Save..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 5
-msgid "&Export to..."
+msgid "&Bitmap export"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 6
@@ -1021,287 +1021,303 @@ msgid "&PPM"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 11
-msgid "&Copy to clipboard"
+msgid "&Vectorial export"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 12
-# File: scilab_fake_localization_file.c, line: 42
-msgid "P &age setup..."
+msgid "&EPS"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 13
-# File: scilab_fake_localization_file.c, line: 43
-msgid "&Print..."
+msgid "&PDF"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 14
-msgid "C &lose"
+msgid "&SVG"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 15
-msgid "&Tools"
+msgid "&Copy to clipboard"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 16
-# File: scilab_fake_localization_file.c, line: 56
-msgid "Show/Hide  &Toolbar"
+# File: scilab_fake_localization_file.c, line: 46
+msgid "P &age setup..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 17
-msgid "&Zoom"
+# File: scilab_fake_localization_file.c, line: 47
+msgid "&Print..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 18
-msgid "&UnZoom"
+msgid "C &lose"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 19
-msgid "2D/3D  &Rotation"
+msgid "&Tools"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 20
-# File: scilab_fake_localization_file.c, line: 45
-msgid "&Edit"
+# File: scilab_fake_localization_file.c, line: 60
+msgid "Show/Hide  &Toolbar"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 21
-msgid "&Select as current figure"
+msgid "&Zoom"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 22
-msgid "&Redraw figure"
+msgid "&UnZoom"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 23
-msgid "&Clear figure"
+msgid "2D/3D  &Rotation"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 24
-msgid "&Figure properties"
+# File: scilab_fake_localization_file.c, line: 49
+msgid "&Edit"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 25
-msgid "&Axes properties"
+msgid "&Select as current figure"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 26
-msgid "&Start entity picker"
+msgid "&Redraw figure"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 27
-msgid "S &top entity picker"
+msgid "&Clear figure"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 28
-# File: scilab_fake_localization_file.c, line: 33
-# File: scilab_fake_localization_file.c, line: 69
-msgid "&?"
+msgid "&Figure properties"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 29
-msgid "&Scilab Help"
+msgid "&Axes properties"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 30
-# File: scilab_fake_localization_file.c, line: 34
-# File: scilab_fake_localization_file.c, line: 77
-msgid "&About Scilab..."
+msgid "&Start entity picker"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 31
+msgid "S &top entity picker"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 32
-msgid "&Close"
+# File: scilab_fake_localization_file.c, line: 37
+# File: scilab_fake_localization_file.c, line: 73
+msgid "&?"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 33
+msgid "&Scilab Help"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 34
+# File: scilab_fake_localization_file.c, line: 38
+# File: scilab_fake_localization_file.c, line: 81
+msgid "&About Scilab..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 36
-msgid "&Execute..."
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 37
-msgid "&Open a file..."
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 38
-msgid "&Load environment..."
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 39
-msgid "&Save environment..."
+msgid "&Close"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 40
-msgid "&Change current directory..."
+msgid "&Execute..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 41
-msgid "&Display current directory"
+msgid "&Open a file..."
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 42
+msgid "&Load environment..."
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 43
+msgid "&Save environment..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 44
-msgid "&Quit"
+msgid "&Change current directory..."
 msgstr ""
 #
-# File: scilab_fake_localization_file.c, line: 46
-msgid "C &ut"
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 47
-msgid "&Copy"
+# File: scilab_fake_localization_file.c, line: 45
+msgid "&Display current directory"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 48
-msgid "&Paste"
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 49
-msgid "&Empty clipboard"
+msgid "&Quit"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 50
-msgid "&Select all"
+msgid "C &ut"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 51
-msgid "&Preferences"
+msgid "&Copy"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 52
-msgid "&Colors"
+msgid "&Paste"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 53
-msgid "Console  &Background..."
+msgid "&Empty clipboard"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 54
-msgid "Console  &Font..."
+msgid "&Select all"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 55
-msgid "&Font..."
+msgid "&Preferences"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 56
+msgid "&Colors"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 57
-msgid "Clear  &History"
+msgid "Console  &Background..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 58
-msgid "Clear C &onsole"
+msgid "Console  &Font..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 59
-msgid "&Control"
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 60
-msgid "&Resume"
+msgid "&Font..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 61
-msgid "&Abort"
+msgid "Clear  &History"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 62
-msgid "&Interrupt"
+msgid "Clear C &onsole"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 63
-msgid "&Applications"
+msgid "&Control"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 64
-msgid "&Editor"
+msgid "&Resume"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 65
-msgid "&Scicos"
+msgid "&Abort"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 66
-msgid "Edit &Graph"
+msgid "&Interrupt"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 67
-msgid "&Matlab to Scilab translator"
+msgid "&Applications"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 68
-msgid "&Variable Editor"
+msgid "&Editor"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 69
+msgid "&Scicos"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 70
-msgid "Scilab  &Help"
+msgid "Edit &Graph"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 71
-msgid "Scilab  &Demonstrations"
+msgid "&Matlab to Scilab translator"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 72
-msgid "&Web links"
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 73
-msgid "Scilab  &Web Site"
+msgid "&Variable Editor"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 74
-msgid "&Contributions"
+msgid "Scilab  &Help"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 75
-msgid "&Bug And Request database"
+msgid "Scilab  &Demonstrations"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 76
-msgid "&Newsgroup Archives"
+msgid "&Web links"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 77
+msgid "Scilab  &Web Site"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 78
-msgid "Rotate"
+msgid "&Contributions"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 79
-msgid "Zoom In"
+msgid "&Bug And Request database"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 80
-msgid "Zoom Out"
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 81
-# File: scilab_fake_localization_file.c, line: 90
-msgid "Help Browser"
+msgid "&Newsgroup Archives"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 82
-msgid "Launch Scipad"
+msgid "Rotate"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 83
-msgid "Open a file"
+msgid "Zoom In"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 84
-msgid "Cut"
+msgid "Zoom Out"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 85
-msgid "Copy"
+# File: scilab_fake_localization_file.c, line: 94
+msgid "Help Browser"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 86
-msgid "Paste"
+msgid "Launch Scipad"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 87
-msgid "Change Current Directory"
+msgid "Open a file"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 88
-msgid "Choose Font..."
+msgid "Cut"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 89
+msgid "Copy"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 90
+msgid "Paste"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 91
+msgid "Change Current Directory"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 92
+msgid "Choose Font..."
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 93
 msgid "Print..."
 msgstr ""
 #
@@ -1328,6 +1344,9 @@ msgstr ""
 # File: etc/graphics_menubar.xml, line: 59
 # File: etc/graphics_menubar.xml, line: 69
 # File: etc/graphics_menubar.xml, line: 79
+# File: etc/graphics_menubar.xml, line: 91
+# File: etc/graphics_menubar.xml, line: 101
+# File: etc/graphics_menubar.xml, line: 111
 msgid "Select a file name"
 msgstr ""
 #

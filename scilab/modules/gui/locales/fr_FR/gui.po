@@ -1156,8 +1156,8 @@ msgstr "&Sauvegarder..."
 
 #
 # File: scilab_fake_localization_file.c, line: 5
-msgid "&Export to..."
-msgstr "&Exporter vers..."
+msgid "&Bitmap export"
+msgstr "Export  &Bitmap"
 
 #
 # File: scilab_fake_localization_file.c, line: 6
@@ -1182,6 +1182,26 @@ msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 10
 msgid "&PPM"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 11
+msgid "&Vectorial export"
+msgstr "Export  &Vectoriel"
+
+#
+# File: scilab_fake_localization_file.c, line: 12
+msgid "&EPS"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 13
+msgid "&PDF"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 14
+msgid "&SVG"
 msgstr ""
 
 #
@@ -1598,3 +1618,8 @@ msgstr "Environnement sauvegardé.\n"
 # File: etc/main_toolbar.xml, line: 39
 msgid "Select a directory"
 msgstr "Sélectionner un répertoire"
+
+#
+# File: scilab_fake_localization_file.c, line: 5
+#~ msgid "&Export to..."
+#~ msgstr "&Exporter vers..."
