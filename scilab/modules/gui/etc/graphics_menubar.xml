@@ -32,7 +32,7 @@
             type="0"/>
         </submenu>
         <separator/>
-		<submenu label="&amp;Export to...">
+		<submenu label="&amp;Bitmap export">
 			<submenu label="&amp;BMP"> 
 				<callback 
 				instruction='
@@ -82,8 +82,40 @@
 				end
 				clear %fileToWrite isempty'
 				type="0"/>
-			</submenu>
+			</submenu>				
 		</submenu>
+		<submenu label="&amp;Vectorial export">
+					<submenu label="&amp;EPS"> 
+				<callback 
+				instruction='
+				%fileToWrite = xgetfile("*.eps", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then 
+					xs2eps([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="&amp;PDF"> 
+				<callback 
+				instruction='
+				%fileToWrite = xgetfile("*.pdf", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then 
+					xs2pdf([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="&amp;SVG"> 
+				<callback 
+				instruction='
+				%fileToWrite = xgetfile("*.svg", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then 
+					xs2svg([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+		</submenu>		
         <submenu label="&amp;Copy to clipboard"> 
             <callback instruction='clipboard([SCILAB_FIGURE_ID], "EMF");' type="0"/>
         </submenu>
