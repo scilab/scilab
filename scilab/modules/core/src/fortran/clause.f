@@ -334,7 +334,12 @@ c     --------
       icall=7
 c     *call* parse
       return
- 55   if(comp(1).eq.0) then
+ 55   continue
+      if(rstk(pt).ne. 805) then
+         call error(34)
+         return
+      endif
+      if(comp(1).eq.0) then
          if (ids(1,pt).eq.iwhile) go to 35
          if(.not.eqid(syn,ennd)) then
             call skpins(1)
@@ -492,7 +497,7 @@ c     .  no error occured in the try part, skip next instructions
 C       endif
 
 c
- 99   call error(22)
+ 99   call error(34)
       if (err .gt. 0) return
       return
       end
