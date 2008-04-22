@@ -185,13 +185,13 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"wdim") == 0)
     {
-      sciGetScreenPosition(sciGetCurrentFigure(), &(x1[0]), &(x1[1]));
+      x1[0] = sciGetWindowWidth(sciGetCurrentFigure());
+      x1[1] = sciGetWindowHeight(sciGetCurrentFigure());
       x2 = 2;
     }
     else if(strcmp(cstk(l1),"wpos") == 0)
     {
-      x1[0] = sciGetWindowWidth(sciGetCurrentFigure());
-      x1[1] = sciGetWindowHeight(sciGetCurrentFigure());
+      sciGetScreenPosition(sciGetCurrentFigure(), &(x1[0]), &(x1[1]));
       x2 = 2;
     }
     else if(strcmp(cstk(l1),"wpdim") == 0)
