@@ -11,44 +11,44 @@
 //
 x = %inf ;
 printf ("x = %d\nx = %f\nx = %e\nx = %g\n" ,x,x,x,x) ;
-x = %inf
-x = %inf
-x = %inf
-x = %inf
+x = Inf
+x = Inf
+x = Inf
+x = Inf
 x = %nan ;
 printf ("x = %d\nx = %f\nx = %e\nx = %g\n" ,x,x,x,x) ;
-x = %nan
-x = %nan
-x = %nan
-x = %nan
+x = Nan
+x = Nan
+x = Nan
+x = Nan
 x = %nan ;
 y = %inf ;
 printf ("x = %d\ny = %f\nx = %e\ny = %g\n" ,x,x,x,x) ;
-x = %nan
-y = %nan
-x = %nan
-y = %nan
+x = Nan
+y = Nan
+x = Nan
+y = Nan
 x = %inf ;
 printf ("x = %d\nx = %f\nx = %e\nx = %g\n" ,x,x,x,x) ;
-x = %inf
-x = %inf
-x = %inf
-x = %inf
+x = Inf
+x = Inf
+x = Inf
+x = Inf
 x = %nan ;
 printf ("x = %d\nx = %f\nx = %e\nx = %g\n" ,x,x,x,x) ;
-x = %nan
-x = %nan
-x = %nan
-x = %nan
+x = Nan
+x = Nan
+x = Nan
+x = Nan
 x = %nan ;
 r = sprintf ("x = %d",x) ;
-if r <> 'x = %nan' then bugmes();quit;end
+if r <> 'x = Nan' then bugmes();quit;end
 y = %inf ;
 r = sprintf ("y = %d",y) ;
-if r <> 'y = %inf' then bugmes();quit;end
+if r <> 'y = Inf' then bugmes();quit;end
 x = %nan ;
 r = msprintf ("x = %d",x) ;
-if r <> 'x = %nan' then bugmes();quit;end
+if r <> 'x = Nan' then bugmes();quit;end
 y = %inf ;
 r = msprintf ("y = %d",y) ;
-if r <> 'y = %inf' then bugmes();quit;end
+if r <> 'y = Inf' then bugmes();quit;end

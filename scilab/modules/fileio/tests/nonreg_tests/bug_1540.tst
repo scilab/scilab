@@ -28,16 +28,16 @@ printf ("x = %d\nx = %f\nx = %e\nx = %g\n" ,x,x,x,x) ;
 
 x = %nan ;
 r = sprintf ("x = %d",x) ;   
-if r <> 'x = %nan' then pause,end
+if r <> 'x = Nan' then pause,end
 
 y = %inf ;
 r = sprintf ("y = %d",y) ;   
-if r <> 'y = %inf' then pause,end
+if r <> 'y = Inf' then pause,end
 
 x = %nan ;
 r = msprintf ("x = %d",x) ;   
-if r <> 'x = %nan' then pause,end
+if r <> 'x = Nan' then pause,end
 
 y = %inf ;
 r = msprintf ("y = %d",y) ;   
-if r <> 'y = %inf' then pause,end
+if r <> 'y = Inf' then pause,end
