@@ -1497,7 +1497,7 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@install-data-local:
 # Install the tests
 @TCLTK_TRUE@	@echo "-- Install tests (if any) --"; \
-@TCLTK_TRUE@	for dir in $(TESTS_DIR); do \
+@TCLTK_TRUE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @TCLTK_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @TCLTK_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/* 2>/dev/null`; do \
