@@ -16,6 +16,11 @@ package org.scilab.modules.renderer.fecDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.AutoDrawableObjectGL;
+import org.scilab.modules.renderer.polylineDrawing.GL2PSShadeFacetDrawer;
+import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
+import org.scilab.modules.renderer.utils.geom3D.ColoredTriangle;
+import org.scilab.modules.renderer.utils.geom3D.TriangleDecomposition;
+import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 import com.sun.opengl.util.texture.Texture;
@@ -41,36 +46,6 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 	}
 	
 	/**
-	 * Set colMin and colMax
-	 * @param colMin new colMin
-	 * @param colMax new colMax
-	 */
-	public void setColMinMax(int colMin, int colMax) {
-		this.colMin = colMin;
-		this.colMax = colMax;
-	}
-	
-	/**
-	 * set zMin and zMax
-	 * @param zMin new zMin
-	 * @param zMax new zMax
-	 */
-	public void setZMinMax(double zMin, double zMax) {
-		this.zMin = zMin;
-		this.zMax = zMax;
-	}
-	
-	/**
-	 * set colors to use if value < zMin or value < zMax
-	 * @param colOutLow color index to use for low values
-	 * @param colOutUp color index to use for hight values
-	 */
-	public void setColOut(int colOutLow, int colOutUp) {
-		this.colOutLow = colOutLow;
-		this.colOutUp = colOutUp;
-	}
-	
-	/**
 	 * Set all the parameters in one function
 	 * @param zMin new zMin
 	 * @param zMax new zMax
@@ -81,10 +56,43 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 	 */
 	public void setFacetParameters(double zMin, double zMax, int colMin,
 								   int colMax, int colOutLow, int colOutUp) {
-		setColMinMax(colMin, colMax);
-		setZMinMax(zMin, zMax);
-		setColOut(colOutLow, colOutUp);
+		if (colOutLow <= -1) {
+			// when outside of colormap use the lowest value in the colormap
+			this.colOutLow = getColorMap().convertScilabToColorMapIndex(colMin);
+		} else if (colOutLow == 0) {
+			// don't display polygon
+			this.colOutLow = -1;
+		} else {
+			// colOutLow is a valid colormap index
+			this.colOutLow = getColorMap().convertScilabToColorMapIndex(colOutLow);
+		}
+		
+		if (colOutUp <= -1) {
+			// when outside of colormap use the highest value in the colormap
+			this.colOutUp = getColorMap().convertScilabToColorMapIndex(colMax);
+		} else if (colOutUp == 0) {
+			// don't display polygon
+			this.colOutUp = -1;
+		} else {
+			// colOutLow is a valid colormap index
+			this.colOutUp = getColorMap().convertScilabToColorMapIndex(colOutUp);
+		}
+		
+		// colMin and colMax are scilab indices
+		this.colMin = getColorMap().convertScilabToColorMapIndex(colMin);
+		this.colMax = getColorMap().convertScilabToColorMapIndex(colMax);
+		
+		
+		this.zMin = zMin;
+		this.zMax = zMax;
+		
 	}
+	
+	protected double fecValueToColorMapIndex(double value, double zMin, double zMax) {
+		return ((value - zMin) / (zMax - zMin) * (colMax - colMin + 1.0) + colMin);
+	}
+	
+	
 	
 	/**
 	 * Draw the triangles composing the fec object.
@@ -100,47 +108,110 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 		
 		// find min and max of values
 		double[] minMax = findValuesBounds(values);
+		int nbTriangles = firstPoints.length;
 		
 		if (zMin == zMax) {
 			zMin = minMax[0];
 			zMax = minMax[1];
 		}
-	
-		
-		// create a color map for fec objects
-		// create a special colormap to use with the fec object
-		FecColorMap specialCM = new FecColorMap(getColorMap());
-		specialCM.setRealBounds(minMax[0], minMax[1]);
-		specialCM.setFecWeirdValues(zMin, zMax, colMin, colMax, colOutLow, colOutUp);
 		
 		
-		// draw facets using the new colormap
 		GL gl = getGL();
-		int nbTriangles = firstPoints.length;
+
+		Vector3D[] triangleCoords = new Vector3D[3];
+		double[] triangleColors = new double[3];
 		
-		Texture colormapTexture = specialCM.getTexture();
-		colormapTexture.enable();
-		colormapTexture.bind();
-		
-		// push back polygons from the box lines
 		GLTools.pushPolygonsBack(gl);
-		
-		gl.glColor3d(0.0, 1.0, 0.0);
-		
-		gl.glBegin(GL.GL_TRIANGLES);
+	
 		for (int i = 0; i < nbTriangles; i++) {
-			specialCM.useValue(gl, values[firstPoints[i]]);
-			gl.glVertex3d(xCoords[firstPoints[i]], yCoords[firstPoints[i]], 0.0);
-			specialCM.useValue(gl, values[secondPoints[i]]);
-			gl.glVertex3d(xCoords[secondPoints[i]], yCoords[secondPoints[i]], 0.0);
-			specialCM.useValue(gl, values[thirdPoints[i]]);
-			gl.glVertex3d(xCoords[thirdPoints[i]], yCoords[thirdPoints[i]], 0.0);
+			triangleCoords[0] = new Vector3D(xCoords[firstPoints[i]], yCoords[firstPoints[i]], 0.0);
+			triangleCoords[1] = new Vector3D(xCoords[secondPoints[i]], yCoords[secondPoints[i]], 0.0);
+			triangleCoords[2] = new Vector3D(xCoords[thirdPoints[i]], yCoords[thirdPoints[i]], 0.0);
+			
+			triangleColors[0] = fecValueToColorMapIndex(values[firstPoints[i]], zMin, zMax);
+			triangleColors[1] = fecValueToColorMapIndex(values[secondPoints[i]], zMin, zMax);
+			triangleColors[2] = fecValueToColorMapIndex(values[thirdPoints[i]], zMin, zMax);
+			
+			ColoredTriangle ct = new ColoredTriangle(triangleCoords[0],
+													 triangleCoords[1],
+													 triangleCoords[2],
+													 triangleColors[0],
+													 triangleColors[1],
+													 triangleColors[2]);
+			TriangleDecomposition td = ct.decomposeTriangle();
+			
+			for (int j = 0; j < td.getNbPolygons(); j++) {
+				int color = td.getPolygonColor(j);
+				double[] polyColor;
+				if (color < colMin) {
+					if (colOutLow == -1) {
+						// don't display polygon
+						continue;
+					} else {
+						polyColor = getColorMap().getColor(colOutLow);
+					}
+				} else if (color > colMax) {
+					if (colOutUp == -1) {
+						// don't display polygon
+						continue;
+					} else {
+						polyColor = getColorMap().getColor(colOutUp);
+					}
+				} else {
+					polyColor = getColorMap().getColor(color);
+				}
+				
+				gl.glBegin(GL.GL_POLYGON);
+				
+				gl.glColor3d(polyColor[0], polyColor[1], polyColor[2]);
+				Vector3D[] polygon = td.getPolygon(j);
+				
+				for (int k = 0; k < polygon.length; k++) {
+					gl.glVertex3d(polygon[k].getX(), polygon[k].getY(), polygon[k].getZ());
+				}
+
+				gl.glEnd();		
+			}
+			
 		}
-		gl.glEnd();
 		
 		GLTools.endPushPolygonsBack(gl);
 		
-		colormapTexture.disable();
+		
+		// create a color map for fec objects
+		// create a special colormap to use with the fec object
+//		FecColorMap specialCM = new FecColorMap(getColorMap());
+//		specialCM.setRealBounds(minMax[0], minMax[1]);
+//		specialCM.setFecWeirdValues(zMin, zMax, colMin, colMax, colOutLow, colOutUp);
+//		
+//		
+//		// draw facets using the new colormap
+//		GL gl = getGL();
+//		int nbTriangles = firstPoints.length;
+//		
+//		Texture colormapTexture = specialCM.getTexture();
+//		colormapTexture.enable();
+//		colormapTexture.bind();
+//		
+//		// push back polygons from the box lines
+//		GLTools.pushPolygonsBack(gl);
+//		
+//		gl.glColor3d(0.0, 1.0, 0.0);
+//		
+//		gl.glBegin(GL.GL_TRIANGLES);
+//		for (int i = 0; i < nbTriangles; i++) {
+//			specialCM.useValue(gl, values[firstPoints[i]]);
+//			gl.glVertex3d(xCoords[firstPoints[i]], yCoords[firstPoints[i]], 0.0);
+//			specialCM.useValue(gl, values[secondPoints[i]]);
+//			gl.glVertex3d(xCoords[secondPoints[i]], yCoords[secondPoints[i]], 0.0);
+//			specialCM.useValue(gl, values[thirdPoints[i]]);
+//			gl.glVertex3d(xCoords[thirdPoints[i]], yCoords[thirdPoints[i]], 0.0);
+//		}
+//		gl.glEnd();
+//		
+//		GLTools.endPushPolygonsBack(gl);
+//		
+//		colormapTexture.disable();
 		
 	}
 	

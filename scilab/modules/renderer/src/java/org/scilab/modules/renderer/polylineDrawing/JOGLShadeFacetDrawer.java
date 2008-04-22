@@ -56,4 +56,28 @@ public class JOGLShadeFacetDrawer implements ShadeFacetDrawer {
 		
 	}
 
+	@Override
+	public void paintPolygon(Vector3D[] triangleCoords,
+			double[] triangleColors, GL gl, TexturedColorMap colorMap) {
+		
+		this.gl = gl;
+		this.colorMaps = colorMap;
+
+		
+		Texture colormapTexture = colorMap.getTexture();
+		colormapTexture.enable();
+		colormapTexture.bind();
+
+		gl.glColor3d(0.0, 1.0, 0.0);
+		gl.glBegin(GL.GL_TRIANGLE_FAN); // works with triangles and quads
+		for (int i = 0; i < triangleCoords.length; i++) {
+			colorMap.applyTexCoord(gl, triangleColors[i]);
+			//gl.glVertex3d(xCoords[i], yCoords[i], zCoords[i]);
+			gl.glVertex3d(triangleCoords[i].getX(), triangleCoords[i].getY(), triangleCoords[i].getZ());
+		}
+		gl.glEnd();
+		 			
+
+		colormapTexture.disable();	
+	}
 }

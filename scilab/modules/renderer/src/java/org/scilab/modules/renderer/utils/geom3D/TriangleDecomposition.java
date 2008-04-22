@@ -72,8 +72,8 @@ public class TriangleDecomposition {
 	 * @param color index of the color
 	 * @param polygonIndex of the polygon
 	 */
-	protected void setPolygonColor(int color, int polygonIndex) {
-		this.polygonColors[polygonIndex] = color;
+	protected void setPolygonColor(double color, int polygonIndex) {
+		this.polygonColors[polygonIndex] = (int) color;
 	}
 	
 	

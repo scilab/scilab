@@ -13,19 +13,19 @@ public class ColoredTriangle {
 	}
 	
 	/** Number of side of the polygon */
-	private final int SIDE_1 = 0;
-	private final int SIDE_2 = 1;
-	private final int SIDE_3 = 2;
-	private final int SIDE_4 = 3;
-	private final int SIDE_5 = 4;
+	private static final int SIDE_1 = 0;
+	private static final int SIDE_2 = 1;
+	private static final int SIDE_3 = 2;
+	private static final int SIDE_4 = 3;
+	private static final int SIDE_5 = 4;
 	
 	/** Numbers of sides of the polygon */
-	private final int POLY_SIDE3 = 3;
-	private final int POLY_SIDE4 = 4;
-	private final int POLY_SIDE5 = 5;
+	private static final int POLY_SIDE3 = 3;
+	private static final int POLY_SIDE4 = 4;
+	private static final int POLY_SIDE5 = 5;
 	
 	/** gap for color */
-	private final double GAP = 0.5;
+	private static final double GAP = 0.5;
 	
 	/** Summit of triangle */
 	private Vector3D a;
@@ -33,13 +33,13 @@ public class ColoredTriangle {
 	private Vector3D c;
 	
 	/** Color of the summits of the triangle */
-	private int colorA;
-	private int colorB;
-	private int colorC;
+	private double colorA;
+	private double colorB;
+	private double colorC;
 	
 	/** Smallest & biggest color */
-	private int min;
-	private int max;
+	private double min;
+	private double max;
 	
 	/** previous and next polygon point */
 	private Vector3D prevI1 = new Vector3D();
@@ -69,7 +69,7 @@ public class ColoredTriangle {
 	 * @param colorV3 color of the summit
 	 */
 	public ColoredTriangle(Vector3D v1, Vector3D v2, Vector3D v3,
-							int colorV1, int colorV2, int colorV3) {		
+							double colorV1, double colorV2, double colorV3) {		
 		
 		/** Swap v1, v2 & v3 in the right order */				
 		if (colorV1 <= colorV2 && colorV1 <= colorV3) {
@@ -125,7 +125,7 @@ public class ColoredTriangle {
 		orientation = V1V2.crossProduct(V1V3);
 		
 		if ((CB.crossProduct(CA).dotProduct(V1V2.crossProduct(V1V3))) < 0) {
-			int tempCol = colorB;
+			double tempCol = colorB;
 			colorB = colorA;
 			colorA = tempCol;
 			
@@ -144,12 +144,13 @@ public class ColoredTriangle {
 		TriangleDecomposition res = new TriangleDecomposition();
 		
 		min = Math.min(Math.min(colorC, colorB), colorA);
+		max = Math.max(Math.max(colorC, colorB), colorA);
 		
 		//if all colors are the same
 		if (colorA == colorB && colorA == colorC) {
 			int nbPolygons = 1;
 			res.setNbPolygons(nbPolygons);	
-			int curColor = colorC;		
+			double curColor = colorC;		
 			res.setPolygonColor(curColor, 0);
 			Vector3D[] curPolygon = {c, b, a};
 			res.setPolygon(curPolygon, 0);
@@ -169,7 +170,7 @@ public class ColoredTriangle {
 
 			for (int i = 0; i < nbPolygons - 1; i++) {			
 				// color of the next polygon
-				int curColor = min + i;			
+				double curColor = min + i;			
 
 				res.setPolygonColor(curColor, i);			
 				Vector3D[] polygonDecomposed = getPolygon(prevI1, prevI2, prevSideI1, prevSideI2, curColor);
@@ -217,10 +218,10 @@ public class ColoredTriangle {
 	 * @param colorC int
 	 * @return number of polygons
 	 */
-	public int getNbPolygons(int colorA, int colorB, int colorC) {
-		min = Math.min(Math.min(colorC, colorB), colorA);
-		max = Math.max(Math.max(colorC, colorB), colorA);		
-		return max - min + 1;
+	public int getNbPolygons(double colorA, double colorB, double colorC) {
+		double min = Math.min(Math.min(colorA, colorB), colorC);
+		double max = Math.max(Math.max(colorA, colorB), colorC);
+		return (int) Math.round(max - min + 1);
 	}
 	
 	/**  
@@ -326,7 +327,7 @@ public class ColoredTriangle {
 	 * @param curColor current color
 	 * @return polygon decomposed
 	 */
-	public Vector3D[] getPolygon(Vector3D prevI1, Vector3D prevI2, Side prevSideI1, Side prevSideI2, int curColor) {
+	public Vector3D[] getPolygon(Vector3D prevI1, Vector3D prevI2, Side prevSideI1, Side prevSideI2, double curColor) {
 				
 		Vector3D[] polygons = null;
 		Vector3D p = new Vector3D();	

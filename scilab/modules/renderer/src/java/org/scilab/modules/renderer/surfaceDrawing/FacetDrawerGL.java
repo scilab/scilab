@@ -16,7 +16,6 @@ package org.scilab.modules.renderer.surfaceDrawing;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.polylineDrawing.GL2PSShadeFacetDrawer;
 import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
@@ -49,6 +48,7 @@ public abstract class FacetDrawerGL {
 	 * Create a new instance of facetDrawerGL
 	 * @param colorFlag specify the kind of facet drawers to create
 	 * @param colorMap colormap to use
+	 * @param sfd ShadeFacetDrawer
 	 * @return new instance of facetDrawerGL
 	 */
 	public static FacetDrawerGL create(int colorFlag, TexturedColorMap colorMap, ShadeFacetDrawer sfd) {
@@ -108,13 +108,13 @@ public abstract class FacetDrawerGL {
 		// and consequently they are drawn with the same Z.
 		GLTools.pushPolygonsBack(gl);
 		
-		if (getNbVertices() == TRIANGLE_NB_FACETS) {
+		/*if (getNbVertices() == TRIANGLE_NB_FACETS) {
 			// triangle
 			//gl.glBegin(GL.GL_TRIANGLES);
 		} else if (getNbVertices() == QUAD_NB_FACETS) {
 			// quad
 			//gl.glBegin(GL.GL_QUADS);
-		}
+		}*/
 	}
 
 	/**

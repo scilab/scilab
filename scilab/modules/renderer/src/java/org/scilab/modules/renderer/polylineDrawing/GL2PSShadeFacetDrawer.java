@@ -14,8 +14,8 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 	
 	/** Number of side of the polygon */
-	private final int TRIANGLE = 3;
-	private final int SQUARE = 4;
+	private static final int TRIANGLE = 3;
+	private static final int SQUARE = 4;
 	
 	/** Coordinates of the triangle or the square */
 	private Vector3D a;
@@ -79,7 +79,7 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 	 * @param color2 color of the polylines vertices
 	 * @param color3 color of the polylines vertices
 	 */
-	public void paintTriangle(Vector3D a, Vector3D b, Vector3D c, int color1, int color2, int color3) {		
+	public void paintTriangle(Vector3D a, Vector3D b, Vector3D c, double color1, double color2, double color3) {		
 
 		//Calling this class will decompose triangle in colored polygons
 		ColoredTriangle ct = new ColoredTriangle(a, b, c, color1, color2, color3);
@@ -100,6 +100,36 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 
 			gl.glEnd();		
 		}
+	}
+
+	@Override
+	public void paintPolygon(Vector3D[] triangleCoords,
+			double[] triangleColors, GL gl, TexturedColorMap colorMap) {
+
+		this.gl = gl;
+		this.colorMaps = colorMap;
+		
+		if (triangleCoords.length == TRIANGLE) { 
+			//Coordinates of the triangle
+			a = new Vector3D(triangleCoords[0]);
+			b = new Vector3D(triangleCoords[1]);
+			c = new Vector3D(triangleCoords[2]);
+			
+			paintTriangle(a, b, c, triangleColors[0], triangleColors[1], triangleColors[2]);
+			
+		} else if (triangleCoords.length >= SQUARE) {
+			//Coordinates of the square
+			//closing the square case
+			a = new Vector3D(triangleCoords[0]);
+			b = new Vector3D(triangleCoords[1]);
+			c = new Vector3D(triangleCoords[2]);
+			d = new Vector3D(triangleCoords[TRIANGLE]);
+			
+			//we separate the square on 2 triangle then we work on each triangle
+			paintTriangle(a, b, c, triangleColors[0], triangleColors[1], triangleColors[2]);
+			paintTriangle(c, d, a, triangleColors[2], triangleColors[3], triangleColors[0]);
+			
+		}		
 	}
 
 }

@@ -16,7 +16,6 @@ package org.scilab.modules.renderer.surfaceDrawing;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
@@ -38,6 +37,7 @@ public class LinearShadedFacetDrawerGL extends FacetDrawerGL {
 	/**
 	 * Default constructor
 	 * @param colorMap colormap to use.
+	 * @param sfd ShadeFacetDrawer
 	 */
 	public LinearShadedFacetDrawerGL(TexturedColorMap colorMap, ShadeFacetDrawer sfd) {
 		super(colorMap);

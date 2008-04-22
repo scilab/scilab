@@ -16,8 +16,6 @@ package org.scilab.modules.renderer.surfaceDrawing;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
-import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 

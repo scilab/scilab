@@ -55,7 +55,7 @@ public class PolylineInterpColorDrawerGL extends FillDrawerGL {
 		}
 		
 		ShadeFacetDrawer sfd = getParentFigureGL().getShadeFacetDrawer();		
-		sfd.paintPolygon(vertex, colors, gl, colorMap);		
+		sfd.paintPolygon(vertex, colors, gl, colorMap);
 	}	
 
 }

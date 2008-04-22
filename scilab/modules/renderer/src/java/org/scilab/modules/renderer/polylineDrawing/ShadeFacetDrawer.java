@@ -21,4 +21,7 @@ public interface ShadeFacetDrawer {
 	 */
 	void paintPolygon(Vector3D[] coords, int[] color, GL gl, TexturedColorMap colorMap);
 
+	void paintPolygon(Vector3D[] triangleCoords, double[] triangleColors,
+			GL gl, TexturedColorMap colorMap);
+
 }
