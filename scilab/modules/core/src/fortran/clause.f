@@ -421,6 +421,7 @@ c     end of try reached or an error occurred
       if (max(err2,err1).gt.0) then
 c     .  an error occured in the try part 
 c     .  skip remaining instructions up to catch or end keywords
+         errct=-1
          call skpins(0)
          errct=ids(2,pt)
          err2=ids(3,pt)
