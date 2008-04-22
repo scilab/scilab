@@ -10,7 +10,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine stackgl(id,n)
 c     get variables out of a stored list
       include 'stack.h'
-      integer iadr,sadr,fins
+      integer iadr,sadr,fins,typ
       integer id(nsiz)
 c     
       iadr(l)=l+l-1
@@ -36,6 +36,13 @@ c
          call putid(ids(1,pt+1),id)
          call error(4)
          if(err.gt.0) return
+      endif
+      il1=iadr(lstk(top))
+      typ=abs(istk(il1))
+      if (typ.lt.15.or.typ.gt.17) then 
+         call putid(ids(1,pt+1),id)
+         call error(140)
+         return
       endif
       fin=3
       rhs=1

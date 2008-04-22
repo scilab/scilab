@@ -25,19 +25,41 @@
     called with more output arguments than indicated in the output argument
     list. The calling arguments passed form <literal>varargout</literal> keyword onwards
     are extracted out of the <literal>varargout</literal> list defined in the function</para>
-    <para><literal>varagout = function ex()</literal> may be called with any number of output
+    <para><literal>varargout= function ex()</literal> may be called with any number of output
     arguments. Within function  <literal>ex</literal> output arguments may be stored in
     in <literal>varargout(i)</literal>.</para>
+    <para><literal>[X1,...Xn,varargout]= function ex()</literal> may
+    also be used. In this case the <literal>Xi</literal> variables
+    must be assigned in the function as well as
+    <literal>varargout(i)</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Remark</title>
+    <para>The <literal>varargout</literal> variable must be created
+    within the function and assigned to a non-empty list.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
-deff('varargout=exampl()','varargout=list(1,2,3,4)')
+function varargout=exampl()
+   varargout=list(1,2,3,4)
+endfunction
 
 x=exampl()
 [x,y]=exampl()
 [x,y,z]=exampl()
+
+
+function [a,b,varargout]=exampl1()
+   a='first'
+   b='second'
+   varargout=list(1,2,3,4)
+endfunction
+exampl1()
+[a,b]=exampl1()
+[a,b,c]=exampl1()
+
  
   ]]></programlisting>
   </refsection>

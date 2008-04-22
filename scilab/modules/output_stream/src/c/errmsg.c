@@ -958,7 +958,15 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 140:
 		{
-			/* no message  */
+		
+		  char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_6);
+		  if (NameVarOnStack)
+		    {
+		      displayAndStoreError(_("Variable : %s must be a list\n"),NameVarOnStack);
+		      FREE(NameVarOnStack);
+		      NameVarOnStack = NULL;
+		    }
+	
 		}
 		break;
 		case 141:
