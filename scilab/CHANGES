@@ -402,8 +402,8 @@ Internal API:
 Scicos:
 =======
  - Test framework currently under development:
-  + Unitary tests (30% done)
-  + Non-regression tests (vs. Scicos 4.2 in Scilab 4.1.2) (30% done)
+  + Unitary tests (95% done)
+  + Non-regression tests (vs. Scicos 4.2 in Scilab 4.1.2) (95% done)
   + Benchmarks (0% done)
 
 

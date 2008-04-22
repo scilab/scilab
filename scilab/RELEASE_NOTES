@@ -60,23 +60,14 @@ List of missing/buggy features:
 - Scicos:
     * The basic features of the editor are fully functional and tested.
     * The Scicos simulation engine is correcly working (standard and
-      "scicossimulate()" batch mode)
+      "scicos_simulate()" batch mode)
       BUT ...
         * Some functionalites of the new graphics API are still not fully 
           available/working at the moment (see above for the details) of this
-          alpha release (e.g. show_pixmap)
-        * Some mouse and key events are not detected properly 
-            For these - and others - reasons, some feature of the Scicos editor
-            are not functional :
-              * BEWARE : the "Stop" simulation button is not working: please set 
-                the simulation time to your final time
-              * BEWARE : after a simulation, you need to manually destroy the
-                scope output windows BEFORE restart the simulation (Scicos scope
-                library needs some revision for Scilab 5 new API)
-              * BEWARE : Modelica support is not available: the Modelica demos
-                cannot run.
-              * BEWARE : Some blocks may have bizarre look for the presence of
-                older graphics instructions not supported anymore
+          beta release
+        * Some minor feature of the Scicos editor are still not functional. 
+        * BEWARE : Some blocks may have bizarre look for the presence of
+                   older graphics instructions not supported anymore
 
 
 - Scilab is not translated into French.
