@@ -172,7 +172,7 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
 	    GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
 	    if ( m * n != 3 )
       { 
-		  Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,3);
+		  Scierror(999,_("%s: Wrong size for input argument: String of %d characters expected.\n"),fname,3);
 	      return 0;
 	    }
 	  *strf = cstk(l); 
@@ -189,7 +189,7 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
     GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
     if (m * n != 3)
     { 
-		Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,3);
+		Scierror(999,_("%s: Wrong size for input argument: String of %d characters expected.\n"),fname,3);
 		return 0;
     }
     *strf = cstk(l); 
