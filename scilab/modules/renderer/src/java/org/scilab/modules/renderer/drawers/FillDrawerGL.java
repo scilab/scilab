@@ -52,6 +52,7 @@ public class FillDrawerGL extends AutoDrawableObjectGL {
 	 */
 	public void endDrawing() {
 		GLTools.endPushPolygonsBack(getGL());
+                super.endDrawing();
 	}
 	
 	
