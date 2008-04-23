@@ -63,17 +63,19 @@ List of missing/buggy features:
                    older graphics instructions not supported anymore
 
 
+- Name of the functions in "Genetic Algorithms" and Simulated Annealing" modules may changed in the stable version
+
+
 - Scipad debugger is not yet fully functional.
 
 
 - Printing can crash under Linux plateforms with recent versions of Cups.
 
 
-- Scilab localization system is implemented, however Scilab is not yet translated into
-  French except menu labels.
+- Scilab localization system is implemented, however Scilab is not yet translated into French except menu labels.
 
 
-- Dynamic/incremental link may bug on usual archs/compiler or with modified flags
+- Dynamic/incremental link bugs on unusual archs/compiler or with modified flags
 
 
 - Some license issues have not been fixed.
