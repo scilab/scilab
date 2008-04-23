@@ -15,16 +15,34 @@ function [earn,ind]=knapsack(profit,weight,capa,bck)
   elseif (rhs==3) then 
     bck=-1;
   end;
-  if (bck<0) then bck=-1;end;
-  n=size(profit,2);nn=size(weight,2);
-  // check profit weight capa
-  if ((n<>nn)|(n<2)) then
-    error('Bad dimensions of input vectors')
+  if (bck<0) then bck=-1;end
+  n=size(profit,'*');
+  // check input argument validity
+  if min(size(profit))<>1|n<2 then
+    error(msprintf(_("%s: First argument must be a vector of size greater or equal to 2.\n"),"knapsack"))
+  end
+  if min(size(weight))<>1|size(weight,'*')<>n then
+    error(msprintf(_("%s: Second argument must be a vector with same dimension as the first one.\n"),"knapsack"))
+  end
+  if min(size(capa))<>1|size(profit,'*')<1 then
+    error(msprintf(_("%s: Third argument must be a vector of size greater or equal to 1.\n"),"knapsack"))
+  end
+
+  if (min(profit) <= 0)|or(round(profit)<>profit) then
+    error(msprintf(_("%s: First argument must be a vector with positive integer values.\n"),"knapsack"))
   end;
-  if ((max(profit) <= 0)|(max(weight) <= 0)|(max(capa) <= 0)) then
-    error('Profits, weights and capacities must be positive')
+  if (min(weight) <= 0)|or(round(weight)<>weight) then
+    error(msprintf(_("%s: Second argument must be a vector with positive integer values.\n"),"knapsack"))
   end;
-  [s,k]=sort(floor(profit)./floor(weight));
+  if (min(capa) <= 0)|or(round(capa)<>capa) then
+    error(msprintf(_("%s: Third argument must be a vector with positive integer values.\n"),"knapsack"))
+  end;
+  //transform into row vector
+  profit = matrix(profit,1,-1)
+  weight = matrix(weight,1,-1)
+  capa   = matrix(capa,1,-1)
+  //preprocess the data
+  [s,k]=sort(profit./weight);
   [ss,kk]=sort(-k);
   p=profit(k);w=weight(k);
   np1=n+1;
@@ -36,9 +54,9 @@ function [earn,ind]=knapsack(profit,weight,capa,bck)
   [xstar,vstar]=m6knapsk(n,m,np1,mn,mnp1,p,w,kap,bck);
 
   earn=vstar;
-  if(vstar==-3) then print(%io(2),'A knapsack cannot contain any item');end;
-  if(vstar==-4) then print(%io(2),'An item cannot fit into any knapsack');end;
-  if(vstar==-5) then print(%io(2),'A knapsack contains all the items'); end;
+  //if(vstar==-3) then print(%io(2),'A knapsack cannot contain any item');end;
+  //if(vstar==-4) then print(%io(2),'An item cannot fit into any knapsack');end;
+  //if(vstar==-5) then print(%io(2),'A knapsack contains all the items'); end;
   xstar=xstar(kk);
   ij=find(xstar<>0);
   ind=zeros(xstar);
