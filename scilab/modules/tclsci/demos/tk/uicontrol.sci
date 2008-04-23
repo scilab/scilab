@@ -99,7 +99,7 @@ function myuidialog()
   fin=%f
   while ~fin
     sleep(1)
-    if findobj('label', 'menu')==[] then
+    if findobj("label", "Menu")==[] then
       return;
     end
   end
