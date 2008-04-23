@@ -15,10 +15,6 @@ List of missing/buggy features:
   A click on them will display a dialog box.
 
 
-- Uicontrols have been mapped to java objects. However some functionnalities
-  such as units property management are no yet available.
-
-
 - Uicontrols ascendant incompatibilities:
     * Figure size has to be increased beacause of the automatic insertion of
       a menubar and the height of the docking bar.
