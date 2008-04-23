@@ -199,7 +199,7 @@ static struct gateway_struct *readGatewayXmlFile(char *filenameXml)
 		}
 		else
 		{
-			fprintf(stderr,_("Error : Not a valid gateway file %s (should start with <GATEWAY> and contain <PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"), filenameXml);
+			fprintf(stderr,_("Error: Not a valid gateway file %s (should start with <GATEWAY> and contain <PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"), filenameXml);
 		}
 
 		if(xpathObj) xmlXPathFreeObject(xpathObj);
@@ -213,7 +213,7 @@ static struct gateway_struct *readGatewayXmlFile(char *filenameXml)
 	}
 	else
 	{
-		fprintf(stderr,_("Error : Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' found\n"), filenameXml, encoding);
+		fprintf(stderr,_("Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' found\n"), filenameXml, encoding);
 	}
 
 	if (encoding) {FREE(encoding);encoding=NULL;}
