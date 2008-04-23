@@ -17,27 +17,18 @@ List of missing/buggy features:
     * Popup uicontrols width has to be increased because of the little triangle
       used to select a new value.
 
-
-- Graphic functionalities are not yet fully functional:
-    * xlcea
-    * show_pixmap
-    * driver / xinit / xend
-    * Text object font management
-    * Figure name property
-    * Postscript formats for graphic export
-
-
 - Graphics know bugs
     * Graphics rendering can be slow, speed will be improved for Scilab 5.0 release.
-    * Displayed axe bounds may differ from Scilab 4.x.
-    * Unwanted marks may appear.
+       * Display of text objects is much slower than in Scilab 4.x.
+       * Graphic rendering is much slower in a large graphic window than in a small one.
     * Some colours might be different from Scilab 4.x.
     * Legend and labels might be misplaced.
-    * Text object space management
+    * Text object space management.
     * Rendering is slow or not functional on some
       computer / graphic card / graphic card driver combination.
       Errors often appear on ATI and Intel cards under Linux and also with 
       old Nvidia drivers.
+    * Sgrayplot display might be corrupted.
 
 
 - It is strongly recommended to update graphic cards drivers to the latest revision:
@@ -79,7 +70,7 @@ List of missing/buggy features:
 - Some license issues have not been fixed.
 
 
-- Postscript export is not available for this beta version
+- EMF export is not available for this beta version
 
 
 - Some Linux distributions with SELinux enabled may prevent Scilab from running
