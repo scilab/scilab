@@ -71,7 +71,11 @@ public final class GLTools {
 			return;
 		}
 		
-		// glLineStipple seems to need to be modified when GL_LINE_STIPPLE is enable
+		// workaround here
+		// in GL2PS glLineStipple must be called before glEnable(GL.GL_LINE_STIPPLE)
+		// and in OpenGL it must be called after
+		// to test see http://bugzilla.scilab.org/show_bug.cgi?id=1669
+		gl.glEnable(GL.GL_LINE_STIPPLE);
 		gl.glLineStipple((int) thickness, STIPPLE_PATTERN[lineStyle]);
 		gl.glEnable(GL.GL_LINE_STIPPLE);
 		gl.glLineStipple((int) thickness, STIPPLE_PATTERN[lineStyle]);
@@ -90,6 +94,7 @@ public final class GLTools {
 	 * @param gl current gl pipeline
 	 */
 	public static void pushPolygonsBack(GL gl) {
+		gl.glEnable(GL.GL_POLYGON_OFFSET_FILL);
 		gl.glPolygonOffset(1.0f, 1.0f);
 		gl.glEnable(GL.GL_POLYGON_OFFSET_FILL);
 		gl.glPolygonOffset(1.0f, 1.0f);
