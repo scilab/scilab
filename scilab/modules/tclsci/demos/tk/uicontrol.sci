@@ -25,10 +25,10 @@ function myuidialog()
       "Units", "pixels");
   
   // Remove Scilab menus
-  delmenu(f.figure_id, gettext("File"));
-  delmenu(f.figure_id, gettext("Tools"));
-  delmenu(f.figure_id, gettext("Edit"));
-  delmenu(f.figure_id, gettext("?"));
+  delmenu(f.figure_id, gettext("&File"));
+  delmenu(f.figure_id, gettext("&Tools"));
+  delmenu(f.figure_id, gettext("&Edit"));
+  delmenu(f.figure_id, gettext("&?"));
   
   m=uimenu(f,"label", "Menu");
   // create an item on the menu bar
@@ -100,6 +100,8 @@ function myuidialog()
   while ~fin
     sleep(1)
     if findobj("label", "Menu")==[] then
+      disp("menu")
+      pause
       return;
     end
   end
