@@ -1,18 +1,14 @@
-                      Scilab 5.0 Alpha Release_Notes
+                      Scilab 5.0 Beta Release_Notes
                       ==============================
 
-Please note that Scilab 5.0 alpha version still contains some well known bug,
+Please note that Scilab 5.0 Beta version still contains some well known bug,
 messing features and may have some slow behaviours.
 It is a testing only version, it should only be used to test what will be
 Scilab 5 family and not at all in production environment.
-The period between the alpha and beta/stable versions will mainly be used to
+The period between the beta and the stable versions will mainly be used to
 debug and optimize Scilab.
 
 List of missing/buggy features:
-
-
-- Some menus/buttons functionnalities are not yet available in GUIs.
-  A click on them will display a dialog box.
 
 
 - Uicontrols ascendant incompatibilities:
@@ -32,6 +28,7 @@ List of missing/buggy features:
 
 
 - Graphics know bugs
+    * Graphics rendering can be slow, speed will be improved for Scilab 5.0 release.
     * Displayed axe bounds may differ from Scilab 4.x.
     * Unwanted marks may appear.
     * Some colours might be different from Scilab 4.x.
@@ -66,7 +63,14 @@ List of missing/buggy features:
                    older graphics instructions not supported anymore
 
 
-- Scilab is not translated into French.
+- Scipad debugger is not yet fully functional.
+
+
+- Printing can crash under Linux plateforms with recent versions of Cups.
+
+
+- Scilab localization system is implemented, however Scilab is not yet translated into
+  French except menu labels.
 
 
 - Dynamic/incremental link may bug on usual archs/compiler or with modified flags
@@ -75,7 +79,7 @@ List of missing/buggy features:
 - Some license issues have not been fixed.
 
 
-- Postscript export is not available for this alpha version
+- Postscript export is not available for this beta version
 
 
 - Some Linux distributions with SELinux enabled may prevent Scilab from running
