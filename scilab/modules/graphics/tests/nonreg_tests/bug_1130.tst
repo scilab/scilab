@@ -1,0 +1,37 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2008 - INRIA - Jean-Baptiste Silvy
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 1130 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1130
+//
+// <-- Short Description -->
+// logarithmic mode does not work with grayplot.
+// box mode can not be set to "off".
+
+t=%pi:0.1:3*%pi;
+m=sin(t)'*cos(t);
+
+//  set("figure_style","new")  
+          // not necessary in scilab3.0
+axes=get("current_axes");
+		axes.data_bounds=[0,.001,-1000;1000,1000,1000];	
+	// unfortunetely necessary for strictly positive y-
+	// values too (to switch y-axis to logarithmic mode)
+set(axes,"log_flags","nl");
+//  axes.log_flags="nl";        // alternative 
+axes.box="off";
+axes.x_location="top";
+axes.y_location="left";
+
+grayplot(t,t,m)   
+
+// the grayplot should appear and the box should be disable
+
