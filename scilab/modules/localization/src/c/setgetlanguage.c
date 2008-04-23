@@ -80,10 +80,13 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 				#endif
 
 				//				printf("export %s\n",EXPORTENVLOCALE);
+
+				/*
 				//				  This stuff causes pb when locales have been compiled 
 				if (ret==NULL){
 					fprintf(stderr, "Warning: Localization issue. Doesn't support the locale '%s'.\n",lang);
 				}
+				*/
 
 				/* change language */
 				if (strcmp(lang,"C")==0){
