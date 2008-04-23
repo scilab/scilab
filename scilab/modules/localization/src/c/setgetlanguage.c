@@ -46,8 +46,8 @@ static int  CURRENTLANGUAGECODE=SCILABDEFAULTLANGUAGECODE;
 static int FindLanguageCode(char *lang);
 static BOOL setlanguagecode(char *lang);
 static char *FindAlias(char *lang);
-static void putEnvLC_ALL(char *locale);
 static char *GetLanguageFromAlias(char *langAlias);
+static BOOL exportLocaleToSystem(char *locale);
 
 #ifdef _MSC_VER
 /**
@@ -57,10 +57,13 @@ static char *GetLanguageFromAlias(char *langAlias);
 static char* getLocaleUserInfo(void);
 
 /**
-* returns sytem locale string
+* returns system locale string
 * @return Locale system example fr_FR or en_US
 */
 static char* getLocaleSystemInfo(void);
+
+/* converts windows locale format to xx_xx format */
+static char * convertLocaleFormat(char *localeWindows);
 #endif
 /*--------------------------------------------------------------------------*/
 BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
@@ -71,25 +74,23 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 		{
 			if (needtochangelanguage(lang))
 			{
-				char *ret=NULL;
-
 				/* Load the locale from the system */
-#ifndef _MSC_VER
-				ret=setlocale(LC_MESSAGES,lang);
-#else
-				/* MS VS (setlocale) doesn't know LC_MESSAGES */
-				/* http://msdn2.microsoft.com/en-us/library/x99tb11d(vs.71).aspx */
-				ret = setlocale(LC_CTYPE,lang);
-#endif
+				#ifndef _MSC_VER
+				char *ret=setlocale(LC_MESSAGES,lang);
+				#else
+				/* Visual Studio DOES NOT KNOW LC_MESSAGES !!! */
+				char *ret = setlocale(LC_ALL,lang);
+				ret = convertLocaleFormat(ret);
+				#endif
+
+				//				printf("export %s\n",EXPORTENVLOCALE);
+
 				/*
-				  This stuff causes pb when locales have been compiled 
+				//				  This stuff causes pb when locales have been compiled 
 				if (ret==NULL){
-					fprintf(stderr, "Localization: Doesn't support the locale '%s'.\n",lang);
-					return FALSE;
+					fprintf(stderr, "Warning: Localization issue. Doesn't support the locale '%s'.\n",lang);
 				}
 				*/
-
-				putEnvLC_ALL(lang);
 
 				/* change language */
 				if (strcmp(lang,"C")==0){
@@ -101,12 +102,17 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 						 * which we don't really know which one is it
 						 * but if setlocale worked, we get it from the return 
 						 */
+						
+
 						strncpy(CURRENTLANGUAGESTRING,ret,5); /* 5 is the number of char in fr_FR for example */
+						
 					}else{
 						strcpy(CURRENTLANGUAGESTRING,lang);
 					}
 				}
 				setlanguagecode(CURRENTLANGUAGESTRING);
+				exportLocaleToSystem(CURRENTLANGUAGESTRING);
+
 				/*
 				  Commented since we want the user to restart scilab when the locale is changed
 				if (updateHelpIndex)
@@ -274,17 +280,20 @@ char *convertlanguagealias(char *strlanguage)
 }
 /*--------------------------------------------------------------------------*/
 /**
- * Export the variable LC_ALL to the system
+ * Export the variable LC_XXXX to the system
  *
  * @param locale the locale (ex : fr_FR or en_US)
  */
-static void putEnvLC_ALL(char *locale){
-
+static BOOL exportLocaleToSystem(char *locale){
+	//	printf("exporting %s to %s\n",EXPORTENVLOCALE, locale);
 	/* It will put in the env something like LC_ALL=fr_FR */
-	if ( !setenvc(EXPORTENVLOCALE,locale))
+	if ( !setenvc(EXPORTENVLOCALESTR,locale))
 	{
-		fprintf(stderr,"Localization: Failed to declare the system variable LC_ALL\n");
+		fprintf(stderr,"Localization: Failed to declare the system variable %s\n", EXPORTENVLOCALE);
+		return FALSE;
 	}
+
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -355,6 +364,42 @@ static char* getLocaleSystemInfo(void)
 		}
 	}
 	return localeStr;
+}
+#endif
+/*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+static char * convertLocaleFormat(char *localeWindows)
+{
+	/* http://msdn2.microsoft.com/en-us/library/hzz3tw78(VS.71).aspx */
+	char *convertedLocale = NULL;
+	if (localeWindows)
+	{
+		int code_page = 0;
+		char *country_region_detected;
+		char *lang_detected; 
+		
+		lang_detected=strtok(localeWindows,"_.");
+		country_region_detected=strtok(NULL,"_.");
+		
+		if ( (lang_detected) && (country_region_detected) )
+		{
+			char lang[3];
+			char country[3];
+
+			strncpy(lang,lang_detected,2);
+			lang[2] ='\0';
+
+			strncpy(country,country_region_detected,2);
+			country[2] = '\0';
+
+			convertedLocale = (char*)MALLOC(sizeof(char)*6);
+			if (convertedLocale)
+			{
+				sprintf(convertedLocale,"%s_%s",_strlwr(lang),_strupr(country));
+			}
+		}
+	}
+	return convertedLocale;
 }
 #endif
 /*--------------------------------------------------------------------------*/
