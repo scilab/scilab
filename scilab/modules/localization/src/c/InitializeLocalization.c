@@ -32,7 +32,7 @@
 #include "inisci-c.h"
 #include "scilabDefaults.h"
 #include "setgetlanguage.h"
-
+#include "isdir.h"
 /*--------------------------------------------------------------------------*/ 
 
 BOOL InitializeLocalization(void)
@@ -42,6 +42,7 @@ BOOL InitializeLocalization(void)
 	char *SCIpath=getSCIpath();
 	char *pathLocales=NULL;
 	char *ret=NULL;
+	char *ret2=NULL;
 
 	/* set directory containing message catalogs */
 	pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen(PATHLOCALIZATIONFILE)+1));
@@ -49,12 +50,22 @@ BOOL InitializeLocalization(void)
 	strcpy(pathLocales, SCIpath);
 	strcat(pathLocales, PATHLOCALIZATIONFILE);
 
-	if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL){
-		fprintf(stderr, "Localization: Error while binding the domain from %s\n", pathLocales);
+	ret2=bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales);
+
+	if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL || !isdir(pathLocales)){ /* source tree and classic build */
+		fprintf(stderr, "Localization: Error while binding the domain from %s: Trying in an other directory.\n", pathLocales);
+		
+		pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen("/..")+strlen(PATHLOCALIZATIONFILE)+1));
+		strcpy(pathLocales, SCIpath);
+		strcat(pathLocales, "/..");
+		strcat(pathLocales, PATHLOCALIZATIONFILE);
+		if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL || !isdir(pathLocales)){ /* when it is installed on the system for example /usr/share/locale/ */
+			fprintf(stderr, "Localization: Second try: Error while binding the domain from %s: Switch to the default language (English).\n", pathLocales);
+			FREE(pathLocales);
+			return FALSE;
+		}
 		FREE(pathLocales);
-		return FALSE;
 	}
-	FREE(pathLocales);
 
 	/* set domain for future gettext() calls */
 	ret=textdomain(NAMELOCALIZATIONDOMAIN);
