@@ -100,8 +100,6 @@ function myuidialog()
   while ~fin
     sleep(1)
     if findobj("label", "Menu")==[] then
-      disp("menu")
-      pause
       return;
     end
   end
