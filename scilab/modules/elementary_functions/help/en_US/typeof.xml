@@ -111,9 +111,27 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>if object is a  tlist or mlist,  t is the first</term>
+        <term>"hypermat"</term>
         <listitem>
-          <para>string in the first list entry.</para>
+          <para>if object is an hypermatrix (N-dimension array with N >=3).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"st"</term>
+        <listitem>
+          <para>if object is a structure array.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"ce"</term>
+        <listitem>
+          <para>if object is a cell array.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>the first string in the first list entry</term>
+        <listitem>
+          <para>if object is a tlist or mlist.</para>
         </listitem>
       </varlistentry>
     </variablelist>
