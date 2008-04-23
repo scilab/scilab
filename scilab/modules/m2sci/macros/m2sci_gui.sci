@@ -24,10 +24,10 @@ figh = 17*margin + btnh + 7*widgeth + 90; // 70 = size of the status bar and the
 m2scifig = figure("position", [0 0 figw figh], "figure_name", gettext("Matlab to Scilab conversion tool"));
 
 // Remove Scilab graphics menus & toolbar
-delmenu(m2scifig.figure_id, gettext("File"));
-delmenu(m2scifig.figure_id, gettext("Tools"));
-delmenu(m2scifig.figure_id, gettext("Edit"));
-delmenu(m2scifig.figure_id, gettext("?"));
+delmenu(m2scifig.figure_id, gettext("&File"));
+delmenu(m2scifig.figure_id, gettext("&Tools"));
+delmenu(m2scifig.figure_id, gettext("&Edit"));
+delmenu(m2scifig.figure_id, gettext("&?"));
 toolbar(m2scifig.figure_id, "off");
 
 h = uimenu("parent", m2scifig, "label", gettext("File"));

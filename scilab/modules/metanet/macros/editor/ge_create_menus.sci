@@ -10,10 +10,10 @@
 
 function ge_create_menus(win)
   toolbar(win, "off");
-  delmenu(win,gettext("File"));
-  delmenu(win,gettext("Tools"));
-  delmenu(win,gettext("Edit"));
-  delmenu(win,gettext("?"));
+  delmenu(win,gettext("&File"));
+  delmenu(win,gettext("&Tools"));
+  delmenu(win,gettext("&Edit"));
+  delmenu(win,gettext("&?"));
   menus=list([])
   for k=1:length(Menus)
     delmenu(win,Menus(k)(1))

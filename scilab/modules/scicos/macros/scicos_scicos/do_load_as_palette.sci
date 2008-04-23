@@ -47,22 +47,9 @@ function [palettes,windows] = do_load_as_palette(palettes, windows)
   gh_curwin = scf(curwin) ; //** open the new palette windows with proper id 
   gh_axes = gca(); 
 
-  if ~MSDOS then //** Unix case
-    delmenu(curwin,'3D Rot.')
-    delmenu(curwin,'UnZoom')
-    delmenu(curwin,'Zoom')
-    delmenu(curwin,'Edit')
-  
-  else //** Windows case
-     // French
-  	delmenu(curwin,'&Editer')
-  	delmenu(curwin,'&Outils')
-	delmenu(curwin,'&Inserer')
-     // English
-  	delmenu(curwin,'&Edit')
-  	delmenu(curwin,'&Tools')
-	delmenu(curwin,'&Insert')
-  end
+  delmenu(curwin,_("&Edit"))
+  delmenu(curwin,_("&Tools"))
+  delmenu(curwin,_("&?"))
 
 //** This function MAY cause problems
   //** toolbar(curwin, "off"); //** by Vincent C.
