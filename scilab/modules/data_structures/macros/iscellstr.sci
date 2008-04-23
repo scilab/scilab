@@ -16,18 +16,18 @@ if argn(2)<>1 then
   error(msprintf(gettext("%s: Wrong number of input arguments: %d expected"),"iscellstr",1));
 else
   if isempty(c) then
-    bool=bool2s(%f)
+    bool=%F;
   else
     if typeof(c)=="ce"
-      bool=bool2s(%t)
+      bool=%T;
       for i=1:size(c,"*")
         if typeof(c(i).entries)<>"string" then
-          bool=bool2s(%f)
+          bool=%F;
           break
         end
       end
     else
-      bool=bool2s(%f)
+      bool=%F;
     end
   end
 end
