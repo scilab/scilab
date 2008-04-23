@@ -8,7 +8,8 @@ c     a/b
       character fname*(*)
       double precision ANORM, EPS, RCOND
       double precision dlamch, zlange
-      external dlamch, zlange
+      integer vfinite
+      external dlamch, zlange, vfinite
       intrinsic conjg, sqrt
 c     
       minrhs=2
@@ -39,7 +40,15 @@ c     .  for backwar compatibility
          lhsvar(1) = 3
          return
       endif
-
+c     Check if A and B matrices contains Inf or NaN's
+      if (vfinite(M*N*2, zstk(lA)).eq.0) then
+         call error(229)
+         return
+      endif
+      if (vfinite(MB*NB*2, zstk(lB)).eq.0) then
+         call error(229)
+         return
+      endif
       if(.not.createvar(3,'z', N, M, lAF)) return
       if(.not.createvar(4,'z', K, M, lX)) return
       if(.not.createvar(5,'z', N, M, lAT)) return

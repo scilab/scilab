@@ -8,7 +8,8 @@ c     a\b
       character fname*(*)
       double precision ANORM, EPS, RCOND
       double precision dlamch, dlange
-      external dlamch, dlange
+      integer vfinite
+      external dlamch, dlange, vfinite
       intrinsic sqrt
 c     
       minrhs=2
@@ -36,6 +37,16 @@ c
          lhsvar(1) = 3
          return
       endif
+c     Check if A and B matrices contains Inf or NaN's
+      if (vfinite(M*N, stk(lA)).eq.0) then
+         call error(229)
+         return
+      endif
+      if (vfinite(MB*NRHS, stk(lB)).eq.0) then
+         call error(229)
+         return
+      endif
+
 
       if(.not.createvar(3,'d', M, N, lAF)) return
       if(.not.createvar(4,'d', N, NRHS, lX)) return
