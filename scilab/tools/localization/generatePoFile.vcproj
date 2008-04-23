@@ -6,7 +6,7 @@
 	ProjectGUID="{6880D4DF-BC7A-411F-AD9B-20A14429A92F}"
 	RootNamespace="generatePoFile"
 	Keyword="MakeFileProj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -27,8 +27,8 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
-				ReBuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
+				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;$(SolutionDir)\java\jdk\bin;%PATH%;&#x0D;&#x0A;$(SolutionDir)\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd $(SolutionDir)\modules\localization&#x0D;&#x0A;call ant jar&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;$(SolutionDir)\java\jdk\bin;%PATH%;&#x0D;&#x0A;$(SolutionDir)\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd $(SolutionDir)\modules\localization&#x0D;&#x0A;call ant jar&#x0D;&#x0A;"
 				CleanCommandLine="rmdir /s /q  $(SolutionDir)locale"
 				Output=""
 				PreprocessorDefinitions="WIN32;_DEBUG"
@@ -47,8 +47,8 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
-				ReBuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
+				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;$(SolutionDir)\java\jdk\bin;%PATH%;&#x0D;&#x0A;$(SolutionDir)\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd $(SolutionDir)\modules\localization&#x0D;&#x0A;call ant jar&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;$(SolutionDir)\java\jdk\bin;%PATH%;&#x0D;&#x0A;$(SolutionDir)\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd $(SolutionDir)\modules\localization&#x0D;&#x0A;call ant jar&#x0D;&#x0A;"
 				CleanCommandLine="rmdir /s /q  $(SolutionDir)locale"
 				Output=""
 				PreprocessorDefinitions="WIN32;_DEBUG"
@@ -67,8 +67,8 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
-				ReBuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
+				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;$(SolutionDir)\java\jdk\bin;%PATH%;&#x0D;&#x0A;$(SolutionDir)\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd $(SolutionDir)\modules\localization&#x0D;&#x0A;call ant jar&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;$(SolutionDir)\java\jdk\bin;%PATH%;&#x0D;&#x0A;$(SolutionDir)\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd $(SolutionDir)\modules\localization&#x0D;&#x0A;call ant jar&#x0D;&#x0A;"
 				CleanCommandLine="rmdir /s /q  $(SolutionDir)locale"
 				Output=""
 				PreprocessorDefinitions="WIN32;NDEBUG"
@@ -87,8 +87,8 @@
 			>
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
-				ReBuildCommandLine="..\..\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit"
+				BuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;$(SolutionDir)\java\jdk\bin;%PATH%;&#x0D;&#x0A;$(SolutionDir)\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd $(SolutionDir)\modules\localization&#x0D;&#x0A;call ant jar&#x0D;&#x0A;"
+				ReBuildCommandLine="set JAVA_HOME=$(SolutionDir)\java\jdk&#x0D;&#x0A;set PATH=$(SolutionDir)\java\ant\bin;$(SolutionDir)\java\jdk\bin;%PATH%;&#x0D;&#x0A;$(SolutionDir)\bin\scilex.exe -nb -nwni -e exec(SCI+&apos;/tools/localization/generatePoFile.sce&apos;);quit&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale fr_FR  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\fr_FR\LC_MESSAGES\scilab.po&#x0D;&#x0A;$(SolutionDir)\tools\gettext\msgfmt  --statistics --locale en_US  -r org.scilab.modules.localization.Messages --java2 -d $(SolutionDir)\modules\localization\build\classes\  $(SolutionDir)\locale\en_US\LC_MESSAGES\scilab.po&#x0D;&#x0A;cd $(SolutionDir)\modules\localization&#x0D;&#x0A;call ant jar&#x0D;&#x0A;"
 				CleanCommandLine="rmdir /s /q  $(SolutionDir)locale"
 				Output=""
 				PreprocessorDefinitions="WIN32;NDEBUG"
@@ -122,4 +122,6 @@
 			>
 		</Filter>
 	</Files>
+	<Globals>
+	</Globals>
 </VisualStudioProject>
