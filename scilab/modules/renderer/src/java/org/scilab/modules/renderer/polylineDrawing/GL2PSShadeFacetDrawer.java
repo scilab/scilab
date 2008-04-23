@@ -102,7 +102,6 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 		}
 	}
 
-	@Override
 	public void paintPolygon(Vector3D[] triangleCoords,
 			double[] triangleColors, GL gl, TexturedColorMap colorMap) {
 

@@ -56,7 +56,6 @@ public class JOGLShadeFacetDrawer implements ShadeFacetDrawer {
 		
 	}
 
-	@Override
 	public void paintPolygon(Vector3D[] triangleCoords,
 			double[] triangleColors, GL gl, TexturedColorMap colorMap) {
 		
