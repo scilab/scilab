@@ -21,20 +21,10 @@
 
 function menu_stuff()
 
-if ~MSDOS then
-  delmenu(curwin,_('3D Rot.'))
-  delmenu(curwin,_('UnZoom'))
-  delmenu(curwin,_('Zoom'))
-  delmenu(curwin,_('Edit'))
-  delmenu(curwin,_('File'))
-  delmenu(curwin,_('Insert'))
-else
- // Use Scilab Localisation
-  delmenu(curwin,_('File'))
-  delmenu(curwin,_('Edit'))
-  delmenu(curwin,_('Tools'))
-  delmenu(curwin,_('Insert'))
-  end
+delmenu(curwin,_('&File'))
+delmenu(curwin,_('&Edit'))
+delmenu(curwin,_('&Tools'))
+delmenu(curwin,_('&?'))
 
 //** This function MAY cause problems
   //** toolbar(curwin, "off"); //** by Vincent C.
