@@ -78,8 +78,15 @@ int sci_delete(char *fname,unsigned long fname_len)
     }
     break;
   default:
-    CheckRhs(0,0);
-    hdl = (unsigned long) sciGetHandle(sciGetCurrentObj());
+    if (Rhs==0) /* Delete current object */
+      {
+        hdl = (unsigned long) sciGetHandle(sciGetCurrentObj());
+      }
+    else
+      {
+        Scierror(999,_("%s: Wrong first input argument: 'all' or handle expected.\n"),fname,"all");
+        return 0;
+      }
     break;
   }
 
