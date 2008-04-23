@@ -63,7 +63,7 @@ List of missing/buggy features:
                    older graphics instructions not supported anymore
 
 
-- Name of the functions in "Genetic Algorithms" and Simulated Annealing" modules may changed in the stable version
+- Name of the functions in "Genetic Algorithms" and Simulated Annealing" modules may change in the stable version
 
 
 - Scipad debugger is not yet fully functional.
