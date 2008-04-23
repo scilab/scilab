@@ -34,6 +34,7 @@ libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-Iincludes/ \
 				-Isrc/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscilocalization.la
