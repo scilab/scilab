@@ -24,10 +24,10 @@
 
 
 #ifdef _MSC_VER
-	#define IMPORT_SIGNAL __declspec(dllimport)
-	#define strdup _strdup
+#define IMPORT_SIGNAL __declspec(dllimport)
+#define strdup _strdup
 #else
-	#define IMPORT_SIGNAL extern
+#define IMPORT_SIGNAL extern
 #endif
 #define WK_BUF_SIZE 520
 
@@ -97,14 +97,16 @@ static void initAll(void) {
 ** sent when StoreCommand is performed.
 */
 static void *watchStoreCommand(void *in) {
+  __UnLock(&LaunchScilabLock);
   __Wait(&LaunchScilab, &LaunchScilabLock);
-  //__Lock(&ReadyForLaunch);
-  //fprintf(stderr, "[SIGNAL] Store Command\n");
+
+
+  __Lock(&ReadyForLaunch);
   WSCThreadAlive=FALSE;
   __Signal(&TimeToWork);
+  __UnLock(&ReadyForLaunch);
+
   return NULL;
-  //__UnLock(&ReadyForLaunch);
-  //pthread_exit(NULL);
 }
 
 /***********************************************************************/
@@ -116,12 +118,12 @@ static void *watchStoreCommand(void *in) {
 static void *watchGetCommandLine(void *in) {
   getCommandLine();
   __Lock(&ReadyForLaunch);
-  //fprintf(stderr, "[SIGNAL] Get Command Line\n");
   WGCLThreadAlive = FALSE;
   __Signal(&TimeToWork);
   __UnLock(&ReadyForLaunch);
-  return NULL;
-  //pthread_exit(NULL);
+
+   return NULL;
+
 }
 
 /***********************************************************************/
@@ -143,24 +145,26 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   if (ismenu() == 0) {
     if (!WGCLThreadAlive)
       {
+	if (WGCLThread) {
+	  __WaitThreadDie(WGCLThread);
+	}
 	__CreateThread(&WGCLThread, &watchGetCommandLine);
 	WGCLThreadAlive = TRUE;
       }
     if (!WSCThreadAlive)
       {
+	if (WSCThread) {
+	  __WaitThreadDie(WSCThread);
+	}
 	__CreateThread(&WSCThread, &watchStoreCommand);
 	WSCThreadAlive = TRUE;
       }
 
-    //fprintf(stderr, "[WAIT] Time to work\n");
     __Wait(&TimeToWork, &ReadyForLaunch);
-    //fprintf(stderr, "[GO !!!] Time to work\n");
 
   }
   __UnLock(&ReadyForLaunch);
 
-  //printf("__Commandline = %s\n", __CommandLine);
-  //fflush(NULL);
   /*
   ** WARNING : Old crappy f.... code
   ** do not change reference to buffer
