@@ -403,6 +403,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\c\getLocaleInfo_Windows.c"
+				>
+			</File>
+			<File
 				RelativePath="..\sci_gateway\c\gw_localization.c"
 				>
 			</File>
@@ -445,6 +449,10 @@
 			>
 			<File
 				RelativePath=".\c\getentrieshashtable.h"
+				>
+			</File>
+			<File
+				RelativePath=".\c\getLocaleInfo_Windows.h"
 				>
 			</File>
 			<File

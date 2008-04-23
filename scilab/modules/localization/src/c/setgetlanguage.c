@@ -30,6 +30,10 @@
 	#include <locale.h>
 #endif
 
+#ifdef _MSC_VER
+#include "getLocaleInfo_Windows.h"
+#endif
+
 #include "setgetlanguage.h"
 #include "MALLOC.h"
 #include "tableslanguages.h"
@@ -48,23 +52,6 @@ static BOOL setlanguagecode(char *lang);
 static char *FindAlias(char *lang);
 static char *GetLanguageFromAlias(char *langAlias);
 static BOOL exportLocaleToSystem(char *locale);
-
-#ifdef _MSC_VER
-/**
-* returns user locale string
-* @return Locale user example fr_FR or en_US
-*/
-static char* getLocaleUserInfo(void);
-
-/**
-* returns system locale string
-* @return Locale system example fr_FR or en_US
-*/
-static char* getLocaleSystemInfo(void);
-
-/* converts windows locale format to xx_xx format */
-static char * convertLocaleFormat(char *localeWindows);
-#endif
 /*--------------------------------------------------------------------------*/
 BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 {
@@ -78,13 +65,9 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 				#ifndef _MSC_VER
 				char *ret=setlocale(LC_MESSAGES,lang);
 				#else
-				/* Visual Studio DOES NOT KNOW LC_MESSAGES !!! */
-				char *ret = setlocale(LC_ALL,lang);
-				ret = convertLocaleFormat(ret);
+				/* Load the user locale from the system */
+				char *ret = getLocaleUserInfo();
 				#endif
-
-				//				printf("export %s\n",EXPORTENVLOCALE);
-
 				/*
 				//				  This stuff causes pb when locales have been compiled 
 				if (ret==NULL){
@@ -143,13 +126,6 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 /*--------------------------------------------------------------------------*/
 char *getlanguage(void)
 {
-	/*
-	#if _MSC_VER
-	return getLocaleUserInfo();
-	#else
-	return CURRENTLANGUAGESTRING;
-	#endif
-	*/
 	return CURRENTLANGUAGESTRING;
 }
 /*--------------------------------------------------------------------------*/
@@ -295,111 +271,4 @@ static BOOL exportLocaleToSystem(char *locale){
 
 	return TRUE;
 }
-/*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-static char* getLocaleUserInfo(void)
-{
-	#define LENGTH_BUFFER 1024
-	char buffer_LOCALE_SISO639LANGNAME[LENGTH_BUFFER];
-	char buffer_LOCALE_SISO3166CTRYNAME[LENGTH_BUFFER];
-	char *localeStr = NULL;
-	int ret = 0;
-	ret = GetLocaleInfo(LOCALE_USER_DEFAULT,
-						LOCALE_SISO639LANGNAME,
-						&buffer_LOCALE_SISO639LANGNAME[0],
-						LENGTH_BUFFER);
-	if (ret > 0)
-	{
-
-		ret = GetLocaleInfo(LOCALE_USER_DEFAULT,
-							LOCALE_SISO3166CTRYNAME,
-							&buffer_LOCALE_SISO3166CTRYNAME[0],
-							LENGTH_BUFFER);
-		if (ret >0)
-		{
-			int length_localeStr = (int)(strlen(buffer_LOCALE_SISO639LANGNAME)+
-										 strlen(buffer_LOCALE_SISO3166CTRYNAME)+
-										 strlen("_"));
-			localeStr = (char*)MALLOC(sizeof(char)*(length_localeStr)+1);
-			if (localeStr)
-			{
-				#define FORMAT_LOCALE "%s_%s"
-				sprintf(localeStr,FORMAT_LOCALE,buffer_LOCALE_SISO639LANGNAME,buffer_LOCALE_SISO3166CTRYNAME);
-			}
-		}
-	}
-	return localeStr;
-}
-#endif
-/*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-static char* getLocaleSystemInfo(void)
-{
-	#define LENGTH_BUFFER 1024
-	char buffer_LOCALE_SISO639LANGNAME[LENGTH_BUFFER];
-	char buffer_LOCALE_SISO3166CTRYNAME[LENGTH_BUFFER];
-	char *localeStr = NULL;
-	int ret = 0;
-	ret = GetLocaleInfo(LOCALE_SYSTEM_DEFAULT,
-		LOCALE_SISO639LANGNAME,
-		&buffer_LOCALE_SISO639LANGNAME[0],
-		LENGTH_BUFFER);
-	if (ret > 0)
-	{
-		ret = GetLocaleInfo(LOCALE_SYSTEM_DEFAULT,
-			LOCALE_SISO3166CTRYNAME,
-			&buffer_LOCALE_SISO3166CTRYNAME[0],
-			LENGTH_BUFFER);
-		if (ret >0)
-		{
-			int length_localeStr = (int)(strlen(buffer_LOCALE_SISO639LANGNAME)+
-				strlen(buffer_LOCALE_SISO3166CTRYNAME)+
-				strlen("_"));
-			localeStr = (char*)MALLOC(sizeof(char)*(length_localeStr)+1);
-			if (localeStr)
-			{
-				#define FORMAT_LOCALE "%s_%s"
-				sprintf(localeStr,FORMAT_LOCALE,buffer_LOCALE_SISO639LANGNAME,buffer_LOCALE_SISO3166CTRYNAME);
-			}
-		}
-	}
-	return localeStr;
-}
-#endif
-/*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-static char * convertLocaleFormat(char *localeWindows)
-{
-	/* http://msdn2.microsoft.com/en-us/library/hzz3tw78(VS.71).aspx */
-	char *convertedLocale = NULL;
-	if (localeWindows)
-	{
-		int code_page = 0;
-		char *country_region_detected;
-		char *lang_detected; 
-		
-		lang_detected=strtok(localeWindows,"_.");
-		country_region_detected=strtok(NULL,"_.");
-		
-		if ( (lang_detected) && (country_region_detected) )
-		{
-			char lang[3];
-			char country[3];
-
-			strncpy(lang,lang_detected,2);
-			lang[2] ='\0';
-
-			strncpy(country,country_region_detected,2);
-			country[2] = '\0';
-
-			convertedLocale = (char*)MALLOC(sizeof(char)*6);
-			if (convertedLocale)
-			{
-				sprintf(convertedLocale,"%s_%s",_strlwr(lang),_strupr(country));
-			}
-		}
-	}
-	return convertedLocale;
-}
-#endif
 /*--------------------------------------------------------------------------*/
