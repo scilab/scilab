@@ -16,6 +16,7 @@
 #include "localization.h"
 #include "gw_localization.h"
 #include "Scierror.h"
+#include "strsubst.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_gettext)(char *fname,unsigned long fname_len)
 {
@@ -32,8 +33,25 @@ int C2F(sci_gettext)(char *fname,unsigned long fname_len)
 			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			msgid=cstk(l1);
 
-			/* We always have something from this functions because gettext
-			 * is returning the same string if it cannot find it */
+			/* This stupid stuff is necessary because scilab is add slashes
+			 * and we need to remove them
+			 * An other solution might be to replace the string "\x" by it
+			 * real code 
+			*/
+			if (strchr(msgid, '\\')!=NULL){
+				/* There is an \ in the string process to replace */
+				
+				/* We always have something from this functions because gettext
+				 * is returning the same string if it cannot find it */
+
+				msgid=strsub(msgid, "\\n", "\n"); /* linefeed */
+				msgid=strsub(msgid, "\\t", "\t"); /* horizontal tab */
+				msgid=strsub(msgid, "\\r", "\r"); /* carriage return */
+				msgid=strsub(msgid, "\\v", "\v"); /* vertical tab */
+				msgid=strsub(msgid, "\\f", "\f"); /* form feed */
+				msgid=strsub(msgid, "\\\\", "\\"); /* backslash */
+				msgid=strsub(msgid, "\\\"", "\""); /* double quote */
+			}
 			TranslatedString=gettext(msgid);
 
 			n1=1;
