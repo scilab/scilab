@@ -6,7 +6,7 @@
 	ProjectGUID="{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}"
 	RootNamespace="localization-Ant"
 	Keyword="MakeFileProj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -113,7 +113,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\org\scilab\modules\localization\QueryString.java"
+				RelativePath=".\org\scilab\modules\localization\Messages.java"
 				>
 			</File>
 		</Filter>
