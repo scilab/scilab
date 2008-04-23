@@ -44,7 +44,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	private static final double LABEL_TO_AXIS_DISTANCE = 1.5;
 	
 	/** Exponent size compared to label size */
-	private static final float EXPONENT_SIZE = 0.5f;
+	private static final float EXPONENT_SIZE = 0.75f;
 	
 	private double[] ticksPositions;
 	private String[] ticksLabels;

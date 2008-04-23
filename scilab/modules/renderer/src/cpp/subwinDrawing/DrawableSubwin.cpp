@@ -177,6 +177,9 @@ void DrawableSubwin::showSingleObj(sciPointObj * pObj)
 {
   initializeDrawing() ;
 
+  // fill Frect with real data bounds
+  computeRealDataBounds();
+
   // set up camera
   m_pCamera->show();
 
