@@ -36,7 +36,12 @@ Graphics:
 	* is_handle_valid - Check wether a set of graphic handles is still valid.
  - Obsolete functions:
   * Using xgetmouse with a flag to avoid the event queue to be cleared is now obsolete. This functionnality will be removed in Scilab 5.1.
+<<<<<<< .mine
+  * xclea function has been removed because of its incompatibility with new graphic syntax.
+  * xaxis function has been removed because of its incompatibility with new graphic syntax. 
+=======
   * xclea, xaxis and xtape functions has been removed because of their imcompatibility with new graphic syntax.
+>>>>>>> .r24521
 
 
 Graphic file export:
@@ -76,6 +81,14 @@ Sparse LU factorization:
 	+ PlotSparse		- Plot the pattern of non nul elements of a sparse matrix 
 	+ ReadHBSparse		- Read a Harwell-Boeing sparse format file
 
+Other Numerical Functions
+=========================
+ - new functions 
+        + filter                - signal filtering 
+        + erfinv                - inverse of the erf function
+        +                       - support for rational fraction hypermatrices added
+ - Bug fixes
+        + Major bug in qld fixed
 
 Input/Output functions (files):
 ===============================
@@ -134,8 +147,8 @@ String manipulation:
 	+ strtok     - split string into tokens
 
 
-Functions:
-==========
+System relative Functions:
+=========================
  - New functions:
 	+ getdebuginfo          - returns informations about scilab and your system
 	+ getscilabmode         - returns scilab mode
@@ -147,6 +160,9 @@ Functions:
 	+ librarieslist         - get scilab libraries
 	+ libraryinfo           - get macros and path of a scilab library
 	+ completion            - returns words that start with the text you pass as parameter.
+	+ add_profiling         - prepare a function for profiling
+	+ remove_profiling      - remove  profiling instruction in a function
+	+ reset_profiling       - reset  profiling data of a function
 
  - Rewrite in native code:
   + warning
@@ -214,6 +230,8 @@ Online Help management:
 
 Metanet : graph and network toolbox
 ===================================
+ - Data structures have been reorganized and made more flexible (user
+   can define and handle its own datya fields for nodes and edges)
  - New functions:
 	+ hilite_edges   - highlights a set of edges
 	+ unhilite_edges - unhighlights a set of edges
