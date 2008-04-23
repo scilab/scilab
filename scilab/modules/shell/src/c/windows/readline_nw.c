@@ -676,64 +676,67 @@ static void doCompletion(const char *current_line,const char *prompt)
 	}
 	else wordToFind = cur_line;
 
-	completionDictionary = completion(wordToFind,&sizeCompletionDictionary);
-	if (sizeCompletionDictionary)
+	if (wordToFind) 
 	{
-		if (sizeCompletionDictionary == 1)
+		completionDictionary = completion(wordToFind,&sizeCompletionDictionary);
+		if (sizeCompletionDictionary)
 		{
-			char *wordtodisp = completionDictionary[0];
-			if ( strcmp(wordtodisp,wordToFind) != 0)
+			if (sizeCompletionDictionary == 1)
 			{
-				backup_line = strdup( cur_line);
-				backup_line[strlen (cur_line) - strlen(wordToFind)] = '\0';
-				
+				char *wordtodisp = completionDictionary[0];
+				if ( strcmp(wordtodisp,wordToFind) != 0)
+				{
+					backup_line = strdup( cur_line);
+					backup_line[strlen (cur_line) - strlen(wordToFind)] = '\0';
+
+					doNewLine(FALSE);
+					fputs ("\n", stdout);
+					redraw_line((char*)prompt);
+					strcat(backup_line,wordtodisp);
+					strcpy(cur_line,backup_line);
+					fputs (cur_line, stdout);
+					cur_pos = (int)strlen(cur_line);
+					max_pos = (int)strlen(cur_line);
+					FREE(backup_line);
+				}
+			}
+			else
+			{
+				int i = 0;
+				backup_line = strdup(cur_line);
+
 				doNewLine(FALSE);
 				fputs ("\n", stdout);
+				for(i= 0;i<sizeCompletionDictionary;i++)
+				{
+					int b=getColumnsSize();
+					int newlenLine = lenCurrentLine + (int)strlen(completionDictionary[i]) + (int)strlen(" ");
+					if ( newlenLine >= (getColumnsSize() - 10) )
+					{
+						fputs ("\n", stdout);
+						lenCurrentLine = 0;
+					}
+					else
+					{
+						lenCurrentLine = newlenLine;
+					}
+
+					fputs (completionDictionary[i], stdout);
+					fputs (" ", stdout);
+
+				}
+				fputs ("\n", stdout);
+				lenCurrentLine = 0;
+
 				redraw_line((char*)prompt);
-				strcat(backup_line,wordtodisp);
 				strcpy(cur_line,backup_line);
 				fputs (cur_line, stdout);
 				cur_pos = (int)strlen(cur_line);
 				max_pos = (int)strlen(cur_line);
 				FREE(backup_line);
 			}
+			freeArrayOfString(completionDictionary,sizeCompletionDictionary);
 		}
-		else
-		{
-			int i = 0;
-			backup_line = strdup(cur_line);
-			
-			doNewLine(FALSE);
-			fputs ("\n", stdout);
-			for(i= 0;i<sizeCompletionDictionary;i++)
-			{
-				int b=getColumnsSize();
-				int newlenLine = lenCurrentLine + (int)strlen(completionDictionary[i]) + (int)strlen(" ");
-				if ( newlenLine >= (getColumnsSize() - 10) )
-				{
-					fputs ("\n", stdout);
-					lenCurrentLine = 0;
-				}
-				else
-				{
-					lenCurrentLine = newlenLine;
-				}
-				
-				fputs (completionDictionary[i], stdout);
-				fputs (" ", stdout);
-				
-			}
-			fputs ("\n", stdout);
-			lenCurrentLine = 0;
-			
-			redraw_line((char*)prompt);
-			strcpy(cur_line,backup_line);
-			fputs (cur_line, stdout);
-			cur_pos = (int)strlen(cur_line);
-			max_pos = (int)strlen(cur_line);
-			FREE(backup_line);
-		}
-		freeArrayOfString(completionDictionary,sizeCompletionDictionary);
 	}
 }
 /*--------------------------------------------------------------------------*/
