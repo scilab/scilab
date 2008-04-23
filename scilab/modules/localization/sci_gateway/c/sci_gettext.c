@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include <string.h>
 #include "MALLOC.h"
 #include "machine.h"
 #include "stack-c.h"
@@ -62,7 +62,7 @@ int C2F(sci_gettext)(char *fname,unsigned long fname_len)
 		}
 	else
 		{
-			Scierror(999,"%s: Wrong type for first input argument: String expected.\n",fname);
+			Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
 			return 0;
 		}
 }
