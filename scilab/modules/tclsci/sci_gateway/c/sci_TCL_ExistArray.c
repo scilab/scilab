@@ -52,11 +52,12 @@ int sci_TCL_ExistArray(char *fname,unsigned long l)
 			{
 				GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 				TCLinterpreter=Tcl_GetSlave(getTclInterp(),cstk(l2));
-				releaseTclInterp();
+
 				if (TCLinterpreter==NULL)
 				{
 					Scierror(999,_("%s: No such slave interpreter.\n"),fname);
-					return 0;
+					releaseTclInterp();
+                                        return 0;
 				}
 			}
 			else
@@ -69,10 +70,10 @@ int sci_TCL_ExistArray(char *fname,unsigned long l)
 		{
 			/* only one argument given - use the main interpreter */
 			TCLinterpreter=getTclInterp();
-			releaseTclInterp();
 		}
 
 		ValRet=TCL_ArrayExist(TCLinterpreter,VarName);
+                releaseTclInterp();
 
 		n1=1;
 		if ( ValRet )
