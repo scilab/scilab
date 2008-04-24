@@ -1,0 +1,30 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2008 - INRIA - Jean-Baptiste Silvy
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 2141 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2141
+//
+// <-- Short Description -->
+// xpolys draw polylines sometimes ahead of the axes and sometime behind.
+
+f=scf();clf();
+
+x=linspace(0,1,100);
+plot(x,x);
+
+X=[0;1;1;1;1;0;0;0];
+Y=[0;0;0;1;1;1;1;0];
+g=color("red");
+xpolys(X,Y,g*ones(1,8));
+
+// the top segment of the axes box was red and the right one is black.   
+
+

@@ -1,0 +1,32 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2008 - INRIA - Jean-Baptiste Silvy
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 2458 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2458
+//
+// <-- Short Description -->
+// angled thickness 1 lines are transiently dash-dotted (X problem?)
+
+nbComputation = 20000
+// force full allocation of free
+free(nbComputation) = 0;
+
+f=gcf();f.pixmap='on';
+plot2d()
+free=getmemory();
+for k=1:nbComputation, show_pixmap(),free=[free,getmemory()];end 
+
+// compute used memory during compuations
+usedMemory = free(1) - free(nbComputation);
+
+// 5 mega
+if (usedMemory > 5000) then pause; end
+
