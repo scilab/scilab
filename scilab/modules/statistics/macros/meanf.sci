@@ -35,7 +35,8 @@ function [m]=meanf(val,fre,orient)
 //Statistics, J.Wiley & Sons, 1990.
 //
   [lhs,rhs]=argn(0)
-  if rhs==0|rhs==1|rhs>=4 then error('meanf requires two or three inputs.'), end
+  if rhs==0|rhs==1|rhs>=4 then error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"meanf",2,3)), end
+
   if val==[]|fre==[]|fre==0, m=%nan;return,end
   if rhs==2 then
     m=sum(val .* fre)/sum(fre);
@@ -47,7 +48,7 @@ function [m]=meanf(val,fre,orient)
     elseif orient=='c'|orient==2 then
       m=sum(val .* fre,'c') ./ sum(fre,'c')
     else
-      error('The value of the third parameter must be ''r'', ''c'', 1 or 2')
+	  error(msprintf(gettext("%s: Wrong value for third input argument: ''%s'', ''%s'',''%s'', %d or %d.\n"),"meanf","r","c",1,2)),
     end
   end
 endfunction

@@ -33,12 +33,12 @@ function [s]=stdevf(x,fre,o)
 //
   rhs=argn(2)
   if rhs<2 then
-    error('stdevf requires two or three inputs.'),
+	error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"stdevf",2,3)),  
   elseif rhs==2 then
      o='*'
   end
   if or(size(x)<>size(fre)) then
-    error('stdevf, first and second argument mist have the same dimensions')
+    error(msprintf(gettext("%s: Wrong size for first and second input arguments: Same dimensions expected.\n"),"stdevf"))
   end
   if x==[] then s=%nan;return,end
   
@@ -51,7 +51,7 @@ function [s]=stdevf(x,fre,o)
   elseif o=='c'|o==2,
     y=x - meanf(x,fre,o)*ones(1,size(x,o))
   else 
-    error('3rd argument of stdevf must be equal to *, c, r, 1 or 2'),
+	error(msprintf(gettext("%s: Wrong value for third input argument: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"stdevf","*","r","c",1,2)),
   end
   if size(x,1)==1 then
     s=0*sum((y.^2).*fre,o)

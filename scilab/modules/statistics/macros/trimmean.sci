@@ -70,10 +70,10 @@ function t=trimmean(x,discard,orien)
 // modified by Bruno Pincon 2006-08-12 (to fix bug 2083)
 
   [lhs,rhs]=argn()
-  if rhs < 2 | rhs > 3 then error('trimmean requires two or three input parameters.'), end
+  if rhs < 2 | rhs > 3 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"trimmean",2,3)), end
     
   if type(discard)~=1 | ~isreal(discard) | length(discard) ~=1 | discard > 100 | discard < 0 then 
-    error('2nd input parameter must be a real number in the 0-100 range.')
+	error(msprintf(gettext("%s: Wrong value for second input argument: Real number between %d to %d expected.\n"),"trimmean",0,100))
   end
  
   if rhs == 3 then
@@ -82,7 +82,7 @@ function t=trimmean(x,discard,orien)
      elseif orien=='c' | orien==2 then
         sizx=size(x,'c'); orient = 'c'
      else
-        error('bad third input parameter.')
+        error(msprintf(gettext("%s: Wrong value for third input argument: ''%s'', ''%s'', %d or %d expected.\n"),"trimmean",,"c","r",1,2))
      end
   else
      sizx = length(x); orient = 'all'

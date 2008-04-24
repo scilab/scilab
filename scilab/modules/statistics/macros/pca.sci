@@ -77,11 +77,11 @@ function [lambda,facpr,comprinc]=pca(varargin)
   	  N = varargin(2);
   	  no_graphics = varargin(3);
   	else
-  	error(sprintf("%s: Wrong number of input argument(s).\n","pca"));
+  	error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"),"pca",1,3));
   	end
 
   if ( type(no_graphics) <> 4 ) then
-    error(sprintf("%s: Wrong type for third input argument: Boolean expected.\n" ,"pca"));
+    error(msprintf(gettext("%s: Wrong type for third input argument: Boolean expected.\n"),"pca"));
   end
 
   if x==[] then
@@ -92,8 +92,8 @@ function [lambda,facpr,comprinc]=pca(varargin)
   end
 
   [rowx colx]=size(x)
-  if size(N,'*')<>2 then error('Second parameter has bad dimensions'), end,
-  if max(N)>colx then disp('Graph demand out of bounds'), return, end
+  if size(N,'*')<>2 then error(msprintf(gettext("%s: Wrong size for second inputargument: Size %s expected.\n"),"pca","2x1")), end,
+  if max(N)>colx then disp(msprintf(gettext("%s: Graph demand out of bounds.\n"),"pca")), return, end
   
   xbar=sum(x,'r')/rowx
   y=x-ones(rowx,1)*xbar
@@ -129,7 +129,7 @@ function [lambda,facpr,comprinc]=pca(varargin)
       e=gce();
       e.foreground=blue;
     end
-    title(' -Correlations Circle- ');
+    title(gettext("Correlations Circle"));
     fig2 = scf(w+1);
     plot2d3([0;ra;rango+1]',[0; lambda(ra,2);0]);
     plot2d(ra,lambda(ra,2),style=9);
@@ -141,7 +141,7 @@ function [lambda,facpr,comprinc]=pca(varargin)
       xstring(k,0,'l'+string(k)),
       e=gce();e.font_style=1
     end
-    title(' -Eigenvalues (in percent)- ')
+    title(gettext("Eigenvalues (in percent)"))
     ylabel('%')
   end  
 endfunction

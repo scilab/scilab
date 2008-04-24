@@ -30,7 +30,7 @@ function m=msd(x,orien)
 //
 //
   rhs=argn(2)
-  if rhs==0 then error('msd requires at least one input.'), end
+  if rhs==0 then error(msprintf(gettext("%s: Wrong number of input argument: At least %d expected.\n"),"msd",1)), end
   if x==[] then s=%nan, return, end
   if rhs==1 then orien='*',end
   if orien=='*' then
@@ -40,6 +40,6 @@ function m=msd(x,orien)
   elseif orien=='r'|orien==1 then
     m=sqrt(sum((x-ones(x(:,1))*mean(x,orien)).^2,orien)/size(x,orien));
   else
-    error('2nd argument of msd must be equal to ''c'', ''r'', 1 or 2');
+	error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'', %d or %d expected.\n"),"stdevf","r","c",1,2)),
   end
 endfunction

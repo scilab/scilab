@@ -32,7 +32,7 @@ function s=nansum(x,orient)
 //fixed: 2003/09/03
 //error texts and all NAN rows or columns
 //
-  if argn(2)==0 then error('nansum requires one or two inputs.'), end
+  if argn(2)==0 then error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"nansum",1,2)), end
   if argn(2)==1 then  orient='*',end
   isn=isnan(x)
   x(isn)=0

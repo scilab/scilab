@@ -32,7 +32,7 @@ function [s2]=mad(x,orien)
 //
   [lhs,rhs]=argn()
   if rhs < 1 | rhs > 2 then
-     error('mad requires one or two inputs.')
+	error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"mad",1,2)),
   end
   
   if x==[] then s2=%nan, return, end
@@ -46,7 +46,7 @@ function [s2]=mad(x,orien)
     elseif orien=='c' | orien==2 then
       s2=sum(abs(x-(mean(x,2)*ones(1,ncol))),2)/ncol
     else 
-      error('The second input parameter must be ''r'', ''c'', 1 or 2')
+	  error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'',''%s'', %d or %d.\n"),"mad","r","c",1,2)),
     end
   end
 endfunction

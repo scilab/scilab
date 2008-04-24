@@ -28,7 +28,7 @@ function [m]=nanmean(x,orient)
 //each row of x (ignoring the NANs).
 //
 //
-  if argn(2)==0 then error('nanmean requires one or two inputs.'), end
+  if argn(2)==0 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nanmean",1,2)), end
   if argn(2)==1 then  orient='*',end
   //replace nans by 0
   isn=isnan(x)

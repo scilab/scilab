@@ -16,12 +16,12 @@ function s=samwr(sizam,numsamp,X)
 //from the  vector X.
 //
   if argn(2)<>3 then 
-    error('samwr requires  three input parameters.'), 
+    error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"samwr",3)),
   end
   if X==[]|sizam==0|numsamp==0 then s=[]; return;end
   sizx=size(X,'*')
   if sizam>sizx then
-    error('Value of first parameter must be less or equal than lenght of last parameter')
+    error(msprintf(gettext("%s: Wrong value of first input argument: Less or equal than length of last input argument expected.\n"),"samwr")),
   end
   
   perm=grand(numsamp,'prm',(1:sizx)')

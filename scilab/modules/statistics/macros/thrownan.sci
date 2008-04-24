@@ -23,7 +23,7 @@ function [nonan,numb]=thrownan(x)
 //
 //
   [lhs,rhs]=argn(0)
-  if rhs<>1 then error('thrownan has one parameter, exactly.'), end
+  if rhs<>1 then error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"thrownan",1)), end
   if x==[] then s=[], return,end
   numb=find(bool2s(~isnan(x)))
   nonan=x(~isnan(x))

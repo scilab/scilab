@@ -38,7 +38,7 @@ function s=samplef(n,X,f,orient)
 //must be equal to the number of columns of X.
 //
   [lhs,rhs]=argn(0)
-  if rhs<3 | rhs>4 then error('samplef requires three or four inputs.'), end
+  if rhs<3 | rhs>4 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"samplef",3,4)), end
   if X==[]| (or(f==0)) then s=[]; return;end
   sizx=size(X)
   val=cumsum([0;f(:)])
@@ -49,25 +49,25 @@ function s=samplef(n,X,f,orient)
   end
   if orient=='*' then
     if size(f,'*')<>prod(sizx) then
-      error('In this case dimensions of second and third parameters must be equal'), 
+      error(msprintf(gettext("%s: Wrong size for second and third input argument: Same size expected.\n"), "samplef")),
     end
     s=X(ind)
     return
   end
   if orient=='r'|orient==1 then
     if size(f,'*')<>sizx(1) then
-      error('Third parameter must be equal to number of rows of second parameter'), 
+	  error(msprintf(gettext("%s: Wrong size for third input argument: Same number of rows of the second input argument expected.\n"), "samplef")),
     end
     s=X(ind,:)
     return
   end
   if orient=='c'|orient==2 then
     if size(f,'*')<>sizx(2) then
-      error('Third parameter must be equal to number of columns of second parameter'), 
+	  	  error(msprintf(gettext("%s: Wrong size for third input argument: Same number of columns of the second input argument expected.\n"), "samplef")),
     end
     s=X(:,ind)
     return
   end
-  error('Fourth parameter must be *, r, c, 1 or 2')
+  error(msprintf(gettext("%s: Wrong value for fourth input argument: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"orient","*","r","c",1,2))
 endfunction
 

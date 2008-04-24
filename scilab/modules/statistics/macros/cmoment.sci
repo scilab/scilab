@@ -34,7 +34,7 @@ function mom= cmoment(x,ord,orien)
 //
   if x==[]|ord==[] then mom=%nan, return, end
   [lhs,rhs]=argn(0)
-  if rhs<2 then error('cmoment requires at least two parameters.'), end
+  if rhs<2 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"cmoment",2,3)), end
   if rhs==2 then
     if ord==1 then mom=0, return, end
     le=length(x)
@@ -48,10 +48,10 @@ function mom= cmoment(x,ord,orien)
       m=m(ones(le,1),:)
     elseif orien=='c'|orien==1 then
       m=m(:,ones(le,1))
-    else error('The third parameter must be ''r'', ''c'', 1 or 2'),
+	else error(msprintf(gettext("%s: Wrong value for third input argument: ''%s'', ''%s'', %d or %d expected.\n"),"cmoment","r","c",1,2)), 
     end
     mom=sum((x-m).^ord,orien)/(le)
     return
-  else error('The function moment must have two or three parameters')
+  else error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"cmoment",2,3)),
   end
 endfunction

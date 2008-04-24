@@ -28,7 +28,7 @@ function [v]=mvvacov(x)
 //
   if x==[] then s=%nan, return, end
   [lhs,rhs]=argn(0)
-  if rhs<>1 then error('mvvacov requires one input.'), end
+  if rhs<>1 then error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"mvvacov",1)), end
   [n p]=size(x);
   fact=1/n
   v=fact*((x'*x)-(fact*(x'*ones(n,1)*ones(1,n))*x))

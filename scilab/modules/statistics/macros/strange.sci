@@ -21,7 +21,7 @@ function [r]=strange(x,orien)
 //
 //
   [lhs,rhs]=argn(0)
-  if rhs==0 then error('strange requires at least one input.'), end
+  if rhs==0 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"strange",0,2)), end
   if rhs==1 then
     r=max(x)-min(x)
   elseif rhs==2 then
@@ -30,7 +30,7 @@ function [r]=strange(x,orien)
     elseif orien=='c'|orien==2 then
       r=max(x,'c')-min(x,'c')
     else 
-      error('second parameter must be ''r'', ''c'',1 or 2'), 
+      error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'', %d or %d expected.\n"),"strange","r","c",1,2)),
     end
   end
 endfunction

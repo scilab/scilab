@@ -43,6 +43,6 @@ function [mom]= moment(x,ord,orien)
     le=size(x,orien)
     mom=sum((x.^ord),orien)/le
   else 
-    error('The function moment must have two or three parameters')
+	error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"moment",2,3)),
   end
 endfunction

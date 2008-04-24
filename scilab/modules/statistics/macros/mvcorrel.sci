@@ -27,7 +27,7 @@ function [r]=mvcorrel(x)
 //
   if x==[] then s=%nan; return, end
   [lhs,rhs]=argn(0)
-  if rhs <> 1 then error('mvcorrel requires only one argument.'), end
+  if rhs <> 1 then error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"mvcorrel",1)), end
   [lx cx]=size(x)
   if lx==1 then r=zeros(lx,cx), return, end
   xbar=sum(x,'r')/lx

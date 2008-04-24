@@ -28,12 +28,12 @@ function gm=geomean(x,orien)
 //
   if x==[] then gm=%nan, return, end
   [lhs,rhs]=argn(0)
-  if rhs==0 then error('geomean requires at least one input.'), end
+  if rhs==0 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"geomean",1,2)), end
   if rhs==1 then
     gm=prod(x)^(1/length(x))
   elseif rhs==2
     gm=prod(x,orien).^(1/size(x,orien))
   else 
-    error('The number of input parameters must be 1 or 2')
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"geomean",1,2)),
   end
 endfunction

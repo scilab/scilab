@@ -31,7 +31,7 @@ function [q]=iqr(x,orien)
 //
   if x==[] then q=%nan, return, end
   [lhs,rhs]=argn(0)
-  if rhs==0 then error('iqr requires at least one input.'), end
+  if rhs==0 then error(msprintf(gettext("%s: Wrong number of input argument: At least %d expected.\n"),"iqr",1)), end
   if rhs==1 then
     qq=quart(x)
   else

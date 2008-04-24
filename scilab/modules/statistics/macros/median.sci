@@ -31,7 +31,7 @@ else
     if orient==[] then orient=1,end
   else
     if type(orient)<>1|size(orient,'*')<>1|~isreal(orient)|orient<=0 then
-      error('median: second argument should be  ''r'', ''c'',''m'' or a positive number')
+      error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'',''%s'' or a positive number expected.\n"),"median","r","c","m")),
     end
   end
 end

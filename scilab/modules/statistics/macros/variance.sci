@@ -28,7 +28,7 @@ function [s]=variance(x,orien)
 //
   if x==[] then s=%nan, return, end
   [lhs,rhs]=argn(0)
-  if rhs==0 then error('variance requires at least one input.'), end
+  if rhs==0 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"variance",1,2)), end
   [m n]=size(x);
   if rhs==1
     s=(sum((x-mean(x)).^2))/(m*n-1)
@@ -37,6 +37,6 @@ function [s]=variance(x,orien)
   elseif orien=='r'|orien==1 then
     s=(sum((x-ones(x(:,1))*mean(x,'r')).^2,'r')/(m-1));
   else
-    error('2rd argument of variance must be equal to c, r, 1 or 2');
+    error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n"),"variance","c","r",1,2));
   end
 endfunction

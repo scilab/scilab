@@ -32,7 +32,7 @@ function [s]=center(x,orient)
 
   if x==[] then s=%nan, return, end
   [lhs,rhs]=argn(0)
-  if (rhs<1)|(rhs>2) then error('center requires one or two inputs.'), end
+  if (rhs<1)|(rhs>2) then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"center",1,2)), end
   [m n]=size(x);
   if rhs==1
     xbar=(sum(x)/(m*n))
@@ -43,6 +43,6 @@ function [s]=center(x,orient)
   elseif orient=='r'|orient==1 then
     xbar=sum(x,'r')/m
     s=x-(ones(m,1)*xbar)
-  else error('Second center parameter must be r, c, 1 or 2'),
+  else error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'', %d or %d expected.\n"),"center","r","c",1,2)), 
   end
 endfunction

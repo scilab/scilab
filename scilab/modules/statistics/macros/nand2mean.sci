@@ -34,7 +34,7 @@ function [dif]=nand2mean(sample1,sample2,conf)
   end
   [lhs,rhs]=argn(0)
   if rhs<2|rhs>3  then 
-    error('nanstdev requires two or three inputs.'),
+	error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nand2mean",2,3)),
   elseif rhs==2 then
     conf=.975
   end

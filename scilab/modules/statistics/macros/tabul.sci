@@ -55,19 +55,19 @@ function [m] = tabul(X, order)
  
    rhs = argn(2)
    if rhs<1 | 2<rhs then
-      error(" tabul : 1 or 2 input argument(s) needed")
+	  error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"tabul",1,2)),
    elseif rhs == 1 then
       order = "d"
    end
    typeX = type(X)
    if typeX ~= 1 & typeX ~= 10 then
-      error(" tabul : 1st input argument must be a vector/matrix of numbers or strings")
+      error(msprintf(gettext("%s: Wrong type for first input argument: Vector, matrix of numbers or strings expected.\n"),"tabul"))
    end
    if type(order) ~= 10 then
-      error(" tabul : 2d input argument (order) must be ""i"" or ""d""")
+	 error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'' or ''%s'' expected.\n"),"tabul","i","d"))
    end
    if order~="i" &  order~="d" then
-      error(" tabul : 2d input argument (order) must be ""i"" or ""d""")
+	 error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'' or ''%s'' expected.\n"),"tabul","i","d"))
    end
    if ( X == [] ) then
       m = %nan

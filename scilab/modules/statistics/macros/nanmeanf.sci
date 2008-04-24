@@ -34,7 +34,7 @@ function [m]=nanmeanf(val,fre,orient)
 //
 //
   [lhs,rhs]=argn(0)
-  if rhs<2|rhs>3 then error('nanmeanf requires two or three inputs.'), end
+  if rhs<2|rhs>3 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nanmeanf",2,3)), end
   if val==[]|fre==0 then m=[], return,end
   isn=isnan(val)
   fre(isn)=0
@@ -45,6 +45,6 @@ function [m]=nanmeanf(val,fre,orient)
     m=sum(val.*fre)/sum(fre)
   elseif orient=='r'|orient=='c'|orient==1|orient==2 then
     m=sum(val.*fre,orient)./sum(fre,orient)
-  else ('Third parameter for nanmeanf must be *, r, c, 1 or 2'),
+  else error(msprintf(gettext("%s: Wrong value for third input argument: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"nanmeanf","*","r","c",1,2)),
   end
 endfunction
