@@ -36,9 +36,11 @@ int sci_TCL_ExistVar(char *fname,unsigned long l)
 
 		if (getTclInterp() == NULL)
 		{
-			Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
+		 releaseTclInterp();
+		 Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 			return 0;
 		}
+		releaseTclInterp();
 
 		if (Rhs==2)
 		{
@@ -47,6 +49,7 @@ int sci_TCL_ExistVar(char *fname,unsigned long l)
 			{
 				GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 				TCLinterpreter=Tcl_GetSlave(getTclInterp(),cstk(l2));
+				releaseTclInterp();
 				if (TCLinterpreter==NULL)
 				{
 					Scierror(999,_("%s: No such slave interpreter.\n"),fname);
@@ -63,6 +66,7 @@ int sci_TCL_ExistVar(char *fname,unsigned long l)
 		{
 			/* only one argument given - use the main interpreter */
 			TCLinterpreter=getTclInterp();
+			 releaseTclInterp();
 		}
 
 		n1=1;
