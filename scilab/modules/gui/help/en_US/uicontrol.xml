@@ -10,7 +10,11 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>h = uicontrol('PropertyName',PropertyValue,...) h = uicontrol(parent,'PropertyName',PropertyValue,...) h=uicontrol(uich)</synopsis>
+    <synopsis>
+    h = uicontrol("PropertyName",PropertyValue,...)
+    h = uicontrol(parent,"PropertyName",PropertyValue,...)
+    h=uicontrol(uich)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
