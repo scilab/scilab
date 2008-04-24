@@ -1,325 +1,536 @@
 # Localization of the module elementary_functions
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007 - INRIA / Scilab
+# Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 	2007-09-27 16:24+0200\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2008-04-24 15:38+0100\n"
 
-msgid	""
-msgstr	"Project-Id-Version: Scilab - elementary_functions\n"
-	"Report-Msgid-Bugs-To: \n"
-	"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-	"PO-Revision-Date: 2007-10-03 19:34:28+02:00\n"
-	"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-	"Language-Team: Scilab <localization@scilab.org>\n"
-	"MIME-Version: 1.0\n"
-	"Content-Type: text/plain; charset=ISO-8859-1\n"
-	"Content-Transfer-Encoding: 8bit\n"
+# File: macros/vectorfind.sci, line: 13
+#, c-format
+msgid "%s: Wrong size for second input argument: Vector expected.\n"
+msgstr ""
 #
-# File: macros/bitxor.sci, line: 14
-msgid	"inputs arguments must have the same type"
-msgstr	""
+# File: macros/vectorfind.sci, line: 18
+# File: macros/vectorfind.sci, line: 27
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
 #
-# File: macros/bitxor.sci, line: 17
-msgid	"type of inputs arguments must be unsigned integers or positives reals"
-msgstr	""
+# File: macros/vectorfind.sci, line: 35
+# File: sci_gateway/c/sci_gsort.c, line: 124
+#, c-format
+msgid "%s: Wrong value for third input argument: ''%s'' or ''%s'' expected.\n"
+msgstr ""
 #
-# File: macros/bitxor.sci, line: 21
-# File: macros/bitor.sci, line: 14
-# File: macros/bitget.sci, line: 23
-# File: macros/bitget.sci, line: 48
-# File: macros/bitand.sci, line: 14
-msgid	"inputs arguments must have the same size"
-msgstr	""
+# File: macros/bitxor.sci, line: 33
+# File: macros/bitor.sci, line: 36
+# File: macros/bitget.sci, line: 37
+# File: macros/bitcmp.sci, line: 45
+# File: macros/bitand.sci, line: 35
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
 #
-# File: macros/bitxor.sci, line: 28
-# File: macros/bitor.sci, line: 21
-# File: macros/dec2bin.sci, line: 18
-msgid	"first input argument must be a scalar/vector/matrix of positives "
-	"integers"
-msgstr	""
+# File: macros/bitxor.sci, line: 37
+# File: macros/bitor.sci, line: 40
+# File: macros/cat.sci, line: 88
+# File: macros/cat.sci, line: 93
+# File: macros/bitand.sci, line: 39
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr ""
 #
-# File: macros/bitxor.sci, line: 32
-# File: macros/bitor.sci, line: 25
-msgid	"second input argument must be a scalar/matrix of positives integers"
-msgstr	""
+# File: macros/bitxor.sci, line: 41
+# File: macros/bitor.sci, line: 44
+# File: macros/pmodulo.sci, line: 29
+# File: macros/modulo.sci, line: 26
+# File: macros/intsplin.sci, line: 27
+# File: macros/cat.sci, line: 66
+# File: macros/bitget.sci, line: 44
+# File: macros/bitget.sci, line: 54
+# File: macros/inttrap.sci, line: 23
+# File: macros/bitand.sci, line: 43
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
 #
-# File: macros/complex.sci, line: 17
-msgid	"input argument must be real"
-msgstr	""
+# File: macros/bitxor.sci, line: 54
+# File: macros/bitor.sci, line: 56
+# File: macros/bitget.sci, line: 63
+# File: macros/bitcmp.sci, line: 56
+# File: macros/bitand.sci, line: 55
+# File: macros/bitset.sci, line: 51
+#, c-format
+msgid ""
+"%s: Wrong first input argument: Scalar/matrix/hypermatrix of unsigned "
+"integers expected.\n"
+msgstr ""
+#
+# File: macros/bitxor.sci, line: 62
+# File: macros/bitor.sci, line: 63
+# File: macros/bitget.sci, line: 70
+# File: macros/bitand.sci, line: 62
+# File: macros/bitset.sci, line: 58
+#, c-format
+msgid ""
+"%s: Wrong second input argument: Scalar/matrix/hypermatrix of unsigned "
+"integers expected.\n"
+msgstr ""
 #
 # File: macros/complex.sci, line: 25
-msgid	"input arguments must be real"
-msgstr	""
+#, c-format
+msgid "%s: Wrong type for input argument: Real expected.\n"
+msgstr ""
 #
-# File: macros/factor.sci, line: 16
-# File: macros/factor.sci, line: 18
-msgid	"input argument must be a positive integer"
-msgstr	""
+# File: macros/complex.sci, line: 33
+#, c-format
+msgid "%s: Wrong type for input arguments: Reals expected.\n"
+msgstr ""
 #
-# File: macros/permute.sci, line: 13
-msgid	"Incorrect number of inputs arguments"
-msgstr	""
+# File: macros/cothm.sci, line: 20
+# File: macros/tanhm.sci, line: 19
+# File: macros/atanm.sci, line: 25
+# File: macros/tanm.sci, line: 19
+#, c-format
+msgid "%s: Matrix is not diagonalisable.\n"
+msgstr ""
 #
-# File: macros/permute.sci, line: 18
-msgid	"Second input argument must be a vector"
-msgstr	""
+# File: macros/factor.sci, line: 23
+# File: macros/factor.sci, line: 25
+#, c-format
+msgid "%s: Wrong value for input argument: Scalar positive integer expected.\n"
+msgstr ""
 #
-# File: macros/permute.sci, line: 20
-msgid	"Incorrect dimensions permutation"
-msgstr	""
+# File: macros/permute.sci, line: 21
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr ""
 #
-# File: macros/permute.sci, line: 22
-msgid	"Size of the second input argument must be equal or superior to x "
-	"dimensions"
-msgstr	""
+# File: macros/permute.sci, line: 26
+#, c-format
+msgid "%s: Wrong size for second argument: Vector expected.\n"
+msgstr ""
 #
-# File: macros/binomial.sci, line: 17
-msgid	" bad type argument(s) "
-msgstr	""
+# File: macros/permute.sci, line: 28
+#, c-format
+msgid "%s: Wrong size for second input argument.\n"
+msgstr ""
 #
-# File: macros/binomial.sci, line: 18
-msgid	" argument(s) must be scalar(s) "
-msgstr	""
+# File: macros/permute.sci, line: 30
+#, c-format
+msgid ""
+"%s: Wrong size for second input argument: At least the size of first input "
+"argument expected.\n"
+msgstr ""
 #
-# File: macros/binomial.sci, line: 19
-msgid	" p out of range (p must be in [0,1]) "
-msgstr	""
+# File: macros/binomial.sci, line: 27
+#, c-format
+msgid "%s: Wrong type for input argument(s): Real value expected.\n"
+msgstr ""
 #
-# File: macros/binomial.sci, line: 20
-msgid	" N must be an integer >= 1"
-msgstr	""
+# File: macros/binomial.sci, line: 30
+#, c-format
+msgid "%s: Wrong size for input argument(s): Scalars expected.\n"
+msgstr ""
 #
-# File: macros/primes.sci, line: 13
-msgid	"input agument must be a real scalar"
-msgstr	""
+# File: macros/binomial.sci, line: 33
+#, c-format
+msgid "%s: Wrong value for first input argument: Must be between %d and %d.\n"
+msgstr ""
 #
-# File: macros/factorial.sci, line: 9
-msgid	"input argument must be a scalar/vector/matrix/hypermatrix of "
-	"positives integers"
-msgstr	""
+# File: macros/binomial.sci, line: 36
+#, c-format
+msgid "%s: Wrong value for second input argument: Integer >= %d expected.\n"
+msgstr ""
+#
+# File: macros/logm.sci, line: 30
+# File: macros/logm.sci, line: 54
+#, c-format
+msgid "%s: Log of a singular matrix.\n"
+msgstr ""
+#
+# File: macros/logm.sci, line: 47
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr ""
+#
+# File: macros/primes.sci, line: 20
+#, c-format
+msgid "%s: Wrong input argument: Real scalar expected.\n"
+msgstr ""
+#
+# File: macros/intersect.sci, line: 133
+# File: macros/unique.sci, line: 55
+# File: macros/union.sci, line: 48
+#, c-format
+msgid "%s: second argument has incorrect value\n"
+msgstr ""
+#
+# File: macros/factorial.sci, line: 16
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Scalar/vector/matrix/hypermatrix of "
+"positive integers expected.\n"
+msgstr ""
 #
 # File: macros/ndgrid.sci, line: 31
-msgid	" ndgrid must have at least 2 args"
-msgstr	""
+# File: macros/num2cell.sci, line: 33
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
 #
-# File: macros/flipdim.sci, line: 14
-# File: macros/dec2bin.sci, line: 22
-msgid	"second input argument must be a positive scalar"
-msgstr	""
+# File: macros/ndgrid.sci, line: 36
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr ""
 #
-# File: macros/flipdim.sci, line: 18
-# File: macros/flipdim.sci, line: 20
-msgid	"first input argument must be a scalar/vector/array of reals"
-msgstr	""
+# File: macros/signm.sci, line: 27
+#, c-format
+msgid "%s: Non-hermitian matrix.\n"
+msgstr ""
 #
-# File: macros/meshgrid.sci, line: 18
-msgid	"wrong number of lhs arguments"
-msgstr	""
+# File: macros/flipdim.sci, line: 23
+#, c-format
+msgid ""
+"%s: Wrong value for second input argument: Scalar positive integer "
+"expected.\n"
+msgstr ""
 #
-# File: macros/meshgrid.sci, line: 20
-# File: macros/bitget.sci, line: 18
-msgid	"wrong number of rhs arguments"
-msgstr	""
+# File: macros/flipdim.sci, line: 27
+# File: macros/flipdim.sci, line: 29
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: Scalar/vector/array of reals "
+"expected.\n"
+msgstr ""
 #
-# File: macros/meshgrid.sci, line: 44
-msgid	"incompatible number of input arguments and output arguments"
-msgstr	""
+# File: macros/meshgrid.sci, line: 26
+#, c-format
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+msgstr ""
 #
-# File: macros/cell2mat.sci, line: 19
-msgid	"all components of input cell must have the same type"
-msgstr	""
+# File: macros/meshgrid.sci, line: 28
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr ""
 #
-# File: macros/iscellstr.sci, line: 7
-msgid	"Bad number of inputs arguments"
-msgstr	""
+# File: macros/meshgrid.sci, line: 52
+#, c-format
+msgid ""
+"%s: Wrong number of output arguments vs. input arguments: Same number "
+"expected.\n"
+msgstr ""
 #
-# File: macros/bin2dec.sci, line: 20
-msgid	"Input argument must be a string"
-msgstr	""
+# File: macros/cell2mat.sci, line: 23
+#, c-format
+msgid "%s: Wrong type for input argument: Cell expected.\n"
+msgstr ""
 #
-# File: macros/bin2dec.sci, line: 33
-msgid	"Input argument must be a string of characters ''0'' or ''1'' "
-msgstr	""
+# File: macros/cell2mat.sci, line: 28
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Same type expected for all cell contents"
+msgstr ""
 #
-# File: macros/bin2dec.sci, line: 37
-msgid	"Binary string must be 47 bits or less."
-msgstr	""
+# File: macros/dec2bin.sci, line: 34
+# File: macros/dec2oct.sci, line: 18
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: Scalar/vector/matrix of positive "
+"integers expected.\n"
+msgstr ""
 #
-# File: macros/cat.sci, line: 17
-msgid	"first input argument must be a positive real scalar"
-msgstr	""
+# File: macros/dec2bin.sci, line: 38
+#, c-format
+msgid ""
+"%s: Wrong value for second input argument: Scalar positive integer expected"
+msgstr ""
 #
-# File: macros/cat.sci, line: 58
-msgid	"wrong input arguments sizes"
-msgstr	""
+# File: macros/bin2dec.sci, line: 34
+# File: macros/hex2dec.sci, line: 27
+# File: macros/oct2dec.sci, line: 27
+#, c-format
+msgid "%s: Wrong type for input argument: Matrix of strings expected.\n"
+msgstr ""
 #
-# File: macros/cat.sci, line: 80
-# File: macros/cat.sci, line: 85
-msgid	"input arguments must have the same type"
-msgstr	""
+# File: macros/bin2dec.sci, line: 47
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Matrix of strings made of zeros and ones "
+"expected.\n"
+msgstr ""
 #
-# File: macros/cellstr.sci, line: 11
-msgid	"Bad dimension of input argument"
-msgstr	""
+# File: macros/bin2dec.sci, line: 51
+#, c-format
+msgid "%s: Wrong size for input argument: Must be less than 54 characters.\n"
+msgstr ""
 #
-# File: macros/cellstr.sci, line: 15
-msgid	"input argument must be a string"
-msgstr	""
+# File: macros/cat.sci, line: 25
+#, c-format
+msgid "%s: Wrong first input argument: Positive real scalar expected.\n"
+msgstr ""
 #
-# File: macros/bitget.sci, line: 41
-# File: macros/bitcmp.sci, line: 41
-msgid	"first input argument must be a unsigned integer"
-msgstr	""
+# File: macros/cellstr.sci, line: 20
+#, c-format
+msgid "%s: Wrong size for input argument: Must be <= %d.\n"
+msgstr ""
 #
-# File: macros/bitget.sci, line: 51
-msgid	"second input argument must be positives integers between 1 and "
-msgstr	""
+# File: macros/cellstr.sci, line: 24
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr ""
 #
-# File: macros/bitcmp.sci, line: 24
-msgid	"second input argument must be a positive integer"
-msgstr	""
+# File: macros/toeplitz.sci, line: 23
+#, c-format
+msgid ""
+"%s: Wrong values for first and second input arguments: Conflicting r(1) and c"
+"(1).\n"
+msgstr ""
 #
-# File: macros/bitcmp.sci, line: 49
-msgid	"second input argument must be a positive integer between 1 and "
-msgstr	""
+# File: macros/bitget.sci, line: 83
+# File: macros/bitcmp.sci, line: 80
+# File: macros/bitset.sci, line: 71
+#, c-format
+msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgstr ""
 #
-# File: macros/num2cell.sci, line: 25
-msgid	"wrong number of input arguments"
-msgstr	""
+# File: macros/bitcmp.sci, line: 47
+# File: macros/bitset.sci, line: 25
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
 #
-# File: macros/num2cell.sci, line: 35
-msgid	"second argument must be a positive integer"
-msgstr	""
+# File: macros/bitcmp.sci, line: 65
+#, c-format
+msgid "%s: Wrong second input argument: unsigned integer expected.\n"
+msgstr ""
 #
-# File: macros/interp1.sci, line: 28
-msgid	"wrong number of arguments RHS"
-msgstr	""
+# File: macros/num2cell.sci, line: 43
+#, c-format
+msgid "%s: Wrong second argument: Positive integer expected.\n"
+msgstr ""
 #
-# File: macros/interp1.sci, line: 41
-# File: macros/interp1.sci, line: 109
-# File: macros/interp1.sci, line: 251
-# File: macros/interp1.sci, line: 303
-# File: macros/interp1.sci, line: 432
-msgid	"y must be a vector or a matrix"
-msgstr	""
+# File: macros/interp1.sci, line: 37
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+msgstr ""
 #
-# File: macros/interp1.sci, line: 57
-msgid	"xi must be a reals array "
-msgstr	""
+# File: macros/interp1.sci, line: 50
+# File: macros/interp1.sci, line: 118
+# File: macros/interp1.sci, line: 135
+# File: macros/interp1.sci, line: 260
+# File: macros/interp1.sci, line: 312
+# File: macros/interp1.sci, line: 441
+#, c-format
+msgid "%s: Wrong size for second input argument: Vector or matrix expected.\n"
+msgstr ""
 #
-# File: macros/interp1.sci, line: 60
-msgid	"xi must be a reals array"
-msgstr	""
-#
-# File: macros/interp1.sci, line: 83
-msgid	"x must be a reals array"
-msgstr	""
-#
-# File: macros/interp1.sci, line: 89
-msgid	"y must be a reals array "
-msgstr	""
+# File: macros/interp1.sci, line: 66
+# File: macros/interp1.sci, line: 69
+#, c-format
+msgid "%s: Wrong type for third input argument: Array of reals expected.\n"
+msgstr ""
 #
 # File: macros/interp1.sci, line: 92
-msgid	"y must be a reals array"
-msgstr	""
+#, c-format
+msgid "%s: Wrong type for first input argument: Array of reals expected.\n"
+msgstr ""
 #
 # File: macros/interp1.sci, line: 98
-msgid	"x values must be real "
-msgstr	""
-#
-# File: macros/interp1.sci, line: 102
-# File: macros/interp1.sci, line: 106
-msgid	"x,y:wrong line/column dimension"
-msgstr	""
-#
-# File: macros/interp1.sci, line: 112
-msgid	"x must be a vector"
-msgstr	""
-#
-# File: macros/interp1.sci, line: 126
-msgid	"y must be a real or a matrix"
-msgstr	""
-#
-# File: macros/interp1.sci, line: 174
-# File: macros/interp1.sci, line: 434
-msgid	"wrong interpolation"
-msgstr	""
-#
-# File: macros/interp1.sci, line: 198
-# File: macros/interp1.sci, line: 224
-# File: macros/interp1.sci, line: 263
-# File: macros/interp1.sci, line: 273
-# File: macros/interp1.sci, line: 295
-# File: macros/interp1.sci, line: 316
-# File: macros/interp1.sci, line: 324
-# File: macros/interp1.sci, line: 357
-# File: macros/interp1.sci, line: 363
-# File: macros/interp1.sci, line: 410
-# File: macros/interp1.sci, line: 418
-msgid	"wrong extrapolation"
-msgstr	""
-#
-# File: macros/perms.sci, line: 14
-msgid	"input argument must be a vector"
-msgstr	""
-#
-# File: macros/GLoad.sci, line: 15
-msgid	"Gload : unknown suffix in file name "
-msgstr	""
-#
-# File: macros/bitand.sci, line: 21
-msgid	"first input argument must be a scalar/matrix/hypermatrix of "
-	"positives integers"
-msgstr	""
-#
-# File: macros/bitand.sci, line: 25
-msgid	"second input argument must be a scalar/matrix/hypermatrix of "
-	"positives integers"
-msgstr	""
-#
-# File: src/c/sci_tools.c, line: 106
+# File: macros/interp1.sci, line: 101
 #, c-format
-msgid	"SciToF77: Error malloc\n"
-msgstr	""
+msgid "%s: Wrong type for second input argument: Array of reals expected.\n"
+msgstr ""
 #
-# File: src/c/sci_tools.c, line: 131
+# File: macros/interp1.sci, line: 107
 #, c-format
-msgid	"F77ToSci: Error malloc\n"
-msgstr	""
+msgid ""
+"%s: Wrong value for first input argument: Reals expected but some NaN "
+"found.\n"
+msgstr ""
 #
-# File: src/c/sci_tools.c, line: 161
+# File: macros/interp1.sci, line: 111
+# File: macros/interp1.sci, line: 115
 #, c-format
-msgid	"Double2z: Error malloc\n"
-msgstr	""
+msgid ""
+"%s: Wrong size for first and second input arguments: Same size expected.\n"
+msgstr ""
 #
-# File: src/c/sci_tools.c, line: 183
+# File: macros/interp1.sci, line: 121
+# File: macros/sort.sci, line: 67
 #, c-format
-msgid	"z2double: Error malloc\n"
-msgstr	""
+msgid "%s: Wrong size for first input argument: Vector expected.\n"
+msgstr ""
 #
-# File: sci_gateway/c/sci_gsort.c, line: 51
-#, possible-c-format
-msgid	"%s: first argument has a wrong type, expecting scalar or string "
-	"matrix\n"
-msgstr	""
+# File: macros/interp1.sci, line: 183
+#, c-format
+msgid "%s: Wrong fourth input argument: ''%s'' or ''%s'' or ''%s'' expected.\n"
+msgstr ""
 #
-# File: sci_gateway/c/sci_gsort.c, line: 62
-#, possible-c-format
-msgid	"%s: second argument is an empty string\n"
-msgstr	""
+# File: macros/interp1.sci, line: 207
+# File: macros/interp1.sci, line: 233
+# File: macros/interp1.sci, line: 272
+# File: macros/interp1.sci, line: 282
+# File: macros/interp1.sci, line: 304
+# File: macros/interp1.sci, line: 325
+# File: macros/interp1.sci, line: 333
+# File: macros/interp1.sci, line: 366
+# File: macros/interp1.sci, line: 372
+# File: macros/interp1.sci, line: 419
+# File: macros/interp1.sci, line: 427
+# File: macros/interp1.sci, line: 444
+#, c-format
+msgid "%s: Wrong fifth input argument: ''%s'' or real expected.\n"
+msgstr ""
 #
-# File: sci_gateway/c/sci_gsort.c, line: 68
-#, possible-c-format
-msgid	"%s: second argument has a wrong value %s should be in r,c,g,lr,lc\n"
-msgstr	""
+# File: macros/integrate.sci, line: 30
+#, c-format
+msgid "%s: at least %d input arguments are requested.\n"
+msgstr ""
 #
-# File: sci_gateway/c/sci_gsort.c, line: 80
-#, possible-c-format
-msgid	"%s: third argument must be \"i\" or \"d\"\n"
-msgstr	""
+# File: macros/integrate.sci, line: 34
+#, c-format
+msgid "%s: Wrong size for third input argument: Real scalar expected.\n"
+msgstr ""
 #
-# File: sci_gateway/c/sci_gsort.c, line: 188
-# File: sci_gateway/c/sci_gsort.c, line: 204
-msgid	"invalid type.\n"
-msgstr	""
+# File: macros/integrate.sci, line: 37
+#, c-format
+msgid "%s: Wrong size for fifth input argument: Real scalar expected.\n"
+msgstr ""
+#
+# File: macros/integrate.sci, line: 40
+#, c-format
+msgid "%s: Wrong size for sixth input argument: Real scalar expected.\n"
+msgstr ""
+#
+# File: macros/integrate.sci, line: 43
+#, c-format
+msgid "%s: Wrong value for third input argument: Real scalar expected.\n"
+msgstr ""
+#
+# File: macros/integrate.sci, line: 47
+#, c-format
+msgid "%s: Wrong value for fourth input argument: Real scalar expected.\n"
+msgstr ""
+#
+# File: macros/integrate.sci, line: 60
+#, c-format
+msgid "%s: syntax error in given expression:\n"
+msgstr ""
+#
+# File: macros/GLoad.sci, line: 24
+#, c-format
+msgid "%s: Unknown file extension in ''%s''"
+msgstr ""
+#
+# File: macros/perms.sci, line: 23
+#, c-format
+msgid "%s: Wrong size for input argument: Vector expected.\n"
+msgstr ""
+#
+# File: macros/sprand.sci, line: 25
+# File: macros/sprand.sci, line: 28
+#, c-format
+msgid "%s: Wrong value for fourth input argument: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+#
+# File: macros/base2dec.sci, line: 28
+#, c-format
+msgid "%s: Wrong type for first input argument: Matrix of strings expected.\n"
+msgstr ""
+#
+# File: macros/base2dec.sci, line: 32
+#, c-format
+msgid "%s: Wrong type for second input argument: integer expected.\n"
+msgstr ""
+#
+# File: macros/base2dec.sci, line: 36
+#, c-format
+msgid "%s: Wrong value for second input argument: Must be between %d and %d."
+msgstr ""
+#
+# File: macros/base2dec.sci, line: 48
+#, c-format
+msgid ""
+"%s: Wrong value for input argument(s): Valid base %d representations "
+"expected.\n"
+msgstr ""
+#
+# File: macros/hex2dec.sci, line: 39
+#, c-format
+msgid ""
+"%s: Wrong value for input argument(s): Valid hexadecimal representations "
+"expected.\n"
+msgstr ""
+#
+# File: macros/dec2hex.sci, line: 22
+#, c-format
+msgid ""
+"%s: Wrong values for first input argument: Non-negative integers expected.\n"
+msgstr ""
+#
+# File: macros/oct2dec.sci, line: 39
+#, c-format
+msgid ""
+"%s: Wrong value for input argument(s): Valid octal representations "
+"expected.\n"
+msgstr ""
+#
+# File: macros/bitset.sci, line: 32
+# File: macros/bitset.sci, line: 42
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr ""
+#
+# File: macros/bitset.sci, line: 80
+#, c-format
+msgid "%s: Wrong third input argument: 0 or 1 expected\n"
+msgstr ""
+#
+# File: src/c/sci_tools.c, line: 123
+# File: src/c/sci_tools.c, line: 148
+# File: src/c/sci_tools.c, line: 178
+# File: src/c/sci_tools.c, line: 200
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_gsort.c, line: 95
+#, c-format
+msgid ""
+"%s: Wrong type for first input argument: Scalar or matrix of strings "
+"expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_gsort.c, line: 106
+#, c-format
+msgid "%s: Wrong size for second input argument: Non-empty string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_gsort.c, line: 112
+#, c-format
+msgid ""
+"%s: Wrong value for second input argument: ''%s'', ''%s'', ''%s'', ''%s'' or "
+"''%s'' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_gsort.c, line: 255
+#, c-format
+msgid "%s: Wrong type for first input argument: Unknown type.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_gsort.c, line: 299
+#, c-format
+msgid "%s: Wrong type for first input argument.\n"
+msgstr ""
