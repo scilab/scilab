@@ -40,7 +40,7 @@ function z = bitand(x,y)
 	end
 	
 	if or(size(x)<>size(y)) then
-		error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"bitand"));
+		error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"bitand"));
 	end
 	
 	if isempty(x) & isempty(x)

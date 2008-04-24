@@ -26,7 +26,7 @@ function i=pmodulo(n,m)
     end
   else
     if or(size(n)<>size(m)) then 
-      error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"pmodulo"));
+      error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"pmodulo"));
     end
     i=zeros(n);
     k=find(m==0);i(k)=n(k);

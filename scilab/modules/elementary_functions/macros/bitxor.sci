@@ -38,7 +38,7 @@ function z = bitxor(x,y)
 	end
 	
 	if or(size(x)<>size(y)) then
-		error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"bitxor"));
+		error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"bitxor"));
 	end
 	
 	if isempty(x) & isempty(x)

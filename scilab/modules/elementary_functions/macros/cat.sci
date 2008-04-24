@@ -63,7 +63,7 @@ end
 
 for i=2:size(varargin)
   if or(sizevarless(i-1)<> sizevarless(i))
-    error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"cat"));
+    error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"cat"));
   end
 end
 

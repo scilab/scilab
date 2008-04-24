@@ -108,11 +108,11 @@ function yi=interp1(varargin)
     end
     if isvector(y) then 
       if size(x,"*")<>size(y,"*") then
-      	error(msprintf(gettext("%s: Wrong size for first and second input arguments: Same sizes expected.\n"),"interp1"));
+      	error(msprintf(gettext("%s: Wrong size for first and second input arguments: Same size expected.\n"),"interp1"));
       end
     elseif size(size(y),"*")>=2 then
       if size(x,"*")<>size(y,1) then
-      	error(msprintf(gettext("%s: Wrong size for first and second input arguments: Same sizes expected.\n"),"interp1"));
+      	error(msprintf(gettext("%s: Wrong size for first and second input arguments: Same size expected.\n"),"interp1"));
       end
     else
       error(msprintf(gettext("%s: Wrong size for second input argument: Vector or matrix expected.\n"),"interp1"));

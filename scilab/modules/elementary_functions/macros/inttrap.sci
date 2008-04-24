@@ -20,7 +20,7 @@ if rhs<2 then
   v=sum(y(1:$-1) + y(2:$))/2;
 else
   if size(x,'*')<>size(y,'*') then
-    error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"inttrap"));
+    error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"inttrap"));
   end
   x=x(:);y=y(:);
   v=(x(2:$)-x(1:$-1))'*(y(1:$-1) + y(2:$))/2;

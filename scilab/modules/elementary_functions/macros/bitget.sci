@@ -41,7 +41,7 @@ function y = bitget(x,pos)
 	
 	if isempty(x)
 		if ~isempty(pos) & prod(size(pos))<>1
-			error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"bitget"));
+			error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"bitget"));
 		else
 			y=[]
 			return
@@ -51,7 +51,7 @@ function y = bitget(x,pos)
 	// check size
 	
 	if (size(x,"*")>1) & (size(pos,"*")>1) & (or(size(x)<>size(pos))) then
-		error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"bitget"));
+		error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"bitget"));
 	end
 	
 	// check type

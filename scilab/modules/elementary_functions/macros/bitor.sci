@@ -41,7 +41,7 @@ function z = bitor(x,y)
 	end
 	
 	if or(size(x)<>size(y)) then
-		error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"bitor"));
+		error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"bitor"));
 	end
 	
 	if isempty(x) & isempty(x)
