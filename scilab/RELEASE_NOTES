@@ -30,6 +30,7 @@ List of missing/buggy features:
       old Nvidia drivers.
     * Sgrayplot display might be corrupted.
     * Symbol police is not comptible with the one used in Scilab 4.
+    * Interactive rotation of graphics needs a quick click to start and an other one to stop.
 
 
 - It is strongly recommended to update graphic cards drivers to the latest revision:
