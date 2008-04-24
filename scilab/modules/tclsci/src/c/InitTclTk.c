@@ -11,11 +11,15 @@
  *
  */
 
-#include "InitTclTk.h"
+#include <string.h>
 #ifndef _MSC_VER
 #include <dirent.h>
 #include <ctype.h>
+#else
+#include "EnvTclTk.h"
+#include "strdup_windows.h"
 #endif
+#include "InitTclTk.h"
 #include "setgetSCIpath.h"
 #include "sciprint.h"
 #include "Scierror.h"
@@ -25,9 +29,6 @@
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
 #include "BOOL.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 /*--------------------------------------------------------------------------*/
 BOOL TK_Started=FALSE;
 
@@ -53,10 +54,24 @@ static void *DaemonOpenTCLsci(void* in)
 
 #ifndef _MSC_VER
   DIR *tmpdir=NULL;
-  //  Display *XTKdisplay;
 #endif
 
   FILE *tmpfile2=NULL;
+
+  SciPath=GetSciPath();
+
+  /* test SCI validity */
+  if (SciPath==NULL)
+  {
+      sciprint(_("The SCI environment variable is not set.\nTCL initialisation failed !\n"));
+  }
+
+#ifdef _MSC_VER
+    /* Initialize TCL_LIBRARY & TK_LIBRARY variables environment */
+    /* Windows only */
+	Set_TCL_LIBRARY_PATH(SciPath);
+	Set_TK_LIBRARY_PATH(SciPath);
+#endif
 
 #ifdef TCL_MAJOR_VERSION
 #ifdef TCL_MINOR_VERSION
@@ -67,15 +82,9 @@ static void *DaemonOpenTCLsci(void* in)
 #endif
 #endif
 #endif
-  SciPath=GetSciPath();
-
-  /* test SCI validity */
-  if (SciPath==NULL)
-    {
-      sciprint(_("The SCI environment variable is not set.\nTCL initialisation failed !\n"));
-     }
 
 #ifdef _MSC_VER
+  
   strcpy(TkScriptpath, SciPath);
   strcat(TkScriptpath, "/modules/tclsci/tcl/TK_Scilab.tcl");
 

@@ -9,14 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifdef _MSC_VER
-#include <windows.h>
-#endif
-#include "machine.h"
 
+#include <windows.h>
 #include <stdio.h>
-#include "tcl.h"
-#include "tk.h"
+#include <tcl.h>
+#include <tk.h>
+
+#include "machine.h"
 #include "MALLOC.h"
 #include "../../localization/includes/localization.h"
 #include "../../fileio/includes/ConvertPathUnixToWindows.h"
@@ -29,10 +28,10 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	int minor=4; /* Par defaut */
 	int patchLevel=0;
 	int type=0;
-	/* @TODO : WTF is 10 ? */
-	char env[PATH_MAX + 1 + 10];
+
+	char env[PATH_MAX];
 	
-	char ShortPath[PATH_MAX+1];
+	char ShortPath[PATH_MAX];
 	char *CopyOfDefaultPath=NULL;
 
 	CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
@@ -75,8 +74,8 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 {
 	BOOL bOK=FALSE;
-	char env[PATH_MAX + 1 + 10];
-	char ShortPath[PATH_MAX+1];
+	char env[PATH_MAX];
+	char ShortPath[PATH_MAX];
 	char *CopyOfDefaultPath=NULL;
 
 	int major=8;

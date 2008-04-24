@@ -20,9 +20,6 @@
 /*--------------------------------------------------------------------------*/
 #define putenv _putenv
 /*--------------------------------------------------------------------------*/
-extern BOOL Set_TK_LIBRARY_PATH(char *DefaultPath);
-extern BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath);
-/*--------------------------------------------------------------------------*/
 static BOOL IsTheGoodShell(void);
 static BOOL Set_Shell(void);
 static BOOL Set_SCI_PATH(char *DefaultPath);
@@ -30,7 +27,7 @@ static BOOL Set_HOME_PATH(char *DefaultPath);
 static BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void);
 /*--------------------------------------------------------------------------*/
 /**
-* Les variables d'environnements SCI,TCL_LIBRARY,TK_LIBRARY
+* Les variables d'environnements SCI, and some others
 * sont définies directement dans scilab
 * scilex peut donc etre executé seul 
 */
@@ -64,8 +61,6 @@ void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 	{
 		Set_SCI_PATH(DefaultSCIPATH);
 		Set_HOME_PATH(DefaultSCIPATH);
-		Set_TCL_LIBRARY_PATH(DefaultSCIPATH);
-		Set_TK_LIBRARY_PATH(DefaultSCIPATH);
 		Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB();
 	}
 	else

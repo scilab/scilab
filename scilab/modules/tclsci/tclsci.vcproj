@@ -6,7 +6,7 @@
 	ProjectGUID="{C456D5B8-8A32-496A-A2EE-164B0D734126}"
 	RootNamespace="tclsci"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -504,6 +504,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\src\c\EnvTclTk.h"
+				>
+			</File>
 			<File
 				RelativePath=".\includes\GedManagement.h"
 				>
