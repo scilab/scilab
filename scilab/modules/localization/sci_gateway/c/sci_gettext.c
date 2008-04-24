@@ -29,7 +29,9 @@ int C2F(sci_gettext)(char *fname,unsigned long fname_len)
 
 			char *msgid=NULL;
 			char *TranslatedString=NULL;
-
+                        
+                        int revertStrsub = FALSE;
+                        
 			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 			msgid=cstk(l1);
 
@@ -51,8 +53,22 @@ int C2F(sci_gettext)(char *fname,unsigned long fname_len)
 				msgid=strsub(msgid, "\\f", "\f"); /* form feed */
 				msgid=strsub(msgid, "\\\\", "\\"); /* backslash */
 				msgid=strsub(msgid, "\\\"", "\""); /* double quote */
+
+                                revertStrsub = TRUE;
 			}
 			TranslatedString=gettext(msgid);
+
+                        /* Add removed slashes */
+                        if (revertStrsub)
+                          {
+                            TranslatedString=strsub(TranslatedString, "\\", "\\\\"); /* backslash */
+                            TranslatedString=strsub(TranslatedString, "\"", "\\\""); /* double quote */
+                            TranslatedString=strsub(TranslatedString, "\n", "\\n"); /* linefeed */
+                            TranslatedString=strsub(TranslatedString, "\t", "\\t"); /* horizontal tab */
+                            TranslatedString=strsub(TranslatedString, "\r", "\\r"); /* carriage return */
+                            TranslatedString=strsub(TranslatedString, "\v", "\\v"); /* vertical tab */
+                            TranslatedString=strsub(TranslatedString, "\f", "\\f"); /* form feed */
+                          }
 
 			n1=1;
 			CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(TranslatedString), &m1),&n1,&TranslatedString);
