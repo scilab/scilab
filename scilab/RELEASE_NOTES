@@ -73,6 +73,9 @@ List of missing/buggy features:
 - Some license issues have not been fixed.
 
 
+- 64 bits and MacOS X versions have some critical bugs.
+
+
 - EMF export is not available for this beta version
 
 
