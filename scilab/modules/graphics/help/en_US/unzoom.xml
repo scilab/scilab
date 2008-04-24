@@ -69,7 +69,7 @@ unzoom(H)</synopsis>
     unzoom(a1) // unzoom first plot only
     unzoom(a2) // unzoom second plot only
     zoom_rect(rect) // zoom again
-    unzoom(gcf())) // unzoom all the axes, equivalent to unzoom()
+    unzoom(gcf()) // unzoom all the axes, equivalent to unzoom()
 
 ]]></programlisting>
   </refsection>
