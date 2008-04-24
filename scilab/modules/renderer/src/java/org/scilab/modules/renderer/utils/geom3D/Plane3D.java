@@ -246,7 +246,7 @@ public class Plane3D {
 	public Vector3D projectOrtho(Vector3D point) {
 		
 		// resut is P' = P + k.n
-		// with k = PO. n /||n||²
+		// with k = PO. n /||n||^2
 		// where P is the point, P' its projection, n the normal and O a point on the plane.
 		
 		Vector3D pointOnPlane = new Vector3D();

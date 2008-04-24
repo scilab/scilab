@@ -131,10 +131,5 @@ void AutoLogTicksComputer::getSubticksPosition(const double ticksPositions[], in
   }
 }
 /*------------------------------------------------------------------------------------------*/
-void AutoLogTicksComputer::setAxisBounds(double min, double max)
-{
-  m_dMinBounds = log10(min);
-  m_dMaxBounds = log10(max);
-}
-/*------------------------------------------------------------------------------------------*/
+
 }

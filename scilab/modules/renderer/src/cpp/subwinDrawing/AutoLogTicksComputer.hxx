@@ -50,11 +50,6 @@ public:
                                    double subTickspositions[]);
 
   /**
-   * Set bounds between which we must compute ticks.
-   */
-  virtual void setAxisBounds(double min, double max);
-
-  /**
   * To know if we need to get ticks exposants or not.
   */
   virtual bool isDisplayingLabelsExponents(void) {return true;}
