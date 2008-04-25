@@ -573,7 +573,8 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 79:
 		{
-			/* no message  */
+			displayAndStoreError(_("Indexing not allowed for output arguments of resume.\n"),Err);
+
 		}
 		break;
 		case 80:
@@ -1267,7 +1268,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 229:
 		{
-			/* no message  */
+			displayAndStoreError(_("Operands of / and \ operations  must not contain NaN of Inf.\n"));
 		}
 		break;
 		case 230:

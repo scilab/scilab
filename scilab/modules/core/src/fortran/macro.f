@@ -374,13 +374,6 @@ c     .     preserve names stored in the macro if macro is moved
                return
             endif
             do 43 i=1,lhsr
-C                if(istk(lc+nsiz).ne.0) then
-C                   top=top1
-C                   macr=macr+1
-C                   buf='Index not allowed in the lhs of resume'
-C                   call error(997)
-C                   return
-C                endif
                call putid(ids(1,pt+i),istk(lc))
                lc=lc+nsiz+1
 c     .        retained for 2.7 and earlier version compatibility (old affectation)
@@ -478,7 +471,6 @@ c
       
       if(r.eq.701.or.r.eq.604) then 
 c     .  disable error recovery mode , for pause only (is it mandatory?)
-c         print *,'macro ',err1,err2,errct,errpt
          ids(2,pt)=errct
          ids(3,pt)=err2
          ids(4,pt)=err1
@@ -513,7 +505,6 @@ c     fin exec
       r=rstk(pt-1)
       if(r.eq.701.or.r.eq.604) then 
 c     restore current error recovery modes
-c         print *,'macro ',err1,err2,errct,errpt
          errct=ids(2,pt)
          err2=ids(3,pt)
          err1=ids(4,pt)
