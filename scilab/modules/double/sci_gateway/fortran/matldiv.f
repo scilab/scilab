@@ -56,6 +56,7 @@ c     .  a\[] or []\a
          top = top+1
          rhs = 2 
          call intbackslash('backslash')
+         if(err.gt.0) return
          if (fin.ge.0) call putlhsvar()
 c         if (m1 .eq. n1) fun = 1
 c         if (m1 .ne. n1) fun = 4
