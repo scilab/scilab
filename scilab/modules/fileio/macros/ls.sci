@@ -25,7 +25,7 @@ function files=ls(varargin)
 	end
 	
 	if size(opts,'*')<>0 then
-		warning(msprintf(gettext("%s: Options ignored"),"ls"));
+		warning(msprintf(gettext("%s: Options ignored.\n"),"ls"));
 	end
 	
 	if or(path==['PWD' 'SCIHOME']) then path=evstr(path),end

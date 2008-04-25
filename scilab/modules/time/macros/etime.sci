@@ -32,7 +32,7 @@ if and(size(t0,2)<>[6,10]) then
 end
 
 if size(t1,"*")<>size(t0,"*") then
-  error(msprintf(gettext("%s: Both operands must have the same size.\n"),"etime"));
+  error(msprintf(gettext("%s: Wrong size for input argument: Same size expected.\n"),"etime"));
 end
 
 if size(t1,2)==10 then

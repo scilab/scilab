@@ -47,25 +47,25 @@ function n=datenum(varargin)
 			end
 			
 			if min(DateIn(:,2))<1 | max(DateIn(:,2))>12 then
-				error(msprintf(gettext("%s: Wrong value for first input argument: Month must be between %d and %d.\n"),"datenum",1,12));
+				error(msprintf(gettext("%s: Wrong value for first input argument: %s must be between %d and %d.\n"),"datenum",gettext("Month"),1,12));
 			end
 			
 			if min(DateIn(:,3))<1 | max(DateIn(:,3))>31 then
-				error(msprintf(gettext("%s: Wrong value for first input argument: Day must be between %d and %d.\n"),"datenum",1,31));
+				error(msprintf(gettext("%s: Wrong value for first input argument: %s must be between %d and %d.\n"),"datenum",gettext("Day"),1,31));
 			end
 			
 			if nc == 6 then
 				
 				if min(DateIn(:,4))<0 | max(DateIn(:,4))>23 then
-					error(msprintf(gettext("%s: Wrong value for first input argument: Hour must be between %d and %d.\n"),"datenum",0,23));
+					error(msprintf(gettext("%s: Wrong value for first input argument: %s must be between %d and %d.\n"),"datenum",gettext("Hour"),0,23));
 				end
 				
 				if min(DateIn(:,5))<0 | max(DateIn(:,5))>59 then
-					error(msprintf(gettext("%s: Wrong value for first input argument: Minute must be between %d and %d.\n"),"datenum",0,59));
+					error(msprintf(gettext("%s: Wrong value for first input argument: %s must be between %d and %d.\n"),"datenum",gettext("Minute"),0,59));
 				end
 				
 				if min(DateIn(:,6))<0 | max(DateIn(:,6))>59 then
-					error(msprintf(gettext("%s: Wrong value for first input argument: Second must be between %d and %d.\n"),"datenum",0,59));
+					error(msprintf(gettext("%s: Wrong value for first input argument: %s must be between %d and %d.\n"),"datenum",gettext("Second"),0,59));
 				end
 				
 			end
@@ -90,7 +90,7 @@ function n=datenum(varargin)
 			end
 			
 			if (size(YearIn) <> size(MonthIn)) | (size(YearIn) <> size(DayIn)) then
-				error(msprintf(gettext("%s: Wrong size for input arguments: Must have the same size.\n"),"datenum"));
+				error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"datenum"));
 			end
 			
 			if min(MonthIn)<1 | max(MonthIn)>12 then
@@ -131,7 +131,7 @@ function n=datenum(varargin)
 				(size(YearIn) <> size(HourIn))  | ..
 				(size(YearIn) <> size(MinIn))   | ..
 				(size(YearIn) <> size(SecIn))  then
-				error(msprintf(gettext("%s: Wrong size for input arguments: Must have the same size.\n"),"datenum"));
+				error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"datenum"));
 			end
 			
 			if min(MonthIn)<1 | max(MonthIn)>12 then
