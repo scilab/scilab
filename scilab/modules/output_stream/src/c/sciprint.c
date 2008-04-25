@@ -10,13 +10,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
 #include <stdio.h>
 #include <string.h>
 #include "sciprint.h"
 #include "sciprint_nd.h"
 #include "../../fileio/includes/diary.h"
 #include "stack-def.h" /* bsiz */
+#include "scilabmode.h"
+#include "../../console/includes/ConsolePrintf.h"
+#ifdef _MSC_VER
+#include "TermPrintf.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
@@ -26,6 +30,7 @@
 /* sciprint uses scivprint */
 /* scivprint uses scivprint_nd */
 /* sciprint_nd uses scivprint_nd */
+/* all use printf_scilab at the end */
 /*--------------------------------------------------------------------------*/ 
 void sciprint(char *fmt,...) 
 {
@@ -53,6 +58,7 @@ void scivprint(char *fmt,va_list args)
 		lstr = (integer)strlen(s_buf);
 		diary_nnl(s_buf,&lstr);
 	}
+
 }
 /*--------------------------------------------------------------------------*/ 
 /* as sciprint but with an added first argument which is ignored (used in do_printf) */
@@ -68,7 +74,33 @@ int sciprint2 (int iv, char *fmt,...)
 
 	if (count == -1) s_buf[MAXPRINTF-1]='\0';
 
-	sciprint(s_buf);
+	printf_scilab(s_buf,TRUE);
+
 	return count;
+}
+/*--------------------------------------------------------------------------*/ 
+void printf_scilab(char *buffer,BOOL withDiary)
+{
+	if (buffer)
+	{
+		if (getScilabMode() == SCILAB_STD)
+		{
+			ConsolePrintf(buffer);
+		}
+		else
+		{
+			#ifdef _MSC_VER
+			TermPrintf_Windows(buffer);
+			#else
+			printf("%s",buffer);
+			#endif
+		}
+
+		if ( (withDiary) && getdiary() ) 
+		{
+			int lstr = (int)strlen(buffer);
+			diary_nnl(buffer,&lstr);
+		}
+	}
 }
 /*--------------------------------------------------------------------------*/ 

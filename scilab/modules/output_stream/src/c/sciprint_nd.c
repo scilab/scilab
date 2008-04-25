@@ -20,6 +20,7 @@
 #include "scilabmode.h"
 #include "stack-def.h"
 #include "../../console/includes/ConsolePrintf.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
 #define vsnprintf _vsnprintf
@@ -37,27 +38,12 @@ void sciprint_nd(char *fmt,...)
 /*--------------------------------------------------------------------------*/ 
 void scivprint_nd(char *fmt,va_list args) 
 {
-	if (getScilabMode() == SCILAB_STD)
-	{
-		static char s_buf[MAXPRINTF];
+	static char s_buf[MAXPRINTF];
+	int count=0;
 
-		#if defined(linux) || defined(_MSC_VER)
-		{
-			int count=0;
+	count= vsnprintf(s_buf,MAXPRINTF-1, fmt, args );
+	if (count == -1) s_buf[MAXPRINTF-1]='\0';
 
-			count= vsnprintf(s_buf,MAXPRINTF-1, fmt, args );
-
-			if (count == -1) s_buf[MAXPRINTF-1]='\0';
-		}
-		#else
-		(void )vsprintf(s_buf, fmt, args );
-		#endif
-
-		ConsolePrintf(s_buf);
-	}
-	else
-	{
-		vprintf(fmt,args);
-	}
+	printf_scilab(s_buf,FALSE);
 }
 /*--------------------------------------------------------------------------*/ 

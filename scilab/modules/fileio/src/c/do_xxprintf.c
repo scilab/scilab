@@ -252,17 +252,8 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 		{
 			if (fp)
 			{
-				/* putc */
-				if (fp == stdout) { /* sciprint2 */
-					/* %%%c is a crappy workaround ... when xxprintf is 
-					 * calling sciprint2, it is correctly changing %% to % 
-					 * but it is removed by the function sciprint
-					 * see bug 2602
-					 */
-					(*xxprintf) ((VPTR) target, "%%%c",*currentchar);
-				}else{
-					(*xxprintf) ((VPTR) target, "%c",*currentchar);
-				}
+				/* bug 2602 fixed */ 
+				(*xxprintf) ((VPTR) target, "%c",*currentchar);
 				retval++;
 			}
 			else

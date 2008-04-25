@@ -4,5 +4,6 @@
 EXPORTS
 	getLinesSize
 	linesmore
+	TermPrintf_Windows
 	
 	

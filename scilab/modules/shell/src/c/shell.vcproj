@@ -452,6 +452,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\windows\TermPrintf.c"
+				>
+			</File>
+			<File
 				RelativePath=".\windows\TermReadAndProcess.c"
 				>
 			</File>
@@ -498,6 +502,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\TerminateShell.h"
+				>
+			</File>
+			<File
+				RelativePath=".\windows\TermPrintf.h"
 				>
 			</File>
 			<File

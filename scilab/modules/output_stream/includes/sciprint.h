@@ -15,6 +15,7 @@
 #define __SCIPRINT_H__
 
 #include <stdarg.h>
+#include "BOOL.h"
 
 /**
  * Print
@@ -44,5 +45,11 @@ void scivprint(char *fmt,va_list args);
  */
 int sciprint2(int iv,char *fmt,...);
 
+/**
+* print a string 
+* @param[in] buffer to disp
+* @param[in] TRUE or FALSE if we use diary
+*/
+void printf_scilab(char *buffer,BOOL withDiary);
 #endif /* __SCIPRINT_H__ */
 /*--------------------------------------------------------------------------*/ 
