@@ -16,74 +16,74 @@
   </info>
   <refnamediv>
     <refname>mtlb_max</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab max</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab max</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>max</literal> se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>max</literal> se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec des valeurs complexes : La fonction Matlab <literal>max</literal> peut ï¿½tre utilisï¿½e
+        Avec des valeurs complexes : La fonction Matlab <literal>max</literal> peut être utilisée
 	avec des complexes mais pas la fonction Scilab.
         </para>
       </listitem>
       <listitem>
         <para>
-        En cas d'appel avec deux paramï¿½tres d'entrï¿½e : La fonction Matlab <literal>max</literal> traite les valeurs
-	suivant la premiï¿½re dimension qui n'est pas 1 alors que Scilab traite l'ensemble des valeurs de l'entrï¿½e.
+        En cas d'appel avec deux paramètres d'entrée : La fonction Matlab <literal>max</literal> traite les valeurs
+	suivant la première dimension qui n'est pas 1 alors que Scilab traite l'ensemble des valeurs de l'entrée.
         </para>
       </listitem>
       <listitem>
         <para>
-        En cas d'appel avec deux paramï¿½tres d'entrï¿½e : si l'une d'elles est une matrice vide, Scilab
+        En cas d'appel avec deux paramètres d'entrée : si l'une d'elles est une matrice vide, Scilab
 	retourne un message d'erreur alors que Matlab renvoie [].
         </para>
       </listitem>
       <listitem>
         <para>
-        En cas d'appel avec trois paramï¿½tres d'entrï¿½e : si le paramï¿½tre <literal>dim</literal> est plus grand que
-	le nombre de dimensions de le premiï¿½re entrï¿½e, Scilab retourne un message d'erreur alors que Matlab
-	retourne le premier paramï¿½tre.
+        En cas d'appel avec trois paramètres d'entrée : si le paramètre <literal>dim</literal> est plus grand que
+	le nombre de dimensions de le première entrée, Scilab retourne un message d'erreur alors que Matlab
+	retourne le premier paramètre.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>[r[,k]] = mtlb_max(A[,B[,dim]])</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>[r[,k]] = max(A[,B[,dim]])</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_max</literal> :
+    La fonction <literal>[r[,k]] = mtlb_max(A[,B[,dim]])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>[r[,k]] = max(A[,B[,dim]])</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_max</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        En cas d'appel avec un paramï¿½tre d'entrï¿½e, si <literal>A</literal> est un scalaire ou un vecteur
-        <literal>[r[,k]] = mtlb_max(A)</literal> peut ï¿½tre remplacï¿½ par <literal>max(A)</literal>
+        En cas d'appel avec un paramètre d'entrée, si <literal>A</literal> est un scalaire ou un vecteur
+        <literal>[r[,k]] = mtlb_max(A)</literal> peut être remplacé par <literal>max(A)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        En cas d'appel avec un paramï¿½tre d'entrï¿½e, si <literal>A</literal> est une matrice
-        <literal>[r[,k]] = mtlb_max(A)</literal> peut ï¿½tre remplacï¿½ par <literal>max(A,"r")</literal>
+        En cas d'appel avec un paramètre d'entrée, si <literal>A</literal> est une matrice
+        <literal>[r[,k]] = mtlb_max(A)</literal> peut être remplacé par <literal>max(A,"r")</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        En cas d'appel avec deux paramï¿½tres d'entrï¿½e, si <literal>A</literal> et <literal>B</literal> 
-	sont des matrices rï¿½elles et ne sont pas des matrices vides,
-        <literal>[r[,k]] = mtlb_max(A,B)</literal> peut ï¿½tre remplacï¿½ par <literal>max(A,B)</literal>
+        En cas d'appel avec deux paramètres d'entrée, si <literal>A</literal> et <literal>B</literal> 
+	sont des matrices réelles et ne sont pas des matrices vides,
+        <literal>[r[,k]] = mtlb_max(A,B)</literal> peut être remplacé par <literal>max(A,B)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        En cas d'appel avec trois paramï¿½tres d'entrï¿½e, si <literal>dim</literal> est infï¿½rieur
+        En cas d'appel avec trois paramètres d'entrée, si <literal>dim</literal> est inférieur
 	au nombre de dimensions de <literal>A</literal>,
-        <literal>[r[,k]] = mtlb_max(A,[],dim)</literal> peut ï¿½tre remplacï¿½ par <literal>max(A,dim)</literal>
+        <literal>[r[,k]] = mtlb_max(A,[],dim)</literal> peut être remplacé par <literal>max(A,dim)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_max</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_max</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

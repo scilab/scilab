@@ -16,37 +16,37 @@
   </info>
   <refnamediv>
     <refname>mtlb_l</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la division ï¿½ gauche de Matlab</refpurpose>
+    <refpurpose>Fonction d'émulation de la division à gauche de Matlab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la division ï¿½ gauche se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la division à gauche se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-	Avec des opï¿½randes de type chaï¿½ne de caractï¿½res : L'opï¿½rateur <literal>\</literal> 
-	ne peut pas ï¿½tre utilisï¿½ dans Scilab avec des chaï¿½nes de caractï¿½res, alors que
-	dans Matlab c'est possible. Et dans ce cas, le rï¿½sultat donnï¿½ par matlab est
-	tranposï¿½ d'une maniï¿½re trï¿½s floue...
+	Avec des opérandes de type chaîne de caractères : L'opérateur <literal>\</literal> 
+	ne peut pas être utilisé dans Scilab avec des chaînes de caractères, alors que
+	dans Matlab c'est possible. Et dans ce cas, le résultat donné par matlab est
+	tranposé d'une manière très floue...
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_l(a,b)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>A\B</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_l</literal> :
+    La fonction <literal>mtlb_l(a,b)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>A\B</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_l</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> et <literal>B</literal> ne sont pas des chaï¿½nes de caractï¿½res
-        <literal>mtlb_l(A,B)</literal> peut ï¿½tre remplacï¿½ par <literal>A\B</literal>
+        Si <literal>A</literal> et <literal>B</literal> ne sont pas des chaînes de caractères
+        <literal>mtlb_l(A,B)</literal> peut être remplacé par <literal>A\B</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_l</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_l</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

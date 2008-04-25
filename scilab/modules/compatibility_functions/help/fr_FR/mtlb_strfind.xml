@@ -16,37 +16,37 @@
   </info>
   <refnamediv>
     <refname>mtlb_strfind</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab strfind</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab strfind</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>strfind</literal> et la fonction Scilab
-    <literal>strindex</literal> se comportent diffï¿½remment dans Matlab et dans Scilab :</para>
+    <literal>strindex</literal> se comportent différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec des paramï¿½tres d'entrï¿½e n'ï¿½tant pas des chaï¿½nes de caractï¿½re : La fonction Matlab <literal>strfind</literal>
-	peut ï¿½tre utilisï¿½e avec des entrï¿½es n'ï¿½tant pas des chaï¿½nes de caractï¿½res mais pas la fonction
+        Avec des paramètres d'entrée n'étant pas des chaînes de caractère : La fonction Matlab <literal>strfind</literal>
+	peut être utilisée avec des entrées n'étant pas des chaînes de caractères mais pas la fonction
 	Scilab <literal>strindex</literal>.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_strfind(A,B)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>strfind(A,B)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_strfind</literal> :
+    La fonction <literal>mtlb_strfind(A,B)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>strfind(A,B)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_strfind</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> et <literal>B</literal> sont des chaï¿½nes de caractï¿½res
-        <literal>mtlb_strfind(A,B)</literal> peut ï¿½tre remplacï¿½ par <literal>strindex(A,B)</literal>
+        Si <literal>A</literal> et <literal>B</literal> sont des chaînes de caractères
+        <literal>mtlb_strfind(A,B)</literal> peut être remplacé par <literal>strindex(A,B)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_strfind</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_strfind</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

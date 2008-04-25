@@ -16,43 +16,43 @@
   </info>
   <refnamediv>
     <refname>mtlb_realmin</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab realmin</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab realmin</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>L'ï¿½quivalent Scilab de la fonction Matlab <literal>realmin</literal>
+    <para>L'équivalent Scilab de la fonction Matlab <literal>realmin</literal>
     est <literal>number_properties</literal> mais tous les cas ne sont pas
-    implï¿½mentï¿½s :</para>
+    implémentés :</para>
     <itemizedlist>
       <listitem>
         <para>
-        L'ï¿½quivalent Scilab de l'expression Matlab
+        L'équivalent Scilab de l'expression Matlab
         <literal>realmin</literal> ou <literal>realmin('double')</literal> est <literal>number_properties("tiny")</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Il n'y a pas d'ï¿½quivalent Scilab pour l'expression Matlab <literal>realmin('single')</literal>
+        Il n'y a pas d'équivalent Scilab pour l'expression Matlab <literal>realmin('single')</literal>
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_realmin(prec)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>realmin(prec)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½tait le paramï¿½tre d'entrï¿½e pendant la conversion d'un code
+    La fonction <literal>mtlb_realmin(prec)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>realmin(prec)</literal> quand il n'était pas
+    possible de savoir ce qu'était le paramètre d'entrée pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_realmin</literal> :
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_realmin</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>prec</literal> est ï¿½gale ï¿½ <literal>"double"</literal>
-        <literal>mtlb_realmin(prec)</literal> peut ï¿½tre remplacï¿½ par <literal>number_properties("tiny")</literal>
+        Si <literal>prec</literal> est égale à <literal>"double"</literal>
+        <literal>mtlb_realmin(prec)</literal> peut être remplacé par <literal>number_properties("tiny")</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_realmin</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_realmin</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

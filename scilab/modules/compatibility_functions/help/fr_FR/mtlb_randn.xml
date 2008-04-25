@@ -16,42 +16,42 @@
   </info>
   <refnamediv>
     <refname>mtlb_randn</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab randn</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab randn</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>randn</literal> et la fonction Scilab
-    <literal>rand(...,"normal")</literal> se comportent diffï¿½remment :</para>
+    <literal>rand(...,"normal")</literal> se comportent différemment :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec une entrï¿½e qui est un scalaire : La fonction Matlab <literal>randn</literal> retourne une
+        Avec une entrée qui est un scalaire : La fonction Matlab <literal>randn</literal> retourne une
 	matrice n x n alors que la fonction Scilab <literal>rand(...,"normal")</literal> retourne un scalaire.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_randn(A)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>randn(A)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_randn</literal> :
+    La fonction <literal>mtlb_randn(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>randn(A)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_randn</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
         Si <literal>A</literal> est un scalaire
-        <literal>mtlb_randn(A)</literal> peut ï¿½tre remplacï¿½ par <literal>rand(A,A,"normal")</literal>
+        <literal>mtlb_randn(A)</literal> peut être remplacé par <literal>rand(A,A,"normal")</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>A</literal> n'est pas un scalaire
-        <literal>mtlb_randn(A)</literal> peut ï¿½tre remplacï¿½ par <literal>rand(A,"normal")</literal>
+        <literal>mtlb_randn(A)</literal> peut être remplacé par <literal>rand(A,"normal")</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_randn</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_randn</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

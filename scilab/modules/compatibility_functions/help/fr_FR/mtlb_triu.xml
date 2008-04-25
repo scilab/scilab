@@ -16,54 +16,54 @@
   </info>
   <refnamediv>
     <refname>mtlb_triu</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab triu</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab triu</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>triu</literal> se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>triu</literal> se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec des paramï¿½tres d'entrï¿½e complexes : La fonction Matlab <literal>triu</literal> peut ï¿½tre
-	utilisï¿½e avec des donnï¿½es complexes mais pas la fonction Scilab.
+        Avec des paramètres d'entrée complexes : La fonction Matlab <literal>triu</literal> peut être
+	utilisée avec des données complexes mais pas la fonction Scilab.
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec des paramï¿½tres d'entrï¿½e de type chaï¿½ne de cacatï¿½res : ï¿½tant donnï¿½ que Matlab et Scilab
-	ne considï¿½rent pas les chaï¿½nes de caractï¿½res de la mï¿½me faï¿½on, la fonction <literal>triu</literal>
-	ne donne pas le mï¿½me rï¿½sutat pour ce type d'entrï¿½e dans Scilab et dans Matlab.
+        Avec des paramètres d'entrée de type chaîne de caractère : étant donné que Matlab et Scilab
+	ne considèrent pas les chaînes de caractères de la même façon, la fonction <literal>triu</literal>
+	ne donne pas le même résultat pour ce type d'entrée dans Scilab et dans Matlab.
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec des paramï¿½tres d'entrï¿½e boolï¿½ens : La fonction Matlab <literal>triu</literal> peut ï¿½tre
-	utilisï¿½e avec des donnï¿½es boolï¿½ennes mais pas la fonction Scilab.
+        Avec des paramètres d'entrée booléens : La fonction Matlab <literal>triu</literal> peut être
+	utilisée avec des données booléennes mais pas la fonction Scilab.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_triu(x,k)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>triu(x,k)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_triu</literal> :
+    La fonction <literal>mtlb_triu(x,k)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>triu(x,k)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_triu</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>X</literal> contient des doubles rï¿½els
-        <literal>mtlb_triu(x,k)</literal> peut ï¿½tre remplacï¿½ par <literal>triu(x,k)</literal>
+        Si <literal>X</literal> contient des doubles réels
+        <literal>mtlb_triu(x,k)</literal> peut être remplacé par <literal>triu(x,k)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>X</literal> contient des boolï¿½ens
-        <literal>mtlb_triu(x,k)</literal> peut ï¿½tre remplacï¿½ par <literal>triu(bool2s(x),k)</literal>
+        Si <literal>X</literal> contient des booléens
+        <literal>mtlb_triu(x,k)</literal> peut être remplacé par <literal>triu(bool2s(x),k)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_triu</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_triu</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -16,47 +16,47 @@
   </info>
   <refnamediv>
     <refname>mtlb_logic</refname>
-    <refpurpose>Fonction d'ï¿½mulation des opï¿½rateurs logiques de Matlab</refpurpose>
+    <refpurpose>Fonction d'émulation des opérateurs logiques de Matlab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, les opï¿½rateurs logiques se comportent diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, les opérateurs logiques se comportent différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec des opï¿½randes complexes : Les opï¿½rateurs <literal>&lt;</literal>, <literal>&lt;=</literal>,
-	<literal>&gt;</literal> et <literal>&gt;=</literal> ne peuvent pas ï¿½tre utilisï¿½s dans Scilab
-	avec des opï¿½randes complexes alors que cela est possible dans Matlab. Dans ce cas,
-	seule la partie rï¿½elle des opï¿½randes est comparï¿½e.
+        Avec des opérandes complexes : Les opérateurs <literal>&lt;</literal>, <literal>&lt;=</literal>,
+	<literal>&gt;</literal> et <literal>&gt;=</literal> ne peuvent pas être utilisés dans Scilab
+	avec des opérandes complexes alors que cela est possible dans Matlab. Dans ce cas,
+	seule la partie réelle des opérandes est comparée.
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec des matrices vides : Si les deux opï¿½randes des opï¿½rateurs <literal>&lt;</literal>, <literal>&lt;=</literal>,
+        Avec des matrices vides : Si les deux opérandes des opérateurs <literal>&lt;</literal>, <literal>&lt;=</literal>,
 	<literal>&gt;</literal> and <literal>&gt;=</literal> sont des matrices vides, Scilab renvoie un message d'erreur
-	alors que Matlab retourne une matrice vide. Pour les opï¿½rateurs <literal>==</literal> et <literal>~=</literal>,
-	si au moins une opï¿½rande est une matrice vide alors Matlab renvoie [] alors que Scilab
-	retourne un boolï¿½en %T ou %F.
+	alors que Matlab retourne une matrice vide. Pour les opérateurs <literal>==</literal> et <literal>~=</literal>,
+	si au moins une opérande est une matrice vide alors Matlab renvoie [] alors que Scilab
+	retourne un booléen %T ou %F.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_logic(A,symbol,B)</literal> (avec "symbol" une chaï¿½ne de caractï¿½res contenant
-    le symbole de l'opï¿½rateur) est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>A symbol B</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_logic</literal> :
+    La fonction <literal>mtlb_logic(A,symbol,B)</literal> (avec "symbol" une chaîne de caractères contenant
+    le symbole de l'opérateur) est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>A symbol B</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_logic</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
         Si <literal>A</literal> et <literal>B</literal> ne sont pas des complexes ni des matrices vides
-        <literal>mtlb_logic(A,symbol,B)</literal> peut ï¿½tre remplacï¿½ par <literal>A symbol B</literal>
+        <literal>mtlb_logic(A,symbol,B)</literal> peut être remplacé par <literal>A symbol B</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_logic</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_logic</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

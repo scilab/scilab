@@ -16,94 +16,94 @@
   </info>
   <refnamediv>
     <refname>mtlb_isa</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab isa</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab isa</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Il n'y a pas de fonction Scilab ï¿½quivalente ï¿½ la fonction Matlab <literal>isa</literal> mais quand la "classe" d'objet recherchï¿½e existe dans Scilab, des expressions ï¿½quivalentes existent.</para>
+    <para>Il n'y a pas de fonction Scilab équivalente à la fonction Matlab <literal>isa</literal> mais quand la "classe" d'objet recherchée existe dans Scilab, des expressions équivalentes existent.</para>
     <para>
-    La fonction <literal>mtlb_isa(OBJ,class)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>isa(OBJ,class)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code
+    La fonction <literal>mtlb_isa(OBJ,class)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>isa(OBJ,class)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_isa</literal> :
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_isa</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "logical",
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>type(OBJ)==4</literal>
+        Si <literal>class</literal> est égal à "logical",
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>type(OBJ)==4</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "char",
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>type(OBJ)==10</literal>
+        Si <literal>class</literal> est égal à "char",
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>type(OBJ)==10</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "numeric",
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>or(type(OBJ)==[1,5,8])</literal>
+        Si <literal>class</literal> est égal à "numeric",
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>or(type(OBJ)==[1,5,8])</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "intX" (X valant 8, 16 ou 32),
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>typeof(OBJ)=="intX"</literal>
+        Si <literal>class</literal> est égal à "intX" (X valant 8, 16 ou 32),
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>typeof(OBJ)=="intX"</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "uintX" (X valant 8, 16 ou 32),
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>typeof(OBJ)=="uintX"</literal>
+        Si <literal>class</literal> est égal à "uintX" (X valant 8, 16 ou 32),
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>typeof(OBJ)=="uintX"</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "single",
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>type(OBJ)==1</literal>
+        Si <literal>class</literal> est égal à "single",
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>type(OBJ)==1</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "double",
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>type(OBJ)==1</literal>
+        Si <literal>class</literal> est égal à "double",
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>type(OBJ)==1</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "cell",
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>typeof(OBJ)=="ce"</literal>
+        Si <literal>class</literal> est égal à "cell",
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>typeof(OBJ)=="ce"</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "struct",
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>typeof(OBJ)=="st"</literal>
+        Si <literal>class</literal> est égal à "struct",
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>typeof(OBJ)=="st"</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "function_handle",
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>type(OBJ)==13</literal>
+        Si <literal>class</literal> est égal à "function_handle",
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>type(OBJ)==13</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "sparse",
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>type(OBJ)==5</literal>
+        Si <literal>class</literal> est égal à "sparse",
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>type(OBJ)==5</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>class</literal> est ï¿½gal ï¿½ "lti",
-        <literal>mtlb_isa(OBJ,class)</literal> peut ï¿½tre remplacï¿½ par <literal>typeof(OBJ)=="state-space"</literal>
+        Si <literal>class</literal> est égal à "lti",
+        <literal>mtlb_isa(OBJ,class)</literal> peut être remplacé par <literal>typeof(OBJ)=="state-space"</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_isa</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_isa</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

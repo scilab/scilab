@@ -16,43 +16,43 @@
   </info>
   <refnamediv>
     <refname>mtlb_false</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab false</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab false</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Il n'y a pas d'ï¿½quivalent Scilab pour la fonction Matlab <literal>false</literal>, cependant la fonction
-    Scilab <literal>zeros</literal> retourne un rï¿½sultat interprï¿½tï¿½ de la mï¿½me faï¿½on pour Scilab.</para>
-    <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>false</literal> et la fonction Scilab <literal>zeros</literal>se comporte diffï¿½remment :</para>
+    <para>Il n'y a pas d'équivalent Scilab pour la fonction Matlab <literal>false</literal>, cependant la fonction
+    Scilab <literal>zeros</literal> retourne un résultat interprété de la même façon pour Scilab.</para>
+    <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>false</literal> et la fonction Scilab <literal>zeros</literal>se comporte différemment :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec une entrï¿½e qui est un scalaire : La fonction Matlab <literal>false</literal> retourne une
+        Avec une entrée qui est un scalaire : La fonction Matlab <literal>false</literal> retourne une
 	matrice n x n alors que la fonction Scilab <literal>zeros</literal> retourne 0.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_false(A)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>false(A)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_false</literal> :
+    La fonction <literal>mtlb_false(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>false(A)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_false</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
         Si <literal>A</literal> est un scalaire
-        <literal>mtlb_false(A)</literal> peut ï¿½tre remplacï¿½ par <literal>zeros(A,A)</literal>
+        <literal>mtlb_false(A)</literal> peut être remplacé par <literal>zeros(A,A)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>A</literal> n'est pas un scalaire
-        <literal>mtlb_false(A)</literal> peut ï¿½tre remplacï¿½ par <literal>zeros(A)</literal>
+        <literal>mtlb_false(A)</literal> peut être remplacé par <literal>zeros(A)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_false</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_false</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

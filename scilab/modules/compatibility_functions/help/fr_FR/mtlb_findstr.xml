@@ -16,29 +16,29 @@
   </info>
   <refnamediv>
     <refname>mtlb_findstr</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab findstr</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab findstr</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Il n'y a pas de fonction Scilab ï¿½quivalente ï¿½ la fonction Matlab <literal>findstr</literal>.</para>
+    <para>Il n'y a pas de fonction Scilab équivalente à la fonction Matlab <literal>findstr</literal>.</para>
     <para>
-    La fonction <literal>mtlb_findstr(A,B)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>findstr(A,B)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code
+    La fonction <literal>mtlb_findstr(A,B)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>findstr(A,B)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_findstr</literal> :
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_findstr</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
         Si <literal>A</literal> est toujours plus longue que <literal>B</literal>
 	(i.e. <literal>strfind</literal> peut remplacer <literal>findstr</literal> en Matlab),
-        <literal>mtlb_findstr(A,B)</literal> peut ï¿½tre remplacï¿½ par <literal>strindex(A,B)</literal>
+        <literal>mtlb_findstr(A,B)</literal> peut être remplacé par <literal>strindex(A,B)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_findstr</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_findstr</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

@@ -16,43 +16,43 @@
   </info>
   <refnamediv>
     <refname>mtlb_num2str</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab num2str</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab num2str</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>num2str</literal> et ses ï¿½quivalents Scilab
-    (<literal>string</literal>, <literal>msprintf</literal>) se comportent diffï¿½remment :</para>
+    <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>num2str</literal> et ses équivalents Scilab
+    (<literal>string</literal>, <literal>msprintf</literal>) se comportent différemment :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec deux paramï¿½tres d'entrï¿½e, le second donnant une prï¿½cision : Il n'y a pas de fonction Scilab ï¿½quivalente 
-	mais <literal>msprintf</literal> peut ï¿½tre utilisï¿½e pour ï¿½muler ce cas.
+        Avec deux paramètres d'entrée, le second donnant une précision : Il n'y a pas de fonction Scilab équivalente 
+	mais <literal>msprintf</literal> peut être utilisée pour émuler ce cas.
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec deux paramï¿½tres d'entrï¿½e, le second donnant un format : l'ï¿½quivalent Scilab pour l'expression Matlab 
+        Avec deux paramètres d'entrée, le second donnant un format : l'équivalent Scilab pour l'expression Matlab 
 	<literal>num2string(a,format)</literal> est <literal>msprintf(format,a)</literal>.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_num2str(x,f)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>num2str(x,f)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code
+    La fonction <literal>mtlb_num2str(x,f)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>num2str(x,f)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_num2str</literal> :
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_num2str</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>f</literal> est une chaï¿½ne de caractï¿½res,
-        <literal>mtlb_num2str(x,f)</literal> peut ï¿½tre remplacï¿½ par <literal>msprintf(f,x)</literal>
+        Si <literal>f</literal> est une chaîne de caractères,
+        <literal>mtlb_num2str(x,f)</literal> peut être remplacé par <literal>msprintf(f,x)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_num2str</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_num2str</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

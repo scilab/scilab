@@ -16,15 +16,15 @@
   </info>
   <refnamediv>
     <refname>mtlb_uint8</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab uint8</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab uint8</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>uint8</literal> se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>uint8</literal> se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec un paramï¿½tre d'entrï¿½e complexe : La fonction Matlab <literal>uint8</literal> peut ï¿½tre utilisï¿½e
+        Avec un paramètre d'entrée complexe : La fonction Matlab <literal>uint8</literal> peut être utilisée
 	avec des complexes mais pas la fonction Scilab.
         </para>
       </listitem>
@@ -35,21 +35,21 @@
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_uint8(A)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>uint8(A)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½tait le paramï¿½tre d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_uint8</literal> :
+    La fonction <literal>mtlb_uint8(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>uint8(A)</literal> quand il n'était pas
+    possible de savoir ce qu'était le paramètre d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_uint8</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
         Si <literal>A</literal> ne contient pas de valeur <literal>%inf</literal>, <literal>%nan</literal> ou <literal>-%nan</literal>
-        <literal>mtlb_uint8(A)</literal> peut ï¿½tre remplacï¿½ par <literal>uint8(A)</literal>
+        <literal>mtlb_uint8(A)</literal> peut être remplacé par <literal>uint8(A)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_uint8</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_uint8</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

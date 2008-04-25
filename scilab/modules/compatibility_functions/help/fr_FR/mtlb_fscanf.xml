@@ -16,19 +16,19 @@
   </info>
   <refnamediv>
     <refname>mtlb_fscanf</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab fscanf</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab fscanf</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Il n'y a pas d'ï¿½quivalent Scilab exact pour la fonction Matlab <literal>fscanf</literal>. La fonction Scilab <literal>mfscanf</literal>
-    et la fonction Matlab <literal>fscanf</literal> se comportent diffï¿½remment dans beaucoup de cas mais sont ï¿½quivalentes dans plusieurs cas.</para>
+    <para>Il n'y a pas d'équivalent Scilab exact pour la fonction Matlab <literal>fscanf</literal>. La fonction Scilab <literal>mfscanf</literal>
+    et la fonction Matlab <literal>fscanf</literal> se comportent différemment dans beaucoup de cas mais sont équivalentes dans plusieurs cas.</para>
     <para>
-    La fonction <literal>mtlb_fscanf(varargin)</literal> est utilisï¿½e par
+    La fonction <literal>mtlb_fscanf(varargin)</literal> est utilisée par
     <literal>mfile2sci</literal> pour remplacer <literal>fscanf</literal>. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Il est quelquefois possible de remplacer les appels ï¿½
-    <literal>mtlb_fscanf</literal> par des appels ï¿½ <link linkend="mfscanf">mfscanf</link>.
+    déterminer la sémantique correcte pendant l'exécution. Il est quelquefois possible de remplacer les appels à
+    <literal>mtlb_fscanf</literal> par des appels à <link linkend="mfscanf">mfscanf</link>.
     </para>
-    <para>Attention : <literal>mtlb_fscanf</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_fscanf</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

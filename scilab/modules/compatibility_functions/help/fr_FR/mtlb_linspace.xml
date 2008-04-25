@@ -16,41 +16,41 @@
   </info>
   <refnamediv>
     <refname>mtlb_linspace</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab linspace</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab linspace</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>linspace</literal> se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>linspace</literal> se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec les chaï¿½nes de caractï¿½re: La fonction Matlab <literal>linspace(A,B[,n])</literal> renvoie un vecteur de caractï¿½res si <literal>A</literal> ou <literal>B</literal> est une chaï¿½ne de caractï¿½re, mais la fonction Scilab ne marche pas avec des entrï¿½es de ce type.
+        Avec les chaînes de caractère: La fonction Matlab <literal>linspace(A,B[,n])</literal> renvoie un vecteur de caractères si <literal>A</literal> ou <literal>B</literal> est une chaîne de caractère, mais la fonction Scilab ne marche pas avec des entrées de ce type.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_linspace(A,B[,n])</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>linspace(A,B[,n])</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code
+    La fonction <literal>mtlb_linspace(A,B[,n])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>linspace(A,B[,n])</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_linspace</literal> :
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_linspace</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> et <literal>B</literal> ne sont pas des chaï¿½nes de caractï¿½res,
-        <literal>mtlb_linspace(A,B[,n])</literal> peut ï¿½tre remplacï¿½ par <literal>linspace(A,B[,n])</literal>
+        Si <literal>A</literal> et <literal>B</literal> ne sont pas des chaînes de caractères,
+        <literal>mtlb_linspace(A,B[,n])</literal> peut être remplacé par <literal>linspace(A,B[,n])</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>A</literal> ou <literal>B</literal> est une chaï¿½ne de caractï¿½res,
-        <literal>mtlb_linspace(A,B[,n])</literal> peut ï¿½tre remplacï¿½ par <literal>ascii(linspace(ascii(A),ascii(B)[,n]))</literal>
+        Si <literal>A</literal> ou <literal>B</literal> est une chaîne de caractères,
+        <literal>mtlb_linspace(A,B[,n])</literal> peut être remplacé par <literal>ascii(linspace(ascii(A),ascii(B)[,n]))</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_linspace</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_linspace</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

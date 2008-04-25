@@ -12,11 +12,11 @@
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_sort">
   <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoï¿½ 2006) $</pubdate>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</pubdate>
   </info>
   <refnamediv>
     <refname>mtlb_sort</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction
+    <refpurpose>Fonction d'émulation de la fonction
   Matlab sort</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -32,7 +32,7 @@ P = mtlb_sort(X,dim[,mode])</synopsis>
         <listitem>
           <para>un scalaire, un vecteur, une matrice ou hypermatrice
           d'elements compris dans [-1 1]un scalaire, un vecteur ou une matrice
-          de rï¿½els, de boolï¿½ens ou une string</para>
+          de réels, de booléens ou une string</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,11 +54,11 @@ P = mtlb_sort(X,dim[,mode])</synopsis>
     <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction <literal>sort</literal> de
     Matlab et la fonction <literal>gsort</literal> de Scilab se comportent
-    diffï¿½remment :</para>
+    différemment :</para>
     <itemizedlist>
       <listitem>
         <para>Si <literal>X</literal> est un vecteur alors l'appel de la fonction
-            <literal>sort(X) </literal>de Matlab est ï¿½quivalent ï¿½ï¿½ l'appel de la
+            <literal>sort(X) </literal>de Matlab est équivalent ï¿½ï¿½ l'appel de la
             fonction <literal>sort(X,'g','i')</literal> de Scilab. </para>
       </listitem>
       <listitem>
@@ -68,18 +68,18 @@ P = mtlb_sort(X,dim[,mode])</synopsis>
       </listitem>
       <listitem>
         <para><literal>mode="ascend"</literal> (resp. <literal>"descend"</literal>) est
-            ï¿½quivalent au flag <literal>'i'</literal> (resp <literal>'d'</literal>) de
+            équivalent au flag <literal>'i'</literal> (resp <literal>'d'</literal>) de
             Scilab.</para>
       </listitem>
     </itemizedlist>
-    <para>La fonction <literal>mtlb_sort(X,dim[,mode])</literal> est utilisï¿½e par
+    <para>La fonction <literal>mtlb_sort(X,dim[,mode])</literal> est utilisée par
     <literal>mfile2sci</literal> pour remplacer <literal>sort(X,dim[,mode])</literal>
-    quand il n'ï¿½tait pas possible de savoir ce qu'ï¿½taient les paramï¿½tres
-    d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette
-    fonction va dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour
-    obtenir un code plus performant on peut remplacer les appels ï¿½ï¿½
+    quand il n'était pas possible de savoir ce qu'étaient les paramètres
+    d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette
+    fonction va déterminer la sémantique correcte pendant l'exécution. Pour
+    obtenir un code plus performant on peut remplacer les appels à
     <literal>mtlb_sort</literal> par des appels <link linkend="gsort">gsort</link>.</para>
-    <para>Attention : <literal>mtlb_sort</literal> ne doit pas ï¿½tre utilisï¿½e pour une
+    <para>Attention : <literal>mtlb_sort</literal> ne doit pas être utilisée pour une
     programmation manuelle.</para>
   </refsection>
   <refsection>

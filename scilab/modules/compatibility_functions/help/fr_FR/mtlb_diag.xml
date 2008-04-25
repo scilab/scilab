@@ -16,35 +16,35 @@
   </info>
   <refnamediv>
     <refname>mtlb_diag</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab diag</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab diag</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>diag</literal> se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>diag</literal> se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec des matrices de chaï¿½nes de caractï¿½res : La fonction <literal>diag</literal> de Scilab considï¿½re
-	les chaï¿½nes comme des objets alors que Matlab considï¿½re chaque caractï¿½re sï¿½parï¿½ment.
+        Avec des matrices de chaînes de caractères : La fonction <literal>diag</literal> de Scilab considère
+	les chaînes comme des objets alors que Matlab considère chaque caractère séparément.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>y = mtlb_diag(x[,dim])</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>y = diag(x[,dim])</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_diag</literal> :
+    La fonction <literal>y = mtlb_diag(x[,dim])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>y = diag(x[,dim])</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_diag</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>x</literal> n'est pas une matrice de chaï¿½nes de caractï¿½res
-        <literal>y = mtlb_diag(x,dim)</literal> peut ï¿½tre remplacï¿½ par <literal>y = diag(x[,dim])</literal>
+        Si <literal>x</literal> n'est pas une matrice de chaînes de caractères
+        <literal>y = mtlb_diag(x,dim)</literal> peut être remplacé par <literal>y = diag(x[,dim])</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_diag</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_diag</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

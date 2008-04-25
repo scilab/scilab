@@ -16,49 +16,49 @@
   </info>
   <refnamediv>
     <refname>mtlb_more</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab more</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab more</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>more</literal> et la fonction Scilab
-    <literal>lines</literal> se comportent diffï¿½remment :</para>
+    <literal>lines</literal> se comportent différemment :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec des chaï¿½nes de caractï¿½res comme entrï¿½e : La fonction Matlab <literal>more</literal> accepte
-	"on" et "off" comme entrï¿½e mais pas la fonction Scilab <literal>lines</literal>,
-	il existe des ï¿½quivalents (0 et 60).
+        Avec des chaînes de caractères comme entrée : La fonction Matlab <literal>more</literal> accepte
+	"on" et "off" comme entrée mais pas la fonction Scilab <literal>lines</literal>,
+	il existe des équivalents (0 et 60).
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_more(in)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>more(in)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½tait le paramï¿½tre d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_more</literal> :
+    La fonction <literal>mtlb_more(in)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>more(in)</literal> quand il n'était pas
+    possible de savoir ce qu'était le paramètre d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_more</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>in</literal> est ï¿½gal ï¿½ "on"
-        <literal>mtlb_more(in)</literal> peut ï¿½tre remplacï¿½ par <literal>lines(60)</literal>
+        Si <literal>in</literal> est égal à "on"
+        <literal>mtlb_more(in)</literal> peut être remplacé par <literal>lines(60)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-         Si <literal>in</literal> est ï¿½gal ï¿½ "off"
-        <literal>mtlb_more(in)</literal> peut ï¿½tre remplacï¿½ par <literal>lines(0)</literal>
+         Si <literal>in</literal> est égal à "off"
+        <literal>mtlb_more(in)</literal> peut être remplacé par <literal>lines(0)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
          Si <literal>in</literal> est un double
-        <literal>mtlb_more(in)</literal> peut ï¿½tre remplacï¿½ par <literal>lines(in)</literal>
+        <literal>mtlb_more(in)</literal> peut être remplacé par <literal>lines(in)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_more</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_more</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

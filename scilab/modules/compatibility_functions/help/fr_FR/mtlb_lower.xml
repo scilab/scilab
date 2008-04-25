@@ -16,42 +16,42 @@
   </info>
   <refnamediv>
     <refname>mtlb_lower</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab lower</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab lower</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>lower(A)</literal> et la fonction Scilab
-    <literal>convstr(A,"l")</literal> se comportent diffï¿½remment :</para>
+    <literal>convstr(A,"l")</literal> se comportent différemment :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> n'est pas une chaï¿½ne de caractï¿½res : la fonction Matlab <literal>lower</literal> peut ï¿½tre utilisï¿½e
-	avec <literal>A</literal> n'ï¿½tant pas une chaï¿½ne de caractï¿½res mais pas la fonction Scilab <literal>convstr</literal>.
+        Si <literal>A</literal> n'est pas une chaîne de caractères : la fonction Matlab <literal>lower</literal> peut être utilisée
+	avec <literal>A</literal> n'étant pas une chaîne de caractères mais pas la fonction Scilab <literal>convstr</literal>.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_lower(A)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>lower(A)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_lower</literal> :
+    La fonction <literal>mtlb_lower(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>lower(A)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_lower</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> est une matrice de chaï¿½nes de caractï¿½res
-        <literal>mtlb_lower(A)</literal> peut ï¿½tre remplacï¿½ par <literal>convstr(A,"l")</literal>
+        Si <literal>A</literal> est une matrice de chaînes de caractères
+        <literal>mtlb_lower(A)</literal> peut être remplacé par <literal>convstr(A,"l")</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>A</literal> n'est pas une matrice de chaï¿½nes de caractï¿½res
-        <literal>mtlb_lower(A)</literal> peut ï¿½tre remplacï¿½ par <literal>A</literal>
+        Si <literal>A</literal> n'est pas une matrice de chaînes de caractères
+        <literal>mtlb_lower(A)</literal> peut être remplacé par <literal>A</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_lower</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_lower</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>mstr2sci</refname>
-    <refpurpose>conversion d'une matrice de chaï¿½nes en matrice de caractï¿½res</refpurpose>
+    <refpurpose>conversion d'une matrice de chaînes en matrice de caractères</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -28,13 +28,13 @@
       <varlistentry>
         <term>txt</term>
         <listitem>
-          <para>chaï¿½ne de caractï¿½res ou matrice de chaï¿½nes</para>
+          <para>chaîne de caractères ou matrice de chaînes</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>a</term>
         <listitem>
-          <para>vecteur ou matrice de caractï¿½res</para>
+          <para>vecteur ou matrice de caractères</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,10 +42,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction convertit une chaï¿½ne de caractï¿½res Scilab en vecteur de caractï¿½res.
-    Le rï¿½sultat est l'ï¿½quivalent pour Scilab d'une chaï¿½ne de caractï¿½res Matlab.
+    Cette fonction convertit une chaîne de caractères Scilab en vecteur de caractères.
+    Le résultat est l'équivalent pour Scilab d'une chaîne de caractères Matlab.
     </para>
-    <para>Attention : <literal>mstr2sci</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mstr2sci</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

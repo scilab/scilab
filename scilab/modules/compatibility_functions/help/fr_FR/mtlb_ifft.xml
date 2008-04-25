@@ -16,43 +16,43 @@
   </info>
   <refnamediv>
     <refname>mtlb_fft</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab ifft</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab ifft</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>ifft</literal> et la fonction Scilab <literal>fft</literal> se comportent diffï¿½remment :</para>
+    <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>ifft</literal> et la fonction Scilab <literal>fft</literal> se comportent différemment :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec un paramï¿½tre d'entrï¿½e : si ce paramï¿½tre est un scalaire ou un vecteur l'ï¿½quivalent Scilab
+        Avec un paramètre d'entrée : si ce paramètre est un scalaire ou un vecteur l'équivalent Scilab
 	pour la fonction  Matlab <literal>ifft(A)</literal> est <literal>fft(A,1)</literal> 
-	et si ce paramï¿½tre est une matrice l'ï¿½quivalent Scilab pour l'appel Matlab ï¿½ <literal>ifft</literal>
+	et si ce paramètre est une matrice l'équivalent Scilab pour l'appel Matlab à <literal>ifft</literal>
 	est <literal>fft(A,1,2,1)</literal>
        </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_ifft(X[,n,[job]])</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>ifft(X[,n,[job]])</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les entrï¿½es pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_ifft</literal> :
+    La fonction <literal>mtlb_ifft(X[,n,[job]])</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>ifft(X[,n,[job]])</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les entrées pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_ifft</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
         Si <literal>X</literal> est un scalaire ou un vecteur
-        <literal>mtlb_ifft(X,1)</literal> peut ï¿½tre remplacï¿½ par <literal>fft(X,1)</literal>
+        <literal>mtlb_ifft(X,1)</literal> peut être remplacé par <literal>fft(X,1)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>X</literal> est une matrice
-        <literal>mtlb_ifft(X,1)</literal> peut ï¿½tre remplacï¿½ par <literal>fft(X,1,2,1)</literal>
+        <literal>mtlb_ifft(X,1)</literal> peut être remplacé par <literal>fft(X,1,2,1)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_ifft</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_ifft</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

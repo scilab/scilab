@@ -16,33 +16,33 @@
   </info>
   <refnamediv>
     <refname>mtlb_delete</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab delete</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab delete</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    La fonction <literal>mtlb_delete(A)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>delete(A)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½tait le paramï¿½tres d'entrï¿½e pendant la conversion d'un code
+    La fonction <literal>mtlb_delete(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>delete(A)</literal> quand il n'était pas
+    possible de savoir ce qu'était le paramètres d'entrée pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_delete</literal> :
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_delete</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> est une chaï¿½ne de caractï¿½res
-        <literal>mtlb_delete(A)</literal> peut ï¿½tre remplacï¿½ par <literal>mdelete(A)</literal>
+        Si <literal>A</literal> est une chaîne de caractères
+        <literal>mtlb_delete(A)</literal> peut être remplacé par <literal>mdelete(A)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>A</literal> est un handle graphique
-        <literal>mtlb_delete(A)</literal> peut ï¿½tre remplacï¿½ par <literal>delete(A)</literal>
+        <literal>mtlb_delete(A)</literal> peut être remplacé par <literal>delete(A)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_delete</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_delete</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

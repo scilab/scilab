@@ -16,57 +16,57 @@
   </info>
   <refnamediv>
     <refname>mtlb_e</refname>
-    <refpurpose>Fonction d'ï¿½mulation de l'extraction Matlab</refpurpose>
+    <refpurpose>Fonction d'émulation de l'extraction Matlab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, l'extraction se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, l'extraction se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-	Lors de l'extraction de donnï¿½es d'une matrice avec comme indice un vecteur : 
+	Lors de l'extraction de données d'une matrice avec comme indice un vecteur : 
 	Matlab retourne un vecteur ligne alors que Scilab retourne un vecteur colonne.
         </para>
       </listitem>
       <listitem>
         <para>
-	Lors de l'extraction de donnï¿½es d'une matrice d'une chaï¿½ne de caractï¿½res : ï¿½tant donnï¿½ que
-	les matrices de chaï¿½nes de caractï¿½res peuvent ï¿½tre adressï¿½es comme tout autre type de
-	matrice dans Matlab (chaque caractï¿½re peut ï¿½tre adressï¿½),
-	l'extraction ï¿½ partir d'une telle matrice ne change pas des autres types. Mais dans Scilab
-	ceci ne peut ï¿½tre fait de la mï¿½me maniï¿½re et la fonction <literal>part</literal> doit ï¿½tre utilisï¿½e. 
+	Lors de l'extraction de données d'une matrice d'une chaîne de caractères : étant donné que
+	les matrices de chaînes de caractères peuvent être adressées comme tout autre type de
+	matrice dans Matlab (chaque caractère peut être adressé),
+	l'extraction à partir d'une telle matrice ne change pas des autres types. Mais dans Scilab
+	ceci ne peut être fait de la même manière et la fonction <literal>part</literal> doit être utilisée. 
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_e(B,k)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>A=B(k)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_e</literal> :
+    La fonction <literal>mtlb_e(B,k)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>A=B(k)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_e</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>    
 	Si <literal>B</literal> est un vecteur
-	<literal>A=mtlb_e(B,k)</literal> peut ï¿½tre remplacï¿½ par <literal>A=B(k)</literal>
+	<literal>A=mtlb_e(B,k)</literal> peut être remplacé par <literal>A=B(k)</literal>
 	</para>
       </listitem>
       <listitem>
         <para>    
 	Si <literal>B</literal> est une matrice
-	<literal>A=mtlb_e(B,k)</literal> peut ï¿½tre remplacï¿½ par <literal>A=B(k).'</literal>
+	<literal>A=mtlb_e(B,k)</literal> peut être remplacé par <literal>A=B(k).'</literal>
  	</para>
       </listitem>
       <listitem>
         <para>    
-	Si <literal>B</literal> est une chaï¿½ne de caractï¿½res et
+	Si <literal>B</literal> est une chaîne de caractères et
 	k est une scalaire ou un vecteur
-	<literal>A=mtlb_e(B,k)</literal> peut ï¿½tre remplacï¿½ par <literal>A=part(B,k)</literal>
+	<literal>A=mtlb_e(B,k)</literal> peut être remplacé par <literal>A=part(B,k)</literal>
  	</para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_e</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_e</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

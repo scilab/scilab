@@ -16,19 +16,19 @@
   </info>
   <refnamediv>
     <refname>mtlb_write</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab write</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab write</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Il n'y a pas d'ï¿½quivalent Scilab pour la fonction Matlab <literal>write</literal>. La fonction Scilab <literal>mput</literal>
-    et la fonction Matlab <literal>write</literal> se comportent diffï¿½remment dans beaucoup de cas mais sont ï¿½quivalentes dans plusieurs cas.</para>
+    <para>Il n'y a pas d'équivalent Scilab pour la fonction Matlab <literal>write</literal>. La fonction Scilab <literal>mput</literal>
+    et la fonction Matlab <literal>write</literal> se comportent différemment dans beaucoup de cas mais sont équivalentes dans plusieurs cas.</para>
     <para>
-    La fonction <literal>mtlb_write(varargin)</literal> est utilisï¿½e par
+    La fonction <literal>mtlb_write(varargin)</literal> est utilisée par
     <literal>mfile2sci</literal> pour remplacer <literal>write</literal>. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Il est quelquefois possible de remplacer les appels ï¿½
-    <literal>mtlb_write</literal> par des appels ï¿½ <link linkend="mput">mput</link>.
+    déterminer la sémantique correcte pendant l'exécution. Il est quelquefois possible de remplacer les appels à
+    <literal>mtlb_write</literal> par des appels à <link linkend="mput">mput</link>.
     </para>
-    <para>Attention : <literal>mtlb_write</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_write</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

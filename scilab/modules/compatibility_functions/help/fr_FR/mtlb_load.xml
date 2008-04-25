@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>mtlb_load</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab load</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab load</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    La fonction <literal>mtlb_load</literal> ï¿½tait utilisï¿½e par les anciennes version de 
-    <literal>mfile2sci</literal> pour remplacer <literal>load</literal> mais est maintenant obsolï¿½te
-    utilisez plutï¿½t <literal>loadmatfile</literal>
+    La fonction <literal>mtlb_load</literal> était utilisée par les anciennes version de 
+    <literal>mfile2sci</literal> pour remplacer <literal>load</literal> mais est maintenant obsolète
+    utilisez plutôt <literal>loadmatfile</literal>
     </para>
   </refsection>
   <refsection>

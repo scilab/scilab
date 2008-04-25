@@ -16,44 +16,44 @@
   </info>
   <refnamediv>
     <refname>mtlb_beta</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab beta</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab beta</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>beta</literal> se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>beta</literal> se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec des paramï¿½tres d'entrï¿½e de tailles diffï¿½rentes : les paramï¿½tres d'entrï¿½e de la fonction 
-	<literal>beta</literal> de Matlab doivent ï¿½tre de mï¿½me taille sauf si l'un d'entre eux est un scalaire.
-	Les paramï¿½tres d'entrï¿½e de la fonction <literal>beta</literal> de Scilab doivent ï¿½tre de mï¿½me taille
-	mï¿½me si l'un d'entre eux est un scalaire.
+        Avec des paramètres d'entrée de tailles différentes : les paramètres d'entrée de la fonction 
+	<literal>beta</literal> de Matlab doivent être de même taille sauf si l'un d'entre eux est un scalaire.
+	Les paramètres d'entrée de la fonction <literal>beta</literal> de Scilab doivent être de même taille
+	même si l'un d'entre eux est un scalaire.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_beta(A,B)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>beta(A,B)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code
+    La fonction <literal>mtlb_beta(A,B)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>beta(A,B)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_beta</literal> :
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_beta</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
         Si <literal>A</literal> est un scalaire mais pas <literal>B</literal>
-        <literal>Y = mtlb_beta(A,B)</literal> peut ï¿½tre remplacï¿½ par <literal>C=B;C(:)=A;Y = mtlb_beta(C,B);</literal>
+        <literal>Y = mtlb_beta(A,B)</literal> peut être remplacé par <literal>C=B;C(:)=A;Y = mtlb_beta(C,B);</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>B</literal> est un scalaire mais pas <literal>A</literal>
-        <literal>Y = mtlb_beta(A,B)</literal> peut ï¿½tre remplacï¿½ par <literal>C=A;C(:)=B;Y = mtlb_beta(A,C);</literal>
+        <literal>Y = mtlb_beta(A,B)</literal> peut être remplacé par <literal>C=A;C(:)=B;Y = mtlb_beta(A,C);</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_beta</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_beta</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

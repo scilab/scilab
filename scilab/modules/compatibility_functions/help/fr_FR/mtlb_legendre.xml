@@ -12,11 +12,11 @@
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mtlb_legendre">
   <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoï¿½ 2006) $</pubdate>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</pubdate>
   </info>
   <refnamediv>
     <refname>mtlb_legendre</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction
+    <refpurpose>Fonction d'émulation de la fonction
   Matlab legendre</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -52,19 +52,19 @@ P=mtlb_legendre(n,X[,normflag])</synopsis>
   <refsection>
     <title>Description</title>
     <para>Dans plusieurs cas particuliers, la fonction <literal>legendre</literal> se
-    comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <para>L'appel de fonction Scilab <literal>legendre(m,n,X)</literal> ï¿½value
-            la fonction de legendre de degrï¿½ <literal>n </literal> et d'ordre
-            <literal>m </literal>pour tous les ï¿½lï¿½ments de <literal>X</literal>. Par
+        <para>L'appel de fonction Scilab <literal>legendre(m,n,X)</literal> évalue
+            la fonction de legendre de degré <literal>n </literal> et d'ordre
+            <literal>m </literal>pour tous les éléments de <literal>X</literal>. Par
             contre l'appel de fonction Scilab <literal>legendre(m,n,X)</literal>
-            ï¿½value la fonction de legendre de degrï¿½ <literal>n</literal> et d'ordre
-            <literal>m=0,1,...,n </literal>pour tous les ï¿½lï¿½ments de
+            évalue la fonction de legendre de degré <literal>n</literal> et d'ordre
+            <literal>m=0,1,...,n </literal>pour tous les éléments de
             <literal>X</literal>.</para>
       </listitem>
       <listitem>
-        <para>Le mode <literal>normflag='sch'</literal> n'est pas implï¿½mentï¿½ avec
+        <para>Le mode <literal>normflag='sch'</literal> n'est pas implémenté avec
             Scilab</para>
       </listitem>
       <listitem>
@@ -72,13 +72,13 @@ P=mtlb_legendre(n,X[,normflag])</synopsis>
             <literal>X</literal> est une hypermatrice</para>
       </listitem>
     </itemizedlist>
-    <para>La fonction <literal>mtlb_legendre(n,X[,normflag])</literal> est utilisï¿½e par
+    <para>La fonction <literal>mtlb_legendre(n,X[,normflag])</literal> est utilisée par
     <literal>mfile2sci</literal> pour remplacer
-    <literal>legendre(n,X[,normflag])</literal> quand il n'ï¿½tait pas possible de
-    savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un
-    code Matlab vers Scilab. Cette fonction va dï¿½terminer la sï¿½mantique
-    correcte pendant l'exï¿½cution. Pour obtenir un code plus performant on peut
-    remplacer les appels ï¿½ï¿½ <literal>mtlb_legendre</literal> :</para>
+    <literal>legendre(n,X[,normflag])</literal> quand il n'était pas possible de
+    savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un
+    code Matlab vers Scilab. Cette fonction va déterminer la sémantique
+    correcte pendant l'exécution. Pour obtenir un code plus performant on peut
+    remplacer les appels à <literal>mtlb_legendre</literal> :</para>
     <itemizedlist>
       <listitem>
         <para>If X is a scalar, a vector or a matrix
@@ -86,7 +86,7 @@ P=mtlb_legendre(n,X[,normflag])</synopsis>
             <literal>legendre(n,0:n,X[,'norm'])</literal></para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_legendre</literal> ne doit pas ï¿½tre utilisï¿½e pour
+    <para>Attention : <literal>mtlb_legendre</literal> ne doit pas être utilisée pour
     une programmation manuelle.</para>
   </refsection>
   <refsection>

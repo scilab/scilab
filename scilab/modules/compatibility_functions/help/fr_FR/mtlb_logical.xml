@@ -16,39 +16,39 @@
   </info>
   <refnamediv>
     <refname>mtlb_logical</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab logical</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab logical</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Il n'y a pas de fonction Scilab ï¿½quivalent ï¿½ la fonction Matlab <literal>logical</literal> mais sont comportement peut ï¿½tre reproduit.</para>
+    <para>Il n'y a pas de fonction Scilab équivalent à la fonction Matlab <literal>logical</literal> mais sont comportement peut être reproduit.</para>
     <para>
-    La fonction <literal>mtlb_logical(A)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>logical(A)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½tait le paramï¿½tre d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_logical</literal> :
+    La fonction <literal>mtlb_logical(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>logical(A)</literal> quand il n'était pas
+    possible de savoir ce qu'était le paramètre d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_logical</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> est une matrice de boolï¿½ens
-        <literal>mtlb_logical(A)</literal> peut ï¿½tre remplacï¿½ par <literal>A</literal>
+        Si <literal>A</literal> est une matrice de booléens
+        <literal>mtlb_logical(A)</literal> peut être remplacé par <literal>A</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>A</literal> n'est pas une matrice vide
-        <literal>mtlb_logical(A)</literal> peut ï¿½tre remplacï¿½ par <literal>A&lt;&gt;[]</literal>
+        <literal>mtlb_logical(A)</literal> peut être remplacé par <literal>A&lt;&gt;[]</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>A</literal> est une matrice vide
-        <literal>mtlb_logical(A)</literal> peut ï¿½tre remplacï¿½ par <literal>[]</literal>
+        <literal>mtlb_logical(A)</literal> peut être remplacé par <literal>[]</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_logical</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_logical</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

@@ -16,41 +16,41 @@
   </info>
   <refnamediv>
     <refname>mtlb_ones</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab ones</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab ones</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>ones</literal> se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>ones</literal> se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec une entrï¿½e qui est un scalaire : La fonction Matlab <literal>ones</literal> retourne une
+        Avec une entrée qui est un scalaire : La fonction Matlab <literal>ones</literal> retourne une
 	matrice n x n alors que Scilab retourne 1.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_ones(A)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>ones(A)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_ones</literal> :
+    La fonction <literal>mtlb_ones(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>ones(A)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_ones</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
         Si <literal>A</literal> est un scalaire
-        <literal>mtlb_ones(A)</literal> peut ï¿½tre remplacï¿½ par <literal>ones(A,A)</literal>
+        <literal>mtlb_ones(A)</literal> peut être remplacé par <literal>ones(A,A)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>A</literal> n'est pas un scalaire
-        <literal>mtlb_ones(A)</literal> peut ï¿½tre remplacï¿½ par <literal>ones(A)</literal>
+        <literal>mtlb_ones(A)</literal> peut être remplacé par <literal>ones(A)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_ones</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_ones</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

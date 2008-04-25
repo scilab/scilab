@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>asciimat</refname>
-    <refpurpose>conversion d'une matrice de chaï¿½nes ASCII</refpurpose>
+    <refpurpose>conversion d'une matrice de chaînes ASCII</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -29,7 +29,7 @@ txt=asciimat(a)</synopsis>
       <varlistentry>
         <term>txt</term>
         <listitem>
-          <para>chaï¿½ne de caractï¿½res ou matrice de chaï¿½nes</para>
+          <para>chaîne de caractères ou matrice de chaînes</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -43,8 +43,8 @@ txt=asciimat(a)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction convertit une chaï¿½ne de caractï¿½res Scilab en codes ASCII ou une matrice de codes ASCII en chaï¿½ne de caractï¿½res Scilab.
-    La valeur retournï¿½e est une matrice ayant le mï¿½me nombre de lignes que l'entrï¿½e,
+    Cette fonction convertit une chaîne de caractères Scilab en codes ASCII ou une matrice de codes ASCII en chaîne de caractères Scilab.
+    La valeur retournée est une matrice ayant le même nombre de lignes que l'entrée,
     ce qui n'est pas le cas de la fonction <literal>ascii</literal>.
     </para>
   </refsection>

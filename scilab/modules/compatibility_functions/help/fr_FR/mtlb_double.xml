@@ -16,55 +16,55 @@
   </info>
   <refnamediv>
     <refname>mtlb_double</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab double</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab double</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>double</literal> se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>double</literal> se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec un paramï¿½tre d'entrï¿½e de type chaï¿½ne de caractï¿½re : La fonction <literal>double</literal> de Scilab
-	ne tolï¿½re pas ce type d'entrï¿½e alors que la fonction <literal>double</literal> de Matlab retourne
+        Avec un paramètre d'entrée de type chaîne de caractère : La fonction <literal>double</literal> de Scilab
+	ne tolère pas ce type d'entrée alors que la fonction <literal>double</literal> de Matlab retourne
 	une matrice de codes ASCII.
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec un paramï¿½tre d'entrï¿½e de type boolï¿½en : La fonction <literal>double</literal> de Scilab
-	ne tolï¿½re pas ce type d'entrï¿½e alors que la fonction <literal>double</literal> de Matlab retourne
+        Avec un paramètre d'entrée de type booléen : La fonction <literal>double</literal> de Scilab
+	ne tolère pas ce type d'entrée alors que la fonction <literal>double</literal> de Matlab retourne
 	une matrice de doubles.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_double(A)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>double(A)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½tait <literal>A</literal> pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_double</literal> :
+    La fonction <literal>mtlb_double(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>double(A)</literal> quand il n'était pas
+    possible de savoir ce qu'était <literal>A</literal> pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_double</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> est une chaï¿½ne de caractï¿½re
-        <literal>mtlb_double(A)</literal> peut ï¿½tre remplacï¿½ par <literal>asciimat(A)</literal>
+        Si <literal>A</literal> est une chaîne de caractère
+        <literal>mtlb_double(A)</literal> peut être remplacé par <literal>asciimat(A)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>A</literal> est une matrice de boolï¿½ens
-        <literal>mtlb_double(A)</literal> peut ï¿½tre remplacï¿½ par <literal>bool2s(A)</literal>
+        Si <literal>A</literal> est une matrice de booléens
+        <literal>mtlb_double(A)</literal> peut être remplacé par <literal>bool2s(A)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>A</literal> est une matrice de doubles
-        <literal>mtlb_double(A)</literal> peut ï¿½tre remplacï¿½ par <literal>A</literal>
+        <literal>mtlb_double(A)</literal> peut être remplacé par <literal>A</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_double</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_double</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

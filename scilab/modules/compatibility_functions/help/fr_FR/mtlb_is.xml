@@ -16,21 +16,21 @@
   </info>
   <refnamediv>
     <refname>mtlb_is</refname>
-    <refpurpose>Fonction d'ï¿½mulation de l'insertion dans une chaï¿½ne de caractï¿½res de Matlab</refpurpose>
+    <refpurpose>Fonction d'émulation de l'insertion dans une chaîne de caractères de Matlab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    L'insertion se comporte diffï¿½remment dans Matlab et dans Scilab pour les chaï¿½nes de caractï¿½res
-    ï¿½tant donnï¿½ que celles-ci ne sont pas considï¿½rï¿½es de la mï¿½me faï¿½on.
+    L'insertion se comporte différemment dans Matlab et dans Scilab pour les chaînes de caractères
+    étant donné que celles-ci ne sont pas considérées de la même façon.
     </para>
     <para>
-    La fonction <literal>str = mtlb_is(sto,sfrom,i,j)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer les opï¿½rations d'insertion dans des 
-    chaï¿½nes de caractï¿½res. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Elle ne peut ï¿½tre remplacï¿½e.
+    La fonction <literal>str = mtlb_is(sto,sfrom,i,j)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer les opérations d'insertion dans des 
+    chaînes de caractères. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Elle ne peut être remplacée.
     </para>
-    <para>Attention : <literal>mtlb_is</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_is</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

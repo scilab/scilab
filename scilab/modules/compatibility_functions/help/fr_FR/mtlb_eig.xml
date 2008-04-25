@@ -16,26 +16,26 @@
   </info>
   <refnamediv>
     <refname>mtlb_eig</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab eig</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab eig</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>Dans plusieurs cas particuliers, les fonctions <literal>eig</literal> de Matlab et <literal>spec</literal>
-    de Scilab se comportent diffï¿½remment :</para>
+    de Scilab se comportent différemment :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec un argument d'entrï¿½e (<literal>A</literal>) et deux arguments de sortie (<literal>V</literal>,<literal>D</literal>),
-	les valeurs obtenues dans Scilab et dans Matlab sont de signe opposï¿½.
+        Avec un argument d'entrée (<literal>A</literal>) et deux arguments de sortie (<literal>V</literal>,<literal>D</literal>),
+	les valeurs obtenues dans Scilab et dans Matlab sont de signe opposé.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>[V,D] = mtlb_eig(A,B)</literal> est utilisï¿½e par
+    La fonction <literal>[V,D] = mtlb_eig(A,B)</literal> est utilisée par
     <literal>mfile2sci</literal> pour remplacer <literal>[V,D] = eig(A)</literal>. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Elle ne peut ï¿½tre remplacï¿½e.
+    déterminer la sémantique correcte pendant l'exécution. Elle ne peut être remplacée.
     </para>
-    <para>Attention : <literal>mtlb_eig</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_eig</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

@@ -16,11 +16,11 @@
   </info>
   <refnamediv>
     <refname>mtlb_rcond</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab rcond</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab rcond</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>rcond</literal> se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>rcond</literal> se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
@@ -30,21 +30,21 @@
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_rcond(A)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>rcond(A)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½tait le paramï¿½tre d'entrï¿½e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_rcond</literal> :
+    La fonction <literal>mtlb_rcond(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>rcond(A)</literal> quand il n'était pas
+    possible de savoir ce qu'était le paramètre d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_rcond</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
         Si <literal>A</literal> n'est pas une matrice vide
-        <literal>mtlb_rcond(A)</literal> peut ï¿½tre remplacï¿½ par <literal>rcond(A)</literal>
+        <literal>mtlb_rcond(A)</literal> peut être remplacé par <literal>rcond(A)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_rcond</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_rcond</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

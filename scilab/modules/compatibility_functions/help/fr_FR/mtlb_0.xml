@@ -16,35 +16,35 @@
   </info>
   <refnamediv>
     <refname>mtlb_0</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la transposition non-conjuguï¿½e de Matlab</refpurpose>
+    <refpurpose>Fonction d'émulation de la transposition non-conjuguée de Matlab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la transposition non-conjuguï¿½e se comporte diffï¿½remment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la transposition non-conjuguée se comporte différemment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec des opï¿½randes de type chaï¿½ne de caractï¿½re : L'opï¿½rateur <literal>.'</literal> est utilisï¿½ dans Scilab
-	pour transposer des chaï¿½nes de caractï¿½res entiï¿½res alors que Matlab fait la transposition caractï¿½re par caractï¿½re.
+        Avec des opérandes de type chaîne de caractère : L'opérateur <literal>.'</literal> est utilisé dans Scilab
+	pour transposer des chaînes de caractères entières alors que Matlab fait la transposition caractère par caractère.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_0(A)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>A.'</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les opï¿½randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_0</literal> :
+    La fonction <literal>mtlb_0(A)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>A.'</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_0</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> n'est pas une matrice de chaï¿½nes de caractï¿½res
-        <literal>mtlb_0(A)</literal> peut ï¿½tre remplacï¿½ par <literal>A.'</literal>
+        Si <literal>A</literal> n'est pas une matrice de chaînes de caractères
+        <literal>mtlb_0(A)</literal> peut être remplacé par <literal>A.'</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_0</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_0</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -16,11 +16,11 @@
   </info>
   <refnamediv>
     <refname>mtlb_fopen</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab fopen</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab fopen</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>fopen</literal> et la fonction Scilab <literal>mopen</literal> se comportent diffï¿½remment :</para>
+    <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>fopen</literal> et la fonction Scilab <literal>mopen</literal> se comportent différemment :</para>
     <itemizedlist>
       <listitem>
         <para>
@@ -29,7 +29,7 @@
       </listitem>
       <listitem>
         <para>
-        L'indentifieur de fichier n'est pas initialisï¿½ dans Scilab en cas d'erreur alors que Matlab lui fixe la valeur <literal>-1</literal>
+        L'indentifieur de fichier n'est pas initialisé dans Scilab en cas d'erreur alors que Matlab lui fixe la valeur <literal>-1</literal>
         </para>
       </listitem>
       <listitem>
@@ -39,22 +39,22 @@
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_fopen(filename,permission)</literal> est utilisï¿½e par
-    <literal>mfile2sci</literal> pour remplacer <literal>fopen(filename,permission)</literal> quand il n'ï¿½tait pas
-    possible de savoir ce qu'ï¿½taient les paramï¿½tres d'entrï¿½e pendant la conversion d'un code
+    La fonction <literal>mtlb_fopen(filename,permission)</literal> est utilisée par
+    <literal>mfile2sci</literal> pour remplacer <literal>fopen(filename,permission)</literal> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    dï¿½terminer la sï¿½mantique correcte pendant l'exï¿½cution. Pour obtenir un code plus performant
-    on peut remplacer les appels ï¿½ <literal>mtlb_fopen</literal> :
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <literal>mtlb_fopen</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si le message d'erreur n'est pas utilisï¿½ et si aucune erreur ne peut avoir lieu,
-        <literal>mtlb_fopen(filename,permission)</literal> peut ï¿½tre remplacï¿½ par <literal>mopen(filename,permission,0)</literal>
+        Si le message d'erreur n'est pas utilisé et si aucune erreur ne peut avoir lieu,
+        <literal>mtlb_fopen(filename,permission)</literal> peut être remplacé par <literal>mopen(filename,permission,0)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_fopen</literal> ne doit pas ï¿½tre utilisï¿½e pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_fopen</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

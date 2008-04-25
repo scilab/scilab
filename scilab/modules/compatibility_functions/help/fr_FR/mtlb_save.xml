@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>mtlb_save</refname>
-    <refpurpose>Fonction d'ï¿½mulation de la fonction Matlab save</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab save</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    La fonction <literal>mtlb_save</literal> ï¿½tait utilisï¿½e par les anciennes version de 
-    <literal>mfile2sci</literal> pour remplacer <literal>save</literal> mais est maintenant obsolï¿½te
-    utilisez plutï¿½t <literal>savematfile</literal>
+    La fonction <literal>mtlb_save</literal> était utilisée par les anciennes version de 
+    <literal>mfile2sci</literal> pour remplacer <literal>save</literal> mais est maintenant obsolète
+    utilisez plutôt <literal>savematfile</literal>
     </para>
   </refsection>
   <refsection>
