@@ -40,9 +40,8 @@ BOOL InitializeLocalization(void)
 #ifdef HAVE_LIBINTL_H
 
 	char *SCIpath=getSCIpath();
-	char *pathLocales=NULL;
+	char *pathLocales=NULL, *previousPathLocales;
 	char *ret=NULL;
-	char *ret2=NULL;
 
 	/* set directory containing message catalogs */
 	pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen(PATHLOCALIZATIONFILE)+1));
@@ -50,17 +49,16 @@ BOOL InitializeLocalization(void)
 	strcpy(pathLocales, SCIpath);
 	strcat(pathLocales, PATHLOCALIZATIONFILE);
 
-	ret2=bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales);
-
 	if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL || !isdir(pathLocales)){ /* source tree and classic build */
-		fprintf(stderr, "Localization: Error while binding the domain from %s: Trying in an other directory.\n", pathLocales);
-		
+		previousPathLocales=strdup(pathLocales);
+		free(pathLocales);
+
 		pathLocales=(char *)MALLOC(sizeof(char)*(strlen(SCIpath)+strlen("/..")+strlen(PATHLOCALIZATIONFILE)+1));
 		strcpy(pathLocales, SCIpath);
 		strcat(pathLocales, "/..");
 		strcat(pathLocales, PATHLOCALIZATIONFILE);
 		if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL || !isdir(pathLocales)){ /* when it is installed on the system for example /usr/share/locale/ */
-			fprintf(stderr, "Localization: Second try: Error while binding the domain from %s: Switch to the default language (English).\n", pathLocales);
+			fprintf(stderr, "Localization: Second try: Error while binding the domain from %s or %s: Switch to the default language (English).\n", pathLocales, previousPathLocales);
 			FREE(pathLocales);
 			return FALSE;
 		}
