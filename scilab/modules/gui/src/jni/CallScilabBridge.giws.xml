@@ -1,26 +1,5 @@
 <package name="org.scilab.modules.gui.bridge">
   <object name="CallScilabBridge">
-<!-- Console interface -->
-	<method name="display" returnType="void" modifier="static">
-	  <parameter type="String" name="dataToDisplay" />
-	</method>
-	<method name="readLine" returnType="String" modifier="static">
-	</method>
-	<method name="clear" returnType="void" modifier="static">
-	</method>
-	<method name="clear" returnType="void" modifier="static">
-	  <parameter type="int" name="nbLines" />
-	</method>
-	<method name="getCharWithoutOutput" returnType="int" modifier="static">
-	</method>
-	<method name="toHome" returnType="void" modifier="static">
-	</method>
-	<method name="scilabLinesUpdate" returnType="void" modifier="static">
-	</method>
-	<method name="setPrompt" returnType="void" modifier="static">
-	  <parameter type="String" name="promptToSet" />
-	</method>
-	<method name="isWaitingForInput" returnType="boolean" modifier="static"/>
 <!-- Object creation/destruction -->
 	<method name="newWindow" returnType="int" modifier="static"/>
 	<method name="newMenuBar" returnType="int" modifier="static"/>
