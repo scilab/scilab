@@ -47,11 +47,11 @@ static __threadSignal	TimeToWork;
 
 static __threadLock ReadyForLaunch;
 
-static BOOL WSCThreadAlive = FALSE;
-static __threadId WSCThread;
+static BOOL WatchStoreCmdThreadAlive = FALSE;
+static __threadId WatchStoreCmdThread;
 
-static BOOL WGCLThreadAlive = FALSE;
-static __threadId WGCLThread;
+static BOOL WatchGetCmdLineThreadAlive = FALSE;
+static __threadId WatchGetCmdLineThread;
 
 static BOOL initialized = FALSE;
 
@@ -102,7 +102,7 @@ static void *watchStoreCommand(void *in) {
 
 
   __Lock(&ReadyForLaunch);
-  WSCThreadAlive=FALSE;
+  WatchStoreCmdThreadAlive=FALSE;
   __Signal(&TimeToWork);
   __UnLock(&ReadyForLaunch);
 
@@ -118,7 +118,7 @@ static void *watchStoreCommand(void *in) {
 static void *watchGetCommandLine(void *in) {
   getCommandLine();
   __Lock(&ReadyForLaunch);
-  WGCLThreadAlive = FALSE;
+  WatchGetCmdLineThreadAlive = FALSE;
   __Signal(&TimeToWork);
   __UnLock(&ReadyForLaunch);
 
@@ -143,21 +143,21 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   __CommandLine = strdup("");
 
   if (ismenu() == 0) {
-    if (!WGCLThreadAlive)
+    if (!WatchGetCmdLineThreadAlive)
       {
-	if (WGCLThread) {
-	  __WaitThreadDie(WGCLThread);
+	if (WatchGetCmdLineThread) {
+	  __WaitThreadDie(WatchGetCmdLineThread);
 	}
-	__CreateThread(&WGCLThread, &watchGetCommandLine);
-	WGCLThreadAlive = TRUE;
+	__CreateThread(&WatchGetCmdLineThread, &watchGetCommandLine);
+	WatchGetCmdLineThreadAlive = TRUE;
       }
-    if (!WSCThreadAlive)
+    if (!WatchStoreCmdThreadAlive)
       {
-	if (WSCThread) {
-	  __WaitThreadDie(WSCThread);
+	if (WatchStoreCmdThread) {
+	  __WaitThreadDie(WatchStoreCmdThread);
 	}
-	__CreateThread(&WSCThread, &watchStoreCommand);
-	WSCThreadAlive = TRUE;
+	__CreateThread(&WatchStoreCmdThread, &watchStoreCommand);
+	WatchStoreCmdThreadAlive = TRUE;
       }
 
     __Wait(&TimeToWork, &ReadyForLaunch);
