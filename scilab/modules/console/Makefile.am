@@ -7,8 +7,6 @@
 if GUI
 
 # List of the cpp files
-CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
-
 CONSOLE_CPP_SOURCES =  src/cpp/ClearConsole.cpp \
 src/cpp/ClearConsolePart.cpp \
 src/cpp/ConsolePrintf.cpp \
@@ -27,8 +25,6 @@ CONSOLE_C_SOURCES = src/c/InitializeConsole.c \
 src/c/GuiManagement.c \
 src/c/dropFiles.c
 
-GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
-
 else
 
 # List of the c files
@@ -37,7 +33,16 @@ CONSOLE_C_SOURCES = src/noconsole/noconsole.c
 endif
 
 # Includes need for the compilation
-libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes
+libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
+			     -Iincludes/ \
+			     -Isrc/cpp/ \
+			     -Isrc/c/ \
+			     -Isrc/jni/ \
+			     -I$(top_srcdir)/libs/MALLOC/includes/ \
+			     -I$(top_srcdir)/modules/jvm/includes/ \
+			     -I$(top_srcdir)/modules/action_binding/includes/ \
+			     -I$(top_srcdir)/modules/gui/src/jni/
+
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
@@ -52,7 +57,7 @@ pkglib_LTLIBRARIES = libsciconsole.la
 libsciconsole_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciconsole.la
-libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES)
+libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_SOURCES)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib

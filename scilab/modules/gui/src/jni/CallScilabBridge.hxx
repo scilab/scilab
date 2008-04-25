@@ -52,6 +52,15 @@ JavaVM * jvm;
 jobject instance;
 
 jclass instanceClass; // cache class
+jmethodID voiddisplayjstringID; // cache method id
+jmethodID jstringreadLineID; // cache method id
+jmethodID voidclearID; // cache method id
+jmethodID voidclearjintID; // cache method id
+jmethodID jintgetCharWithoutOutputID; // cache method id
+jmethodID voidtoHomeID; // cache method id
+jmethodID voidscilabLinesUpdateID; // cache method id
+jmethodID voidsetPromptjstringID; // cache method id
+jmethodID jbooleanisWaitingForInputID; // cache method id
 jmethodID jintnewWindowID; // cache method id
 jmethodID jintnewMenuBarID; // cache method id
 jmethodID jintnewMenuID; // cache method id
@@ -257,6 +266,24 @@ void synchronize();
 void endSynchronize();
 
 // Methods
+static void display(JavaVM * jvm_, char * dataToDisplay);
+
+static char * readLine(JavaVM * jvm_);
+
+static void clear(JavaVM * jvm_);
+
+static void clear(JavaVM * jvm_, long nbLines);
+
+static long getCharWithoutOutput(JavaVM * jvm_);
+
+static void toHome(JavaVM * jvm_);
+
+static void scilabLinesUpdate(JavaVM * jvm_);
+
+static void setPrompt(JavaVM * jvm_, char * promptToSet);
+
+static bool isWaitingForInput(JavaVM * jvm_);
+
 static long newWindow(JavaVM * jvm_);
 
 static long newMenuBar(JavaVM * jvm_);

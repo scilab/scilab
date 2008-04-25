@@ -102,6 +102,15 @@ exit(EXIT_FAILURE);
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
+voiddisplayjstringID=NULL; 
+jstringreadLineID=NULL; 
+voidclearID=NULL; 
+voidclearjintID=NULL; 
+jintgetCharWithoutOutputID=NULL; 
+voidtoHomeID=NULL; 
+voidscilabLinesUpdateID=NULL; 
+voidsetPromptjstringID=NULL; 
+jbooleanisWaitingForInputID=NULL; 
 jintnewWindowID=NULL; 
 jintnewMenuBarID=NULL; 
 jintnewMenuID=NULL; 
@@ -290,7 +299,16 @@ jclass localClass = curEnv->GetObjectClass(JObj);
                exit(EXIT_FAILURE);
         }
         /* Methods ID set to NULL */
-        jintnewWindowID=NULL; 
+        voiddisplayjstringID=NULL; 
+jstringreadLineID=NULL; 
+voidclearID=NULL; 
+voidclearjintID=NULL; 
+jintgetCharWithoutOutputID=NULL; 
+voidtoHomeID=NULL; 
+voidscilabLinesUpdateID=NULL; 
+voidsetPromptjstringID=NULL; 
+jbooleanisWaitingForInputID=NULL; 
+jintnewWindowID=NULL; 
 jintnewMenuBarID=NULL; 
 jintnewMenuID=NULL; 
 jintnewPushButtonID=NULL; 
@@ -476,6 +494,210 @@ exit(EXIT_FAILURE);
 }
 
 // Method(s)
+
+void CallScilabBridge::display (JavaVM * jvm_, char * dataToDisplay){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voiddisplayjstringID = curEnv->GetStaticMethodID(cls, "display", "(Ljava/lang/String;)V" ) ;
+if (voiddisplayjstringID == NULL) {
+std::cerr << "Could not access to the method " << "display" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring dataToDisplay_ = curEnv->NewStringUTF( dataToDisplay );
+
+                         curEnv->CallStaticVoidMethod(cls, voiddisplayjstringID ,dataToDisplay_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+char * CallScilabBridge::readLine (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jstringreadLineID = curEnv->GetStaticMethodID(cls, "readLine", "()Ljava/lang/String;" ) ;
+if (jstringreadLineID == NULL) {
+std::cerr << "Could not access to the method " << "readLine" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jstring res =  (jstring) curEnv->CallStaticObjectMethod(cls, jstringreadLineID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer= (char*)malloc (strlen(tempString)*sizeof(char)+1);
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+
+return myStringBuffer;
+
+}
+
+void CallScilabBridge::clear (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidclearID = curEnv->GetStaticMethodID(cls, "clear", "()V" ) ;
+if (voidclearID == NULL) {
+std::cerr << "Could not access to the method " << "clear" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidclearID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::clear (JavaVM * jvm_, long nbLines){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidclearjintID = curEnv->GetStaticMethodID(cls, "clear", "(I)V" ) ;
+if (voidclearjintID == NULL) {
+std::cerr << "Could not access to the method " << "clear" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidclearjintID ,nbLines);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+long CallScilabBridge::getCharWithoutOutput (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintgetCharWithoutOutputID = curEnv->GetStaticMethodID(cls, "getCharWithoutOutput", "()I" ) ;
+if (jintgetCharWithoutOutputID == NULL) {
+std::cerr << "Could not access to the method " << "getCharWithoutOutput" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintgetCharWithoutOutputID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void CallScilabBridge::toHome (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidtoHomeID = curEnv->GetStaticMethodID(cls, "toHome", "()V" ) ;
+if (voidtoHomeID == NULL) {
+std::cerr << "Could not access to the method " << "toHome" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidtoHomeID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::scilabLinesUpdate (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidscilabLinesUpdateID = curEnv->GetStaticMethodID(cls, "scilabLinesUpdate", "()V" ) ;
+if (voidscilabLinesUpdateID == NULL) {
+std::cerr << "Could not access to the method " << "scilabLinesUpdate" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidscilabLinesUpdateID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::setPrompt (JavaVM * jvm_, char * promptToSet){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetPromptjstringID = curEnv->GetStaticMethodID(cls, "setPrompt", "(Ljava/lang/String;)V" ) ;
+if (voidsetPromptjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setPrompt" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring promptToSet_ = curEnv->NewStringUTF( promptToSet );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetPromptjstringID ,promptToSet_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+bool CallScilabBridge::isWaitingForInput (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleanisWaitingForInputID = curEnv->GetStaticMethodID(cls, "isWaitingForInput", "()Z" ) ;
+if (jbooleanisWaitingForInputID == NULL) {
+std::cerr << "Could not access to the method " << "isWaitingForInput" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanisWaitingForInputID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
+}
 
 long CallScilabBridge::newWindow (JavaVM * jvm_){
 
