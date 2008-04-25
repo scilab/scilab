@@ -23,20 +23,16 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>full</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec un param�tre d'entr�e de type cha�ne de caract�re : La fonction Matlab <literal>full</literal>
 	peut �tre utilis�e avec des cha�nes de caract�res ce qui n'est pas possible dans Scilab.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec un param�tre d'entr�e de type bool�en : La fonction Matlab <literal>full</literal>
 	peut �tre utilis�e avec des bool�ens ce qui n'est pas possible dans Scilab.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -48,20 +44,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est une matrice de doubles
         <literal>mtlb_full(A)</literal> peut �tre remplac� par <literal>full(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> est une matrice de bool�ens
         <literal>mtlb_full(A)</literal> peut �tre remplac� par <literal>full(bool2s(A))</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_full</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

@@ -23,21 +23,17 @@
     <para>Matlab and Scilab <literal>cumsum</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
 	When used with one input (<literal>cumsum(A)</literal>), Matlab <literal>cumsum</literal>
 	treats the values along the first non-singleton dimension of A as vectors while
 	Scilab <literal>cumsum</literal> treats all A values.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	When used with two inputs (<literal>cumsum(A,dim)</literal>), Matlab tolerates <literal>dim</literal>
 	to be greater than the number of dimensions of A while Scilab returns an error message in this case.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>    
@@ -49,20 +45,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
 	If <literal>dim</literal> is less equal to the number of dimensions of A
 	<literal>R = mtlb_cumsum(A,dim)</literal> may be replaced by <literal>R = cumsum(A,dim)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	If <literal>dim</literal> is greater than then number of dimensions of A
 	<literal>R = mtlb_cumsum(A,dim)</literal> may be replaced by <literal>R = A</literal>.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_cumsum</literal> has not to be used for hand coded functions.</para>

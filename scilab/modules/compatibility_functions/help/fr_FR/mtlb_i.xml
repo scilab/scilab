@@ -23,26 +23,22 @@
     <para>Dans plusieurs cas particuliers, l'insertion se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         En ins�rant une matrice dans une variable : Matlab ajuste automatiquement la taille
 	de la variable de retour pour qu'elle corresponde avec la matrice � ins�rer mais pas Scilab.
 	Par exemple, avec A=1, A([1,2,3,4])=[1,2;3,4]) retourne un message d'erreur dans Scilab
 	alors que dans Matlab on obtient A=[1,2,3,4]. Si des valeurs manquent par rapport aux
 	indices donn�s pour ins�rer, Matlab remplit la valeur de retour avec des z�ros.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Lors de l'insertion de donn�es d'une matrice d'une cha�ne de caract�res : �tant donn� que
 	les matrices de cha�nes de caract�res peuvent �tre adress�es comme tout autre type de
 	matrice dans Matlab (chaque caract�re peut �tre adress�),
 	l'insertion � partir dans une telle matrice ne change pas des autres types. Mais dans Scilab
 	ceci ne peut �tre fait de la m�me mani�re... <literal>mtlb_is</literal> est une alternative.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -54,20 +50,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> n'est pas un vecteur
         <literal>A=mtlb_i(A,k,B)</literal> peut �tre remplac� par <literal>A(k)=B</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	Si <literal>A</literal> et <literal>B</literal> sont des vecteurs lignes ou colonnes
 	<literal>A=mtlb_i(A,k,B)</literal> peut �tre remplac� par <literal>A(k)=B</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_i</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

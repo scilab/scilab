@@ -23,14 +23,10 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>diag</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec des matrices de cha�nes de caract�res : La fonction <literal>diag</literal> de Scilab consid�re
 	les cha�nes comme des objets alors que Matlab consid�re chaque caract�re s�par�ment.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -42,14 +38,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>x</literal> n'est pas une matrice de cha�nes de caract�res
         <literal>y = mtlb_diag(x,dim)</literal> peut �tre remplac� par <literal>y = diag(x[,dim])</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_diag</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

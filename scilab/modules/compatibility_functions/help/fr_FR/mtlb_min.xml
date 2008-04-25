@@ -23,33 +23,29 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>min</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec des valeurs complexes : La fonction Matlab <literal>min</literal> peut �tre utilis�e
 	avec des complexes mais pas la fonction Scilab.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         En cas d'appel avec deux param�tres d'entr�e : La fonction Matlab <literal>min</literal> traite les valeurs
 	suivant la premi�re dimension qui n'est pas 1 alors que Scilab traite l'ensemble des valeurs de l'entr�e.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         En cas d'appel avec deux param�tres d'entr�e : si l'une d'elles est une matrice vide, Scilab
 	retourne un message d'erreur alors que Matlab renvoie [].
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         En cas d'appel avec trois param�tres d'entr�e : si le param�tre <literal>dim</literal> est plus grand que
 	le nombre de dimensions de le premi�re entr�e, Scilab retourne un message d'erreur alors que Matlab
 	retourne le premier param�tre.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -61,34 +57,30 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est un scalaire ou un vecteur
         <literal>[r[,k]] = mtlb_min(A)</literal> peut �tre remplac� par <literal>min(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est une matrice
         <literal>[r[,k]] = mtlb_min(A)</literal> peut �tre remplac� par <literal>min(A,"r")</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         En cas d'appel avec deux param�tres d'entr�e, si <literal>A</literal> et <literal>B</literal> 
 	sont des matrices r�elles et ne sont pas des matrices vides,
         <literal>[r[,k]] = mtlb_min(A,B)</literal> peut �tre remplac� par <literal>min(A,B)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         En cas d'appel avec trois param�tres d'entr�e, si <literal>dim</literal> est inf�rieur
 	au nombre de dimensions de <literal>A</literal>,
         <literal>[r[,k]] = mtlb_min(A,[],dim)</literal> peut �tre remplac� par <literal>min(A,dim)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_min</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

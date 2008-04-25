@@ -31,14 +31,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec une entr�e et si <literal>nam</literal> est un nom de variable,
         <literal>mtlb_exist(nam)</literal> peut �tre remplac� par <literal>exists(nam)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_exist</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

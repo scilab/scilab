@@ -32,26 +32,22 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec un param�tre d'entr�e, si <literal>Y</literal> est r�el
         <literal>mtlb_plot(Y)</literal> peut �tre remplac� par <literal>plot2d(Y)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec un param�tre d'entr�e, si <literal>Y</literal> est complex
         <literal>mtlb_plot(Y)</literal> peut �tre remplac� par <literal>plot2d(real(Y),imag(Y))</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec deux param�tres d'entr�e <literal>X</literal> et <literal>Y</literal>, si <literal>Y</literal> n'est pas une cha�ne de caract�res,
         <literal>mtlb_plot(X,Y)</literal> peut �tre remplac� par <literal>plot2d(X,Y)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_plot</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

@@ -23,14 +23,10 @@
     <para>Matlab and Scilab <literal>dir</literal> behave differently:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         When result is stored in a variable: Matlab <literal>dir</literal> returns a structure but Scilab
 	<literal>dir</literal> returns a 'dir' tlist, so data can not be extracted in the same way.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>

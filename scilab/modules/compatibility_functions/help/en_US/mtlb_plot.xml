@@ -31,26 +31,22 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With one input, if <literal>Y</literal> is real,
         <literal>mtlb_plot(Y)</literal> may be replaced by <literal>plot2d(Y)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         With one input, if <literal>Y</literal> is complex,
         <literal>mtlb_plot(Y)</literal> may be replaced by <literal>plot2d(real(Y),imag(Y))</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         With two inputs <literal>X</literal> and <literal>Y</literal>, if <literal>Y</literal> is not a character string,
         <literal>mtlb_plot(X,Y)</literal> may be replaced by <literal>plot2d(X,Y)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_plot</literal> has not to be used for hand coded functions.</para>

@@ -23,20 +23,16 @@
     <para>Matlab <literal>num2str</literal> and Scilab equivalents (<literal>string</literal>, <literal>msprintf</literal>) behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With two input parameters, the second giving precision: There is no Scilab equivalent function, but
 	<literal>msprintf</literal> can be used to emulate.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         With two input parameters, the second giving format: Scilab equivalent for Matlab 
 	<literal>num2string(a,format)</literal> is <literal>msprintf(format,a)</literal>.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -48,14 +44,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>f</literal> is a character string
         <literal>mtlb_num2str(x,f)</literal> may be replaced by <literal>msprintf(f,x)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_num2str</literal> has not to be used for hand coded functions.</para>

@@ -23,13 +23,9 @@
     <para>Matlab and Scilab <literal>fliplr</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With character string matrices: due to te fact that Scilab and Matlab do not consider character string matrices in the same way, result can be different for input of this type.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -41,14 +37,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is not a character string matrix,
         <literal>mtlb_fliplr(A)</literal> may be replaced by <literal>A(:,$:-1:1)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_fliplr</literal> has not to be used for hand coded functions.</para>

@@ -57,23 +57,19 @@ P = mtlb_sort(X,dim[,mode])</synopsis>
     diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>Si <literal>X</literal> est un vecteur alors l'appel de la fonction
+        <para>Si <literal>X</literal> est un vecteur alors l'appel de la fonction
             <literal>sort(X) </literal>de Matlab est �quivalent �� l'appel de la
             fonction <literal>sort(X,'g','i')</literal> de Scilab. </para>
-          </listitem>
-          <listitem>
-            <para><literal>dim=1</literal> (resp. <literal>2</literal>) de Matlab est
+      </listitem>
+      <listitem>
+        <para><literal>dim=1</literal> (resp. <literal>2</literal>) de Matlab est
             equivalent au flag <literal>'r'</literal> (resp.<literal> 'c'</literal>) de
             Scilab.</para>
-          </listitem>
-          <listitem>
-            <para><literal>mode="ascend"</literal> (resp. <literal>"descend"</literal>) est
+      </listitem>
+      <listitem>
+        <para><literal>mode="ascend"</literal> (resp. <literal>"descend"</literal>) est
             �quivalent au flag <literal>'i'</literal> (resp <literal>'d'</literal>) de
             Scilab.</para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>La fonction <literal>mtlb_sort(X,dim[,mode])</literal> est utilis�e par

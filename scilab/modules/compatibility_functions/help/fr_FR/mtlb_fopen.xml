@@ -23,23 +23,19 @@
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>fopen</literal> et la fonction Scilab <literal>mopen</literal> se comportent diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         La fonction Scilab ne renvoie pas de pessage d'erreur utilisable
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         L'indentifieur de fichier n'est pas initialis� dans Scilab en cas d'erreur alors que Matlab lui fixe la valeur <literal>-1</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         La fonction Matlab peut fonctionner avec des arguments qui n'existent pas en Scilab : options de permission...
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -52,14 +48,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si le message d'erreur n'est pas utilis� et si aucune erreur ne peut avoir lieu,
         <literal>mtlb_fopen(filename,permission)</literal> peut �tre remplac� par <literal>mopen(filename,permission,0)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_fopen</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

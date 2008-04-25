@@ -58,24 +58,20 @@ P = mtlb_legendre(n,X[,normflag])</synopsis>
     particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>Scilab <literal>legendre(m,n,X)</literal> evaluates the
+        <para>Scilab <literal>legendre(m,n,X)</literal> evaluates the
             <literal>legendre</literal> function of degree n and order n for the
             <literal>X</literal> elements. Matlab <literal>legendre(n,X)</literal>
             evaluates the Legendre functions of degree <literal>n</literal> and
             order <literal>m</literal>=0,1,...,n. (emulated by mtlb_legendre) for
             the <literal>X</literal> elements.</para>
-          </listitem>
-          <listitem>
-            <para>The option normflag= <literal>'sch'</literal> doesn't exist for
+      </listitem>
+      <listitem>
+        <para>The option normflag= <literal>'sch'</literal> doesn't exist for
             Scilab legendre (emulated)</para>
-          </listitem>
-          <listitem>
-            <para>If <literal>X</literal> is a hypermatrix then Scilab
+      </listitem>
+      <listitem>
+        <para>If <literal>X</literal> is a hypermatrix then Scilab
             <literal>legendre(n,X)</literal> doesn't work (emulated)</para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>The function <literal>mtlb_legendre(n,X[,normflag])</literal> is used by
@@ -86,13 +82,9 @@ P = mtlb_legendre(n,X[,normflag])</synopsis>
     <literal>mtlb_legendre</literal> call:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>If <literal>X</literal> is a scalar, a vector or a matrix
+        <para>If <literal>X</literal> is a scalar, a vector or a matrix
             <literal>mtlb_legendre(n,X[,'norm']) </literal>may be replaced by
             <literal>legendre(n,0:n,X[,'norm'])</literal></para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_legendre</literal> has not to be used for hand coded

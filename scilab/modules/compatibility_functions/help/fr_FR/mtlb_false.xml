@@ -25,14 +25,10 @@
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>false</literal> et la fonction Scilab <literal>zeros</literal>se comporte diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec une entr�e qui est un scalaire : La fonction Matlab <literal>false</literal> retourne une
 	matrice n x n alors que la fonction Scilab <literal>zeros</literal> retourne 0.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -44,20 +40,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est un scalaire
         <literal>mtlb_false(A)</literal> peut �tre remplac� par <literal>zeros(A,A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> n'est pas un scalaire
         <literal>mtlb_false(A)</literal> peut �tre remplac� par <literal>zeros(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_false</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

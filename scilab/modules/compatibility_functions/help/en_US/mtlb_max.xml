@@ -23,30 +23,26 @@
     <para>Matlab and Scilab <literal>max</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With complex values: Matlab <literal>max</literal> can be used with complex values but not Scilab function.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with one input: Matlab <literal>max</literal> threats values along the first
 	non-singleton dimension but Scilab threats all input values.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with two inputs: if one is an empty matrix, Scilab returns an error message but Matlab returns [].
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with three inputs: if <literal>dim</literal> parameter is greater than number of
 	dimensions of first input, Scilab returns an error message and Matlab returns the first input.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -58,32 +54,28 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         When called with one input, if <literal>A</literal> is a vector or a scalar
         <literal>[r[,k]] = mtlb_max(A)</literal> may be replaced by <literal>max(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with one input, if <literal>A</literal> is a matrix
         <literal>[r[,k]] = mtlb_max(A)</literal> may be replaced by <literal>max(A,"r")</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with two inputs, if <literal>A</literal> and <literal>B</literal> are real matrices and not empty matrices
         <literal>[r[,k]] = mtlb_max(A,B)</literal> may be replaced by <literal>max(A,B)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with three inputs, if <literal>dim</literal> is lesser than the number of dimensions of <literal>A</literal>
         <literal>[r[,k]] = mtlb_max(A,[],dim)</literal> may be replaced by <literal>max(A,dim)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_max</literal> has not to be used for hand coded functions.</para>

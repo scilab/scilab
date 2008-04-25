@@ -24,25 +24,21 @@
     la fonction Matlab <literal>close</literal> est diff�rent :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si la figure courante est de type uicontrol : l'�quivalent Scilab pour la fonction Matlab 
 	<literal>close</literal> est <literal>close</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si la fen�tre courante est une fen�tre graphique : l'�quivalent Scilab pour la fonction Matlab 
 	<literal>close</literal> est <literal>xdel</literal> ou <literal>delete</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	Dans Scilab on ne r�cup�re pas de statut d'erreur.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -55,20 +51,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>h</literal> est une figure de type uicontrol,
         <literal>mtlb_close(h)</literal> peut �tre remplac� par <literal>close(h)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>h</literal> est une figure graphique,
         <literal>mtlb_close(h)</literal> peut �tre remplac� par <literal>delete(h)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_close</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

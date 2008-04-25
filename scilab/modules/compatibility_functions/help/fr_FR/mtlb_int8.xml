@@ -23,24 +23,20 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>int8</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec un param�tre d'entr�e complexe : La fonction Matlab <literal>int8</literal> peut �tre utilis�e
 	avec des complexes mais pas la fonction Scilab.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec la valeur <literal>%inf</literal> : Matlab retourne 127 alors que Scilab retourne 0.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec la valeur <literal>-%inf</literal> : Matlab retourne -128 alors que Scilab retourne 0.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -52,14 +48,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> ne contient pas de valeur <literal>%inf</literal> ou <literal>-%inf</literal>
         <literal>mtlb_int8(A)</literal> peut �tre remplac� par <literal>int8(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_int8</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

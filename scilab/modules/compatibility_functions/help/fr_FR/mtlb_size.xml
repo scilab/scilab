@@ -23,24 +23,20 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>size</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec deux param�tres d'entr�e : La fonction Matlab <literal>size</literal> peut �tre
 	utilis�e avec le second param�tre donnant donnant une dimension du premier param�tre
 	qui n'existe pas (retourne 1 dans ce cas) mais pas la fonction Scilab.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec plus d'une param�tre de sortie : si le nombre de param�tres de sortie est plus
 	petit que le nombre de dimension, la derni�re sortie est �gale au produit de toutes
 	les dimensions restantes dans Matlab mais pas dans Scilab. Si le nombre de sorties
 	est plus grand que le nombre de dimensions, toutes les sorties correspondant � une
 	dimension qui n'existe pas sont �gales � 1 en Matlab mais Scilab retourne une erreur dans ce cas.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -52,20 +48,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec deux param�tres d'entr�e : si <literal>dim</literal> correspond � une dimension de <literal>X</literal> qui existe
         <literal>mtlb_size(X,dim)</literal> peut �tre remplac� par <literal>size(X,dim)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	Avec plus d'un param�tre de sortie : si le nombre des sorties est �gal au nombre de dimensions de <literal>X</literal>
 	<literal>[d1,[d2,...]] = mtlb_size(X)</literal> peut �tre remplac� par <literal>[d1,[d2,...]] = size(X)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_size</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

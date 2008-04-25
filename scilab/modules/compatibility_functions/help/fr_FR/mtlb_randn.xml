@@ -24,14 +24,10 @@
     <literal>rand(...,"normal")</literal> se comportent diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec une entr�e qui est un scalaire : La fonction Matlab <literal>randn</literal> retourne une
 	matrice n x n alors que la fonction Scilab <literal>rand(...,"normal")</literal> retourne un scalaire.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -43,20 +39,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est un scalaire
         <literal>mtlb_randn(A)</literal> peut �tre remplac� par <literal>rand(A,A,"normal")</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> n'est pas un scalaire
         <literal>mtlb_randn(A)</literal> peut �tre remplac� par <literal>rand(A,"normal")</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_randn</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

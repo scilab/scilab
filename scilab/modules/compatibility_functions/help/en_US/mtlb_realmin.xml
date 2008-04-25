@@ -24,19 +24,15 @@
     <literal>number_properties</literal> but not all cases are implemented:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Scilab equivalent for Matlab <literal>realmin</literal> or
         <literal>realmin('double')</literal> is <literal>number_properties("tiny")</literal>.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         There is no Scilab equivalent for Matlab <literal>realmin('single')</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -48,14 +44,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>prec</literal> is equal to <literal>"double"</literal>
         <literal>mtlb_realmin(prec)</literal> may be replaced by <literal>number_properties("tiny")</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_realmin</literal> has not to be used for hand coded functions.</para>

@@ -23,19 +23,15 @@
     <para>Matlab and Scilab <literal>find</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With column vectors and matrices as input: Matlab <literal>find</literal> returns column
 	vectors while Scilab returns row vectors.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with three outputs: Matlab <literal>find</literal> can have three outputs but Scilab not.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -47,33 +43,29 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         When called with one output, if <literal>B</literal> is a row vector 
         <literal>i = mtlb_find(B)</literal> may be replaced by <literal>i = find(B)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with one output, if <literal>B</literal> is not a row vector 
         <literal>i = mtlb_find(B)</literal> may be replaced by <literal>i = matrix(find(B),-1,1)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with two outputs, if <literal>B</literal> is a row vector 
         <literal>[i,j] = mtlb_find(B)</literal> may be replaced by <literal>[i,j] = find(B)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with two outputs, if <literal>B</literal> is not a row vector 
         <literal>[i,j] = mtlb_find(B)</literal> may be replaced by
 	<literal>[i,j] = find(B);i = matrix(i,-1,1);j = matrix(j,-1,1);</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_find</literal> has not to be used for hand coded functions.</para>

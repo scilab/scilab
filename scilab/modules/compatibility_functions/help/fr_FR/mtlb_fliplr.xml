@@ -23,13 +23,9 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>fliplr</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec un param�tre d'entr�e de type cha�ne de caract�re : �tant donn� que Scilab et Matlab ne consid�rent pas les cha�nes de caract�re de la m�me fa�on, le r�sultat pout �tre diff�rent pour une entr�e de ce type.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -42,14 +38,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> n'est pas une matrice de cha�nes de caract�res,
         <literal>mtlb_fliplr(A)</literal> peut �tre remplac� par <literal>fliplr(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_fliplr</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

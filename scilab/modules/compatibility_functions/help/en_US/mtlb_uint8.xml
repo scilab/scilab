@@ -23,18 +23,14 @@
     <para>Matlab and Scilab <literal>uint8</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With complex input: Matlab <literal>uint8</literal> can be used with complex values what Scilab function can not.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         With <literal>%inf</literal>: Matlab <literal>uint8</literal> returns 255 and Scilab returns 0.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -46,14 +42,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> does not contain <literal>%inf</literal> values
         <literal>mtlb_uint8(A)</literal> may be replaced by <literal>uint8(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_uint8</literal> has not to be used for hand coded functions.</para>

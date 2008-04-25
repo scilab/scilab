@@ -23,14 +23,10 @@
     <para>Matlab <literal>lower(A)</literal> and Scilab <literal>convstr(A,"l")</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is not a chacarter string matrix: Matlab <literal>lower</literal> can be used with a
 	not-character-string <literal>A</literal> but not Scilab <literal>convstr</literal>.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -42,20 +38,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is a character string matrix
         <literal>mtlb_lower(A)</literal> may be replaced by <literal>convstr(A,"l")</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is not a character string matrix
         <literal>mtlb_lower(A)</literal> may be replaced by <literal>A</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_lower</literal> has not to be used for hand coded functions.</para>

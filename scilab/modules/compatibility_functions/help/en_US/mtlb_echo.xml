@@ -23,19 +23,15 @@
     <para>There is no equivalent for Matlab <literal>echo</literal> in Scilab but some cases can be replaced by calls to Scilab <literal>mode</literal>:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para><literal>echo</literal>: is equivalent to Scilab <literal>mode(abs(mode()-1))</literal> for scripts and non-compiled functions
+        <para><literal>echo</literal>: is equivalent to Scilab <literal>mode(abs(mode()-1))</literal> for scripts and non-compiled functions
         </para>
-          </listitem>
-          <listitem>
-            <para><literal>echo on</literal>: is equivalent to Scilab <literal>mode(1)</literal> for scripts and non-compiled functions
+      </listitem>
+      <listitem>
+        <para><literal>echo on</literal>: is equivalent to Scilab <literal>mode(1)</literal> for scripts and non-compiled functions
         </para>
-          </listitem>
-          <listitem>
-            <para><literal>echo off</literal>: is equivalent to Scilab <literal>mode(0)</literal></para>
-          </listitem>
-        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><literal>echo off</literal>: is equivalent to Scilab <literal>mode(0)</literal></para>
       </listitem>
     </itemizedlist>
     <para>
@@ -47,20 +43,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>arg1</literal> is equal to "on"
         <literal>mtlb_echo(arg1)</literal> may be replaced by <literal>mode(1)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>arg1</literal> is equal to "off"
         <literal>mtlb_echo(arg1)</literal> may be replaced by <literal>mode(0)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_echo</literal> has not to be used for hand coded functions.</para>

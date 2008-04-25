@@ -32,53 +32,49 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         When called with one input parameter, if <literal>color_option</literal> is equal to "black" or "none"
         <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig = gcf();fig.background = -1;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with one input parameter, if <literal>color_option</literal> is equal to "white"
         <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig = gcf();fig.background = -2;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with two input parameters, if <literal>fig</literal> is a graphic handle and 
 	<literal>color_option</literal> is equal to "black" or "none"
         <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig.background = -1;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with two input parameters, if <literal>fig</literal> is a graphic handle and 
 	<literal>color_option</literal> is equal to "white"
         <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig.background = -2;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with two input parameters, if <literal>fig</literal> is equal to "new" and
 	<literal>color_option</literal> is equal to "black" or "none"
         <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig = scf(max(winsid())+1);fig.background = -1;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with two input parameters, if <literal>fig</literal> is equal to "new" and
 	<literal>color_option</literal> is equal to "white"
         <literal>mtlb_colordef(color_option)</literal> may be replaced by <literal>fig = scf(max(winsid())+1);fig.background = -2;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with one output parameter <literal>h</literal>, just add <literal>h = fig;</literal> after equivalent instructions.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_colordef</literal> has not to be used for hand coded functions.</para>

@@ -30,20 +30,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>flag</literal> is equal to "on"
         <literal>mtlb_hold(flag)</literal> may be replaced by <literal>set(gca(),"auto_clear","off")</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>flag</literal> is equal to "off"
         <literal>mtlb_hold(flag)</literal> may be replaced by <literal>set(gca(),"auto_clear","on")</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_hold</literal> has not to be used for hand coded functions.</para>

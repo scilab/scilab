@@ -26,21 +26,17 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is not a character string
         <literal>tf = mtlb_isletter(A)</literal> may be replaced by <literal>tf = zeros(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is a character string
         <literal>tf = mtlb_isletter(A)</literal> may be replaced by
 	<literal>tf = (asciimat(A)&gt;=65&amp;asciimat(A)&lt;=90)|(asciimat(A)&gt;=97&amp;asciimat(A)&lt;=122)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_isletter</literal> has not to be used for hand coded functions.</para>

@@ -23,18 +23,14 @@
     <para>Matlab and Scilab <literal>format</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Some Matlab formats do not exist in Scilab
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Calling sequence for <literal>format</literal> is different in Scilab and Matlab
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -46,56 +42,52 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>type=""</literal> and <literal>prec=""</literal>
         <literal>mtlb_format("","")</literal> may be replaced by <literal>format("v",6)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>type="+"</literal> and <literal>prec=""</literal>
         <literal>mtlb_format("+","")</literal> may be replaced by <literal>format(6)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>type="long"</literal> and <literal>prec=""</literal>
         <literal>mtlb_format("long","")</literal> may be replaced by <literal>format(16)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>type="long"</literal> and <literal>prec="e"</literal>
         <literal>mtlb_format("long","e")</literal> may be replaced by <literal>format("e"16)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>type="long"</literal> and <literal>prec="g"</literal>
         <literal>mtlb_format("long","g")</literal> may be replaced by <literal>format("e"16)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>type="short"</literal> and <literal>prec=""</literal>
         <literal>mtlb_format("short","")</literal> may be replaced by <literal>format(6)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>type="short"</literal> and <literal>prec="e"</literal>
         <literal>mtlb_format("short","e")</literal> may be replaced by <literal>format("e"6)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>type="short"</literal> and <literal>prec="g"</literal>
         <literal>mtlb_format("short","g")</literal> may be replaced by <literal>format("e"6)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_format</literal> has not to be used for hand coded functions.</para>

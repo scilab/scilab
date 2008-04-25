@@ -31,15 +31,11 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est toujours plus longue que <literal>B</literal>
 	(i.e. <literal>strfind</literal> peut remplacer <literal>findstr</literal> en Matlab),
         <literal>mtlb_findstr(A,B)</literal> peut �tre remplac� par <literal>strindex(A,B)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_findstr</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

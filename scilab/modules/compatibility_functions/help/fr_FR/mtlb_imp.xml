@@ -23,15 +23,11 @@
     <para>Dans plusieurs cas particuliers, l'op�rateur "deux points" se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
 	Avec des matrices vides : L'op�rateur <literal>:</literal> doit �tre utilis� avec des scalaires dans Scilab
 	et retourne un message d'erreur quand on l'utilise avec des matrices vides alors que Matlab renvoie []
 	dans tous ces cas.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -43,14 +39,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
 	Si <literal>A</literal>, <literal>B</literal> et <literal>C</literal> ne sont pas des matrices vides
 	<literal>mtlb_imp(A,B[,C])</literal> peut �tre remplac� par <literal>A:B[:C]</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_imp</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

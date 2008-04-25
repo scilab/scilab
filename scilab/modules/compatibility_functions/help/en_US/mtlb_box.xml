@@ -30,33 +30,29 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         When called without input parameters,
         <literal>mtlb_box()</literal> may be replaced by <literal>a=gca();if a.box=="on" then a.box="off";else a.box="on";end;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>axes_handle</literal> is a character string,
         <literal>mtlb_box(axes_handle)</literal> may be replaced by <literal>a=gca();a.box=convstr(axes_handle,"l");</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>axes_handle</literal> is a graphic handle
         <literal>mtlb_box(axes_handle)</literal> may be replaced by 
 	<literal>if axes_handle.box=="on" then axes_handle.box="off";else axes_handle.box="on";end;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>axes_handle</literal> is a graphic handle and <literal>val</literal> is a character string
         <literal>mtlb_box(axes_handle,val)</literal> may be replaced by <literal>axes_handle.box=convstr(val,"l");</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_box</literal> has not to be used for hand coded functions.</para>

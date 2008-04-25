@@ -24,14 +24,10 @@
     de Scilab se comportent diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec un argument d'entr�e (<literal>A</literal>) et deux arguments de sortie (<literal>V</literal>,<literal>D</literal>),
 	les valeurs obtenues dans Scilab et dans Matlab sont de signe oppos�.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>

@@ -24,20 +24,16 @@
     (<literal>string</literal>, <literal>msprintf</literal>) se comportent diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec deux param�tres d'entr�e, le second donnant une pr�cision : Il n'y a pas de fonction Scilab �quivalente 
 	mais <literal>msprintf</literal> peut �tre utilis�e pour �muler ce cas.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec deux param�tres d'entr�e, le second donnant un format : l'�quivalent Scilab pour l'expression Matlab 
 	<literal>num2string(a,format)</literal> est <literal>msprintf(format,a)</literal>.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -50,14 +46,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>f</literal> est une cha�ne de caract�res,
         <literal>mtlb_num2str(x,f)</literal> peut �tre remplac� par <literal>msprintf(f,x)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_num2str</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

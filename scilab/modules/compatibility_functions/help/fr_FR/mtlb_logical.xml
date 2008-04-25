@@ -30,26 +30,22 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est une matrice de bool�ens
         <literal>mtlb_logical(A)</literal> peut �tre remplac� par <literal>A</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> n'est pas une matrice vide
         <literal>mtlb_logical(A)</literal> peut �tre remplac� par <literal>A&lt;&gt;[]</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> est une matrice vide
         <literal>mtlb_logical(A)</literal> peut �tre remplac� par <literal>[]</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_logical</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

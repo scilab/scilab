@@ -31,20 +31,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est une matrice de cha�nes de caract�res
         <literal>mtlb_isspace(A)</literal> peut �tre remplac� par <literal>asciimat(A)==32</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> n'est pas une matrice de cha�nes de caract�res
         <literal>mtlb_isspace(A)</literal> peut �tre remplac� par <literal>zeros(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_isspace</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

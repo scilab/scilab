@@ -23,25 +23,21 @@
     <para>Dans plusieurs cas particuliers, les op�rateurs logiques se comportent diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec des op�randes complexes : Les op�rateurs <literal>&lt;</literal>, <literal>&lt;=</literal>,
 	<literal>&gt;</literal> et <literal>&gt;=</literal> ne peuvent pas �tre utilis�s dans Scilab
 	avec des op�randes complexes alors que cela est possible dans Matlab. Dans ce cas,
 	seule la partie r�elle des op�randes est compar�e.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec des matrices vides : Si les deux op�randes des op�rateurs <literal>&lt;</literal>, <literal>&lt;=</literal>,
 	<literal>&gt;</literal> and <literal>&gt;=</literal> sont des matrices vides, Scilab renvoie un message d'erreur
 	alors que Matlab retourne une matrice vide. Pour les op�rateurs <literal>==</literal> et <literal>~=</literal>,
 	si au moins une op�rande est une matrice vide alors Matlab renvoie [] alors que Scilab
 	retourne un bool�en %T ou %F.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -54,14 +50,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> et <literal>B</literal> ne sont pas des complexes ni des matrices vides
         <literal>mtlb_logic(A,symbol,B)</literal> peut �tre remplac� par <literal>A symbol B</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_logic</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

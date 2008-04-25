@@ -28,21 +28,17 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> n'est pas une cha�ne de caract�res
         <literal>tf = mtlb_isletter(A)</literal> peut �tre remplac� par <literal>tf = zeros(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> est une cha�ne de caract�res
         <literal>tf = mtlb_isletter(A)</literal> peut �tre remplac� par 
 	<literal>tf = (asciimat(A)&gt;=65&amp;asciimat(A)&lt;=90)|(asciimat(A)&gt;=97&amp;asciimat(A)&lt;=122)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_isletter</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

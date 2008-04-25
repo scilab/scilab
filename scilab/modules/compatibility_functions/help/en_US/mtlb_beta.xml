@@ -23,15 +23,11 @@
     <para>Matlab and Scilab <literal>beta</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With inputs having different sizes: Matlab <literal>beta</literal> input parameters must have
 	the same size unless one of them is a scalar. In Scilab <literal>beta</literal> input parameters
 	must have the same size even if one of them is a scalar.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -43,20 +39,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is a scalar but not <literal>B</literal>
         <literal>Y = mtlb_beta(A,B)</literal> may be replaced by <literal>C=B;C(:)=A;Y = mtlb_beta(C,B);</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>B</literal> is a scalar but not <literal>A</literal>
         <literal>Y = mtlb_beta(A,B)</literal> may be replaced by <literal>C=A;C(:)=B;Y = mtlb_beta(A,C);</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_beta</literal> has not to be used for hand coded functions.</para>

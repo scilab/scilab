@@ -23,13 +23,9 @@
     <para>There is no Scilab equivalent function for Matlab <literal>isfield(st,f)</literal> and equivalent expressions behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>st</literal> is not a structure: Scilab equivalent returns an error message but Matlab returns <literal>0</literal>.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -41,20 +37,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>st</literal> is a structure
         <literal>tf = mtlb_isfield(st,f)</literal> may be replaced by <literal>allf=getfield(1,st);tf=or(allf(3:$)==f);</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>st</literal> is not a structure
         <literal>tf = mtlb_isfield(st,f)</literal> may be replaced by <literal>tf=%F;</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_isfield</literal> has not to be used for hand coded functions.</para>

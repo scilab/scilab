@@ -55,25 +55,21 @@ P=mtlb_legendre(n,X[,normflag])</synopsis>
     comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>L'appel de fonction Scilab <literal>legendre(m,n,X)</literal> �value
+        <para>L'appel de fonction Scilab <literal>legendre(m,n,X)</literal> �value
             la fonction de legendre de degr� <literal>n </literal> et d'ordre
             <literal>m </literal>pour tous les �l�ments de <literal>X</literal>. Par
             contre l'appel de fonction Scilab <literal>legendre(m,n,X)</literal>
             �value la fonction de legendre de degr� <literal>n</literal> et d'ordre
             <literal>m=0,1,...,n </literal>pour tous les �l�ments de
             <literal>X</literal>.</para>
-          </listitem>
-          <listitem>
-            <para>Le mode <literal>normflag='sch'</literal> n'est pas impl�ment� avec
+      </listitem>
+      <listitem>
+        <para>Le mode <literal>normflag='sch'</literal> n'est pas impl�ment� avec
             Scilab</para>
-          </listitem>
-          <listitem>
-            <para>La fonction legendre de Scilab ne fonctionne pas si
+      </listitem>
+      <listitem>
+        <para>La fonction legendre de Scilab ne fonctionne pas si
             <literal>X</literal> est une hypermatrice</para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>La fonction <literal>mtlb_legendre(n,X[,normflag])</literal> est utilis�e par
@@ -85,13 +81,9 @@ P=mtlb_legendre(n,X[,normflag])</synopsis>
     remplacer les appels �� <literal>mtlb_legendre</literal> :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>If X is a scalar, a vector or a matrix
+        <para>If X is a scalar, a vector or a matrix
             <literal>mtlb_legendre(n,X[,'norm']) </literal> may be replaced by
             <literal>legendre(n,0:n,X[,'norm'])</literal></para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_legendre</literal> ne doit pas �tre utilis�e pour

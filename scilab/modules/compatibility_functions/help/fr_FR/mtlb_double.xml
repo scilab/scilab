@@ -23,22 +23,18 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>double</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec un param�tre d'entr�e de type cha�ne de caract�re : La fonction <literal>double</literal> de Scilab
 	ne tol�re pas ce type d'entr�e alors que la fonction <literal>double</literal> de Matlab retourne
 	une matrice de codes ASCII.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec un param�tre d'entr�e de type bool�en : La fonction <literal>double</literal> de Scilab
 	ne tol�re pas ce type d'entr�e alors que la fonction <literal>double</literal> de Matlab retourne
 	une matrice de doubles.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -50,26 +46,22 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est une cha�ne de caract�re
         <literal>mtlb_double(A)</literal> peut �tre remplac� par <literal>asciimat(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> est une matrice de bool�ens
         <literal>mtlb_double(A)</literal> peut �tre remplac� par <literal>bool2s(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> est une matrice de doubles
         <literal>mtlb_double(A)</literal> peut �tre remplac� par <literal>A</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_double</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

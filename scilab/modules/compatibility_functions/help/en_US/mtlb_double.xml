@@ -23,18 +23,14 @@
     <para>Matlab and Scilab <literal>double</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With character string input: Scilab <literal>double</literal> does not work with this type of input while Matlab <literal>double</literal> returns a matrix of ASCII codes.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         With boolean input: Scilab <literal>double</literal> does not work with this type of input while Matlab <literal>double</literal> returns a matrix of double values.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -46,26 +42,22 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is a character string, 
         <literal>mtlb_double(A)</literal> may be replaced by <literal>asciimat(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is a boolean matrix,
         <literal>mtlb_double(A)</literal> may be replaced by <literal>bool2s(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is a double matrix,
         <literal>mtlb_double(A)</literal> may be replaced by <literal>A</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_double</literal> has not to be used for hand coded functions.</para>

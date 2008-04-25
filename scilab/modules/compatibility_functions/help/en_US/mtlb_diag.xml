@@ -23,14 +23,10 @@
     <para>Matlab and Scilab <literal>diag</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>    
+        <para>    
 	With character string matrices: Scilab <literal>diag</literal> function considers each character string as an object
 	while Matlab considers each character individually.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -42,14 +38,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>    
+        <para>    
 	If <literal>x</literal> is not a character string matrix
 	<literal>y = mtlb_diag(x[,dim])</literal> may be replaced by <literal>y = diag(x[,dim])</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_diag</literal> has not to be used for hand coded functions.</para>

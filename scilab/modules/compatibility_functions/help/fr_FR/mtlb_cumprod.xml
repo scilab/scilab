@@ -23,22 +23,18 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>cumprod</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec un argument d'entr�e (<literal>cumsum(A)</literal>) : La fonction <literal>cumprod</literal> de Matlab
 	traite les valeurs suivant la premi�re dimension qui n'est pas 1 comme des vecteurs alors
 	que Scilab traite toutes les valeurs de A.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec deux arguments d'entr�e (<literal>cumprod(A,dim)</literal>) : Matlab tol�re une valeur de
 	<literal>dim</literal> sup�rieure au nombre de dimensions de A alors que Scilab renvoie un
 	message d'erreur dans ce cas.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -50,20 +46,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>dim</literal> est inf�rieure ou �gale au nombre de dimensiopns de A 
         <literal>R = mtlb_cumprod(A,dim)</literal> peut �tre remplac� par <literal>R = cumprod(A,dim)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>dim</literal> est sup�rieure au nombre de dimensiopns de A 
         <literal>R = mtlb_cumprod(A,dim)</literal> peut �tre remplac� par <literal>R = A</literal>
 	</para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_cumprod</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

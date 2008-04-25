@@ -31,14 +31,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         When called with one input and if <literal>nam</literal> is a variable name,
         <literal>mtlb_exist(nam)</literal> may be replaced by <literal>exists(nam)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_exist</literal> has not to be used for hand coded functions.</para>

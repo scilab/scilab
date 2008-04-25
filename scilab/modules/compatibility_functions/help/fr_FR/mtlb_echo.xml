@@ -23,20 +23,16 @@
     <para>Il n'y a pas d'�quivalent Scilab pour la fonction Matlab <literal>echo</literal> mais quelques cas particuliers peuvent �tre remplac�s par des appels � la fonction Scilab <literal>mode</literal>:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para><literal>echo</literal> : est �quivalent � <literal>mode(abs(mode()-1))</literal> dans Scilab pour les scripts et les fonctions non-compil�es
+        <para><literal>echo</literal> : est �quivalent � <literal>mode(abs(mode()-1))</literal> dans Scilab pour les scripts et les fonctions non-compil�es
         </para>
-          </listitem>
-          <listitem>
-            <para><literal>echo on</literal> : est �quivalent � <literal>mode(1)</literal> dans Scilab pour les scripts et les fonctions non-compil�es
+      </listitem>
+      <listitem>
+        <para><literal>echo on</literal> : est �quivalent � <literal>mode(1)</literal> dans Scilab pour les scripts et les fonctions non-compil�es
         </para>
-          </listitem>
-          <listitem>
-            <para><literal>echo off</literal> : est �quivalent � <literal>mode(0)</literal>
+      </listitem>
+      <listitem>
+        <para><literal>echo off</literal> : est �quivalent � <literal>mode(0)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -49,20 +45,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>arg1</literal> est �gal � "on"
         <literal>mtlb_echo(arg1)</literal> peut �tre remplac� par <literal>mode(1)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>arg1</literal> est �gal � "off"
         <literal>mtlb_echo(arg1)</literal> peut �tre remplac� par <literal>mode(0)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_echo</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

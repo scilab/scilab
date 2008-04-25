@@ -23,22 +23,18 @@
     <para>Matlab <literal>setstr</literal> and Scilab <literal>ascii</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With character string input: Matlab <literal>setstr</literal> returns a character string
 	while Scilab <literal>ascii</literal> returns ASCII codes.
         </para>
-          </listitem>
-        </itemizedlist>
-        <itemizedlist>
-          <listitem>
-            <para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <listitem>
+        <para>
         With double matrix input: Matlab <literal>setstr</literal> returns a character matrix
 	having the same size as input while Scilab <literal>ascii</literal> returns a single character string
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -50,20 +46,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is a character string or a character string matrix
         <literal>mtlb_setstr(A)</literal> may be replaced by <literal>A</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is a double row vector
         <literal>mtlb_setstr(A)</literal> may be replaced by <literal>ascii(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_setstr</literal> has not to be used for hand coded functions.</para>

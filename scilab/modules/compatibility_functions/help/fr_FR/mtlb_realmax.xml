@@ -25,19 +25,15 @@
     impl�ment�s :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         L'�quivalent Scilab de l'expression Matlab
         <literal>realmax</literal> ou <literal>realmax('double')</literal> est <literal>number_properties("huge")</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Il n'y a pas d'�quivalent Scilab pour l'expression Matlab <literal>realmax('single')</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -50,14 +46,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>prec</literal> est �gale � <literal>"double"</literal>
         <literal>mtlb_realmax(prec)</literal> peut �tre remplac� par <literal>number_properties("huge")</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_realmax</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

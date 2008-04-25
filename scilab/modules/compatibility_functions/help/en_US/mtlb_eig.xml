@@ -23,13 +23,9 @@
     <para>Matlab <literal>eig</literal> and Scilab <literal>spec</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
 	With one input (A) and two outputs (V,D), Matlab and Scilab returned eigen values have opposite signs.
          </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>

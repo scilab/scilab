@@ -23,14 +23,10 @@
     <para>Matlab and Scilab transposition behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
 	With character strings operands: The <literal>'</literal> operator is used to transpose whole 
 	character strings in Scilab while Matlab realizes the transposition of each character.
 	</para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -42,14 +38,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
 	If <literal>A</literal> is not a character string matrix
 	<literal>mtlb_t(A)</literal> may be replaced by <literal>A'</literal>
 	</para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_t</literal> has not to be used for hand coded functions.</para>

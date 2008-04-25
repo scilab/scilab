@@ -24,15 +24,11 @@
     <literal>lines</literal> se comportent diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec des cha�nes de caract�res comme entr�e : La fonction Matlab <literal>more</literal> accepte
 	"on" et "off" comme entr�e mais pas la fonction Scilab <literal>lines</literal>,
 	il existe des �quivalents (0 et 60).
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -44,26 +40,22 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>in</literal> est �gal � "on"
         <literal>mtlb_more(in)</literal> peut �tre remplac� par <literal>lines(60)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
          Si <literal>in</literal> est �gal � "off"
         <literal>mtlb_more(in)</literal> peut �tre remplac� par <literal>lines(0)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
          Si <literal>in</literal> est un double
         <literal>mtlb_more(in)</literal> peut �tre remplac� par <literal>lines(in)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_more</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

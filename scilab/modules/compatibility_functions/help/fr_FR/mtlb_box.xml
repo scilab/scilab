@@ -31,33 +31,29 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Pour un appel sans param�tre d'entr�e,
         <literal>mtlb_box()</literal> peut �tre remplac� par <literal>a=gca();if a.box=="on" then a.box="off";else a.box="on";end;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>axes_handle</literal> est une cha�ne de caract�res,
 	<literal>mtlb_box(axes_handle)</literal> peut �tre remplac� par <literal>a=gca();a.box=convstr(axes_handle,"l");</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>axes_handle</literal> est un handle graphique,
 	<literal>mtlb_box(axes_handle)</literal> peut �tre remplac� par 
 	<literal>if axes_handle.box=="on" then axes_handle.box="off";else axes_handle.box="on";end;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>axes_handle</literal> est un handle graphique et <literal>val</literal> est une cha�ne de caract�res,
 	<literal>mtlb_box(axes_handle,val)</literal> peut �tre remplac� par <literal>axes_handle.box=convstr(val,"l");</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_box</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

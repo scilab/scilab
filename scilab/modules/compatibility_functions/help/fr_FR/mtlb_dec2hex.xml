@@ -23,30 +23,26 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>dec2hex</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec la matrice vide : La fonction Matlab <literal>dec2hex</literal> retourne "" mais la fonction Scilab renvoie [].
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec des param�tres d'entr�e complexes : La fonction Matlab <literal>dec2hex</literal> enl�ve
 	automatiquement la partie imaginaire mais pas la fonction Scilab.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         La fonction Matlab <literal>dec2hex</literal> renvoie toujours un vecteur colonne mais
 	la fonction Scilab renvoie un matrice de la m�me taille que le param�tre d'entr�e.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         La fonction Matlab <literal>dec2hex</literal> peut avoir deux param�tres d'entr�e mais pas dans Scilab.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -59,16 +55,12 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>D</literal> n'est pas une matrice vide,
         <literal>mtlb_dec2hex(D)</literal> peut �tre remplac� par
 	<literal>matrix(dec2hex(real(D)),-1,1)</literal> si <literal>D</literal> est complexe et par
 	<literal>matrix(dec2hex(D),-1,1)</literal> dans les autres cas.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_dec2hex</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

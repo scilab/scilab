@@ -34,53 +34,49 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Pour les appels avec un param�tre d'entr�e, si <literal>color_option</literal> est �gal � "black" ou "none"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = gcf();fig.background = -1;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Pour les appels avec un param�tre d'entr�e, si <literal>color_option</literal> est �gal � "white"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = gcf();fig.background = -2;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est un handle graphique et
 	<literal>color_option</literal> est �gal � "black" ou "none"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig.background = -1;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est un handle graphique et
 	<literal>color_option</literal> est �gal � "white"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig.background = -2;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est �gal � "new" et
 	<literal>color_option</literal> est �gal � "black" ou "none"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = scf(max(winsid())+1);fig.background = -1;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Pour les appels avec deux param�tres d'entr�e, si <literal>fig</literal> est �gal � "new" et
 	<literal>color_option</literal> est �gal � "white"
         <literal>mtlb_colordef(color_option)</literal> peut �tre remplac� par <literal>fig = scf(max(winsid())+1);fig.background = -2;</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Pour les appels avec un param�tre de sortie <literal>h</literal>, ajouter <literal>h = fig;</literal> � la suite des instructions �quivalentes.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_colordef</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

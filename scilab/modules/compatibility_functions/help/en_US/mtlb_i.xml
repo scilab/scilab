@@ -23,24 +23,20 @@
     <para>Matlab and Scilab insertion behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
 	When inserting a matrix in a variable: Matlab automaticaly adjusts output
 	variable to fit with matrix to insert but not Scilab.
 	For example, with A=1, A([1,2,3,4])=[1,2;3,4]) returns an error in Scilab
 	while in Matlab we get A=[1,2,3,4]. If values miss comparing to indexes,
 	Matlab fills output value with 0.
 	</para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	When inserting data into a character string matrix: due to the fact that character string matrices
 	in Matlab can be adressed as any other matrix (each character can be adressed), insertion in such a type of
 	matrix does not differ from other. But in Scilab it can't be done so...<literal>mtlb_is</literal> is an alternative.
  	</para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -52,20 +48,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>    
+        <para>    
 	If <literal>A</literal> is not a vector
         <literal>A=mtlb_i(A,k,B)</literal> may be replaced by <literal>A(k)=B</literal>
 	</para>
-          </listitem>
-          <listitem>
-            <para>    
+      </listitem>
+      <listitem>
+        <para>    
 	If <literal>A</literal> and <literal>B</literal> are both row or column vectors
 	<literal>A=mtlb_i(A,k,B)</literal> may be replaced by <literal>A(k)=B</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_i</literal> has not to be used for hand coded functions.</para>

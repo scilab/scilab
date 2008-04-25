@@ -30,20 +30,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est une cha�ne de caract�res
         <literal>mtlb_delete(A)</literal> peut �tre remplac� par <literal>mdelete(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> est un handle graphique
         <literal>mtlb_delete(A)</literal> peut �tre remplac� par <literal>delete(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_delete</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

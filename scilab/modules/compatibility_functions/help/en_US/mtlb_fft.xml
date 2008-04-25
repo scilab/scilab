@@ -23,15 +23,11 @@
     <para>Matlab and Scilab <literal>fft</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With one input parameter: If input is a scalar or vector Scilab equivalent for Matlab <literal>fft</literal>
 	is <literal>fft(...,-1)</literal> else if input is a matrix Scilab equivalent for Matlab <literal>fft</literal>
 	is <literal>fft(...,-1,2,1)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -43,20 +39,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>X</literal> is a scalar or a vector
         <literal>mtlb_fft(X,-1)</literal> may be replaced by <literal>fft(X,-1)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>X</literal> is a matrix
         <literal>mtlb_fft(X,-1)</literal> may be replaced by <literal>fft(X,-1,2,1)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_fft</literal> has not to be used for hand coded functions.</para>

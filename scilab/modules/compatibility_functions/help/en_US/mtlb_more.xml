@@ -23,14 +23,10 @@
     <para>Matlab <literal>more</literal> and Scilab <literal>lines</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With character strings as input: Matlab <literal>more</literal> can take "on" 
 	and "off" as input but not Scilab <literal>lines</literal> but there are equivalents (0 and 60).
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -42,26 +38,22 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>in</literal> is equal to "on"
         <literal>mtlb_more(in)</literal> may be replaced by <literal>lines(60)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>in</literal> is equal to "off"
         <literal>mtlb_more(in)</literal> may be replaced by <literal>lines(0)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>in</literal> is a double value
         <literal>mtlb_more(in)</literal> may be replaced by <literal>lines(in)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_more</literal> has not to be used for hand coded functions.</para>

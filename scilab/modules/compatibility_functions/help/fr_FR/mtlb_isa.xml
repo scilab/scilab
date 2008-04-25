@@ -31,80 +31,76 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>class</literal> est �gal � "logical",
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==4</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>class</literal> est �gal � "char",
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==10</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>class</literal> est �gal � "numeric",
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>or(type(OBJ)==[1,5,8])</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>class</literal> est �gal � "intX" (X valant 8, 16 ou 32),
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>typeof(OBJ)=="intX"</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>class</literal> est �gal � "uintX" (X valant 8, 16 ou 32),
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>typeof(OBJ)=="uintX"</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>class</literal> est �gal � "single",
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==1</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>class</literal> est �gal � "double",
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==1</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>class</literal> est �gal � "cell",
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>typeof(OBJ)=="ce"</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>class</literal> est �gal � "struct",
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>typeof(OBJ)=="st"</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>class</literal> est �gal � "function_handle",
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==13</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>class</literal> est �gal � "sparse",
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>type(OBJ)==5</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>class</literal> est �gal � "lti",
         <literal>mtlb_isa(OBJ,class)</literal> peut �tre remplac� par <literal>typeof(OBJ)=="state-space"</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_isa</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

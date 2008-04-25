@@ -30,47 +30,43 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is of Double type and <literal>m</literal> is a scalar,
         <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>ones(m,m).*.M</literal> and 
         <literal>mtlb_repmat(M,m,n)</literal> may be replaced by <literal>ones(m,n).*.M</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is of Boolean type and <literal>m</literal> is a scalar,
         <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>ones(m,m).*.bool2s(M)</literal> and 
         <literal>mtlb_repmat(M,m,n)</literal> may be replaced by <literal>ones(m,n).*.bool2s(M)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is of String type and <literal>m</literal> is a scalar,
         <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>asciimat(ones(m,m).*.asciimat(M))</literal> and 
         <literal>mtlb_repmat(M,m,n)</literal> may be replaced by <literal>asciimat(ones(m,n).*.asciimat(M))</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is of Double type and <literal>m</literal> is a vector,
         <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>ones(m(1),m(2),...).*.M</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is of Boolean type and <literal>m</literal> is a vector,
         <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>ones(m(1),m(2),...).*.bool2s(M)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is of String type and <literal>m</literal> is a vector,
         <literal>mtlb_repmat(M,m)</literal> may be replaced by <literal>asciimat(ones(m(1),m(2),...).*.asciimat(M))</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_repmat</literal> has not to be used for hand coded functions.</para>

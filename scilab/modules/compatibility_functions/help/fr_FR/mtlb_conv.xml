@@ -24,15 +24,11 @@
     se comportent diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec des vecteurs colonne comme param�tres d'entr�es : Si au moins l'un des deux param�tres d'entr�e de la fonction
 	Matlab <literal>conv</literal> est un vecteur colonne alors la valeur retourn�e sera un vecteur colonne mais la fonction Scilab
 	<literal>convol</literal> retourne toujours un vecteur ligne.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -45,26 +41,22 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>u</literal> et <literal>v</literal> sont des vecteurs ligne,
         <literal>mtlb_conv(u,v)</literal> peut �tre remplac� par <literal>convol(u,v)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>u</literal> ou <literal>v</literal> est un vecteur colonne,
         <literal>mtlb_conv(u,v)</literal> peut �tre remplac� par <literal>convol(u,v).'</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>u</literal> et <literal>v</literal> sont des vecteurs colonne,
         <literal>mtlb_conv(u,v)</literal> peut �tre remplac� par <literal>convol(u,v).'</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>La fonction Scilab <literal>convol</literal> retourne parfois des valeurs qui peuvent �tre arrondies en utilisant <literal>clean</literal>

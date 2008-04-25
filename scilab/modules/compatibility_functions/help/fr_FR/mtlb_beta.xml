@@ -23,16 +23,12 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>beta</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec des param�tres d'entr�e de tailles diff�rentes : les param�tres d'entr�e de la fonction 
 	<literal>beta</literal> de Matlab doivent �tre de m�me taille sauf si l'un d'entre eux est un scalaire.
 	Les param�tres d'entr�e de la fonction <literal>beta</literal> de Scilab doivent �tre de m�me taille
 	m�me si l'un d'entre eux est un scalaire.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -45,20 +41,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est un scalaire mais pas <literal>B</literal>
         <literal>Y = mtlb_beta(A,B)</literal> peut �tre remplac� par <literal>C=B;C(:)=A;Y = mtlb_beta(C,B);</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>B</literal> est un scalaire mais pas <literal>A</literal>
         <literal>Y = mtlb_beta(A,B)</literal> peut �tre remplac� par <literal>C=A;C(:)=B;Y = mtlb_beta(A,C);</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_beta</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

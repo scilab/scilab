@@ -23,18 +23,14 @@
     <para>Matlab and Scilab <literal>fftshift</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With character string input: due to the fact that character strings are not considered in the same way in Matlab and Scilab, results can be different for this kind of input.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         With two inputs: Matlab <literal>fftshift</literal> can work even if <literal>dim</literal> parameter is greater than number of dimensions of first input.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -46,20 +42,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is not a character string matrix,
         <literal>mtlb_fftshift(A)</literal> may be replaced by <literal>fftshift(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
          If <literal>A</literal> is not a character string matrix and <literal>dim</literal> is not greater than <literal>size(size(a),"*")</literal>,
         <literal>mtlb_fftshift(A,dim)</literal> may be replaced by <literal>fftshift(A,dim)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_fftshift</literal> has not to be used for hand coded functions.</para>

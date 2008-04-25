@@ -30,32 +30,28 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With one input, if <literal>flag</literal> is equal to "on"
         <literal>mtlb_grid(flag)</literal> may be replaced by <literal>set(gca(),"grid",[1 1])</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         With one input, if <literal>flag</literal> is equal to "off"
         <literal>mtlb_grid(flag)</literal> may be replaced by <literal>set(gca(),"grid",[-1 -1])</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         With two inputs, if <literal>flag</literal> is equal to "on"
         <literal>mtlb_grid(axes_handle,flag)</literal> may be replaced by <literal>axes_handle.grid=[1 1]</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         With two inputs, if <literal>arg2</literal> is equal to "off"
         <literal>mtlb_grid(axes_handle,flag)</literal> may be replaced by <literal>axes_handle.grid=[-1 -1]</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_grid</literal> has not to be used for hand coded functions.</para>

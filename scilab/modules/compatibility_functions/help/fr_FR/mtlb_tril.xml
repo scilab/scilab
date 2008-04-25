@@ -23,27 +23,23 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>tril</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec des param�tres d'entr�e complexes : La fonction Matlab <literal>tril</literal> peut �tre
 	utilis�e avec des donn�es complexes mais pas la fonction Scilab.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec des param�tres d'entr�e de type cha�ne de cacat�res : �tant donn� que Matlab et Scilab
 	ne consid�rent pas les cha�nes de caract�res de la m�me fa�on, la fonction <literal>tril</literal>
 	ne donne pas le m�me r�sutat pour ce type d'entr�e dans Scilab et dans Matlab.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec des param�tres d'entr�e bool�ens : La fonction Matlab <literal>tril</literal> peut �tre
 	utilis�e avec des donn�es bool�ennes mais pas la fonction Scilab.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -55,20 +51,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>X</literal> contient des doubles r�els
         <literal>mtlb_tril(x,k)</literal> peut �tre remplac� par <literal>tril(x,k)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>X</literal> contient des bool�ens
         <literal>mtlb_tril(x,k)</literal> peut �tre remplac� par <literal>tril(bool2s(x),k)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_tril</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

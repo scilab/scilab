@@ -24,22 +24,18 @@
     <literal>or</literal> de Scilab se comportent diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
 	Avec un argument d'entr�e (<literal>any(A)</literal>), la fonction <literal>any</literal> de Matlab traite
 	les valeurs selon la premi�re dimension de A qui n'est pas 1 comme un vecteur
 	alors que Scilab traite toutes les valeurs de A.
 	</para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	Avec deux arguments d'entr�e (<literal>any(A,dim)</literal>), Matlab
 	tol�re une valeur de <literal>dim</literal> sup�rieure au
 	nombre de dimensions de A alors que Scilab renvoie un message d'erreur dans ce cas.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -51,40 +47,36 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>    
+        <para>    
 	Si <literal>A</literal> est un scalaire ou un vecteur
 	<literal>R = mtlb_any(A)</literal> peut �tre remplac� par <literal>R = or(A)</literal>
 	</para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	Si <literal>A</literal> est une matrice
 	<literal>R = mtlb_any(A)</literal> peut �tre remplac� par <literal>R = o(A,1)</literal>
 	</para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	Si <literal>A</literal> est une hypermatrice
 	<literal>R = mtlb_any(A)</literal> peut �tre remplac� par <literal>R = or(A,firstnonsingleton(A))</literal>
 	ou par <literal>R = or(A,user_defined_value)</literal> si la premi�re dimension non-�gale � 1 de A est connue.
 	</para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	Si <literal>dim</literal> est inf�rieur ou �gal au nombre de dimensions de A
 	<literal>R = mtlb_any(A,dim)</literal> peut �tre remplac� par <literal>R = or(A,dim)</literal>
 	</para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	Si <literal>dim</literal> est sup�rieur au nombre de dimensions de A
 	<literal>R = mtlb_any(A,dim)</literal> peut �tre remplac� par <literal>R = A&lt;&gt;0</literal> si A n'est pas
 	une matrice vide ou par <literal>R = A</literal> si A est une matrice vide.
 	</para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention: <literal>mtlb_any</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

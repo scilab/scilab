@@ -23,14 +23,10 @@
     <para>Matlab <literal>conv</literal> and Scilab <literal>convol</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With column vector inputs: if at least input is a column vector Matlab <literal>conv</literal> returns a column
 	vector but Scilab <literal>convol</literal> always returns a row vector.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -42,26 +38,22 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>u</literal> and <literal>v</literal> are row vectors,
         <literal>mtlb_conv(u,v)</literal> may be replaced by <literal>convol(u,v)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>u</literal> or <literal>v</literal> is a column vector,
         <literal>mtlb_conv(u,v)</literal> may be replaced by <literal>convol(u,v).'</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>u</literal> and <literal>v</literal> are column vectors,
         <literal>mtlb_conv(u,v)</literal> may be replaced by <literal>convol(u,v).'</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Scilab <literal>convol</literal> sometimes returns values that may be rounded using <literal>clean</literal>

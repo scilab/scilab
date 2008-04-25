@@ -23,24 +23,20 @@
     <para>Scilab equivalent for Matlab <literal>close</literal> is different according to the current figure type (uicontrol or graphic one).</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         When current figure is a uicontrol one: Scilab equivalent for Matlab <literal>close</literal> is <literal>close</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When current figure is a graphic one: Scilab equivalent for Matlab <literal>close</literal>
 	is <literal>xdel</literal> or <literal>delete</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	In Scilab we do not get an error status.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -52,20 +48,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>h</literal> is a uicontrol figure
         <literal>mtlb_close(h)</literal> may be replaced by <literal>close(h)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>h</literal> is a graphic figure
         <literal>mtlb_close(h)</literal> may be replaced by <literal>delete(h)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_close</literal> has not to be used for hand coded functions.</para>

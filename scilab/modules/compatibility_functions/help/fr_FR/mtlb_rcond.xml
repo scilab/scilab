@@ -23,14 +23,10 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>rcond</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec une matrice vide : La fonction Matlab <literal>rcond</literal> retourne <literal>Inf</literal>
 	et Scilab retourne <literal>[]</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -42,14 +38,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> n'est pas une matrice vide
         <literal>mtlb_rcond(A)</literal> peut �tre remplac� par <literal>rcond(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_rcond</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

@@ -23,16 +23,12 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>fft</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec un param�tre d'entr�e : si ce param�tre est un scalaire ou un vecteur l'�quivalent Scilab
 	pour la fonction  Matlab <literal>fft</literal> est <literal>fft(...,-1)</literal> 
 	et si ce param�tre est une matrice l'�quivalent Scilab pour l'appel Matlab � <literal>fft</literal>
 	est <literal>fft(...,-1,2,1)</literal>
        </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -44,20 +40,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>X</literal> est un scalaire ou un vecteur
         <literal>mtlb_fft(X,-1)</literal> peut �tre remplac� par <literal>fft(X,-1)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>X</literal> est une matrice
         <literal>mtlb_fft(X,-1)</literal> peut �tre remplac� par <literal>fft(X,-1,2,1)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_fft</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

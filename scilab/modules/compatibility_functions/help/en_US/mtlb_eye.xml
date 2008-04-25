@@ -23,13 +23,9 @@
     <para>Matlab and Scilab <literal>eye</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With a scalar input: Matlab <literal>eye</literal> returns a n x n matrix while Scilab returns a 1.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -41,20 +37,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is a scalar
         <literal>mtlb_eye(A)</literal> may be replaced by <literal>eye(A,A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is not a scalar
         <literal>mtlb_eye(A)</literal> may be replaced by <literal>eye(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_eye</literal> has not to be used for hand coded functions.</para>

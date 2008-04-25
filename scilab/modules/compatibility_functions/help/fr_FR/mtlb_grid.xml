@@ -31,32 +31,28 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec un param�tre d'entr�e, si <literal>flag</literal> est �gal � "on"
         <literal>mtlb_grid(flag)</literal> peut �tre remplac� par <literal>set(gca(),"grid",[1 1])</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec un param�tre d'entr�e, si <literal>flag</literal> est �gal � "off"
         <literal>mtlb_grid(flag)</literal> peut �tre remplac� par <literal>set(gca(),"grid",[-1 -1])</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec deux param�tres d'entr�e, si <literal>flag</literal> est �gal � "on"
         <literal>mtlb_grid(axes_handle,flag)</literal> peut �tre remplac� par <literal>axes_handle.grid=[1 1]</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec un param�tre d'entr�e, si <literal>flag</literal> est �gal � "off"
         <literal>mtlb_grid(axes_handle,flag)</literal> peut �tre remplac� par <literal>axes_handle.grid=[-1 -1]</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_grid</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

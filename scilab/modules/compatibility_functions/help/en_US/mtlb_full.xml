@@ -23,20 +23,16 @@
     <para>Matlab and Scilab <literal>full</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With character strings input: Matlab <literal>full</literal> can be used with character string input
 	while Scilab function cannot.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         With boolean input: Matlab <literal>full</literal> can be used with boolean input
 	while Scilab function cannot.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -48,20 +44,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is a double matrix
         <literal>mtlb_full(A)</literal> may be replaced by <literal>full(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is a boolean matrix
         <literal>mtlb_full(A)</literal> may be replaced by <literal>full(bool2s(A))</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_full</literal> has not to be used for hand coded functions.</para>

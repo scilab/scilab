@@ -23,21 +23,17 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>diff</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec deux param�tres d'entr�e : la fonction <literal>diff</literal> de Scilab consid�re
 	toutes les valeurs du premier param�tre comm un vecteur ce que Matlab ne fait pas.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec trois param�tres d'entr�e : si la dimension du premier param�tre suivant la dimension
 	donn�e par le troisi�me param�tre atteint 1 avant que la fin des n it�rations, Matlab passe
 	� la dimension suivante n'�tant pas un 1 ce que Scilab ne fait pas.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -49,20 +45,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec deux entr�es, si <literal>A</literal> est un scalaire ou un vecteur
         <literal>mtlb_diff(A,n)</literal> peut �tre remplac� par <literal>diff(A,n)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec deux entr�es, si la taille de A suivant la dimension donn�e par <literal>dim</literal> ne peut pas atteindre 1
         <literal>mtlb_diff(A,n,dim)</literal> peut �tre remplac� par <literal>diff(A,n,dim)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_diff</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

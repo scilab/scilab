@@ -24,14 +24,10 @@
     <literal>convstr(A,"u")</literal> se comportent diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> n'est pas une cha�ne de caract�res : la fonction Matlab <literal>upper</literal> peut �tre utilis�e
 	avec <literal>A</literal> n'�tant pas une cha�ne de caract�res mais pas la fonction Scilab <literal>convstr</literal>.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -43,20 +39,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est une matrice de cha�nes de caract�res
         <literal>mtlb_upper(A)</literal> peut �tre remplac� par <literal>convstr(A,"u")</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> n'est pas une matrice de cha�nes de caract�res
         <literal>mtlb_upper(A)</literal> peut �tre remplac� par <literal>A</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_upper</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

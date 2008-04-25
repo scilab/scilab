@@ -30,20 +30,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> et <literal>B</literal> sont des cha�nes de caract�res
         <literal>mtlb_strcmpi(A,B)</literal> peut �tre remplac� par <literal>convstr(A)==convstr(B)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> et/ou <literal>B</literal> n'est pas une cha�ne de caract�res
         <literal>mtlb_strcmpi(A,B)</literal> peut �tre remplac� par <literal>0</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_strcmpi</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

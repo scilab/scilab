@@ -23,23 +23,19 @@
     <para>Matlab <literal>fopen</literal> and Scilab <literal>mopen</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Scilab function returns no usable error message
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Scilab file identified does not exist in case of error but Matlab one is set to <literal>-1</literal>.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Matlab function can work with inputs which do not exist in Scilab such as permission options...
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -51,14 +47,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If error message is not used and no error can occurs,
         <literal>mtlb_fopen(filename,permission)</literal> may be replaced by <literal>mopen(filename,permission,0)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_fopen</literal> has not to be used for hand coded functions.</para>

@@ -23,14 +23,10 @@
     <para>Matlab and Scilab <literal>linspace</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With character string inputs: Matlab <literal>linspace(A,B[,n])</literal> returns a character string vector if <literal>A</literal>
 	and/or <literal>B</literal> are character strings, but Scilab function does not work with such inputs.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -42,20 +38,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> and <literal>B</literal> are not character strings
         <literal>mtlb_linspace(A,B[,n])</literal> may be replaced by <literal>linspace(A,B[,n])</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> or <literal>B</literal> are character strings
         <literal>mtlb_linspace(A,B[,n])</literal> may be replaced by <literal>ascii(linspace(ascii(A),ascii(B)[,n]))</literal>
          </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_linspace</literal> has not to be used for hand coded functions.</para>

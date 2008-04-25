@@ -29,20 +29,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>A</literal> is a character string
         <literal>mtlb_delete(A)</literal> may be replaced by <literal>mdelete(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         If <literal>A</literal> is a graphic handle
         <literal>mtlb_delete(A)</literal> may be replaced by <literal>delete(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_delete</literal> has not to be used for hand coded functions.</para>

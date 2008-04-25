@@ -23,15 +23,11 @@
     <para>La fonction <literal>dir</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Quand le r�sultat est stock� dans une variable: La fonction Matlab <literal>dir</literal> renvoie une structure
 	mais la fonction Scilab retourne une tlist de type 'dir', ce qui fait que les donn�es ne peuvent �tre
 	extraites de la m�me mani�re.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>

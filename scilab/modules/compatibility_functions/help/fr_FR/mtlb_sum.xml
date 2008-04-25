@@ -23,22 +23,18 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>sum</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         En cas d'appel avec un param�tre d'entr�e : La fonction Matlab <literal>sum</literal> traite
 	les valeurs en suivant la premi�re dimension qui n'est pas 1 alors que la fonction Scilab
 	<literal>sum</literal> traite toutes les valeurs de l'entr�e.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         En cas d'appel avec deux param�tres d'entr�e : La fonction Matlab <literal>sum</literal> peut �tre
 	utilis�e avec le second param�tre donnant une dimension du premier param�tre qui n'existe pas
 	alors que la fonction Scilab <literal>sum</literal> retourne un message d'erreur.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -50,33 +46,29 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est une matrice vide, un scalaire ou un vecteur,
         <literal>mtlb_sum(A)</literal> peut �tre remplac� par <literal>sum(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est une matrice non-vide,
         <literal>mtlb_sum(A)</literal> peut �tre remplac� par <literal>sum(A,1)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         En cas d'appel avec un param�tre d'entr�e, si <literal>A</literal> est hypermatrice,
         <literal>mtlb_sum(A)</literal> peut �tre remplac� par <literal>sum(A,firstnonsingleton(A))</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         En cas d'appel avec deux param�tres d'entr�e, si <literal>dim</literal> est inf�rieure au nombre
 	de dimensions de <literal>A</literal> 
         <literal>mtlb_sum(A,dim)</literal> peut �tre remplac� par <literal>sum(A,dim)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_sum</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

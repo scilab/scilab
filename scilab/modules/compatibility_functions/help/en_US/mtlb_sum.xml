@@ -23,20 +23,16 @@
     <para>Matlab and Scilab <literal>sum</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         When called with one input: Matlab <literal>sum</literal> threts the values along the first
 	non-singleton dimension of input while Scilab <literal>sum</literal> threats all values of input.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with two inputs: Matlab <literal>sum</literal> can be used with second input giving
 	a non-existing dimension of first input while Scilab <literal>sum</literal> returns an error message.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -48,32 +44,28 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         When called with one input, if <literal>A</literal> is an empty matrix, a scalar or a vector,
         <literal>mtlb_sum(A)</literal> may be replaced by <literal>sum(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with one input, if <literal>A</literal> is a not-empty matrix,
         <literal>mtlb_sum(A)</literal> may be replaced by <literal>sum(A,1)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with one input, if <literal>A</literal> is a multidimensional array,
         <literal>mtlb_sum(A)</literal> may be replaced by <literal>sum(A,firstnonsingleton(A))</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         When called with two inputs, if <literal>dim</literal> is lesser than the number of dimensions of <literal>A</literal>
         <literal>mtlb_sum(A,dim)</literal> may be replaced by <literal>sum(A,dim)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_sum</literal> has not to be used for hand coded functions.</para>

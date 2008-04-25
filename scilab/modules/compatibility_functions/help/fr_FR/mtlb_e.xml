@@ -23,23 +23,19 @@
     <para>Dans plusieurs cas particuliers, l'extraction se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
 	Lors de l'extraction de donn�es d'une matrice avec comme indice un vecteur : 
 	Matlab retourne un vecteur ligne alors que Scilab retourne un vecteur colonne.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
 	Lors de l'extraction de donn�es d'une matrice d'une cha�ne de caract�res : �tant donn� que
 	les matrices de cha�nes de caract�res peuvent �tre adress�es comme tout autre type de
 	matrice dans Matlab (chaque caract�re peut �tre adress�),
 	l'extraction � partir d'une telle matrice ne change pas des autres types. Mais dans Scilab
 	ceci ne peut �tre fait de la m�me mani�re et la fonction <literal>part</literal> doit �tre utilis�e. 
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -51,27 +47,23 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>    
+        <para>    
 	Si <literal>B</literal> est un vecteur
 	<literal>A=mtlb_e(B,k)</literal> peut �tre remplac� par <literal>A=B(k)</literal>
 	</para>
-          </listitem>
-          <listitem>
-            <para>    
+      </listitem>
+      <listitem>
+        <para>    
 	Si <literal>B</literal> est une matrice
 	<literal>A=mtlb_e(B,k)</literal> peut �tre remplac� par <literal>A=B(k).'</literal>
  	</para>
-          </listitem>
-          <listitem>
-            <para>    
+      </listitem>
+      <listitem>
+        <para>    
 	Si <literal>B</literal> est une cha�ne de caract�res et
 	k est une scalaire ou un vecteur
 	<literal>A=mtlb_e(B,k)</literal> peut �tre remplac� par <literal>A=part(B,k)</literal>
  	</para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_e</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

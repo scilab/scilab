@@ -23,14 +23,10 @@
     <para>Dans plusieurs cas particuliers, la transposition se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec des op�randes de type cha�ne de caract�re : L'op�rateur <literal>'</literal> est utilis� dans Scilab
 	pour transposer des cha�nes de caract�res enti�res alors que Matlab fait la transposition caract�re par caract�re.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -42,14 +38,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> n'est pas une matrice de cha�nes de caract�res
         <literal>mtlb_t(A)</literal> peut �tre remplac� par <literal>A'</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_t</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

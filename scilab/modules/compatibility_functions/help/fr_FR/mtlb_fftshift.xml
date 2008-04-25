@@ -23,18 +23,14 @@
     <para>Dans plusieurs cas particuliers, la fonction <literal>fftshift</literal> se comporte diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec les cha�nes de caract�re : �tant donn� que les cha�nes de caract�res sont vues diff�remment par Matlab et Scilab, le r�sulat peut �tre diff�rent pour ce type d'entr�e.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec deux param�tres d'entr�e : Matlab autorise <literal>dim</literal> a �tre sup�rieur au nombre de dimension de <literal>A</literal> mais pas Scilab (message d'erreur).
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -47,20 +43,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> n'est pas une matrice de cha�nes de caract�res,
         <literal>mtlb_fftshift(A)</literal> peut �tre remplac� par <literal>fftshift(A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> n'est pas une matrice de cha�nes de caract�res et <literal>dim</literal> est inf�rieur ou �gal au nombre de dimension de <literal>A</literal>,
         <literal>mtlb_fftshift(A,dim)</literal> peut �tre remplac� par <literal>fftshift(A,dim)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_fftshift</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

@@ -24,15 +24,11 @@
     <literal>strindex</literal> se comportent diff�remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec des param�tres d'entr�e n'�tant pas des cha�nes de caract�re : La fonction Matlab <literal>strfind</literal>
 	peut �tre utilis�e avec des entr�es n'�tant pas des cha�nes de caract�res mais pas la fonction
 	Scilab <literal>strindex</literal>.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -44,14 +40,10 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> et <literal>B</literal> sont des cha�nes de caract�res
         <literal>mtlb_strfind(A,B)</literal> peut �tre remplac� par <literal>strindex(A,B)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_strfind</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

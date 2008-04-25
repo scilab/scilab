@@ -31,20 +31,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>flag</literal> est �gal � "on"
         <literal>mtlb_hold(flag)</literal> peut �tre remplac� par <literal>set(gca(),"auto_clear","off")</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>flag</literal> est �gal � "off"
         <literal>mtlb_hold(flag)</literal> peut �tre remplac� par <literal>set(gca(),"auto_clear","on")</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_hold</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

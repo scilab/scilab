@@ -25,14 +25,10 @@
     <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>true</literal> et la fonction Scilab <literal>ones</literal>se comporte diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec une entr�e qui est un scalaire : La fonction Matlab <literal>true</literal> retourne une
 	matrice n x n alors que la fonction Scilab <literal>ones</literal> retourne 1.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -44,20 +40,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est un scalaire
         <literal>mtlb_true(A)</literal> peut �tre remplac� par <literal>ones(A,A)</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Si <literal>A</literal> n'est pas un scalaire
         <literal>mtlb_true(A)</literal> peut �tre remplac� par <literal>ones(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_true</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

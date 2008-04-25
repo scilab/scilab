@@ -24,20 +24,16 @@
     <literal>ascii</literal> se comportent diff�remment :</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Avec les cha�nes de charact�res : la fonction Matlab <literal>setstr</literal> retourne une cha�ne de caract�res
 	alors que la fonction Scilab <literal>ascii</literal> retourne uen matrice de doubles.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Avec les matrices de doubles : la fonction Matlab <literal>setstr</literal> retourne une matrice
 	de caract�res alors que la fonction Scilab <literal>ascii</literal> retourne une chaine de caract�res.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -49,20 +45,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         Si <literal>A</literal> est une cha�ne de carat�res ou une matrice de cha�nes
         <literal>mtlb_setstr(A)</literal> peut �tre remplac� par <literal>A</literal>
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
          Si <literal>A</literal> est un vecteur ligne de doubles
         <literal>mtlb_setstr(A)</literal> peut �tre remplac� par <literal>ascii(A)</literal>
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Attention : <literal>mtlb_setstr</literal> ne doit pas �tre utilis�e pour une programmation manuelle.</para>

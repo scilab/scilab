@@ -23,29 +23,25 @@
     <para>Matlab and Scilab <literal>dec2hex</literal> behave differently in some particular cases:</para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         With empty matrix: Matlab <literal>dec2hex</literal> returns "" but in Scilab you get [].
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         With complex inputs: Matlab <literal>dec2hex</literal> automatically removes complex part of inputs but not Scilab one.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Matlab <literal>dec2hex</literal> always returns a row vector but in Scilab <literal>dec2hex</literal>
 	returns a value which have the same size as the input.
         </para>
-          </listitem>
-          <listitem>
-            <para>
+      </listitem>
+      <listitem>
+        <para>
         Matlab <literal>dec2hex</literal> can have two inputs but not Scilab one.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
@@ -57,16 +53,12 @@
     </para>
     <itemizedlist>
       <listitem>
-        <itemizedlist>
-          <listitem>
-            <para>
+        <para>
         If <literal>D</literal> is not an empty matrix,
         <literal>mtlb_dec2hex(D)</literal> may be replaced by
 	<literal>matrix(dec2hex(real(D)),-1,1)</literal> if <literal>D</literal> is complex and by
 	<literal>matrix(dec2hex(D),-1,1)</literal> else.
         </para>
-          </listitem>
-        </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>Caution: <literal>mtlb_dec2hex</literal> has not to be used for hand coded functions.</para>
