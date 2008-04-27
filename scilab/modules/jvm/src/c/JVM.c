@@ -84,7 +84,7 @@ BOOL startJVM(char *SCI_PATH)
 	else
 	{
 		if (! LoadDynLibJVM(SCI_PATH) ) {
-			fprintf(stderr,_("\nCould not load JVM dynamic library.\n"));
+			fprintf(stderr,_("\nCould not load JVM dynamic library (libjava).\n"));
 			return FALSE;
 		}else
 		{
@@ -162,7 +162,7 @@ BOOL startJVM(char *SCI_PATH)
 #endif
 			vm_args.ignoreUnrecognized = TRUE;
 
-			status = SciJNI_CreateJavaVM(&jvm_SCILAB, (void**) &env, &vm_args);
+			status = SciJNI_CreateJavaVM(&jvm_SCILAB, (JNIEnv**) &env, &vm_args);
 
 			if (status != JNI_OK)
 			{
