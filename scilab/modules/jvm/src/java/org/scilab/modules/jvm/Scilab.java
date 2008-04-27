@@ -55,9 +55,6 @@ public class Scilab {
 	private static final String ENABLE = "true";
 	private static final String DISABLE = "false";
 	private static final String DISABLE_DDRAW = "sun.java2d.noddraw";
-
-	private int mode;
-
 	private Window mainView;
 
 	 /**
@@ -65,7 +62,6 @@ public class Scilab {
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
 	 */
 	public Scilab(int mode) {
-		this.mode = mode;
 		
 		// Set options for JOGL
 		// they must be set before creating GUI
@@ -184,9 +180,7 @@ public class Scilab {
 	 */
 	public static boolean isWindowsPlateform() {
 		// get os name
-		String osName = System.getProperty("os.name");
-		osName = osName.toLowerCase();
-		return osName.contains("windows");
+		return System.getProperty("os.name").toLowerCase().contains("windows");
 	}
 	
 	/**
@@ -199,7 +193,7 @@ public class Scilab {
 		
 		if (isWindowsPlateform()) {
 			// windows plateform
-			windowsVersion = Double.valueOf(System.getProperty("os.version"));
+			return Double.valueOf(System.getProperty("os.version"));
 		}
 		
 		return windowsVersion;
