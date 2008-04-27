@@ -44,9 +44,7 @@ char **getClasspath(int *sizeClasspathArray)
 			mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "getClassPath","()[Ljava/lang/String;");
 			if (mid)
 			{
-				jobjectArray jStrings;
-				
-				jStrings=(*currentENV)->CallStaticObjectMethod(currentENV,cls, mid,NULL);
+				jobjectArray jStrings=(*currentENV)->CallStaticObjectMethod(currentENV,cls, mid,NULL);
 				*sizeClasspathArray=(*currentENV)->GetArrayLength(currentENV,jStrings);
 				if (*sizeClasspathArray>0)
 				{
