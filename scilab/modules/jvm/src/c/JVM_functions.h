@@ -37,7 +37,7 @@ BOOL FreeDynLibJVM(void);
 * @param args  
 * @return <ReturnValue>
 */
-jint SciJNI_CreateJavaVM(JavaVM **pvm, void **penv, void *args);
+jint SciJNI_CreateJavaVM(JavaVM **pvm, JNIEnv **penv, JavaVMInitArgs *args);
 
 /**
 * wrapping JNI_GetCreatedJavaVMs
@@ -53,7 +53,7 @@ jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
 * @param args  
 * @return <ReturnValue>
 */
-jint SciJNI_GetDefaultJavaVMInitArgs(void *args);
+jint SciJNI_GetDefaultJavaVMInitArgs(JavaVMInitArgs *args);
 
 /**
 * Check if Scilab uses embedded JRE
