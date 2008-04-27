@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,33 +20,30 @@
 /*--------------------------------------------------------------------------*/ 
 static DynLibHandle hLibJVM = NULL;
 /*--------------------------------------------------------------------------*/ 
-typedef jint (JNICALL *JNI_CreateJavaVMPROC) (JavaVM **pvm, void **penv, void *args);
+typedef jint (JNICALL *JNI_CreateJavaVMPROC) (JavaVM **jvm, JNIEnv **penv, JavaVMInitArgs *args);
 typedef jint (JNICALL *JNI_GetCreatedJavaVMsPROC)(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
-typedef jint (JNICALL *JNI_GetDefaultJavaVMInitArgsPROC)(void *args);
+typedef jint (JNICALL *JNI_GetDefaultJavaVMInitArgsPROC)(JavaVMInitArgs *args);
 /*--------------------------------------------------------------------------*/ 
 static JNI_GetDefaultJavaVMInitArgsPROC ptr_JNI_GetDefaultJavaVMInitArgs = NULL;
 static JNI_CreateJavaVMPROC ptr_JNI_CreateJavaVM  = NULL;
 static JNI_GetCreatedJavaVMsPROC ptr_JNI_GetCreatedJavaVMs = NULL;
 /*--------------------------------------------------------------------------*/ 
-jint SciJNI_GetDefaultJavaVMInitArgs(void *args)
+jint SciJNI_GetDefaultJavaVMInitArgs(JavaVMInitArgs *args)
 {
-	jint res = JNI_ERR;
-	if (ptr_JNI_GetDefaultJavaVMInitArgs) res = (ptr_JNI_GetDefaultJavaVMInitArgs)(args);
-	return res;
+	if (ptr_JNI_GetDefaultJavaVMInitArgs) return (ptr_JNI_GetDefaultJavaVMInitArgs)(args);
+	return JNI_ERR;
 }
 /*--------------------------------------------------------------------------*/ 
-jint SciJNI_CreateJavaVM(JavaVM **pvm, void **penv, void *args)
+jint SciJNI_CreateJavaVM(JavaVM **jvm, JNIEnv **penv, JavaVMInitArgs *args)
 {
-	jint res = JNI_ERR;
-	if (ptr_JNI_CreateJavaVM) res=(ptr_JNI_CreateJavaVM)(pvm,penv,args);
-	return res;
+	if (ptr_JNI_CreateJavaVM) return (ptr_JNI_CreateJavaVM)(jvm,penv,args);
+	return JNI_ERR;
 }
 /*--------------------------------------------------------------------------*/ 
 jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs)
 {
-	jint res = JNI_ERR;
-	if (ptr_JNI_GetCreatedJavaVMs) res = (ptr_JNI_GetCreatedJavaVMs)(vmBuf,BufLen,nVMs);
-	return res;
+	if (ptr_JNI_GetCreatedJavaVMs) return (ptr_JNI_GetCreatedJavaVMs)(vmBuf,BufLen,nVMs);
+	return JNI_ERR;
 }
 /*--------------------------------------------------------------------------*/ 
 BOOL FreeDynLibJVM(void)
