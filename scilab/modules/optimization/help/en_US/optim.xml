@@ -289,13 +289,29 @@
     // External function written in Scilab
     xref=[1;2;3];x0=[1;-1;1]
     deff('[f,g,ind]=cost(x,ind)','f=0.5*norm(x-xref)^2,g=x-xref');
-    [f,xopt]=optim(cost,x0)      //Simplest call
-    [f,xopt,gopt]=optim(cost,x0,'gc')  // By conjugate gradient
-    [f,xopt,gopt]=optim(cost,x0,'nd')  //Seen as non differentiable
-    [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0) //  Bounds on x
-    [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc') //  Bounds on x
+    // Simplest call
+    [f,xopt]=optim(cost,x0)
+    // By conjugate gradient - you can use 'qn', 'gc' or 'nd'
+    [f,xopt,gopt]=optim(cost,x0,'gc')
+    //Seen as non differentiable
+    [f,xopt,gopt]=optim(cost,x0,'nd')
+    // Upper and lower bounds on x
+    [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0)
+    // Upper and lower bounds on x and setting up the algorithm to 'gc'
+    [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc')
+    // Bound on the number of call to the objective function
     [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc','ar',3)
-
+    // Set max number of call to the objective function (3)
+    // Set max number of iterations (100)
+    // Set stopping threshold on the value of f (1e-6), 
+    // on the value of the norm of the gradient of the objective function (1e-6)
+    // on the improvement on the parameters x_opt (1e-6;1e-6;1e-6)
+    [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc','ar',3,100,1e-6,1e-6,[1e-3;1e-3;1e-3])
+    // Print information messages while optimizing
+    // Be careful, some messages are printed in a terminal. You must
+    // Scilab from the command line to see these messages.
+    [f,xopt]=optim(cost,x0,imp=3)
+ 
     // External function written in C (C compiler required)
     // write down the C code (Rosenbrock problem)
     C=['#include <math.h>'
@@ -366,8 +382,6 @@
     x0=[40;10;50];
     p=100;
     [f,xo,go]=optim('rosenf',x0,'td',p)
-
- 
     
   ]]></programlisting>
   </refsection>
