@@ -33,7 +33,7 @@ c
       integer       iero
       common/ierajf/iero 
 c
-      double precision atol,rtol,t0,tout
+      double precision atol,rtol,t0,tout,dir
       double precision h0,hmax,hmin,tcrit,tmax
       integer top1,top2,tope,hsize
 c     meth is simulator number, and jactyp the jacobian type used
@@ -723,6 +723,7 @@ c   lsode
       if(single) then
 c     loop til t=tout
 c     --------------
+         dir=sign(1.0D0,tmax-t0)
          tout=tmax
          k=0
          nn=0
@@ -799,7 +800,7 @@ c     store intermediate result
          endif
          stk(lys)=t0
          call unsfdcopy(ny,stk(ly),1,stk(lys+1),1)
-         if(t0.ge.tout)  then
+         if((t0-tout)*dir.ge.0.0d0)  then
 c     tout reached
             nn=k
             goto 500
