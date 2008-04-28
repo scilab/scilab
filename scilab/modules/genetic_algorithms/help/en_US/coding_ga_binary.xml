@@ -12,17 +12,17 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="codage_binary">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="coding_ga_binary">
   <info>
     <pubdate>4-Feb-2008</pubdate>
   </info>
   <refnamediv>
-    <refname>codage_binary</refname>
+    <refname>coding_ga_binary</refname>
     <refpurpose> A function which performs conversion between binary and continuous representation </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>pop_out = codage_binary(pop_in,direction,param)</synopsis>
+    <synopsis>pop_out = coding_ga_binary(pop_in,direction,param)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -71,22 +71,16 @@
     </itemizedlist>
   </refsection>
   <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   Add here scilab instructions and comments
-  ]]></programlisting>
-  </refsection>
-  <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="optim_ga"> optim_ga </link>
       </member>
       <member>
-        <link linkend="mutation_func_binary"> mutation_func_binary </link>
+        <link linkend="mutation_ga_binary"> mutation_func_binary </link>
       </member>
       <member>
-        <link linkend="crossover_func_binary"> crossover_func_binary </link>
+        <link linkend="crossover_ga_binary"> crossover_func_binary </link>
       </member>
     </simplelist>
   </refsection>

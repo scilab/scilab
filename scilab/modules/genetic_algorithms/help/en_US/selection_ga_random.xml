@@ -12,17 +12,17 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="selection_func_random">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="selection_ga_random">
   <info>
     <pubdate>4-Feb-2008</pubdate>
   </info>
   <refnamediv>
-    <refname>selection_func_random</refname>
+    <refname>selection_ga_random</refname>
     <refpurpose> A function which performs a random selection of individuals </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_func_random(Pop_in,Indiv1,Indiv2,FObj_Pop_in,FObj_Indiv1,FObj_Indiv2,MO_Total_FObj_in,MO_FObj_Indiv1,MO_FObj_Indiv2,param)</synopsis>
+    <synopsis>[Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_ga_random(Pop_in,Indiv1,Indiv2,FObj_Pop_in,FObj_Indiv1,FObj_Indiv2,MO_Total_FObj_in,MO_FObj_Indiv1,MO_FObj_Indiv2,param)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -142,16 +142,16 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="selection_func_random"> selection_func_random </link>
+        <link linkend="selection_ga_elitist"> selection_ga_elitist </link>
       </member>
       <member>
-        <link linkend="mutation_func_default"> mutation_func_default </link>
+        <link linkend="mutation_ga_default"> mutation_ga_default </link>
       </member>
       <member>
-        <link linkend="crossover_func_default"> crossover_func_default </link>
+        <link linkend="crossover_ga_default"> crossover_ga_default </link>
       </member>
       <member>
-        <link linkend="init_func_default"> init_func_default </link>
+        <link linkend="init_ga_default"> init_ga_default </link>
       </member>
       <member>
         <link linkend="optim_ga"> optim_ga </link>

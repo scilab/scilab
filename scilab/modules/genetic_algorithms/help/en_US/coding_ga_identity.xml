@@ -12,56 +12,46 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="crossover_func_binary">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="coding_ga_identity">
   <info>
     <pubdate>4-Feb-2008</pubdate>
   </info>
   <refnamediv>
-    <refname>crossover_func_binary</refname>
-    <refpurpose> A crossover function for binary code </refpurpose>
+    <refname>coding_ga_identity</refname>
+    <refpurpose> A "no-operation" conversion function </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[Crossed_Indiv1,Crossed_Indiv2] = crossover_func_binary(Indiv1,Indiv2,param)</synopsis>
+    <synopsis>pop_out = coding_ga_identity(pop_in,direction,param)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>Indiv1</term>
+        <term>pop_in</term>
         <listitem>
-          <para>the first individual (here a binary code) to be crossed-over.
+          <para>the population to be converted.
        </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Indiv2</term>
+        <term>direction</term>
         <listitem>
-          <para>the second individual to be crossed-over.
+          <para>'code' or 'decode'. This value has no influence of the state of pop_in.
        </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>param</term>
         <listitem>
-          <para>a list of parameters.
-         - 'binary_length': the length of the binary code.
-         - 'multi_cross': a boolean. If %T then we allow several cuts in the binary code.
-         - 'multi_cross_nb': the number of cuts in the binary code. Only used when multi_cross is set to %T.
+          <para>a parameter list. For this function, there are no useful parameters set.
        </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Crossed_Indiv1</term>
+        <term>pop_out</term>
         <listitem>
-          <para>The first individual obtained by the cross-over function.
-       </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Crossed_Indiv2</term>
-        <listitem>
-          <para>The second individual obtained by the cross-over function.
+          <para>a population identical to pop_in.
        </para>
         </listitem>
       </varlistentry>
@@ -72,7 +62,7 @@
     <itemizedlist>
       <listitem>
         <para>
-      This function implements a classical binary cross-over.
+      This function is a do-nothing function. It is essentially useful to implement an evolutionnary algorithm. In an evolutionnary algorithm, we work directly on the variable and not on a binary code.
      </para>
       </listitem>
     </itemizedlist>
@@ -81,13 +71,13 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="crossover_func_binary"> crossover_func_binary </link>
+        <link linkend="mutation_ga_default"> mutation_func_default </link>
       </member>
       <member>
-        <link linkend="crossover_func_default"> crossover_func_default </link>
+        <link linkend="crossover_ga_default"> crossover_func_default </link>
       </member>
       <member>
-        <link linkend="mutation_func_binary"> mutation_func_binary </link>
+        <link linkend="init_ga_default"> init_func_default </link>
       </member>
       <member>
         <link linkend="optim_ga"> optim_ga </link>

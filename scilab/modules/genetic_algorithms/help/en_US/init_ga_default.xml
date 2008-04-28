@@ -12,46 +12,42 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="codage_identity">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="init_ga_default">
   <info>
     <pubdate>4-Feb-2008</pubdate>
   </info>
   <refnamediv>
-    <refname>codage_identity</refname>
-    <refpurpose> A "no-operation" conversion function </refpurpose>
+    <refname>init_ga_default</refname>
+    <refpurpose> A function a initialize a population </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>pop_out = codage_identity(pop_in,direction,param)</synopsis>
+    <synopsis>Pop_init = init_ga_default(popsize,param)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>pop_in</term>
+        <term>popsize</term>
         <listitem>
-          <para>the population to be converted.
-       </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>direction</term>
-        <listitem>
-          <para>'code' or 'decode'. This value has no influence of the state of pop_in.
+          <para>the number of individuals to generate.
        </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>param</term>
         <listitem>
-          <para>a parameter list. For this function, there are no useful parameters set.
+          <para>a list of parameters.
+         - 'dimension': the size of the vector X.
+         - 'minbound': a vector of minimum bounds for the variable X.
+         - 'maxbound': a vector of maximum bounds for the variable X.
        </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>pop_out</term>
+        <term>Pop_init</term>
         <listitem>
-          <para>a population identical to pop_in.
+          <para>a list which contains the initial population of individuals.
        </para>
         </listitem>
       </varlistentry>
@@ -62,7 +58,7 @@
     <itemizedlist>
       <listitem>
         <para>
-      This function is a do-nothing function. It is essentially useful to implement an evolutionnary algorithm. In an evolutionnary algorithm, we work directly on the variable and not on a binary code.
+      This function generate an initial population containing pop_size individuals.
      </para>
       </listitem>
     </itemizedlist>
@@ -71,13 +67,13 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="mutation_func_default"> mutation_func_default </link>
+        <link linkend="crossover_ga_default"> crossover_ga_default </link>
       </member>
       <member>
-        <link linkend="crossover_func_default"> crossover_func_default </link>
+        <link linkend="mutation_ga_default"> mutation_ga_default </link>
       </member>
       <member>
-        <link linkend="init_func_default"> init_func_default </link>
+        <link linkend="mutation_ga_binary"> mutation_ga_binary </link>
       </member>
       <member>
         <link linkend="optim_ga"> optim_ga </link>

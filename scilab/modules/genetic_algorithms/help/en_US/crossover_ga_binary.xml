@@ -12,25 +12,32 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mutation_func_binary">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="crossover_ga_binary">
   <info>
     <pubdate>4-Feb-2008</pubdate>
   </info>
   <refnamediv>
-    <refname>mutation_func_binary</refname>
-    <refpurpose> A function which performs binary mutation </refpurpose>
+    <refname>crossover_ga_binary</refname>
+    <refpurpose> A crossover function for binary code </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>Mut_Indiv = mutation_func_binary(Indiv,param)</synopsis>
+    <synopsis>[Crossed_Indiv1,Crossed_Indiv2] = crossover_ga_binary(Indiv1,Indiv2,param)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>Indiv</term>
+        <term>Indiv1</term>
         <listitem>
-          <para>the individual on which we will perform the mutation.
+          <para>the first individual (here a binary code) to be crossed-over.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Indiv2</term>
+        <listitem>
+          <para>the second individual to be crossed-over.
        </para>
         </listitem>
       </varlistentry>
@@ -38,16 +45,23 @@
         <term>param</term>
         <listitem>
           <para>a list of parameters.
-         - 'binary_length': the size of the binary code.
-         - 'multi_mut': a boolean. If %T, several random bits will be flipped.
-         - 'multi_mut_nd': the number of bits to be flipped. Works only when multi_mut is set to %T.
+         - 'binary_length': the length of the binary code.
+         - 'multi_cross': a boolean. If %T then we allow several cuts in the binary code.
+         - 'multi_cross_nb': the number of cuts in the binary code. Only used when multi_cross is set to %T.
        </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Mut_Indiv</term>
+        <term>Crossed_Indiv1</term>
         <listitem>
-          <para>The mutated individual.
+          <para>The first individual obtained by the cross-over function.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Crossed_Indiv2</term>
+        <listitem>
+          <para>The second individual obtained by the cross-over function.
        </para>
         </listitem>
       </varlistentry>
@@ -58,7 +72,7 @@
     <itemizedlist>
       <listitem>
         <para>
-      This function performs a classical multi-bits binary mutation.
+      This function implements a classical binary cross-over.
      </para>
       </listitem>
     </itemizedlist>
@@ -67,13 +81,13 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="mutation_func_default"> mutation_func_default </link>
+        <link linkend="crossover_ga_binary"> crossover_ga_binary </link>
       </member>
       <member>
-        <link linkend="crossover_func_binary"> crossover_func_binary </link>
+        <link linkend="crossover_ga_default"> crossover_ga_default </link>
       </member>
       <member>
-        <link linkend="init_func_default"> init_func_default </link>
+        <link linkend="mutation_ga_binary"> mutation_func_binary </link>
       </member>
       <member>
         <link linkend="optim_ga"> optim_ga </link>

@@ -12,32 +12,25 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="crossover_func_default">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mutation_ga_default">
   <info>
     <pubdate>4-Feb-2008</pubdate>
   </info>
   <refnamediv>
-    <refname>crossover_func_default</refname>
-    <refpurpose> A crossover function for continuous variable functions </refpurpose>
+    <refname>mutation_ga_default</refname>
+    <refpurpose> A continuous variable mutation function </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[Crossed_Indiv1,Crossed_Indiv2] = crossover_func_default(Indiv1,Indiv2,param)</synopsis>
+    <synopsis>Mut_Indiv = mutation_ga_default(Indiv,param)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>Indiv1</term>
+        <term>Indiv</term>
         <listitem>
-          <para>The first individual to be crossed-over.
-       </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Indiv2</term>
-        <listitem>
-          <para>The second individual to be crossed-over.
+          <para>The individual to be mutated.
        </para>
         </listitem>
       </varlistentry>
@@ -45,23 +38,16 @@
         <term>param</term>
         <listitem>
           <para>a list of parameters.
-         - 'beta': the range of the random generator. A random value will be sampled between -beta and 1+beta. This sampled value will be used to perform a convex combination between Indiv1 and Indiv2.
-         - 'minbound': a vector of minimum bounds for the variable X.
-         - 'maxbound': a vector of maximum bounds for the variable X.
+         - 'delta': a random perturbation will be sampled via an uniform distribution between -delta and + delta.
+         - 'minbound': a vector of minimum bound for the variable X.
+         - 'maxbound': a vector of maximum bound for the variable X.
        </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Crossed_Indiv1</term>
+        <term>Mut_Indiv</term>
         <listitem>
-          <para>The first individual resulting from the crossover.
-       </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Crossed_Indiv2</term>
-        <listitem>
-          <para>The second individual resulting from the crossover.
+          <para>The resulting mutated individual.
        </para>
         </listitem>
       </varlistentry>
@@ -72,7 +58,7 @@
     <itemizedlist>
       <listitem>
         <para>
-      A crossover function for functions with continuous variables.
+      This function performs the classical continuous variable mutation function.
      </para>
       </listitem>
     </itemizedlist>
@@ -81,13 +67,13 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="crossover_func_binary"> crossover_func_binary </link>
+        <link linkend="mutation_ga_binary"> mutation_ga_binary </link>
       </member>
       <member>
-        <link linkend="mutation_func_default"> mutation_func_default </link>
+        <link linkend="crossover_ga_default"> crossover_ga_default </link>
       </member>
       <member>
-        <link linkend="init_func_default"> init_func_default </link>
+        <link linkend="init_ga_default"> init_ga_default </link>
       </member>
       <member>
         <link linkend="optim_ga"> optim_ga </link>
