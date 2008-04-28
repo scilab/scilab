@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [Crossed_Indiv1, Crossed_Indiv2] = crossover_func_ising2d(Indiv1,Indiv2,param)
+function [Crossed_Indiv1, Crossed_Indiv2] = crossover_ga_ising2d(Indiv1,Indiv2,param)
 if ~isdef('param','local') then
   param = [];
 end
