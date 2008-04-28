@@ -21,12 +21,12 @@ libgenetic_algorithms_la_etc_DATA = etc/genetic_algorithms.quit etc/genetic_algo
 #### genetic_algorithms : examples files ####
 libgenetic_algorithms_la_examplesdir = $(mydatadir)/examples
 libgenetic_algorithms_la_examples_DATA = \
-examples/crossover_func_ising2d.sci \
+examples/crossover_ga_ising2d.sci \
 examples/GAdemo.sce \
 examples/GAIsing2ddemo.sce \
-examples/init_func_ising2d.sci \
+examples/init_ga_ising2d.sci \
 examples/MOGAdemo.sce \
-examples/mutation_func_ising2d.sci \
+examples/mutation_ga_ising2d.sci \
 examples/NSGA2demo.sce \
 examples/NSGAdemo.sce
 
