@@ -8,8 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_func_random(Pop_in,Indiv1,Indiv2,FObj_Pop_in,FObj_Indiv1,FObj_Indiv2, ...
-                                                                                     MO_Total_FObj_in,MO_FObj_Indiv1,MO_FObj_Indiv2,param)
+function [Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_ga_random(Pop_in,Indiv1,Indiv2,FObj_Pop_in,FObj_Indiv1,FObj_Indiv2, ...
+                                                                                   MO_Total_FObj_in,MO_FObj_Indiv1,MO_FObj_Indiv2,param)
 
 [nargout,nargin] = argn();
 
