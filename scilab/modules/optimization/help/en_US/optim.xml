@@ -311,7 +311,16 @@
     // Be careful, some messages are printed in a terminal. You must
     // Scilab from the command line to see these messages.
     [f,xopt]=optim(cost,x0,imp=3)
- 
+    // Use the 'derivative' function to compute the partial
+    // derivatives of the previous problem
+    deff('y=my_f(x)','y=0.5*norm(x-xref)^2');
+    deff('y=my_df(x)','y=derivative(my_f,x)');
+    deff('[f,g,ind]=cost(x,ind)','f=my_f(x); ...
+                                  g=my_df(x)');
+    // Simplest call
+    xref=[1;2;3];x0=[1;-1;1]
+    [f,xopt]=optim(cost,x0)
+
     // External function written in C (C compiler required)
     // write down the C code (Rosenbrock problem)
     C=['#include <math.h>'
