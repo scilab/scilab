@@ -18,11 +18,11 @@
   </info>
   <refnamediv>
     <refname>init_param</refname>
-    <refpurpose>  add short decription here</refpurpose>
+    <refpurpose> Initialize the structure which will handles the parameters list</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>ga_list = init_param</synopsis>
+    <synopsis>ga_list = init_param()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-      This function initialize an empty list of parameters. You must initialize each of the list of parameters before using them.
+      This function initialize an empty list of parameters. You must initialize the list of parameters before using it.
      </para>
       </listitem>
     </itemizedlist>
