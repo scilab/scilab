@@ -199,6 +199,13 @@ plot2d(X,FF(X,pg),5) //the curve without noise
 plot2d(X,Y,-1)  // the noisy data
 plot2d(X,FF(X,p),12) //the solution
 
+// Add some bounds on the estimate of the parameters
+// We want positive estimation (the result will not change)
+[p,err]=datafit(G,DG,Z,'b',[0;0;0],[%inf;%inf;%inf],p0,algo='gc');
+scf(1);clf()
+plot2d(X,FF(X,pg),5) //the curve without noise
+plot2d(X,Y,-1)  // the noisy data
+plot2d(X,FF(X,p),12) //the solution
 
  
   ]]></programlisting>
