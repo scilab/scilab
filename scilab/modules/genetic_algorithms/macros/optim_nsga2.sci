@@ -16,10 +16,10 @@ if ~isdef('param','local') then
   param = [];
 end
 
-codage_func        = get_param(param,'codage_func',codage_identity);
-init_func          = get_param(param,'init_func',init_func_default);
-crossover_func     = get_param(param,'crossover_func',crossover_func_default);
-mutation_func      = get_param(param,'mutation_func',mutation_func_default);
+codage_func        = get_param(param,'codage_func',coding_ga_identity);
+init_func          = get_param(param,'init_func',init_ga_default);
+crossover_func     = get_param(param,'crossover_func',crossover_ga_default);
+mutation_func      = get_param(param,'mutation_func',mutation_ga_default);
 selection_strategy = get_param(param,'selection_strategy','elitist');
 nb_couples         = get_param(param,'nb_couples',100);
 
