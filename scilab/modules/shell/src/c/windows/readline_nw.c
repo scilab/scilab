@@ -34,6 +34,7 @@
 #include "freeArrayOfString.h"
 #include "scilines.h"
 #include "strdup_windows.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define MAXBUF	512
 #define BACKSPACE 0x08		/* ^H */
@@ -582,9 +583,19 @@ static void clear_eoline (char *prompt)
 /* copy line to cur_line, draw it and set cur_pos and max_pos */
 static void copy_line (char *line)
 {
-	strcpy (cur_line, line);
-	user_puts (cur_line);
-	cur_pos = max_pos = (int)strlen (cur_line);
+	if (line)
+	{
+		char *OEM_string = (char*)MALLOC(sizeof(char)*(strlen(line)+1));
+		if (OEM_string)
+		{
+			CharToOem(line,OEM_string);
+			strcpy (cur_line,OEM_string);
+			user_puts (cur_line);
+			cur_pos = max_pos = (int)strlen (cur_line);
+			FREE(OEM_string);
+			OEM_string = NULL;
+		}
+	}
 }
 /*--------------------------------------------------------------------------*/
 /* Convert Arrow keystrokes to Control characters: */

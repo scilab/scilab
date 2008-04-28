@@ -17,27 +17,50 @@
 #include "MALLOC.h"
 #include "prompt.h"
 #include "readline_nw.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define strdup _strdup
 /*--------------------------------------------------------------------------*/
 char * TermReadAndProcess(void)
 {
 	static char save_prompt[10];
-	char *line = NULL;
+	char *OEMline = NULL;
 	char *returnedline = NULL;
 
 	GetCurrentPrompt(save_prompt);
 
-	line = readline_nw (save_prompt);
-	if (line)
+	OEMline = readline_nw (save_prompt);
+	if (OEMline)
 	{
-		returnedline = strdup(line);
-		appendLineToScilabHistory(line);
-		FREE(line);
-		line = NULL;
+		char *line = NULL;
+		char *UTF8line = NULL;
+
+		line = (char*)MALLOC(sizeof(char)*(strlen(OEMline)+1));
+		if (line)
+		{
+			strcpy(line,"");
+			OemToChar(OEMline,line);
+
+			appendLineToScilabHistory(OEMline);
+
+			UTF8line = ANSIToUTF8(line);
+			if (UTF8line)
+			{
+				returnedline = strdup(UTF8line);
+				FREE(UTF8line);
+				UTF8line = NULL;
+			}
+
+			FREE(line);
+			line = NULL;
+		}
+
+		FREE(OEMline);
+		OEMline = NULL;
 	}
 	strcpy(save_prompt,"");
 	return returnedline;
+
 
 }
 /*--------------------------------------------------------------------------*/

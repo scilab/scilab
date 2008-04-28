@@ -7,3 +7,5 @@ EXPORTS
   strdup_windows
   LaunchScilab
   LaunchScilabLock
+  ANSIToUTF8
+  UTF8ToANSI
