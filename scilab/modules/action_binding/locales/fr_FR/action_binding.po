@@ -21,3 +21,15 @@ msgstr ""
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Pas assez de mémoire disponible.\n"
+
+#
+# File: src/c/dynamic_menus.c, line: 130
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr ""
+
+#
+# File: src/c/dynamic_menus.c, line: 131
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr ""

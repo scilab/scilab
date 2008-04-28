@@ -127,8 +127,8 @@ int GetCommand ( char *str)
          FREE (p->command);
       FREE (p);
       if (C2F(iop).ddt==-1) {
-        if (flag==0) { sciprint_full("   Unqueuing %s - No option\n",str); }
-        else         { sciprint_full("   Unqueuing %s - seq\n",str); }
+        if (flag==0) { sciprint_full(_("Unqueuing %s - No option.\n"),str); }
+        else         { sciprint_full(_("Unqueuing %s - seq.\n"),str); }
       }
       __UnLock(&commandQueueSingleAccess);
     }

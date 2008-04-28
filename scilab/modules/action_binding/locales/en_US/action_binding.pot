@@ -14,10 +14,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-26 18:05+0100\n"
+"Revision-Date: 2008-04-28 13:39+0100\n"
 
-# File: src/c/dynamic_menus.c, line: 108
-# File: src/c/dynamic_menus.c, line: 116
+# File: src/c/dynamic_menus.c, line: 78
+# File: src/c/dynamic_menus.c, line: 86
 #, c-format
 msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: src/c/dynamic_menus.c, line: 130
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr ""
+#
+# File: src/c/dynamic_menus.c, line: 131
+#, c-format
+msgid "Unqueuing %s - seq.\n"
 msgstr ""
