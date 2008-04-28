@@ -91,12 +91,12 @@ ga_params = add_param(ga_params,'beta',0);
 ga_params = add_param(ga_params,'delta',0.1);
 // Parameters to fine tune the Genetic algorithm. All these parameters are optional for continuous optimization
 // If you need to adapt the GA to a special problem, you 
-ga_params = add_param(ga_params,'init_func',init_func_default);
-ga_params = add_param(ga_params,'crossover_func',crossover_func_default);
-ga_params = add_param(ga_params,'mutation_func',mutation_func_default);
-ga_params = add_param(ga_params,'codage_func',codage_identity);
-ga_params = add_param(ga_params,'selection_func',selection_func_elitist);
-//ga_params = add_param(ga_params,'selection_func',selection_func_random);
+ga_params = add_param(ga_params,'init_func',init_ga_default);
+ga_params = add_param(ga_params,'crossover_func',crossover_ga_default);
+ga_params = add_param(ga_params,'mutation_func',mutation_ga_default);
+ga_params = add_param(ga_params,'codage_func',coding_ga_identity);
+ga_params = add_param(ga_params,'selection_func',selection_ga_elitist);
+//ga_params = add_param(ga_params,'selection_func',selection_ga_random);
 ga_params = add_param(ga_params,'nb_couples',NbCouples);
 ga_params = add_param(ga_params,'pressure',pressure);
 
@@ -157,9 +157,9 @@ deff('y=f(x)','BinLen = get_param(ga_params,''binary_length''); ...
                y      = '+func+'(tmp);','n');
 
 ga_params = add_param(ga_params,'binary_length',8);
-ga_params = set_param(ga_params,'crossover_func',crossover_func_binary);
-ga_params = set_param(ga_params,'mutation_func',mutation_func_binary);
-ga_params = set_param(ga_params,'codage_func',codage_binary);
+ga_params = set_param(ga_params,'crossover_func',crossover_ga_binary);
+ga_params = set_param(ga_params,'mutation_func',mutation_ga_binary);
+ga_params = set_param(ga_params,'codage_func',coding_binary);
 ga_params = add_param(ga_params,'multi_cross',%T);
 ga_params = add_param(ga_params,'multi_cross_nb',3);
 
