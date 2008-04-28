@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function Pop_init = init_func_ising2d(popsize,param)
+function Pop_init = init_ga_ising2d(popsize,param)
 if ~isdef('param','local') then
   param = [];
 end
