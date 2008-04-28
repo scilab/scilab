@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [pop_out] = codage_binary(pop_in,direction,param)
+function [pop_out] = coding_ga_binary(pop_in,direction,param)
 // pop_in is a list().
 // pop_out must be a list().
 if ~isdef('param','local') then
@@ -56,6 +56,6 @@ elseif (direction=='decode') then
     end
   end
 else
-  error('codage_binary: wrong direction');
+  error('coding_ga_binary: wrong direction');
 end
 endfunction
