@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function Mut_Indiv = mutation_func_ising2d(Indiv,param)
+function Mut_Indiv = mutation_ga_ising2d(Indiv,param)
 if ~isdef('param','local') then
   param = [];
 end
