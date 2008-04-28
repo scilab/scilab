@@ -1268,7 +1268,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 229:
 		{
-			displayAndStoreError(_("Operands of / and \ operations  must not contain NaN of Inf.\n"));
+			displayAndStoreError(_("Operands of / and \\ operations  must not contain NaN of Inf.\n"));
 		}
 		break;
 		case 230:
