@@ -44,7 +44,8 @@ public class SciFileFilter extends FileFilter {
 			description = "All " + fileMask + " files";
 		}
 		// Create a regexp
-		mask = fileMask.replaceAll("\\*", ".\\*");
+		mask = fileMask.replaceAll("\\.", "\\\\."); // Point is a special regexp character
+		mask = mask.replaceAll("\\*", ".\\*");
 	}
 
 	/**
