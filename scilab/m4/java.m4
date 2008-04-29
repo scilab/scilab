@@ -117,7 +117,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
     if test "$works" = "yes" ; then
         AC_MSG_RESULT($works)
     else
-        AC_MSG_ERROR([Could not compile simple Java program with '$JAVAC'])
+        AC_MSG_ERROR([Could not compile simple Java program with '$JAVAC'. Try with the Sun JDK (1.5 or 6).])
     fi
 
     AC_MSG_LOG([Using JAVAC=$JAVAC], 1)
