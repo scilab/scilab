@@ -71,33 +71,6 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 	}
 	
 	/**
-	 * Quicly call the parent figure
-	 * @param parentFigureIndex index of parent figure
-	 */
-	@Override
-	public void show(int parentFigureIndex) {
-		drawArc();
-	}
-	
-	
-	/**
-	 * Create a new display list
-	 * Each JoGL call will be saved in the DL
-	 * until endRecordDL is called
-	 */
-	protected void startRecordDL() {
-		// No DL usable.
-	}
-	
-	/**
-	 * End the recoding of a display list.
-	 * Need to be called after a startRecordDL	
-	 */
-	protected void endRecordDL() {
-		// No DL usable.
-	}
-	
-	/**
 	 * Call gl routine to draw to outline of the arc.
 	 */
 	public void drawArc() {

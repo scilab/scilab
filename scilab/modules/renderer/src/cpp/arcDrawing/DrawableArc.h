@@ -33,6 +33,11 @@ public:
   virtual ~DrawableArc( void ) ;
 
   /**
+   * Text must be updated whenever the parent axes changed
+   */
+  virtual void parentSubwinChanged( void );
+
+  /**
    * Add a rendering algorithm
    */
   virtual void addDrawingStrategy( DrawArcStrategy * strategy ) = 0 ;

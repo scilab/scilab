@@ -29,6 +29,11 @@ DrawableArc::~DrawableArc( void )
   
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableArc::parentSubwinChanged( void )
+{
+  m_bNeedRedraw = true;
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableArc::draw( void )
 {
   initializeDrawing() ;

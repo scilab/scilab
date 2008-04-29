@@ -39,35 +39,6 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 	}
 	
 	/**
-	 * Quicly call the parent figure
-	 * @param parentFigureIndex index of parent figure
-	 */
-	@Override
-	public void show(int parentFigureIndex) {
-		drawArc();
-	}
-	
-	
-	/**
-	 * Create a new display list
-	 * Each JoGL call will be saved in the DL
-	 * until endRecordDL is called
-	 */
-	@Override
-	protected void startRecordDL() {
-		// No DL usable
-	}
-	
-	/**
-	 * End the recoding of a display list.
-	 * Need to be called after a startRecordDL	
-	 */
-	@Override
-	protected void endRecordDL() {
-		// No DL usable
-	}
-	
-	/**
 	 * create the display list for the arc
 	 * @param centerX X coordinate of the arc center
 	 * @param centerY Y coordinate of the arc center
@@ -92,7 +63,8 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 		Vector3D semiMinorAxis = new Vector3D(semiMinorAxisX, semiMinorAxisY, semiMinorAxisZ);
 		Vector3D semiMajorAxis = new Vector3D(semiMajorAxisX, semiMajorAxisY, semiMajorAxisZ);
 	
-		drawer = getParentFigureGL().getArcRendererFactory().createArcFillRenderer(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
+		ArcRendererFactory arcFactory = getParentFigureGL().getArcRendererFactory();
+		drawer = arcFactory.createArcFillRenderer(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
 		
 		drawArc();
 		
