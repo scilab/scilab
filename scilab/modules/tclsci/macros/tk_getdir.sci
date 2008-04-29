@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function p=tk_getdir(startdir,title)
+function p=tk_getdir(startdir,Title)
   if ~with_tk() then error(gettext('Tcl/Tk interface not defined.')),end
   arg=''
   if exists("startdir","local")==1 then 
@@ -16,7 +16,12 @@ function p=tk_getdir(startdir,title)
     startdir=strsubst(startdir,"\","/")
     arg=arg+" -initialdir {"+startdir+"}"
   end
-  if exists("title","local")==1 then arg=arg+" -title {"+title+"}",end
+  if exists("title","local")==1 then
+    Title=title
+    arg = arg+" -title {"+Title+"}",
+  elseif exists("Title","local")==1 then
+    arg=arg+" -title {"+Title+"}";
+  end
   arg=arg+" -parent $root"
   p=TCL_EvalStr("tk_chooseDirectory"+arg)
 endfunction

@@ -20,18 +20,19 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>path=tk_getdir([title='string'])
-path=tk_getdir([title='string'])
-path=tk_getdir(dir,[title='string'])
-path=tk_getdir(dir,'string')</synopsis>
+    <synopsis>
+    path=tk_getdir([Title="string"])
+    path=tk_getdir(startdir,[Title="string"])
+    path=tk_getdir(startdir,windowtitle)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>dir</term>
+        <term>startdir</term>
         <listitem>
-          <para>a character string which gives the initial directory used for directory search. by default tk_getdir uses the previously selected directory.</para>
+          <para>a character string which gives the initial directory used for directory search. By default tk_getdir uses the previously selected directory.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,9 +42,10 @@ path=tk_getdir(dir,'string')</synopsis>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>title='string'  </term>
+        <term>Title="string"</term>
         <listitem>
-          <para>:Optional argument which gives the title for the tk_getdir window.</para>
+          <para>Optional argument which gives the title for the tk_getdir window. <literal>Warning</literal>: Use the new variable
+          <literal>Title</literal> instead of the old variable <literal>title</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -51,15 +53,15 @@ path=tk_getdir(dir,'string')</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Creates a dialog window for file selection</para>
+    Creates a dialog window for file selection.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
 tk_getdir()
-tk_getdir('SCI/macros/xdess')
-tk_getdir(title='Choose a directory name ')
+tk_getdir("SCI/modules/")
+tk_getdir(Title="Choose a directory name")
  
   ]]></programlisting>
   </refsection>
