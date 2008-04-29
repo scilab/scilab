@@ -34,12 +34,17 @@
 //    function ct1()
 // ...
 
-MFILECONTENTS=["fp = fopen(''testfile.txt'',''r'');";
+MFILECONTENTS=["% Test with fgets result stored in a variable";
+                "fp = fopen(''testfile.txt'',''r'');";
 		"tempstr = '' '';";
 		"while ( tempstr ~= -1)";
 		"  tempstr = fgets(fp); % -1 if eof ";
 		"  disp(tempstr);";
 		"end";
+		"fclose(fp);"
+		"% Test with fgets result not-stored in a variable";
+		"fp = fopen(''testfile.txt'',''r'');";
+		"disp(fgets(fp)); % -1 if eof ";
 		"fclose(fp);"]
 
 MFILE=TMPDIR+"/bug1003.m"
@@ -50,18 +55,23 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"fp = mtlb_fopen(""testfile.txt"",""r"");";
-		"tempstr = "" "";";
-		"while asciimat(tempstr)~=(-1)";
-		"  tempstr = mgetl(fp,1);  // -1 if eof ";
-		"  disp(tempstr);";
-		"end;";
-		"mclose(fp);"]
+"// Display mode";
+"mode(0);";
+"";
+"// Display warning for floating point exception";
+"ieee(1);";
+"";
+"// Test with fgets result stored in a variable";
+"fp = mtlb_fopen(""testfile.txt"",""r"");";
+"tempstr = "" "";";
+"while tempstr~=(-1)";
+"  tempstr = mgetl(fp,1);  if isempty(tempstr) then tempstr = -1;end;  // -1 if eof ";
+"  disp(tempstr);";
+"end;";
+"mclose(fp);";
+"// Test with fgets result not-stored in a variable";
+"fp = mtlb_fopen(""testfile.txt"",""r"");";
+"%v0 = mgetl(fp,1);if isempty(%v0) then %v0 = -1;end;disp(%v0);// -1 if eof ";
+"mclose(fp);"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

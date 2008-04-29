@@ -22,10 +22,35 @@ if rhs==2 then
   else
     tree.lhs(1).dims=list(1,Unknown)
   end
+  tree.lhs(1).type=Type(String,Real)
 else
   tree.name="mgetl"
   tree.lhs(1).dims=list(1,Unknown)
   tree.rhs(2)=Cste(1)
+  // Add a case for the end of file
+  // fgets returns -1
+  // mgetl returns []
+  outputvar = tree.lhs(1);
+  tempvar = %F;
+  if typeof(outputvar)=="variable" & outputvar.name=="ans" then
+    outputvar = gettempvar();
+    tempvar = %T;
+  end
+  // if isempty(outputvar) then outputvar=-1; end
+  isemptyfuncall = Funcall("isempty", 1, list(outputvar), list());
+  newvalue = Equal(list(outputvar), Cste(-1));
+  
+  // If the result is not assigned to a variable then a temporary variable is returned
+  if tempvar then
+    // Assign result to tmp
+    insert(Equal(list(outputvar), tree));
+    // Just add the test for EOF
+    insert(tlist(["ifthenelse","expression","then","elseifs","else"],isemptyfuncall, list(newvalue),list(),list()));
+    tree = outputvar;
+    tree.type = Type(Unknown,Real);
+  else // Just add the test for EOF
+    insert(tlist(["ifthenelse","expression","then","elseifs","else"],isemptyfuncall, list(newvalue),list(),list()), 1);
+    tree.lhs(1).type=Type(Unknown,Real)
+  end
 end
-tree.lhs(1).type=Type(String,Real)
 endfunction
