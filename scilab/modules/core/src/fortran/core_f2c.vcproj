@@ -6,7 +6,7 @@
 	ProjectGUID="{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
 	RootNamespace="core_f2c"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -740,10 +740,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_funptr.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_global.c"
 				>
 			</File>
@@ -1329,10 +1325,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_funcprot.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_funptr.f"
 				>
 			</File>
 			<File
