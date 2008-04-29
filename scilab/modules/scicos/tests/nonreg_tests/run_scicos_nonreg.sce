@@ -7,21 +7,20 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// This file can be used to launch Scicos non-regression tests from a
+// shell script:
+//
+//  $ cd /home/vaylet/dev/scilab-5.0/modules/scicos/tests/nonreg_tests
+//  $ ../../../../bin/scilab -nw -nb -f run_scicos_nonreg.sce
+
 //-- Disable vertical scrolling
 lines(0);
 
 //-- Load scicos_nonreg.sci
-exec('scicos_nonreg.sci');
-
-//-- Set base directory for non-regression tests, according to version used
-if getversion() == 'scilab-4.1.2' | getversion() == 'Scilab-4.1.2-SVN'
-  baseDir = '/home/vaylet/dev/scilab-5.0/modules/scicos/tests/nonreg_tests';
-elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
-  baseDir = fullfile(SCI,'modules','scicos','tests','nonreg_tests');
-end
+getf('scicos_nonreg.sci');
 
 //-- Launch non-regression tests
-scicos_nonreg(baseDir);
+scicos_nonreg();
 
 //-- Exit
 exit

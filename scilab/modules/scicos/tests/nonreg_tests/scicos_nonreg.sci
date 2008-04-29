@@ -15,9 +15,7 @@ function scicos_nonreg(varargin)
 //
 //  Input argument(s):
 //
-//    baseDir - OPTIONAL - string
-//      Base directory of non-regression tests (where COS files can be found)
-//        DEFAULT: fullfile(SCI,"modules","scicos","tests","nonreg_tests")
+//    -
 //
 //  Output argument(s):
 //
@@ -25,24 +23,19 @@ function scicos_nonreg(varargin)
 //
 //  Usage:
 //
-//     scicos_nonreg()
-//     scicos_nonreg('/home/<USER>/scilab-5.0/modules/scicos/tests/nonreg_tests')
+//     getf('scicos_nonreg'); scicos_nonreg();
 //
 //  Algorithm: (grep "^\s*//--" scicos_nonreg.sci | awk -F "//-- " '{print "//  " $1 $2}')
 //
 //    Parse input arguments
-//    Disable vertical scrolling
-//    Load launchtest.sci
-//    Base directory exists ?
-//      List and sort available tests (*.cos files)
+//    Disable vertical paging
+//    List and sort available tests (*.cos files)
 //      For each available test
-//          Launch and display result
+//        Launch test and display result
 //
 //  Notes:
 //
-//    baseDir is optional when launching tests from inside Scilab 5 but becomes
-//      mandatory when using Scilab 4 to generate reference data. Otherwise,
-//      Scilab 4 has no way to know where COS files reside. 
+//    - 
 //
 //  2008/04/22     Laurent VAYLET   Creation
 //  <YYYY/MM/DD>   <AUTHOR>         Modification
@@ -53,7 +46,7 @@ function scicos_nonreg(varargin)
   rhs = argn(2)
 
   // Define default input arguments
-  defaultArgs = list(fullfile(SCI,'modules','scicos','tests','nonreg_tests'))
+  defaultArgs = list()
   inputArgs   = defaultArgs 
   
   // Define maximum number of input arguments
@@ -70,37 +63,24 @@ function scicos_nonreg(varargin)
     end
   end
   
-  // Set final values of input arguments
-  baseDir = inputArgs(1)
-
-  //-- Disable vertical scrolling
+  //-- Disable vertical paging
   lines(0)
 
-  //-- Load launchtest.sci
-  // TODO: rename launchtest.sci (launch_nonreg.sci?) and put in 'macros/scicos_utils' folder
-  //exec('launchtest.sci')
-
-  //-- Base directory exists ?
-  [x,ierr] = fileinfo(baseDir)
-  if ierr ~= -1 & ~isempty(x)
+  //-- List and sort available tests (*.cos files)
+  baseDir    = pwd()
+  cosFiles   = gsort(basename(listfiles('*.cos')),'lr','i')
+  nbCosFiles = size(cosFiles,'*')
+  if nbCosFiles ~= 0
   
-    //-- List and sort available tests (*.cos files)
-    cosFiles   = gsort(basename(listfiles('*.cos')),'lr','i')
-    nbCosFiles = size(cosFiles,'*')
-    if nbCosFiles ~= 0
-
     //-- For each available test
-      for k = 1:nbCosFiles
+    for k = 1:nbCosFiles
+    
+      //-- Launch test and display result
+      launch_nonreg(baseDir,cosFiles(k))
       
-        //-- Launch test and display result
-        launch_nonreg(baseDir,cosFiles(k))
-        
-      end
-    else
-      error(mprintf('%s: No test found in following directory: ''%s''', 'run.sce', baseDir))
     end
   else
-    error(mprintf('%s: Base directory for non-regression tests does not exist: ''%s''\n', 'run.sce', baseDir))
+    error(mprintf('%s: No test found in following directory: ''%s''', 'run.sce', baseDir))
   end
 
 endfunction
@@ -108,6 +88,20 @@ endfunction
 // -----------------------------------------------------------------------------
 
 function launch_nonreg(baseDir, testName)
+
+//  Algorithm: (grep "^\s*//--" scicos_nonreg.sci | awk -F "//-- " '{print "//  " $1 $2}')
+//
+//    Initializations
+//    Build a script whose purpose is to launch simulation and log console output   
+//    Launch script using a background Scilab
+//    Non-regression tests launched under Scilab 4.X ?  
+//      Rename file.out -> file.out.ref
+//    Non-regression tests launched under Scilab 5.X ?  
+//      Compare output data with reference data:
+//      Read output data
+//      Read reference data
+//      Compare (%F meaning identical) and update status
+//      Display result
 
   //-- Initializations
 
@@ -117,14 +111,21 @@ function launch_nonreg(baseDir, testName)
   testFilename   = fullfile(baseDir, testName + '.test')
   modelFilename  = fullfile(baseDir, testName + '.cos')
   
-  if getversion() == 'scilab-4.1.2' | getversion() == 'Scilab-4.1.2-SVN'
+  if ~isempty(grep(getversion(),'scilab-4')) ..
+    | ~isempty(grep(getversion(), 'Scilab-4')) ..
+    | ~isempty(grep(getversion(), 'scicos_work'))
+   
     diaryFilename  = fullfile(baseDir, testName + '_v4.log')
     resFilename    = fullfile(baseDir, testName + '_v4.res')
     errFilename    = fullfile(baseDir, testName + '_v4.err')
-  elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
+    
+  elseif ~isempty(grep(getversion(), 'scilab-trunk-SVN')) ..
+    | ~isempty(grep(getversion(), 'scilab-5'))
+       
     diaryFilename  = fullfile(baseDir, testName + '_v5.log')
     resFilename    = fullfile(baseDir, testName + '_v5.res')
     errFilename    = fullfile(baseDir, testName + '_v5.err')
+    
   end
   
   outFilename    = fullfile(baseDir, testName + '.out')
@@ -137,6 +138,8 @@ function launch_nonreg(baseDir, testName)
           'clear';
           'lines(28,72)';
           'lines(0)';
+          '';
+          'cd(''' + baseDir + ''')';
           '';
           '// Start logging output';
           'diary(''' + diaryFilename + ''')';
@@ -161,12 +164,23 @@ function launch_nonreg(baseDir, testName)
           'exit'];
   mputl(txt, testFilename);
 
-  //-- Launch script using a background Scilab  
-  cmd = '(' + SCI + '/bin/scilab -nw -nb -args -nouserstartup -f ' + testFilename + ' > ' + resFilename + ') 2> ' + errFilename
+  //-- Launch script using a background Scilab
+  // Binary or source version ?
+	if (~MSDOS) & isempty(fileinfo(SCI + '/bin/scilab')) then
+		SCI_BIN = strsubst(SCI, '/share/scilab', '');
+	else
+		SCI_BIN = SCI;
+	end
+  
+  if MSDOS then
+		cmd = '(""' + SCI_BIN + '\bin\scilex.exe"" -nw -nb -args -nouserstartup -f ""' + testFilename + '"" > ""' + resFilename + '"") 2> ""' + errFilename + '""'
+	else
+		cmd = '(' + SCI_BIN + '/bin/scilab -nw -nb -args -nouserstartup -f ' + testFilename + ' > ' + resFilename + ') 2> ' + errFilename
+	end
   host(cmd)
 
   //-- Non-regression tests launched under Scilab 4.X ?  
-  if getversion() == 'scilab-4.1.2' | getversion() == 'Scilab-4.1.2-SVN'
+  if ~isempty(grep(getversion(),'scilab-4')) | ~isempty(grep(getversion(), 'Scilab-4')) | ~isempty(grep(getversion(), 'scicos_work'))
   
     //-- Rename file.out -> file.out.ref
     mdelete(outRefFilename)
@@ -180,7 +194,7 @@ function launch_nonreg(baseDir, testName)
     end
   
   //-- Non-regression tests launched under Scilab 5.X ?  
-  elseif getversion() == 'scilab-trunk-SVN' | getversion() == 'scilab-5.0'
+  elseif ~isempty(grep(getversion(), 'scilab-trunk-SVN')) | ~isempty(grep(getversion(), 'scilab-5'))
   
     //-- Compare output data with reference data:
     
