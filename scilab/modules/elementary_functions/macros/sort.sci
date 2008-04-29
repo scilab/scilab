@@ -7,82 +7,58 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function varargout = sort(varargin)
+function [s,k] = sort(V,F)
 // sort function
 // help sort for more informations
 
-  OUT1 ='';
-  OUT2 ='';
+  s =[];
+  k =[];
   
-  // get Rhs & Lhs
-  [Lhs,Rhs]=argn(0);
+  if V==[] then return,end
   
-  // check number input & output
-  if ( (Lhs < 1) | (Lhs > 2) ) then
-    error(42);
-  end
-  
-  if ( (Rhs < 1) | (Rhs > 2) ) then
-    error(41);
-  end
-  
-  // default flag
-  F = 'g';
-  
-  V = varargin(1);
-  
-  if (Rhs == 2) then 
-  
-    F = varargin(2);
+  if (argn(2) == 2) then 
     // check type argument 2 must be a string
-    if (type(F) <> 10) then 
+    if  F==1|F=='r' then
+      F='r'
+    elseif  F==2|F=='c' then
+      F='c'
+    else
       error(44,2);
     end
-    
-    //  check if it is a correct flag
-    if ( (F <> 'r') & (F <> 'c') ) then 
-      error(44,2);
-    end
+  else
+     F = 'g'; // default flag
   end
   
   select type(V)
-  	case 1 then // matrix
-			if isreal(V) then // real
-			  [OUT1,OUT2] = gsort(V,F);
-			else // complex
-  		  realpart = real(V);
-			  imagpart = imag(V);
-			  modulus = sqrt(realpart.*realpart + imagpart.*imagpart);
-			  [OUT1,OUT2] = gsort(modulus,F);
-			  OUT1 = V(OUT2);
-			end
-			
-  	case 10 then  // strings
-  	  // Warning Compatiblity with previous version
-  	  // string are sorting by increasing order
-  	  [OUT1,OUT2] = gsort(V,F,'i'); 
-  	case 5 then // vector sparse
-  	 S = size(V);
-  	 if (S <> 1) then
-  	   error(msprintf(gettext("%s: Wrong size for first input argument: Vector expected.\n"),"sort"),10000);
-  	 else
-  	   // Lhs == 1 only with sparse vectors
-  	   if (Lhs == 2) then
-  	     error(41);
-  	   end
-  	   
-  	   // sort sparse vector
-  	   [pout1,pout2] = spget(V);
-  	   OUT1 = sparse(pout1,gsort(pout2,F));
-  	 end
-  	else // others cases
-  	  error(246)
-  	end
-  	
-  	// set output
-  	varargout(1) = OUT1;
-  	if (Lhs == 2) then
-  	  varargout(2) = OUT2;
-  	end
+  case 1 then // matrix
+    if isreal(V) then // real
+      [s,k] = gsort(V,F);
+    else // complex
+      [s,k] = gsort(abs(V),F);
+      s = V(k);
+    end
+  case 10 then  // strings
+    
+    // Warning Compatiblity with previous version string are sorted by increasing order
+    [s,k] = gsort(V,F,'i'); 
+  case 5 then // vector sparse
+    S = size(V);
+    if and(S > 1) then
+      error(msprintf(gettext("%s: Wrong size for first input argument: Vector expected.\n"),"sort"),10000);
+    else
+      // Lhs == 1 only with sparse vectors
+      if (argn(1) == 2) then
+	error(41);
+      end
+      
+      // sort sparse vector
+      [pout1,pout2] = spget(V);
+      s = sparse(pout1,gsort(pout2,F));
+    end
+  else // others cases
+    error(246)
+  end
+  
+
 endfunction
 

@@ -59,42 +59,16 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
   CheckRhs(1,3);
   CheckLhs(1,2);
 
-  if (Rhs >= 1)
+  if (Rhs == 3)
     {
-      Type=VarType(1);
-      switch (Type)
+      GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
+      CheckLength(3,m3,1);
+      if ( (*cstk(l3) != INCREASE_COMMAND) && (*cstk(l3) != DECREASE_COMMAND) )
 	{
-	case sci_strings :
-	  GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&S);
-	  break;
-	case sci_matrix :
-	  {
-	    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-	    if ( (m1 * n1) == 0 ) /* [] returns []*/
-	      {
-		int m = 0, n = 0, l = 0;
-		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
-		LhsVar(1) = Rhs+1 ;
-
-		if (Lhs == 2)
-		  {
-		    CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
-		    LhsVar(2) = Rhs+2 ;
-		  }
-
-		C2F(putlhsvar)();
-		return 0;
-	      }
-	  }
-	
-	  break;
-	case sci_ints:
-	  GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&Im);
-	  break;
-	default :
-	  Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
+	  Scierror(999,_("%s: Wrong value for third input argument: ''%s'' or ''%s'' expected.\n"),fname,"i","d");
 	  return 0;
 	}
+      iord[0] = *cstk(l3);
     }
 
   if (Rhs >= 2)
@@ -115,17 +89,44 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
       strcpy(typex,cstk(l2));
     }
 
-  if (Rhs == 3)
+
+  if (Rhs >= 1)
     {
-      GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-      CheckLength(3,m3,1);
-      if ( (*cstk(l3) != INCREASE_COMMAND) && (*cstk(l3) != DECREASE_COMMAND) )
+      Type=VarType(1);
+      switch (Type)
 	{
-	  Scierror(999,_("%s: Wrong value for third input argument: ''%s'' or ''%s'' expected.\n"),fname,"i","d");
+	case sci_strings :
+	  GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&S);
+	  break;
+	case sci_matrix :
+	  {
+	    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+	    if ( (m1 * n1) == 0 ) /* [] returns []*/
+	      {
+		int m = 0, n = 0, l = 0;
+		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
+		LhsVar(1) = Rhs+1 ;
+		if (Lhs == 2)
+		  {
+		    CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
+		    LhsVar(2) = Rhs+2 ;
+		  }
+		C2F(putlhsvar)();
+		return 0;
+	      }
+	  }
+	
+	  break;
+	case sci_ints:
+	  GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&Im);
+	  break;
+	default :
+	  Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
 	  return 0;
 	}
-      iord[0] = *cstk(l3);
     }
+
+
 
   if ( typex[0] == LIST_SORT) 
     {
