@@ -80,6 +80,9 @@ AC_ARG_ENABLE(debugCXX,
 AC_ARG_ENABLE(debugFortran,
    AC_HELP_STRING([--enable-debug-fortran],[Do not optimize and print warning messages (Fortran code)]))
 
+AC_ARG_ENABLE(debugLinker,
+   AC_HELP_STRING([--enable-debug-linker],[Print warning messages from the linker (ld)]))
+
 AC_ARG_ENABLE(stopOnWarning,
    AC_HELP_STRING([--enable-stop-on-warning],[Stop the compilation on the first warning found in the C/C++ code]))
 
@@ -383,7 +386,9 @@ if test "$CC" = "gcc"; then
 	  case "$host" in
 	  *-linux-gnu )
 	  # Only doing that under Linux
+		if test "$enable_debugLinker" = yes; then
 	  	  LDFLAGS="$LDFLAGS -Wl,--warn-common,-x"
+		fi
 		  CFLAGS="$CFLAGS -fdiagnostics-show-option"
 		  ;;
 		  esac
@@ -997,22 +1002,24 @@ AM_CONDITIONAL(INSTALL_HELP_XML, test "$with_install_help_xml" = "yes")
 AC_PROG_LIBTOOL([shared static dlopen])
 AM_PROG_LIBTOOL
 
-#�Avoid to link all the dep from others libraries (*.la included by LIBADD)
+# Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no
 
 # Check to see if building shared libraries
-libtool_build_shared_libs='no'
-if test "$enable_shared" = 'yes'; then
-  libtool_build_shared_libs='yes'
+libtool_build_shared_libs=no
+if test "$enable_shared" = "yes"; then
+  libtool_build_shared_libs=yes
 fi
 
 # Check to see if building static libraries
-libtool_build_static_libs='no'
-if test "$enable_static" = 'yes'; then
-  libtool_build_static_libs='yes'
+libtool_build_static_libs=no
+if test "$enable_static" = "yes"; then
+  libtool_build_static_libs=yes
 fi
 
-AM_CONDITIONAL(ENABLE_STATIC, test "$enable_static" = yes)
+# AM_CONDITIONAL(ENABLE_STATIC, test "$libtool_build_static_libs" = yes)
+# Fake to disable the static build
+AM_CONDITIONAL(ENABLE_STATIC, test "$libtool_build_static_libs" = xxxx)
 
 AC_C_CONST()
 AC_C_INLINE()

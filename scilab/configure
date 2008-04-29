@@ -1606,6 +1606,7 @@ Optional Features:
                           code)
   --enable-debug-fortran  Do not optimize and print warning messages (Fortran
                           code)
+  --enable-debug-linker   Print warning messages from the linker (ld)
   --enable-stop-on-warning
                           Stop the compilation on the first warning found in
                           the C/C++ code
@@ -5501,6 +5502,12 @@ if test "${enable_debugFortran+set}" = set; then
 fi
 
 
+# Check whether --enable-debugLinker was given.
+if test "${enable_debugLinker+set}" = set; then
+  enableval=$enable_debugLinker;
+fi
+
+
 # Check whether --enable-stopOnWarning was given.
 if test "${enable_stopOnWarning+set}" = set; then
   enableval=$enable_stopOnWarning;
@@ -9278,7 +9285,9 @@ if test "$CC" = "gcc"; then
 	  case "$host" in
 	  *-linux-gnu )
 	  # Only doing that under Linux
+		if test "$enable_debugLinker" = yes; then
 	  	  LDFLAGS="$LDFLAGS -Wl,--warn-common,-x"
+		fi
 		  CFLAGS="$CFLAGS -fdiagnostics-show-option"
 		  ;;
 		  esac
@@ -9854,7 +9863,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 9857 "configure"
+// #line 9866 "configure"
 
 
 public class conftest {
@@ -9904,7 +9913,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 9907 "configure"
+// #line 9916 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -9952,7 +9961,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 9955 "configure"
+// #line 9964 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -9979,7 +9988,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 9982 "configure"
+// #line 9991 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -11231,7 +11240,7 @@ echo $ECHO_N "checking flexdock... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11234 "configure"
+// #line 11243 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11297,7 +11306,7 @@ echo $ECHO_N "checking jogl... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11300 "configure"
+// #line 11309 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -11363,7 +11372,7 @@ echo $ECHO_N "checking jhall... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11366 "configure"
+// #line 11375 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -11429,7 +11438,7 @@ echo $ECHO_N "checking gluegen-rt... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11432 "configure"
+// #line 11441 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -11495,7 +11504,7 @@ echo $ECHO_N "checking jrosetta-API... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11498 "configure"
+// #line 11507 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -11561,7 +11570,7 @@ echo $ECHO_N "checking jrosetta-engine... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11564 "configure"
+// #line 11573 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -11627,7 +11636,7 @@ echo $ECHO_N "checking commons-logging... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11630 "configure"
+// #line 11639 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -23138,7 +23147,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 23141 "configure"
+#line 23150 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -23522,7 +23531,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 23525 "configure"
+#line 23534 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -25256,7 +25265,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 25259 "configure"' > conftest.$ac_ext
+  echo '#line 25268 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -27126,11 +27135,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:27129: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:27138: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:27133: \$? = $ac_status" >&5
+   echo "$as_me:27142: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -27416,11 +27425,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:27419: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:27428: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:27423: \$? = $ac_status" >&5
+   echo "$as_me:27432: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -27520,11 +27529,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:27523: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:27532: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:27527: \$? = $ac_status" >&5
+   echo "$as_me:27536: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -29969,7 +29978,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 29972 "configure"
+#line 29981 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -30069,7 +30078,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 30072 "configure"
+#line 30081 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -32490,11 +32499,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:32493: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32502: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:32497: \$? = $ac_status" >&5
+   echo "$as_me:32506: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -32594,11 +32603,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:32597: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32606: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:32601: \$? = $ac_status" >&5
+   echo "$as_me:32610: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -34192,11 +34201,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34195: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34204: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:34199: \$? = $ac_status" >&5
+   echo "$as_me:34208: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -34296,11 +34305,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34299: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34308: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:34303: \$? = $ac_status" >&5
+   echo "$as_me:34312: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -36520,11 +36529,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:36523: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36532: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:36527: \$? = $ac_status" >&5
+   echo "$as_me:36536: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -36810,11 +36819,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:36813: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36822: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:36817: \$? = $ac_status" >&5
+   echo "$as_me:36826: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -36914,11 +36923,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:36917: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36926: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:36921: \$? = $ac_status" >&5
+   echo "$as_me:36930: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -39622,22 +39631,24 @@ LIBTOOL='$(SHELL) $(top_builddir)/libtool'
 
 
 
-#�Avoid to link all the dep from others libraries (*.la included by LIBADD)
+# Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no
 
 # Check to see if building shared libraries
-libtool_build_shared_libs='no'
-if test "$enable_shared" = 'yes'; then
-  libtool_build_shared_libs='yes'
+libtool_build_shared_libs=no
+if test "$enable_shared" = "yes"; then
+  libtool_build_shared_libs=yes
 fi
 
 # Check to see if building static libraries
-libtool_build_static_libs='no'
-if test "$enable_static" = 'yes'; then
-  libtool_build_static_libs='yes'
+libtool_build_static_libs=no
+if test "$enable_static" = "yes"; then
+  libtool_build_static_libs=yes
 fi
 
- if test "$enable_static" = yes; then
+# AM_CONDITIONAL(ENABLE_STATIC, test "$libtool_build_static_libs" = yes)
+# Fake to disable the static build
+ if test "$libtool_build_static_libs" = xxxx; then
   ENABLE_STATIC_TRUE=
   ENABLE_STATIC_FALSE='#'
 else
@@ -41483,22 +41494,21 @@ echo "$as_me: $ac_file is unchanged" >&6;}
   fi
   rm -f "$tmp/out12"
 # Compute $ac_file's index in $config_headers.
-_am_arg=$ac_file
 _am_stamp_count=1
 for _am_header in $config_headers :; do
   case $_am_header in
-    $_am_arg | $_am_arg:* )
+    $ac_file | $ac_file:* )
       break ;;
     * )
       _am_stamp_count=`expr $_am_stamp_count + 1` ;;
   esac
 done
-echo "timestamp for $_am_arg" >`$as_dirname -- "$_am_arg" ||
-$as_expr X"$_am_arg" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
-	 X"$_am_arg" : 'X\(//\)[^/]' \| \
-	 X"$_am_arg" : 'X\(//\)$' \| \
-	 X"$_am_arg" : 'X\(/\)' \| . 2>/dev/null ||
-echo X"$_am_arg" |
+echo "timestamp for $ac_file" >`$as_dirname -- $ac_file ||
+$as_expr X$ac_file : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+	 X$ac_file : 'X\(//\)[^/]' \| \
+	 X$ac_file : 'X\(//\)$' \| \
+	 X$ac_file : 'X\(/\)' \| . 2>/dev/null ||
+echo X$ac_file |
     sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
 	    s//\1/
 	    q
@@ -41535,7 +41545,7 @@ echo "$as_me: executing $ac_file commands" >&6;}
   # each Makefile.in and add a new line on top of each file to say so.
   # Grep'ing the whole file is not good either: AIX grep has a line
   # limit of 2048, but all sed's we know have understand at least 4000.
-  if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
+  if sed 10q "$mf" | grep '^#.*generated by automake' > /dev/null 2>&1; then
     dirpart=`$as_dirname -- "$mf" ||
 $as_expr X"$mf" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
 	 X"$mf" : 'X\(//\)[^/]' \| \
