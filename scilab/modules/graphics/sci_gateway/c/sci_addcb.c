@@ -53,7 +53,7 @@ int sci_addcb(char *fname,unsigned long fname_len)
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2); /* Gets the mouse event */
     break;
   default: 
-    Scierror(999,_("%s: Wrong input arguments.\n"),fname);
+    Scierror(999,_("%s: Wrong type for first input argument: Scalar or string expected.\n"),fname);
     return 0;
     break;
 

@@ -71,7 +71,7 @@ int sci_champ_G(char *fname,int (*func) (),unsigned long fname_len)
   } 
   else if ( Rhs < 4 ) 
   {
-    Scierror(999,_("%s: Wrong number of input arguments: at least 4 expected.\n"),fname);
+    Scierror(999,_("%s: Wrong number of input arguments: At least %d expected.\n"),fname,4);
     return 0;
   }
   if ( get_optionals(fname,opts) == 0) { return 0 ; }

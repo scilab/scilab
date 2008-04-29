@@ -162,8 +162,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
       return 0;
     break;
   default :
-    Scierror(999,_("%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"), 
-      fname,"tics",dir,"r","v","i");
+    Scierror(999,_("%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"), fname,"tics",dir,"r","v","i");
     return 0;
   }
 

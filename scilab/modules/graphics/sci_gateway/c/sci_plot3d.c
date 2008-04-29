@@ -143,7 +143,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
     }
     if ( m1*n1 <= 1 || m2*n2 <= 1 ) 
     {
-      Scierror(999,_("%s: Wrong size for first and second input arguments: size >= %d expected.\n"),fname,2);
+      Scierror(999,_("%s: Wrong size for first and second input arguments: %s expected.\n"),fname,">= 2");
       return 0;
     }
   }
