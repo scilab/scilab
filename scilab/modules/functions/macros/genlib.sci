@@ -56,7 +56,24 @@ function genlib(nam,path,force,verbose,names)
 
 	if exists('names','local')==0 then
 		// list the sci files
-		files=listfiles(path+'*.sci',%f)
+		files = listfiles(path+'*.sci',%f);
+		
+		if MSDOS then
+		// remove wrong files extension
+		// bug 2289
+		  ext = fileext(files);
+		  if ~and( (ext == '.sci') ) then
+		    tmp_files = [];
+		    for i = 1:size(files,'*');
+		      if ext(i) == '.sci' then
+		        tmp_files = [tmp_files;files(i)];
+		      end
+		    end
+		    files = tmp_files;
+		    clear tmp_files;
+		  end
+		end
+		
 		if files==[] | files== "" then
 		warning(msprintf(gettext("I cannot find any sci files in %s"),path));
 		return ;

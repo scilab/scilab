@@ -17,6 +17,7 @@
 #include "Scierror.h"
 #include "FindFileExtension.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_fileext)(char *fname,unsigned long fname_len)
 {
@@ -28,27 +29,37 @@ int C2F(sci_fileext)(char *fname,unsigned long fname_len)
 	if (GetType(1) == sci_strings)
 	{
 		int n1 = 0, m1 = 0, l1 = 0;
+		int i = 0;
 
-		char *filename = NULL;
-		char *extension = NULL;
-		
-		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		filename = cstk(l1);
+		char **Input_filenames  = NULL;
+		char **Output_extensions = NULL;
 
-		if (filename) extension = FindFileExtension(filename);
+		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_filenames);
 
-		if (extension)
+		Output_extensions = (char**)MALLOC(sizeof(char*)*(m1*n1));
+		if (Output_extensions)
 		{
-			n1 = 1;
-			CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(extension), &m1),&n1,&extension);
+			
+			for (i = 0; i < m1*n1; i++)
+			{
+				if (Input_filenames[i])
+				{
+					Output_extensions[i] = FindFileExtension(Input_filenames[i]);
+				}
+				else
+				{
+					Output_extensions[i] = NULL;
+				}
+			}
+			CreateVarFromPtr( Rhs+1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, Output_extensions );
+			LhsVar(1)=Rhs+1;
+			C2F(putlhsvar)();
+			freeArrayOfString(Output_extensions,m1*n1);
 		}
 		else
 		{
-			l1 = 0; m1 = 0; n1 = 0;
-			CreateVarFromPtr(Rhs+ 1,MATRIX_OF_DOUBLE_DATATYPE,&n1,&m1,&l1);
+			Scierror(999,_("%s: No more memory.\n"),fname);
 		}
-		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
 	}
 	else
 	{

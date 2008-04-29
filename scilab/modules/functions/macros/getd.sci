@@ -21,10 +21,26 @@ function getd(path,option)
   
   // convert path according to MSDOS flag
   // and with env var substitutions
-  path=pathconvert(path,%t,%t);
+  path = pathconvert(path,%t,%t);
   
   // list the sci files
-  lst=listfiles(path+'*.sci',%f)
+  lst = listfiles(path+'*.sci',%f);
+  
+  if MSDOS then
+  // remove wrong files extension
+	// bug 2289
+	  ext = fileext(lst);
+	  if ~and( (ext == '.sci') ) then
+	    tmp_lst = [];
+	    for i = 1:size(lst,'*');
+	      if ext(i) == '.sci' then
+	        tmp_lst = [tmp_lst;lst(i)];
+	      end
+	    end
+	    lst = tmp_lst;
+	    clear tmp_lst;
+	  end
+	end
   
   if lst==[] | lst== "" then
     error(msprintf(gettext("I cannot find any sci files in %s"),path));

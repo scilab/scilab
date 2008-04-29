@@ -15,6 +15,7 @@
 #include <Windows.h>
 #include <shlwapi.h>
 #pragma comment(lib, "shlwapi.lib")
+#include "strdup_windows.h"
 #else
 #include <string.h>
 #include <stdio.h>
@@ -40,7 +41,7 @@ char *FindFileExtension(char *filename)
 			if (extension) sprintf(extension,&filename[i]);
 		}
 		#else
-		extension = PathFindExtension(filename);
+		extension = strdup(PathFindExtension(filename));
 		#endif
 	}
 	return extension;

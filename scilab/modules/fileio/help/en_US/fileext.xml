@@ -47,6 +47,7 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ extension = fileext('SCI/etc/scilab.start')
+    extension = fileext(['SCI/etc/scilab.start';'SCI/etc/scilab.quit'])
   ]]></programlisting>
   </refsection>
   <refsection>
@@ -59,6 +60,6 @@
   </refsection>
   <refsection>
     <title>Authors</title>
-    <para>A.C</para>
+    <para>Allan CORNET</para>
   </refsection>
 </refentry>
