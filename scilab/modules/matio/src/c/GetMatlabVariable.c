@@ -18,19 +18,14 @@ matvar_t *GetMatlabVariable(int stkPos, const char *name, int matfile_version)
   switch(VarType(stkPos))
     {
     case sci_matrix:
-      sciprint("GetDoubleVariable\n");
       return GetDoubleVariable(stkPos, name, matfile_version);
     case sci_strings:
-      sciprint("GetCharVariable\n");
       return GetCharVariable(stkPos, name);
     case sci_ints:
-      sciprint("GetIntegerVariable\n");
       return GetIntegerVariable(stkPos, name);
     case sci_mlist: /* Only cells structs and hypermatrices are managed */
-      sciprint("GetMlistVariable\n");
       return GetMlistVariable(stkPos, name, matfile_version);
     case sci_sparse:
-      sciprint("GetSparseVariable\n");
       return GetSparseVariable(stkPos, name);
     default:
       sciprint("Do not known how to get variable of type %d\n", VarType(stkPos));
