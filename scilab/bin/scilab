@@ -92,6 +92,7 @@ start_profiling_visu() {
 }
 
 
+SCILABBIN="scilab-bin"
 
 OLDPWD=`pwd`
 
@@ -102,14 +103,14 @@ progname="$0"
 curdir=`dirname "$progname"`
 
 progbase=`basename "$progname"`
-run_sci="$curdir/scilab-bin"
+run_sci="$curdir/$SCILABBIN"
 if test -x "$run_sci"; then # scilab-bin is in the /bin/ directory
 	cd "$curdir/../"
 	SCI=`pwd`
 	SCIBIN=$run_sci
 	found=1
 else
-	run_sci="$curdir/../scilab-bin"
+	run_sci="$curdir/../$SCILABBIN"
 	if test -x "$run_sci"; then # scilab-bin is in the / directory
 		# which is the case in a dev env
 		cd "$curdir/../"
@@ -127,7 +128,7 @@ else
 				break
 			fi
 			curdir=`dirname "$progname"`
-			run_sci="$curdir/bin/scilab-bin"
+			run_sci="$curdir/bin/$SCILABBIN"
 			if test -x "$run_sci"; then
 				cd "$curdir"
 				SCI=`pwd`
@@ -136,7 +137,7 @@ else
 				break
 			fi
 			# The current file ($0), probably scilab is a symlink to the real one and here, it is the dev env
-			run_sci="$curdir/../scilab-bin"
+			run_sci="$curdir/../$SCILABBIN"
 			if test -x "$run_sci"; then
 				cd "$curdir/../"
 				SCI=`pwd`
@@ -153,17 +154,17 @@ else
 fi
 
 
-if test -x "$SCI/bin/scilab-bin"; then
+if test -x "$SCI/bin/$SCILABBIN"; then
 # real env
-	SCILABBIN=$SCI/bin/scilab-bin
+	SCILABBIN=$SCI/bin/$SCILABBIN
 	SCI=$SCI/share/scilab/
 else
-	if test -x "$SCI/scilab-bin"; then
+	if test -x "$SCI/$SCILABBIN"; then
 		# dev env
-		SCILABBIN=$SCI/scilab-bin
+		SCILABBIN=$SCI/$SCILABBIN
 		DEVENV=1
 	else
-		echo "Cannot find scilab-bin ..."
+		echo "Cannot find $SCILABBIN ..."
 		exit 1
 	fi
 fi
