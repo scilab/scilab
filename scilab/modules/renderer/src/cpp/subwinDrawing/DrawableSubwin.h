@@ -42,6 +42,12 @@ public:
   void setCamera( Camera * cam ) ;
 
   /**
+   * Redefine has changed so children
+   * so that needed children will also be redrawn
+   */
+  virtual void hasChanged( void ) ;
+
+  /**
    * Display the subwin by just setting the camera
    * and its children pObj
    */
@@ -52,6 +58,11 @@ public:
    * ie fills Frect.
    */
   virtual void computeRealDataBounds(void) = 0;
+
+  /**
+   * Just update scale and size if needed
+   */
+  virtual void updateScale(void) = 0;
 
 protected:
 

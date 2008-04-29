@@ -333,20 +333,21 @@ public class DrawableFigureGL extends ObjectGL {
   		setIsRenderingEnable(false);
   		FigureMapper.removeMapping(figureId);
   		
-  		if (Threading.isOpenGLThread()) {
-  			getRenderingTarget().getContext().destroy();
-  		} else {
-  			Threading.invokeOnOpenGLThread(new Runnable() {
-  				public void run() {
-  					getRenderingTarget().getContext().destroy();
-  				}
-  			});
-  		}
 
   		// then destroy canvas
   		// call it on an other thread to avoid deadlocks
   		Thread destroyThread = new Thread(new Runnable() {
   			public void run() {
+  				
+  				if (Threading.isOpenGLThread()) {
+  		  			getRenderingTarget().getContext().destroy();
+  		  		} else {
+  		  			Threading.invokeOnOpenGLThread(new Runnable() {
+  		  				public void run() {
+  		  					getRenderingTarget().getContext().destroy();
+  		  				}
+  		  			});
+  		  		}
 
   				if (SwingUtilities.isEventDispatchThread()) {
   					getRendererProperties().closeCanvas();
@@ -560,7 +561,6 @@ public class DrawableFigureGL extends ObjectGL {
 		if (textWriter == null || !textWriter.hasFont(font)) {
 			if (textWriter != null) {
 				// free resources used by the current one if exists
-				textWriter.flush();
 				textWriter.dispose();
 			}
 			textWriter = (SciTextRenderer) getTextRendererFactory().createTextRenderer(font, color);
@@ -577,7 +577,6 @@ public class DrawableFigureGL extends ObjectGL {
 	public void destroyTextWriter() {
 		if (textWriter != null) {
 			// free resources used by the current one
-			textWriter.flush();
 			textWriter.dispose();
 		}
 		textWriter = null;

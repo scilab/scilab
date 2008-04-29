@@ -40,4 +40,14 @@ public static void redrawFigure(int figureId) {
     FigureScilabCallJNI.redrawFigure(figureId);
   }
 
+  
+ /**
+  * Redraw all the subwindows inside a figure.
+  * This should be called when the figure is resized.
+  * @param figureId index of the figure to redraw
+  */
+public static void redrawSubwins(int figureId) {
+    FigureScilabCallJNI.redrawSubwins(figureId);
+  }
+
 }

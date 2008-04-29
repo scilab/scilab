@@ -48,6 +48,12 @@ void DrawableSubwin::setCamera( Camera * cam )
   m_pCamera = cam;
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableSubwin::hasChanged( void )
+{
+  DrawableObject::hasChanged();
+  parentSubwinChanged();
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableSubwin::displaySingleObj(sciPointObj * pObj)
 {
 

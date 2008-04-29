@@ -22,6 +22,8 @@ void displayFigure(int figureId);
 
 void redrawFigure(int figureId) ;
 
+void redrawSubwins(int figureId) ;
+
 #ifdef __cplusplus
 }
 #endif

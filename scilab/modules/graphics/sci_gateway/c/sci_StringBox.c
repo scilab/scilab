@@ -75,7 +75,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
   /* create a window if needed to initialize the X11 graphic context  */
 
   /* force drawing of text to update stringbox */
-  sciDrawSingleObj(pText);
+  updateTextBounds(pText);
 
   /* get the string box */
   sciGet2dViewBoundingBox( pText, corners[0], corners[1], corners[2], corners[3]) ;

@@ -45,7 +45,7 @@ public:
   // Inherited from TextContentDrawerJavaMapper
   virtual void setTextContent(char ** text, int nbRow, int nbCol);
   virtual void setCenterPosition(double centerX, double centerY, double centerZ);
-  virtual void drawTextContent(void);
+  virtual double * drawTextContent(void);
 
   virtual double * getBoundingRectangle(void);
 

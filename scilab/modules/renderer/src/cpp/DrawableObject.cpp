@@ -60,7 +60,10 @@ void DrawableObject::hasChanged( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::familyHasChanged( void )
 {
+  // force redraw
   hasChanged();
+
+  // do the same for childrens
   sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
   while ( curSon != NULL )
   {
@@ -69,6 +72,21 @@ void DrawableObject::familyHasChanged( void )
       {
         getHandleDrawer( curSon->pointobj )->familyHasChanged();
       }
+    curSon = curSon->pprev ;
+  }
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableObject::parentSubwinChanged( void )
+{
+  // just call the function on children
+  sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
+  while ( curSon != NULL )
+  {
+    if (sciGetEntityType(curSon->pointobj) != SCI_UICONTROL
+      && sciGetEntityType(curSon->pointobj) != SCI_UIMENU) 
+    {
+      getHandleDrawer( curSon->pointobj )->parentSubwinChanged();
+    }
     curSon = curSon->pprev ;
   }
 }

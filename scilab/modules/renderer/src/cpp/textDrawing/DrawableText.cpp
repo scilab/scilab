@@ -12,26 +12,38 @@
  */
 
 #include "DrawableText.h"
+#include "../DrawableObject.h"
+#include "../getHandleDrawer.h"
+
+extern "C"
+{
+#include "GetProperty.h"
+}
 
 namespace sciGraphics
 {
-
+/*---------------------------------------------------------------------------------*/
+void DrawableText::parentSubwinChanged( void )
+{
+  m_bNeedRedraw = true;
+}
 /*---------------------------------------------------------------------------------*/
 void DrawableText::draw( void )
 {
   
   // update might be needed
-  updateTextBox();
+  //updateTextBox();
   if (!checkVisibility() || isTextEmpty() )
   {
+    updateTextBoxFromContext();
     return ;
   }
 
   initializeDrawing() ;
   
   clip();
-  drawBox();
   drawTextContent();
+  drawBox();
   unClip();
   endDrawing();
 }
@@ -39,15 +51,15 @@ void DrawableText::draw( void )
 void DrawableText::show( void )
 {
   // update might be needed
-  updateTextBox();
+  //updateTextBox();
   if (!checkVisibility() || isTextEmpty() )
   {
     return ;
   }
   initializeDrawing();
   clip();
-  showBox();
   showTextContent();
+  showBox();
   unClip();
   endDrawing();
 }

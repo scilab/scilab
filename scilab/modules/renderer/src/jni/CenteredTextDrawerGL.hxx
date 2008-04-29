@@ -62,7 +62,7 @@ jmethodID voidsetTextParametersjintjintjintjdoublejdoublejintjintID; // cache me
 jmethodID voidsetTextContentjobjectArrayjintjintID; // cache method id
 jclass stringArrayClass;
 jmethodID voidsetCenterPositionjdoublejdoublejdoubleID; // cache method id
-jmethodID voiddrawTextContentID; // cache method id
+jmethodID jdoubleArraydrawTextContentID; // cache method id
 jmethodID jdoubleArraygetBoundingRectangleID; // cache method id
 jmethodID jintArraygetScreenBoundingBoxID; // cache method id
 
@@ -124,7 +124,7 @@ void setTextContent(char ** text, int textSize, long nbRow, long nbCol);
 
 void setCenterPosition(double centerX, double centerY, double centerZ);
 
-void drawTextContent();
+double * drawTextContent();
 
 double * getBoundingRectangle();
 

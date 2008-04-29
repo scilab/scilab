@@ -84,6 +84,16 @@ void sciSetJavaBackground(sciPointObj * pFigure, int backColor);
  */
 void sciSetJavaTitle( sciPointObj * pFigure, const char * title ) ;
 
+/**
+ * Update subwin size and scale
+ */
+void sciJavaUpdateSubwinScale(sciPointObj * pSubwin);
+
+/**
+ * Update bounding box of a text objectr if needed
+ */
+void sciJavaUpdateTextBoundingBox(sciPointObj * pText);
+
 #ifdef __cplusplus
 }
 #endif

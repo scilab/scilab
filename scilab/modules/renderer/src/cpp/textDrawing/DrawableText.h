@@ -30,6 +30,11 @@ public:
   virtual ~DrawableText( void ) {}
 
   /**
+   * Text must be updated whenever the parent axes changed
+   */
+  virtual void parentSubwinChanged( void );
+
+  /**
    * Get the 4 corners of the text bounding rectangle (the text lies within a plane).
    * Used to draw the rectangle around the text.
    */
@@ -50,6 +55,11 @@ public:
    * Update the text box of a text object
    */
   virtual void updateTextBox(void) = 0;
+
+  /**
+   * Update the text box a text object from OpenGL context.
+   */
+  virtual void updateTextBoxFromContext(void) = 0;
 
 protected:
 

@@ -79,9 +79,9 @@ void StandardTextDrawerJavaMapper::setCenterPosition(double centerX, double cent
   m_pJavaObject->setCenterPosition(centerX, centerY, centerZ);
 }
 /*---------------------------------------------------------------------------------*/
-void StandardTextDrawerJavaMapper::drawTextContent(void)
+double * StandardTextDrawerJavaMapper::drawTextContent(void)
 {
-  m_pJavaObject->drawTextContent();
+  return m_pJavaObject->drawTextContent();
 }
 /*---------------------------------------------------------------------------------*/
 double * StandardTextDrawerJavaMapper::getBoundingRectangle(void)

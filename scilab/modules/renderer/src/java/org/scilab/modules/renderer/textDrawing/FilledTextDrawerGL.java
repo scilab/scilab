@@ -23,10 +23,16 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  */
 public class FilledTextDrawerGL extends TextContentDrawerGL {
 
-	private static final double DEFAULT_FONT_SIZE = 10.0;
+	private static final float DEFAULT_FONT_SIZE = 10.0f;
 	
 	private double filledBoxWidth;
 	private double filledBoxHeight;
+	
+	private TextGrid stringPos;
+	
+	private float finalFontSize;
+	
+	private Vector3D realCenter;
 	
 	/**
 	 * Default constructor
@@ -35,6 +41,9 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		super();
 		filledBoxWidth = 0.0;
 		filledBoxHeight = 0.0;
+		stringPos = null;
+		finalFontSize = DEFAULT_FONT_SIZE;
+		realCenter = null;
 	}
 	
 	/**
@@ -65,33 +74,32 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 	
 	/**
 	 * Draw the text using pixel coordinates.
-	 * @param textCenterPix center of text to draw in pixels
+	 * @return 4 corners of the rectangle bounding box.
 	 */
-	@Override
-	public void drawTextContentPix(Vector3D textCenterPix) {
+	public Vector3D[] drawTextContentPix() {
 		SciTextRenderer renderer = getTextRenderer();
 		
-		StringMatrixGL textMatrix = computeStringSizes(renderer, getTextMatrix());
+		setTextMatrix(computeStringSizes(renderer, getTextMatrix()));
 		// get default position with size 1.
-		TextGrid stringPos = getStringsPositions(textMatrix);
+		stringPos = getStringsPositions(getTextMatrix());
 
 		// Compute a new font size which will fill the box.
 		Vector3D[] bounds = stringPos.getExtremBounds();
 		double curWidth = bounds[2].getX() - bounds[1].getX();
 		double curHeight = bounds[0].getY() - bounds[1].getY();
 		
-		Vector3D newCenter = new Vector3D(textCenterPix);
+		realCenter = new Vector3D(getTextCenterPix());
 		double newBoxWidth = filledBoxWidth;
 		double newBoxHeight = filledBoxHeight;
 		// when axes are reversed size might be negative
 		if (newBoxWidth < 0) {
 			newBoxWidth = -newBoxWidth;
-			newCenter.setX(newCenter.getX() - newBoxWidth);
+			realCenter.setX(realCenter.getX() - newBoxWidth);
 		}
 		
 		if (newBoxHeight < 0) {
 			newBoxHeight = -newBoxHeight;
-			newCenter.setY(newCenter.getY() - newBoxHeight);
+			realCenter.setY(realCenter.getY() - newBoxHeight);
 		}
 		
 		// compute the needed size for each dimension.
@@ -101,20 +109,36 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		// apply scale factor
 		double factor = Math.min(xFactor, yFactor);
 		
-		float newFontSize = (float) (getFont().getSize2D() * factor);
+		finalFontSize = (float) (getFont().getSize2D() * factor);
 		stringPos.scale(factor);
 		
 		// create a new renderer with a new font.
-		renderer = getTextRenderer(newFontSize);
+		renderer = getTextRenderer(finalFontSize);
 		
 		// update StringSizes with the new renderer
-		textMatrix.update(renderer);
-		stringPos = placeTextGrid(stringPos, newCenter, textCenterPix, getRotationAngle());
+		getTextMatrix().update(renderer);
+		stringPos = placeTextGrid(stringPos, realCenter, getTextCenterPix(), getRotationAngle());
 		
+		drawText(renderer, getTextMatrix(), stringPos);
 		
-		drawText(renderer, textMatrix, stringPos);
+		Vector3D[] bbox = stringPos.getExtremBounds(); 
+		return placeBoundingBox(bbox, getTextCenterPix(), getRotationAngle());
 		
 	}
+	
+	/**
+	 * Display some from text from already precomputed positions.
+	 */
+	public void showTextContentPix() {
+		SciTextRenderer renderer = getTextRenderer(finalFontSize);
+		
+		placeTextGrid(stringPos, realCenter, getTextCenterPix(), getRotationAngle());
+		
+		drawText(renderer, getTextMatrix(), stringPos);
+
+	}
+	
+	
 
 	/**
 	 * Get the bounding box of the text matrix centered at the origin.
@@ -129,16 +153,16 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 						  new Vector3D(filledBoxWidth, filledBoxHeight, 0.0)};
 		return res;
 	}
+	
+	
 
 	/**
 	 * Compute the 4 corners of the bounding rectangle of the text in pixels coordinates.
-	 * @param textCenterPix center of the text in pixel coordinates.
 	 * @return array of size 4 with the four corners.
 	 */
-	@Override
-	public Vector3D[] getBoundingRectanglePix(Vector3D textCenterPix) {
+	public Vector3D[] getBoundingRectanglePix() {
 		Vector3D[] bbox = getBoundingBox(null);
-		return placeBoundingBox(bbox, textCenterPix, getRotationAngle());
+		return placeBoundingBox(bbox, getTextCenterPix(), getRotationAngle());
 	}
 
 	/**
@@ -169,7 +193,6 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 	 * @param rotationAngle angle in radian.
 	 * @return the new text grid ut at the right position.
 	 */
-	//@Override
 	public TextGrid placeTextGrid(TextGrid stringPositions,
 								  Vector3D textCenterPix, Vector3D rotationCenter, double rotationAngle) {
 		GL gl = getGL();
@@ -196,7 +219,6 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 	 */
 	@Override
 	public TextGrid placeTextGrid(TextGrid stringPositions, Vector3D textCenterPix, double rotationAngle) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

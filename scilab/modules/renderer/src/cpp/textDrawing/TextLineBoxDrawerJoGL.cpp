@@ -54,7 +54,7 @@ void TextLineBoxDrawerJoGL::drawBox(void)
 /*---------------------------------------------------------------------------------*/
 void TextLineBoxDrawerJoGL::showBox(void)
 {
-  drawBox();
+  show();
 }
 /*---------------------------------------------------------------------------------*/
 RectangleLineDrawerJavaMapper * TextLineBoxDrawerJoGL::getLineDrawerJavaMapper(void)

@@ -22,6 +22,7 @@
 #include "gw_graphics.h"
 #include "PloEch.h"
 #include "GetProperty.h"
+#include "axesScale.h"
 
 #define VIEWING_RECT_SIZE 4
 

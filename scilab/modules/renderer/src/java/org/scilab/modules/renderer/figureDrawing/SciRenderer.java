@@ -140,6 +140,13 @@ public class SciRenderer
   public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height)	{
 	  DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
 	  
+	  if (curFigure == null || !curFigure.getIsRenderingEnable()) {
+		  return;
+	  }
+	  
+	  // Axes ticks may change with new shape so redraw all subwins
+	  FigureScilabCall.redrawSubwins(renderedFigure);
+	  
 	  if (curFigure.isRubberBoxModeOn()) {
 		// in rubber box mode we don't automatically redraw the figure
 		// so we need to force a redraw to get a consistent background

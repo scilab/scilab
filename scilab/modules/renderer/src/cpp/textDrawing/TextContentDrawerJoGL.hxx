@@ -43,7 +43,7 @@ public:
   /**
    * Draw the rectangle surrounding the text.
    */
-  virtual void drawTextContent(void);
+  virtual void drawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3]);
 
   /**
    * Display the text using display lists.
@@ -71,6 +71,16 @@ protected:
    * Get the display size of text box specified by user.
    */
   void getTextBoxDisplaySize(double * width, double * height);
+
+  /**
+   * Convert an array containing the coordinates of four corners
+   * into 3 distincts vectors.
+   */
+  void convertCornersArray(const double corners[12],
+                           double corner1[3],
+                           double corner2[3],
+                           double corner3[3],
+                           double corner4[3]);
 
   /**
    * Get the object performing mapping with Java class.

@@ -49,12 +49,19 @@ public:
   /**
    * To specify that the object was modified and need to be redrawn
    */
-  void hasChanged( void ) ;
+  virtual void hasChanged( void ) ;
 
   /**
    * To specify that an object and its children have changed
    */
   void familyHasChanged( void ) ;
+
+  /**
+   * Specify that the parent axis have changed.
+   * Children which need to be redrawn must redefine this
+   * function.
+   */
+  virtual void parentSubwinChanged( void );
 
   /**
    * Common to every object, draw their children

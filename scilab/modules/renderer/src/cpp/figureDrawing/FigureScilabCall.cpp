@@ -59,3 +59,22 @@ void redrawFigure(int figureId)
   endFigureDataDisplaying(curFig);
 }
 /*--------------------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------------------*/
+void redrawSubwins(int figureId)
+{
+  startGraphicDataReading();
+  sciPointObj * curFig = getFigureFromIndex(figureId) ;
+  endGraphicDataReading();
+
+  if ( curFig == NULL )
+  {
+    return ;
+  }
+
+  startFigureDataDisplaying(curFig);
+  (sciGraphics::getFigureDrawer(curFig))->redrawSubwins() ;
+  endFigureDataDisplaying(curFig);
+}
+/*--------------------------------------------------------------------------*/

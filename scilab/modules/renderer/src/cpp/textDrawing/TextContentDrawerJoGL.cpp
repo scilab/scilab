@@ -43,32 +43,9 @@ void TextContentDrawerJoGL::getBoundingRectangle(double corner1[3], double corne
   // we got an array of size 12
   double * rect = getTextContentDrawerJavaMapper()->getBoundingRectangle();
 
-  corner1[0] = rect[0];
-  corner1[1] = rect[1];
-  corner1[2] = rect[2];
+  convertCornersArray(rect, corner1, corner2, corner3, corner4);
 
-  corner2[0] = rect[3];
-  corner2[1] = rect[4];
-  corner2[2] = rect[5];
-
-  corner3[0] = rect[6];
-  corner3[1] = rect[7];
-  corner3[2] = rect[8];
-
-  corner4[0] = rect[9];
-  corner4[1] = rect[10];
-  corner4[2] = rect[11];
   delete[] rect;
-
-  // use logarithmic scale if needed.
-  m_pDrawed->inversePointScale(corner1[0], corner1[1], corner1[2],
-                               &(corner1[0]), &(corner1[1]), &(corner1[2]));
-  m_pDrawed->inversePointScale(corner2[0], corner2[1], corner2[2],
-                               &(corner2[0]), &(corner2[1]), &(corner2[2]));
-  m_pDrawed->inversePointScale(corner3[0], corner3[1], corner3[2],
-                               &(corner3[0]), &(corner3[1]), &(corner3[2]));
-  m_pDrawed->inversePointScale(corner4[0], corner4[1], corner4[2],
-                               &(corner4[0]), &(corner4[1]), &(corner4[2]));
 
   endDrawing();
 }
@@ -97,12 +74,15 @@ void TextContentDrawerJoGL::getScreenBoundingBox(int corner1[2], int corner2[2],
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
-void TextContentDrawerJoGL::drawTextContent(void)
+void TextContentDrawerJoGL::drawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
 {
   initializeDrawing();
   setDrawerParameters();
 
-  getTextContentDrawerJavaMapper()->drawTextContent();
+  double * rect = getTextContentDrawerJavaMapper()->drawTextContent();
+  convertCornersArray(rect, corner1, corner2, corner3, corner4);
+
+  delete[] rect;
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
@@ -161,6 +141,41 @@ void TextContentDrawerJoGL::getTextBoxDisplaySize(double * width, double * heigh
   m_pDrawed->directionScale(*width, *height, 0.0,
                             textPos[0], textPos[1], textPos[2],
                             width, height, NULL);
+}
+/*---------------------------------------------------------------------------------*/
+void TextContentDrawerJoGL::convertCornersArray(const double corners[12],
+                                                double corner1[3],
+                                                double corner2[3],
+                                                double corner3[3],
+                                                double corner4[3])
+{
+  // we got an array of size 12
+
+  corner1[0] = corners[0];
+  corner1[1] = corners[1];
+  corner1[2] = corners[2];
+
+  corner2[0] = corners[3];
+  corner2[1] = corners[4];
+  corner2[2] = corners[5];
+
+  corner3[0] = corners[6];
+  corner3[1] = corners[7];
+  corner3[2] = corners[8];
+
+  corner4[0] = corners[9];
+  corner4[1] = corners[10];
+  corner4[2] = corners[11];
+
+  // use logarithmic scale if needed.
+  m_pDrawed->inversePointScale(corner1[0], corner1[1], corner1[2],
+    &(corner1[0]), &(corner1[1]), &(corner1[2]));
+  m_pDrawed->inversePointScale(corner2[0], corner2[1], corner2[2],
+    &(corner2[0]), &(corner2[1]), &(corner2[2]));
+  m_pDrawed->inversePointScale(corner3[0], corner3[1], corner3[2],
+    &(corner3[0]), &(corner3[1]), &(corner3[2]));
+  m_pDrawed->inversePointScale(corner4[0], corner4[1], corner4[2],
+    &(corner4[0]), &(corner4[1]), &(corner4[2]));
 }
 /*---------------------------------------------------------------------------------*/
 TextContentDrawerJavaMapper * TextContentDrawerJoGL::getTextContentDrawerJavaMapper(void)

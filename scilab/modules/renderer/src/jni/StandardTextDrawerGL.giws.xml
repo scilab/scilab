@@ -33,7 +33,7 @@
       <param type="double" name="centerY" />
       <param type="double" name="centerZ" />
     </method>
-    <method name="drawTextContent" returnType="void">
+    <method name="drawTextContent" returnType="double[]">
     </method>
     <method name="getBoundingRectangle" returnType="double[]">
     </method>

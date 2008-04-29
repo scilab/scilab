@@ -14,6 +14,8 @@
 
 #include "DrawableFigure.h"
 #include "DrawableFigureBridge.h"
+#include "../subwinDrawing/DrawableSubwin.h"
+#include "../getHandleDrawer.h"
 
 //#include <time.h>
 //#include <sched.h>
@@ -136,6 +138,20 @@ void DrawableFigure::redrawInContext( void )
   familyHasChanged();
   // draw as usual
   //drawInContext();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::redrawSubwins(void)
+{
+  // just call the function on children
+  sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
+  while ( curSon != NULL )
+  {
+    if (sciGetEntityType(curSon->pointobj) == SCI_SUBWIN)
+    {
+      getSubwinDrawer( curSon->pointobj )->parentSubwinChanged();
+    }
+    curSon = curSon->pprev ;
+  }
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::draw( void )

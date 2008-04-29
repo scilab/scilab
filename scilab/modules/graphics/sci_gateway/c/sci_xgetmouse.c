@@ -25,7 +25,7 @@
 #include "GetProperty.h"
 #include "ObjectSelection.h"
 #include "WindowList.h"
-#include "Axes.h"
+#include "axesScale.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"

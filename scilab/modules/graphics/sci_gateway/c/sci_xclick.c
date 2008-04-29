@@ -28,7 +28,7 @@
 #include "GetProperty.h"
 #include "ObjectSelection.h"
 #include "WindowList.h"
-#include "Axes.h"
+#include "axesScale.h"
 /*--------------------------------------------------------------------------*/
 int sci_xclick(char *fname,unsigned long fname_len)
 {

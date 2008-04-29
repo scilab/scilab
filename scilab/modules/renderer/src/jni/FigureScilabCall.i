@@ -76,4 +76,12 @@ void displayFigure(int figureId);
 public";
 void redrawFigure(int figureId);
 
-
+/* JavaDoc */
+%javamethodmodifiers redrawSubwins(int figureId) "
+ /**
+  * Redraw all the subwindows inside a figure.
+  * This should be called when the figure is resized.
+  * @param figureId index of the figure to redraw
+  */
+public";
+void redrawSubwins(int figureId);

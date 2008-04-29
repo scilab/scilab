@@ -115,7 +115,7 @@ jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 stringArrayClass = (jclass) curEnv->NewGlobalRef(localStringArrayClass);
 curEnv->DeleteLocalRef(localStringArrayClass);
 voidsetCenterPositionjdoublejdoublejdoubleID=NULL; 
-voiddrawTextContentID=NULL; 
+jdoubleArraydrawTextContentID=NULL; 
 jdoubleArraygetBoundingRectangleID=NULL; 
 jintArraygetScreenBoundingBoxID=NULL; 
 
@@ -156,7 +156,7 @@ jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
 stringArrayClass = (jclass) curEnv->NewGlobalRef(localStringArrayClass);
 curEnv->DeleteLocalRef(localStringArrayClass);
 voidsetCenterPositionjdoublejdoublejdoubleID=NULL; 
-voiddrawTextContentID=NULL; 
+jdoubleArraydrawTextContentID=NULL; 
 jdoubleArraygetBoundingRectangleID=NULL; 
 jintArraygetScreenBoundingBoxID=NULL; 
 
@@ -380,23 +380,39 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void StandardTextDrawerGL::drawTextContent (){
+double * StandardTextDrawerGL::drawTextContent (){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voiddrawTextContentID==NULL) { /* Use the cache Luke */ voiddrawTextContentID = curEnv->GetMethodID(this->instanceClass, "drawTextContent", "()V" ) ;
-if (voiddrawTextContentID == NULL) {
+if (jdoubleArraydrawTextContentID==NULL) { /* Use the cache Luke */ jdoubleArraydrawTextContentID = curEnv->GetMethodID(this->instanceClass, "drawTextContent", "()[D" ) ;
+if (jdoubleArraydrawTextContentID == NULL) {
 std::cerr << "Could not access to the method " << "drawTextContent" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voiddrawTextContentID );
+                        jdoubleArray res =  (jdoubleArray) curEnv->CallObjectMethod( this->instance, jdoubleArraydrawTextContentID );
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
                         
+jsize len = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* faster than getXXXArrayElements */
+jdouble *resultsArray = (jdouble *) curEnv->GetPrimitiveArrayCritical(res, &isCopy);
+double * myArray= new double[len];
+
+for (jsize i = 0; i < len; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+                        curEnv->DeleteLocalRef(res);
+
+return myArray;
+
 }
 
 double * StandardTextDrawerGL::getBoundingRectangle (){

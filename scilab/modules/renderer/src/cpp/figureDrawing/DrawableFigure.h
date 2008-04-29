@@ -38,10 +38,15 @@ public:
   virtual void drawInContext( void ) ;
 
   /**
-   * redraw all the figure and all its chidren
+   * redraw all the figure and all its children
    * Can only be called within the OpenGL thread
    */
   void redrawInContext( void );
+
+  /**
+   * Redraw all subwindows contained in the figure.
+   */
+  void redrawSubwins( void );
 
   /**
    * Like display but to display only a single object

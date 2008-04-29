@@ -711,4 +711,14 @@ void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbObjects)
 
   List_free(redrawnFigures);
 }
+/*--------------------------------------------------------------------------------*/
+void updateSubwinScale(sciPointObj * pSubwin)
+{
+  sciJavaUpdateSubwinScale(pSubwin);
+}
+/*------------------------------------------------------------------------------*/
+void updateTextBounds(sciPointObj * pText)
+{
+  sciJavaUpdateTextBoundingBox(pText);
+}
 /*------------------------------------------------------------------------------*/

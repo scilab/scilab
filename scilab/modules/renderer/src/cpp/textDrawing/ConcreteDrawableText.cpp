@@ -14,10 +14,12 @@
 
 
 #include "ConcreteDrawableText.hxx"
+#include "DrawingBridge.h"
 
 extern "C"
 {
 #include "GetProperty.h"
+#include "SetProperty.h"
 }
 
 namespace sciGraphics
@@ -79,7 +81,8 @@ void ConcreteDrawableText::drawBox(void)
   
   // get bounding rectangle corners
   double corners[4][3];
-  m_pDrawingTextStrategy->getBoundingRectangle(corners[0], corners[1], corners[2], corners[3]);
+  sciGetTextBoundingBox(m_pDrawed, corners[0], corners[1], corners[2], corners[3]);
+  //m_pDrawingTextStrategy->getBoundingRectangle(corners[0], corners[1], corners[2], corners[3]);
 
   for( ; it != m_oDrawingBoxStrategies.end(); it++)
   {
@@ -90,7 +93,10 @@ void ConcreteDrawableText::drawBox(void)
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::drawTextContent(void)
 {
-  m_pDrawingTextStrategy->drawTextContent();
+  // draw text content and update bounding box
+  sciText * ppText = pTEXT_FEATURE(m_pDrawed);
+  m_pDrawingTextStrategy->drawTextContent(ppText->corners[0], ppText->corners[1],
+                                          ppText->corners[2], ppText->corners[3]);
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::showBox(void)
@@ -99,8 +105,8 @@ void ConcreteDrawableText::showBox(void)
 
   // get bounding rectangle corners
   double corners[4][3];
-  //sciGetTextBoundingBox(m_pDrawed, corners[0], corners[1], corners[2], corners[3]);
-  m_pDrawingTextStrategy->getBoundingRectangle(corners[0], corners[1], corners[2], corners[3]);
+  sciGetTextBoundingBox(m_pDrawed, corners[0], corners[1], corners[2], corners[3]);
+  //m_pDrawingTextStrategy->getBoundingRectangle(corners[0], corners[1], corners[2], corners[3]);
 
   for( ; it != m_oDrawingBoxStrategies.end(); it++)
   {
@@ -111,7 +117,7 @@ void ConcreteDrawableText::showBox(void)
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::showTextContent(void)
 {
-  m_pDrawingTextStrategy->drawTextContent();
+  m_pDrawingTextStrategy->showTextContent();
 }
 /*---------------------------------------------------------------------------------*/
 bool ConcreteDrawableText::isTextEmpty(void)
@@ -144,6 +150,20 @@ bool ConcreteDrawableText::isTextEmpty(void)
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::updateTextBox(void)
+{
+  if (!m_bNeedRedraw)
+  {
+    // text already up to date
+    return;
+  }
+  // just update, no need to draw
+  BOOL visibility = sciGetVisibility(m_pDrawed);
+  sciSetVisibility(m_pDrawed, FALSE);
+  sciDrawSingleObj(m_pDrawed);
+  sciSetVisibility(m_pDrawed, visibility);
+}
+/*---------------------------------------------------------------------------------*/
+void ConcreteDrawableText::updateTextBoxFromContext(void)
 {
   sciText * ppText = pTEXT_FEATURE(m_pDrawed);
   getBoundingRectangle(ppText->corners[0], ppText->corners[1],

@@ -78,9 +78,9 @@ void FilledTextDrawerJavaMapper::setCenterPosition(double centerX, double center
   m_pJavaObject->setCenterPosition(centerX, centerY, centerZ);
 }
 /*---------------------------------------------------------------------------------*/
-void FilledTextDrawerJavaMapper::drawTextContent(void)
+double * FilledTextDrawerJavaMapper::drawTextContent(void)
 {
-  m_pJavaObject->drawTextContent();
+  return m_pJavaObject->drawTextContent();
 }
 /*---------------------------------------------------------------------------------*/
 double * FilledTextDrawerJavaMapper::getBoundingRectangle(void)

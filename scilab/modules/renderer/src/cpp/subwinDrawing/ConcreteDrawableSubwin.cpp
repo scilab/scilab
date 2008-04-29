@@ -18,7 +18,11 @@ extern "C"
 {
 #include "GetProperty.h"
 #include "SetProperty.h"
+#include "pixel_mode.h"
+#include "DrawingBridge.h"
 }
+
+using namespace std;
 
 namespace sciGraphics
 {
@@ -198,6 +202,26 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
 
   sciSetRealDataBounds(m_pDrawed, bestBounds);
 
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::updateScale(void)
+{
+  sciPointObj * parentFigure = sciGetParentFigure(m_pDrawed);
+  BOOL visible = sciGetVisibility(m_pDrawed);
+  int pixelMode = sciGetXorMode(parentFigure);
+
+  if (!m_bNeedRedraw) {
+    // no need to update
+    return;
+  }
+
+  // update the data by just calling
+  // display on the invisible window
+  sciSetXorMode(parentFigure, getPixelModeIndex("noop"));
+  sciSetVisibility(m_pDrawed, FALSE);
+  sciDrawSingleObj(m_pDrawed);
+  sciSetVisibility(m_pDrawed, visible);
+  sciSetXorMode(parentFigure, pixelMode);
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::drawBox(void)

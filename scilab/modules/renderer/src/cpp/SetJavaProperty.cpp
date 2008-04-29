@@ -82,3 +82,14 @@ void sciSetJavaTitle( sciPointObj * pFigure, const char * title )
   getFigureDrawer(pFigure)->setTitle(title);
 }
 /*---------------------------------------------------------------------------------*/
+void sciJavaUpdateSubwinScale(sciPointObj * pSubwin)
+{
+  getSubwinDrawer(pSubwin)->updateScale();
+}
+/*---------------------------------------------------------------------------------*/
+void sciJavaUpdateTextBoundingBox(sciPointObj * pText)
+{
+  getTextDrawer(pText)->updateTextBox();
+}
+/*---------------------------------------------------------------------------------*/
+

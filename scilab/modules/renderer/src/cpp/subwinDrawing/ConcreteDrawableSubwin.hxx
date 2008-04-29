@@ -14,11 +14,14 @@
 #ifndef _CONCRETE_DRAWABLE_SUBWIN_HXX_
 #define _CONCRETE_DRAWABLE_SUBWIN_HXX_
 
+#include <list>
+
 #include "DrawableSubwin.h"
 #include "ComputeBoundsStrategy.hxx"
 #include "DrawAxesBoxStrategy.hxx"
 #include "TicksDrawer.hxx"
 #include "../labelDrawing/LabelPositioner.hxx"
+
 
 namespace sciGraphics
 {
@@ -81,6 +84,11 @@ public:
    */
   virtual void computeRealDataBounds(void);
 
+  /**
+   * Just update scale and size if needed
+   */
+  virtual void updateScale(void);
+
 
 protected:
 
@@ -123,6 +131,7 @@ protected:
   TicksDrawer * m_pZTicksDrawer;
 
   DrawAxesBoxStrategy * m_pAxesBoxDrawer;
+
   /*---------------------------------------------------------------------*/
 
 private:

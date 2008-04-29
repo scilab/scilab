@@ -37,4 +37,5 @@ public class FigureScilabCallJNI {
 
   public final static native void displayFigure(int jarg1);
   public final static native void redrawFigure(int jarg1);
+  public final static native void redrawSubwins(int jarg1);
 }

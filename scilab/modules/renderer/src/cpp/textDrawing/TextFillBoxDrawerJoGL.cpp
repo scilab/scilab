@@ -54,7 +54,7 @@ void TextFillBoxDrawerJoGL::showBox(void)
 {
   // we need to redraw the whole text object since
   // since it is not displayed in the same frame as other objects.
-  drawBox();
+  show();
 }
 /*---------------------------------------------------------------------------------*/
 RectangleFillDrawerJavaMapper * TextFillBoxDrawerJoGL::getFillDrawerJavaMapper(void)

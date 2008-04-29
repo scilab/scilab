@@ -199,6 +199,16 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_jni_FigureScilabCallJNI
 }
 
 
+SWIGEXPORT void JNICALL Java_org_scilab_modules_renderer_jni_FigureScilabCallJNI_redrawSubwins(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  int arg1 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (int)jarg1; 
+  redrawSubwins(arg1);
+}
+
+
 #ifdef __cplusplus
 }
 #endif

@@ -29,7 +29,7 @@ public:
 
   virtual void setTextContent(char ** text, int nbRow, int nbCol) = 0;
   virtual void setCenterPosition(double centerX, double centerY, double centerZ) = 0;
-  virtual void drawTextContent(void) = 0;
+  virtual double * drawTextContent(void) = 0;
 
   virtual double * getBoundingRectangle(void) = 0;
 

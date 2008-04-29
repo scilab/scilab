@@ -48,6 +48,16 @@ void sciUnzoomSubwin(sciPointObj * subwin);
 void sciUnzoomFigure(sciPointObj * figure);
 void sciUnzoomAll(void);
 void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbSubwin);
+
+/**
+ * Update subwin size and scale if needed
+ */
+void updateSubwinScale(sciPointObj * pSubwin);
+
+/**
+ * Update text bounds if needed
+ */
+void updateTextBounds(sciPointObj * pText);
 /*------------------------------------------------------------------------------*/
 BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
                      double yMin, double yMax, double zMin, double zMax);

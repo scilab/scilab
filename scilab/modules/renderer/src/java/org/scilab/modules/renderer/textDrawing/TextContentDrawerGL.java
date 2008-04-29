@@ -37,6 +37,7 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	/** Rotation angle in radian */
 	private double rotationAngle;
 	private Vector3D textCenter;
+	private Vector3D textCenterPix;
 	
 	/**
 	 * Default constructor
@@ -76,8 +77,9 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
 	public void show(int parentFigureIndex) {
+		
 		initializeDrawing(parentFigureIndex);
-		drawTextContent();
+		showTextContent3D();
 		endDrawing();
 	}
 	
@@ -94,6 +96,13 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 */
 	public double[] getFontColor() {
 		return getColorMap().getColor(fontColorIndex);
+	}
+	
+	/**
+	 * @return text center in pixel
+	 */
+	protected Vector3D getTextCenterPix() {
+		return textCenterPix;
 	}
 	
 	/**
@@ -221,9 +230,17 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	}
 	
 	/**
-	 * Draw a text on the screen.
+	 * @param textMatrix new text matrxi to use
 	 */
-	public void drawTextContent() {
+	protected void setTextMatrix(StringMatrixGL textMatrix) {
+		this.textMatrix = textMatrix;
+	}
+	
+	/**
+	 * Draw a text on the screen.
+	 * @return coordinates of the 4 corners of the text in pixels
+	 */
+	public Vector3D[] drawTextContent3D() {
 		
 		GL gl = getGL();
 		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
@@ -231,27 +248,53 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 
 		//Put the text on the figure
-		/*gl.glRasterPos3d(getTextCenter().getX(), getTextCenter().getY(), getTextCenter().getZ());
-		GL2PS gl2ps = new GL2PS();
-		gl2ps.gl2psText("totototot", "Courier", (short) 12);*/
 	
+		textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
 		
-		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
 		
 		
-		
-		//textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
-		
 		// draw the text using the new coordinates
-		drawTextContentPix(textCenterPix);
+		Vector3D[] res = drawTextContentPix();
 		
 		
 		GLTools.endPixelCoordinates(gl);
 		
 		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 		
+		for (int i = 0; i < res.length; i++) {
+			res[i] = transform.retrieveSceneCoordinates(gl, res[i]);
+		}
+		return res;
+		
+	}
+	
+	/**
+	 * Draw the text from already computed data
+	 */
+	public void showTextContent3D() {
+		GL gl = getGL();
+		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		
+		// switch to pixel coordinates
+		GLTools.usePixelCoordinates(gl);
+		
+		// draw the text using the new coordinates
+		showTextContentPix();
+		
+		GLTools.endPixelCoordinates(gl);
+		
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+	}
+	
+	/**
+	 * Draw the text and compute its bounding box in pixels
+	 * @return array of size 12 which is the concatenation of the 4 corners
+	 *         where a corner is the array {cornerX, cornerY, cornerZ}.
+	 */
+	public double[] drawTextContent() {
+		return convertToArray(drawTextContent3D());
 	}
 	
 	/**
@@ -260,14 +303,21 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 *         where a corner is the array {cornerX, cornerY, cornerZ}.
 	 */
 	public double[] getBoundingRectangle() {
-		Vector3D[] resVect = getBoundingRectangle3D();
-		int nbCorner = resVect.length;
-		int nbDim = 2 + 1;
-		double[] res = new double[nbCorner * nbDim];
-		for (int i = 0; i < nbCorner; i++) {
-			res[nbDim * i] = resVect[i].getX();
-			res[nbDim * i + 1] = resVect[i].getY();
-			res[nbDim * i + 2] = resVect[i].getZ();
+		return convertToArray(getBoundingRectangle3D());
+	}
+	
+	/**
+	 * Concatenate the coordinates of each points into an array of double
+	 * @param vects vectors to concatenate
+	 * @return array of size nbVects * 3, containing the nummber of vectors
+	 */
+	protected double[] convertToArray(Vector3D[] vects) {
+		int nbVects = vects.length;
+		double[] res = new double[nbVects * Vector3D.DIMENSION];
+		for (int i = 0; i < nbVects; i++) {
+			res[Vector3D.DIMENSION * i] = vects[i].getX();
+			res[Vector3D.DIMENSION * i + 1] = vects[i].getY();
+			res[Vector3D.DIMENSION * i + 2] = vects[i].getZ();
 		}
 		return res;
 	}
@@ -310,17 +360,10 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	public Vector3D[] getBoundingRectangle2D() {
 		GL gl = getGL();
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
-		Vector3D textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
+		textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
 		GLTools.usePixelCoordinates(gl);
 		
-		//textCenterPix = transform.retrieveSceneCoordinates(gl, textCenterPix);
-		
-		Vector3D[] resPix = getBoundingRectanglePix(textCenterPix);
-		
-		// retrieve canvas coordinates
-		/*for (int i = 0; i < resPix.length; i++) {
-			resPix[i] = transform.getCanvasCoordinates(gl, resPix[i]);
-		}*/
+		Vector3D[] resPix = getBoundingRectanglePix();
 		
 		GLTools.endPixelCoordinates(gl);
 		return resPix;
@@ -369,16 +412,20 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	
 	/**
 	 * Draw the text using pixel coordinates.
-	 * @param textCenterPix center of text to draw in pixels
+	 * @return 4 corners of the rectangle bounding box.
 	 */
-	public abstract void drawTextContentPix(Vector3D textCenterPix);
+	public abstract Vector3D[] drawTextContentPix();
+	
+	/**
+	 * Display some from text from already precomputed positions.
+	 */
+	public abstract void showTextContentPix();
 	
 	/**
 	 * Compute the 4 corners of the bounding rectangle of the text in pixels coordinates.
-	 * @param textCenterPix center of the text in pixel coordinates.
 	 * @return array of size 4 with the four corners.
 	 */
-	public abstract Vector3D[] getBoundingRectanglePix(Vector3D textCenterPix);
+	public abstract Vector3D[] getBoundingRectanglePix();
 	
 	/**
 	 * Get the bounding box of the text matrix centerd at the origin.

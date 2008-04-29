@@ -23,25 +23,44 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  */
 public abstract class FixedFontTextDrawerGL extends TextContentDrawerGL {
 
+	private TextGrid stringPos;
+	
 	/**
 	 * Default constructor.
 	 */
 	public FixedFontTextDrawerGL() {
 		super();
+		stringPos = null;
 	}
 	
 	/**
 	 * Draw the text using pixel coordinates.
-	 * @param textCenterPix center of text to draw in pixels
+	 * @return 4 corners of the rectangle bounding box.
 	 */
-	public void drawTextContentPix(Vector3D textCenterPix) {
+	public Vector3D[] drawTextContentPix() {
 		SciTextRenderer renderer = getTextRenderer();
 		
-		StringMatrixGL textMatrix = computeStringSizes(renderer, getTextMatrix());
-		TextGrid stringPos = getStringsPositions(textMatrix);
-		stringPos = placeTextGrid(stringPos, textCenterPix, getRotationAngle());
-		drawText(renderer, textMatrix, stringPos);
+		setTextMatrix(computeStringSizes(renderer, getTextMatrix()));
 		
+		stringPos = getStringsPositions(getTextMatrix());
+		
+		stringPos = placeTextGrid(stringPos, getTextCenterPix(), getRotationAngle());
+		
+		drawText(renderer, getTextMatrix(), stringPos);
+		
+		Vector3D[] bbox = stringPos.getExtremBounds();
+		return placeBoundingBox(bbox, getTextCenterPix(), getRotationAngle());
+	}
+	
+	/**
+	 * Display some from text from already precomputed positions.
+	 */
+	public void showTextContentPix() {
+		SciTextRenderer renderer = getTextRenderer();
+		
+		placeTextGrid(stringPos, getTextCenterPix(), getRotationAngle());
+		
+		drawText(renderer, getTextMatrix(), stringPos);
 	}
 
 
@@ -58,16 +77,15 @@ public abstract class FixedFontTextDrawerGL extends TextContentDrawerGL {
 	
 	/**
 	 * Compute the 4 corners of the bounding rectangle of the text in pixels coordinates.
-	 * @param textCenterPix center of the text in pixel coordinates.
 	 * @return array of size 4 with the four corners.
 	 */
-	public Vector3D[] getBoundingRectanglePix(Vector3D textCenterPix) {
+	public Vector3D[] getBoundingRectanglePix() {
 		// assume we are in pixels coordinates
 		SciTextRenderer renderer = getTextRenderer();
 		
-		StringMatrixGL textMatrix = computeStringSizes(renderer, getTextMatrix());
-		Vector3D[] bbox = getBoundingBox(textMatrix);
-		bbox = placeBoundingBox(bbox, textCenterPix, getRotationAngle());
+		setTextMatrix(computeStringSizes(renderer, getTextMatrix()));
+		Vector3D[] bbox = getBoundingBox(getTextMatrix());
+		bbox = placeBoundingBox(bbox, getTextCenterPix(), getRotationAngle());
 		
 		return bbox;
 	}
