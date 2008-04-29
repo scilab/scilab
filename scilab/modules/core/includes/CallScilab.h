@@ -12,15 +12,9 @@
 
 #ifndef __CALLSCILAB__
 #define __CALLSCILAB__
+
 /*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-  #include <windows.h>
-#endif
-#include <stdio.h>
-#include <string.h>
-#include "machine.h"
-#include "stack-c.h"
-#include "version.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 /**
  * Disable TCL/TK and graphic interfaces 
@@ -86,7 +80,7 @@ int SendScilabJobs(char **jobs,int numberjobs);
 BOOL GetLastJob(char *JOB,int nbcharsJOB);
 
 /**
- * This procedure is the entry point to Scilab's event loop 
+* This procedure is the entry point to Scilab's event loop 
 */
 void ScilabDoOneEvent(void);
 

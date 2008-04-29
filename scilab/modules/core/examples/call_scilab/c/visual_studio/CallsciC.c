@@ -5,17 +5,11 @@
 #pragma comment(lib, "../../../../../../bin/libScilab.lib")
 #pragma comment(lib, "../../../../../../bin/MALLOC.lib")
 /*--------------------------------------------------------------------------*/
-#include <windows.h>
-#include <math.h>
+#include <stdlib.h> 
 #include <stdio.h> 
-#include <string.h> 
-#include <conio.h> 
-
-#include "../../../../../../modules/core/includes/machine.h"
-#include "../../../../../../modules/core/includes/stack-c.h"
-#include "../../../../../../modules/core/includes/CallScilab.h"
-#define TRUE 1
-#define FALSE 0
+#include <string.h>
+#include "CallScilab.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 /* See SCI/modules/core/includes/CallScilab.h */
 /*--------------------------------------------------------------------------*/
@@ -72,7 +66,6 @@ static int example2(void)
 	while( ScilabHaveAGraph() )
 	{
 		ScilabDoOneEvent();
-		Sleep(1);
 	}
 	return 1; 
 }
@@ -95,10 +88,9 @@ static int example3(void)
 	strcpy(JOBS[0],"A=1 ..");
 	strcpy(JOBS[1],"+3;");
 	strcpy(JOBS[2],"B = 8;");
-	/* strcpy(JOBS[2],"b = V_NOT_EXIST;"); */
 	strcpy(JOBS[3],"+3;");
 	strcpy(JOBS[4],"disp('C=');");
-	strcpy(JOBS[5],"C=A+B;disp(C);"); /* C = 12 */
+    strcpy(JOBS[5],"C=A+B;disp(C);"); /* C = 12 */
 
 	code=SendScilabJobs(JOBS,SizeJOBS);
 
@@ -122,7 +114,6 @@ int main(void)
 /* int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow) */
 {
 	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab\n");
-
 	printf("\nexample 1\n");
 	example1();
 	system("pause");

@@ -9,10 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdio.h>
 #include "CallScilab.h"
 #include "MALLOC.h"
 #include "scirun.h"
 #include "localization.h"
+#include "stack-c.h"
+#include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -29,20 +32,19 @@ int SendScilabJob(char *job)
 {
 	int retCode = -1;
 	int lencommand=0;
-	static char *command=NULL;
+	char *command=NULL;
 	
-	char ScirunCommand[]="Err=execstr(TMP_EXEC_STRING,\"errcatch\",\"n\");quit;";
-	char ClearTmpVariables[]="clear TMP_EXEC_STRING;clear Err;quit;";
+	static char ScirunCommand[]="Err=execstr(TMP_EXEC_STRING,\"errcatch\",\"n\");quit;";
+	static char ClearTmpVariables[]="clear TMP_EXEC_STRING;clear Err;quit;";
 	
-	lencommand=(int)strlen(job);
-	command=MALLOC(sizeof(char)*(lencommand+1));
+	command = strdup(job);
+	lencommand = (int)strlen(command);
 
 	if (command)
 	{
 		/* clear prev. Err , TMP_EXEC_STRING scilab variables */
 		C2F(scirun)(ClearTmpVariables,(long int)strlen(ClearTmpVariables));
 
-		strcpy(command,job);
 		SetLastJob(command);
 
 		/* Creation of a temp variable in Scilab */
@@ -131,30 +133,27 @@ int SendScilabJobs(char **jobs,int numberjobs)
 {
 	#define BUFFERSECURITYSIZE 64
 
+	char *bufCommands = NULL;
 	int retcode=-10;
 
 	if (jobs)
 	{
-		int i=0;
-		int nbcharsjobs=0;
-		char *bufCommands=NULL;
-		char **LOCALJOBS=NULL;
-
-		int jobsloop=0;
-
-		LOCALJOBS=(char**)MALLOC(sizeof(char*)*numberjobs);
+		char **LOCALJOBS = (char**)MALLOC(sizeof(char*)*numberjobs);
 
 		if (LOCALJOBS)
 		{
-			for (i=0;i<numberjobs;i++)
+			int i = 0;
+			int nbcharsjobs = 0;
+
+			for (i = 0; i < numberjobs ;i++)
 			{
 				if (jobs[i])
 				{
-					nbcharsjobs = nbcharsjobs+(int)strlen(jobs[i]);
+					nbcharsjobs = nbcharsjobs + (int)strlen(jobs[i]);
 					LOCALJOBS[i] = strdup(jobs[i]);
 					if (LOCALJOBS[i] == NULL)
 					{
-						CleanBuffers(bufCommands,LOCALJOBS,numberjobs);
+						CleanBuffers(bufCommands,LOCALJOBS,i);
 						fprintf(stderr,"Error : SendScilabJobs (1) 'LOCALJOBS[%d] MALLOC'.\n",i);	
 						return retcode;
 					}
@@ -170,20 +169,21 @@ int SendScilabJobs(char **jobs,int numberjobs)
 
 			if (bufCommands)
 			{
+				int jobsloop = 0;
 				strcpy(bufCommands,"");
 
-				for (jobsloop=0;jobsloop<numberjobs;jobsloop++)
+				for (jobsloop = 0; jobsloop < numberjobs ; jobsloop++)
 				{
 					if (jobs[jobsloop])
 					{
-						char *currentline=NULL;
+						char *currentline = NULL;
 						BOOL AddSemiColon;
 
 						if (jobsloop == 0) AddSemiColon=FALSE;
 						else  AddSemiColon=TRUE;
 
 				DOTDOTLOOP:
-						currentline=LOCALJOBS[jobsloop];
+						currentline = strdup(LOCALJOBS[jobsloop]);
 
 						RemoveCharsFromEOL(currentline,'\n');
 						RemoveComments(currentline);
@@ -194,14 +194,14 @@ int SendScilabJobs(char **jobs,int numberjobs)
 							RemoveCharsFromEOL(currentline,' ');
 							strcat(bufCommands,currentline);
 							jobsloop++;
-							AddSemiColon=FALSE;
+							AddSemiColon = FALSE;
 							goto DOTDOTLOOP;
 						}
 						else
 						{
 							if (!AddSemiColon)
 							{
-								AddSemiColon=TRUE;
+								AddSemiColon = TRUE;
 								strcat(currentline,";");
 							}
 							else
@@ -210,11 +210,12 @@ int SendScilabJobs(char **jobs,int numberjobs)
 							}
 							
 							strcat(bufCommands,currentline);
+							
 						}
 					}
 				}
 
-				retcode=SendScilabJob(bufCommands);
+				retcode = SendScilabJob(bufCommands);
 
 				CleanBuffers(bufCommands,LOCALJOBS,numberjobs);
 			}
@@ -291,18 +292,7 @@ static BOOL CleanBuffers(char *bufCommands,char **LOCALJOBS,int numberjobs)
 {
 
 	if (bufCommands) {FREE(bufCommands);bufCommands=NULL;}
-
-	if (LOCALJOBS)
-	{
-		int i=0;
-		for (i=0; i < numberjobs;i++)
-		{
-			if (LOCALJOBS[i]) {FREE(LOCALJOBS[i]);LOCALJOBS[i]=NULL;}
-		}
-		LOCALJOBS=NULL;
-	}
-
-	
+	freeArrayOfString(LOCALJOBS,numberjobs);
 	return TRUE;
 
 }
