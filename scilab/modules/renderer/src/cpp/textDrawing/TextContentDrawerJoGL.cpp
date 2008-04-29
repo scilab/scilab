@@ -86,6 +86,19 @@ void TextContentDrawerJoGL::drawTextContent(double corner1[3], double corner2[3]
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
+void TextContentDrawerJoGL::redrawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
+{
+  initializeDrawing();
+
+  // same as draw but we don't need to sed parameters to java
+
+  double * rect = getTextContentDrawerJavaMapper()->drawTextContent();
+  convertCornersArray(rect, corner1, corner2, corner3, corner4);
+
+  delete[] rect;
+  endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::showTextContent(void)
 {
   show();

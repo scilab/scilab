@@ -88,6 +88,11 @@ protected:
   virtual void drawTextContent(void);
 
   /**
+   * Draw the text of the object using precomputed data
+   */
+  virtual void redrawTextContent(void);
+
+  /**
    * Display the rectangle surrounding the text using display lists.
    */
   virtual void showBox(void);

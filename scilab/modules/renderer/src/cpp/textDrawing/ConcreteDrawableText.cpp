@@ -99,6 +99,14 @@ void ConcreteDrawableText::drawTextContent(void)
                                           ppText->corners[2], ppText->corners[3]);
 }
 /*---------------------------------------------------------------------------------*/
+void ConcreteDrawableText::redrawTextContent(void)
+{
+  // draw text content and update bounding box
+  sciText * ppText = pTEXT_FEATURE(m_pDrawed);
+  m_pDrawingTextStrategy->drawTextContent(ppText->corners[0], ppText->corners[1],
+  ppText->corners[2], ppText->corners[3]);
+}
+/*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::showBox(void)
 {
   list<DrawTextBoxStrategy *>::iterator it = m_oDrawingBoxStrategies.begin();
@@ -151,7 +159,7 @@ bool ConcreteDrawableText::isTextEmpty(void)
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::updateTextBox(void)
 {
-  if (!m_bNeedRedraw)
+  if (!m_bNeedRedraw && !m_bNeedDraw)
   {
     // text already up to date
     return;

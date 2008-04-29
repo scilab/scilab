@@ -27,7 +27,8 @@ namespace sciGraphics
 DrawableObject::DrawableObject( sciPointObj * drawed )
 {
   m_pDrawed     = drawed ;
-  m_bNeedRedraw = true   ; // a first call to draw is necessary
+  m_bNeedDraw = true   ; // a first call to draw is necessary
+  m_bNeedRedraw = false  ;
   m_pImp = NULL ;
 }
 /*---------------------------------------------------------------------------------*/
@@ -38,10 +39,16 @@ DrawableObject::~DrawableObject( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::display( void )
 {
-  if ( m_bNeedRedraw )
+  if ( m_bNeedDraw )
   {
     draw() ;
+    m_bNeedDraw = false;
     m_bNeedRedraw = false ;
+  }
+  else if (m_bNeedRedraw)
+  {
+    redraw();
+    m_bNeedRedraw = false;
   }
   else
   {
@@ -55,7 +62,7 @@ void DrawableObject::hasChanged( void )
   DrawableObjectFactory updater ;
   updater.setGraphicObj( m_pDrawed ) ;
   updater.update() ;
-  m_bNeedRedraw = true ;
+  m_bNeedDraw = true ;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::familyHasChanged( void )
@@ -79,6 +86,7 @@ void DrawableObject::familyHasChanged( void )
 void DrawableObject::parentSubwinChanged( void )
 {
   // just call the function on children
+  m_bNeedRedraw = true;
   sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
   while ( curSon != NULL )
   {
@@ -149,6 +157,11 @@ void DrawableObject::setDrawableImp( DrawableObjectBridge * imp )
     delete m_pImp;
   }
   m_pImp = imp;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::redraw(void)
+{
+  show();
 }
 /*------------------------------------------------------------------------------------------*/
 bool DrawableObject::checkVisibility( void )

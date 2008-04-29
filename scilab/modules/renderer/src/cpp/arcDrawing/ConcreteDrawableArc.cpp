@@ -125,6 +125,15 @@ void ConcreteDrawableArc::drawArc(void)
   }
 }
 /*---------------------------------------------------------------------------------*/
+void ConcreteDrawableArc::redrawArc(void)
+{
+  list<DrawArcStrategy *>::iterator it = m_oDrawingStrategies.begin();
+  for( ; it != m_oDrawingStrategies.end(); it++ )
+  {
+    (*it)->redrawArc();
+  }
+}
+/*---------------------------------------------------------------------------------*/
 void ConcreteDrawableArc::showArc(void)
 {
   list<DrawArcStrategy *>::iterator it = m_oDrawingStrategies.begin();

@@ -79,5 +79,10 @@ void ArcFillDrawerJavaMapper::drawArc( double centerX       , double centerY    
                          startAngle    , endAngle);
 }
 /*---------------------------------------------------------------------------------*/
+void ArcFillDrawerJavaMapper::redrawArc(void)
+{
+  m_pJavaObject->redrawArc();
+}
+/*---------------------------------------------------------------------------------*/
 
 }

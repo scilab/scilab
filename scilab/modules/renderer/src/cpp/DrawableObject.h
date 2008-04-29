@@ -61,7 +61,7 @@ public:
    * Children which need to be redrawn must redefine this
    * function.
    */
-  virtual void parentSubwinChanged( void );
+  void parentSubwinChanged( void );
 
   /**
    * Common to every object, draw their children
@@ -130,6 +130,13 @@ protected:
   virtual void show( void ) = 0 ;
 
   /**
+   * Called when the axes change, so data are still ok
+   * but some objects might need to update display lists.
+   * By default just call show
+   */
+  virtual void redraw(void);
+
+  /**
    * Common to every object. Check its visibility.
    */
   bool checkVisibility( void ) ;
@@ -153,9 +160,15 @@ protected:
   sciPointObj * m_pDrawed ;
 
   /**
-   * To know if the object needs to be drawn or if show is enough.
+   * To know if the object needs to be drawn again.
    */
-  bool m_bNeedRedraw ;
+  bool m_bNeedDraw ;
+
+  /**
+   * To know if the object need to be redrawn.
+   * Happens when axes changed
+   */
+  bool m_bNeedRedraw;
 
   /**
    *  Contains drivers independent algorithm common to all DrawableObjects

@@ -79,5 +79,10 @@ void ArcLineDrawerJavaMapper::drawArc( double centerX       , double centerY    
                          startAngle    , endAngle);
 }
 /*---------------------------------------------------------------------------------*/
+void ArcLineDrawerJavaMapper::redrawArc(void)
+{
+  m_pJavaObject->redrawArc();
+}
+/*---------------------------------------------------------------------------------*/
 
 }

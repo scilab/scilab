@@ -210,7 +210,7 @@ void ConcreteDrawableSubwin::updateScale(void)
   BOOL visible = sciGetVisibility(m_pDrawed);
   int pixelMode = sciGetXorMode(parentFigure);
 
-  if (!m_bNeedRedraw) {
+  if (!m_bNeedRedraw && !m_bNeedDraw) {
     // no need to update
     return;
   }

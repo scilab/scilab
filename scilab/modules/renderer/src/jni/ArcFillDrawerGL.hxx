@@ -60,6 +60,7 @@ jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetBackColorjintID; // cache method id
 jmethodID voiddrawArcjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
+jmethodID voidredrawArcID; // cache method id
 
 
 /**
@@ -116,6 +117,8 @@ void setFigureIndex(long figureIndex);
 void setBackColor(long color);
 
 void drawArc(double centerX, double centerY, double centerZ, double semiMinorAxisX, double semiMinorAxisY, double semiMinorAxisZ, double semiMajorAxisX, double semiMajorAxisY, double semiMajorAxisZ, double startAngle, double endAngle);
+
+void redrawArc();
 
 
                         /**

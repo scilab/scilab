@@ -36,13 +36,18 @@ public:
   virtual ~ArcFillDrawerJoGL(void);
 
   /**
-  * Main algorithm
-  */
+   * Main algorithm
+   */
   virtual void drawArc( void );
 
   /**
-  * Call the display list of an object
-  */
+   * Recreate display list from precomputed data.
+   */
+  virtual void redrawArc(void);
+
+  /**
+   * Call the display list of an object
+   */
   virtual void showArc( void );
 
 protected:

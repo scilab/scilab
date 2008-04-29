@@ -71,6 +71,13 @@ public class ArcLineDrawerGL extends LineDrawerGL implements ArcDrawerStrategy {
 	}
 	
 	/**
+	 * Redraw the arc using precomputed data
+	 */
+	public void redrawArc() {
+		drawArc();
+	}
+	
+	/**
 	 * Call gl routine to draw to outline of the arc.
 	 */
 	public void drawArc() {

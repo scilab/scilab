@@ -71,6 +71,13 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 	}
 	
 	/**
+	 * Redraw the arc using precomputed data
+	 */
+	public void redrawArc() {
+		drawArc();
+	}
+	
+	/**
 	 * Call gl routine to draw to the inside of the arc.
 	 */
 	public void drawArc() {

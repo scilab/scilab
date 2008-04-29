@@ -110,6 +110,7 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voidsetLineParametersjintjfloatjintID=NULL; 
 voiddrawArcjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidredrawArcID=NULL; 
 
 
 }
@@ -143,6 +144,7 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voidsetLineParametersjintjfloatjintID=NULL; 
 voiddrawArcjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voidredrawArcID=NULL; 
 
 
 }
@@ -311,6 +313,25 @@ exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voiddrawArcjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID ,centerX, centerY, centerZ, semiMinorAxisX, semiMinorAxisY, semiMinorAxisZ, semiMajorAxisX, semiMajorAxisY, semiMajorAxisZ, startAngle, endAngle);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void ArcLineDrawerGL::redrawArc (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidredrawArcID==NULL) { /* Use the cache Luke */ voidredrawArcID = curEnv->GetMethodID(this->instanceClass, "redrawArc", "()V" ) ;
+if (voidredrawArcID == NULL) {
+std::cerr << "Could not access to the method " << "redrawArc" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidredrawArcID );
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

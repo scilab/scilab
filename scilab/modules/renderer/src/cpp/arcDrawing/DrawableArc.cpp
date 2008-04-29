@@ -12,7 +12,6 @@
  */
 
 #include "DrawableArc.h"
-#include <iostream>
 
 namespace sciGraphics
 {
@@ -29,27 +28,32 @@ DrawableArc::~DrawableArc( void )
   
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableArc::parentSubwinChanged( void )
-{
-  m_bNeedRedraw = true;
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableArc::draw( void )
 {
-  initializeDrawing() ;
+  
   if ( !checkVisibility() )
   {
-    endDrawing();
     return ;
   }
+  initializeDrawing() ;
   clip();
   drawArc() ;
   unClip();
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableArc::redraw(void)
+{
+  // force redrawing
+  draw();
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableArc::show( void )
 {
+  if ( !checkVisibility() )
+  {
+    return ;
+  }
   clip();
   showArc();
   unClip();

@@ -30,11 +30,6 @@ public:
   virtual ~DrawableText( void ) {}
 
   /**
-   * Text must be updated whenever the parent axes changed
-   */
-  virtual void parentSubwinChanged( void );
-
-  /**
    * Get the 4 corners of the text bounding rectangle (the text lies within a plane).
    * Used to draw the rectangle around the text.
    */
@@ -76,6 +71,12 @@ protected:
   virtual void show( void ) ;
 
   /**
+   * Arcs need to be redrawn each time the axes changes
+   * since the view may have changed
+   */
+  virtual void redraw(void) ;
+
+  /**
    * Draw the rectangle surrounding the text.
    */
   virtual void drawBox(void) = 0;
@@ -84,6 +85,11 @@ protected:
    * Draw the text of the object.
    */
   virtual void drawTextContent(void) = 0;
+
+  /**
+   * Draw the text of the object using precomputed data
+   */
+  virtual void redrawTextContent(void) = 0;
 
   /**
    * Display the rectangle surrounding the text using display lists.

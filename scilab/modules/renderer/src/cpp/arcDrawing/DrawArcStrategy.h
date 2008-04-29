@@ -35,6 +35,11 @@ public:
   virtual void drawArc( void ) = 0 ;
 
   /**
+   * Recreate display list from precomputed data.
+   */
+  virtual void redrawArc(void) = 0;
+
+  /**
    * Call the display list of an object
    */
   virtual void showArc( void ) = 0;

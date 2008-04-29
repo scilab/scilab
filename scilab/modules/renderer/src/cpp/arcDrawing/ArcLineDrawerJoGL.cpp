@@ -59,6 +59,11 @@ void ArcLineDrawerJoGL::drawArc( void )
   endDrawing() ;
 }
 /*---------------------------------------------------------------------------------*/
+void ArcLineDrawerJoGL::redrawArc(void)
+{
+  getLineDrawerJavaMapper()->redrawArc();
+}
+/*---------------------------------------------------------------------------------*/
 void ArcLineDrawerJoGL::showArc( void )
 {
   show();

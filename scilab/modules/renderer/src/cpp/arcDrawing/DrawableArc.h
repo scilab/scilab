@@ -33,11 +33,6 @@ public:
   virtual ~DrawableArc( void ) ;
 
   /**
-   * Text must be updated whenever the parent axes changed
-   */
-  virtual void parentSubwinChanged( void );
-
-  /**
    * Add a rendering algorithm
    */
   virtual void addDrawingStrategy( DrawArcStrategy * strategy ) = 0 ;
@@ -82,9 +77,20 @@ protected:
   virtual void show( void ) ;
 
   /**
+   * Arcs need to be redrawn each time the axes changes
+   * since the view may have changed
+   */
+  virtual void redraw(void) ;
+
+  /**
    * Actually draw the arc on the screen
    */
   virtual void drawArc(void) = 0;
+
+  /**
+   * Actually draw the arc on the screen
+   */
+  virtual void redrawArc(void) = 0;
 
   /**
    * Actually show the arc stored data

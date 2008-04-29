@@ -43,6 +43,11 @@ public:
   virtual void drawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3]) = 0;
 
   /**
+   * Draw the rectangle surrounding the text using precomputed data
+   */
+  virtual void redrawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3]) = 0;
+
+  /**
    * Display the text using display lists.
    */
   virtual void showTextContent(void) = 0;

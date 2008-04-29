@@ -23,11 +23,6 @@ extern "C"
 namespace sciGraphics
 {
 /*---------------------------------------------------------------------------------*/
-void DrawableText::parentSubwinChanged( void )
-{
-  m_bNeedRedraw = true;
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableText::draw( void )
 {
   
@@ -60,6 +55,26 @@ void DrawableText::show( void )
   clip();
   showTextContent();
   showBox();
+  unClip();
+  endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableText::redraw(void)
+{
+  // force redrawing
+  // update might be needed
+  //updateTextBox();
+  if (!checkVisibility() || isTextEmpty() )
+  {
+    updateTextBoxFromContext();
+    return ;
+  }
+  initializeDrawing();
+  clip();
+  redrawTextContent();
+
+  // data bound may have changed so we need to redraw bounding box
+  drawBox();
   unClip();
   endDrawing();
 }

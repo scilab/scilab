@@ -34,5 +34,7 @@
       <param type="double" name="startAngle" />
       <param type="double" name="endAngle" />
     </method>
+    <method name="redrawArc" returnType="void">
+    </method>
   </object>
 </package>

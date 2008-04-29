@@ -65,6 +65,11 @@ protected:
   virtual void drawArc(void);
 
   /**
+   * Redraw arc from precomputed data
+   */
+  virtual void redrawArc(void);
+
+  /**
    * Actually show the arc stored data
    */
   virtual void showArc(void);

@@ -25,6 +25,7 @@
 #include "StringBox.h"
 #include "localization.h"
 #include "DrawingBridge.h"
+#include "axesScale.h"
 /*--------------------------------------------------------------------------*/
 int sci_StringBox( char * fname, unsigned long fname_len )
 {
@@ -74,7 +75,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
 
   /* create a window if needed to initialize the X11 graphic context  */
 
-  /* force drawing of text to update stringbox */
+  /* update stringbox */
   updateTextBounds(pText);
 
   /* get the string box */
