@@ -1,6 +1,6 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
+### INRIA - Scilab 2006/2008
 ##########
 
 ## Process this file with automake to produce Makefile.in (which will be changed by the ./configure)
@@ -19,8 +19,12 @@ bin_PROGRAMS		= scilab-bin
 bin_SCRIPTS			= bin/scilab
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/c/main_linux.c
+
 scilab_bin_LDFLAGS 		= 
-#-static
+scilab_bin_CFLAGS 		= 
+# --no-undefined --relax
+
+
 # libshell is mandatory here since main_linux.c depends on it.
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la
@@ -31,6 +35,19 @@ if GUI
 #else
 #	scilab_bin_LDADD +=	$(X_EXTRA_LIBS)
 endif
+
+
+if ENABLE_STATIC
+scilab_static_bin_LDFLAGS 		= -static -static-libgcc --start-group
+scilab_static_bin_CFLAGS =  -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`
+
+#-static
+bin_PROGRAMS	   		+= scilab-static-bin
+scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
+
+scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
+endif
+
 
 LANG_DOMAIN=scilab
 

@@ -112,9 +112,8 @@ if ! USE_EMBEDDED_BLAS
 libscilab_la_LDFLAGS += $(BLAS_LIBS)
 endif
 
-# Core modules
-libscilab_la_LIBADD = \
-	$(top_builddir)/modules/mexlib/libmex.la \
+ALL_LIBS=	$(top_builddir)/modules/fileio/libscifileio.la \
+$(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
@@ -158,6 +157,14 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/matio/libscimatio.la
 
+
+# Core modules
+libscilab_la_LIBADD = $(ALL_LIBS)
+
+if ENABLE_STATIC
+libscilab_la_LIBADD += $(ALL_LIBS)
+
+endif
 # Temp stuff
 libscilab_la_LIBADD +=	$(top_builddir)/modules/string/libscistring.la
 

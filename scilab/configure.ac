@@ -1012,6 +1012,8 @@ if test "$enable_static" = 'yes'; then
   libtool_build_static_libs='yes'
 fi
 
+AM_CONDITIONAL(ENABLE_STATIC, test "$enable_static" = yes)
+
 AC_C_CONST()
 AC_C_INLINE()
 
