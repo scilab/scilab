@@ -32,6 +32,7 @@ int CreateMatlabVariable(int stkPos, matvar_t *matVariable)
       CreateSparseVariable(stkPos, matVariable);
       break;
     case MAT_C_DOUBLE: /* 6 */
+    case MAT_C_SINGLE: /* 7 */
       CreateDoubleVariable(stkPos, matVariable);
       break;
     case MAT_C_INT8: /* 8 */
@@ -53,7 +54,6 @@ int CreateMatlabVariable(int stkPos, matvar_t *matVariable)
       CreateIntegerVariable(stkPos, I_UINT32, matVariable);
       break;
     case MAT_C_OBJECT: /* 3 to be written */
-    case MAT_C_SINGLE: /* 7 to be written */
     case MAT_C_INT64: /* 14: no Scilab equivalent */
     case MAT_C_UINT64: /* 15: no Scilab equivalent */
     case MAT_C_FUNCTION: /* 16 to be written */
