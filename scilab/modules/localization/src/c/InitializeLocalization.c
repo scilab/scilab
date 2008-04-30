@@ -66,7 +66,7 @@ BOOL InitializeLocalization(void)
 		if (bindtextdomain(NAMELOCALIZATIONDOMAIN,pathLocales)==NULL || !isdir(pathLocales))
 		{ 
 			/* when it is installed on the system for example /usr/share/locale/ */
-			fprintf(stderr, "Localization: Second try: Error while binding the domain from %s or %s: Switch to the default language (English).\n", pathLocales, previousPathLocales);
+			fprintf(stderr, "Warning: Localization issue: Error while binding the domain from %s or %s: Switch to the default language (English).\n", pathLocales, previousPathLocales);
 			FREE(previousPathLocales);
 			FREE(pathLocales);
 			return FALSE;
