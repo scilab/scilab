@@ -359,16 +359,12 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	pp = p;
 	poffset = (int)(p - buffer);
 
-	for(;;)
-    {
-		while (*pp != 0)
-		{
-			if (*pp == '\\' && pp[1] != 0) pp++;
-			else if (*pp == delimiter) break;
-			pp++;
-		}
-		if (*pp != 0) break;
-    }
+	while (*pp != 0)
+	{
+		if (*pp == '\\' && pp[1] != 0) pp++;
+		else if (*pp == delimiter) break;
+		pp++;
+	}
 
 	/* The buffer may have moved while being extended; reset the start of data
 	pointer to the correct relative point in the buffer. */
