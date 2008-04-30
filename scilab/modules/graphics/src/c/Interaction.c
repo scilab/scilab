@@ -38,6 +38,7 @@
 #include "DrawingBridge.h"
 #include "JavaInteraction.h"
 #include "Axes.h"
+#include "axesScale.h"
 #include "GetJavaProperty.h"
 #include "GraphicSynchronizerInterface.h"
 
