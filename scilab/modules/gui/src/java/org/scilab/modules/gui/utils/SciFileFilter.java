@@ -58,8 +58,11 @@ public class SciFileFilter extends FileFilter {
 		if (pathname.isDirectory()) {
 			return true;
 		}
-		return pathname.getAbsolutePath().matches(mask);
-		//return pathname.getAbsolutePath().endsWith(mask);
+		if (mask.equals("")) { // Bug 2861: have to return true for all files if no mask given
+			return true;
+		} else {
+			return pathname.getAbsolutePath().matches(mask);
+		}
 	}
 
 	/**
