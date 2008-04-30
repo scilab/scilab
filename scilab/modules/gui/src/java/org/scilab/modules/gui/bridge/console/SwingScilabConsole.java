@@ -25,6 +25,7 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
@@ -50,7 +51,7 @@ import com.artenum.rosetta.util.StringConstants;
 public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
 	private static final long serialVersionUID = 1L;
-	
+		
 	/**
 	 * Constructor
 	 */
@@ -158,7 +159,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 	 */
 	public void displayPrompt() {
 		
-		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
+		final InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
 		// Show the prompt
 		this.getConfiguration().getPromptView().setVisible(true);
 
@@ -166,7 +167,12 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		inputCmdView.setEditable(true);
 
 		((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
-		((JTextPane) inputCmdView).getCaret().setVisible(true);
+		
+	   	SwingUtilities.invokeLater(new Runnable() {
+    		public void run() {
+    			((JTextPane) inputCmdView).getCaret().setVisible(true);
+			}	
+		});	
 		
 		// Remove last line returned given by Scilab (carriage return)
 //		try {
