@@ -202,7 +202,7 @@ if txt~=[] then
   mname=w(1);
   nametbl=[nametbl;mname]
   if fnam<>mname & ~batch then // warning is not displayed for a batch file
-    mss=msprintf(gettext("messages","Warning: file %s defines function %s instead of %s\n         %s.sci, %s.cat and sci_%s.sci will be generated !"),fil,mname,fnam,mname,mname,mname);
+    mss=msprintf(gettext("Warning: file %s defines function %s instead of %s\n         %s.sci, %s.cat and sci_%s.sci will be generated !"),fil,mname,fnam,mname,mname,mname);
     m2sci_info(mss,-1);
   end
 
