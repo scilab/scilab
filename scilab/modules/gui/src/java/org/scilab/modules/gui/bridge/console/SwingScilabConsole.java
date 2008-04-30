@@ -140,6 +140,8 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		((JTextPane) getConfiguration().getOutputView()).addMouseListener(contextMenu);
 		((JTextPane) getConfiguration().getInputCommandView()).addMouseListener(contextMenu);
 		((JPanel) getConfiguration().getPromptView()).addMouseListener(contextMenu);
+		
+		((JTextPane) getConfiguration().getInputCommandView()).requestFocus();
 	}
 	
 	/**
@@ -164,7 +166,8 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		inputCmdView.setEditable(true);
 
 		((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
-
+		((JTextPane) inputCmdView).getCaret().setVisible(true);
+		
 		// Remove last line returned given by Scilab (carriage return)
 //		try {
 //			StyledDocument outputStyledDoc = this.getConfiguration().getOutputViewStyledDocument();			
