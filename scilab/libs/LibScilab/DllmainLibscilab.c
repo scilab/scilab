@@ -31,7 +31,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 /* force linking fortran libraries */
 #pragma comment(lib,"../../bin/blasplus.lib")
-#pragma comment(lib,"../../bin/arpack.lib")
 #pragma comment(lib,"../../bin/lapack.lib")
 #pragma comment(lib,"../../bin/linear_algebra_f.lib")
 #pragma comment(lib,"../../bin/sparse_f.lib")
