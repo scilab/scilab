@@ -29,28 +29,47 @@ function xs2fig(figureNumber, fileName)
 		return;
 	end
 	
-	//checking file extension	 				
-	[path,fname,extension] = fileparts(fileName)
-	
-  
-	//create the fig file
-	fileExport = TMPDIR + "\" + fileName + ".eps";	
-	xs2eps(figureNumber, fileExport); 			  
-			  
-	if (getos() == "Windows") then 
-				
-		if (extension <> ".fig") then							
-			unix_w(SCI + "\tools\pstoedit\pstoedit -f plot-fig " + fileExport + " " + fileName + ".fig"); 				  
-				  
-		elseif (extension == ".fig") then			  
-			unix_w(SCI + "\tools\pstoedit\pstoedit -f plot-fig " + fileExport + " " + fileName);  
-				  
-		else
-			error('Problem generating file , perhaps this option is not available with this OS.')
-		end			
+	if (getos() <> "Windows") then
+	  // os is a unix one
+	  // check that pstoedit is available on the computer
+	  checkPstoedit = unix_g("which pstoedit");
+	  if (checkPstoedit == [] | checkPstoedit == "") then
+	    error(msprintf(gettext("%s: Unable to locate pstoedit. Please install pstoedit to be able to use this functionnality.\n"), "xs2fig"));
+	    return;
+	  end
 	end
 	
-	//delete the eps file 
+	//checking file extension	 				
+	[path,fname,extension] = fileparts(fileName)
+	if (extension <> ".fig") then
+	  // appened fig at the end of the file name.
+	  generatedFileName = fileName + ".fig";
+	else
+	  generatedFileName = fileName;
+	end
+	
+	// compute pstoedit path
+	if (getos() == "Windows") then
+	  // pstoedit is embedded in Scilab
+	  pstoeditPath = SCI + "\tools\pstoedit\pstoedit";
+	else
+	  // pstoedit is installed on the computer.
+	  pstoeditPath = "pstoedit";
+	end
+	
+	
+  
+	//create the eps file
+	fileExport = TMPDIR + "/" + fileName + ".eps";	
+	xs2eps(figureNumber, fileExport);
+	
+	
+	// convert it to fig
+	pstoeditOptions = "-f ""fig""";
+	unix_s(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);
+			  
+	
+	//delete the temporary eps file 
 	mdelete(fileExport);
   
 endfunction
