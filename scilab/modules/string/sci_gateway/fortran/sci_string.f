@@ -8,10 +8,9 @@ c you should have received as part of this distribution.  The terms
 c are also available at    
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c =========================================  
-      subroutine intstring(id)
+      subroutine intstring
       INCLUDE 'stack.h'
 c
-      integer id(nsiz)
       integer eol,nclas
       logical ref
       integer iadr,sadr

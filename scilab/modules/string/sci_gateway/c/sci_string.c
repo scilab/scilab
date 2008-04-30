@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intstring) (int *id); /* fortran routine */
+extern int C2F(intstring) (void); /* fortran routine */
 /*--------------------------------------------------------------------------*/
 int C2F(sci_string)(char *fname,unsigned long fname_len)
 {
@@ -32,8 +32,7 @@ int C2F(sci_string)(char *fname,unsigned long fname_len)
 		{
 			if (Lhs == 1)
 			{
-				int id[6];
-				C2F(intstring)(id);
+				C2F(intstring)();
 			}
 			else Error(39);
 		}
@@ -54,8 +53,7 @@ int C2F(sci_string)(char *fname,unsigned long fname_len)
 		{
 			if (Lhs == 1)
 			{
-				int id[6];
-				C2F(intstring)(id);
+				C2F(intstring)();
 			}
 			else
 			{
@@ -70,8 +68,7 @@ int C2F(sci_string)(char *fname,unsigned long fname_len)
 			/* macros */
 			if (Lhs == 3)
 			{
-				int id[6];
-				C2F(intstring)(id);
+				C2F(intstring)();
 			}
 			else Error(41);
 		}
@@ -80,8 +77,7 @@ int C2F(sci_string)(char *fname,unsigned long fname_len)
 		{
 			if (Lhs == 1)
 			{
-				int id[6];
-				C2F(intstring)(id);
+				C2F(intstring)();
 			}
 			else Error(39);
 		}
