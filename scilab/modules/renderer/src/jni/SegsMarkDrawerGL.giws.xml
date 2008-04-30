@@ -31,5 +31,7 @@
       <param type="double[]" name="startZCoords" />
       <param type="double[]" name="endZCoords" />
     </method>
+    <method name="drawSegs" returnType="void">
+    </method>
   </object>
 </package>

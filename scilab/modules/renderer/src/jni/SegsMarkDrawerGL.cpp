@@ -110,6 +110,7 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voidsetMarkParametersjintjintjintjintjintID=NULL; 
 voiddrawSegsjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
+voiddrawSegsID=NULL; 
 
 
 }
@@ -143,6 +144,7 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voidsetMarkParametersjintjintjintjintjintID=NULL; 
 voiddrawSegsjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
+voiddrawSegsID=NULL; 
 
 
 }
@@ -341,6 +343,25 @@ curEnv->DeleteLocalRef(endYCoords_);
 curEnv->DeleteLocalRef(startZCoords_);
 curEnv->DeleteLocalRef(endZCoords_);
 
+}
+
+void SegsMarkDrawerGL::drawSegs (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voiddrawSegsID==NULL) { /* Use the cache Luke */ voiddrawSegsID = curEnv->GetMethodID(this->instanceClass, "drawSegs", "()V" ) ;
+if (voiddrawSegsID == NULL) {
+std::cerr << "Could not access to the method " << "drawSegs" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voiddrawSegsID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

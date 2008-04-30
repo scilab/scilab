@@ -90,5 +90,13 @@ void ConcreteDrawablePolyline::showPolyline(void)
   }
 }
 /*---------------------------------------------------------------------------------*/
-
+void ConcreteDrawablePolyline::redrawPolyline(void)
+{
+  list<DrawPolylineStrategy *>::iterator it = m_oDrawingStrategies.begin();
+  for( ; it != m_oDrawingStrategies.end(); it++ )
+  {
+    (*it)->redrawPolyline();
+  }
+}
+/*---------------------------------------------------------------------------------*/
 }

@@ -78,4 +78,9 @@ void RectangleMarkDrawerJavaMapper::drawRectangle(double corner1X, double corner
                                corner4X, corner4Y, corner4Z) ;
 }
 /*---------------------------------------------------------------------------------*/
+void RectangleMarkDrawerJavaMapper::drawRectangle(void)
+{
+  m_pJavaObject->drawRectangle();
+}
+/*---------------------------------------------------------------------------------*/
 }

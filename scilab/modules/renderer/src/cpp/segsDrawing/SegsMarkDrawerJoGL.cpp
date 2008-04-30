@@ -58,6 +58,13 @@ void SegsMarkDrawerJoGL::showSegs( void )
   show();
 }
 /*---------------------------------------------------------------------------------*/
+void SegsMarkDrawerJoGL::redrawSegs( void )
+{
+  initializeDrawing();
+  getMarkDrawerJavaMapper()->drawSegs();
+  endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
 SegsMarkDrawerJavaMapper * SegsMarkDrawerJoGL::getMarkDrawerJavaMapper(void)
 {
   return dynamic_cast<SegsMarkDrawerJavaMapper *>(getJavaMapper());

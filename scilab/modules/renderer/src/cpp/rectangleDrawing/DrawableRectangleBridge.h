@@ -44,6 +44,11 @@ public:
   virtual void drawRectangle( void ) ;
 
   /**
+   * Tell the canvas to draw itself.
+   */
+  virtual void redrawRectangle( void ) ;
+
+  /**
    * Add a rendering algorithm
    */
   void addDrawingStrategy( DrawRectangleStrategy * strategy ) ;

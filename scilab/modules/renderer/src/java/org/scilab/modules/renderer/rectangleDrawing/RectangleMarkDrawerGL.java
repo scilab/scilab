@@ -26,16 +26,11 @@ public class RectangleMarkDrawerGL extends MarkDrawerGL implements RectangleDraw
 	
 	private static final int NB_CORNERS = 4;
 	
-	
-	/** position of corners, needed to retrive pixels coordinates */
-	private Vector3D[] cornersPos;
-	
 	/**
 	 * Default Constructor
 	 */
 	public RectangleMarkDrawerGL() {
 		super();
-		cornersPos = new Vector3D[NB_CORNERS];
 	}
 	
 	
@@ -44,9 +39,7 @@ public class RectangleMarkDrawerGL extends MarkDrawerGL implements RectangleDraw
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
 	public void show(int parentFigureIndex) {
-		initializeDrawing(parentFigureIndex);
-		drawRectangle();
-		endDrawing();
+		showMarks();
 	}
 	
 	/**
@@ -54,7 +47,7 @@ public class RectangleMarkDrawerGL extends MarkDrawerGL implements RectangleDraw
 	 * using data stored in cornersPos
 	 */
 	public void drawRectangle() {
-		drawMarks(cornersPos);
+		redrawMarks();
 	}
 
 	/**
@@ -80,12 +73,13 @@ public class RectangleMarkDrawerGL extends MarkDrawerGL implements RectangleDraw
 		
 		
 		// save rectangle coordinates
+		Vector3D[] cornersPos = new Vector3D[NB_CORNERS];
 		cornersPos[0] = new Vector3D(corner1X, corner1Y, corner1Z);
 		cornersPos[1] = new Vector3D(corner2X, corner2Y, corner2Z);
 		cornersPos[2] = new Vector3D(corner3X, corner3Y, corner3Z);
 		cornersPos[NB_CORNERS - 1] = new Vector3D(corner4X, corner4Y, corner4Z);
 		
-		drawRectangle();
+		drawMarks(cornersPos);
 		
 	}
 	

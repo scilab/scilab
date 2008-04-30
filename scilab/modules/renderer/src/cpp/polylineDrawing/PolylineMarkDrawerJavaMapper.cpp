@@ -74,4 +74,9 @@ void PolylineMarkDrawerJavaMapper::drawPolyline(const double xCoords[], const do
                               (double *)zCoords, nbCoords);
 }
 /*---------------------------------------------------------------------------------*/
+void PolylineMarkDrawerJavaMapper::drawPolyline(void)
+{
+  m_pJavaObject->drawPolyline();
+}
+/*---------------------------------------------------------------------------------*/
 }

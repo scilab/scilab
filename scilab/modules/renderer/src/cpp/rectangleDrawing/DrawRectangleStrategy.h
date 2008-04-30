@@ -37,6 +37,12 @@ public:
    */
   virtual void show( void ) = 0;
 
+  /**
+   * Draw the rectangle using precomputed data.
+   * By default use show.
+   */
+  virtual void redrawRectangle( void ) { show(); }
+
 protected:
 
   DrawableRectangleBridge * m_pDrawed ;

@@ -90,6 +90,13 @@ void SurfaceMarkDrawerJoGL::showSurface( void )
   show();
 }
 /*---------------------------------------------------------------------------------*/
+void SurfaceMarkDrawerJoGL::redrawSurface( void )
+{
+  initializeDrawing();
+  getMarkDrawerJavaMapper()->drawSurface();
+  endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
 SurfaceMarkDrawerJavaMapper * SurfaceMarkDrawerJoGL::getMarkDrawerJavaMapper(void)
 {
   return dynamic_cast<SurfaceMarkDrawerJavaMapper *>(getJavaMapper());

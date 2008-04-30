@@ -50,6 +50,8 @@ public:
                         const double startYCoords[], const double endYCoords[],
                         const double startZCoords[], const double endZCoords[],
                         int nbSegments);
+
+  virtual void drawSegs(void);
   /*----------------------------------------------------------------------*/
 
 private:

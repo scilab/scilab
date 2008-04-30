@@ -51,6 +51,8 @@ public:
                            double yCoords[], int sizeY,
                            double zCoords[], int sizeZ,
                            int nbFacets);
+
+  virtual void drawSurface(void);
   /*----------------------------------------------------------------------*/
 
 protected:

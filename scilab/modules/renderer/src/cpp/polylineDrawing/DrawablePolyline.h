@@ -74,14 +74,24 @@ protected:
   virtual void show( void ) ;
 
   /**
+   * Draw the polyline using precomputed data
+   */
+  virtual void redraw(void);
+
+  /**
    * Actually draw the polyline on the screen
    */
   virtual void drawPolyline(void) = 0;
 
   /**
-  * Actually show the polyline stored data
-  */
+   * Actually show the polyline stored data
+   */
   virtual void showPolyline(void) = 0;
+
+  /**
+   * Actually redraw the polyline stored data
+   */
+  virtual void redrawPolyline(void) = 0;
   /*---------------------------------------------------------------------------------*/
 
 } ;

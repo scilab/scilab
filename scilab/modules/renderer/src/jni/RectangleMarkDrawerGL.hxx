@@ -60,6 +60,7 @@ jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetMarkParametersjintjintjintjintjintID; // cache method id
 jmethodID voiddrawRectanglejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
+jmethodID voiddrawRectangleID; // cache method id
 
 
 /**
@@ -116,6 +117,8 @@ void setFigureIndex(long figureIndex);
 void setMarkParameters(long background, long foreground, long markSizeUnit, long markSize, long markStyleIndex);
 
 void drawRectangle(double corner1X, double corner1Y, double corner1Z, double corner2X, double corner2Y, double corner2Z, double corner3X, double corner3Y, double corner3Z, double corner4X, double corner4Y, double corner4Z);
+
+void drawRectangle();
 
 
                         /**

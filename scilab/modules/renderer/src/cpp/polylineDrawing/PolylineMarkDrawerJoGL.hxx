@@ -43,6 +43,12 @@ public:
    */
   virtual void showPolyline( void );
 
+  /**
+   * Redefine redraw since marks change when the
+   * axes change
+   */
+  virtual void redrawPolyline( void ) ;
+
 protected:
 
   /**

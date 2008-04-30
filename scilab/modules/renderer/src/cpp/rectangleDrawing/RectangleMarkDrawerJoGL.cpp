@@ -60,6 +60,14 @@ void RectangleMarkDrawerJoGL::drawRectangle( void )
   endDrawing() ;
 }
 /*---------------------------------------------------------------------------------*/
+void RectangleMarkDrawerJoGL::redrawRectangle( void )
+{
+  initializeDrawing();
+  getMarkDrawerJavaMapper()->drawRectangle();
+  endDrawing();
+
+}
+/*---------------------------------------------------------------------------------*/
 RectangleMarkDrawerJavaMapper * RectangleMarkDrawerJoGL::getMarkDrawerJavaMapper(void)
 {
   return dynamic_cast<RectangleMarkDrawerJavaMapper *>(getJavaMapper());

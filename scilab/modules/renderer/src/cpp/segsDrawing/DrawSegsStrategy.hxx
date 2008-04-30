@@ -42,6 +42,12 @@ public:
    */
   virtual void showSegs( void ) = 0;
 
+  /**
+   * Redraw object using precomputed data.
+   * By default show segs.
+   */
+  virtual void redrawSegs( void ) {showSegs();}
+
 protected:
 
   DrawableSegs * m_pDrawed;

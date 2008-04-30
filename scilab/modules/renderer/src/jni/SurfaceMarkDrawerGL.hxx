@@ -61,6 +61,7 @@ jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetMarkParametersjintjintjintjintjintID; // cache method id
 jmethodID voidsetSurfaceTypejintID; // cache method id
 jmethodID voiddrawSurfacejdoubleArrayjdoubleArrayjdoubleArrayjintID; // cache method id
+jmethodID voiddrawSurfaceID; // cache method id
 
 
 /**
@@ -119,6 +120,8 @@ void setMarkParameters(long background, long foreground, long markSizeUnit, long
 void setSurfaceType(long typeOfSurface);
 
 void drawSurface(double * xCoords, int xCoordsSize, double * yCoords, int yCoordsSize, double * zCoords, int zCoordsSize, long nbFacets);
+
+void drawSurface();
 
 
                         /**

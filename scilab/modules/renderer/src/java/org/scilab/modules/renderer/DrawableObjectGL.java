@@ -74,7 +74,9 @@ public abstract class DrawableObjectGL extends ObjectGL {
 			getGL().glDeleteLists(dlIndex, 1);
 		}
 		dlIndex = getGL().glGenLists(1);
-		getGL().glNewList(dlIndex, GL.GL_COMPILE_AND_EXECUTE);
+		// as advised in OpenGL web site, don't use GL_COMPILE_AND_EXECUTE
+		// but instead compile and then execute.
+		getGL().glNewList(dlIndex, GL.GL_COMPILE);
 	}
 	
 	/**
@@ -83,6 +85,8 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	 */
 	protected void endRecordDL() {
 		getGL().glEndList();
+		// draw the recorded display list
+		displayDL();
 	}
 	
 	/**

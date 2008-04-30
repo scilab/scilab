@@ -111,6 +111,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetMarkParametersjintjintjintjintjintID=NULL; 
 voidsetSurfaceTypejintID=NULL; 
 voiddrawSurfacejdoubleArrayjdoubleArrayjdoubleArrayjintID=NULL; 
+voiddrawSurfaceID=NULL; 
 
 
 }
@@ -145,6 +146,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetMarkParametersjintjintjintjintjintID=NULL; 
 voidsetSurfaceTypejintID=NULL; 
 voiddrawSurfacejdoubleArrayjdoubleArrayjdoubleArrayjintID=NULL; 
+voiddrawSurfaceID=NULL; 
 
 
 }
@@ -350,6 +352,25 @@ curEnv->ExceptionDescribe() ;
 curEnv->DeleteLocalRef(yCoords_);
 curEnv->DeleteLocalRef(zCoords_);
 
+}
+
+void SurfaceMarkDrawerGL::drawSurface (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voiddrawSurfaceID==NULL) { /* Use the cache Luke */ voiddrawSurfaceID = curEnv->GetMethodID(this->instanceClass, "drawSurface", "()V" ) ;
+if (voiddrawSurfaceID == NULL) {
+std::cerr << "Could not access to the method " << "drawSurface" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voiddrawSurfaceID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

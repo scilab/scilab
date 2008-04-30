@@ -71,6 +71,11 @@ protected:
   virtual void show( void ) ;
 
   /**
+   * Redraw the object using precomputed data.
+   */
+  virtual void redraw(void);
+
+  /**
    * Actually draw the segs
    */
   virtual void drawSegs(void) = 0;
@@ -79,6 +84,11 @@ protected:
    * Show the segs
    */
   virtual void showSegs(void) = 0;
+
+  /**
+   * Redraw the segs
+   */
+  virtual void redrawSegs(void) = 0;
 
 
 } ;

@@ -56,6 +56,20 @@ void DrawableRectangle::show( void )
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableRectangle::redraw(void)
+{
+  initializeDrawing();
+  if ( !checkVisibility() )
+  {
+    endDrawing();
+    return ;
+  }
+  clip();
+  getRectangleImp()->redrawRectangle();
+  unClip();
+  endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
 DrawableRectangleBridge * DrawableRectangle::getRectangleImp( void )
 {
   return dynamic_cast<DrawableRectangleBridge *>(m_pImp) ;

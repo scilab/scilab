@@ -39,6 +39,11 @@ public:
    */
   virtual void showPolyline( void ) = 0;
 
+  /**
+   * Use precomputed data, by default just call show
+   */
+  virtual void redrawPolyline( void ) {showPolyline();}
+
 protected:
 
   DrawablePolyline * m_pDrawed;

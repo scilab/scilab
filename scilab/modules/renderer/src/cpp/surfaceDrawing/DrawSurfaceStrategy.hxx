@@ -39,6 +39,12 @@ public:
    */
   virtual void showSurface( void ) = 0;
 
+  /**
+   * Draw objects using precomputed data
+   * by default use show.
+   */
+  virtual void redrawSurface( void ) {showSurface();}
+
 protected:
 
   DrawableSurface * m_pDrawed;

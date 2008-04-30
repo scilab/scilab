@@ -40,9 +40,6 @@ public abstract class ObjectGL {
 	 * Default constructor
 	 */
 	public ObjectGL() {
-		//nbObjectsCount++;
-		//System.err.println("creating object " + this.getClass().getCanonicalName());
-		//System.err.println("Nb objects count: " + nbObjectsCount);
 		curGluInstance = null;
 	}
 	
@@ -79,8 +76,6 @@ public abstract class ObjectGL {
 		parentFigureGL = FigureMapper.getCorrespondingFigure(parentFigureIndex);
 		updateGLContext();
 		updateColorMap();
-		/*updateGLContext(parentFigureIndex);
-		updateColorMap(parentFigureIndex);*/
 	}
 	
 	/**

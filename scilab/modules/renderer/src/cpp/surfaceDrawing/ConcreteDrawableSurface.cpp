@@ -64,5 +64,13 @@ void ConcreteDrawableSurface::showSurface(void)
   }
 }
 /*---------------------------------------------------------------------------------*/
-
+void ConcreteDrawableSurface::redrawSurface(void)
+{
+  list<DrawSurfaceStrategy *>::iterator it = m_oDrawingStrategies.begin();
+  for(; it != m_oDrawingStrategies.end(); it++)
+  {
+    (*it)->redrawSurface();
+  }
+}
+/*---------------------------------------------------------------------------------*/
 }

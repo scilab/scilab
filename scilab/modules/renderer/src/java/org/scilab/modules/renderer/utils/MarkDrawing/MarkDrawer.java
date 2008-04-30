@@ -140,6 +140,33 @@ public class MarkDrawer extends DrawableObjectGL {
 	public void show(int parentFigureIndex) { }
 	
 	/**
+	 * End the recoding of a display list.
+	 * Need to be called after a startRecordDL
+	 */
+	protected void endRecordDL() {
+		// just finish to record the display list, don't draw it.
+		getGL().glEndList();
+	}
+	
+	/**
+	 * 
+	 */
+	public void createDisplayList() {
+		GL gl = getGL();
+		
+		startRecordDL();
+		
+		// enable offset factor to be sure that lines are drawn in font of polygons
+		GLTools.pushPolygonsBack(gl);
+		double realMarkSize = getMarkPixelSize();
+		gl.glScaled(realMarkSize, realMarkSize, 1.0);
+		drawer.drawMark(gl, getColorMap().getColor(markBackground), getColorMap().getColor(markForeground));
+		GLTools.endPushPolygonsBack(gl);
+		
+		endRecordDL();
+	}
+	
+	/**
 	 * Draw a mark at the specified postion
 	 * @param posX X coordinate of the mark
 	 * @param posY Y coordinate of the mark
@@ -151,18 +178,10 @@ public class MarkDrawer extends DrawableObjectGL {
 			gl.glPushMatrix();
 			// put position into integer in order to center the mark on pixels
 			gl.glTranslated(Math.round(posX), Math.round(posY), posZ);
-			if (isDLInit()) {
-				displayDL();
-			} else {
-				startRecordDL();
-				// enable offset factor to be sure that lines are drawn in font of polygons
-				GLTools.pushPolygonsBack(gl);
-				double realMarkSize = getMarkPixelSize();
-				gl.glScaled(realMarkSize, realMarkSize, 1.0);
-				drawer.drawMark(gl, getColorMap().getColor(markBackground), getColorMap().getColor(markForeground));
-				GLTools.endPushPolygonsBack(gl);
-				endRecordDL();
-			}
+			
+			// draw the mark
+			displayDL();
+			
 			gl.glPopMatrix();
 		}
 	}

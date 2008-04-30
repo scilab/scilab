@@ -43,5 +43,18 @@ void DrawableSegs::show( void )
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableSegs::redraw(void)
+{
+  if(!checkVisibility())
+  {
+    return;
+  }
+  initializeDrawing();
+  clip();
+  redrawSegs();
+  unClip();
+  endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
 
 }

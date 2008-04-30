@@ -143,4 +143,13 @@ void ConcreteDrawableSegs::showSegs(void)
   }
 }
 /*---------------------------------------------------------------------------------*/
+void ConcreteDrawableSegs::redrawSegs(void)
+{
+  list<DrawSegsStrategy *>::iterator it = m_oDrawers.begin();
+  for( ; it != m_oDrawers.end(); it++ )
+  {
+    (*it)->redrawSegs();
+  }
+}
+/*---------------------------------------------------------------------------------*/
 }

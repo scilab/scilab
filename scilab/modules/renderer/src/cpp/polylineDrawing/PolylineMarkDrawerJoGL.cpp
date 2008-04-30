@@ -105,6 +105,13 @@ void PolylineMarkDrawerJoGL::showPolyline( void )
   show();
 }
 /*---------------------------------------------------------------------------------*/
+void PolylineMarkDrawerJoGL::redrawPolyline( void )
+{
+  initializeDrawing() ;
+  getMarkDrawerJavaMapper()->drawPolyline();
+  endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
 PolylineMarkDrawerJavaMapper * PolylineMarkDrawerJoGL::getMarkDrawerJavaMapper(void)
 {
   return dynamic_cast<PolylineMarkDrawerJavaMapper *>(getJavaMapper());

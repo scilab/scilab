@@ -32,12 +32,15 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	/** index of background color */
 	private MarkDrawer drawer;
 	
+	private Vector3D[] markPos;
+	
 	/**
 	 * Default Constructor
 	 */
 	public MarkDrawerGL() {
 		super();
 		drawer = new MarkDrawer();
+		markPos = null;
 	}
 	
 	
@@ -53,7 +56,6 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	 * @param parentFigureIndex index of the parent figure.
 	 *                          Needed to get the GL context to draw in.
 	 */
-	@Override
 	public void initializeDrawing(int parentFigureIndex) {
 		super.initializeDrawing(parentFigureIndex);
 		drawer.initializeDrawing(parentFigureIndex);
@@ -131,32 +133,56 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	}
 
 	/**
-	 * Display the marks at the positions specified by marksPosition
-	 * @param marksPosition positions in 3D of marks
+	 * Draw marks from already precomputed data
 	 */
-	public void drawMarks(Vector3D[] marksPosition) {
+	public void redrawMarks() {
 		GL gl = getGL();
 		
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
 		// need to perform this befaore swithching to pixel coordinates
-		Vector3D[] pixCoords = transform.getCanvasCoordinates(gl, marksPosition);
-		
-		// mark are drawn with a line width of 1.
-		gl.glLineWidth(1.0f);
+		Vector3D[] pixCoords = transform.getCanvasCoordinates(gl, markPos);
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
 		
-		for (int i = 0; i < marksPosition.length; i++) {
+		// create the display list using pixel coordinates
+		startRecordDL();
+		// mark are drawn with a line width of 1.
+		gl.glLineWidth(1.0f);
+		for (int i = 0; i < markPos.length; i++) {
 			// switch back to the new frame
-			//Vector3D curCoord = transform.retrieveSceneCoordinates(gl, pixCoords[i]);
 			getDrawer().drawMark(pixCoords[i].getX(), pixCoords[i].getY(), pixCoords[i].getZ());
 		}
+		endRecordDL();
 		// we recreate the dl each time
-		getDrawer().clearDisplayList();
+		//getDrawer().clearDisplayList();
 		
 		GLTools.endPixelCoordinates(gl);
+	}
+	
+	/**
+	 * Show the compute ddisplay list
+	 */
+	public void showMarks() {
+		GL gl = getGL();
+		
+		// switch to pixel coordinates
+		GLTools.usePixelCoordinates(gl);
+		displayDL();
+		
+		GLTools.endPixelCoordinates(gl);
+	}
+	
+	/**
+	 * Display the marks at the positions specified by marksPosition
+	 * @param marksPosition positions in 3D of marks
+	 */
+	public void drawMarks(Vector3D[] marksPosition) {
+		this.markPos = marksPosition;
+		// mark object has chnaged, we mey need to recreate the display list
+		getDrawer().createDisplayList();
+		redrawMarks();
 	}
 	
 	/**

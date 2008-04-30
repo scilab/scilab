@@ -51,6 +51,11 @@ protected:
    * Actually show the surface stored data
    */
   virtual void showSurface(void);
+
+  /**
+   * Actually redraw the surface stored data
+   */
+  virtual void redrawSurface(void);
   /*---------------------------------------------------------------------------------*/
   std::list<DrawSurfaceStrategy *> m_oDrawingStrategies;
   /*---------------------------------------------------------------------------------*/

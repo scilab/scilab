@@ -24,9 +24,6 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Jean-Baptiste Silvy
  */
 public class SurfaceMarkDrawerGL extends MarkDrawerGL {
-
-	/** positions of marks */
-	private Vector3D[] marksPos;
 	
 	private SurfaceDecomposer decomposer;
 	
@@ -51,16 +48,16 @@ public class SurfaceMarkDrawerGL extends MarkDrawerGL {
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
 	public void show(int parentFigureIndex) {
-		initializeDrawing(parentFigureIndex);
-		drawSurface();
-		endDrawing();
+		//initializeDrawing(parentFigureIndex);
+		showMarks();
+		//endDrawing();
 	}
 	
 	/**
 	 * Draw the marks that have been computed
 	 */
 	public void drawSurface() {
-		drawMarks(marksPos);
+		redrawMarks();
 	}
 	
 	/**
@@ -75,7 +72,7 @@ public class SurfaceMarkDrawerGL extends MarkDrawerGL {
 		decomposer.setFacetsPositions(xCoords, yCoords, zCoords, nbVertices);
 		
 		// create a new array of marks positions
-		marksPos = new Vector3D[nbVertices * decomposer.getNbFacets()];
+		Vector3D[] marksPos = new Vector3D[nbVertices * decomposer.getNbFacets()];
 		
 		int markIndex = 0;
 		while (decomposer.hasNext()) {
@@ -89,7 +86,7 @@ public class SurfaceMarkDrawerGL extends MarkDrawerGL {
 			}
 		}
 		
-		drawSurface();
+		drawMarks(marksPos);
 		
 		// decomposer is no longer needed, we got the array of marks positions
 		decomposer = null;

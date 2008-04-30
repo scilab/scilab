@@ -85,5 +85,10 @@ void SegsMarkDrawerJavaMapper::drawSegs(const double startXCoords[], const doubl
 
 }
 /*---------------------------------------------------------------------------------*/
+void SegsMarkDrawerJavaMapper::drawSegs(void)
+{
+  m_pJavaObject->drawSegs();
+}
+/*---------------------------------------------------------------------------------*/
 
 }

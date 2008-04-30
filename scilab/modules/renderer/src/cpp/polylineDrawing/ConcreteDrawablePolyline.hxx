@@ -82,6 +82,11 @@ protected:
    * Actually show the polyline stored data
    */
   virtual void showPolyline(void);
+
+  /**
+   * Actually redraw the polyline stored data
+   */
+  virtual void redrawPolyline(void);
   /*---------------------------------------------------------------------------------*/
   std::list<DrawPolylineStrategy *> m_oDrawingStrategies;
   DecomposeLineStrategy * m_pDecomposeStrategy;

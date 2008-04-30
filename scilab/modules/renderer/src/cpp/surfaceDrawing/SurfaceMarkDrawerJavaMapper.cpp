@@ -82,4 +82,9 @@ void SurfaceMarkDrawerJavaMapper::drawSurface(double xCoords[], int sizeX,
   m_pJavaObject->drawSurface(xCoords, sizeX, yCoords, sizeY, zCoords, sizeZ, nbFacets);
 }
 /*---------------------------------------------------------------------------------*/
+void SurfaceMarkDrawerJavaMapper::drawSurface(void)
+{
+  m_pJavaObject->drawSurface();
+}
+/*---------------------------------------------------------------------------------*/
 }

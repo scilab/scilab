@@ -60,6 +60,7 @@ jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetMarkParametersjintjintjintjintjintID; // cache method id
 jmethodID voiddrawSegsjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID; // cache method id
+jmethodID voiddrawSegsID; // cache method id
 
 
 /**
@@ -116,6 +117,8 @@ void setFigureIndex(long figureIndex);
 void setMarkParameters(long background, long foreground, long markSizeUnit, long markSize, long markStyleIndex);
 
 void drawSegs(double * startXCoords, int startXCoordsSize, double * endXCoords, int endXCoordsSize, double * startYCoords, int startYCoordsSize, double * endYCoords, int endYCoordsSize, double * startZCoords, int startZCoordsSize, double * endZCoords, int endZCoordsSize);
+
+void drawSegs();
 
 
                         /**

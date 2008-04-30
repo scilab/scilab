@@ -32,5 +32,7 @@
       <param type="double[]" name="zCoords" />
       <param type="int" name="nbFacets" />
     </method>
+    <method name="drawSurface" returnType="void">
+    </method>
   </object>
 </package>

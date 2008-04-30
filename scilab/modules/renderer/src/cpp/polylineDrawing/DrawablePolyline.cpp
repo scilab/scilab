@@ -48,5 +48,18 @@ void DrawablePolyline::show( void )
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawablePolyline::redraw( void )
+{
+  if ( !checkVisibility() )
+  {
+    return ;
+  }
+  initializeDrawing();
+  clip();
+  redrawPolyline();
+  unClip();
+  endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
 
 }

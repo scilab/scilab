@@ -50,6 +50,8 @@ public:
                              double corner2X, double corner2Y, double corner2Z,
                              double corner3X, double corner3Y, double corner3Z,
                              double corner4X, double corner4Y, double corner4Z);
+
+  virtual void drawRectangle(void);
   /*----------------------------------------------------------------------*/
 
 private:

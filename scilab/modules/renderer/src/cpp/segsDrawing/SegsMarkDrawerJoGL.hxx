@@ -42,6 +42,12 @@ namespace sciGraphics
      */
     virtual void showSegs( void );
 
+    /**
+     * Redefine redraw since marks should be redrawn each time
+     * a the subwindow changes.
+     */
+    virtual void redrawSegs( void ) ;
+
   protected:
 
     /**

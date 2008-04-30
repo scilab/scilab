@@ -86,6 +86,11 @@ protected:
    * Show the segs
    */
   virtual void showSegs(void);
+
+  /**
+   * Redraw the segs
+   */
+  virtual void redrawSegs(void);
   /*---------------------------------------------------------------------------------*/
   std::list<DrawSegsStrategy *> m_oDrawers;
   DecomposeSegsStrategy * m_pDecomposer;

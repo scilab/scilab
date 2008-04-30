@@ -22,15 +22,12 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Jean-Baptiste Silvy
  */
 public class SegsMarkDrawerGL extends MarkDrawerGL {
-
-	private Vector3D[] marksPositions;
 	
 	/**
 	 * default constructor
 	 */
 	public SegsMarkDrawerGL() {
 		super();
-		marksPositions = null;
 	}
 	
 	/**
@@ -39,9 +36,7 @@ public class SegsMarkDrawerGL extends MarkDrawerGL {
 	 */
 	@Override
 	public void show(int parentFigureIndex) {
-		initializeDrawing(parentFigureIndex);
-		drawSegs();
-		endDrawing();
+		showMarks();
 	}
 	
 	/**
@@ -58,14 +53,14 @@ public class SegsMarkDrawerGL extends MarkDrawerGL {
 		int nbSegs = startXCoords.length;
 		
 		// we draw marks on both ends of segments
-		marksPositions = new Vector3D[2 * nbSegs];
+		Vector3D[] marksPositions = new Vector3D[2 * nbSegs];
 		
 		for (int i = 0; i < nbSegs; i++) {
 			marksPositions[2 * i] = new Vector3D(startXCoords[i], startYCoords[i], startZCoords[i]);
 			marksPositions[2 * i + 1] = new Vector3D(endXCoords[i], endYCoords[i], endZCoords[i]);
 		}
 		
-		drawSegs();
+		drawMarks(marksPositions);
 		
 	}
 	
@@ -73,7 +68,7 @@ public class SegsMarkDrawerGL extends MarkDrawerGL {
 	 * Draw the segments
 	 */
 	public void drawSegs() {
-		drawMarks(marksPositions);
+		redrawMarks();
 	}
 
 }

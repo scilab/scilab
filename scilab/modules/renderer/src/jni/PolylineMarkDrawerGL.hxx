@@ -60,6 +60,7 @@ jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetMarkParametersjintjintjintjintjintID; // cache method id
 jmethodID voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayID; // cache method id
+jmethodID voiddrawPolylineID; // cache method id
 
 
 /**
@@ -116,6 +117,8 @@ void setFigureIndex(long figureIndex);
 void setMarkParameters(long background, long foreground, long markSizeUnit, long markSize, long markStyleIndex);
 
 void drawPolyline(double * xCoords, int xCoordsSize, double * yCoords, int yCoordsSize, double * zCoords, int zCoordsSize);
+
+void drawPolyline();
 
 
                         /**

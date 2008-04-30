@@ -25,16 +25,12 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Jean-Baptiste Silvy
  */
 public class PolylineMarkDrawerGL extends MarkDrawerGL implements PolylineDrawerStrategy {
-
-	/** Get the position of vertices */
-	private Vector3D[] verticesPositions;
 	
 	/**
 	 * Default constructor
 	 */
 	public PolylineMarkDrawerGL() {
 		super();
-		verticesPositions = null;
 	}
 	
 	/**
@@ -43,9 +39,7 @@ public class PolylineMarkDrawerGL extends MarkDrawerGL implements PolylineDrawer
 	 */
 	@Override
 	public void show(int parentFigureIndex) {
-		initializeDrawing(parentFigureIndex);
-		drawPolyline();
-		endDrawing();
+		showMarks();
 	}
 
 	/**
@@ -55,12 +49,12 @@ public class PolylineMarkDrawerGL extends MarkDrawerGL implements PolylineDrawer
 	 * @param zCoords Z coordinates of the polylines vertices
 	 */
 	public void drawPolyline(double[] xCoords, double[] yCoords, double[] zCoords) {
-		verticesPositions = new Vector3D[xCoords.length];
+		Vector3D[] verticesPositions = new Vector3D[xCoords.length];
 		for (int i = 0; i < xCoords.length; i++) {
 			verticesPositions[i] = new Vector3D(xCoords[i], yCoords[i], zCoords[i]);
 		}
 		
-		drawPolyline();
+		drawMarks(verticesPositions);
 		
 	}
 	
@@ -68,7 +62,7 @@ public class PolylineMarkDrawerGL extends MarkDrawerGL implements PolylineDrawer
 	 * Draw the mark on the polyline using the stored vertices.
 	 */
 	public void drawPolyline() {
-		drawMarks(verticesPositions);
+		redrawMarks();
 	}
 
 }

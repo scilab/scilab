@@ -41,6 +41,15 @@ void DrawableRectangleBridge::drawRectangle( void )
   }
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableRectangleBridge::redrawRectangle( void )
+{
+  list<DrawRectangleStrategy *>::iterator it = m_oDrawingStrategies.begin() ;
+  for ( ; it != m_oDrawingStrategies.end() ; it++ )
+  {
+    (*it)->redrawRectangle() ;
+  }
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableRectangleBridge::addDrawingStrategy( DrawRectangleStrategy * strategy )
 {
   m_oDrawingStrategies.push_back( strategy ) ;

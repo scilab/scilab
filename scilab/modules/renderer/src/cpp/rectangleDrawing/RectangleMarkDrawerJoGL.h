@@ -36,6 +36,11 @@ namespace sciGraphics
     */
     virtual void show( void ) { DrawableObjectJoGL::show(); }
 
+    /**
+     * Draw the rectangle using precomputed data.
+     */
+    virtual void redrawRectangle( void );
+
   protected:
 
     /**

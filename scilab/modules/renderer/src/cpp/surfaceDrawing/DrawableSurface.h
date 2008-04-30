@@ -42,6 +42,13 @@ protected:
   virtual void show( void ) ;
 
   /**
+   * Draw the surface using precomputed data
+   */
+  virtual void redraw(void);
+
+
+
+  /**
    * Actually draw the surface on the screen
    */
   virtual void drawSurface(void) = 0;
@@ -50,6 +57,11 @@ protected:
    * Actually show the stored data.
    */
   virtual void showSurface(void) = 0;
+
+  /**
+   * Actually redraw the surface stored data
+   */
+  virtual void redrawSurface(void) = 0;
 
 
 } ;

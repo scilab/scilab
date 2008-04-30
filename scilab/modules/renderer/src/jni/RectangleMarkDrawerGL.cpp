@@ -110,6 +110,7 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voidsetMarkParametersjintjintjintjintjintID=NULL; 
 voiddrawRectanglejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voiddrawRectangleID=NULL; 
 
 
 }
@@ -143,6 +144,7 @@ voiddestroyjintID=NULL;
 voidsetFigureIndexjintID=NULL; 
 voidsetMarkParametersjintjintjintjintjintID=NULL; 
 voiddrawRectanglejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
+voiddrawRectangleID=NULL; 
 
 
 }
@@ -311,6 +313,25 @@ exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voiddrawRectanglejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID ,corner1X, corner1Y, corner1Z, corner2X, corner2Y, corner2Z, corner3X, corner3Y, corner3Z, corner4X, corner4Y, corner4Z);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void RectangleMarkDrawerGL::drawRectangle (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voiddrawRectangleID==NULL) { /* Use the cache Luke */ voiddrawRectangleID = curEnv->GetMethodID(this->instanceClass, "drawRectangle", "()V" ) ;
+if (voiddrawRectangleID == NULL) {
+std::cerr << "Could not access to the method " << "drawRectangle" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voiddrawRectangleID );
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

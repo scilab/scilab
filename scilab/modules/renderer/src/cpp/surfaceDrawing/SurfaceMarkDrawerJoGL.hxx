@@ -38,9 +38,15 @@ public:
   virtual void drawSurface( void );
 
   /**
-  * Call the display list of an object
+   * Call the display list of an object
    */
   virtual void showSurface( void );
+
+  /**
+   * Draw objects using precomputed data
+   * by default use show.
+   */
+  virtual void redrawSurface( void );
 
 protected:
 

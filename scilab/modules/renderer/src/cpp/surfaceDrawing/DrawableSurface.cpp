@@ -44,5 +44,17 @@ void DrawableSurface::show( void )
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
-
+void DrawableSurface::redraw(void)
+{
+  if ( !checkVisibility() )
+  {
+    return ;
+  }
+  initializeDrawing();
+  clip();
+  drawSurface();
+  unClip();
+  endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
 }
