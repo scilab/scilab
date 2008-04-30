@@ -31,7 +31,11 @@ public class Messages {
 	private static void loadBundle() {
 		try {
 			String locale = System.getenv(systemLocale);
-			resourceBundle = ResourceBundle.getBundle(pathToTheClass, new Locale(locale));
+			if (locale != null && !locale.equals("")) { /* If we haven't been able to get the language from the env */
+				resourceBundle = ResourceBundle.getBundle(pathToTheClass, new Locale(locale));
+			} else {
+				failedToLoadBundle = true;
+			}
 		} catch (java.util.MissingResourceException e) {
 			System.err.println("Could not file localization file for " + systemLocale);
 			System.err.println("Switch back to the default language " + defaultLocale);
