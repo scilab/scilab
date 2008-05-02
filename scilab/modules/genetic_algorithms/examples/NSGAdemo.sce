@@ -2,46 +2,42 @@
 // Definition of the operators
 //
 
-// Loading test problems
-getf('../../test_problems/mo_cont_funcs.sci');
+// Definition of the deb_1 multiobjective test problem
 
-//funcname = 'binh_1';
-//funcname = 'fonseca_1';
-//funcname = 'fonseca_2';
-//funcname = 'kursawe_1';
-//funcname = 'laumanns_1';
-//funcname = 'lis_1';
-//funcname = 'murata_1';
-//funcname = 'poloni_1';
-//funcname = 'quagliar_1';
-//funcname = 'rendon_1';
-//funcname = 'rendon_2';
-//funcname = 'schaffer_1';
-//funcname = 'schaffer_2';
+/////////////////////////
+// Deb 1 test function //
+// Convex Pareto set   //
+/////////////////////////
+
+function Res = min_bd_deb_1(n)
+if ~isdef('n','local') then n = 10; end;
+Res = zeros(n,1);
+endfunction
+
+function Res = max_bd_deb_1(n)
+if ~isdef('n','local') then n = 10; end;
+Res = ones(n,1);
+endfunction
+
+function f = get_opti_deb_1(x)
+f1_x1 = x(1);
+g_x2  = 1;
+h     = 1 - sqrt(f1_x1 / g_x2);
+
+f(1,1) = f1_x1;
+f(1,2) = g_x2 * h;
+endfunction
+
+function f = deb_1(x)
+f1_x1 = x(1);
+g_x2  = 1 + 9 * sum((x(2:$)-x(1)).^2) / (length(x) - 1);
+h     = 1 - sqrt(f1_x1 / g_x2);
+
+f(1,1) = f1_x1;
+f(1,2) = g_x2 * h;
+endfunction
+
 funcname = 'deb_1';
-//funcname = 'deb_2';
-//funcname = 'deb_3';
-//funcname = 'deb_4';
-//funcname = 'deb_5';
-//funcname = 'deb_6';
-//funcname = 'veldmop_1';
-//funcname = 'veldmop_2';
-//funcname = 'veldmop_3';
-//funcname = 'veldmop_4';
-//funcname = 'veldmop_6';
-//funcname = 'veldmop_7';
-//funcname = 'meca_1';
-//funcname = 'trigo_1';
-//funcname = 'trigo_2';
-//funcname = 'trigo_3';
-//funcname = 'trigo_4';
-//funcname = 'trigo_5';
-//funcname = 'trigo_5_bis';
-//funcname = 'trigo_6';
-//funcname = 'trigo_6_bis';
-//funcname = 'trigo_7';
-//funcname = 'trigo_8';
-//funcname = 'trigo_9';
 
 // example of use of the genetic algorithm
 

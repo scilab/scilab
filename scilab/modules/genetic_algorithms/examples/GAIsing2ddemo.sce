@@ -1,7 +1,8 @@
 // example of use of the genetic algorithm on a 2D Ising model
 
 // Loading test problems
-getd('../../test_problems/Ising');
+getd('Ising');
+
 // Load the crossover and mutation operators for the Ising 2D problem
 getd('.');
 
