@@ -1,7 +1,7 @@
 // example of use of the simulated annealing method
 
 // Loading the test problem
-getd('../../test_problems/Ising');
+getd('Ising');
 
 // Loading the neighborhood function for the ising problem
 getd('.');

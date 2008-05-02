@@ -1,75 +1,25 @@
 // example of use of the simulated annealing method
 
-// Loading the test problems
-getf('../../test_problems/cont_funcs.sci');
+// Definition of the Rastrigin test problem
 
-//func = 'rosenbrock';
-//func = 'mccormic';
-//func = 'sixhumpcamelb';
-//func = 'branin2';
-//func = 'schubert';
-//func = 'hansen';
-//func = 'paviani';
-//func = 'booth';
-//func = 'matyas';
+//
+// Rastrigin function
+//
+
+function Res = min_bd_rastrigin()
+Res = [-1 -1]';
+endfunction
+function Res = max_bd_rastrigin()
+Res = [1 1]';
+endfunction
+function Res = opti_rastrigin()
+Res = [0 0]';
+endfunction
+function y = rastrigin(x)
+  y = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
+endfunction
+
 func = 'rastrigin';
-//func = 'griewank2';
-//func = 'exp2';
-//func = 'treccani';
-//func = 'branin';
-//func = 'colville';
-//func = 'chichinadze';
-//func = 'hartmann34';
-//func = 'hartmann64';
-//func = 'price';
-//func = 'goldsteinprice';
-//func = 'dixonprice';
-//func = 'hump';
-//func = 'dejongf2';
-//func = 'dejongf5';
-//func = 'dejongf7';
-//func = 'schafferf6'
-//func = 'schafferf7';
-//func = 'stuckman';
-//func = 'easom';
-//func = 'bohachevsky1';
-//func = 'bohachevsky2';
-//func = 'bohachevsky3';
-//func = 'beale';
-//func = 'levy13';
-//func = 'levy8';
-//func = 'levy5';
-//func = 'levy2';
-//func = 'holtzmann';
-//func = 'gen_rosen';
-//func = 'shekel';
-//func = 'griewank';
-//func = 'sphere';
-//func = 'weierstrass';
-//func = 'ackley';
-//func = 'ellipsoid';
-//func = 'rotell';
-//func = 'abspow';
-//func = 'michalewicz';
-//func = 'powell';
-//func = 'power';
-//func = 'gen_rastrigin';
-//func = 'schwefel';
-//func = 'trid';
-//func = 'zhakarov';
-//func = 'freudroth';
-//func = 'himmelblau';
-//func = 'jensamp';
-//func = 'zhufu';
-//func = 'cola';
-//func = 'leon';
-//func = 'giunta';
-//func = 'bukin2';
-//func = 'bukin4';
-//func = 'bukin6';
-//func = 'stybtang';
-//func = 'zettl';
-//func = 'threehumpcamelb';
 
 Proba_start = 0.8;
 It_intern = 1000;
