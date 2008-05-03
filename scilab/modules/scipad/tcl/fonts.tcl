@@ -30,7 +30,7 @@ proc choosefonts {} {
     global textfontsize usefontfor scalefontsize
 
     # preset values retrieved from $textFont
-    set textfontattributes [font actual $textFont]
+    set textfontattributes [fontactual_positivesize $textFont]
     if {[lsearch $textfontattributes "-family"] != -1} {
         set fontfamily [lindex $textfontattributes \
                 [expr {[lsearch $textfontattributes "-family"] + 1}] ]
@@ -246,17 +246,17 @@ proc updatefont {{fontsource "newfont"}} {
         # $fontsource == "all"
         # this is used when updating the size only
         set sizeinpoints [expr {round($textfontsize / [tk scaling])}]
-        set textFont [font actual $textFont]
+        set textFont [fontactual_positivesize $textFont]
         set sizevalueindex [expr {[lsearch $textFont "-size"] + 1}]
         set textFont [lreplace $textFont $sizevalueindex $sizevalueindex $sizeinpoints]
         set sizeinpoints [expr {round($menufontsize / [tk scaling])}]
-        set menuFont [font actual $menuFont]
+        set menuFont [fontactual_positivesize $menuFont]
         set sizevalueindex [expr {[lsearch $menuFont "-size"] + 1}]
         set menuFont [lreplace $menuFont $sizevalueindex $sizevalueindex $sizeinpoints]
     }
 
     # $actbptextFont is $textFont in bold and with a larger size
-    set actbptextFont [font actual $textFont]
+    set actbptextFont [fontactual_positivesize $textFont]
     set sizevalueindex [expr {[lsearch $actbptextFont "-size"] + 1}]
     set actbptextFont [lreplace $actbptextFont $sizevalueindex $sizevalueindex \
             [expr {round( ($textfontsize + round(2*[tk scaling])) / [tk scaling] )} ]]
@@ -264,7 +264,7 @@ proc updatefont {{fontsource "newfont"}} {
     set actbptextFont [lreplace $actbptextFont $weightvalueindex $weightvalueindex "bold"]
 
     # $textsmallerFont is $textFont with reduced size
-    set textsmallerFont [font actual $textFont]
+    set textsmallerFont [fontactual_positivesize $textFont]
     set sizevalueindex [expr {[lsearch $textsmallerFont "-size"] + 1}]
     set textsmallerFont [lreplace $textsmallerFont $sizevalueindex $sizevalueindex \
             [expr {round( ($textfontsize - round(2*[tk scaling])) / [tk scaling] )} ]]
@@ -298,7 +298,7 @@ proc updatefont {{fontsource "newfont"}} {
     # This sets the font used in all dialogs (Unix only - on Windows
     # native platform dialogs are used by Tk)
     # $dialogfont is $menuFont in normal weight (non-bold)
-    set dialogFont [font actual $menuFont]
+    set dialogFont [fontactual_positivesize $menuFont]
     set weightvalueindex [expr {[lsearch $dialogFont "-weight"] + 1}]
     set dialogFont [lreplace $dialogFont $weightvalueindex $weightvalueindex "normal"]
     option add *Dialog.msg.font    $dialogFont userDefault  ; # for all tk_messageBox and tk_dialog
@@ -355,11 +355,11 @@ proc setdefaultfonts {} {
 
     if {$tcl_platform(platform) == "unix"} {
         # format is  -foundry-family-weight-slant-setwidth-addstyle-pixel-point-resx-resy-spacing-width-charset-encoding
-        set textFont [font actual -Adobe-courier-medium-r-Normal-*-$textfontsize-*]
-        set menuFont [font actual -adobe-helvetica-bold-r-normal--$menufontsize-*-75-75-*-*-*-*]
+        set textFont [fontactual_positivesize -Adobe-courier-medium-r-Normal-*-$textfontsize-*]
+        set menuFont [fontactual_positivesize -adobe-helvetica-bold-r-normal--$menufontsize-*-75-75-*-*-*-*]
     } else {
-        set textFont [font actual -Adobe-Courier-medium-R-Normal-*-$textfontsize-*]
-        set menuFont [font actual -adobe-helvetica-bold-r-normal--$menufontsize-*-75-75-*-*-*-*]
+        set textFont [fontactual_positivesize -Adobe-Courier-medium-R-Normal-*-$textfontsize-*]
+        set menuFont [fontactual_positivesize -adobe-helvetica-bold-r-normal--$menufontsize-*-75-75-*-*-*-*]
     }
 }
 
@@ -371,4 +371,29 @@ proc settabsize {} {
     foreach textarea $listoftextarea {
         $textarea configure -tabs $tabsizeinpix
     }
+}
+
+proc fontactual_positivesize {afont} {
+# this proc applies font actual to $afont and then ensures that the value
+# of the -size parameter is positive (negate it if it's negative, and
+# convert from pixels into points by dividing by [tk scaling])
+# this is needed because throughout the Scipad code it is supposed that the
+# size option of any font is positive, i.e. in points (not in pixels)
+# fonts are lists of options which are parsed at a number of places in the
+# code, and negative sizes are not taken into account
+# this proc is to fix bug 2879
+    set fa [font actual $afont]
+    set sizeoptpos [lsearch $fa "-size"]
+    if {$sizeoptpos != -1} {
+        set sizevalpos [expr {$sizeoptpos + 1}]
+        set fsize [lindex $fa $sizevalpos]
+        if {$fsize < 0} {
+            set fa [lreplace $fa $sizevalpos $sizevalpos [expr {round(- $fsize / [tk scaling ])}]]
+        } else {
+            # size is already positive, nothing to do
+        }
+    } else {
+        # no -size option - nothing to do
+    }
+    return $fa
 }

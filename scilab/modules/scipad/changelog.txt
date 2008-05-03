@@ -3228,19 +3228,24 @@ ES, 4/3/2008
    in it.msg
  * new zh_cn.msg received
  * version --> 6.135
- 
+
 Francois VOGEL, 31/03/08
-* Fixed Scilab bug 2672 by working around the underlying Tk bug
-  with Vista
-* Fixed Scilab bug 2776 by working around Tk bug 112997: malformed paths
-  when opening multiple files at once
-* Scipad is GPL in the french About box too
-* version --> 6.136
- 
+ * Fixed Scilab bug 2672 by working around the underlying Tk bug
+   with Vista
+ * Fixed Scilab bug 2776 by working around Tk bug 112997: malformed paths
+   when opening multiple files at once
+ * Scipad is GPL in the french About box too
+ * version --> 6.136
+
 Francois VOGEL, 03/04/08
  * Fixed bug 2856 (introduced in 6.136) - wrong order of variables
    definition
  * In find in files, the initial directory used when selecting the new
    directory in which to search in is the previously selected directory
    (instead of always the current directory of the application)
-* version --> 6.137
+ * version --> 6.137
+
+Francois VOGEL, 03/05/08
+ * Fixed bug 2879 - negative size returned by font actual not taken into
+   account, which prevented Scipad start on some platforms (Mandriva 2008.1)
+ * version --> 6.138
