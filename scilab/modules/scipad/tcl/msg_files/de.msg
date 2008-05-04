@@ -145,11 +145,9 @@
 ::msgcat::mcset de "Main level code found" "Code f\u00FCr die Hauptebene"
 ::msgcat::mcset de "Scipad ancillary file" "Scipad-Hilfsdatei"
 ::msgcat::mcset de "The current file contains only Scipad ancillaries that\
-                    cannot be debugged in Scipad. Please select another\
-                    buffer."\
+                    cannot be debugged in Scipad."\
                    "Die aktuelle Datei enth\u00E4lt nur Hilfsfunktionen von Scipad,\
-                    die nicht mit dem Scipad-Debugger ausgef\u00FChrt werden k\u00F6nnen.\
-                    Bitte w\u00E4hlen Sie eine andere Datei."
+                    die nicht mit dem Scipad-Debugger ausgef\u00FChrt werden k\u00F6nnen."
 ::msgcat::mcset de "This file contains main level code.\nDebug as a single\
                     .sce file?"\
                    "Diese Datei enth\u00E4lt Code f\u00FCr die Hauptebene. Soll der\
@@ -774,14 +772,11 @@
 ::msgcat::mcset de "Matlab file import" "Import einer Matlab-Datei"
 ::msgcat::mcset de "Conversion of the file failed, see the Scilab window for\
                     details -- Perhaps report the error text and the\
-                    offending Matlab file to \
-                    http://bugzilla.scilab.org"\
+                    offending Matlab file to"\
                    "Der Import der Datei ist fehlgeschlagen, siehe\
                     Scilab-Fenster f\u00FCr weitere Details -- Vielleicht\
                     sollten Sie die Fehlermeldungen und die verantwortliche\
-                    Matlab-Datei an \
-                    http://bugzilla.scilab.org\
-                    weiterleiten."
+                    Matlab-Datei weiterleiten:"
 ::msgcat::mcset de "Please select destination path for the xml source of the\
                     help file"\
                    "Bitte w\u00E4hlen sie einen Zielpfad f\u00FCr die XML-Hilfe-Datei"

@@ -344,12 +344,10 @@
 ::msgcat::mcset se "Matlab file import" "Importera Matlab fil"
 ::msgcat::mcset se "Conversion of the file failed, see the Scilab window\
                     for details -- Perhaps report the error text and the\
-                    offending Matlab file to \
-                    http://bugzilla.scilab.org" \
+                    offending Matlab file to" \
                    "Konverteringen av filen misslyckades, titta i Scilab fönstret\
                     för detaljer. Kanske skall du rapportera felmeddelandet och\
-					den krånglande Matlab filen till\
-                    http://bugzilla.scilab.org"
+					den krånglande Matlab filen till"
 ::msgcat::mcset se "Please select destination path for the xml source of the help file"\
                    "Vänligen välj xml koden för hjälp filen"
 ::msgcat::mcset se "Older version of" "Äldre version av"

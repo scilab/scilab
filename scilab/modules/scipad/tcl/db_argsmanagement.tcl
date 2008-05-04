@@ -454,13 +454,7 @@ proc quickAddWatch_bp {texttoadd typeofquickadd} {
     global getvaluefromscilab
     global dockwatch
     global genexpwidget
-    set watchalreadyopen "false"
-    if {[info exists watch]} {
-        if {[winfo exists $watch]} {
-            set watchalreadyopen "true"
-        }
-    }
-    if {$watchalreadyopen == "false"} {
+    if {![istoplevelopen watch]} {
         showwatch_bp
     } else {
         if {!$dockwatch} {

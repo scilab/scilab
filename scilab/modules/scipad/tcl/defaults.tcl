@@ -22,9 +22,124 @@
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 # See the file scipad/license.txt
-#
+
 set winTitle "SciPad"
 
+#############
+# Detect Tcl and Tk versions and set global flags to true if versions are >= 8.5
+#
+# This is used to improve Scipad when used with recent Tcl/Tk without
+# preventing its use with older ladies
+# ex of 8.5 use: a. -strictlimits option in find/replace
+#                b. -stretch always option for panedwindows
+#                c. proc timestamp uses clock milliseconds
+#                d. peer text widgets are used when splitting
+#                e. Tk bug 1169429 (relative to cursor blinking) is fixed, workaround hack removed
+#                f. -topmost option of toplevels used also on Linux
+#                g. string reverse (TIP #272) is used during undo/redo, improving performance drastically
+#                h. the replace cursor is a nice looking block cursor
+if { [package vcompare $tcl_version 8.5] >= 0 } {
+    set Tcl85 1
+} else {
+    set Tcl85 0
+}
+if { [package vcompare $tk_version 8.5] >= 0 } {
+    set Tk85 1
+} else {
+    set Tk85 0
+}
+
+# End of Tcl/Tk versions detection
+#############
+
+
+#############
+# Flags to trim Scipad to the host environment (Scilab version,
+# host computer OS, underlying Tcl/Tk version...)
+
+
+# On Vista (osVersion is 6.0) there is bug 2672 which happens with the 8.4
+# series of Tcl/Tk only
+# This flag allows for easy checking whether the workaround for this
+# bug must be geared in or not
+
+if {$tcl_platform(osVersion) == "6.0" && !$Tk85} {
+    # don't use the -parent option in tk_get*File
+    set bug2672_shows_up true
+} else {
+    # use the -parent option in tk_get*File
+    set bug2672_shows_up false
+}
+
+
+# On Linux with Tk8.5, there is bug 2776 which prevents from choosing
+# multiple files in the tk_getOpenFile dialog
+# This is a Tk bug, see the full details at:
+# http://sourceforge.net/tracker/index.php?func=detail&aid=1904322&group_id=12997&atid=112997
+# Here is the workaround - This should be removed when Tk bug 112997 gets
+# fixed in Tk 8.5.x or at least it should be tuned so that it is geared
+# in only for Tk 8.5.0 -> Tk 8.5.x but not in Tk 8.5.y with y > x
+
+if {$tcl_platform(platform) == "unix" && $Tk85} {
+    # gear in the workaround for Tk bug 112997
+    option add *__tk_filedialog*takeFocus 0
+} else {
+    # nothing to do
+}
+
+
+# End of flags to trim Scipad to the host environment (Scilab version,
+# host computer OS, underlying Tcl/Tk version...)
+#############
+
+
+
+#############
+# Flags to trim Scipad to the host Scilab version
+
+# On Windows the cursor blink was once disabled because of what is explained at
+# http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435
+# On Linux the cursor blink was once disabled because of bug 865 (originated in
+# bug 473)
+# now both issues have been fixed, therefore:
+
+set cursorblink true
+
+
+# The break command can only be used with Scilab versions having bug 2384 fixed
+# Currently (26/08/07), this is done in svn trunk and BUILD4 branches
+# but nowhere else, e.g. in scilab-gtk
+# The flag below allows for easy adjustment of Scipad to Scilab versions,
+# especially with backported Scipad versions in mind
+# Bug 2384 in fact fixes the sync seq options of ScilabEval (interruptibility)
+
+set bug2384_fixed true
+
+
+# Removing all breakpoints at once is most efficiently done by a single delbpt()
+# However, there is bug 2474 in the way: this command corrupts the stack,
+# although this is reported by Scilab only when inside a loop
+# Currently (26/08/07) this bug is fixed in svn trunk and BUILD4 branches
+# but nowhere else, e.g. in scilab-gtk
+
+set bug2474_fixed true
+
+# There are other bugs, such as:
+#
+#   2226 (concurrent launch of many Scipad): Fixed in trunk, not fixed in BUILD4
+#        nor in scilab-gtk as of 26/08/07
+#   2393 (macrovar doesn't reset lasterror): Fixed in trunk and BUILD4, not fixed
+#        in scilab-gtk as of 26/08/07
+#
+# but there is no workaround implemented in Scipad for them, therefore no flag here
+
+# End of flags to trim Scipad to the host Scilab version
+#############
+
+
+#############
+# Saved preferences
+#
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
 #  - add the variable name to $listofpref_list below, if it is a list
@@ -98,21 +213,18 @@ set windowsmenusorting "openorder" ; # "openorder", or "alphabeticorder", or "MR
 set linenumbersmargins "right" ; # "hide" (line numbers are not displayed), or "left" (they are left-aligned), or "right" (right-aligned)
 set ScilabErrorMessageBox true
 
+# End of saved preferences
+#############
+
 setdefaultfonts
 
-# other non-pref initial settings
+#############
+# Other non-prefeferences initial settings
 
 if { ![info exists lang] } { set lang "eng" }
 
 set Scheme scilab
 set ColorizeIt true
-
-# On Windows the cursor blink was once disabled because of what is explained at
-# http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/b07a13adc073623d/b4e07072205c0435
-# On Linux the cursor blink was once disabled because of bug 865 (originated in
-# bug 473)
-# now both issues have been fixed, therefore:
-set cursorblink true
 
 # by default, the cursor in textareas is the insert cursor
 set textinsertmode true
@@ -129,9 +241,11 @@ set dndinitiated "false"
 # frame pathname in which $textarea is packed, or "none" if it is not packed
 array unset pwframe
 
+#############
 # source the user preferences file if any
 set preffilename $env(SCIHOME)/.SciPadPreferences.tcl
 catch {source $preffilename}
+#############
 
 # ensure the menu option setting for line numbers is consistent with
 # the default or the value from the preferences file
@@ -152,6 +266,10 @@ if {[lsearch $menuFont "-size"] != -1} {
 } else {
     set menufontsize 12
 }
+
+
+#############
+# Additional packages
 
 # message files and localization to avoid ifs on $lang
 if {[catch {package require msgcat}] == 0} {
@@ -187,6 +305,7 @@ if {[catch {package require msgcat}] == 0} {
     proc mcmax {args} {return [eval {::msgcat::mcmax $args}]}
 }
 
+
 # drag and drop capability using TkDnD
 if { [catch {package require tkdnd}] == 0 } {
     # package is present and loaded
@@ -194,6 +313,10 @@ if { [catch {package require tkdnd}] == 0 } {
 } else {
     set TkDnDloaded "false"
 }
+
+# End of additional packages
+#############
+
 
 # variable used to track changes to the initial buffer
 # so that Scipad can automatically close it if first
@@ -247,9 +370,13 @@ set maxcharinascilabname 24
 # this variable is used to restore the word wrap mode after a block selection
 set blockseltoggledwordwrap false
 
+# single place in Scipad where the bugzilla URL is defined
+set ScilabBugzillaURL {http://bugzilla.scilab.org}
+
 ##########################################################################
 # Regular expression patterns
-# These are globals since used at different places of the code
+# These are globals since used at different places of the code, or because
+# they are rather generic
 
 # Scilab names character class for first character of names
 # From help names: Names of variables and functions must begin with a letter

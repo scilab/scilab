@@ -306,25 +306,24 @@ proc updatefont {{fontsource "newfont"}} {
     option add *TkColorDialog*Font $dialogFont userDefault  ; # color picker dialog
 
     # If the watch window was open, refresh it
-    if {[info exists watch]} {
-        if {[winfo exists $watch]} {
-            set saved_showwatchvariablesarea $showwatchvariablesarea
-            set saved_showcallstackarea $showcallstackarea
-            set firsttimeinshowwatch true
-            # the two following flags must be reset,
-            # otherwise Tcl error "invalid sash index"
-            # in proc showwatch_bp
-            set showwatchvariablesarea true
-            set showcallstackarea true
-            showwatch_bp
-            # restore hide/show state for each area
-            if {!$saved_showwatchvariablesarea} {
-                $watch.f.f1.f1r.showwatchvariablesarea invoke
-            }
-            if {!$saved_showcallstackarea} {
-                $watch.f.f1.f1r.showcallstackarea invoke
-            }
+    if {[istoplevelopen watch]} {
+        set saved_showwatchvariablesarea $showwatchvariablesarea
+        set saved_showcallstackarea $showcallstackarea
+        set firsttimeinshowwatch true
+        # the two following flags must be reset,
+        # otherwise Tcl error "invalid sash index"
+        # in proc showwatch_bp
+        set showwatchvariablesarea true
+        set showcallstackarea true
+        showwatch_bp
+        # restore hide/show state for each area
+        if {!$saved_showwatchvariablesarea} {
+            $watch.f.f1.f1r.showwatchvariablesarea invoke
         }
+        if {!$saved_showcallstackarea} {
+            $watch.f.f1.f1r.showcallstackarea invoke
+        }
+
     }
 
     showinfo [concat [mc "Font size"] $textfontsize ]

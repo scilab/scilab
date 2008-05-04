@@ -121,8 +121,10 @@
 ::msgcat::mcset fr "Error in selected function arguments" "Erreur sur les arguments de la fonction sélectionnée"
 ::msgcat::mcset fr "Main level code found" "Présence de code hors fonction"
 ::msgcat::mcset fr "Scipad ancillary file" "Fichier de sous-routines de Scipad"
-::msgcat::mcset fr "The current file contains only Scipad ancillaries that cannot be debugged in Scipad. Please select another buffer." \
-                   "Le fichier actuel ne contient que des sous-routines utilisées par Scipad, et qui ne peuvent pas être débugguées dans Scipad. Veuillez choisir un autre fichier."
+::msgcat::mcset fr "The current file contains only Scipad ancillaries that cannot be debugged in Scipad." \
+                   "Le fichier actuel ne contient que des sous-routines utilisées par Scipad, et qui ne peuvent pas être débugguées dans Scipad."
+::msgcat::mcset fr "Reserved function names are:\n" "Les noms réservés sont:\n"
+::msgcat::mcset fr "See help scipad for further details." "Veuillez consulter l'aide (help scipad) pour plus de détails."
 ::msgcat::mcset fr "This file contains main level code.\nDebug as a single .sce file?" \
                    "Ce fichier contient du code hors définition de fonction.\nDébugguer en tant qu'unique entité .sce ?"
 ::msgcat::mcset fr "No function found" "Aucune fonction trouvée"
@@ -640,12 +642,10 @@
 ::msgcat::mcset fr "Matlab file import" "Import d'un fichier Matlab"
 ::msgcat::mcset fr "Conversion of the file failed, see the Scilab window\
                     for details -- Perhaps report the error text and the\
-                    offending Matlab file to \
-                    http://bugzilla.scilab.org" \
+                    offending Matlab file to" \
                    "La conversion du ficher a échoué, voyez dans la fenêtre\
                     Scilab pour plus d'informations -- Veuillez communiquer le\
-                    message d'erreur et le fichier Matlab incriminé à\
-                    http://bugzilla.scilab.org"
+                    message d'erreur et le fichier Matlab incriminé �"
 ::msgcat::mcset fr "Please select destination path for the xml source of the help file" "Veuillez choisir le chemin de destination pour le source xml du fichier d'aide"
 ::msgcat::mcset fr "Older version of" "Il existe une version plus ancienne de"
     ::msgcat::mcset fr "found!" "!"

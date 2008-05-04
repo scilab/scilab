@@ -29,35 +29,6 @@
 
 
 #############
-# detect Tcl and Tk version and set global flags to true if version is >= 8.5
-# this is used to improve Scipad when used with recent Tcl/Tk without
-# preventing its use with older ladies
-# ex of 8.5 use: a. -strictlimits option in find/replace
-#                b. -stretch always option for panedwindows
-#                c. proc timestamp uses clock milliseconds
-#                d. peer text widgets are used when splitting
-#                e. Tk bug 1169429 (relative to cursor blinking) is fixed, workaround hack removed
-#                f. -topmost option of toplevels used also on Linux
-#                g. string reverse (TIP #272) is used during undo/redo, improving performance drastically
-#                h. the replace cursor is a nice looking block cursor
-#
-# these flags are also used to tune bug fix flags or workarounds below in this file
-
-if { [package vcompare $tcl_version 8.5] >= 0 } {
-    set Tcl85 1
-} else {
-    set Tcl85 0
-}
-if { [package vcompare $tk_version 8.5] >= 0 } {
-    set Tk85 1
-} else {
-    set Tk85 0
-}
-
-#############
-
-
-#############
 # Debug settings for RamDebugger
 
 # Don't forget to set this setting to no before committing!
@@ -137,55 +108,6 @@ if {[catch {ScilabEval ";" "sync" "seq"}] != 0} {
 set dev_debug false
 
 # End of debug settings for the latest Scipad debugger features
-#############
-
-
-#############
-# Flags to adjust Scipad to the host environment (Scilab version,
-# host computer OS, underlying Tcl/Tk version...)
-
-# The break command can only be used with Scilab versions having bug 2384 fixed
-# Currently (30/04/07), this is done in svn trunk and BUILD4 branches
-# but nowhere else, e.g. in scilab-gtk
-# The flag below allows for easy adjustment of Scipad to Scilab versions,
-# especially with backported Scipad versions in mind
-# Bug 2384 in fact fixes the sync seq options of ScilabEval (interruptibility)
-
-set bug2384_fixed true
-
-
-# On Vista (osVersion is 6.0) there is bug 2672 which happens with the 8.4
-# series of Tcl/Tk only
-# This flag allows for easy checking whether the workaround for this
-# bug must be geared in or not
-
-if {$tcl_platform(osVersion) == "6.0" && !$Tk85} {
-    # don't use the -parent option in tk_get*File
-    set bug2672_shows_up true
-} else {
-    # use the -parent option in tk_get*File
-    set bug2672_shows_up false
-}
-
-
-# On Linux with Tk8.5, there is bug 2776 which prevents from choosing
-# multiple files in the tk_getOpenFile dialog
-# This is a Tk bug, see the full details at:
-# http://sourceforge.net/tracker/index.php?func=detail&aid=1904322&group_id=12997&atid=112997
-# Here is the workaround - This should be removed when Tk bug 112997 gets
-# fixed in Tk 8.5.x or at least it should be tuned so that it is geared
-# in only for Tk 8.5.0 -> Tk 8.5.x but not in Tk 8.5.y with y > x
-
-if {$tcl_platform(platform) == "unix" && $Tk85} {
-    # gear in the workaround for Tk bug 112997
-    option add *__tk_filedialog*takeFocus 0
-} else {
-    # nothing to do
-}
-
-
-# End of flags to adjust Scipad to the host environment (Scilab version,
-# host computer OS, underlying Tcl/Tk version...)
 #############
 
 

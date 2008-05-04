@@ -458,12 +458,10 @@
 ::msgcat::mcset es "Matlab file import" "Importación de un archivo Matlab"
 ::msgcat::mcset es "Conversion of the file failed, see the Scilab window for\
                     details -- Perhaps report the error text and the\
-                    offending Matlab file to \
-                    http://bugzilla.scilab.org"\
+                    offending Matlab file to"\
                     "La conversión del archivo falló vea la ventana de\
-                    Scilab para ver mas detalles -- Si desea reporte el error a \
-                    http://bugzilla.scilab.org\
-                    incluyendo el archivo matlab."
+                    Scilab para ver mas detalles -- Si desea reporte el error, \
+                    incluyendo el archivo matlab:"
 
 
 ::msgcat::mcset es "Please select destination path for the xml source of the\

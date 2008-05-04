@@ -136,11 +136,9 @@
 ::msgcat::mcset no "Main level code found" "Hovednivåkode funnet"
 ::msgcat::mcset no "Scipad ancillary file" "Scipad hjelpefil"
 ::msgcat::mcset no "The current file contains only Scipad ancillaries that\
-                    cannot be debugged in Scipad. Please select another\
-                    buffer."\
+                    cannot be debugged in Scipad."\
                    "Den valgte filen inneholder bare Scipad objekter som \
-                    ikke kan feilsøkes i Scipad. Vennligst vel en annen\
-                    buffer."
+                    ikke kan feilsøkes i Scipad."
 ::msgcat::mcset no "This file contains main level code.\nDebug as a single\
                     .sce file?"\
                    "Denne filen inneholder topp nivå kode. \nFeilsøk som en\
@@ -720,12 +718,10 @@
 ::msgcat::mcset no "Matlab file import" "Importer Matlab fil"
 ::msgcat::mcset no "Conversion of the file failed, see the Scilab window for\
                     details -- Perhaps report the error text and the\
-                    offending Matlab file to \
-                    http://bugzilla.scilab.org"\
+                    offending Matlab file to"\
                    "Oversettelsen misslyktes, se i Scilab vinduet  etter\
                     detaljer. Kanskje skal du rapportere feilmeldingen og\
-                    					relevante deler av Matlab filen til\
-                    http://bugzilla.scilab.org"
+                    relevante deler av Matlab filen til"
 ::msgcat::mcset no "Please select destination path for the xml source of the\
                     help file"\
                    "Vennligst velg sti til xml kode til hjelpfilen"

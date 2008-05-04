@@ -919,21 +919,19 @@ proc schememenus {textarea} {
         bind all <F12> {}
         bind all <Control-F12> {}
         # disable watch window icons
-        if {[info exists watchwinicons] && [info exists watchwinstepicons]} {
-            if {[winfo exists $watch]} {
-                set wi $watchwinicons
-                set wis $watchwinstepicons
-                [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
-                [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
-                [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
-                [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
-            }
+        if {[istoplevelopen watch]} {
+            set wi $watchwinicons
+            set wis $watchwinstepicons
+            [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
+            [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
+            [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
+            [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
         }
         #disable "create help skeleton"
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help s&keleton..."]) -state disabled

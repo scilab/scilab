@@ -67,6 +67,7 @@ if {$debuglog} {
     generic_update_bubble_watch update_bubble_watch_step update_bubble_watch \
     update_bubble_panetitle \
     displaybusystate \
+    istoplevelopen \
     ]
 #    set excludedScipadprocs [list ]
 

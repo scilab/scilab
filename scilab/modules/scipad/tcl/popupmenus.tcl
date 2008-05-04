@@ -137,3 +137,19 @@ proc showpopupdebugwsel {texttoadd typeofquickadd} {
         -command "quickAddWatch_bp {$texttoadd} $typeofquickadd"
     tk_popup $pad.popdebugwsel $numx $numy
 }
+
+proc istoplevelopen {toplevelvarname} {
+# return true if the toplevel window whose *name* is given in argument is open
+# return false otherwise
+# Warning: it's the _name_ of the variable containing the toplevel name that must
+# be provided to this proc, not the toplevel name itself, i.e. call it with:
+#   istoplevelopen bptsgui      but not    istoplevelopen $bptsgui
+    global $toplevelvarname
+    if {[info exists $toplevelvarname]} {
+        append toplevelreference {$} $toplevelvarname
+        if {[eval "winfo exists $toplevelreference"]} {
+            return true
+        }
+    }
+    return false
+}

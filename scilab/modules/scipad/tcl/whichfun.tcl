@@ -90,20 +90,29 @@ proc whichfun {indexin {buf "current"}} {
         set insidefun 0
     } else {
         # function was found above, therefore we are in a function
+        # (well, at least a priori - see below)
         set precfun [lindex $lfunpos end]
         # get the full function definition line, including possible
         # continued lines and comments
         set pat "$funlineREpat1$scilabnameREpat$funlineREpat2"
-        regexp -- $pat [$textarea get $precfun end] funline
-        # remove the leading keyword function (8 characters)
-        set funline [string range $funline 8 end]
-        # remove continued lines tags and comments
-        set funline [trimcontandcomments $funline]
-        # find function name
-        set funname [extractfunnamefromfunline $funline]
-        # funname=="" might happen if regexp $pat does not match while function
-        # detection above did find the word "function"
-        if {$funname==""} {set insidefun 0}
+        if {![regexp -- $pat [$textarea get $precfun end] funline]} {
+            # special case: the regexp didn't match, which means that the
+            # function definition line contains only the word "function",
+            # with no function name (unterminated edit for example)
+            set insidefun 0
+        } else {
+            # remove the leading keyword function (8 characters)
+            set funline [string range $funline 8 end]
+            # remove continued lines tags and comments
+            set funline [trimcontandcomments $funline]
+            # find function name
+            set funname [extractfunnamefromfunline $funline]
+            # funname=="" might happen if regexp $pat does not match while function
+            # detection above did find the word "function" - really? such a case
+            # should have been trapped above by testing [info exists funline], no?
+            # anyway, this doesn't harm, so:
+            if {$funname==""} {set insidefun 0}
+        }
     }
 
     if {$insidefun == 0} {

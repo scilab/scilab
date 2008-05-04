@@ -54,11 +54,9 @@ proc configurefoo_bp {} {
     # the configure box must be a transient of $watch if it exists
     # and if it is not iconified, otherwise it might be obscured
     # by the watch window if always on top
-    if {[info exists watch]} {
-        if {[winfo exists $watch]} {
-            if {[winfo ismapped $watch]} {
-                wm transient $conf $watch
-            }
+    if {[istoplevelopen watch]} {
+        if {[winfo ismapped $watch]} {
+            wm transient $conf $watch
         }
     }
 
@@ -534,7 +532,11 @@ proc Obtainall_bp {} {
     # it means that the current buffer is indeed a Scipad ancillary file
     if {[llength $funsinfo] == 0} {
         tk_messageBox -icon warning -type ok -title [mc "Scipad ancillary file"] \
-                -message [mc "The current file contains only Scipad ancillaries that cannot be debugged in Scipad. Please select another buffer."]
+                -message [append messagestring \
+                    [mc "The current file contains only Scipad ancillaries that cannot be debugged in Scipad."] "\n\n" \
+                    [mc "Reserved function names are:\n"] \
+                    [string map {" " ", "} $debugger_fun_ancillaries] ".\n\n" \
+                    [mc "See help scipad for further details."] ]
         set debugassce false
         return
     }

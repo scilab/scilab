@@ -435,6 +435,7 @@ proc opensourceof {} {
     set opensof $pad.opensof
     catch {destroy $opensof}
     toplevel $opensof
+    wm withdraw $opensof
     wm title $opensof [mc "Open source of..."]
 
     frame $opensof.f1
@@ -480,6 +481,7 @@ proc opensourceof {} {
     setwingeom $opensof
     wm resizable $opensof 1 1 
     wm minsize $opensof [winfo width $opensof] [winfo height $opensof]
+    wm deiconify $opensof
 
     bind $opensof <Return> {OKopensourceof %W}
     # bind to the listbox only, otherwise quick clicks on the scrollbar
@@ -593,9 +595,7 @@ proc doopenfunsource {keywtype nametoopen} {
             # but unfortunately this does not work when used from the debugger
             # call stack area (the shell goes deeper one level and execution is
             # delayed), therefore a more complicated solution here
-            set comm1 "TCL_EvalStr(\"set fullfunpathtoopen \"+strsubst(get_function_path(\"$nametoopen\"),\"\\\",\"/\"),\"scipad\");"
-            set comm2 "TCL_EvalStr(\"openfile \"\"\$fullfunpathtoopen\"\"\",\"scipad\");"
-            set fullcomm [concat $comm1 $comm2]
+            set fullcomm "TCL_EvalStr(\"openfile \"\"\"+strsubst(get_function_path(\"$nametoopen\"),\"\\\",\"/\")+\"\"\"\",\"scipad\");"
             ScilabEval_lt $fullcomm "seq"
         }
         "scicos" {

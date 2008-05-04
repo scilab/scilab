@@ -145,6 +145,11 @@ proc highlighttextarea {textarea} {
         }
     }
     if {[isdisplayed $textarea]} {
+# <TODO> must fix bug 2648
+#        there seems to be a race condition here. [isdisplayed $textarea] returns true,
+#        i.e [getpaneframename $textarea] does return something different from "none"
+#        but nevertheless the subsequent call to the same [getpaneframename $textarea]
+#        just below returns "none" !!!
         [getpaneframename $textarea] configure -background black
     } else {
         # should never happen because highlighttextarea is supposed

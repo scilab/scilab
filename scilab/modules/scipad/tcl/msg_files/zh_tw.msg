@@ -134,8 +134,7 @@
 ::msgcat::mcset zh_tw "Main level code found" "找到最上層程式碼"
 ::msgcat::mcset zh_tw "Scipad ancillary file" "Scipad 輔助檔"
 ::msgcat::mcset zh_tw "The current file contains only Scipad ancillaries\
-                       that cannot be debugged in Scipad. Please select\
-                       another buffer."\
+                       that cannot be debugged in Scipad."\
                       "此檔僅為 Scipad 輔助檔，無法在 Scipad\
                        內進行偵錯，請選其它暫存區 (buffer)."
 ::msgcat::mcset zh_tw "This file contains main level code.\nDebug as a\
@@ -706,8 +705,7 @@
 ::msgcat::mcset zh_tw "Matlab file import" "載入 Matlab 檔"
 ::msgcat::mcset zh_tw "Conversion of the file failed, see the Scilab window\
                        for details -- Perhaps report the error text and the\
-                       offending Matlab file to \
-                      http://bugzilla.scilab.org"\
+                       offending Matlab file to"\
                       "檔案轉換失敗，詳情請參考 Scilab\
                        視窗內容 -- 也許可將錯誤訊息及對應之\
                        Matlab 檔到\

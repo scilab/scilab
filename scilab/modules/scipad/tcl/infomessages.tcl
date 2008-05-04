@@ -230,16 +230,16 @@ proc displaybusystate {} {
 # a visual indicator of the availability of the scilab prompt, for the
 # main window and for the debug watch window. This proc keeps rescheduling
 # itself as long as $pad.statusmes (hence the main window) exists
-    global sciprompt pad watch led_scilabbusy
+    global sciprompt pad led_scilabbusy
     if {[info exists pad]} {
         if {[string compare $sciprompt -1] == 0} {
             set bok [catch {$pad.statusmes configure -background orange}]
-            if {[info exists watch] && [winfo exists $watch]} { 
+            if {[istoplevelopen watch]} { 
                 $led_scilabbusy itemconfigure all -image led_scilabbusy_busy
             }
         } else {
             set bok [catch {$pad.statusmes configure -background lightblue}]
-            if {[info exists watch] && [winfo exists $watch]} { 
+            if {[istoplevelopen watch]} { 
                 $led_scilabbusy itemconfigure all -image led_scilabbusy_ready
             }
         }

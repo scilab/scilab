@@ -1004,7 +1004,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
     }
     $textarea delete $mpos "$mpos + $mlen char"
     # the test on ReplaceString shouldn't be needed and is only here to
-    # work around Tk bug 1275237 (fixed since Tk8.4.13RC1 or Tk 8.5a4RC3)
+    # work around Tk bug 1275237 (still unfixed in Tk8.4.15 and Tk 8.5a6)
     if {$ReplaceString != ""} {
         $textarea insert $mpos $ReplaceString
     }

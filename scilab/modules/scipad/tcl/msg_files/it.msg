@@ -142,11 +142,9 @@
 ::msgcat::mcset it "Main level code found" "Codice a livello principale"
 ::msgcat::mcset it "Scipad ancillary file" "File ancillario di Scipad"
 ::msgcat::mcset it "The current file contains only Scipad ancillaries that\
-                    cannot be debugged in Scipad. Please select another\
-                    buffer."\
+                    cannot be debugged in Scipad."\
                    "Il file attuale contiene funzioni usate da Scipad, che\
-                    non possono essere debuggate all'interno di Scipad.\
-                    Scegliere eventualmente un altro file."
+                    non possono essere debuggate all'interno di Scipad."
 ::msgcat::mcset it "This file contains main level code.\nDebug as a single\
                     .sce file?"\
                    "Questo file contiene codice a livello principale.\
@@ -750,13 +748,11 @@
 ::msgcat::mcset it "Matlab file import" "Importazione di un file Matlab"
 ::msgcat::mcset it "Conversion of the file failed, see the Scilab window for\
                     details -- Perhaps report the error text and the\
-                    offending Matlab file to \
-                    http://bugzilla.scilab.org"\
+                    offending Matlab file to"\
                    "La traduzione del file è fallita, vedere la finestra\
-                    Scilab per dettagli -- Il baco può essere riportato a\
-                    http://bugzilla.scilab.org\
+                    Scilab per dettagli -- Il baco può essere riportato\
                     includendo il file incriminato ed il messagggio di\
-                    errore."
+                    errore :"
 ::msgcat::mcset it "Please select destination path for the xml source of the\
                     help file"\
                    "Scegliere una cartella di destinazione per la sorgente\

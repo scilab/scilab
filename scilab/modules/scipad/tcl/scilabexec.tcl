@@ -198,11 +198,12 @@ proc importmatlab {} {
 }
 
 proc failmatlabimp {} {
+    global ScilabBugzillaURL
     tk_messageBox -title [mc "Matlab file import"]  \
-      -message [mc "Conversion of the file failed, see the Scilab window\
+      -message [concat [mc "Conversion of the file failed, see the Scilab window\
                     for details -- Perhaps report the error text and the\
-                    offending Matlab file to \
-                    http://bugzilla.scilab.org"] \
+                    offending Matlab file to"] \
+                    $ScilabBugzillaURL] \
       -icon error
 }
 
@@ -375,8 +376,9 @@ proc isscilabbusy {{messagenumber "nomessage"} args} {
 proc scilaberror {funnameargs} {
     global ScilabErrorMessageBox
     global errnum errline errmsg errfunc
-    # Bruno : Communication between Scipad and Scilab through
-    # TCL global interp is not a clever idea...
+    # Communication between Scipad and Scilab through
+    # Tcl global interp is not supported by Scilab 5
+    # See http://wiki.scilab.org/Tcl_Thread
     ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
     ScilabEval_lt  "TCL_SetVar(\"errnum\", string(db_n), \"scipad\");" "sync" "seq"
     ScilabEval_lt  "TCL_SetVar(\"errline\", string(db_l), \"scipad\");" "sync" "seq"
@@ -403,7 +405,6 @@ proc scilaberror {funnameargs} {
         canceldebug_bp
     }
     blinkline $errline $errfunc
-
 }
 
 proc blinkline {li ma {nb 3}} {
@@ -425,7 +426,11 @@ proc blinkline {li ma {nb 3}} {
             after 500
             $w tag remove blinkedline $i1 $i2
             update idletasks
-            after 500
+            # do not wait when it's the last blink:
+            # control is given back to the caller ASAP
+            if {$i < $nb} {
+                after 500
+            }
         }
     } else {
         # function not found among opened buffers, do nothing

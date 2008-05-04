@@ -44,7 +44,9 @@ proc showwatch_bp {} {
     global dockwatch
 
     set watch $pad.watch
-    catch {destroy $watch}
+    if {[istoplevelopen watch]} {
+        destroy $watch
+    }
 
     if {$dockwatch} {
         frame $watch
@@ -647,56 +649,54 @@ proc savewatchgeometry {wminstructionsvalid} {
 
 proc updatewatch_bp {} {
 # update the content of the watch window without redrawing it
-    global watch watchvars lbvarname lbvarval watchvarsprops
+    global watchvars lbvarname lbvarval watchvarsprops
     global callstackwidget callstackcontent
-    if {[info exists watch]} {
-        if {[winfo exists $watch]} {
-            if {[info exists watchvars]} {
-                set curlbsel [$lbvarname curselection]
-                $lbvarname delete 0 end
-                $lbvarval delete 0 end
-                foreach var $watchvars {
-                    $lbvarname insert end $var
-                    $lbvarval  insert end $watchvarsprops($var,value)
-                    if {[isvareditable $var]} {
-                        $lbvarname itemconfigure end -background white
-                        $lbvarval  itemconfigure end -background white
+    if {[istoplevelopen watch]} {
+        if {[info exists watchvars]} {
+            set curlbsel [$lbvarname curselection]
+            $lbvarname delete 0 end
+            $lbvarval delete 0 end
+            foreach var $watchvars {
+                $lbvarname insert end $var
+                $lbvarval  insert end $watchvarsprops($var,value)
+                if {[isvareditable $var]} {
+                    $lbvarname itemconfigure end -background white
+                    $lbvarval  itemconfigure end -background white
+                } else {
+                    if {[isglobalautowatchvar $var]} {
+                        # non editable because a global
+                        $lbvarname itemconfigure end -background thistle2
+                        $lbvarval  itemconfigure end -background thistle2
                     } else {
-                        if {[isglobalautowatchvar $var]} {
-                            # non editable because a global
-                            $lbvarname itemconfigure end -background thistle2
-                            $lbvarval  itemconfigure end -background thistle2
-                        } else {
-                            # non editable local
-                            $lbvarname itemconfigure end -background grey90
-                            $lbvarval  itemconfigure end -background grey90
-                        }
-                    }
-                    if {[hasvarchangedsincelaststop $var]} {
-                        $lbvarname itemconfigure end -foreground red
-                        $lbvarval  itemconfigure end -foreground red
-                        $lbvarname itemconfigure end -selectforeground red
-                    } else {
-                        $lbvarname itemconfigure end -foreground black
-                        $lbvarval  itemconfigure end -foreground black
-                        $lbvarname itemconfigure end -selectforeground white
+                        # non editable local
+                        $lbvarname itemconfigure end -background grey90
+                        $lbvarval  itemconfigure end -background grey90
                     }
                 }
-                if {$curlbsel != ""} {
-                    $lbvarname selection set $curlbsel
-                    $lbvarname see $curlbsel
+                if {[hasvarchangedsincelaststop $var]} {
+                    $lbvarname itemconfigure end -foreground red
+                    $lbvarval  itemconfigure end -foreground red
+                    $lbvarname itemconfigure end -selectforeground red
                 } else {
-                    $lbvarname selection set 0
-                    $lbvarname see 0
+                    $lbvarname itemconfigure end -foreground black
+                    $lbvarval  itemconfigure end -foreground black
+                    $lbvarname itemconfigure end -selectforeground white
                 }
             }
-            $callstackwidget configure -state normal
-            $callstackwidget delete 1.0 end
-            $callstackwidget insert 1.0 $callstackcontent
-            updateclickablelinetag
-            $callstackwidget configure -state disabled
-            updatebptcomplexityindicators_bp
+            if {$curlbsel != ""} {
+                $lbvarname selection set $curlbsel
+                $lbvarname see $curlbsel
+            } else {
+                $lbvarname selection set 0
+                $lbvarname see 0
+            }
         }
+        $callstackwidget configure -state normal
+        $callstackwidget delete 1.0 end
+        $callstackwidget insert 1.0 $callstackcontent
+        updateclickablelinetag
+        $callstackwidget configure -state disabled
+        updatebptcomplexityindicators_bp
     }
 }
 
@@ -797,36 +797,34 @@ proc manageautowatchlocglo_bp {locorglo} {
 # in the watch window
     global watch autowatchloc autowatchglo
     global callstackfuns
-    if {[info exists watch]} {
-        if {[winfo exists $watch]} {
-            if {$locorglo == "loc"} {
-                if {$autowatchloc} {
-                    $watch.f.vpw.f2.f2l.autowatchglobals configure -state normal
-                } else {
-                    $watch.f.vpw.f2.f2l.autowatchglobals deselect
-                    $watch.f.vpw.f2.f2l.autowatchglobals configure -state disabled
-                }
-                set checkboxtocheck $autowatchloc
-                set opt "globalstoo"
+    if {[istoplevelopen watch]} {
+        if {$locorglo == "loc"} {
+            if {$autowatchloc} {
+                $watch.f.vpw.f2.f2l.autowatchglobals configure -state normal
             } else {
-                set checkboxtocheck $autowatchglo
-                set opt "globalsonly"
+                $watch.f.vpw.f2.f2l.autowatchglobals deselect
+                $watch.f.vpw.f2.f2l.autowatchglobals configure -state disabled
             }
-            if {[getdbstate] == "DebugInProgress"} {
-                # retrieve the local variables names
-                getautowatchnames
-                if {$checkboxtocheck} {
-                    # add auto watch variables to the watch window
-                    set fullcomm "TCL_EvalStr(\"addautosinwatch\",\"scipad\");"
-                } else {
-                    # remove auto watch variables from the watch window
-                    set fullcomm "TCL_EvalStr(\"removeautosfromwatch $opt\",\"scipad\");"
-                }
-                ScilabEval_lt $fullcomm "seq"
+            set checkboxtocheck $autowatchloc
+            set opt "globalstoo"
+        } else {
+            set checkboxtocheck $autowatchglo
+            set opt "globalsonly"
+        }
+        if {[getdbstate] == "DebugInProgress"} {
+            # retrieve the local variables names
+            getautowatchnames
+            if {$checkboxtocheck} {
+                # add auto watch variables to the watch window
+                set fullcomm "TCL_EvalStr(\"addautosinwatch\",\"scipad\");"
             } else {
-                # not in a debug session - nothing to do, this will be handled
-                # during the debug
+                # remove auto watch variables from the watch window
+                set fullcomm "TCL_EvalStr(\"removeautosfromwatch $opt\",\"scipad\");"
             }
+            ScilabEval_lt $fullcomm "seq"
+        } else {
+            # not in a debug session - nothing to do, this will be handled
+            # during the debug
         }
     }
 }
@@ -967,10 +965,8 @@ proc removeautovars {} {
         set autowatchloc false
         manageautowatchloc_bp
         set autowatchloc true
-        if {[info exists watch]} {
-            if {[winfo exists $watch]} {
-                $watch.f.vpw.f2.f2l.autowatchglobals configure -state normal
-            }
+        if {[istoplevelopen watch]} {
+            $watch.f.vpw.f2.f2l.autowatchglobals configure -state normal
         }
         set autowatchglo $saved_autowatchglo
     }
@@ -1381,16 +1377,13 @@ proc updatebptcomplexityindicators_bp {{NbBreakpointedMacros -1} {NbBreakpoints 
 # terms of number of breakpoints and number of breakpointed functions
     global ScilabCodeMaxBreakpointedMacros ScilabCodeMaxBreakpoints
     global bptfunsindic totbptsindic
-    global watch
-    if {[info exists watch]} {
-        if {[winfo exists $watch]} {
-            if {$NbBreakpointedMacros == -1} {
-                set NbBreakpointedMacros [countallbreakpointedmacros]
-                set NbBreakpoints [countallbreakpointedlines]
-            }
-            SetProgress $totbptsindic $NbBreakpoints $ScilabCodeMaxBreakpoints [mc "Breakpoints"] {0.6 0.8}
-            SetProgress $bptfunsindic $NbBreakpointedMacros $ScilabCodeMaxBreakpointedMacros [mc "Breakpointed functions"] {0.6 0.8}
+    if {[istoplevelopen watch]} {
+        if {$NbBreakpointedMacros == -1} {
+            set NbBreakpointedMacros [countallbreakpointedmacros]
+            set NbBreakpoints [countallbreakpointedlines]
         }
+        SetProgress $totbptsindic $NbBreakpoints $ScilabCodeMaxBreakpoints [mc "Breakpoints"] {0.6 0.8}
+        SetProgress $bptfunsindic $NbBreakpointedMacros $ScilabCodeMaxBreakpointedMacros [mc "Breakpointed functions"] {0.6 0.8}
     }
 }
 

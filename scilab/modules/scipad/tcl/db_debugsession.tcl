@@ -117,7 +117,7 @@ proc execfile_bp {{stepmode "nostep"}} {
             }
         }
 
-        # create a temporary file, puts everything in there, and exec it
+        # create a temporary file, put everything in there, and exec it
         # this part is catched to take into account possible access
         # (permissions) errors
         if {[catch {
@@ -236,7 +236,9 @@ proc stepbystep_bp {checkbusyflag stepmode rescanbuffers} {
         } else {
             # <TODO> .sce case if some day the parser uses pseudocode noops
         }
+
         set execresult [execfile_bp $stepmode]
+
         # about the || 1 below: the delbpt must be done in any case,
         # i.e. whatever the result of the execfile_bp. If $execresult
         # is -1 there was an error during execfile (syntax error in
@@ -362,6 +364,7 @@ proc getlogicallinenumbersranges {stepscope messagetype} {
     global ScilabCodeMaxBreakpointedMacros ScilabCodeMaxBreakpoints
     global debugassce
     global callstackfuns callstacklines
+    global debugger_fun_ancillaries
 
     set cmd ""
     set nbmacros 0 ; # used to test max number of breakpointed macros
@@ -428,6 +431,10 @@ proc getlogicallinenumbersranges {stepscope messagetype} {
         } else {
             set lfanclist [getlistofancillaries $taofcurrentfunction $currentfunction "libfun"]
             foreach libfunanc $lfanclist {
+                # don't breakpoint debugger ancillaries
+                if {[lsearch -exact $debugger_fun_ancillaries $libfunanc] != -1} {
+                    continue
+                }
                 # check if ancillary is already breakpointed - if it is, then its
                 # breakpointed lines range is greater than just the first line
                 # -> nothing to do
@@ -464,6 +471,10 @@ proc getlogicallinenumbersranges {stepscope messagetype} {
         } else {
             set lfanclist [getlistofancillaries $taofcallingfunction $callingfunction "libfun" $callingfuncline]
             foreach libfunanc $lfanclist {
+                # don't breakpoint debugger ancillaries
+                if {[lsearch -exact $debugger_fun_ancillaries $libfunanc] != -1} {
+                    continue
+                }
                 # check if ancillary is already breakpointed - if it is, then its
                 # breakpointed lines range is greater than just the first line
                 # -> nothing to do

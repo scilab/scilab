@@ -30,16 +30,16 @@
 # -->-|
 #     |
 # ---------
-# |NoDebug|---->---- insertremove_bp  |
-# ---------          removeall_bp     |
-# | \ \    \                |         |
+# |NoDebug|---->---- insertremove_bp
+# ---------                 |
+# | \ \    \                |
 # |  \ \    \               |
 # |   \ \    \----<---------|
 # |    \ \
 # |     \ \ configurefoo_bp(OK)---------------
 # |      \ \-------->----------|ReadyForDebug|-->-- insertremove_bp  |
-# |       \  canceldebug_bp    ---------------      removeall_bp     |
-# |        \--------<----------| /   /\             configurefoo_bp  |
+# |       \  canceldebug_bp    ---------------      configurefoo_bp
+# |        \--------<----------| /   /\                   |
 # |                             /   /  \                  |
 # |canceldebug_bp   <enddebug> /   /    \                 |
 # |                |goonwo_bp /   /      \                |
@@ -52,15 +52,15 @@
 #        \     \                stepbystepover_bp   |
 #         \     \               stepbystepout_bp
 #          \     \
-#           \     \-->-- insertremove_bp     |
-#            \           removeall_bp        |
-#             \          tonextbreakpoint_bp |
-#              \         stepbystepinto_bp   |
-#               \        stepbystepover_bp   |
-#                \       stepbystepout_bp    |
-#                 \      runtoreturnpoint_bp |
-#                  \     runtocursor_bp      |
-#                   \    break_bp            |
+#           \     \-->-- insertremove_bp      |
+#            \           tonextbreakpoint_bp  |
+#             \          stepbystepinto_bp    |
+#              \         stepbystepover_bp    |
+#               \        stepbystepout_bp     |
+#                \       runtoreturnpoint_bp  |
+#                 \      runtocursor_bp       |
+#                  \     break_bp
+#                   \             |
 #                    \            |
 #                     \           |
 #                      \----<-----|
@@ -205,50 +205,48 @@ proc setdbmenuentriesstates_bp {} {
         tk_messageBox -message $errmess
     }
 
-    if {[info exists watchwinicons] && [info exists watchwinstepicons]} {
-        if {[winfo exists $watch]} {
-            set wi $watchwinicons
-            set wis $watchwinstepicons
-            if {[getdbstate] == "NoDebug"} {
-                [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
-                [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
-                [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
-                [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
-                [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
-            } elseif {[getdbstate] == "ReadyForDebug"} {
-                [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
-                [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
-                [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
-                [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
-                [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
-                [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state normal
-                [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
-                [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
-            } elseif {[getdbstate] == "DebugInProgress"} {
-                [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
-                [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
-                [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
-                [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
-                [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
-                [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state normal
-                [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
-                [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state normal
-                if {$bug2384_fixed} {
-                    [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state normal
-                } else {
-                    [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
-                }
-                [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
+    if {[istoplevelopen watch]} {
+        set wi $watchwinicons
+        set wis $watchwinstepicons
+        if {[getdbstate] == "NoDebug"} {
+            [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
+            [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
+            [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
+            [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
+            [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
+        } elseif {[getdbstate] == "ReadyForDebug"} {
+            [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
+            [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
+            [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
+            [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
+            [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
+            [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state normal
+            [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
+            [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
+        } elseif {[getdbstate] == "DebugInProgress"} {
+            [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
+            [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
+            [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
+            [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
+            [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
+            [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state normal
+            [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
+            [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state normal
+            if {$bug2384_fixed} {
+                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state normal
             } else {
-                tk_messageBox -message $errmess
+                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
             }
+            [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
+        } else {
+            tk_messageBox -message $errmess
         }
     }
 
@@ -271,19 +269,17 @@ proc setdbstatevisualhints_bp {} {
 }
 
 proc updatedebugstateindicator_bp {} {
-    global watch pad led_debugstate
-    if {[info exists watch]} {
-        if {[winfo exists $watch]} {
-            if {[getdbstate] == "NoDebug"} {
-                $led_debugstate itemconfigure all -image led_debugstate_NoDebug
-                showinfo [mc "Currently no debug session"]
-            } elseif {[getdbstate] == "ReadyForDebug"} {
-                $led_debugstate itemconfigure all -image led_debugstate_ReadyForDebug
-                showinfo [mc "Ready to start debug"]
-            } elseif {[getdbstate] == "DebugInProgress"} {
-                $led_debugstate itemconfigure all -image led_debugstate_DebugInProgress
-                showinfo [mc "Debug in progress"]
-            }
+    global pad led_debugstate
+    if {[istoplevelopen watch]} {
+        if {[getdbstate] == "NoDebug"} {
+            $led_debugstate itemconfigure all -image led_debugstate_NoDebug
+            showinfo [mc "Currently no debug session"]
+        } elseif {[getdbstate] == "ReadyForDebug"} {
+            $led_debugstate itemconfigure all -image led_debugstate_ReadyForDebug
+            showinfo [mc "Ready to start debug"]
+        } elseif {[getdbstate] == "DebugInProgress"} {
+            $led_debugstate itemconfigure all -image led_debugstate_DebugInProgress
+            showinfo [mc "Debug in progress"]
         }
     }
 }
@@ -370,7 +366,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     # be a ScilabEval_lt(Tcl_EvalStr(ScilabEval_lt(TCL_EvalStr ...) seq) seq)
     switch -- $stepmode {
         "nostep"   {
-            # In principle there is no need to define code for skipping no code
+            # In principle there is no need to add code here for skipping no code
             # lines since stops always occur on existing breakpoints set by the user.
             # The only exception is when Break was hit because Scilab might stop
             # on a comment. In this case, the nocode lines are skipped by calling
@@ -433,6 +429,14 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     #    the debugger goes out of nestedfun and enters the libfun ancillary
     #    from the line that called nestedfun, i.e. the same depth level is
     #    kept, which is the exact purpose of step over
+#
+# <TODO> Warning! The syntax below is NOT compatible with the BUILD4 environment
+#        since it makes use of the result from TCL_EvalStr, which is not available
+#        in BUILD4. No error will be thrown but $stoppedonarealbpt always evaluates
+#        as true while $breakwashit and $stoppedinsamefun evaluate as false. The
+#        desired behavior is thus not obtained for these tests
+#        Note however that this syntax is available in the BUILD_412 environment
+#
     set stoppedonarealbpt "TCL_EvalStr(\"lsearch \[getreallybptedlines \" + db_m(3) + \"\] \" + string(db_l(3)-1) + \"\",\"scipad\") <> string(-1)"
     set breakwashit "TCL_EvalStr(\"isbreakhit_bp\",\"scipad\") == \"true\""
     set stoppedinsamefun "TCL_EvalStr(\"hasstoppedinthesamefun\",\"scipad\") == \"true\""
@@ -480,8 +484,8 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     # now create the full command to be ScilabEval-ed at the end
     # of each debug command
     # note: all this is highly polished and should only be changed after
-    # having thought twice (hmm, no, three times). For instance, $commc3,
-    # $commc6 and $commc9 contain identical code but must not be factorized
+    # having thought twice (hmm, no, three times). For instance, some
+    # lines below contain identical code but must not be factorized
     # because this would change execution order of this complicated
     # code structure (TCL_EvalStr(ScilabEval(TCL_EvalStr...) seq) associated
     # to stepbystepout_bp or skiplines, which launch further ScilabEvals

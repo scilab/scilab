@@ -37,13 +37,13 @@ function ext_ex = ext_exists(varargin)
 // this is the case for the varargin variable for instance
 // consequence is that this variable cannot be watched.
 // The limitation has been overcome after trunk commit 10635,
-//  with the introduction of exists("nolocal").
+// with the introduction of exists("nolocal").
 
 // The scilab 4 workaround is put here for easing
-//  backporting, will be removed once Scilab 5 is stabilized.
+// backporting, it will be removed once Scilab 5 is stabilized.
 // We use whereis(scipad)=="utillib"|"scipadlib" as a fast way 
 // of discriminating the two cases
- 
+
   if argn(2) == 0 then error(39); else var = varargin(1); end
 
 ////code which works in Scilab 5:

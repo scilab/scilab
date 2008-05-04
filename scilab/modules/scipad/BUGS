@@ -95,7 +95,20 @@ endfunction
  element resets the watched variable to an empty list (perhaps proc
  createsetinscishellcomm should be recursive)
  example: watch Q in   M=list(1,2,[1,2]);M(5)=33;Q=list(M,888);
- 
+
+-bug in the font chooser: If I tag some properties, then OK, then reopen
+ the dialog, sometimes they are reshown tagged, sometimes not.
+
+-on at least one system (RH Linux), opening the font chooser, clicking OK
+ and reopening it can make the font size increase everytime the chooser
+ is opened again. This behaviour is font dependent. This is a Tk bug:
+ http://sourceforge.net/tracker/index.php?func=detail&aid=1548868&group_id=12997&atid=112997
+
+-now that bug 2161 is fixed and the behavior of exists(..,option) is clarified
+ perhaps ext_exists.sci should check whether the variable exists in the
+ global environment, since (from help exists): "the exists function does not
+ check if a variable exists in the global namespace"
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -162,6 +175,12 @@ Old bugs/whishes which have been hacked but could have been done better:
    switching panes. This wm resizable command always redraws the window
    because of the need to redraw the border, and this creates a visual flash
    of the window. I couldn't avoid it, and thus I just dropped this wish
+ --in case this wish comes up again, investigate whether TIP 125 (Converting
+   between Frame and Toplevel Windows) could be of any use yo dock/undock
+   the watch window (well, this feature is already working well, but if the
+   watch could hide/display its parts without a complete redrawing, then
+   TIP 125 could be useful). TIP 125 is implemented in Tk8.5b2 (27/10/07)
+   and above.
 
 -during debug, string variables which contain data which does not make sense as
  text in the current locale, are shown as mangled in the watch variable area.
@@ -171,7 +190,7 @@ Old bugs/whishes which have been hacked but could have been done better:
  strings, the fact could have side effects on the original variables if debug
  exits abnormally.
  Snippet to demonstrate the intrinsic problem:
- 
+
    $ setenv LANG ja ; scilab -nw -nb
   -->a=ascii([230,173,164]); TCL_SetVar("atcl",a);
   ascii(TCL_GetVar("atcl"))
@@ -204,6 +223,12 @@ Debugger wishes:
  At least, db_xx names should be made 24 char long (longest=less likely that
  mr. lambda chooses the same name) and have the word scipad sneaked inside
  them to make things clearer.
+ Another improvement would be to use implementation of request 319 whenever
+ possible, i.e. switch back all the TCL_EvalStr("set temp ....");TCL_Getvar("temp")
+ of the current codebase into using the result of TCL_EvalStr directly.
+ This will also avoid some ifs about the scilab4/5 environment
+ But the final fix would be to have namespaces in Scilab.
+ And anyway this naming convention should be documented in scipad.xml
 
 -include profiling into the debugger. The idea would be something like
  making "Run Profiling" another button/command of the debugger, disabled
@@ -246,6 +271,16 @@ Debugger wishes:
  in the margin, and perhaps a breakpoint pink dot in that margin, or other
  debugger info
 
+-debug of functions with argn(1)>0
+ the debugger is not able to go into something like
+     function [a,b,c]=foo(x,y,z)
+       if argn(1)<>3 then error(41); end
+     endfunction
+ The current version of the debugger cannot cope with this because it always
+ invokes the configured function with no lhs
+
+-new debug command: Continue out of loop
+
 
 Other wishes:
 
@@ -268,6 +303,8 @@ Other wishes:
 
 -(customizable?) tool bar
  Note: a first step to this has been implemented in the debugger watch window.
+ What this wish is about is a toolbar right below the main menu bar, with the
+ usual icons/actions: Open, Save, Find...
 
 -Blink single quotes. More difficult than to blink double quotes because
  of the transpose case
@@ -306,13 +343,23 @@ Other wishes:
         and both provide comboboxes. We could link Scipad to them, but
         apparently the Tile package, which also provides combos, is now
         included in Tk and will be part of Tk 8.5.
-  . Multiline find/replace and find in files (must wait for Tk8.5 since in
+  . Multiline find/replace and find in files (to be tested with Tk8.5, which
+    has the feature; no fallback seen in Tk8.4 since in
     8.4 .text search searches on a per line basis - or use regexp instead
     of .text search, big work...) - Automatically expand the entry widgets
     size according to the length of what is pasted inside them
   . More than one results window for find in files (user can select a
     target window that will contain the search results)
   . More than one find in files thread at the same time
+  . Emacs like search (Ctrl-s). It is now implemented under Firefox, even
+    under windows. The search goes on as you start typing in the word you are
+    looking for. Opening a separate widget really slows down the search. Firefox
+    has made an excellent tradeoff between emacs' expert like behavior and
+    windows facilites. This feature however involves a new subpane at the
+    bottom of the window, some alternative search and mark procedures,
+    etc. Probably feasible but discussable if worth the effort; then the
+    existing search dialog will become "advanced search" as there is
+    certainly no room for all its options in an one line subpane.
 
 -detect duplicate/missing underlines in the message files
 
@@ -322,15 +369,67 @@ Other wishes:
 -Emacs bindings in Scipad. Proposed list is at:
 http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0807b11fb118ab/9fe94a45d23f92fe
 
+-Improve bindings for keypad keys:
+  NumLock-off KP-7       --> Home
+  NumLock-on  KP-7       --> 7
+  NumLock-off Shift-KP-7 --> Mark from current to beginning of line.
+  NumLock-on  Shift-KP-7 --> Mark from current to beginning of line.
+  NumLock-off Ctrl-KP-7  --> Mark from current to beginning of text.
+  NumLock-on  Ctrl-KP-7  --> Mark from current to beginning of text.
+(and likewise for KP-1 and end of line/text)
+
 -Add a function "Beautify code" for Scilab schemes: (optionally) suppress
  tabs, and reindents according to keywords (if, function, while, for...)
+ This is aka automatic indentation (like indent-region in emacs)
+
+-When executing the content with a button, the scilab command line is not
+ put in the history. This means that it cannot be called back with arrows.
+ Often the editor is used to write a script that is wanted to be run a number
+ of times. It would be nice then not to have to click on a button and just
+ recall the command using arrows (or ctrl-p)
+ Might be feasible: addhistory, gethistoryfile, but in trunk (Scilab5) only
 
 -Request 262: tabbed buffers (see discussion in this request)
 
--Use eq/neq instead of ==/!= throughout the code whenever string comparison
+-Use eq/ne instead of ==/!= throughout the code whenever string comparison
  is meant:
 http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/eea78c744811e2c3/47482ff7037343ab
+
+-diff feature: dialog allowing to select two files among the opened ones (or
+ browse for not yet opened files), and launch an external diff tool such as
+ winmerge (Windows), or others. The command to launch the tool is stored as a
+ preference. Watch out for security problems if someone stores "format c:"!
+ Or integrate a Tcl diffing tool perhaps?
 
 -remove the scilab4/scilab5 environment detection once scilab5 is stabilized
  and if it doesn't ease backporting to scilab-gtk. Code to remove can be
  found by highlighting differences between versions 6.117 and 6.118 of Scipad.
+
+-make use of TIP 242 to remember the file type the user selected in the latest
+ open or save action, i.e. same principle as -initialdir in tk_getOpenfile
+ and tk_getSavefile. TIP 242 with the new option -typevariable is implemented
+ in Tk8.5b2 (27/10/07) and above
+
+-improvements in the font chooser (proposal to be refined):
+ 1. For each (text- and menu-) font, add a new area similar to the already
+    existing example area, for displaying the current fonts, with their
+    properties (Name, Size, Style) written in clear text in the -text
+    option of the labelframe. This area always displays the fonts as they
+    were on the dialog opening, along with the properties the fonts had
+    also when the user opened the dialog. In other words these new areas
+    never change their content during the time the dialog is open.
+    The user can then visually compare the font he used (i.e. the font he had
+    before any change) with the one he will use if he clicks on
+    OK or Apply (this was the initial request). The font he used is displayed
+    in the new area, while the candidate new properties of the selected font
+    are displayed in the already existing sample area.
+ 2. When switching from Text to Menu font (the radiobutton), the current
+    values of the font (the current ones in the dialog, with default values
+    being the original font ones) are preserved, so that when switching
+    again they are preselected again.
+ 3. Add an Apply button (the font chooser dialog will flash, i.e. close/reopen
+    immediately - acceptable).
+    Clicking on OK or Apply applies the selection to the "Use as" font only.
+ 4. The "Use as" should place the radiobuttons next to the sample text areas,
+    so that it's visually clearer what to press for changing what. (this could
+    well become a nightmare to kep everything aligned...)

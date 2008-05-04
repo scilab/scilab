@@ -65,8 +65,8 @@ function scipad(varargin)
             TCL_EvalStr("load {'+gettklib()+'} Tk scipad")
             TCL_EvalStr("wm withdraw .","scipad")
             TCL_EvalStr("scipad alias ScilabEval ScilabEval")
-	    TCL_EvalStr("set sciprompt 0", "scipad")
-	end
+            TCL_EvalStr("set sciprompt 0", "scipad")
+        end
         if exists("SCIHOME") then
             if MSDOS then
                 TCL_EvalStr("set env(SCIHOME) """+strsubst(SCIHOME,"\","/")+"""","scipad")

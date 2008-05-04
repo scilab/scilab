@@ -3249,3 +3249,19 @@ Francois VOGEL, 03/05/08
  * Fixed bug 2879 - negative size returned by font actual not taken into
    account, which prevented Scipad start on some platforms (Mandriva 2008.1)
  * version --> 6.138
+
+Francois VOGEL, 04/05/08
+ * Fixed a whichfun bug throwing a Tcl error when deleting a function name
+   (happened only while background tasks were forbidden because when allowed
+   dokeyposn is catched)
+ * Simplified code in doopenfunsource, and prevented the window from jumping
+   when opening the source code chooser
+ * Softened the message box that pops up when the user tries to configure for
+   debugging Scipad ancillaries
+ * The debugger does no longer step into debugger ancillaries (the ancillary
+   file is no longer opened and then stepped out)
+ * Simplified the code a bit by using proc istoplevelopen
+ * Better usability in proc blinkline
+ * Added a global variable holding the bugzilla URL (easier for further
+   changes from a single place)
+ * version --> 6.139

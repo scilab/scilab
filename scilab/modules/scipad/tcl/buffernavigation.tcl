@@ -1238,6 +1238,8 @@ proc updatelinenumbersmargin {ta} {
 #        be inserted in the margin
 #   - until last display line (i.e. when current y in pixels is greater
 #     than winfo height $ta)
+# See also http://wiki.tcl.tk/20916  (showed up after I wrote this proc,
+# might be better than mine)
     global linenumbersmargins
 
     # assert: when entering this proc, we have $linenumbersmargins != "hide"
