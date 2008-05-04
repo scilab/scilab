@@ -50,7 +50,7 @@ function head_comments(name,%paths)
   end
   k2=find(K(2:$)-K(1:$-1)<>1,1)
   if k2==[] then k2=size(K,'*'),end
-  sel=k(1):k2(1)
+  sel=K(1):k2(1)
   if sel<>[] then
     write(%io(2),[head;strsubst(txt(sel),'//','')],'(a)')
   else
