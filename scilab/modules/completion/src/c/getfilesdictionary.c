@@ -15,6 +15,7 @@
 #include "../../../core/src/c/scicurdir.h" /* C2F(scigetcwd) */
 #include "findfiles.h" /* findfiles */
 #include "MALLOC.h"
+#include "cluni0.h"
 /*--------------------------------------------------------------------------*/ 
 static void splitpath(char *composite,  char *path,  char *fname);
 /*--------------------------------------------------------------------------*/ 
@@ -26,10 +27,14 @@ char **getfilesdictionary(char *somechars,int *sizearray)
 	{
 		int sizeListReturned = 0;
 		char path[PATH_MAX];
+		
 		char filespec[PATH_MAX];
 
 		char pathname[PATH_MAX];
 		char filename[PATH_MAX];
+
+		char pathextended[PATH_MAX];
+		int out_n = 0;
 
 		splitpath(somechars,pathname,filename);
 
@@ -56,11 +61,12 @@ char **getfilesdictionary(char *somechars,int *sizearray)
 		}
 		else
 		{
-			/* we have the begining of a filename */
+			/* we have the beginning of a filename */
 			sprintf(filespec,"%s*",filename);
 		}
 
-		dictionary = findfiles(path,filespec,&sizeListReturned);
+		C2F(cluni0)(path,pathextended,&out_n,(long)strlen(path),PATH_MAX);
+		dictionary = findfiles(pathextended,filespec,&sizeListReturned);
 		*sizearray = sizeListReturned;
 
         /* Add a NULL element at the end (to get number of items from JNI) */

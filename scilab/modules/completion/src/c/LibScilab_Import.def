@@ -21,4 +21,5 @@ getVariablesName
 getlibrarieslist
 getlistmacrosfromlibrary
 scigetcwd_
+cluni0_
 ;
