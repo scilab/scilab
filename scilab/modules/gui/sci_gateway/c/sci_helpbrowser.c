@@ -96,7 +96,7 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for first second argument: Single string expected.\n"), "helpbrowser");
+          Scierror(999, _("%s: Wrong type for second input argument: Single string expected.\n"), "helpbrowser");
           return FALSE;
         }
       
@@ -111,7 +111,7 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for third second argument: Single string expected.\n"), "helpbrowser");
+          Scierror(999, _("%s: Wrong type for third input argument: Single string expected.\n"), "helpbrowser");
           return FALSE;
         }
       

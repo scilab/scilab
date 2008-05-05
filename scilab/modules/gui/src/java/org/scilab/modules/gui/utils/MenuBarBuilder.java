@@ -52,7 +52,7 @@ public final class MenuBarBuilder {
 								+ "Check if file *_menubar.xml is available and valid.";
 	
 	private static int figureIndex;
-	
+	//		Messages.getText("plop");
 	/**
 	 * Default constructor
 	 */
