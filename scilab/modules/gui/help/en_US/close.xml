@@ -11,9 +11,9 @@
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>o</term>
+        <term>h</term>
         <listitem>
-          <para>h : integer Handle of the window to close</para>
+          <para>integer Handle of the window to close.</para>
         </listitem>
       </varlistentry>
     </variablelist>
