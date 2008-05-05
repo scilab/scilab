@@ -82,6 +82,11 @@ double RightYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], cha
                                   (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
+double RightYTicksDrawerJavaMapper::showTicks(void)
+{
+  return m_pJavaObject->showTicks();
+}
+/*--------------------------------------------------------------------------*/
 void RightYTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
                                                 double yMin, double yMax,
                                                 double zMin, double zMax)

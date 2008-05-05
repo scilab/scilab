@@ -42,6 +42,8 @@ public:
 
   virtual void placeCamera(void) = 0;
 
+  virtual void redrawCamera(void) = 0;
+
   virtual void replaceCamera( void ) = 0;
 
   virtual void setAxesReverse(bool xAxisRevert, bool yAxisRevert, bool zAxisRevert) = 0;

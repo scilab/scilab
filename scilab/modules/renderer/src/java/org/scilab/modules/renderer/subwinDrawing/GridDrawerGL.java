@@ -30,6 +30,10 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 	
 	private double[] gridPositions;
 	
+	private Vector3D[] startingPoints;
+	private Vector3D[] middlePoints;
+	private Vector3D[] endPoints;
+	
 	/**
 	 * Default constructor
 	 */
@@ -38,11 +42,10 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 	}
 	
 	/**
-	 * Should not be called
 	 * @param parentFigureIndex index of parent figure
 	 */
 	public void show(int parentFigureIndex) {
-		// should not be called
+		showGrid();
 	}
 	
 	/**
@@ -124,13 +127,31 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 	 * @param endPoints positions of the last point of the second line
 	 */
 	public void drawGrid(Vector3D[] startingPoints, Vector3D[] middlePoints, Vector3D[] endPoints) {
+		
+		
+		this.startingPoints = startingPoints;
+		this.middlePoints = middlePoints;
+		this.endPoints = endPoints;
+		
+		showGrid();
+		
+		
+	}
+	
+	/**
+	 * Draw the grid using precomputed data
+	 */
+	public void showGrid() {
 		GL gl = getGL();
 		
+		// use dash to draw grid
 		GLTools.beginDashMode(gl, 2, getGridThickness());
 		
 		double[] color = getGridColor();
 		gl.glColor3d(color[0], color[1], color[2]);
 		
+		// draw grid behind
+		gl.glDisable(GL.GL_DEPTH_TEST);
 		gl.glBegin(GL.GL_LINES);
 		for (int i = 0; i < startingPoints.length; i++) {
 			
@@ -149,10 +170,9 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 			
 		}
 		gl.glEnd();
+		gl.glEnable(GL.GL_DEPTH_TEST);
 		
 		GLTools.endDashMode(gl);
-		
-		
 	}
 	
 	

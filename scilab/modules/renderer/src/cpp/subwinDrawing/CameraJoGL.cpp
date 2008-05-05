@@ -71,17 +71,23 @@ void CameraJoGL::renderPosition( void )
 void CameraJoGL::show(void)
 {
   DrawableObjectJoGL::show();
+  
+}
+/*--------------------------------------------------------------------------*/
+void CameraJoGL::redraw(void)
+{
+  getCameraJavaMapper()->redrawCamera();
+}
+/*--------------------------------------------------------------------------*/
+void CameraJoGL::replaceCamera( void )
+{
+  getCameraJavaMapper()->replaceCamera();
   // save camera viewing settings
   getCameraJavaMapper()->getProjectionMatrix(m_aProjMatrix3D);
   getCameraJavaMapper()->getUnprojectMatrix(m_aUnprojMatrix3D);
   getCameraJavaMapper()->get2dViewProjectionMatrix(m_aProjMatrix2D);
   getCameraJavaMapper()->get2dViewUnprojectMatrix(m_aUnprojMatrix2D);
   getCameraJavaMapper()->getViewPort(m_aViewPort);
-}
-/*--------------------------------------------------------------------------*/
-void CameraJoGL::replaceCamera( void )
-{
-  getCameraJavaMapper()->replaceCamera();
 }
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::project(const double projMatrix[4][4], const double viewPort[4],

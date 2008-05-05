@@ -53,5 +53,9 @@
     <method name="setAxisLineDrawing" returnType="void">
       <param type="boolean" name="drawAxisLine" />
     </method>
+    <method name="showTicks" returnType="double">
+    </method>
+    <method name="drawTicks" returnType="double">
+    </method>
   </object>
 </package>

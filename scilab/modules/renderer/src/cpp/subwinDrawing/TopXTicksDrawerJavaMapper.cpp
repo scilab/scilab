@@ -81,6 +81,11 @@ double TopXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char 
                                   (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
+double TopXTicksDrawerJavaMapper::showTicks(void)
+{
+  return m_pJavaObject->showTicks();
+}
+/*--------------------------------------------------------------------------*/
 void TopXTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
                                            double yMin, double yMax,
                                            double zMin, double zMax)

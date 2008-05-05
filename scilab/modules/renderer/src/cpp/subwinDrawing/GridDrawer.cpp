@@ -30,12 +30,28 @@ GridDrawer::~GridDrawer(void)
 void GridDrawer::draw(const double ticksPositions[], int nbTicks,
                       const double subticksPositions[], int nbSubticks)
 {
-  drawGrid(ticksPositions, nbTicks);
+  
 
-  // in logarithmic mode ticks must also been drawn in front of subticks
+  
   if(m_bIsLogModeOn)
-  {    
+  { 
+    // in logarithmic mode ticks must also been drawn in front of subticks
+    // so create a larger grid
+    double * gridAbscissas = new double[nbTicks + nbSubticks];
+    for (int i = 0; i < nbTicks; i++)
+    {
+      gridAbscissas[i] = ticksPositions[i];
+    }
+    for (int i = 0; i < nbSubticks; i++)
+    {
+      gridAbscissas[i + nbTicks] = subticksPositions[i];
+    }
     drawGrid(subticksPositions, nbSubticks);
+    delete[] gridAbscissas;
+  }
+  else
+  {
+    drawGrid(ticksPositions, nbTicks);
   }
 
 }

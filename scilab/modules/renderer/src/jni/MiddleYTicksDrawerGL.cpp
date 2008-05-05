@@ -116,6 +116,8 @@ curEnv->DeleteLocalRef(localStringArrayClass);
 jdoubledrawTicksjdoubleArrayjobjectArrayjobjectArrayjdoubleArrayID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL; 
+jdoubleshowTicksID=NULL; 
+jdoubledrawTicksID=NULL; 
 
 
 }
@@ -155,6 +157,8 @@ curEnv->DeleteLocalRef(localStringArrayClass);
 jdoubledrawTicksjdoubleArrayjobjectArrayjobjectArrayjdoubleArrayID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL; 
+jdoubleshowTicksID=NULL; 
+jdoubledrawTicksID=NULL; 
 
 
 }
@@ -464,6 +468,48 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
+}
+
+double MiddleYTicksDrawerGL::showTicks (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jdoubleshowTicksID==NULL) { /* Use the cache Luke */ jdoubleshowTicksID = curEnv->GetMethodID(this->instanceClass, "showTicks", "()D" ) ;
+if (jdoubleshowTicksID == NULL) {
+std::cerr << "Could not access to the method " << "showTicks" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                        jdouble res =  (jdouble) curEnv->CallDoubleMethod( this->instance, jdoubleshowTicksID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+double MiddleYTicksDrawerGL::drawTicks (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jdoubledrawTicksID==NULL) { /* Use the cache Luke */ jdoubledrawTicksID = curEnv->GetMethodID(this->instanceClass, "drawTicks", "()D" ) ;
+if (jdoubledrawTicksID == NULL) {
+std::cerr << "Could not access to the method " << "drawTicks" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                        jdouble res =  (jdouble) curEnv->CallDoubleMethod( this->instance, jdoubledrawTicksID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
 }
 
 }

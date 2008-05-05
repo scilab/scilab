@@ -81,6 +81,11 @@ double ZTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * t
                                  (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
+double ZTicksDrawerJavaMapper::showTicks(void)
+{
+  return m_pJavaObject->showTicks();
+}
+/*--------------------------------------------------------------------------*/
 void ZTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
                                            double yMin, double yMax,
                                            double zMin, double zMax)

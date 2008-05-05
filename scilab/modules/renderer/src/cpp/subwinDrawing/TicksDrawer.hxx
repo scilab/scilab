@@ -42,7 +42,7 @@ public:
   /**
    * Redefined show since we can not use display lists.
    */
-  double showTicks(void);
+  virtual double showTicks(void) = 0;
 
 protected:
 

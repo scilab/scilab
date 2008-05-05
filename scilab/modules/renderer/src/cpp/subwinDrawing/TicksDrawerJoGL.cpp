@@ -104,6 +104,18 @@ void TicksDrawerJoGL::endShowing(void)
   }
 }
 /*------------------------------------------------------------------------------------------*/
+double TicksDrawerJoGL::showTicks(void)
+{
+  initializeShowing();
+  double res = getTicksDrawerJavaMapper()->showTicks();
+  if(m_pGridDrawer != NULL)
+  {
+    m_pGridDrawer->show();
+  }
+  endShowing();
+  return res;
+}
+/*------------------------------------------------------------------------------------------*/
 TicksDrawerJavaMapper * TicksDrawerJoGL::getTicksDrawerJavaMapper(void)
 {
   return dynamic_cast<TicksDrawerJavaMapper *>(getJavaMapper());

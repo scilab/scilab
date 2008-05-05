@@ -79,6 +79,11 @@ protected:
   virtual void show( void ) ;
 
   /**
+   * Redraw the subwindow using precomputed data
+   */
+  virtual void redraw(void) ;
+
+  /**
    * Draw the bounding box and ticks of the subwin object.
    */
   void drawAxesBox(void);

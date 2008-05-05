@@ -31,5 +31,7 @@
     <method name="drawGrid" returnType="void">
       <param type="double[]" name="gridPositions" />
     </method>
+    <method name="showGrid" returnType="void">
+    </method>
   </object>
 </package>

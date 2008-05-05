@@ -46,6 +46,8 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	/** Exponent size compared to label size */
 	private static final float EXPONENT_SIZE = 0.75f;
 	
+	
+	
 	private double[] ticksPositions;
 	private String[] ticksLabels;
 	private String[] labelsExponents;
@@ -67,6 +69,17 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	/** keep it for speed */
 	private CoordinateTransformation transform;
 	
+	private Vector3D axisStart;
+	private Vector3D axisEnd;
+	private Vector3D[] labelsPositions;
+	private Vector3D[] labelsExpPositions;
+	private Vector3D[] ticksStarts;
+	private Vector3D[] ticksEnds;
+	private Vector3D[] subticksStarts;
+	private Vector3D[] subticksEnds;
+	
+	private double labelToAxisDist;
+	
 	/** Sepecify where the ticks are drawn in the window
 	 *  Cut the viewport in 4 distincts part 
 	 */
@@ -87,6 +100,14 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		labelColor = -1;
 		labelFont = null;
 		transform = null;
+		
+		axisStart = null;
+		axisEnd = null;
+		labelsPositions = null;
+		labelsExpPositions = null;
+		ticksStarts = null;
+		ticksEnds = null;
+		labelToAxisDist = -1.0;
 	}
 	
 	/**
@@ -322,39 +343,80 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	protected void drawTicksLines(Vector3D[] ticksPosPix, Vector3D[] subticksPosPix,
 								  Vector3D ticksDirPix,
 								  Vector3D axisSegementStart, Vector3D axisSegmentEnd) {
-		GL gl = getGL();
 		
-		double[] color = getLineColor();
-		gl.glColor3d(color[0], color[1], color[2]);
-		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
+		// first store the data for later reuse
+		int nbTicks = ticksPosPix.length;
+		ticksStarts = new Vector3D[nbTicks];
+		ticksEnds = new Vector3D[nbTicks];
+		int nbSubticks = subticksPosPix.length;
+		subticksStarts = new Vector3D[nbSubticks];
+		subticksEnds = new Vector3D[nbSubticks];
 		
+		axisStart = axisSegementStart;
+		axisEnd = axisSegmentEnd;
 		
-		gl.glBegin(GL.GL_LINES);
-		
-		
-		// draw axis segmentif
-		if (drawAxisLine) {
-			gl.glVertex3d(axisSegementStart.getX(), axisSegementStart.getY(), axisSegementStart.getZ());
-			gl.glVertex3d(axisSegmentEnd.getX(), axisSegmentEnd.getY(), axisSegmentEnd.getZ());
-		}
-		
-		// draw ticks
-		for (int i = 0; i < ticksPosPix.length; i++) {
-			if (ticksPosPix[i] == null) { continue; }
-			gl.glVertex3d(ticksPosPix[i].getX(), ticksPosPix[i].getY(), ticksPosPix[i].getZ());
-			Vector3D lineEnd = ticksPosPix[i].add(ticksDirPix);
-			gl.glVertex3d(lineEnd.getX(), lineEnd.getY(), lineEnd.getZ());
-			
+		// store ticks
+		for (int i = 0; i < nbTicks; i++) {
+			if (ticksPosPix[i] == null) {
+				ticksStarts[i] = null;
+				ticksEnds[i] = null;
+			} else {
+				ticksStarts[i] = ticksPosPix[i];
+				ticksEnds[i] = ticksPosPix[i].add(ticksDirPix);
+			}
 		}
 		
 		// draw subticks
 		// same has ticks but with a new ticks length.
 		Vector3D subTicksDirection = ticksDirPix.scalarMult(SUBTICKS_FACTOR);
-		for (int i = 0; i < subticksPosPix.length; i++) {
-			if (subticksPosPix[i] == null) { continue; }
-			gl.glVertex3d(subticksPosPix[i].getX(), subticksPosPix[i].getY(), subticksPosPix[i].getZ());
-			Vector3D lineEnd = subticksPosPix[i].add(subTicksDirection);
-			gl.glVertex3d(lineEnd.getX(), lineEnd.getY(), lineEnd.getZ());
+		for (int i = 0; i < nbSubticks; i++) {
+			if (subticksPosPix[i] == null) {
+				subticksStarts[i] = null;
+				subticksEnds[i] = null;
+			} else {
+				subticksStarts[i] = subticksPosPix[i];
+				subticksEnds[i] = subticksPosPix[i].add(subTicksDirection);
+			}
+		}
+		
+		// then draw everything
+		showTicksLines();
+	}
+	
+	/**
+	 * Draw ticks lines from precomputed data
+	 */
+	protected void showTicksLines() {
+		int nbTicks = ticksStarts.length;
+		int nbSubticks = subticksStarts.length;
+		
+		GL gl = getGL();
+		
+		double[] color = getLineColor();
+		gl.glColor3d(color[0], color[1], color[2]);
+		
+		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
+		gl.glBegin(GL.GL_LINES);
+		
+		
+		// draw axis segment if requested
+		if (drawAxisLine) {
+			gl.glVertex3d(axisStart.getX(), axisStart.getY(), axisStart.getZ());
+			gl.glVertex3d(axisEnd.getX(), axisEnd.getY(), axisEnd.getZ());
+		}
+		
+		// draw ticks
+		for (int i = 0; i < nbTicks; i++) {
+			if (ticksStarts[i] == null) { continue; }
+			gl.glVertex3d(ticksStarts[i].getX(), ticksStarts[i].getY(), ticksStarts[i].getZ());
+			gl.glVertex3d(ticksEnds[i].getX(), ticksEnds[i].getY(), ticksEnds[i].getZ());
+		}
+		
+		// draw subticks
+		for (int i = 0; i < nbSubticks; i++) {
+			if (subticksStarts[i] == null) { continue; }
+			gl.glVertex3d(subticksStarts[i].getX(), subticksStarts[i].getY(), subticksStarts[i].getZ());
+			gl.glVertex3d(subticksEnds[i].getX(), subticksEnds[i].getY(), subticksEnds[i].getZ());
 		}
 		
 		gl.glEnd();
@@ -433,12 +495,14 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		Vector3D textCenter = new Vector3D();
 		double maxDist = 0.0;
 		
+		labelsPositions = new Vector3D[nbLabels];
+		if (labelsExponents != null) {
+			labelsExpPositions = new Vector3D[nbLabels];
+		} else {
+			labelsExpPositions = null;
+		}
 		
-		GL gl = getGL();
-		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 		ticksDirPix.scalarMultSelf(LABEL_TO_AXIS_DISTANCE);
-		
-		renderer.begin3DRendering();
 		
 		TicksPositionCase ticksOrientation;
 		if (ticksDirPix.getX() > Math.abs(ticksDirPix.getY())) {
@@ -450,6 +514,10 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		} else {
 			ticksOrientation = TicksPositionCase.BOTTOM;
 		}
+		GL gl = getGL();
+		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		
+		renderer.begin3DRendering();
 		
 		for (int i = 0; i < nbLabels; i++) {
 			
@@ -468,23 +536,61 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 				maxDist = curDist;
 			}
 			
-			renderer.draw3D(getTickLabel(i), textCenter.getX(), textCenter.getY(), textCenter.getZ());
+			labelsPositions[i] = new Vector3D(textCenter);
+			renderer.draw3D(getTickLabel(i), labelsPositions[i].getX(), labelsPositions[i].getY(), labelsPositions[i].getZ());
 			
 			if (labelsExponents != null) {
+				labelsExpPositions[i] = new Vector3D(exponentPosition);
 				renderer.draw3D(getLabelExponent(i),
-							    exponentPosition.getXf(),
-							    exponentPosition.getYf(),
-							    exponentPosition.getZf(),
-							    EXPONENT_SIZE);
+						(float) labelsExpPositions[i].getX(),
+						(float) labelsExpPositions[i].getY(),
+						(float) labelsExpPositions[i].getZ(),
+						EXPONENT_SIZE);
 			}
 			
 		}
 		
 		renderer.end3DRendering();
-
+		
 		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 		
-		return maxDist + ticksDirPix.getNorm();
+		labelToAxisDist =  maxDist + ticksDirPix.getNorm();
+		
+		//showLabels(renderer);
+		
+		return labelToAxisDist;
+	}
+	
+	/**
+	 * Draw labels from precomuted positions
+	 * @param renderer textrenderer used to draw text
+	 */
+	protected void showLabels(SciTextRenderer renderer) {
+		int nbLabels = labelsPositions.length;
+		
+		GL gl = getGL();
+		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		
+		renderer.begin3DRendering();
+		
+		for (int i = 0; i < nbLabels; i++) {
+			if (labelsPositions[i] == null) { continue; }
+			renderer.draw3D(getTickLabel(i), labelsPositions[i].getX(), labelsPositions[i].getY(), labelsPositions[i].getZ());
+		}
+		
+		if (labelsExpPositions != null) {
+			for (int i = 0; i < nbLabels; i++) {
+				if (labelsExpPositions[i] == null) { continue; }
+				renderer.draw3D(getLabelExponent(i),
+								labelsExpPositions[i].getX(),
+								labelsExpPositions[i].getY(),
+								labelsExpPositions[i].getZ());
+			}
+		}
+		
+		renderer.end3DRendering();
+		
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 	}
 	
 	/**
@@ -664,6 +770,25 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		} else {
 			return getZmin();
 		}
+	}
+	
+	/**
+	 * Draw ticks from precomputed data
+	 * @return negative value if some texts are concealing, distance from the label to the axis in pixels
+	 *         otherwise
+	 */
+	public double showTicks() {
+		GL gl = getGL();
+		
+		// get text renderer
+		SciTextRenderer renderer = getParentFigureGL().getTextWriter(labelFont, getColorMap().getColor(labelColor));
+		
+		GLTools.usePixelCoordinates(gl);
+		showTicksLines();
+		showLabels(renderer);
+		GLTools.endPixelCoordinates(gl);
+		
+		return labelToAxisDist;
 	}
 	
 	/**

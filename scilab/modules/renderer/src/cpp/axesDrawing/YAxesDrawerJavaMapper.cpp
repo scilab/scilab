@@ -81,6 +81,11 @@ double YAxesDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ti
                                  (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
+double YAxesDrawerJavaMapper::showTicks(void)
+{
+  return m_pJavaObject->showTicks();
+}
+/*--------------------------------------------------------------------------*/
 void YAxesDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
                                            double yMin, double yMax,
                                            double zMin, double zMax)

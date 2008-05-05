@@ -81,6 +81,11 @@ public:
   virtual void show( void );
 
   /**
+  * Display the camera using precomputed data
+  */
+  virtual void redraw(void);
+
+  /**
    * Apply a zoom square on the axes box
    * @param posX X coordinate of the lower left point of the zoom box in pixels.
    * @param posY Y coordinate of the lower left point of the zoom box in pixels.

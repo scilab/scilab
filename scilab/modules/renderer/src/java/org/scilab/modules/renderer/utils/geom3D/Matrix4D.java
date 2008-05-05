@@ -45,6 +45,18 @@ public class Matrix4D {
 	}
 	
 	/**
+	 * Copy constructor
+	 * @param copyMatrix matrix to copy
+	 */
+	public Matrix4D(Matrix4D copyMatrix) {
+		for (int i = 0; i < MATRIX_SIZE; i++) {
+			for (int j = 0; j < MATRIX_SIZE; j++) {
+				this.values[i][j] = copyMatrix.values[i][j];
+			}
+		}
+	}
+	
+	/**
 	 * Set the matrix to the 0 matrix.
 	 */
 	public void setToZero() {

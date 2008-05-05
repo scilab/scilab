@@ -63,6 +63,7 @@ jmethodID voidsetNormalizationParametersjdoublejdoublejdoublejdoublejdoublejdoub
 jmethodID voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID voidsetFittingScalejdoublejdoublejdoubleID; // cache method id
 jmethodID voidplaceCameraID; // cache method id
+jmethodID voidredrawCameraID; // cache method id
 jmethodID voidreplaceCameraID; // cache method id
 jmethodID voidsetAxesReversejbooleanjbooleanjbooleanID; // cache method id
 jmethodID jintArraygetPixelCoordinatesjdoublejdoublejdoubleID; // cache method id
@@ -134,6 +135,8 @@ void setAxesRotationParameters(double centerX, double centerY, double centerZ, d
 void setFittingScale(double scaleX, double scaleY, double scaleZ);
 
 void placeCamera();
+
+void redrawCamera();
 
 void replaceCamera();
 

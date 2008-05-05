@@ -48,6 +48,11 @@ public:
   virtual void show(void);
 
   /**
+   * Display the camera using precomputed data
+   */
+  virtual void redraw(void);
+
+  /**
    * Put back camera to default position.
    */
   virtual void replaceCamera( void );

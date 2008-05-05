@@ -137,6 +137,33 @@ void DrawableSubwin::show( void )
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableSubwin::redraw(void)
+{
+  initializeDrawing() ;
+
+  // set up camera
+  // so update coordinates transformations
+  m_pCamera->redraw();
+
+  if ( !checkVisibility() )
+  {
+    // needed
+    m_pCamera->replaceCamera();
+
+    endDrawing();
+    return;
+  }
+
+  showAxesBox();
+
+  displayChildren() ;
+
+  // needed
+  m_pCamera->replaceCamera();
+
+  endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableSubwin::drawAxesBox(void)
 {
   drawBox();

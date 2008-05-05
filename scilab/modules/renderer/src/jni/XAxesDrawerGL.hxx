@@ -66,6 +66,8 @@ jmethodID voidsetAxisParametersjintjfloatjintjintjdoublejintID; // cache method 
 jmethodID voidsetConstantCoordinatesjdoublejdoubleID; // cache method id
 jmethodID voidsetTicksDirectionjstringID; // cache method id
 jmethodID voidsetAxisLineDrawingjbooleanID; // cache method id
+jmethodID jdoubleshowTicksID; // cache method id
+jmethodID jdoubledrawTicksID; // cache method id
 
 
 /**
@@ -132,6 +134,10 @@ void setConstantCoordinates(double yCoordinate, double zCoordinate);
 void setTicksDirection(char * dir);
 
 void setAxisLineDrawing(bool drawAxisLine);
+
+double showTicks();
+
+double drawTicks();
 
 
                         /**

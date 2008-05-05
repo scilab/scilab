@@ -14,6 +14,11 @@
 #include "YLabelPositionerJoGL.hxx"
 #include "YLabelPositionerJavaMapper.hxx"
 
+extern "C"
+{
+#include "GetProperty.h"
+};
+
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
@@ -30,8 +35,18 @@ YLabelPositionerJoGL::~YLabelPositionerJoGL(void)
 /*------------------------------------------------------------------------------------------*/
 double YLabelPositionerJoGL::getAutoOrientation(void)
 {
-  // horizontal
-  return 0;
+  // special case for 2D, Y labels is drawn vertically insttead of horizontally
+  sciPointObj * pLabel = m_pDrawer->getDrawedObject();
+  if (sciGetIs3d(sciGetParentSubwin(pLabel)))
+  {
+    // horizontal
+    return 0;
+  }
+  else
+  {
+    // vertical
+    return 90;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 }

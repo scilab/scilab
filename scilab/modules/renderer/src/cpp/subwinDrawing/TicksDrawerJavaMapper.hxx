@@ -39,6 +39,8 @@ public:
   virtual double drawTicks(const double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
                          int nbTicks, const double subticksPositions[], int nbSubticks) = 0;
 
+  virtual double showTicks(void) = 0;
+
   virtual void setAxesBounds(double xMin, double xMax,
                              double yMin, double yMax,
                              double zMin, double zMax) = 0;

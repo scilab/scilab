@@ -91,6 +91,11 @@ void IsoViewCameraJavaMapper::placeCamera(void)
   m_pJavaObject->placeCamera();
 }
 /*--------------------------------------------------------------------------*/
+void IsoViewCameraJavaMapper::redrawCamera(void)
+{
+  m_pJavaObject->redrawCamera();
+}
+/*--------------------------------------------------------------------------*/
 void IsoViewCameraJavaMapper::replaceCamera( void )
 {
   m_pJavaObject->replaceCamera();

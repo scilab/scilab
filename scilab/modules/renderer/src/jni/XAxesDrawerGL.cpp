@@ -119,6 +119,8 @@ voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL;
 voidsetConstantCoordinatesjdoublejdoubleID=NULL; 
 voidsetTicksDirectionjstringID=NULL; 
 voidsetAxisLineDrawingjbooleanID=NULL; 
+jdoubleshowTicksID=NULL; 
+jdoubledrawTicksID=NULL; 
 
 
 }
@@ -161,6 +163,8 @@ voidsetAxisParametersjintjfloatjintjintjdoublejintID=NULL;
 voidsetConstantCoordinatesjdoublejdoubleID=NULL; 
 voidsetTicksDirectionjstringID=NULL; 
 voidsetAxisLineDrawingjbooleanID=NULL; 
+jdoubleshowTicksID=NULL; 
+jdoubledrawTicksID=NULL; 
 
 
 }
@@ -531,6 +535,48 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
+}
+
+double XAxesDrawerGL::showTicks (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jdoubleshowTicksID==NULL) { /* Use the cache Luke */ jdoubleshowTicksID = curEnv->GetMethodID(this->instanceClass, "showTicks", "()D" ) ;
+if (jdoubleshowTicksID == NULL) {
+std::cerr << "Could not access to the method " << "showTicks" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                        jdouble res =  (jdouble) curEnv->CallDoubleMethod( this->instance, jdoubleshowTicksID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+double XAxesDrawerGL::drawTicks (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jdoubledrawTicksID==NULL) { /* Use the cache Luke */ jdoubledrawTicksID = curEnv->GetMethodID(this->instanceClass, "drawTicks", "()D" ) ;
+if (jdoubledrawTicksID == NULL) {
+std::cerr << "Could not access to the method " << "drawTicks" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                        jdouble res =  (jdouble) curEnv->CallDoubleMethod( this->instance, jdoubledrawTicksID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
 }
 
 }

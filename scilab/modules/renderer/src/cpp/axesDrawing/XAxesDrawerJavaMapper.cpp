@@ -81,6 +81,11 @@ double XAxesDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ti
                                  (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
+double XAxesDrawerJavaMapper::showTicks(void)
+{
+  return m_pJavaObject->showTicks();
+}
+/*--------------------------------------------------------------------------*/
 void XAxesDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
                                            double yMin, double yMax,
                                            double zMin, double zMax)

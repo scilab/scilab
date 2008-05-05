@@ -113,6 +113,7 @@ voidsetNormalizationParametersjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL;
 voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidsetFittingScalejdoublejdoublejdoubleID=NULL; 
 voidplaceCameraID=NULL; 
+voidredrawCameraID=NULL; 
 voidreplaceCameraID=NULL; 
 voidsetAxesReversejbooleanjbooleanjbooleanID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
@@ -158,6 +159,7 @@ voidsetNormalizationParametersjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL;
 voidsetAxesRotationParametersjdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidsetFittingScalejdoublejdoublejdoubleID=NULL; 
 voidplaceCameraID=NULL; 
+voidredrawCameraID=NULL; 
 voidreplaceCameraID=NULL; 
 voidsetAxesReversejbooleanjbooleanjbooleanID=NULL; 
 jintArraygetPixelCoordinatesjdoublejdoublejdoubleID=NULL; 
@@ -392,6 +394,25 @@ exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidplaceCameraID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void IsoViewCameraGL::redrawCamera (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidredrawCameraID==NULL) { /* Use the cache Luke */ voidredrawCameraID = curEnv->GetMethodID(this->instanceClass, "redrawCamera", "()V" ) ;
+if (voidredrawCameraID == NULL) {
+std::cerr << "Could not access to the method " << "redrawCamera" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidredrawCameraID );
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

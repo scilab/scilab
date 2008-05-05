@@ -64,19 +64,6 @@ double TicksDrawer::draw(void)
   return dist;
 }
 /*------------------------------------------------------------------------------------------*/
-double TicksDrawer::showTicks(void)
-{
-
-  // same as initialize drawing but don't set constant parameters
-  initializeShowing();
-  
-  double dist = drawTicks();
-
-  endShowing();
-
-  return dist;
-}
-/*------------------------------------------------------------------------------------------*/
 double TicksDrawer::drawTicks(void)
 {
   m_pTicksComputer->reinit();

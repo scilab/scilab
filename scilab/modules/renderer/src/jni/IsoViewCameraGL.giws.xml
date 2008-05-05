@@ -44,6 +44,8 @@
     </method>
     <method name="placeCamera" returnType="void">
     </method>
+    <method name="redrawCamera" returnType="void">
+    </method>
     <method name="replaceCamera" returnType="void">
     </method>
     <method name="setAxesReverse" returnType="void">

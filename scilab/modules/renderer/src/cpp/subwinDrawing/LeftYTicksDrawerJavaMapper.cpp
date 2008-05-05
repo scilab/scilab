@@ -82,6 +82,11 @@ double LeftYTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char
                                   (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
+double LeftYTicksDrawerJavaMapper::showTicks(void)
+{
+  return m_pJavaObject->showTicks();
+}
+/*--------------------------------------------------------------------------*/
 void LeftYTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
                                                double yMin, double yMax,
                                                double zMin, double zMax)

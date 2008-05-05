@@ -59,6 +59,11 @@ protected:
   virtual void endShowing(void);
 
   /**
+   * Redefined show since we can not use display lists.
+   */
+  virtual double showTicks(void);
+
+  /**
    * Get the object performing mapping with Java class.
    */
   TicksDrawerJavaMapper * getTicksDrawerJavaMapper(void);

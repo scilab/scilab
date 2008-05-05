@@ -43,5 +43,9 @@
       <param type="double" name="fontSize" />
       <param type="int" name="fontColor" />
     </method>
+    <method name="showTicks" returnType="double">
+    </method>
+    <method name="drawTicks" returnType="double">
+    </method>
   </object>
 </package>

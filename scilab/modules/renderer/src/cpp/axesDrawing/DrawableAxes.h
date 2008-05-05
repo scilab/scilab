@@ -42,6 +42,11 @@ protected:
   virtual void show( void ) ;
 
   /**
+   * We need to rebuild everything
+   */
+  virtual void redraw( void ) { draw(); }
+
+  /**
    * Actually draw the axes object
    */
   virtual void drawAxes(void) = 0;

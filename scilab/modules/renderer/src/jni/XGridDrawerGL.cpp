@@ -111,6 +111,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidsetGridParametersjintjfloatID=NULL; 
 voiddrawGridjdoubleArrayID=NULL; 
+voidshowGridID=NULL; 
 
 
 }
@@ -145,6 +146,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidsetGridParametersjintjfloatID=NULL; 
 voiddrawGridjdoubleArrayID=NULL; 
+voidshowGridID=NULL; 
 
 
 }
@@ -342,6 +344,25 @@ curEnv->ExceptionDescribe() ;
 
                         curEnv->DeleteLocalRef(gridPositions_);
 
+}
+
+void XGridDrawerGL::showGrid (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidshowGridID==NULL) { /* Use the cache Luke */ voidshowGridID = curEnv->GetMethodID(this->instanceClass, "showGrid", "()V" ) ;
+if (voidshowGridID == NULL) {
+std::cerr << "Could not access to the method " << "showGrid" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidshowGridID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

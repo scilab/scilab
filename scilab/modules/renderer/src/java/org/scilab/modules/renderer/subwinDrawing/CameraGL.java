@@ -16,6 +16,7 @@ package org.scilab.modules.renderer.subwinDrawing;
 
 import org.scilab.modules.renderer.ObjectGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
+import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.UnitaryCubeGL;
 
@@ -64,6 +65,11 @@ public abstract class CameraGL extends ObjectGL {
 	private boolean yAxisRevert;
 	private boolean zAxisRevert;
 	
+	private Matrix4D projectionMatrix;
+	private Matrix4D unprojectMatrix;
+	private Matrix4D projectionMatrix2D;
+	private Matrix4D unprojectMatrix2D;
+	
 	/**
 	 * Default constructor
 	 */
@@ -81,10 +87,28 @@ public abstract class CameraGL extends ObjectGL {
 	
 	/**
 	 * Display the object by displaying its display list
-	 * Should not be called.
 	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
 	 */
 	public void show(int parentFigureIndex) {
+		showCamera();
+	}
+	
+	/**
+	 * Place the camera using alredy computed matrices
+	 */
+	public void showCamera() {
+		GL gl = getGL();
+		gl.glMatrixMode(GL.GL_PROJECTION);
+		gl.glLoadIdentity();
+		gl.glMatrixMode(GL.GL_MODELVIEW);
+		gl.glLoadMatrixd(projectionMatrix.getOpenGLRepresentation(), 0);
+		gl.glPushMatrix();
+	}
+	
+	/**
+	 * Place the camera using precomputed data
+	 */
+	public void redrawCamera() {
 		placeCamera();
 	}
 	
@@ -94,8 +118,8 @@ public abstract class CameraGL extends ObjectGL {
 	public void endDrawing() {
 		super.endDrawing();
 		// Camera is placed, update transformation
-		GL gl = getGL();
-		CoordinateTransformation.getTransformation(gl).update(gl);
+		//GL gl = getGL();
+		//CoordinateTransformation.getTransformation(gl).update(gl);
 	}
 	
 	/**
@@ -318,6 +342,15 @@ public abstract class CameraGL extends ObjectGL {
 		// compute the matrix for project and unproject.
 		CoordinateTransformation.getTransformation(gl).update(gl);
 		
+		// update coordinate chnage matrices
+		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		this.projectionMatrix = new Matrix4D(transform.getProjectionMatrix());
+		this.unprojectMatrix  = new Matrix4D(transform.getUnprojectMatrix());
+		switchTo2DCoordinates();
+		this.projectionMatrix2D = new Matrix4D(transform.getProjectionMatrix());
+		this.unprojectMatrix2D = new Matrix4D(transform.getUnprojectMatrix());
+		backTo3DCoordinates();
+		
 	}
 	
 	/**
@@ -337,41 +370,35 @@ public abstract class CameraGL extends ObjectGL {
 	public void replaceCamera() {
 		GL gl = getGL();
 		gl.glPopMatrix();
-		CoordinateTransformation.getTransformation(gl).update(gl);
+		//CoordinateTransformation.getTransformation(gl).update(gl);
 	}
 	
 	/**
 	 * @return array of size 16 containing the current projection matrix
 	 */
 	public double[] getProjectionMatrix() {
-		return CoordinateTransformation.getTransformation(getGL()).getProjectionMatrix().getRowWiseRepresentation();
+		return projectionMatrix.getRowWiseRepresentation();
 	}
 	
 	/**
 	 * @return array of size 16 containing the inverse of projection matrix.
 	 */
 	public double[] getUnprojectMatrix() {
-		return CoordinateTransformation.getTransformation(getGL()).getUnprojectMatrix().getRowWiseRepresentation();
+		return unprojectMatrix.getRowWiseRepresentation();
 	}
 	
 	/**
 	 * @return array of size 16 containing the projection matrix for 2d view.
 	 */
 	public double[] get2dViewProjectionMatrix() {
-		switchTo2DCoordinates();
-		double[] res = getProjectionMatrix();
-		backTo3DCoordinates();
-		return res;
+		return projectionMatrix2D.getRowWiseRepresentation();
 	}
 	
 	/**
 	 * @return array of size 16 containing the inverse of projection matrix for 2d view.
 	 */
 	public double[] get2dViewUnprojectMatrix() {
-		switchTo2DCoordinates();
-		double[] res = getUnprojectMatrix();
-		backTo3DCoordinates();
-		return res;
+		return unprojectMatrix2D.getRowWiseRepresentation();
 	}
 	
 	/**

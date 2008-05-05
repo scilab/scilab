@@ -72,6 +72,11 @@ double MiddleXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], ch
                                   (double *)subticksPositions, nbSubticks);
 }
 /*--------------------------------------------------------------------------*/
+double MiddleXTicksDrawerJavaMapper::showTicks(void)
+{
+  return m_pJavaObject->showTicks();
+}
+/*--------------------------------------------------------------------------*/
 double MiddleXTicksDrawerJavaMapper::drawTicks(const double ticksPositions[], char * ticksLabels[],
                                                char * labelsExponents[], int nbTicks,
                                                const double subticksPositions[], int nbSubticks)

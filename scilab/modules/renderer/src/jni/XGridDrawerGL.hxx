@@ -61,6 +61,7 @@ jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID voidsetGridParametersjintjfloatID; // cache method id
 jmethodID voiddrawGridjdoubleArrayID; // cache method id
+jmethodID voidshowGridID; // cache method id
 
 
 /**
@@ -119,6 +120,8 @@ void setAxesBounds(double xMin, double xMax, double yMin, double yMax, double zM
 void setGridParameters(long gridColor, float gridThickness);
 
 void drawGrid(double * gridPositions, int gridPositionsSize);
+
+void showGrid();
 
 
                         /**
