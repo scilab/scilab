@@ -47,20 +47,20 @@ function [palettes,windows] = do_load_as_palette(palettes, windows)
   gh_curwin = scf(curwin) ; //** open the new palette windows with proper id 
   gh_axes = gca(); 
 
+  //** Remove the default Scilab graphics window menus 
+  //** but leave the "File" menu active for export 
   delmenu(curwin,_("&Edit"))
   delmenu(curwin,_("&Tools"))
   delmenu(curwin,_("&?"))
 
-//** This function MAY cause problems
-  //** toolbar(curwin, "off"); //** by Vincent C.
-  //** drawnow(); //** by SM & AC 
-
+  toolbar(curwin, "off"); //** by Vincent C.
+  
   rect = dig_bound(scs_m);
 
   if rect==[] then rect=[0 0 400,600],end
   %wsiz=[rect(3)-rect(1),rect(4)-rect(2)];
-  //window size is limited to 400 x 300 ajust dimensions
-  //to remain isometric.
+  // window size is limited to 400 x 300 ajust dimensions
+  // to remain isometric.
   
   if %wsiz(1)<400 then //** if the "X" is smaller than ... then 
     rect(1)=rect(1)-(400-%wsiz(1))/2
@@ -78,7 +78,11 @@ function [palettes,windows] = do_load_as_palette(palettes, windows)
   h = %zoom * %wsiz(2) ;
   w = %zoom * %wsiz(1) ;
 
-  if ~MSDOS then h1 = h+50, else h1=h, end //** correction for Unix machines 
+  if ~MSDOS then 
+    h1 = h + 50 ;
+  else
+    h1 = h
+  end //** correction for Unix machines 
   
   //** xset('wresize',1); //** If flag=1 then the graphic is automatically resized to fill the graphics
   
@@ -122,7 +126,6 @@ function [palettes,windows] = do_load_as_palette(palettes, windows)
   xinfo("The Palette can be used to copy blocks or regions"); 
   
   drawnow();
-  //** show_pixmap() ; //** not useful on Scilab 5
 
   scf(lastwin) ;
   

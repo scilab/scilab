@@ -85,17 +85,14 @@ function [palettes,windows] = do_palettes(palettes, windows)
   
   gh_palette  = gh_curwin          ;
   gh_pal_axes = gh_axes            ;
-  //** delete the unuseful menu options 
-
+  
+  //** Remove the default Scilab graphics window menus 
+  //** but leave the "File" menu active for export 
   delmenu(curwin,_("&Edit"))
   delmenu(curwin,_("&Tools"))
   delmenu(curwin,_("&?"))
   
-//** This function MAY cause problems
-  //** toolbar(curwin, "off"); //** by Vincent C.
-  //** drawnow(); //** by SM & AC   
-
-  //** BEWARE : OLD GRAPHICS !
+  toolbar(curwin, "off"); //** by Vincent C.
   xselect(); //** rise the current graphics window 
  
   //**-------------------------------------------------------
