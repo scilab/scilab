@@ -13,7 +13,7 @@ function xs2fig(figureNumber, fileName)
 	
 	//Input arguments checking
 	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "xs2fig"));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected\n"), "xs2fig",2));
 		return;
 	end
 
@@ -34,7 +34,7 @@ function xs2fig(figureNumber, fileName)
 	  // check that pstoedit is available on the computer
 	  checkPstoedit = unix_g("which pstoedit");
 	  if (checkPstoedit == [] | checkPstoedit == "") then
-	    error(msprintf(gettext("%s: Unable to locate pstoedit. Please install pstoedit to be able to use this functionnality.\n"), "xs2fig"));
+	    error(msprintf(gettext("%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH to be able to use this feature.\n"), "xs2fig"));
 	    return;
 	  end
 	end
@@ -64,6 +64,7 @@ function xs2fig(figureNumber, fileName)
 	// convert it to fig
 	pstoeditOptions = "-f ""fig""";
 	unix_s(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);
+	// @TODO catch errors and display them if occurs
 	
 	//delete the temporary eps file 
 	mdelete(fileExport);
