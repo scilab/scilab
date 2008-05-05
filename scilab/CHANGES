@@ -208,6 +208,9 @@ System relative Functions:
 
  - Rewrite in native code:
   + warning
+  
+ - Profile changed:
+	+ unix_g                - a third output argument (optional) has been added to get standard error output in a variable.
 
 
 Time and date functions:
