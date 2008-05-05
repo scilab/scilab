@@ -23,7 +23,8 @@ function scicos_nonreg(varargin)
 //
 //  Usage:
 //
-//     getf('scicos_nonreg'); scicos_nonreg();
+//     cd SCI/modules/scicos/tests/nonreg_tests;
+//     getf('scicos_nonreg.sci'); scicos_nonreg();
 //
 //  Algorithm: (grep "^\s*//--" scicos_nonreg.sci | awk -F "//-- " '{print "//  " $1 $2}')
 //
@@ -119,12 +120,17 @@ function launch_nonreg(baseDir, testName)
     resFilename    = fullfile(baseDir, testName + '_v4.res')
     errFilename    = fullfile(baseDir, testName + '_v4.err')
     
-  elseif ~isempty(grep(getversion(), 'scilab-trunk-SVN')) ..
+  elseif ~isempty(grep(getversion(), 'trunk')) ..
     | ~isempty(grep(getversion(), 'scilab-5'))
        
     diaryFilename  = fullfile(baseDir, testName + '_v5.log')
     resFilename    = fullfile(baseDir, testName + '_v5.res')
     errFilename    = fullfile(baseDir, testName + '_v5.err')
+    
+  else
+  
+    disp(msprintf('%-25s: ERROR: Unknown Scilab version (%s)', testName, getversion()))
+    return
     
   end
   
@@ -180,7 +186,9 @@ function launch_nonreg(baseDir, testName)
   host(cmd)
 
   //-- Non-regression tests launched under Scilab 4.X ?  
-  if ~isempty(grep(getversion(),'scilab-4')) | ~isempty(grep(getversion(), 'Scilab-4')) | ~isempty(grep(getversion(), 'scicos_work'))
+  if ~isempty(grep(getversion(),'scilab-4')) ..
+    | ~isempty(grep(getversion(), 'Scilab-4')) ..
+    | ~isempty(grep(getversion(), 'scicos_work'))
   
     //-- Rename file.out -> file.out.ref
     mdelete(outRefFilename)
@@ -194,7 +202,8 @@ function launch_nonreg(baseDir, testName)
     end
   
   //-- Non-regression tests launched under Scilab 5.X ?  
-  elseif ~isempty(grep(getversion(), 'scilab-trunk-SVN')) | ~isempty(grep(getversion(), 'scilab-5'))
+  elseif ~isempty(grep(getversion(), 'trunk')) ..
+    | ~isempty(grep(getversion(), 'scilab-5'))
   
     //-- Compare output data with reference data:
     
