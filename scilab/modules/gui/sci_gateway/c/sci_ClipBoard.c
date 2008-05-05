@@ -62,223 +62,238 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                 }
               else
                 {
-                  Scierror(999,_("clipboard: Wrong value for first input argument: ""paste"" or ""pastespecial"" expected.\n"));
+                  Scierror(999,_("%s: Wrong value for first input argument: ""paste"" or ""pastespecial"" expected.\n"), "clipboard");
                   return FALSE;
                 }
             }
           else
             {
-              Scierror(999,_("clipboard: Wrong type for first input argument: ""paste"" or ""pastespecial"" expected.\n"));
+              Scierror(999,_("%s: Wrong type for first input argument: Single string expected.\n"), "clipboard");
               return FALSE;
             }
         } 
 
-      if (Rhs == 2)
+      else if (Rhs == 2)
         {
-          if ( (GetType(1)==sci_strings) && (GetType(2)==sci_strings) )
+          if (GetType(1)==sci_strings)
             {
+              /* Get the first argument: should be "copy" or "do" */
               GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
               param1=cstk(l1);
 
-              /*-------------------------------------------*/
-              /* clipboard("do", {"paste","copy","empty"}) */
-              /*-------------------------------------------*/
-
-              /* @TODO : should be remplaced by an enum */
-              if ( strcmp(param1,"do") == 0 )
+              if (n1!=1)
                 {
-                  GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
-                  param2=cstk(l1);
-
-                  if ( strcmp(param2,"paste") == 0 )
-                    {
-                      /* Call Java to do the job */
-                      pasteClipboardIntoConsole();
-                    }
-                  else if ( strcmp(param2,"copy") == 0 )
-                    {
-                      /* Call Java to do the job */
-                      copyConsoleSelection();
-                    }
-                  else if ( strcmp(param2,"empty") == 0 )
-                    {
-                      /* Call Java to do the job */
-                      emptyClipboard();
-                    }
-                  else
-                    {
-                      Scierror(999,_("clipboard: Wrong value for second input argument: must be ""copy"", ""paste"" or ""empty"".\n"));
-                      return 0;
-                    }
-
-                  m1=0;
-                  n1=0;
-                  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
-                  LhsVar(1)=Rhs+1;
-                  C2F(putlhsvar)();	
-                  return TRUE;
+                  Scierror(999,_("%s: Wrong value for first input argument: must be ""do"" or ""copy"".\n"), "clipboard");
+                  return FALSE;
                 }
 
-              /*-------------------------*/
-              /* clipboard("copy", data) */
-              /*-------------------------*/
-              if ( strcmp(param1,"copy") == 0 )
+              if (GetType(2)==sci_strings)
                 {
-                  char *TextToPutInClipboard=NULL;
-                  char **Str=NULL;
 
-                  GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
-
-
-                  if ( (m1==1) && (n1==1) )
+                  /*-------------------------------------------*/
+                  /* clipboard("do", {"paste","copy","empty"}) */
+                  /*-------------------------------------------*/
+                  
+                  /* @TODO : should be remplaced by an enum */
+                  if ( strcmp(param1,"do") == 0 )
                     {
-                      TextToPutInClipboard=Str[0];
-                      /* Call Java to do the job */
-                      setClipboardContents(TextToPutInClipboard);
-                    }
-                  else
-                    {
-                      int i=0;
-                      int j=0;
-                      int l2=0;
-                      char *TextToSendInClipboard=NULL;
-                      int SizeofTextToSendInClipboard=0;
-                      char **buffer = (char**)MALLOC( (m1*n1)*sizeof(char *) );
-
-                      for (i=0; i<m1; i++) for (j=0; j<n1; j++) 
+                      GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
+                      param2=cstk(l1);
+                      
+                      if ( strcmp(param2,"paste") == 0 )
                         {
-                          SizeofTextToSendInClipboard=SizeofTextToSendInClipboard+(int)strlen(Str[j*m1+i])+(int)strlen("\n");
-                          buffer[i*n1+j]=(char*)MALLOC(strlen(Str[j*m1+i])+1);
-                          strcpy(buffer[i*n1+j],Str[j*m1+i]);
+                          /* Call Java to do the job */
+                          pasteClipboardIntoConsole();
                         }
-
-                      TextToSendInClipboard=(char*)MALLOC( (SizeofTextToSendInClipboard)*sizeof(char) );
-                      strcpy(TextToSendInClipboard,"");
-
-                      for (i=0; i<m1; i++)
+                      else if ( strcmp(param2,"copy") == 0 )
                         {
-                          for (j=0; j<n1; j++) 
-                            {
-                              strcat(TextToSendInClipboard,buffer[l2++]);
-                              strcat(TextToSendInClipboard," ");
-                            }
-                          if ( i != (m1-1) ) strcat(TextToSendInClipboard,"\n");
+                          /* Call Java to do the job */
+                          copyConsoleSelection();
                         }
-
-                      /* Call Java to do the job */
-                      setClipboardContents(TextToSendInClipboard);
-
-                      if (buffer) 
+                      else if ( strcmp(param2,"empty") == 0 )
                         {
-                          FREE(buffer);
-                          buffer=NULL;
+                          /* Call Java to do the job */
+                          emptyClipboard();
                         }
-
-                      if(TextToSendInClipboard) 
+                      else
                         {
-                          FREE(TextToSendInClipboard);
-                          TextToSendInClipboard=NULL;
+                          Scierror(999,_("%s: Wrong value for second input argument: must be ""copy"", ""paste"" or ""empty"".\n"), "clipboard");
+                          return FALSE;
                         }
-                    }
-
-                  freeArrayOfString(Str,m1*n1);
-                  m1=0;
-                  n1=0;
-                  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
-                  LhsVar(1)=Rhs+1;
-                  C2F(putlhsvar)();	
-                  return TRUE;
-                }
- 
-              Scierror(999,_("clipboard: Wrong value for second input argument: must be ""do"" or ""copy"".\n"));
-              return FALSE;
-            }
-
-          /*----------------------------------*/
-          /* clipboard(fignum, {"EMF","DIB"}) */
-          /*----------------------------------*/
-          if ( (IsAScalar(1)) && (GetType(2)==sci_strings) )
-            {
-              GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
-              param2=cstk(l1);
-
-              if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
-                {
-                  int num_win=-2;
-                  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-                  num_win=*istk(l1);
-                  if (num_win>=0)
-                    {
-                      /* Call Java */
-                      copyFigureToClipBoard(num_win);
+                      
                       m1=0;
                       n1=0;
-                      CreateVar(1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
-                      LhsVar(1)=1;
+                      CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
+                      LhsVar(1)=Rhs+1;
                       C2F(putlhsvar)();	
                       return TRUE;
-                     }
+                    }
+
+                  /*-------------------------*/
+                  /* clipboard("copy", data) */
+                  /*-------------------------*/
+
+                  else if ( strcmp(param1,"copy") == 0 )
+                    {
+                      char *TextToPutInClipboard=NULL;
+                      char **Str=NULL;
+                      
+                      GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
+                      
+                      if (m1*n1==1) /* Single line copy */
+                        {
+                          TextToPutInClipboard=Str[0];
+                          /* Call Java to do the job */
+                          setClipboardContents(TextToPutInClipboard);
+                        }
+                      else /* Multi-line copy */
+                        {
+                          int i=0, j=0, l2=0;
+                          char *TextToSendInClipboard=NULL;
+                          int SizeofTextToSendInClipboard=0;
+                          char **buffer = (char**)MALLOC( (m1*n1)*sizeof(char *) );
+                          if (buffer==NULL)
+                            {
+                              Scierror(999, _("%s: No more memory.\n"), "clipboard");
+                              return FALSE;
+                            }
+                          
+                          for (i=0; i<m1; i++) for (j=0; j<n1; j++) 
+                            {
+                              SizeofTextToSendInClipboard=SizeofTextToSendInClipboard+(int)strlen(Str[j*m1+i])+(int)strlen("\n");
+                              buffer[i*n1+j]=(char*)MALLOC(strlen(Str[j*m1+i])+1);
+                              strcpy(buffer[i*n1+j],Str[j*m1+i]);
+                            }
+                          
+                          TextToSendInClipboard=(char*)MALLOC( (SizeofTextToSendInClipboard)*sizeof(char) );
+                          strcpy(TextToSendInClipboard,"");
+                          
+                          for (i=0; i<m1; i++)
+                            {
+                              for (j=0; j<n1; j++) 
+                                {
+                                  strcat(TextToSendInClipboard,buffer[l2++]);
+                                  strcat(TextToSendInClipboard," ");
+                                }
+                              if ( i != (m1-1) ) strcat(TextToSendInClipboard,"\n");
+                            }
+                          
+                          /* Call Java to do the job */
+                          setClipboardContents(TextToSendInClipboard);
+                          
+                          if (buffer) 
+                            {
+                              FREE(buffer);
+                              buffer=NULL;
+                            }
+                          
+                          if(TextToSendInClipboard) 
+                            {
+                              FREE(TextToSendInClipboard);
+                              TextToSendInClipboard=NULL;
+                            }
+                        }
+                      
+                      freeArrayOfString(Str,m1*n1);
+                      m1=0;
+                      n1=0;
+                      CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
+                      LhsVar(1)=Rhs+1;
+                      C2F(putlhsvar)();	
+                      return TRUE;
+                    }
                   else
                     {
-                      Scierror(999,_("%s: Wrong value for first input argument: must be >= 0 .\n"), fname);
+                      Scierror(999,_("%s: Wrong value for first input argument: must be ""do"" or ""copy"".\n"), "clipboard");
                       return FALSE;
                     }
                 }
               else
                 {
-                  Scierror(999,_("%s: Wrong value for second input argument: must be ""EMF"" or ""DIB"".\n"), fname);
+                  Scierror(999,_("%s: Wrong type for second input argument: Single string expected.\n"), "clipboard");
                   return FALSE;
                 }
             }
-        }
-      else
-        {
-          Scierror(999,_("%s: bad types for input arguments.\n"), fname);
-          return FALSE;	
-        }
-    }
-  else
-    {
-      if ( (Rhs == 2) && (IsAScalar(1)) && (GetType(2)==sci_strings) )
-        {
-          GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
-          param2=cstk(l1);
-          if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
+
+          /*----------------------------------*/
+          /* clipboard(fignum, {"EMF","DIB"}) */
+          /*----------------------------------*/
+
+          else if (GetType(1)==sci_matrix)
             {
+              
               int num_win=-2;
+              
               GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
               num_win=*istk(l1);
-              if (num_win>=0)
+
+              if (m1*n1!=1)
                 {
-                  /* Call Java */
-                  copyFigureToClipBoard(num_win);
-                  m1=0;
-                  n1=0;
-                  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
-                  LhsVar(1)=Rhs+1;
-                  C2F(putlhsvar)();	
-                  return 0;
+                  Scierror(999,_("%s: Wrong type for first input argument: Single double value expected.\n"), "clipboard");
+                  return FALSE;
+                }
+
+              if (GetType(2)==sci_strings)
+                {
+                  GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
+                  param2=cstk(l1);
+
+                  if ( ( strcmp(param2,"EMF") == 0 ) || ( strcmp(param2,"DIB") == 0 ) )
+                    {
+                      if (num_win>=0)
+                        {
+                          /* Call Java */
+                          if ( strcmp(param2,"EMF") == 0)
+                            {
+                              /* @TODO create EMF */
+                              copyFigureToClipBoard(num_win);
+                            }
+                          else
+                            {
+                              /* @TODO create DIB */
+                              copyFigureToClipBoard(num_win);
+                            }
+
+                          m1=0;
+                          n1=0;
+                          CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
+                          LhsVar(1)=Rhs+1;
+                          C2F(putlhsvar)();	
+                          return TRUE;
+                        }
+                      else
+                        {
+                          Scierror(999,_("%s: Wrong value for first input argument: must be >= 0 .\n"), "clipboard");
+                          return FALSE;
+                        }
+
+                    }
+                  else
+                    {
+                      Scierror(999,_("%s: Wrong value for second input argument: must be ""EMF"" or ""DIB"".\n"), "clipboard");
+                      return FALSE;
+                    }
+                  
                 }
               else
                 {
-                  Scierror(999,_("%s: Wrong value for first input argument: must be >= 0 .\n"));
-                  return 0;
+                  Scierror(999,_("%s: Wrong type for second input argument: Single string expected.\n"), "clipboard");
+                  return FALSE;
                 }
             }
           else
             {
-              Scierror(999,_("%s: Wrong value for second input argument: must be ""EMF"" or ""DIB"".\n"));
-              return 0;
+              Scierror(999,_("%s: Wrong type for first input argument: Single string or Single double value expected.\n"), "clipboard");
+              return FALSE;
             }
         }
-      else
-        {
-          Scierror(999,_("Only on Windows Mode.\n"));
-          return 0;
-        }
-      Scierror(999,_("clipboard: function not available in NWNI mode.\n"));
+    }
+  else
+    {
+      Scierror(999,_("%s: function not available in NWNI mode.\n"), "clipboard");
       return FALSE;
     }
-  return TRUE;
+
+  return FALSE;
 }
 /*--------------------------------------------------------------------------*/
