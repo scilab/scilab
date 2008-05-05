@@ -29,7 +29,7 @@ function xs2fig(figureNumber, fileName)
 		return;
 	end
 	
-	if (getos() <> "Windows") then
+	if ~MSDOS then
 	  // os is a unix one
 	  // check that pstoedit is available on the computer
 	  checkPstoedit = unix_g("which pstoedit");
@@ -40,7 +40,7 @@ function xs2fig(figureNumber, fileName)
 	end
 	
 	//checking file extension	 				
-	[path,fname,extension] = fileparts(fileName)
+	[path,fname,extension] = fileparts(fileName);
 	if (extension <> ".fig") then
 	  // appened fig at the end of the file name.
 	  generatedFileName = fileName + ".fig";
@@ -49,7 +49,7 @@ function xs2fig(figureNumber, fileName)
 	end
 	
 	// compute pstoedit path
-	if (getos() == "Windows") then
+	if MSDOS then
 	  // pstoedit is embedded in Scilab
 	  pstoeditPath = SCI + "\tools\pstoedit\pstoedit";
 	else
@@ -57,17 +57,13 @@ function xs2fig(figureNumber, fileName)
 	  pstoeditPath = "pstoedit";
 	end
 	
-	
-  
 	//create the eps file
-	fileExport = TMPDIR + "/" + fileName + ".eps";	
+	fileExport = TMPDIR + filesep() + fileName + ".eps";	
 	xs2eps(figureNumber, fileExport);
-	
-	
+		
 	// convert it to fig
 	pstoeditOptions = "-f ""fig""";
 	unix_s(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);
-			  
 	
 	//delete the temporary eps file 
 	mdelete(fileExport);
