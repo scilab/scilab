@@ -60,7 +60,7 @@ function getd(path,option)
   
   //funcprot(prot);
   new = who('get');
-  new = new(1:(size(new,'*')-nold-4));
+  new = new(1:(size(new,'*')-nold-3));  // -4 becomes -3: fix the fix for bug 2807
   
   if new<>[] then
     execstr('['+strcat(new,',')+']=resume('+strcat(new,',')+')')
