@@ -13,7 +13,7 @@ function xs2fig(figureNumber, fileName)
 	
 	//Input arguments checking
 	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected\n"), "xs2fig",2));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "xs2fig",2));
 		return;
 	end
 
