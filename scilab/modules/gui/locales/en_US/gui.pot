@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-04-22 16:51+0100\n"
+"Revision-Date: 2008-05-05 11:10+0100\n"
 
 # File: macros/x_choices.sci, line: 29
 #, c-format
@@ -22,9 +22,9 @@ msgid "%s: Wrong number of input arguments: 2 expected.\n"
 msgstr ""
 #
 # File: macros/x_choices.sci, line: 34
+# File: sci_gateway/c/sci_setmenu.c, line: 44
 # File: sci_gateway/c/sci_unsetmenu.c, line: 44
 # File: sci_gateway/c/sci_delmenu.c, line: 43
-# File: sci_gateway/c/sci_setmenu.c, line: 44
 #, c-format
 msgid "%s: Wrong type for first input argument: String expected.\n"
 msgstr ""
@@ -47,9 +47,9 @@ msgstr ""
 # File: macros/addmenu.sci, line: 47
 # File: macros/addmenu.sci, line: 65
 # File: macros/addmenu.sci, line: 104
+# File: sci_gateway/c/sci_setmenu.c, line: 38
 # File: sci_gateway/c/sci_unsetmenu.c, line: 38
 # File: sci_gateway/c/sci_delmenu.c, line: 37
-# File: sci_gateway/c/sci_setmenu.c, line: 38
 #, c-format
 msgid "%s: figure number must be given when used in no window mode."
 msgstr ""
@@ -206,13 +206,14 @@ msgstr ""
 msgid "Could not create uicontrol of type %s."
 msgstr ""
 #
-# File: src/cpp/SetUicontrolPosition.cpp, line: 33
-# File: src/cpp/SetUicontrolPosition.cpp, line: 41
-# File: src/cpp/SetUicontrolPosition.cpp, line: 55
-# File: src/cpp/SetUicontrolPosition.cpp, line: 68
-msgid ""
-"Position property value must be \"x|y|width|height\" or [x, y, width, "
-"height].\n"
+# File: src/cpp/InitUIMenu.cpp, line: 85
+# File: src/cpp/InitUIMenu.cpp, line: 98
+# File: sci_gateway/c/sci_uicontrol.c, line: 101
+# File: sci_gateway/c/sci_uicontrol.c, line: 147
+# File: sci_gateway/c/sci_uicontrol.c, line: 177
+# File: sci_gateway/c/sci_uimenu.c, line: 86
+#, c-format
+msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
 msgstr ""
 #
 # File: src/cpp/SetUicontrolParent.cpp, line: 27
@@ -235,57 +236,38 @@ msgid ""
 "Could not set an other object than a handle as parent of an uicontrol.\n"
 msgstr ""
 #
-# File: src/cpp/SetUimenuLabel.cpp, line: 22
-# File: src/cpp/SetUimenuLabel.cpp, line: 26
-# File: src/cpp/SetUimenuLabel.cpp, line: 32
-# File: src/cpp/SetUiobjectTag.cpp, line: 22
-# File: src/cpp/SetUicontrolFontName.cpp, line: 22
-#, c-format
-msgid "%s property value must be a single string.\n"
-msgstr ""
-#
-# File: src/cpp/SetUimenuLabel.cpp, line: 44
-# File: src/cpp/GetUicontrolPosition.cpp, line: 52
-# File: src/cpp/GetUiobjectCallback.cpp, line: 48
-# File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 67
-# File: src/cpp/SetUiobjectCallback.cpp, line: 140
-# File: src/cpp/GetUicontrolMax.cpp, line: 26
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 139
-# File: src/cpp/GetUiobjectForegroundColor.cpp, line: 44
-# File: src/cpp/GetUicontrolFontWeight.cpp, line: 40
-# File: src/cpp/GetUicontrolFontUnits.cpp, line: 43
-# File: src/cpp/GetUicontrolFontSize.cpp, line: 40
-# File: src/cpp/GetUicontrolMin.cpp, line: 26
-# File: src/cpp/SetUiobjectTag.cpp, line: 77
 # File: src/cpp/GetUimenuLabel.cpp, line: 27
+# File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 67
+# File: src/cpp/GetUiobjectCallback.cpp, line: 48
+# File: src/cpp/SetUiobjectCallback.cpp, line: 140
+# File: src/cpp/GetUiobjectForegroundColor.cpp, line: 44
+# File: src/cpp/GetUicontrolPosition.cpp, line: 52
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 139
+# File: src/cpp/GetUicontrolFontWeight.cpp, line: 40
+# File: src/cpp/GetUicontrolFontSize.cpp, line: 40
+# File: src/cpp/GetUicontrolFontUnits.cpp, line: 43
 # File: src/cpp/GetUicontrolUnits.cpp, line: 42
 # File: src/cpp/GetUiobjectTag.cpp, line: 58
+# File: src/cpp/SetUiobjectTag.cpp, line: 77
+# File: src/cpp/GetUicontrolMin.cpp, line: 26
+# File: src/cpp/GetUicontrolMax.cpp, line: 26
+# File: src/cpp/SetUimenuLabel.cpp, line: 44
 # File: src/cpp/GetUicontrolStyle.cpp, line: 24
 # File: src/cpp/GetUicontrolString.cpp, line: 70
 # File: src/cpp/SetUicontrolString.cpp, line: 87
 # File: src/cpp/GetUicontrolFontAngle.cpp, line: 38
-# File: src/cpp/GetUicontrolValue.cpp, line: 95
 # File: src/cpp/GetUicontrolListboxTop.cpp, line: 33
+# File: src/cpp/GetUicontrolValue.cpp, line: 95
+# File: src/cpp/GetUicontrolFontName.cpp, line: 36
+# File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 37
+# File: src/cpp/SetUicontrolFontName.cpp, line: 52
 # File: src/cpp/GetUicontrolRelief.cpp, line: 43
 # File: src/cpp/GetUicontrolHorizontalAlignment.cpp, line: 37
-# File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 37
 # File: src/cpp/GetUicontrolSliderStep.cpp, line: 36
-# File: src/cpp/GetUicontrolFontName.cpp, line: 36
-# File: src/cpp/SetUicontrolFontName.cpp, line: 52
 # File: src/cpp/SetUiobjectVisible.cpp, line: 72
 # File: src/cpp/GetUiobjectVisible.cpp, line: 62
 #, c-format
 msgid "No %s property for this object.\n"
-msgstr ""
-#
-# File: src/cpp/InitUIMenu.cpp, line: 85
-# File: src/cpp/InitUIMenu.cpp, line: 98
-# File: sci_gateway/c/sci_uicontrol.c, line: 101
-# File: sci_gateway/c/sci_uicontrol.c, line: 147
-# File: sci_gateway/c/sci_uicontrol.c, line: 177
-# File: sci_gateway/c/sci_uimenu.c, line: 86
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
 msgstr ""
 #
 # File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 33
@@ -321,19 +303,28 @@ msgstr ""
 msgid "%s property value must be a scalar value.\n"
 msgstr ""
 #
+# File: src/cpp/SetUicontrolPosition.cpp, line: 33
+# File: src/cpp/SetUicontrolPosition.cpp, line: 41
+# File: src/cpp/SetUicontrolPosition.cpp, line: 55
+# File: src/cpp/SetUicontrolPosition.cpp, line: 68
+msgid ""
+"Position property value must be \"x|y|width|height\" or [x, y, width, "
+"height].\n"
+msgstr ""
+#
+# File: src/cpp/GetUicontrolFontWeight.cpp, line: 34
 # File: src/cpp/SetUicontrolFontWeight.cpp, line: 29
 # File: src/cpp/SetUicontrolFontWeight.cpp, line: 54
 # File: src/cpp/SetUicontrolFontWeight.cpp, line: 75
-# File: src/cpp/GetUicontrolFontWeight.cpp, line: 34
 msgid ""
 "FontWeight property value must be a single string: light, normal, demi or "
 "bold.\n"
 msgstr ""
 #
-# File: src/cpp/GetUicontrolFontUnits.cpp, line: 36
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 29
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 58
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 67
+# File: src/cpp/GetUicontrolFontUnits.cpp, line: 36
 # File: src/cpp/UnitsConversion.cpp, line: 54
 # File: src/cpp/UnitsConversion.cpp, line: 95
 msgid ""
@@ -343,21 +334,15 @@ msgstr ""
 #
 # File: src/cpp/SetUicontrolFontSize.cpp, line: 29
 # File: src/cpp/SetUicontrolFontSize.cpp, line: 50
-# File: src/cpp/SetUicontrolMax.cpp, line: 26
-# File: src/cpp/SetUicontrolMax.cpp, line: 86
 # File: src/cpp/SetUicontrolMin.cpp, line: 26
 # File: src/cpp/SetUicontrolMin.cpp, line: 86
+# File: src/cpp/SetUicontrolMax.cpp, line: 26
+# File: src/cpp/SetUicontrolMax.cpp, line: 86
 # File: src/cpp/SetUicontrolListboxTop.cpp, line: 27
 # File: src/cpp/SetUicontrolListboxTop.cpp, line: 54
 # File: src/cpp/SetUicontrolValue.cpp, line: 80
 #, c-format
 msgid "%s property value must be scalar value.\n"
-msgstr ""
-#
-# File: src/cpp/SetUiobjectTag.cpp, line: 26
-# File: src/cpp/SetUicontrolFontName.cpp, line: 26
-#, c-format
-msgid "%s col property value must be a single string.\n"
 msgstr ""
 #
 # File: src/cpp/GetUicontrolUnits.cpp, line: 36
@@ -369,6 +354,21 @@ msgid ""
 "centimeters or pixels.\n"
 msgstr ""
 #
+# File: src/cpp/SetUiobjectTag.cpp, line: 22
+# File: src/cpp/SetUimenuLabel.cpp, line: 22
+# File: src/cpp/SetUimenuLabel.cpp, line: 26
+# File: src/cpp/SetUimenuLabel.cpp, line: 32
+# File: src/cpp/SetUicontrolFontName.cpp, line: 22
+#, c-format
+msgid "%s property value must be a single string.\n"
+msgstr ""
+#
+# File: src/cpp/SetUiobjectTag.cpp, line: 26
+# File: src/cpp/SetUicontrolFontName.cpp, line: 26
+#, c-format
+msgid "%s col property value must be a single string.\n"
+msgstr ""
+#
 # File: src/cpp/SetUicontrolString.cpp, line: 46
 # File: src/cpp/SetUicontrolString.cpp, line: 61
 #, c-format
@@ -377,10 +377,10 @@ msgid ""
 "strings.\n"
 msgstr ""
 #
+# File: src/cpp/GetUicontrolFontAngle.cpp, line: 32
 # File: src/cpp/SetUicontrolFontAngle.cpp, line: 29
 # File: src/cpp/SetUicontrolFontAngle.cpp, line: 50
 # File: src/cpp/SetUicontrolFontAngle.cpp, line: 67
-# File: src/cpp/GetUicontrolFontAngle.cpp, line: 32
 msgid ""
 "FontAngle property value must be a single string: normal, italic or "
 "oblique.\n"
@@ -399,26 +399,10 @@ msgstr ""
 msgid "%s property value must be a row vector.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolRelief.cpp, line: 29
-# File: src/cpp/SetUicontrolRelief.cpp, line: 62
-# File: src/cpp/SetUicontrolRelief.cpp, line: 85
+# File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 31
 msgid ""
-"Relief property value must be a single string: flat, groove, raised, ridge, "
-"solid or sunken.\n"
-msgstr ""
-#
-# File: src/cpp/GetUicontrolRelief.cpp, line: 37
-msgid ""
-"Relief property value must be a single string: flat, groove, raised, ridge, "
-"solid, or sunken.\n"
-msgstr ""
-#
-# File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 29
-# File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 50
-# File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 69
-msgid ""
-"HorizontalAlignment property value must be a single string: left, center or "
-"right.\n"
+"VerticalAlignment property value must be a single string: top, middle, or "
+"bottom.\n"
 msgstr ""
 #
 # File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 29
@@ -429,10 +413,18 @@ msgid ""
 "bottom.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolSliderStep.cpp, line: 27
-# File: src/cpp/SetUicontrolSliderStep.cpp, line: 60
-#, c-format
-msgid "%s property value must be a 2-value row vector.\n"
+# File: src/cpp/GetUicontrolRelief.cpp, line: 37
+msgid ""
+"Relief property value must be a single string: flat, groove, raised, ridge, "
+"solid, or sunken.\n"
+msgstr ""
+#
+# File: src/cpp/SetUicontrolRelief.cpp, line: 29
+# File: src/cpp/SetUicontrolRelief.cpp, line: 62
+# File: src/cpp/SetUicontrolRelief.cpp, line: 85
+msgid ""
+"Relief property value must be a single string: flat, groove, raised, ridge, "
+"solid or sunken.\n"
 msgstr ""
 #
 # File: src/cpp/GetUicontrolHorizontalAlignment.cpp, line: 31
@@ -441,14 +433,22 @@ msgid ""
 "right.\n"
 msgstr ""
 #
-# File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 31
+# File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 29
+# File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 50
+# File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 69
 msgid ""
-"VerticalAlignment property value must be a single string: top, middle, or "
-"bottom.\n"
+"HorizontalAlignment property value must be a single string: left, center or "
+"right.\n"
 msgstr ""
 #
-# File: src/cpp/DestroyWaitBar.cpp, line: 32
+# File: src/cpp/SetUicontrolSliderStep.cpp, line: 27
+# File: src/cpp/SetUicontrolSliderStep.cpp, line: 60
+#, c-format
+msgid "%s property value must be a 2-value row vector.\n"
+msgstr ""
+#
 # File: src/cpp/DestroyJavaUicontrol.cpp, line: 35
+# File: src/cpp/DestroyWaitBar.cpp, line: 32
 msgid "Could not destroy this object.\n"
 msgstr ""
 #
@@ -478,10 +478,10 @@ msgid ""
 msgstr ""
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 75
-# File: sci_gateway/c/sci_uicontrol.c, line: 95
-# File: sci_gateway/c/sci_uimenu.c, line: 80
 # File: sci_gateway/c/sci_progressionbar.c, line: 48
 # File: sci_gateway/c/sci_progressionbar.c, line: 90
+# File: sci_gateway/c/sci_uicontrol.c, line: 95
+# File: sci_gateway/c/sci_uimenu.c, line: 80
 #, c-format
 msgid "%s: Wrong size for first input argument: Single handle expected.\n"
 msgstr ""
@@ -556,173 +556,6 @@ msgstr ""
 msgid "%s: Wrong type for fourth input argument: String matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_helpbrowser.c, line: 49
-# File: sci_gateway/c/sci_helpbrowser.c, line: 55
-#, c-format
-msgid "%s: Wrong type for first input argument: String matrix expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 67
-# File: sci_gateway/c/sci_helpbrowser.c, line: 93
-# File: sci_gateway/c/sci_xgetfile.c, line: 182
-# File: sci_gateway/c/sci_messagebox.c, line: 65
-# File: sci_gateway/c/sci_uigetdir.c, line: 81
-#, c-format
-msgid "%s: Wrong size for second input argument: Single string expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 73
-#, c-format
-msgid "%s: Wrong type for second input argument: String matrix expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 99
-#, c-format
-msgid "%s: Wrong type for first second argument: Single string expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 108
-# File: sci_gateway/c/sci_xgetfile.c, line: 223
-#, c-format
-msgid "%s: Wrong size for third input argument: Single string expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 114
-#, c-format
-msgid "%s: Wrong type for third second argument: Single string expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 123
-#, c-format
-msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 129
-#, c-format
-msgid "%s: Wrong type for fourth second argument: Single boolean expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_helpbrowser.c, line: 144
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_x_choose.c, line: 64
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 63
-msgid "Scilab choose message"
-msgstr ""
-#
-# File: sci_gateway/c/sci_x_choose.c, line: 79
-# File: sci_gateway/c/sci_x_choose.c, line: 85
-# File: sci_gateway/c/sci_xgetfile.c, line: 232
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 78
-# File: sci_gateway/c/sci_x_choose_modeless.c, line: 84
-#, c-format
-msgid "%s: Wrong type for third input argument: Single string expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_xgetfile.c, line: 44
-# File: sci_gateway/c/sci_uicontrol.c, line: 118
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_xgetfile.c, line: 61
-#, c-format
-msgid "%s: Wrong type for first input argument, a single string expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_xgetfile.c, line: 69
-# File: sci_gateway/c/sci_xgetfile.c, line: 132
-# File: sci_gateway/c/sci_xgetfile.c, line: 213
-#, c-format
-msgid "%s: Wrong input argument: '%s' expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_xgetfile.c, line: 79
-# File: sci_gateway/c/sci_xgetfile.c, line: 88
-# File: sci_gateway/c/sci_xgetfile.c, line: 101
-# File: sci_gateway/c/sci_xgetfile.c, line: 109
-# File: sci_gateway/c/sci_xgetfile.c, line: 124
-# File: sci_gateway/c/sci_xgetfile.c, line: 172
-# File: sci_gateway/c/sci_xgetfile.c, line: 205
-# File: sci_gateway/c/sci_unsetmenu.c, line: 52
-# File: sci_gateway/c/sci_delmenu.c, line: 51
-# File: sci_gateway/c/sci_messagebox.c, line: 53
-# File: sci_gateway/c/sci_setmenu.c, line: 52
-# File: sci_gateway/c/sci_uigetdir.c, line: 45
-# File: sci_gateway/c/sci_uigetdir.c, line: 52
-# File: sci_gateway/c/sci_uigetdir.c, line: 64
-# File: sci_gateway/c/sci_uigetdir.c, line: 71
-# File: sci_gateway/c/sci_uigetfont.c, line: 54
-#, c-format
-msgid "%s: Wrong type for first input argument: Single string expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_xgetfile.c, line: 142
-# File: sci_gateway/c/sci_xgetfile.c, line: 151
-# File: sci_gateway/c/sci_xgetfile.c, line: 190
-# File: sci_gateway/c/sci_waitbar.c, line: 168
-# File: sci_gateway/c/sci_messagebox.c, line: 77
-# File: sci_gateway/c/sci_uigetdir.c, line: 88
-#, c-format
-msgid "%s: Wrong type for second input argument: Single string expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_xgetfile.c, line: 164
-# File: sci_gateway/c/sci_uigetfont.c, line: 48
-#, c-format
-msgid "%s: Wrong size for first input argument: Single string expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 86
-# File: sci_gateway/c/sci_uicontrol.c, line: 161
-# File: sci_gateway/c/sci_uimenu.c, line: 71
-#, c-format
-msgid "%s: Wrong type for first input argument: Graphic handle expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 108
-# File: sci_gateway/c/sci_uimenu.c, line: 155
-#, c-format
-msgid "Could not set property %s.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 155
-#, c-format
-msgid "%s: Wrong size for first input argument: Graphic handle expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 171
-#, c-format
-msgid "%s: First size for first input argument: Single handle expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 204
-msgid "Property name must be a character string.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 223
-#, c-format
-msgid "%s: Unknown property: %s for uicontrols.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 238
-# File: sci_gateway/c/sci_uimenu.c, line: 117
-#, c-format
-msgid "%s: Wrong type for property name: String expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 247
-#, c-format
-msgid "%s: Could not create uicontrol object.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 295
-#, c-format
-msgid "Could not set property: %s.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_waitbar.c, line: 49
 # File: sci_gateway/c/sci_waitbar.c, line: 88
 # File: sci_gateway/c/sci_waitbar.c, line: 105
@@ -755,6 +588,17 @@ msgstr ""
 msgid "%s: Wrong type for first input argument: Single double expected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_waitbar.c, line: 168
+# File: sci_gateway/c/sci_xgetfile.c, line: 142
+# File: sci_gateway/c/sci_xgetfile.c, line: 151
+# File: sci_gateway/c/sci_xgetfile.c, line: 190
+# File: sci_gateway/c/sci_uigetdir.c, line: 88
+# File: sci_gateway/c/sci_messagebox.c, line: 77
+# File: sci_gateway/c/sci_helpbrowser.c, line: 99
+#, c-format
+msgid "%s: Wrong type for second input argument: Single string expected.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_waitbar.c, line: 177
 #, c-format
 msgid "%s: Wrong size for third input argument: Single handle expected.\n"
@@ -765,36 +609,107 @@ msgstr ""
 msgid "%s: Wrong type for third input argument: Single handle expected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_xgetfile.c, line: 44
+# File: sci_gateway/c/sci_uicontrol.c, line: 118
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 61
+#, c-format
+msgid "%s: Wrong type for first input argument, a single string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 69
+# File: sci_gateway/c/sci_xgetfile.c, line: 132
+# File: sci_gateway/c/sci_xgetfile.c, line: 213
+#, c-format
+msgid "%s: Wrong input argument: '%s' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 79
+# File: sci_gateway/c/sci_xgetfile.c, line: 88
+# File: sci_gateway/c/sci_xgetfile.c, line: 101
+# File: sci_gateway/c/sci_xgetfile.c, line: 109
+# File: sci_gateway/c/sci_xgetfile.c, line: 124
+# File: sci_gateway/c/sci_xgetfile.c, line: 172
+# File: sci_gateway/c/sci_xgetfile.c, line: 205
+# File: sci_gateway/c/sci_setmenu.c, line: 52
+# File: sci_gateway/c/sci_unsetmenu.c, line: 52
+# File: sci_gateway/c/sci_delmenu.c, line: 51
+# File: sci_gateway/c/sci_uigetdir.c, line: 45
+# File: sci_gateway/c/sci_uigetdir.c, line: 52
+# File: sci_gateway/c/sci_uigetdir.c, line: 64
+# File: sci_gateway/c/sci_uigetdir.c, line: 71
+# File: sci_gateway/c/sci_messagebox.c, line: 53
+# File: sci_gateway/c/sci_uigetfont.c, line: 54
+#, c-format
+msgid "%s: Wrong type for first input argument: Single string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 164
+# File: sci_gateway/c/sci_uigetfont.c, line: 48
+#, c-format
+msgid "%s: Wrong size for first input argument: Single string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 182
+# File: sci_gateway/c/sci_uigetdir.c, line: 81
+# File: sci_gateway/c/sci_messagebox.c, line: 65
+# File: sci_gateway/c/sci_helpbrowser.c, line: 67
+# File: sci_gateway/c/sci_helpbrowser.c, line: 93
+#, c-format
+msgid "%s: Wrong size for second input argument: Single string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 223
+# File: sci_gateway/c/sci_helpbrowser.c, line: 108
+#, c-format
+msgid "%s: Wrong size for third input argument: Single string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_xgetfile.c, line: 232
+# File: sci_gateway/c/sci_x_choose.c, line: 79
+# File: sci_gateway/c/sci_x_choose.c, line: 85
+# File: sci_gateway/c/sci_x_choose_modeless.c, line: 78
+# File: sci_gateway/c/sci_x_choose_modeless.c, line: 84
+# File: sci_gateway/c/sci_helpbrowser.c, line: 114
+#, c-format
+msgid "%s: Wrong type for third input argument: Single string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_x_choose.c, line: 64
+# File: sci_gateway/c/sci_x_choose_modeless.c, line: 63
+msgid "Scilab choose message"
+msgstr ""
+#
+# File: sci_gateway/c/sci_progressionbar.c, line: 58
+#, c-format
+msgid ""
+"%s: Wrong type for first input argument: Single handle or String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_setmenu.c, line: 67
+# File: sci_gateway/c/sci_setmenu.c, line: 83
+# File: sci_gateway/c/sci_setmenu.c, line: 101
 # File: sci_gateway/c/sci_unsetmenu.c, line: 67
 # File: sci_gateway/c/sci_unsetmenu.c, line: 83
 # File: sci_gateway/c/sci_unsetmenu.c, line: 101
 # File: sci_gateway/c/sci_delmenu.c, line: 69
-# File: sci_gateway/c/sci_setmenu.c, line: 67
-# File: sci_gateway/c/sci_setmenu.c, line: 83
-# File: sci_gateway/c/sci_setmenu.c, line: 101
 #, c-format
 msgid "%s: Wrong type for first input argument: Scalar expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_unsetmenu.c, line: 91
 # File: sci_gateway/c/sci_setmenu.c, line: 91
+# File: sci_gateway/c/sci_unsetmenu.c, line: 91
 #, c-format
 msgid "%s: Wrong input arguments: (button,nsub) or (gwin,button) expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_unsetmenu.c, line: 111
 # File: sci_gateway/c/sci_setmenu.c, line: 111
+# File: sci_gateway/c/sci_unsetmenu.c, line: 111
 #, c-format
 msgid "%s: Wrong type for third input argument: Scalar expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_x_choice.c, line: 63
-#, c-format
-msgid "%s: Wrong type for first input argument: Double vector expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_x_choice.c, line: 82
-msgid "Scilab Choices Request"
 msgstr ""
 #
 # File: sci_gateway/c/sci_delmenu.c, line: 62
@@ -805,6 +720,15 @@ msgstr ""
 # File: sci_gateway/c/sci_delmenu.c, line: 75
 #, c-format
 msgid "%s: Wrong type for second input argument: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_x_choice.c, line: 63
+#, c-format
+msgid "%s: Wrong type for first input argument: Double vector expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_x_choice.c, line: 82
+msgid "Scilab Choices Request"
 msgstr ""
 #
 # File: sci_gateway/c/gw_gui.c, line: 61
@@ -881,6 +805,54 @@ msgstr ""
 msgid "%s: bad types for input arguments.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_uicontrol.c, line: 86
+# File: sci_gateway/c/sci_uicontrol.c, line: 161
+# File: sci_gateway/c/sci_uimenu.c, line: 71
+#, c-format
+msgid "%s: Wrong type for first input argument: Graphic handle expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 108
+# File: sci_gateway/c/sci_uimenu.c, line: 155
+#, c-format
+msgid "Could not set property %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 155
+#, c-format
+msgid "%s: Wrong size for first input argument: Graphic handle expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 171
+#, c-format
+msgid "%s: First size for first input argument: Single handle expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 204
+msgid "Property name must be a character string.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 223
+#, c-format
+msgid "%s: Unknown property: %s for uicontrols.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 238
+# File: sci_gateway/c/sci_uimenu.c, line: 117
+#, c-format
+msgid "%s: Wrong type for property name: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 247
+#, c-format
+msgid "%s: Could not create uicontrol object.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 295
+#, c-format
+msgid "Could not set property: %s.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_uiwait.c, line: 51
 # File: sci_gateway/c/sci_uiwait.c, line: 69
 #, c-format
@@ -892,20 +864,30 @@ msgstr ""
 msgid "%s: Wrong type for first input argument: uicontextmenu expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_progressionbar.c, line: 58
+# File: sci_gateway/c/sci_helpbrowser.c, line: 49
+# File: sci_gateway/c/sci_helpbrowser.c, line: 55
 #, c-format
-msgid ""
-"%s: Wrong type for first input argument: Single handle or String expected.\n"
+msgid "%s: Wrong type for first input argument: String matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_printfigure.c, line: 62
+# File: sci_gateway/c/sci_helpbrowser.c, line: 73
 #, c-format
-msgid "%s: Wrong type for second input argument: Single double expected.\n"
+msgid "%s: Wrong type for second input argument: String matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_printfigure.c, line: 68
+# File: sci_gateway/c/sci_helpbrowser.c, line: 123
 #, c-format
-msgid "%s: function not available in NWNI mode.\n"
+msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_helpbrowser.c, line: 129
+#, c-format
+msgid "%s: Wrong type for fourth second argument: Single boolean expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_helpbrowser.c, line: 144
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_uigetfont.c, line: 67
@@ -976,6 +958,16 @@ msgstr ""
 # File: sci_gateway/c/sci_uigetcolor.c, line: 111
 #, c-format
 msgid "%s: Wrong type for third input argument: Single value expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_printfigure.c, line: 62
+#, c-format
+msgid "%s: Wrong type for second input argument: Single double expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_printfigure.c, line: 68
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 1
