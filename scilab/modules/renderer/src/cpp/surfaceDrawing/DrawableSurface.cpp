@@ -52,7 +52,7 @@ void DrawableSurface::redraw(void)
   }
   initializeDrawing();
   clip();
-  drawSurface();
+  redrawSurface();
   unClip();
   endDrawing();
 }
