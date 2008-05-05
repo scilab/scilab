@@ -26,6 +26,9 @@ function [scs_m] = do_move(%pt, scs_m)
 //** 19 October 2007: I have prayed for all my sins : TXH to Alan Layec that
 //**                  has show me the way to redemption.
 
+//** 05 May 2008: This routine is still bugged on Scilab 5 because the drawing mode 
+//**              different than "copy" are not fully 4.x compatible 
+
 //** Acquire the current window and axes handles 
   gh_curwin = scf(%win) ;
   gh_axes = gca(); 
@@ -124,9 +127,9 @@ function scs_m = moveblock(scs_m,k,xc,yc)
   //** 	"copy"        , <------- Normal operation 
   //** 	"andInverted" ,
   //** 	"noop"        ,
-  //** 	"xor"         , <------- Interactive move (used to visually delete object) 
+  //** 	"xor"         , 
   //** 	"or"          ,
-  //** 	"nor"         ,
+  //** 	"nor"         , <------- Interactive move (used to visually delete object) 
   //** 	"equiv"       ,
   //** 	"invert"      ,
   //** 	"orReverse"   ,
@@ -323,7 +326,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
     //** -------------- eXORcist mode ON -------------------------------------------- 
     //**-------------------------------------------------------------
-    gh_curwin.pixel_drawing_mode = "xor"  ; //** normal mode
+    gh_curwin.pixel_drawing_mode = "equiv"  ; //** 
     //** Interactive loop that move object and link
 
     //** This vector contains the handle(s) of the temporary object(s)
@@ -623,7 +626,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
   //** drawlater(); //** postpone the drawing
   
   //** ------------- eXORcist mode ON -------------------------------------------------------
-  gh_curwin.pixel_drawing_mode = "xor"  ; //** xor mode
+  gh_curwin.pixel_drawing_mode = "equiv"  ; //** nor mode
   gh_interactive_move = [] ; //** initialize the object vector
   o = scs_m.objs(k)
   //** drawobj(o) //erase link :NO
@@ -660,7 +663,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
       xpoly( x1, y1 ) ; //** create the moving object
       gh_poly = gce() ; //** get the handle of the moving object
       gh_poly.foreground = ct(1) ; //** set the color
-      draw(gh_poly); //** draw the segment in 'xor' mode in order to clear the realtive
+      draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the realtive
                      //** polyline part   
       gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                      //** the object to be delated at the end of the operation
@@ -725,7 +728,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
      xpoly( x1, y1 ) ; //** create the moving object 
       gh_poly = gce() ; //** get the handle of the moving object 
       gh_poly.foreground = ct(1) ; //** set the color 
-      draw(gh_poly); //** draw the segment in 'xor' mode in order to clear the realtive
+      draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the realtive
                      //** polyline part   
       gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                      //** the object to be delated at the end of the operation
@@ -872,7 +875,7 @@ function scs_m = movelink4(scs_m)
   xpoly(x1, y1) ; //** create the moving object
   gh_poly = gce() ; //** get the handle of the moving object
   gh_poly.foreground = ct(1) ; //** set the color
-  draw(gh_poly); //** draw the segment in 'xor' mode in order to clear the relative
+  draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the relative
                  //** polyline part
   gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                                  //** the object to be deleted at the end of the operation
@@ -951,7 +954,7 @@ function scs_m = movelink1(scs_m)
   xpoly(xx, yy) ; //** create the moving object
   gh_poly = gce() ; //** get the handle of the moving object
   gh_poly.foreground = ct(1) ; //** set the color
-  draw(gh_poly); //** draw the segment in 'xor' mode in order to clear the realtive
+  draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the realtive
                  //** polyline part
   gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                                  //** the object to be deleted at the end of the operation
@@ -1096,7 +1099,7 @@ function scs_m = movelink2(scs_m)
   xpoly( x1, y1 ) ; //** create the moving object
   gh_poly = gce() ; //** get the handle of the moving object
   gh_poly.foreground = ct(1) ; //** set the color
-  draw(gh_poly); //** draw the segment in 'xor' mode in order to clear the realtive
+  draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the realtive
                  //** polyline part   
   gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                      //** the object to be delated at the end of the operation
@@ -1226,7 +1229,7 @@ function scs_m = movelink3(scs_m)
   xpoly(x1, y1) ; //** create the moving object
   gh_poly = gce() ; //** get the handle of the moving object
   gh_poly.foreground = ct(1) ; //** set the color
-  draw(gh_poly); //** draw the segment in 'xor' mode in order to clear the relative
+  draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the relative
                  //** polyline part
   gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                                  //** the object to be deleted at the end of the operation
@@ -1332,7 +1335,7 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
   xpoly( x1, y1 ) ; //** create the moving object
   gh_poly = gce() ; //** get the handle of the moving object
   gh_poly.foreground = ct(1) ; //** set the color
-  draw(gh_poly); //** draw the segment in 'xor' mode in order to clear the realtive
+  draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the realtive
                  //** polyline part
   gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                      //** the object to be delated at the end of the operation

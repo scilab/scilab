@@ -21,10 +21,8 @@
 
 function SmartMove_()
   
-  Cmenu = []; // Cmenu Quit can come out
+  Cmenu = [];
   
   [scs_m] = do_move(%pt, scs_m) ;
-  
- // Cmenu = 'Replot'; %pt = [];
   
 endfunction
