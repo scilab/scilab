@@ -34,6 +34,7 @@ public class SwingScilabToolBar extends JToolBar implements SimpleToolBar {
 	public SwingScilabToolBar() {
 		super();
 		setFloatable(false);
+		setRollover(true); /* Bug 2752 */
 	}
 	
 	/**
