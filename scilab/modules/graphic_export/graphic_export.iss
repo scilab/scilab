@@ -20,6 +20,7 @@
 Source: bin\scigraphic_export.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 Source: bin\nographic_export.dll; DestDir: {app}\bin; DestName: scigraphic_export.dll; Components: not ({#COMPN_GRAPHICS})
 ;
+Source: tools\pstoedit\*.*; DestDir: {app}\tools\pstoedit; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS};
 ;
 Source: modules\{#GRAPHIC_EXPORT}\jar\org.scilab.modules.graphic_export.jar;DestDir: {app}\modules\{#GRAPHIC_EXPORT}\jar; Components: {#COMPN_GRAPHICS}
 ;
