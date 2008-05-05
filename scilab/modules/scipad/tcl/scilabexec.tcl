@@ -165,7 +165,8 @@ proc execselection {} {
 proc importmatlab {} {
     global pad listoffile
     global tileprocalreadyrunning
-    global bug2672_shows_up
+    global bug2672_shows_up Tk85
+    global preselectedfilterinimportmatlabbox
 
     if {$tileprocalreadyrunning} {return}
 
@@ -176,10 +177,18 @@ proc importmatlab {} {
     set types [concat "{\"$matfiles\"" "{*.m}}" \
                       "{\"$allfiles\"" "{* *.*}}" ]
     set dtitle [mc "Matlab file to convert"]
-    if {$bug2672_shows_up} {
-        set sourcefile [tk_getOpenFile -filetypes $types -title "$dtitle"]
+    if {$Tk85} {
+        # make use of TIP242 (-typevariable option)
+        # note that $bug2672_shows_up is necessary false (see
+        # definition of bug2672_shows_up)
+            set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle" \
+                                           -typevariable preselectedfilterinimportmatlabbox]
     } else {
-        set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle"]
+        if {$bug2672_shows_up} {
+            set sourcefile [tk_getOpenFile -filetypes $types -title "$dtitle"]
+        } else {
+            set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle"]
+        }
     }
     if {$sourcefile !=""} {
         set sourcedir [file dirname $sourcefile]

@@ -658,17 +658,27 @@ proc showopenwin {tiledisplay} {
     global pad winopened listoffile
     global startdir
     global tileprocalreadyrunning
-    global bug2672_shows_up
+    global bug2672_shows_up Tk85
+    global preselectedfilterinopensaveboxes
     if {$tileprocalreadyrunning} {return}
     showinfo [mc "Open file"]
     # remember the latest path used for opening files
     if {![info exists startdir]} {set startdir [pwd]}
-    if {$bug2672_shows_up} {
-        set file [tk_getOpenFile -filetypes [knowntypes] \
-                                 -initialdir $startdir -multiple 1]
-    } else {
+    if {$Tk85} {
+        # make use of TIP242 (-typevariable option)
+        # note that $bug2672_shows_up is necessary false (see
+        # definition of bug2672_shows_up)
         set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad \
-                                 -initialdir $startdir -multiple 1]
+                                 -initialdir $startdir -multiple 1 \
+                                 -typevariable preselectedfilterinopensaveboxes]
+    } else {
+        if {$bug2672_shows_up} {
+            set file [tk_getOpenFile -filetypes [knowntypes] \
+                                     -initialdir $startdir -multiple 1]
+        } else {
+            set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad \
+                                     -initialdir $startdir -multiple 1]
+        }
     }
     if {[llength $file] > 0} {
         set startdir [file dirname [lindex $file 0]]

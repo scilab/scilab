@@ -238,13 +238,12 @@ Debugger wishes:
  plotprofile() is called [plotprofile too needs to be adapted so
  that it won't create a new buffer, but refers to the original].
  "Run profiling" would also be callable again, for cumulation.
-
  There is however a big potential showstopper. For profiling, the
  function (or wrapper) has to be getf(,"p"); we're now making the
  functions known to scilab with exec() instead. getf() has known bugs
  (1968, 2072, 2253) and limitations in comparison with exec().
  In particular it doesn't support nested function definitions (bug 1564).
-
+ Oh yes, but in Scilab5 we now have add_profiling !
 
 -breakpoint, activebreakpoint and continued lines tags are not visible
  when selected. No solution found so far. Only one tag with -background
@@ -283,6 +282,9 @@ Debugger wishes:
 
 
 Other wishes:
+
+-Improve the look and feel of Scipad by using Ttk (Tk8.5) - This applies
+ especially to Linux platforms
 
 -parentheses and brackets get colorized in colors according to their level
  of nesting
@@ -391,6 +393,15 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
 
 -Request 262: tabbed buffers (see discussion in this request)
 
+-Request 459: memorize some informations related to a window (see discussion
+ in this request)
+
+-Requests 461 and 462: improvements wrt to xml editing. However, the position
+ expressed by Enrico says it all: "Scipad was never really conceived to be a
+ full fledged xml editor - there would be too much to do and there are much
+ better dedicated editors around - I'd be a little wary of introducing new
+ features here."
+
 -Use eq/ne instead of ==/!= throughout the code whenever string comparison
  is meant:
 http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/eea78c744811e2c3/47482ff7037343ab
@@ -399,16 +410,14 @@ http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/eea78c744811e2c
  browse for not yet opened files), and launch an external diff tool such as
  winmerge (Windows), or others. The command to launch the tool is stored as a
  preference. Watch out for security problems if someone stores "format c:"!
- Or integrate a Tcl diffing tool perhaps?
+ Or integrate a Tcl diffing tool perhaps? tkdiff is a well refined and mature
+ tool, distributed under the GPL.  http://sourceforge.net/projects/tkdiff/
+ The GPL license and the fact it's written in Tcl are two strongly positive
+ facts wrt integration in Scipad
 
 -remove the scilab4/scilab5 environment detection once scilab5 is stabilized
  and if it doesn't ease backporting to scilab-gtk. Code to remove can be
  found by highlighting differences between versions 6.117 and 6.118 of Scipad.
-
--make use of TIP 242 to remember the file type the user selected in the latest
- open or save action, i.e. same principle as -initialdir in tk_getOpenfile
- and tk_getSavefile. TIP 242 with the new option -typevariable is implemented
- in Tk8.5b2 (27/10/07) and above
 
 -improvements in the font chooser (proposal to be refined):
  1. For each (text- and menu-) font, add a new area similar to the already
