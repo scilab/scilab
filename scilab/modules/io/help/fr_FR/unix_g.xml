@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -10,87 +10,116 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="unix_g">
+<refentry version="5.0-subset Scilab" xml:id="unix_g" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>unix_g</refname>
-    <refpurpose> exécution d'une commande Unix ou DOS, sortie redirigée vers une variable  </refpurpose>
+
+    <refpurpose>exÃ©cution d'une commande Unix ou DOS, sortie redirigÃ©e vers
+    une variable</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>rep=unix_g(cmd)
-[rep,stat]=unix_g(cmd)</synopsis>
+[rep,stat]=unix_g(cmd)
+[rep,stat,err]=unix_g(cmd)
+</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
+
     <variablelist>
       <varlistentry>
         <term>command-name</term>
+
         <listitem>
-          <para>chaîne de caractères</para>
+          <para>chaÃ®ne de caractÃ¨res</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>rep</term>
+
         <listitem>
-          <para>vecteur colonne de chaînes de caractères</para>
+          <para>vecteur colonne de chaÃ®nes de caractÃ¨res (sortie
+          standard)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>stat</term>
+
         <listitem>
-          <para>un entier, le statut d'erreur, si stat==0 aucune erreur.</para>
+          <para>un entier, le statut d'erreur, si stat==0 aucune
+          erreur.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>vecteur colonne de chaÃ®nes de caractÃ¨res (sortie
+          d'erreurs)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-			Envoie la chaîne <literal>command-name</literal> à l'interpréteur
-			de commande (sh sous Unix, ou command.com sous DOS). La sortie
-			standard et les erreurs sont reportées dans la variable
-			<literal>rep</literal>. Les erreurs se produisant dans
-			l'interpréteur de commande sont interceptées; notez que la
-			*dernière erreur uniquement* est signalée quand
-			<literal>command-name</literal> est une suite de commandes séparées par
-			des ";".
-		</para>
+
+    <para>Envoie la chaÃ®ne <literal>command-name</literal> Ã  l'interprÃ©teur de
+    commande (sh sous Unix, ou command.com sous DOS). La sortie standard est
+    reportÃ© dans la variable <literal>rep</literal>. La sortie d'erreurs est
+    reportÃ© dans la variable <literal>err</literal> ou affichÃ©e si seulement
+    deux arguments de sortie. Les erreurs se produisant dans l'interprÃ©teur de
+    commande sont interceptÃ©es; notez que la *derniÃ¨re erreur uniquement* est
+    signalÃ©e quand <literal>command-name</literal> est une suite de commandes
+    sÃ©parÃ©es par des ";".</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
 
 function d=DIR(path)
-	path=pathconvert(path,%t,%t)
-	if MSDOS then
-		d=unix_g('dir '+path)
-	else
-		d=unix_g('ls '+path)
-	end
-	endfunction
-	
-	DIR('SCI/demos')
+ path=pathconvert(path,%t,%t)
+ if MSDOS then
+   d=unix_g('dir '+path)
+ else
+   d=unix_g('ls '+path)
+ end
+endfunction
 
-	]]></programlisting>
+DIR('SCI/demos')</programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="unix_s">unix_s</link>
-      </member>
-      <member>
-        <link linkend="unix_w">unix_w</link>
-      </member>
-      <member>
-        <link linkend="unix_x">unix_x</link>
-      </member>
-      <member>
-        <link linkend="unix">unix</link>
-      </member>
+      <member><link linkend="unix_s">unix_s</link></member>
+
+      <member><link linkend="unix_w">unix_w</link></member>
+
+      <member><link linkend="unix_x">unix_x</link></member>
+
+      <member><link linkend="unix">unix</link></member>
     </simplelist>
   </refsection>
 </refentry>
