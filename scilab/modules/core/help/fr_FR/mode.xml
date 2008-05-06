@@ -25,7 +25,7 @@ k=mode()</synopsis>
         <term>k=0</term>
         <listitem>
           <para>les nouvelles valeurs des variables sont affichées (voir
-	  <link linkend="semi">semi</link> ou <link linkend="comma">comma</link>). 
+	  <link linkend="semicolon">semicolon</link> ou <link linkend="comma">comma</link>). 
 	</para>
         </listitem>
       </varlistentry>
@@ -75,7 +75,7 @@ k=mode()</synopsis>
         <link linkend="getf">getf</link>
       </member>
       <member>
-        <link linkend="semi">semi</link>
+        <link linkend="semicolon">semicolon</link>
       </member>
       <member>
         <link linkend="comma">comma</link>

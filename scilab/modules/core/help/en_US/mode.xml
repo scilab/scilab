@@ -22,7 +22,7 @@ k=mode()</synopsis>
       <varlistentry>
         <term>k=0</term>
         <listitem>
-          <para>The new variable values are displayed if required (see help on semi or comma).</para>
+          <para>The new variable values are displayed if required (see help on semicolon or comma).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,7 +63,7 @@ k=mode()</synopsis>
         <link linkend="getf">getf</link>
       </member>
       <member>
-        <link linkend="semi">semi</link>
+        <link linkend="semicolon">semicolon</link>
       </member>
       <member>
         <link linkend="comma">comma</link>

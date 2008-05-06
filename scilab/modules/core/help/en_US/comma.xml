@@ -32,7 +32,7 @@ a=1,b=1;c=2
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="semi">semi</link>
+        <link linkend="semicolon">semicolon</link>
       </member>
       <member>
         <link linkend="brackets">brackets</link>
