@@ -7,6 +7,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "cluni0.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define INFOSIZE 1024
 /*--------------------------------------------------------------------------*/
@@ -17,24 +18,24 @@ static int ReadLine(FILE *fd,int *mem);
 /*--------------------------------------------------------------------------*/
 int int_objfscanfMat(char *fname,unsigned long fname_len)
 {
-	char **Str=NULL;
-	int mem=0;
-	double x;
-	static int l1, m1, n1,l2,m2,n2;
-	int i,j,rows,cols,lres,n;
-	int vl=-1;
+	char **Str = NULL;
+	int mem = 0;
+	double x = 0.;
+	static int l1 = 0, m1 = 0, n1 = 0,l2 = 0,m2 = 0,n2 = 0;
+	int i = 0,j = 0,rows = 0,cols = 0,lres = 0,n = 0;
+	int vl = -1;
 	FILE  *f;
-	char *Format;
+	char *Format = NULL;
 	
 	char *shortcut_path = NULL; // filename process
 	char *real_path     = NULL; //       "
-	long int lout;              //       "
-	int out_n;                  //       "
+	long int lout = 0;          //       "
+	int out_n = 0;              //       "
 	
 	
 	if ( Info == NULL )
 	{
-		if (( Info =MALLOC(INFOSIZE*sizeof(char)))==NULL)
+		if (( Info = (char*)MALLOC(INFOSIZE*sizeof(char)))==NULL)
 		{
 			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
@@ -74,13 +75,13 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	
 	/*** first pass to get colums and rows ***/
 	strcpy(Info,"--------");
-	n =0;
-	while ( sscanf(Info,"%lf",&x) <= 0 && n != EOF )
+	n = 0;
+	while ( (sscanf(Info,"%lf",&x) <= 0) && (n != EOF) )
 	{
-		n=ReadLine(f,&mem);
+		n = ReadLine(f,&mem);
 		if ( mem == 1)
 		{
-			FREE(Info);Info=NULL;
+			FREE(Info); Info = NULL;
 			fclose(f);
 			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
@@ -90,7 +91,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 
 	if ( n == EOF )
 	{
-		FREE(Info);Info=NULL;
+		FREE(Info); Info = NULL;
 		fclose(f);
 		Scierror(999,_("%s: Cannot read data in file '%s'.\n"),fname,shortcut_path);
 		return 0;
@@ -105,13 +106,13 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 		
 		if ( mem == 1)
 		{
-			FREE(Info);Info=NULL;
+			FREE(Info); Info = NULL;
 			fclose(f);
 			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
 		}
 		
-		if ( sscanf(Info,"%lf",&x) <= 0) break;
+		if ( sscanf(Info,"%lf",&x) <= 0 ) break;
 		rows++;
 		if ( n == EOF ||  n == 0 ) break;
 	}
@@ -126,38 +127,36 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 
 	if ( Lhs >= 2 && vl != 0 )
 	{
-		if ((Str = MALLOC((vl+1)*sizeof(char *)))==NULL)
+		if ((Str = (char**)MALLOC((vl+1)*sizeof(char *)))==NULL)
 		{
-			FREE(Info);Info=NULL;
+			FREE(Info); Info = NULL;
 			fclose(f);
 			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
 		}
 
-		Str[vl]=NULL;
+		Str[vl] = NULL;
 	}
 
 	for ( i = 0 ; i < vl ; i++)
 	{
 		ReadLine(f,&mem);
-		if ( mem == 1)
+		if ( mem == 1 )
 		{
-			FREE(Info);Info=NULL;
+			FREE(Info); Info = NULL;
 			fclose(f);
-			for (j=0;j<i;j++) FREE(Str[j]);
-			FREE(Str);
+			freeArrayOfString(Str,i);
 			Scierror(999,_("%s: No more memory.\n"),fname);
 			return 0;
 		}
 
 		if ( Lhs >= 2)
 		{
-			if ((Str[i]=MALLOC((strlen(Info)+1)*sizeof(char)))==NULL)
+			if ((Str[i]= (char*)MALLOC((strlen(Info)+1)*sizeof(char)))==NULL)
 			{
-				FREE(Info);Info=NULL;
+				FREE(Info); Info = NULL;
 				fclose(f);
-				for (j=0;j<i;j++) FREE(Str[j]);
-				FREE(Str);
+				freeArrayOfString(Str,i);
 				Scierror(999,_("%s: No more memory.\n"),fname);
 				return 0;
 			}
@@ -167,25 +166,13 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 
 	if ( Lhs >= 2)
 	{
-		int un=1,zero=0,l;
+		int one = 1,zero = 0, l = 0;
 
 		if ( vl > 0 )
 		{
 			int i2=0;
-			CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE,&vl,&un,Str);
-			if (Str)
-			{
-				for (i2=0;i2<vl;i2++)
-				{
-					if (Str[i2])
-					{
-						FREE(Str[i2]);
-						Str[i2]=NULL;
-					}
-				}
-				FREE(Str);
-				Str=NULL;
-			}
+			CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE,&vl,&one,Str);
+			freeArrayOfString(Str,vl);
 		}
 		else
 		{
@@ -197,19 +184,19 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 
 	for (i=0; i < rows ;i++)for (j=0;j < cols;j++)
 	{
-		double xloc;
+		double xloc = 0.;
 		fscanf(f,"%lf",&xloc);
-		*stk(lres+i+rows*j)=xloc;
+		*stk(lres+i+rows*j)= (double)xloc;
 	}
 
 	fclose(f);
-	LhsVar(1)=Rhs+1;
+	LhsVar(1) = Rhs+1;
 	PutLhsVar();
 	/* just in case Info is too Big */
 	if ( Info_size > INFOSIZE )
 	{
 		Info_size = INFOSIZE;
-		Info = REALLOC(Info,Info_size*sizeof(char));
+		Info = (char*)REALLOC(Info,Info_size*sizeof(char));
 	}
 	return 0;
 }
@@ -224,27 +211,27 @@ static int ReadLine(FILE *fd,int *mem)
 
 		if ( n == Info_size )
 		{
-			char * Info1=NULL;
+			char * Info1 = NULL;
 			int New_Size = Info_size + INFOSIZE;
 
-			Info1=MALLOC(New_Size*sizeof(char));
-			if (Info1==NULL)
+			Info1 = (char*)MALLOC(New_Size*sizeof(char));
+			if (Info1 == NULL)
 			{
-				*mem=1;
+				*mem = 1;
 				return EOF;
 			}
 			else
 			{
 				memset(Info1,0,New_Size);
 				memcpy(Info1,Info,Info_size);
-				Info_size=New_Size;
+				Info_size = New_Size;
 				FREE(Info);
-				Info=Info1;
+				Info = Info1;
 			}
 		}
 
 		Info[n]= c ;
-		if ( c == '\n') { Info[n] = '\0' ; return 1;}
+		if ( c == '\n') { Info[n] = '\0' ; return 1; }
 		else if ( c == (char)EOF ) return EOF;
 		n++;
 	}
