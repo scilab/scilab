@@ -20,7 +20,7 @@
 //
 
 function scs_m = do_scsm_tree(scs_m)
-  tt=scs_m_TreeView(scs_m);
+  tt = scs_m_TreeView(scs_m);
   cur_wd = getcwd();
   chdir(TMPDIR);
   mputl(tt,scs_m.props.title(1)+'.tcl');
@@ -30,11 +30,11 @@ endfunction
 
 function tt=scs_m_TreeView(scs_m)
   x=[];y=0;
-tt=["set BWpath [file dirname '"$env(SCIPATH)/tcl/BWidget-1.7.0'"] "
+tt=["set BWpath [file dirname '"$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0'"] "
     "if {[lsearch $auto_path $BWpath]==-1} {"
     "    set auto_path [linsert $auto_path 0 $BWpath]"
     "}" 
-    "package require BWidget 1.7.0"
+    "package require BWidget 1.8.0"
     'set wyy .palettes'
     'proc ppxs {label} {global blko; set blko $label;ScilabEval '"Cmenu=''PlaceinDiagram'''"}'
     'proc qqxs {label} {global blko; set blko $label;ScilabEval '"Cmenu=''TkPopup'''"}'
@@ -68,14 +68,14 @@ function tt=crlist2(scs_m,Path,tt)
   for i=1:size(scs_m.objs)
     o=scs_m.objs(i);
     path=Path+','+string(i)
-    if typeof(o)=='Link' then
+    if typeof(o)=="Link" then
       titre2='link'
       tt=[tt;'$wyy.t insert end '+Path+' '+path+' -text '"'+titre2+''"']
-    elseif typeof(o)=='Deleted' then
+    elseif typeof(o)=="Deleted" then
       titre2='Deleted'
       tt=[tt;'$wyy.t insert end '+Path+' '+path+' -text '"'+titre2+''"']
     else
-      if o.model.sim=='super' then
+      if o.model.sim=="super" then
 	titre2=o.model.rpar.props.title(1);
 	tt=[tt;'$wyy.t insert end '+Path+' '+path+' -image [Bitmap::get folder] -text '"'+titre2+''"']
 	tt=crlist2(o.model.rpar,path,tt)

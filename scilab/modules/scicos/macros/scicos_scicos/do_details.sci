@@ -22,13 +22,13 @@
 function do_details(x)
 
   if type(x)==1 then
-    Select=x
+    Select = x ;
     sel_items = size(Select)   ; 
     obj_selected = sel_items(1) ; 
     if obj_selected==0 then
-      o=scs_m;
+      o = scs_m;
     else
-      cwin=Select(1,2)
+      cwin = Select(1,2)
       if cwin==curwin then
 	k = Select(1,1)
 	o = scs_m.objs(k)
@@ -40,9 +40,9 @@ function do_details(x)
       end
     end
   else
-    o=x
+    o = x ; 
   end
 
-  tree_show(o) ; //** beware to the BWidget version 
+  tree_show(o) ; //** beware to the BWidget version ! 
 
 endfunction

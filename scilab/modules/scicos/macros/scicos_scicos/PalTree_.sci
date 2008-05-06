@@ -23,7 +23,10 @@ function PalTree_()
 
   Cmenu = [] ;
 
-    global scs_m_palettes ; //** potentially VERY dangerous 
+    global scs_m_palettes ; //** potentially VERY dangerous
+                            //** but indispensable because allow the
+                            //** copy on all the Scicos windows
+ 
     scs_m_palettes = do_pal_tree(scicos_pal); 
 
 endfunction

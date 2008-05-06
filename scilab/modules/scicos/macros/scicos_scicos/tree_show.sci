@@ -25,9 +25,9 @@ function tree_show(x,titletop)
     error("Wrong type; input must be a list.")
  end
 
-tt = ["set BWpath [file dirname '"$env(SCIPATH)/tcl/BWidget-1.7.0'"] "
+tt = ["set BWpath [file dirname '"$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0'"] "
       "if {[lsearch $auto_path $BWpath]==-1} { set auto_path [linsert $auto_path 0 $BWpath] }" 
-      "package require BWidget 1.7.0"
+      "package require BWidget 1.8.0"
 //      'proc ppx {label} {global xmind; set xmind $label;ScilabEval '"%tcl_par=''1'''"}'
 //      'proc qqx {label} {global xmind; set xmind $label;ScilabEval '"%tcl_par=''3'''"}'
       'catch {destroy .ss}'

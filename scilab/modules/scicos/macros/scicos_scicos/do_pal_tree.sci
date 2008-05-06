@@ -42,7 +42,7 @@ function scs_m = do_pal_tree(scicos_pal)
 endfunction
 //**-----------------------------------------------------------------------
 
-function scs_m=charge(pal)
+function scs_m = charge(pal)
 [ok,scs_m,cpr,edited]=do_load(pal(2),'palette')
 if ok & size(scs_m.objs)>0 then
   scs_m.props.title(1)=pal(1)
@@ -53,17 +53,19 @@ end
 endfunction
 //**------------------------------------------------------------------------
 
-function tt = pal_TreeView(scs_m)
+//** ""sync"" ""seq""
 
-tt=[ "set BWpath [file dirname '"$env(SCIPATH)/tcl/BWidget-1.7.0'"] "
+function tt = pal_TreeView(scs_m) 
+
+tt=[ "set BWpath [file dirname '"$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0'"] "
      "if {[lsearch $auto_path $BWpath]==-1} {"
      "    set auto_path [linsert $auto_path 0 $BWpath]"
      "}" 
-     "package require BWidget 1.7.0"
-     'namespace inscope :: package require BWidget'
-     'set wxx .palettes'
-     'proc pp {label} {global blko; set blko $label;ScilabEval '"Cmenu=''PlaceinDiagram'''"}'
-     'proc qq {label} {global blko; set blko $label;ScilabEval '"Cmenu=''TkPopup'''"}'
+     "package require BWidget 1.8.0"
+     "namespace inscope :: package require BWidget"
+     "set wxx .palettes"
+     "proc pp {label} {global blko; set blko $label;ScilabEval ""Cmenu=''PlaceinDiagram'';"" ""sync"" ""seq""}"
+     "proc qq {label} {global blko; set blko $label;ScilabEval ""Cmenu=''TkPopup''       ;"" ""sync"" ""seq""}"
      'catch {destroy $wxx}'
      'toplevel $wxx'
      'Tree $wxx.t -xscrollcommand {$wxx.xsb set} -yscrollcommand {$wxx.ysb set} "+...
@@ -77,7 +79,7 @@ tt=[ "set BWpath [file dirname '"$env(SCIPATH)/tcl/BWidget-1.7.0'"] "
    ];
 
 tt = [tt; 'wm title $wxx '+scs_m.props.title(1) ];
-Pgif = %scicos_gif;
+Pgif = %scicos_gif; //** GIF path 
 GIFT = listfiles(Pgif+'*.gif');
 GIFT = strsubst(GIFT,'\','/');
 GIF  = [];
@@ -90,9 +92,9 @@ end
 Path = 'root'
 tt = crlist(scs_m, Path, tt);
 tt = [tt;' $wxx.t bindImage <B1-Motion> {pp}']; 
-tt = [tt;' $wxx.t bindText <B1-Motion> {pp}']; 
+tt = [tt;' $wxx.t bindText  <B1-Motion> {pp}']; 
 tt = [tt;' $wxx.t bindImage <Double-1> {pp}'];
-tt = [tt;' $wxx.t bindText <Double-1> {pp}'];
+tt = [tt;' $wxx.t bindText  <Double-1> {pp}'];
 tt = [tt;' $wxx.t bindImage <3> {qq}'];
 endfunction
 //**-----------------------------------------------------------------------------
