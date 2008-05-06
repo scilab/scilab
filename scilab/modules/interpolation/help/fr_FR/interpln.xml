@@ -28,7 +28,7 @@
       <varlistentry>
         <term>xyd  </term>
         <listitem>
-          <para>matrice ï¿½ deux lignes (coordonnï¿½es x et y des points)
+          <para>matrice à deux lignes (coordonnées x et y des points)
 </para>
         </listitem>
       </varlistentry>
@@ -42,7 +42,7 @@
       <varlistentry>
         <term>y  </term>
         <listitem>
-          <para>vecteur des ordonnï¿½es
+          <para>vecteur des ordonnées
 </para>
         </listitem>
       </varlistentry>
@@ -51,7 +51,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    ï¿½tant donnï¿½ <literal>xyd</literal> un ensemble de points dans le plan avec des abscisses croissantes et <literal>x</literal> un ensemble d'abscisses, cette fonction renvoie dans <literal>y</literal> les ordonnï¿½es correspondantes, calculï¿½es par interpolation linï¿½aire.
+    étant donné <literal>xyd</literal> un ensemble de points dans le plan avec des abscisses croissantes et <literal>x</literal> un ensemble d'abscisses, cette fonction renvoie dans <literal>y</literal> les ordonnées correspondantes, calculï¿½es par interpolation linï¿½aire.
   </para>
   </refsection>
   <refsection>

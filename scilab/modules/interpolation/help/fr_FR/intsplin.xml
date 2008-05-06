@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>intsplin</refname>
-    <refpurpose> intï¿½gration approchï¿½e de donnï¿½es expï¿½rimentales utilisant une interpolation par une spline.  </refpurpose>
+    <refpurpose> intï¿½gration approchï¿½e de données expï¿½rimentales utilisant une interpolation par une spline.  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -35,7 +35,7 @@
       <varlistentry>
         <term>s  </term>
         <listitem>
-          <para>vecteur des ordonnï¿½es.
+          <para>vecteur des ordonnées.
 </para>
         </listitem>
       </varlistentry>
@@ -54,12 +54,12 @@
     Calcule une approximation de :
   </para>
     <para>
-    oï¿½ f est donnï¿½e sous forme de valeurs expï¿½rimentales :
+    oï¿½ f est donnée sous forme de valeurs expï¿½rimentales :
   </para>
     <para><literal>s(i)=f(x(i))</literal>  et <literal>x0=x(1)</literal>, <literal>x1=x(n)</literal>
   </para>
     <para>
-    Entre les points, f est approchï¿½e ï¿½ l'aide d'une spline.
+    Entre les points, f est approchï¿½e à l'aide d'une spline.
   </para>
   </refsection>
   <refsection>

@@ -17,7 +17,7 @@
   </info>
   <refnamediv>
     <refname>translatepaths</refname>
-    <refpurpose> convertit un ensemble de rï¿½pertoires contenant des M-files vers Scilab</refpurpose>
+    <refpurpose> convertit un ensemble de répertoires contenant des M-files vers Scilab</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -29,26 +29,26 @@
       <varlistentry>
         <term>dirs_path</term>
         <listitem>
-          <para>un vecteur de chaï¿½nes de caractï¿½res qui donne les chemins des rï¿½pertoires ï¿½ convertir</para>
+          <para>un vecteur de chaînes de caractères qui donne les chemins des répertoires à convertir</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>res_path</term>
         <listitem>
-          <para>une chaï¿½ne de caractï¿½re qui donne le chemin du rï¿½pertoire oï¿½ les fonctions Scilab seront ï¿½crites. Valeur par dï¿½faut : rï¿½pertoire courant.</para>
+          <para>une chaîne de caractère qui donne le chemin du répertoire oï¿½ les fonctions Scilab seront écrites. Valeur par dï¿½faut : répertoire courant.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>translatepaths</literal>, convertit tous les M-files contenus dans un ensemble de rï¿½pertoires
+    <para><literal>translatepaths</literal>, convertit tous les M-files contenus dans un ensemble de répertoires
     en fonctions Scilab. Chaque fonction est convertie par <literal>mfile2sci</literal>.</para>
     <para>
-    Toutes les informations de traduction sont stockï¿½es dans un fichier nommï¿½ <literal>"log"</literal> dans
-    le rï¿½pertoire <literal>res_path</literal>.</para>
+    Toutes les informations de traduction sont stockées dans un fichier nommï¿½ <literal>"log"</literal> dans
+    le répertoire <literal>res_path</literal>.</para>
     <para>
-    Un appel ï¿½ <literal>translatepaths()</literal> sans rhs lance une interface graphique pour aider ï¿½ la sï¿½lection d'un fichier/rï¿½pertoire et des options.
+    Un appel à <literal>translatepaths()</literal> sans rhs lance une interface graphique pour aider à la sï¿½lection d'un fichier/répertoire et des options.
     </para>
   </refsection>
   <refsection>

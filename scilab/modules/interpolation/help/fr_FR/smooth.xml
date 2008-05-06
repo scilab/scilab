@@ -28,21 +28,21 @@
       <varlistentry>
         <term>ptd  </term>
         <listitem>
-          <para>vecteur rï¿½el ï¿½ deux colonnes
+          <para>vecteur réel à deux colonnes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>pas  </term>
         <listitem>
-          <para>rï¿½el (pas de discrï¿½tisation des abscisses)
+          <para>réel (pas de discrï¿½tisation des abscisses)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>pt  </term>
         <listitem>
-          <para>vecteur rï¿½el ï¿½ deux colonnes
+          <para>vecteur réel à deux colonnes
 </para>
         </listitem>
       </varlistentry>
@@ -52,8 +52,8 @@
     <title>Description</title>
     <para>
     Cette fonction calcule les valeurs d'une spline d'interpolation
-    dont les points de rï¿½fï¿½rence sont donnï¿½s par <literal>(ptd(1,i),ptd(2,i))</literal>. Les abscisses <literal>ptd(1,:)</literal> doivent ï¿½tre classï¿½s par ordre croissant.
-    La valeur par dï¿½faut du pas est ï¿½gale ï¿½ 
+    dont les points de rï¿½fï¿½rence sont donnés par <literal>(ptd(1,i),ptd(2,i))</literal>. Les abscisses <literal>ptd(1,:)</literal> doivent être classï¿½s par ordre croissant.
+    La valeur par dï¿½faut du pas est égale à 
     <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal>
   </para>
   </refsection>

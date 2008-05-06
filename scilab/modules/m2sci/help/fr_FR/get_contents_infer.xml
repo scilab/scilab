@@ -55,10 +55,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction recherche les informations d'infï¿½rence pour un
-    index donnï¿½ dans le contenu d'une Cell ou d'une Struct en tenant
-    compte des <literal>*</literal>. Si aucune information correspond ï¿½ cet
-    index, les valeurs retournï¿½es sont infer=Infer() et pos=0.
+    Cette fonction recherche les informations d'inférence pour un
+    index donné dans le contenu d'une Cell ou d'une Struct en tenant
+    compte des <literal>*</literal>. Si aucune information correspond à cet
+    index, les valeurs retournées sont infer=Infer() et pos=0.
     </para>
   </refsection>
   <refsection>

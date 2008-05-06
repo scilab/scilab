@@ -26,15 +26,15 @@
   </para>
     <para>
   Pour aider cet outil, il suffit d'ajouter des commentaires commencant par
-  <literal>%m2scideclare</literal> dans le fichier Matlab ï¿½ convertir,
-  (<literal>%m2sciassume</literal> ï¿½tait utilisï¿½e dans les versions prï¿½cï¿½dentes
-  de Scilab mais est maintenant obsolï¿½te).
+  <literal>%m2scideclare</literal> dans le fichier Matlab à convertir,
+  (<literal>%m2sciassume</literal> était utilisée dans les versions prï¿½cï¿½dentes
+  de Scilab mais est maintenant obsolète).
   </para>
     <para>
   La syntaxe de cette commande est :
   </para>
     <para>
-      <literal>%m2scideclare nom_de_variable|dimensions|type_de_donnï¿½es|propriï¿½tï¿½</literal>
+      <literal>%m2scideclare nom_de_variable|dimensions|type_de_données|propriété</literal>
     </para>
     <para>
   avec :
@@ -44,29 +44,29 @@
         <itemizedlist>
           <listitem>
             <para>
-      nom_de_variable : nom de la variable dï¿½clarï¿½e. Ce nom peut ï¿½tre
+      nom_de_variable : nom de la variable dï¿½clarï¿½e. Ce nom peut être
       un champ de Struct (e.g. <literal>x(1,2).nom</literal>)
       ou dï¿½crire le contenu d'une Cell en utilisant la syntaxe
       <literal>x(1,2).entries</literal>. NOTEZ que pour les Cells et les
-      Structs <literal>*</literal> peut ï¿½tre utilisï¿½ comme index.
+      Structs <literal>*</literal> peut être utilisé comme index.
       </para>
           </listitem>
           <listitem>
             <para>
-      dimensions : dimensions de la variable dï¿½clarï¿½e sï¿½parï¿½es par des espaces,
+      dimensions : dimensions de la variable déclarée sï¿½parï¿½es par des espaces,
       si une dimension est inconnue, remplacez la par <literal>?</literal>. NOTEZ que
-      les dimensions des chaï¿½nes de caractï¿½re doivent ï¿½tre identiques aux dimensions
-      Matlab e.g. <literal>1 6</literal> pour la chaï¿½ne de caractï¿½res 'chaine'.
+      les dimensions des chaînes de caractère doivent être identiques aux dimensions
+      Matlab e.g. <literal>1 6</literal> pour la chaîne de caractères 'chaine'.
       </para>
           </listitem>
           <listitem>
             <para>
-      type_de_donnï¿½es: le type de donnï¿½e de la variable qui peut ï¿½tre :
+      type_de_données: le type de donnée de la variable qui peut être :
       </para>
             <informaltable border="1">
               <tr>
-                <td>Type de donnï¿½e m2scideclare</td>
-                <td>Type Scilab "ï¿½quivalent"</td>
+                <td>Type de donnée m2scideclare</td>
+                <td>Type Scilab "équivalent"</td>
               </tr>
               <tr>
                 <td>Double</td>
@@ -112,7 +112,7 @@
           </listitem>
           <listitem>
             <para>
-      propriï¿½tï¿½ : propriï¿½tï¿½ de la variable qui peut ï¿½tre : 
+      propriété : propriété de la variable qui peut être : 
       </para>
             <informaltable border="1">
               <tr>
@@ -121,7 +121,7 @@
               </tr>
               <tr>
                 <td>Real</td>
-                <td>Donnï¿½e rï¿½elle</td>
+                <td>Donnï¿½e réelle</td>
               </tr>
               <tr>
                 <td>Complex</td>
@@ -132,15 +132,15 @@
                 <td>Property inconnue</td>
               </tr>
             </informaltable>
-            <para>Ce champ est ignorï¿½ pour les types de donnï¿½es suivants : <literal>Cell</literal>,
+            <para>Ce champ est ignorï¿½ pour les types de données suivants : <literal>Cell</literal>,
       <literal>Struct</literal>, <literal>String</literal> et <literal>Boolean</literal>.</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>
-  Toutes les informations donnï¿½es par <literal>m2scideclare</literal> sont comparï¿½es avec
-  les donnï¿½es infï¿½rï¿½es, en cas de conflit, les donnï¿½es infï¿½rï¿½es sont conservï¿½es et
+  Toutes les informations données par <literal>m2scideclare</literal> sont comparées avec
+  les données infï¿½rï¿½es, en cas de conflit, les données infï¿½rï¿½es sont conservï¿½es et
   un warning est affichï¿½. Si vous ï¿½tes sï¿½rs de vos informations, rapportez ce bug.
   </para>
     <para>Voici quelques exemples :</para>
@@ -148,32 +148,32 @@
       <listitem>
         <itemizedlist>
           <listitem>
-            <para><literal>%m2scideclare var1|2 3|Double|Real</literal>var1 est dï¿½clarï¿½e comme une matrice de Doubles de taille 2x3
-      et contenant des donnï¿½es rï¿½elles</para>
+            <para><literal>%m2scideclare var1|2 3|Double|Real</literal>var1 est déclarée comme une matrice de Doubles de taille 2x3
+      et contenant des données réelles</para>
           </listitem>
           <listitem>
-            <para><literal>%m2scideclare var2|2 3 10|Double|Complex</literal>var2 est dï¿½clarï¿½e comme une hypermatrice de Doubles de taille 2x3x10
-      et contenant des donnï¿½es complexes</para>
+            <para><literal>%m2scideclare var2|2 3 10|Double|Complex</literal>var2 est déclarée comme une hypermatrice de Doubles de taille 2x3x10
+      et contenant des données complexes</para>
           </listitem>
           <listitem>
-            <para><literal>%m2scideclare var3(1,2).name|1 10|String|?</literal>var3 est dï¿½clarï¿½e comme un tableau de Structs contenant une chaï¿½ne de
-      caractï¿½res de taille 1x10 dans le champ 'name' de la Struct ï¿½ l'indice (1,2) </para>
+            <para><literal>%m2scideclare var3(1,2).name|1 10|String|?</literal>var3 est déclarée comme un tableau de Structs contenant une chaîne de
+      caractères de taille 1x10 dans le champ 'name' de la Struct à l'indice (1,2) </para>
           </listitem>
           <listitem>
-            <para><literal>%m2scideclare var4(1,5).entries|1 ?|Boolean|?</literal>var4 est dï¿½clarï¿½e comme un tableau de Cells contenant
-      un vecteur ligne de boolï¿½ens ï¿½ l'indice (1,5)</para>
+            <para><literal>%m2scideclare var4(1,5).entries|1 ?|Boolean|?</literal>var4 est déclarée comme un tableau de Cells contenant
+      un vecteur ligne de booléens à l'indice (1,5)</para>
           </listitem>
           <listitem>
-            <para><literal>%m2scideclare var4(1,6).entries|? ?|Int|?</literal>var4 est dï¿½clarï¿½e comme un tableau de Cells contenant
-      un vecteur ligne de boolï¿½ens ï¿½ l'indice (1,5)
-      et des donnï¿½es entiï¿½res ï¿½ l'indice (1,6)</para>
+            <para><literal>%m2scideclare var4(1,6).entries|? ?|Int|?</literal>var4 est déclarée comme un tableau de Cells contenant
+      un vecteur ligne de booléens à l'indice (1,5)
+      et des données entières à l'indice (1,6)</para>
           </listitem>
           <listitem>
-            <para><literal>%m2scideclare var5(*,*).name|1 ?|String|?</literal>var5 est dï¿½clarï¿½e comme un tableau de Structs contenant une
-      chaï¿½ne de caractï¿½res de taille 1xn dans chaque champ 'name'</para>
+            <para><literal>%m2scideclare var5(*,*).name|1 ?|String|?</literal>var5 est déclarée comme un tableau de Structs contenant une
+      chaîne de caractères de taille 1xn dans chaque champ 'name'</para>
           </listitem>
           <listitem>
-            <para><literal>%m2scideclare var6(2,*).entries|1 3|Double|Real</literal>var6 est dï¿½clarï¿½e comme un tableau de Cells contenant un
+            <para><literal>%m2scideclare var6(2,*).entries|1 3|Double|Real</literal>var6 est déclarée comme un tableau de Cells contenant un
       veteur de Doubles de taille 1x3 dans chaque ï¿½lement de sa
       seconde ligne.</para>
           </listitem>

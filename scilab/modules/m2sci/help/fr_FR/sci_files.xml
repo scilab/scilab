@@ -21,16 +21,16 @@
   <refsection>
     <title>Description</title>
     <para>  
-  Pour convertir les appels ï¿½ des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appelï¿½e
+  Pour convertir les appels à des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appelï¿½e
   <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>. Toutes ces fonctions sont dï¿½finies dans des <literal>sci_files</literal>
-  dans le rï¿½pertoire SCI/macros/m2sci/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
-  ne permet pas encore de convertir les appels ï¿½ toutes les fonctions Matlab.
+  dans le répertoire SCI/macros/m2sci/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
+  ne permet pas encore de convertir les appels à toutes les fonctions Matlab.
   Cependant, un utilisateur Scilab peut ajouter des <literal>sci_files</literal> (pour des fonctions Matlab
   ou pour ses propres fonctions) en utilisant les conseils suivants.
   </para>
     <para>
-  Dans M2SCI, un appel ï¿½ une fonction est considï¿½rï¿½ comme un "arbre" (c'est aussi le cas des instructions
-  du fichier ï¿½ convertir), reprï¿½sentï¿½ dans Scilab par une <literal>tlist</literal> avec les champs suivants :
+  Dans M2SCI, un appel à une fonction est considï¿½rï¿½ comme un "arbre" (c'est aussi le cas des instructions
+  du fichier à convertir), reprï¿½sentï¿½ dans Scilab par une <literal>tlist</literal> avec les champs suivants :
   </para>
     <itemizedlist>
       <listitem>
@@ -44,33 +44,33 @@
           <varlistentry>
             <term>lhsnb</term>
             <listitem>
-              <para>nombre de paramï¿½tres de sortie de la fonction Matlab</para>
+              <para>nombre de paramètres de sortie de la fonction Matlab</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>lhs</term>
             <listitem>
-              <para>liste des paramï¿½tres de sortie de la fonction Matlab</para>
+              <para>liste des paramètres de sortie de la fonction Matlab</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>rhs</term>
             <listitem>
-              <para>liste des paramï¿½tres d'entrï¿½e de la fonction Matlab</para>
+              <para>liste des paramètres d'entrée de la fonction Matlab</para>
             </listitem>
           </varlistentry>
         </variablelist>
       </listitem>
     </itemizedlist>
     <para>
-  Une <literal>sci_function</literal> a un paramï¿½tre d'entrï¿½e <literal>tree</literal> qui est aussi la sortie de cette fonction.
+  Une <literal>sci_function</literal> a un paramètre d'entrée <literal>tree</literal> qui est aussi la sortie de cette fonction.
   Une <literal>sci_function</literal> doit convertir cet arbre pour qu'il soit compatible avec Scilab
   en changeant name, lhsnb, lhs et/ou rhs. L'autre rï¿½le de cette fonction est de gï¿½rer
-  l'infï¿½rence. L'arbre d'entrï¿½e contient des donnï¿½es d'infï¿½rence dans ses rhs qui devront ï¿½tre mises ï¿½ jour avec
+  l'inférence. L'arbre d'entrée contient des données d'inférence dans ses rhs qui devront être mises à jour avec
   ce que l'on peut infï¿½rer pour les lhs de cette fonction. 
   </para>
     <para>
-  Plusieurs fonctions ont ï¿½tï¿½ ï¿½crites pour aider ï¿½ la rï¿½daction de fonctions de conversion :
+  Plusieurs fonctions ont été écrites pour aider à la rédaction de fonctions de conversion :
   </para>
     <itemizedlist>
       <listitem>
@@ -78,50 +78,50 @@
           <varlistentry>
             <term>Funcall</term>
             <listitem>
-              <para>crï¿½ï¿½ un arbre qui reprï¿½sente l'appel ï¿½ une fonction</para>
+              <para>créé un arbre qui représente l'appel à une fonction</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Operation</term>
             <listitem>
-              <para>crï¿½ï¿½ un arbre qui reprï¿½sente une opï¿½ration</para>
+              <para>créé un arbre qui représente une opération</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Variable</term>
             <listitem>
-              <para>crï¿½ï¿½ un arbre qui reprï¿½sente une variable</para>
+              <para>créé un arbre qui représente une variable</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Cste</term>
             <listitem>
-              <para>crï¿½ï¿½ un arbre qui reprï¿½sente une constante</para>
+              <para>créé un arbre qui représente une constante</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Infer</term>
             <listitem>
-              <para>crï¿½ï¿½ un arbre qui reprï¿½sente les donnï¿½es d'infï¿½rence</para>
+              <para>créé un arbre qui représente les données d'inférence</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Type</term>
             <listitem>
-              <para>crï¿½ï¿½ un arbre qui reprï¿½sente le type pour l'infï¿½rence</para>
+              <para>créé un arbre qui représente le type pour l'inférence</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Equal</term>
             <listitem>
-              <para>crï¿½ï¿½ un arbre qui reprï¿½sente une instruction</para>
+              <para>créé un arbre qui représente une instruction</para>
             </listitem>
           </varlistentry>
         </variablelist>
       </listitem>
     </itemizedlist>
     <para>
-  Quelques fonctions ont ï¿½tï¿½ ï¿½crites pour rï¿½cupï¿½rer les propriï¿½tï¿½s des opï¿½randes/entrï¿½es. En considï¿½rant A comme une tlist utilisï¿½e dans l'arbre, vous pouvez utiliser les fonctions suivantes :
+  Quelques fonctions ont été écrites pour récupèrer les propriétés des opérandes/entrées. En considï¿½rant A comme une tlist utilisée dans l'arbre, vous pouvez utiliser les fonctions suivantes :
   </para>
     <informaltable border="1">
       <tr>
@@ -130,31 +130,31 @@
       </tr>
       <tr>
         <td>is_empty(A)</td>
-        <td>toutes les dimensions de A sont ï¿½gales ï¿½ 0</td>
+        <td>toutes les dimensions de A sont égales à 0</td>
       </tr>
       <tr>
         <td>not_empty(A)</td>
-        <td>toutes les dimensions de A sont connues et au moins une dimension de A est diffï¿½rente de 0</td>
+        <td>toutes les dimensions de A sont connues et au moins une dimension de A est différente de 0</td>
       </tr>
       <tr>
         <td>is_a_scalar(A)</td>
-        <td>toutes les dimensions de A sont ï¿½gales 1</td>
+        <td>toutes les dimensions de A sont égales 1</td>
       </tr>
       <tr>
         <td>not_a_scalar(A)</td>
-        <td>toutes les dimensions de A sont connues et au moins une dimension de A est diffï¿½rente de 1</td>
+        <td>toutes les dimensions de A sont connues et au moins une dimension de A est différente de 1</td>
       </tr>
       <tr>
         <td>is_a_vector(A)</td>
-        <td>toutes les dimensions de A sotn connues et toutes les dimensions de A sauf une sont ï¿½gales ï¿½ 1</td>
+        <td>toutes les dimensions de A sotn connues et toutes les dimensions de A sauf une sont égales à 1</td>
       </tr>
       <tr>
         <td>not_a_vector(A)</td>
-        <td>toutes les dimensions de A sotn connues et au moins deux dimensions de A sont supï¿½rieures ï¿½ 1</td>
+        <td>toutes les dimensions de A sotn connues et au moins deux dimensions de A sont supérieures à 1</td>
       </tr>
       <tr>
         <td>is_real(A)</td>
-        <td>A est rï¿½el</td>
+        <td>A est réel</td>
       </tr>
       <tr>
         <td>is_complex(A)</td>
@@ -170,7 +170,7 @@
       </tr>
     </informaltable>
     <para>
-  D'autres fonctions ont ï¿½tï¿½ ï¿½crites pour des besoins spï¿½cifiques lors de l'ï¿½criture de fonctions de conversion :
+  D'autres fonctions ont été écrites pour des besoins spï¿½cifiques lors de l'ï¿½criture de fonctions de conversion :
   </para>
     <itemizedlist>
       <listitem>
@@ -178,44 +178,44 @@
           <varlistentry>
             <term>first_non_singleton</term>
             <listitem>
-              <para>est ï¿½quivalente ï¿½ <link linkend="firstnonsingleton">firstnonsingleton</link> pour une tlist M2SCI. Sï¿½quence d'appel : dim = first_non_singleton(A)</para>
+              <para>est équivalente à <link linkend="firstnonsingleton">firstnonsingleton</link> pour une tlist M2SCI. Séquence d'appel : dim = first_non_singleton(A)</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>gettempvar</term>
             <listitem>
-              <para>gï¿½nï¿½re une variable temporaire portant une nom qui n'existe pas. Sï¿½quence d'appel : v = gettempvar()</para>
+              <para>gï¿½nï¿½re une variable temporaire portant une nom qui n'existe pas. Séquence d'appel : v = gettempvar()</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>insert</term>
             <listitem>
-              <para>permet d'insï¿½rer des instruction. Sï¿½quence d'appel : insert(Equal(...),opt) avec opt~=1 pour insï¿½rer avan tl'instruction courante et opt=1 pour insï¿½rer aprï¿½s celle-ci.</para>
+              <para>permet d'insérer des instruction. Séquence d'appel : insert(Equal(...),opt) avec opt~=1 pour insérer avan tl'instruction courante et opt=1 pour insérer aprï¿½s celle-ci.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>getoperands</term>
             <listitem>
-              <para>peut ï¿½tre utilisï¿½e pour extraire chaque opï¿½rande comme une variable. Sï¿½quence d'appel : [A,B] = getoperands(operation_tlist)</para>
+              <para>peut être utilisée pour extraire chaque opérande comme une variable. Séquence d'appel : [A,B] = getoperands(operation_tlist)</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>getrhs</term>
             <listitem>
-              <para>peut ï¿½tre utilisï¿½e pour extraire chaque paramï¿½tre comme une variable. Sï¿½quence d'appel : [A,...] = getrhs(funcall_tlist)</para>
+              <para>peut être utilisée pour extraire chaque paramètre comme une variable. Séquence d'appel : [A,...] = getrhs(funcall_tlist)</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>convert2double</term>
             <listitem>
-              <para>change le type de l'entrï¿½e quand ce type n'est pas implï¿½mentï¿½ pour une fonction particuliï¿½re de Scilab. Sï¿½quence d'appel : A = convert2double(A)</para>
+              <para>change le type de l'entrée quand ce type n'est pas implémenté pour une fonction particuliï¿½re de Scilab. Séquence d'appel : A = convert2double(A)</para>
             </listitem>
           </varlistentry>
         </variablelist>
       </listitem>
     </itemizedlist>
     <para>
-  Pour plus d'informations sur la fï¿½on d'ï¿½crire ces fichiers, consulter le rï¿½pertoire
+  Pour plus d'informations sur la fï¿½on d'ï¿½crire ces fichiers, consulter le répertoire
   SCI/macros/m2sci/sci_files/ qui donne de nombreux exemples, des plus simples (e.g. sci_abs.sci)
   aux plus compliquï¿½s (e.g. sci_zeros.sci).
   </para>
