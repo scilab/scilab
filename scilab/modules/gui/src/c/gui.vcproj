@@ -891,6 +891,10 @@
 				RelativePath="..\cpp\UnitsConversion.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\cpp\Widget.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1325,11 +1329,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\PushButton.h"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\PushButton.hxx"
+				RelativePath="..\..\includes\PrinterManagement.h"
 				>
 			</File>
 			<File
@@ -1337,7 +1337,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\PrinterManagement.h"
+				RelativePath="..\..\includes\PushButton.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\PushButton.hxx"
 				>
 			</File>
 			<File
@@ -1602,6 +1606,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\UnitsConversion.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\Widget.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\Widget.hxx"
 				>
 			</File>
 			<File
