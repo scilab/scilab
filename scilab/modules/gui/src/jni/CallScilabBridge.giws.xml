@@ -583,5 +583,11 @@
 	<method name="printFigure" returnType="void" modifier="static">
           <parameter type="int" name="figID"/>
         </method>      
+	<method name="requestWidgetFocus" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
+	<method name="requestFrameFocus" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
   </object>
 </package>

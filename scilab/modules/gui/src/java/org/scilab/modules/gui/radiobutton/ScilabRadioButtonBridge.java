@@ -254,4 +254,13 @@ public class ScilabRadioButtonBridge {
 	public static void destroy(RadioButton radioButton) {
 		radioButton.getAsSimpleRadioButton().destroy();
 	}
+	
+	/**
+	 * Give the focus to the RadioButton
+	 * @param radioButton the RadioButton
+	 */
+	public static void requestFocus(RadioButton radioButton) {
+		radioButton.getAsSimpleRadioButton().requestFocus();
+	}
+
 }

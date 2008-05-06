@@ -265,6 +265,8 @@ jdoublegetScreenWidthID=NULL;
 jdoublegetScreenHeightID=NULL; 
 jintgetScreenDepthID=NULL; 
 voidprintFigurejintID=NULL; 
+voidrequestWidgetFocusjintID=NULL; 
+voidrequestFrameFocusjintID=NULL; 
 
 
 }
@@ -453,6 +455,8 @@ jdoublegetScreenWidthID=NULL;
 jdoublegetScreenHeightID=NULL; 
 jintgetScreenDepthID=NULL; 
 voidprintFigurejintID=NULL; 
+voidrequestWidgetFocusjintID=NULL; 
+voidrequestFrameFocusjintID=NULL; 
 
 
 }
@@ -4672,6 +4676,48 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidprintFigurejintID ,figID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::requestWidgetFocus (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidrequestWidgetFocusjintID = curEnv->GetStaticMethodID(cls, "requestWidgetFocus", "(I)V" ) ;
+if (voidrequestWidgetFocusjintID == NULL) {
+std::cerr << "Could not access to the method " << "requestWidgetFocus" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidrequestWidgetFocusjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::requestFrameFocus (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidrequestFrameFocusjintID = curEnv->GetStaticMethodID(cls, "requestFrameFocus", "(I)V" ) ;
+if (voidrequestFrameFocusjintID == NULL) {
+std::cerr << "Could not access to the method " << "requestFrameFocus" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidrequestFrameFocusjintID ,objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

@@ -224,4 +224,12 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 	public void destroy() {
 		ScilabBridge.destroy(this);
 	}
+	
+	/**
+	 * Give the focus to the EditBox
+	 */
+	public void requestFocus() {
+		ScilabBridge.requestFocus(this);
+	}
+
 }

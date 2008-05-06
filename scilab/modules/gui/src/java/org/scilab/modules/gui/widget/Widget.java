@@ -108,4 +108,9 @@ public interface Widget extends Dockable {
 	 * Delete the Widget
 	 */
 	void destroy();
+	
+	/**
+	 * Give the focus to the Widget
+	 */
+	void requestFocus();
 }

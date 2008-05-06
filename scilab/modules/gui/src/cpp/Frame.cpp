@@ -35,3 +35,9 @@ int setCurentFigureAsFrameParent(sciPointObj* sciObj)
 
   return SET_PROPERTY_SUCCEED;
 }
+
+void requestFrameFocus(sciPointObj* sciObj)
+{
+  // Scilab default values
+  CallScilabBridge::requestFrameFocus(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+}

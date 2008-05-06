@@ -226,4 +226,11 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 		ScilabBridge.destroy(this);
 	}
 
+	/**
+	 * Give the focus to the ContextMenu
+	 */
+	public void requestFocus() {
+		ScilabBridge.requestFocus(this);
+	}
+
 }

@@ -241,4 +241,11 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 		ScilabBridge.setToolTipText(this, toolTipText);
 	}
 
+	/**
+	 * Give the focus to the ContextMenu
+	 */
+	public void requestFocus() {
+		ScilabBridge.requestFocus(this);
+	}
+
 }

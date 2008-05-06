@@ -236,4 +236,13 @@ public class ScilabLabelBridge {
 	public static void destroy(Label label) {
 		label.getAsSimpleLabel().destroy();
 	}
+	
+	/**
+	 * Give the focus to the Label
+	 * @param label the Label
+	 */
+	public static void requestFocus(Label label) {
+		label.getAsSimpleLabel().requestFocus();
+	}
+
 }

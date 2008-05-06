@@ -206,4 +206,13 @@ public class ScilabContextMenuBridge {
 	public static void destroy(ContextMenu contextMenu) {
 		contextMenu.getAsSimpleContextMenu().destroy();
 	}
+	
+	/**
+	 * Give the focus to the ContextMenu
+	 * @param contextMenu the ContextMenu
+	 */
+	public static void requestFocus(ContextMenu contextMenu) {
+		contextMenu.getAsSimpleContextMenu().requestFocus();
+	}
+
 }

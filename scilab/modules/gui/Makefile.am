@@ -56,6 +56,7 @@ src/cpp/ContextMenu.cpp \
 src/cpp/ListBox.cpp \
 src/cpp/Frame.cpp \
 src/cpp/Toolbar.cpp \
+src/cpp/Widget.cpp \
 src/cpp/SetUimenuLabel.cpp \
 src/cpp/GetUimenuLabel.cpp \
 src/cpp/GetUicontrolStyle.cpp \
@@ -304,7 +305,8 @@ includes/Toolbar.h \
 includes/DestroyUicontrol.h \
 includes/DestroyUimenu.h \
 includes/CallClipboard.h \
-includes/PrinterManagement.h
+includes/PrinterManagement.h \
+includes/Widget.h
 
 #### gui : demos files ####
 libscigui_la_demosdir=$(mydatadir)/demos/

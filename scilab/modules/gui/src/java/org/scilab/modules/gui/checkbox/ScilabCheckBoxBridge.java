@@ -253,4 +253,13 @@ public class ScilabCheckBoxBridge {
 	public static void destroy(CheckBox checkBox) {
 		checkBox.getAsSimpleCheckBox().destroy();
 	}
+	
+	/**
+	 * Give the focus to the CheckBox
+	 * @param checkBox the CheckBox
+	 */
+	public static void requestFocus(CheckBox checkBox) {
+		checkBox.getAsSimpleCheckBox().requestFocus();
+	}
+
 }

@@ -216,6 +216,8 @@ jmethodID jdoublegetScreenWidthID; // cache method id
 jmethodID jdoublegetScreenHeightID; // cache method id
 jmethodID jintgetScreenDepthID; // cache method id
 jmethodID voidprintFigurejintID; // cache method id
+jmethodID voidrequestWidgetFocusjintID; // cache method id
+jmethodID voidrequestFrameFocusjintID; // cache method id
 
 
 /**
@@ -582,6 +584,10 @@ static double getScreenHeight(JavaVM * jvm_);
 static long getScreenDepth(JavaVM * jvm_);
 
 static void printFigure(JavaVM * jvm_, long figID);
+
+static void requestWidgetFocus(JavaVM * jvm_, long objID);
+
+static void requestFrameFocus(JavaVM * jvm_, long objID);
 
 
                         /**

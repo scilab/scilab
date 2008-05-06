@@ -238,4 +238,12 @@ public class ScilabCheckBox extends ScilabWidget implements CheckBox {
 	public void destroy() {
 		ScilabBridge.destroy(this);
 	}
+	
+	/**
+	 * Give the focus to the CheckBox
+	 */
+	public void requestFocus() {
+		ScilabBridge.requestFocus(this);
+	}
+
 }

@@ -245,5 +245,14 @@ public class ScilabPushButtonBridge {
 	public static void setToolTipText(PushButton pushButton, String toolTipText) {
 		pushButton.getAsSimplePushButton().setToolTipText(toolTipText);
 	}
+	
+	/**
+	 * Give the focus to the PushButton
+	 * @param pushButton the PushButton
+	 */
+	public static void requestFocus(PushButton pushButton) {
+		pushButton.getAsSimplePushButton().requestFocus();
+	}
+
 }
 

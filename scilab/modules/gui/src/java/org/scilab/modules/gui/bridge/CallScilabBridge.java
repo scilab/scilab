@@ -2466,4 +2466,20 @@ public class CallScilabBridge {
 	public static int getScreenDepth() {
 		return Toolkit.getDefaultToolkit().getColorModel().getPixelSize();
 	}
+	
+	/**
+	 * Give the focus to a Widget
+	 * @param id the id of the Widget
+	 */
+	public static void requestWidgetFocus(int id) {
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).requestFocus();
+	}
+	
+	/**
+	 * Give the focus to a Frame
+	 * @param id the id of the Frame
+	 */
+	public static void requestFrameFocus(int id) {
+		((Frame) UIElementMapper.getCorrespondingUIElement(id)).requestFocus();
+	}
 }

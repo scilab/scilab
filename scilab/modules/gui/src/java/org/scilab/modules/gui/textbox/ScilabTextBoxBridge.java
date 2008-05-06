@@ -227,4 +227,13 @@ public class ScilabTextBoxBridge {
 	public static void destroy(TextBox textBox) {
 		textBox.getAsSimpleTextBox().destroy();
 	}
+	
+	/**
+	 * Give the focus to the TextBox
+	 * @param textBox the TextBox
+	 */
+	public static void requestFocus(TextBox textBox) {
+		textBox.getAsSimpleTextBox().requestFocus();
+	}
+
 }

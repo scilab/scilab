@@ -236,4 +236,13 @@ public class ScilabEditBoxBridge {
 	public static void destroy(EditBox editBox) {
 		editBox.getAsSimpleEditBox().destroy();
 	}
+	
+	/**
+	 * Give the focus to the EditBox
+	 * @param editBox the EditBox
+	 */
+	public static void requestFocus(EditBox editBox) {
+		editBox.getAsSimpleEditBox().requestFocus();
+	}
+
 }

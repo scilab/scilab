@@ -251,4 +251,12 @@ public class ScilabMenuItemBridge {
 		menuItem.getAsSimpleMenuItem().destroy();
 	}
 
+	/**
+	 * Give the focus to the MenuItem
+	 * @param menuItem the MenuItem
+	 */
+	public static void requestFocus(MenuItem menuItem) {
+		menuItem.getAsSimpleMenuItem().requestFocus();
+	}
+
 }

@@ -222,4 +222,12 @@ public class ScilabLabel extends ScilabWidget implements Label {
 	public void destroy() {
 		ScilabBridge.destroy(this);
 	}
+	
+	/**
+	 * Give the focus to the Label
+	 */
+	public void requestFocus() {
+		ScilabBridge.requestFocus(this);
+	}
+
 }

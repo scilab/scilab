@@ -216,4 +216,13 @@ public class ScilabFrameBridge {
 	public static void destroy(Frame frame) {
 		frame.getAsSimpleFrame().destroy();
 	}
+	
+	/**
+	 * Give the focus to the Frame
+	 * @param frame the Frame
+	 */
+	public static void requestFocus(Frame frame) {
+		frame.getAsSimpleFrame().requestFocus();
+	}
+
 }

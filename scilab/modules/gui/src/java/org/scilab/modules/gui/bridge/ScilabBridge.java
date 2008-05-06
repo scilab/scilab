@@ -486,10 +486,18 @@ public class ScilabBridge {
 
 	/**
 	 * Delete the Frame
-	 * @param frame the frame to be destroyed
+	 * @param frame the Frame to be destroyed
 	 */
 	public static void destroy(Frame frame) {
 		ScilabFrameBridge.destroy(frame);
+	}
+
+	/**
+	 * Give the focus to the Frame
+	 * @param frame the Frame
+	 */
+	public static void requestFocus(Frame frame) {
+		ScilabFrameBridge.requestFocus(frame);
 	}
 
 	/**************/
@@ -1463,6 +1471,14 @@ public class ScilabBridge {
 		ScilabMenuItemBridge.destroy(menuItem);
 	}
 
+	/**
+	 * Give the focus to the MenuItem
+	 * @param menuItem the MenuItem
+	 */
+	public static void requestFocus(MenuItem menuItem) {
+		ScilabMenuItemBridge.requestFocus(menuItem);
+	}
+
 	/*****************/
 	/* Menu Bridge */
 	/*****************/
@@ -1655,6 +1671,14 @@ public class ScilabBridge {
 		ScilabMenuBridge.destroy(menu);
 	}
 
+	/**
+	 * Give the focus to the Menu
+	 * @param menu the Menu
+	 */
+	public static void requestFocus(Menu menu) {
+		ScilabMenuBridge.requestFocus(menu);
+	}
+
 	/**********************/
 	/* ContextMenu Bridge */
 	/**********************/
@@ -1828,6 +1852,14 @@ public class ScilabBridge {
 	 */
 	public static void destroy(ContextMenu contextMenu) {
 		ScilabContextMenuBridge.destroy(contextMenu);
+	}
+
+	/**
+	 * Give the focus to the ContextMenu
+	 * @param contextMenu the ContextMenu
+	 */
+	public static void requestFocus(ContextMenu contextMenu) {
+		ScilabContextMenuBridge.requestFocus(contextMenu);
 	}
 
 	/********************/
@@ -2060,6 +2092,14 @@ public class ScilabBridge {
 		ScilabPushButtonBridge.setToolTipText(pushButton, toolTipText);
 	}
 	
+	/**
+	 * Give the focus to the PushButton
+	 * @param pushButton the PushButton
+	 */
+	public static void requestFocus(PushButton pushButton) {
+		ScilabPushButtonBridge.requestFocus(pushButton);
+	}
+
 	/******************/
 	/* TextBox Bridge */
 	/******************/
@@ -2255,6 +2295,14 @@ public class ScilabBridge {
 	 */
 	public static void destroy(TextBox textBox) {
 		ScilabTextBoxBridge.destroy(textBox);
+	}
+
+	/**
+	 * Give the focus to the TextBox
+	 * @param textBox the TextBox
+	 */
+	public static void requestFocus(TextBox textBox) {
+		ScilabTextBoxBridge.requestFocus(textBox);
 	}
 
 	/******************/
@@ -2462,6 +2510,15 @@ public class ScilabBridge {
 	public static void destroy(EditBox editBox) {
 		ScilabEditBoxBridge.destroy(editBox);
 	}
+
+	/**
+	 * Give the focus to the EditBox
+	 * @param editBox the EditBox
+	 */
+	public static void requestFocus(EditBox editBox) {
+		ScilabEditBoxBridge.requestFocus(editBox);
+	}
+
 	/****************/
 	/* Label Bridge */
 	/****************/
@@ -2666,6 +2723,14 @@ public class ScilabBridge {
 	 */
 	public static void destroy(Label label) {
 		ScilabLabelBridge.destroy(label);
+	}
+
+	/**
+	 * Give the focus to the Label
+	 * @param label the Label
+	 */
+	public static void requestFocus(Label label) {
+		ScilabLabelBridge.requestFocus(label);
 	}
 
 	/*******************/
@@ -2892,6 +2957,14 @@ public class ScilabBridge {
 		ScilabCheckBoxBridge.destroy(checkBox);
 	}
 
+	/**
+	 * Give the focus to the CheckBox
+	 * @param checkBox the CheckBox
+	 */
+	public static void requestFocus(CheckBox checkBox) {
+		ScilabCheckBoxBridge.requestFocus(checkBox);
+	}
+
 	/**********************/
 	/* RadioButton Bridge */
 	/**********************/
@@ -3114,6 +3187,14 @@ public class ScilabBridge {
 	 */
 	public static void destroy(RadioButton radioButton) {
 		ScilabRadioButtonBridge.destroy(radioButton);
+	}
+
+	/**
+	 * Give the focus to the RadioButton
+	 * @param radioButton the RadioButton
+	 */
+	public static void requestFocus(RadioButton radioButton) {
+		ScilabRadioButtonBridge.requestFocus(radioButton);
 	}
 
 	/*****************/
@@ -3392,6 +3473,14 @@ public class ScilabBridge {
 		ScilabSliderBridge.destroy(slider);
 	}
 
+	/**
+	 * Give the focus to the Slider
+	 * @param slider the Slider
+	 */
+	public static void requestFocus(Slider slider) {
+		ScilabSliderBridge.requestFocus(slider);
+	}
+
 	/******************/
 	/* ListBox Bridge */
 	/******************/
@@ -3665,6 +3754,14 @@ public class ScilabBridge {
 		ScilabListBoxBridge.destroy(listBox);
 	}
 
+	/**
+	 * Give the focus to the ListBox
+	 * @param listBox the ListBox
+	 */
+	public static void requestFocus(ListBox listBox) {
+		ScilabListBoxBridge.requestFocus(listBox);
+	}
+
 	/********************/
 	/* PopupMenu Bridge */
 	/********************/
@@ -3914,6 +4011,14 @@ public class ScilabBridge {
 	 */
 	public static void destroy(PopupMenu popupMenu) {
 		ScilabPopupMenuBridge.destroy(popupMenu);
+	}
+
+	/**
+	 * Give the focus to the PopupMenu
+	 * @param popupMenu the PopupMenu
+	 */
+	public static void requestFocus(PopupMenu popupMenu) {
+		ScilabPopupMenuBridge.requestFocus(popupMenu);
 	}
 
 	/*********************/

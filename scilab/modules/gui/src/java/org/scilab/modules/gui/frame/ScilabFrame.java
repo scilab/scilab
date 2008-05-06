@@ -206,4 +206,12 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 	public void destroy() {
 		ScilabBridge.destroy(this);
 	}
+	
+	/**
+	 * Give the focus to the Frame
+	 */
+	public void requestFocus() {
+		ScilabBridge.requestFocus(this);
+	}
+
 }

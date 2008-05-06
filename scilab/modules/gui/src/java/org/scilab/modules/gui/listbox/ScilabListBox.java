@@ -281,4 +281,12 @@ public class ScilabListBox extends ScilabWidget implements ListBox {
 	public void destroy() {
 		ScilabBridge.destroy(this);
 	}
+	
+	/**
+	 * Give the focus to the ListBox
+	 */
+	public void requestFocus() {
+		ScilabBridge.requestFocus(this);
+	}
+
 }

@@ -33,6 +33,7 @@
 #include "Frame.h" /* setCurentFigureAsFrameParent */
 #include "Scierror.h"
 #include "WindowList.h" /* getFigureFromIndex */
+#include "Widget.h" /* requestWidgetFocus */
 /*--------------------------------------------------------------------------*/
 #define NBPROPERTIES 25
 /*--------------------------------------------------------------------------*/
@@ -77,9 +78,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
   else if (Rhs==1)
     {
       /* Create a pushbutton in figure given as parameter */
-
-      /* Create a new pushbutton */
-      GraphicHandle=sciGetHandle(CreateUIControl(NULL));
+      /* Or give focus to the uicontrol given as parameter */
 
       if (VarType(1) != sci_handles)
         {
@@ -96,16 +95,35 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               return FALSE;
             }
           pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
-          if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
+
+          if (sciGetEntityType (pParent) == SCI_UICONTROL) /* Focus management */
             {
-              Scierror(999,_("%s: Wrong type for parent: Figure or uimenu expected.\n"),fname);
-              return FALSE;
+              GraphicHandle = (long)*hstk(stkAdr);
+              if (pUICONTROL_FEATURE(pParent)->style == SCI_UIFRAME) /* Frame style uicontrol */
+                {
+                  requestFrameFocus(pParent);
+                }
+              else
+                {
+                  requestWidgetFocus(pParent);
+                }
             }
-          /* First parameter is the parent */
-          setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[1]);
-          if (setStatus == SET_PROPERTY_ERROR)
+          else if ( (sciGetEntityType (pParent) == SCI_FIGURE) || (sciGetEntityType (pParent) == SCI_UIMENU) ) /* PushButton creation */
             {
-              Scierror(999, _("Could not set property %s.\n"), propertyName);
+              /* Create a new pushbutton */
+              GraphicHandle=sciGetHandle(CreateUIControl(NULL));
+              
+              /* First parameter is the parent */
+              setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[1]);
+              if (setStatus == SET_PROPERTY_ERROR)
+                {
+                  Scierror(999, _("Could not set property %s.\n"), propertyName);
+                  return FALSE;
+                }
+            }
+          else
+            {
+              Scierror(999,_("%s: Wrong type for first input argument: Uicontrol, Figure or Uimenu expected.\n"),fname);
               return FALSE;
             }
         }

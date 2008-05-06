@@ -306,4 +306,13 @@ public class ScilabSliderBridge {
 	public static void destroy(Slider slider) {
 		slider.getAsSimpleSlider().destroy();
 	}
+	
+	/**
+	 * Give the focus to the Slider
+	 * @param slider the Slider
+	 */
+	public static void requestFocus(Slider slider) {
+		slider.getAsSimpleSlider().requestFocus();
+	}
+
 }

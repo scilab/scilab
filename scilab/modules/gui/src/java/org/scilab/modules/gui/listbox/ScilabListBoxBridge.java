@@ -302,4 +302,13 @@ public class ScilabListBoxBridge {
 	public static void destroy(ListBox listBox) {
 		listBox.getAsSimpleListBox().destroy();
 	}
+	
+	/**
+	 * Give the focus to the ListBox
+	 * @param listBox the ListBox
+	 */
+	public static void requestFocus(ListBox listBox) {
+		listBox.getAsSimpleListBox().requestFocus();
+	}
+
 }

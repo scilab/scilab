@@ -236,4 +236,12 @@ public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
 	public void destroy() {
 		ScilabBridge.destroy(this);
 	}
+	
+	/**
+	 * Give the focus to the ContextMenu
+	 */
+	public void requestFocus() {
+		ScilabBridge.requestFocus(this);
+	}
+
 }

@@ -31,4 +31,11 @@ void createFrame(sciPointObj* sciObj);
  */
 int setCurentFigureAsFrameParent(sciPointObj* sciObj);
 
+/**
+ * Request the focus for a Scilab Frame
+ *
+ * @param sciObj the corresponding Scilab object
+ */
+void requestFrameFocus(sciPointObj* sciObj);
+
 #endif /* !__FRAME_H__ */

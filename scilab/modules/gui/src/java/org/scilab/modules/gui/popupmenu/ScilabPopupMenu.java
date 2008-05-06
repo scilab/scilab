@@ -262,4 +262,12 @@ public class ScilabPopupMenu extends ScilabWidget implements PopupMenu {
 	public void destroy() {
 		ScilabBridge.destroy(this);
 	}
+	
+	/**
+	 * Give the focus to the ContextMenu
+	 */
+	public void requestFocus() {
+		ScilabBridge.requestFocus(this);
+	}
+
 }

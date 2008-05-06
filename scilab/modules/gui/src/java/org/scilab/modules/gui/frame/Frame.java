@@ -100,4 +100,10 @@ public interface Frame extends Container {
 	 * Delete the Frame
 	 */
 	void destroy();
+	
+	/**
+	 * Give the focus to the Frame
+	 */
+	void requestFocus();
+
 }

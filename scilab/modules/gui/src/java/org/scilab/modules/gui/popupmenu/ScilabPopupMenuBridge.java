@@ -281,4 +281,13 @@ public class ScilabPopupMenuBridge {
 	public static void destroy(PopupMenu popupMenu) {
 		popupMenu.getAsSimplePopupMenu().destroy();
 	}
+	
+	/**
+	 * Give the focus to the PopupMenu
+	 * @param popupMenu the PopupMenu
+	 */
+	public static void requestFocus(PopupMenu popupMenu) {
+		popupMenu.getAsSimplePopupMenu().requestFocus();
+	}
+
 }

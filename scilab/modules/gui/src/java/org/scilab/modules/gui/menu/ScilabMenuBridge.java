@@ -249,4 +249,13 @@ public class ScilabMenuBridge {
 	public static void destroy(Menu menu) {
 		menu.getAsSimpleMenu().destroy();
 	}
+	
+	/**
+	 * Give the focus to the Menu
+	 * @param menu the Menu
+	 */
+	public static void requestFocus(Menu menu) {
+		menu.getAsSimpleMenu().requestFocus();
+	}
+
 }
