@@ -19,6 +19,8 @@ function res = findlcccompiler()
                                    'includepath');
                         
     catch
+      // remove last error on 'winqueryreg' fails
+      lasterror();
       return;
     end
   
@@ -35,6 +37,8 @@ function res = findlcccompiler()
         res = %T;
       end
     catch
+      // remove last error on 'winqueryreg' fails
+      lasterror();
       return; 
     end
   end

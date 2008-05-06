@@ -42,7 +42,7 @@ function bOK = configure_lcc()
       
       LCCLIB_DIR = SCI+'/bin/lcclib';
       
-      if ( (fileinfo(LCCLIB_DIR) == []) | (ls(LCCLIB_DIR+'/*.lib') == []) ) then
+      if ( (fileinfo(LCCLIB_DIR) == []) | ( findfiles(LCCLIB_DIR,'*.lib') == []) ) then
         printf('\nConverts libraries to use LCC-Win32.\n');
         bOK = call_VCtoLCCLib();
       else

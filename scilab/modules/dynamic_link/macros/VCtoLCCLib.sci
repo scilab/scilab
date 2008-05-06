@@ -15,18 +15,20 @@ function VCtoLCCLib()
   if (findlcccompiler() == %T) then
 		DirCur = pwd();
 		chdir(WSCI+'\bin');
-		mkdir('lcclib');
-
-		Exportalibrary('LibScilab');
-		Exportalibrary('libf2c');
-		ExportAtlasLibrary();
-		Exportalibrary('lapack');
-		Exportalibrary('scicos');
-		Exportalibrary('intersci');
-		Exportalibrary('dynamic_link');
-		Exportalibrary('scioutput_stream');
-		Exportalibrary('MALLOC');
-		Exportalibrary('libintl');
+		
+		status = mkdir('lcclib');
+		if (status == 1) | (status == 2) then
+		  Exportalibrary('LibScilab');
+		  Exportalibrary('libf2c');
+		  ExportAtlasLibrary();
+		  Exportalibrary('lapack');
+		  Exportalibrary('scicos');
+		  Exportalibrary('intersci');
+		  Exportalibrary('dynamic_link');
+		  Exportalibrary('scioutput_stream');
+		  Exportalibrary('MALLOC');
+		  Exportalibrary('libintl');
+		end
 	
 		chdir(DirCur);
 	end
@@ -38,8 +40,8 @@ function bOK = Exportalibrary(libraryname)
 	unix('pedump /exp '+libraryname+'.dll >'+TMPDIR+filesep()+libraryname+'.lcc');
 	printf('Converting Library');
 	
-	fw = mopen(TMPDIR+filesep()+libraryname+'.exp',"w");
-	fr = mopen(TMPDIR+filesep()+libraryname+'.lcc',"r");
+	fw = mopen(TMPDIR+filesep()+libraryname+'.exp',"wt");
+	fr = mopen(TMPDIR+filesep()+libraryname+'.lcc',"rt");
 	
 	if (meof(fr) == 0) then 
 		line = mfscanf(1,fr,"%s");
@@ -69,8 +71,8 @@ function ExportAtlasLibrary()
 	unix('pedump /exp blasplus.dll >'+TMPDIR+'\blasplus.lcc');
 	printf('Converting Library');
 	
-	fw = mopen(TMPDIR+'\blaspluslcc.exp',"w");
-	fr = mopen(TMPDIR+'\blasplus.lcc',"r");
+	fw = mopen(TMPDIR+'\blaspluslcc.exp',"wt");
+	fr = mopen(TMPDIR+'\blasplus.lcc',"rt");
 
 	if (meof(fr) == 0) then 
 		line = mfscanf(1,fr,"%s");
@@ -78,8 +80,6 @@ function ExportAtlasLibrary()
 	end
 
 	i=1;
-	// TO DO : update this part
-	// see MKL compatibility
 	while ( meof(fr) == 0)
 		line = mfscanf(1,fr,"%s");
 		if (line ~= []) then

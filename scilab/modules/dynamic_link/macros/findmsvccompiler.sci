@@ -24,6 +24,8 @@ function bOK = is_msvc90pro()
     bOK = %T;
   catch
     bOK = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
   end  
 endfunction
 //==========================================
@@ -35,6 +37,8 @@ function bOK = is_msvc90std()
     bOK = %T;
   catch
     bOK = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
   end  
 endfunction
 //==========================================
@@ -46,6 +50,8 @@ function bOK = is_msvc90express()
     bOK = findWindowsSDK();
   catch
     bOK = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
   end  
 endfunction
 //==========================================
@@ -57,6 +63,8 @@ function bOK = is_msvc80pro()
     bOK = %T;
   catch
     bOK = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
   end
 endfunction
 //==========================================
@@ -68,6 +76,8 @@ function bOK = is_msvc80std()
     bOK = %T;
   catch
     bOK = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
   end  
 endfunction
 //==========================================
@@ -79,6 +89,8 @@ function bOK = is_msvc80express()
     bOK = findWindowsSDK();
   catch
     bOK = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
   end  
 endfunction
 //==========================================
@@ -90,6 +102,8 @@ function bOK = is_msvc71()
     bOK = %T;
   catch
     bOK = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
   end  
 endfunction
 //==========================================
@@ -101,6 +115,8 @@ function bOK = is_msvc70()
     bOK = %T;
   catch
     bOK = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
   end  
 endfunction
 //==========================================
@@ -112,6 +128,8 @@ function bOK = findWindowsSDK()
     findSDK1 = %T;
   catch
     findSDK1 = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
   end
 
   try
@@ -121,6 +139,8 @@ function bOK = findWindowsSDK()
     findSDK2 = %T;
   catch
     findSDK2 = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
   end
     
   try
@@ -130,6 +150,8 @@ function bOK = findWindowsSDK()
     findSDK3 = %T;
   catch
     findSDK3 = %F;
+    // remove last error on 'winqueryreg' fails
+    lasterror();
   end
     
   if ( findSDK1 | findSDK2 | findSDK3 ) then 
