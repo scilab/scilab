@@ -39,11 +39,9 @@ int sci_TCL_ExistArray(char *fname,unsigned long l)
 
 		if (getTclInterp() == NULL)
 		{
-		  releaseTclInterp();
-		  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
+			Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
 			return 0;
 		}
-		releaseTclInterp();
 
 		if (Rhs==2)
 		{
@@ -52,12 +50,10 @@ int sci_TCL_ExistArray(char *fname,unsigned long l)
 			{
 				GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 				TCLinterpreter=Tcl_GetSlave(getTclInterp(),cstk(l2));
-
 				if (TCLinterpreter==NULL)
 				{
 					Scierror(999,_("%s: No such slave interpreter.\n"),fname);
-					releaseTclInterp();
-                                        return 0;
+					return 0;
 				}
 			}
 			else
@@ -73,17 +69,16 @@ int sci_TCL_ExistArray(char *fname,unsigned long l)
 		}
 
 		ValRet=TCL_ArrayExist(TCLinterpreter,VarName);
-                releaseTclInterp();
 
 		n1=1;
+		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+
 		if ( ValRet )
 		{
-			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(TRUE);
 		}
 		else
 		{
-			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
 			*istk(l1)=(int)(FALSE);
 		}
 
@@ -93,7 +88,6 @@ int sci_TCL_ExistArray(char *fname,unsigned long l)
 	else
 	{
 		Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
-		return 0;
 	}
 
 	return 0;
