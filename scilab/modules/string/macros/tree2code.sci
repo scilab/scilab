@@ -55,12 +55,15 @@ end
 
 // For each statement, generate corresponding code
 for i=1:size(I)-2 // -2 to ignore last return+EOL
-  C=cat_code(C,instruction2code(I(i),prettyprint));
+  if prettyprint then
+    C=cat_code(C,"  "+instruction2code(I(i),prettyprint));
+  else
+    C=cat_code(C,instruction2code(I(i),prettyprint));
+  end
   C = format_txt(C,I(i),prettyprint,I(i+1));
 end
 
 if P.name<>"" then // Not a batch file
-  C=cat_code(C,"");
   C=cat_code(C,"endfunction"); // Replace last return
   C=cat_code(C,"");
 end
