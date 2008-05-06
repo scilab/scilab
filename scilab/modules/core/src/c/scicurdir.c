@@ -26,6 +26,9 @@
 #include "warningmode.h"
 static char cur_dir[PATH_MAX];
 /*--------------------------------------------------------------------------*/
+/* checks if it is a UNC path */
+static BOOL isUNCpath(char *path);
+/*--------------------------------------------------------------------------*/
 int C2F(scichdir)(char *path,int *err)
 {
 	*err=0;
@@ -34,6 +37,14 @@ int C2F(scichdir)(char *path,int *err)
 		*cur_dir = '\0';
 		return (0);
 	}
+
+	 if (isUNCpath(path))
+	 {
+	    if ( getWarningMode() ) sciprint(_("Can't go to directory %s .\n"), path); 
+		*err = 1;
+		return (0);
+	 }
+
 #ifndef _MSC_VER
 	if (chdir(path) == -1) 
 #else
@@ -67,5 +78,14 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
 		*err=0;
 	}
     return 0;
+}
+/*--------------------------------------------------------------------------*/
+static BOOL isUNCpath(char *path)
+{
+	if ( (path) && (strncmp(path,"\\\\",2) == 0) )
+	{
+		return TRUE;
+	}
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
