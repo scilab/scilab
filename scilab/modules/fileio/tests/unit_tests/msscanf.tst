@@ -197,7 +197,7 @@ if n<>-1 then pause,end
 
 //------------- test with matrix scan 
 
-n=5
+n=5;
 A=int(10*rand(n,n));
 A1=strcat(string(A),' ','c');
 F='%d';F=strcat(F(ones(1,n)),' ');

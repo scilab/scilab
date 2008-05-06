@@ -1,4 +1,10 @@
-// Copyright ENPC/INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+// Copyright (C) ????-2008 - ENPC
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 //--------------test format %i
 [n,a]=msscanf('123','%i');
 if n<>1|a<>123 then bugmes();quit;end
@@ -170,10 +176,7 @@ if n<>0 then bugmes();quit;end
 [n,a]=msscanf('123','123%le');
 if n<>-1 then bugmes();quit;end
 //------------- test with matrix scan
-n=5
- n  =
- 
-    5.  
+n=5;
 A=int(10*rand(n,n));
 A1=strcat(string(A),' ','c');
 F='%d';F=strcat(F(ones(1,n)),' ');
