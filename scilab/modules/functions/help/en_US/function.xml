@@ -87,7 +87,7 @@ endfunction
     <para>
     The <literal>function &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
     sequence cannot be split over several lines. This sequence can be
-    followed by statements in the same line if a comma of semi column is
+    followed by statements in the same line if a comma or a semicolon is
     added at its end.</para>
     <para>
     function definitions can be nested</para>
