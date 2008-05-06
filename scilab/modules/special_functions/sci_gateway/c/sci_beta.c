@@ -34,36 +34,54 @@ int sci_beta(char *fname,unsigned long fname_len)
    *   The switch limit have been set by using the gp-pari software.
    *
    */
-  int mx, nx, itx, lx, lxc, my, ny, ity, ly, lyc,/* it,*/ lz, i;
-  double *x, *y, *z, xpy;
-  double switch_limit = 2;
+	int mx = 0, nx = 0, itx = 0, lx = 0, lxc = 0, my = 0, ny = 0, ity = 0, ly = 0, lyc = 0, lz = 0, i = 0;
+	double *x = NULL, *y = NULL, *z = NULL, xpy = 0.;
+	double switch_limit = 2;
 
-  CheckLhs(1,1); CheckRhs(2,2);
-  GetRhsCVar(1,MATRIX_OF_DOUBLE_DATATYPE, &itx, &mx, &nx, &lx, &lxc); x = stk(lx);
-  GetRhsCVar(2,MATRIX_OF_DOUBLE_DATATYPE, &ity, &my, &ny, &ly, &lyc); y = stk(ly);
-  CheckSameDims(1,2,mx,nx,my,ny);
-  if ( itx == 1  ||  ity == 1 )
-    {
-      Scierror(999,_("%s: Wrong type for input argument: Complex argument not accepted.\n"), fname);
-      return 0;
-    };
+	CheckLhs(1,1);
+	CheckRhs(2,2);
 
-  CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lz); z = stk(lz);
+	GetRhsCVar(1,MATRIX_OF_DOUBLE_DATATYPE, &itx, &mx, &nx, &lx, &lxc);
+	x = stk(lx);
 
-  for ( i = 0 ; i < mx*nx ; i++ )
-    {
-      if ( x[i] <= 0.0  ||  y[i] <= 0.0 )
+	GetRhsCVar(2,MATRIX_OF_DOUBLE_DATATYPE, &ity, &my, &ny, &ly, &lyc);
+	y = stk(ly);
+
+	CheckSameDims(1,2,mx,nx,my,ny);
+
+	if ( (itx == 1)  ||  (ity == 1) )
 	{
-	  Scierror(999,_("%s: Wrong value for input arguments: Must be > %d.\n"), fname,0);
-	  return 0;
+		Scierror(999,_("%s: Wrong type for input argument: Complex argument not accepted.\n"), fname);
+		return 0;
+	};
+
+	for ( i = 0 ; i < mx*nx ; i++ )
+	{
+		if ( (x[i] <= 0.0)  ||  (y[i] <= 0.0) )
+		{
+			Scierror(999,_("%s: Wrong value for input arguments: Must be > %d.\n"), fname,0);
+			return 0;
+		}
 	}
-      xpy = x[i] + y[i];
-      if ( xpy <= switch_limit )
-	z[i] = F2C(dgammacody)(&x[i]) * F2C(dgammacody)(&y[i]) / F2C(dgammacody)(&xpy);
-      else
-	z[i] = exp(F2C(betaln)(&x[i], &y[i]));
+
+	CreateVar(Rhs + 3,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lz); 
+	z = stk(lz);
+
+	for ( i = 0 ; i < mx*nx ; i++ )
+	{
+		xpy = x[i] + y[i];
+
+		if ( xpy <= switch_limit )
+		{
+			z[i] = F2C(dgammacody)(&x[i]) * F2C(dgammacody)(&y[i]) / F2C(dgammacody)(&xpy);
+		}
+		else
+		{
+			z[i] = exp(F2C(betaln)(&x[i], &y[i]));
+		}
     }
-  LhsVar(1) = Rhs+3;
-  return 0;
+
+	LhsVar(1) = Rhs + 3;
+	return 0;
 }
 /*--------------------------------------------------------------------------*/
