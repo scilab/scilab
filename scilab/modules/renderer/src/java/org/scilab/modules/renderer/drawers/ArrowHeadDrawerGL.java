@@ -116,7 +116,6 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	 */
 	public void setArrowSize(double size) {
 		defaultArrowSize = size;
-		updateArrowPixelSize();
 	}
 	
 	/**
@@ -137,7 +136,6 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		defaultArrowSizes = sizes;
 		// allocate arrow pixel size here
 		arrowPixelSizes = new double[defaultArrowSizes.length];
-		updateArrowPixelSize();
 	}
 	
 	/**
@@ -191,8 +189,6 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		
 		axesPixelWidth  = maxX - minX;
 		axesPixelHeight = maxY - minY;
-		
-		updateArrowPixelSize();
 	}
 	
 	/**
