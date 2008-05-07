@@ -154,7 +154,7 @@ void DrawableSubwin::redraw(void)
     return;
   }
 
-  showAxesBox();
+  drawAxesBox();
 
   displayChildren() ;
 

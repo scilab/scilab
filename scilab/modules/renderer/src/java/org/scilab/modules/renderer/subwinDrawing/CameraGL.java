@@ -103,6 +103,7 @@ public abstract class CameraGL extends ObjectGL {
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadMatrixd(projectionMatrix.getOpenGLRepresentation(), 0);
 		gl.glPushMatrix();
+		CoordinateTransformation.getTransformation(gl).update(gl);
 	}
 	
 	/**
