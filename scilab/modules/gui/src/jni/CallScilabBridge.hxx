@@ -74,14 +74,23 @@ jmethodID voidsetMenuAsParentjintjintID; // cache method id
 jmethodID voidsetRootAsParentjintID; // cache method id
 jmethodID voidsetParentjintjintID; // cache method id
 jmethodID voidsetPushButtonParentjintjintID; // cache method id
+jmethodID voidremovePushButtonFromParentjintjintID; // cache method id
 jmethodID voidsetEditBoxParentjintjintID; // cache method id
+jmethodID voidremoveEditBoxFromParentjintjintID; // cache method id
 jmethodID voidsetLabelParentjintjintID; // cache method id
+jmethodID voidremoveLabelFromParentjintjintID; // cache method id
 jmethodID voidsetCheckBoxParentjintjintID; // cache method id
+jmethodID voidremoveCheckBoxFromParentjintjintID; // cache method id
 jmethodID voidsetRadioButtonParentjintjintID; // cache method id
+jmethodID voidremoveRadioButtonFromParentjintjintID; // cache method id
 jmethodID voidsetSliderParentjintjintID; // cache method id
+jmethodID voidremoveSliderFromParentjintjintID; // cache method id
 jmethodID voidsetPopupMenuParentjintjintID; // cache method id
+jmethodID voidremovePopupMenuFromParentjintjintID; // cache method id
 jmethodID voidsetListBoxParentjintjintID; // cache method id
+jmethodID voidremoveListBoxFromParentjintjintID; // cache method id
 jmethodID voidsetFrameParentjintjintID; // cache method id
+jmethodID voidremoveFrameFromParentjintjintID; // cache method id
 jmethodID voidsetWidgetTextjintjstringID; // cache method id
 jmethodID jstringgetWidgetTextjintID; // cache method id
 jmethodID voidsetFrameTextjintjstringID; // cache method id
@@ -301,21 +310,39 @@ static void setParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setPushButtonParent(JavaVM * jvm_, long parentID, long objID);
 
+static void removePushButtonFromParent(JavaVM * jvm_, long parentID, long objID);
+
 static void setEditBoxParent(JavaVM * jvm_, long parentID, long objID);
+
+static void removeEditBoxFromParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setLabelParent(JavaVM * jvm_, long parentID, long objID);
 
+static void removeLabelFromParent(JavaVM * jvm_, long parentID, long objID);
+
 static void setCheckBoxParent(JavaVM * jvm_, long parentID, long objID);
+
+static void removeCheckBoxFromParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setRadioButtonParent(JavaVM * jvm_, long parentID, long objID);
 
+static void removeRadioButtonFromParent(JavaVM * jvm_, long parentID, long objID);
+
 static void setSliderParent(JavaVM * jvm_, long parentID, long objID);
+
+static void removeSliderFromParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setPopupMenuParent(JavaVM * jvm_, long parentID, long objID);
 
+static void removePopupMenuFromParent(JavaVM * jvm_, long parentID, long objID);
+
 static void setListBoxParent(JavaVM * jvm_, long parentID, long objID);
 
+static void removeListBoxFromParent(JavaVM * jvm_, long parentID, long objID);
+
 static void setFrameParent(JavaVM * jvm_, long parentID, long objID);
+
+static void removeFrameFromParent(JavaVM * jvm_, long parentID, long objID);
 
 static void setWidgetText(JavaVM * jvm_, long objID, char * text);
 

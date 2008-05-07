@@ -14,6 +14,8 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.Component;
+
 import javax.swing.Action;
 
 import org.flexdock.docking.DockingConstants;
@@ -243,6 +245,31 @@ public class SwingScilabTab extends View implements SimpleTab {
 	}
 
 	/**
+	 * Remove a Frame from its container
+	 * @param member the Frame to remove
+	 */
+	public void removeMember(Frame member) {
+		this.removeMember((SwingScilabFrame) member.getAsSimpleFrame());
+	}
+	
+	/**
+	 * Remove a Frame from its container
+	 * @param member the Frame to remove
+	 */
+	private void removeMember(SwingScilabFrame member) {
+		Component[] component = getComponents();
+		synchronized (getTreeLock()) {
+	        for (int i = 0; i < getComponentCount(); ++i) {
+	            if (component[i] == member) {
+	                remove(i);
+	                break;
+	              }
+	          }
+	      }
+		this.revalidate(); // If do not revalidate then the component do not disappear
+	}
+
+	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
@@ -261,6 +288,31 @@ public class SwingScilabTab extends View implements SimpleTab {
 		this.revalidate(); // If do not revalidate then the component do not appear
 		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
+	}
+
+	/**
+	 * Remove a PushButton from its container
+	 * @param member the PushButton to remove
+	 */
+	public void removeMember(PushButton member) {
+		this.removeMember((SwingScilabPushButton) member.getAsSimplePushButton());
+	}
+	
+	/**
+	 * Remove a PushButton from its container
+	 * @param member the PushButton to remove
+	 */
+	private void removeMember(SwingScilabPushButton member) {
+		Component[] component = getComponents();
+		synchronized (getTreeLock()) {
+	        for (int i = 0; i < getComponentCount(); ++i) {
+	            if (component[i] == member) {
+	                remove(i);
+	                break;
+	              }
+	          }
+	      }
+		this.revalidate(); // If do not revalidate then the component do not disappear
 	}
 
 	/**
@@ -285,6 +337,31 @@ public class SwingScilabTab extends View implements SimpleTab {
 	}
 
 	/**
+	 * Remove an EditBox from its container
+	 * @param member the EditBox to remove
+	 */
+	public void removeMember(EditBox member) {
+		this.removeMember((SwingScilabEditBox) member.getAsSimpleEditBox());
+	}
+	
+	/**
+	 * Remove an EditBox from its container
+	 * @param member the EditBox to remove
+	 */
+	private void removeMember(SwingScilabEditBox member) {
+		Component[] component = getComponents();
+		synchronized (getTreeLock()) {
+	        for (int i = 0; i < getComponentCount(); ++i) {
+	            if (component[i] == member) {
+	                remove(i);
+	                break;
+	              }
+	          }
+	      }
+		this.revalidate(); // If do not revalidate then the component do not disappear
+	}
+
+	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
@@ -303,6 +380,31 @@ public class SwingScilabTab extends View implements SimpleTab {
 		this.revalidate(); // If do not revalidate then the component do not appear
 		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
+	}
+
+	/**
+	 * Remove a Label from its container
+	 * @param member the Label to remove
+	 */
+	public void removeMember(Label member) {
+		this.removeMember((SwingScilabLabel) member.getAsSimpleLabel());
+	}
+	
+	/**
+	 * Remove a Label from its container
+	 * @param member the Label to remove
+	 */
+	private void removeMember(SwingScilabLabel member) {
+		Component[] component = getComponents();
+		synchronized (getTreeLock()) {
+	        for (int i = 0; i < getComponentCount(); ++i) {
+	            if (component[i] == member) {
+	                remove(i);
+	                break;
+	              }
+	          }
+	      }
+		this.revalidate(); // If do not revalidate then the component do not disappear
 	}
 
 	/**
@@ -327,6 +429,31 @@ public class SwingScilabTab extends View implements SimpleTab {
 	}
 
 	/**
+	 * Remove a CheckBox from its container
+	 * @param member the CheckBox to remove
+	 */
+	public void removeMember(CheckBox member) {
+		this.removeMember((SwingScilabCheckBox) member.getAsSimpleCheckBox());
+	}
+	
+	/**
+	 * Remove a CheckBox from its container
+	 * @param member the CheckBox to remove
+	 */
+	private void removeMember(SwingScilabCheckBox member) {
+		Component[] component = getComponents();
+		synchronized (getTreeLock()) {
+	        for (int i = 0; i < getComponentCount(); ++i) {
+	            if (component[i] == member) {
+	                remove(i);
+	                break;
+	              }
+	          }
+	      }
+		this.revalidate(); // If do not revalidate then the component do not disappear
+	}
+
+	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
@@ -348,6 +475,31 @@ public class SwingScilabTab extends View implements SimpleTab {
 	}
 
 	/**
+	 * Remove a RadioButton from its container
+	 * @param member the RadioButton to remove
+	 */
+	public void removeMember(RadioButton member) {
+		this.removeMember((SwingScilabRadioButton) member.getAsSimpleRadioButton());
+	}
+	
+	/**
+	 * Remove a RadioButton from its container
+	 * @param member the RadioButton to remove
+	 */
+	private void removeMember(SwingScilabRadioButton member) {
+		Component[] component = getComponents();
+		synchronized (getTreeLock()) {
+	        for (int i = 0; i < getComponentCount(); ++i) {
+	            if (component[i] == member) {
+	                remove(i);
+	                break;
+	              }
+	          }
+	      }
+		this.revalidate(); // If do not revalidate then the component do not disappear
+	}
+
+	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
@@ -366,6 +518,31 @@ public class SwingScilabTab extends View implements SimpleTab {
 		this.revalidate(); // If do not revalidate then the component do not appear
 		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
+	}
+
+	/**
+	 * Remove a Slider from its container
+	 * @param member the Slider to remove
+	 */
+	public void removeMember(Slider member) {
+		this.removeMember((SwingScilabSlider) member.getAsSimpleSlider());
+	}
+	
+	/**
+	 * Remove a Slider from its container
+	 * @param member the Slider to remove
+	 */
+	private void removeMember(SwingScilabSlider member) {
+		Component[] component = getComponents();
+		synchronized (getTreeLock()) {
+	        for (int i = 0; i < getComponentCount(); ++i) {
+	            if (component[i] == member) {
+	                remove(i);
+	                break;
+	              }
+	          }
+	      }
+		this.revalidate(); // If do not revalidate then the component do not disappear
 	}
 
 	/**
@@ -392,6 +569,31 @@ public class SwingScilabTab extends View implements SimpleTab {
 	}
 
 	/**
+	 * Remove a ListBox from its container
+	 * @param member the ListBox to remove
+	 */
+	public void removeMember(ListBox member) {
+		this.removeMember((SwingScilabListBox) member.getAsSimpleListBox());
+	}
+	
+	/**
+	 * Remove a ListBox from its container
+	 * @param member the ListBox to remove
+	 */
+	private void removeMember(SwingScilabListBox member) {
+		Component[] component = getComponents();
+		synchronized (getTreeLock()) {
+	        for (int i = 0; i < getComponentCount(); ++i) {
+	            if (component[i] == member) {
+	                remove(i);
+	                break;
+	              }
+	          }
+	      }
+		this.revalidate(); // If do not revalidate then the component do not disappear
+	}
+
+	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add
 	 * @return index of member in ArrayList
@@ -410,6 +612,31 @@ public class SwingScilabTab extends View implements SimpleTab {
 		this.revalidate(); // If do not revalidate then the component do not appear
 		setComponentZOrder(member, TOP_LAYER);
 		return this.getComponentZOrder(member);
+	}
+
+	/**
+	 * Remove a PopupMenu from its container
+	 * @param member the PopupMenu to remove
+	 */
+	public void removeMember(PopupMenu member) {
+		this.removeMember((SwingScilabPopupMenu) member.getAsSimplePopupMenu());
+	}
+	
+	/**
+	 * Remove a PopupMenu from its container
+	 * @param member the PopupMenu to remove
+	 */
+	private void removeMember(SwingScilabPopupMenu member) {
+		Component[] component = getComponents();
+		synchronized (getTreeLock()) {
+	        for (int i = 0; i < getComponentCount(); ++i) {
+	            if (component[i] == member) {
+	                remove(i);
+	                break;
+	              }
+	          }
+	      }
+		this.revalidate(); // If do not revalidate then the component do not disappear
 	}
 
 	/**

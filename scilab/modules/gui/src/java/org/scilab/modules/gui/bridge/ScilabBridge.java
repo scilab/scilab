@@ -605,6 +605,15 @@ public class ScilabBridge {
 	}
 
 	/**
+	 * Remove a Frame member from a tab
+	 * @param tab the tab which we want to remove the Frame from
+	 * @param member the Frame to remove
+	 */
+	public static void removeMember(Tab tab, Frame member) {
+		ScilabTabBridge.removeMember(tab, member);
+	}
+	
+	/**
 	 * Add a member (dockable element) to a tab and returns the index of this member
 	 * @param tab the tab where we want to add the member
 	 * @param member the member to add
@@ -654,6 +663,15 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Remove a PushButton member from a tab
+	 * @param tab the tab which we want to remove the PushButton from
+	 * @param member the PushButton to remove
+	 */
+	public static void removeMember(Tab tab, PushButton member) {
+		ScilabTabBridge.removeMember(tab, member);
+	}
+	
+	/**
 	 * Add a member (dockable element) to a tab and returns the index of this member
 	 * @param tab the tab which we want to add the EditBox to
 	 * @param member the editbox to add
@@ -661,6 +679,15 @@ public class ScilabBridge {
 	 */
 	public static int addMember(Tab tab, EditBox member) {
 		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
+	 * Remove an EditBox member from a tab
+	 * @param tab the tab which we want to remove the EditBox from
+	 * @param member the EditBox to remove
+	 */
+	public static void removeMember(Tab tab, EditBox member) {
+		ScilabTabBridge.removeMember(tab, member);
 	}
 	
 	/**
@@ -674,6 +701,15 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Remove a Label member from a tab
+	 * @param tab the tab which we want to remove the Label from
+	 * @param member the Label to remove
+	 */
+	public static void removeMember(Tab tab, Label member) {
+		ScilabTabBridge.removeMember(tab, member);
+	}
+	
+	/**
 	 * Add a member (dockable element) to a tab and returns the index of this member
 	 * @param tab the tab which we want to add the CheckBox to
 	 * @param member the checkbox to add
@@ -681,6 +717,15 @@ public class ScilabBridge {
 	 */
 	public static int addMember(Tab tab, CheckBox member) {
 		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
+	 * Remove a CheckBox member from a tab
+	 * @param tab the tab which we want to remove the CheckBox from
+	 * @param member the CheckBox to remove
+	 */
+	public static void removeMember(Tab tab, CheckBox member) {
+		ScilabTabBridge.removeMember(tab, member);
 	}
 	
 	/**
@@ -694,6 +739,15 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Remove a RadioButton member from a tab
+	 * @param tab the tab which we want to remove the RadioButton from
+	 * @param member the RadioButton to remove
+	 */
+	public static void removeMember(Tab tab, RadioButton member) {
+		ScilabTabBridge.removeMember(tab, member);
+	}
+	
+	/**
 	 * Add a member (dockable element) to a tab and returns the index of this member
 	 * @param tab the tab which we want to add the Slider to
 	 * @param member the Slider to add
@@ -701,6 +755,15 @@ public class ScilabBridge {
 	 */
 	public static int addMember(Tab tab, Slider member) {
 		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
+	 * Remove a Slider member from a tab
+	 * @param tab the tab which we want to remove the Slider from
+	 * @param member the Slider to remove
+	 */
+	public static void removeMember(Tab tab, Slider member) {
+		ScilabTabBridge.removeMember(tab, member);
 	}
 	
 	/**
@@ -714,6 +777,15 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Remove a ListBox member from a tab
+	 * @param tab the tab which we want to remove the ListBox from
+	 * @param member the ListBox to remove
+	 */
+	public static void removeMember(Tab tab, ListBox member) {
+		ScilabTabBridge.removeMember(tab, member);
+	}
+	
+	/**
 	 * Add a member (dockable element) to a tab and returns the index of this member
 	 * @param tab the tab which we want to add the PopupMenu to
 	 * @param member the PopupMenu to add
@@ -721,6 +793,15 @@ public class ScilabBridge {
 	 */
 	public static int addMember(Tab tab, PopupMenu member) {
 		return ScilabTabBridge.addMember(tab, member);
+	}
+	
+	/**
+	 * Remove a PopupMenu member from a tab
+	 * @param tab the tab which we want to remove the PopupMenu from
+	 * @param member the PopupMenu to remove
+	 */
+	public static void removeMember(Tab tab, PopupMenu member) {
+		ScilabTabBridge.removeMember(tab, member);
 	}
 	
 	/**

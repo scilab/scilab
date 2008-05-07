@@ -12,6 +12,7 @@
  */
 
 #include "SetUicontrolParent.hxx"
+#include "DestroyJavaUicontrol.hxx"
 
 using namespace org_scilab_modules_gui_bridge;
 
@@ -42,6 +43,48 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
 
       if (sciGetEntityType(figure) == SCI_FIGURE)
         {
+          // Remove from previous parent
+          if (sciGetParent(sciObj) != NULL)
+            {
+              parentFigureIndex = sciGetNum(sciGetParent(sciObj));
+
+              sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
+
+              switch(pUICONTROL_FEATURE(sciObj)->style)
+                {
+                case SCI_PUSHBUTTON:
+                  CallScilabBridge::removePushButtonFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
+                case SCI_EDIT:
+                  CallScilabBridge::removeEditBoxFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
+                case SCI_UITEXT:
+                  CallScilabBridge::removeLabelFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
+                case SCI_CHECKBOX:
+                  CallScilabBridge::removeCheckBoxFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
+                case SCI_RADIOBUTTON:
+                  CallScilabBridge::removeRadioButtonFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
+                case SCI_SLIDER:
+                  CallScilabBridge::removeSliderFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
+                case SCI_POPUPMENU:
+                  CallScilabBridge::removePopupMenuFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
+                case SCI_LISTBOX:
+                  CallScilabBridge::removeListBoxFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
+                case SCI_UIFRAME:
+                  CallScilabBridge::removeFrameFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
+                default:
+                  sciprint(_("No %s property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
+                  return SET_PROPERTY_ERROR;
+                }
+            }
+          
           // Scilab relationship
           sciAddThisToItsParent(sciObj, figure);
 

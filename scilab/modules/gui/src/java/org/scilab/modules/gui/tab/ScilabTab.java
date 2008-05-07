@@ -211,12 +211,28 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	}
 
 	/**
+	 * Remove a Frame from a Tab.
+	 * @param member the Frame to remove
+	 */
+	public void removeMember(Frame member) {
+		ScilabBridge.removeMember(this, member);
+	}
+
+	/**
 	 * We want to be able to add directly a pushbutton in a Tab.
 	 * @param member the pushbutton to add
 	 * @return the position of the pushbutton in the member list.
 	 */
 	public int addMember(PushButton member) {
 		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * Remove a PushButton from a Tab.
+	 * @param member the pushbutton to remove
+	 */
+	public void removeMember(PushButton member) {
+		ScilabBridge.removeMember(this, member);
 	}
 
 	/**
@@ -229,12 +245,28 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	}
 
 	/**
+	 * Remove an EditBox from a Tab.
+	 * @param member the EditBox to remove
+	 */
+	public void removeMember(EditBox member) {
+		ScilabBridge.removeMember(this, member);
+	}
+
+	/**
 	 * We want to be able to add directly a label in a Tab.
 	 * @param member the label to add
 	 * @return the position of the label in the member list.
 	 */
 	public int addMember(Label member) {
 		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * Remove a Label from a Tab.
+	 * @param member the Label to remove
+	 */
+	public void removeMember(Label member) {
+		ScilabBridge.removeMember(this, member);
 	}
 
 	/**
@@ -247,12 +279,28 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	}
 
 	/**
+	 * Remove a CheckBox from a Tab.
+	 * @param member the CheckBox to remove
+	 */
+	public void removeMember(CheckBox member) {
+		ScilabBridge.removeMember(this, member);
+	}
+
+	/**
 	 * We want to be able to add directly a RadioButton in a Tab.
 	 * @param member the RadioButton to add
 	 * @return the position of the RadioButton in the member list.
 	 */
 	public int addMember(RadioButton member) {
 		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * Remove a RadioButton from a Tab.
+	 * @param member the RadioButton to remove
+	 */
+	public void removeMember(RadioButton member) {
+		ScilabBridge.removeMember(this, member);
 	}
 
 	/**
@@ -265,12 +313,28 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	}
 
 	/**
+	 * Remove a Slider from a Tab.
+	 * @param member the Slider to remove
+	 */
+	public void removeMember(Slider member) {
+		ScilabBridge.removeMember(this, member);
+	}
+
+	/**
 	 * We want to be able to add directly a ListBox in a Tab.
 	 * @param member the ListBox to add
 	 * @return the position of the ListBox in the member list.
 	 */
 	public int addMember(ListBox member) {
 		return ScilabBridge.addMember(this, member);
+	}
+
+	/**
+	 * Remove a ListBox from a Tab.
+	 * @param member the ListBox to remove
+	 */
+	public void removeMember(ListBox member) {
+		ScilabBridge.removeMember(this, member);
 	}
 
 	/**
@@ -282,6 +346,14 @@ public class ScilabTab extends ScilabContainer implements Tab {
 		return ScilabBridge.addMember(this, member);
 	}
 	
+	/**
+	 * Remove a PopupMenu from a Tab.
+	 * @param member the PopupMenu to remove
+	 */
+	public void removeMember(PopupMenu member) {
+		ScilabBridge.removeMember(this, member);
+	}
+
 	/**
 	 * We want to be able to remove directly a Canvas from a Tab.
 	 * @param member canvas to remove 

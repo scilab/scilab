@@ -627,6 +627,17 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Remove a PushButton from its parent figure
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PushButton in the UIElementMapper
+	 */
+	public static void removePushButtonFromParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		PushButton pushButton = (PushButton) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.removeMember(parentTab, pushButton);
+	}
+
+	/**
 	 * Set a figure as parent for a EditBox
 	 * @param figureID the ID of the figure in the FigureMapper
 	 * @param objID the ID of the PushButton in the UIElementMapper
@@ -635,6 +646,17 @@ public class CallScilabBridge {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 		EditBox editBox = (EditBox) UIElementMapper.getCorrespondingUIElement(objID);
 		ScilabBridge.addMember(parentTab, editBox);
+	}
+
+	/**
+	 * Remove an EditBox from its parent figure
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PushButton in the UIElementMapper
+	 */
+	public static void removeEditBoxFromParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		EditBox editBox = (EditBox) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.removeMember(parentTab, editBox);
 	}
 
 	/**
@@ -649,6 +671,17 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Remove a Label from its parent figure
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PushButton in the UIElementMapper
+	 */
+	public static void removeLabelFromParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		Label label = (Label) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.removeMember(parentTab, label);
+	}
+
+	/**
 	 * Set a figure as parent for a CheckBox
 	 * @param figureID the ID of the figure in the FigureMapper
 	 * @param objID the ID of the PushButton in the UIElementMapper
@@ -657,6 +690,17 @@ public class CallScilabBridge {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 		CheckBox checkBox = (CheckBox) UIElementMapper.getCorrespondingUIElement(objID);
 		ScilabBridge.addMember(parentTab, checkBox);
+	}
+
+	/**
+	 * Remove a CheckBox from its parent figure
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PushButton in the UIElementMapper
+	 */
+	public static void removeCheckBoxFromParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		CheckBox checkBox = (CheckBox) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.removeMember(parentTab, checkBox);
 	}
 
 	/**
@@ -671,6 +715,17 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Remove a RadioButton from its parent figure
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PushButton in the UIElementMapper
+	 */
+	public static void removeRadioButtonFromParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		RadioButton radioButton = (RadioButton) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.removeMember(parentTab, radioButton);
+	}
+
+	/**
 	 * Set a figure as parent for a Slider
 	 * @param figureID the ID of the figure in the FigureMapper
 	 * @param objID the ID of the PushButton in the UIElementMapper
@@ -679,6 +734,17 @@ public class CallScilabBridge {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 		Slider slider = (Slider) UIElementMapper.getCorrespondingUIElement(objID);
 		ScilabBridge.addMember(parentTab, slider);
+	}
+
+	/**
+	 * Remove a Slider from its parent figure
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the Slider in the UIElementMapper
+	 */
+	public static void removeSliderFromParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		Slider slider = (Slider) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.removeMember(parentTab, slider);
 	}
 
 	/**
@@ -693,6 +759,17 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Remove a ListBox from its parent figure
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the ListBox in the UIElementMapper
+	 */
+	public static void removeListBoxFromParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		ListBox listBox = (ListBox) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.removeMember(parentTab, listBox);
+	}
+
+	/**
 	 * Set a figure as parent for a PopupMenu
 	 * @param figureID the ID of the figure in the FigureMapper
 	 * @param objID the ID of the PopupMenu in the UIElementMapper
@@ -704,6 +781,17 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Remove a PopupMenu from its parent figure
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PopupMenu in the UIElementMapper
+	 */
+	public static void removePopupMenuFromParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		PopupMenu popupMenu = (PopupMenu) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.removeMember(parentTab, popupMenu);
+	}
+
+	/**
 	 * Set a figure as parent for a Frame
 	 * @param figureID the ID of the figure in the FigureMapper
 	 * @param objID the ID of the PopupMenu in the UIElementMapper
@@ -712,6 +800,17 @@ public class CallScilabBridge {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 		Frame frame = (Frame) UIElementMapper.getCorrespondingUIElement(objID);
 		ScilabBridge.addMember(parentTab, frame);
+	}
+
+	/**
+	 * Remove a Frame from its parent figure
+	 * @param figureID the ID of the figure in the FigureMapper
+	 * @param objID the ID of the PopupMenu in the UIElementMapper
+	 */
+	public static void removeFrameFromParent(int figureID, int objID) {
+		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+		Frame frame = (Frame) UIElementMapper.getCorrespondingUIElement(objID);
+		ScilabBridge.removeMember(parentTab, frame);
 	}
 
 	/**

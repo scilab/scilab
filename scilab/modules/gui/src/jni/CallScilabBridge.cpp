@@ -123,14 +123,23 @@ voidsetMenuAsParentjintjintID=NULL;
 voidsetRootAsParentjintID=NULL; 
 voidsetParentjintjintID=NULL; 
 voidsetPushButtonParentjintjintID=NULL; 
+voidremovePushButtonFromParentjintjintID=NULL; 
 voidsetEditBoxParentjintjintID=NULL; 
+voidremoveEditBoxFromParentjintjintID=NULL; 
 voidsetLabelParentjintjintID=NULL; 
+voidremoveLabelFromParentjintjintID=NULL; 
 voidsetCheckBoxParentjintjintID=NULL; 
+voidremoveCheckBoxFromParentjintjintID=NULL; 
 voidsetRadioButtonParentjintjintID=NULL; 
+voidremoveRadioButtonFromParentjintjintID=NULL; 
 voidsetSliderParentjintjintID=NULL; 
+voidremoveSliderFromParentjintjintID=NULL; 
 voidsetPopupMenuParentjintjintID=NULL; 
+voidremovePopupMenuFromParentjintjintID=NULL; 
 voidsetListBoxParentjintjintID=NULL; 
+voidremoveListBoxFromParentjintjintID=NULL; 
 voidsetFrameParentjintjintID=NULL; 
+voidremoveFrameFromParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
 voidsetFrameTextjintjstringID=NULL; 
@@ -313,14 +322,23 @@ voidsetMenuAsParentjintjintID=NULL;
 voidsetRootAsParentjintID=NULL; 
 voidsetParentjintjintID=NULL; 
 voidsetPushButtonParentjintjintID=NULL; 
+voidremovePushButtonFromParentjintjintID=NULL; 
 voidsetEditBoxParentjintjintID=NULL; 
+voidremoveEditBoxFromParentjintjintID=NULL; 
 voidsetLabelParentjintjintID=NULL; 
+voidremoveLabelFromParentjintjintID=NULL; 
 voidsetCheckBoxParentjintjintID=NULL; 
+voidremoveCheckBoxFromParentjintjintID=NULL; 
 voidsetRadioButtonParentjintjintID=NULL; 
+voidremoveRadioButtonFromParentjintjintID=NULL; 
 voidsetSliderParentjintjintID=NULL; 
+voidremoveSliderFromParentjintjintID=NULL; 
 voidsetPopupMenuParentjintjintID=NULL; 
+voidremovePopupMenuFromParentjintjintID=NULL; 
 voidsetListBoxParentjintjintID=NULL; 
+voidremoveListBoxFromParentjintjintID=NULL; 
 voidsetFrameParentjintjintID=NULL; 
+voidremoveFrameFromParentjintjintID=NULL; 
 voidsetWidgetTextjintjstringID=NULL; 
 jstringgetWidgetTextjintID=NULL; 
 voidsetFrameTextjintjstringID=NULL; 
@@ -981,6 +999,27 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
+void CallScilabBridge::removePushButtonFromParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremovePushButtonFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removePushButtonFromParent", "(II)V" ) ;
+if (voidremovePushButtonFromParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "removePushButtonFromParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremovePushButtonFromParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
 void CallScilabBridge::setEditBoxParent (JavaVM * jvm_, long parentID, long objID){
 
 JNIEnv * curEnv = NULL;
@@ -994,6 +1033,27 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidsetEditBoxParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::removeEditBoxFromParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveEditBoxFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeEditBoxFromParent", "(II)V" ) ;
+if (voidremoveEditBoxFromParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "removeEditBoxFromParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveEditBoxFromParentjintjintID ,parentID, objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -1023,6 +1083,27 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
+void CallScilabBridge::removeLabelFromParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveLabelFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeLabelFromParent", "(II)V" ) ;
+if (voidremoveLabelFromParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "removeLabelFromParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveLabelFromParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
 void CallScilabBridge::setCheckBoxParent (JavaVM * jvm_, long parentID, long objID){
 
 JNIEnv * curEnv = NULL;
@@ -1036,6 +1117,27 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidsetCheckBoxParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::removeCheckBoxFromParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveCheckBoxFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeCheckBoxFromParent", "(II)V" ) ;
+if (voidremoveCheckBoxFromParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "removeCheckBoxFromParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveCheckBoxFromParentjintjintID ,parentID, objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -1065,6 +1167,27 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
+void CallScilabBridge::removeRadioButtonFromParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveRadioButtonFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeRadioButtonFromParent", "(II)V" ) ;
+if (voidremoveRadioButtonFromParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "removeRadioButtonFromParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveRadioButtonFromParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
 void CallScilabBridge::setSliderParent (JavaVM * jvm_, long parentID, long objID){
 
 JNIEnv * curEnv = NULL;
@@ -1078,6 +1201,27 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidsetSliderParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::removeSliderFromParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveSliderFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeSliderFromParent", "(II)V" ) ;
+if (voidremoveSliderFromParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "removeSliderFromParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveSliderFromParentjintjintID ,parentID, objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -1107,6 +1251,27 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
+void CallScilabBridge::removePopupMenuFromParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremovePopupMenuFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removePopupMenuFromParent", "(II)V" ) ;
+if (voidremovePopupMenuFromParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "removePopupMenuFromParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremovePopupMenuFromParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
 void CallScilabBridge::setListBoxParent (JavaVM * jvm_, long parentID, long objID){
 
 JNIEnv * curEnv = NULL;
@@ -1128,6 +1293,27 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
+void CallScilabBridge::removeListBoxFromParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveListBoxFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeListBoxFromParent", "(II)V" ) ;
+if (voidremoveListBoxFromParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "removeListBoxFromParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveListBoxFromParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
 void CallScilabBridge::setFrameParent (JavaVM * jvm_, long parentID, long objID){
 
 JNIEnv * curEnv = NULL;
@@ -1141,6 +1327,27 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidsetFrameParentjintjintID ,parentID, objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::removeFrameFromParent (JavaVM * jvm_, long parentID, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveFrameFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeFrameFromParent", "(II)V" ) ;
+if (voidremoveFrameFromParentjintjintID == NULL) {
+std::cerr << "Could not access to the method " << "removeFrameFromParent" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveFrameFromParentjintjintID ,parentID, objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

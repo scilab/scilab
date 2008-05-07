@@ -43,7 +43,15 @@
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>
+	<method name="removePushButtonFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
 	<method name="setEditBoxParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeEditBoxFromParent" returnType="void" modifier="static">
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>
@@ -51,7 +59,15 @@
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>
+	<method name="removeLabelFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
 	<method name="setCheckBoxParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeCheckBoxFromParent" returnType="void" modifier="static">
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>
@@ -59,7 +75,15 @@
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>
+	<method name="removeRadioButtonFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
 	<method name="setSliderParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeSliderFromParent" returnType="void" modifier="static">
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>
@@ -67,11 +91,23 @@
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>
+	<method name="removePopupMenuFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
 	<method name="setListBoxParent" returnType="void" modifier="static">
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>
+	<method name="removeListBoxFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
 	<method name="setFrameParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeFrameFromParent" returnType="void" modifier="static">
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>

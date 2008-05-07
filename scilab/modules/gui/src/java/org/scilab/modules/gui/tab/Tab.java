@@ -81,11 +81,23 @@ public interface Tab extends Container {
 	int addMember(Frame member);
 	
 	/**
+	 * Remove a Frame from a Tab.
+	 * @param member the Frame to remove
+	 */
+	void removeMember(Frame member);
+
+	/**
 	 * We want to be able to add directly a pushbutton in a Tab.
 	 * @param member the pushbutton to add
 	 * @return the position of the pushbutton in the member list.
 	 */
 	int addMember(PushButton member);
+
+	/**
+	 * Remove a PushButton from a Tab.
+	 * @param member the PushButton to remove
+	 */
+	void removeMember(PushButton member);
 
 	/**
 	 * We want to be able to add directly a editbox in a Tab.
@@ -95,11 +107,23 @@ public interface Tab extends Container {
 	int addMember(EditBox member);
 
 	/**
+	 * Remove an EditBox from a Tab.
+	 * @param member the EditBox to remove
+	 */
+	void removeMember(EditBox member);
+
+	/**
 	 * We want to be able to add directly a label in a Tab.
 	 * @param member the label to add
 	 * @return the position of the label in the member list.
 	 */
 	int addMember(Label member);
+
+	/**
+	 * Remove a Label from a Tab.
+	 * @param member the Label to remove
+	 */
+	void removeMember(Label member);
 
 	/**
 	 * We want to be able to add directly a checkbox in a Tab.
@@ -109,11 +133,23 @@ public interface Tab extends Container {
 	int addMember(CheckBox member);
 
 	/**
+	 * Remove a CheckBox from a Tab.
+	 * @param member the CheckBox to remove
+	 */
+	void removeMember(CheckBox member);
+
+	/**
 	 * We want to be able to add directly a RadioButton in a Tab.
 	 * @param member the RadioButton to add
 	 * @return the position of the RadioButton in the member list.
 	 */
 	int addMember(RadioButton member);
+
+	/**
+	 * Remove a RadioButton from a Tab.
+	 * @param member the RadioButton to remove
+	 */
+	void removeMember(RadioButton member);
 
 	/**
 	 * We want to be able to add directly a Slider in a Tab.
@@ -123,11 +159,23 @@ public interface Tab extends Container {
 	int addMember(Slider member);
 
 	/**
+	 * Remove a Slider from a Tab.
+	 * @param member the Slider to remove
+	 */
+	void removeMember(Slider member);
+
+	/**
 	 * We want to be able to add directly a ListBox in a Tab.
 	 * @param member the ListBox to add
 	 * @return the position of the ListBox in the member list.
 	 */
 	int addMember(ListBox member);
+
+	/**
+	 * Remove a ListBox from a Tab.
+	 * @param member the ListBox to remove
+	 */
+	void removeMember(ListBox member);
 
 	/**
 	 * We want to be able to add directly a PopupMenu in a Tab.
@@ -136,6 +184,12 @@ public interface Tab extends Container {
 	 */
 	int addMember(PopupMenu member);
 	
+	/**
+	 * Remove a PopupMenu from a Tab.
+	 * @param member the PopupMenu to remove
+	 */
+	void removeMember(PopupMenu member);
+
 	/**
 	 * We want to be able to remove directly a Canvas from a Tab.
 	 * @param member canvas to remove 
