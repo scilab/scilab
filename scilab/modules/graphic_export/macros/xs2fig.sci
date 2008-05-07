@@ -38,6 +38,7 @@ function xs2fig(figureNumber, fileName)
 	    return;
 	  end
 	end
+
 	
 	//checking file extension	 				
 	[path,fname,extension] = fileparts(fileName);
@@ -63,8 +64,14 @@ function xs2fig(figureNumber, fileName)
 		
 	// convert it to fig
 	pstoeditOptions = "-f ""fig""";
-	unix_s(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);
+	// unix_s(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);
 	// @TODO catch errors and display them if occurs
+	[stdout, status, stderr] = unix_g(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);
+	
+	if status <> 0 then
+		error(msprintf(gettext("%s: Unable to execute pstoedit.\n"), "xs2fig"));
+		disp(stderr);
+	end
 	
 	//delete the temporary eps file 
 	mdelete(fileExport);
