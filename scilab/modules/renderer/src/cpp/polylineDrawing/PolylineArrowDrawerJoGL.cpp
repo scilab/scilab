@@ -85,6 +85,11 @@ void PolylineArrowDrawerJoGL::drawPolyline( void )
 /*---------------------------------------------------------------------------------*/
 void PolylineArrowDrawerJoGL::showPolyline( void )
 {
+  show();
+}
+/*---------------------------------------------------------------------------------*/
+void PolylineArrowDrawerJoGL::redrawPolyline( void )
+{
   initializeDrawing();
   // axes may have changed
   double bounds[6];
@@ -92,7 +97,7 @@ void PolylineArrowDrawerJoGL::showPolyline( void )
   getArrowDrawerJavaMapper()->setAxesBounds(bounds[0], bounds[1],
                                             bounds[2], bounds[3],
                                             bounds[4], bounds[5]);
-  show();
+  getArrowDrawerJavaMapper()->drawPolyline();
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/

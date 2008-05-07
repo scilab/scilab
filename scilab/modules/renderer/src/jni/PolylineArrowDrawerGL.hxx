@@ -61,6 +61,7 @@ jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetArrowParametersjintjdoubleID; // cache method id
 jmethodID voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayID; // cache method id
+jmethodID voiddrawPolylineID; // cache method id
 
 
 /**
@@ -119,6 +120,8 @@ void setArrowParameters(long colorIndex, double size);
 void setAxesBounds(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax);
 
 void drawPolyline(double * xCoords, int xCoordsSize, double * yCoords, int yCoordsSize, double * zCoords, int zCoordsSize);
+
+void drawPolyline();
 
 
                         /**

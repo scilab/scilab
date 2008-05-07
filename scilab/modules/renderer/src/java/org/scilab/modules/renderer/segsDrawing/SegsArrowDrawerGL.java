@@ -22,11 +22,6 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Jean-Baptiste Silvy
  */
 public class SegsArrowDrawerGL extends ArrowHeadDrawerGL {
-
-	/** first point of the segments */
-	private Vector3D[] startPoints;
-	/** end points of the segments */
-	private Vector3D[] endPoints;
 	
 	/**
 	 * Default constructor
@@ -56,31 +51,22 @@ public class SegsArrowDrawerGL extends ArrowHeadDrawerGL {
 		}
 		setColors(colors);
 		
-		startPoints = new Vector3D[nbSegs];
-		endPoints = new Vector3D[nbSegs];
+		Vector3D[] startPoints = new Vector3D[nbSegs];
+		Vector3D[] endPoints = new Vector3D[nbSegs];
 		
 		for (int i = 0; i < nbSegs; i++) {
 			startPoints[i] = new Vector3D(startXCoords[i], startYCoords[i], startZCoords[i]);
 			endPoints[i] = new Vector3D(endXCoords[i], endYCoords[i], endZCoords[i]);
 		}
-		drawSegs();
+		drawArrowHeads(startPoints, endPoints);
 		
-	}
-	
-	/**
-	 * Display the object by displaying the alredy computed data
-	 * Don't forget to call initialize and end drawing from the C++ code
-	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
-	 */
-	public void show(int parentFigureIndex) {
-		drawSegs();
 	}
 
 	/**
 	 * Draw the segs using the precomputed values
 	 */
-	private void drawSegs() {
-		drawArrowHeads(startPoints, endPoints);
+	public void drawSegs() {
+		redrawArrowHeads();
 	}
 	
 }

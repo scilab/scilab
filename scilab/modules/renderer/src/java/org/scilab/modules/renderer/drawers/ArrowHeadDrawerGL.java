@@ -44,6 +44,9 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	private double[] defaultArrowSizes;
 	private double[] arrowPixelSizes;
 	
+	private Vector3D[] arrowStarts;
+	private Vector3D[] arrowEnds;
+	
 	/** User might specify a diferent color for each arrow head */
 	private int[] colors;
 	
@@ -61,6 +64,20 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		colors = null;
 		defaultArrowSizes = null;
 		arrowPixelSizes = null;
+	}
+	
+	/**
+	 * Use the display list of polyline
+	 * @param parentFigureIndex index of parent figure
+	 */
+	public void show(int parentFigureIndex) {
+		GL gl = getGL();
+		
+		// switch to pixel coordinates
+		GLTools.usePixelCoordinates(gl);
+		displayDL();
+		
+		GLTools.endPixelCoordinates(gl);
 	}
 	
 	/**
@@ -198,16 +215,29 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 	 * @param endPoints Arraty containing the last point of each segment.
 	 */
 	public void drawArrowHeads(Vector3D[] startPoints, Vector3D[] endPoints) {
+		this.arrowStarts = startPoints;
+		this.arrowEnds = endPoints;
+		redrawArrowHeads();
+	}
+	
+	/**
+	 * Draw arrow heads using precomputed data
+	 */
+	public void redrawArrowHeads() {
 		GL gl = getGL();
+		updateArrowPixelSize();
 		
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		
 		// need to perform this befaore swithching to pixel coordinates
-		Vector3D[] startPixCoords = transform.getCanvasCoordinates(gl, startPoints);
-		Vector3D[] endPixCoords = transform.getCanvasCoordinates(gl, endPoints);
+		Vector3D[] startPixCoords = transform.getCanvasCoordinates(gl, arrowStarts);
+		Vector3D[] endPixCoords = transform.getCanvasCoordinates(gl, arrowEnds);
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
+		
+		// begin to record display list
+		startRecordDL();
 		
 		// set color
 		double[] color = getArrowColor();
@@ -243,12 +273,11 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 			Vector3D thirdPoint = projOnDir.substract(orthoDir);
 			
 			// switch back to the new frame
-			//Vector3D firstPoint = transform.retrieveSceneCoordinates(gl, endPixCoords[i]);
-			//secondPoint = transform.retrieveSceneCoordinates(gl, secondPoint);
-			//thirdPoint = transform.retrieveSceneCoordinates(gl, thirdPoint);
 			drawTriangle(gl, endPixCoords[i], secondPoint, thirdPoint);
 		}
 		gl.glEnd();
+		
+		endRecordDL();
 		
 		GLTools.endPixelCoordinates(gl);
 	}

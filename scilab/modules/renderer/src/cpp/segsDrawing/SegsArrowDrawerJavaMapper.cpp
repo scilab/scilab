@@ -103,5 +103,9 @@ void SegsArrowDrawerJavaMapper::drawSegs(const double startXCoords[], const doub
   delete[] javaColors;
 }
 /*---------------------------------------------------------------------------------*/
-
+void SegsArrowDrawerJavaMapper::drawSegs(void)
+{
+  m_pJavaObject->drawSegs();
+}
+/*---------------------------------------------------------------------------------*/
 }

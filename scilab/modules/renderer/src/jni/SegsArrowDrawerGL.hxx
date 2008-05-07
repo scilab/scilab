@@ -62,6 +62,7 @@ jmethodID voidsetArrowSizejdoubleID; // cache method id
 jmethodID voidsetArrowSizesjdoubleArrayID; // cache method id
 jmethodID voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID voiddrawSegsjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjintArrayID; // cache method id
+jmethodID voiddrawSegsID; // cache method id
 
 
 /**
@@ -122,6 +123,8 @@ void setArrowSizes(double * sizes, int sizesSize);
 void setAxesBounds(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax);
 
 void drawSegs(double * startXCoords, int startXCoordsSize, double * endXCoords, int endXCoordsSize, double * startYCoords, int startYCoordsSize, double * endYCoords, int endYCoordsSize, double * startZCoords, int startZCoordsSize, double * endZCoords, int endZCoordsSize, long * colors, int colorsSize);
+
+void drawSegs();
 
 
                         /**

@@ -42,6 +42,11 @@ public:
   */
   virtual void showPolyline( void );
 
+  /**
+   * Redefine redraw since arrow heads are drawn in pixels.
+   */
+  virtual void redrawPolyline( void ) ;
+
 protected:
 
   /**

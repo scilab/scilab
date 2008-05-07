@@ -33,5 +33,7 @@
       <param type="double[]" name="yCoords" />
       <param type="double[]" name="zCoords" />
     </method>
+    <method name="drawPolyline" returnType="void">
+    </method>
   </object>
 </package>

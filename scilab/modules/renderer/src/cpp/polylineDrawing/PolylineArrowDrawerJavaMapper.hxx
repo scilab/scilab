@@ -53,6 +53,8 @@ public:
                             const double yCoords[],
                             const double zCoords[],
                             int nbCoords);
+
+  virtual void drawPolyline(void);
   /*----------------------------------------------------------------------*/
 
 private:

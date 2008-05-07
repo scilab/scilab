@@ -42,7 +42,7 @@ public:
 
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
-  // specific for rectangle fill drawer
+  // specific for arrow segs drawer
   virtual void setArrowSize(double size);
 
   virtual void setArrowSizes(const double sizes[], int nbSegments);
@@ -55,6 +55,8 @@ public:
                         const double startYCoords[], const double endYCoords[],
                         const double startZCoords[], const double endZCoords[],
                         const int colors[], int nbSegments);
+
+  virtual void drawSegs(void);
   /*----------------------------------------------------------------------*/
 
 private:

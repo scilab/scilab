@@ -39,5 +39,7 @@
       <param type="double[]" name="endZCoords" />
       <param type="int[]" name="colors" />
     </method>
+    <method name="drawSegs" returnType="void">
+    </method>
   </object>
 </package>

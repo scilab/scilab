@@ -24,11 +24,6 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Jean-Baptiste Silvy
  */
 public class PolylineArrowDrawerGL extends ArrowHeadDrawerGL implements PolylineDrawerStrategy {
-
-	/** first point of the segments */
-	private Vector3D[] startPoints;
-	/** end points of the segments */
-	private Vector3D[] endPoints;
 	
 	/**
 	 * Default contructor
@@ -45,8 +40,8 @@ public class PolylineArrowDrawerGL extends ArrowHeadDrawerGL implements Polyline
 	 */
 	public void drawPolyline(double[] xCoords, double[] yCoords, double[] zCoords) {
 		
-		startPoints = new Vector3D[xCoords.length - 1];
-		endPoints = new Vector3D[xCoords.length - 1];
+		Vector3D[] startPoints = new Vector3D[xCoords.length - 1];
+		Vector3D[] endPoints = new Vector3D[xCoords.length - 1];
 		
 		// store the two endpoints of each arrow
 		for (int i = 0; i < xCoords.length - 1; i++) {
@@ -54,22 +49,14 @@ public class PolylineArrowDrawerGL extends ArrowHeadDrawerGL implements Polyline
 			endPoints[i] = new Vector3D(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1]);
 		}
 		
-		drawPolyline();
-	}
-
-	/**
-	 * Display the object by displaying its display list
-	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
-	 */
-	public void show(int parentFigureIndex) {
-		drawPolyline();
+		drawArrowHeads(startPoints, endPoints);
 	}
 	
 	/**
 	 * Draw the stored arrows coordinates.
 	 */
 	public void drawPolyline() {
-		drawArrowHeads(startPoints, endPoints);
+		redrawArrowHeads();
 	}
 	
 	

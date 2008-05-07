@@ -39,8 +39,13 @@ public:
 
   /**
    * Call the display list of an object
-  */
+   */
   virtual void showSegs( void );
+
+  /**
+   * Redefines redraw segs since arrow heads are displayed using pixels
+   */
+  virtual void redrawSegs( void );
 
 protected:
 

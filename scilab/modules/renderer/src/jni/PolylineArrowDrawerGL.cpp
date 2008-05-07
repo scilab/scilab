@@ -111,6 +111,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetArrowParametersjintjdoubleID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
+voiddrawPolylineID=NULL; 
 
 
 }
@@ -145,6 +146,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetArrowParametersjintjdoubleID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voiddrawPolylinejdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
+voiddrawPolylineID=NULL; 
 
 
 }
@@ -350,6 +352,25 @@ curEnv->ExceptionDescribe() ;
 curEnv->DeleteLocalRef(yCoords_);
 curEnv->DeleteLocalRef(zCoords_);
 
+}
+
+void PolylineArrowDrawerGL::drawPolyline (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voiddrawPolylineID==NULL) { /* Use the cache Luke */ voiddrawPolylineID = curEnv->GetMethodID(this->instanceClass, "drawPolyline", "()V" ) ;
+if (voiddrawPolylineID == NULL) {
+std::cerr << "Could not access to the method " << "drawPolyline" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voiddrawPolylineID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

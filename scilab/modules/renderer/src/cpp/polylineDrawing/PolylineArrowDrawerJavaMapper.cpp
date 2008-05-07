@@ -82,4 +82,9 @@ void PolylineArrowDrawerJavaMapper::drawPolyline(const double xCoords[], const d
                               (double *)zCoords, nbCoords);
 }
 /*---------------------------------------------------------------------------------*/
+void PolylineArrowDrawerJavaMapper::drawPolyline(void)
+{
+  m_pJavaObject->drawPolyline();
+}
+/*---------------------------------------------------------------------------------*/
 }

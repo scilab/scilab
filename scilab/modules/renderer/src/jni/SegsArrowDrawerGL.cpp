@@ -112,6 +112,7 @@ voidsetArrowSizejdoubleID=NULL;
 voidsetArrowSizesjdoubleArrayID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voiddrawSegsjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjintArrayID=NULL; 
+voiddrawSegsID=NULL; 
 
 
 }
@@ -147,6 +148,7 @@ voidsetArrowSizejdoubleID=NULL;
 voidsetArrowSizesjdoubleArrayID=NULL; 
 voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voiddrawSegsjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjintArrayID=NULL; 
+voiddrawSegsID=NULL; 
 
 
 }
@@ -391,6 +393,25 @@ curEnv->DeleteLocalRef(startZCoords_);
 curEnv->DeleteLocalRef(endZCoords_);
 curEnv->DeleteLocalRef(colors_);
 
+}
+
+void SegsArrowDrawerGL::drawSegs (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voiddrawSegsID==NULL) { /* Use the cache Luke */ voiddrawSegsID = curEnv->GetMethodID(this->instanceClass, "drawSegs", "()V" ) ;
+if (voiddrawSegsID == NULL) {
+std::cerr << "Could not access to the method " << "drawSegs" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voiddrawSegsID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

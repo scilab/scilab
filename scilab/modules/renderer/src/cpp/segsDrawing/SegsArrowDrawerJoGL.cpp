@@ -56,6 +56,11 @@ void SegsArrowDrawerJoGL::drawSegs(const double xStarts[], const double xEnds[],
 /*---------------------------------------------------------------------------------*/
 void SegsArrowDrawerJoGL::showSegs( void )
 {
+  show();
+}
+/*---------------------------------------------------------------------------------*/
+void SegsArrowDrawerJoGL::redrawSegs( void )
+{
   initializeDrawing();
 
   // update bounds, they may have changed
@@ -64,7 +69,7 @@ void SegsArrowDrawerJoGL::showSegs( void )
   getArrowDrawerJavaMapper()->setAxesBounds(bounds[0], bounds[1],
                                             bounds[2], bounds[3],
                                             bounds[4], bounds[5]);
-  show();
+  getArrowDrawerJavaMapper()->drawSegs();
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
