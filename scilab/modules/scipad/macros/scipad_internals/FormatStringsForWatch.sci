@@ -70,7 +70,7 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
       if tvar == 16 then tvar = 15; listpref = "t"; end;
       if tvar == 17 then tvar = 15; listpref = "m"; end;
 
-      // some common cathegorizatizations, factored out
+      // some common cathegorizations, factored out
       if or(tvar==[1 2 4 5 6 7 8 9 10]) then
         [nr,nc] = size(var);
         losi= LocalizeForScipad("size:") + " " + string(nr) + "x" + string(nc);

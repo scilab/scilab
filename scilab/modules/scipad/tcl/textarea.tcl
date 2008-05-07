@@ -145,7 +145,7 @@ proc highlighttextarea {textarea} {
         }
     }
     if {[isdisplayed $textarea]} {
-# <TODO> must fix bug 2648
+# <TODO> must fix bug 2648 - 06/05/08: Think it's fixed, but let's see in the future...
 #        there seems to be a race condition here. [isdisplayed $textarea] returns true,
 #        i.e [getpaneframename $textarea] does return something different from "none"
 #        but nevertheless the subsequent call to the same [getpaneframename $textarea]

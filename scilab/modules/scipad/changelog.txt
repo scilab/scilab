@@ -3270,3 +3270,7 @@ Francois VOGEL, 05/05/08
  * Made use of Tcl TIP 242 to remember the file type the user selected in
    the latest open or save action (available in Tk8.5b2 (27/10/07) and above)
  * version --> 6.140
+
+Francois VOGEL, 07/05/08
+ * Fixed the elusive bug 2648 (hopefully)
+ * version --> 6.141

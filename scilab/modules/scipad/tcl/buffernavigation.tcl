@@ -362,7 +362,7 @@ proc maximizebuffer {} {
 
     # Pack the current buffer only
     packnewbuffer $curta $pad.pw0 0
-    highlighttextarea $curta
+    focustextarea $curta
 
     restoremenuesbinds
 }
@@ -619,7 +619,7 @@ proc tileallbuffers {tileorient} {
     foreach ta $talisttopack {
         packnewbuffer $ta $pad.pw0 $showtiletitle
     }
-    highlighttextarea $tacur
+    focustextarea $tacur
     updatepanestitles
 
     backgroundcolorizeuserfun
