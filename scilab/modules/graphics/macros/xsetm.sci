@@ -26,7 +26,7 @@ patterns=['black','pat 1','pat 2','pat 3','pat 4','pat 5','pat 6','pat 7',...
 
 fontsSiz=['08' ,'10','12','14','18','24'];
 
-fontsIds=[ 'Courrier',  'Symbol',  'Times ',   'Times Italic',  'Times Bold',  'Times B. It.'];
+fontsIds=[ 'Courier',  'Symbol',  'Times ',   'Times Italic',  'Times Bold',  'Times B. It.'];
 
 marksIds=['.','+','x','*','diamond fill.','diamond','triangle up','triangle down','trefle','circle'];
 

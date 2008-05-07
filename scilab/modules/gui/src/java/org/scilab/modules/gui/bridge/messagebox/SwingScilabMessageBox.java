@@ -285,7 +285,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 						button.setSelected(true);
 					}
 					// Add the button to the group (for toggle)
-					// And to the panal (for display)
+					// And to the panel (for display)
 					group.add(button);
 					panel.add(button);
 					
@@ -293,6 +293,11 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 					curItemIndex++;
 					
 				}
+				// Add empty labels if number of buttons in the line is lesser than maximum number of buttons found in a line 
+				for (int emptyLabelsIndex = buttonsPerLines.get(lineNumber); emptyLabelsIndex < numberOfColumns; emptyLabelsIndex++) {
+					panel.add(new JLabel());
+				}
+				
 				// Store the group to get the user selection when returning
 				buttonGroups[lineNumber] = group;
 				
