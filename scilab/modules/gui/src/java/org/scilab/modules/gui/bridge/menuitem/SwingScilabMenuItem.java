@@ -261,5 +261,13 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 		/* Unimplemented for MenuItems */
 		throw new UnsupportedOperationException();
 	}
+	
+	/**
+	 * Retrieve the CallBack associated to this MenuItem
+	 * @return the CallBack
+	 */
+	public CallBack getCallback() {
+		return callback;
+	}
 
 }

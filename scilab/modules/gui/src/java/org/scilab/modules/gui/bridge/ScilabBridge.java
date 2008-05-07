@@ -1560,6 +1560,15 @@ public class ScilabBridge {
 		ScilabMenuItemBridge.requestFocus(menuItem);
 	}
 
+	/**
+	 * Retrieve the CallBack associated to this MenuItem
+	 * @param menuItem the MenuItem
+	 * @return the CallBack
+	 */
+	public static CallBack getCallback(MenuItem menuItem) {
+		return ScilabMenuItemBridge.getCallback(menuItem);
+	}
+	
 	/*****************/
 	/* Menu Bridge */
 	/*****************/

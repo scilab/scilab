@@ -258,5 +258,14 @@ public class ScilabMenuItemBridge {
 	public static void requestFocus(MenuItem menuItem) {
 		menuItem.getAsSimpleMenuItem().requestFocus();
 	}
+	
+	/**
+	 * Retrieve the CallBack associated to this MenuItem
+	 * @param menuItem the MenuItem
+	 * @return the CallBack
+	 */
+	public static CallBack getCallback(MenuItem menuItem) {
+		return menuItem.getAsSimpleMenuItem().getCallback();
+	}
 
 }

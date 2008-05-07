@@ -263,5 +263,13 @@ public class ScilabMenuItem extends ScilabWidget implements MenuItem {
 	public void requestFocus() {
 		ScilabBridge.requestFocus(this);
 	}
+	
+	/**
+	 * Retrieve the CallBack associated to this MenuItem
+	 * @return the CallBack
+	 */
+	public CallBack getCallback() {
+		return ScilabBridge.getCallback(this);
+	}
 
 }

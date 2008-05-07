@@ -13,6 +13,7 @@
 
 package org.scilab.modules.gui.menuitem;
 
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.widget.Widget;
 
@@ -58,4 +59,10 @@ public interface MenuItem extends Widget {
 	 * @param childMenuItem the MenuItem we want to add
 	 */
 	void add(MenuItem childMenuItem);
+	
+	/**
+	 * Retrieve the CallBack associated to this MenuItem
+	 * @return the CallBack
+	 */
+	CallBack getCallback();
 }

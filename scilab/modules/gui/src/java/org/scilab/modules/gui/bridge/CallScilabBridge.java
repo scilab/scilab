@@ -606,9 +606,13 @@ public class CallScilabBridge {
 			Menu menuToAdd = ScilabMenu.createMenu();
 			UIElementMapper.removeMapping(objID);
 			UIElementMapper.addMapping(objID, menuToAdd);
+			
 			// Copy all properties from MenuItem to Menu
 			menuToAdd.setText(menuItem.getText());
-			// TODO Add other properties
+			menuToAdd.setCallback(menuItem.getCallback());
+			menuToAdd.setForeground(menuItem.getForeground());
+			menuToAdd.setVisible(menuItem.isVisible());
+			// End of properties copy
 			
 			// Add the menu to the tab
 			parentTab.getMenuBar().add(menuToAdd);
@@ -830,7 +834,10 @@ public class CallScilabBridge {
 			UIElementMapper.addMapping(objID, menuToAdd);
 			// Copy all properties from MenuItem to Menu
 			menuToAdd.setText(menuItem.getText());
-			// TODO Add other properties
+			menuToAdd.setCallback(menuItem.getCallback());
+			menuToAdd.setForeground(menuItem.getForeground());
+			menuToAdd.setVisible(menuItem.isVisible());
+			// End of properties copy
 
 			ScilabConsole.getConsole().getMenuBar().add(menuToAdd);
 		}
