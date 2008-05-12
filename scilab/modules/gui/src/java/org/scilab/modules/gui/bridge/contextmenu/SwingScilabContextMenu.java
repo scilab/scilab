@@ -273,4 +273,12 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Retrieve the CallBack associated to this ContextMenu
+	 * @return the CallBack
+	 */
+	public CallBack getCallback() {
+		return callback;
+	}
+
 }
