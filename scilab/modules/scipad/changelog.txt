@@ -3274,3 +3274,12 @@ Francois VOGEL, 05/05/08
 Francois VOGEL, 07/05/08
  * Fixed the elusive bug 2648 (hopefully)
  * version --> 6.141
+ 
+ES, 13/5/2008
+ * new version of FormatStringsForWatch.sci: solves several issues related to
+   loss of precision of watched variables (precision was dependent on the value
+   of format()) and display/feedback of large integers and exponential floats
+   (see bugs 1317, 2748); improvement in the display of complex numbers. The price
+   is a slowdown for very large matrices.
+ * version --> 6.142
+

@@ -26,7 +26,7 @@
 function [svar,tysi,editable] = FormatStringsForWatch(var)
 // Return three strings describing variable var in some way
 // svar:
-//   Convertion of variable var content into a single string (not a matrix
+//   Conversion of variable var content into a single string (not a matrix
 //   of strings), taking into account the type of var.
 //   The string svar is identical to what the user would have typed in the
 //   Scilab shell to define var, apart from some extra characters needed to
@@ -37,7 +37,7 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
 //   A string being "true" if var can be edited by the user in the Scipad
 //   debugger, and "false" otherwise
 // All this is used for the watch window of the debugger in Scipad.
-// Authors: François Vogel, 2004-2007, Enrico Segre 2007
+// Authors: FranÃ§ois Vogel, 2004-2007, Enrico Segre 2007-2008
 
   unklabel = "<?>"; // Warning: if this is changed it must be changed accordingly in db_init.tcl
   noedit_l = "<<";
@@ -52,7 +52,7 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
   else
 
     tysi = LocalizeForScipad("Type:") + " " + typeof(var) 
-
+    
     if and(tvar<>[1 2 4 5 6 7 8 9 10 11 13 14 15 16 17 128 129 130]) then
       // unsupported cases
       warning(LocalizeForScipad(" what you try to watch is of type ")...
@@ -104,19 +104,7 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
       select tvar
 
       case 1 then  // real or complex matrix
-        varstr = string(var);
-        if isreal(var) then
-          varstr=FormatInfNanForWatch(var,varstr)
-        else
-          // note bug 2409: there is no complex variable with inf imaginary part
-          // which ~isnan
-          a=isnan(var); b=imag(var(a))
-          varstr(a)="%nan+%i*"+FormatInfNanForWatch(b,string(b))
-          a=isinf(var); b=real(var(a));
-          varstr(a)=FormatInfNanForWatch(b,string(b))+"+%i*"+string(imag(var(a)))
-          // note "+%i*"+string(imag(var(a))) and not string(%i*imag(var(a)))
-          // because string(0*%i)=="0"
-        end
+        varstr=MatrixToFullPrecisString(var)
         svar=StringMatrixForWatch(varstr)
         tysi = tysi + " (" + reco + "), " + losi
 
@@ -130,8 +118,8 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
           end; end
           svar=StringMatrixForWatch(varstr)
         else
-          co = strcat(string(coeff(var))," ");
-          unknown = stripblanks(varn(var));  // stripblanks is no more required since cvs 26 May 05
+          co = strcat(MatrixToFullPrecisString(coeff(var))," ");
+          unknown = (varn(var));  // stripblanks is no more required since cvs 26 May 05
           svar = "poly(\[" + co + "\],\""" + unknown + "\"",\""coeff\"")";
         end
         tysi = tysi + " (" + reco + "), " + losi
@@ -162,8 +150,9 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
         it = inttype(var);
         if it > 10 then it = it - 10; pre = "u"; else pre = emptystr(); end
         nbits = it*8;
-        svar = pre + "int" +string(nbits)+ "(" + StringMatrixForWatch(string(var))+ ")";
-
+        svar = pre + "int" +string(nbits)+ "(" + StringMatrixForWatch(MatrixToFullPrecisString(var))+ ")";
+         // note: for var>2^31, bug 2140/2862/2969 lurks in (corrected in scilab5 trunk)
+         
       case 9 then  // graphic handle, we aren't yet able to display the content
         svar = noedit_l + LocalizeForScipad("graphic handle") + noedit_r
 
@@ -231,14 +220,6 @@ endfunction
 
 // Ancillaries for FormatStringsForWatch
 
-function varstr = FormatInfNanForWatch(var,varstr)
-// ancillary to replace Inf, Nan in real variables
-// var and svar should be consistent! (svar=string(var))
-      varstr(isnan(var))="%nan"
-      varstr(var==%inf)="%inf"
-      varstr(var==-%inf)="-%inf"
-endfunction
-
 function svar=StringMatrixForWatch(varstr)
 // properly formats the resulting string matrix as if the user would have
 // typed it into the Scilab shell (apart from added \ chars)
@@ -256,4 +237,70 @@ function svar=StringMatrixForWatch(varstr)
   else
     svar = varstr;
   end
+endfunction
+
+function varstr=MatrixToFullPrecisString(var)
+  //ancillary which replaces varstr=string(var), overcoming the 
+  // following limitations (bugs 1317, 2487):
+  // -output always guarantees full double precision accuracy,
+  //  irrespectful of format(), but is as short as possible
+  // -exponents larger than E100 are output in C, not in Fortran form
+  // Performance is unfortunately worse than string() alone and possibly
+  //  polynomial in the matrix size, despite the tour de force
+  // See comments in bug 2784
+  [nr,nc]=size(var)
+  b=var(:);
+  if b<>[] then
+    if type(b)==8 | isreal(b) then //rely on short circuit, isreal() is not defined for int
+      //there are cases (e.g. 1.1) in which %.17g gives a longer
+      // form with trailing numerical noise. To see if the shorter
+      // form is ok, compare them.
+      s1=tokens(msprintf("%.16g ",b)); varstr=tokens(msprintf("%.17g ",b))
+      t=(msscanf(nr,s1,"%lg")==msscanf(nr,varstr,"%lg"))
+      // the comparison is ok even for inf, nan
+      varstr(t)=s1(t);
+      //recast inf, nan in input form
+      varstr(isnan(b))="%nan"
+      varstr(b==%inf)="%inf"
+      varstr(b==-%inf)="-%inf"    
+    else
+    //the ancillary calls itself for real and imaginary part
+      rvar=real(b); ivar=imag(b); aivar=abs(ivar)
+      isign=sign(ivar); minusplus=["-","+"]; minusblank=["-",""]
+      Re0=(rvar==0); Im0=(ivar==0); Im1=(aivar==1); Implus=((isign>0)+1)
+      asign=minusplus(Implus)'
+      aminus=minusblank(Implus)'
+     //slightly inefficient to call MatrixToFullPrecisString twice to fill the initial
+     // full array and then additionally to reduce it, but I don't want to break my head
+      varstr=MatrixToFullPrecisString(rvar)+asign+MatrixToFullPrecisString(aivar)+"*%i"
+      varstr(Re0)=aminus(Re0)+MatrixToFullPrecisString(aivar(Re0))+"*%i"
+      varstr(Im0)=MatrixToFullPrecisString(rvar(Im0))
+      // complex numbers like a+%i*%inf, %inf+b*%i should be treated separately
+      // Nan real part: note bug 2409: complex variables with %inf 
+      //  imaginary part give isnan==%t
+      // However, we have treated them above using separately Re and Im: ok anyway.  
+    end
+    varstr=matrix(varstr,nr,nc)
+  else
+    varstr=[]
+  end
+endfunction
+
+function varstr=ComplxMatrixToFullString(var)
+  //ancillary which replaces varstr=string(a), overcoming the 
+  // following limitations (bugs 1317, 2487):
+  // -output always guaranteed full double precision accuracy,
+  //  irrespectful of format()
+  // -exponents larger than E100 are output in C, not in Fortran form
+  [nr,nc]=size(var)
+  rvar=real(var); ivar=imag(var); aivar=abs(ivar)
+  isign=sign(ivar); minusplus=["-","+"]
+  asign=matrix(minusplus((isign>0)+1),nr,nc)
+  varstr=RealMatrixToFullString(rvar)+asign+RealMatrixToFullString(aivar)+"*%i"
+  varstr(rvar==0)=asign(rvar==0)+RealMatrixToFullString(aivar(rvar==0))+"*%i"
+  varstr(ivar==0)=RealMatrixToFullString(rvar(ivar==0))
+  // complex numbers like a+%i*%inf, %inf+b*%i should be treated separately
+  // Nan real part: note bug 2409: complex variables with %inf 
+  //  imaginary part give isnan==%t
+  // However, we have treated them above using separately Re and Im: ok anyway.
 endfunction
