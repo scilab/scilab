@@ -943,7 +943,50 @@ void GetRhsCSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalEle
 	C2F(intersci).lad[_iVarNum - 1] = *_piReal;
 }
 
-/*CreateCVarFromPtr(2, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);*/
+void GetRhsBooleanSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow)
+{
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
+	int iValType		= *istk(iAddrBase);
+	int iAddrColByRow	= 0;
+	int iAddElemByRow	= 0;
+	int iIndex			= 0;
+
+	int *piTemp			= NULL;
+	double *pdblTest	= NULL;
+	int *piTest			= NULL;
+	if(iValType < 0)
+	{
+		iAddrBase		= iadr(*istk(iAddrBase + 1));
+		iValType		= *istk(iAddrBase);
+	}
+
+	piTemp				= istk(iAddrBase);
+	*_piRows			= *istk(iAddrBase + 1);
+	*_piCols			= *istk(iAddrBase + 2);
+	*_piTotalElem		= *istk(iAddrBase + 4);
+
+	//if ptr are NULL, juste return the matrix size
+	if(_piElemByRow == NULL || _piColByRow == NULL)
+		return;
+
+	iAddElemByRow		= iAddrBase + 5;
+	iAddrColByRow		= iAddElemByRow + *_piRows;
+
+	for(iIndex = 0 ; iIndex < *_piRows ; iIndex++)
+	{
+		_piElemByRow[iIndex] = *istk(iAddElemByRow + iIndex);
+	}
+
+	for(iIndex = 0 ; iIndex < *_piTotalElem ; iIndex++)
+	{
+		_piColByRow[iIndex] = *istk(iAddrColByRow + iIndex);
+	}
+
+	C2F(intersci).ntypes[_iVarNum - 1] = '$' ;
+	C2F(intersci).iwhere[_iVarNum - 1] = *Lstk(_iVarNum);
+//	C2F(intersci).lad[_iVarNum - 1] = *_piReal;
+}
+
 void CreatePolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double* _pdblRealData)
 {
 	CreateCPolyVarFromPtr(_iNewVal, _piVarName, _iRows, _iCols, _piPow, _pdblRealData, NULL);
@@ -956,7 +999,7 @@ void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCol
 	int iAddrPtr		= 0;
 	int iAddrData		= 0;
 
-	*istk(iAddrBase)	= 2;
+	*istk(iAddrBase)	= sci_poly;
 	*istk(iAddrBase + 1)= _iRows;
 	*istk(iAddrBase + 2)= _iCols;
 	*istk(iAddrBase + 3)= 0; // Non complex values
@@ -1013,7 +1056,7 @@ void CreateCSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalEl
 	int iAddrRealData	= 0;
 	int iAddrImgData	= 0;
 
-	*istk(iAddrBase)	= 5;
+	*istk(iAddrBase)	= sci_sparse;
 	*istk(iAddrBase + 1)= _iRows;
 	*istk(iAddrBase + 2)= _iCols;
 	*istk(iAddrBase + 3)= 0; // Non complex values
@@ -1056,6 +1099,42 @@ void CreateCSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalEl
 		*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrRealData) + _iTotalElem + iIndex;
 
 
+}
+
+void CreateCBooleanSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int* _piElemByRow, int* _piColByRow)
+{
+	int iIndex			= 0;
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iNewVal));
+	int iAddElemByRow	= 0;
+	int iAddrColByRow	= 0;
+	int iAddrRealData	= 0;
+
+	*istk(iAddrBase)	= sci_boolean_sparse;
+	*istk(iAddrBase + 1)= _iRows;
+	*istk(iAddrBase + 2)= _iCols;
+	*istk(iAddrBase + 3)= 0; // Non complex values
+	*istk(iAddrBase + 4)= _iTotalElem;
+
+	iAddElemByRow		= iAddrBase + 5;
+	iAddrColByRow		= iAddElemByRow + _iRows;
+	iAddrRealData		= iAddrColByRow + _iTotalElem;
+
+	for(iIndex = 0 ; iIndex < _iRows ; iIndex++)
+		*istk(iAddElemByRow + iIndex) = _piElemByRow[iIndex];
+	
+	for(iIndex = 0 ; iIndex < _iTotalElem ; iIndex++)
+	{
+//		int iTemp		= 0;
+		*istk(iAddrColByRow + iIndex) = _piColByRow[iIndex];
+//		iTemp			= sadr(iAddrRealData) + iIndex;
+//		*stk(iTemp)		= _piRealData[iIndex];
+	}
+
+	C2F(intersci).ntypes[Top - Rhs + _iNewVal - 1]	= '$';
+	C2F(intersci).iwhere[Top - Rhs + _iNewVal - 1]	= *Lstk(_iNewVal);
+	C2F(intersci).lad[Top - Rhs + _iNewVal - 1]		= sadr(iAddrRealData);
+
+	*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrRealData) + iIndex;
 }
 
 int GetDimFromVar(int _iVarNum, int _iNum/*Oo*/, int* _piVal)
@@ -1185,4 +1264,58 @@ void GetVarDimension(int _iVarNum, int* _piRows, int* _piCols)
 
 	*_piRows = *istk(iAddress + 1);
 	*_piCols = *istk(iAddress + 2);
+}
+
+int iGetOrient(int _iVal)
+{
+	int iMode			= 0;
+	int iRows			= 0;
+	int iCols			= 0;
+	int iRealData		= 0;
+	char **szRealData	= 0;
+	double dblSel = 0;
+	double *pdblRealData = 0;
+
+	if(GetType(2) == sci_matrix)
+	{
+		GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
+		iMode = (int)stk(iRealData)[0];
+	}
+	else if(GetType(2) == sci_strings)
+	{
+		GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &iRows, &iCols, &szRealData);
+		iMode = (int)*szRealData[0];
+	}
+	else
+	{
+		Error(44);
+		return -2;
+	}
+	
+	if(iRows != 1 || iCols != 1)
+	{
+		Error(89);
+		return -2;
+	}
+
+	if(iMode == ROW_LETTER || iMode == BY_ROWS)
+		iMode = BY_ROWS;
+	else if(iMode == COL_LETTER || iMode == BY_COLS)
+		iMode = BY_COLS;
+	else if(iMode == STAR_LETTER || iMode == BY_ALL)
+		iMode = BY_ALL;
+	else if(iMode == MTLB_LETTER || iMode == BY_MTLB)
+	{//J'ai pas tout compris dans le fonctionnement pour MtLb
+		iMode = 0;
+		if(iRows > 1)
+			iMode = 1;
+		else if(iCols > 1)
+			iMode = 2;
+	}
+	else
+	{
+		Error(44);
+		return -2;
+	}
+	return iMode;
 }
