@@ -254,7 +254,7 @@ function varstr=MatrixToFullPrecisString(var)
       //there are cases (e.g. 1.1) in which %.17g gives a longer
       // form with trailing numerical noise. To see if the shorter
       // form is ok, compare them.
-      s1=tokens(msprintf("%.16g ",b)); varstr=tokens(msprintf("%.17g ",b))
+      s1=tokens(msprintf(" %.16g",b)); varstr=tokens(msprintf(" %.17g",b))
       t=(msscanf(nr,s1,"%lg")==msscanf(nr,varstr,"%lg"))
       // the comparison is ok even for inf, nan
       varstr(t)=s1(t);
