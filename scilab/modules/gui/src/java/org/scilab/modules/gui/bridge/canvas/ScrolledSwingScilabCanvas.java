@@ -169,7 +169,7 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 		getCanvas().setAutoResizeMode(onOrOff);
 
 		// so the canvas will retrieve its good position
-		//** getCanvas().revalidate();
+		getCanvas().revalidate();
 	}
 
 	/**
