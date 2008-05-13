@@ -27,9 +27,17 @@ char * TermReadAndProcess(void)
 	char *OEMline = NULL;
 	char *returnedline = NULL;
 
-	GetCurrentPrompt(save_prompt);
-
-	OEMline = readline_nw (save_prompt);
+        if (GetTemporaryPrompt()!=NULL) /* Input function is used */
+          {
+            OEMline = readline_nw(GetTemporaryPrompt());
+            ClearTemporaryPrompt();
+          }
+        else
+          {
+            GetCurrentPrompt(save_prompt);
+            OEMline = readline_nw (save_prompt);
+          }
+        
 	if (OEMline)
 	{
 		char *line = NULL;

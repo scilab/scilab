@@ -158,6 +158,7 @@ static struct termio arg;
 #define ESC          0x01b
 /*--------------------------------------------------------------------------*/
 static char Sci_Prompt[10];
+static char *tmpPrompt = NULL;
 
 /* declare and define initial sequences. They
  * may be overwritten by termcap entries */
@@ -267,6 +268,7 @@ char *TermReadAndProcess(void)
 
   char *buffer;
 
+  tmpPrompt = GetTemporaryPrompt(); /* Input function has been used ? */
   GetCurrentPrompt(Sci_Prompt);
 
   if(init_flag)
@@ -304,7 +306,15 @@ char *TermReadAndProcess(void)
   if(sendprompt)
     {
       printf("\n");
-      printf(Sci_Prompt);/* write prompt */
+      if(tmpPrompt!=NULL)
+        {
+          printf(tmpPrompt);
+          ClearTemporaryPrompt();
+        }
+      else
+        {
+          printf(Sci_Prompt);/* write prompt */
+        }
     }
 
   sendprompt=1;
@@ -708,7 +718,15 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
       sprintf(msg,"%s %s", msg, completionResults[j]);
 
     }
-    sprintf(msg,"%s\r\n%s%s",msg,Sci_Prompt,wk_buf);
+    if (tmpPrompt!=NULL)
+      {
+        sprintf(msg,"%s\r\n%s%s",msg,tmpPrompt,wk_buf);
+        ClearTemporaryPrompt();
+      }
+    else
+      {
+        sprintf(msg,"%s\r\n%s%s",msg,Sci_Prompt,wk_buf);
+      }
     display_string(msg);
   }
 }

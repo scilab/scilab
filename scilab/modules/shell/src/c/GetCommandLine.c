@@ -35,6 +35,7 @@
 
 /*--------------------------------------------------------------------------*/
 static char Sci_Prompt[10];
+static char* tmpPrompt = NULL;
 
 static char * __CommandLine;
 
@@ -62,12 +63,21 @@ char *TermReadAndProcess(void);
  **********************************************************************/
 static void getCommandLine(void)
 {
+  tmpPrompt = GetTemporaryPrompt();
   GetCurrentPrompt(Sci_Prompt);
 
   if (getScilabMode() == SCILAB_STD)
     {
       /* Send new prompt to Java Console, do not display it */
-      SetConsolePrompt(Sci_Prompt);
+      if (tmpPrompt != NULL)
+        {
+          SetConsolePrompt(tmpPrompt);
+          ClearTemporaryPrompt();
+        }
+      else
+        {
+          SetConsolePrompt(Sci_Prompt);
+        }
       setSearchedTokenInScilabHistory(NULL);
       /* Call Java Console to get a string */
       __CommandLine = ConsoleRead();

@@ -20,5 +20,8 @@ checkrhs_
 createvar_
 createvarfromptr_
 GetCurrentPrompt
+SetTemporaryPrompt
+GetTemporaryPrompt
+ClearTemporaryPrompt
 set_is_reading
 freeArrayOfString

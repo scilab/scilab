@@ -9,22 +9,22 @@
 
 
 function [x]=input(msg,flag)
-  fmt='%['+ascii(32)+'-'+ascii(254)+']'// a tricky way to get all ascii codes  sequences
-  n=size(msg,'*')
+  fmt="%["+ascii(32)+"-"+ascii(254)+"]";// a tricky way to get all ascii codes  sequences
+  n=size(msg,"*")
   for k=1:n-1
-    mprintf(msg(k)+'\n')
+    mprintf(msg(k)+"\n")
   end
   if argn(2)==2 then
-    mprintf(msg(n))
-     x=mscanf(fmt) 
+    prompt(msg(n) + gettext(": "));
+    x=mscanf(fmt) 
   else
     while %t
-      mprintf(msg(n))
+      prompt(msg(n) + gettext(": "));
       x=stripblanks(mscanf(fmt))
-      if length(x)==0 then x='[]',end
-      ierr=execstr('x='+x,'errcatch')
+      if length(x)==0 then x="[]",end
+      ierr=execstr("x="+x,"errcatch")
       if ierr==0 then break,end
-      mprintf(strcat(lasterror(),'\n'))
+      mprintf(strcat(lasterror(),"\n"))
     end
   end
 endfunction

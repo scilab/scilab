@@ -34,5 +34,8 @@
 /*--------------------------------------------------------------------------*/ 
 void C2F(setprlev)( int *pause);
 void GetCurrentPrompt(char *CurrentPrompt);
+void SetTemporaryPrompt(char *tempPrompt);
+char *GetTemporaryPrompt(void);
+void ClearTemporaryPrompt(void);
 /*--------------------------------------------------------------------------*/ 
 #endif /* _PROMPT_H_ */

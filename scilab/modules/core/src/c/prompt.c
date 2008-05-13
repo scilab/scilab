@@ -16,9 +16,14 @@
 #include "sciprint.h"
 #include "warningmode.h"
 #include "localization.h"
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_Windows.h"
+#endif
 /*------------------------------------------------------------------------*/
 static char Sci_Prompt[10];
 static BOOL dispWarningLevelPrompt=TRUE;
+static char *temporaryPrompt=NULL;
 /*------------------------------------------------------------------------*/
 /* setprlev : set the current prompt string */
 /*------------------------------------------------------------------------*/
@@ -46,5 +51,21 @@ void GetCurrentPrompt(char *CurrentPrompt)
 	{
 		strcpy(CurrentPrompt,Sci_Prompt);
 	}
+}
+/*------------------------------------------------------------------------*/
+void SetTemporaryPrompt(char *tempPrompt)
+{
+  temporaryPrompt = strdup(tempPrompt);
+}
+/*------------------------------------------------------------------------*/
+char *GetTemporaryPrompt(void)
+{
+  return temporaryPrompt;
+}
+/*------------------------------------------------------------------------*/
+void ClearTemporaryPrompt(void)
+{
+  FREE(temporaryPrompt);
+  temporaryPrompt = NULL;
 }
 /*------------------------------------------------------------------------*/
