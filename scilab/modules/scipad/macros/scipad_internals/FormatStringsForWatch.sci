@@ -151,7 +151,6 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
         if it > 10 then it = it - 10; pre = "u"; else pre = emptystr(); end
         nbits = it*8;
         svar = pre + "int" +string(nbits)+ "(" + StringMatrixForWatch(MatrixToFullPrecisString(var))+ ")";
-         // note: for var>2^31, bug 2140/2862/2969 lurks in (corrected in scilab5 trunk)
          
       case 9 then  // graphic handle, we aren't yet able to display the content
         svar = noedit_l + LocalizeForScipad("graphic handle") + noedit_r
@@ -241,7 +240,7 @@ endfunction
 
 function varstr=MatrixToFullPrecisString(var)
   //ancillary which replaces varstr=string(var), overcoming the 
-  // following limitations (bugs 1317, 2487):
+  // following limitations (bugs 1317, 2784):
   // -output always guarantees full double precision accuracy,
   //  irrespectful of format(), but is as short as possible
   // -exponents larger than E100 are output in C, not in Fortran form
