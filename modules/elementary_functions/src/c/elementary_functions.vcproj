@@ -639,6 +639,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sqrt.c"
+				>
+			</File>
+			<File
 				RelativePath=".\tan.c"
 				>
 			</File>

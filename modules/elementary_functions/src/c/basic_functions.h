@@ -19,17 +19,6 @@
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 extern double C2F(logp1) _PARAMS((double *x));
 
-/*Constants*/
-#define ROW_LETTER		'r'
-#define COL_LETTER		'c'
-#define STAR_LETTER		'*'
-#define MTLB_LETTER		'm'
-
-#define BY_ROWS			1
-#define BY_COLS			2
-#define BY_ALL			0
-#define	BY_MTLB			-1
-
 double lnp1m1(double _dblVar);
 
 double dabss(double _dblVal);
@@ -61,6 +50,7 @@ double dcoshs(double _dblVal);
 double dsinhs(double _dblVal);
 
 double dsqrts(double _dblVal);
+void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_pdblImgOut);
 
 double dlogs(double _dblVal);
 void wlog(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
@@ -84,5 +74,12 @@ void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 double dfloors(double _dblVal);
 double dfrexps(double _dblVal, double *_pdblExp);
 double dpythags(double _dblVal1, double _dblVal2);
+double dblNearFloat(double _dblVal, double _dblMode);
+
+void vDmProd(int _iMode, double* _pdblIn, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut, int _iInc);
+void vWDmProd(int _iMode, double* _pdblIn1, double* _pdblIn2, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut1, double* _pdblOut2, int _iInc);
+
+double durands(int *_iVal);
+int nint(double _iVal);
 
 #endif //__BASIC_FUNCTION__

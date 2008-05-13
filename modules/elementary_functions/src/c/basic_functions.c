@@ -11,13 +11,6 @@
  */
 #include "basic_functions.h"
 
-/*sqrt*/
-double dsqrts(double _dblVal)
-{
-    return sqrt(_dblVal);
-}
-
-
 /*
 *     PURPOSE
 *        computes sqrt(a^2 + b^2) with accuracy and
@@ -223,18 +216,18 @@ subroutine emploie des boucles "epanouis". dans le cas ou
 les increments sont negatifs, cette subroutine prend
 les composantes en ordre inverse.
 */
-void vDvmul(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iIncIn2, double* _piOut)
+void vDvmul(int _iNbElem, double* _pdblIn1, double* _pdblIn2, int _iIncIn1, int _iIncIn2, double* _pdblOut)
 {
 	int iIndex = 0;
 	if(_iIncIn1 == 1 && _iIncIn2 == 1)
 	{
 		for(iIndex = 0; iIndex < _iNbElem ; iIndex++)
-			_piOut[iIndex] = _piIn1[iIndex] * _piIn2[iIndex];
+			_pdblOut[iIndex] = _pdblIn1[iIndex] * _pdblIn2[iIndex];
 	}
 	else
 	{
-		int iIndex1 = 1;
-		int iIndex2 = 1;
+		int iIndex1 = 0;
+		int iIndex2 = 0;
 		if(_iIncIn1 < 0)
 			iIndex1 = (-_iNbElem + 1) * _iIncIn1 + 1;
 		if(_iIncIn2 < 0)
@@ -242,7 +235,7 @@ void vDvmul(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iIn
 
 		for(iIndex = 0; iIndex < _iNbElem ; iIndex++)
 		{
-			_piOut[iIndex2] = _piIn1[iIndex1] * _piIn2[iIndex2];
+			_pdblOut[iIndex2] = _pdblIn1[iIndex1] * _pdblIn2[iIndex2];
 			iIndex1			+= _iIncIn1;
 			iIndex2			+= _iIncIn2;
 		}
@@ -263,8 +256,8 @@ void vWvmul(int _iNbElem, double* _piRealIn1, double* _piImgIn1, double* _piReal
 	}
 	else
 	{
-		int iIndex1 = 1;
-		int iIndex2 = 1;
+		int iIndex1 = 0;
+		int iIndex2 = 0;
 		if(_iIncIn1 < 0)
 			iIndex1 = (-_iNbElem + 1) * _iIncIn1 + 1;
 		if(_iIncIn2 < 0)
@@ -518,4 +511,267 @@ double dfrexps(double _dblVal, double *_pdblExp)
 	dblCoef = frexp(_dblVal, &iExp);
 	*_pdblExp = iExp;
 	return dblCoef;
+}
+
+double dblNearFloat(double _dblVal, double _dblMode)
+{
+	double dblSignMode	= 0;
+	double dblSignVal	= 0;
+	double dblAbsVal	= 0;
+
+	double dblRMax		= F2C(dlamch)("o",1L);
+	double dblRMin		= F2C(dlamch)("u",1L);
+	double dblBase		= F2C(dlamch)("b",1L);
+	int iP				= (int)F2C(dlamch)("n",1L);
+	double dblLogBase	= dlogs(dblBase);
+
+	double dblUlp		= pow(dblBase, 1 - iP);
+	double dblTiny		= 0;
+	BOOL bNorm			= FALSE;
+
+	if(dblRMin / dblRMax != 0)
+	{
+		int iIndex = 0;
+		bNorm	= TRUE;
+		dblTiny	= dblRMin;
+		for(iIndex = 1 ; iIndex < iP ; iIndex++)
+			dblTiny	/= dblBase;
+	}
+	else
+		bNorm = FALSE;
+
+	dblSignMode	= dsigns(1, _dblMode);
+	dblSignVal	= dsigns(1, _dblVal);
+	dblAbsVal	= dabss(_dblVal);
+
+	if(ISNAN(_dblVal) == 1) // NaN
+	{
+		return _dblVal;
+	}
+	else if(dblAbsVal > dblRMax) // +/- Inf
+	{
+		if(dblSignMode * dblSignVal < 0)
+			return dblSignVal * dblRMax;
+		else
+			return _dblVal;
+	}
+	else if(dblAbsVal >= dblRMin)
+	{
+		//usual case : x is a normalised floating point number
+		// 1/ got the exponent e and the exponent part ep = base^e
+		int iE			= (int)(dlogs(dblAbsVal) / dblLogBase);
+		double dblEp	= pow(dblBase, iE);
+		double dblMant	= 0;
+
+		//in case of xa very near RMAX an error in e (of + 1)
+		//result in an overflow in ep
+		if(iE > dblRMax)
+			iE		-= 1;
+		//also in case of xa very near RMIN and when denormalised
+		//number are not used, an error in e (of -1) results in a
+		//flush to 0 for ep.
+		if(dblEp == 0)
+			iE		-= 1;
+
+		dblEp	= pow(dblBase, iE);
+
+		// 2/ got the mantissa 
+		dblMant	= dblAbsVal / dblEp;
+
+		// 3/ verify that 1 <= m < BASE
+		if(dblMant < 1)
+		{
+			while(dblMant < 1)
+			{
+				dblMant *= dblBase;
+				dblEp	/= dblBase;
+			}
+		}
+		else if(dblMant >= dblBase)
+		{
+			while(dblMant < 1)
+			{
+				dblMant /= dblBase;
+				dblEp	*= dblBase;
+			}
+		}
+
+		// 4/ now compute the near float
+		if(dblSignMode * dblSignVal < 0)
+		{
+			if( dblMant == 1)
+				return dblSignVal * (dblMant - (dblUlp / dblBase )) * dblEp;
+			else
+				return dblSignVal * (dblMant - dblUlp) * dblEp;
+		}
+		else
+			return dblSignVal * (dblMant + dblUlp) * dblEp;
+	}
+	else if(_dblVal == 0)
+	{//case x = 0  nearfloat depends if denormalised numbers are used
+		if(bNorm)
+			return dblSignMode * dblTiny;
+		else
+			return dblSignMode * dblRMin;
+	}
+	else //x is a denormalised number 
+		return _dblVal + dblSignMode * dblTiny;
+}
+
+/*
+purpose
+    computes the product of the entries of a matrix according to flag
+calling sequence
+    subroutine dmprod(flag,a,na,m,n,v,nv)
+    double precision a(na,n),v(*)
+    integer na,n,m,nv
+    integer flag
+parameters
+    flag : indicates operation to perform
+           0 : returns in v(1) the product of all entries of a
+           1 : returns in v(j) the product of jth column of a
+           2 : returns in v(i) the product of ith row of a
+    a    : array containing the a matrix
+    na   : a matrix leading dimension
+    m    : a matrix row dimension
+    n    : a matrix column dimension
+    v    : array containing the result, may be confused with a row or
+           a column of the a matrix
+           if flag==0 size(v)>=1
+           if flag==1 size(v)>=n*nv
+           if flag==1 size(v)>=m*nv
+    nv   : increment between to consecutive entries ov v
+*/
+void vDmProd(int _iMode, double* _pdblIn, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut, int _iInc)
+{
+	int iIndex = 0;
+	int iLoop = 0;
+	switch(_iMode)
+	{
+	case 0 :
+		_pdblOut[0] = 1;
+		vDvmul(_iRows * _iCols, _pdblIn, _pdblOut, 1, 0, _pdblOut);
+		break;
+	case 1 :
+	{
+		for(iLoop = 0 ; iLoop < _iCols ; iLoop++)
+		{
+			_pdblOut[iIndex] = 1;
+			vDvmul(_iRows, _pdblIn + _iRows * iLoop, _pdblOut + iIndex, 1, 0, _pdblOut + iIndex);
+			iIndex += _iInc;
+		}
+	}
+		break;
+	case 2 :
+	{
+		for(iLoop = 0 ; iLoop < _iRows ; iLoop++)
+		{
+			_pdblOut[iIndex] = 1;
+			vDvmul(_iCols, _pdblIn + iLoop, _pdblOut + iIndex, _iRows, 0, _pdblOut + iIndex);
+			iIndex += _iInc;
+		}
+	}
+		break;
+	}
+}
+
+/*
+purpose
+    computes the product of the entries of a complex matrix according to flag
+calling sequence
+    subroutine wmprod(flag,ar,ai,na,m,n,vr,vi,nv)
+    double precision ar(na,n),ai(na,n),vr(*),vi(*)
+    integer na,n,m,nv
+    integer flag
+parameters
+    flag : indicates operation to perform
+           0 : returns in v(1) the product of all entries of a
+           1 : returns in v(j) the product of jth column of a
+           2 : returns in v(i) the product of ith row of a
+    a    : array containing the a matrix
+    na   : a matrix leading dimension
+    m    : a matrix row dimension
+    n    : a matrix column dimension
+    v    : array containing the result, 
+           vr (resp vi) may be confused with a row or
+           a column of the ar (resp ai) matrix
+           if flag==0 size(v)>=1
+           if flag==1 size(v)>=n*nv
+           if flag==1 size(v)>=m*nv
+    nv   : increment between to consecutive entries ov v
+*/
+void vWDmProd(int _iMode, double* _pdblIn1, double* _pdblIn2, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut1, double* _pdblOut2, int _iInc)
+{
+	int iIndex = 0;
+	int iLoop = 0;
+	switch(_iMode)
+	{
+	case 0 :
+		_pdblOut1[iIndex] = 1;
+		_pdblOut2[iIndex] = 0;
+		for(iLoop = 0 ; iLoop < _iCols ; iLoop++)
+			vWvmul(_iRows, _pdblIn1 + _iRows * iLoop, _pdblIn2 + _iRows * iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, 1, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex); 
+		break;
+	case 1 :
+		for(iLoop = 0 ; iLoop < _iCols ; iLoop++)
+		{
+			_pdblOut1[iIndex] = 1;
+			_pdblOut2[iIndex] = 0;
+			vWvmul(_iRows, _pdblIn1 + _iRows * iLoop, _pdblIn2 + _iRows * iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, 1, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex); 
+			iIndex += _iInc;
+		}
+		break;
+	case 2 :
+		for(iLoop = 0 ; iLoop < _iRows ; iLoop++)
+		{
+			_pdblOut1[iIndex] = 1;
+			_pdblOut2[iIndex] = 0;
+			vWvmul(_iCols, _pdblIn1 + iLoop, _pdblIn2 + iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, _iRows, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex); 
+			iIndex += _iInc;
+		}
+		break;
+	}
+}
+
+double durands(int* _iVal)
+{
+	static int ia = 0, ic = 0, itwo = 2, m2 = 0, m = 0, mic = 0;
+	static double halfm = 0, s = 0;
+
+	if(m2 == 0)
+	{
+		m = 1;
+		while(m > m2)
+		{
+			m2 = m;
+			m = itwo * m2;
+		}
+		halfm = m2;
+
+		ia = 8 * nint(halfm * datans(1) / 8) + 5;
+		ic = 2 * nint(halfm * (0.5 - dsqrts(3) / 6)) + 1;
+		mic = (m2 - ic) + m2;
+
+		s = 0.5 / halfm;
+	}
+
+	*_iVal *= ia;
+
+	if(*_iVal > mic)
+		*_iVal = (*_iVal - m2) - m2;
+
+	*_iVal += ic;
+
+	if(*_iVal/2 > m2)
+		*_iVal = (*_iVal - m2) - m2;
+
+	if(*_iVal < 0)
+		*_iVal = (*_iVal + m2) + m2;
+
+	return (double)*_iVal * s;
+}
+
+int nint(double _iVal)
+{
+	return (int)(_iVal + 0.5);
 }
