@@ -18,8 +18,9 @@ import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.media.opengl.GLCanvas;
 import javax.media.opengl.GLCapabilities;
-import javax.media.opengl.GLJPanel;
+//** import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
@@ -38,8 +39,9 @@ import org.scilab.modules.renderer.figureDrawing.SciRenderer;
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste silvy
  */
-public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 
+//** public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
+public class SwingScilabCanvas extends GLCanvas  implements SimpleCanvas {
 	private static final long serialVersionUID = 6101347094617535625L;
 
 	/**
@@ -61,7 +63,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public SwingScilabCanvas(GLCapabilities cap, int figureIndex) {
 		super(cap);
 		// TODO to remove, just for testing
-		this.setLayout(null);
+		//** this.setLayout(null);
 		this.addGLEventListener(new SciRenderer(figureIndex));
 		this.figureIndex = figureIndex;
 		
