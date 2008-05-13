@@ -286,21 +286,3 @@ function varstr=MatrixToFullPrecisString(var)
   end
 endfunction
 
-function varstr=ComplxMatrixToFullString(var)
-  //ancillary which replaces varstr=string(a), overcoming the 
-  // following limitations (bugs 1317, 2487):
-  // -output always guaranteed full double precision accuracy,
-  //  irrespectful of format()
-  // -exponents larger than E100 are output in C, not in Fortran form
-  [nr,nc]=size(var)
-  rvar=real(var); ivar=imag(var); aivar=abs(ivar)
-  isign=sign(ivar); minusplus=["-","+"]
-  asign=matrix(minusplus((isign>0)+1),nr,nc)
-  varstr=RealMatrixToFullString(rvar)+asign+RealMatrixToFullString(aivar)+"*%i"
-  varstr(rvar==0)=asign(rvar==0)+RealMatrixToFullString(aivar(rvar==0))+"*%i"
-  varstr(ivar==0)=RealMatrixToFullString(rvar(ivar==0))
-  // complex numbers like a+%i*%inf, %inf+b*%i should be treated separately
-  // Nan real part: note bug 2409: complex variables with %inf 
-  //  imaginary part give isnan==%t
-  // However, we have treated them above using separately Re and Im: ok anyway.
-endfunction
