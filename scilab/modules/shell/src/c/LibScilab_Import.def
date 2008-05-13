@@ -25,3 +25,4 @@ GetTemporaryPrompt
 ClearTemporaryPrompt
 set_is_reading
 freeArrayOfString
+vartype_
