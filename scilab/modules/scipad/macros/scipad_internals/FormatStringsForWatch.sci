@@ -272,7 +272,9 @@ function varstr=MatrixToFullPrecisString(var)
      //slightly inefficient to call MatrixToFullPrecisString twice to fill the initial
      // full array and then additionally to reduce it, but I don't want to break my head
       varstr=MatrixToFullPrecisString(rvar)+asign+MatrixToFullPrecisString(aivar)+"*%i"
-      varstr(Re0)=aminus(Re0)+MatrixToFullPrecisString(aivar(Re0))+"*%i"
+      varstr(~Im1&Re0)=MatrixToFullPrecisString(ivar(~Im1&Re0))+"*%i"
+      varstr(Im1&~Re0)=MatrixToFullPrecisString(rvar(Im1&~Re0))+asign(Im1&~Re0)+"%i"
+      varstr(Im1&Re0)=aminus(Im1&Re0)+"%i"
       varstr(Im0)=MatrixToFullPrecisString(rvar(Im0))
       // complex numbers like a+%i*%inf, %inf+b*%i should be treated separately
       // Nan real part: note bug 2409: complex variables with %inf 
