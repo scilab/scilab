@@ -618,7 +618,7 @@ DestroySegs (sciPointObj * pthis)
 }
 
 /**DestroyCompound
- * @memo This function destroies the Compound and the elementaries structures and only this to destroy all sons use DelGraphicsSon
+ * @memo This function destroy the Compound and the elementaries structures and only this to destroy all sons use DelGraphicsSon
  */
 int DestroyCompound (sciPointObj * pthis)
 {
@@ -628,16 +628,23 @@ int DestroyCompound (sciPointObj * pthis)
 void DeleteObjs(integer win_num)
 {
   sciPointObj *figure;
-
+   
   figure = getFigureFromIndex(win_num);
+     
   if ( figure != NULL )
     { 
       destroyGraphicsSons (figure);
 
-      /* close ged to prevent errors when using it */
-      sciDestroyGed( sciGetNum(figure) ) ;
+      //** 14MAY2008 : this TCL/TK has been removed because 
+      //**             Scilab 5 hang here: its TCK/TK interpreter
+      //**             is not capable to execute the operations required
+      //**             because is not active in all the possible context
+      //**             e;g. Scicos simulator. (JB&SM) 
+      //** /* close GED to prevent errors when using it */
+      //**    sciDestroyGed( sciGetNum(figure) ) ;
 
       DestroyFigure (figure);
+
     }
 }
 
