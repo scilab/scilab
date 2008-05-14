@@ -118,9 +118,7 @@ int C2F(sci_tokens)(char *fname,unsigned long fname_len)
 
 	if (Output_String == NULL)
 	{
-	    if (Input_MatrixTwo[0]) {FREE(Input_MatrixTwo[0]); Input_MatrixTwo[0]=NULL; }
-        if (Input_MatrixTwo) {FREE(Input_MatrixTwo); Input_MatrixTwo=NULL; }
-
+		freeArrayOfString(Input_MatrixTwo,1);
 		Scierror(999,_("%s: No more memory.\n"),fname);
 		return 0;
 	}
@@ -146,10 +144,19 @@ int C2F(sci_tokens)(char *fname,unsigned long fname_len)
 	}
 
 	tokens(Input_MatrixOne,Input_MatrixTwo,Output_String,&Row_Pointer,&Col_Pointer,mn_One,mn_Two);
-	
 
 	/* put result on stack */    
-    numRow = Row_Pointer + 1;  /*Output */
+	/*Output */
+	/* Fix Bug 3008 */
+	if ( ( Row_Pointer > 0 ) && ( strcmp(Output_String[Row_Pointer],EMPTY_STRING) == 0 ) )
+	{
+		numRow = Row_Pointer;
+	}
+	else
+	{
+		numRow = Row_Pointer + 1; 
+	}
+	
     numCol = 1 ;
     if ( (numRow == 1) && ((int)strlen(Output_String[0]) == 0) ) 
 	{
@@ -167,17 +174,11 @@ int C2F(sci_tokens)(char *fname,unsigned long fname_len)
     C2F(putlhsvar)();
 
 	/* free pointers */
-	if (Output_String)
+	if (Input_MatrixOne)
 	{
-		if (Input_MatrixOne)
+		if (Output_String)
 		{
-			int i = 0;
-			for (i = 0;i < (int)strlen(Input_MatrixOne[0]);i++)
-			{
-				if (Output_String[i]) { FREE(Output_String[i]); Output_String[i]=NULL;}
-			}
-			FREE(Output_String);
-			Output_String=NULL; 
+			freeArrayOfString(Output_String,(int)strlen(Input_MatrixOne[0]));
 		}
 	}
 
