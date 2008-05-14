@@ -40,8 +40,8 @@ public class OneCharKeyEventListener implements KeyListener {
 	 */
 	public void keyPressed(KeyEvent e) {
 		/* Answer to more y or n ? */
-		if (e.getKeyChar() == 'n') {
-			sciConsole.setUserInputValue(Integer.parseInt(Integer.toString(e.getKeyChar())));
+		if (Character.toLowerCase(e.getKeyChar()) == 'n') {
+			sciConsole.setUserInputValue(Integer.parseInt(Integer.toString(Character.toLowerCase(e.getKeyChar()))));
 		} else {
 			sciConsole.setUserInputValue(1);
 		}
