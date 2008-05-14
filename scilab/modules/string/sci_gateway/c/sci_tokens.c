@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+/* @TODO use strtok */
 /* desc : returns the tokens of a character string.  
           T=tokens(str [,delimiter])   
           str : a character string. The string where to search the tokens.
