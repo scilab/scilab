@@ -123,7 +123,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
 
         //Alan: ONPEUTPASAPPELLERDOTERMINATEICI?
         //reponse : non, car do_terminate() ne rend
-        //          pas forcément la main à l'utilisateur
+        //          pas forcï¿½ment la main ï¿½ l'utilisateur
 
         //** run scicosim via 'finish' flag
         ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
@@ -219,8 +219,8 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
   needreplay=%t
 
   //** run scicosim via 'start' flag
-  ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
-	       '''run'',tolerances)','errcatch')
+  ierr = execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
+	         '''run'',tolerances)','errcatch')
 
   %cpr.state=state
   //** no error
@@ -230,14 +230,14 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
     //** finish the simulation via do_terminate()
     if tf-t<tolerances(3) then
       //disp('fin');
-      //Alan : j'enlève do_terminate ici car do_terminate
+      //Alan : j'enlï¿½ve do_terminate ici car do_terminate
       //       ne rend pas la main
       //[alreadyran,%cpr]=do_terminate()
       needstart=%t
       alreadyran=%f
       //** run scicosim via 'finish' flag
-      ierr=execstr('[state,t]=scicosim(%cpr.state,tf,tf,%cpr.sim,'+..
-                   '''finish'',tolerances)','errcatch')
+      ierr = execstr('[state,t]=scicosim(%cpr.state,tf,tf,%cpr.sim,'+..
+                     '''finish'',tolerances)','errcatch')
 
       %cpr.state=state
 
@@ -266,16 +266,16 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
     end
   //** error case
   else
-    str_err=split_lasterror(lasterror());
+    str_err = split_lasterror(lasterror());
 
-    alreadyran=%f
-    kfun=curblock()
-    corinv=%cpr.corinv
+    alreadyran = %f
+    kfun       = curblock()
+    corinv     = %cpr.corinv
 
     if kfun<>0 then //** block error
-      path=corinv(kfun)
+      path = corinv(kfun)
       //** get error cmd for the block
-      cmd=get_errorcmd(path,'Simulation problem.',str_err);
+      cmd = get_errorcmd(path,"Simulation problem.",str_err);
       //** send error cmd to scicos via the Scicos_commands global variable
       global Scicos_commands
       Scicos_commands=cmd;

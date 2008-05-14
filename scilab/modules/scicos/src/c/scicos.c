@@ -1418,23 +1418,31 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 
   /*     main loop on time */
 
-  while(*told < *tf) {
+  while(*told < *tf) { /* while time is less than simulation final time */
 
   // removed in scilab 5
-/*
-    if (inxsci == 1 && scilab_timer_check() == 1) {
-      C2F(sxevents)();
-      //     .     sxevents can modify halt 
-    }
-*/
-    //** BRUNO/SIMONE : patch for scicos halt
+  /*
+     if (inxsci == 1 && scilab_timer_check() == 1) {
+       C2F(sxevents)();
+       //     .     sxevents can modify halt 
+       }
+  */
+  
+    //** BRUNO/SIMONE : patch for scicos halt (STOP) simulation 
     //** 
-    if (ismenu() || C2F(coshlt).halt != 0) {
-      if (C2F(coshlt).halt ==2) *told=*tf; /* end simulation */
-      C2F(coshlt).halt = 0;
-      freeall;
-      return;
-    }
+    if (ismenu() || C2F(coshlt).halt != 0)  /* if the menu has ben activated OR the simulation has been forced to stop */
+      {
+       
+        if (C2F(coshlt).halt==2) 
+          *told=*tf;   /* if the simulation has been stopped because the final time is reached  */
+      
+        C2F(coshlt).halt = 0; //** reset the flag for the next simulation  
+      
+        freeall;
+
+        return; //** EXIT from the function 
+      }
+
     if (*pointi == 0) {
       t = *tf;
     } else {
@@ -4808,7 +4816,7 @@ void set_block_error(int err)
 void end_scicos_sim()
 
 {
-  C2F(coshlt).halt =2;
+  C2F(coshlt).halt = 2;
    return;
 }
 
