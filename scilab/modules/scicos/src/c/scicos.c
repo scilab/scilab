@@ -47,6 +47,7 @@
 #include "import.h"
 #include "blocks.h"
 #include "core_math.h"
+#include "dynamic_menus.h"
 
 #include "math_graphics.h"
 #include "MALLOC.h"  /* malloc */
