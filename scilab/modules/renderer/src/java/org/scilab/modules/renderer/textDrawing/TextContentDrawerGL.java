@@ -243,7 +243,6 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	public Vector3D[] drawTextContent3D() {
 		
 		GL gl = getGL();
-		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 		
 		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 
@@ -251,17 +250,22 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	
 		textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
 		
+		
+		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
 		
-		
+		startRecordDL();
+		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 		// draw the text using the new coordinates
 		Vector3D[] res = drawTextContentPix();
-		
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		endRecordDL();
 		
 		GLTools.endPixelCoordinates(gl);
 		
-		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		
+		
 		
 		for (int i = 0; i < res.length; i++) {
 			res[i] = transform.retrieveSceneCoordinates(gl, res[i]);
@@ -275,17 +279,15 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 */
 	public void showTextContent3D() {
 		GL gl = getGL();
-		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
 		
-		// draw the text using the new coordinates
-		showTextContentPix();
+		// display the display list of text
+		displayDL();
 		
 		GLTools.endPixelCoordinates(gl);
 		
-		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 	}
 	
 	/**
