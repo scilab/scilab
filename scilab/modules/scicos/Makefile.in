@@ -650,7 +650,8 @@ JARMASK = *.jar
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/string/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/intersci/src/lib \
-@SCICOS_TRUE@			-I$(top_srcdir)/modules/scicos_blocks/includes
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/scicos_blocks/includes \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/action_binding/includes
 
 @SCICOS_FALSE@libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 @SCICOS_TRUE@libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)

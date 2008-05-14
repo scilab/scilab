@@ -102,7 +102,8 @@ libsciscicos_la_CFLAGS= -Iincludes/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/string/includes \
 			-I$(top_srcdir)/modules/intersci/src/lib \
-			-I$(top_srcdir)/modules/scicos_blocks/includes
+			-I$(top_srcdir)/modules/scicos_blocks/includes \
+			-I$(top_srcdir)/modules/action_binding/includes
 
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
