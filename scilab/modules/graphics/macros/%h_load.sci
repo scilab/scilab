@@ -1071,16 +1071,22 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       xtics_coord      = mget(nx,'dl',fd)'
       ny               = mget(1,'il',fd) // ytics_coord
       ytics_coord      = mget(ny,'dl',fd)'
-      if nx>1 then dir='u',else dir='l',end
-      drawaxis(x=xtics_coord,y=ytics_coord,dir=dir);
+      if nx>1 then axisdir='u',else axisdir='l',end
+      drawaxis(x=xtics_coord,y=ytics_coord,dir=axisdir);
       h=gce()
 
       h.tics_color       = mget(1,'il',fd) // tics_color
       h.tics_segment     = toggle(mget(1,'c',fd)) // tics_segment
       h.tics_style       = ascii(mget(1,'c',fd)) // tics_style
       h.sub_tics         = mget(1,'il',fd) // sub_tics
-      h.tics_labels     = load_text_vector(fd) // tics_label
-      h.labels_font_size = mget(1,'il',fd); // label_font_size
+      h.tics_labels     = load_text_vector(fd)' // tics_label
+      labelfontsize = mget(1,'il',fd);
+      // Bug fix: there was a bug in Scilab <=4.1.2 which used -1 as default value for labels_font_size
+      // Scilab 5 needs font size to be >= 0 so we change the value to avoid an error message due to a Scilab bug...
+      if labelfontsize == -1 then
+	//labelfontsize = 0;
+      end
+      h.labels_font_size = labelfontsize // label_font_size
       h.labels_font_color= mget(1,'il',fd); // labels_font_color
       // h.tics_style=tics_style // jb Silvy apparently strange
 
