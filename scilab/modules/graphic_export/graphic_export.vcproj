@@ -432,10 +432,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\sci_gateway\c\sci_xs2emf.c"
-					>
-				</File>
-				<File
 					RelativePath=".\sci_gateway\c\sci_xs2eps.c"
 					>
 				</File>
@@ -499,10 +495,6 @@
 				</File>
 				<File
 					RelativePath=".\includes\sci_xs2bmp.h"
-					>
-				</File>
-				<File
-					RelativePath=".\includes\sci_xs2emf.h"
 					>
 				</File>
 				<File
