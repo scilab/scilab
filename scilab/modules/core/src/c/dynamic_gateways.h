@@ -12,6 +12,12 @@
 #ifndef __DYNAMIC_GATEWAYS_H__
 #define __DYNAMIC_GATEWAYS_H__
 
+/**
+* optimization gateway
+* optimization is loaded dynamically at runtime
+* load gw_optimization in SCI/modules/optimization/sci_gateway/gw_optimization.c
+*/
+int gw_dynamic_optimization(void);
 
 /**
 * matio gateway

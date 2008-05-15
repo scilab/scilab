@@ -49,7 +49,6 @@
 #pragma comment(lib,"../../libs/elementary_functions_f.lib")
 #pragma comment(lib,"../../libs/dcd_f.lib")
 #pragma comment(lib,"../../libs/core_f.lib")
-#pragma comment(lib,"../../libs/optim_f.lib")
 #pragma comment(lib,"../../libs/signal_f.lib")
 #pragma comment(lib,"../../libs/polynomials_f.lib")
 #pragma comment(lib,"../../libs/cacsd_f.lib")

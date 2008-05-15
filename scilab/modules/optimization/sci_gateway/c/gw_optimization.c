@@ -23,9 +23,10 @@ static gw_generic_table Tab[]=
 {C2F(sci_fsolve),"fsolve"},
 {C2F(sci_sqrsolve),"sqrsolve"},
 {C2F(sci_qld),"qld"},
+{C2F(sci_qp_solve),"qp_solve"}
 };
 /*--------------------------------------------------------------------------*/
-int gw_optim(void)
+int gw_optimization(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);

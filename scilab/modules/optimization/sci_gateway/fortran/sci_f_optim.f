@@ -970,10 +970,10 @@ c     commentaires finaux
  360  continue
       if(imp.ne.0) then
          if(indopt.eq.1) then
-            write(buf(1:15),'(1pd15.7)') epsg
+            call writebufscioptim(buf,epsg)
             call msgs(12,0)
          elseif(indopt.eq.2) then
-            write(buf(1:15),'(1pd15.7)') epsf
+            call writebufscioptim(buf,epsg)
             call msgs(13,0)
          elseif(indopt.eq.3)  then
             call msgs(14,0)

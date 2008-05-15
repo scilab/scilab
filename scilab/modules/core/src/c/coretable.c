@@ -21,23 +21,16 @@
 #define ARGS_interf void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *,void *
 typedef integer * (*interff)(ARGS_interf);
 
-
 #define ARGS_interf1 char *,long int
 typedef integer * (*interff1)(ARGS_interf1);
 
 /**************** interf ***************/
-extern void C2F(icse0)(ARGS_interf);
-extern void C2F(icse)(ARGS_interf);
-extern void C2F(icscof)(ARGS_interf);
 void C2F(interf)(ARGS_interf);
 void C2F(interf1)(ARGS_interf1);
 void C2F(setinterf)(char *name, int *rep);
 
 FTAB FTab_interf[] =
 {
-	{"icscof", (voidf)  C2F(icscof)},
-	{"icse", (voidf)  C2F(icse)},
-	{"icse0", (voidf)  C2F(icse0)},
 	{(char *) 0, (voidf) 0}
 };
 

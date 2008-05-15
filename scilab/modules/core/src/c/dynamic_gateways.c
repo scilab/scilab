@@ -15,6 +15,22 @@
 #include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
 /*--------------------------------------------------------------------------*/
+/* optimization module */
+#define OPTIMIZATION_MODULE_NAME "optimization"
+static DynLibHandle hOptimizationLib = NULL;
+static PROC_GATEWAY ptr_gw_optimization = NULL;
+static char* dynlibname_optimization = NULL;
+static char* gatewayname_optimization = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_optimization(void)
+{
+	return gw_dynamic_generic(OPTIMIZATION_MODULE_NAME,
+		&dynlibname_optimization,
+		&gatewayname_optimization,
+		&hOptimizationLib,
+		&ptr_gw_optimization);
+}
+/*--------------------------------------------------------------------------*/
 /* matio module */
 #define MATIO_MODULE_NAME "matio"
 static DynLibHandle hMatioLib = NULL;

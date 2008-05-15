@@ -43,7 +43,7 @@ static OpTab Interfaces[] = {
 	/* 08  */ {gw_cacsd0},
 	/* 09  */ {gw_cacsd1},
 	/* 10  */ {gw_cacsd2},
-	/* 11  */ {gw_optim},
+	/* 11  */ {gw_dynamic_optimization},
 	/* 12  */ {gw_differential_equations1},
 	/* 13  */ {gw_core},
 	/* 14  */ {gw_user},

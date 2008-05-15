@@ -28,8 +28,8 @@ c
 
 c
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') top,r,sym
-         call basout(io,wte,' bsolve  top:'//buf(1:4))
+        call writebufbjsolv(buf,top,r,sym)
+        call basout(io,wte,' bsolve  top:'//buf(1:4))
       endif
       
 c     nordre est le numero d'ordre de cet external dans la structure

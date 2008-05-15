@@ -27,8 +27,8 @@ c
 
 c
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') top,r,sym
-         call basout(io,wte,' bjlsqrsolve  top:'//buf(1:4))
+        call writebufbjsqrsolv(buf,top,r,sym)
+        call basout(io,wte,' bjlsqrsolve  top:'//buf(1:4))
       endif
       iflag=iero
 c

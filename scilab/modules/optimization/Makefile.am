@@ -111,15 +111,22 @@ src/fortran/anfm06.f \
 src/fortran/calbx.f \
 src/fortran/r1mpyq.f \
 src/fortran/rednor.f \
-src/fortran/zgcbd.f
+src/fortran/zgcbd.f \
+src/fortran/writebuf.f \
+src/fortran/aind.f \
+src/fortran/dpofa.f \
+src/fortran/qpgen1sci.f \
+src/fortran/qpgen2.f \
+src/fortran/util.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_semidef.c \
 sci_gateway/c/sci_qld.c \
-sci_gateway/c/gw_optim.c \
+sci_gateway/c/gw_optimization.c \
 sci_gateway/c/sci_quapro.c \
 sci_gateway/c/sci_optim.c \
 sci_gateway/c/sci_fsolv.c \
-sci_gateway/c/sci_sqrsolve.c
+sci_gateway/c/sci_sqrsolve.c \
+sci_gateway/c/sci_qp_solve.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_semidef.f \
 sci_gateway/fortran/sci_f_fsolve.f \

@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int gw_optim(void);
+int gw_optimization(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_optim) (char *fname,unsigned long fname_len);
 int C2F(sci_semidef) (char *fname,unsigned long fname_len);
@@ -29,6 +29,7 @@ int C2F(intlsqrsolve) (char *fname,unsigned long fname_len);
 int C2F(scioptim) (char *fname,unsigned long fname_len);
 int C2F(scisolv)  (char *fname,unsigned long fname_len);
 int C2F(scisemidef)(char *fname,unsigned long fname_len);
+int C2F(sci_qp_solve)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_OPTIM__ */
 /*--------------------------------------------------------------------------*/

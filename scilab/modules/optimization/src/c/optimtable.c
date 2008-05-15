@@ -14,7 +14,6 @@
 /***********************************
 * Search Table for foptim 
 ***********************************/
-
 #define ARGS_foptim integer*,integer*,double *,double*,double*,integer*,float*,double*
 typedef void (*foptimf)(ARGS_foptim);
 
@@ -22,6 +21,7 @@ typedef void (*foptimf)(ARGS_foptim);
 extern void C2F(genros)(ARGS_foptim);
 extern void C2F(topt2)(ARGS_foptim);
 extern void C2F(icsemc)(ARGS_foptim);
+
 void C2F(foptim)(ARGS_foptim);
 void C2F(setfoptim)(char *name, int *rep);
 

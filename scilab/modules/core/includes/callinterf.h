@@ -32,7 +32,7 @@
 /* 08 */						#include "../../cacsd/includes/gw_cacsd0.h"
 /* 09 */						#include "../../cacsd/includes/gw_cacsd1.h"
 /* 10 */						#include "../../cacsd/includes/gw_cacsd2.h"
-/* 11 */						#include "../../optimization/includes/gw_optim.h"
+/* 11 */						#include "dynamic_gateways.h" /* optimization */
 /* 12 */						#include "../../differential_equations/includes/gw_differential_equations1.h"
 /* 13 */						#include "gw_core.h"
 /* 14  gw_user(); FREE */
