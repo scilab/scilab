@@ -58,7 +58,7 @@ public class ExportPPM  extends ExportToFile {
 			int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
 			encoder.encodePixels(0, 0, image.getWidth(), image.getHeight(),	pixels, 0, image.getWidth());
 		} catch (GLException e1) {
-			return ExportRenderer.GLEXCEPTION_ERROR;
+			return ExportRenderer.UNKNOWN_GLEXCEPTION_ERROR;
 		} catch (IOException e1) {
 			return ExportRenderer.IOEXCEPTION_ERROR;
 		}

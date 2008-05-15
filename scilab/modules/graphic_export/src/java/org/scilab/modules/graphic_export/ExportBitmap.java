@@ -59,7 +59,7 @@ public class ExportBitmap extends ExportToFile {
 			/** Generate the screen-shot */
 			Screenshot.writeToFile(file, getWidth(), getHeight());			
 		} catch (GLException ex1) {
-			return ExportRenderer.GLEXCEPTION_ERROR;
+			return ExportRenderer.UNKNOWN_GLEXCEPTION_ERROR;
 		} catch (IOException ex2) {
 			return ExportRenderer.IOEXCEPTION_ERROR;			
 		}

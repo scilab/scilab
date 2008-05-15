@@ -92,11 +92,17 @@ public class GL2PSRenderer extends ExportRenderer {
 		//gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
 		
 
-		gl2ps.gl2psBeginPage("MyTitle", "MySoftware", null, format, 
+		int gl2psBeginPageStatut = gl2ps.gl2psBeginPage("MyTitle", "MySoftware", null, format, 
 							  GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
 							  /*| GL2PS.GL2PS_OCCLUSION_CULL | GL2PS.GL2PS_LANDSCAPE | GL2PS.GL2PS_DRAW_BACKGROUND*/,
 							  GL.GL_RGBA, 0, null, null, null, null, 
-							  0, 0, 0, buffsize, ExportRenderer.getFileName());		
+							  0, 0, 0, buffsize, ExportRenderer.getFileName());			
+		
+		if (gl2psBeginPageStatut != GL2PS.GL2PS_SUCCESS) {
+			//Get the GL2PS error and convert it into an export error
+			getExportErrorFromGL2PS(gl2psBeginPageStatut);
+			return;
+		}
 		
 		GL gl = gLDrawable.getGL();
 		GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
@@ -110,12 +116,18 @@ public class GL2PSRenderer extends ExportRenderer {
 		sciRend.init(gLDrawable);
 		sciRend.display(gLDrawable);
 		
-		gl2ps.gl2psEndPage();
-		
+		int gl2psEndPageStatut = gl2ps.gl2psEndPage();
+				
 		gLDrawable.setGL(gl);
 		exportedFigure.setDefaultArcRendererFactory();
 		exportedFigure.setDefaultTextRenderer();
 		exportedFigure.setDefaultShadeFacetDrawer();
+		
+		if (gl2psEndPageStatut != GL2PS.GL2PS_SUCCESS) {
+			//Get the GL2PS error and convert it into an export error
+			getExportErrorFromGL2PS(gl2psEndPageStatut);
+			return;
+		}		
 		
 		sciRend.init(gLDrawable);
 		sciRend.display(gLDrawable);
@@ -150,6 +162,25 @@ public class GL2PSRenderer extends ExportRenderer {
 	 */
 	public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3,
 			int arg4) {
+	}
+	
+	/**
+	 * Convert GL2PS error into Export error
+	 * @param gl2psError GL2PS Error
+	 */
+	private void getExportErrorFromGL2PS(int gl2psError) {
+		if (gl2psError == GL2PS.GL2PS_NO_FEEDBACK) {
+			setErrorNumber(UNKNOWN_GLEXCEPTION_ERROR);			
+		}
+		if (gl2psError == GL2PS.GL2PS_OVERFLOW) {
+			setErrorNumber(GL2PS_OVERFLOW);			
+		}
+		if (gl2psError == GL2PS.GL2PS_UNINITIALIZED) {
+			setErrorNumber(GL2PS_UNINITIALIZED);			
+		}
+		if (gl2psError == GL2PS.GL2PS_ERROR) {
+			setErrorNumber(GL2PS_ERROR);			
+		}
 	}
 	
 }

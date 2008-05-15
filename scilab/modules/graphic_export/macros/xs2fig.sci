@@ -59,7 +59,7 @@ function xs2fig(figureNumber, fileName)
 	end
 	
 	//create the eps file
-	fileExport = TMPDIR + filesep() + fileName + ".eps";	
+	fileExport = TMPDIR + filesep() + fname + ".eps";	
 	xs2eps(figureNumber, fileExport);
 		
 	// convert it to fig

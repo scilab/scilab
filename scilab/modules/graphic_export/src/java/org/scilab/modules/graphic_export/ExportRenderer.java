@@ -24,10 +24,13 @@ public abstract class ExportRenderer implements GLEventListener {
 
 	/** Code-number for the function statue */
 	public static final int SUCCESS = 0;
-	public static final int GLEXCEPTION_ERROR = 1;
+	public static final int UNKNOWN_GLEXCEPTION_ERROR = 1;
 	public static final int IOEXCEPTION_ERROR = 2;
 	public static final int INVALID_FILE = 3;
-
+	public static final int GL2PS_ERROR = 4;
+	public static final int GL2PS_OVERFLOW = 5;
+	public static final int GL2PS_UNINITIALIZED = 6;
+	
 	/** Code-number for each bitmap format */
 	public static final int BMP_EXPORT = 1;
 	public static final int GIF_EXPORT = 2;
@@ -41,8 +44,12 @@ public abstract class ExportRenderer implements GLEventListener {
 	public static final int SVG_EXPORT = 8;
 	public static final int PS_EXPORT = 9;
 
+	/** File name & file type */
 	private static String fileName;
 	private static int fileType;
+	
+	/** give the type of the error */
+	private static int errorNumber;
 
 	/**
 	 * Constructor
@@ -145,5 +152,21 @@ public abstract class ExportRenderer implements GLEventListener {
 				this.fileName = this.fileName.substring(0, pos);
 			}		
 		}
+	}
+
+	/**
+	 * get the number of the error
+	 * @return errorNumber the number of the error
+	 */
+	public static int getErrorNumber() {
+		return errorNumber;
+	}
+
+	/**
+	 * set the number of the error
+	 * @param errorNumber the number of the error
+	 */
+	public static void setErrorNumber(int errorNumber) {
+		ExportRenderer.errorNumber = errorNumber;
 	}
 }

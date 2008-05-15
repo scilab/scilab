@@ -51,7 +51,7 @@ public class FileExporter {
 		exportedFig.getRenderingTarget().addGLEventListener(export);
 		exportedFig.drawCanvas();
 		exportedFig.getRenderingTarget().removeGLEventListener(export);
-
-		return ExportRenderer.SUCCESS;		
+		
+		return ExportRenderer.getErrorNumber();		
 	}	
 }

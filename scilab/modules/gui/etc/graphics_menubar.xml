@@ -85,12 +85,32 @@
 			</submenu>				
 		</submenu>
 		<submenu label="&amp;Vectorial export">
-					<submenu label="&amp;EPS"> 
+			<submenu label="&amp;EMF"> 
+				<callback 
+				instruction='
+				%fileToWrite = xgetfile("*.emf", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then 
+					xs2emf([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="&amp;EPS"> 
 				<callback 
 				instruction='
 				%fileToWrite = xgetfile("*.eps", getcwd(), gettext("Select a file name"));
 				if ~isempty(%fileToWrite) then 
 					xs2eps([SCILAB_FIGURE_ID], %fileToWrite);
+				end
+				clear %fileToWrite isempty'
+				type="0"/>
+			</submenu>
+			<submenu label="&amp;FIG"> 
+				<callback 
+				instruction='
+				%fileToWrite = xgetfile("*.fig", getcwd(), gettext("Select a file name"));
+				if ~isempty(%fileToWrite) then 
+					xs2fig([SCILAB_FIGURE_ID], %fileToWrite);
 				end
 				clear %fileToWrite isempty'
 				type="0"/>

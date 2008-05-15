@@ -76,6 +76,8 @@ public class BitmapRenderer  extends ExportRenderer {
 		ExportToFile export = ExportToFile.createExporter(super.getFileName(), super.getFileType());
 		export.setFileSize(gLDrawable.getWidth(), gLDrawable.getHeight());
 		export.exportToBitmap();
+		
+		setErrorNumber(export.exportToBitmap());
 		// back to defautl value
 		gl.glReadBuffer(GL.GL_BACK);  
 

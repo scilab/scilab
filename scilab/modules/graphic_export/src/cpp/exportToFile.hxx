@@ -35,7 +35,18 @@ typedef enum
   PS_EXPORT = 9
 } ExportFileType;
 
-void exportToFile(sciPointObj * pFigure, const char * fileName, ExportFileType fileType);
+typedef enum
+{
+  EXPORT_SUCCESS = 0,
+  EXPORT_UNKNOWN_GLEXCEPTION_ERROR = 1,
+  EXPORT_IOEXCEPTION_ERROR = 2,
+  EXPORT_INVALID_FILE = 3,
+  EXPORT_GL2PS_ERROR = 4,
+  EXPORT_GL2PS_OVERFLOW = 5,
+  EXPORT_GL2PS_UNINITIALIZED = 6
+} ExportError;
+
+int exportToFile(sciPointObj * pFigure, const char * fileName, ExportFileType fileType);
 
 #ifdef __cplusplus
 }

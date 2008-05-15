@@ -57,11 +57,11 @@ function xs2emf(figureNumber, fileName)
 	end
 	
 	//create the eps file
-	fileExport = TMPDIR + filesep() + fileName + ".eps";	
+	fileExport = TMPDIR + filesep() + fname + ".eps";	
 	xs2eps(figureNumber, fileExport);
 		
 	// convert it to emf
-	pstoeditOptions = "-f ""emf""";	
+	pstoeditOptions = "-f ""emf""";
 	[stdout, status, stderr] = unix_g(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);
 	
 	if status <> 0 then
