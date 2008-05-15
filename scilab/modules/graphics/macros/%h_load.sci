@@ -786,13 +786,26 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     
     data           = mget(6,'dl',fd); // data
+
+    if is_higher_than([4 1 2 0]) then
+      drawing_method = ascii(mget(mget(1,'c',fd),'c',fd)); // drawing_method
+    else
+      drawing_method = "nurbs";
+    end
+
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state
     if clip_state=='on' then
       clip_box     = mget(4,'dl',fd) // clip_box
     else
       clip_box=[]
     end
-    xarc(data(1),data(2),data(3),data(4),data(5),data(6));
+    if is_higher_than([4 1 2 0]) then
+      // angle is given in degree
+      xarc(data(1),data(2),data(3),data(4),data(5),data(6) * 64);
+    else
+      // angle is stored by 64th of degree
+      xarc(data(1),data(2),data(3),data(4),data(5),data(6));
+    end
     h=get('hdl')
     set(h,"visible",visible)
     set(h,"thickness",thickness)
@@ -801,6 +814,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"fill_mode",fill_mode)
     set(h,"foreground",foreground) ;
     set(h,"background",background) ;
+    set(h,"drawing_method", drawing_method) ;
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
     

@@ -1314,6 +1314,9 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
       ppArc->alphaend = alphaend;
       ppArc->isselected = TRUE; 
       ppArc->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+      /* By default use nurbs drawing */
+      sciInitUseNurbs(pobj, TRUE);
+
 
       ppArc->clip_region_set = 0;
       /*ppArc->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */

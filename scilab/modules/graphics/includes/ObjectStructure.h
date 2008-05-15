@@ -998,6 +998,9 @@ typedef struct
   double clip_region[4];
   int clip_region_set;
   double z; /**DJ.Abdemouche 2003**/
+
+  BOOL useNurbs; /* Specify whether the arc should be drawn using nurbs or a set of lines */
+
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
   /* the isline property is inside the associated graphiccontext */

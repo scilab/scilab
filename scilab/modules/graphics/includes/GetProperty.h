@@ -264,6 +264,8 @@ void sciGetViewingArea(sciPointObj * pObj, int * xPos, int * yPos, int * width, 
 
 void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6]); /* GET */
 
+BOOL sciGetUseNurbs(sciPointObj * pObj); /* GET */
+
 void printSetGetErrorMessage(const char * propertyName);
 
 #endif /* __SCI_GET_PROPERTY__ */

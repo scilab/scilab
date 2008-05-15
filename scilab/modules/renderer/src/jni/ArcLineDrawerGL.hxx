@@ -61,6 +61,7 @@ jmethodID voidsetFigureIndexjintID; // cache method id
 jmethodID voidsetLineParametersjintjfloatjintID; // cache method id
 jmethodID voiddrawArcjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
 jmethodID voidredrawArcID; // cache method id
+jmethodID voidsetUseNurbsjbooleanID; // cache method id
 
 
 /**
@@ -119,6 +120,8 @@ void setLineParameters(long lineColor, float thickness, long lineStyle);
 void drawArc(double centerX, double centerY, double centerZ, double semiMinorAxisX, double semiMinorAxisY, double semiMinorAxisZ, double semiMajorAxisX, double semiMajorAxisY, double semiMajorAxisZ, double startAngle, double endAngle);
 
 void redrawArc();
+
+void setUseNurbs(bool useNurbs);
 
 
                         /**

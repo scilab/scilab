@@ -44,6 +44,8 @@ public:
   // specific for rectangle fill drawer
   virtual void setBackColor(int color);
 
+  virtual void setUseNurbs(bool useNurbs);
+
   virtual void drawArc( double centerX       , double centerY       , double centerZ       ,
                         double semiMinorAxisX, double semiMinorAxisY, double semiMinorAxisZ,
                         double semiMajorAxisX, double semiMajorAxisY, double semiMajorAxisZ,

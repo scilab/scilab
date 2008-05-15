@@ -68,6 +68,11 @@ void ArcLineDrawerJavaMapper::setLineParameters(int lineColor, float thickness, 
   m_pJavaObject->setLineParameters(lineColor, thickness, lineStyle);
 }
 /*---------------------------------------------------------------------------------*/
+void ArcLineDrawerJavaMapper::setUseNurbs(bool useNurbs)
+{
+  m_pJavaObject->setUseNurbs(useNurbs);
+}
+/*---------------------------------------------------------------------------------*/
 void ArcLineDrawerJavaMapper::drawArc( double centerX       , double centerY       , double centerZ       ,
                                        double semiMinorAxisX, double semiMinorAxisY, double semiMinorAxisZ,
                                        double semiMajorAxisX, double semiMajorAxisY, double semiMajorAxisZ,

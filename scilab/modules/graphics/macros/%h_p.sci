@@ -233,6 +233,7 @@ function %h_p(h)
 	 "background = "+string(h.background)
 	 "data = "+sci2exp(h.data,0)
 	 "visible = "+sci2exp(h.visible)
+	 "drawing_method = " + sci2exp(h.drawing_method) 
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "user_data = "+fmtuser_data(u)]

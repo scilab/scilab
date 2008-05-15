@@ -4397,6 +4397,21 @@ void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6])
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * Check wether an object is using nurbs for display or not
+ */
+BOOL sciGetUseNurbs(sciPointObj * pObj)
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_ARC:
+    return pARC_FEATURE(pObj)->useNurbs;
+  default:
+    printSetGetErrorMessage("drawing_method");
+    return FALSE;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
  * Print the message "This object has no xxx property." in Scilab.
  */
 void printSetGetErrorMessage(const char * propertyName)

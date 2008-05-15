@@ -47,7 +47,7 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 150
+#define NB_PROPERTIES 151
 
 /**
  * list of all property names and associated functions in scilab
@@ -203,7 +203,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
   { "horizontalalignment" , GetUicontrolHorizontalAlignment   },
   { "verticalalignment"   , GetUicontrolVerticalAlignment     },
   { "fontname"            , GetUicontrolFontName              },
-  { "sliderstep"          , GetUicontrolSliderStep            }
+  { "sliderstep"          , GetUicontrolSliderStep            },
+  { "drawing_method"      , get_drawing_method_property       }
 } ;
 
 /*--------------------------------------------------------------------------*/
@@ -212,6 +213,7 @@ GetPropertyHashTable * createScilabGetHashTable( void )
   int i ;
   if ( getHashTableCreated )
   {
+    /* hastable already created, return */
     return getHashTable ;
   }
 

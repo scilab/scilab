@@ -30,12 +30,22 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 	
 	private ArcFillTools drawer;
 	
+	private boolean useNurbs;
+	
 	/**
 	 * Default constructor
 	 */
 	public ArcFillDrawerGL() {
 		super();
 		drawer = null;
+	}
+	
+	/**
+	 * Specify wheter we should use nurbs or a polyline to draw the arc.
+	 * @param useNurbs if true nurbs are used
+	 */
+	public void setUseNurbs(boolean useNurbs) {
+		this.useNurbs = useNurbs;
 	}
 	
 	/**
@@ -63,7 +73,14 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 		Vector3D semiMinorAxis = new Vector3D(semiMinorAxisX, semiMinorAxisY, semiMinorAxisZ);
 		Vector3D semiMajorAxis = new Vector3D(semiMajorAxisX, semiMajorAxisY, semiMajorAxisZ);
 	
-		ArcRendererFactory arcFactory = getParentFigureGL().getArcRendererFactory();
+		ArcRendererFactory arcFactory = null;
+		if (useNurbs) {
+			arcFactory = getParentFigureGL().getArcRendererFactory();
+			
+		} else {
+			// use lines in any case
+			arcFactory = new FastArcRendererFactory();
+		}
 		drawer = arcFactory.createArcFillRenderer(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
 		
 		drawArc();
@@ -74,7 +91,12 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 	 * Redraw the arc using precomputed data
 	 */
 	public void redrawArc() {
-		drawArc();
+		if (useNurbs) {
+			// with nurbs, arc drawing must adapt when view changes
+			drawArc();
+		} else {
+			show(getParentFigureGL().getFigureId());
+		}
 	}
 	
 	/**

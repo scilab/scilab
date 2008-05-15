@@ -51,6 +51,8 @@ void ArcLineDrawerJoGL::drawArc( void )
 
   m_pDrawed->getArcRepresentation(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle ) ;
 
+  getLineDrawerJavaMapper()->setUseNurbs(sciGetUseNurbs(pObj) == TRUE);
+
   // display the rectangle
   getLineDrawerJavaMapper()->drawArc(center[0]       , center[1]       , center[2]       ,
                                      semiMinorAxis[0], semiMinorAxis[1], semiMinorAxis[2],

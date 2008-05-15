@@ -4121,6 +4121,32 @@ int sciSetImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw)
   return sciInitImmediateDrawingMode(pObj, autoRedraw);
 }
 /*----------------------------------------------------------------------------------*/
+int sciInitUseNurbs(sciPointObj * pObj, BOOL useNurbs)
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_ARC:
+    pARC_FEATURE(pObj)->useNurbs = useNurbs;
+    return 0;
+  default:
+    printSetGetErrorMessage("drawing_method");
+    return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Return whether the drawing of an arc object uses nurbs or lines
+ */
+int sciSetUseNurbs(sciPointObj * pObj, BOOL useNurbs)
+{
+  if (sciGetUseNurbs(pObj) == useNurbs)
+  {
+    // nothing to do
+    return 1;
+  }
+  return sciInitUseNurbs(pObj, useNurbs);
+}
+/*----------------------------------------------------------------------------------*/
 /**
  * Check that a color index is within the colormap range or not
  * @param pObj object conatining the color

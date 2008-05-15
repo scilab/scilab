@@ -156,6 +156,13 @@ public class DrawableFigureGL extends ObjectGL {
 	}
 	
 	/**
+	 * @return Id of the fugure
+	 */
+	public int getFigureId() {
+		return figureId;
+	}
+	
+	/**
 	 * Specify a new object to access canvas and other gui related properties.
 	 * @param prop new object to access gui properties
 	 */

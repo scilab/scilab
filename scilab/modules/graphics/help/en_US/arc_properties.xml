@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -92,7 +93,7 @@
         point, the width and the height of the inclosing rectangle as well as
         the boundary angles of the sector. It is the matrix
         <literal>[xleft,yup,[zup],width,height,a1,a2]</literal> where
-        <literal>a1/64</literal> and <literal>a2/64</literal> are the sector boundary
+        <literal>a1</literal> and <literal>a2</literal> are the sector boundary
         angles in degree.</para>
         </listitem>
       </varlistentry>
@@ -103,6 +104,20 @@
         the entity . It should be <literal>"on" </literal> or <literal>"off"</literal>. If
         <literal>"on"</literal> the arc is drawn, If <literal>"off"</literal> the arc is
         not displayed on the screen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>drawing_method: </term>
+	<listitem>
+		<para>This field controls the kind of discretisation used to render the arc.
+			Its value must be either <literal>"nurbs"</literal> or <literal>"lines"</literal>.
+			If <literal>"nurbs"</literal> is selected then the arc is rendered using nurbs curves and surfaces.
+			This results in the display of a perfect ellipse part whatever the view point is.
+			If <literal>"lines"</literal> is selected then the arc is approximated
+			with a constant number of lines. This reduce drawing time but some sharp edges may appear upon zooming.
+			The use of <literal>"lines"</literal> value is discouraged and should
+			only be used if a loss in framerate is noticed when using <literal>"nurbs"</literal> value.
+		</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -193,5 +208,6 @@
   <refsection>
     <title>Authors</title>
     <para>Djalel ABDEMOUCHE</para>
+    <para>Jean-Baptiste SILVY</para>
   </refsection>
 </refentry>

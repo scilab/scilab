@@ -111,6 +111,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetLineParametersjintjfloatjintID=NULL; 
 voiddrawArcjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidredrawArcID=NULL; 
+voidsetUseNurbsjbooleanID=NULL; 
 
 
 }
@@ -145,6 +146,7 @@ voidsetFigureIndexjintID=NULL;
 voidsetLineParametersjintjfloatjintID=NULL; 
 voiddrawArcjdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 voidredrawArcID=NULL; 
+voidsetUseNurbsjbooleanID=NULL; 
 
 
 }
@@ -332,6 +334,27 @@ exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidredrawArcID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void ArcLineDrawerGL::setUseNurbs (bool useNurbs){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetUseNurbsjbooleanID==NULL) { /* Use the cache Luke */ voidsetUseNurbsjbooleanID = curEnv->GetMethodID(this->instanceClass, "setUseNurbs", "(Z)V" ) ;
+if (voidsetUseNurbsjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setUseNurbs" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+jboolean useNurbs_ = ((bool) useNurbs ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetUseNurbsjbooleanID ,useNurbs_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

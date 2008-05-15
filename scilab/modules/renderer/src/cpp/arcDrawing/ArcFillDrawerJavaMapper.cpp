@@ -68,6 +68,11 @@ void ArcFillDrawerJavaMapper::setBackColor(int color)
   m_pJavaObject->setBackColor(color);
 }
 /*---------------------------------------------------------------------------------*/
+void ArcFillDrawerJavaMapper::setUseNurbs(bool useNurbs)
+{
+  m_pJavaObject->setUseNurbs(useNurbs);
+}
+/*---------------------------------------------------------------------------------*/
 void ArcFillDrawerJavaMapper::drawArc( double centerX       , double centerY       , double centerZ       ,
                                        double semiMinorAxisX, double semiMinorAxisY, double semiMinorAxisZ,
                                        double semiMajorAxisX, double semiMajorAxisY, double semiMajorAxisZ,

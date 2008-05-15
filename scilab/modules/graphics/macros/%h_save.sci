@@ -374,6 +374,8 @@ function save_graphichandle(h,fd)
     mput(h.foreground,'il',fd) // foreground
     mput(h.background,'il',fd) ; // background
     mput(h.data,'dl',fd) // data
+    mput(length(h.drawing_method),'c',fd); // drawing_method
+    mput(ascii(h.drawing_method),'c',fd);
     mput(length(h.clip_state),'c',fd); // clip_state
     mput(ascii(h.clip_state),'c',fd);
     if h.clip_state=='on' then

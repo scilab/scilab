@@ -36,5 +36,8 @@
     </method>
     <method name="redrawArc" returnType="void">
     </method>
+    <method name="setUseNurbs" returnType="void">
+      <param type="boolean" name="useNurbs" />
+    </method>
   </object>
 </package>
