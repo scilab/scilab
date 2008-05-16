@@ -35,6 +35,7 @@ createlistvarfromptr_
 dtosci_
 ierode_
 str2sci
+syncexec
 
 ;
 ; elementary_functions

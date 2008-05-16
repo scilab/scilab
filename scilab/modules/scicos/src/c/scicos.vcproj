@@ -386,10 +386,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\haltscicos.c"
-				>
-			</File>
-			<File
 				RelativePath=".\import.c"
 				>
 			</File>
@@ -439,6 +435,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_getscicosvars.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_haltscicos.c"
 				>
 			</File>
 			<File
