@@ -363,6 +363,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
     if is_higher_than([4 1 2 0] ) then // 4 0 0 0 and after
       set(a,"hidden_axis_color", mget(1,'il',fd)) ; // hidden_axis_color
+      set(a, "arc_drawing_method", ascii(mget(mget(1,'c',fd),'c',fd))); // arc_drawing_method
+    else
+      set(a, "arc_drawing_method", "nurbs"); // default value, real circle
     end
     
     set(a,"hiddencolor"          , mget(1,'il',fd)), // hidden_color
@@ -814,7 +817,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"fill_mode",fill_mode)
     set(h,"foreground",foreground) ;
     set(h,"background",background) ;
-    set(h,"drawing_method", drawing_method) ;
+    set(h,"arc_drawing_method", drawing_method) ;
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
     

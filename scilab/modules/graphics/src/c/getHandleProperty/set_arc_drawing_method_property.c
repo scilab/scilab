@@ -25,10 +25,10 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_drawing_method_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_arc_drawing_method_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
 
-  if ( sciGetEntityType(pobj) != SCI_ARC )
+  if ( sciGetEntityType(pobj) != SCI_ARC && sciGetEntityType(pobj) != SCI_SUBWIN )
   {
     sciprint(_("%s property does not exist for this handle.\n"),"drawing_method") ;
     return SET_PROPERTY_ERROR ;

@@ -202,7 +202,7 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
   { "verticalalignment"   , SetUicontrolVerticalAlignment     },
   { "fontname"            , SetUicontrolFontName              },
   { "sliderstep"          , SetUicontrolSliderStep            },
-  { "drawing_method"      , set_drawing_method_property       }
+  { "arc_drawing_method"  , set_arc_drawing_method_property   }
 } ;
 
 /*--------------------------------------------------------------------------*/
@@ -239,7 +239,7 @@ int callSetProperty( sciPointObj * pObj, int stackPointer, int valueType, int nb
   setPropertyFunc accessor = searchSetHashtable( setHashTable, propertyName ) ;
   if ( accessor == NULL )
   {
-    sciprint( "Unknown property!!: %s.\n", propertyName ) ;
+    sciprint(_("Unknown property: %s.\n"), propertyName ) ;
     return -1 ;
   }
   return accessor( pObj, stackPointer, valueType, nbRow, nbCol ) ;

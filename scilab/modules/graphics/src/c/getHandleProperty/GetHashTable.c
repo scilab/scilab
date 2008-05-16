@@ -204,7 +204,7 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
   { "verticalalignment"   , GetUicontrolVerticalAlignment     },
   { "fontname"            , GetUicontrolFontName              },
   { "sliderstep"          , GetUicontrolSliderStep            },
-  { "drawing_method"      , get_drawing_method_property       }
+  { "arc_drawing_method"  , get_arc_drawing_method_property   }
 } ;
 
 /*--------------------------------------------------------------------------*/
@@ -242,7 +242,7 @@ int callGetProperty( sciPointObj * pObj, char * propertyName )
   getPropertyFunc accessor = searchGetHashtable( getHashTable, propertyName ) ;
   if ( accessor == NULL )
   {
-    sciprint("Unknown property.\n") ;
+    sciprint( _("Unknown property: %s.\n"), propertyName ) ;
     return -1 ;
   }
   return accessor( pObj ) ;

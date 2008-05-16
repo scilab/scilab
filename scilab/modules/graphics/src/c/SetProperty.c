@@ -4125,6 +4125,9 @@ int sciInitUseNurbs(sciPointObj * pObj, BOOL useNurbs)
 {
   switch (sciGetEntityType(pObj))
   {
+  case SCI_SUBWIN:
+    pSUBWIN_FEATURE(pObj)->useNurbsForArcs = useNurbs;
+    return 0;
   case SCI_ARC:
     pARC_FEATURE(pObj)->useNurbs = useNurbs;
     return 0;

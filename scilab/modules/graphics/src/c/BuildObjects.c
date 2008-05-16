@@ -453,6 +453,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
       ppsubwin->tight_limits = ppaxesmdl->tight_limits;
       ppsubwin->FirstPlot = ppaxesmdl->FirstPlot;
       ppsubwin->with_leg =  ppaxesmdl->with_leg;
+
+      sciInitUseNurbs(pobj, sciGetUseNurbs(paxesmdl));
       
       if (sciInitSelectedSubWin(pobj) < 0 )
       { 
@@ -1313,15 +1315,15 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
       ppArc->alphabegin = alphabegin;
       ppArc->alphaend = alphaend;
       ppArc->isselected = TRUE; 
-      ppArc->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+      ppArc->visible = sciGetVisibility(pparentsubwin);
       /* By default use nurbs drawing */
-      sciInitUseNurbs(pobj, TRUE);
+      sciInitUseNurbs(pobj, sciGetUseNurbs(pparentsubwin));
 
 
       ppArc->clip_region_set = 0;
       /*ppArc->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-      sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+      sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
+      sciSetClipping(pobj,sciGetClipping(pparentsubwin));
       /*      pARC_FEATURE (pobj)->clip_region = (double *) NULL; */
 
 

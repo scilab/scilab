@@ -32,7 +32,7 @@ endfunction
 function save_graphichandle(h,fd)
   typ=h.type
   select h.type
-    
+  
   case "Figure"   
     mput( length(h.type),'c',fd);mput(ascii(h.type),'c',fd); // type
     // handle => new style
@@ -194,7 +194,9 @@ function save_graphichandle(h,fd)
     mput(h.axes_bounds,'dl',fd); // axes_bounds
     mput(bool2s(h.auto_clear=='on'),'c',fd) // auto_clear
     mput(bool2s(h.auto_scale=='on'),'c',fd) // auto_scale
-    mput(h.hidden_axis_color,'il',fd); // hidden_axiis_color
+    mput(h.hidden_axis_color,'il',fd); // hidden_axis_color
+    mput(length(h.arc_drawing_method),'c',fd); // arc_drawing_method
+    mput(ascii(h.arc_drawing_method),'c',fd);
     mput(h.hiddencolor,'il',fd) // hidden_color
     mput(bool2s(h.line_mode=='on'),'c',fd) // line_mode
     mput(h.line_style,'c',fd) // line_style
@@ -374,8 +376,8 @@ function save_graphichandle(h,fd)
     mput(h.foreground,'il',fd) // foreground
     mput(h.background,'il',fd) ; // background
     mput(h.data,'dl',fd) // data
-    mput(length(h.drawing_method),'c',fd); // drawing_method
-    mput(ascii(h.drawing_method),'c',fd);
+    mput(length(h.arc_drawing_method),'c',fd); // arc_drawing_method
+    mput(ascii(h.arc_drawing_method),'c',fd);
     mput(length(h.clip_state),'c',fd); // clip_state
     mput(ascii(h.clip_state),'c',fd);
     if h.clip_state=='on' then

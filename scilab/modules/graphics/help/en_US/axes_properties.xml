@@ -597,6 +597,15 @@
               </listitem>
             </varlistentry>
             <varlistentry>
+              <term>arc_drawing_mode: </term>
+              <listitem>
+                <para>This property controls the default <literal>arc_drawing_mode</literal>
+                 property value for all created Arc objects under this Axes object.
+		 Its value should be either <literal>"nurbs"</literal> or <literal>"lines"</literal>.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
               <term>clip_state: </term>
               <listitem>
                 <para>This field contains the default <literal>clip_state</literal>

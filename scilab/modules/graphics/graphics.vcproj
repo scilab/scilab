@@ -455,6 +455,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_arc_drawing_method_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_arrow_size_factor_property.c"
 				>
 			</File>
@@ -608,10 +612,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_dimension_property.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\getHandleProperty\get_drawing_method_property.c"
 				>
 			</File>
 			<File
@@ -1347,6 +1347,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_arc_drawing_method_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_arrow_size_factor_property.c"
 				>
 			</File>
@@ -1496,10 +1500,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_dimension_property.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\getHandleProperty\set_drawing_method_property.c"
 				>
 			</File>
 			<File

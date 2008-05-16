@@ -107,7 +107,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>drawing_method: </term>
+        <term>arc_drawing_method: </term>
 	<listitem>
 		<para>This field controls the kind of discretisation used to render the arc.
 			Its value must be either <literal>"nurbs"</literal> or <literal>"lines"</literal>.

@@ -923,6 +923,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
 
+  BOOL useNurbsForArcs;
+
   int isclip;
   double clip_region[4];
   int clip_region_set;

@@ -23,9 +23,9 @@
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
-int get_drawing_method_property( sciPointObj * pobj )
+int get_arc_drawing_method_property( sciPointObj * pobj )
 {
-  if ( sciGetEntityType(pobj) != SCI_ARC )
+  if ( sciGetEntityType(pobj) != SCI_ARC && sciGetEntityType(pobj) != SCI_SUBWIN )
   {
     sciprint(_("%s property does not exist for this handle.\n"),"drawing_method") ;
     return -1 ;
