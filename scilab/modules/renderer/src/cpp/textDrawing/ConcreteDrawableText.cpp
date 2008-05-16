@@ -103,8 +103,8 @@ void ConcreteDrawableText::redrawTextContent(void)
 {
   // draw text content and update bounding box
   sciText * ppText = pTEXT_FEATURE(m_pDrawed);
-  m_pDrawingTextStrategy->redrawTextContent(ppText->corners[0], ppText->corners[1],
-                                            ppText->corners[2], ppText->corners[3]);
+  m_pDrawingTextStrategy->drawTextContent(ppText->corners[0], ppText->corners[1],
+                                          ppText->corners[2], ppText->corners[3]);
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::showBox(void)
