@@ -12,6 +12,7 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
+ * Please note that piece of code will be rewrited for the Scilab 6 family
  */
 /*------------------------------------------------------------------------
  *    Scilab Memory Management library (Stack API)
