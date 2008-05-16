@@ -13,7 +13,7 @@
 modulename=scicos
 DISABLE_HELP_CLEAN=yes
 
-libsciscicos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) 
+libsciscicos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 
 include $(top_srcdir)/Makefile.incl.am
@@ -34,8 +34,8 @@ src/c/scicos.c \
 src/c/scicos_free.c \
 src/c/sciblk2.c \
 src/c/scicosclip.c \
-src/c/sciblk4.c \
-src/c/haltscicos.c
+src/c/sciblk4.c
+
 
 SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
 src/fortran/vvtosci.f \
@@ -78,7 +78,9 @@ sci_gateway/c/sci_sctree.c \
 sci_gateway/c/sci_set_blockerror.c \
 sci_gateway/c/sci_set_xproperty.c \
 sci_gateway/c/sci_var2vec.c \
-sci_gateway/c/sci_vec2var.c
+sci_gateway/c/sci_vec2var.c \
+sci_gateway/c/sci_haltscicos.c
+
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_ctree.f \
 sci_gateway/fortran/sci_curblock.f \
@@ -110,7 +112,7 @@ libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWA
 libsciscicos_la_LIBADD =  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/mexlib/libmat.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/time/libscitime.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/scicos/libscisundials.la $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la $(top_builddir)/modules/mexlib/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
 if USE_EMBEDDED_BLAS
-libsciscicos_la_LIBADD +=  $(top_builddir)/libs/blas/libsciblas.la 
+libsciscicos_la_LIBADD +=  $(top_builddir)/libs/blas/libsciblas.la
 endif
 
 #### scicos : Conf files ####
@@ -289,7 +291,7 @@ MLIS = src/modelica_compiler/parseTree.mli \
 	src/modelica_compiler/optimization.mli \
 	src/modelica_compiler/xMLCodeGeneration.mli \
 	src/modelica_compiler/optimizingCompiler.mli \
-	src/modelica_compiler/scicosCodeGeneration.mli 
+	src/modelica_compiler/scicosCodeGeneration.mli
 
 
 PARSER_SRC = src/modelica_compiler/parser.mly
@@ -325,7 +327,7 @@ generate-parser: $(PARSER_SRC)
 generate-lexer: $(LEXER_SRC)
 	$(OCAMLLEX) $(<)
 
-# Build the binary 
+# Build the binary
 $(TARGET): generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
 	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
 
@@ -335,7 +337,7 @@ endif # OCAML
 
 else
 
-pkglib_LTLIBRARIES = libsciscicos.la 
+pkglib_LTLIBRARIES = libsciscicos.la
 NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 
 libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)

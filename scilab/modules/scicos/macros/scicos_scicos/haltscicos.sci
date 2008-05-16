@@ -1,7 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//                
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
@@ -21,7 +21,10 @@
 
 function haltscicos(menus, win_id)
 
-    //** This is just a dummy function used for the "halt" button that 
-    //** stop the Scicos simulation 
+    //** This is just a *CLEVER* function used for the "halt" button that
+    //** stop the Scicos simulation
 
+      //** DO NOT REMOVE IT
+      sleep(1);
+      sci_haltscicos();
 endfunction

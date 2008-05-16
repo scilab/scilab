@@ -26,7 +26,7 @@
 #include "gw_scicos.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]={
 {C2F(sci_var2vec),"var2vec"},
 {C2F(sci_vec2var),"vec2var"},
@@ -54,14 +54,15 @@ static gw_generic_table Tab[]={
 {C2F(sci_curblockc),"curblockc"},
 {C2F(sci_buildouttb),"buildouttb"},
 {C2F(sci_permutobj),"permutobj"},
-{C2F(sci_end_scicosim),"end_scicosim"}
+{C2F(sci_end_scicosim),"end_scicosim"},
+{sci_haltscicos, "sci_haltscicos"},
 };
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int gw_scicos(void)
-{  
+{
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab);
 	return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 

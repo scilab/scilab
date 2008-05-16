@@ -50,5 +50,6 @@
 <PRIMITIVE gatewayId="45" primitiveId="24" primitiveName="buildouttb" />
 <PRIMITIVE gatewayId="45" primitiveId="25" primitiveName="permutobj" />
 <PRIMITIVE gatewayId="45" primitiveId="26" primitiveName="end_scicosim" />
+<PRIMITIVE gatewayId="45" primitiveId="27" primitiveName="sci_haltscicos" />
 <!-- =================== -->
 </GATEWAY>

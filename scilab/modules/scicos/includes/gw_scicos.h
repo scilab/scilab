@@ -21,16 +21,16 @@
 /*--------------------------------------------------------------------------*/
 /* INRIA 2008 */
 /* Allan CORNET */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef __GW_SCICOS__
 #define __GW_SCICOS__
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "machine.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int gw_scicos(void);
 /*--------------------------------------------------------------------------*/
-/* interface for the previous function Table */ 
-/*--------------------------------------------------------------------------*/ 
+/* interface for the previous function Table */
+/*--------------------------------------------------------------------------*/
 int C2F(sci_var2vec)(char *fname,unsigned long fname_len);
 int C2F(sci_vec2var)(char *fname,unsigned long fname_len);
 int C2F(sci_getblocklabel)(char *fname,unsigned long fname_len);
@@ -58,6 +58,7 @@ int C2F(sci_curblockc)(char *fname,unsigned long fname_len);
 int C2F(sci_buildouttb)(char *fname,unsigned long fname_len);
 int C2F(sci_permutobj)(char *fname,unsigned long fname_len);
 int C2F(sci_end_scicosim)(char *fname,unsigned long fname_len);
-/*--------------------------------------------------------------------------*/ 
+int sci_haltscicos(char *fname,unsigned long fname_len);
+/*--------------------------------------------------------------------------*/
 #endif /*  __GW_SCICOS__ */
 /*--------------------------------------------------------------------------*/

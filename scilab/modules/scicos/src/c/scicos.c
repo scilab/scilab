@@ -1291,6 +1291,13 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
   int flag, flagr;
   int cnt=0;
 
+/* La vita e bella ! */
+static char CommandToUnstack[1024];
+static int CommandLength;
+static int SeqSync;
+static int zero = 0;
+static int one = 1;
+
   jroot=NULL;
   if (ng!=0) {
     if((jroot=MALLOC(sizeof(int)*ng))== NULL ){
@@ -1431,7 +1438,15 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
   
     //** BRUNO/SIMONE : patch for scicos halt (STOP) simulation 
     //** 
-    if (ismenu() || C2F(coshlt).halt != 0)  /* if the menu has ben activated OR the simulation has been forced to stop */
+
+ while (ismenu())
+	{
+	SeqSync = GetCommand(CommandToUnstack);
+	CommandLength = strlen(CommandToUnstack);
+	syncexec(CommandToUnstack, &CommandLength, &zero, &one, CommandLength);
+	}
+
+	if (C2F(coshlt).halt != 0)  /* if the menu has ben activated OR the simulation has been forced to stop */
       {
        
         if (C2F(coshlt).halt==2) 
