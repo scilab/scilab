@@ -10,7 +10,7 @@
 ;
 #define OPTIMIZATION "optimization"
 ;
-Source: bin\optimization_f.dll; DestDir: {app}\bin; Components: {COMPN_OPTIM}
+Source: bin\optimization_f.dll; DestDir: {app}\bin; Components: {#COMPN_OPTIM}
 Source: bin\optimization.dll; DestDir: {app}\bin; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\VERSION.xml; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}
