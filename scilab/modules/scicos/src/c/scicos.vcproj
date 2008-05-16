@@ -594,6 +594,10 @@
 				Name="Imports"
 				>
 				<File
+					RelativePath=".\Action_binding_Import.def"
+					>
+				</File>
+				<File
 					RelativePath=".\Dynamic_link_Import.def"
 					>
 				</File>
