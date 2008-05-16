@@ -1,9 +1,9 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[132.3529,562.42147,39.836267,443.31627,590,550,0,52,590,500,308,54,1.4],..
-            Title=["Bouncing_ball","/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/"],..
-            tol=[0.0001;0.000001;1.000D-10;136;0.5;0],..
+            wpar=[99.748473,598.38847,15.960255,470.01168,686,621,0,30,686,621,565,228,1.4],..
+            Title=["Bouncing_ball","/home/simone/SVN/Scilab_V/scilab/modules/scicos/demos/"],..
+            tol=[0.0001;0.000001;1.000E-10;136;0.5;0;0],..
             tf=145,..
             context=" ",..
             void1=[],..
@@ -15,9 +15,9 @@ scs_m=scicos_diagram(..
 scs_m_1=scicos_diagram(..
         version="scicos4.2",..
         props=scicos_params(..
-              wpar=[600.456,450,93.705584,22.220239,486,364.5],..
+              wpar=[71.07642,649.25881,-56.178155,477.64745,788,727,21,88,797,727,200,200,1.4],..
               Title="Ypos",..
-              tol=[0.0001;0.000001;1.000D-10;30;0;0],..
+              tol=[0.0001;0.000001;1.000E-10;30;0;0],..
               tf=29,..
               context=" ",..
               void1=[],..
@@ -27,36 +27,28 @@ scs_m_1=scicos_diagram(..
               void3=[],..
               doc=list()))
 scs_m_1.objs(1)=scicos_block(..
-                gui="GAIN_f",..
+                gui="GAINBLK",..
                 graphics=scicos_graphics(..
                          orig=[257,44],..
                          sz=[40,40],..
                          flip=%f,..
                          theta=0,..
-                         exprs="1,0;0,-.98",..
+                         exprs=["[1 , 0 ; 0 , -0.98 ]";"0"],..
                          pin=23,..
                          pout=17,..
                          pein=[],..
                          peout=[],..
-                         gr_i=["[nin,nout]=(model.in,model.out);";
-                         "if nin*nout==1 then gain=string(model.rpar),else gain=''Gain'',end";
-                         "dx=sz(1)/5;";
-                         "dy=sz(2)/10;";
-                         "xx=orig(1)+      [1 4 1 1]*dx;";
-                         "yy=orig(2)+sz(2)-[1 5 9 1]*dy;";
-                         "xpoly(xx,yy,''lines'');";
-                         "w=sz(1)-2*dx;h=sz(2)-2*dy;";
-                         "xstringb(orig(1)+dx,orig(2)+dy,gain,w,h,''fill'');"],..
+                         gr_i=list("",8),..
                          id="",..
-                         in_implicit=[],..
-                         out_implicit=[]),..
+                         in_implicit="E",..
+                         out_implicit="E"),..
                 model=scicos_model(..
-                         sim="gain",..
+                         sim=list("gainblk",4),..
                          in=2,..
-                         in2=[],..
+                         in2=-1,..
                          intyp=1,..
                          out=2,..
-                         out2=[],..
+                         out2=-1,..
                          outtyp=1,..
                          evtin=[],..
                          evtout=[],..
@@ -69,7 +61,7 @@ scs_m_1.objs(1)=scicos_block(..
                          blocktype="c",..
                          firing=[],..
                          dep_ut=[%t,%f],..
-                         label=" ",..
+                         label="",..
                          nzcross=0,..
                          nmode=0,..
                          equations=list()),..
@@ -351,26 +343,27 @@ scs_m_1.objs(11)=mlist(["Text","graphics","model","void","gui"],..
                  mlist(..
                  ["graphics","orig","sz","flip","theta","exprs","pin","pout",..
                  "pein","peout","gr_i","id","in_implicit","out_implicit"],..
-                 [200,290],[47.715736,20.512821],%t,0,["ceiling";"2";"1"],[],[],..
+                 [200,290],[31.550563;12.482855],%t,0,["ceiling";"6";"2"],[],[],..
                  [],[],[],"",[],[]),..
                  mlist(..
                  ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
                  "evtout","state","dstate","odstate","rpar","ipar","opar",..
                  "blocktype","firing","dep_ut","label","nzcross","nmode",..
-                 "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),[],[2;1],..
-                 list(),"c",[],[%f,%f],"",0,0,list())," ","TEXT_f")
+                 "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
+                 "ceiling",[6;2],list(),"c",[],[%f,%f],"",0,0,list())," ",..
+                 "TEXT_f")
 scs_m_1.objs(12)=mlist(["Text","graphics","model","void","gui"],..
                  mlist(..
                  ["graphics","orig","sz","flip","theta","exprs","pin","pout",..
                  "pein","peout","gr_i","id","in_implicit","out_implicit"],..
-                 [348,268],[36.548223,20.512821],%t,0,["floor";"2";"1"],[],[],[],..
+                 [348,268],[23.479489;10.279999],%t,0,["floor";"6";"2"],[],[],[],..
                  [],[],"",[],[]),..
                  mlist(..
                  ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
                  "evtout","state","dstate","odstate","rpar","ipar","opar",..
                  "blocktype","firing","dep_ut","label","nzcross","nmode",..
-                 "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),[],[2;1],..
-                 list(),"c",[],[%f,%f],"",0,0,list())," ","TEXT_f")
+                 "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),"floor",..
+                 [6;2],list(),"c",[],[%f,%f],"",0,0,list())," ","TEXT_f")
 scs_m_1.objs(13)=scicos_block(..
                  gui="TCLSS_f",..
                  graphics=scicos_graphics(..
@@ -386,8 +379,8 @@ scs_m_1.objs(13)=scicos_block(..
                           gr_i=["txt=[''Jump'';''(A,B,C,D)''];";
                           "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"],..
                           id="",..
-                          in_implicit=[],..
-                          out_implicit=[]),..
+                          in_implicit=["E";"E"],..
+                          out_implicit="E"),..
                  model=scicos_model(..
                           sim=list("tcslti",1),..
                           in=[1;2],..
@@ -421,36 +414,28 @@ scs_m_1.objs(14)=scicos_link(..
                    from=[6,1,0],..
                    to=[13,1,1])
 scs_m_1.objs(15)=scicos_block(..
-                 gui="GAIN_f",..
+                 gui="GAINBLK",..
                  graphics=scicos_graphics(..
                           orig=[492.76,31.36],..
                           sz=[40,40],..
                           flip=%t,..
                           theta=0,..
-                          exprs="1,0",..
+                          exprs=["[ 1 , 0 ]";"0"],..
                           pin=24,..
                           pout=19,..
                           pein=[],..
                           peout=[],..
-                          gr_i=["[nin,nout]=(model.in,model.out);";
-                          "if nin*nout==1 then gain=string(model.rpar),else gain=''Gain'',end";
-                          "dx=sz(1)/5;";
-                          "dy=sz(2)/10;";
-                          "xx=orig(1)+      [1 4 1 1]*dx;";
-                          "yy=orig(2)+sz(2)-[1 5 9 1]*dy;";
-                          "xpoly(xx,yy,''lines'');";
-                          "w=sz(1)-2*dx;h=sz(2)-2*dy;";
-                          "xstringb(orig(1)+dx,orig(2)+dy,gain,w,h,''fill'');"],..
+                          gr_i=list("",8),..
                           id="",..
-                          in_implicit=[],..
-                          out_implicit=[]),..
+                          in_implicit="E",..
+                          out_implicit="E"),..
                  model=scicos_model(..
-                          sim="gain",..
+                          sim=list("gainblk",4),..
                           in=2,..
-                          in2=[],..
+                          in2=-1,..
                           intyp=1,..
                           out=1,..
-                          out2=[],..
+                          out2=-1,..
                           outtyp=1,..
                           evtin=[],..
                           evtout=[],..
@@ -463,7 +448,7 @@ scs_m_1.objs(15)=scicos_block(..
                           blocktype="c",..
                           firing=[],..
                           dep_ut=[%t,%f],..
-                          label=" ",..
+                          label="",..
                           nzcross=0,..
                           nmode=0,..
                           equations=list()),..
@@ -747,15 +732,15 @@ scs_m.objs(1)=scicos_block(..
                        "xset(''thickness'',thick)"],..
                        id="",..
                        in_implicit=[],..
-                       out_implicit=[]),..
+                       out_implicit="E"),..
               model=scicos_model(..
                        sim="super",..
                        in=[],..
                        in2=[],..
                        intyp=1,..
-                       out=1,..
-                       out2=[],..
-                       outtyp=1,..
+                       out=-1,..
+                       out2=-2,..
+                       outtyp=-1,..
                        evtin=[],..
                        evtout=[],..
                        state=[],..
@@ -775,9 +760,10 @@ scs_m.objs(1)=scicos_block(..
 scs_m_1=scicos_diagram(..
         version="scicos4.2",..
         props=scicos_params(..
-              wpar=[600.456,450,98.994924,32.129287,486,364.5],..
+              wpar=[57.470226,652.38154,-61.290681,487.17405,1064,982,0,30,1063,982,256,118,..
+              1.8374094],..
               Title="Xpos",..
-              tol=[0.0001;0.000001;1.000D-10;30;0;0],..
+              tol=[0.0001;0.000001;1.000E-10;30;0;0],..
               tf=29,..
               context=" ",..
               void1=[],..
@@ -787,36 +773,28 @@ scs_m_1=scicos_diagram(..
               void3=[],..
               doc=list()))
 scs_m_1.objs(1)=scicos_block(..
-                gui="GAIN_f",..
+                gui="GAINBLK",..
                 graphics=scicos_graphics(..
-                         orig=[257,44],..
+                         orig=[298.54286,44],..
                          sz=[40,40],..
                          flip=%f,..
                          theta=0,..
-                         exprs="1,0;0,-.98",..
+                         exprs=["[ 1 , 0 ; 0 , -0.98]";"0"],..
                          pin=23,..
                          pout=17,..
                          pein=[],..
                          peout=[],..
-                         gr_i=["[nin,nout]=(model.in,model.out);";
-                         "if nin*nout==1 then gain=string(model.rpar),else gain=''Gain'',end";
-                         "dx=sz(1)/5;";
-                         "dy=sz(2)/10;";
-                         "xx=orig(1)+      [1 4 1 1]*dx;";
-                         "yy=orig(2)+sz(2)-[1 5 9 1]*dy;";
-                         "xpoly(xx,yy,''lines'');";
-                         "w=sz(1)-2*dx;h=sz(2)-2*dy;";
-                         "xstringb(orig(1)+dx,orig(2)+dy,gain,w,h,''fill'');"],..
+                         gr_i=list("",8),..
                          id="",..
-                         in_implicit=[],..
-                         out_implicit=[]),..
+                         in_implicit="E",..
+                         out_implicit="E"),..
                 model=scicos_model(..
-                         sim=list("gain",1),..
+                         sim=list("gainblk",4),..
                          in=2,..
-                         in2=[],..
+                         in2=-1,..
                          intyp=1,..
                          out=2,..
-                         out2=[],..
+                         out2=-1,..
                          outtyp=1,..
                          evtin=[],..
                          evtout=[],..
@@ -829,7 +807,7 @@ scs_m_1.objs(1)=scicos_block(..
                          blocktype="c",..
                          firing=[],..
                          dep_ut=[%t,%f],..
-                         label=" ",..
+                         label="",..
                          nzcross=0,..
                          nmode=0,..
                          equations=list()),..
@@ -1111,26 +1089,28 @@ scs_m_1.objs(11)=mlist(["Text","graphics","model","void","gui"],..
                  mlist(..
                  ["graphics","orig","sz","flip","theta","exprs","pin","pout",..
                  "pein","peout","gr_i","id","in_implicit","out_implicit"],..
-                 [200,290],[81.28,20.16],%t,0,["right wall hit";"2";"1"],[],[],..
-                 [],[],[],"",[],[]),..
+                 [185.75428,298.11094],[45.289301;9.4948071],%t,0,..
+                 ["right wall hit";"6";"2"],[],[],[],[],[],"",[],[]),..
                  mlist(..
                  ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
                  "evtout","state","dstate","odstate","rpar","ipar","opar",..
                  "blocktype","firing","dep_ut","label","nzcross","nmode",..
-                 "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),[],[2;1],..
-                 list(),"c",[],[%f,%f],"",0,0,list())," ","TEXT_f")
+                 "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
+                 "right wall hit",[6;2],list(),"c",[],[%f,%f],"",0,0,list())," ",..
+                 "TEXT_f")
 scs_m_1.objs(12)=mlist(["Text","graphics","model","void","gui"],..
                  mlist(..
                  ["graphics","orig","sz","flip","theta","exprs","pin","pout",..
                  "pein","peout","gr_i","id","in_implicit","out_implicit"],..
-                 [348,268],[73.152,20.16],%t,0,["left wall hit";"2";"1"],[],[],..
-                 [],[],[],"",[],[]),..
+                 [371.42239,268.55852],[40.257157;8.3777709],%t,0,..
+                 ["left wall hit";"6";"2"],[],[],[],[],[],"",[],[]),..
                  mlist(..
                  ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
                  "evtout","state","dstate","odstate","rpar","ipar","opar",..
                  "blocktype","firing","dep_ut","label","nzcross","nmode",..
-                 "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),[],[2;1],..
-                 list(),"c",[],[%f,%f],"",0,0,list())," ","TEXT_f")
+                 "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
+                 "left wall hit",[6;2],list(),"c",[],[%f,%f],"",0,0,list())," ",..
+                 "TEXT_f")
 scs_m_1.objs(13)=scicos_block(..
                  gui="TCLSS_f",..
                  graphics=scicos_graphics(..
@@ -1138,7 +1118,7 @@ scs_m_1.objs(13)=scicos_block(..
                           sz=[60,40],..
                           flip=%t,..
                           theta=0,..
-                          exprs=["0,1;0,0";"0;1";"1,0;0,1";"0;0";"3;6"],..
+                          exprs=["[0 , 1 ; 0 , 0 ]";"[ 0 ; 1 ]";"[ 1 , 0 ; 0 , 1 ]";"[ 0 ; 0 ]";"[3 ; 6]"],..
                           pin=[18;17],..
                           pout=16,..
                           pein=14,..
@@ -1146,8 +1126,8 @@ scs_m_1.objs(13)=scicos_block(..
                           gr_i=["txt=[''Jump'';''(A,B,C,D)''];";
                           "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"],..
                           id="",..
-                          in_implicit=[],..
-                          out_implicit=[]),..
+                          in_implicit=["E";"E"],..
+                          out_implicit="E"),..
                  model=scicos_model(..
                           sim=list("tcslti",1),..
                           in=[1;2],..
@@ -1181,36 +1161,28 @@ scs_m_1.objs(14)=scicos_link(..
                    from=[6,1,0],..
                    to=[13,1,1])
 scs_m_1.objs(15)=scicos_block(..
-                 gui="GAIN_f",..
+                 gui="GAINBLK",..
                  graphics=scicos_graphics(..
-                          orig=[492.76,31.36],..
+                          orig=[471.51317,31.36],..
                           sz=[40,40],..
                           flip=%t,..
                           theta=0,..
-                          exprs="1,0",..
+                          exprs=["[ 1 , 0 ]";"0"],..
                           pin=24,..
                           pout=19,..
                           pein=[],..
                           peout=[],..
-                          gr_i=["[nin,nout]=(model.in,model.out);";
-                          "if nin*nout==1 then gain=string(model.rpar),else gain=''Gain'',end";
-                          "dx=sz(1)/5;";
-                          "dy=sz(2)/10;";
-                          "xx=orig(1)+      [1 4 1 1]*dx;";
-                          "yy=orig(2)+sz(2)-[1 5 9 1]*dy;";
-                          "xpoly(xx,yy,''lines'');";
-                          "w=sz(1)-2*dx;h=sz(2)-2*dy;";
-                          "xstringb(orig(1)+dx,orig(2)+dy,gain,w,h,''fill'');"],..
+                          gr_i=list("",8),..
                           id="",..
-                          in_implicit=[],..
-                          out_implicit=[]),..
+                          in_implicit="E",..
+                          out_implicit="E"),..
                  model=scicos_model(..
-                          sim=list("gain",1),..
+                          sim=list("gainblk",4),..
                           in=2,..
-                          in2=[],..
+                          in2=-1,..
                           intyp=1,..
                           out=1,..
-                          out2=[],..
+                          out2=-1,..
                           outtyp=1,..
                           evtin=[],..
                           evtout=[],..
@@ -1223,7 +1195,7 @@ scs_m_1.objs(15)=scicos_block(..
                           blocktype="c",..
                           firing=[],..
                           dep_ut=[%t,%f],..
-                          label=" ",..
+                          label="",..
                           nzcross=0,..
                           nmode=0,..
                           equations=list()),..
@@ -1237,7 +1209,7 @@ scs_m_1.objs(16)=scicos_link(..
                    from=[13,1,0],..
                    to=[22,1,1])
 scs_m_1.objs(17)=scicos_link(..
-                   xx=[248.42857;219.456;219.456;324.42857],..
+                   xx=[289.97144;219.456;219.456;324.42857],..
                    yy=[64;64;137.33333;137.33333],..
                    id=" ",..
                    thick=[0,0],..
@@ -1253,7 +1225,7 @@ scs_m_1.objs(18)=scicos_link(..
                    from=[8,1,0],..
                    to=[13,1,1])
 scs_m_1.objs(19)=scicos_link(..
-                   xx=[541.33143;541.33143;541.33143;451.104;451.104],..
+                   xx=[520.0846;541.33143;541.33143;451.104;451.104],..
                    yy=[51.36;50.4;201.6;201.6;262],..
                    id=" ",..
                    thick=[0,0],..
@@ -1358,7 +1330,7 @@ scs_m_1.objs(22)=scicos_block(..
                           equations=list()),..
                  doc=list())
 scs_m_1.objs(23)=scicos_link(..
-                   xx=[413.51468;413.51468;302.71429],..
+                   xx=[413.51468;413.51468;344.25715],..
                    yy=[77.243211;64;64],..
                    id=" ",..
                    thick=[0,0],..
@@ -1366,7 +1338,7 @@ scs_m_1.objs(23)=scicos_link(..
                    from=[22,1,0],..
                    to=[1,1,1])
 scs_m_1.objs(24)=scicos_link(..
-                   xx=[413.51468;443.5533;443.5533;484.18857],..
+                   xx=[413.51468;443.5533;443.5533;462.94174],..
                    yy=[77.243211;77.243211;51.36;51.36],..
                    id=" ",..
                    thick=[0,0],..
@@ -1507,15 +1479,15 @@ scs_m.objs(2)=scicos_block(..
                        "xset(''thickness'',thick)"],..
                        id="",..
                        in_implicit=[],..
-                       out_implicit=[]),..
+                       out_implicit="E"),..
               model=scicos_model(..
                        sim="super",..
                        in=[],..
                        in2=[],..
                        intyp=1,..
-                       out=1,..
-                       out2=[],..
-                       outtyp=1,..
+                       out=-1,..
+                       out2=-2,..
+                       outtyp=-1,..
                        evtin=[],..
                        evtout=[],..
                        state=[],..
@@ -1753,27 +1725,29 @@ scs_m.objs(3)=scicos_block(..
 scs_m.objs(4)=mlist(["Text","graphics","model","void","gui"],..
               mlist(..
               ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
-              "peout","gr_i","id","in_implicit","out_implicit"],[289,248],..
-              [68.020305,20.512821],%t,0,["X position";"2";"1"],[],[],[],[],[],..
-              "",[],[]),..
+              "peout","gr_i","id","in_implicit","out_implicit"],..
+              [234.48397,264.81672],[47.97411;10.967426],%t,0,..
+              ["X position";"6";"2"],[],[],[],[],[],"",[],[]),..
               mlist(..
               ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
               "evtout","state","dstate","odstate","rpar","ipar","opar",..
               "blocktype","firing","dep_ut","label","nzcross","nmode",..
-              "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),[],[2;1],..
-              list(),"c",[],[%f,%f],"",0,0,list())," ","TEXT_f")
+              "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
+              "X position",[6;2],list(),"c",[],[%f,%f],"",0,0,list())," ",..
+              "TEXT_f")
 scs_m.objs(5)=mlist(["Text","graphics","model","void","gui"],..
               mlist(..
               ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
-              "peout","gr_i","id","in_implicit","out_implicit"],[288,106],..
-              [67.005076,20.512821],%t,0,["Y position";"2";"1"],[],[],[],[],[],..
-              "",[],[]),..
+              "peout","gr_i","id","in_implicit","out_implicit"],..
+              [236.39149,160.83713],[47.97411;10.967426],%t,0,..
+              ["Y position";"6";"2"],[],[],[],[],[],"",[],[]),..
               mlist(..
               ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
               "evtout","state","dstate","odstate","rpar","ipar","opar",..
               "blocktype","firing","dep_ut","label","nzcross","nmode",..
-              "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),[],[2;1],..
-              list(),"c",[],[%f,%f],"",0,0,list())," ","TEXT_f")
+              "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
+              "Y position",[6;2],list(),"c",[],[%f,%f],"",0,0,list())," ",..
+              "TEXT_f")
 scs_m.objs(6)=scicos_block(..
               gui="CANIMXY",..
               graphics=scicos_graphics(..
@@ -1781,7 +1755,7 @@ scs_m.objs(6)=scicos_block(..
                        sz=[40,40],..
                        flip=%t,..
                        theta=0,..
-                       exprs=["1";"-3";"20";"10";"[]";"[]";"-.2";"5.2";"-.2";"15.2";"1"],..
+                       exprs=["1";"-3";"20";"-1";"[]";"[]";"-0.2";"+5.2";"-0.2";"15.2";"2"],..
                        pin=[8;9],..
                        pout=[],..
                        pein=7,..
@@ -1793,7 +1767,7 @@ scs_m.objs(6)=scicos_block(..
                        "xpoly(xx,yy,''lines'');";
                        "xset(''thickness'',thick);"],..
                        id="",..
-                       in_implicit=[],..
+                       in_implicit=["E";"E"],..
                        out_implicit=[]),..
               model=scicos_model(..
                        sim=list("canimxy",4),..
@@ -1809,7 +1783,7 @@ scs_m.objs(6)=scicos_block(..
                        dstate=[],..
                        odstate=list(),..
                        rpar=[-0.2;5.2;-0.2;15.2],..
-                       ipar=[10;1;1;-3;20;0;-1;-1;-1;-1;1],..
+                       ipar=[-1;1;2;-3;20;0;-1;-1;-1;-1;1],..
                        opar=list(),..
                        blocktype="d",..
                        firing=[],..
@@ -1828,7 +1802,7 @@ scs_m.objs(7)=scicos_link(..
                 from=[3,1,0],..
                 to=[6,1,1])
 scs_m.objs(8)=scicos_link(..
-                xx=[278.71429;372.58883;372.58883;403.28571],..
+                xx=[281.57143;372.58883;372.58883;400.42857],..
                 yy=[232;232;188.66667;188.66667],..
                 id=" ",..
                 thick=[0,0],..
@@ -1836,7 +1810,7 @@ scs_m.objs(8)=scicos_link(..
                 from=[2,1,0],..
                 to=[6,1,1])
 scs_m.objs(9)=scicos_link(..
-                xx=[278.71429;368.52792;368.52792;403.28571],..
+                xx=[281.57143;368.52792;368.52792;400.42857],..
                 yy=[130;130;175.33333;175.33333],..
                 id=" ",..
                 thick=[0,0],..
