@@ -61,9 +61,14 @@ function xs2emf(figureNumber, fileName)
 	xs2eps(figureNumber, fileExport);
 		
 	// convert it to emf
+	//get short  path name for windows because path is > then 6 caracters
+	[shortpath,bOK]=getshortpathname(path);
+	[path2,fname2,extension2] = fileparts(generatedFileName);
+	generatedFileName = shortpath + fname2 + extension2;	
+	
 	pstoeditOptions = "-f ""emf""";
 	[stdout, status, stderr] = unix_g(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);
-	
+		
 	if status <> 0 then
 		error(msprintf(gettext("%s: Unable to execute pstoedit.\n"), "xs2emf"));
 		disp(stderr);

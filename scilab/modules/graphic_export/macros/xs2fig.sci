@@ -63,6 +63,11 @@ function xs2fig(figureNumber, fileName)
 	xs2eps(figureNumber, fileExport);
 		
 	// convert it to fig
+	//get short  path name for windows because path is > then 6 caracters
+	[shortpath,bOK]=getshortpathname(path);
+	[path2,fname2,extension2] = fileparts(generatedFileName);
+	generatedFileName = shortpath + fname2 + extension2;	
+	
 	pstoeditOptions = "-f ""fig""";
 	// unix_s(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);
 	// @TODO catch errors and display them if occurs
