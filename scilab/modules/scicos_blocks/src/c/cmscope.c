@@ -222,7 +222,10 @@ void cmscope(scicos_block * block, int flag)
 	    scoDelCoupleOfPolylines(pScopeMemory);
 
 	  }
-	scoFreeScopeMemory(block->work, &pScopeMemory);
+	
+        //** printf("On entre dans le free scope de cmscope\n");
+	//** ... see inside the following function for more details
+        scoFreeScopeMemory(block->work, &pScopeMemory);
 
 	break;
       }

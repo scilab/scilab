@@ -190,6 +190,15 @@ void cscopxy3d(scicos_block * block, int flag)
 	if(scoGetScopeActivation(pScopeMemory) == 1)
 	  {
 	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+	    
+	    if (scoGetPointerScopeWindow(pScopeMemory) != NULL)
+	      {
+		for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
+		  {
+		    Pinceau = scoGetPointerLongDraw(pScopeMemory,0,i);
+		    forceRedraw(Pinceau);
+		  }
+	      }
 	    Pinceau = sciGetCurrentFigure();
 	    pFIGURE_FEATURE(Pinceau)->user_data = NULL;
 	    pFIGURE_FEATURE(Pinceau)->size_of_user_data = 0;

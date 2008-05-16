@@ -108,10 +108,11 @@ void cevscpe_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 */
 void cevscpe(scicos_block * block, int flag)
 {
+
   ScopeMemory * pScopeMemory;
   int nbseg = 0;
   int tab[20];
-  scoGraphicalObject pShortDraw;
+  scoGraphicalObject pShortDraw, pLongDraw;
   int i;
   double t;
 
@@ -127,9 +128,12 @@ void cevscpe(scicos_block * block, int flag)
       {
 
 	/* Charging elements */
+
 	scoRetrieveScopeMemory(block->work,&pScopeMemory);
+
 	if(scoGetScopeActivation(pScopeMemory) == 1)
 	  {
+	   
 	    t = get_scicos_time();
 	    if(scoGetPointerScopeWindow(pScopeMemory) == NULL)
 	      {
@@ -167,10 +171,21 @@ void cevscpe(scicos_block * block, int flag)
 
     case Ending:
       {
+
 	scoRetrieveScopeMemory(block->work, &pScopeMemory);
 	if(scoGetScopeActivation(pScopeMemory) == 1)
 	  {
 	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+	    if(scoGetPointerScopeWindow(pScopeMemory) != NULL)
+	      {
+		for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
+		  {
+		    //maybe a bug here in the last argument of the following instruction (see tab[i])
+		    pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
+		    forceRedraw(pLongDraw);
+		  }
+	      }
+
 	    pShortDraw = sciGetCurrentFigure();
 	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
 	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;

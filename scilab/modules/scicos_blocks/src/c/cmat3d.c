@@ -108,8 +108,8 @@ void cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
     {
       /*Here we put the special window feature like pixmap or text title
 	Dont forget that the function scoAddTitleScope redraws the window at end so it would be a good idea to put it at the end*/
-      sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
-      pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->pixmapMode = 1;
+      //sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
+      //pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->pixmapMode = 1;
 
       sciSetColormap(scoGetPointerScopeWindow(*pScopeMemory), mat , size_mat/3, 3);
 
@@ -206,6 +206,7 @@ void cmat3d(scicos_block * block, int flag)
 			  /* TODO : not implemented */
 			  /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
 	      }
+	    forceRedraw(pShortDraw);
 	    sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
 	  }
 	break; //dont forget the break

@@ -76,7 +76,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
   /* warning C4047: '=' : 'scoGraphicalObject' differs in levels of indirection from 'BOOL' */
   if ((sciIsExistingFigure(win_id)))
     {
-                pTemp = getFigureFromIndex(win_id);
+      pTemp = getFigureFromIndex(win_id);
       if (pFIGURE_FEATURE(pTemp)->user_data != NULL)
         {
       user_data = scoGetUserData(pTemp);
@@ -638,10 +638,11 @@ void scoDelCoupleOfPolylines(ScopeMemory * pScopeMemory)
               pPOLYLINE_FEATURE(pShortDraw)->n1 = 0;
               //Destruction of the polyline - no presence in the menu editor anymore
               DestroyPolyline(pShortDraw);
-	      forceRedraw(pLongDraw);
+	      //** TEST
+              forceRedraw(pLongDraw);
             }
         }
-      sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+       //** sciSetUsedWindow(scoGetWindowID(pScopeMemory));
       
       
       sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));

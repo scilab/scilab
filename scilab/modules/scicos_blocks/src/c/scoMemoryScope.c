@@ -158,27 +158,90 @@ void scoInitScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory, int num
   scoSetScopeActivation(*pScopeMemory,0); //Not activated by default
 }
 
+//** 15/16 May 2008
+/* Some explanations about this garbled code: 
+   - if you stop a Scicos simulation (intentionally or not) and 
+   - you delete one or more scope windows and
+   - you try to "restart" or "end" the simulation
+   - you force the "ending" section of each Scicos blocks, including scopes
+   - inside the "ending" section of each Scicos scope there is a call to this
+     very function "scoFreeScopeMemory" that free some data structure
+
+   BUT
+
+   - if you have ALREADY close manually the windows, some of them are aready 
+     "freed" 
+
+   THEN
+
+   - you need to check before try to free the resources 
+
+   For the moment we (Benoit, Simone, JB) have decided to leave some commented
+   debug code.  
+
+*/
 
 void scoFreeScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory)
 {
   int i;
 
-  if (*pScopeMemory!=NULL) {
-    scicos_free((*pScopeMemory)->new_draw);
-    scicos_free((*pScopeMemory)->number_of_curves_by_subwin);
-    scicos_free((*pScopeMemory)->period_counter);
-    scicos_free((*pScopeMemory)->period);
-    scicos_free((*pScopeMemory)->longdraw_size);
-    scicos_free((*pScopeMemory)->shortdraw_size);
-    for(i = 0; i < (*pScopeMemory)->number_of_subwin ; i++) {
-      scicos_free((*pScopeMemory)->hShortDraw[i]);
-      scicos_free((*pScopeMemory)->hLongDraw[i]);
-    }
-    scicos_free((*pScopeMemory)->hShortDraw);
-    scicos_free((*pScopeMemory)->hLongDraw);
-    scicos_free((*pScopeMemory)->hAxes);
-    scicos_free(*block_work);
-  }
+  if (*pScopeMemory != NULL) 
+    {
+      //**printf("BANZAI \n");
+
+      //** if ( (*pScopeMemory)->new_draw != NULL ) 
+      //**  printf("[ 1 ] \n");
+        scicos_free((*pScopeMemory)->new_draw);
+      
+      //** if ( (*pScopeMemory)->number_of_curves_by_subwin != NULL )
+      //**  printf("[ 2 ] \n");
+        scicos_free((*pScopeMemory)->number_of_curves_by_subwin);
+    
+      //** if ( (*pScopeMemory)->period_counter != NULL )
+      //**  printf("[ 3 ] \n");
+        scicos_free((*pScopeMemory)->period_counter);
+
+      //** if ( (*pScopeMemory)->period != NULL)
+      //**  printf("[ 4 ] \n");
+        scicos_free((*pScopeMemory)->period);
+
+      //** if ( (*pScopeMemory)->longdraw_size != NULL )
+      //**  printf("[ 5 ] \n");
+        scicos_free((*pScopeMemory)->longdraw_size);
+
+      //** if ( (*pScopeMemory)->shortdraw_size != NULL )
+      //**  printf("[ 6 ] \n");
+        scicos_free((*pScopeMemory)->shortdraw_size);
+
+      if ( (*pScopeMemory)->number_of_subwin != NULL )
+        {
+           for (i = 0; i < (*pScopeMemory)->number_of_subwin ; i++) 
+	      {
+	        //** if ( (*pScopeMemory)->hShortDraw[i] != NULL )
+                  scicos_free((*pScopeMemory)->hShortDraw[i]);
+	        //** if ( (*pScopeMemory)->hLongDraw[i] != NULL)
+                  scicos_free((*pScopeMemory)->hLongDraw[i]);
+	      }
+        }
+
+      //** if ( (*pScopeMemory)->hShortDraw != NULL)
+      //**  printf("[ 7 ] \n");
+        scicos_free((*pScopeMemory)->hShortDraw);
+
+      //** if ( (*pScopeMemory)->hLongDraw != NULL)
+      //**  printf("[ 8 ] \n");
+        scicos_free((*pScopeMemory)->hLongDraw);
+      
+      //** if ( (*pScopeMemory)->hAxes != NULL)
+      //**  printf("[ 9 ] \n");
+        scicos_free((*pScopeMemory)->hAxes);
+      
+      //** if ( *block_work != NULL )
+      //**  printf("[ 10 ] \n");
+        scicos_free(*block_work);
+
+      //**  printf("[ END ] \n");
+     }
 
 }
 

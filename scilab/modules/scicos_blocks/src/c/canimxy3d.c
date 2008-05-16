@@ -1,23 +1,23 @@
 /*  Scicos
-*
-*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-*
-* See the file ./license.txt
-*/
+ *
+ *  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ */
 /**
    \file canimxy3d.c
    \author Benoit Bayol
@@ -107,8 +107,8 @@ void canimxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
       scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, &xmin, &xmax, &ymin, &ymax, &zmin, &zmax);
       if(scoGetScopeActivation(*pScopeMemory) == 1)
 	{ 
-		sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
-		pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->pixmapMode = 1;
+	  sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
+	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->pixmapMode = 1;
 
 	  for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(*pScopeMemory, 0) ; i++)
 	    {
@@ -201,8 +201,9 @@ void canimxy3d(scicos_block * block, int flag)
 {
   /* Declarations*/
   double *u1,*u2,*u3;
+  int i;
   ScopeMemory * pScopeMemory;
-  scoGraphicalObject pShortDraw;
+  scoGraphicalObject pShortDraw,pLongDraw;
   /* State Machine Control */
   switch(flag)
     {
@@ -219,17 +220,17 @@ void canimxy3d(scicos_block * block, int flag)
 	if(scoGetScopeActivation(pScopeMemory) == 1)
 	  {
 	    /* Charging Elements */
-	if (scoGetPointerScopeWindow(pScopeMemory) == NULL) // If the window has been destroyed we recreate it
-	  {
-	    canimxy3d_draw(block,&pScopeMemory,0);
-	  }
+	    if (scoGetPointerScopeWindow(pScopeMemory) == NULL) // If the window has been destroyed we recreate it
+	      {
+		canimxy3d_draw(block,&pScopeMemory,0);
+	      }
 
-	/*Retrieve Elements*/
-	u1 = GetRealInPortPtrs(block,1);
-	u2 = GetRealInPortPtrs(block,2);
-	u3 = GetRealInPortPtrs(block,3);
+	    /*Retrieve Elements*/
+	    u1 = GetRealInPortPtrs(block,1);
+	    u2 = GetRealInPortPtrs(block,2);
+	    u3 = GetRealInPortPtrs(block,3);
 
-	scoDrawScopeAnimXYStyle(pScopeMemory,u1,u2,u3);
+	    scoDrawScopeAnimXYStyle(pScopeMemory,u1,u2,u3);
 	  }
 	break; //Break of the switch don t forget it !
       }//End of stateupdate
@@ -241,6 +242,26 @@ void canimxy3d(scicos_block * block, int flag)
 	if(scoGetScopeActivation(pScopeMemory) == 1)
 	  {
 	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+	    if (scoGetPointerScopeWindow(pScopeMemory) != NULL)
+	      {
+		if(scoGetLongDrawSize(pScopeMemory,0) == 0)
+		  {
+		    for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
+		      {
+			pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
+			forceRedraw(pLongDraw);
+		      }
+		  }
+		else
+		  {
+		    for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
+		      {
+			pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
+			forceRedraw(pLongDraw);
+		      }
+		  }
+	      }
+
 	    pShortDraw = sciGetCurrentFigure();
 	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
 	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
