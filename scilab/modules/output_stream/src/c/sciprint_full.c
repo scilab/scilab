@@ -53,15 +53,7 @@ void sciprint_full(char *fmt,...)
 	}
 
 	/* number of columns as set by command lines() */
-	colwidth = getLinesSize();
-	/* clamp to a minimum: value is arbitrary */
-	if (colwidth < 20) {colwidth=20;}
-	/* clamp to a maximum: value is selected so that each line fits in a single console line */
-	/* this is needed because computation of the lines() value in ON_WND_TEXT_WM_SIZE is not */
-	/* consistent with the limit before a carriage return occurs in TextPutStr - this latter */
-	/* limit uses lptw->ScreenSize, which is set to x=120,y=80 at init and apparently never  */
-	/* changed on window resizing                                                            */
-	if (colwidth > 109) {colwidth=109;}
+	colwidth = getColumnsSize();
 
 	split_s_buf=MALLOC(sizeof(char)*(colwidth+1));
 	if (split_s_buf == (char *) 0)

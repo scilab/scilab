@@ -3,6 +3,7 @@
 
 EXPORTS
 	getLinesSize
+	getColumnsSize
 	linesmore
 	TermPrintf_Windows
 	
