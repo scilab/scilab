@@ -188,11 +188,13 @@ proc insertnewline {w} {
                 for while \
                 if else elseif \
                 select case \
-                function ]
+                function \
+                try ]
         set bwindentkwlist [list \
                 else elseif \
                 end \
-                endfunction ]
+                endfunction \
+                catch ]
     } else {
         set fwindentkwlist [list ]
         set bwindentkwlist [list ]
@@ -231,7 +233,7 @@ proc insertnewline {w} {
     # it to its first range (line)
     # note further that the insert mode must be forced, otherwise there is no
     # means to create a new line while in replace mode
-    puttext $w "\n$n" "forceinsert"
+    puttext $w "\n$n" "forceinsert" true
 
     # remove possible indentation chars located after the insertion above
     set c [$w get insert "insert+1c"]
@@ -329,17 +331,17 @@ proc inserttab {w} {
             for {set x 0} {$x<$nbtoinsert} {incr x} {
                 append toinsert " "
             }
-            puttext $w $toinsert "replaceallowed"
+            puttext $w $toinsert "replaceallowed" true
         } else {
             # insert a tab character
-            puttext $w "\x9" "replaceallowed"
+            puttext $w "\x9" "replaceallowed" true
         }
     }
 
     set buffermodifiedsincelastsearch true
 }
 
-proc puttext {w text insertorreplace} {
+proc puttext {w text insertorreplace {blanksinsert false}} {
 # input text $text in textarea $w
 # note: existing block selection, if any, gets collapsed in the process
 # and then deleted resulting in the apparent (desired) result that the text
@@ -348,6 +350,9 @@ proc puttext {w text insertorreplace} {
 # the parameter $insertorreplace allows to:
 #   - ignore the replace mode if set to "forceinsert"
 #   - let replace happen (when in this mode) if set to "replaceallowed"
+# the parameter $blanksinsert, when set to true, allows to ignore continued
+# lines for colorization bounds assessment (if no selection is present)
+# this is only used when entering newlines or tabs
 
     global listoffile buffermodifiedsincelastsearch
     global Tk85
@@ -365,8 +370,8 @@ proc puttext {w text insertorreplace} {
     # This is quite easily done by stopping and restoring cursor blinking, that
     # does precisely $ta configure -insertofftime xx
     # Note that we must in principle do it only for peers since typing in a widget
-    # cannot change any other non-peer text widget, but it's easier to do it for
-    # all textareas, and it's also needed to fix bug 2239
+    # cannot change the content of any other non-peer text widget, but it's easier
+    # to do it for all textareas, and it's also needed to fix bug 2239
     stopcursorblink
 
     foreach ta [getfullpeerset $w] {
@@ -423,8 +428,16 @@ proc puttext {w text insertorreplace} {
 
     if {$i1 != $i2} {
         tagcontlines $w
-        set uplimit [getstartofcolorization $w $i1]
-        set dnlimit [getendofcolorization $w $i2]
+        # if the user was just typing text and that typing didn't erase a selection,
+        # then start and stop indices for colorization can ignore continued lines
+        # this is to speed up things when typing
+        if {([string length $text] == 1 || $blanksinsert) && !$aselectionwasdeleted} {
+            set copewithcontlines false
+        } else {
+            set copewithcontlines true
+        }
+        set uplimit [getstartofcolorization $w $i1 $copewithcontlines]
+        set dnlimit [getendofcolorization $w $i2 $copewithcontlines]
         colorize $w $uplimit $dnlimit
         backgroundcolorizeuserfun
     }
@@ -444,12 +457,16 @@ proc puttext {w text insertorreplace} {
 }
 
 proc printtime {} {
-#procedure to set the time change %R to %I:%M for 12 hour time display
+# procedure to set the time change %R to %I:%M for 12 hour time display
+# Note: this proc is never called
     global listoffile buffermodifiedsincelastsearch
     if {[IsBufferEditable] == "No"} {return}
     foreach ta [getfullpeerset [gettextareacur]] {
         set listoffile("$ta",redostackdepth) 0
     }
+# <TODO>: use puttext here instead of manually inserting text
+#         it will also take care of all colorization aspects,
+#         that are anyway not dealt with here
     [gettextareacur] tag remove sel 1.0 end
     [gettextareacur] insert insert [clock format [clock seconds] \
                     -format "%R %p %D"]

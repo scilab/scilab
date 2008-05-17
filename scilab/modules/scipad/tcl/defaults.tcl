@@ -163,7 +163,8 @@ set listofpref "$colorpref wordWrap \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
        tabinserts lang completionbinding showContinuedLines \
        filebackupdepth bindstyle doubleclickscheme colorizeenable \
-       windowsmenusorting linenumbersmargins ScilabErrorMessageBox"
+       windowsmenusorting linenumbersmargins ScilabErrorMessageBox \
+       colorizeuserfuns"
 set listofpref_list { listofrecent textFont menuFont }
 
 # default options which can be overriden
@@ -212,6 +213,7 @@ set colorizeenable "always"     ;# "always" or "ask" or "never"
 set windowsmenusorting "openorder" ; # "openorder", or "alphabeticorder", or "MRUorder"
 set linenumbersmargins "right" ; # "hide" (line numbers are not displayed), or "left" (they are left-aligned), or "right" (right-aligned)
 set ScilabErrorMessageBox true
+set colorizeuserfuns "yes"
 
 # End of saved preferences
 #############

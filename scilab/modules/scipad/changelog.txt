@@ -3274,7 +3274,7 @@ Francois VOGEL, 05/05/08
 Francois VOGEL, 07/05/08
  * Fixed the elusive bug 2648 (hopefully)
  * version --> 6.141
- 
+
 ES, 13/5/2008
  * new version of FormatStringsForWatch.sci: solves several issues related to
    loss of precision of watched variables (precision was dependent on the value
@@ -3283,3 +3283,18 @@ ES, 13/5/2008
    is a slowdown for very large matrices.
  * version --> 6.142
 
+Francois VOGEL, 17/05/08
+ * Fixed slowdown of Scipad when typing after a bracket, reported in:
+   http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/ea6b6dc9bce5f0e6
+   There were two problems:
+     . missing shortcircuit in docolorizeuserfun: this slowed Scipad down
+       with or without a bracket
+     . poor performance of colorization with a lot of numbers in the buffer
+       and a big chunk of continued lines - now, when typing, the colorization
+       bounds are closer to the insert point than before (continued lines
+       can be ignored when simply typing)
+   Global performance improvement, based on the testcase provided in the
+   newsgroup thread: timings divided by 10 to 18, depending on context
+ * Added a saved preference switch for colorizing user functions
+ * Fixed wrong encoding of fr.msg (since 6.139) - now UTF-8 again
+ * version --> 6.143

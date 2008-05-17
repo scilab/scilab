@@ -159,7 +159,7 @@ proc colorize {w cpos iend} {
     set colori $listoffile("$w",colorize)
 
     # get the list of all scilab mode tags and remove the userfun tag
-    # since it it treated specially by proc docolorizeuserfun
+    # since it is treated specially by proc docolorizeuserfun
     regsub -all "scilab." [array names chset -glob scilab\.*] "" scitags
     set userfunpos [lsearch $scitags "userfun"]
     set scitags [lreplace $scitags $userfunpos $userfunpos]
@@ -683,6 +683,7 @@ proc docolorizeuserfun {} {
     global words chset
     global notsnccRE notsncclookaheadRE
     global maxcharinascilabname
+    global colorizeuserfuns
 
     set mode scilab
     set tag userfun
@@ -699,6 +700,11 @@ proc docolorizeuserfun {} {
         if {[isdisplayed $ta]} {
             $ta tag remove userfun 1.0 end
         }
+    }
+
+    # if user functions must not be colorized, that's all!
+    if {!$colorizeuserfuns} {
+        return
     }
 
     # remove userfun entries from the words array and reset chset
@@ -768,33 +774,38 @@ proc docolorizeuserfun {} {
             }
             if {$atleastone} {
                 set pat [string range $pat 0 "end-1"]
-            }
-            append pat {)} $notsncclookaheadRE
+                append pat {)} $notsncclookaheadRE
 
-            set allmatch [regexp -all -inline -indices -- $pat $fulltext]
+                set allmatch [regexp -all -inline -indices -- $pat $fulltext]
 
-            # parse regexp results and tag with userfun accordingly
-            set ind "1.0"
-            set previ 1 ;# and not 0 because of the added leading space in $fulltext
-            foreach {fullmatch funnamematch} $allmatch {
-                foreach {i j} $funnamematch {}
-                set star [$ta index "$ind + [expr {$i - $previ}] c"]
-                set malength [expr {$j - $i + 1}]
-                set stop [$ta index "$star + $malength c"]
-                if {[lsearch [$ta tag names $star] "rem2"] == -1} {
-                    if {[lsearch [$ta tag names $star] "textquoted"] == -1} {
-                        if {$malength > $maxcharinascilabname} {
-                            # clip tagging length to $maxcharinascilabname characters,
-                            # since this is the Scilab limitation - this is to remind
-                            # the user of this limit
-                            # Scipad is not limited in function names, but Scilab is
-                            set stop [$ta index "$stop - [expr {$malength - $maxcharinascilabname}] c"]
+                # parse regexp results and tag with userfun accordingly
+                set ind "1.0"
+                set previ 1 ;# and not 0 because of the added leading space in $fulltext
+                foreach {fullmatch funnamematch} $allmatch {
+                    foreach {i j} $funnamematch {}
+                    set star [$ta index "$ind + [expr {$i - $previ}] c"]
+                    if {[lsearch [$ta tag names $star] "rem2"] == -1} {
+                        if {[lsearch [$ta tag names $star] "textquoted"] == -1} {
+                            set malength [expr {$j - $i + 1}]
+                            set stop [$ta index "$star + $malength c"]
+                            if {$malength > $maxcharinascilabname} {
+                                # clip tagging length to $maxcharinascilabname characters,
+                                # since this is the Scilab limitation - this is to remind
+                                # the user of this limit
+                                # Scipad is not limited in function names, but Scilab is
+                                set stop [$ta index "$stop - [expr {$malength - $maxcharinascilabname}] c"]
+                            }
+                            $ta tag add "userfun" $star $stop
                         }
-                        $ta tag add "userfun" $star $stop
                     }
+                    set ind $star
+                    set previ $i
                 }
-                set ind $star
-                set previ $i
+            } else {
+                # there no function name in that buffer
+                # speed up things!
+                # no function name in that buffer -> let's look at the next buffer
+                # since the upcoming regexp matching cannot succeed
             }
 
             # userfun is of higher priority than operator - must do this
@@ -991,13 +1002,13 @@ proc refreshQuotedStrings {} {
     }
 }
 
-proc getstartofcolorization {w ind} {
+proc getstartofcolorization {w ind {copewithcontlines true}} {
 # return start bound required for proper recolorization
-# and take care of nearby continued lines
+# and take care of nearby continued lines if $copewithcontlines is true
     global listoffile
     switch -- $listoffile("$w",language) {
         scilab {
-            if {[iscontinuedline $w "$ind - 1 l"]} {
+            if {$copewithcontlines && [iscontinuedline $w "$ind - 1 l"]} {
                 set uplimit [getstartofcontline $w "$ind - 1 l"]
             } else {
                 set uplimit [$w index "$ind linestart"]
@@ -1018,13 +1029,13 @@ proc getstartofcolorization {w ind} {
     return $uplimit
 }
 
-proc getendofcolorization {w ind} {
+proc getendofcolorization {w ind {copewithcontlines true}} {
 # return end bound required for proper recolorization
-# and take care of nearby continued lines
+# and take care of nearby continued lines if $copewithcontlines is true
     global listoffile
     switch -- $listoffile("$w",language) {
         scilab {
-            if {[iscontinuedline $w "$ind + 1 l"]} {
+            if {$copewithcontlines && [iscontinuedline $w "$ind + 1 l"]} {
                 set dnlimit [getendofcontline $w "$ind + 1 l"]
             } else {
                 set dnlimit [$w index "$ind + 1 l lineend"]

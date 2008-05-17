@@ -245,6 +245,9 @@ proc createmenues {} {
         eval "$pad.filemenu.options.colorizeoptions add check [me "Colorize \'&strings\'"] \
               -command {refreshQuotedStrings}\
               -offvalue no -onvalue yes -variable scilabSingleQuotedStrings"
+        eval "$pad.filemenu.options.colorizeoptions add check [me "Colorize &user functions"] \
+              -command {docolorizeuserfun}\
+              -offvalue no -onvalue yes -variable colorizeuserfuns"
         eval "$pad.filemenu.options.colorizeoptions add check [me "Show c&ontinued lines"] \
               -command {tagcontlinesinallbuffers}\
               -offvalue no -onvalue yes -variable showContinuedLines"

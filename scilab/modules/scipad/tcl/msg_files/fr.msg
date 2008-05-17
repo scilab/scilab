@@ -555,11 +555,12 @@
         ::msgcat::mcset fr "Ask for &big files" "&Demander pour les gros fichiers"
         ::msgcat::mcset fr "&Never" "&Jamais"
         ::msgcat::mcset fr "Colorize \'&strings\'" "Colorer \'&chaîne\'"
+        ::msgcat::mcset fr "Colorize &user functions" "Colorer les fonctions &utilisateur"
+        ::msgcat::mcset fr "Show c&ontinued lines" "Surligner les li&gnes incomplètes"
     ::msgcat::mcset fr "Line n&umbers" "N&uméros de ligne"
         ::msgcat::mcset fr "&Hide" "&Masqués"
         ::msgcat::mcset fr "&Left aligned" "Alignés à &gauche"
         ::msgcat::mcset fr "&Right aligned" "Alignés à &droite"
-    ::msgcat::mcset fr "Show c&ontinued lines" "Surligner les li&gnes incomplètes"
     ::msgcat::mcset fr "Word &wrap" "&Retour à la ligne automatique"
     ::msgcat::mcset fr "&Double-click behavior" "Comportement du &double-clic"
         ::msgcat::mcset fr "&Linux" "&Linux"
@@ -645,7 +646,7 @@
                     offending Matlab file to" \
                    "La conversion du ficher a échoué, voyez dans la fenêtre\
                     Scilab pour plus d'informations -- Veuillez communiquer le\
-                    message d'erreur et le fichier Matlab incriminé �"
+                    message d'erreur et le fichier Matlab incriminé "
 ::msgcat::mcset fr "Please select destination path for the xml source of the help file" "Veuillez choisir le chemin de destination pour le source xml du fichier d'aide"
 ::msgcat::mcset fr "Older version of" "Il existe une version plus ancienne de"
     ::msgcat::mcset fr "found!" "!"

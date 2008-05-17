@@ -69,8 +69,9 @@ proc undoredo {textarea action} {
         set i1 $i2
         set i2 $tmp
     }
-    set uplimit [getstartofcolorization $textarea $i1]
-    set dnlimit [getendofcolorization $textarea $i2]
+    # when undoing/redoing, always cope with continued lines for colorization indices
+    set uplimit [getstartofcolorization $textarea $i1 true]
+    set dnlimit [getendofcolorization $textarea $i2 true]
     colorize $textarea $uplimit $dnlimit
     backgroundcolorizeuserfun
     reshape_bp

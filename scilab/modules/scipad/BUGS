@@ -109,6 +109,12 @@ endfunction
  global environment, since (from help exists): "the exists function does not
  check if a variable exists in the global namespace"
 
+-when background tasks are not allowed, typing quickly enough will produce
+ shuffled output: output characters are not in the order they were typed.
+ This happens when the load on Scipad is heavy, for instance with the test
+ case provided here:
+ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/ea6b6dc9bce5f0e6
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -442,3 +448,8 @@ http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/eea78c744811e2c
  4. The "Use as" should place the radiobuttons next to the sample text areas,
     so that it's visually clearer what to press for changing what. (this could
     well become a nightmare to kep everything aligned...)
+An other possible solution is to wait for tk_chooseFont be implemented in Tcl:
+https://sourceforge.net/tracker/?func=detail&atid=312997&aid=1477426&group_id=12997
+This is patch 1477426, with already a number of implementation proposals.
+Might be far better to make use of the Tcl-designed selection font, keeping mine
+as a default fallback whenever the user has an old Tk version.

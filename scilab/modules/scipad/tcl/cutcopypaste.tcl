@@ -40,18 +40,21 @@ proc deletetext {} {
     }
     set selindices [gettaselind $textareacur any]
     if {$selindices == {}} {
+        # there is no selection in the textarea
         $textareacur delete "insert" "insert+1c"
         set first [$textareacur index insert]
         set last $first
+        set copewithcontlines false
     } else {
         # text deletion must be done at once and not range by range!
         eval "$textareacur delete $selindices"
         set first [lindex $selindices 0  ]
         set last  [lindex $selindices end]
+        set copewithcontlines true
     }
     tagcontlines $textareacur
-    set uplimit [getstartofcolorization $textareacur $first]
-    set dnlimit [getendofcolorization $textareacur $last]
+    set uplimit [getstartofcolorization $textareacur $first $copewithcontlines]
+    set dnlimit [getendofcolorization $textareacur $last $copewithcontlines]
     colorize $textareacur [$textareacur index $uplimit] \
                           [$textareacur index $dnlimit]
     backgroundcolorizeuserfun
@@ -87,15 +90,17 @@ proc backspacetext {} {
         $textareacur delete "insert-1c" "insert"
         set first [$textareacur index insert]
         set last $first
+        set copewithcontlines false
     } else {
         # text deletion must be done at once and not range by range!
         eval "$textareacur delete $selindices"
         set first [lindex $selindices 0  ]
         set last  [lindex $selindices end]
+        set copewithcontlines true
     }
     tagcontlines $textareacur
-    set uplimit [getstartofcolorization $textareacur $first]
-    set dnlimit [getendofcolorization $textareacur $last]
+    set uplimit [getstartofcolorization $textareacur $first $copewithcontlines]
+    set dnlimit [getendofcolorization $textareacur $last $copewithcontlines]
     colorize $textareacur [$textareacur index $uplimit] \
                           [$textareacur index $dnlimit]
     backgroundcolorizeuserfun
@@ -177,8 +182,9 @@ proc cuttext {mode {tocutinblockmode ""}} {
 
     $textareacur tag remove sel 1.0 end
     tagcontlines $textareacur
-    set uplimit [getstartofcolorization $textareacur $i1]
-    set dnlimit [getendofcolorization $textareacur $i2]
+    # when cutting text, always cope with continued lines for colorization indices
+    set uplimit [getstartofcolorization $textareacur $i1 true]
+    set dnlimit [getendofcolorization $textareacur $i2 true]
     colorize $textareacur [$textareacur index $uplimit] \
                           [$textareacur index $dnlimit]
     backgroundcolorizeuserfun
@@ -193,6 +199,7 @@ proc cuttext {mode {tocutinblockmode ""}} {
 }
 
 proc blockcuttext {w selindices} {
+# ancillary of proc cuttext
 # deletes the characters identified by the selindices list, but do this in
 # "block-style", i.e. do not cut empty lines
     set selindicestodelete [list ]
@@ -320,8 +327,9 @@ proc pastetext {mode {topasteinblockmode ""}} {
     }
     set  i2 [$textareacur index insert]
     tagcontlines $textareacur
-    set uplimit [getstartofcolorization $textareacur $i1]
-    set dnlimit [getendofcolorization $textareacur $i2]
+    # when pasting text, always cope with continued lines for colorization indices
+    set uplimit [getstartofcolorization $textareacur $i1 true]
+    set dnlimit [getendofcolorization $textareacur $i2 true]
     colorize $textareacur [$textareacur index $uplimit] \
                           [$textareacur index $dnlimit]
     backgroundcolorizeuserfun
