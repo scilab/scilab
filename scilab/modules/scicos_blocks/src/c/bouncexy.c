@@ -108,9 +108,6 @@ void bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   (pSUBWIN_FEATURE(pAxes)->axes).axes_visible[1] = FALSE;
 
   sciSetIsBoxed(pAxes, FALSE);
-  sciSetPixmapMode(pTemp, TRUE);
-
-  pFIGURE_FEATURE(pTemp)->pixmapMode = 1;
 
   for(j = 0 ; j < number_of_curves_by_subwin ; j++)
     {
@@ -133,7 +130,6 @@ void bouncexy(scicos_block * block,int flag)
 {
   ScopeMemory * pScopeMemory;
   scoGraphicalObject pShortDraw;
-  scoGraphicalObject pLongDraw;
   double * z;
   double t;
   int i;
@@ -148,7 +144,6 @@ void bouncexy(scicos_block * block,int flag)
       }
     case StateUpdate:
       {
-
 	/*Retreiving Scope in the block->work*/
 	scoRetrieveScopeMemory(block->work,&pScopeMemory);
 	if(scoGetScopeActivation(pScopeMemory) == 1)
@@ -172,28 +167,19 @@ void bouncexy(scicos_block * block,int flag)
 	for (i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
 	  {
 	    pShortDraw  = scoGetPointerShortDraw(pScopeMemory,0,i);
-	    pLongDraw  = scoGetPointerLongDraw(pScopeMemory,0,i);
+	    //** pLongDraw  = scoGetPointerLongDraw(pScopeMemory,0,i);
 	    pARC_FEATURE(pShortDraw)->x = u1[i]-size_balls[i]/2;
 	    pARC_FEATURE(pShortDraw)->y = u2[i]+size_balls[i]/2;
-
+            forceRedraw(pShortDraw); //** force the redraw of each ball
 	  }
 
 	sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-	if (sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-	  {
-		  /* TODO : not implemented */
-	    /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-	    sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
-	  }
-	else
-	  {
-	    sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
-	  }
-
-	scicos_free(size_balls);
+	sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
+        scicos_free(size_balls);
 	  }
 	break;
       }
+
     case Ending:
       {
 	scoRetrieveScopeMemory(block->work, &pScopeMemory);
