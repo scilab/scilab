@@ -226,7 +226,7 @@
 ::msgcat::mcset de "possible breakpoints in Scilab (see help setbpt)."\
                    "m\u00F6gliche Stoppunkte (siehe help setbpt)."
 ::msgcat::mcset de "Cursor must be in a function"\
-                   "Eingabezeiger mu\u00DF� sich innerhalb einer Funktion befinden"
+                   "Eingabezeiger mu\u00DF sich innerhalb einer Funktion befinden"
 ::msgcat::mcset de "This command cannot succeed if the function where the\
                     debug just stopped is not opened in Scipad!"\
                    "Dieser Befehl kann nicht fortgesetzt werden, wenn die\
@@ -443,7 +443,7 @@
                     escaped."\
                    "Der regul\u00E4re Ausdruck kann in Tcl nicht interpetiert \
                     werden. \u00DCberpr\u00FCfen Sie, ob bestimmeten Zeichen ein \
-                    ESC-Zeichen (\\) vorangestellt werden mu\u00DF�."
+                    ESC-Zeichen (\\) vorangestellt werden mu\u00DF."
 ::msgcat::mcset de "Any single character" "Ein beliebiges Zeichen"
 ::msgcat::mcset de "Zero or more" "Keins oder Mehr"
 ::msgcat::mcset de "One or more" "Eins oder Mehr"
@@ -465,7 +465,7 @@
 ::msgcat::mcset de "A rational number" "Rationale Zahl"
 ::msgcat::mcset de "A floating point number" "Flie\u00DFkommazahl"
 ::msgcat::mcset de "A Scilab comment" "Scilab-Kommentar"
-::msgcat::mcset de "A Scilab name" "Variable oder Scilab-Schlüsselwort"
+::msgcat::mcset de "A Scilab name" "Variable oder Scilab-SchlÃ¼sselwort"
 ::msgcat::mcset de "A Scilab continued line (with dots)"\
                    "Scilab-Zeile fortgesetzt mit .."
 
@@ -660,7 +660,7 @@
 ::msgcat::mcset de "&Break" "U&nterbrechen"
 ::msgcat::mcset de "Cance&l debug" "Abb&rechen"
 
-#    ::msgcat::mcset fr "language scheme" "schéma langage"
+#    ::msgcat::mcset fr "language scheme" "schÃ©ma langage"
 # menues.tcl - Scheme menu
 ::msgcat::mcset de "S&cilab" "S&cilab"
 ::msgcat::mcset de "&XML" "&XML"
@@ -793,7 +793,7 @@
 ::msgcat::mcset de "impossibleScilabEval_message"\
                    "WARNUNG : Ein Befehl konnte nicht an Scilab \u00FCbertragen\
                     werden und wurde ignoriert.\n\n Die\
-                    wahrscheinlichste Ursache hierf\u00FCr ist, da\u00DF� Sie  keine\
+                    wahrscheinlichste Ursache hierf\u00FCr ist, da\u00DF Sie  keine\
                     Schreibrechte f\u00FCr das Scilab-Verzeichnis TMPDIR\
                     besitzen. Unvorhersehbare Ergebnisse k\u00F6nnen die Folge\
                     sein. Bei dem Befehl handelte  es sich um:\n\n-->"
