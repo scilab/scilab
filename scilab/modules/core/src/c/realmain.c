@@ -120,7 +120,7 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
 #if !defined(_DEBUG) && defined(_MSC_VER)
   _try
     {
-      C2F(scirun)(startup,strlen(startup));
+      C2F(scirun)(startup,(long int)strlen(startup));
     }
   _except (EXCEPTION_EXECUTE_HANDLER)
     {
@@ -130,7 +130,7 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
       }
       _try
 	{
-	  C2F(scirun)("",strlen(""));
+	  C2F(scirun)("",(long int)strlen(""));
 	}
       _except (EXCEPTION_EXECUTE_HANDLER)
 	{
