@@ -65,11 +65,11 @@ c
             call error(9999)
             return
          endif  
-         if(nrank.ne.m1) then
-            call ludel1(hand)
-            call error(19)
-            return
-         endif
+c         if(nrank.ne.m1) then
+c            call ludel1(hand)
+c            call error(19)
+c            return
+c         endif
          fact=.false.
       else
          call funnam(ids(1,pt+1),'lusolve',iadr(lstk(top-rhs+1)))
@@ -103,7 +103,7 @@ c     b is full
             call error(17)
             return
          endif
-c     
+c        
          do 40 j=0,n2-1
             call lusolve1(hand,stk(l2+j*m2),stk(lw3+j*m2))
             if(it2.eq.1) then
@@ -111,6 +111,7 @@ c
             endif
             if (err .gt. 0) return
  40      continue
+
          if(.not.fact) call ludel1(hand)
 c     
          top=top-rhs
