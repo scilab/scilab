@@ -21,8 +21,8 @@ c
 
 
 c     handle recursion
-      if(rstk(pt).ge.403.and.rstk(pt).le.405) goto 10
-      if(rstk(pt).eq.406.or.rstk(pt).eq.407) goto 50
+      if(rstk(pt).ge.403.and.rstk(pt).le.405) goto 11
+      if(rstk(pt).eq.406.or.rstk(pt).eq.407) goto 21
 c
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
@@ -31,7 +31,7 @@ c
 c
 
       if(fin.eq.extrac) goto 10
-      if(fin.eq.insert) goto 50
+      if(fin.eq.insert) goto 20
 c
 c     undefined operations (look for function-defined operation)
       icall = 0
@@ -42,27 +42,25 @@ c
 c     extraction
  10   continue
       toto = gettype(top-1)
-c$$$      print *, ' type de top =', gettype(top), ' type de top-1 =', toto
       if ( ishm() .and. toto.ne.10 .and. toto.ne.15) then
          call intehm()
-      else
-         call intl_e()
+         return
       endif
+
+ 11   call intl_e()
       return
 c
 c     insertion
- 50   continue
-      toto = gettype(top-2)  ! a priori
-c$$$      print *, ' type de top =',   gettype(top),
-c$$$     $         ' type de top-1 =', gettype(top-1),
-c$$$     $         ' type de top-2 =', toto
+ 20   continue
+      toto = gettype(top-2) 
       if ( ishm() .and. toto.ne.10 .and. toto.ne.15) then
          call intihm()
-      else
-         call intl_i()
+         if(err.gt.0) return
+         return
       endif
+      
+ 21   call intl_i()
       if(err.gt.0) return
-c      if(rstk(pt).eq.407) goto 50
       return
 c
       end
