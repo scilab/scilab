@@ -50,12 +50,11 @@ format()</synopsis>
     </variablelist>
     <para><literal>long</literal> defines the max number of digits (default 10).
     <literal>format()</literal> returns a vector for the current format:
-    first component is the type of format (0 if <literal>v</literal> ; 1 if <literal>e</literal> );
+    first component is the type of format (1 if <literal>v</literal> ; 0 if <literal>e</literal> );
     second component is the number of digits.</para>
     <para>
-    In "variable format" mode, vectors entries which are less than %eps
-    times the maximum absolute value of the entries were displayed as "0"
-    in the previous Scilab versions. It is no more the case, the clean
+    In the previous Scilab versions, in "variable format" mode, vectors entries which are less than %eps
+    times the maximum absolute value of the entries were displayed as "0". It is no more the case, the clean
     function can be used to set neglitible entries to zeros.</para>
   </refsection>
   <refsection>
