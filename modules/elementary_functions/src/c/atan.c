@@ -211,7 +211,7 @@ void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 			}
 			else
 			{
-				*_pdblImg = 0.25 * log((pow(_dblReal,2) + pow((_dblImg + 1),2)) / pow(_dblReal,2) + pow((_dblImg - 1),2));
+				*_pdblImg = 0.25 * log((pow(_dblReal,2) + pow((_dblImg + 1),2)) / (pow(_dblReal,2) + pow((_dblImg - 1),2)));
 			}
 		}
 		if(_dblReal == 0)
