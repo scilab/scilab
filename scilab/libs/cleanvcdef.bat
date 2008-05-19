@@ -18,8 +18,6 @@
 @del /Q integer.vcdef
 @del /Q interpolation.vcdef
 @del /Q interpolation_f.vcdef
-@del /Q optim.vcdef
-@del /Q optim_f.vcdef
 @del /Q polynomials.vcdef
 @del /Q polynomials_f.vcdef
 @del /Q signal.vcdef
