@@ -20,7 +20,7 @@ if (Rhs == 0) then
 else
   if (Rhs == 1) then
     
-    if IsAScalar(varargin(1)) then
+    if size(varargin(1), "*")==1 then
       // Create a new graphic window or set it (if already exists)
       h = createOrSetFigure(varargin(1));
     else
@@ -30,8 +30,8 @@ else
   else
     
     if (modulo(Rhs,2)==0) then
-      // nbr params paire
-      if (IsAScalar(varargin(1))==%T) then
+      // Even number of input arguments
+      if size(varargin(1), "*")==1 then
 	error(gettext("figure: invalid value type."),999) 
       else
 	// Create a new graphic window or set it (if already exists)
@@ -44,8 +44,8 @@ else
 	
       end
     else
-      // nbr params impaire
-      if (IsAScalar(varargin(1))==%T) then
+      // Odd number of input arguments
+      if size(varargin(1), "*")==1 then
 	// Create a new graphic window or set it (if already exists)
 	h = createOrSetFigure(varargin(1));
 
