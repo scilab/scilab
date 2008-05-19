@@ -210,7 +210,7 @@ static void GetSigG(MatrixPtr Matrix,int indsigg[],double sigg[])
     {
       indsigg[I-1]= 1;
       indsigg[Size+Matrix->IntToExtRowMap[I]-1]=I;
-      sigg[I-1]=1;
+      sigg[I-1]=1.0;
     }
   /* filling missing Rows */
   if (mc != 0)
@@ -227,7 +227,7 @@ static void GetSigG(MatrixPtr Matrix,int indsigg[],double sigg[])
 	    }
 	  indsigg[I-1]= 1;
 	  indsigg[Size+last-1]=I;
-	  sigg[I-1]=1;
+	  sigg[I-1]=1.0;
 	}
     }
 }
