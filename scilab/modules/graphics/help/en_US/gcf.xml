@@ -16,8 +16,7 @@
   </info>
   <refnamediv>
     <refname>gcf</refname>
-    <refpurpose>Return handle of current graphic or GUI
-  window.</refpurpose>
+    <refpurpose>Return handle of current graphic window.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -29,37 +28,34 @@
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para>handle or integer.</para>
+          <para>handle.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This routine returns the handle of the current graphic or GUI window.
-    If the current figure is a graphic one <literal>gcf()</literal> returns a handle
-    on it. If the current figure is a <link linkend="uicontrol">uicontrol</link> one
-    <literal>gcf()</literal> returns it's figure number.</para>
+    <para>This routine returns the handle of the current graphic window.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
     
-    f=gcf()  
+    f=gcf(); // Create a figure
     f.figure_size= [610,469]/2;
     f.figure_name= "Foo";
 
-    f=figure(); // create a figure
-    h=uicontrol(f,'style','listbox','position', [10 10 150 160]);// create a listbox
-    set(h, 'string', "item 1|item 2|item3");// fill the list
-    set(h, 'value', [1 3]); // select item 1 and 3 in the list
+    f=figure(); // Create a figure
+    h=uicontrol(f,"style","listbox","position", [10 10 150 160]); // Create a listbox
+    set(h, "string", "item 1|item 2|item3");// fill the list
+    set(h, "value", [1 3]); // select item 1 and 3 in the list
     gcf()
 
-    scf(0); //make graphic window 0 the current figure
-    gcf()  // return the graphic handle of the current figure
+    scf(0); // Make graphic window 0 the current figure
+    gcf()  // Return the graphic handle of the current figure
 
-    figure(f) //make GUI  window f the current figure
-    gcf()
+    figure(f) // Make window f the current figure
+    gcf() // Return the graphic handle of the current figure
 
   ]]></programlisting>
   </refsection>
