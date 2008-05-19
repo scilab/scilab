@@ -159,9 +159,9 @@
    t.font_style=5;
    t.text="SCILAB";
    
-   xlabel=a.x_label;
-   xlabel.text=" Weight"
-   xlabel.font_style= 5;
+   x_label=a.x_label;
+   x_label.text=" Weight"
+   x_label.font_style= 5;
    a.y_label.foreground = 12;
  ]]></programlisting>
   </refsection>
