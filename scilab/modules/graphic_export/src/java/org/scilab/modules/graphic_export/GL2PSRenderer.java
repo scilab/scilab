@@ -12,6 +12,8 @@
  
  package org.scilab.modules.graphic_export;
 
+import java.io.File;
+
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
@@ -20,6 +22,8 @@ import org.scilab.modules.renderer.arcDrawing.FastArcRendererFactory;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
 import org.scilab.modules.renderer.polylineDrawing.GL2PSShadeFacetDrawer;
+
+import com.sun.opengl.util.Screenshot;
 
 /**
  * 
@@ -96,7 +100,13 @@ public class GL2PSRenderer extends ExportRenderer {
 							  GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
 							  /*| GL2PS.GL2PS_OCCLUSION_CULL | GL2PS.GL2PS_LANDSCAPE | GL2PS.GL2PS_DRAW_BACKGROUND*/,
 							  GL.GL_RGBA, 0, null, null, null, null, 
-							  0, 0, 0, buffsize, ExportRenderer.getFileName());			
+							  0, 0, 0, buffsize, ExportRenderer.getFileName());		
+		
+		//Check if we have the permission to export
+		File filePermission = new File(ExportRenderer.getFileName());
+		if (!filePermission.canWrite()) {
+			getExportErrorFromGL2PS(ExportRenderer.INVALID_FILE);
+		}
 		
 		if (gl2psBeginPageStatut != GL2PS.GL2PS_SUCCESS) {
 			//Get the GL2PS error and convert it into an export error

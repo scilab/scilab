@@ -46,7 +46,7 @@ int xs2file(char * fname, ExportFileType fileType )
 	  {
 		case EXPORT_UNKNOWN_GLEXCEPTION_ERROR : Scierror(999,_("%s: Unknown GLException error in export.\n"),fname);break;
 		case EXPORT_IOEXCEPTION_ERROR : Scierror(999,_("%s: IOException error in export.\n"),fname);break;
-		case EXPORT_INVALID_FILE : Scierror(999,_("%s: Invalide file error in export.\n"),fname);break;
+		case EXPORT_INVALID_FILE : Scierror(999,_("%s: Invalide file.\n"),fname);break;
 		case EXPORT_GL2PS_ERROR : Scierror(999,_("%s: GL2PS error in export.\n"),fname);break;
 		case EXPORT_GL2PS_OVERFLOW : Scierror(999,_("%s: Unable to export figure into a file, figure is too complex.\n"),fname);break;
 		case EXPORT_GL2PS_UNINITIALIZED : Scierror(999,_("%s: Initialisation error in export\n"),fname);break;

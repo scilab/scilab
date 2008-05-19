@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_export;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.media.opengl.GLException;
 import com.sun.opengl.util.Screenshot;
@@ -42,27 +43,33 @@ public class ExportBitmap extends ExportToFile {
 	 */
 	public int exportToBitmap() {				
 		
-		/** Select the screen-shot format */
-		switch (getFiletype()) {
-		case ExportRenderer.BMP_EXPORT:  file = new File(getFilename() + ".bmp");
-		break;
-		case ExportRenderer.GIF_EXPORT:  file = new File(getFilename() + ".gif");
-		break;
-		case ExportRenderer.JPG_EXPORT:  file = new File(getFilename() + ".jpg");
-		break;
-		case ExportRenderer.PNG_EXPORT:  file = new File(getFilename() + ".png");
-		break;					  
-		default: return ExportRenderer.INVALID_FILE;
-		}
+		/** Select the screen-shot format */		
+			switch (getFiletype()) {
+			case ExportRenderer.BMP_EXPORT:  file = new File(getFilename() + ".bmp");
+			break;
+			case ExportRenderer.GIF_EXPORT:  file = new File(getFilename() + ".gif");
+			break;
+			case ExportRenderer.JPG_EXPORT:  file = new File(getFilename() + ".jpg");
+			break;
+			case ExportRenderer.PNG_EXPORT:  file = new File(getFilename() + ".png");
+			break;					  
+			default: return ExportRenderer.INVALID_FILE;
+			}
 
-		try {
-			/** Generate the screen-shot */
-			Screenshot.writeToFile(file, getWidth(), getHeight());			
+		try {			
+			/** Generate the screen-shot */		
+			//Check if we have the permission to export
+			if (file.canWrite()) {
+				Screenshot.writeToFile(file, getWidth(), getHeight());
+			} else {
+				return ExportRenderer.INVALID_FILE;
+			}
 		} catch (GLException ex1) {
 			return ExportRenderer.UNKNOWN_GLEXCEPTION_ERROR;
 		} catch (IOException ex2) {
 			return ExportRenderer.IOEXCEPTION_ERROR;			
 		}
+		
 		return ExportRenderer.SUCCESS;			
 	}
 }
