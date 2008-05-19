@@ -42,27 +42,15 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   end   
   //**----------------------------------------------------------------------------//
   
-  //** ------------> This check will disappear ?
-
-  
-  if with_gtk() then
-    global scicos_dblclk
-    if  scicos_dblclk==[] then  // dble click has been detected in
-                                // moving operations by xgetmouse
-      [btn, xc ,yc ,win ,str ] = xclick()  
-    else
-      btn=10;xc=scicos_dblclk(1);yc=scicos_dblclk(2);win=scicos_dblclk(3);str=''
-      scicos_dblclk=[]
-    end
-  else
-  
-    if rhs==1 then
+  if rhs==1 then
       [btn, xc, yc, win, str] = xclick(flag) //** not used now (was used in the past) 
     else
       [btn, xc ,yc ,win ,str ] = xclick()    //** <- This is used in the main scicos_new() loop:      
-    end                                      //**    CLEAR ANY PREVIOUS
+  end                                        //**    CLEAR ANY PREVIOUS
                                              //EVENT in the queue
-  end					     
+
+  disp("...Start ....."); disp (btn, xc ,yc ,win ,str); disp("...End ......");
+
   //**--------------------------------------------------------------------------- //
 
   %pt = [xc,yc] ; //** acquire the position  
@@ -71,7 +59,6 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   //** cosclic() filter and command association 
   
   //**--------------------------------------------------------------------------
- global inactive_windows  
  
   if btn==-100 then //** window closing check 
   //**------------------------------------------------------------
@@ -93,34 +80,45 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     btn = btn-20
        // chngwin=%t //not needed anymore because of modification of rubberbox
   end
-  
+  //**-----------------------------------------------------------  
+
   if (win==-1)& (btn==-2)&part(str,1:7)=='execstr' then
-    from=max(strindex(str,'_'))+1;
-    to=max(strindex(str,'('))-1
-    win=evstr(part(str,from:to))
+    from = max(strindex(str,'_'))+1;
+    to   = max(strindex(str,'('))-1
+    win  = evstr(part(str,from:to))
   end
+
+  
+  //**----- 
   // If the event is a TCL event then win=[]
+  global inactive_windows
   if win<>[] & find(win==inactive_windows(2))<>[] then
     global Scicos_commands
-    pathh=inactive_windows(1)(find(win==inactive_windows(2)))
+    pathh = inactive_windows(1)(find(win==inactive_windows(2)))
 
- //not needed anymore because of modification of rubberbox    
- //    if chngwin & or(btn==[0,1]) then btn=3,end  // in case of window
-                                                  // switching to another
-                                                 // superblock only
-                                                // consider click to
-                                               // avoid problem with rubberbox
+    // not needed anymore because of modification of rubberbox    
+    //    if chngwin & or(btn==[0,1]) then btn=3,end  // in case of window
+                                                     // switching to another
+                                                    // superblock only
+                                                   // consider click to
+                                                  // avoid problem with rubberbox
     
-    if (btn==-2) then
-      cmd='Cmenu='+part(str,9:length(str)-1)+';execstr(''Cmenu=''+Cmenu)'
+   //**----------------------------------------------------------------------------
+   if (btn==-2) then
+      cmd = 'Cmenu='+part(str,9:length(str)-1)+';execstr(''Cmenu=''+Cmenu)'
+    
     elseif (btn==0) then
-      cmd='Cmenu = '"MoveLink'"'
+      cmd = 'Cmenu = '"MoveLink'"'
+    
     elseif (btn==3) then
-       cmd='Cmenu=''SelectLink'''
+      cmd='Cmenu=''SelectLink'''
+    
     elseif (btn==10) then 
       cmd='Cmenu='"Open/Set'"'
+    
     elseif or(btn==[2 5 12]) then
       cmd='Cmenu = '"Popup'"';
+    
     elseif (btn>=32) & (btn<288)
       //09/10/2007, Alan's patch search in %scicos_short
       //the assiocated menu
@@ -135,17 +133,18 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       else
         cmd='Cmenu=''SelectLink'''
       end
-    elseif (btn==1000) then //Alan : CESTPASUNPEUGROS1000
-                            //POURUNSMARTMOVE??
-      cmd='Cmenu = '"Smart Move'"'
-    else
+    
+     elseif (btn==1000) then //** [CTRL] + [LeftMouseButtonPress]
+      cmd='Cmenu = '"Smart Move'"'; //** Smart Move 
+     else
       cmd='Cmenu=''SelectLink'''
     end
+    //**----------------------------------------------------------------------------
 
-    Scicos_commands=['%diagram_path_objective='+sci2exp(pathh)+';%scicos_navig=1';
-		     cmd+';%win=curwin;%pt='+sci2exp(%pt)+';xselect();%scicos_navig=[]';
-		    ]
-    return
+    Scicos_commands = ['%diagram_path_objective='+sci2exp(pathh)+';%scicos_navig=1';
+		        cmd+';%win=curwin;%pt='+sci2exp(%pt)+';xselect();%scicos_navig=[]';
+		      ]
+    return ; //** EXIT POINT 
   
   //** -----------------------------------------------------------
   elseif (btn==3) then //** Single click : Left Mouse Button : no window check         
@@ -153,10 +152,10 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     
   //** -----------------------------------------------------------
   elseif (btn==0) then //** Press button : Left Mouse Button : no window check 
-    Cmenu = "MoveLink"   ; 
+    Cmenu = "MoveLink"   ; //** Normal Move
 
-  elseif (btn==1000) then //** Press button : Left Mouse Button : no window check 
-    Cmenu = "Smart Move"   ; 
+  elseif (btn==1000) then //** [CTRL] + [LeftMouseButtonPress] 
+    Cmenu = "Smart Move"   ; //** Smart Move
   
   //**-------------------------------------------------------------    
   elseif (btn==10) & (win==curwin) then //** "Left Mouse Double Click" in the current Scicos window
@@ -209,10 +208,10 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       return ; //** ---> EXIT POINT     
     end
     
-  //**-------------------------------------------------------------    
+    //**-------------------------------------------------------------    
    
     //** Keys combos, mouse/key combos and sigle key shortcut
-  elseif btn > 31 then //** [CTRL] + [.] combination  
+    elseif btn > 31 then //** [CTRL] + [.] combination  
 
     //** ------ Key combos ------------------------------------ 
         
