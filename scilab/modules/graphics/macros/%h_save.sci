@@ -30,6 +30,10 @@ function %h_save(h,fd)
 endfunction
 
 function save_graphichandle(h,fd)
+  if ~is_handle_valid(h) then
+    warning(msprintf(gettext("%s: handle no more valid ignored.\n"),"save_graphichandle"));
+    return
+  end
   typ=h.type
   select h.type
   
