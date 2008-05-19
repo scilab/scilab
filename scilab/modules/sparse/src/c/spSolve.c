@@ -46,10 +46,10 @@
  *  spDefs.h
  *     Matrix type and macro definitions for the sparse matrix routines.
  */
+#define spINSIDE_SPARSE
 #include "spConfig.h"
 #include "spmatrix.h"
 #include "spDefs.h"
-#define spINSIDE_SPARSE
 
 
 static void SolveComplexMatrix( MatrixPtr Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS );
@@ -126,6 +126,11 @@ char *eMatrix;
 RealVector  RHS, Solution IMAG_VECTORS;
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
+register  ElementPtr  pElement;
+register  RealVector  Intermediate;
+register  RealNumber  Temp;
+register  int  I, *pExtOrder, Size;
+ElementPtr  pPivot;
 
 /* Begin `spSolve'. */
     ASSERT( IS_VALID(Matrix) AND IS_FACTORED(Matrix) );
