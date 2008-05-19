@@ -215,15 +215,16 @@ elseif callbackType == 1 then
   if type(fig)==1
     cb = "call(""" + callbackStr + """,""" + ..
 	menulabel + """,1,""c""," + ..
-	"-1,2,""d""," + ..
-	"1,3,""d"")";
+	"-1,2,""i""," + ..
+	"1,3,""i"",""out"",[1,1],2,""i"")"; // Window number is returned
   else
     cb = "call(""" + callbackStr + """,""" + ..
 	menulabel + """,1,""c""," + ..
-	string(get(fig,"figure_id"))+ ",2,""d""," +..
-	"1,3,""d"")";
+	string(get(fig,"figure_id"))+ ",2,""i""," +..
+	"1,3,""i""," + ..
+	"""out"",[1,1],2,""i"")"; // Window number is returned
   end
-  set(h, "callback", list(4, "execstr("+cb+")"));
+  set(h, "callback", list(4, "execstr("+sci2exp(cb)+")"));
 elseif callbackType == 2 then
   if type(fig)==1
     set(h, "callback", list(4, callbackStr+"(1)"));
@@ -277,15 +278,16 @@ for k=1:size(submenuslabels,"*")
     if type(fig)==1
       cb = "call(""" + callbackStr + """,""" + ..
 	  menulabel + """,1,""c""," + ..
-	  "-1,2,""d""," + ..
-	  string(k) +",3,""d"")";
+	  "-1,2,""i""," + ..
+	  string(k-1) +",3,""i"",""out"",[1,1],2,""i"")"; // Window number is returned
     else
       cb = "call(""" + callbackStr + """,""" + ..
 	  menulabel + """,1,""c""," + ..
-	  string(get(fig,"figure_id")) + ",2,""d""," + ..
-	  string(k)+ ",3,""d"")";
+	  string(get(fig,"figure_id")) + ",2,""i""," + ..
+	  string(k-1)+ ",3,""i""," + ..
+	  """out"",[1,1],2,""i"")"; // Window number is returned
     end
-    set(h, "callback", list(4, "execstr("+cb+")"));
+    set(h, "callback", list(4, "execstr("+sci2exp(cb)+")"));
   elseif callbackType == 2 then
     if type(fig)==1
       set(h, "callback", list(4, callbackStr+"("+string(k)+")"));
