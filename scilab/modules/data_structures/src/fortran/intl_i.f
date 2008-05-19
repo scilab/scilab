@@ -20,7 +20,6 @@ c
       integer strpos
       external strpos
       logical ptover
-      integer id(nsiz)
       integer iadr,sadr
 c
       iadr(l)=l+l-1
@@ -480,7 +479,7 @@ c     original index list
 
       if (m1-icount.gt.1) call mklist(m1-icount)
       rhs=3
- 83   call createref1(top2)
+      call createref1(top2)
 
       call createref1(top3+1)
       fun=0
@@ -560,7 +559,7 @@ c     .  notify that result has already been stored
 
       endif
 c
- 99   return
+      return
 
       end
 
