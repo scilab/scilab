@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
+ * Copyright (C) INRIA - 2008 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,20 +16,16 @@
 #ifndef __TOKENS_H__
 #define __TOKENS_H__
 
-/* TO DO rename variables */
-
 /** 
-* tokens function
-*
-* @param[in/out] ???
-* @param[in/out] ???
-* @param[in/out] ???
-* @param[in/out] ???
-* @param[in/out] ???
-* @param[in]
-* @param[in]
+* stringTokens function
+* @param[in] *str string where we search delimiters
+* @param[in] **delim delimiters to search
+* @param[in] sizedelim size of matrix delim
+* @param[out] sizeOutputs size of matrix of string returned
+* @return matrix of string tokens
 */
-void tokens(char **Str,char **Str2,char **Str3,int *u,int *w,int mn,int mn2);
+
+char** stringTokens(char *str,char **delim,int sizedelim,int *sizeOutputs);
 
 #endif /* __TOKENS_H__ */
 /*------------------------------------------------------------------------*/

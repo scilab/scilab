@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
+ * Copyright (C) INRIA - 2008 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,51 +12,55 @@
  *
  */
 
-/* desc : returns the tokens of a character string.                       */
-/*        The main function                                               */
-/*		                                                                  */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
 #include "MALLOC.h" 
 #include "tokens.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*------------------------------------------------------------------------*/
-void tokens(char **Input_MatrixOne,char **Input_MatrixTwo,char **Output_String,int *Row_Pointer,int *Col_Pointer,int Number_Input_One,int Number_Input_Two)
+char** stringTokens(char *str,char **delim,int sizedelim,int *sizeOutputs)
 {
-	int x = 0;
-	
-	for (x = 0; x < Number_Input_One; x++)
+	char **Outputs = NULL;
+	*sizeOutputs = 0;
+
+	if (str)
 	{
-		int y = 0;
+		char *delimiters = NULL;
+		int i = 0;
+		char *token = NULL;
 
-		/*To loop on every string in the input string matrix */
-		for (y = 0; y < (int)strlen(Input_MatrixOne[x]); y++)
+		delimiters = (char*)MALLOC(sizeof(char)*(sizedelim + 1));
+		if (delimiters)
 		{
-			int i = 0;
-			int bo = 0;
+			for (i = 0;i < sizedelim; i++)
+			{
+				delimiters[i] = delim[i][0];
+			}
+			delimiters[i] = 0;
 
-			for (i=0; i < Number_Input_Two; i++)
+			token = strtok(str,delimiters);
+
+			while ( token != NULL)
 			{
-				if ( Input_MatrixOne[x][y] == Input_MatrixTwo[i][0] ) bo = 1;
-			}
-			if ( bo == 0 )  
-			{
-				/* if bo is a signal, to put the input string matrix into the output matrix in a correct token way*/
-				Output_String[*Row_Pointer][(*Col_Pointer)++] = Input_MatrixOne[0][y];
-			}
-			else 
-			{
-				/* To start copying from the next row, and from the very beginning*/
-				if ((*Col_Pointer)!= 0) 
+				(*sizeOutputs)++; 
+				if (Outputs == NULL)
 				{
-					Output_String[*Row_Pointer][*Col_Pointer] = 0;
-					(*Row_Pointer)++;
-					*Col_Pointer = 0;
+					Outputs = (char**)MALLOC(sizeof(char*)*(*sizeOutputs));
 				}
+				else
+				{
+					Outputs = (char**)REALLOC(Outputs,sizeof(char*)*(*sizeOutputs));
+				}
+				Outputs[*sizeOutputs - 1] = strdup(token);
+				token = strtok(NULL,delimiters);
 			}
-			bo = 0;
+			FREE(delimiters);
+			delimiters = NULL;
 		}
 	}
-    Output_String[*Row_Pointer][*Col_Pointer] = 0;
+	return Outputs;
 }
-/*------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
