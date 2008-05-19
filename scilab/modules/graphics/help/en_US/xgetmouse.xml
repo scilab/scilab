@@ -21,7 +21,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>rep=xgetmouse([sel])</synopsis>
+    <synopsis>[rep [,win]]=xgetmouse([sel])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -37,6 +37,12 @@
         <term>rep</term>
         <listitem>
           <para>vector of size 3, [x,y,ibutton].</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>win</term>
+        <listitem>
+          <para>number of the figure where the event occurred.</para>
         </listitem>
       </varlistentry>
     </variablelist>
