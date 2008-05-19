@@ -1443,7 +1443,7 @@ static int one = 1;
  while (ismenu())
 	{
 	SeqSync = GetCommand(CommandToUnstack);
-	CommandLength = strlen(CommandToUnstack);
+	CommandLength = (int)strlen(CommandToUnstack);
 	syncexec(CommandToUnstack, &CommandLength, &zero, &one, CommandLength);
 	}
 

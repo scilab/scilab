@@ -39,7 +39,7 @@ extern int C2F(dr)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integ
 */
 static void block_draw_rect_1(double r[],double percent)
 {
-  integer alumode,verbose=0,narg;
+  integer verbose=0;
   static integer in=6;
   double w = r[2]*percent;
   double x = r[0];
@@ -77,8 +77,8 @@ static void block_draw_rect_2(double r[],double percent)
 
 static void block_draw_rect_3(double r[],double percent)
 {
-  integer alumode,verbose=0,narg;
-  integer flag =0;  double ang=0.0;  char foo[24];
+  integer verbose=0;
+  integer flag =0;  double ang=0.0;
   static integer in=6;
   double x = r[0] + (1.0/10)*r[2];
   double y = r[1] - r[3] + 2 ;
