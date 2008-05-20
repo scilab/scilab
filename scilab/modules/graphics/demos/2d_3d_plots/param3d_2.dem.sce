@@ -5,7 +5,7 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-my_plot_desc          = "param3d : parametric curves in R3 (t.sin(t),t.cos(t),t.|t|/50.%pi)";
+my_plot_desc          = "param3d: parametric curves in R3 (t.sin(t),t.cos(t),t.|t|/50.pi)";
 
 my_handle             = scf(100001);
 my_handle.figure_name = my_plot_desc;
