@@ -5,5 +5,5 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-if execstr('newfun(""bytecode"",1367)','errcatch') <> 999 then pause,end
-if execstr('bytecode(help)','errcatch') <> 4 then pause,end
+if execstr('newfun(""bytecode_bis"",1367)','errcatch') <> 999 then pause,end
+if execstr('bytecode_bis(help)','errcatch') <> 4 then pause,end
