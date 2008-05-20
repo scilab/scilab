@@ -48,8 +48,8 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       [btn, xc ,yc ,win ,str ] = xclick()    //** <- This is used in the main scicos_new() loop:      
   end                                        //**    CLEAR ANY PREVIOUS
                                              //EVENT in the queue
-
-  disp("...Start ....."); disp (btn, xc ,yc ,win ,str); disp("...End ......");
+  //** DEBUG ONLY
+  //**disp("...Start ....."); disp (btn, xc ,yc ,win ,str); disp("...End ......");
 
   //**--------------------------------------------------------------------------- //
 
