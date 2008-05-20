@@ -17,6 +17,7 @@
 #include "win_mem_alloc.h" /* MALLOC */
 #include "setgetSCIpath.h"
 #include "getScilabDirectory.h"
+#include "scilabDefaults.h"
 /*--------------------------------------------------------------------------*/
 #define putenv _putenv
 /*--------------------------------------------------------------------------*/
@@ -42,7 +43,8 @@ void SciEnvForWindows(void)
 	{
 		if ( (!Set_Shell()) || (!IsTheGoodShell()))
 		{
-			MessageBox(NULL,"Please modify ""ComSpec"" environment variable.\ncommand.com on W9x.\ncmd.exe on W2K and more.",
+			MessageBox(NULL,
+				"Please modify ""ComSpec"" environment variable.\ncmd.exe on W2K and more.",
 				"Warning",MB_ICONWARNING|MB_OK);
 		}
 	}
@@ -298,5 +300,29 @@ BOOL Set_Shell(void)
 	
 	if (WINDIRPATH){ FREE(WINDIRPATH); WINDIRPATH=NULL; }
 	return bOK;
+}
+/*--------------------------------------------------------------------------*/
+void Default_LC_MESSAGES_Environment_Variable(void)
+{
+	extern char* getLocaleUserInfo(void);
+	char *DefaultLanguage = getenv (EXPORTENVLOCALESTR);
+	if (DefaultLanguage == NULL)
+	{
+		DefaultLanguage = getLocaleUserInfo();
+		if (DefaultLanguage)
+		{
+			char *env = NULL;
+			int length_env = (int)(strlen(EXPORTENVLOCALESTR)+strlen("=")+strlen(DefaultLanguage));
+			env = (char*)MALLOC(sizeof(char)*(length_env+1));
+			if (env)
+			{
+				sprintf(env,"%s=%s",EXPORTENVLOCALESTR,DefaultLanguage);
+				_putenv(env);
+				FREE(env);
+				env = NULL;
+			}
+		}
+		FREE(DefaultLanguage);
+	}
 }
 /*--------------------------------------------------------------------------*/

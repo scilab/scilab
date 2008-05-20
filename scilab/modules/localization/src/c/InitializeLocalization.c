@@ -23,6 +23,9 @@
    #error "Cannot find locale.h despite that libintl.h is available"
   #endif
  #endif
+#else
+ #include <libintl.h>
+ #include <locale.h>
 #endif
 
 #include "MALLOC.h"

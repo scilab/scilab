@@ -12,29 +12,29 @@
 #include <strsafe.h>
 #include <string.h>
 #include <stdio.h>
-/*#include "DetectFramework.h"*/
 #include "GetWindowsVersion.h"
 #include "win_mem_alloc.h" /* MALLOC */
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_2K_OR_MORE "Scilab requires Windows 2000 or more."
-#define MSG_DETECT_FRAMEWORK "The .NET Framework 2.0 is not installed"
 #define MSG_WARNING "Warning"
 #define MSG_LOAD_LIBRARIES "scilex.exe failed with error %d: %s"
 #define MAIN_FUNCTION "Console_Main"
-#define LIBRARY_TO_LOAD "scilab_windows"
+#define INITIALIZE_LC_MESSAGES "Default_LC_MESSAGES_Environment_Variable"
+#define SCILAB_LIBRARY  "scilab_windows"
 #define ARG_NW "-nw"
 #define ARG_NWNI "-nwni"
 #define ARG_NOGUI "-nogui"
 #define LENGTH_BUFFER_SECURITY 64
 /*--------------------------------------------------------------------------*/
-typedef int (*MYPROC) (int , char **);
+typedef BOOL (*MYPROC1) (void);
+typedef int (*MYPROC2) (int , char **);
 /*--------------------------------------------------------------------------*/
 int main (int argc, char **argv)
 {
 	#define MAXCMDTOKENS 128
 	UINT LastErrorMode = 0;
 	HINSTANCE hinstLib = NULL; 
-	MYPROC Console_Main = NULL; 
+
 
 	BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE; 
 	
@@ -43,13 +43,6 @@ int main (int argc, char **argv)
 	int i = 0;
 	int FindNW = 0;
 
-	/*
-	if (!DetectFrameWorkNET2())
-	{
-		MessageBox(NULL,TEXT(MSG_DETECT_FRAMEWORK),TEXT(MSG_WARNING),MB_ICONWARNING);
-		return -1;
-	}
-	*/
 	if (GetWindowsVersion()<OS_WIN32_WINDOWS_2000)
 	{
 		MessageBox(NULL,TEXT(MSG_DETECT_2K_OR_MORE),TEXT(MSG_WARNING),MB_ICONWARNING);
@@ -87,20 +80,30 @@ int main (int argc, char **argv)
 	/* Disable system errors msgbox */
 	LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS );
 
-	hinstLib = LoadLibrary(TEXT(LIBRARY_TO_LOAD)); 	
+	hinstLib = LoadLibrary(TEXT(SCILAB_LIBRARY )); 	
 
 	/* re enable system errors msgbox */
 	SetErrorMode(LastErrorMode);
 
 	if (hinstLib != NULL) 
 	{ 
-		Console_Main = (MYPROC) GetProcAddress(hinstLib,MAIN_FUNCTION); 
+		MYPROC1 SetDefaultLC_MESSAGES = NULL; 
+		SetDefaultLC_MESSAGES = (MYPROC1) GetProcAddress(hinstLib,INITIALIZE_LC_MESSAGES); 
 
-
-		if (NULL != Console_Main) 
+		if (NULL != SetDefaultLC_MESSAGES) 
 		{
-			fRunTimeLinkSuccess = TRUE;
-			(Console_Main)(argcbis,argvbis);
+			MYPROC2 Console_Main = NULL; 
+
+			/* defines LC_MESSAGES if not already exists */
+			(SetDefaultLC_MESSAGES)();
+
+			/* launch main */
+			Console_Main = (MYPROC2) GetProcAddress(hinstLib,MAIN_FUNCTION); 
+			if (NULL != Console_Main) 
+			{
+				fRunTimeLinkSuccess = TRUE;
+				(Console_Main)(argcbis,argvbis);
+			}
 		}
 		fFreeResult = FreeLibrary(hinstLib); 
 	} 
