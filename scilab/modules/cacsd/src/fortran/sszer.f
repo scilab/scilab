@@ -172,7 +172,7 @@ C
           sum = sum + (c(i,j)*c(i,j))
  60   continue
 C
-      heps = eps * sqrt(sum)
+      heps = 10.0*eps * sqrt(sum)
 C
 C       reduce this system to one with the same invariant zeros and with
 C       d full row rank mu (the normal rank of the original system)
@@ -180,6 +180,7 @@ C
       iro = p
       isigma = 0
 C
+
       call preduc(bf,naf,mplusn,m,n,p,heps,iro,isigma,mu,nu,wrk1,nwrk1,
      &            wrk2,nwrk2)
 C
@@ -216,6 +217,7 @@ C
       call preduc(af,naf,mplusn,mm,nn,pp,heps,iro,isigma,mu,nu,wrk1,
      &            nwrk1,wrk2,nwrk2)
 C
+
       if (nu .eq. 0) return
       mnu = mm + nu
  80   continue
@@ -274,7 +276,7 @@ Cc
  150  ierr = ierr + 2
       return
       end
-        subroutine preduc(abf,naf,mplusn,m,n,p,heps,iro,isigma,mu,nu,
+      subroutine preduc(abf,naf,mplusn,m,n,p,heps,iro,isigma,mu,nu,
      1                    wrk1,nwrk1,wrk2,nwrk2)
 c%calling sequence
 c       subroutine preduc(abf,naf,mplusn,m,n,p,heps,iro,isigma,mu,nu,

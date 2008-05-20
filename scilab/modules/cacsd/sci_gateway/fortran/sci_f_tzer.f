@@ -14,8 +14,7 @@ c
 c     ----------------------------
       character*(*) fname
       include 'stack.h'
-      double precision dnrm2,tol,atol,eps,gi,rcond,ur,ui,vr,vi,xr,xi
-      integer p,ind,q,job,ido,n,top1
+      double precision eps
       integer iadr,sadr
 
       iadr(l)=l+l-1
@@ -25,7 +24,7 @@ c     ----------------------------
          call error(18)
          return
       endif
-      eps=0.1*sqrt(stk(leps))
+      eps=stk(leps)
 c
       err=0
 c     calcule de zeros multivariables
