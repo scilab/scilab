@@ -371,7 +371,14 @@ c     .
 c     .           call extraction
                   goto 90
                endif
-            else
+           elseif(nj.eq.n4) then
+c             arg4(arg1,[])=[] --> arg4
+              call icopy(4,istk(il4),1,istk(il1),1)
+              l=il1+4
+              call gencopy(it4,mn4,istk(l4),1,istk(l),1)
+              lstk(top+1)=sadr(l+memused(it4,mn4))
+              return
+           else
                call indxgc(il1,m4,ili,mi,mxi,lw)
                if(err.gt.0) return
                if(mi.eq.0) then
@@ -385,6 +392,13 @@ c     .           arg4(1:m4,arg2)=[]
                   mn3=m3*n3
 c     .           call extraction
                   goto 90
+               elseif(mi.eq.m4) then
+c                 arg4([],arg2)=[] --> arg4
+                  call icopy(4,istk(il4),1,istk(il1),1)
+                  l=il1+4
+                  call gencopy(it4,mn4,istk(l4),1,istk(l),1)
+                  lstk(top+1)=sadr(l+memused(it4,mn4))
+                  return
                else
                   call error(15)
                   return

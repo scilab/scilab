@@ -1225,6 +1225,19 @@ c     .
 c     .     call extraction
                   goto 133
                endif
+            elseif(nj.eq.n4) then
+c              arg4(arg1,[])=[] --> arg4
+               volr=istk(id4+mn4)-1
+               istk(ilrs)=2
+               istk(ilrs+1)=m4
+               istk(ilrs+2)=n4
+               istk(ilrs+3)=it4
+               call icopy(4,var3,1,istk(ilrs+4),1)
+               call icopy(mn4+1,istk(id4),1,istk(ilrs+8),1)
+               l1=sadr(ilrs+9+mn4)
+               call unsfdcopy(volr*(it4+1),stk(l4r),1,stk(l1),1)
+               lstk(top+1)=l1+volr*(it4+1)
+               goto 999
             else
 c               lw=lw1
                call indxgc(il1,m4,ili,mi,mxi,lw)
@@ -1240,6 +1253,19 @@ c               lw=lw1
                   id3=id4
 c     .     call extraction
                   goto 133
+               elseif(mi.eq.m4) then
+c     arg4([],arg2)=[] --> arg4
+                  volr=istk(id4+mn4)-1
+                  istk(ilrs)=2
+                  istk(ilrs+1)=m4
+                  istk(ilrs+2)=n4
+                  istk(ilrs+3)=it4
+                  call icopy(4,var3,1,istk(ilrs+4),1)
+                  call icopy(mn4+1,istk(id4),1,istk(ilrs+8),1)
+                  l1=sadr(ilrs+9+mn4)
+                  call unsfdcopy(volr*(it4+1),stk(l4r),1,stk(l1),1)
+                  lstk(top+1)=l1+volr*(it4+1)
+                  goto 999
                else
                   call error(15)
                   return

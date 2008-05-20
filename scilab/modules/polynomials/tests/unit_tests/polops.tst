@@ -694,3 +694,15 @@ if norm(coeff(p3(1,:)- [p1(1) p2(1)] ))>10*%eps then pause,end
 if norm(coeff(p3([1 4],:)- [p1([1 4]) conj(p2([1 4])')] ))>10*%eps 
   then pause,end
 if norm(coeff(p3(:,:)- p3 ))>10*%eps then pause,end
+
+
+//hidden empty index in insertion
+s=poly(0,'s');
+a=[1+s 2;3 4];a_ref=a;
+
+a(1,[%f %f])=[];
+if or(a<>a_ref) then pause,end
+a([%f %f],1)=[];
+if or(a<>a_ref) then pause,end
+a([%f %f],[%f %f])=[];
+if or(a<>a_ref) then pause,end

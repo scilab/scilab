@@ -106,3 +106,12 @@ v(1,:)=[];if or(v<>[4 5 6]);then pause,end
 v=[%i 2 3;4 5 6];
 v(:,[3 2])=[];if or(v<>[%i;4]);then pause,end
 
+//hidden empty index
+v=[1 2;3 4];v_ref=v;
+
+v(1,[%f %f])=[];
+if or(v<>v_ref) then pause,end
+v([%f %f],1)=[];
+if or(v<>v_ref) then pause,end
+v([%f %f],[%f %f])=[];
+if or(v<>v_ref) then pause,end

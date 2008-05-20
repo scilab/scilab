@@ -23,7 +23,7 @@ c
       top0=top
       lw=lstk(top+1)+1
 
- 01   il4=iadr(lstk(top))
+      il4=iadr(lstk(top))
       if(istk(il4).lt.0) il4=iadr(istk(il4+1))
       m4=istk(il4+1)
       n4=istk(il4+2)
@@ -146,6 +146,13 @@ c     .
 c     .           call extraction
                   goto 90
                endif
+            elseif(nj.eq.n4) then
+c               arg4(arg1,[])=[] --> arg4
+               call icopy(4,istk(il4),1,istk(ilrs),1)
+               l=sadr(ilrs+4)
+               call unsfdcopy(mn4*(it4+1),stk(l4),1,stk(l),1)
+               lstk(top+1)=l+mn4*(it4+1)
+               return
             else
                call indxgc(il1,m4,ili,mi,mxi,lw)
                if(err.gt.0) return
@@ -160,6 +167,13 @@ c     .           arg4(1:m4,arg2)=[]
                   mn3=m3*n3
 c     .           call extraction
                   goto 90
+               elseif(mi.eq.m4) then
+c                 arg4([],arg2)=[] --> arg4
+                  call icopy(4,istk(il4),1,istk(ilrs),1)
+                  l=sadr(ilrs+4)
+                  call unsfdcopy(mn4*(it4+1),stk(l4),1,stk(l),1)
+                  lstk(top+1)=l+mn4*(it4+1)
+                  return
                else
                   call error(15)
                   return

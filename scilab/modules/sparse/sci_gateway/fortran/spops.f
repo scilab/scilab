@@ -1894,6 +1894,13 @@ c     .
 c     .           call extraction
                   goto 76
                endif
+            elseif(nj.eq.n4) then
+c               arg4(arg1,[])=[] --> arg4
+               call icopy(5+m4+nel4,istk(il4),1,istk(ilrs),1) ! ilrs index in istk of the result
+               l=sadr(ilrs+5+m4+nel4)
+               call unsfdcopy(nel4*(it4+1),stk(l4),1,stk(l),1)
+               lstk(top+1)=l+mn4*(it4+1)
+               goto 999
             else
 c               lw=lw1
                call indxgc(il1,m4,ili,mi,mxi,lw)
@@ -1916,6 +1923,13 @@ c     .           arg4(1:m4,arg2)=[]
                   nel3=nel4
 c     .           call extraction
                   goto 76
+               elseif(mi.eq.m4) then
+c                  arg4([],arg2)=[] --> arg4
+                  call icopy(5+m4+nel4,istk(il4),1,istk(ilrs),1) ! ilrs index in istk of the result
+                  l=sadr(ilrs+5+m4+nel4)
+                  call unsfdcopy(nel4*(it4+1),stk(l4),1,stk(l),1)
+                  lstk(top+1)=l+mn4*(it4+1)
+                  goto 999
                else
                   call error(15)
                   return

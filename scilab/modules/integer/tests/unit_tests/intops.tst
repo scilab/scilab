@@ -119,6 +119,26 @@ v(1,:)=[];if or(v<>int32([4 5 6])) then pause,end
 v=int32([1 2 3;4 5 6]);
 v(:,[3 2])=[];if or(v<>int32([1;4])) then pause,end
 
+//hidden empty index in insertion
+a=int32([1 2;3 4]);a_ref=a;
+
+a(1,[%f %f])=[];
+if or(a<>a_ref) then pause,end
+a([%f %f],1)=[];
+if or(a<>a_ref) then pause,end
+a([%f %f],[%f %f])=[];
+if or(a<>a_ref) then pause,end
+
+a=int8([1 2;3 4]);a_ref=a;
+
+a(1,[%f %f])=[];
+if or(a<>a_ref) then pause,end
+a([%f %f],1)=[];
+if or(a<>a_ref) then pause,end
+a([%f %f],[%f %f])=[];
+if or(a<>a_ref) then pause,end
+
+
 //concatenations
 
 x1=int8(1);x2=int8(7);

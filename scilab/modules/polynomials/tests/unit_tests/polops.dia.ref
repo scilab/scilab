@@ -1,4 +1,9 @@
-// Copyright INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 mode(5)
 lines(0)
 s=poly(0,'s');
@@ -672,3 +677,12 @@ if norm(coeff(p3(1,:)- [p1(1) p2(1)] ))>10*%eps then bugmes();quit;end
 if norm(coeff(p3([1 4],:)- [p1([1 4]) conj(p2([1 4])')] ))>10*%eps
   then bugmes();quit;end
 if norm(coeff(p3(:,:)- p3 ))>10*%eps then bugmes();quit;end
+//hidden empty index in insertion
+s=poly(0,'s');
+a=[1+s 2;3 4];a_ref=a;
+a(1,[%f %f])=[];
+if or(a<>a_ref) then bugmes();quit;end
+a([%f %f],1)=[];
+if or(a<>a_ref) then bugmes();quit;end
+a([%f %f],[%f %f])=[];
+if or(a<>a_ref) then bugmes();quit;end

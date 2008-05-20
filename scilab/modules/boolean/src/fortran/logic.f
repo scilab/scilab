@@ -834,6 +834,12 @@ c     .
 c     .           call extraction
                   goto 56
                endif
+            elseif(nj.eq.n4) then
+c              arg4(arg1,[])=[] --> arg4
+               ilrs=iadr(lstk(top))
+               call icopy(3+mn4,istk(il4),1,istk(ilrs),1)
+               lstk(top+1)=sadr(ilrs+3+mn4)
+               goto 999
             else
 c               lw=lw1
                call indxgc(il1,m4,ili,mi,mxi,lw)
@@ -848,6 +854,12 @@ c     .           arg4(1:m4,arg2)=[]
                   mn3=m3*n3
 c     .           call extraction
                   goto 56
+               elseif(mi.eq.m4) then
+c                 arg4([],arg2)=[] --> arg4
+                  ilrs=iadr(lstk(top))
+                  call icopy(3+mn4,istk(il4),1,istk(ilrs),1)
+                  lstk(top+1)=sadr(ilrs+3+mn4)
+                  goto 999
                else
                   call error(15)
                   return
