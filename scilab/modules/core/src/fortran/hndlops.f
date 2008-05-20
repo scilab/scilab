@@ -343,7 +343,7 @@ c     check and convert indices variable
          call error(21)
          return
       endif
- 79   if(mi.eq.0) then
+      if(mi.eq.0) then
 c     arg2([])
          il1=iadr(lstk(top))
          istk(il1)=1
@@ -432,7 +432,7 @@ c
       mn1=m1*n1
 c     
 c     arg3(arg1,arg2)
- 82   if(rhs.gt.3) then
+      if(rhs.gt.3) then
          call error(36)
          return
       endif
@@ -464,7 +464,7 @@ c     check and convert indices variables
          return
       endif
 c     
- 90   mn=mi*nj
+      mn=mi*nj
       if(mn.eq.0) then 
 c     .  arg1=[] or arg2=[] 
          il1=iadr(lstk(top))
@@ -615,7 +615,7 @@ c     .           arg3([])=[]  --> arg3
                endif
             endif
 c     .     arg3(arg1)=[] -->arg3(compl(arg1))
- 97         call indxgc(il1,mn3,ilr,mi,mx,lw)
+            call indxgc(il1,mn3,ilr,mi,mx,lw)
             if(err.gt.0) return
             l2=l3
             n2=n3
@@ -828,7 +828,7 @@ c
       top0=top
       lw=lstk(top+1)+1
 
- 01   il4=iadr(lstk(top))
+      il4=iadr(lstk(top))
       if(istk(il4).lt.0) il4=iadr(istk(il4+1))
       if(istk(il4).ne.9) then
          top=top0
@@ -961,6 +961,13 @@ c     .
 c     .           call extraction
                   goto 90
                endif
+            elseif(nj.eq.n4) then
+c               arg4(arg1,[])=[] --> arg4
+               call icopy(4,istk(il4),1,istk(ilrs),1)
+               l=sadr(ilrs+4)
+               call unsfdcopy(mn4,stk(l4),1,stk(l),1)
+               lstk(top+1)=l+mn4
+               return
             else
                call indxgc(il1,m4,ili,mi,mxi,lw)
                if(err.gt.0) return
@@ -975,6 +982,13 @@ c     .           arg4(1:m4,arg2)=[]
                   mn3=m3*n3
 c     .           call extraction
                   goto 90
+               elseif(mi.eq.m4) then
+c                 arg4([],arg2)=[] --> arg4
+                  call icopy(4,istk(il4),1,istk(ilrs),1)
+                  l=sadr(ilrs+4)
+                  call unsfdcopy(mn4,stk(l4),1,stk(l),1)
+                  lstk(top+1)=l+mn4
+                  return
                else
                   call error(15)
                   return
@@ -1143,10 +1157,7 @@ c     Copyright INRIA
       include 'stack.h'
 c     
       integer top0,op
-      double precision  e1,e2,e1r,e2r,e1i,e2i
-      integer less,great,equal
-
-      integer isanan
+      integer less,great,equal,cmp,comparehandles
       integer iadr,sadr
       data less/59/,great/60/,equal/50/
 c     
@@ -1269,11 +1280,11 @@ c     .  eye op b
             lstk(top+1)=sadr(il1+4)
             return
          endif
+         
          do 132 i=0,mn1-1
-            e1=stk(l1+i)
-            e2=stk(l2+i)
-            if((op.eq.equal.and.e1.eq.e2).or.
-     $           (op.eq.less+great.and. e1.ne.e2)) then
+            cmp=comparehandles(stk(l1+i),stk(l2+i))
+            if((op.eq.equal.and.cmp.eq.1).or.
+     $           (op.eq.less+great.and. cmp.eq.0)) then
                istk(il1+3+i)=1
             else
                istk(il1+3+i)=0
