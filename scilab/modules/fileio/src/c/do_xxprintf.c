@@ -192,7 +192,9 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 						retval++;
 						break;
 					case 'n':
+#ifdef _MSC_VER
 						if ( fp == stdout ) (*xxprintf) ((VPTR) target, "\r");
+#endif
 						(*xxprintf) ((VPTR) target, "\n");
 						currentchar++;
 						retval++;
