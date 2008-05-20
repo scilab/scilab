@@ -15,6 +15,7 @@
 #ifndef _DRAWABLE_RECTANGLE_JOGL_H_
 #define _DRAWABLE_RECTANGLE_JOGL_H_
 
+#include <list>
 
 #include "DrawableRectangleBridge.h"
 #include "DrawableRectangle.h"
@@ -34,11 +35,6 @@ public:
   virtual ~DrawableRectangleJoGL( void ) ;
 
   /**
-   * Call the display list of an object
-   */
-  virtual void show( void ) ;
-
-  /**
    * Return the drawn object
    */
   DrawableRectangle * getRectangleDrawer( void ) ;
@@ -50,9 +46,6 @@ protected:
    * Get the object performing mapping with Java class.
    */
   DrawableRectangleJavaMapper * getRectangleJavaMapper(void);
-  /*-------------------------------------------------------------*/
-  /** destroy the rectangle entity */
-  void destroyRectangle( void ) ;
   /*-------------------------------------------------------------*/
 
 } ;

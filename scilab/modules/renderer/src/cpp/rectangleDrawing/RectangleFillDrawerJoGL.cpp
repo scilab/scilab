@@ -21,15 +21,20 @@ extern "C"
 namespace sciGraphics
 {
 /*---------------------------------------------------------------------------------*/
-RectangleFillDrawerJoGL::RectangleFillDrawerJoGL( DrawableRectangleBridge * drawer )
-  : DrawRectangleStrategy( drawer ), DrawableObjectJoGL(drawer->getRectangleDrawer())
+RectangleFillDrawerJoGL::RectangleFillDrawerJoGL( DrawableRectangle * drawer )
+  : DrawRectangleStrategy( drawer ), DrawableObjectJoGL(drawer)
+{
+  setJavaMapper(new RectangleFillDrawerJavaMapper());
+}
+/*---------------------------------------------------------------------------------*/
+RectangleFillDrawerJoGL::~RectangleFillDrawerJoGL(void)
 {
 
 }
 /*---------------------------------------------------------------------------------*/
 void RectangleFillDrawerJoGL::drawRectangle( void )
 {
-  sciPointObj * pObj = m_pDrawed->getRectangleDrawer()->getDrawedObject() ;
+  sciPointObj * pObj = m_pDrawed->getDrawedObject() ;
   initializeDrawing() ;
 
   // set the line parameters
@@ -41,7 +46,7 @@ void RectangleFillDrawerJoGL::drawRectangle( void )
   double corner3[3] ;
   double corner4[3] ;
 
-  m_pDrawed->getRectangleDrawer()->getCornersCoordinates( corner1, corner2, corner3, corner4 ) ;
+  m_pDrawed->getCornersCoordinates( corner1, corner2, corner3, corner4 ) ;
 
   // display the rectangle
   getFillDrawerJavaMapper()->drawRectangle(corner1[0], corner1[1], corner1[2],

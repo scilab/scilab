@@ -25,9 +25,9 @@ class RectangleLineDrawerJoGL : public DrawRectangleStrategy, public DrawableObj
 {
 public:
 
-  RectangleLineDrawerJoGL( DrawableRectangleBridge * drawer ) ;
+  RectangleLineDrawerJoGL( DrawableRectangle * drawer ) ;
 
-  virtual ~RectangleLineDrawerJoGL( void ) {}
+  virtual ~RectangleLineDrawerJoGL( void );
 
   /**
    * Main algorithm to draw the outline of the rectangle

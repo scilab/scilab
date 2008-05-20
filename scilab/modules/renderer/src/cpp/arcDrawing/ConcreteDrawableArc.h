@@ -14,9 +14,10 @@
 #ifndef _CONCRETE_DRAWABLE_ARC_HXX_
 #define _CONCRETE_DRAWABLE_ARC_HXX_
 
+#include <list>
+
 #include "DrawableArc.h"
 #include "DrawArcStrategy.h"
-#include <list>
 
 namespace sciGraphics
 {

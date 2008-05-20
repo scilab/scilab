@@ -860,10 +860,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleBridge.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\src\cpp\rectangleDrawing\DrawableRectangleBridgeFactory.cpp"
 					>
 				</File>

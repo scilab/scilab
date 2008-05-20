@@ -17,9 +17,11 @@
 
 namespace sciGraphics
 {
+/*---------------------------------------------------------------------------------*/
+DrawableRectangle::DrawableRectangle( sciPointObj * pObj ) : DrawableClippedObject( pObj )
+{
 
-using namespace std;
-
+}
 /*---------------------------------------------------------------------------------*/
 DrawableRectangle::~DrawableRectangle( void )
 {
@@ -28,13 +30,12 @@ DrawableRectangle::~DrawableRectangle( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableRectangle::draw( void )
 {
-
-  initializeDrawing() ;
+  
   if ( !checkVisibility() )
   {
-    endDrawing();
     return ;
   }
+  initializeDrawing() ;
   clip();
   drawRectangle() ;
   unClip();
@@ -44,28 +45,26 @@ void DrawableRectangle::draw( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableRectangle::show( void )
 {
-  initializeDrawing();
   if ( !checkVisibility() )
   {
-    endDrawing();
     return ;
   }
+  initializeDrawing();
   clip();
-  getRectangleImp()->show() ;
+  showRectangle();
   unClip();
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableRectangle::redraw(void)
 {
-  initializeDrawing();
   if ( !checkVisibility() )
   {
-    endDrawing();
     return ;
   }
+  initializeDrawing();
   clip();
-  getRectangleImp()->redrawRectangle();
+  redrawRectangle();
   unClip();
   endDrawing();
 }
@@ -73,11 +72,6 @@ void DrawableRectangle::redraw(void)
 DrawableRectangleBridge * DrawableRectangle::getRectangleImp( void )
 {
   return dynamic_cast<DrawableRectangleBridge *>(m_pImp) ;
-}
-/*---------------------------------------------------------------------------------*/
-void DrawableRectangle::drawRectangle( void )
-{
-  getRectangleImp()->drawRectangle() ;
 }
 /*---------------------------------------------------------------------------------*/
 

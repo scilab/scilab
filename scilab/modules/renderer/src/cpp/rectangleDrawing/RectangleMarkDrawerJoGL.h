@@ -20,35 +20,37 @@
 
 namespace sciGraphics
 {
-  class RectangleMarkDrawerJoGL : public DrawRectangleStrategy, public DrawableObjectJoGL
-  {
-  public:
+class RectangleMarkDrawerJoGL : public DrawRectangleStrategy, public DrawableObjectJoGL
+{
+public:
 
-    RectangleMarkDrawerJoGL( DrawableRectangleBridge * drawer ) ;
+  RectangleMarkDrawerJoGL( DrawableRectangle * drawer ) ;
 
-    /**
-     * Main algorithm to draw the marks on the rectangle corners
-     */
-    virtual void drawRectangle( void ) ;
+  virtual ~RectangleMarkDrawerJoGL(void);
 
-    /**
-    * Call the display list of an object
-    */
-    virtual void show( void ) { DrawableObjectJoGL::show(); }
+  /**
+   * Main algorithm to draw the marks on the rectangle corners
+   */
+  virtual void drawRectangle( void ) ;
 
-    /**
-     * Draw the rectangle using precomputed data.
-     */
-    virtual void redrawRectangle( void );
+  /**
+  * Call the display list of an object
+  */
+  virtual void show( void ) { DrawableObjectJoGL::show(); }
 
-  protected:
+  /**
+   * Draw the rectangle using precomputed data.
+   */
+  virtual void redrawRectangle( void );
 
-    /**
-     * Get the object performing mapping with Java class.
-     */
-    RectangleMarkDrawerJavaMapper * getMarkDrawerJavaMapper(void);
+protected:
 
-  };
+  /**
+   * Get the object performing mapping with Java class.
+   */
+  RectangleMarkDrawerJavaMapper * getMarkDrawerJavaMapper(void);
+
+};
 
 
 }

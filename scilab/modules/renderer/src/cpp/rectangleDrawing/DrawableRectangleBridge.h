@@ -15,11 +15,8 @@
 #ifndef _DRAWABLE_RECTANGLE_BRIDGE_H_
 #define _DRAWABLE_RECTANGLE_BRIDGE_H_
 
-#include <list>
-
 #include "../DrawableObject.h"
 #include "../DrawableClippedObjectBridge.h"
-#include "DrawRectangleStrategy.h"
 
 namespace sciGraphics
 {
@@ -34,29 +31,9 @@ class DrawableRectangleBridge : public virtual DrawableClippedObjectBridge
 
 public:
 
-  DrawableRectangleBridge( void ) ;
+  DrawableRectangleBridge( void ) {}
 
-  virtual ~DrawableRectangleBridge( void ) ;
-
-  /**
-   * Tell the canvas to draw itself.
-   */
-  virtual void drawRectangle( void ) ;
-
-  /**
-   * Tell the canvas to draw itself.
-   */
-  virtual void redrawRectangle( void ) ;
-
-  /**
-   * Add a rendering algorithm
-   */
-  void addDrawingStrategy( DrawRectangleStrategy * strategy ) ;
-
-  /**
-   * Remove all drawing strategies.
-   */
-  void removeDrawingStrategies( void ) ;
+  virtual ~DrawableRectangleBridge( void ) {}
 
   /**
    * Return the drawn object
@@ -65,11 +42,6 @@ public:
 
 protected:
 
-
-  /**
-   * List of different rendering algorithms to perform
-   */
-  std::list<DrawRectangleStrategy *> m_oDrawingStrategies ;
 
 } ;
 

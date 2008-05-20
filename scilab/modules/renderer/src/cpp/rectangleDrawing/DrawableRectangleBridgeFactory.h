@@ -35,23 +35,11 @@ public:
   virtual DrawableRectangleBridge * create( void ) ;
 
   /**
-   * Update the drawer of the drawed object.
-   * To be used when an object was deeply modified and to avoid to create it again completely.
-   */
-  virtual void update( void ) ;
-
-  /**
    * Set the DrawableRectangle wich needs algorithms
    */
   void setDrawedRectangle( DrawableRectangle * rect ) ;
 
 protected:
-
-  /**
-   * Create the drawing strategies.
-   * @param imp Object on which to create the strategies
-   */
-  void setStrategies( DrawableRectangleBridge * imp ) ;
 
   DrawableRectangle * m_pDrawable ;
 

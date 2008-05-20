@@ -15,7 +15,10 @@
 #ifndef _CONCRETE_DRAWABLE_RECTANGLE_H_
 #define _CONCRETE_DRAWABLE_RECTANGLE_H_
 
+#include <list>
+
 #include "DrawableRectangle.h"
+#include "DrawRectangleStrategy.h"
 
 namespace sciGraphics
 {
@@ -25,14 +28,45 @@ class ConcreteDrawableRectangle : public DrawableRectangle
 
 public:
 
-  ConcreteDrawableRectangle( sciPointObj * pObj ) : DrawableRectangle(pObj) {}
+  ConcreteDrawableRectangle( sciPointObj * pObj );
 
-  virtual ~ConcreteDrawableRectangle( void ) {}
+  virtual ~ConcreteDrawableRectangle( void );
+
+  /**
+   * Add a rendering algorithm
+   */
+  void addDrawingStrategy( DrawRectangleStrategy * strategy );
+
+  /**
+   * Remove all drawing strategies.
+   */
+  void removeDrawingStrategies( void );
 
   /**
    * compute the coordinates of the 4 edges of the rectangle given clockwise.
    */
   virtual void getCornersCoordinates( double corner1[3], double corner2[3], double corner3[3], double corner4[3] ) ;
+
+protected:
+
+  /*----------------------------------------------------------------------*/
+  /**
+   * Actually draw the arc on the screen
+   */
+  virtual void drawRectangle(void);
+
+  /**
+   * Redraw arc from precomputed data
+   */
+  virtual void redrawRectangle(void);
+
+  /**
+   * Actually show the arc stored data
+   */
+  virtual void showRectangle(void);
+  /*----------------------------------------------------------------------*/
+  std::list<DrawRectangleStrategy *> m_oDrawingStrategies;
+  /*----------------------------------------------------------------------*/
 
 };
 

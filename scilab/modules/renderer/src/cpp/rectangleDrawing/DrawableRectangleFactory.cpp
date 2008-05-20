@@ -16,7 +16,15 @@
 #include "DrawableRectangleBridgeFactory.h"
 #include "ConcreteDrawableRectangle.h"
 #include "../getHandleDrawer.h"
-#include "../subwinDrawing/CameraFactory.h"
+#include "RectangleLineDrawerJoGL.h"
+#include "RectangleFillDrawerJoGL.h"
+#include "RectangleMarkDrawerJoGL.h"
+
+extern "C"
+{
+#include "GetProperty.h"
+}
+
 
 namespace sciGraphics
 {
@@ -28,16 +36,39 @@ DrawableObject * DrawableRectangleFactory::create( void )
   DrawableRectangleBridgeFactory imp ;
   imp.setDrawedRectangle( newRect ) ;
   newRect->setDrawableImp( imp.create() ) ;
+  setStrategies(newRect);
 
   return newRect ;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableRectangleFactory::update( void )
 {
-  DrawableRectangleBridgeFactory imp ;
-  imp.setDrawedRectangle( getRectangleDrawer(m_pDrawed) ) ;
-  imp.update();
+  setStrategies(dynamic_cast<ConcreteDrawableRectangle *>(getRectangleDrawer(m_pDrawed)));
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableRectangleFactory::setStrategies( ConcreteDrawableRectangle * rectangle )
+{
+  rectangle->removeDrawingStrategies();
 
+  // Create rendering algorithms
+
+  if ( sciGetIsFilled( m_pDrawed ) )
+  {
+    RectangleFillDrawerJoGL * newFiller = new RectangleFillDrawerJoGL( rectangle ) ;
+    rectangle->addDrawingStrategy( newFiller ) ;
+  }
+
+  if ( sciGetIsLine( m_pDrawed ) )
+  {
+    RectangleLineDrawerJoGL * newLiner = new RectangleLineDrawerJoGL(rectangle);
+    rectangle->addDrawingStrategy( newLiner ) ;
+  }
+
+  if ( sciGetIsMark( m_pDrawed ) )
+  {
+    RectangleMarkDrawerJoGL * newMarker = new RectangleMarkDrawerJoGL(rectangle);
+    rectangle->addDrawingStrategy( newMarker ) ;
+  }
+}
+/*---------------------------------------------------------------------------------*/
 }

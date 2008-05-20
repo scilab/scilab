@@ -12,7 +12,7 @@
  */
 
 #include "RectangleLineDrawerJoGL.h"
-#include "DrawableRectangle.h"
+#include "../DrawableObjectJoGL.h"
 #include "RectangleLineDrawerJavaMapper.hxx"
 
 extern "C"
@@ -23,15 +23,20 @@ extern "C"
 namespace sciGraphics
 {
 /*---------------------------------------------------------------------------------*/
-RectangleLineDrawerJoGL::RectangleLineDrawerJoGL( DrawableRectangleBridge * drawer )
-  : DrawRectangleStrategy( drawer ), DrawableObjectJoGL(drawer->getRectangleDrawer())
+RectangleLineDrawerJoGL::RectangleLineDrawerJoGL( DrawableRectangle * drawer )
+  : DrawRectangleStrategy( drawer ), DrawableObjectJoGL(drawer)
+{
+  setJavaMapper(new RectangleLineDrawerJavaMapper());
+}
+/*---------------------------------------------------------------------------------*/
+RectangleLineDrawerJoGL::~RectangleLineDrawerJoGL( void )
 {
 
 }
 /*---------------------------------------------------------------------------------*/
 void RectangleLineDrawerJoGL::drawRectangle( void )
 {
-  sciPointObj * pObj = m_pDrawed->getRectangleDrawer()->getDrawedObject() ;
+  sciPointObj * pObj = m_pDrawed->getDrawedObject() ;
   initializeDrawing() ;
 
   // set the line parameters
@@ -45,7 +50,7 @@ void RectangleLineDrawerJoGL::drawRectangle( void )
   double corner3[3] ;
   double corner4[3] ;
   
-  m_pDrawed->getRectangleDrawer()->getCornersCoordinates( corner1, corner2, corner3, corner4 ) ;
+  m_pDrawed->getCornersCoordinates( corner1, corner2, corner3, corner4 ) ;
 
   // display the rectangle
   getLineDrawerJavaMapper()->drawRectangle(corner1[0], corner1[1], corner1[2],

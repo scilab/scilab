@@ -14,16 +14,15 @@
 #ifndef _DRAW_RECTANGLE_STRATEGY_H_
 #define _DRAW_RECTANGLE_STRATEGY_H_
 
+#include "DrawableRectangle.h"
+
 namespace sciGraphics
 {
-// cross reference
-class DrawableRectangleBridge ;
-
 class DrawRectangleStrategy
 {
 public:
 
-  DrawRectangleStrategy( DrawableRectangleBridge * drawer ) { m_pDrawed = drawer ; }
+  DrawRectangleStrategy( DrawableRectangle * drawer ) { m_pDrawed = drawer ; }
   
   virtual ~DrawRectangleStrategy( void ) {}
 
@@ -45,7 +44,7 @@ public:
 
 protected:
 
-  DrawableRectangleBridge * m_pDrawed ;
+  DrawableRectangle * m_pDrawed ;
 
 };
   

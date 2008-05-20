@@ -32,15 +32,6 @@ DrawableRectangleJoGL::~DrawableRectangleJoGL( void )
 
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableRectangleJoGL::show( void )
-{
-  std::list<DrawRectangleStrategy *>::iterator it = m_oDrawingStrategies.begin() ;
-  for ( ; it != m_oDrawingStrategies.end() ; it++ )
-  {
-    (*it)->show() ;
-  }
-}
-/*---------------------------------------------------------------------------------*/
 DrawableRectangle * DrawableRectangleJoGL::getRectangleDrawer( void )
 {
   return dynamic_cast<DrawableRectangle *>(getDrawer()) ;
@@ -51,10 +42,4 @@ DrawableRectangleJavaMapper * DrawableRectangleJoGL::getRectangleJavaMapper(void
   return dynamic_cast<DrawableRectangleJavaMapper *>(getJavaMapper());
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableRectangleJoGL::destroyRectangle( void )
-{
-  DrawableObjectJoGL::destroy() ;
-}
-/*---------------------------------------------------------------------------------*/
-
 }

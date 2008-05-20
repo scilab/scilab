@@ -17,6 +17,7 @@
 
 
 #include "../DrawableObjectFactory.h"
+#include "ConcreteDrawableRectangle.h"
 
 namespace sciGraphics
 {
@@ -36,6 +37,14 @@ public:
    * To be used when an object was deeply modified and to avoid to create it again completely.
    */
   virtual void update( void ) ;
+
+protected:
+
+  /**
+   * Create the drawing strategies.
+   * @param arc Object on which to create the strategies
+   */
+  void setStrategies( ConcreteDrawableRectangle * rectangle ) ;
 
 } ;
 

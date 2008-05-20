@@ -35,6 +35,9 @@ public final class GLTools {
 	/** Disctane max */
 	public static final double MAX_PIXEL_Z = -1.0;
 	
+	/** Minimum line with which can be set (glLineWidth does on accept values > 0 */
+	private static final float MIN_LINE_WIDTH = 0.1f;
+	
 	/** Contains the different line stipple pattern */
 	private static final short[] STIPPLE_PATTERN
 	  = {(short) 0xFFFF, // 16 solids, unused equivalent to no stipple
@@ -64,7 +67,11 @@ public final class GLTools {
 	public static void beginDashMode(GL gl, int lineStyle, float thickness) {
 			
 		// set thickness
-		gl.glLineWidth(thickness);
+		if (thickness <= 0.0) {
+			gl.glLineWidth(MIN_LINE_WIDTH);
+		} else {
+			gl.glLineWidth(thickness);
+		}
 		
 		if (lineStyle <= 1 || lineStyle >= STIPPLE_PATTERN.length) {
 			// plain mode, no need to set dash style

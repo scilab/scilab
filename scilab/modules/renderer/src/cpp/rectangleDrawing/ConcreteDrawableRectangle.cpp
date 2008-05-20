@@ -20,9 +20,36 @@ extern "C"
 #include "GetProperty.h"
 }
 
+using namespace std;
+
 namespace sciGraphics
 {
-
+/*---------------------------------------------------------------------------------*/
+ConcreteDrawableRectangle::ConcreteDrawableRectangle( sciPointObj * pObj ) : DrawableRectangle(pObj)
+{
+  m_oDrawingStrategies.clear();
+}
+/*---------------------------------------------------------------------------------*/
+ConcreteDrawableRectangle::~ConcreteDrawableRectangle( void )
+{
+  removeDrawingStrategies();
+}
+/*---------------------------------------------------------------------------------*/
+void ConcreteDrawableRectangle::addDrawingStrategy( DrawRectangleStrategy * strategy )
+{
+  m_oDrawingStrategies.push_back(strategy);
+}
+/*---------------------------------------------------------------------------------*/
+void ConcreteDrawableRectangle::removeDrawingStrategies( void )
+{
+  list<DrawRectangleStrategy *>::iterator it = m_oDrawingStrategies.begin();
+  for( ; it != m_oDrawingStrategies.end(); it++ )
+  {
+    delete *it;
+    *it = NULL;
+  }
+  m_oDrawingStrategies.clear();
+}
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableRectangle::getCornersCoordinates( double corner1[3], double corner2[3], double corner3[3], double corner4[3] )
 {
@@ -59,5 +86,31 @@ void ConcreteDrawableRectangle::getCornersCoordinates( double corner1[3], double
 
 }
 /*---------------------------------------------------------------------------------*/
-
+void ConcreteDrawableRectangle::drawRectangle(void)
+{
+  list<DrawRectangleStrategy *>::iterator it = m_oDrawingStrategies.begin();
+  for( ; it != m_oDrawingStrategies.end(); it++ )
+  {
+    (*it)->drawRectangle();
+  }
+}
+/*---------------------------------------------------------------------------------*/
+void ConcreteDrawableRectangle::redrawRectangle(void)
+{
+  list<DrawRectangleStrategy *>::iterator it = m_oDrawingStrategies.begin();
+  for( ; it != m_oDrawingStrategies.end(); it++ )
+  {
+    (*it)->redrawRectangle();
+  }
+}
+/*---------------------------------------------------------------------------------*/
+void ConcreteDrawableRectangle::showRectangle(void)
+{
+  list<DrawRectangleStrategy *>::iterator it = m_oDrawingStrategies.begin();
+  for( ; it != m_oDrawingStrategies.end(); it++ )
+  {
+    (*it)->show();
+  }
+}
+/*---------------------------------------------------------------------------------*/
 }

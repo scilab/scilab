@@ -16,7 +16,6 @@
 
 #include "DrawRectangleStrategy.h"
 #include "../DrawableObjectJoGL.h"
-#include "DrawableRectangleJoGL.h"
 #include "RectangleFillDrawerJavaMapper.hxx"
 
 namespace sciGraphics
@@ -29,7 +28,9 @@ class RectangleFillDrawerJoGL : public DrawRectangleStrategy, public DrawableObj
 {
 public:
 
-  RectangleFillDrawerJoGL( DrawableRectangleBridge * drawer ) ;
+  RectangleFillDrawerJoGL( DrawableRectangle * drawer ) ;
+  
+  virtual ~RectangleFillDrawerJoGL(void);
 
   /**
    * Main algorithm to fill the inside of a rectangle

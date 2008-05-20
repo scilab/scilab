@@ -26,7 +26,7 @@ class DrawableRectangle : public DrawableClippedObject
 
 public:
 
-  DrawableRectangle( sciPointObj * pObj ) : DrawableClippedObject( pObj ) {}
+  DrawableRectangle( sciPointObj * pObj ) ;
 
   virtual ~DrawableRectangle( void ) ;
 
@@ -61,9 +61,19 @@ protected:
   virtual void redraw(void);
 
   /**
-   * Actually draw the rectangle on the screen
+   * Actually draw the arc on the screen
    */
-  void drawRectangle( void ) ;
+  virtual void drawRectangle(void) = 0;
+
+  /**
+   * Redraw arc from precomputed data
+   */
+  virtual void redrawRectangle(void) = 0;
+
+  /**
+   * Actually show the arc stored data
+   */
+  virtual void showRectangle(void) = 0;
   /*---------------------------------------------------------------------------------*/
 
 } ;

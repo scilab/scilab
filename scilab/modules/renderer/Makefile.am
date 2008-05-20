@@ -29,7 +29,6 @@ src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
 src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp \
 src/cpp/rectangleDrawing/DrawableRectangle.cpp \
-src/cpp/rectangleDrawing/DrawableRectangleBridge.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
