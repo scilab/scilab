@@ -13,6 +13,7 @@
  package org.scilab.modules.graphic_export;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
@@ -90,57 +91,55 @@ public class GL2PSRenderer extends ExportRenderer {
 		int buffsize = BUFFER_WIDTH * BUFFER_HEIGHT;			
 		sciRend = new SciRenderer(this.figureIndex);
 		
-		//int[] viewPort = {0, 0, gLDrawable.getWidth(), gLDrawable.getHeight()};
-				
-		//GL gl = gLDrawable.getGL();
-		//gl.glGetIntegerv(GL.GL_VIEWPORT, viewPort, 0);
-		
-
-		int gl2psBeginPageStatut = gl2ps.gl2psBeginPage("MyTitle", "MySoftware", null, format, 
-							  GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
-							  /*| GL2PS.GL2PS_OCCLUSION_CULL | GL2PS.GL2PS_LANDSCAPE | GL2PS.GL2PS_DRAW_BACKGROUND*/,
-							  GL.GL_RGBA, 0, null, null, null, null, 
-							  0, 0, 0, buffsize, ExportRenderer.getFileName());		
+		setErrorNumber(ExportRenderer.SUCCESS);
 		
 		//Check if we have the permission to export
 		File filePermission = new File(ExportRenderer.getFileName());
-		if (!filePermission.canWrite()) {
-			getExportErrorFromGL2PS(ExportRenderer.INVALID_FILE);
-		}
-		
-		if (gl2psBeginPageStatut != GL2PS.GL2PS_SUCCESS) {
-			//Get the GL2PS error and convert it into an export error
-			getExportErrorFromGL2PS(gl2psBeginPageStatut);
-			return;
-		}
-		
-		GL gl = gLDrawable.getGL();
-		GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
-		gLDrawable.setGL(newGL);
-		
-		DrawableFigureGL exportedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
-		exportedFigure.setTextRendererFactory(new PSTextRendererFactory());
-		exportedFigure.setArcRendererFactory(new FastArcRendererFactory());
-		exportedFigure.setShadeFacetDrawer(new GL2PSShadeFacetDrawer());
-		
-		sciRend.init(gLDrawable);
-		sciRend.display(gLDrawable);
-		
-		int gl2psEndPageStatut = gl2ps.gl2psEndPage();
-				
-		gLDrawable.setGL(gl);
-		exportedFigure.setDefaultArcRendererFactory();
-		exportedFigure.setDefaultTextRenderer();
-		exportedFigure.setDefaultShadeFacetDrawer();
-		
-		if (gl2psEndPageStatut != GL2PS.GL2PS_SUCCESS) {
-			//Get the GL2PS error and convert it into an export error
-			getExportErrorFromGL2PS(gl2psEndPageStatut);
-			return;
+		if (checkWritePermission(filePermission) == ExportRenderer.SUCCESS) {
+			
+			int gl2psBeginPageStatut = gl2ps.gl2psBeginPage("MyTitle", "MySoftware", null, format, 
+					GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
+					/*| GL2PS.GL2PS_OCCLUSION_CULL | GL2PS.GL2PS_LANDSCAPE | GL2PS.GL2PS_DRAW_BACKGROUND*/,
+					GL.GL_RGBA, 0, null, null, null, null, 
+					0, 0, 0, buffsize, ExportRenderer.getFileName());	
+
+			if (gl2psBeginPageStatut != GL2PS.GL2PS_SUCCESS) {
+				//Get the GL2PS error and convert it into an export error
+				setExportErrorFromGL2PS(gl2psBeginPageStatut);
+				return;
+			}
+
+			GL gl = gLDrawable.getGL();
+			GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
+			gLDrawable.setGL(newGL);
+
+			DrawableFigureGL exportedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
+			exportedFigure.setTextRendererFactory(new PSTextRendererFactory());
+			exportedFigure.setArcRendererFactory(new FastArcRendererFactory());
+			exportedFigure.setShadeFacetDrawer(new GL2PSShadeFacetDrawer());
+
+			sciRend.init(gLDrawable);
+			sciRend.display(gLDrawable);
+
+			int gl2psEndPageStatut = gl2ps.gl2psEndPage();
+
+			gLDrawable.setGL(gl);
+			exportedFigure.setDefaultArcRendererFactory();
+			exportedFigure.setDefaultTextRenderer();
+			exportedFigure.setDefaultShadeFacetDrawer();
+
+			if (gl2psEndPageStatut != GL2PS.GL2PS_SUCCESS) {
+				//Get the GL2PS error and convert it into an export error
+				setExportErrorFromGL2PS(gl2psEndPageStatut);
+				return;
+			}		
+
+			sciRend.init(gLDrawable);
+			sciRend.display(gLDrawable);	
+
+		} else {
+			setErrorNumber(ExportRenderer.INVALID_FILE);
 		}		
-		
-		sciRend.init(gLDrawable);
-		sciRend.display(gLDrawable);
 	}
 
 
@@ -178,7 +177,7 @@ public class GL2PSRenderer extends ExportRenderer {
 	 * Convert GL2PS error into Export error
 	 * @param gl2psError GL2PS Error
 	 */
-	private void getExportErrorFromGL2PS(int gl2psError) {
+	private void setExportErrorFromGL2PS(int gl2psError) {
 		if (gl2psError == GL2PS.GL2PS_NO_FEEDBACK) {
 			setErrorNumber(UNKNOWN_GLEXCEPTION_ERROR);			
 		}
@@ -190,6 +189,22 @@ public class GL2PSRenderer extends ExportRenderer {
 		}
 		if (gl2psError == GL2PS.GL2PS_ERROR) {
 			setErrorNumber(GL2PS_ERROR);			
+		}
+	}
+	
+	/**
+	 * Check if we have the permission to export on this file
+	 * @param file exported file
+	 * @return permission status
+	 */
+	public int checkWritePermission(File file) {
+		try {
+			file.createNewFile();
+			return ExportRenderer.SUCCESS;
+		} catch (IOException e1) {
+			return ExportRenderer.IOEXCEPTION_ERROR;
+		} catch (SecurityException e2) {
+			return ExportRenderer.INVALID_FILE;
 		}
 	}
 	
