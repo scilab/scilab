@@ -82,7 +82,8 @@ src/c/getdynamicdebuginfo.c \
 src/c/callDynamicGateway.c \
 src/c/gw_dynamic_generic.c \
 src/c/dynamic_gateways.c \
-src/c/readGateway.c
+src/c/readGateway.c \
+src/c/comparehandles.c
 
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
