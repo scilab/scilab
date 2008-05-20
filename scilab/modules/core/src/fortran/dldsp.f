@@ -46,7 +46,7 @@ c       est constituee puis imprimee.
 c
       k1=1
       do 70 ib=1,nbloc
-         k2=min(n,k1+nelt)
+         k2=min(n,k1+nelt-1)
          if(nbloc.ne.1) then
             call blktit(lunit,k1,k2,io)
             if (io.eq.-1) goto 99
