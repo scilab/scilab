@@ -22,6 +22,9 @@
 #include "localization.h"
 #include "set_xxprintf.h"
 #include "fileio.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #define  PF_C		0
 #define  PF_S		1
@@ -443,9 +446,10 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				if (ISNAN(dval)) /* it is a %nan */
 				{
 					char formatnan[3] = "%s";
-					char valuenan[5] = NanString;
+					char *valuenan = strdup(NanString);
 					conversion_type = PF_S;
 					dval = 0.;
+					/* valuenan FREED in call_printf */
 					call_printf(xxprintf,target,formatnan,valuenan,asterisk,asterisk_count,conversion_type,dval );
 				}
 				else
@@ -457,9 +461,10 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 					else /* %inf */
 					{
 						char formatinf[3] = "%s";
-						char valueinf[5] = InfString;
+						char *valueinf = strdup(InfString);
 						conversion_type = PF_S;
 						dval = 0.;
+						/* valueinf FREED in call_printf */
 						call_printf(xxprintf,target,formatinf,valueinf,asterisk,asterisk_count,conversion_type,dval );
 					}
 				}
