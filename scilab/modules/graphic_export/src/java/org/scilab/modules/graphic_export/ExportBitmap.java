@@ -79,10 +79,7 @@ public class ExportBitmap extends ExportToFile {
 	 */
 	public int checkWritePermission(File file) {
 		try {
-			file.createNewFile();
-			
-			System.out.println("PERMISSION: " +  file.canWrite());
-			
+			file.createNewFile();			
 			if (!file.canWrite()) {
 				return ExportRenderer.INVALID_FILE;
 			}

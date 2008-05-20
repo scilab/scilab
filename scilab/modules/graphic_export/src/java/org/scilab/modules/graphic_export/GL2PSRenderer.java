@@ -24,7 +24,6 @@ import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
 import org.scilab.modules.renderer.polylineDrawing.GL2PSShadeFacetDrawer;
 
-import com.sun.opengl.util.Screenshot;
 
 /**
  * 
@@ -199,10 +198,7 @@ public class GL2PSRenderer extends ExportRenderer {
 	 */
 	public int checkWritePermission(File file) {
 		try {
-			file.createNewFile();
-			
-			System.out.println("PERMISSION: " +  file.canWrite());
-			
+			file.createNewFile();			
 			if (!file.canWrite()) {
 				return ExportRenderer.INVALID_FILE;
 			}
