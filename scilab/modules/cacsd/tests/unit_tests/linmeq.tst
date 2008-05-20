@@ -55,44 +55,44 @@ if norm(A*X+X*B-C,1)>1000*%eps then pause,end
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
 
-trans=0;
-X = linmeq(1,A,B,C,flag,trans);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 
 //A in Schur form
@@ -101,30 +101,30 @@ X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
 
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 
 
@@ -134,30 +134,30 @@ X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
 
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 
 //B in schur form
@@ -165,30 +165,30 @@ A=testmat1(2.5,n);flag=[0,0,1];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 
 
@@ -198,30 +198,30 @@ X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
 
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 
 //A and B in hess form
@@ -229,30 +229,30 @@ if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 
 
@@ -261,30 +261,30 @@ A=testmat1(2.5,n);flag=[0,0,2];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then pause,end
 
 
@@ -363,30 +363,30 @@ X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
 
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 
 
@@ -396,30 +396,30 @@ flag=[1,1,0];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 
 //A and B in schur form
@@ -428,30 +428,30 @@ flag=[1,1,1];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 
 //B in schur form
@@ -460,30 +460,30 @@ flag=[1,0,1];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 
 //A in hess form
@@ -492,30 +492,30 @@ flag=[1,2,0];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 
 //A and B in hess form
@@ -524,30 +524,30 @@ flag=[1,2,2];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 
 //B in hess form
@@ -556,30 +556,30 @@ flag=[1,0,2];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then pause,end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then pause,end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then pause,end
 
 //Large dimension
@@ -670,11 +670,11 @@ flag=[0,0];
 X = linmeq(2,A,C,flag);
 if norm(A'*X+X*A-C,1)>1000*%eps then pause,end
 
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X+X*A-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X+X*A'-C,1)>1000*%eps then pause,end
 
 //A in schur form
@@ -683,11 +683,11 @@ flag=[0,1];
 X = linmeq(2,A,C,flag);
 if norm(A'*X+X*A-C,1)>1000*%eps then pause,end
 
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X+X*A-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X+X*A'-C,1)>1000*%eps then pause,end
 
 
@@ -697,11 +697,11 @@ flag=[0,2];
 X = linmeq(2,A,C,flag);
 if norm(A'*X+X*A-C,1)>1000*%eps then pause,end
 
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X+X*A-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X+X*A'-C,1)>1000*%eps then pause,end
 
 //Large dimension
@@ -739,11 +739,11 @@ flag=[1,0];
 X = linmeq(2,A,C,flag);
 if norm(A'*X*A-X-C,1)>1000*%eps then pause,end
 
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X*A-X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X*A'-X-C,1)>1000*%eps then pause,end
 
 //A in schur form
@@ -751,11 +751,11 @@ if norm(A*X*A'-X-C,1)>1000*%eps then pause,end
 flag=[1,1];
 X = linmeq(2,A,C,flag);
 if norm(A'*X*A-X-C,1)>1000*%eps then pause,end
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X*A-X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X*A'-X-C,1)>1000*%eps then pause,end
 
 //A in hess form
@@ -763,11 +763,11 @@ A=testmat1(2.5,n);[U,A]=hess(A);
 flag=[1,2];
 X = linmeq(2,A,C,flag);
 if norm(A'*X*A-X-C,1)>1000*%eps then pause,end
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X*A-X-C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X*A'-X-C,1)>1000*%eps then pause,end
 
 //Large dimension
@@ -837,11 +837,11 @@ flag=[0,0];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then pause,end
 
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')+(X*X')*A'+C*C',1)>1000*%eps then pause,end
 
 
@@ -850,11 +850,11 @@ if norm(A*(X*X')+(X*X')*A'+C*C',1)>1000*%eps then pause,end
 flag=[0,1];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then pause,end
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')+(X*X')*A'+C*C',1)>1000*%eps then pause,end
 
 //A in hess form
@@ -862,11 +862,11 @@ A=testmat3(2.5,n);[U,A]=hess(A);
 flag=[0,2];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then pause,end
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')+(X*X')*A'+C*C',1)>1000*%eps then pause,end
 
 //Large dimension
@@ -935,11 +935,11 @@ flag=[1,0];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then pause,end
 
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')*A'-X*X'+C*C',1)>1000*%eps then pause,end
 
 
@@ -948,11 +948,11 @@ if norm(A*(X*X')*A'-X*X'+C*C',1)>1000*%eps then pause,end
 flag=[1,1];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then pause,end
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')*A'-X*X'+C*C',1)>1000*%eps then pause,end
 
 //A in hess form
@@ -960,11 +960,11 @@ A=testmat4(2.5,n);[U,A]=hess(A);
 flag=[1,2];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then pause,end
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then pause,end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')*A'-X*X'+C*C',1)>1000*%eps then pause,end
 
 //Large dimension

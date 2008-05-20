@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // function linmeq
 function A=testmat1(a,n)
   //eigen values are given by a dilation of nth roots of 1
@@ -35,225 +41,223 @@ X = linmeq(1,A,B,C);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-Warning : redefining function: trans                   
-
-X = linmeq(1,A,B,C,flag,trans);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 //A in Schur form
 [U,A]=schur(A);flag=[0,1,0];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 //A and B in schur form
 [U,B]=schur(B);flag=[0,1,1];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 //B in schur form
 A=testmat1(2.5,n);flag=[0,0,1];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 //A in hess form
 [U,A]=hess(A);flag=[0,2,0];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 //A and B in hess form
 [U,B]=hess(B);flag=[0,2,2];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 //B in hess form
 A=testmat1(2.5,n);flag=[0,0,2];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X+X*B-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X+X*B'-C,1)>1000*%eps then bugmes();quit;end
 //Large dimension
 n=23;m=17;
@@ -315,30 +319,30 @@ errclear();
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 //A in schur form
 [U,A]=schur(A);
@@ -346,30 +350,30 @@ flag=[1,1,0];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 //A and B in schur form
 [U,B]=schur(B);
@@ -377,30 +381,30 @@ flag=[1,1,1];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 //B in schur form
 A=testmat1(2.5,n);
@@ -408,30 +412,30 @@ flag=[1,0,1];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 //A in hess form
 [U,A]=hess(A);
@@ -439,30 +443,30 @@ flag=[1,2,0];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 //A and B in hess form
 [U,B]=hess(B);
@@ -470,30 +474,30 @@ flag=[1,2,2];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 //B in hess form
 A=testmat1(2.5,n);
@@ -501,30 +505,30 @@ flag=[1,0,2];
 X = linmeq(1,A,B,C,flag);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=1;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 Schur=2;
-trans=0;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=0;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=1;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
-trans=2;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=2;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A'*X*B+X-C,1)>1000*%eps then bugmes();quit;end
-trans=3;
-X = linmeq(1,A,B,C,flag,trans,Schur);
+trans_option=3;
+X = linmeq(1,A,B,C,flag,trans_option,Schur);
 if norm(A*X*B'+X-C,1)>1000*%eps then bugmes();quit;end
 //Large dimension
 n=23;m=17;
@@ -599,33 +603,33 @@ if norm(A'*X+X*A-C,1)>1000*%eps then bugmes();quit;end
 flag=[0,0];
 X = linmeq(2,A,C,flag);
 if norm(A'*X+X*A-C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X+X*A-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X+X*A'-C,1)>1000*%eps then bugmes();quit;end
 //A in schur form
 [U,A]=schur(A);
 flag=[0,1];
 X = linmeq(2,A,C,flag);
 if norm(A'*X+X*A-C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X+X*A-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X+X*A'-C,1)>1000*%eps then bugmes();quit;end
 //A in hess form
 A=testmat2(2.5,n);[U,A]=hess(A);
 flag=[0,2];
 X = linmeq(2,A,C,flag);
 if norm(A'*X+X*A-C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X+X*A-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X+X*A'-C,1)>1000*%eps then bugmes();quit;end
 //Large dimension
 n=23;
@@ -658,33 +662,33 @@ C=C+C';
 flag=[1,0];
 X = linmeq(2,A,C,flag);
 if norm(A'*X*A-X-C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X*A-X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X*A'-X-C,1)>1000*%eps then bugmes();quit;end
 //A in schur form
 [U,A]=schur(A);
 flag=[1,1];
 X = linmeq(2,A,C,flag);
 if norm(A'*X*A-X-C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X*A-X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X*A'-X-C,1)>1000*%eps then bugmes();quit;end
 //A in hess form
 A=testmat1(2.5,n);[U,A]=hess(A);
 flag=[1,2];
 X = linmeq(2,A,C,flag);
 if norm(A'*X*A-X-C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(2,A,C,flag,trans);
+trans_option=0;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A'*X*A-X-C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(2,A,C,flag,trans);
+trans_option=1;
+X = linmeq(2,A,C,flag,trans_option);
 if norm(A*X*A'-X-C,1)>1000*%eps then bugmes();quit;end
 //Large dimension
 n=23;
@@ -739,33 +743,33 @@ if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then bugmes();quit;end
 flag=[0,0];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')+(X*X')*A'+C*C',1)>1000*%eps then bugmes();quit;end
 //A in schur form
 [U,A]=schur(A);
 flag=[0,1];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')+(X*X')*A'+C*C',1)>1000*%eps then bugmes();quit;end
 //A in hess form
 A=testmat3(2.5,n);[U,A]=hess(A);
 flag=[0,2];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)+(X'*X)*A+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')+(X*X')*A'+C*C',1)>1000*%eps then bugmes();quit;end
 //Large dimension
 n=23;
@@ -818,33 +822,33 @@ A=testmat4(2.5,n);
 flag=[1,0];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')*A'-X*X'+C*C',1)>1000*%eps then bugmes();quit;end
 //A in schur form
 [U,A]=schur(A);
 flag=[1,1];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')*A'-X*X'+C*C',1)>1000*%eps then bugmes();quit;end
 //A in hess form
 A=testmat4(2.5,n);[U,A]=hess(A);
 flag=[1,2];
 X = linmeq(3,A,C,flag);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=0;
-X = linmeq(3,A,C,flag,trans);
+trans_option=0;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A'*(X'*X)*A-X'*X+C'*C,1)>1000*%eps then bugmes();quit;end
-trans=1;
-X = linmeq(3,A,C,flag,trans);
+trans_option=1;
+X = linmeq(3,A,C,flag,trans_option);
 if norm(A*(X*X')*A'-X*X'+C*C',1)>1000*%eps then bugmes();quit;end
 //Large dimension
 n=23;
