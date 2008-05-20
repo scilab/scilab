@@ -55,6 +55,7 @@
     <para>
     if <literal>fill(i)=0</literal>, rectangle <literal>i</literal> is drawn using the current
     line style (or color).</para>
+    <para>WARNING: please note that height is positive downwards.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

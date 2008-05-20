@@ -29,6 +29,7 @@ xrect(rect) // rect =[x,y,w,h]</synopsis>
     <para><literal>xrect</literal> dessine un rectangle défini par <literal>[x,y,w,h]</literal> 
     (point en haut à gauche, largeur, hauteur) en utilisant l'échelle courante et le style de ligne courant.
   </para>
+  <para>ATTENTION : notez que la valeur de la hauteur est positive en allant vers la bas.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
