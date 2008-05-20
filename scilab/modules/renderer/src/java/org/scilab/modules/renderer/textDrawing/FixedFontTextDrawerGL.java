@@ -15,6 +15,7 @@
 package org.scilab.modules.renderer.textDrawing;
 
 
+
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
@@ -44,9 +45,15 @@ public abstract class FixedFontTextDrawerGL extends TextContentDrawerGL {
 		
 		stringPos = getStringsPositions(getTextMatrix());
 		
+		startRecordDL();
+		
+		
+		
 		stringPos = placeTextGrid(stringPos, getTextCenterPix(), getRotationAngle());
 		
 		drawText(renderer, getTextMatrix(), stringPos);
+		
+		endRecordDL();
 		
 		Vector3D[] bbox = stringPos.getExtremBounds();
 		return placeBoundingBox(bbox, getTextCenterPix(), getRotationAngle());

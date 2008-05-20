@@ -15,6 +15,8 @@
 package org.scilab.modules.renderer.textDrawing;
 
 import javax.media.opengl.GL;
+
+import org.scilab.modules.renderer.utils.FontManager;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
@@ -22,15 +24,13 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Jean-Baptiste Silvy
  */
 public class FilledTextDrawerGL extends TextContentDrawerGL {
-
-	private static final float DEFAULT_FONT_SIZE = 10.0f;
+	
+	private static final double[] FACTOR_CHANGE_INTERVAL = {0.95, 1.05};
 	
 	private double filledBoxWidth;
 	private double filledBoxHeight;
 	
 	private TextGrid stringPos;
-	
-	private float finalFontSize;
 	
 	private Vector3D realCenter;
 	
@@ -42,7 +42,6 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		filledBoxWidth = 0.0;
 		filledBoxHeight = 0.0;
 		stringPos = null;
-		finalFontSize = DEFAULT_FONT_SIZE;
 		realCenter = null;
 	}
 	
@@ -57,19 +56,11 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 	}
 	
 	/**
-	 * Set many text parameters in one function.
-	 * @param textAlignement kind of alignement.
-	 * @param color index of the color in the colormap.
-	 * @param fontTypeIndex index of the font in the font array.
-	 * @param rotationAngle text rotationAngle.
-	 * @param boxWidth width of the box.
-	 * @param boxHeight height of the box.
+	 * @return get the Scilab size of the font (usefull for filled text since actual font size)
+	 * 		   may vary
 	 */
-	public void setTextParameters(int textAlignement, int color, int fontTypeIndex,
-								  double rotationAngle,
-                                  int boxWidth, int boxHeight) {
-		super.setTextParameters(textAlignement, color, fontTypeIndex, DEFAULT_FONT_SIZE, rotationAngle);
-		setFilledBoxSize(boxWidth, boxHeight);
+	public double getScilabFontSize() {
+		return FontManager.awtSizeToScilabSize(getFont().getSize2D());
 	}
 	
 	/**
@@ -79,12 +70,16 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 	public Vector3D[] drawTextContentPix() {
 		SciTextRenderer renderer = getTextRenderer();
 		
-		setTextMatrix(computeStringSizes(renderer, getTextMatrix()));
+		StringMatrixGL mat = computeStringSizes(renderer, getTextMatrix());
+		
+		setTextMatrix(mat);
+		
 		// get default position with size 1.
 		stringPos = getStringsPositions(getTextMatrix());
 
 		// Compute a new font size which will fill the box.
 		Vector3D[] bounds = stringPos.getExtremBounds();
+		
 		double curWidth = bounds[2].getX() - bounds[1].getX();
 		double curHeight = bounds[0].getY() - bounds[1].getY();
 		
@@ -109,19 +104,25 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		// apply scale factor
 		double factor = Math.min(xFactor, yFactor);
 		
-		finalFontSize = (float) (getFont().getSize2D() * factor);
-		stringPos.scale(factor);
+		// check if resizing is really needed
+		if (factor < FACTOR_CHANGE_INTERVAL[0] || factor >  FACTOR_CHANGE_INTERVAL[1]) {
+			float newSize = (float) (getFont().getSize2D() * factor);
 		
-		// create a new renderer with a new font.
-		renderer = getTextRenderer(finalFontSize);
+			stringPos.scale(factor);
 		
-		// update StringSizes with the new renderer
-		getTextMatrix().update(renderer);
+			renderer = getTextRenderer(newSize);
+			// update StringSizes with the new renderer
+			//getTextMatrix().update(renderer);
+			getTextMatrix().scale(factor);
+		}
+			//
+		//startRecordDL();
 		stringPos = placeTextGrid(stringPos, realCenter, getTextCenterPix(), getRotationAngle());
-		
+
 		drawText(renderer, getTextMatrix(), stringPos);
+		//endRecordDL();
+		Vector3D[] bbox = stringPos.getExtremBounds();
 		
-		Vector3D[] bbox = stringPos.getExtremBounds(); 
 		return placeBoundingBox(bbox, getTextCenterPix(), getRotationAngle());
 		
 	}
@@ -130,7 +131,7 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 	 * Display some from text from already precomputed positions.
 	 */
 	public void showTextContentPix() {
-		SciTextRenderer renderer = getTextRenderer(finalFontSize);
+		SciTextRenderer renderer = getTextRenderer();
 		
 		placeTextGrid(stringPos, realCenter, getTextCenterPix(), getRotationAngle());
 		

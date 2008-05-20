@@ -63,11 +63,9 @@ void CenteredTextDrawerJavaMapper::setFigureIndex(int figureIndex)
 }
 /*---------------------------------------------------------------------------------*/
 void CenteredTextDrawerJavaMapper::setTextParameters(int textAlignment, int color, int fontStyle,
-                                                     double fontSize, double rotationAngle,
-                                                     int boxWidth, int boxHeight)
+                                                     double fontSize, double rotationAngle)
 {
-  m_pJavaObject->setTextParameters(textAlignment, color, fontStyle, fontSize, rotationAngle,
-                                   boxWidth, boxHeight);
+  m_pJavaObject->setTextParameters(textAlignment, color, fontStyle, fontSize, rotationAngle);
 }
 /*---------------------------------------------------------------------------------*/
 void CenteredTextDrawerJavaMapper::setTextContent(char ** text, int nbRow, int nbCol)
@@ -93,6 +91,11 @@ double * CenteredTextDrawerJavaMapper::getBoundingRectangle(void)
 long * CenteredTextDrawerJavaMapper::getScreenBoundingBox(void)
 {
   return m_pJavaObject->getScreenBoundingBox();
+}
+/*---------------------------------------------------------------------------------*/
+void CenteredTextDrawerJavaMapper::setFilledBoxSize(int boxWidth, int boxHeight)
+{
+  m_pJavaObject->setFilledBoxSize(boxWidth, boxHeight);
 }
 /*---------------------------------------------------------------------------------*/
 }

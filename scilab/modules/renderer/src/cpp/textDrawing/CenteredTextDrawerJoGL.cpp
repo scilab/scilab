@@ -38,31 +38,33 @@ CenteredTextDrawerJoGL::~CenteredTextDrawerJoGL(void)
 void CenteredTextDrawerJoGL::setDrawerParameters(void)
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
-  
-
-  // get text position.
-  double textPos[3];
-  sciGetTextPos(pObj, textPos);
-
-  // get box size in user coordinates
-  double boxWidth;
-  double boxHeight;
-  sciGetUserSize(pObj, &boxWidth, &boxHeight);
-
-  // convert the user lengths to pixel ones.
-  int pixWidth;
-  int pixHeight;
-  getPixelLength(sciGetParentSubwin(pObj), textPos, boxWidth, boxHeight, &pixWidth, &pixHeight);
 
   getCenteredTextDrawerJavaMapper()->setTextParameters(sciGetAlignment(pObj), sciGetFontContext(pObj)->foregroundcolor,
-                                                       sciGetFontStyle(pObj), sciGetFontSize(pObj), sciGetFontOrientation(pObj),
-                                                       pixWidth, pixHeight);
+                                                       sciGetFontStyle(pObj), sciGetFontSize(pObj), sciGetFontOrientation(pObj));
 
   StringMatrix * textMatrix = sciGetText(pObj);
   getCenteredTextDrawerJavaMapper()->setTextContent(getStrMatData(textMatrix), getMatNbRow(textMatrix), getMatNbCol(textMatrix));
 
+  // set box size
+  int boxWidth;
+  int boxHeight;
+  getUserSizePix(boxWidth, boxHeight);
+  getCenteredTextDrawerJavaMapper()->setFilledBoxSize(boxWidth, boxHeight);
+
+  double textPos[3];
   getTextDisplayPos(textPos);
   getCenteredTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
+}
+/*---------------------------------------------------------------------------------*/
+void CenteredTextDrawerJoGL::redrawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
+{
+  // box size may have changed so update it
+  int boxWidth;
+  int boxHeight;
+  getUserSizePix(boxWidth, boxHeight);
+  getCenteredTextDrawerJavaMapper()->setFilledBoxSize(boxWidth, boxHeight);
+
+  TextContentDrawerJoGL::redrawTextContent(corner1, corner2, corner3, corner4);
 }
 /*---------------------------------------------------------------------------------*/
 CenteredTextDrawerJavaMapper * CenteredTextDrawerJoGL::getCenteredTextDrawerJavaMapper(void)

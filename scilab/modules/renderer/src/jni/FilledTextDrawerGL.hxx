@@ -58,13 +58,15 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
-jmethodID voidsetTextParametersjintjintjintjdoublejintjintID; // cache method id
+jmethodID voidsetTextParametersjintjintjintjdoublejdoubleID; // cache method id
 jmethodID voidsetTextContentjobjectArrayjintjintID; // cache method id
 jclass stringArrayClass;
 jmethodID voidsetCenterPositionjdoublejdoublejdoubleID; // cache method id
 jmethodID jdoubleArraydrawTextContentID; // cache method id
 jmethodID jdoubleArraygetBoundingRectangleID; // cache method id
 jmethodID jintArraygetScreenBoundingBoxID; // cache method id
+jmethodID jdoublegetScilabFontSizeID; // cache method id
+jmethodID voidsetFilledBoxSizejintjintID; // cache method id
 
 
 /**
@@ -118,7 +120,7 @@ void destroy(long parentFigureIndex);
 
 void setFigureIndex(long figureIndex);
 
-void setTextParameters(long textAlignment, long color, long fontStyle, double rotationAngle, long boxWidth, long boxHeight);
+void setTextParameters(long textAlignment, long color, long fontStyle, double fontSize, double rotationAngle);
 
 void setTextContent(char ** text, int textSize, long nbRow, long nbCol);
 
@@ -129,6 +131,10 @@ double * drawTextContent();
 double * getBoundingRectangle();
 
 long * getScreenBoundingBox();
+
+double getScilabFontSize();
+
+void setFilledBoxSize(long boxWidth, long boxHeight);
 
 
                         /**

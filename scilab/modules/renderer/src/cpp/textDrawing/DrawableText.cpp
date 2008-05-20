@@ -20,17 +20,41 @@ extern "C"
 #include "GetProperty.h"
 }
 
+#define DEFAULT_FONT_SIZE 1.0
+
 namespace sciGraphics
 {
 /*---------------------------------------------------------------------------------*/
-void DrawableText::draw( void )
+DrawableText::DrawableText( sciPointObj * pObj ) : DrawableClippedObject( pObj )
 {
-  
+  m_dDefaultFontSize = DEFAULT_FONT_SIZE;
+   m_bBoundsUpdateRequested = false;
+}
+/*---------------------------------------------------------------------------------*/
+DrawableText::~DrawableText( void )
+{
+
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableText::updateTextBoxIfRequested(void)
+{
+  if(needBoundsUpdate()){
+    updateTextBoxFromContext();
+    m_bBoundsUpdateRequested = false;
+  }
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableText::requestBoundsUpdate(void)
+{
+  m_bBoundsUpdateRequested = true;
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableText::draw( void )
+{ 
   // update might be needed
-  //updateTextBox();
   if (!checkVisibility() || isTextEmpty() )
   {
-    updateTextBoxFromContext();
+    updateTextBoxIfRequested();
     return ;
   }
 
@@ -46,7 +70,6 @@ void DrawableText::draw( void )
 void DrawableText::show( void )
 {
   // update might be needed
-  //updateTextBox();
   if (!checkVisibility() || isTextEmpty() )
   {
     return ;
@@ -63,15 +86,14 @@ void DrawableText::redraw(void)
 {
   // force redrawing
   // update might be needed
-  //updateTextBox();
   if (!checkVisibility() || isTextEmpty() )
   {
-    updateTextBoxFromContext();
+    updateTextBoxIfRequested();
     return ;
   }
   initializeDrawing();
   clip();
-  redrawTextContent();
+  drawTextContent();
 
   // data bound may have changed so we need to redraw bounding box
   drawBox();
@@ -79,5 +101,11 @@ void DrawableText::redraw(void)
   endDrawing();
 }
 /*---------------------------------------------------------------------------------*/
+bool DrawableText::needBoundsUpdate(void)
+{
+  return m_bBoundsUpdateRequested;
+}
+/*---------------------------------------------------------------------------------*/
+#undef DEFAULT_FONT_SIZE
 
 }

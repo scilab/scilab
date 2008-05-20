@@ -88,6 +88,11 @@ protected:
                            double corner4[3]);
 
   /**
+   * Compute the size in pixel of the user bounding box
+   */
+  void getUserSizePix(int & boxWidthPix, int & boxHeightPix);
+
+  /**
    * Get the object performing mapping with Java class.
    */
   TextContentDrawerJavaMapper * getTextContentDrawerJavaMapper(void);

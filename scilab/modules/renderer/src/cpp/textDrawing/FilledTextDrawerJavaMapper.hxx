@@ -50,10 +50,15 @@ public:
   virtual double * getBoundingRectangle(void);
 
   virtual long * getScreenBoundingBox(void);
-  /*----------------------------------------------------------------------*/
-  // specific for rectangle text drawer
+
   virtual void setTextParameters(int textAlignment, int color, int fontStyle,
-                                 double rotationAngle, int boxWidth, int boxHeight);
+                                 double defaultFontSize, double rotationAngle);
+  /*----------------------------------------------------------------------*/
+  // specific for filled text drawer
+
+  virtual double getFontSize(void);
+
+  virtual void setFilledBoxSize(int boxWidth, int boxHeight);
   /*----------------------------------------------------------------------*/
 
 private:

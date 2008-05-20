@@ -35,6 +35,12 @@ protected:
   virtual void setDrawerParameters(void);
 
   /**
+   * Draw the rectangle surrounding the text using precomputed data.
+   * Redefined it to be able to retrieved actual font size.
+   */
+  virtual void redrawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3]);
+
+  /**
   * Get the object performing mapping with Java class.
   */
   CenteredTextDrawerJavaMapper * getCenteredTextDrawerJavaMapper(void);

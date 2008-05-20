@@ -25,9 +25,9 @@ class DrawableText : public DrawableClippedObject
 
 public:
 
-  DrawableText( sciPointObj * pObj ) : DrawableClippedObject( pObj ) {}
+  DrawableText( sciPointObj * pObj );
 
-  virtual ~DrawableText( void ) {}
+  virtual ~DrawableText( void );
 
   /**
    * Get the 4 corners of the text bounding rectangle (the text lies within a plane).
@@ -55,6 +55,26 @@ public:
    * Update the text box a text object from OpenGL context.
    */
   virtual void updateTextBoxFromContext(void) = 0;
+
+  /**
+   * Update the text bounding box if needed
+   */
+  void updateTextBoxIfRequested(void);
+
+  /**
+   * Keep the default font size used by FilledTextDrawers
+   */
+  double getDefaultFontSize(void) {return m_dDefaultFontSize;}
+
+  /**
+   * Specify that we wants to update bounds of the text.
+   */
+  void requestBoundsUpdate(void);
+
+  /**
+   * Keep the default font size used by FilledTextDrawers
+   */
+  void setDefaultFontSize(double fontSize) {m_dDefaultFontSize = fontSize;}
 
 protected:
 
@@ -101,6 +121,23 @@ protected:
    */
   virtual void showTextContent(void) = 0;
 
+  /**
+   * Check wether bounds of the text needs to be updated
+   */
+  bool needBoundsUpdate(void);
+
+  /*----------------------------------------------*/
+  /**
+   * Previous font size used by filled text drawer in Scilab Scale.
+   * Might be negative for small text.
+   */
+  double m_dDefaultFontSize;
+
+  /**
+   * If true, next redraw of the text must compute its bounding box.
+   */
+  bool m_bBoundsUpdateRequested;
+  /*----------------------------------------------*/
 
 } ;
 

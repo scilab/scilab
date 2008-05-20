@@ -80,6 +80,7 @@ void TextContentDrawerJoGL::drawTextContent(double corner1[3], double corner2[3]
   setDrawerParameters();
 
   double * rect = getTextContentDrawerJavaMapper()->drawTextContent();
+
   convertCornersArray(rect, corner1, corner2, corner3, corner4);
 
   delete[] rect;
@@ -90,8 +91,7 @@ void TextContentDrawerJoGL::redrawTextContent(double corner1[3], double corner2[
 {
   initializeDrawing();
 
-  // same as draw but we don't need to sed parameters to java
-
+  // same as draw but we don't need to send parameters to java
   double * rect = getTextContentDrawerJavaMapper()->drawTextContent();
   convertCornersArray(rect, corner1, corner2, corner3, corner4);
 
@@ -189,6 +189,22 @@ void TextContentDrawerJoGL::convertCornersArray(const double corners[12],
     &(corner3[0]), &(corner3[1]), &(corner3[2]));
   m_pDrawed->inversePointScale(corner4[0], corner4[1], corner4[2],
     &(corner4[0]), &(corner4[1]), &(corner4[2]));
+}
+/*---------------------------------------------------------------------------------*/
+void TextContentDrawerJoGL::getUserSizePix(int & boxWidthPix, int & boxHeightPix)
+{
+  // get box size in user coordinates
+  sciPointObj * pObj = m_pDrawed->getDrawedObject();
+
+  double boxWidth;
+  double boxHeight;
+  sciGetUserSize(pObj, &boxWidth, &boxHeight);
+
+  double textPos[3];
+  sciGetTextPos(pObj, textPos);
+
+  // convert the user lengths to pixel ones.
+  getPixelLength(sciGetParentSubwin(pObj), textPos, boxWidth, boxHeight, &boxWidthPix, &boxHeightPix);
 }
 /*---------------------------------------------------------------------------------*/
 TextContentDrawerJavaMapper * TextContentDrawerJoGL::getTextContentDrawerJavaMapper(void)

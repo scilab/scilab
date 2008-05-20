@@ -515,7 +515,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 			ticksOrientation = TicksPositionCase.BOTTOM;
 		}
 		GL gl = getGL();
-		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
 		
 		renderer.begin3DRendering();
 		
@@ -542,10 +542,10 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 			if (labelsExponents != null) {
 				labelsExpPositions[i] = new Vector3D(exponentPosition);
 				renderer.draw3D(getLabelExponent(i),
-						(float) labelsExpPositions[i].getX(),
-						(float) labelsExpPositions[i].getY(),
-						(float) labelsExpPositions[i].getZ(),
-						EXPONENT_SIZE);
+								labelsExpPositions[i].getXf(),
+								labelsExpPositions[i].getYf(),
+								labelsExpPositions[i].getZf(),
+								EXPONENT_SIZE);
 			}
 			
 		}

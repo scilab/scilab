@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class FontManager {
 
   // empiric values :(
-	private static final float[] SCI_SIZE_2_AWT_SIZE_POLYNOM = {0.4f, 1.2f, 8.0f};
+	private static final float[] SCI_SIZE_2_AWT_SIZE_POLYNOM = {0.4f, 1.5f, 7.1f};
 	
 	// logical awt fonts
 	// JRE Java guaranteed: "Dialog", "DialogInput", "Monospaced","Serif", "SansSerif", "Symbol", "Lucida"
@@ -116,15 +116,28 @@ public class FontManager {
 	/**
 	 * Convert sciab font size to awt font size.
 	 * We use a degree 2 polygon to compute this.
+	 * We use canonical form of the polygon so the inverse function is easy to compute
 	 * Tthe equivalence list is (0 => 8, 1 => 10, 2 => 12, 3 => 14, 4 => 18, 5 => 24).
 	 * @param sciSize scilab size
 	 * @return awt size
 	 */
 	public static float scilabSizeToAwtSize(double sciSize) {
 		float sciSizef = (float) sciSize;
-		return  SCI_SIZE_2_AWT_SIZE_POLYNOM[0] * sciSizef * sciSizef
-		      + SCI_SIZE_2_AWT_SIZE_POLYNOM[1] * sciSizef
+		// a.(x + b)^2 + c
+		return  SCI_SIZE_2_AWT_SIZE_POLYNOM[0]
+		      * (sciSizef + SCI_SIZE_2_AWT_SIZE_POLYNOM[1]) * (sciSizef + SCI_SIZE_2_AWT_SIZE_POLYNOM[1])
 		      + SCI_SIZE_2_AWT_SIZE_POLYNOM[2];
+	}
+	
+	/**
+	 * Inverse of scilabSizeToAwtSize function
+	 * @param size size of a AWT font
+	 * @return corresponding size in Scilab
+	 */
+	public static double awtSizeToScilabSize(float size) {
+		// sqrt(|x - c| / a) - b
+		return  Math.sqrt(Math.abs(size - SCI_SIZE_2_AWT_SIZE_POLYNOM[2]) / SCI_SIZE_2_AWT_SIZE_POLYNOM[0])
+						  - SCI_SIZE_2_AWT_SIZE_POLYNOM[1];
 	}
 	
 	/**

@@ -50,11 +50,12 @@ public:
   virtual double * getBoundingRectangle(void);
 
   virtual long * getScreenBoundingBox(void);
+
+  virtual void setTextParameters(int textAlignment, int color, int fontStyle,
+                                 double fontSize, double rotationAngle);
   /*----------------------------------------------------------------------*/
   // specific for centered text drawer
-  virtual void setTextParameters(int textAlignment, int color, int fontStyle,
-                                 double fontSize, double rotationAngle,
-                                 int boxWidth, int boxHeight);
+  virtual void setFilledBoxSize(int boxWidth, int boxHeight);
   /*----------------------------------------------------------------------*/
 
 private:

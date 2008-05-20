@@ -47,26 +47,6 @@ public class CenteredTextDrawerGL extends FixedFontTextDrawerGL {
 	}
 	
 	/**
-	 * Set many text parameters in one function.
-	 * @param textAlignement kind of alignement.
-	 * @param color index of the color in the colormap.
-	 * @param fontTypeIndex index of the font in the font array.
-	 * @param fontSize font size to use.
-	 * @param rotationAngle text rotationAngle.
-	 * @param boxWidth width of the box.
-	 * @param boxHeight height of the box.
-	 */
-	public void setTextParameters(int textAlignement, int color, int fontTypeIndex,
-								  double fontSize, double rotationAngle,
-                                  int boxWidth, int boxHeight) {
-		super.setTextParameters(textAlignement, color, fontTypeIndex, fontSize, rotationAngle);
-		setFilledBoxSize(boxWidth, boxHeight);
-	}
-	
-	
-	
-	
-	/**
 	 * Move the bounding box to the right position.
 	 * @param bbox intial bounding box centered at the origin.
 	 * @param textCenter text center

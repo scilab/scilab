@@ -103,8 +103,8 @@ void ConcreteDrawableText::redrawTextContent(void)
 {
   // draw text content and update bounding box
   sciText * ppText = pTEXT_FEATURE(m_pDrawed);
-  m_pDrawingTextStrategy->drawTextContent(ppText->corners[0], ppText->corners[1],
-                                          ppText->corners[2], ppText->corners[3]);
+  m_pDrawingTextStrategy->redrawTextContent(ppText->corners[0], ppText->corners[1],
+                                            ppText->corners[2], ppText->corners[3]);
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::showBox(void)
@@ -165,6 +165,7 @@ void ConcreteDrawableText::updateTextBox(void)
     return;
   }
   // just update, no need to draw
+  requestBoundsUpdate();
   BOOL visibility = sciGetVisibility(m_pDrawed);
   sciSetVisibility(m_pDrawed, FALSE);
   sciDrawSingleObj(m_pDrawed);

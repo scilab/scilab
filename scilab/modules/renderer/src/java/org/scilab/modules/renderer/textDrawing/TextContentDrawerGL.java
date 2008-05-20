@@ -252,15 +252,20 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		
 		
 		
+		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl);
 		
-		startRecordDL();
-		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
+		
+		// display lists does not work with text rendering
+		//startRecordDL();
+		
+		
 		// draw the text using the new coordinates
 		Vector3D[] res = drawTextContentPix();
 		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
-		endRecordDL();
+		
+		//endRecordDL();
 		
 		GLTools.endPixelCoordinates(gl);
 		
@@ -270,6 +275,7 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		for (int i = 0; i < res.length; i++) {
 			res[i] = transform.retrieveSceneCoordinates(gl, res[i]);
 		}
+		
 		return res;
 		
 	}
@@ -284,7 +290,8 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		GLTools.usePixelCoordinates(gl);
 		
 		// display the display list of text
-		displayDL();
+		showTextContentPix();
+		//displayDL();
 		
 		GLTools.endPixelCoordinates(gl);
 		
@@ -305,7 +312,8 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 *         where a corner is the array {cornerX, cornerY, cornerZ}.
 	 */
 	public double[] getBoundingRectangle() {
-		return convertToArray(getBoundingRectangle3D());
+		double[] res = convertToArray(getBoundingRectangle3D());
+		return res;
 	}
 	
 	/**
@@ -314,6 +322,7 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 * @return array of size nbVects * 3, containing the nummber of vectors
 	 */
 	protected double[] convertToArray(Vector3D[] vects) {
+		
 		int nbVects = vects.length;
 		double[] res = new double[nbVects * Vector3D.DIMENSION];
 		for (int i = 0; i < nbVects; i++) {
@@ -389,7 +398,10 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 * @param stringPositions positons of the strings
 	 */
 	public void drawText(SciTextRenderer renderer, StringMatrixGL text, TextGrid stringPositions) {
+		GL gl = getGL();
+		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
 		textDrawer.drawTextContent(renderer, text, stringPositions);
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
 	}
 	
 	/**
@@ -410,6 +422,13 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		TextGrid res = new TextGrid(text.getNbRow(), text.getNbCol(), heights, widths);
 		return res;
 		
+	}
+	
+	/**
+	 * @return Current font size.
+	 */
+	public float getFontSize() {
+		return getFont().getSize2D();
 	}
 	
 	/**

@@ -21,6 +21,7 @@
 extern "C"
 {
 #include "GetProperty.h"
+#include "SetProperty.h"
 #include "StringMatrix.h"
 }
 
@@ -46,25 +47,44 @@ void FilledTextDrawerJoGL::setDrawerParameters(void)
   StringMatrix * textMatrix = sciGetText(pObj);
   getFilledTextDrawerJavaMapper()->setTextContent(getStrMatData(textMatrix), getMatNbRow(textMatrix), getMatNbCol(textMatrix));
 
-  // get box size in user coordinates
-  double boxWidth;
-  double boxHeight;
-  sciGetUserSize(pObj, &boxWidth, &boxHeight);
+  getFilledTextDrawerJavaMapper()->setTextParameters(sciGetAlignment(pObj), sciGetFontContext(pObj)->foregroundcolor,
+                                                     sciGetFontStyle(pObj), m_pDrawed->getDefaultFontSize(),
+                                                     sciGetFontOrientation(pObj));
+
+  // set box size
+  int boxWidth;
+  int boxHeight;
+  getUserSizePix(boxWidth, boxHeight);
+  getFilledTextDrawerJavaMapper()->setFilledBoxSize(boxWidth, boxHeight);
 
   double textPos[3];
-  sciGetTextPos(pObj, textPos);
-
-  // convert the user lengths to pixel ones.
-  int pixWidth;
-  int pixHeight;
-  getPixelLength(sciGetParentSubwin(pObj), textPos, boxWidth, boxHeight, &pixWidth, &pixHeight);
-
-  getFilledTextDrawerJavaMapper()->setTextParameters(sciGetAlignment(pObj), sciGetFontContext(pObj)->foregroundcolor,
-                                                     sciGetFontStyle(pObj), sciGetFontOrientation(pObj),
-                                                     pixWidth, pixHeight);
-
   getTextDisplayPos(textPos);
   getFilledTextDrawerJavaMapper()->setCenterPosition(textPos[0], textPos[1], textPos[2]);
+}
+/*---------------------------------------------------------------------------------*/
+void FilledTextDrawerJoGL::drawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
+{
+  TextContentDrawerJoGL::drawTextContent(corner1, corner2, corner3, corner4);
+  updateFontSize();
+}
+/*---------------------------------------------------------------------------------*/
+void FilledTextDrawerJoGL::redrawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
+{
+  // box size may have changed so update it
+  int boxWidth;
+  int boxHeight;
+  getUserSizePix(boxWidth, boxHeight);
+  getFilledTextDrawerJavaMapper()->setFilledBoxSize(boxWidth, boxHeight);
+
+  TextContentDrawerJoGL::redrawTextContent(corner1, corner2, corner3, corner4);
+  updateFontSize();
+}
+/*---------------------------------------------------------------------------------*/
+void FilledTextDrawerJoGL::updateFontSize(void)
+{
+  // store the font size to be able te retrieve it the next time we need.
+  double newFontSize = getFilledTextDrawerJavaMapper()->getFontSize();
+  m_pDrawed->setDefaultFontSize(newFontSize);
 }
 /*---------------------------------------------------------------------------------*/
 FilledTextDrawerJavaMapper * FilledTextDrawerJoGL::getFilledTextDrawerJavaMapper(void)

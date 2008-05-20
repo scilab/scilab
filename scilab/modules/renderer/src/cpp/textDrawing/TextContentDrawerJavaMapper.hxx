@@ -35,6 +35,9 @@ public:
 
   virtual long * getScreenBoundingBox(void) = 0;
 
+  virtual void setTextParameters(int textAlignment, int color, int fontStyle,
+                                 double fontSize, double rotationAngle) = 0;
+
 };
 
 }

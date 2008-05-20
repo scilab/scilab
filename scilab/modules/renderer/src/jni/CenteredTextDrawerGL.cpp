@@ -108,7 +108,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetTextParametersjintjintjintjdoublejdoublejintjintID=NULL; 
+voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -118,6 +118,7 @@ voidsetCenterPositionjdoublejdoublejdoubleID=NULL;
 jdoubleArraydrawTextContentID=NULL; 
 jdoubleArraygetBoundingRectangleID=NULL; 
 jintArraygetScreenBoundingBoxID=NULL; 
+voidsetFilledBoxSizejintjintID=NULL; 
 
 
 }
@@ -149,7 +150,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetTextParametersjintjintjintjdoublejdoublejintjintID=NULL; 
+voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -159,6 +160,7 @@ voidsetCenterPositionjdoublejdoublejdoubleID=NULL;
 jdoubleArraydrawTextContentID=NULL; 
 jdoubleArraygetBoundingRectangleID=NULL; 
 jintArraygetScreenBoundingBoxID=NULL; 
+voidsetFilledBoxSizejintjintID=NULL; 
 
 
 }
@@ -297,17 +299,17 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void CenteredTextDrawerGL::setTextParameters (long textAlignment, long color, long fontStyle, double fontSize, double rotationAngle, long boxWidth, long boxHeight){
+void CenteredTextDrawerGL::setTextParameters (long textAlignment, long color, long fontStyle, double fontSize, double rotationAngle){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voidsetTextParametersjintjintjintjdoublejdoublejintjintID==NULL) { /* Use the cache Luke */ voidsetTextParametersjintjintjintjdoublejdoublejintjintID = curEnv->GetMethodID(this->instanceClass, "setTextParameters", "(IIIDDII)V" ) ;
-if (voidsetTextParametersjintjintjintjdoublejdoublejintjintID == NULL) {
+if (voidsetTextParametersjintjintjintjdoublejdoubleID==NULL) { /* Use the cache Luke */ voidsetTextParametersjintjintjintjdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setTextParameters", "(IIIDD)V" ) ;
+if (voidsetTextParametersjintjintjintjdoublejdoubleID == NULL) {
 std::cerr << "Could not access to the method " << "setTextParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoublejdoublejintjintID ,textAlignment, color, fontStyle, fontSize, rotationAngle, boxWidth, boxHeight);
+                         curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoublejdoubleID ,textAlignment, color, fontStyle, fontSize, rotationAngle);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -483,6 +485,25 @@ curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
 return myArray;
 
+}
+
+void CenteredTextDrawerGL::setFilledBoxSize (long boxWidth, long boxHeight){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetFilledBoxSizejintjintID==NULL) { /* Use the cache Luke */ voidsetFilledBoxSizejintjintID = curEnv->GetMethodID(this->instanceClass, "setFilledBoxSize", "(II)V" ) ;
+if (voidsetFilledBoxSizejintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setFilledBoxSize" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidsetFilledBoxSizejintjintID ,boxWidth, boxHeight);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

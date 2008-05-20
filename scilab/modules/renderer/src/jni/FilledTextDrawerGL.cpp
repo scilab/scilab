@@ -108,7 +108,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetTextParametersjintjintjintjdoublejintjintID=NULL; 
+voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -118,6 +118,8 @@ voidsetCenterPositionjdoublejdoublejdoubleID=NULL;
 jdoubleArraydrawTextContentID=NULL; 
 jdoubleArraygetBoundingRectangleID=NULL; 
 jintArraygetScreenBoundingBoxID=NULL; 
+jdoublegetScilabFontSizeID=NULL; 
+voidsetFilledBoxSizejintjintID=NULL; 
 
 
 }
@@ -149,7 +151,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetTextParametersjintjintjintjdoublejintjintID=NULL; 
+voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -159,6 +161,8 @@ voidsetCenterPositionjdoublejdoublejdoubleID=NULL;
 jdoubleArraydrawTextContentID=NULL; 
 jdoubleArraygetBoundingRectangleID=NULL; 
 jintArraygetScreenBoundingBoxID=NULL; 
+jdoublegetScilabFontSizeID=NULL; 
+voidsetFilledBoxSizejintjintID=NULL; 
 
 
 }
@@ -297,17 +301,17 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void FilledTextDrawerGL::setTextParameters (long textAlignment, long color, long fontStyle, double rotationAngle, long boxWidth, long boxHeight){
+void FilledTextDrawerGL::setTextParameters (long textAlignment, long color, long fontStyle, double fontSize, double rotationAngle){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voidsetTextParametersjintjintjintjdoublejintjintID==NULL) { /* Use the cache Luke */ voidsetTextParametersjintjintjintjdoublejintjintID = curEnv->GetMethodID(this->instanceClass, "setTextParameters", "(IIIDII)V" ) ;
-if (voidsetTextParametersjintjintjintjdoublejintjintID == NULL) {
+if (voidsetTextParametersjintjintjintjdoublejdoubleID==NULL) { /* Use the cache Luke */ voidsetTextParametersjintjintjintjdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setTextParameters", "(IIIDD)V" ) ;
+if (voidsetTextParametersjintjintjintjdoublejdoubleID == NULL) {
 std::cerr << "Could not access to the method " << "setTextParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoublejintjintID ,textAlignment, color, fontStyle, rotationAngle, boxWidth, boxHeight);
+                         curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoublejdoubleID ,textAlignment, color, fontStyle, fontSize, rotationAngle);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -483,6 +487,46 @@ curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
 return myArray;
 
+}
+
+double FilledTextDrawerGL::getScilabFontSize (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jdoublegetScilabFontSizeID==NULL) { /* Use the cache Luke */ jdoublegetScilabFontSizeID = curEnv->GetMethodID(this->instanceClass, "getScilabFontSize", "()D" ) ;
+if (jdoublegetScilabFontSizeID == NULL) {
+std::cerr << "Could not access to the method " << "getScilabFontSize" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                        jdouble res =  (jdouble) curEnv->CallDoubleMethod( this->instance, jdoublegetScilabFontSizeID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
+}
+
+void FilledTextDrawerGL::setFilledBoxSize (long boxWidth, long boxHeight){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetFilledBoxSizejintjintID==NULL) { /* Use the cache Luke */ voidsetFilledBoxSizejintjintID = curEnv->GetMethodID(this->instanceClass, "setFilledBoxSize", "(II)V" ) ;
+if (voidsetFilledBoxSizejintjintID == NULL) {
+std::cerr << "Could not access to the method " << "setFilledBoxSize" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidsetFilledBoxSizejintjintID ,boxWidth, boxHeight);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

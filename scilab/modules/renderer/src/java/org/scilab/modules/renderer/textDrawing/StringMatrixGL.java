@@ -85,6 +85,26 @@ public class StringMatrixGL extends StringMatrix {
 	}
 	
 	/**
+	 * Apply a scale factior on the matrix.
+	 * If modifying the font size of text, it's much faster to call this function
+	 * Than calling update.
+	 * @param factor scale factor to apply
+	 */
+	public void scale(double factor) {
+		int nbCol = getNbCol();
+		int nbRow = getNbRow();
+		// apply factor on all data
+		for (int j = 0; j < nbCol; j++) {
+			for (int i = 0; i < nbRow; i++) {
+				width[i][j] *= factor;
+				height[i][j] *=  factor;
+			}
+			widestStrings[j] *= factor;
+		}
+		tallestString *= factor;
+	}
+	
+	/**
 	 * Compute the widests strings for each row and the tallest string of the matrix
 	 * @param renderer renderer used to draw the objects
 	 */

@@ -22,8 +22,6 @@
       <param type="int" name="fontStyle" />
       <param type="double" name="fontSize" />
       <param type="double" name="rotationAngle" />
-      <param type="int" name="boxWidth" />
-      <param type="int" name="boxHeight" />
     </method>
     <method name="setTextContent" returnType="void">
       <param type="String[]" name="text" />
@@ -40,6 +38,10 @@
     <method name="getBoundingRectangle" returnType="double[]">
     </method>
     <method name="getScreenBoundingBox" returnType="int[]">
+    </method>
+    <method name="setFilledBoxSize" returnType="void">
+      <param type="int" name="boxWidth" />
+      <param type="int" name="boxHeight" />
     </method>
   </object>
 </package>
