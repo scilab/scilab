@@ -136,7 +136,8 @@ public class MouseDisplacementTracker implements MouseMotionListener {
 	 * @param event dragging event
 	 */
 	public void mouseDragged(MouseEvent event) {
-		// nothing to do
+		// same as mouse moved
+		mouseMoved(event);
 	}
 	
 

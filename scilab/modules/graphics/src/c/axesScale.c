@@ -17,6 +17,7 @@
 /*        subwindow.                                                      */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
 
 #include "axesScale.h"
 #include "math_graphics.h"
@@ -532,8 +533,24 @@ void sciInteractiveZoom(sciPointObj * pObj)
   int button;
 
   sciPointObj * parentFigure = sciGetParentFigure(pObj);
+  char * currentInfoMessage = sciGetInfoMessage(parentFigure);
+  char * curInfoMessageCopy = NULL;
 
-  /* create a ruuber box to select a rectangular area */
+  /* copy the info message to be able to reset it after zooming */
+  curInfoMessageCopy = MALLOC((strlen(currentInfoMessage) + 1) * sizeof(char));
+
+  if (curInfoMessageCopy == NULL)
+  {
+    sciprint(_("%s: No more memory.\n"), "Interactive zoom");
+  }
+  strcpy(curInfoMessageCopy, currentInfoMessage);
+
+  startFigureDataWriting(parentFigure);
+  /* display how to use zoom in the info bar */
+  sciSetInfoMessage(parentFigure, _("Click on the figure to select zooming area. Click again to stop."));
+  endFigureDataWriting(parentFigure);
+
+  /* create a rubber box to select a rectangular area */
   pixelRubberBox(parentFigure, TRUE, NULL, selectionRectangleCorners, &button);
 
   /* convert found data to [x,y,w,h] */
@@ -552,7 +569,11 @@ void sciInteractiveZoom(sciPointObj * pObj)
   {
     zoomSubwin(pObj, x, y, w, h);
   }
+  // restore info message
+  sciSetInfoMessage(parentFigure, curInfoMessageCopy);
   endFigureDataWriting(parentFigure);
+
+  FREE(curInfoMessageCopy);
 
   /* redraw */
   sciDrawObj(parentFigure);

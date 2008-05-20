@@ -843,6 +843,21 @@ void interactiveRotation(sciPointObj * pFigure)
   /* get coordinates of first mouse click */
   int clickCoordinates[2];
   sciPointObj * clickedSubwin;
+  char * currentInfoMessage = sciGetInfoMessage(pFigure);
+  char * curInfoMessageCopy = NULL;
+
+  /* copy the info message to be able to reset it after zooming */
+  curInfoMessageCopy = MALLOC((strlen(currentInfoMessage) + 1) * sizeof(char));
+
+  if (curInfoMessageCopy == NULL)
+  {
+    sciprint(_("%s: No more memory.\n"), "Interactive rotation");
+  }
+  strcpy(curInfoMessageCopy, currentInfoMessage);
+  startFigureDataWriting(pFigure);
+  sciSetInfoMessage(pFigure, _("Click on an Axes object to start rotation. Click again to terminate."));
+  endFigureDataWriting(pFigure);
+
   getJavaRotationDisplacement(pFigure, clickCoordinates);
 
   /* find the subwin which is under the click if any */
@@ -851,10 +866,19 @@ void interactiveRotation(sciPointObj * pFigure)
   {
     // no subwin found return
     stopJavaRotationRecording(pFigure);
+    /* restore previous info message */
+    startFigureDataWriting(pFigure);
+    sciSetInfoMessage(pFigure,curInfoMessageCopy);
+    endFigureDataWriting(pFigure);
     return;
   }
 
   trackSubwinRotation(clickedSubwin);
+
+  /* restore previous info message */
+  startFigureDataWriting(pFigure);
+  sciSetInfoMessage(pFigure,curInfoMessageCopy);
+  endFigureDataWriting(pFigure);
 
 }
 /*---------------------------------------------------------------------------------*/

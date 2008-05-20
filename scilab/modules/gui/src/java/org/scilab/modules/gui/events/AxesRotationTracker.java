@@ -141,6 +141,29 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 * @param event clieck event
 	 */
 	public void mouseClicked(MouseEvent event) {
+		// everything si done in mouse pressed
+	}
+
+	/**
+	 * @param event entering event
+	 */
+	public void mouseEntered(MouseEvent event) {
+		// not used
+
+	}
+
+	/**
+	 * @param event exiting event
+	 */
+	public void mouseExited(MouseEvent event) {
+		// not used
+
+	}
+
+	/**
+	 * @param event press event
+	 */
+	public void mousePressed(MouseEvent event) {
 		if (isWaitingForClick) {
 			clickPosX = event.getX();
 			clickPosY = event.getY();
@@ -165,34 +188,10 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	}
 
 	/**
-	 * @param event entering event
-	 */
-	public void mouseEntered(MouseEvent event) {
-		// not used
-
-	}
-
-	/**
-	 * @param event exiting event
-	 */
-	public void mouseExited(MouseEvent event) {
-		// not used
-
-	}
-
-	/**
-	 * @param event press event
-	 */
-	public void mousePressed(MouseEvent event) {
-		// not used
-
-	}
-
-	/**
 	 * @param event release event
 	 */
 	public void mouseReleased(MouseEvent event) {
-		// not used
+		// nothing to do
 
 	}
 	

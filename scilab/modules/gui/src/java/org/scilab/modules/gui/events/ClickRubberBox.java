@@ -37,16 +37,8 @@ public class ClickRubberBox extends ScilabRubberBox {
 	 * @param event click event
 	 */
 	public void mouseClicked(MouseEvent event) {
-		if (isDragging()) {
-			// exit click
-			// set the exiting button
-			// Incompatibility with Scilab 4 here, we don't take keyboerd event into consideration
-			setUsedButton(SciTranslator.javaButton2Scilab(event.getButton(), SciTranslator.CLICKED, false));
-			endDragging();
-		} else {
-			// enter click
-			beginDragging(event.getX(), event.getY(), event.getX(), event.getY());
-		}
+		// nothing to do here
+		// if mouse pressed is called before mouse clicked
 	}
 	
 	/**
@@ -54,7 +46,16 @@ public class ClickRubberBox extends ScilabRubberBox {
 	 * @param event event when the action occured
 	 */
 	public void mousePressed(MouseEvent event) {
-		// nothing here, we wait for clicks
+		if (isDragging()) {
+			// exit click
+			// set the exiting button
+			// Incompatibility with Scilab 4 here, we don't take keyboerd event into consideration
+			setUsedButton(SciTranslator.javaButton2Scilab(event.getButton(), SciTranslator.PRESSED, false));
+			endDragging();
+		} else {
+			// enter click
+			beginDragging(event.getX(), event.getY(), event.getX(), event.getY());
+		}
 	}
 
 	/**
