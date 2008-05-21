@@ -158,9 +158,9 @@ void DrawableFigureJoGL::setBackgroundColor(int backColor)
   getFigureJavaMapper()->setBackgroundColor(backColor);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton)
+void DrawableFigureJoGL::rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton)
 {
-  getFigureJavaMapper()->rubberBox(isClick, initialRect, endRect, usedButton);
+  getFigureJavaMapper()->rubberBox(isClick, isZoom, initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
 DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )

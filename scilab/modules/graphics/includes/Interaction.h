@@ -42,23 +42,28 @@ extern BOOL sciIsAreaZoom(integer *box, integer *box1 ,integer *section); /* INT
  * @param pFigure figure on which to apply the rubber box
  * @param isClick specify whether the rubber box is selected by mouse click
  *        or a sequence of press/release.
+ * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
  * @param intialRect if not null, specify the initial rectangle to use
  * @param[out] endRect array containing the coordinates of two opposite corners of
  *                     the rubber box
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton);
+void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom,
+                    const int initialRect[4], int endRect[4], int * usedButton);
 
 /**
  * Call rubber box using a subwn scale
  * @param pFigure figure on which to apply the rubber box
  * @param isClick specify whether the rubber box is selected by mouse click
  *        or a sequence of press/release.
+ * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
+ * 
  * @param intialRect if not null, specify the initial rectangle [x,y,w,h] to use
  * @param[out] endRect array containing the [x,y,w,h] of the selected rectangle
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-void rubberBox(sciPointObj * pSubwin, BOOL isClick, const double initialRect[4], double endRect[4], int * usedButton);
+void rubberBox(sciPointObj * pSubwin, BOOL isClick, BOOL isZoom,
+               const double initialRect[4], double endRect[4], int * usedButton);
 
 
 /**

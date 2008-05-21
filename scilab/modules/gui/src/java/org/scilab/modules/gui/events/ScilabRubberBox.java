@@ -12,10 +12,6 @@
 
 package org.scilab.modules.gui.events;
 
-import java.awt.Cursor;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.HierarchyEvent;
 import java.awt.event.HierarchyListener;
 import java.awt.event.MouseEvent;
@@ -52,10 +48,6 @@ public abstract class ScilabRubberBox extends RubberBox
 		super();
 		drawingMode = false;
 		this.selectedCanvas = selectedCanvas;
-		// Change cursor
-		Image icon = Toolkit.getDefaultToolkit().getImage(System.getenv("SCI") + "/modules/gui/images/icons/zoom-in.png");
-		selectedCanvas.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, new Point(0,0), "zoomin"));
-		//selectedCanvas.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 		terminateButton = 0;
 	}
 	
@@ -64,6 +56,13 @@ public abstract class ScilabRubberBox extends RubberBox
 	 */
 	protected boolean isDragging() {
 		return drawingMode;
+	}
+	
+	/**
+	 * @return Canvas on which the rubberbox is performed
+	 */
+	protected SwingScilabCanvas getSelectedCanvas() {
+		return selectedCanvas;
 	}
 	
 	/**
@@ -87,19 +86,24 @@ public abstract class ScilabRubberBox extends RubberBox
 	 * @param canvas canvas on which the rubber box will be used.
 	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
+	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw
 	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
 	 * @return Scilab code of the pressed button
 	 */
-	public static int getRectangle(SwingScilabCanvas canvas, boolean isClick,
+	public static int getRectangle(SwingScilabCanvas canvas, boolean isClick, boolean isZoom,
 								   int[] initialRect, int[] endRect) {
 		ScilabRubberBox rubberBox = null;
 		
 		// select the kind of listener accordingly
-		if (isClick) {
-			rubberBox = new ClickRubberBox(canvas);
+		if (isZoom) {
+			rubberBox = new ZoomRubberBox(canvas);
 		} else {
-			rubberBox = new PressReleaseRubberBox(canvas);
+			if (isClick) {
+				rubberBox = new ClickRubberBox(canvas);
+			} else {
+				rubberBox = new PressReleaseRubberBox(canvas);
+			}
 		}
 		
 		
@@ -140,8 +144,6 @@ public abstract class ScilabRubberBox extends RubberBox
 		endRect[1] = getFirstPointY();
 		endRect[2] = getSecondPointX();
 		endRect[INITIAL_RECT_SIZE - 1] = getSecondPointY();
-		
-		selectedCanvas.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
 		return getUsedButton();
 		

@@ -81,7 +81,7 @@ jmethodID jbooleangetAutoResizeModeID; // cache method id
 jmethodID voidsetIsRenderingEnablejbooleanID; // cache method id
 jmethodID jintArraygetViewportID; // cache method id
 jmethodID voidsetViewportjintjintjintjintID; // cache method id
-jmethodID jintArrayrubberBoxjbooleanjintArrayID; // cache method id
+jmethodID jintArrayrubberBoxjbooleanjbooleanjintArrayID; // cache method id
 jmethodID voidsetTitlejstringID; // cache method id
 jmethodID jintArraygetRotationDisplacementID; // cache method id
 jmethodID voidstopRotationRecordingID; // cache method id
@@ -184,7 +184,7 @@ long * getViewport();
 
 void setViewport(long posX, long posY, long width, long height);
 
-long * rubberBox(bool isClick, long * initialRect, int initialRectSize);
+long * rubberBox(bool isClick, bool isZoom, long * initialRect, int initialRectSize);
 
 void setTitle(char * title);
 

@@ -248,9 +248,9 @@ void DrawableFigure::setBackgroundColor(int backColor)
   getFigureImp()->setBackgroundColor(backColor);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton)
+void DrawableFigure::rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton)
 {
-  getFigureImp()->rubberBox(isClick, initialRect, endRect, usedButton);
+  getFigureImp()->rubberBox(isClick, isZoom, initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::setTitle( const char * title )

@@ -551,7 +551,7 @@ void sciInteractiveZoom(sciPointObj * pObj)
   endFigureDataWriting(parentFigure);
 
   /* create a rubber box to select a rectangular area */
-  pixelRubberBox(parentFigure, TRUE, NULL, selectionRectangleCorners, &button);
+  pixelRubberBox(parentFigure, TRUE, TRUE, NULL, selectionRectangleCorners, &button);
 
   /* convert found data to [x,y,w,h] */
   x = Min(selectionRectangleCorners[0], selectionRectangleCorners[2]);

@@ -131,7 +131,7 @@ jbooleangetAutoResizeModeID=NULL;
 voidsetIsRenderingEnablejbooleanID=NULL; 
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
-jintArrayrubberBoxjbooleanjintArrayID=NULL; 
+jintArrayrubberBoxjbooleanjbooleanjintArrayID=NULL; 
 voidsetTitlejstringID=NULL; 
 jintArraygetRotationDisplacementID=NULL; 
 voidstopRotationRecordingID=NULL; 
@@ -189,7 +189,7 @@ jbooleangetAutoResizeModeID=NULL;
 voidsetIsRenderingEnablejbooleanID=NULL; 
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
-jintArrayrubberBoxjbooleanjintArrayID=NULL; 
+jintArrayrubberBoxjbooleanjbooleanjintArrayID=NULL; 
 voidsetTitlejstringID=NULL; 
 jintArraygetRotationDisplacementID=NULL; 
 voidstopRotationRecordingID=NULL; 
@@ -826,22 +826,24 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-long * DrawableFigureGL::rubberBox (bool isClick, long * initialRect, int initialRectSize){
+long * DrawableFigureGL::rubberBox (bool isClick, bool isZoom, long * initialRect, int initialRectSize){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (jintArrayrubberBoxjbooleanjintArrayID==NULL) { /* Use the cache Luke */ jintArrayrubberBoxjbooleanjintArrayID = curEnv->GetMethodID(this->instanceClass, "rubberBox", "(Z[I)[I" ) ;
-if (jintArrayrubberBoxjbooleanjintArrayID == NULL) {
+if (jintArrayrubberBoxjbooleanjbooleanjintArrayID==NULL) { /* Use the cache Luke */ jintArrayrubberBoxjbooleanjbooleanjintArrayID = curEnv->GetMethodID(this->instanceClass, "rubberBox", "(ZZ[I)[I" ) ;
+if (jintArrayrubberBoxjbooleanjbooleanjintArrayID == NULL) {
 std::cerr << "Could not access to the method " << "rubberBox" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
 jboolean isClick_ = ((bool) isClick ? JNI_TRUE : JNI_FALSE);
 
+jboolean isZoom_ = ((bool) isZoom ? JNI_TRUE : JNI_FALSE);
+
 jintArray initialRect_ = curEnv->NewIntArray( initialRectSize ) ;
 curEnv->SetIntArrayRegion( initialRect_, 0, initialRectSize, (jint*) initialRect ) ;
 
-                        jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArrayrubberBoxjbooleanjintArrayID ,isClick_, initialRect_);
+                        jintArray res =  (jintArray) curEnv->CallObjectMethod( this->instance, jintArrayrubberBoxjbooleanjbooleanjintArrayID ,isClick_, isZoom_, initialRect_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

@@ -792,12 +792,14 @@ BOOL sciIsAreaZoom(integer box[4],integer box1[4],integer section[4])
 
 }
 /*---------------------------------------------------------------------------------*/
-void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton)
+void pixelRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom,
+                    const int initialRect[4], int endRect[4], int * usedButton)
 {
-  javaRubberBox(pFigure, isClick, initialRect, endRect, usedButton);
+  javaRubberBox(pFigure, isClick, isZoom, initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
-void rubberBox(sciPointObj * pSubwin, BOOL isClick, const double initialRect[4], double endRect[4], int * usedButton)
+void rubberBox(sciPointObj * pSubwin, BOOL isClick, BOOL isZoom,
+               const double initialRect[4], double endRect[4], int * usedButton)
 {
   int endPixelRect[4];
   double endFirstCorner[2];
@@ -822,11 +824,11 @@ void rubberBox(sciPointObj * pSubwin, BOOL isClick, const double initialRect[4],
     sciGet2dViewPixelCoordinates(pSubwin, firstCorner, initialPixelRect);
     sciGet2dViewPixelCoordinates(pSubwin, secondCorner, initialPixelRect + 2);
 
-    javaRubberBox(sciGetParentFigure(pSubwin), isClick, initialPixelRect, endPixelRect, usedButton);
+    javaRubberBox(sciGetParentFigure(pSubwin), isClick, isZoom, initialPixelRect, endPixelRect, usedButton);
   }
   else
   {
-    javaRubberBox(sciGetParentFigure(pSubwin), isClick, NULL, endPixelRect, usedButton);
+    javaRubberBox(sciGetParentFigure(pSubwin), isClick, isZoom, NULL, endPixelRect, usedButton);
   }
 
   /* here we get the two opposite points of the rectangle in pixels */

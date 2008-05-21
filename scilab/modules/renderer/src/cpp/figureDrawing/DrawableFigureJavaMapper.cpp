@@ -193,7 +193,7 @@ void DrawableFigureJavaMapper::setBackgroundColor(int colorIndex)
   m_pJavaObject->setBackgroundColor(colorIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::rubberBox(bool isClick, const int initialRect[4], int endRect[4], int * usedButton)
+void DrawableFigureJavaMapper::rubberBox(bool isClick, bool isZoom, const int initialRect[4], int endRect[4], int * usedButton)
 {
   long * javaInitialRect = NULL;
   int sizeJavaInitialRect = 0;
@@ -206,7 +206,7 @@ void DrawableFigureJavaMapper::rubberBox(bool isClick, const int initialRect[4],
       javaInitialRect[i] = initialRect[i];
     }
   }
-  long * javaRes = m_pJavaObject->rubberBox(isClick, javaInitialRect, sizeJavaInitialRect);
+  long * javaRes = m_pJavaObject->rubberBox(isClick, isZoom, javaInitialRect, sizeJavaInitialRect);
 
   if (javaInitialRect != NULL)
   {

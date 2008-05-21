@@ -1312,12 +1312,13 @@ public class ScilabBridge {
 	 * @param canvas canvas on which the rubber box will be applied
 	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
+	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw
 	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
 	 * @return Scilab code of the pressed button
 	 */
-	public static int rubberBox(Canvas canvas, boolean isClick, int[] initialRect, int[] endRect) {
-		return ScilabCanvasBridge.rubberBox(canvas, isClick, initialRect, endRect);
+	public static int rubberBox(Canvas canvas, boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
+		return ScilabCanvasBridge.rubberBox(canvas, isClick, isZoom, initialRect, endRect);
 	}
 	
 	/**

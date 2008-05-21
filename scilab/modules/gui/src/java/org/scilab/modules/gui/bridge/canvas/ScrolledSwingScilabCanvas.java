@@ -302,12 +302,13 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	 * Create an interactive selection rectangle and return its pixel coordinates
 	 * @param isClick specify wether the rubber box is selected by one click for each one of the two edge
 	 *                or a sequence of press-release
+	 * @param isZoom specify if the rubber box is used for a zoom and then change the mouse cursor.
 	 * @param initialRect if not null specify the initial rectangle to draw
 	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
 	 * @return Scilab code of the pressed button
 	 */
-	public int rubberBox(boolean isClick, int[] initialRect, int[] endRect) {
-		return getCanvas().rubberBox(isClick, initialRect, endRect);
+	public int rubberBox(boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
+		return getCanvas().rubberBox(isClick, isZoom, initialRect, endRect);
 	}
 	
 	/**

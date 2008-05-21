@@ -80,6 +80,7 @@
     </method>
     <method name="rubberBox" returnType="int[]">
       <param type="boolean" name="isClick" />
+      <param type="boolean" name="isZoom" />
       <param type="int[]" name="initialRect" />
     </method>
     <method name="setTitle" returnType="void">

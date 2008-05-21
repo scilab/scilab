@@ -130,14 +130,14 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
   if (initialRectSpecified == 1 )
   {
     /* edition mode is false if initial rect is specified */
-    rubberBox(sciGetCurrentSubWin(), TRUE, initialRect, selectedRect, &button);
+    rubberBox(sciGetCurrentSubWin(), TRUE, FALSE, initialRect, selectedRect, &button);
   }
   else if (initialRectSpecified == 0)
   {
     /* no intial rect */
     if (getEditionMode())
     {
-      rubberBox(sciGetCurrentSubWin(), FALSE, NULL, selectedRect, &button);
+      rubberBox(sciGetCurrentSubWin(), FALSE, FALSE, NULL, selectedRect, &button);
     }
     else
     {
@@ -145,7 +145,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
       if (Rhs == 0)
       {
         /* ok no parameter at all */
-        rubberBox(sciGetCurrentSubWin(), TRUE, NULL, selectedRect, &button);
+        rubberBox(sciGetCurrentSubWin(), TRUE, FALSE, NULL, selectedRect, &button);
       }
       else
       {

@@ -17,9 +17,9 @@
 using namespace sciGraphics ;
 
 /*---------------------------------------------------------------------------------*/
-void javaRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton)
+void javaRubberBox(sciPointObj * pFigure, BOOL isClick, BOOL isZoom, const int initialRect[4], int endRect[4], int * usedButton)
 {
-  getFigureDrawer(pFigure)->rubberBox((isClick == TRUE), initialRect, endRect, usedButton);
+  getFigureDrawer(pFigure)->rubberBox((isClick == TRUE), (isZoom == TRUE), initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
 BOOL getJavaRotationDisplacement(sciPointObj * pFigure, int displacement[2])
