@@ -123,13 +123,10 @@ int C2F(sci_get_absolute_file_path)(char *fname,unsigned long fname_len)
 			C2F(putlhsvar)();
 
 			if (absolute_file_path){FREE(absolute_file_path);absolute_file_path=NULL;}
-			return 0;
-
 		}
 		else
 		{
 			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
-			return 0;
 		}
 	}
 	return 0;
