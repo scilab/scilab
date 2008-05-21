@@ -296,10 +296,10 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             {
               if (inputIndex==21 || inputIndex==23) /* User data settings */
                 {
-                  stkAdr = 3; /* Special management */
+                  stkAdr = propertiesValuesIndices[inputIndex]; /* Special management */
                   nbRow = -1; 
                   nbCol = -1;
-                  setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                  setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, VarType(propertiesValuesIndices[inputIndex]), nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                 }
               else /* All other properties */
                 {

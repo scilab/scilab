@@ -57,11 +57,6 @@ int  DestroyUicontrol (sciPointObj * pthis)
       FREE (pUICONTROL_FEATURE (pthis)->sliderStep);
     }
 
-  if (pUICONTROL_FEATURE (pthis)->user_data != NULL)
-    {
-      FREE (pUICONTROL_FEATURE (pthis)->user_data);
-    }
-
   return sciStandardDestroyOperations(pthis) ;
 }
 /*----------------------------------------------------------------------------*/
