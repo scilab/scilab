@@ -62,12 +62,24 @@ function xs2emf(figureNumber, fileName)
 		
 	// convert it to emf
 	//get short  path name for windows because path is > then 6 caracters
-	[shortpath,bOK]=getshortpathname(path);
+	[shortpath,bOK]=getshortpathname(path);	
 	[path2,fname2,extension2] = fileparts(generatedFileName);
 	generatedFileName = shortpath + fname2 + extension2;	
 	
 	pstoeditOptions = "-f ""emf""";
-	[stdout, status, stderr] = unix_g(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);
+	
+	//Check if we have the permission to export this file
+	[fd,errPermission]=mopen(generatedFileName, "w");
+	if errPermission <> 0 then
+		error(msprintf(gettext("%s: Unable to create export file, permission denied.\n"), "xs2emf"));
+		return;
+	else
+		mclose(fd);
+	end
+	
+	[stdout, status, stderr] = unix_g(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);	
+	
+	
 		
 	if status <> 0 then
 		error(msprintf(gettext("%s: Unable to execute pstoedit.\n"), "xs2emf"));
