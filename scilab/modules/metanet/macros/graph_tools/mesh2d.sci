@@ -56,6 +56,13 @@ function [nutr,A]=mesh2d(x,y,front)
     nutr=matrix(nunu,3,nbt);
   end;
   ii=find(nutr(1,:)==0); nutr(:,ii)=[];
+  // fixing triangle orientations counter clock-wise
+  crossprod=(x(nutr(2,:))-x(nutr(1,:))).*(y(nutr(3,:))-y(nutr(2,:))) - ..
+	    (x(nutr(3,:))-x(nutr(2,:))).*(y(nutr(2,:))-y(nutr(1,:)));
+  //ii=find(crossprod > 0 )  // to orient all triangles clock-wise
+  ii=find(crossprod < 0 )  //to orient all triangles counter-clock-wise
+  nutr([2,3],ii)=nutr([3 2],ii);
+
   if lhs==2 then
     jj=[nutr(1,:)' nutr(2,:)';nutr(2,:)' nutr(3,:)';nutr(3,:)' nutr(1,:)'];
     A=sparse(jj,ones(size(jj,1),1));
