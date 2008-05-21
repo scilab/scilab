@@ -44,10 +44,7 @@ void C2F(cchar)(int *n, char **ip,int *op)
  *                 char ** -> int *
  *--------------------------------------------------------------*/
 
-void C2F(ccharf)(n,ip,op)
-     int *n;
-     char **ip;
-     int *op;
+void C2F(ccharf)(int *n,char **ip,int *op)
 {
   int i = 0;
   if (*n > 0) {
@@ -60,10 +57,7 @@ void C2F(ccharf)(n,ip,op)
  * cdouble  : copy double ** to double *
  *--------------------------------------------------------------*/
 
-void C2F(cdouble)(n,ip,op)
-     int *n;
-     double *ip[];
-     double *op;
+void C2F(cdouble)(int *n,double *ip[],double *op)
 {
   int i;
   for (i = 0; i < *n; i++) op[i]=(*ip)[i];
@@ -73,10 +67,7 @@ void C2F(cdouble)(n,ip,op)
  * cdoublef  : copy double ** to double *  and ip is freed
  *--------------------------------------------------------------*/
 
-void C2F(cdoublef)(n,ip,op)
-     int *n;
-     double *ip[];
-     double *op;
+void C2F(cdoublef)(int *n,double *ip[],double *op)
 {
   int i;
   if ( *n >0 ) {
@@ -89,10 +80,7 @@ void C2F(cdoublef)(n,ip,op)
  * cint  : copy int ** to double *
  *--------------------------------------------------------------*/
 
-void C2F(cint)(n,ip,op)
-     int *n;
-     int *ip[];
-     double *op;
+void C2F(cint)(int *n,int *ip[],double *op)
 {
   int i;
   for (i = 0; i < *n; i++)  op[i]=(double)(*ip)[i];
@@ -102,10 +90,7 @@ void C2F(cint)(n,ip,op)
  * cintf  : copy int ** to double * + pointer is freed
  *--------------------------------------------------------------*/
 
-void C2F(cintf)(n,ip,op)
-     int *n;
-     int *ip[];
-     double *op;
+void C2F(cintf)(int *n,int *ip[],double *op)
 {
   int i;
   if ( *n > 0 ) {
@@ -118,11 +103,7 @@ void C2F(cintf)(n,ip,op)
 /*--------------------------------------------------------------
  * cfloat  : copy float ** to double *
  *--------------------------------------------------------------*/
-
-void C2F(cfloat)(n,ip,op)
-     int *n;
-     float *ip[];
-     double *op;
+void C2F(cfloat)(int *n,float *ip[],double *op)
 {
   int i;
   for (i = 0; i < *n; i++)  op[i]=(double)(*ip)[i];
@@ -132,10 +113,7 @@ void C2F(cfloat)(n,ip,op)
  * cfloatf  : copy float ** to double * + pointer is freed
  *--------------------------------------------------------------*/
 
-void C2F(cfloatf)(n,ip,op)
-     int *n;
-     float *ip[];
-     double *op;
+void C2F(cfloatf)(int *n,float *ip[],double *op)
 {
   int i;
   if ( *n > 0 ) {
@@ -149,10 +127,7 @@ void C2F(cfloatf)(n,ip,op)
  * cbool  : copy int ** to int *
  *--------------------------------------------------------------*/
 
-void C2F(cbool)(n,ip,op)
-     int *n;
-     int *ip[];
-     int *op;
+void C2F(cbool)(int *n,int *ip[],int *op)
 {
   int i;
   for (i = 0; i < *n; i++)  op[i]= (*ip)[i];
@@ -162,10 +137,7 @@ void C2F(cbool)(n,ip,op)
  * cboolf : copy int ** to int * + pointer is freed
  *--------------------------------------------------------------*/
 
-void C2F(cboolf)(n,ip,op)
-     int *n;
-     int *ip[];
-     int *op;
+void C2F(cboolf)(int *n,int *ip[],int *op)
 {
   int i;
   if ( *n > 0 ) {
@@ -231,10 +203,7 @@ void C2F(cstringf) (char ***ip, int *sciptr, int *m, int *n, int *max, int *ierr
  *      *cptr is allocated
  *--------------------------------------------*/
 
-int C2F(stringc)(sciptr,cptr,ierr)
-     int *sciptr;
-     char ***cptr;
-     int *ierr;
+int C2F(stringc)(int *sciptr,char ***cptr,int *ierr)
 {
   char **strings,*p;
   int li,ni,*SciS,i,nstring,*ptrstrings;
@@ -265,10 +234,7 @@ int C2F(stringc)(sciptr,cptr,ierr)
  * dbl2cdbl  : fill *ip with contents of double array op
  *--------------------------------------------------------------*/
 
-void C2F(dbl2cdbl)(n,ip,op)
-     int *n;
-     double *ip[];
-     double *op;
+void C2F(dbl2cdbl)(int *n,double *ip[],double *op)
 {
   int i;
   for (i = 0; i < *n; i++)  (*ip)[i]=op[i];
@@ -278,8 +244,7 @@ void C2F(dbl2cdbl)(n,ip,op)
  * freeptr : free ip pointer
  *--------------------------------------------------------------*/
 
-void C2F(freeptr)(ip)
-     double *ip[];
+void C2F(freeptr)(double *ip[])
 {
   if (ip) FREE((char *)(*ip));
 }
@@ -288,10 +253,7 @@ void C2F(freeptr)(ip)
  * int2cint  : fill *ip with contents of int array op
  *--------------------------------------------------------------*/
 
-void C2F(int2cint)(n,ip,op)
-     int *n;
-     integer *ip[];
-     integer *op;
+void C2F(int2cint)(int *n,integer *ip[],integer *op)
 {
   int i;
   for (i = 0; i < *n; i++)  (*ip)[i]=op[i];
