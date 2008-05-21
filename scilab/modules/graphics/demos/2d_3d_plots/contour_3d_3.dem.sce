@@ -10,7 +10,7 @@ my_plot_desc          = "plot3d and contour";
 my_handle             = scf(100001);
 my_handle.figure_name = my_plot_desc;
 
-t    = %pi*(-10:10)/10;';
+t    = %pi*(-10:10)/10;
 deff("[z]=Surf(x,y)","z=sin(x)*cos(y)");
 rect = [-%pi,%pi,-%pi,%pi,-1,1];
 z    = feval(t,t,Surf);
