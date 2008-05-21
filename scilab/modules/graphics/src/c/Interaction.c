@@ -813,8 +813,12 @@ void rubberBox(sciPointObj * pSubwin, BOOL isClick, const double initialRect[4],
     int initialPixelRect[4];
 
     /* Convert initial rect in pixels */
-    double firstCorner[2] = {initialRect[0], initialRect[1]}; /* upper left point */
-    double secondCorner[2] = {initialRect[0] + initialRect[2], initialRect[1] - initialRect[3]};
+    double firstCorner[2];
+    double secondCorner[2];
+    firstCorner[0] = initialRect[0];
+    firstCorner[1] = initialRect[1]; /* upper left point */
+    secondCorner[0] = initialRect[0] + initialRect[2];
+    secondCorner[1] = initialRect[1] - initialRect[3];
     sciGet2dViewPixelCoordinates(pSubwin, firstCorner, initialPixelRect);
     sciGet2dViewPixelCoordinates(pSubwin, secondCorner, initialPixelRect + 2);
 
