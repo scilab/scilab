@@ -19,7 +19,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_istssession(char *fname,unsigned long l)
 {
-	int l1 = 0,n1 = 0,m1 = 0;
+	int n1 = 0,m1 = 0;
 	int *Status = NULL;
 
 	CheckRhs(0,0);

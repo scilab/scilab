@@ -97,7 +97,6 @@ int sci_winqueryreg(char *fname,unsigned long l)
 				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 				LhsVar(1)=Rhs+1;
 				C2F(putlhsvar)();
-				return 0;
 			}
 			return 0;
 		}

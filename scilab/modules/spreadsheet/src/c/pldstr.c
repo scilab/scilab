@@ -241,8 +241,8 @@ int PLD_strncasecmp( char *s1, char *s2, int n )
 
 	while(n > 0)
 	{
-		c1 = tolower(*ds1);
-		c2 = tolower(*ds2);
+		c1 = (char)tolower(*ds1);
+		c2 = (char)tolower(*ds2);
 
 		if (c1 == c2)
 		{

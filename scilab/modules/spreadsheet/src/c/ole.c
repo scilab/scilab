@@ -456,7 +456,7 @@ int OLE_dbstosbs( char *raw_string, size_t byte_count, char *clean_string, int c
 
       if (isprint(v))
 	{
-	  *clean_string = v;
+	  *clean_string = (char)v;
 	  clean_string++;
 	}
 
@@ -806,13 +806,13 @@ int OLE_convert_directory( struct OLE_object *ole, unsigned char *buf, struct OL
    ** 0x04 - property (again, we don't know)
    ** 0x05 - root storage
    **/
-  dir->element_type = get_1byte_value( buf +0x42 );
+  dir->element_type = (char)get_1byte_value( buf +0x42 );
 
   /** Element colour for the red-black tree:
    ** 0x00 - Red
    ** 0x01 - Black
    **/
-  dir->element_colour = get_1byte_value( buf +0x43 );
+  dir->element_colour = (char)get_1byte_value( buf +0x43 );
 
   /** Directory ID (DID) of the left child, -1 if no sibling **/
   dir->left_child = get_4byte_value( buf +0x44 );
