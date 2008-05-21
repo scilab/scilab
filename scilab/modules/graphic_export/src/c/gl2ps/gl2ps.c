@@ -877,7 +877,7 @@ static int gl2psAddText(int type, const char *str, const char *fontname,
   joglGetCurrentRasterPosition(pos);
 
   prim = (GL2PSprimitive*)gl2psMalloc(sizeof(GL2PSprimitive));
-  prim->type = (short)type;
+  prim->type = type;
   prim->boundary = 0;
   prim->numverts = 1;
   prim->verts = (GL2PSvertex*)gl2psMalloc(sizeof(GL2PSvertex));
@@ -2168,7 +2168,7 @@ static void gl2psAddPolyPrimitive(short type, short numverts,
   prim->verts = (GL2PSvertex*)gl2psMalloc(numverts * sizeof(GL2PSvertex));
   memcpy(prim->verts, verts, numverts * sizeof(GL2PSvertex));
   prim->boundary = boundary;
-  prim->offset = (char)offset;
+  prim->offset = offset;
   prim->pattern = pattern;
   prim->factor = factor;
   prim->width = width;
@@ -2293,7 +2293,7 @@ static void gl2psParseFeedbackBuffer(int used)
       case GL2PS_END_OFFSET_TOKEN : offset = 0; break;
       case GL2PS_BEGIN_BOUNDARY_TOKEN : boundary = TRUE; break;
       case GL2PS_END_BOUNDARY_TOKEN : boundary = FALSE; break;
-      case GL2PS_END_STIPPLE_TOKEN : pattern = (unsigned short)factor = 0; break;
+      case GL2PS_END_STIPPLE_TOKEN : pattern = factor = 0; break;
       case GL2PS_BEGIN_BLEND_TOKEN : gl2ps->blending = TRUE; break;
       case GL2PS_END_BLEND_TOKEN : gl2ps->blending = FALSE; break;
       case GL2PS_BEGIN_STIPPLE_TOKEN : 
