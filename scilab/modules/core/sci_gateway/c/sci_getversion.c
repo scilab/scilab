@@ -72,7 +72,6 @@ static int getversion_no_rhs(void)
 		char tk[]="tk";
 		char pvm[]="pvm";
 		char modelicac[]="modelicac";
-		char javasci[]="javasci";
 
 		#ifdef WITH_ATLAS
 		char atlas[]="atlas";

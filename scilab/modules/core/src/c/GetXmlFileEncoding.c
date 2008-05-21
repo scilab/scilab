@@ -32,7 +32,7 @@ char *GetXmlFileEncoding(const char *filename)
 		if (doc->encoding)
 		{
 			if (encoding) {FREE(encoding);encoding=NULL;}
-			encoding = strdup(doc->encoding);
+			encoding = strdup((char*)doc->encoding);
 		}
 	}
 

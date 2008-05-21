@@ -32,7 +32,6 @@ int C2F(sci_warning)(char *fname,unsigned long fname_len)
 	if ( GetType(1) == sci_strings )
 	{
 		char **Input_Strings = NULL;
-		char *Param=NULL;
 
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_Strings);
 

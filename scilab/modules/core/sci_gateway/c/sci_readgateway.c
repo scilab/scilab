@@ -67,7 +67,6 @@ int C2F(sci_readgateway)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
-					int i = 0;
 					int *output = NULL;
 					m1 = gateway_content->dimLists;
 					n1 = 1;
