@@ -360,11 +360,7 @@ int Col1 = pTwin1->Col, Col2 = pTwin2->Col;
 extern void spcLinkRows(MatrixPtr Matrix);
 
 
-void
-spScale( eMatrix, RHS_ScaleFactors, SolutionScaleFactors )
-
-char *eMatrix;
-register  RealVector  RHS_ScaleFactors, SolutionScaleFactors;
+void spScale(char *eMatrix,register  RealVector  RHS_ScaleFactors,register RealVector SolutionScaleFactors )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register ElementPtr  pElement;
@@ -559,11 +555,7 @@ RealNumber  ScaleFactor;
  *      without a trace.
  */
 
-void
-spMultiply( eMatrix, RHS, Solution IMAG_VECTORS )
-
-char *eMatrix;
-RealVector RHS, Solution IMAG_VECTORS;
+void spMultiply(char *eMatrix,RealVector RHS,RealVector Solution IMAG_VECTORS )
 {
 register  ElementPtr  pElement;
 register  RealVector  Vector;
@@ -734,11 +726,7 @@ register  int  I, *pExtOrder;
  *      without a trace.
  */
 
-void
-spMultTransposed( eMatrix, RHS, Solution IMAG_VECTORS )
-
-char *eMatrix;
-RealVector RHS, Solution IMAG_VECTORS;
+void spMultTransposed(char *eMatrix,RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
 register  ElementPtr  pElement;
 register  RealVector  Vector;
@@ -1064,10 +1052,7 @@ ComplexNumber Pivot, cDeterminant;
  *      A pointer to a node in the FillinList linked-list.
  */
 
-void
-spStripFills( eMatrix )
-
-char *eMatrix;
+void spStripFills(char *eMatrix)
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 struct FillinListNodeStruct  *pListNode;
@@ -1271,10 +1256,7 @@ ElementPtr  spcFindElementInCol();
  *      Pointer to the matrix.
  */
 
-RealNumber
-spPseudoCondition( eMatrix )
-
-char *eMatrix;
+RealNumber spPseudoCondition(char *eMatrix)
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register int I;
@@ -1355,12 +1337,7 @@ RealNumber MaxPivot, MinPivot, Mag;
  *  spNO_MEMORY
  */
 
-RealNumber
-spCondition( eMatrix, NormOfMatrix, pError )
-
-char *eMatrix;
-RealNumber NormOfMatrix;
-int *pError;
+RealNumber spCondition(char *eMatrix,RealNumber NormOfMatrix,int *pError)
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register ElementPtr pElement;
@@ -1748,10 +1725,7 @@ ComplexNumber Wp, Wm;
  *      Pointer to the matrix.
  */
 
-RealNumber
-spNorm( eMatrix )
-
-char *eMatrix;
+RealNumber spNorm( char *eMatrix)
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register ElementPtr pElement;
@@ -1860,10 +1834,7 @@ RealNumber Max = 0.0, AbsRowSum;
  *      Pointer to the matrix.
  */
 
-RealNumber
-spLargestElement( eMatrix )
-
-char *eMatrix;
+RealNumber spLargestElement( char *eMatrix )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register int I;
@@ -1979,11 +1950,7 @@ register ElementPtr pElement, pDiag;
  *      negative, the bound will be computed automatically.
  */
 
-RealNumber
-spRoundoff( eMatrix, Rho )
-
-char *eMatrix;
-RealNumber Rho;
+RealNumber spRoundoff(char *eMatrix, RealNumber Rho )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register ElementPtr pElement;

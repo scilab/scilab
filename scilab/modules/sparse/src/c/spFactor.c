@@ -185,12 +185,7 @@ int spcColExchange( MatrixPtr Matrix, int Col1, int Col2 );
  */
 extern void spcLinkRows(MatrixPtr Matrix);
 
-int
-spOrderAndFactor( eMatrix, RHS, RelThreshold, AbsThreshold, DiagPivoting )
-
-char *eMatrix;
-RealNumber  RHS[], RelThreshold, AbsThreshold;
-SPBOOLEAN DiagPivoting;
+int spOrderAndFactor(char *eMatrix, RealNumber  RHS[],RealNumber RelThreshold,RealNumber AbsThreshold,SPBOOLEAN DiagPivoting )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 ElementPtr  pPivot;
@@ -343,10 +338,7 @@ Done:
  *  Error is cleared in this function.
  */
 
-int
-spFactor( eMatrix )
-
-char *eMatrix;
+int spFactor( char *eMatrix )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  ElementPtr  pElement;

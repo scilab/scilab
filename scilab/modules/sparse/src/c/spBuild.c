@@ -437,12 +437,7 @@ register int IntRow, IntCol, ExtRow, ExtCol;
  *  Error is not cleared in this routine.
  */
 
-int
-spGetAdmittance( Matrix, Node1, Node2, Template )
-
-char  *Matrix;
-int  Node1, Node2;
-struct  spTemplate  *Template;
+int spGetAdmittance( char  *Matrix,int Node1,int Node2,struct  spTemplate  *Template )
 {
 
 /* Begin `spGetAdmittance'. */
@@ -518,12 +513,7 @@ struct  spTemplate  *Template;
  *  Error is not cleared in this routine.
  */
 
-int
-spGetQuad( Matrix, Row1, Row2, Col1, Col2, Template )
-
-char  *Matrix;
-int  Row1, Row2, Col1, Col2;
-struct  spTemplate  *Template;
+int spGetQuad(char  *Matrix,int Row1,int Row2,int Col1,int Col2,struct  spTemplate  *Template )
 {
 /* Begin `spGetQuad'. */
     Template->Element1 = spGetElement( Matrix, Row1, Col1);
@@ -586,12 +576,7 @@ struct  spTemplate  *Template;
  *  Error is not cleared in this routine.
  */
 
-int
-spGetOnes(Matrix, Pos, Neg, Eqn, Template)
-
-char  *Matrix;
-int  Pos, Neg, Eqn;
-struct  spTemplate  *Template;
+int spGetOnes(char  *Matrix,int Pos,int Neg,int Eqn,struct  spTemplate  *Template)
 {
 /* Begin `spGetOnes'. */
     Template->Element4Negated = spGetElement( Matrix, Neg, Eqn );
@@ -989,11 +974,7 @@ register int I, OldAllocatedSize = Matrix->AllocatedExtSize;
  *   Returns nonzero if error, zero otherwise.
  */
 
-void
-spInstallInitInfo( pElement, pInitInfo )
-
-RealNumber *pElement;
-char *pInitInfo;
+void spInstallInitInfo( RealNumber *pElement, char *pInitInfo )
 {
 /* Begin `spInstallInitInfo'. */
     ASSERT(pElement != NULL);
@@ -1002,10 +983,7 @@ char *pInitInfo;
 }
 
 
-char *
-spGetInitInfo( pElement )
-
-RealNumber *pElement;
+char *spGetInitInfo( RealNumber *pElement )
 {
 /* Begin `spGetInitInfo'. */
     ASSERT(pElement != NULL);
@@ -1014,11 +992,7 @@ RealNumber *pElement;
 }
 
 
-int
-spInitialize( eMatrix, pInit )
-
-char *eMatrix;
-int (*pInit)();
+int spInitialize( char *eMatrix, int (*pInit)() )
 {
 MatrixPtr Matrix = (MatrixPtr)eMatrix;
 register ElementPtr pElement;

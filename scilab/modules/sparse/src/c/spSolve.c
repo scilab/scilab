@@ -120,10 +120,7 @@ static void SolveComplexTransposedMatrix(MatrixPtr Matrix, RealVector RHS, RealV
 
 
 void
-spSolve( eMatrix, RHS, Solution IMAG_VECTORS )
-
-char *eMatrix;
-RealVector  RHS, Solution IMAG_VECTORS;
+spSolve(char *eMatrix,RealVector  RHS,RealVector  Solution IMAG_VECTORS )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  ElementPtr  pElement;

@@ -131,10 +131,7 @@
  *      The largest expected external row or column number.
  */
 
-void spPrint( eMatrix, PrintReordered, Data, Header )
-
-char *eMatrix;
-int  PrintReordered, Data, Header;
+void spPrint(char *eMatrix,int PrintReordered,int Data,int Header )
 {
 register  int  J = 0;
 int I, Row, Col, Size, Top_, StartCol = 1, StopCol, Columns, ElementCount = 0;
@@ -397,11 +394,7 @@ int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
  *      The size of the matrix.
  */
 
-int
-spFileMatrix( eMatrix, File, Label, Reordered, Data, Header )
-
-char *eMatrix, *Label, *File;
-int Reordered, Data, Header;
+int spFileMatrix(char * eMatrix,char * File,char * Label,int  Reordered,int Data,int Header )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  int  I, Size;
@@ -552,11 +545,7 @@ FILE  *pMatrixFile, *fopen();
  *      without a trace.
  */
 
-int
-spFileVector( eMatrix, File, RHS IMAG_RHS )
-
-char *eMatrix, *File;
-RealVector  RHS IMAG_RHS;
+int spFileVector(char *eMatrix,char *File,RealVector RHS IMAG_RHS )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  int  I, Size, Err;
@@ -673,10 +662,7 @@ FILE  *fopen();
  *      The smallest element in the matrix excluding zero elements.
  */
 
-int
-spFileStats( eMatrix, File, Label )
-
-char *eMatrix, *File, *Label;
+int spFileStats(char *eMatrix,char *File,char *Label )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  int  Size, I;

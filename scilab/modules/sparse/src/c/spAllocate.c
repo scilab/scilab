@@ -108,11 +108,7 @@ static int AllocateBlockOfAllocationList( MatrixPtr Matrix );
  *  Error is cleared in this routine.
  */
 
-char *
-spCreate( Size, Complex, pError )
-
-int  Size, *pError;
-SPBOOLEAN  Complex;
+char *spCreate(int Size,SPBOOLEAN  Complex,int *pError )
 {
 register  unsigned  SizePlusOne;
 register  MatrixPtr  Matrix;
@@ -683,10 +679,7 @@ register  AllocationListPtr  ListPtr, NextListPtr;
  *      The matrix for which the error status is desired.
  */
 
-int
-spError( eMatrix )
-
-char  *eMatrix;
+int spError( char  *eMatrix )
 {
 /* Begin `spError'. */
 
@@ -721,11 +714,7 @@ char  *eMatrix;
  *      The column number.
  */
 
-void
-spWhereSingular( eMatrix, pRow, pCol )
-
-char *eMatrix;
-int *pRow, *pCol;
+void spWhereSingular( char *eMatrix,int *pRow,int *pCol )
 {
 MatrixPtr Matrix = (MatrixPtr)eMatrix;
 
@@ -761,11 +750,7 @@ MatrixPtr Matrix = (MatrixPtr)eMatrix;
  *      may differ if the TRANSLATE option is set true.
  */
 
-int
-spGetSize( eMatrix, External )
-
-char  *eMatrix;
-SPBOOLEAN  External;
+int spGetSize(char  *eMatrix, SPBOOLEAN  External )
 {
 MatrixPtr Matrix = (MatrixPtr)eMatrix;
 
@@ -799,10 +784,7 @@ MatrixPtr Matrix = (MatrixPtr)eMatrix;
  *      Pointer to matrix.
  */
 
-void
-spSetReal( eMatrix )
-
-char *eMatrix;
+void spSetReal( char *eMatrix )
 {
 /* Begin `spSetReal'. */
 
@@ -812,10 +794,7 @@ char *eMatrix;
 }
 
 
-void
-spSetComplex( eMatrix )
-
-char  *eMatrix;
+void spSetComplex( char  *eMatrix )
 {
 /* Begin `spSetComplex'. */
 
@@ -843,10 +822,7 @@ char  *eMatrix;
  *      Pointer to matrix.
  */
 
-int
-spFillinCount( eMatrix )
-
-char *eMatrix;
+int spFillinCount( char *eMatrix )
 {
 /* Begin `spFillinCount'. */
 
@@ -855,10 +831,7 @@ char *eMatrix;
 }
 
 
-int
-spElementCount( eMatrix )
-
-char  *eMatrix;
+int spElementCount( char  *eMatrix )
 {
 /* Begin `spElementCount'. */
 
