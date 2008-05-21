@@ -7,7 +7,7 @@
 
 
 mode(-1)
-deff("[]=demoexc(fil)","exec(""SCI/demos/simulation/dae/""+fil)")
+deff("[]=demoexc(fil)","exec(""SCI/modules/others/demos/simulation/demos/dae/""+fil)")
 
 while %t do
   n=x_choose(["Spherical pendulum";"Sliding pendulum"],..
