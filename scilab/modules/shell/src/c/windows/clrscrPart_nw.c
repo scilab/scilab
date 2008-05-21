@@ -23,7 +23,7 @@ void clrscrPart_nw(int nblines)
 	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info);
 
 	coord.X = 0;
-	coord.Y = info.dwCursorPosition.Y - nblines - 1 ;
+	coord.Y = (SHORT)(info.dwCursorPosition.Y - nblines - 1) ;
 
 	gotoxy_nw(0, coord.Y);
 

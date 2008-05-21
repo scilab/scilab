@@ -612,7 +612,7 @@ static char msdos_getch (void)
 	}
 	if (ismenu()==1) return 0;  /* This line added to fix bug 1052 - Francois VOGEL */
 
-	c = _getch ();
+	c = (char)_getch ();
 
 	Sleep(1);
 
@@ -626,7 +626,7 @@ static char msdos_getch (void)
 
 	if (c == -32) /* 0 avant ? ? ? */
 	{
-		c = _getch ();		/* Get the extended code. */
+		c = (char)_getch ();		/* Get the extended code. */
 
 		switch (c)
 		{
@@ -720,7 +720,6 @@ static void doCompletion(const char *current_line,const char *prompt)
 				fputs ("\n", stdout);
 				for(i= 0;i<sizeCompletionDictionary;i++)
 				{
-					int b=getColumnsSize();
 					int newlenLine = lenCurrentLine + (int)strlen(completionDictionary[i]) + (int)strlen(" ");
 					if ( newlenLine >= (getColumnsSize() - 10) )
 					{

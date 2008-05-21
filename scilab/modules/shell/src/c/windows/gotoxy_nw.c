@@ -16,8 +16,8 @@
 void gotoxy_nw(int x, int y)
 {
 	COORD c;
-	c.X = x - 1;
-	c.Y = y - 1;
+	c.X = (SHORT)(x - 1);
+	c.Y = (SHORT)(y - 1);
 	SetConsoleCursorPosition (GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 /*--------------------------------------------------------------------------*/

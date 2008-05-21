@@ -71,7 +71,6 @@ static BOOL CALLBACK StartupMessageBoxDlgProc(HWND hwnd,UINT Message, WPARAM wPa
 /*--------------------------------------------------------------------------*/
 static BOOL ON_STARTUPMESSAGEBOX_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM lParam)
 {
-	int LanguageCode=0;
 	extern char ScilexWindowName[MAX_PATH];
 
 	HKEY key;
