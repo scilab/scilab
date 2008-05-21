@@ -53,7 +53,7 @@ e.children(:).thickness = 4;
 //animation loop
 //--------------
 //use realtime to slow down the loop
-realtimeinit(0.04)//set time step (0.04 seconds)  and date reference
+realtimeinit(0.04);//set time step (0.04 seconds)  and date reference
 for j=1:size(yt,2)
   realtime(j);//wait till date 0.04*i seconds
   drawlater();
