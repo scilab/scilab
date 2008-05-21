@@ -47,7 +47,7 @@ int CreateHyperMatrixVariable(int number, const char *type, int *iscomplex, int 
 
   nbCol = 1;
   
-  if (type==MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE)
+  if (strcmp(type,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE) == 0)
     {
       integerMatrix.D = realdata;
       integerMatrix.it = *iscomplex;
