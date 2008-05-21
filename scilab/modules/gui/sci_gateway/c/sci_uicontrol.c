@@ -36,6 +36,7 @@
 #include "Widget.h" /* requestWidgetFocus */
 /*--------------------------------------------------------------------------*/
 #define NBPROPERTIES 25
+#define MAXPROPERTYNAMELENGTH 20
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
 {
@@ -59,8 +60,10 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
-  char propertiesNames[NBPROPERTIES][20] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible"};
+  char propertiesNames[NBPROPERTIES][MAXPROPERTYNAMELENGTH] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible"};
   int *propertiesValuesIndices = NULL;
+
+  char *propertyPart = NULL;
 
   //CheckRhs(2,2);
   CheckLhs(0,1);
@@ -227,15 +230,34 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               GetRhsVar(inputIndex, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
               propertyName = cstk(stkAdr);
 
+              /* Bug 3031 */
+              /* We only want to compare propertyName along its length */
+              /* 'posi' must be matched to 'position' */
+              propertyPart = (char*)MALLOC(sizeof(char)*(MAXPROPERTYNAMELENGTH+1));
+              if (propertyPart==NULL)
+                {
+                  Scierror(999, _("%s: No more memory.\n"), fname);
+                  return FALSE;
+                }
+
               found = 0;
               for(k=0; k<NBPROPERTIES; k++)
                 {
-                  if (stricmp(propertyName, propertiesNames[k]) == 0)
+                  if (strlen(propertyName) <= MAXPROPERTYNAMELENGTH)
                     {
-                      propertiesValuesIndices[k] = inputIndex+1; /* Position of value for property */
-                      found = 1;
+                      strncpy(propertyPart, propertiesNames[k], strlen(propertyName));
+                      propertyPart[strlen(propertyName)] = '\0';
+ 
+                      if (stricmp(propertyName, propertyPart) == 0)
+                        {
+                          propertiesValuesIndices[k] = inputIndex+1; /* Position of value for property */
+                          found = 1;
+                        }
                     }
                 }
+
+              FREE(propertyPart);
+
               if (found == 0)
                 {
                   Scierror(999, _("%s: Unknown property: %s for uicontrols.\n"), fname, propertyName);
