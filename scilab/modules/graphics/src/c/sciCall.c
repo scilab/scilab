@@ -64,7 +64,6 @@ void Objrect ( double * x         ,
                BOOL     flagstring )
 {
   sciPointObj * newObj = NULL ;
-  BOOL redraw = FALSE ;
   sciPointObj *psubwin;
   sciPointObj * pFigure = sciGetCurrentFigure();
 
@@ -105,7 +104,6 @@ void Objarc( double * angle1    ,
              BOOL     isline    ,
              long   * hdl        )
 { 
-  BOOL redraw = FALSE ;
   sciPointObj *psubwin, *pobj;
 
   startFigureDataWriting(sciGetCurrentFigure());
@@ -137,7 +135,6 @@ void Objpoly ( double  * x     ,
                int       mark  ,
                long    * hdl    )
 { 
-  BOOL redraw = FALSE ;
   sciPointObj * pFigure = NULL;
   sciPointObj *psubwin, *pobj;
 
@@ -175,7 +172,6 @@ void Objfpoly ( double  * x    ,
                 long    * hdl  ,
                 integer   shading )
 { 
-  BOOL redraw = FALSE ;
   int fillcolor, contourcolor;
   sciPointObj *psubwin, *pobj;
   int closed = 1; /* we close the polyline by default */
@@ -226,7 +222,6 @@ void Objsegs ( integer * style,
                double  * y    ,
                double    arsize )
 {
-  BOOL redraw = FALSE ;
   integer type=0,n2, colored=0;
   double *fx,*fy,arfact=1.0;
   int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
@@ -263,7 +258,6 @@ void Objstring( char            ** fname      ,
                 BOOL               isfilled   ,
                 sciTextAlignment   alignment   )
 {
-  BOOL redraw = FALSE ;
   sciPointObj * psubwin = NULL;
   sciPointObj * pobj = NULL;
   sciPointObj * pFigure = NULL;
@@ -310,7 +304,6 @@ void Objtitle( char * str,
                int    n  ,
                long * hdl )
 { 
-  BOOL redraw = FALSE ;
   checkRedrawing() ;
   sciSetCurrentObj (ConstructTitle
   		(sciGetCurrentSubWin(),str,n));
@@ -784,7 +777,6 @@ void Objdrawaxis ( char     dir    ,
                    int      seg    ,
                    int      nb_tics_labels )
 {
-  BOOL redraw = FALSE ;
   checkRedrawing() ;
   sciSetCurrentObj (ConstructAxes 
 		    ((sciPointObj *)

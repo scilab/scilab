@@ -557,8 +557,6 @@ int InitAxesModel()
 { 
   int i;
   double tab[] = {0.,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.}; /* graduations init. tmptab */
-  sciPointObj * pobj = NULL;
-  sciSubWindow * ppobj = NULL;
   sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
   char linLogFlags[3] = {'n','n','n'};
 

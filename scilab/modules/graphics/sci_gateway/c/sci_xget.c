@@ -36,7 +36,7 @@ int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1)
 /*--------------------------------------------------------------------------*/
 int sci_xget(char *fname,unsigned long fname_len)
 {
-  integer flagx=0,x1[10],x2=0, m1,n1,l1,m2,n2,l2,l3,v = 0,i ;
+  integer flagx=0,x1[10],x2=0, m1,n1,l1,m2,n2,l2,l3,i ;
   int one = 1 ;
   BOOL keyFound = FALSE ;
 

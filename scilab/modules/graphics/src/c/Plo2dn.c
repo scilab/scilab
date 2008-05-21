@@ -420,10 +420,7 @@ void compute_data_bounds(int cflag, char dataflag,double *x,double *y,integer n1
 
 }
 
-BOOL update_specification_bounds(psubwin, rect,flag)
-     sciPointObj  *psubwin;
-     double rect[6] ;
-     int flag;
+BOOL update_specification_bounds(sciPointObj  *psubwin,double rect[6],int flag)
 {
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
   BOOL haschanged = FALSE;

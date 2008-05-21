@@ -53,7 +53,6 @@ int set_sub_tics_property( sciPointObj * pobj, int stackPointer, int valueType, 
     ppSubWin->flagNax = TRUE;
     for ( i = 0; i < nbCol ; i++ )
     {
-      char logflag = ppSubWin->logflags[i] ;
       int  nbTicks ;
 
       nbTicks = (int) values[i] ;

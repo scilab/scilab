@@ -118,7 +118,6 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 
   /* Default values, intial rect and edition mode to false */
   double initialRect[4] = {0.0, 0.0, 0.0, 0.0};
-  BOOL editionMode = FALSE;
   int initialRectSpecified = 0;
   int button = 0;
   double selectedRect[4];

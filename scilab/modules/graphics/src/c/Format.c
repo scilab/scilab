@@ -72,7 +72,7 @@ int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
 void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
 {
   char c;
-  integer des,len;
+  integer des,len = 0;
   /* format f minimal  */
   for ( des = 0 ; des < 5 ; des++)
     {
@@ -148,7 +148,7 @@ static int Fsepare(char *fmt, integer dec, integer *l, double xmin, double xmax,
 void ChoixFormatE1(char *fmt, double *xx, integer nx)
 {
   char c;
-  integer des,len;
+  integer des,len = 0;
   /* format f minimal  */
   for ( des = 0 ; des < 5 ; des++)
     {
@@ -574,9 +574,7 @@ void  newbnds(double *xminv,double *xmaxv,double *xmin, double *xmax, double *sc
   *xmax=ceil(arguc); *xmin=floor(arguf); *scale=scl;
     }
 
-int gradu(xmin, xmax, grads, nticks, thewidth, tst0, scal)
-double *xmin, *xmax, *grads, *thewidth, *scal;
-int *nticks, *tst0;
+int gradu(double *xmin,double * xmax,double * grads,int *nticks,double * thewidth,int *tst0,double * scal)
 {
   int i1;
   static double f,x,sg,scale;
@@ -613,8 +611,7 @@ int *nticks, *tst0;
 }
 
 
-int gradu2(xmax, thewidth, scal)
-double *xmax, *thewidth, *scal;
+int gradu2(double *xmax,double  *thewidth,double  *scal)
 {
   
   static double f,x,sg,scale;
@@ -631,9 +628,7 @@ double *xmax, *thewidth, *scal;
   return 0;
 }
 
-void grds(xminv, xmaxv, gr, nticks, thewidth, tst0, scal)
-     double *xminv, *xmaxv, *gr, *thewidth, *scal;
-     int *nticks, *tst0;
+void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, int *tst0,double *scal)
 {
   double span,width2,low,up;
   double nup,nlow;
@@ -679,8 +674,7 @@ void grds(xminv, xmaxv, gr, nticks, thewidth, tst0, scal)
 
 
 
-int agrandir(xmin, xmax, xlow, xup)
-     double *xmin, *xmax, *xlow, *xup;
+int agrandir(double *xmin,double * xmax,double * xlow,double * xup)
 {
   int i1;
   static double work[20], thewidth, scal;

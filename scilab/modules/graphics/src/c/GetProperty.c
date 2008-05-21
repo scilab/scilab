@@ -2281,8 +2281,7 @@ sciGetSubwindowPosY (sciPointObj * pobj)
  * @return the pointer to the existing SubWindow, or Null if no one is existing
  */
 sciPointObj *
-sciIsExistingSubWin (WRect)
-     double WRect[4];
+sciIsExistingSubWin (double WRect[4])
 {
   sciPointObj *pparentfigure;
   sciSons *psonstmp;
@@ -2818,9 +2817,7 @@ sciGetdrawmode (sciPointObj *pobj)
  * @author Djalel ABDEMOUCHE
  */
 sciPointObj *
-sciGetAxes (pparentfigure,psubwin)
-     sciPointObj *pparentfigure;
-     sciPointObj *psubwin;
+sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin)
 {
   sciSons *psonstmp; 
   
@@ -2971,9 +2968,7 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
  * Don't use this ugly function !!!! (Jb Silvy)
  * 130 strcmp to know the type of a parameter
  */
-int sciType (marker, pobj)
-     char *marker;
-     sciPointObj * pobj;
+int sciType (char *marker,sciPointObj * pobj)
 { 
   if      (strcmp(marker,"arrow_size_factor") == 0) { return sci_matrix;}
   else if (strcmp(marker,"x_shift") == 0) { return sci_matrix;}

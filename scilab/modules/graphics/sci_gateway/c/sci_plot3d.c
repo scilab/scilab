@@ -42,8 +42,8 @@ int sci_plot3d( char * fname, unsigned long fname_len )
   integer *iflag = iflag_def;
   double  alpha_def=35.0 , theta_def=45.0 ;
   double *alpha=&alpha_def, *theta=&theta_def;
-  integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
-  integer m3n = 0, n3n = 0, l3n, m3l, n3l, l3l;
+  integer m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0;
+  integer m3n = 0, n3n = 0, l3n = 0, m3l = 0, n3l = 0, l3l = 0;
 
   integer izcol,  isfac;
   double *zcol=NULL;

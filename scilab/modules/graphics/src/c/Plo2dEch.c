@@ -144,10 +144,7 @@ int get_window_scale( integer i, double * subwin )
   return get_scale_win(The_List,Max(0L,i),subwin);
 }
 
-static int get_scale_win(listptr, wi,subwin)
-     ScaleList *listptr;
-     integer wi;
-     double *subwin;                                                          
+static int get_scale_win(ScaleList *listptr,integer wi,double *subwin)
 {
   if (listptr != (ScaleList  *) NULL)
     { 
@@ -184,9 +181,7 @@ static int get_scale_win(listptr, wi,subwin)
  * (which is also modified) making Cscale the current scale of window i 
  *-------------------------------------------------------------*/
 
-static void set_window_scale(i,scale)
-     integer i;
-     WCScaleList  *scale;
+static void set_window_scale(integer i,WCScaleList  *scale)
 { 
   set_scale_win(&The_List,Max(0L,i),scale);
 }
@@ -263,9 +258,7 @@ static WCScaleList *new_wcscale(WCScaleList *val)
   return new;
 }
 
-static WCScaleList *check_subwin_wcscale(listptr,subwin_rect)
-     WCScaleList *listptr;
-     double subwin_rect[4];
+static WCScaleList *check_subwin_wcscale(WCScaleList *listptr,double subwin_rect[4])
 {
   if ( listptr == (WCScaleList  *) NULL)  return NULL;
   if ( same_subwin( listptr->subwin_rect,subwin_rect)) 
@@ -274,8 +267,7 @@ static WCScaleList *check_subwin_wcscale(listptr,subwin_rect)
     return check_subwin_wcscale(listptr->next,subwin_rect);
 }
 
-static int same_subwin( lsubwin_rect,subwin_rect)
-     double lsubwin_rect[4],subwin_rect[4];
+static int same_subwin(double lsubwin_rect[4],double subwin_rect[4])
 {
   if ( Abs(lsubwin_rect[0] - subwin_rect[0]) < 1.e-8
        && Abs(lsubwin_rect[1] - subwin_rect[1]) < 1.e-8
@@ -325,8 +317,7 @@ void del_window_scale( integer i )
     }
 }
 
-static void DeleteWCScale(l) 
-     WCScaleList *l;
+static void DeleteWCScale(WCScaleList *l) 
 {
   if ( l != NULL) 
     {
@@ -401,8 +392,7 @@ void ShowScales( void )
   sciprint("-----------end----------------\n");
 }
 
-static void show_scales(listptr)
-     ScaleList *listptr;
+static void show_scales( ScaleList *listptr)
 {
   if (listptr != (ScaleList  *) NULL)
     { 

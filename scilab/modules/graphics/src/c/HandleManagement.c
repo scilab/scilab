@@ -243,7 +243,7 @@ sciGetPointerFromJavaIndex (int javaIndex)
 sciRelationShip *
 sciGetRelationship (sciPointObj * pobj)
 {
-  sciRelationShip *tmp=NULL;
+
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:

@@ -58,7 +58,7 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   int axes_def=1;
   int *axes=&axes_def;
   integer iskip,test;
-  integer m1,n1,l1, m2, n2, l2, lt, i, j ;
+  integer m1 = 0,n1 = 0,l1 = 0, m2 = 0, n2 = 0, l2 = 0, lt, i, j ;
   int one = 1 ;
 
   static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},

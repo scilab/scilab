@@ -114,7 +114,7 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
 {
   char * flags = getStringFromStack( stackPointer ) ;
   sciSubWindow * ppSubWin = NULL ;
-  char curLogFlags[3] = "nnn";
+  char curLogFlags[4] = "nnn";
 
   if ( !isParameterStringMatrix( valueType ) )
   {
