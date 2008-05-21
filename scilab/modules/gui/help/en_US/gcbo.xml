@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="gcbo" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2007-12-07 11:59:53 +0100 (ven, 07 dÃ©c 2007)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>gcbo</refname>
+
+    <refpurpose>Handle of the object whose callback is executing.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>
+    gcbo
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>gcbo</literal> is a Scilab variable automatically created
+    each time a callback in executed. This variable is initialised using <link
+    linkend="getcallbackobject">getcallbackobject</link>.</para>
+
+    <para><literal>gcbo</literal> does not exists in Scilab environment if no
+    callback is currently executed.</para>
+
+    <para>You can use <literal>gcbo</literal> in callback functions
+    particularly if you write a single callback function for multiple objects,
+    it helps you to know which object received a user action.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link
+      linkend="getcallbackobject">getcallbackobject</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Vincent COUVERT</para>
+  </refsection>
+</refentry>
