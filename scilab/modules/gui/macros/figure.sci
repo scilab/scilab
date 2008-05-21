@@ -31,18 +31,15 @@ else
     
     if (modulo(Rhs,2)==0) then
       // Even number of input arguments
-      if size(varargin(1), "*")==1 then
-	error(gettext("figure: invalid value type."),999) 
-      else
-	// Create a new graphic window or set it (if already exists)
-	h = createOrSetFigure([]);
+
+      // Create a new graphic window or set it (if already exists)
+      h = createOrSetFigure([]);
 	
-	// Set all properties
-	for i=1:2:Rhs
-	  set(h, getFigureProperty(varargin(i)), getPropertyValue(varargin(i),varargin(i+1)));
-	end
-	
+      // Set all properties
+      for i=1:2:Rhs
+	set(h, getFigureProperty(varargin(i)), getPropertyValue(varargin(i),varargin(i+1)));
       end
+
     else
       // Odd number of input arguments
       if size(varargin(1), "*")==1 then
