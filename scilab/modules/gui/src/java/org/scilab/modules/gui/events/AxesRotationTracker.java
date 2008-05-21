@@ -12,6 +12,10 @@
 
 package org.scilab.modules.gui.events;
 
+import java.awt.Cursor;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
@@ -82,6 +86,9 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 * @return true if it is still needed to retrieve displacement, false otherwise
 	 */
 	public boolean getDisplacement(int[] displacement) {
+		// Change cursor
+		Image icon = Toolkit.getDefaultToolkit().getImage(System.getenv("SCI") + "/modules/gui/images/icons/rotate.png");
+		getTrackedCanvas().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, new Point(0,0), "rotate"));
 		
 		if (!recordStarted) {
 			// first call
@@ -100,6 +107,9 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 			// reinit for a next call
 			reinit();
 			
+			// Back to default cursor
+			getTrackedCanvas().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
 			return false;
 		}
 	}

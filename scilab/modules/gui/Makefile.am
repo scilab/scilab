@@ -322,11 +322,11 @@ images/icons/edit-paste.png \
 images/icons/folder.png \
 images/icons/format-text-bold.png \
 images/icons/help-browser.png \
-images/icons/list-add.png \
-images/icons/list-remove.png \
+images/icons/zoom-in.png \
+images/icons/zoom-out.png \
 images/icons/printer.png \
 images/icons/scilab.png \
-images/icons/view-refresh.png \
+images/icons/rotate.png \
 images/icons/window-new.png \
 images/icons/edit-cut.png
 

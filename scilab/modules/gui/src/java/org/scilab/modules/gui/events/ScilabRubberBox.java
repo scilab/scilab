@@ -12,6 +12,10 @@
 
 package org.scilab.modules.gui.events;
 
+import java.awt.Cursor;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.HierarchyEvent;
@@ -50,6 +54,10 @@ public abstract class ScilabRubberBox extends RubberBox
 		super();
 		drawingMode = false;
 		this.selectedCanvas = selectedCanvas;
+		// Change cursor
+		Image icon = Toolkit.getDefaultToolkit().getImage(System.getenv("SCI") + "/modules/gui/images/icons/zoom-in.png");
+		selectedCanvas.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, new Point(0,0), "zoomin"));
+		//selectedCanvas.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 		terminateButton = 0;
 	}
 	
@@ -135,6 +143,8 @@ public abstract class ScilabRubberBox extends RubberBox
 		endRect[2] = getSecondPointX();
 		endRect[INITIAL_RECT_SIZE - 1] = getSecondPointY();
 		
+		selectedCanvas.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
 		return getUsedButton();
 		
 	}

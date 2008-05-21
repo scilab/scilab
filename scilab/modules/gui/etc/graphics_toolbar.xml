@@ -2,18 +2,18 @@
 <toolbar>
 <!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure --> 
     <!-- Rotate -->
-    <button icon="view-refresh.png" tooltiptext="Rotate">
+    <button icon="rotate.png" tooltiptext="Rotate">
         <callback instruction="rotate_axes(get_figure_handle([SCILAB_FIGURE_ID]))" type="0"/>
     </button>
 
     <separator/>
 
     <!-- Zoom In -->
-    <button icon="list-add.png" tooltiptext="Zoom In">
+    <button icon="zoom-in.png" tooltiptext="Zoom In">
         <callback instruction='zoom_rect(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
     </button>
     <!-- Zoom Out -->
-    <button icon="list-remove.png" tooltiptext="Zoom Out">
+    <button icon="zoom-out.png" tooltiptext="Zoom Out">
         <callback instruction='unzoom(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
     </button>
 
