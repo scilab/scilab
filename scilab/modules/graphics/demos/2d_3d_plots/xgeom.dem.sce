@@ -37,7 +37,7 @@ current_axe.background      = BackgroundColorId;
 
 // A second 2d graphics'
 [x1,y1] = geom3d([0,0],[0,0],[5,0]);
-xsegs(x1,y1);';
+xsegs(x1,y1);
 xstring(x1(1),y1(1),"The point (0,0,0)");
 
 xtitle(my_plot_desc," "," "," ");
