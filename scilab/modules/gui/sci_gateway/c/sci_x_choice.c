@@ -116,7 +116,7 @@ int C2F(sci_x_choice)(char *fname,unsigned long fname_len)
     }
   else
     {
-      userValue = getMessageBoxUserSelectedButtons(messageBoxID);
+      userValue = (int*)getMessageBoxUserSelectedButtons(messageBoxID);
   
       userValueDouble = (double *)MALLOC(nbRowDefaultValues*nbColDefaultValues*sizeof(double));
       for (K = 0; K < nbRowDefaultValues*nbColDefaultValues; K++)

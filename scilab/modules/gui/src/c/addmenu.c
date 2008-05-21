@@ -14,9 +14,14 @@
  *  fname;      : name of the action function  
  *******************************************************/
 
-int C2F(addmen)(win_num,button_name,entries,ptrentries,ne,typ,fname,ierr)
-     integer *win_num,*entries,*ptrentries,*ne,*ierr,*typ;
-     char *button_name,*fname;
+int C2F(addmen)(integer *win_num,
+				char *button_name,
+				integer *entries,
+				integer *ptrentries,
+				integer *ne
+				,integer *typ,
+				char *fname,
+				integer *ierr)
 {
 	return 0;
 }
