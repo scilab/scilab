@@ -137,7 +137,7 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
   /* Read the user answer */
   selectedRGB = getColorChooserSelectedRGB(colorChooserID);
 
-  if (selectedRGB[0] >= 0) /* The user selected a font */
+  if (selectedRGB[0] >= 0) /* The user selected a color */
     {
 
       nbRow = 1;
