@@ -47,7 +47,7 @@ int sci_dos(char *fname,unsigned long l)
 
 	if (GetType(1)!=sci_strings) 
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
 		return 0;
 	}
 
@@ -59,7 +59,7 @@ int sci_dos(char *fname,unsigned long l)
 	{
 		if (GetType(2)!=sci_strings) 
 		{
-			Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n") ,fname,2);
 			return 0;
 		}
 		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
@@ -67,7 +67,7 @@ int sci_dos(char *fname,unsigned long l)
 
 		if (strcmp("-echo",Param2String))
 		{
-			Scierror(999,_("%s: Wrong second input argument: '%s' expected.\n"),fname, "echo");
+			Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname,2,"echo");
 			return 0;
 		}
 		else
@@ -142,7 +142,6 @@ int sci_dos(char *fname,unsigned long l)
 			m1=numberoflines;
 			n1=1;
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1, &n1, Output);
-			
 		}
 		else
 		{

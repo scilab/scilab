@@ -28,7 +28,7 @@ int sci_getsystemmetrics(char *fname,unsigned long l)
 
 	if (GetType(1) != sci_strings)
 	{
-		Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
 		return 0;
 	}
 	
@@ -47,7 +47,7 @@ int sci_getsystemmetrics(char *fname,unsigned long l)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong value for input argument: see help.\n"),fname);
+		Scierror(999,_("%s: Wrong value for input argument: %s.\n"),fname,_("see help"));
 	}
 	return 0;
 }

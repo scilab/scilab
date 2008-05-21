@@ -61,7 +61,7 @@ int sci_toprint(char *fname,unsigned long l)
 			}
 			else
 			{
-				Scierror(999,_("%: Wrong type for first input argument: String expected.\n"),fname);
+				Scierror(999,_("%: Wrong size for input argument #%d: String expected.\n"),fname,1);
 				return 0;
 			}
 		}
@@ -82,19 +82,19 @@ int sci_toprint(char *fname,unsigned long l)
 					}
 					else
 					{
-						Scierror(999,_("%s: Wrong first input argument: Must be >= %d.\n"),fname,0);
+						Scierror(999,_("%s: Wrong value for input argument #%d: Non-negative integers expected.\n"),fname);
 						return 0;
 					}
 				}
 				else
 				{
-					Scierror(999,_("%s: Wrong first input argument.\n"),fname);
+					Scierror(999,_("%s: Wrong type for input argument #%d: Non-negative integer expected.\n"),fname,1);
 					return 0;
 				}
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong first input argument.\n"),fname);
+				Scierror(999,_("%s: Wrong type for input argument #%d: Non-negative integer expected.\n"),fname,1);
 				return 0;
 			}
 		}
@@ -147,7 +147,7 @@ int sci_toprint(char *fname,unsigned long l)
 			else
 			{
 				freeArrayOfString(Str,m1);
-				Scierror(999,_("%s: Wrong first input argument: String or string matrix (1 x m) or (n x 1) expected.\n"),fname);
+				Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
 				return 0;
 			}
 
@@ -190,20 +190,20 @@ int sci_toprint(char *fname,unsigned long l)
 					}
 					else
 					{
-						Scierror(999,_("%s: Wrong second input argument: '%s' or '%s' expected.\n"),fname,"pos","gdi");
+						Scierror(999,_("%s: Wrong input argument #%d: '%s' or '%s' expected"),fname,2,"pos","gdi");
 						return 0;
 					}
 				}
 				else
 				{
-					Scierror(999,_("%s: Wrong first input argument.\n"),fname);
+					Scierror(999,_("%s: Wrong type for input argument #%d: Non-negative integers expected\n"),fname,1);
 					return 0;
 				}
 
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong type for input argument.\n"),fname);
+				Scierror(999,_("%s: Wrong type for input arguments.\n"),fname);
 				return 0;
 			}
 		}

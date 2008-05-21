@@ -85,7 +85,7 @@ int sci_winqueryreg(char *fname,unsigned long l)
 				}
 				else
 				{
-					Scierror(999,_("%s: An error occurred.\n"),fname); /* @TODO: provide a real error message */
+					Scierror(999,_("%s: Cannot open Windows registry.\n"),fname);
 					return 0;
 				}
 			}
