@@ -13,10 +13,10 @@
 /*--------------------------------------------------------------------------*/
 int int_objfprintfMat(char *fname,unsigned long fname_len)
 {
-	int l1, m1, n1,l2,m2,n2,m3,n3,l3,i,j,mS,nS;
+	int l1 = 0, m1 = 0, n1 = 0,l2 = 0,m2 = 0,n2 = 0,m3 = 0,n3 = 0,l3 = 0,i = 0,j = 0,mS = 0,nS = 0;
 	FILE  *f;
-	char **Str2;
-	char *Format;
+	char **Str2 = NULL;
+	char *Format = NULL;
 	Nbvars = 0;
 	CheckRhs(1,4);
 	CheckLhs(1,1);
@@ -33,7 +33,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 	if (GetType(2) == sci_matrix)
 	{
-#define COMPLEXPART 1
+		#define COMPLEXPART 1
 		int *header=NULL;
 		int Cmplx;
 

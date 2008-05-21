@@ -24,7 +24,7 @@ void diary(char *str,long int *n)
 {
 #if defined(_MSC_VER)
 	/* On Windows, We must have CRLF here */
-	char newline[2]="\r\n";
+	char newline[3]="\r\n";
 	int nn=2;
 #else
 	char newline[1]="\n";
