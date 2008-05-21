@@ -73,5 +73,7 @@ function v=%graph_e(i,g)
     v=3*g.edges.graphics.defaults.width
   elseif i=='default_font_size' then
     v=g.edges.graphics.defaults.font(1,:)
- end
+  else
+    v=[];
+  end
 endfunction
