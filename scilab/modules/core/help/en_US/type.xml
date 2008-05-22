@@ -47,20 +47,23 @@
      6
     :  sparse boolean matrix.</para>
     <para>
+     7
+    :  Matlab sparse matrix.</para>
+    <para>
      8
-    :  matrix of integers stored on 1 2 or 4 bytes</para>
+    :  matrix of integers stored on 1 2 or 4 bytes.</para>
     <para>
      9
-    :  matrix of graphic handles</para>
+    :  matrix of graphic handles.</para>
     <para>
      10 
     :  matrix of character strings.</para>
     <para>
      11 
-    :  un-compiled function.</para>
+    :  un-compiled function (Scilab code).</para>
     <para>
      13 
-    :  compiled function.</para>
+    :  compiled function (Scilab code).</para>
     <para>
      14 
     :  function library.</para>
@@ -69,13 +72,19 @@
     :  list.</para>
     <para>
      16 
-    :  typed list (tlist)</para>
+    :  typed list (tlist).</para>
     <para>
      17
-    :  mlist</para>
+    :  matrix oriented typed list (mlist).</para>
     <para>
      128
-    : pointer</para>
+    : pointer (See <link linkend="lufact">lufact</link>).</para>
+    <para>
+     129
+    : size implicit polynom used for indexing.</para>
+    <para>
+     130
+    : fonction pointer (C or Fortran code).</para>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -73,6 +73,16 @@
     </variablelist>
     <variablelist>
       <varlistentry>
+        <term>Matlab sparse matrix (type 7)</term>
+        <listitem>
+          <para>
+           ??
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
         <term>Integer matrices (type 8)</term>
         <listitem>
           <para>row size m (long integer), column size n (long integer),</para>
@@ -149,6 +159,26 @@
     <variablelist>
       <varlistentry>
         <term>Pointers (type 128)</term>
+        <listitem>
+          <para>
+     ??
+     </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Size implicit polynoms (type 129)</term>
+        <listitem>
+          <para>
+     ??
+     </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Function pointers (type 130)</term>
         <listitem>
           <para>
      ??
