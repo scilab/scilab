@@ -322,8 +322,8 @@ images/icons/edit-paste.png \
 images/icons/folder.png \
 images/icons/format-text-bold.png \
 images/icons/help-browser.png \
-images/icons/zoom-in.png \
-images/icons/zoom-out.png \
+images/icons/zoom-area.png \
+images/icons/original-view.png \
 images/icons/printer.png \
 images/icons/scilab.png \
 images/icons/rotate.png \
