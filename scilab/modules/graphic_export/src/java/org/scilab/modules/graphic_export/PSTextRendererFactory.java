@@ -14,9 +14,11 @@
 
 import java.awt.Font;
 
-import org.scilab.modules.renderer.figureDrawing.TextRendererFactory;
+import org.scilab.modules.renderer.utils.textRendering.TextRendererFactory;
+import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 
 import com.sun.opengl.util.j2d.TextRenderer;
+
 
 /**
  * PSTextRenderer
@@ -34,13 +36,12 @@ public class PSTextRendererFactory implements TextRendererFactory {
 	
 	/**
 	 * createTextRendererFactory
-	 * @param font Font
-	 * @param color double[]
-	 * @return textRenderer
+	 * @param renderer actual textRenderer to use
+	 * @param font font
+	 * @return TextRenderer
 	 */
-	public TextRenderer createTextRenderer(Font font,  double[] color) {	
-		TextRenderer textRenderer = GL2PSTextRenderer.create(font, color);		
-		return textRenderer;
+	public SciTextRenderer createTextRenderer(TextRenderer renderer, Font font) {
+		return new GL2PSTextRenderer(renderer, font.getSize2D());
 	}
 
 }
