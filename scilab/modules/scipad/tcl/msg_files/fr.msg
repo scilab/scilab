@@ -24,7 +24,7 @@
 # See the file scipad/license.txt
 #
 # Scipad texts in French by Francois Vogel
-# in sync at least with v6.127
+# in sync at least with v6.143
 
 
 # commons

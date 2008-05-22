@@ -3298,3 +3298,7 @@ Francois VOGEL, 17/05/08
  * Added a saved preference switch for colorizing user functions
  * Fixed wrong encoding of fr.msg (since 6.139) - now UTF-8 again
  * version --> 6.143
+
+Francois VOGEL, 22/05/08
+ * Fixed bug 3037 (lasterror can produce multiline error messages)
+ * version --> 6.144

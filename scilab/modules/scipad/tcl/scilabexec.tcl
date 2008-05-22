@@ -392,21 +392,22 @@ proc scilaberror {funnameargs} {
     ScilabEval_lt  "TCL_SetVar(\"errnum\", string(db_n), \"scipad\");" "sync" "seq"
     ScilabEval_lt  "TCL_SetVar(\"errline\", string(db_l), \"scipad\");" "sync" "seq"
     ScilabEval_lt  "TCL_SetVar(\"errfunc\", strsubst(db_func,\"\"\"\",\"\\\"\"\"), \"scipad\")" "sync" "seq"
-    ScilabEval_lt  "TCL_SetVar(\"errmsg\" ,  strsubst( \
-                                                     strsubst( \
-                                                     strsubst( \
-                                                     strsubst( \
-                                                     strsubst( \
-                                                                db_str,\"\"\"\",\"\\\"\"\") \
-                                                                      ,\"''\",\"\\''\") \
-                                                                      ,\"$\",\"\\$\") \
-                                                                      ,\"\[\",\"\\\[\") \
-                                                                      ,\"\]\",\"\\\]\") \
-                                                    , \"scipad\" )" "sync" "seq"
+    ScilabEval_lt  "TCL_SetVar(\"errmsg\" , strsubst( \
+                                            strsubst( \
+                                            strsubst( \
+                                            strsubst( \
+                                            strsubst( \
+                                                       strcat(stripblanks(db_str),ascii(13)) \
+                                                             ,\"\"\"\",\"\\\"\"\") \
+                                                             ,\"''\",\"\\''\") \
+                                                             ,\"$\",\"\\$\") \
+                                                             ,\"\[\",\"\\\[\") \
+                                                             ,\"\]\",\"\\\]\") \
+                                          , \"scipad\" )" "sync" "seq"
     if {$ScilabErrorMessageBox} {
         tk_messageBox -title [mc "Scilab execution error"] \
-          -message [concat [mc "The shell reported an error while trying to execute "]\
-          $funnameargs [mc ": error "] $errnum ", " $errmsg ", " [mc "at line "]\
+          -message [append dummyvar [mc "The shell reported an error while trying to execute "]\
+          $funnameargs [mc ": error "] $errnum "\n" $errmsg "\n" [mc "at line "]\
           $errline [mc " of "] $errfunc]
     }
     showinfo [mc "Execution aborted!"]

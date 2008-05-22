@@ -605,6 +605,9 @@ proc doopenfunsource {keywtype nametoopen} {
             # for the same reason as above, simply issuing
             #   ScilabEval_lt "scipad(\"$filetoopen\")" "seq"
             # does not always work
+            # <TODO>: the line below does not need the ScilabEval(TCL_EvalStr...) construct
+            #         because there is no Scilab instruction inside
+            #         openfile $filetoopen      should be just enough - to be checked
             ScilabEval_lt "TCL_EvalStr(\"openfile \"\"$filetoopen\"\"\",\"scipad\");" "seq"
         }
         "userfun" {

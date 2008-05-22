@@ -537,7 +537,7 @@ proc checkexecutionerror_bp {} {
                                  set errnum  \"+string(db_n)+\"; \
                                  set errline \"+string(db_l)+\"; \
                                  set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
-                                 set errmsg  \"\"\"+stripblanks(strsubst(db_str,\"\"\"\",\"\\\"\"\"))+\"\"\"; \
+                                 set errmsg  \"\"\"+stripblanks(strsubst(strcat(db_str,ascii(10)),\"\"\"\",\"\\\"\"\"))+\"\"\"; \
                                  if {\$errnum != 0} { \
                                      bell; \
                                      set errtext \[mc \"\"Error \"\"\]; \
