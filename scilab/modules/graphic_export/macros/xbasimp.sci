@@ -12,7 +12,7 @@ function xbasimp(win_num,filen,printer)
 //!
 
 warnobsolete("printfigure", "5.1");
-warning(gettext("""xbasimp"" has been replaced by ""printfigure"" for printing the exported figure and by ""xs2ps"" for the file export"));
+warning(gettext("""xbasimp"" has been replaced by ""printfigure"" for printing and by ""xs2ps"" for the file export"));
 
 [lhs,rhs]=argn(0);
 
