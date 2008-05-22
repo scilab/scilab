@@ -144,7 +144,7 @@ if sciargs()<>'-nouserstartup' then
 end
 clear startup ierr
 
-// Menu can now be enabled ===========================================
+// Menus/toolbar can now be enabled ====================================
 if ( getscilabmode() == 'STD') then
         setmenu(gettext("&File"));
         setmenu(gettext("&Edit"));
@@ -152,6 +152,7 @@ if ( getscilabmode() == 'STD') then
         setmenu(gettext("&Control"));
         setmenu(gettext("&Applications"));
         setmenu(gettext("&?"));
+        toolbar(-1, "on");
 end
 // =====================================================================
 
