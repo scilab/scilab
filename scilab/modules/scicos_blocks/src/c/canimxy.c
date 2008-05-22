@@ -124,7 +124,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
       if(scoGetScopeActivation(*pScopeMemory) == 1)
 	{
 	  gomme_color = sciGetBackground(scoGetPointerAxes(*pScopeMemory,0));
-	  //sciSetIsBoxed(scoGetPointerAxes(*pScopeMemory,0),FALSE);
+	  //sciSetIsBoxed(scoGetPointerAxes(*pScopeMemory,0),FALSE); //** obsolete in Scilab 5
 	  /*if mark style*/
 	  if(color[0] <= 0)
 	    {

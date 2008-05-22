@@ -107,7 +107,9 @@ void bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   (pSUBWIN_FEATURE(pAxes)->axes).axes_visible[0] = FALSE;
   (pSUBWIN_FEATURE(pAxes)->axes).axes_visible[1] = FALSE;
 
-  sciSetIsBoxed(pAxes, FALSE);
+  //** sciSetIsBoxed(pAxes, FALSE); //** obsolete in Scilab 5
+  sciSetBoxType(pAxes,BT_ON);
+
 
   for(j = 0 ; j < number_of_curves_by_subwin ; j++)
     {

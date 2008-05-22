@@ -112,8 +112,9 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
           pTemp2 = scoGetPointerAxes(pScopeMemory,i);
           sciInitFontSize(pTemp2, 0);
           
-          //** sciSetIsBoxed(pTemp2,TRUE);
+          //** sciSetIsBoxed(pTemp2,TRUE); //** obsolete in Scilab 5
           sciSetBoxType(pTemp2,BT_ON);
+
           //Here we don't want "smart" limits
           pSUBWIN_FEATURE(pTemp2)->tight_limits = TRUE;
           //Here PTemp2 is the pointer on the current Subwint
