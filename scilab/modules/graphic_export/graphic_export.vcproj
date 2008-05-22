@@ -424,10 +424,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\sci_gateway\c\sci_xg2ps.c"
-					>
-				</File>
-				<File
 					RelativePath=".\sci_gateway\c\sci_xs2bmp.c"
 					>
 				</File>
@@ -487,10 +483,6 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\JoGLInterface.h"
-					>
-				</File>
-				<File
-					RelativePath=".\includes\sci_xg2ps.h"
 					>
 				</File>
 				<File

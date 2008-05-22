@@ -25,7 +25,6 @@ sci_gateway/c/sci_xs2bmp.c \
 sci_gateway/c/sci_xs2gif.c \
 sci_gateway/c/sci_xs2ppm.c \
 sci_gateway/c/sci_xs2ps.c \
-sci_gateway/c/sci_xg2ps.c \
 sci_gateway/c/sci_xs2svg.c \
 sci_gateway/c/sci_xs2jpg.c \
 sci_gateway/c/sci_xs2png.c \
@@ -96,7 +95,6 @@ includes/sci_xs2gif.h \
 includes/xs2file.h \
 includes/sci_xs2bmp.h \
 includes/sci_xs2ps.h \
-includes/sci_xg2ps.h \
 includes/sci_xs2eps.h \
 includes/sci_xs2jpg.h \
 includes/sci_xs2pdf.h \

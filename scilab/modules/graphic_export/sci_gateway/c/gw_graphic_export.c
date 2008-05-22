@@ -30,8 +30,7 @@ static gw_generic_table Tab[]=
   {sci_xs2eps,"xs2eps"},
   {sci_xs2pdf,"xs2pdf"},
   {sci_xs2svg,"xs2svg"},
-  {sci_xs2ps,"xs2ps"},
-  {sci_xg2ps,"xg2ps"}
+  {sci_xs2ps,"xs2ps"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_graphic_export(void)
