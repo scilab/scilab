@@ -1,3 +1,4 @@
+@TODO update since incomporated in the trunk
 Params package
 This package allows to deal with list of parameters efficiently (like optim_set in matlab).
 To build the package, launch once (as a root user) exec builder.sce;
