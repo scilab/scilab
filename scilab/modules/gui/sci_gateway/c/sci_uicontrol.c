@@ -41,7 +41,8 @@
 int sci_uicontrol(char *fname, unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0, stkAdr = 0, k = 0;
-
+  char **stkAdrForStrings = NULL;
+  
   int setStatus = SET_PROPERTY_SUCCEED;
 
   int NOT_FOUND = -1;
@@ -313,13 +314,14 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                     case sci_strings:
                       if (inputIndex == 4) /* Index for String property: Can be mon than one character string */
                         {
-                          GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                          GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdrForStrings);
+                          setStatus = callSetProperty((sciPointObj*) GraphicHandle, (int) stkAdrForStrings, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                         }
                       else
                         {
                           GetRhsVar(propertiesValuesIndices[inputIndex],STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                          setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                         }
-                      setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                       break;
                     case sci_handles:
                       GetRhsVar(propertiesValuesIndices[inputIndex],GRAPHICAL_HANDLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
