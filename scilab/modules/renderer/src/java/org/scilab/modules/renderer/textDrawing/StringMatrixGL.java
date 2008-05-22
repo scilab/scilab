@@ -16,6 +16,8 @@ package org.scilab.modules.renderer.textDrawing;
 
 import java.awt.geom.Rectangle2D;
 
+import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
+
 /**
  * Matrix of string which van be drawn using JOGL
  * @author Jean-Baptiste Silvy

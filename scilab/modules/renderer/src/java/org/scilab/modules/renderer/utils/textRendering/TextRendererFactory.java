@@ -10,13 +10,15 @@
  *
  */
 
-package org.scilab.modules.renderer.figureDrawing;
+package org.scilab.modules.renderer.utils.textRendering;
 
 
 
 import java.awt.Font;
 
+
 import com.sun.opengl.util.j2d.TextRenderer;
+
 
 /**
  * TextRendererFactory
@@ -27,10 +29,10 @@ public interface TextRendererFactory {
 	
 	/**
 	 * createTextRendererFactory
+	 * @param renderer actual textRenderer to use
 	 * @param font font
-	 * @param color double[]
 	 * @return TextRenderer
 	 */
-	TextRenderer createTextRenderer(Font font,  double[] color);
+	SciTextRenderer createTextRenderer(TextRenderer renderer, Font font);
 
 }

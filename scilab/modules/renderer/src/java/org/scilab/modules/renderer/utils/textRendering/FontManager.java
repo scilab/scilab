@@ -12,7 +12,7 @@
  */
 
 
-package org.scilab.modules.renderer.utils;
+package org.scilab.modules.renderer.utils.textRendering;
 
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
@@ -24,8 +24,18 @@ import java.util.ArrayList;
  */
 public class FontManager {
 
-  // empiric values :(
-	private static final float[] SCI_SIZE_2_AWT_SIZE_POLYNOM = {0.4f, 1.5f, 7.1f};
+	private static final float[] INTERVALS = {3.0f, 4.0f};
+	private static final float[] FIRST_POLY = {2.0f, 8.0f};
+	private static final float[] SECOND_POLY = {4.0f, 2.0f};
+	private static final float[] THIRD_POLY = {6.0f, -6.0f};
+	
+	private static final float SIX = 6.0f;
+	
+	private static final float[] INV_INTERVALS = {3.0f, 4.0f};
+	private static final float[] INV_FIRST_POLY = {0.5f, -4.0f};
+	private static final float[] INV_SECOND_POLY = {0.25f, -0.5f};
+	private static final float[] INV_THIRD_POLY = {1.0f / SIX, 1.0f};
+	
 	
 	// logical awt fonts
 	// JRE Java guaranteed: "Dialog", "DialogInput", "Monospaced","Serif", "SansSerif", "Symbol", "Lucida"
@@ -88,14 +98,14 @@ public class FontManager {
    	   /* with java , symbols are not ascii codes */
    	   sciFonts.add(createFont(SYMBOL));               /* scilab font_style 1 */
    	   sciFonts.add(createFont(SERIF));                /* scilab font_style 2 */
-   	   sciFonts.add(createFont(SERIF,false,true));     /* scilab font_style 3 */
-   	   sciFonts.add(createFont(SERIF,true,false));     /* scilab font_style 4 */
-   	   sciFonts.add(createFont(SERIF,true,true));      /* scilab font_style 5 */
+   	   sciFonts.add(createFont(SERIF, false, true));     /* scilab font_style 3 */
+   	   sciFonts.add(createFont(SERIF, true, false));     /* scilab font_style 4 */
+   	   sciFonts.add(createFont(SERIF, true, true));      /* scilab font_style 5 */
    	   sciFonts.add(createFont(SANSSERIF));            /* scilab font_style 6 */
-   	   sciFonts.add(createFont(SANSSERIF,true,true));  /* scilab font_style 7 */
-   	   sciFonts.add(createFont(SANSSERIF,true,false)); /* scilab font_style 8 */
-   	   sciFonts.add(createFont(SANSSERIF,true,true));  /* scilab font_style 9 */
-   	   sciFonts.add(createFont(SANSSERIF,true,true));  /* scilab font_style 10 */
+   	   sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 7 */
+   	   sciFonts.add(createFont(SANSSERIF, true, false)); /* scilab font_style 8 */
+   	   sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 9 */
+   	   sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 10 */
    	   /* font 10 was defined by user in Scilab 4.x */
    	   /* @TO DO add a method to do same thing in Scilab 5.x */
    	   
@@ -123,10 +133,16 @@ public class FontManager {
 	 */
 	public static float scilabSizeToAwtSize(double sciSize) {
 		float sciSizef = (float) sciSize;
-		// a.(x + b)^2 + c
-		return  SCI_SIZE_2_AWT_SIZE_POLYNOM[0]
-		      * (sciSizef + SCI_SIZE_2_AWT_SIZE_POLYNOM[1]) * (sciSizef + SCI_SIZE_2_AWT_SIZE_POLYNOM[1])
-		      + SCI_SIZE_2_AWT_SIZE_POLYNOM[2];
+		// f(x) = | 2x + 8 if x < 3
+		//        | 4x + 2 if 3 < x < 4
+		//        | 6x - 6 if 4 < x
+		if (sciSizef < INTERVALS[0]) {
+			return FIRST_POLY[0] * sciSizef + FIRST_POLY[1];
+		} else if (sciSizef < INTERVALS[1]) {
+			return SECOND_POLY[0] * sciSizef + SECOND_POLY[1];
+		} else {
+			return THIRD_POLY[0] * sciSizef + THIRD_POLY[1];
+		}
 	}
 	
 	/**
@@ -136,8 +152,13 @@ public class FontManager {
 	 */
 	public static double awtSizeToScilabSize(float size) {
 		// sqrt(|x - c| / a) - b
-		return  Math.sqrt(Math.abs(size - SCI_SIZE_2_AWT_SIZE_POLYNOM[2]) / SCI_SIZE_2_AWT_SIZE_POLYNOM[0])
-						  - SCI_SIZE_2_AWT_SIZE_POLYNOM[1];
+		if (size < INV_INTERVALS[0]) {
+			return INV_FIRST_POLY[0] * size + INV_FIRST_POLY[1];
+		} else if (size < INV_INTERVALS[1]) {
+			return INV_SECOND_POLY[0] * size + INV_SECOND_POLY[1];
+		} else {
+			return INV_THIRD_POLY[0] * size + INV_THIRD_POLY[1];
+		}
 	}
 	
 	/**

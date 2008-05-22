@@ -72,18 +72,18 @@ public:
    * Draw the graphic handle and store it representation in memory
    * for later faster drawing.
    */
-  virtual void draw( void );
+  virtual EDisplayStatus draw( void );
 
   /**
    * Fast draw of the graphic handle on the screen using the data created by draw.
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
-  virtual void show( void );
+  virtual EDisplayStatus show( void );
 
   /**
   * Display the camera using precomputed data
   */
-  virtual void redraw(void);
+  virtual EDisplayStatus redraw(void);
 
   /**
    * Apply a zoom square on the axes box

@@ -19,9 +19,10 @@ import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.DrawableObjectGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
-import org.scilab.modules.renderer.utils.FontManager;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
+import org.scilab.modules.renderer.utils.textRendering.FontManager;
+import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 
 
 /**
@@ -183,17 +184,8 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 * @return instance of SciTextRenderer
 	 */
 	public SciTextRenderer getTextRenderer() {
-		return getParentFigureGL().getTextWriter(getFont(), getFontColor());
-	}
-	
-	/**
-	 * get the textRenderer with a new font size
-	 * @param newSize new isze to apply to the font
-	 * @return new instance of text renderer with a new size
-	 */
-	public SciTextRenderer getTextRenderer(float newSize) {
-		setFont(getFont().deriveFont(newSize));
-		return getTextRenderer();
+		SciTextRenderer renderer = getParentFigureGL().getTextRendererCreator().createTextRenderer(getFont(), getFontColor());
+		return renderer;
 	}
 	
 	/**
@@ -400,7 +392,7 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	public void drawText(SciTextRenderer renderer, StringMatrixGL text, TextGrid stringPositions) {
 		GL gl = getGL();
 		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
-		textDrawer.drawTextContent(renderer, text, stringPositions);
+		textDrawer.drawTextContent(gl, renderer, text, stringPositions);
 		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
 	}
 	

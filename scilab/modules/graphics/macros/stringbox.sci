@@ -27,6 +27,7 @@ else
   
   oldHandle = gce() ;
   axes = gca()  ;
+  fig = gcf();
   // initialize values ;
   text     = '' ;
   angle    = 0  ;
@@ -69,6 +70,8 @@ else
   end
     
   // create an object get is bb and then destroy it
+  immediateDrawingMode = fig.immediate_drawing;
+  f.immediate_drawing = "off";
   xstring( posX, posY, text, angle ) ;
   textHandle = gce() ;
   textHandle.visible = "off"; // to prevent it from appearing
@@ -79,7 +82,8 @@ else
   
   delete( textHandle ) ;
   set( 'current_entity', oldHandle ) ;
-  
+  f.immediate_drawing = immediateDrawingMode;
 
 end;
+
 endfunction

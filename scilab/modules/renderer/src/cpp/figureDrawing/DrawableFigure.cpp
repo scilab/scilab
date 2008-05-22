@@ -154,18 +154,19 @@ void DrawableFigure::redrawSubwins(void)
   }
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::draw( void )
+DrawableObject::EDisplayStatus DrawableFigure::draw( void )
 { 
   if ( !checkAutoRedraw() && !isDisplayingSingleObject() )
   {
     // if a single object is available this override drawlater()/ drawnow()
-    return ;
+    return UNCHANGED;
   }
 
   // make sure the context is created
  
   //clock_gettime(0, &t_t1);
   drawCanvas() ;
+  return SUCCESS;
   //clock_gettime(0, &t_t4);
 
 //   double aa = (double) (t_t4.tv_sec - t_t1.tv_sec)
@@ -183,9 +184,9 @@ void DrawableFigure::draw( void )
 
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::show( void )
+DrawableObject::EDisplayStatus DrawableFigure::show( void )
 {
-  draw() ;
+  return draw() ;
 }
 /*---------------------------------------------------------------------------------*/
 DrawableFigureBridge * DrawableFigure::getFigureImp( void )

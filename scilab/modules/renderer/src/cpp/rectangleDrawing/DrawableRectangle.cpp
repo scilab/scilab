@@ -28,45 +28,47 @@ DrawableRectangle::~DrawableRectangle( void )
 
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableRectangle::draw( void )
+DrawableObject::EDisplayStatus DrawableRectangle::draw( void )
 {
   
   if ( !checkVisibility() )
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing() ;
   clip();
   drawRectangle() ;
   unClip();
   endDrawing();
-
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableRectangle::show( void )
+DrawableObject::EDisplayStatus DrawableRectangle::show( void )
 {
   if ( !checkVisibility() )
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing();
   clip();
   showRectangle();
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableRectangle::redraw(void)
+DrawableObject::EDisplayStatus DrawableRectangle::redraw(void)
 {
   if ( !checkVisibility() )
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing();
   clip();
   redrawRectangle();
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
 DrawableRectangleBridge * DrawableRectangle::getRectangleImp( void )

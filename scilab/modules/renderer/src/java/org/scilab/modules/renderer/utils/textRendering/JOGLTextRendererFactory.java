@@ -10,22 +10,19 @@
  *
  */
 
-package org.scilab.modules.renderer.figureDrawing;
+package org.scilab.modules.renderer.utils.textRendering;
 
 import java.awt.Font;
 
-import org.scilab.modules.renderer.textDrawing.SciTextRenderer;
 
 import com.sun.opengl.util.j2d.TextRenderer;
+
 
 /**
  * JOGLTextRendererFactory
  * @author Koumar Sylvestre
- *
  */
 public class JOGLTextRendererFactory implements TextRendererFactory {
-	
-	private TextRenderer textRenderer;
 	
 	/**
 	 * Constructor
@@ -36,13 +33,12 @@ public class JOGLTextRendererFactory implements TextRendererFactory {
 
 	/**
 	 * createTextRendererFactory
-	 * @param font Font
-	 * @param color double[]
-	 * @return textRenderer
+	 * @param renderer actual textRenderer to use
+	 * @param font font
+	 * @return TextRenderer
 	 */
-	public TextRenderer createTextRenderer(Font font,  double[] color) {	
-		textRenderer = SciTextRenderer.create(font, color);		
-		return textRenderer;
+	public SciTextRenderer createTextRenderer(TextRenderer renderer, Font font) {
+		return new SciTextRenderer(renderer, font.getSize2D());
 	}
 
 }

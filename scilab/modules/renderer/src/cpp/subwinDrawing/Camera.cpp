@@ -166,24 +166,27 @@ void Camera::get2dViewCoordinates(const double userCoords[3], double coord2D[2])
   get2dViewCoordinates(pixCoords, coord2D);
 }
 /*--------------------------------------------------------------------------*/
-void Camera::draw( void )
+DrawableObject::EDisplayStatus Camera::draw( void )
 {
   initializeDrawing();
   setCameraParameters();
   getCameraImp()->renderPosition();
   endDrawing();
+  return SUCCESS;
 }
 /*--------------------------------------------------------------------------*/
-void Camera::show( void )
+DrawableObject::EDisplayStatus Camera::show( void )
 {
   getCameraImp()->show();
+  return SUCCESS;
 }
 /*------------------------------------------------------------------------------------------*/
-void Camera::redraw(void)
+DrawableObject::EDisplayStatus Camera::redraw(void)
 {
   initializeDrawing();
   getCameraImp()->redraw();
   endDrawing();
+  return SUCCESS;
 }
 /*------------------------------------------------------------------------------------------*/
 bool Camera::zoomRect(int posX, int posY, int width, int height)

@@ -14,7 +14,10 @@
 package org.scilab.modules.renderer.textDrawing;
 
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 
 
 /**
@@ -32,11 +35,12 @@ public class CenteredAlignedTextGL implements TextAlignementStrategy {
 	
 	/**
 	 * Draw the text matrix inside a position matrix using a specific text renderer.
+	 * @param gl current OpenGL pipeline
 	 * @param renderer renderer to use for drawing
 	 * @param text matrix of strings
 	 * @param positionMatrix matrix of positions.
 	 */
-	public void drawTextContent(SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix) {
+	public void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix) {
 		renderer.begin3DRendering();
 		
 		for (int i = 0; i < text.getNbRow(); i++) {
@@ -45,7 +49,7 @@ public class CenteredAlignedTextGL implements TextAlignementStrategy {
 				// put the middle of the string in the middle of the cell
 				double xCoord = ((curCell[2].getX() + curCell[1].getX()) - text.getStringWidth(i, j)) / 2.0;
 				double yCoord = curCell[1].getY() - (curCell[1].getY() - curCell[0].getY()) * TextGrid.EXTEND_FACTOR_Y / 2.0;
-				renderer.draw3D(text.getMatrixElement(i, j), xCoord,
+				renderer.draw3D(gl, text.getMatrixElement(i, j), xCoord,
 						        yCoord, curCell[1].getZ());
 			}
 		}

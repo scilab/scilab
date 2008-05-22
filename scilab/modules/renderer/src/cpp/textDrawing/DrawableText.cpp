@@ -49,13 +49,13 @@ void DrawableText::requestBoundsUpdate(void)
   m_bBoundsUpdateRequested = true;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableText::draw( void )
+DrawableObject::EDisplayStatus DrawableText::draw( void )
 { 
   // update might be needed
   if (!checkVisibility() || isTextEmpty() )
   {
     updateTextBoxIfRequested();
-    return ;
+    return UNCHANGED;
   }
 
   initializeDrawing() ;
@@ -65,14 +65,15 @@ void DrawableText::draw( void )
   drawBox();
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableText::show( void )
+DrawableObject::EDisplayStatus DrawableText::show( void )
 {
   // update might be needed
   if (!checkVisibility() || isTextEmpty() )
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing();
   clip();
@@ -80,16 +81,17 @@ void DrawableText::show( void )
   showBox();
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableText::redraw(void)
+DrawableObject::EDisplayStatus DrawableText::redraw(void)
 {
   // force redrawing
   // update might be needed
   if (!checkVisibility() || isTextEmpty() )
   {
     updateTextBoxIfRequested();
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing();
   clip();
@@ -99,6 +101,7 @@ void DrawableText::redraw(void)
   drawBox();
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableText::needBoundsUpdate(void)

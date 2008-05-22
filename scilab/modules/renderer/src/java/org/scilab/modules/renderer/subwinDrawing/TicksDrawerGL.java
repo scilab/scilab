@@ -19,12 +19,12 @@ import java.awt.geom.Rectangle2D;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.textDrawing.SciTextRenderer;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
-import org.scilab.modules.renderer.utils.FontManager;
 import org.scilab.modules.renderer.utils.geom3D.GeomAlgos;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
+import org.scilab.modules.renderer.utils.textRendering.FontManager;
+import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 
 /**
  * Class drawing ticks for the one axis
@@ -537,15 +537,15 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 			}
 			
 			labelsPositions[i] = new Vector3D(textCenter);
-			renderer.draw3D(getTickLabel(i), labelsPositions[i].getX(), labelsPositions[i].getY(), labelsPositions[i].getZ());
+			renderer.draw3D(gl, getTickLabel(i), labelsPositions[i].getX(), labelsPositions[i].getY(), labelsPositions[i].getZ());
 			
 			if (labelsExponents != null) {
 				labelsExpPositions[i] = new Vector3D(exponentPosition);
-				renderer.draw3D(getLabelExponent(i),
-								labelsExpPositions[i].getXf(),
-								labelsExpPositions[i].getYf(),
-								labelsExpPositions[i].getZf(),
-								EXPONENT_SIZE);
+				renderer.draw3D(gl, getLabelExponent(i),
+								labelsExpPositions[i].getX(),
+								labelsExpPositions[i].getY(),
+								labelsExpPositions[i].getZ()); //,
+								//EXPONENT_SIZE);
 			}
 			
 		}
@@ -575,13 +575,13 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		
 		for (int i = 0; i < nbLabels; i++) {
 			if (labelsPositions[i] == null) { continue; }
-			renderer.draw3D(getTickLabel(i), labelsPositions[i].getX(), labelsPositions[i].getY(), labelsPositions[i].getZ());
+			renderer.draw3D(gl, getTickLabel(i), labelsPositions[i].getX(), labelsPositions[i].getY(), labelsPositions[i].getZ());
 		}
 		
 		if (labelsExpPositions != null) {
 			for (int i = 0; i < nbLabels; i++) {
 				if (labelsExpPositions[i] == null) { continue; }
-				renderer.draw3D(getLabelExponent(i),
+				renderer.draw3D(gl, getLabelExponent(i),
 								labelsExpPositions[i].getX(),
 								labelsExpPositions[i].getY(),
 								labelsExpPositions[i].getZ());
@@ -676,7 +676,8 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		GL gl = getGL();
 		
 		// get text renderer
-		SciTextRenderer renderer = getParentFigureGL().getTextWriter(labelFont, getColorMap().getColor(labelColor));
+		SciTextRenderer renderer
+			= getParentFigureGL().getTextRendererCreator().createTextRenderer(labelFont, getColorMap().getColor(labelColor));
 		
 		GLTools.usePixelCoordinates(gl);
 		
@@ -781,7 +782,9 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		GL gl = getGL();
 		
 		// get text renderer
-		SciTextRenderer renderer = getParentFigureGL().getTextWriter(labelFont, getColorMap().getColor(labelColor));
+		SciTextRenderer renderer
+			= getParentFigureGL().getTextRendererCreator().createTextRenderer(labelFont, getColorMap().getColor(labelColor)); 
+		
 		
 		GLTools.usePixelCoordinates(gl);
 		showTicksLines();

@@ -79,7 +79,7 @@ void DrawableSubwin::displaySingleObj(sciPointObj * pObj)
   }
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableSubwin::draw( void )
+DrawableObject::EDisplayStatus DrawableSubwin::draw( void )
 {
   initializeDrawing() ;
 
@@ -96,7 +96,7 @@ void DrawableSubwin::draw( void )
     m_pCamera->replaceCamera();
 
     endDrawing();
-    return;
+    return UNCHANGED;
   }
 
   drawAxesBox();
@@ -107,9 +107,10 @@ void DrawableSubwin::draw( void )
   m_pCamera->replaceCamera();
 
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableSubwin::show( void )
+DrawableObject::EDisplayStatus DrawableSubwin::show( void )
 {
   
   initializeDrawing() ;
@@ -124,7 +125,7 @@ void DrawableSubwin::show( void )
     m_pCamera->replaceCamera();
 
     endDrawing();
-    return;
+    return UNCHANGED;
   }
 
   showAxesBox();
@@ -135,9 +136,10 @@ void DrawableSubwin::show( void )
   m_pCamera->replaceCamera();
 
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableSubwin::redraw(void)
+DrawableObject::EDisplayStatus DrawableSubwin::redraw(void)
 {
   initializeDrawing() ;
 
@@ -151,7 +153,7 @@ void DrawableSubwin::redraw(void)
     m_pCamera->replaceCamera();
 
     endDrawing();
-    return;
+    return UNCHANGED;
   }
 
   drawAxesBox();
@@ -162,6 +164,7 @@ void DrawableSubwin::redraw(void)
   m_pCamera->replaceCamera();
 
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableSubwin::drawAxesBox(void)

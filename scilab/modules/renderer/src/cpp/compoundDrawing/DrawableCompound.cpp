@@ -18,18 +18,19 @@ namespace sciGraphics
 {
 
 /*---------------------------------------------------------------------------------*/
-void DrawableCompound::draw( void )
+DrawableObject::EDisplayStatus DrawableCompound::draw( void )
 {
   if ( !checkVisibility())
   {
-    return;
+    return UNCHANGED;
   }
   displayChildren();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableCompound::show( void )
+DrawableObject::EDisplayStatus DrawableCompound::show( void )
 {
-  draw() ;
+  return draw() ;
 }
 /*---------------------------------------------------------------------------------*/
 

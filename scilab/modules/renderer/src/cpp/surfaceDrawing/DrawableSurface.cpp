@@ -18,43 +18,46 @@ namespace sciGraphics
 {
 
 /*---------------------------------------------------------------------------------*/
-void DrawableSurface::draw( void )
+DrawableObject::EDisplayStatus DrawableSurface::draw( void )
 {
   if ( !checkVisibility() )
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing();
   clip();
   drawSurface();
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableSurface::show( void )
+DrawableObject::EDisplayStatus DrawableSurface::show( void )
 {
   if ( !checkVisibility() )
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing();
   clip();
   showSurface();
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableSurface::redraw(void)
+DrawableObject::EDisplayStatus DrawableSurface::redraw(void)
 {
   if ( !checkVisibility() )
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing();
   clip();
   redrawSurface();
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
 }

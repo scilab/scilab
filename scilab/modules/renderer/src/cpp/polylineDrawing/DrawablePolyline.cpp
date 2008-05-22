@@ -22,43 +22,46 @@ DrawablePolylineBridge * DrawablePolyline::getPolylineImp( void )
   return dynamic_cast<DrawablePolylineBridge *>(m_pImp) ;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawablePolyline::draw( void )
+DrawableObject::EDisplayStatus DrawablePolyline::draw( void )
 {
   if ( !checkVisibility() )
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing() ;
   clip();
   drawPolyline() ;
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawablePolyline::show( void )
+DrawableObject::EDisplayStatus DrawablePolyline::show( void )
 {
   if ( !checkVisibility() )
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing();
   clip();
   showPolyline();
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawablePolyline::redraw( void )
+DrawableObject::EDisplayStatus DrawablePolyline::redraw( void )
 {
   if ( !checkVisibility() )
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing();
   clip();
   redrawPolyline();
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
 

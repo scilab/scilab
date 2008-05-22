@@ -32,6 +32,14 @@ class DrawableObject
 
 public:
 
+  /**
+   * Possible return values for drawing methods
+   * FAILURE is returned if the drawing could not complete because of an error.
+   * UNCHANGED is returned if the object is not drawn (not visible for instance)
+   * SUCCESS if the object has been successfully displayed
+   */
+  enum EDisplayStatus {SUCCESS, UNCHANGED, FAILURE};
+
   DrawableObject( sciPointObj * drawed ) ;
 
   virtual ~DrawableObject( void ) ;
@@ -121,20 +129,20 @@ protected:
    * Draw the graphic handle and store it representation in memory
    * for later faster drawing.
    */
-  virtual void draw( void ) = 0 ;
+  virtual EDisplayStatus draw( void ) = 0 ;
 
   /**
    * Fast draw of the graphic handle on the screen using the data created by draw.
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
-  virtual void show( void ) = 0 ;
+  virtual EDisplayStatus show( void ) = 0 ;
 
   /**
    * Called when the axes change, so data are still ok
    * but some objects might need to update display lists.
    * By default just call show
    */
-  virtual void redraw(void);
+  virtual EDisplayStatus redraw(void);
 
   /**
    * Common to every object. Check its visibility.

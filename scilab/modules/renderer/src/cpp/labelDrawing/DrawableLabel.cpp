@@ -38,12 +38,12 @@ LabelPositioner * DrawableLabel::getLabelPositioner( void )
   return dynamic_cast<LabelPositioner *>(m_pImp);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableLabel::draw( void )
+DrawableObject::EDisplayStatus DrawableLabel::draw( void )
 {
   DrawableText * drawnText = getTextDrawer(pLABEL_FEATURE(m_pDrawed)->text);
   if (drawnText->isTextEmpty())
   {
-    return;
+    return UNCHANGED;
   }
   // place label
   setLabelLocation();
@@ -51,14 +51,15 @@ void DrawableLabel::draw( void )
   // draw the enclosed text
   drawnText->hasChanged();
   drawnText->display();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableLabel::show( void )
+DrawableObject::EDisplayStatus DrawableLabel::show( void )
 {
   DrawableText * drawnText = getTextDrawer(pLABEL_FEATURE(m_pDrawed)->text);
   if (drawnText->isTextEmpty())
   {
-    return;
+    return UNCHANGED;
   }
   // place label
   setLabelLocation();
@@ -66,6 +67,7 @@ void DrawableLabel::show( void )
   // draw the enclosed text
   drawnText->hasChanged();
   drawnText->display();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableLabel::setLabelLocation(void)

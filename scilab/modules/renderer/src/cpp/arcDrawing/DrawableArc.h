@@ -68,19 +68,19 @@ protected:
    * Draw the graphic handle and store it representation in memory
    * for later faster drawing.
    */
-  virtual void draw( void ) ;
+  virtual EDisplayStatus draw( void ) ;
 
   /**
    * Fast draw of the graphic handle on the screen using the data created by draw.
    * Warning, be sure that draw is called before show each time the handle is modified.
    */
-  virtual void show( void ) ;
+  virtual EDisplayStatus show( void ) ;
 
   /**
    * Arcs need to be redrawn each time the axes changes
    * since the view may have changed
    */
-  virtual void redraw(void) ;
+  virtual EDisplayStatus redraw(void) ;
 
   /**
    * Actually draw the arc on the screen

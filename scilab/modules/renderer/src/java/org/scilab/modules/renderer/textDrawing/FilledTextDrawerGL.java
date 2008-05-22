@@ -16,8 +16,9 @@ package org.scilab.modules.renderer.textDrawing;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.utils.FontManager;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+import org.scilab.modules.renderer.utils.textRendering.FontManager;
+import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 
 /**
  * 
@@ -107,10 +108,13 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		// check if resizing is really needed
 		if (factor < FACTOR_CHANGE_INTERVAL[0] || factor >  FACTOR_CHANGE_INTERVAL[1]) {
 			float newSize = (float) (getFont().getSize2D() * factor);
-		
+			
+			
 			stringPos.scale(factor);
 		
-			renderer = getTextRenderer(newSize);
+			// update text renderer
+			setFont(getFont().deriveFont(newSize));
+			renderer = getTextRenderer();
 			// update StringSizes with the new renderer
 			//getTextMatrix().update(renderer);
 			getTextMatrix().scale(factor);
@@ -121,9 +125,9 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 
 		drawText(renderer, getTextMatrix(), stringPos);
 		//endRecordDL();
-		Vector3D[] bbox = stringPos.getExtremBounds();
 		
-		return placeBoundingBox(bbox, getTextCenterPix(), getRotationAngle());
+		
+		return getBoundingRectanglePix();
 		
 	}
 	

@@ -15,8 +15,6 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
-import java.awt.Font;
-
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.Threading;
@@ -28,9 +26,11 @@ import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
 import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
 import org.scilab.modules.renderer.polylineDrawing.JOGLShadeFacetDrawer;
 import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
-import org.scilab.modules.renderer.textDrawing.SciTextRenderer;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.selection.RubberBox;
+import org.scilab.modules.renderer.utils.textRendering.JOGLTextRendererFactory;
+import org.scilab.modules.renderer.utils.textRendering.TextRendererFactory;
+import org.scilab.modules.renderer.utils.textRendering.TextRendererManager;
 import org.scilab.modules.renderer.ObjectGLCleaner;
 
 
@@ -70,13 +70,8 @@ public class DrawableFigureGL extends ObjectGL {
 	/** To know if the figure can be displayed */
 	private boolean isReadyForRendering;
 	
-	private SciTextRenderer textWriter;
-	
 	/** Keep a pointer on the OpenGL rendering target (Canvas, pBuffer, ...). */
 	private GLAutoDrawable renderingTarget;
-	
-	/** Default TextRenderer */
-	private TextRendererFactory textRendererFactory;
 
 	/** Default ArcRenderer */
 	private ArcRendererFactory arcRendererFactory;
@@ -90,6 +85,8 @@ public class DrawableFigureGL extends ObjectGL {
 	/** Choose the type of polygon's paint */
 	private ShadeFacetDrawer shadeFacetDrawer;
 	
+	private TextRendererManager textRendererCreator;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -101,11 +98,11 @@ public class DrawableFigureGL extends ObjectGL {
       	destroyedObjects = new ObjectGLCleaner();
       	isReadyForRendering = false;
       	renderingTarget = null;
+      	textRendererCreator = new TextRendererManager();
       	setDefaultTextRenderer();
       	setDefaultArcRendererFactory();
       	setDefaultShadeFacetDrawer();
       	backGroundColorIndex = 0;
-      	textWriter = null;
       	rubberBox = null;
     }
 	
@@ -113,7 +110,7 @@ public class DrawableFigureGL extends ObjectGL {
 	 * Set the default TextRenderer
 	 */
 	public void setDefaultTextRenderer() {
-		textRendererFactory = new JOGLTextRendererFactory();
+		this.setTextRendererFactory(new JOGLTextRendererFactory());
 	}
 	
 	/**
@@ -511,17 +508,8 @@ public class DrawableFigureGL extends ObjectGL {
 	 * @param textRendererFactory TextRendererFactory
 	 */
 	public void setTextRendererFactory(TextRendererFactory textRendererFactory) {
-		this.textRendererFactory = textRendererFactory;
+		textRendererCreator.setTextRendererFactory(textRendererFactory);
 	}
-	
-	/**
-	 * getTextRendererFactory
-	 * @return TextRendererFactory
-	 */
-	public TextRendererFactory getTextRendererFactory() {
-		return textRendererFactory;
-		
-	}	
 	
 	/**
 	 * setArcRendererFactory
@@ -555,48 +543,6 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void setShadeFacetDrawer(ShadeFacetDrawer shadeFacetDrawer) {
 		this.shadeFacetDrawer = shadeFacetDrawer;
-	}
-
-	/**
-	 * Get a text renderer with the specified color and font
-	 * @param font specified font
-	 * @param color 3 color channels
-	 * @return text renderer to use
-	 */
-	public SciTextRenderer getTextWriter(Font font, double[] color) {
-		// check if we need to recreate a new one
-		if (textWriter == null || !textWriter.hasFont(font)) {
-			if (textWriter != null) {
-				// free resources used by the current one if exists
-				textWriter.dispose();
-			}
-			textWriter = (SciTextRenderer) getTextRendererFactory().createTextRenderer(font, color);
-		} else {
-			textWriter.setColor(color[0], color[1], color[2]);
-		}
-		
-		return textWriter;
-	}
-	
-	/**
-	 * Destroy the current text writter, then force the creation of a new one
-	 */
-	public void destroyTextWriter() {
-		if (textWriter != null) {
-			// free resources used by the current one
-			textWriter.dispose();
-		}
-		textWriter = null;
-	}
-	
-	/**
-	 * To be called fromthe init method
-	 * The text renderer must be created again
-	 * But its ressources has alredy been destroyed
-	 * so just set it to null
-	 */
-	protected void reinitTextWriter() {
-		textWriter = null;
 	}
 	
 	/**
@@ -684,6 +630,13 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void stopRotationRecording() {
 		getRendererProperties().stopRotationRecording();
+	}
+	
+	/**
+	 * @return Instance of the object which create textRenderer.
+	 */
+	public TextRendererManager getTextRendererCreator() {
+		return textRendererCreator;
 	}
 	
 }

@@ -13,6 +13,10 @@
 
 package org.scilab.modules.renderer.textDrawing;
 
+import javax.media.opengl.GL;
+
+import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
+
 
 /**
  * Interface for drawing text inside a position matrix with different alignment.
@@ -29,11 +33,12 @@ public interface TextAlignementStrategy {
 	
 	/**
 	 * Draw the text matrix inside a position matrix using a specific text renderer.
+	 * @param gl current GL pipeline
 	 * @param renderer renderer to use for drawing
 	 * @param text matrix of strings
 	 * @param positionMatrix matrix of positions.
 	 */
-	void drawTextContent(SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix);
+	void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix);
 	
 	
 }

@@ -41,14 +41,18 @@ void DrawableObject::display( void )
 {
   if ( m_bNeedDraw )
   {
-    draw() ;
-    m_bNeedDraw = false;
-    m_bNeedRedraw = false ;
+    if ( draw() == SUCCESS)
+    {
+      m_bNeedDraw = false;
+      m_bNeedRedraw = false ;
+    } 
   }
   else if (m_bNeedRedraw)
   {
-    redraw();
-    m_bNeedRedraw = false;
+    if (redraw() == SUCCESS)
+    {
+      m_bNeedRedraw = false;
+    }
   }
   else
   {
@@ -159,9 +163,9 @@ void DrawableObject::setDrawableImp( DrawableObjectBridge * imp )
   m_pImp = imp;
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableObject::redraw(void)
+DrawableObject::EDisplayStatus DrawableObject::redraw(void)
 {
-  show();
+  return show();
 }
 /*------------------------------------------------------------------------------------------*/
 bool DrawableObject::checkVisibility( void )

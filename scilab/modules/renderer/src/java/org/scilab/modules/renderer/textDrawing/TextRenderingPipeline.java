@@ -15,6 +15,7 @@
 package org.scilab.modules.renderer.textDrawing;
 
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 
 /**
  * Define the steps for text rendering

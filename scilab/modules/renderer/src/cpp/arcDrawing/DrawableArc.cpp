@@ -28,35 +28,37 @@ DrawableArc::~DrawableArc( void )
   
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableArc::draw( void )
+DrawableObject::EDisplayStatus DrawableArc::draw( void )
 {
   
   if ( !checkVisibility() )
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing() ;
   clip();
   drawArc() ;
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableArc::redraw(void)
+DrawableObject::EDisplayStatus DrawableArc::redraw(void)
 {
   // force redrawing
-  draw();
+  return draw();
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableArc::show( void )
+DrawableObject::EDisplayStatus DrawableArc::show( void )
 {
   if ( !checkVisibility() )
   {
-    return ;
+    return UNCHANGED ;
   }
   clip();
   showArc();
   unClip();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
 DrawableArcBridge * DrawableArc::getArcImp( void )

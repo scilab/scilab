@@ -18,22 +18,28 @@ namespace sciGraphics
 {
 
 /*---------------------------------------------------------------------------------*/
-void DrawableGrayplot::draw( void )
+DrawableObject::EDisplayStatus DrawableGrayplot::draw( void )
 {
   if(!checkVisibility())
   {
-    return ;
+    return UNCHANGED;
   }
   initializeDrawing();
   clip();
   drawGrayplot();
   unClip();
   endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableGrayplot::show( void )
+DrawableObject::EDisplayStatus DrawableGrayplot::show( void )
 {
+  if(!checkVisibility())
+  {
+    return UNCHANGED;
+  }
   showGrayplot();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
 DrawableGrayplotBridge * DrawableGrayplot::getGrayplotImp( void )
