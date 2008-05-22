@@ -36,6 +36,8 @@ Source: modules\{#MATIO}\macros\buildmacros.sce; DestDir: {app}\modules\{#MATIO}
 Source: modules\{#MATIO}\macros\buildmacros.bat; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}
 Source: modules\{#MATIO}\macros\cleanmacros.bat; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}
 ;
+Source: modules\{#MATIO}\sci_gateway\matio_gateway.xml; DestDir: {app}\modules\{#MATIO}\sci_gateway; Components: {#COMPN_MATIO}
+;
 ;Source: modules\{#MATIO}\demos\*.*; DestDir: {app}\modules\{#MATIO}\demos; Flags: recursesubdirs; Components: {#COMPN_MATIO}
 ;
 ;Source: modules\{#MATIO}\tests\*.*; DestDir: {app}\modules\{#MATIO}\tests; Flags: recursesubdirs; Components: {#COMPN_MATIO} and {#COMPN_TESTS}
