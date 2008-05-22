@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Vincent Couvert
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -18,7 +18,7 @@ function C=tree2code(P,prettyprint)
 
 // Verify good type for input
 if typeof(P)<>"program" then
-  error(msprintf(gettext("%s: Wrong type for first input argument: ''%s'' expected.\n"),"tree2code","program tree"));
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: ''%s'' expected.\n"),"tree2code",2,"program tree"));
 end
 
 // Default value
@@ -37,12 +37,12 @@ if P.name<>"" then // Not a batch file
     lhsstr=[lhsstr,expression2code(P.outputs(k))]
   end
   lhsstr="["+strcat(lhsstr,",")+"]"
-  
+
   for k=1:size(P.inputs)
     rhsstr=[rhsstr,expression2code(P.inputs(k))]
   end
   rhsstr="("+strcat(rhsstr,",")+")"
-  
+
   C="function "+lhsstr+" = "+P.name+rhsstr;
 end
 

@@ -1,11 +1,11 @@
 //==========================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Jean-baptiste SILVY
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // Desc   : Convert the string format defined by jpc into matrix of strings
@@ -20,7 +20,7 @@ function [strings] = arobasestring2strings( varargin )
 
 // check number of arguments
 if ( rhs ~= 1 ) then
-  error(39);
+  error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"arobasestring2strings",1));
   return ;
 end
 
@@ -28,8 +28,8 @@ cText = varargin(1) ;
 
 // check type
 if ( type(cText) ~= 10 ) then
-  error(246) ;
-  return ; 
+  error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"),"arobasestring2strings"));
+  return ;
 end
 
 // check the size

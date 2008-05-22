@@ -17,7 +17,7 @@
 function res = isnum(str)
 	
 	if type(str) <> 10 then
-		error(44,1);
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of character strings.\n"),"isnum",1));
 	end
 	
 	[nr,nc] = size(str);

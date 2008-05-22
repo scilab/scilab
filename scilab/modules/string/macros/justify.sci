@@ -26,7 +26,7 @@ function t=justify(t,job)
 	t(l,k)=part(' ',1:nl)+t(l,k)+part(' ',1:nr)
       end
     else
-      error(msprintf(gettext("%s: Invalid option.\n"),"justify"))
+      error(msprintf(gettext("%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"),"justify",2));
     end
   end
 endfunction
