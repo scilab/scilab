@@ -374,7 +374,7 @@ public abstract class SciConsole extends JPanel {
 			// Remove the prompt if present at the beginning of the text to execute
 			// Bug 3002 fix: this "functionality" has been removed because:
 			// - Remove the --> even if not from paste action
-			// - Do not remove pause prompts
+			// - Does not remove pause prompts
 
 			// Store the command in the buffer so that Scilab can read it
 			if (linesToExec[nbStatements].length() > MAX_CMD_LENGTH) {
