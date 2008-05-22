@@ -91,9 +91,9 @@ void C2F(convertdate)(time_t *dt,int w[10])
 		w[7] = 0;
 		w[8] = 0;
 		w[9] = 0;
-		if (*dt<0)	Scierror(999,_("%s: Wrong value for first input argument: Must be > %d.\n"),"getdate",0);
+		if (*dt<0)	Scierror(999,_("%s: Wrong value for input argument #%d: Must be > %d.\n"),"getdate",1,0);
 		#ifdef _MSC_VER
-		else Scierror(999,_("%s: Wrong value for first input argument: Must be < %d.\n"),"getdate",_MAX__TIME64_T);
+		else Scierror(999,_("%s: Wrong value for input argument #%d: Must be < %d.\n"),"getdate",1,_MAX__TIME64_T);
 		#endif
 	}
 	else

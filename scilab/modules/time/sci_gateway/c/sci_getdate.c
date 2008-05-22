@@ -82,7 +82,7 @@ int C2F(sci_getdate)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong type for first input argument: Integer or '%s' expected.\n"),fname,"s");
+				Scierror(999,_("%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"),fname,1,"s");
 				return 0;
 			}
 		}
@@ -138,7 +138,7 @@ int C2F(sci_getdate)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong type for first input argument: Integer or '%s' expected.\n"),fname,"s");
+				Scierror(999,_("%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"),fname,1,"s");
 				return 0;
 			}
 		}

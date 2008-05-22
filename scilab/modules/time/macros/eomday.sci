@@ -36,7 +36,7 @@ function E=eomday(Y,M)
 	end
 	
 	if (min(M) < 1) | (max(M) > 12) then
-		error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"eomday",1,12));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"eomday",2,1,12));
 	end
 	
 	[nr,nc] = size(M);

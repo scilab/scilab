@@ -18,4 +18,4 @@
 
 execstr('datenum(2006,12,32)','errcatch');
 error_str = lasterror();
-if stripblanks(error_str) <> "datenum: Wrong value for third input argument: Must be between 1 and 31."  then pause,end
+if stripblanks(error_str) <> "datenum: Wrong value for input argument #3: Must be between 1 and 31."  then pause,end

@@ -16,7 +16,7 @@ function tictoctime=toc()
 global TICTOC;
 
 if isempty(TICTOC) then
-  error(gettext('You must call tic() before calling toc().'));
+  error(msprintf(gettext('%s: You must call tic() before calling toc().\n'),'toc'));
 end
 
 tictoctime=etime(getdate(),TICTOC);

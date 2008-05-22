@@ -55,13 +55,13 @@ int C2F(sci_calendar)(char *fname,unsigned long fname_len)
 
 		if ( (year<1800) || (year>3000) )
 		{
-			Scierror(999,_("%s: Wrong value for second input argument: Must be between %d and %d.\n"),fname,1800,3000);
+			Scierror(999,_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),fname,2,1800,3000);
 			return 0;
 		}
 
 		if ( (month<1) || (month>12) )
 		{
-			Scierror(999,_("%s: Wrong value for first input argument: Must be between %d and %d.\n"),fname,1,12);
+			Scierror(999,_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),fname,1,1,12);
 			return 0;
 		}
 	}

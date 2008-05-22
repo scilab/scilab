@@ -21,11 +21,11 @@ function [Y,M,D,h,m,s] = datevec(N)
 	leap_year   = [0,31,60,91,121,152,182,213,244,274,305,335,366];
 	
 	if rhs<>1 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),1));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"datevec",1));
 	end
 	
 	if type(N) <> 1 then
-		error(msprintf(gettext("%s: Wrong type for first input argument: Real matrix expected.\n"),"datevec"));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"datevec",1));
 	end
 	
 	[nr,nc] = size(N);

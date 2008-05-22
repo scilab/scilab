@@ -34,7 +34,7 @@ int C2F(sci_xpause)(char *fname,unsigned long fname_len)
 		sec = (integer) *stk(l1);
 		if (sec <= 0)
 		{
-			Scierror(999,_("%s: Wrong value for input argument: Must be > %d.\n"),fname,0);
+			Scierror(999,_("%s: Wrong values for input argument #%d: Non-negative integers expected.\n"),fname,1);
 			return 0;
 		}
 

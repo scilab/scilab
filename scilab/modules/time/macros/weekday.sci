@@ -20,11 +20,11 @@ function [N,S] = weekday(D,form)
 	end
 	
 	if type(D) <> 1 then
-		error(msprintf(gettext("%s: Wrong type for first input argument: Real constant matrix expected.\n"),"weekday"));
+		error(msprintf(gettext("%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"),"weekday",1));
 	end
 	
 	if (rhs==2) & (form <> 'long') & (form <> 'short') then
-		error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'' or ''%s'' expected.\n"),"weekday","long","short"));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"weekday",2,"long","short"));
 	end
 	
 	// some definitions

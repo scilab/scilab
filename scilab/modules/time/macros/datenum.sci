@@ -37,35 +37,35 @@ function n=datenum(varargin)
 			// Checks
 			
 			if type(DateIn)<> 1 then
-				error(msprintf(gettext("%s: Wrong type for first input argument: Real matrix expected.\n"),"datenum"));
+				error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"datenum",1));
 			end
 			
 			[nr,nc] = size(DateIn);
 			
 			if (nc <> 3) & (nc <> 6) then
-				error(msprintf(gettext("%s: Wrong size for first input argument: m*3 matrix or a m*6 matrix expected.\n"),"datenum"));
+				error(msprintf(gettext("%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"),"datenum",1));
 			end
 			
 			if min(DateIn(:,2))<1 | max(DateIn(:,2))>12 then
-				error(msprintf(gettext("%s: Wrong value for first input argument: %s must be between %d and %d.\n"),"datenum",gettext("Month"),1,12));
+				error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"),"datenum",1,gettext("Month"),1,12));
 			end
 			
 			if min(DateIn(:,3))<1 | max(DateIn(:,3))>31 then
-				error(msprintf(gettext("%s: Wrong value for first input argument: %s must be between %d and %d.\n"),"datenum",gettext("Day"),1,31));
+				error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"),"datenum",1,gettext("Day"),1,31));
 			end
 			
 			if nc == 6 then
 				
 				if min(DateIn(:,4))<0 | max(DateIn(:,4))>23 then
-					error(msprintf(gettext("%s: Wrong value for first input argument: %s must be between %d and %d.\n"),"datenum",gettext("Hour"),0,23));
+					error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"),"datenum",1,gettext("Hour"),0,23));
 				end
 				
 				if min(DateIn(:,5))<0 | max(DateIn(:,5))>59 then
-					error(msprintf(gettext("%s: Wrong value for first input argument: %s must be between %d and %d.\n"),"datenum",gettext("Minute"),0,59));
+					error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"),"datenum",1,gettext("Minute"),0,59));
 				end
 				
 				if min(DateIn(:,6))<0 | max(DateIn(:,6))>59 then
-					error(msprintf(gettext("%s: Wrong value for first input argument: %s must be between %d and %d.\n"),"datenum",gettext("Second"),0,59));
+					error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"),"datenum",1,gettext("Second"),0,59));
 				end
 				
 			end
@@ -94,11 +94,11 @@ function n=datenum(varargin)
 			end
 			
 			if min(MonthIn)<1 | max(MonthIn)>12 then
-				error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"datenum",1,12));
+				error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"datenum",2,1,12));
 			end
 			
 			if min(DayIn)<1 | max(DayIn)>31 then
-				error(msprintf(gettext("%s: Wrong value for third input argument: Must be between %d and %d.\n"),"datenum",1,31));
+				error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"datenum",3,1,31));
 			end
 			
 			[nr,nc]  = size(YearIn);
@@ -135,23 +135,23 @@ function n=datenum(varargin)
 			end
 			
 			if min(MonthIn)<1 | max(MonthIn)>12 then
-				error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"datenum",1,12));
+				error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"datenum",2,1,12));
 			end
 			
 			if min(DayIn)<1 | max(DayIn)>31 then
-				error(msprintf(gettext("%s: Wrong value for third input argument: Must be between %d and %d.\n"),"datenum",1,31));
+				error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"datenum",3,1,31));
 			end
 			
 			if min(HourIn)<0 | max(HourIn)>23 then
-				error(msprintf(gettext("%s: Wrong value for fourth input argument: Must be between %d and %d.\n"),"datenum",0,23));
+				error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"datenum",4,0,23));
 			end
 			
 			if min(MinIn)<0 | max(MinIn)>59 then
-				error(msprintf(gettext("%s: Wrong value for fifth input argument: Must be between %d and %d.\n"),"datenum",0,59));
+				error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"datenum",5,0,59));
 			end
 			
 			if min(SecIn)<0 | max(SecIn)>59 then
-				error(msprintf(gettext("%s: Wrong value for sixth input argument: Must be between %d and %d.\n"),"datenum",0,59));
+				error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"datenum",6,0,59));
 			end
 			
 			n = ymdhmns_to_scalar(YearIn,MonthIn,DayIn,HourIn,MinIn,SecIn);
