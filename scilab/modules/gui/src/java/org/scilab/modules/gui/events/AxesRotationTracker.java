@@ -55,6 +55,8 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		this.isWaitingForClick = false;
 		clickPosX = -1;
 		clickPosY = -1;
+		// Back to default cursor
+		getTrackedCanvas().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	
 	/**
@@ -87,11 +89,11 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 	 */
 	public boolean getDisplacement(int[] displacement) {
 		// Change cursor
-		Image icon = Toolkit.getDefaultToolkit().getImage(System.getenv("SCI") + "/modules/gui/images/icons/rotate.png");
-		getTrackedCanvas().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, new Point(0,0), "rotate"));
 		
 		if (!recordStarted) {
 			// first call
+			Image icon = Toolkit.getDefaultToolkit().getImage(System.getenv("SCI") + "/modules/gui/images/icons/rotate.png");
+			getTrackedCanvas().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, new Point(0,0), "rotate"));
 			waitForClick(displacement);
 			startRecording(clickPosX, clickPosY);
 			return true;
@@ -106,9 +108,6 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 			
 			// reinit for a next call
 			reinit();
-			
-			// Back to default cursor
-			getTrackedCanvas().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
 			return false;
 		}
