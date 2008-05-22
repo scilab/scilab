@@ -8,13 +8,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 // 
 
-function [lambda,facpr,comprinc]=pca(varargin)
+function [lambda,facpr,comprinc]=pca(x)
 //
 //This  function performs  several  computations known  as
-//"principal component  analysis". It includes  drawing of
-//"correlations circle",  i.e. in the  horizontal axis the
-//correlation   values  r(c1;xj)   and  in   the  vertical
-//r(c2;xj). It is an extension of the pca function.
+//"principal component  analysis".
 //
 //The  idea  behind this  method  is  to  represent in  an
 //approximative  manner a  cluster of  n individuals  in a
@@ -59,30 +56,8 @@ function [lambda,facpr,comprinc]=pca(varargin)
 //commentary fixed 2003-19-24 ??
 // update disable graphics output Allan CORNET 2008
 // request user
-  [lhs,rhs]=argn(0)
- 
-  x = [];
-  N = [];
-  no_graphics = %f;
-  
-  select rhs,
-  	case 1 then
-  	  x = varargin(1);
-  	  N=[1 2];
-  	case 2 then 
-  	  x = varargin(1);
-  	  N = varargin(2);
-  	case 3 then
-  	  x = varargin(1);
-  	  N = varargin(2);
-  	  no_graphics = varargin(3);
-  	else
-  	error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"),"pca",1,3));
-  	end
-
-  if ( type(no_graphics) <> 4 ) then
-    error(msprintf(gettext("%s: Wrong type for third input argument: Boolean expected.\n"),"pca"));
-  end
+// splitted in printcomp (matlab compatibility) and show_pca Serge Steer
+// 2008
 
   if x==[] then
     lambda=%nan;
@@ -90,60 +65,8 @@ function [lambda,facpr,comprinc]=pca(varargin)
     comprinc=%nan; 
     return; 
   end
-
-  [rowx colx]=size(x)
-  if size(N,'*')<>2 then error(msprintf(gettext("%s: Wrong size for second inputargument: Size %s expected.\n"),"pca","2x1")), end,
-  if max(N)>colx then disp(msprintf(gettext("%s: Graph demand out of bounds.\n"),"pca")), return, end
-  
-  xbar=sum(x,'r')/rowx
-  y=x-ones(rowx,1)*xbar
-  std=(sum(y .^2,'r')) .^ .5 
-  V=(y'*y) ./ (std'*std)
-  [lambda facpr]=bdiag(V,(1/%eps))
-  [lambda order]=sort(diag(lambda))
-  lambda(:,2)=lambda(:,1)/sum(lambda(:,1))
-  facpr=facpr(:,order)
-  comprinc=x*facpr
-  
-  if ~no_graphics then
-    w = winsid();
-    if (w == []) then 
-      w = 0; 
-    else
-      w = max(w)+1;
-    end
-    fig1 = scf(w);
-    
-    rc = (ones(colx,1)* sqrt((lambda(N,1))')) .* facpr(:,order(N)) ;
-    rango = rank(V);
-    ra = [1:rango]';
-    if ( rango <= 1 ) then return, end
-    plot2d(-rc(ra,1),rc(ra,2),style=-10);
-    legend('(r(c1,xj),r(c2,xj)');
-    ax=gca();
-    ax.x_location="middle";
-    ax.y_location = "middle";
-    blue=color('blue')
-    for k=1:rango,
-      xstring(rc(k,1),rc(k,2),'X'+string(k));
-      e=gce();
-      e.foreground=blue;
-    end
-    title(gettext("Correlations Circle"));
-    fig2 = scf(w+1);
-    plot2d3([0;ra;rango+1]',[0; lambda(ra,2);0]);
-    plot2d(ra,lambda(ra,2),style=9);
-    ax=gca();
-    ax.grid=[31 31];
-    plot2d3([0;ra;rango+1]',[0; lambda(ra,2);0])
-    plot2d(ra,lambda(ra,2),style=9)
-    for k=1:rango,
-      xstring(k,0,'l'+string(k)),
-      e=gce();e.font_style=1
-    end
-    title(gettext("Eigenvalues (in percent)"))
-    ylabel('%')
-  end  
+  [facpr,comprinc,lambda]=princomp(wcenter(x,1))
 endfunction
+
 
 
