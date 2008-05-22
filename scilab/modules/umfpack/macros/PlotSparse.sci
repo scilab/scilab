@@ -78,7 +78,7 @@ function [] = PlotSparse(A, style)
       [m, n] = size(A)
       nel = nnz(A)
    else   
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"),"PlotSparse",1,gettext("sparse matrix")));
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: sparse matrix expected.\n"),"PlotSparse",1));
    end
    
    if rhs == 1 then
