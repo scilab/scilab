@@ -48,7 +48,7 @@ txt=strcat(vstr [,strp],["flag"])</synopsis>
       <varlistentry>
         <term>"flag"</term>
         <listitem>
-          <para>string ( "*" for just return one string , "r" for return a
+          <para>string ( "r" for return a
           column matrix, "c" for return a row matrix) </para>
         </listitem>
       </varlistentry>

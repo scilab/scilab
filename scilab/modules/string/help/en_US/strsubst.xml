@@ -22,7 +22,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>str=strsubst(string,searchStr,replaceStr)
-str=strsubst(string,searchStr,replaceStr,["flag"])</synopsis>
+str=strsubst(string,searchStr,replaceStr,[flag])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -55,7 +55,7 @@ str=strsubst(string,searchStr,replaceStr,["flag"])</synopsis>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>"flag"</term>
+        <term>flag</term>
         <listitem>
           <para>string("r" for regular expression)</para>
         </listitem>

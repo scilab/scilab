@@ -21,8 +21,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>ind=strindex(haystack,needle )
-[ind,which]=strindex(haystack,needle )</synopsis>
+    <synopsis>ind=strindex(haystack,needle,[flag])
+[ind,which]=strindex(haystack,needle,[flag])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -54,7 +54,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>"flag"</term>
+        <term>flag</term>
         <listitem>
           <para>string("r" for regular expression)</para>
         </listitem>
