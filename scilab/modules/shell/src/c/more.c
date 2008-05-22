@@ -22,7 +22,7 @@
 #include "../../../console/includes/GetCharWithoutOutput.h"
 #include "../../../console/includes/ConsolePrintf.h"
 /*--------------------------------------------------------------------------*/
-#define MSG_MORE _("[ENTER to continue display, n to stop]")
+#define MSG_MORE _("[Continue display? n (no) to stop, any other key to continue]")
 /*--------------------------------------------------------------------------*/
 int linesmore(void)
 {
