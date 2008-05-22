@@ -177,7 +177,9 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 		
 		listSelectionListener = new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
-				callback.actionPerformed(null);
+				if (!arg0.getValueIsAdjusting()) {
+					callback.actionPerformed(null);	
+				}
 			}
 		};
 		
