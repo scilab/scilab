@@ -74,12 +74,12 @@ static int sci_emptystr_one_rhs(char *fname)
 	/*With a matrix for input argument returns a zero length character strings matrix of the same size */
 	int Type = VarType(1);
 
-	if (VarType(1) == sci_matrix) 
+	if (Type == sci_matrix) 
 	{
 		char **Input_StringMatrix_One = NULL;
 		
 		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&Input_StringMatrix_One);
-		if ((m1 == 0) && (n1 == 0))
+		if ((m1 == 0) && (n1 == 0)) /* emptystr([]) */
 		{
 			int l = 0;
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
@@ -88,31 +88,22 @@ static int sci_emptystr_one_rhs(char *fname)
 			return 0;
 		}
 	}
-	switch (Type)
+	else
 	{
-		case sci_strings:
-			{
-				char **StringsFromStack = NULL;
-				GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&StringsFromStack);
-				freeArrayOfString(StringsFromStack,m1*n1);
-			}
-		break;
-		case sci_matrix:
-			{
-				int l1 = 0;
-				GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-			}
-		break;
-		case sci_ints:
-			{
-				SciIntMat l1;
-				GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&l1);
-			}
-		break;
-		default :
-  		Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
-		return 0;
-	} 
+		int RHSPOS = 1;
+		int l1 = 0;
+		int il = 0;
+		int lw = RHSPOS + Top - Rhs;
+
+		l1 = *Lstk(lw);
+		il = iadr(l1);
+
+		if (*istk(il ) < 0) il = iadr(*istk(il + 1));
+
+		/* get dimensions */
+		m1 = getNumberOfLines(il); /* row */
+		n1 = getNumberOfColumns(il); /* col */
+	}
 
 	/* m1 is the number of row ; n1 is the number of col*/
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1, &n1, NULL);   
