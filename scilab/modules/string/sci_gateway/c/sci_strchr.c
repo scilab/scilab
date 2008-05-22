@@ -2,11 +2,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -55,7 +55,7 @@ int C2F(sci_strchr)(char *fname,unsigned long fname_len)
 				{
 					freeArrayOfString(Input_StringMatrix_1,m1n1);
 					freeArrayOfString(Input_StringMatrix_2,m2n2);
-					Scierror(999,_("%s: Wrong size for second input argument: Single character expected.\n"),fname);
+					Scierror(999,_("%s: Wrong size for input argument #%d: Single character expected.\n"),fname,2);
 					return 0;
 				}
 			}
@@ -82,13 +82,20 @@ int C2F(sci_strchr)(char *fname,unsigned long fname_len)
 		{
 			freeArrayOfString(Input_StringMatrix_1,m1n1);
 			freeArrayOfString(Input_StringMatrix_2,m2n2);
-			Scierror(999,_("%s : Wrong size for second input argument.\n"),fname);
+			Scierror(999,_("%s : Wrong size for input argument #%d.\n"),fname,2);
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first or second input argument: Strings expected.\n"),fname);
+		if(GetType(1) != sci_strings)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,1);
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Single character expected.\n"),fname,2);
+		}
 	}
 	return 0;
 }

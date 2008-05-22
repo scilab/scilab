@@ -2,11 +2,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU , Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -49,7 +49,7 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong size for first input argument: Scalar expected.\n"), fname);
+				Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character string or empty matrix expected.\n"), fname);
 				return 0;
 			}
 		}
@@ -60,23 +60,31 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 			int m1 = 0 , n1 = 0;
 			int m1n1 = 0; /* m1 * n1 */
 			char **Input_StringMatrix_One = NULL;
-
+			
 			int m2 = 0 , n2 = 0;
 			int m2n2 = 0; /* m2 * n2 */
 			char **Input_StringMatrix_Two = NULL;
-
+			
 			int m3 = 0 , n3 = 0;
 			int m3n3 = 0; /* m2 * n2 */
 			char **Input_StringMatrix_Three = NULL;
-
+			
 			char **Output_StringMatrix = NULL;
-
+			
 			if ( (VarType(2) != sci_strings) || (VarType(3) != sci_strings))
 			{
-				Scierror(999,_("%s: Wrong type for input argument(s): Strings expected.\n"),fname);
+				if(VarType(2) != sci_strings)
+				{
+					Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname,2);
+				}
+				else
+				{
+					Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname,3);
+				}
+				
 				return 0;
 			}
-
+			
 			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_StringMatrix_One);
 			m1n1 = m1 * n1 ;
 				
@@ -87,7 +95,7 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 			{
 				freeArrayOfString(Input_StringMatrix_One,m1n1);
 				freeArrayOfString(Input_StringMatrix_Two,m2n2);
-				Scierror(36,_("%s: Wrong size for second input argument: Scalar expected.\n"), fname);
+				Scierror(36,_("%s: Wrong size for input argument #%d: Single character string expected.\n"), fname,2);
 				return 0;
 			}
 			GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&Input_StringMatrix_Three);
@@ -97,7 +105,7 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 				freeArrayOfString(Input_StringMatrix_One,m1n1);
 				freeArrayOfString(Input_StringMatrix_Two,m2n2);
 				freeArrayOfString(Input_StringMatrix_Three,m3n3);
-				Scierror(36,_("%s: Wrong size for third input argument: Scalar expected.\n"),fname);
+				Scierror(36,_("%s: Wrong size for input argument #%d: Single character string expected.\n"),fname,3);
 				return 0;
 			}
 
@@ -110,19 +118,19 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 
 				if (VarType(4) != sci_strings)
 				{
-					Scierror(999,_("%s: Wrong type for third input argument: String expected.\n"),fname);
+					Scierror(999,_("%s: Wrong type for input argument #%d: Single character expected.\n"),fname,4);
 					return 0;
 				}
 				GetRhsVar(4,MATRIX_OF_STRING_DATATYPE,&m4,&n4,&Strings_Input4);
 				m4n4 = m4*n4;  
-
+				
 				if (m4n4 != 1)
 				{
 					freeArrayOfString(Strings_Input4,m4n4);
-					Scierror(999,_("%s: Wrong type for third input argument: String expected.\n"),fname);
+					Scierror(999,_("%s: Wrong size for input argument #%d: Single character expected.\n"),fname,4);
 					return 0;
 				}
-
+				
 				if ( (strcmp(Strings_Input4[0],CHAR_R) == 0) || (strcmp(Strings_Input4[0],CHAR_S) == 0) )
 				{
 					if (strcmp(Strings_Input4[0],CHAR_R) == 0)
@@ -138,15 +146,12 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 				else
 				{
 					freeArrayOfString(Strings_Input4,m4n4);
-					Scierror(999,_("%s: Wrong type for third input argument: ''%s'' or ''%s'' expected.\n"),fname,"s","r");
+					Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,4,"s","r");
 					return 0;
 				}
 			}
-
-
-
-
-            if (bStrsubst_with_pattern)
+			
+			if (bStrsubst_with_pattern)
 			{
 				Output_StringMatrix = strsubst_reg(Input_StringMatrix_One,m1n1,Input_StringMatrix_Two[0],Input_StringMatrix_Three[0]);
 			}
@@ -157,7 +162,7 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 			freeArrayOfString(Input_StringMatrix_One,m1n1);
 			freeArrayOfString(Input_StringMatrix_Two,m2n2);
 			freeArrayOfString(Input_StringMatrix_Three,m3n3);
-
+			
 			/* put on scilab stack */
 			CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1,Output_StringMatrix );
 			LhsVar(1) = Rhs+1 ;
@@ -168,7 +173,7 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 
 		default:
 		{
-			Scierror(999,_("%s: Wrong type for first input argument.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,1);
 			return 0;
 		}
 		break;

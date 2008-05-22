@@ -109,7 +109,7 @@ int C2F(sci_strtod)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first argument: Scalar or matrix of strings expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings or empty matrix expected.\n"),fname,1);
 	}
 	return 0;
 }

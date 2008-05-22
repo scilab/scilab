@@ -94,12 +94,12 @@ static int sci_emptystr_one_rhs(char *fname)
 		int l1 = 0;
 		int il = 0;
 		int lw = RHSPOS + Top - Rhs;
-
+		
 		l1 = *Lstk(lw);
 		il = iadr(l1);
-
+		
 		if (*istk(il ) < 0) il = iadr(*istk(il + 1));
-
+		
 		/* get dimensions */
 		m1 = getNumberOfLines(il); /* row */
 		n1 = getNumberOfColumns(il); /* col */
@@ -132,7 +132,7 @@ static int sci_emptystr_two_rhs(char *fname)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: Matrix of integers expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"),fname,1);
 		return 0;
 	}
 	
@@ -144,7 +144,7 @@ static int sci_emptystr_two_rhs(char *fname)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: Matrix of integers expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"),fname,2);
 		return 0;
 	}
 	

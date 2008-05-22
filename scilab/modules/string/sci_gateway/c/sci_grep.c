@@ -6,7 +6,7 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -75,23 +75,23 @@ int C2F(sci_grep)(char *fname,unsigned long fname_len)
 		{
 			char typ = 'd'; /*default */
 			int m3 = 0,n3 = 0,l3 = 0;
-
+			
 			GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
 			if ( m3*n3 != 0) typ = cstk(l3)[0];
-
+			
 			if (typ == 'r' )
 			{
 				sci_grep_common(fname,TRUE);
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong value for third input argument: ''%s'' expected.\n"),fname,"s");
+				Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),fname,3,"s");
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for third input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,3);
 			return 0;
 		}
 	}
@@ -167,7 +167,7 @@ static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 		for (x = 0; x < mn_two; ++x)
 		{
 			if (strstr(Inputs_param_one[y],Inputs_param_two[x])!=NULL)
-			{            
+			{
 				results->values[results->currentLength] = y+1;
 				results->positions[results->currentLength] = x+1;
 				results->currentLength++;
@@ -201,13 +201,13 @@ static int sci_grep_common(char *fname,BOOL new_grep)
 	{
 		if ( strlen(Strings_Input_Two[i]) == 0)
 		{
-			Scierror(249,_("%s: Wrong values for second input argument: Non-empty strings expected.\n"),fname); 
+			Scierror(249,_("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"),fname,2);
 			return 0;
 		}
 	}
 
 	grepresults.currentLength = 0;
-	grepresults.sizeArraysMax = 0; 
+	grepresults.sizeArraysMax = 0;
 	grepresults.positions = NULL;
 	grepresults.values = NULL;
 
@@ -249,7 +249,7 @@ static int sci_grep_common(char *fname,BOOL new_grep)
 				{
 					stk(outIndex)[x] = (double)grepresults.positions[x] ;
 				}
-				LhsVar(2) = Rhs+2;    
+				LhsVar(2) = Rhs+2;
 			}
 			C2F(putlhsvar)();
 			if (grepresults.values) {FREE(grepresults.values); grepresults.values = NULL;}

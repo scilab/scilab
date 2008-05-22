@@ -56,11 +56,11 @@ int C2F(sci_strrchr)(char *fname,unsigned long fname_len)
 				{
 					freeArrayOfString(Input_StringMatrix_1,m1n1);
 					freeArrayOfString(Input_StringMatrix_2,m2n2);
-					Scierror(999,_("%s: Wrong type for third input argument: Single character expected.\n"),fname);
+					Scierror(999,_("%s: Wrong type for input argument #%d: Single character expected.\n"),fname,2);
 					return 0;
 				}
 			}
-
+			
 			Output_Strings = strings_strrchr(Input_StringMatrix_1,m1n1,Input_StringMatrix_2,m2n2,TRUE);
 			if (Output_Strings)
 			{
@@ -83,13 +83,20 @@ int C2F(sci_strrchr)(char *fname,unsigned long fname_len)
 		{
 			freeArrayOfString(Input_StringMatrix_1,m1n1);
 			freeArrayOfString(Input_StringMatrix_2,m2n2);
-			Scierror(999,_("%s: Wrong size for second input argument.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Single character expected.\n"),fname,2);
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument(s): Matrix of strings expected.\n"),fname);
+		if(GetType(1) != sci_strings)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,1);
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Single character expected.\n"),fname,2);
+		}
 	}
 	return 0;
 }

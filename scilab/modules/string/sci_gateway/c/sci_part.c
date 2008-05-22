@@ -93,7 +93,7 @@ int C2F(sci_part)(char *fname,unsigned long fname_len)
 	
   if ( !( (m2 == 1 && n2 > 0) || (m2 > 0 && n2 == 1) ) )
     {
-      Scierror(89,_("%s: Wrong size for second input argument.\n"),fname);
+      Scierror(89,_("%s: Wrong size for input argument #%d.\n"),fname,2);
       return 0;
     }
 
@@ -106,7 +106,7 @@ int C2F(sci_part)(char *fname,unsigned long fname_len)
       if (SecondParamaterValue[i] < 1)
 	{
 	  freeArrayOfString(Input_StringMatrix,m1n1);
-	  Scierror(36,_("%s: Wrong values for second input argument: Must be >= 1.\n"),fname);
+	  Scierror(36,_("%s: Wrong values for input argument #%d: Must be >= 1.\n"),fname,2);
 	  return 0;
 	}
     }

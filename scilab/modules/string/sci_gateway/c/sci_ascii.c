@@ -254,7 +254,7 @@ static int asciiMatrix(char *fname)
 					if (getWarningMode())
 					{
 						sciprint(_("WARNING : \n"));
-						sciprint(_("%s: Wrong input argument. It must be in [%d,%d]\n"),fname,ASCII_MIN,ASCII_MAX);
+						sciprint(_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),fname,1,ASCII_MIN,ASCII_MAX);
 					}
 					FirstWarning = FALSE;
 				}
@@ -325,7 +325,7 @@ static int asciiIntMatrix(char *fname)
 /*--------------------------------------------------------------------------*/
 static int asciiOthers(char *fname)
 {
-	Scierror(999,_("%s: Wrong type for input argument(s).\n"),fname);
+	Scierror(999,_("%s: Wrong type for argument #%d: Matrix of character strings or Integer matrix expected.\n"),fname,1);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -51,7 +51,7 @@ int C2F(sci_strstr)(char *fname,unsigned long fname_len)
 		{
 			freeArrayOfString(InputString_Parameter1,m1n1);
 			freeArrayOfString(InputString_Parameter2,m2n2);
-			Scierror(999,_("%s: Wrong size for second argument: Non-empty matrix of strings expected.\n"),fname);
+			Scierror(999,_("%s: Wrong size for input argument #%d: Non-empty matrix of character strings expected.\n"),fname,2);
 			return 0;
 		}
 		else
@@ -88,7 +88,7 @@ int C2F(sci_strstr)(char *fname,unsigned long fname_len)
 						freeArrayOfString(OutputStrings,m1n1);
 						freeArrayOfString(InputString_Parameter1,m1n1);
 						freeArrayOfString(InputString_Parameter2,m2n2);
-						Scierror(999,_("%s: Wrong size for second input argument.\n"),fname);
+						Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname,2);
 						return 0;
 					}
 					else
@@ -133,14 +133,21 @@ int C2F(sci_strstr)(char *fname,unsigned long fname_len)
 			{
 				freeArrayOfString(InputString_Parameter1,m1n1);
 				freeArrayOfString(InputString_Parameter2,m2n2);
-				Scierror(999,_("%s: Wrong size for second parameter.\n"),fname);
+				Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname,2);
 				return 0;
 			}
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument(s): Matrix of strings expected.\n"),fname);
+		if(GetType(1) != sci_strings)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,1);
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,2);
+		}
 	}
 	return 0;
 }

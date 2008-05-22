@@ -2,11 +2,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -53,36 +53,36 @@ int C2F(sci_stripblanks)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for second input argument: Boolean expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: A boolean expected.\n"),fname,2);
 			return 0;
 		}
 	}
 
 	switch (Type_One)
 	{
-	case sci_matrix :
-		{
-			/* case stripblanks([]) */
-			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&Input_String_Matrix_One);
-			if ( (m1 == 0) && (n1 == 0) )
+		case sci_matrix :
 			{
-				int l = 0;
-				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
-				LhsVar(1) = Rhs+1 ;
-				C2F(putlhsvar)();
-				return 0;
+				/* case stripblanks([]) */
+				GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&Input_String_Matrix_One);
+				if ( (m1 == 0) && (n1 == 0) )
+				{
+					int l = 0;
+					CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
+					LhsVar(1) = Rhs+1 ;
+					C2F(putlhsvar)();
+					return 0;
+				}
 			}
-		}
-		break;
-	case sci_strings :
-		{
-			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_String_Matrix_One);
-			mn = m1*n1;
-		}
-		break;
-	default :
-		Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
-		return 0;
+			break;
+		case sci_strings :
+			{
+				GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_String_Matrix_One);
+				mn = m1*n1;
+			}
+			break;
+		default :
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings or empty matrix expected.\n"),fname,1);
+			return 0;
 	}
 
 	if (mn > 0) Output_String_Matrix = (char**)MALLOC(sizeof(char*)*(mn));

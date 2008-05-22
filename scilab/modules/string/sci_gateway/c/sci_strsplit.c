@@ -50,7 +50,7 @@ int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings or empty matrix expected.\n"),fname,1);
 		}
 		return 0;
 	}
@@ -200,7 +200,14 @@ int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument(s).\n"),fname);
+		if(VarType(1) != sci_strings)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,1);
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"),fname,2);
+		}
 	}
 	return 0;
 

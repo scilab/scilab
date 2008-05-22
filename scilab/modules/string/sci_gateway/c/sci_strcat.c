@@ -97,11 +97,11 @@ static int sci_strcat_three_rhs(char *fname)
 		}
 		if (Rhs >= 3) 
 		{
-			GetRhsVar(3,STRING_DATATYPE,&Row_Three,&Col_Three,&l3); 
+			GetRhsVar(3,STRING_DATATYPE,&Row_Three,&Col_Three,&l3);
 			if ( Row_Three*Col_Three != 0) typ = cstk(l3)[0];
 			if (typ != COL && typ != ROW ) 
 			{
-				Scierror(999,_("%s: Wrong type for third input argument: ''%s'' or ''%s'' expected.\n"),fname,"c","r"); 
+				Scierror(999,_("%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"c","r");
 				return 0;
 			}
 		}
@@ -211,26 +211,26 @@ static int sci_strcat_two_rhs(char *fname)
 {
 	int Type_One = VarType(1);
 	int Type_Two = VarType(2);
-
+	
 	int Number_Inputs_Two = 0;
 	char **Input_String_Two = NULL;
-
+	
 	if (Type_Two != sci_strings)
 	{
-		Scierror(246,_("%s: Wrong type for second input argument: String expected.\n"),fname); 
+		Scierror(246,_("%s: Wrong type for input argument #%d: Single string expected.\n"),fname); 
 		return 0;
 	}
 	else /* sci_strings */
 	{
 		int Row_Two = 0,Col_Two = 0;
-
+		
 		GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&Row_Two,&Col_Two,&Input_String_Two);
 		Number_Inputs_Two = Row_Two * Col_Two;
 		/* check we have only a string as second parameter */
 		if (Number_Inputs_Two != 1)
 		{
 			freeArrayOfString(Input_String_Two,Number_Inputs_Two);
-			Scierror(36,"%s : Wrong type for second input argument: String expected.\n",fname); 
+			Scierror(36,"%s : Wrong type for input argument #%d: Single string expected.\n",fname,2);
 			return 0;
 		}
 	}
@@ -238,7 +238,7 @@ static int sci_strcat_two_rhs(char *fname)
 	if ( (Type_One != sci_strings) && (Type_One != sci_matrix) )
 	{
 		freeArrayOfString(Input_String_Two,Number_Inputs_Two);
-		Scierror(246,"%s: Wrong type for first input argument: String or matrix expected.\n",fname); 
+		Scierror(246,"%s: Wrong type for input argument #%d: Matrix of character strings expected.\n",fname,1);
 		return 0;
 	}
 	else
@@ -356,7 +356,7 @@ static int sci_strcat_one_rhs(char *fname)
 	int Type_One = VarType(1);
 	if ( (Type_One != sci_strings) && (Type_One != sci_matrix) )
 	{
-		Scierror(246,"%s: Wrong type for first input argument: String or matrix expected.\n",fname);
+		Scierror(246,"%s: Wrong type for input argument #%d: Matrix of character strings expected.\n",fname,1);
 		return 0;
 	}
 	else
@@ -443,9 +443,8 @@ static int sci_strcat_rhs_one_is_a_matrix(char *fname)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: scalar or matrix of strings expected.\n"),fname); 
+		Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings or empty real matrix expected.\n"),fname,1);
 	}
 	return 0;
 }
 /*-------------------------------------------------------------------------------------*/
-

@@ -46,7 +46,7 @@ int C2F(sci_code2str)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: Real matrix expected.\n"),fname,1);
 		return 0;
 	}
 

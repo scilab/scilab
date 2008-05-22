@@ -30,36 +30,36 @@ int C2F(sci_strspn)(char *fname,unsigned long fname_len)
 {
 	CheckRhs(2,2);
 	CheckLhs(0,1);
-
+	
 	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
 	{
 		int m1 = 0; int n1 = 0;
 		char **InputString_Parameter1 = NULL;
 		int m1n1 = 0; /* m1 * n1 */
-
+		
 		int m2 = 0; int n2 = 0;
 		char **InputString_Parameter2 = NULL;
 		int m2n2 = 0; /* m2 * n2 */
-
+		
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&InputString_Parameter1);
 		m1n1 = m1 * n1;
-
+		
 		GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&InputString_Parameter2);
 		m2n2 = m2 * n2;
-
+		
 		if ( ((m2 == m1) && (n2 == n1)) || (m2n2 == 1) )
 		{
 			int i = 0;
 			int j = 0;
 			int outIndex = 0;
-
+			
 			/*Output*/
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&outIndex);   
 			for ( i = 0 ; i < m1n1 ; i++ )
 			{
 				if (m2n2 == 1) j = 0;
 				else j = i;
-
+				
 				stk(outIndex)[i] = (double) strspn( InputString_Parameter1[i], InputString_Parameter2[j] );
 			}
 			LhsVar(1) = Rhs+1 ;
@@ -69,16 +69,23 @@ int C2F(sci_strspn)(char *fname,unsigned long fname_len)
 		{
 			freeArrayOfString(InputString_Parameter1,m1n1);
 			freeArrayOfString(InputString_Parameter2,m2n2);
-			Scierror(999,_("%s: Wrong size for second argument.\n"),fname);
+			Scierror(999,_("%s: Wrong size for imput argument #%d.\n"),fname,2);
 			return 0;
 		}
-
+		
 		freeArrayOfString(InputString_Parameter1,m1n1);
 		freeArrayOfString(InputString_Parameter2,m2n2);
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument(s): Matrix of strings expected.\n"),fname);
+		if(GetType(1) != sci_strings)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,1);
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,2);
+		}
 	}
 	return 0;
 }

@@ -95,7 +95,7 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 	if (mn != 1)
     {
 		freeArrayOfString(Str,mn);
-        Scierror(36, _("%s: Wrong size for first input argument: Single string expected.\n"), fname);
+        Scierror(36, _("%s: Wrong size for input argument #%d: Single string expected.\n"), fname,1);
         return 0;
     }
 

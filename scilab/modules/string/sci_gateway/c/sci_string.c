@@ -85,7 +85,7 @@ int C2F(sci_string)(char *fname,unsigned long fname_len)
 
 		default:
 		{
-			Scierror(999,_("%s: Wrong type for first input argument.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d.\n"),fname,1);
 		}
 		break;
 	}

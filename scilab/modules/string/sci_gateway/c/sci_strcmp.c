@@ -6,7 +6,7 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -42,19 +42,19 @@ int C2F(sci_strcmp)(char *fname,unsigned long fname_len)
 	if (Rhs == 3)
 	{
 		int Type_Three = VarType(3);
-		if (Type_Three == sci_strings) 
+		if (Type_Three == sci_strings)
 		{
 			int Row_Num_Two = 0,Col_Num_Two = 0,Stack_Pos=0;
-
+			
 			GetRhsVar(3,STRING_DATATYPE,&Row_Num_Two,&Col_Num_Two,&Stack_Pos);
 			if ( (Row_Num_Two*Col_Num_Two) == 1 )
 			{
 				char typ = 's';
 				/* To put "flag" into typ; whether "i"*/
 				typ = cstk(Stack_Pos)[0];
-				if ( (typ != CHAR_I) && (typ != CHAR_S)) 
+				if ( (typ != CHAR_I) && (typ != CHAR_S))
 				{
-					Scierror(999,_("%s: Wrong value for third input argument: 'i' (stricmp) or 's' (strcmp) expected.\n"),fname);
+					Scierror(999,_("%s: Wrong value for input argument #%d: %s or %s expected.\n"),fname,3,"'i' (stricmp)","'s' (strcmp)");
 					return 0;	
 				}
 				 if (typ == CHAR_I) do_stricmp = TRUE;
@@ -62,7 +62,7 @@ int C2F(sci_strcmp)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong value for third input argument: 'i' (stricmp) or 's' (strcmp) expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname,3);
 			return 0;
 		}
 	}
@@ -117,12 +117,19 @@ int C2F(sci_strcmp)(char *fname,unsigned long fname_len)
 		{
 			freeArrayOfString(Input_Strings_One,m1n1);
 			freeArrayOfString(Input_Strings_Two,m2n2);
-			Scierror(999,_("%s: Wrong size for second input argument: String or matrix of strings with same size as first input argument expected.\n"),fname);
+			Scierror(999,_("%s: Wrong size for input arguments: Same sizes expected.\n"),fname);
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s : Wrong type for first and/or second input argument: String or matrix of strings expected.\n"),fname);
+		if(Type_One != sci_strings)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,1);
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,2);
+		}
 	}
 	return 0;
 }

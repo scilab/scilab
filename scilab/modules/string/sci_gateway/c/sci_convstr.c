@@ -40,22 +40,22 @@ int C2F(sci_convstr)(char *fname,unsigned long fname_len)
 	int Col_Num_One = 0;
 	int mn = 0; /* Row_Num_One * Col_Num_One */
 	int i = 0;
-
+	
 	int Type_One = 0;
-
+	
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 	
 	Type_One = VarType(1);
-
+	
 	if (Rhs == 2) 
 	{
 		int Type_Two = VarType(2);
-
+		
 		if (Type_Two == sci_strings) 
 		{
 			int Row_Num_Two = 0,Col_Num_Two = 0,Stack_Pos=0;
-
+			
 			GetRhsVar(2,STRING_DATATYPE,&Row_Num_Two,&Col_Num_Two,&Stack_Pos);
 			if ( (Row_Num_Two*Col_Num_Two) == 1 )
 			{
@@ -63,18 +63,23 @@ int C2F(sci_convstr)(char *fname,unsigned long fname_len)
 				typ = cstk(Stack_Pos)[0];
 				if ( (typ != UPPER) && (typ != LOW) && (typ != UPPER_B) && (typ != LOW_B) ) 
 				{
-					Scierror(999,_("%s: Wrong value for second input argument: 'u' (Upper) or 'l' (Lower) expected.\n"),fname);
-					return 0;	
+					Scierror(999,_("%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) expected.\n"),fname,2);
+					return 0;
 				}
+			}
+			else
+			{
+				Scierror(999,_("%s: Wrong size for input argument #%d: Single string expected.\n"),fname,2);
+				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for second input argument: Scalar or matrix of strings expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Single string expected.\n"),fname,2);
 			return 0;
 		}
 	}
-
+	
 	switch (Type_One) 
 	{
 		case sci_strings :
@@ -96,24 +101,24 @@ int C2F(sci_convstr)(char *fname,unsigned long fname_len)
 			}
 			else 
 			{
-				Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
+				Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings.\n"),fname,1);
 				return 0;
 			}
 		}
 		break;
 		default :
-			Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings.\n"),fname,1);
 			return 0;
 		break;
-	} 
-     
+	}
+	
 	Output_Matrix = (char**)MALLOC(sizeof(char*)*(mn));
 	if (Output_Matrix == NULL)
 	{
 		Scierror(999,_("%s: No more memory.\n"),fname);
 		return 0;
 	}
-
+	
 	for (i = 0;i < mn;i++)
 	{
 		Output_Matrix[i] = (char*)MALLOC( sizeof(char*) * (strlen(Input_Matrix[i])+1) );
@@ -124,18 +129,18 @@ int C2F(sci_convstr)(char *fname,unsigned long fname_len)
 			return 0;
 		}
 	}
-      
+	
 	/* convstr algorithm */
 	convstr(Input_Matrix,Output_Matrix,typ,mn); 
 	freeArrayOfString(Input_Matrix,mn);
-      
+	
 	/* put on scilab stack */
 	numRow   = Row_Num_One; 
 	numCol   = Col_Num_One ;
 	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Output_Matrix );
 	LhsVar(1) = Rhs+1 ;
 	C2F(putlhsvar)();
-
+	
 	/* free pointers used */
 	freeArrayOfString(Output_Matrix,mn);
 	return 0;

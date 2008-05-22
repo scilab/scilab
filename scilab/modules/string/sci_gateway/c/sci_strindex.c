@@ -62,22 +62,22 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 		int n3 = 0;
 		char **Strings_Input3 = NULL;
 		int m3n3 = 0; /* m3 * n3 */
-
+		
 		if (VarType(3) != sci_strings)
 		{
-			Scierror(999,_("%s: Wrong type for third input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Character expected.\n"),fname,3);
 			return 0;
 		}
 		GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&Strings_Input3);
 		m3n3 = m3*n3;
-
+		
 		if (m3n3 != 1)
 		{
 			freeArrayOfString(Strings_Input3,m3n3);
-			Scierror(999,_("%s: Wrong type for third input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Character expected.\n"),fname,3);
 			return 0;
 		}
-
+		
 		if ( (strcmp(Strings_Input3[0],CHAR_R) == 0) || (strcmp(Strings_Input3[0],CHAR_S) == 0) )
 		{
 			if (strcmp(Strings_Input3[0],CHAR_R) == 0)
@@ -93,7 +93,7 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 		else
 		{
 			freeArrayOfString(Strings_Input3,m3n3);
-			Scierror(999,_("%s: Wrong type for third input argument: ''%s'' or ''%s'' expected.\n"),fname,"s","r");
+			Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"s","r");
 			return 0;
 		}
 	}
@@ -103,7 +103,7 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 		int m1 = 0;
 		int n1 = 0;
 		int l1 = 0;
-
+		
 		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 		if ((m1 == 0) && (n1 == 0))
 		{
@@ -114,48 +114,47 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for third input argument: String or [] expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings or empty matrix expected.\n"),fname,3);
 			return 0;
 		}
 	}
-
+	
 	if ( (VarType(1) == sci_strings) && (VarType(2) == sci_strings) )
 	{
 		int m1 = 0, n1 = 0;
 		char **Strings_Input1 = NULL;
 		int m1n1 = 0; /* m1 * n1 */
-
+		
 		int m2 = 0, n2 = 0;
 		char **Strings_Input2 = NULL;
 		int m2n2 = 0; /* m2 * n2 */
-
-
-        struct In *values=NULL;
-
-	    int nbValues = 0;
+		
+		struct In *values=NULL;
+		
+		int nbValues = 0;
 		int nbposition = 0;
-
+		
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Strings_Input1);
 		m1n1 = m1*n1;
-
+		
 		if (m1n1 != 1)
 		{
 			freeArrayOfString(Strings_Input1,m1n1);
-			Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong size for input argument #%d: Single character string expected.\n"),fname,1);
 			return 0;
 		}
-
+		
 		GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Strings_Input2);
 		m2n2 = m2*n2;
-
+		
 		if ( (m2 != 1) && (n2 != 1) )
 		{
 			freeArrayOfString(Strings_Input1,m1n1);
 			freeArrayOfString(Strings_Input2,m2n2);
-			Scierror(999,_("%s: Wrong type for second input argument: String or vector of strings expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Row vector of character strings or column vector of character strings expected.\n"),fname,2);
 			return 0;
 		}
-
+		
 		if ( (int)strlen(Strings_Input1[0]) == 0 )
 		{
 			values= (struct In*)MALLOC(sizeof(struct In));
@@ -189,12 +188,9 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 					break;
 				}
 			}
-
-
-
-           qsort(values,nbValues,sizeof(values[0]),cmp);
-
-
+			
+			qsort(values,nbValues,sizeof(values[0]),cmp);
+			
 		}
 		else
 		{
@@ -206,12 +202,12 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 				int w = 0;
 				if ( strlen(Strings_Input2[x]) == 0 )
 				{
-						freeArrayOfString(Strings_Input2,m2n2);
-						freeArrayOfString(Strings_Input1,m1n1);
-						if (next) {FREE(next); next = NULL;}
-						if (values) {FREE(values); values = NULL;}
-						Scierror(999, _("%s: Wrong size for second input argument: Non-empty string expected.\n"), fname);
-						return 0;
+					freeArrayOfString(Strings_Input2,m2n2);
+					freeArrayOfString(Strings_Input1,m1n1);
+					if (next) {FREE(next); next = NULL;}
+					if (values) {FREE(values); values = NULL;}
+					Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty string expected.\n"), fname,2);
+					return 0;
 				}
 				if (Strings_Input2)
 				{
@@ -228,16 +224,16 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 						pos = w;
 					}
 					while(w != 0);/* w is the answer of the kmp algorithem*/
-
+					
 					/* values are sorted */
 					qsort(values,nbValues,sizeof(values[0]),cmp);
 				}
 			}
 		}
-
+		
 		freeArrayOfString(Strings_Input1,m1n1);
 		freeArrayOfString(Strings_Input2,m2n2);
-
+		
 		numRow   = 1;
 		outIndex = 0;
 		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbValues,&outIndex);
@@ -246,7 +242,7 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 			stk(outIndex)[i] = (double)values[i].data ;
 		}
 		LhsVar(1) = Rhs+1 ;
-
+		
 		if (Lhs == 2)
 		{
 			numRow   = 1;
@@ -265,7 +261,14 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname);
+		if(VarType(1) != sci_strings)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname,1);
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Row vector of character strings or column vector of character strings expected.\n"),fname,2);
+		}
 		return 0;
 	}
 	return 0;

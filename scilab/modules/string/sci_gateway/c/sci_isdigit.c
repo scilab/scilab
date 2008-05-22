@@ -45,7 +45,7 @@ int C2F(sci_isdigit)(char *fname,unsigned long fname_len)
 		if (mn != 1)
 		{
 			freeArrayOfString(Input_StringMatrix,mn);
-			Scierror(999,_("%s: Wrong size for first input argument: Single string expected.\n"),fname);
+			Scierror(999,_("%s: Wrong size for input argument #%d: Single string expected.\n"),fname,1);
 			return 0;
 		}
 
@@ -76,7 +76,7 @@ int C2F(sci_isdigit)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
 	}
 	return 0;
 }
