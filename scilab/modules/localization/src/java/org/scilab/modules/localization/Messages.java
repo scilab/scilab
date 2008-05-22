@@ -54,7 +54,7 @@ public class Messages {
      * @param key the string to translate
      * @return The translated string (or the same if the translation is not avaiable)
 	 */
-    public static String getText(String key) {
+    public static String gettext(String key) {
         /* If the bundle failed to load, just return the key */
         if (failedToLoadBundle) {
             return key;

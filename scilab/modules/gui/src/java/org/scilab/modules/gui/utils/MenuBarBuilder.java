@@ -196,7 +196,7 @@ public final class MenuBarBuilder {
 			Menu menu = ScilabMenu.createMenu();
 			for (int i = 0; i < menus.getLength(); i++) {				
 				menu = ScilabMenu.createMenu();				
-				menu.setText(Messages.getText(menus.item(i).getAttributes().getNamedItem(LABEL).getNodeValue()));
+				menu.setText(Messages.gettext(menus.item(i).getAttributes().getNamedItem(LABEL).getNodeValue()));
 				if (menus.item(i).getAttributes().getNamedItem(MNEMONIC) != null) {
 					menu.setMnemonic(menus.item(i).getAttributes().getNamedItem(MNEMONIC).getNodeValue().charAt(0));
 				}
@@ -233,7 +233,7 @@ public final class MenuBarBuilder {
 					
 					for (int i = 0; i < attributes.getLength(); i++) {
 						if (attributes.item(i).getNodeName() == LABEL) {
-							menuItem.setText(Messages.getText(attributes.item(i).getNodeValue()));
+							menuItem.setText(Messages.gettext(attributes.item(i).getNodeValue()));
 						} else if (attributes.item(i).getNodeName() == MNEMONIC) {
 							menuItem.setMnemonic(attributes.item(i).getNodeValue().charAt(0));
 						} else if (attributes.item(i).getNodeName() == ENABLED) {
@@ -283,8 +283,8 @@ public final class MenuBarBuilder {
 			
 			for (int i = 0; i < attributes.getLength(); i++) {
 				if (attributes.item(i).getNodeName() == LABEL) {
-					subMenuItem.setText(Messages.getText(attributes.item(i).getNodeValue()));
-					subMenuItem.setText(Messages.getText(attributes.item(i).getNodeValue()));
+					subMenuItem.setText(Messages.gettext(attributes.item(i).getNodeValue()));
+					subMenuItem.setText(Messages.gettext(attributes.item(i).getNodeValue()));
 				} else if (attributes.item(i).getNodeName() == MNEMONIC) {
 					subMenuItem.setMnemonic(attributes.item(i).getNodeValue().charAt(0));
 				} else if (attributes.item(i).getNodeName() == ENABLED) {

@@ -215,7 +215,7 @@ public final class ToolBarBuilder {
 							pushButton.setEnabled(buttonAttributes.item(i).getNodeValue().equals(TRUE));
 						} else if (buttonAttributes.item(i).getNodeName().equals(TOOLTIPTEXT)) {
 							// Add a ToolTip on the button
-							pushButton.setToolTipText(Messages.getText(buttonAttributes.item(i).getNodeValue()));
+							pushButton.setToolTipText(Messages.gettext(buttonAttributes.item(i).getNodeValue()));
 						}
 					}
 					// Add the button to the toolbar
