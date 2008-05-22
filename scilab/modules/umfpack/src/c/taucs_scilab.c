@@ -37,6 +37,7 @@
 #include "MALLOC.h"
 #include "BOOL.h"
 #include "sciprint.h"
+#include "localization.h"
 
 #ifdef _MSC_VER
 #define alloca(x) MALLOC(x)
@@ -122,16 +123,17 @@ void taucs_ccs_genmmd(taucs_ccs_matrix* m, int** perm, int** invperm)
 
   int  nnz,i,j,ip;
   
-
-  if (!(m->flags & TAUCS_SYMMETRIC)) {
-    sciprint("taucs_ccs_genmmd: GENMMD ordering only works on symmetric matrices.\n\r");
+  if (!(m->flags & TAUCS_SYMMETRIC)) 
+  {
+	sciprint("%s: %s","taucs_ccs_genmmd",_("GENMMD ordering only works on symmetric matrices.\n"));
     *perm    = NULL;
     *invperm = NULL;
     return;
   }
   /* this routine may actually work on UPPER as well */
-  if (!(m->flags & TAUCS_LOWER)) {
-    sciprint("taucs_ccs_genmmd: the lower part of the matrix must be represented.\n\r");
+  if (!(m->flags & TAUCS_LOWER)) 
+  {
+	sciprint("%s: %s","taucs_ccs_genmmd",_("The lower part of the matrix must be represented.\n"));
     *perm    = NULL;
     *invperm = NULL;
     return;
@@ -164,7 +166,8 @@ void taucs_ccs_genmmd(taucs_ccs_matrix* m, int** perm, int** invperm)
   marker = (int*) MALLOC(n         * sizeof(int));
 
   if (!xadj || !adjncy || !invp || !prm 
-      || !dhead || !qsize || !llist || !marker) {
+      || !dhead || !qsize || !llist || !marker) 
+  {
     FREE(xadj  );
     FREE(adjncy);
     FREE(invp  );
@@ -182,16 +185,17 @@ void taucs_ccs_genmmd(taucs_ccs_matrix* m, int** perm, int** invperm)
   for (i=0; i<n; i++) len[i] = 0;
 
   for (j=0; j<n; j++)
-    for (ip = (m->colptr)[j]; ip < (m->colptr)[j+1]; ip++) 
-      {
-	i = (m->rowind)[ip];
-	if (i != j) 
-	  {
-	    len[i] ++;
-	    len[j] ++;
-	  }
-      }
-
+  {
+	for (ip = (m->colptr)[j]; ip < (m->colptr)[j+1]; ip++) 
+    {
+		i = (m->rowind)[ip];
+		if (i != j) 
+		{
+			len[i] ++;
+			len[j] ++;
+		}
+    }
+  }
   xadj[0] = 1;
   for (i=1; i<=n; i++) xadj[i] = xadj[i-1] + len[i-1];
 
@@ -200,20 +204,21 @@ void taucs_ccs_genmmd(taucs_ccs_matrix* m, int** perm, int** invperm)
   for (i=0; i<n; i++) next[i] = xadj[i] - 1;
 
   for (j=0; j<n; j++)
+  {
     for (ip = (m->colptr)[j]; ip < (m->colptr)[j+1]; ip++) 
-      {
-	i = (m->rowind)[ip];
-	assert( next[i] < 2*nnz-n );
-	assert( next[j] < 2*nnz-n );
-	if (i != j) 
-	  {
-	    adjncy[ next[i] ] = j+1;
-	    adjncy[ next[j] ] = i+1;
-	    next[i] ++;
-	    next[j] ++;
-	  }
-      }
-
+    {
+		i = (m->rowind)[ip];
+		assert( next[i] < 2*nnz-n );
+		assert( next[j] < 2*nnz-n );
+		if (i != j) 
+		{
+			adjncy[ next[i] ] = j+1;
+			adjncy[ next[j] ] = i+1;
+			next[i] ++;
+			next[j] ++;
+		}
+    }
+  }
 
   F2C(genmmd)(&n,
 	      xadj, adjncy,
@@ -246,8 +251,9 @@ taucs_ccs_create(int m, int n, int nnz)
   taucs_ccs_matrix* matrix;
 
   matrix = (taucs_ccs_matrix*) MALLOC(sizeof(taucs_ccs_matrix));
-  if (!matrix) { 
-    sciprint("taucs_ccs_create: out of memory\n\r");
+  if (!matrix) 
+  { 
+	sciprint(_("%s: No more memory.\n"),"taucs_ccs_create");
     return NULL; 
   }
   matrix->flags = 0;;
@@ -256,8 +262,9 @@ taucs_ccs_create(int m, int n, int nnz)
   matrix->colptr = (int*)    MALLOC((n+1) * sizeof(int));
   matrix->rowind = (int*)    MALLOC(nnz   * sizeof(int));
   matrix->values = (double*) MALLOC(nnz   * sizeof(double));
-  if (!(matrix->colptr) || !(matrix->rowind) || !(matrix->rowind)) {
-    sciprint("taucs_ccs_create: out of memory (n=%d, nnz=%d)\n\r",n,nnz);
+  if (!(matrix->colptr) || !(matrix->rowind) || !(matrix->rowind)) 
+  {
+    sciprint(_("%s: No more memory (n=%d, nnz=%d).\n"),"taucs_ccs_create",n,nnz);
     FREE(matrix->colptr); FREE(matrix->rowind); FREE(matrix->values);
     FREE (matrix);
     return NULL; 
@@ -266,8 +273,7 @@ taucs_ccs_create(int m, int n, int nnz)
   return matrix;
 } 
 
-void 
-taucs_ccs_free(taucs_ccs_matrix* matrix)
+void taucs_ccs_free(taucs_ccs_matrix* matrix)
 {
   FREE(matrix->rowind);
   FREE(matrix->colptr);
@@ -305,22 +311,23 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
 
   for (j=0; j<n; j++) len[j] = 0;
 
-  for (j=0; j<n; j++) {
-    for (ip = (A->colptr)[j]; ip < (A->colptr)[j+1]; ip++) {
+  for (j=0; j<n; j++) 
+  {
+    for (ip = (A->colptr)[j]; ip < (A->colptr)[j+1]; ip++) 
+	{
       /*i = (A->rowind)[ip] - (A->indshift);*/
       i = (A->rowind)[ip];
 
       I = invperm[i];
       J = invperm[j];
 
-      if (I < J) {
-	int T = I; 
-	I = J;
-	J = T;
+      if (I < J) 
+	  {
+		int T = I; 
+		I = J;
+		J = T;
       }
-
       len[J] ++;
-      
     }
   }
 
@@ -329,8 +336,10 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
 
   for (j=0; j<n; j++) len[j] = (PAPT->colptr)[j];
   
-  for (j=0; j<n; j++) {
-    for (ip = (A->colptr)[j]; ip < (A->colptr)[j+1]; ip++) {
+  for (j=0; j<n; j++) 
+  {
+    for (ip = (A->colptr)[j]; ip < (A->colptr)[j+1]; ip++) 
+	{
       /*i   = (A->rowind)[ip] - (A->indshift);*/
       i   = (A->rowind)[ip];
       AIJ = (A->values)[ip];
@@ -338,10 +347,11 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
       I = invperm[i];
       J = invperm[j];
 
-      if (I < J) {
-	int T = I; 
-	I = J;
-	J = T;
+      if (I < J) 
+	  {
+		int T = I; 
+		I = J;
+		J = T;
       }
 
       /*(PAPT->rowind)[ len[J] ] = I + (PAPT->indshift);*/
@@ -355,15 +365,13 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
   return PAPT;
 }
 
-void
-taucs_vec_permute(int n, double v[], double pv[], int p[])
+void taucs_vec_permute(int n, double v[], double pv[], int p[])
 {
   int i;
   for (i=0; i<n; i++) pv[i] = v[p[i]];
 } 
 
-void
-taucs_vec_ipermute(int n, double pv[], double v[], int invp[])
+void taucs_vec_ipermute(int n, double pv[], double v[], int invp[])
 {
   int i;
   for (i=0; i<n; i++) v[invp[i]] = pv[i];
@@ -412,7 +420,8 @@ void taucs_supernodal_factor_free(void* vL)
   FREE(L->sn_blocks_ld);
   FREE(L->up_blocks_ld);
 
-  for (sn=0; sn<L->n_sn; sn++) {
+  for (sn=0; sn<L->n_sn; sn++) 
+  {
     FREE(L->sn_struct[sn]);
     FREE(L->sn_blocks[sn]);
     FREE(L->up_blocks[sn]);
@@ -456,7 +465,8 @@ supernodal_frontal_create(int* firstcol_in_supernode,
   tmp->f2 = (double*)CALLOC((tmp->up_size)*(tmp->sn_size),sizeof(double));
   tmp->u  = (double*)CALLOC((tmp->up_size)*(tmp->up_size),sizeof(double));
 
-  if(tmp->f1 == NULL || tmp->f2==NULL || tmp->u==NULL) {
+  if(tmp->f1 == NULL || tmp->f2==NULL || tmp->u==NULL) 
+  {
     FREE(tmp->u);
     FREE(tmp->f1);
     FREE(tmp->f2);
@@ -501,17 +511,20 @@ multifrontal_supernodal_front_factor(int sn,
   for(i=0;i<mtr->up_size;i++) bitmap[mtr->up_vertices[i]] = mtr->sn_size + i;
 
   /* adding sn_size column of A to first sn_size column of frontal matrix */
-  for(j=0;j<(mtr->sn_size);j++) {
+  for(j=0;j<(mtr->sn_size);j++) 
+  {
     ind = &(A->rowind[A->colptr[*(firstcol_in_supernode+j)]]);
     re  = &(A->values[A->colptr[*(firstcol_in_supernode+j)]]); 
-    for(i=0;
-	i < A->colptr[*(firstcol_in_supernode+j)+1] 
-            - A->colptr[*(firstcol_in_supernode+j)];
-	i++) {
+    for(i=0;i < A->colptr[*(firstcol_in_supernode+j)+1]- A->colptr[*(firstcol_in_supernode+j)];	i++) 
+	{
       if (bitmap[ind[i]] < mtr->sn_size)
-	mtr->f1[ (mtr->sn_size)*j + bitmap[ind[i]]] += re[i];
+	  {
+		mtr->f1[ (mtr->sn_size)*j + bitmap[ind[i]]] += re[i];
+	  }
       else
-	mtr->f2[ (mtr->up_size)*j + bitmap[ind[i]] - mtr->sn_size] += re[i];
+	  {
+		mtr->f2[ (mtr->up_size)*j + bitmap[ind[i]] - mtr->sn_size] += re[i];
+	  }
     }
   }
 
@@ -519,20 +532,23 @@ multifrontal_supernodal_front_factor(int sn,
 
   /* solving of lower triangular system for L */
   if (mtr->sn_size)
+  {
     F2C(dpotrf)("LOWER",
 		&(mtr->sn_size),
 		mtr->f1,&(mtr->sn_size),
 		&INFO);
+  }
 
-  if (INFO) {
-    sciprint("    CC^T Factorization: Matrix is not positive definite.\n\r");
-    sciprint("                        nonpositive pivot in column %d\n\r",
-		 mtr->sn_vertices[INFO-1]);
+  if (INFO) 
+  {
+	sciprint(_("    CC^T Factorization: Matrix is not positive definite.\n"));
+    sciprint(_("                        nonpositive pivot in column %d\n"),mtr->sn_vertices[INFO-1]);
     return -1;
   }
 
   /* getting completion for found columns of L */
   if (mtr->up_size && mtr->sn_size)
+  {
     F2C(dtrsm)("Right",
 	       "Lower",
 	       "Transpose",
@@ -541,6 +557,7 @@ multifrontal_supernodal_front_factor(int sn,
 	       &done,
 	       mtr->f1,&(mtr->sn_size),
 	       mtr->f2,&(mtr->up_size));
+  }
 
   (snL->sn_blocks   )[sn] = mtr->f1;
   (snL->sn_blocks_ld)[sn] = mtr->sn_size;
@@ -550,6 +567,7 @@ multifrontal_supernodal_front_factor(int sn,
 
   /* computation of updated part of frontal matrix */
   if (mtr->up_size && mtr->sn_size)
+  {
     F2C(dsyrk)("Lower",
 	       "No Transpose",
 	       &(mtr->up_size),&(mtr->sn_size),
@@ -557,6 +575,7 @@ multifrontal_supernodal_front_factor(int sn,
 	       mtr->f2,&(mtr->up_size),
 	       &done,
 	       mtr->u, &(mtr->up_size));
+  }
 
   return 0;
  }
@@ -578,27 +597,36 @@ multifrontal_supernodal_front_extend_add(
   for(i=0;i<parent_mtr->up_size;i++) bitmap[parent_mtr->up_vertices[i]] = (parent_mtr->sn_size)+i;
 
   /* extend add operation for update matrix */
-  for(j=0;j<my_mtr->up_size;j++) {
-    for(i=j;i<my_mtr->up_size;i++) {
+  for(j=0;j<my_mtr->up_size;j++) 
+  {
+    for(i=j;i<my_mtr->up_size;i++) 
+	{
       parent_j = bitmap[ my_mtr->up_vertices[j] ];
       parent_i = bitmap[ my_mtr->up_vertices[i] ];
       /* we could skip this if indices were sorted */
-      if (parent_j>parent_i) {
-	int tmp = parent_j;
-	parent_j = parent_i;
-	parent_i = tmp;
+      if (parent_j>parent_i) 
+	  {
+		int tmp = parent_j;
+		parent_j = parent_i;
+		parent_i = tmp;
       }
 
       v = (my_mtr->u)[(my_mtr->up_size)*j+i];
 
-      if (parent_j < parent_mtr->sn_size) {
-	if (parent_i < parent_mtr->sn_size) {
-	  (parent_mtr->f1)[ (parent_mtr->sn_size)*parent_j + parent_i] += v;
-	} else {
-	  (parent_mtr->f2)[ (parent_mtr->up_size)*parent_j + (parent_i-parent_mtr->sn_size)] += v;
-	}
-      } else {
-	(parent_mtr->u)[ (parent_mtr->up_size)*(parent_j-parent_mtr->sn_size) + (parent_i-parent_mtr->sn_size)] += v;
+      if (parent_j < parent_mtr->sn_size) 
+	  {
+		if (parent_i < parent_mtr->sn_size) 
+		{
+			(parent_mtr->f1)[ (parent_mtr->sn_size)*parent_j + parent_i] += v;
+		} 
+		else 
+		{
+			(parent_mtr->f2)[ (parent_mtr->up_size)*parent_j + (parent_i-parent_mtr->sn_size)] += v;
+		}
+      } 
+	  else 
+	  {
+		(parent_mtr->u)[ (parent_mtr->up_size)*(parent_j-parent_mtr->sn_size) + (parent_i-parent_mtr->sn_size)] += v;
       }
     }
   }
@@ -611,15 +639,21 @@ multifrontal_supernodal_front_extend_add(
 /* UNION FIND ROUTINES */
 
 static int uf_makeset(int* uf, int i)        { uf[i] = i; return i; }
-static int uf_find   (int* uf, int i)        { if (uf[i] != i) 
-                                                 uf[i] = uf_find(uf,uf[i]); 
-                                               return uf[i]; }
+static int uf_find   (int* uf, int i)        
+{ 
+	if (uf[i] != i) uf[i] = uf_find(uf,uf[i]); 
+	return uf[i]; 
+}
+
 static int uf_union  (int* uf, int s, int t) {
   
-  if (uf_find(uf,s) < uf_find(uf,t)) {
+  if (uf_find(uf,s) < uf_find(uf,t)) 
+  {
     uf[uf_find(uf,s)] = uf_find(uf,t); 
     return (uf_find(uf,t)); 
-  } else {
+  }
+  else
+  {
     uf[uf_find(uf,s)] = uf_find(uf,t); 
     return (uf_find(uf,t)); 
   }
@@ -634,7 +668,8 @@ void recursive_postorder(int  j,
 			 int* next)
 {
   int c;
-  for (c=first_child[j]; c != -1; c = next_child[c]) {
+  for (c=first_child[j]; c != -1; c = next_child[c]) 
+  {
     recursive_postorder(c,first_child,next_child,
 			postorder,ipostorder,next);
   }
@@ -656,8 +691,7 @@ static int ordered_uf_makeset(int* uf, int i)
 }
 static int ordered_uf_find   (int* uf, int i) 
 { 
-  if (uf[i] != i) 
-    uf[i] = uf_find(uf,uf[i]); 
+  if (uf[i] != i) uf[i] = uf_find(uf,uf[i]); 
   return uf[i]; 
 }
 static int ordered_uf_union  (int* uf, int s, int t) 
@@ -665,12 +699,16 @@ static int ordered_uf_union  (int* uf, int s, int t)
   assert(uf[t] == t);
   assert(uf[s] == s);
   assert(t > s);
-  if (t > s) {
+  if (t > s) 
+  {
     uf[s] = t; 
     return t; 
-  } else
-    uf[t] = s; 
-    return s; 
+  }
+  else
+  {
+    uf[t] = s;
+	return s; 
+  }
 }
 
 static void 
@@ -683,7 +721,8 @@ tree_level(int j,
 {
   int c;
   if (!isroot) level[j] = level_j;
-  for (c=first_child[j]; c != -1; c = next_child[c]) {
+  for (c=first_child[j]; c != -1; c = next_child[c]) 
+  {
     tree_level(c,
 	       FALSE,
 	       first_child,
@@ -703,7 +742,8 @@ tree_first_descendant(int j,
 {
   int c;
   int fd = ipostorder[j];
-  for (c=first_child[j]; c != -1; c = next_child[c]) {
+  for (c=first_child[j]; c != -1; c = next_child[c]) 
+  {
     tree_first_descendant(c,
 			  FALSE,
 			  first_child,
@@ -715,8 +755,7 @@ tree_first_descendant(int j,
   if (!isroot) first_descendant[j] = fd;
 }
 
-int 
-taucs_ccs_etree(taucs_ccs_matrix* A,
+int taucs_ccs_etree(taucs_ccs_matrix* A,
 		int* parent,
 		int* l_colcount,
 		int* l_rowcount,
@@ -1547,16 +1586,16 @@ taucs_ccs_symbolic_elimination(taucs_ccs_matrix* A,
 
     for (j=0; j<(A->n); j++) assert(parent[j]==p1[j]);
     for (j=0; j<(A->n); j++) {
-      if (cc1[j]!=cc2[j]) sciprint("j=%d cc1=%d cc2=%d\n\r",j,cc1[j],cc2[j]);
+      if (cc1[j]!=cc2[j]) sciprint("j=%d cc1=%d cc2=%d\n",j,cc1[j],cc2[j]);
       assert(cc1[j]==cc2[j]);
     }
 
     for (j=0; j<(A->n); j++) {
-      if (rc1[j]!=rc2[j]) sciprint("j=%d rc1=%d rc2=%d\n\r",j,rc1[j],rc2[j]);
+      if (rc1[j]!=rc2[j]) sciprint("j=%d rc1=%d rc2=%d\n",j,rc1[j],rc2[j]);
       assert(rc1[j]==rc2[j]);
     }
 
-    if (nnz1!=nnz2) sciprint("nnz1=%d nnz2=%d\n\r",nnz1,nnz2);
+    if (nnz1!=nnz2) sciprint("nnz1=%d nnz2=%d\n",nnz1,nnz2);
     
     FREE(cc1); FREE(cc2); FREE(rc1); FREE(rc2);
   }
@@ -2037,7 +2076,7 @@ int taucs_supernodal_solve_llt(void* vL,
   if (!y || !t) {
     FREE(y);
     FREE(t);
-    sciprint("multifrontal_supernodal_solve_llt: out of memory\n\r");
+	sciprint(_("%s: No more memory.\n"),"multifrontal_supernodal_solve_llt");
     return -1;
   }
 

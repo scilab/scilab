@@ -50,6 +50,7 @@
 #include "common_umfpack.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+#include "localization.h"
 
 extern CellAdr *ListNumeric;
 
@@ -83,17 +84,17 @@ int sci_umf_luget(char* fname, unsigned long l)
 
 	/* Check if the pointer is a valid ref to ... */
 	if ( IsAdrInList(Numeric, ListNumeric, &it_flag) )
-		{
-			if (it_flag == 0 )
-				umfpack_di_get_lunz(&lnz, &unz, &n_row, &n_col, &nz_udiag, Numeric);
-			else
-				umfpack_zi_get_lunz(&lnz, &unz, &n_row, &n_col, &nz_udiag, Numeric);
-		}
+	{
+		if (it_flag == 0 )
+			umfpack_di_get_lunz(&lnz, &unz, &n_row, &n_col, &nz_udiag, Numeric);
+		else
+			umfpack_zi_get_lunz(&lnz, &unz, &n_row, &n_col, &nz_udiag, Numeric);
+	}
 	else
-		{
-			Scierror(999,"%s: arg #1 is not a valid reference to (umf) LU factors",fname);
-			return 0;
-		}
+	{
+		Scierror(999,_("%s: Wrong value for input argument #%d: Must be a valid reference to (umf) LU factors.\n"),fname,1);
+		return 0;
+	}
 
 	if (n_row <= n_col) n = n_row; else n = n_col;
 	L_mnel  = (int*)MALLOC( n_row   * sizeof(int));
@@ -111,49 +112,62 @@ int sci_umf_luget(char* fname, unsigned long l)
 	q       = (int*)MALLOC( n_col   * sizeof(int));
 	Rs      = (double*)MALLOC( n_row   * sizeof(double)); 
 	if ( it_flag == 1 )
-		{
-			L_I = (double*)MALLOC( lnz     * sizeof(double));
-			U_I = (double*)MALLOC( unz     * sizeof(double));
-			V_I = (double*)MALLOC( unz     * sizeof(double));
-		}
+	{
+		L_I = (double*)MALLOC( lnz     * sizeof(double));
+		U_I = (double*)MALLOC( unz     * sizeof(double));
+		V_I = (double*)MALLOC( unz     * sizeof(double));
+	}
 	else
-		{ L_I = U_I = V_I = NULL; }
+	{ L_I = U_I = V_I = NULL; }
 
 	if (    !(L_mnel && L_icol && L_R && L_ptrow  && p &&
 			  U_mnel && U_icol && U_R && U_ptrow  && q &&
 			  V_irow && V_R && V_ptcol  && Rs)
 			|| (it_flag && !(L_I && U_I && V_I))   )
-		{
-			error_flag = 1;
-			goto the_end;
-		}
+	{
+		error_flag = 1;
+		goto the_end;
+	}
 
 	if ( it_flag == 0 )
+	{
 		stat = umfpack_di_get_numeric(L_ptrow, L_icol, L_R, V_ptcol, V_irow, V_R, 
 									  p, q, (double *)NULL, &do_recip, Rs, Numeric);
+	}
 	else
+	{
 		stat = umfpack_zi_get_numeric(L_ptrow, L_icol, L_R, L_I, V_ptcol, V_irow, V_R, V_I, 
 									  p, q, (double *)NULL, (double *)NULL, &do_recip, Rs, Numeric);
+	}
 
 	if ( stat != UMFPACK_OK ) { error_flag = 2; goto the_end; };
 
 	if ( do_recip )
-		for ( i = 0 ; i < n_row ; i++ )
-			Rs[i] = 1.0 / Rs[i];
+	{
+		for ( i = 0 ; i < n_row ; i++ ) Rs[i] = 1.0 / Rs[i];
+	}
 
 	if ( it_flag == 0 )
+	{
 		stat = umfpack_di_transpose(n, n_col, V_ptcol, V_irow, V_R, (int *) NULL, 
 									(int*) NULL, U_ptrow, U_icol, U_R);  
+	}
 	else
+	{
 		stat = umfpack_zi_transpose(n, n_col, V_ptcol, V_irow, V_R, V_I, (int *) NULL, 
 									(int*) NULL, U_ptrow, U_icol, U_R, U_I, 0);  
+	}
 
 	if ( stat != UMFPACK_OK ) { error_flag = 2; goto the_end; };
 
 	for ( i = 0 ; i < n_row ; i++ ) 
+	{
 		L_mnel[i] = L_ptrow[i+1] - L_ptrow[i];
+	}
 	for ( i = 0 ; i < n ; i++ ) 
+	{
 		U_mnel[i] = U_ptrow[i+1] - U_ptrow[i];
+	}
 
 	for ( i = 0 ; i < lnz ; i++ ) L_icol[i]++;
 	for ( i = 0 ; i < unz ; i++ ) U_icol[i]++;
@@ -183,28 +197,29 @@ int sci_umf_luget(char* fname, unsigned long l)
 		{ FREE(L_I); FREE(V_I); FREE(U_I); }
 
 	switch (error_flag)
-		{
-			case 0:   /* no error */
-				LhsVar(1) = 2;
-				LhsVar(2) = 3;
-				LhsVar(3) = 4;
-				LhsVar(4) = 5;
-				LhsVar(5) = 6;
-				break;
+	{
+		case 0:   /* no error */
+			LhsVar(1) = 2;
+			LhsVar(2) = 3;
+			LhsVar(3) = 4;
+			LhsVar(4) = 5;
+			LhsVar(5) = 6;
+		break;
 
-			case 1:   /* enough memory (with malloc) */
-				Scierror(999,"%s: not enough memory",fname);
-				break;
+		case 1:   /* enough memory (with malloc) */
+			Scierror(999,_("%s: No more memory.\n"),fname);
+		break;
 
-			case 2:   /* a problem with one umfpack routine */
-				Scierror(999,"%s: %s",fname,UmfErrorMes(stat));
-				break;
+		case 2:   /* a problem with one umfpack routine */
+			Scierror(999,"%s: %s\n",fname,UmfErrorMes(stat));
+		break;
 
-			case 3:  /* not enough place in the scilab stack */
-				Scierror(999,"%s: not enough place in stk (at least %d supplementary words needed)",
-						 fname,pl_miss);
-				break;
-		}
+		case 3:  /* not enough place in the scilab stack */
+			Scierror(999,_("%s: No more memory : increase stacksize %d supplementary words needed.\n"),
+				fname,
+				pl_miss);
+		break;
+	}
 	C2F(putlhsvar)();
 	return 0;
 }

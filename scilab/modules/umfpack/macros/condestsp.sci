@@ -100,11 +100,11 @@ function [K1] = condestsp(A, arg2, arg3)
   if ~OK then
      error(" the LU pointer is not valid")
   elseif n ~= nrow | nrow ~= ncol
-     error(" the matrix and the LU factors have not the same dimension !")
+     error(msprintf(gettext("%s: The matrix and the LU factors have not the same dimension !\n"),"condestsp"));
   end
      
   if int(t)~=t | length(t)~=1 | or(t < 1) then
-     error(" invalid type and/or size and/or value for the second arg")
+     error(msprintf(gettext("%s: Invalid type and/or size and/or value for the second arg.\n"),"condestsp"));
   end   
 
   // go on

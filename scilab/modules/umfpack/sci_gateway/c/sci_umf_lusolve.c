@@ -58,6 +58,7 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "Scierror.h"
+#include "localization.h"
 
 extern CellAdr *ListNumeric;
 
@@ -88,34 +89,35 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 
 	/* Check if this pointer is a valid ref to a umfpack LU numeric object */
 	if ( ! IsAdrInList(Numeric, ListNumeric, &it_flag) )
-		{
-			Scierror(999,"%s: arg #1 is not a valid reference to (umf) LU factors",fname);
-			return 0;
-		};
+	{
+		Scierror(999,_("%s: Wrong value for input argument #%d: Must be a valid reference to (umf) LU factors.\n"),fname,1);
+		return 0;
+	};
 
 	/*  get some parameters of the factorisation (for some checking) */
 	if ( it_flag == 0 )
 		umfpack_di_get_lunz(&lnz, &unz, &n, &n_col, &nz_udiag, Numeric);
 	else
 		umfpack_zi_get_lunz(&lnz, &unz, &n, &n_col, &nz_udiag, Numeric);
+
 	if ( n != n_col ) 
-		{
-			Scierror(999,"%s: this is not a factorisation of a square matrix",fname);
-			return 0;
-		};
+	{
+		Scierror(999,_("%s: An error occurred: %s.\n"),fname,_("This is not a factorisation of a square matrix"));
+		return 0;
+	};
 	if ( nz_udiag < n ) 
-		{
-			Scierror(999,"%s: this is a factorisation of a singular matrix",fname);
-			return 0;
-		};
+	{
+		Scierror(999,_("%s: An error occurred: %s.\n"),fname,_("This is a factorisation of a singular matrix"));
+		return 0;
+	};
 
 	/* Get now arg #2 : the vector b */
 	GetRhsCVar(2,MATRIX_OF_DOUBLE_DATATYPE, &itb, &mb, &nb, &lrb, &lib);
 	if (mb != n || nb < 1)    /* test if the right hand side is compatible */
-		{
-			Scierror(999,"%s: bad dimensions for the rhs (arg #2)",fname);
-			return 0;
-		};
+	{
+		Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname,2);
+		return 0;
+	};
 
 	/* allocate memory for the solution x */
 	if ( it_flag == 1  ||  itb == 1 ) itx = 1; else itx = 0;     
@@ -128,65 +130,69 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 	 */
 
 	if ( Rhs == 2 )
-		{
-			NoTranspose = 1;
-			NoRaffinement = 1;
-		}
+	{
+		NoTranspose = 1;
+		NoRaffinement = 1;
+	}
 	else  /* 3 or 4 input arguments but the third must be a string */
+	{
+		GetRhsVar(3,STRING_DATATYPE,&mflag,&nflag,&lflag);
+		if ( strcmp(cstk(lflag),"Ax=b") == 0 )
+			NoTranspose = 1;
+		else if ( strcmp(cstk(lflag),"A'x=b") == 0 )
+			NoTranspose = 0;
+		else
 		{
-			GetRhsVar(3,STRING_DATATYPE,&mflag,&nflag,&lflag);
-			if ( strcmp(cstk(lflag),"Ax=b") == 0 )
-				NoTranspose = 1;
-			else if ( strcmp(cstk(lflag),"A'x=b") == 0 )
-				NoTranspose = 0;
-			else
-				{
-					Scierror(999,"%s: arg #3 is an unknown string specifier",fname);
-					return 0;
-				};
-			if ( Rhs == 4 ) 
-				{
-					GetRhsVar(4, SPARSE_MATRIX_DATATYPE, &mA, &nA, &AA);
-					/*  some check... but we can't be sure that the matrix corresponds to the LU factors */
-					if ( mA != nA || mA != n || AA.it != it_flag )  
-						{
-							Scierror(999,"%s: the matrix (arg #4) is not compatible with the given LU factors",fname);
-							return 0;
-						};
-					NoRaffinement = 0;
-				}
-			else
-				NoRaffinement = 1;   /* only 3 input var => no raffinement */
+			Scierror(999,_("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"),fname,3,"Ax=b","A'x=b");
+			return 0;
+		};
+		if ( Rhs == 4 ) 
+		{
+			GetRhsVar(4, SPARSE_MATRIX_DATATYPE, &mA, &nA, &AA);
+			/*  some check... but we can't be sure that the matrix corresponds to the LU factors */
+			if ( mA != nA || mA != n || AA.it != it_flag )  
+			{
+				Scierror(999,_("%s: Wrong size for input argument #%d: %s.\n"),fname,4,_("Matrix is not compatible with the given LU factors"));
+				return 0;
+			};
+			NoRaffinement = 0;
 		}
+		else NoRaffinement = 1;   /* only 3 input var => no raffinement */
+	}
 
 	/* allocate memory for umfpack_di_wsolve usage or umfpack_zi_wsolve usage*/
 	CreateVar(Rhs+2,  MATRIX_OF_INTEGER_DATATYPE, &n, &one, &lWi); Wi = istk(lWi);
 	if (it_flag == 1) 
-		if (NoRaffinement) mW = 4*n; else mW = 10*n;
+	{
+		if (NoRaffinement) mW = 4*n; 
+		else mW = 10*n;
+	}
 	else
-		if (NoRaffinement) mW = n; else mW = 5*n;
+	{
+		if (NoRaffinement) mW = n; 
+		else mW = 5*n;
+	}
 	CreateVar(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &mW, &one, &lW); W  = stk(lW);
 
-
 	if (! NoRaffinement)
-		{
-			SciSparseToCcsSparse(Rhs+4, &AA, &A);
-			LastNum = Rhs+4;
-		}
+	{
+		SciSparseToCcsSparse(Rhs+4, &AA, &A);
+		LastNum = Rhs+4;
+	}
 	else
-		{
-			A.p = NULL; A.irow = NULL; A.R = NULL; A.I = NULL;
-			LastNum = Rhs+3;
-		}
+	{
+		A.p = NULL; A.irow = NULL; A.R = NULL; A.I = NULL;
+		LastNum = Rhs+3;
+	}
 
 	/* get the pointer for b */
 	br = stk(lrb); bi = stk(lib);
 	if ( it_flag == 1  &&  itb == 0 )
-		{
-			CreateVar(LastNum+1,MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lib);
-			bi = stk(lib);
-			for ( i = 0 ; i < mb*nb ; i++ ) bi[i] = 0.0;
-		}
+	{
+		CreateVar(LastNum+1,MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lib);
+		bi = stk(lib);
+		for ( i = 0 ; i < mb*nb ; i++ ) bi[i] = 0.0;
+	}
 
 	/* init Control */
 	if (it_flag == 0) 
@@ -202,26 +208,26 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 		umf_flag = UMFPACK_At;
 
 	if (it_flag == 0)
+	{
+		for ( j = 0; j < nb ; j++ ) 
+		{
+			umfpack_di_wsolve(umf_flag, A.p, A.irow, A.R, &xr[j*mb], &br[j*mb], Numeric, Control, Info, Wi, W);
+		}
+		if (itx == 1)
 		{
 			for ( j = 0; j < nb ; j++ ) 
-				{
-					umfpack_di_wsolve(umf_flag, A.p, A.irow, A.R, &xr[j*mb], &br[j*mb], Numeric, Control, Info, Wi, W);
-				}
-			if (itx == 1)
-				{
-					for ( j = 0; j < nb ; j++ ) 
-						{
-							umfpack_di_wsolve(umf_flag, A.p, A.irow, A.R, &xi[j*mb], &bi[j*mb], Numeric, Control, Info, Wi, W);
-						}
-				}
+			{
+				umfpack_di_wsolve(umf_flag, A.p, A.irow, A.R, &xi[j*mb], &bi[j*mb], Numeric, Control, Info, Wi, W);
+			}
 		}
+	}
     else
+	{
+		for ( j = 0; j < nb ; j++ ) 
 		{
-			for ( j = 0; j < nb ; j++ ) 
-				{
-					umfpack_zi_wsolve(umf_flag, A.p, A.irow, A.R, A.I, &xr[j*mb], &xi[j*mb], &br[j*mb], &bi[j*mb], Numeric, Control, Info, Wi, W);
-				}
+			umfpack_zi_wsolve(umf_flag, A.p, A.irow, A.R, A.I, &xr[j*mb], &xi[j*mb], &br[j*mb], &bi[j*mb], Numeric, Control, Info, Wi, W);
 		}
+	}
 
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();

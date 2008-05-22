@@ -60,6 +60,7 @@
 #include "common_umfpack.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+#include "localization.h"
 
 extern CellAdr *ListCholFactors;
 
@@ -83,7 +84,9 @@ int sci_taucs_chfact(char* fname, unsigned long l)
 	if ( stat != A_PRIORI_OK )  
 		{
 			if ( stat == MAT_IS_NOT_SPD )
-				Scierror(999,"%s: the matrix don't seems to be symetric positive definite",fname);
+			{
+				Scierror(999,_("%s: Wrong value for input argument #%d: Must be symetric positive definite"),fname,1);
+			}
 			/* the message for the other problem (not enought memory in stk) is treated automaticaly */
 			return 0;
 		};
@@ -92,7 +95,7 @@ int sci_taucs_chfact(char* fname, unsigned long l)
 	taucs_ccs_genmmd(&B,&perm,&invperm);
 	if ( !perm )
 		{
-			Scierror(999,"%s: not enough memory for the reordering",fname);
+			Scierror(999,_("%s: No more memory.\n") ,fname);
 			return 0;
 		};
   
@@ -109,7 +112,7 @@ int sci_taucs_chfact(char* fname, unsigned long l)
 			/*   Note : an error indicator is given in the main scilab window
 			 *          (out of memory, no positive definite matrix , etc ...)
 			 */
-			Scierror(999,"%s: failure in the factorization",fname);
+			Scierror(999,_("%s: An error occurred: %s\n"),fname,_("factorization"));
 			return 0;
 		};
       

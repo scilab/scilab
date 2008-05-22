@@ -72,15 +72,17 @@ function [K2, lm, vm, lM, vM] = cond2sp(A, C, rtol, itermax, verb)
    lM_old = x'*y
    iter = 0
    if verb then
-      mprintf("\n\r approximate (lM,vM) with the iterative power method \n")
-      mprintf(" ----------------------------------------------------\n")
+      mprintf(gettext("\n approximate (lM,vM) with the iterative power method \n"));
+      mprintf(gettext(" ----------------------------------------------------- \n"));
    end   
    while %t
       iter = iter + 1
       x = y / norm(y)
       y = A*x
       lM = x'*y
-      if verb then , mprintf(" iteration %3d : lM = %e  \n", iter, lM) , end
+      if verb then 
+        mprintf(gettext(" iteration %3d : lM = %e  \n"), iter, lM);
+      end
       crit = abs((lM - lM_old)/lM) 
       if crit < rtol  &  iter > 3 then 
 	 break
@@ -88,9 +90,9 @@ function [K2, lm, vm, lM, vM] = cond2sp(A, C, rtol, itermax, verb)
 	 lM_old = lM
       end
       if iter >= itermax then
-	 mprintf(" Warning : for lM ""convergence"" at rtol = %e \n", rtol)
-	 mprintf("           don''t reached after %d iterations (got only %e) \n", ...
-		 itermax, crit)
+          
+	 mprintf(gettext(" Warning : for lM ""convergence"" at rtol = %e \n"), rtol);
+	 mprintf(gettext("           don''t reached after %d iterations (got only %e) \n"), itermax, crit);
 	 break
       end
    end
@@ -102,15 +104,17 @@ function [K2, lm, vm, lM, vM] = cond2sp(A, C, rtol, itermax, verb)
    lm_old = x'*y
    iter = 0
    if verb then
-      mprintf("\n\r approximate (lm,vm) with the inverse iterative power method \n")
-      mprintf(" ------------------------------------------------------------\n")
+      mprintf(gettext("\n approximate (lm,vm) with the inverse iterative power method \n"));
+      mprintf(gettext(" ------------------------------------------------------------\n"));
    end   
    while %t
       iter = iter + 1
       x = y / norm(y)
       y = taucs_chsolve(C,x)
       lm = x'*y
-      if verb then , mprintf(" iteration %3d : lm = %e  \n", iter, 1/lm) , end
+      if verb then 
+        mprintf(gettext(" iteration %3d : lm = %e  \n"), iter, 1/lm) 
+      end
       crit = abs((lm - lm_old)/lm)
       if crit < rtol  &  iter > 3 then 
 	 break
@@ -118,9 +122,8 @@ function [K2, lm, vm, lM, vM] = cond2sp(A, C, rtol, itermax, verb)
 	 lm_old = lm
       end
       if iter >= itermax then
-	 mprintf(" Warning : for lm ""convergence"" at rtol = %e \n", rtol)
-	 mprintf("           don''t reached after %d iterations (got only %e) \n", ...
-		 itermax, crit)
+	 mprintf(gettext(" Warning : for lm ""convergence"" at rtol = %e \n"), rtol);
+	 mprintf(gettext("           don''t reached after %d iterations (got only %e) \n"),itermax, crit);
 	 break
       end
     end

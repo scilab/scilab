@@ -40,6 +40,7 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "Scierror.h"
+#include "localization.h"
 
 int sci_res_with_prec(char* fname, unsigned long l)
 {
@@ -59,7 +60,7 @@ int sci_res_with_prec(char* fname, unsigned long l)
  
 	if ( nx < 1 || nb != nx || mx != nA || mb != mA )
 		{
-			Scierror(999,"%s: bad dimensions for x and or b",fname);
+			Scierror(999,_("%s: Wrong size for input arguments: Same sizes expected.\n"),fname);
 			return 0;
 		};
 

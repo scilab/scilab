@@ -34,14 +34,14 @@ function [] = scisptdemo()
    mode(-1)
    st = stacksize();
    if st(1) < 3000000 then
-      x_message([" For this demo the current stack size is not enought ";
-		 " enter the following at the scilab prompt :          ";
-		 "                                                     ";
-		 "              stacksize(3000000);                    ";
-		 "                                                     ";
-                 "           then re enter scisptdemo()                ";
-		 "                                                     ";
-		 "               CLICK TO  CONTINUE                    "]);
+      x_message([gettext(" For this demo the current stack size is not enought ");
+		 gettext(" enter the following at the scilab prompt :          ");
+		 gettext("                                                     ");
+		 gettext("              stacksize(3000000);                    ");
+		 gettext("                                                     ");
+    gettext("           then re enter scisptdemo()                ");
+		gettext("                                                     ");
+		gettext("               CLICK TO  CONTINUE                    ")]);
       return
    end
 
@@ -54,11 +54,11 @@ function [] = scisptdemo()
    a;title.font_style = 6;
    
 
-   scisptdemolist = ["how to use this stuff"           , DIR_SCISPT_DEM+"scisptdem1.dem";
-                     "display a speed comparison test" , DIR_SCISPT_DEM+"scisptdem2.dem";
-	             "small tests for condestsp"       , DIR_SCISPT_DEM+"scisptdem3.dem"];
+   scisptdemolist = [gettext("how to use this stuff")           , DIR_SCISPT_DEM+"scisptdem1.dem";
+                     gettext("display a speed comparison test") , DIR_SCISPT_DEM+"scisptdem2.dem";
+	             gettext("small tests for condestsp")       , DIR_SCISPT_DEM+"scisptdem3.dem"];
    while %t
-      num=x_choose(scisptdemolist(:,1), "Click to choose a demo");
+      num=x_choose(scisptdemolist(:,1), gettext("Click to choose a demo"));
       if num==0 then 
 	 lines(oldln(1)) , break
       else

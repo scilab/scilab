@@ -53,6 +53,7 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "Scierror.h"
+#include "localization.h"
 
 extern CellAdr *ListCholFactors;
 
@@ -75,17 +76,16 @@ int sci_taucs_chget(char* fname, unsigned long l)
 	/* Check if the pointer is a valid ref to ... */
 	if (! IsAdrInList( (Adr)pC, ListCholFactors, &it_flag) )
 		{
-			Scierror(999,"%s: arg #1 is not a valid reference to a Cholesky factorisation",fname);
+			Scierror(999,_("%s: Wrong value for input argument #%d: Must be a valid reference to a Cholesky factorisation"),fname,1);
 			return 0;
 		};
 
 	C = taucs_supernodal_factor_to_ccs(pC->C);
 	if (! C) 
-		{
-			Scierror(999,"%s: not enough memory",fname);
-			return 0;
-		};
-
+	{
+		Scierror(999,_("%s: No more memory.\n"),fname);
+		return 0;
+	};
 
 	/* set up S fields */
 	nnz = 0;
@@ -102,19 +102,17 @@ int sci_taucs_chget(char* fname, unsigned long l)
 	S.icol = C->rowind; S.mnel = C->colptr;
   
 	if (! test_size_for_sparse(2 , S.m, S.it, S.nel, &pl_miss))
-		{
-			taucs_ccs_free(C); 
-			Scierror(999,"%s: not enough place in stk (at least %d supplementary words needed)",
-					 fname, pl_miss);
-			return 0;
-		}
+	{
+		taucs_ccs_free(C); 
+		Scierror(999,_("%s: No more memory : increase stacksize %d supplementary words needed.\n"),fname, pl_miss);
+		return 0;
+	}
 	CreateVarFromPtr(2,SPARSE_MATRIX_DATATYPE,&S.m,&S.n,&S);  
 	taucs_ccs_free(C); 
   
 	/* now p */
 	CreateVar(3,MATRIX_OF_INTEGER_DATATYPE, &(S.m), &one, &lp); 
-	for  (i = 0 ; i < S.m ; i++)
-		*istk(lp+i) = pC->p[i]+1;
+	for  (i = 0 ; i < S.m ; i++) *istk(lp+i) = pC->p[i]+1;
 
 	LhsVar(1) = 2;
 	LhsVar(2) = 3;

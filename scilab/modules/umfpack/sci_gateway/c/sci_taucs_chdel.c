@@ -51,6 +51,7 @@
 #include "common_umfpack.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+#include "localization.h"
 
 extern CellAdr *ListCholFactors;
 
@@ -93,7 +94,9 @@ int sci_taucs_chdel(char* fname, unsigned long l)
 					FREE(pC);
 				}
 			else
-				Scierror(999,"%s: the argument is not a valid reference to Cholesky factors",fname);
+			{
+				Scierror(999,_("%s: Wrong value for input argument #%d: not a valid reference to Cholesky factors.\n"),fname,1);
+			}
 		}
 	return 0;
 }

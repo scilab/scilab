@@ -74,6 +74,7 @@
 #include "sciumfpack.h"
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
+#include "localization.h"
 
 int AddAdrToList(Adr adr, int it_flag, CellAdr **L)
 {
@@ -150,7 +151,7 @@ int sci_sparse_to_ccs_sparse(int num, SciSparse *A, CcsSparse *B)
 
   taille = ((2*it+3)*nel + n+1 )/2 + 2;
 
-  CreateVar(num, "d", &taille, &one, &l0);  /* return 0 in case of failure (not enough memory in stk) */
+  CreateVar(num, MATRIX_OF_DOUBLE_DATATYPE, &taille, &one, &l0);  /* return 0 in case of failure (not enough memory in stk) */
 
   B->m = m; B->n = n; B->nel = nel; B->it = it;
   B->R = stk(l0);
@@ -197,10 +198,10 @@ int sci_sparse_to_ccs_sparse(int num, SciSparse *A, CcsSparse *B)
 char *UmfErrorMes(int num_error)
 {
   /* to deal with various umfpack error indicator */
-  char *mes1 = "singular matrix";
-  char *mes2 = "not enough memory";
-  char *mes3 = "internal error";
-  char *mes4 = "invalid matrix";
+  char *mes1 = _("singular matrix");
+  char *mes2 = _("not enough memory");
+  char *mes3 = _("internal error");
+  char *mes4 = _("invalid matrix");
   /*  normallly with the different controls in the interface
    *  the others errors may not occured but we put anyway
    *  this last one :
@@ -250,7 +251,7 @@ int spd_sci_sparse_to_taucs_sparse(int num, SciSparse *A, taucs_ccs_matrix *B)
     B_nel = n + (A->nel - n)/2;
   taille = (3*B_nel + n+1 )/2 + 2;
 
-  CreateVar(num, "d", &taille, &one, &l0);  /* return 0 in case of failure (not enough memory in stk) */
+  CreateVar(num, MATRIX_OF_DOUBLE_DATATYPE, &taille, &one, &l0);  /* return 0 in case of failure (not enough memory in stk) */
 
   /* form the taucs sparse matrix struct */
   B->m = n; B->n = n;

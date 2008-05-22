@@ -61,6 +61,8 @@
 #include "sciprint.h"
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
+#include "localization.h"
+#include "warningmode.h"
 
 CellAdr *ListNumeric = NULL;
 CellAdr *ListCholFactors = NULL;
@@ -83,10 +85,10 @@ int sci_umf_lufact(char* fname,unsigned long l)
 	/* get A the sparse matrix to factorize */ 
 	GetRhsVar(1, SPARSE_MATRIX_DATATYPE, &mA, &nA, &AA);
 	if (nA <= 0 || mA <= 0 )  
-		{
-			Scierror(999,"%s: bad dimensions for the matrix",fname);
-			return 0;
-		};
+	{
+		Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname,1);
+		return 0;
+	};
    
 	SciSparseToCcsSparse(2, &AA, &A);
 
@@ -97,10 +99,10 @@ int sci_umf_lufact(char* fname,unsigned long l)
 		stat = umfpack_di_symbolic(nA, mA, A.p, A.irow, A.R, &Symbolic, Control, Info);
 
 	if ( stat != UMFPACK_OK ) 
-		{
-			Scierror(999,"%s: failure in the symbolic factorization : %s",fname,UmfErrorMes(stat));
-			return 0;
-		};
+	{
+		Scierror(999,_("%s: An error occurred: %s: %s\n"),fname,_("symbolic factorization"),UmfErrorMes(stat));
+		return 0;
+	};
   
 	/* numeric factorisation */
 	if (A.it == 1)
@@ -114,26 +116,36 @@ int sci_umf_lufact(char* fname,unsigned long l)
 		umfpack_di_free_symbolic(&Symbolic);
 
 	if ( stat != UMFPACK_OK  &&  stat != UMFPACK_WARNING_singular_matrix ) 
-		{
-			Scierror(999,"%s: failure in the numeric factorization : %s",fname,UmfErrorMes(stat));
-			return 0;
-		};
+	{
+		Scierror(999,_("%s: An error occurred: %s: %s\n"),fname,_("symbolic factorization"),UmfErrorMes(stat));
+		return 0;
+	};
 
 	if ( stat == UMFPACK_WARNING_singular_matrix  &&  mA == nA ) 
-		sciprint("\n\r warning: the (square) matrix appears to be singular");
+	{
+		if (getWarningMode())
+		{
+			sciprint("\n%s:%s\n",_("Warning"),_("The (square) matrix appears to be singular."));
+		}
+	}
 
 	/*  add the pointer in the list ListNumeric  */
 	if (! AddAdrToList(Numeric, A.it, &ListNumeric))
-		{ 
-			/* AddAdrToList return 0 if malloc have failed : as it is just
-			   for storing 2 pointers this is unlikely to occurs but ... */
-			if (A.it == 1) 
-				umfpack_zi_free_numeric(&Numeric);
-			else
-				umfpack_di_free_numeric(&Numeric);
-			Scierror(999,"%s: no place to store the LU pointer in ListNumeric : %s",fname);
-			return 0;
-		};
+	{ 
+		/* AddAdrToList return 0 if malloc have failed : as it is just
+		   for storing 2 pointers this is unlikely to occurs but ... */
+		if (A.it == 1) 
+		{
+			umfpack_zi_free_numeric(&Numeric);
+		}
+		else
+		{
+			umfpack_di_free_numeric(&Numeric);
+		}
+		
+		Scierror(999,_("%s: An error occurred: %s\n"),fname,_("no place to store the LU pointer in ListNumeric."));
+		return 0;
+	};
 
 	/* create the scilab object to store the pointer onto the LU factors */
 	CreateVarFromPtr(3,SCILAB_POINTER_DATATYPE,&one,&one, Numeric);

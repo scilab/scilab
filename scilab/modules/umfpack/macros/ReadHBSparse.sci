@@ -74,14 +74,14 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
    [lhs, rhs] = argn()
 
    if rhs == 0 then
-      filename = xgetfile("*.[rc][shzu]a", title=["Choose a sparse matrix"; ...
-		                                  "   then click on OK   "])
+      filename = xgetfile("*.[rc][shzu]a", title=[gettext("Choose a sparse matrix"); ...
+		                                  gettext("   then click on OK   ")])
    elseif rhs == 1 then
       if typeof(filename) ~= "string" then
-	 error(" the argument must be a string")
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"ReadHBSparse",1));
       end
    else
-      error(" bad number of arguments")
+     error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"ReadHBSparse",0));
    end
    
    unit = file("open", filename, "old")
@@ -107,7 +107,8 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
 	 Rhs_in_file = %f
       else
 	 Rhs_in_file = %t
-	 warning(" The file contains a rhs but it will not be read !")
+	 warning(msprintf(gettext("%s: The file contains a rhs but it will not be read !"),"ReadHBSparse"));
+	 
       end
    end
    
@@ -116,7 +117,7 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
    
    Dimensions = evstr(part(line3,4:80))
    if part(mtype,3)=="e" then
-      error("currently don''t read unassembled (elemental) sparse matrix")
+      error(msprintf(gettext("%s: currently don''t read unassembled (elemental) sparse matrix."),"ReadHBSparse"));
    end
    TypeValues = part(mtype,1) // r for real, c for complex, p for pattern
 				   
@@ -144,7 +145,7 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
    ind_row = read(unit,1,nb_nz,form2)
    select TypeValues
    case "p" // values given 
-      warning(" No values for this matrix (only non zero pattern) : put some 1")
+      warning(msprintf(gettext("%s: No values for this matrix (only non zero pattern) : put some 1."),"ReadHBSparse"));
       val = ones(1,nb_nz)
    case "r" // values are real
       val = read(unit,1,nb_nz,form3)

@@ -71,21 +71,21 @@ function [] = PlotSparse(A, style)
    [lhs, rhs] = argn()
    
    if ( rhs<1 | rhs>2 ) then
-      error(" Bad number of arguments")
+     error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"PlotSparse"));
    end
    
    if (typeof(A) == "sparse") then
       [m, n] = size(A)
       nel = nnz(A)
    else   
-      error(" Arg #1 must be a sparse matrix")
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"),"PlotSparse",1,gettext("sparse matrix")));
    end
    
    if rhs == 1 then
       markColor = default_markColor
       markId = default_markId
    elseif typeof(style) ~= "string" then
-      error(" Arg #2 must be a string")
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"PlotSparse",2));
    else
       [ markColor , markId ] = ana_style(style)
    end

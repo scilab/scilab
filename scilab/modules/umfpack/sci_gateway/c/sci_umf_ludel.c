@@ -51,6 +51,7 @@
 #include "Scierror.h"
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
+#include "localization.h"
 
 extern CellAdr *ListNumeric;
 
@@ -83,13 +84,21 @@ int sci_umf_ludel(char* fname, unsigned long l)
       
       /* Check if the pointer is a valid ref to ... */
       if (RetrieveAdrFromList(Numeric, &ListNumeric, &it_flag)) 
-	/* free the memory of the numeric object */
-	if ( it_flag == 0 )
-	  umfpack_di_free_numeric(&Numeric);
-        else
-	  umfpack_zi_free_numeric(&Numeric);
-      else
-	Scierror(999,"%s: the argument is not a valid reference to (umf) LU factors",fname);
+	  {
+		  /* free the memory of the numeric object */
+		  if ( it_flag == 0 )
+		  {
+			umfpack_di_free_numeric(&Numeric);
+		  }
+		  else
+		  {
+			umfpack_zi_free_numeric(&Numeric);
+		  }
+	  }
+	  else
+	  {
+		  Scierror(999,_("%s: Wrong value for input argument #%d: Must be a valid reference to (umf) LU factors.\n"),fname,1);
+	  }
     }
   
   return 0;

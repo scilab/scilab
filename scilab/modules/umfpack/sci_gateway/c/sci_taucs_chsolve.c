@@ -58,6 +58,7 @@
 #include "common_umfpack.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+#include "localization.h"
 
 extern CellAdr *ListCholFactors;
 
@@ -82,10 +83,10 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 
 	/* Check if this pointer is a valid ref to a Cholesky factor object */
 	if ( ! IsAdrInList( (Adr)pC, ListCholFactors, &it_flag) )
-		{
-			Scierror(999,"%s: arg #1 is not a valid reference to Cholesky factor",fname);
-			return 0;
-		};
+	{
+		Scierror(999,_("%s: Wrong value for input argument #%d: not a valid reference to Cholesky factors"),fname,1);
+		return 0;
+	};
 
 	/*  the number of rows/lines of the matrix  */
 	n = pC->n;
@@ -94,28 +95,30 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 
 	/* test if the right hand side is compatible */
 	if (mb != n || nb < 1)  
-		{
-			Scierror(999,"%s: bad dimensions for the rhs (arg #2)",fname);
-			return 0;
-		};
+	{
+		Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname,2);
+		return 0;
+	};
 
 	/* get the pointer for b */
 	b = stk(lb);
 
 	if ( Rhs == 3 )
+	{
+		GetRhsVar(3,  SPARSE_MATRIX_DATATYPE, &mA, &nA, &A);
+		if ( mA != nA  ||  mA != n  ||  A.it == 1 )
 		{
-			GetRhsVar(3,  SPARSE_MATRIX_DATATYPE, &mA, &nA, &A);
-			if ( mA != nA  ||  mA != n  ||  A.it == 1 )
-				{
-					Scierror(999,"%s: the matrix (arg #3) is not compatible with the Choleski factorisation",fname);
-					return 0;
-				};
-			Refinement = 1;
-			A_is_upper_triangular = is_sparse_upper_triangular(&A);
-		}
+			Scierror(999,_("%s: Wrong size for input argument #%d: not compatible with the Choleski factorisation.\n"),fname,3);
+			return 0;
+		};
+		Refinement = 1;
+		A_is_upper_triangular = is_sparse_upper_triangular(&A);
+	}
 	else
+	{
 		Refinement = 0;
-
+	}
+	
 	/* allocate memory for the solution x */
 	CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lx);
 	x = stk(lx);
@@ -124,15 +127,15 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 	CreateVar(Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lv); v = stk(lv);
 
 	if ( Refinement )
-		{
-			CreateVar(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lres); res = stk(lres);
-			if ( A_is_upper_triangular )
-				if ( (wk = MALLOC( n * sizeof(long double))) == NULL )
-					{
-						Scierror(999,"%s: not enough memory",fname);
-						return 0;
-					};
-		}
+	{
+		CreateVar(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lres); res = stk(lres);
+		if ( A_is_upper_triangular )
+			if ( (wk = MALLOC( n * sizeof(long double))) == NULL )
+			{
+				Scierror(999,_("%s: not enough memory.\n"),fname);
+				return 0;
+			};
+	}
 
 	for ( j = 0; j < nb ; j++ )
 		{
