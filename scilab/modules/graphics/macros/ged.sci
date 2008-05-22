@@ -154,7 +154,8 @@ endfunction
 
 function TK_send_handles_list(h)
 iFig = 0;
-iUim = 0;
+iUim = 0; // uimenu
+iUic = 0; // uicontrol
 iAxe = 0; // <=> subwindow in C code
 iAgr = 0;
 iPol = 0;
@@ -197,7 +198,10 @@ for i=1:size(handles,1)
     iUim = iUim+1;
     uimname= "Uimenu("+string(iUim)+")";
     TCL_EvalStr('set '+SelObject+" "+uimname);
-   
+   case "uicontrol"
+    iUic = iUic+1;
+    uicname= "Uicontrol("+string(iUic)+")";
+    TCL_EvalStr('set '+SelObject+" "+uicname);
    case "Axes"
     iAxe = iAxe+1;
     axename= "Axes("+string(iAxe)+")";
@@ -262,6 +266,8 @@ for i=1:size(handles,1)
     iAxi = iAxi+1;
     Axiname= "Axis("+string(iAxi)+")";
     TCL_EvalStr('set '+SelObject+" "+Axiname);
+  else
+    error( hand.type + " not handled");
   end
 end
 endfunction
