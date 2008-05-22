@@ -372,11 +372,9 @@ public abstract class SciConsole extends JPanel {
 			config.getPromptView().setVisible(false);
 
 			// Remove the prompt if present at the beginning of the text to execute
-			// TODO what about pause mode prompts ??
-			String prompt = config.getPromptView().getDefaultPrompt();
-			if (linesToExec[nbStatements].startsWith(prompt)) {
-				linesToExec[nbStatements] = linesToExec[nbStatements].substring(prompt.length());
-			}
+			// Bug 3002 fix: this "functionality" has been removed because:
+			// - Remove the --> even if not from paste action
+			// - Do not remove pause prompts
 
 			// Store the command in the buffer so that Scilab can read it
 			if (linesToExec[nbStatements].length() > MAX_CMD_LENGTH) {
