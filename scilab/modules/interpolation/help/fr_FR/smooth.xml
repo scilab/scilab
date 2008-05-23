@@ -35,7 +35,7 @@
       <varlistentry>
         <term>pas  </term>
         <listitem>
-          <para>réel (pas de discrï¿½tisation des abscisses)
+          <para>réel (pas de discrétisation des abscisses)
 </para>
         </listitem>
       </varlistentry>
@@ -52,8 +52,8 @@
     <title>Description</title>
     <para>
     Cette fonction calcule les valeurs d'une spline d'interpolation
-    dont les points de rï¿½fï¿½rence sont donnés par <literal>(ptd(1,i),ptd(2,i))</literal>. Les abscisses <literal>ptd(1,:)</literal> doivent être classï¿½s par ordre croissant.
-    La valeur par dï¿½faut du pas est égale à 
+    dont les points de référence sont donnés par <literal>(ptd(1,i),ptd(2,i))</literal>. Les abscisses <literal>ptd(1,:)</literal> doivent être classées par ordre croissant.
+    La valeur par défaut du pas est égale à 
     <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal>
   </para>
   </refsection>

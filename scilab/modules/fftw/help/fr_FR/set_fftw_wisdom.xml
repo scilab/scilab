@@ -17,7 +17,7 @@
       <varlistentry>
         <term>txt</term>
         <listitem>
-          <para>Matrice de chaï¿½ne de caractï¿½res contenant le wisdom fftw.</para>
+          <para>Matrice de chaîne de caractères contenant le wisdom fftw.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -25,7 +25,7 @@
   <refsection>
     <title>Description</title>
     <para>
-     Cette fonction charge un wisdom fftw contenue dans une chaï¿½ne de caractï¿½res.
+     Cette fonction charge un wisdom fftw contenue dans une chaîne de caractères.
     </para>
   </refsection>
   <refsection>

@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>intsplin</refname>
-    <refpurpose> intï¿½gration approchï¿½e de données expï¿½rimentales utilisant une interpolation par une spline.  </refpurpose>
+    <refpurpose> intégration approchée de données expérimentales utilisant une interpolation par une spline.  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -28,7 +28,7 @@
       <varlistentry>
         <term>x  </term>
         <listitem>
-          <para>vecteur des abscisses, classï¿½es par ordre croissant. La valeur par dï¿½faut est <literal>1:size(y,'*')</literal>
+          <para>vecteur des abscisses, classées par ordre croissant. La valeur par défaut est <literal>1:size(y,'*')</literal>
 </para>
         </listitem>
       </varlistentry>
@@ -42,7 +42,7 @@
       <varlistentry>
         <term>v  </term>
         <listitem>
-          <para>valeur de l'approximation de l'intï¿½grale
+          <para>valeur de l'approximation de l'intégrale
 </para>
         </listitem>
       </varlistentry>
@@ -54,12 +54,12 @@
     Calcule une approximation de :
   </para>
     <para>
-    oï¿½ f est donnée sous forme de valeurs expï¿½rimentales :
+    où f est donnée sous forme de valeurs expérimentales :
   </para>
     <para><literal>s(i)=f(x(i))</literal>  et <literal>x0=x(1)</literal>, <literal>x1=x(n)</literal>
   </para>
     <para>
-    Entre les points, f est approchï¿½e à l'aide d'une spline.
+    Entre les points, f est approchée à l'aide d'une spline.
   </para>
   </refsection>
   <refsection>

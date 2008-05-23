@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>tohome</refname>
-    <refpurpose>Dï¿½place le curseur en haut à gauche de la fenêtre de commande</refpurpose>
+    <refpurpose>Déplace le curseur en haut à gauche de la fenêtre de commande</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -24,8 +24,8 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>tohome()</literal> dï¿½place le curseur en haut à gauche de la fenêtre de commande et efface l'ï¿½cran.</para>
-    <para>Vous pouvez utiliser la barre de dï¿½filement pour voir l'historique des fonctions.</para>
+    <para><literal>tohome()</literal> déplace le curseur en haut à gauche de la fenêtre de commande et efface l'écran.</para>
+    <para>Vous pouvez utiliser la barre de défilement pour voir l'historique des fonctions.</para>
     <para>Notez que <literal>tohome()</literal> ne peut être utilisé sous Windows quand Scilab est utilisé en mode sans fenêtre.</para>
   </refsection>
   <refsection>

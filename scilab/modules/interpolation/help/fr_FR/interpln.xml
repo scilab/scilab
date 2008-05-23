@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>interpln</refname>
-    <refpurpose> interpolation linï¿½aire  </refpurpose>
+    <refpurpose> interpolation linéaire  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -51,7 +51,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    étant donné <literal>xyd</literal> un ensemble de points dans le plan avec des abscisses croissantes et <literal>x</literal> un ensemble d'abscisses, cette fonction renvoie dans <literal>y</literal> les ordonnées correspondantes, calculï¿½es par interpolation linï¿½aire.
+    étant donné <literal>xyd</literal> un ensemble de points dans le plan avec des abscisses croissantes et <literal>x</literal> un ensemble d'abscisses, cette fonction renvoie dans <literal>y</literal> les ordonnées correspondantes, calculées par interpolation linéaire.
   </para>
   </refsection>
   <refsection>
