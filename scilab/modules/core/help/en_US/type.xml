@@ -81,10 +81,10 @@
     : pointer (See <link linkend="lufact">lufact</link>).</para>
     <para>
      129
-    : size implicit polynom used for indexing.</para>
+    : size implicit polynomial used for indexing.</para>
     <para>
      130
-    : fonction pointer (C or Fortran code).</para>
+    : Scilab intrinsic (C or Fortran code).</para>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -137,7 +137,7 @@
       <varlistentry>
         <term>"fptr"</term>
         <listitem>
-          <para>if object is a Scilab function pointer (C or Fortran code).</para>
+          <para>if object is a Scilab intrinsic (C or Fortran code).</para>
         </listitem>
       </varlistentry>
       <varlistentry>

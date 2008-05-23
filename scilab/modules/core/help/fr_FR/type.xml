@@ -104,7 +104,7 @@
   </para>
     <para>
      130
-    : pointeur de fonction (Code C ou Fortran).
+    : fonction Scilab intrinsèque (Code C ou Fortran).
   </para>
   </refsection>
   <refsection>
