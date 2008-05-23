@@ -80,6 +80,8 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	
 	private double labelToAxisDist;
 	
+	private boolean useFractionalMetrics;
+	
 	/** Sepecify where the ticks are drawn in the window
 	 *  Cut the viewport in 4 distincts part 
 	 */
@@ -108,6 +110,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		ticksStarts = null;
 		ticksEnds = null;
 		labelToAxisDist = -1.0;
+		useFractionalMetrics = false;
 	}
 	
 	/**
@@ -262,6 +265,13 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	}
 	
 	/**
+	 * @param useFractionalMetrics specify if the font should use fractional metrics or not
+	 */
+	public void setUseFractionalMetrics(boolean useFractionalMetrics) {
+		this.useFractionalMetrics = useFractionalMetrics;
+	}
+	
+	/**
 	 * Specify all constant parameters in a single function
 	 * @param lineStyle index of the line Style
 	 * @param lineWidth thickness of the line in pixels
@@ -269,14 +279,17 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	 * @param fontType ndex of the font in the font array.
 	 * @param fontSize font size to use.
 	 * @param fontColor index of the color in the colormap for the font
+	 * @param useFractionalMetrics specify if the font should use fractional metrics or not
 	 */
 	public void setAxisParameters(int lineStyle, float lineWidth, int lineColor,
-								  int fontType, double fontSize, int fontColor) {
+								  int fontType, double fontSize, int fontColor,
+								  boolean useFractionalMetrics) {
 		setLineStyle(lineStyle);
 		setThickness(lineWidth);
 		setLineColor(lineColor);
 		setFont(fontType, fontSize);
 		setFontColor(fontColor);
+		setUseFractionalMetrics(useFractionalMetrics);
 	}
 	
 	/**
@@ -677,7 +690,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		
 		// get text renderer
 		SciTextRenderer renderer
-			= getParentFigureGL().getTextRendererCreator().createTextRenderer(labelFont, getColorMap().getColor(labelColor));
+			= getParentFigureGL().getTextRendererCreator().createTextRenderer(labelFont, getColorMap().getColor(labelColor), useFractionalMetrics);
 		
 		GLTools.usePixelCoordinates(gl);
 		
@@ -781,9 +794,11 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	public double showTicks() {
 		GL gl = getGL();
 		
+		double[] color = getColorMap().getColor(labelColor);
+		
 		// get text renderer
 		SciTextRenderer renderer
-			= getParentFigureGL().getTextRendererCreator().createTextRenderer(labelFont, getColorMap().getColor(labelColor)); 
+			= getParentFigureGL().getTextRendererCreator().createTextRenderer(labelFont, color, useFractionalMetrics); 
 		
 		
 		GLTools.usePixelCoordinates(gl);

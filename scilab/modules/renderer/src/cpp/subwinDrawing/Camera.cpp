@@ -146,6 +146,11 @@ void Camera::get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2
   getCameraImp()->get2dViewPixelCoordinates(userCoord, pixCoord);
 }
 /*--------------------------------------------------------------------------*/
+void Camera::get2dViewPixelCoordinates(const double userCoord[3], double pixCoord[3])
+{
+  getCameraImp()->get2dViewPixelCoordinates(userCoord, pixCoord);
+}
+/*--------------------------------------------------------------------------*/
 void Camera::getSceneCoordinates(const double pixCoords[3], double userCoords[3])
 {
   getCameraImp()->getSceneCoordinates(pixCoords, userCoords);

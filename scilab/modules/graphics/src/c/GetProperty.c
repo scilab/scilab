@@ -4409,6 +4409,19 @@ BOOL sciGetUseNurbs(sciPointObj * pObj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
+* Check wether an object is using fractional metrics for text display
+*/
+BOOL sciGetIsUsingFractionalMetrics(sciPointObj * pObj)
+{
+  sciFont * fontContext = sciGetFontContext(pObj);
+  if (fontContext != NULL) {
+    return fontContext->useFractionalMetrics;
+  }
+  printSetGetErrorMessage("fractional_font");
+  return FALSE;
+}
+/*----------------------------------------------------------------------------------*/
+/**
  * Print the message "This object has no xxx property." in Scilab.
  */
 void printSetGetErrorMessage(const char * propertyName)

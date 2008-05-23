@@ -40,6 +40,8 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	private Vector3D textCenter;
 	private Vector3D textCenterPix;
 	
+	private boolean useFractionalMetrics;
+	
 	/**
 	 * Default constructor
 	 */
@@ -50,6 +52,7 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		fontType = null;
 		rotationAngle = 0.0;
 		textCenter = new Vector3D();
+		useFractionalMetrics = true;
 	}
 	
 	/**
@@ -146,19 +149,28 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	}
 	
 	/**
+	 * @param useFractionalMetrics specify wheter to use fractional metrics or not
+	 */
+	public void setUseFractionalMetrics(boolean useFractionalMetrics) {
+		this.useFractionalMetrics = useFractionalMetrics;
+	}
+	
+	/**
 	 * Set many text parameters in one function.
 	 * @param textAlignement kind of alignement.
 	 * @param color index of the color in the colormap.
 	 * @param fontTypeIndex index of the font in the font array.
 	 * @param fontSize font size to use.
 	 * @param rotationAngle text rotationAngle.
+	 * @param useFractionalMetrics specify wheter to use fractional metrics or not
 	 */
 	public void setTextParameters(int textAlignement, int color, int fontTypeIndex,
-                                  double fontSize, double rotationAngle) {
+                                  double fontSize, double rotationAngle, boolean useFractionalMetrics) {
 		setTextAlignement(textAlignement);
 		setFontColor(color);
 		setFont(fontTypeIndex, fontSize);
         setRotationAngle(rotationAngle);
+        setUseFractionalMetrics(useFractionalMetrics);
 	}
 	
 	/**
@@ -184,8 +196,7 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 * @return instance of SciTextRenderer
 	 */
 	public SciTextRenderer getTextRenderer() {
-		SciTextRenderer renderer = getParentFigureGL().getTextRendererCreator().createTextRenderer(getFont(), getFontColor());
-		return renderer;
+		return getParentFigureGL().getTextRendererCreator().createTextRenderer(getFont(), getFontColor(), useFractionalMetrics);
 	}
 	
 	/**

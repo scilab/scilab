@@ -98,10 +98,21 @@
       <varlistentry>
         <term>font_size: </term>
         <listitem>
-          <para>The <literal>font_size</literal> property is used to select the type of
-        size of the label. Its value should be an integer in between 0 and 5
-        which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</para>
+          <para>The <literal>font_size</literal> property is a real used to select the of
+          size of the text. If <literal>fractional_font</literal> property is <literal>"off"</literal>
+          only the integer part of the value is used.</para>
         </listitem>
+      </varlistentry>
+      <varlistentry>
+              <term>fractional_font: </term>
+              <listitem>
+	        <para>
+		  This property specify whether text might be displayed using fractional font sizes.
+		  Its value must be either <literal>"on"</literal> or <literal>"off"</literal>.
+		  If <literal>"on"</literal> the floating point value of <literal>font_size</literal>
+		  is used for display. If <literal>"off"</literal> only the integer part is used.
+		</para>
+              </listitem>
       </varlistentry>
       <varlistentry>
         <term>font_angle: </term>

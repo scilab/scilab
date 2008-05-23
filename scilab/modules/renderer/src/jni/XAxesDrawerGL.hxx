@@ -62,7 +62,7 @@ jmethodID jdoubledrawTicksjdoubleArrayjobjectArrayjdoubleArrayID; // cache metho
 jclass stringArrayClass;
 jmethodID jdoubledrawTicksjdoubleArrayjobjectArrayjobjectArrayjdoubleArrayID; // cache method id
 jmethodID voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID; // cache method id
-jmethodID voidsetAxisParametersjintjfloatjintjintjdoublejintID; // cache method id
+jmethodID voidsetAxisParametersjintjfloatjintjintjdoublejintjbooleanID; // cache method id
 jmethodID voidsetConstantCoordinatesjdoublejdoubleID; // cache method id
 jmethodID voidsetTicksDirectionjstringID; // cache method id
 jmethodID voidsetAxisLineDrawingjbooleanID; // cache method id
@@ -127,7 +127,7 @@ double drawTicks(double * ticksPositions, int ticksPositionsSize, char ** ticksL
 
 void setAxesBounds(double xMin, double xMax, double yMin, double yMax, double zMin, double zMax);
 
-void setAxisParameters(long lineStyle, float lineWidth, long lineColor, long fontType, double fontSize, long fontColor);
+void setAxisParameters(long lineStyle, float lineWidth, long lineColor, long fontType, double fontSize, long fontColor, bool useFractionalMetrics);
 
 void setConstantCoordinates(double yCoordinate, double zCoordinate);
 

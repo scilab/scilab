@@ -73,6 +73,11 @@ public:
   virtual void get2dViewPixelCoordinates(const double userCoord[3], int pixCoord[2]);
 
   /**
+   * Convert user coordinates to pixel coordinated using the 2d view.
+   */
+  virtual void get2dViewPixelCoordinates(const double userCoord[3], double pixCoord[3]);
+
+  /**
    * Unproject a 3 position in pixels into the standard scene coordinates
    */
   virtual void getSceneCoordinates(const double pixCoords[3], double userCoords[3]);

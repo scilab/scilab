@@ -35,9 +35,24 @@ public class TextRendererManager extends HashMap<String, TextRenderer[]> {
 	
 	/**
 	 * List of all font sizes the created text renderer may use.
-	 * The 2:7 correspond to the 6 font sizes used in in Scilab 4.x.
+	 * The 8, 10, 12, 14, 18 and 24, correspond to the 6 font sizes used in in Scilab 4.x.
 	 */
-	private static final float[] TEXT_RENDERER_FONT_SIZES = {6.0f, 8.0f, 10.0f, 12.0f, 14.0f, 18.0f, 24.0f, 50.0f, 100.0f, 200.0f};
+	private static final float[] TEXT_RENDERER_FONT_SIZES = {2.0f,
+															 4.0f,
+															 6.0f,
+															 8.0f,
+															 10.0f,
+															 12.0f,
+															 14.0f,
+															 18.0f,
+															 24.0f,
+															 34.0f,
+															 44.0f,
+															 54.0f,
+															 64.0f,
+															 74.0f,
+															 84.0f,
+															 94.0f};
 	
 	/** choose between JOGL factory and GL2PS one */
 	private TextRendererFactory factory;
@@ -60,23 +75,22 @@ public class TextRendererManager extends HashMap<String, TextRenderer[]> {
 	/**
 	 * Get the text actual textRenderer thnat should be used to render the Font font.
 	 * @param font font to render
-	 * @return instance of TextRender that should be used by the SCiTextRenderer
+	 * @param useFractionalMetrics if true the generated renderer will be able to use fractional metrics
+	 * @return instance of TextRender that should be used by the SciTextRenderer
 	 */
-	protected TextRenderer getTextRenderer(Font font) {
-		TextRenderer[] usedRenderedList = get(font.getFontName());
+	protected TextRenderer getTextRenderer(Font font, boolean useFractionalMetrics) {
+		TextRenderer[] usedRenderedList = getRendererList(font);
 		
-		if (usedRenderedList == null) {
-			// this font has not already been used, we need to create a new TextRenderer list
-			usedRenderedList = new TextRenderer[TEXT_RENDERER_FONT_SIZES.length];
-			
-			// add this array to the hashmap
-			// we need to use getFontName and not getName here
-			// getFontName is more precise
-			put(font.getFontName(), usedRenderedList);
-		}
+		int fontSizeIndex;
 		
 		// find the font size we will use in the created TexRenderer
-		int fontSizeIndex = getRendererFontSize(font.getSize2D());
+		if (useFractionalMetrics) {
+			// use a greater font size and then reduce the size
+			fontSizeIndex = getRendererUpperSize(font.getSize2D());
+		} else {
+			// use the font which is just above like in Scilab 4
+			fontSizeIndex = getRendererLowerSize(font.getSize2D());
+		}
 		
 		TextRenderer res = usedRenderedList[fontSizeIndex];
 		
@@ -89,7 +103,7 @@ public class TextRendererManager extends HashMap<String, TextRenderer[]> {
 			res = new TextRenderer(defaultFont, false, false, null, true);
 			// direct rendering
 			res.setUseVertexArrays(false);
-			// not smooth
+			// smooth by default might be changed after
 			res.setSmoothing(true);
 			
 			// add it to the list of textRenderer from this fotn family
@@ -100,12 +114,32 @@ public class TextRendererManager extends HashMap<String, TextRenderer[]> {
 	}
 	
 	/**
-	 * Compute the font Size of the TextRenderer to use from the font size
-	 * which needs to be displayed
+	 * Get the list of renderer associated with the family of the font.
+	 * @param font font of which we wants to get the family.
+	 * @return array containing the list of text renderer able to render the font
+	 */
+	protected TextRenderer[] getRendererList(Font font) {
+		TextRenderer[] usedRenderedList = get(font.getFontName());
+		
+		if (usedRenderedList == null) {
+			// this font has not already been used, we need to create a new TextRenderer list
+			usedRenderedList = new TextRenderer[TEXT_RENDERER_FONT_SIZES.length];
+			
+			// add this array to the hashmap
+			// we need to use getFontName and not getName here
+			// getFontName is more precise
+			put(font.getFontName(), usedRenderedList);
+		}
+		
+		return usedRenderedList;
+	}
+	
+	/**
+	 * Compute the index in the default font size which is just above the requested font size
 	 * @param displayFontSize size of the font to display
 	 * @return index of the font in the font size array
 	 */
-	protected int getRendererFontSize(float displayFontSize) {
+	protected int getRendererUpperSize(float displayFontSize) {
 		// get the font size which is just above displayFont size in thte array
 		// or one of the bounds if size is out of bounds
 		int res;
@@ -114,6 +148,7 @@ public class TextRendererManager extends HashMap<String, TextRenderer[]> {
 				break;
 			}
 		}
+		
 		if (res < TEXT_RENDERER_FONT_SIZES.length) {
 			return res;
 		} else {
@@ -122,14 +157,38 @@ public class TextRendererManager extends HashMap<String, TextRenderer[]> {
 	}
 	
 	/**
+	 * Compute the index in the default font size which is just below the requested font size
+	 * @param displayFontSize size of the font to display
+	 * @return index of the font in the font size array
+	 */
+	protected int getRendererLowerSize(float displayFontSize) {
+		// get the font size which is just below displayFont size in thte array
+		// or one of the bounds if size is out of bounds
+		int res;
+		for (res = 0; res < TEXT_RENDERER_FONT_SIZES.length; res++) {
+			if (TEXT_RENDERER_FONT_SIZES[res] > displayFontSize) {
+				break;
+			}
+		}
+		
+		if (res == 0) {
+			return res;
+		} else {
+			return res - 1;
+		}
+	}
+	
+	/**
 	 * Create a new instance of SciTextRenderer displaying the font font.
 	 * @param font that will be used in the created SciTextRenderer
 	 * @param color color of the text to display
+	 * @param useFractionalMetrics if true the generated renderer will be able to use fractional metrics
 	 * @return new instance of SciTextRenderer
 	 */
-	public SciTextRenderer createTextRenderer(Font font, double[] color) {
-		SciTextRenderer res = factory.createTextRenderer(getTextRenderer(font), font);
+	public SciTextRenderer createTextRenderer(Font font, double[] color, boolean useFractionalMetrics) {
+		SciTextRenderer res = factory.createTextRenderer(getTextRenderer(font, useFractionalMetrics), font);
 		res.setColor(color);
+		res.setUseFractionalMetrics(useFractionalMetrics);
 		return res;
 	}
 	

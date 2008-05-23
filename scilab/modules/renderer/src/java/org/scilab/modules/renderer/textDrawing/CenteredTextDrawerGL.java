@@ -41,9 +41,9 @@ public class CenteredTextDrawerGL extends FixedFontTextDrawerGL {
 	 * @param boxWidth width of the box.
 	 * @param boxHeight height of the box.
 	 */
-	public void setFilledBoxSize(int boxWidth, int boxHeight) {
-		halfCenteredBoxWidth = ((double) boxWidth / 2.0);
-		halfCenteredBoxHeight = ((double) boxHeight / 2.0);
+	public void setFilledBoxSize(double boxWidth, double boxHeight) {
+		halfCenteredBoxWidth = (boxWidth / 2.0);
+		halfCenteredBoxHeight = (boxHeight / 2.0);
 	}
 	
 	/**

@@ -100,6 +100,7 @@ function save_graphichandle(h,fd)
     mput(bool2s(l.visible=='on'),'c',fd) ; // title.visible
     save_text_matrix( l.text, fd ) ;
     mput(l.font_foreground,'il',fd); // title_label.font_foreground
+    mput(bool2s(l.fractional_font=='on'),'c',fd) // title.fractional_font
     mput(l.foreground,'il',fd) // title.foreground
     mput(l.background,'il',fd) // title.background
     mput(bool2s(l.fill_mode=='on'),'c',fd) // title.fill_mode
@@ -116,6 +117,7 @@ function save_graphichandle(h,fd)
     mput(bool2s(l.visible=='on'),'c',fd) // x_label.visible
     save_text_matrix( l.text, fd ) ;
     mput(l.font_foreground,'il',fd); // x_label.font_foreground
+    mput(bool2s(l.fractional_font=='on'),'c',fd) // x_label.fractional_font
     mput(l.foreground,'il',fd) // x_label.foreground
     mput(l.background,'il',fd) // x_label.background
     mput(bool2s(l.fill_mode=='on'),'c',fd) // x_label.fill_mode
@@ -132,6 +134,7 @@ function save_graphichandle(h,fd)
     mput(bool2s(l.visible=='on'),'c',fd) // y_label.visible
     save_text_matrix( l.text, fd ) ;
     mput(l.font_foreground,'il',fd); // y_label.font_foreground
+    mput(bool2s(l.fractional_font=='on'),'c',fd) // y_label.fractional_font
     mput(l.foreground,'il',fd) // y_label.foreground
     mput(l.background,'il',fd) // y_label.background
     mput(bool2s(l.fill_mode=='on'),'c',fd) // y_label.fill_mode
@@ -149,6 +152,7 @@ function save_graphichandle(h,fd)
       mput(bool2s(l.visible=='on'),'c',fd) // z_label.visible
       save_text_matrix( l.text, fd ) ;
       mput(l.font_foreground,'il',fd); // z_label.font_foreground
+      mput(bool2s(l.fractional_font=='on'),'c',fd) // z_label.fractional_font
       mput(l.foreground,'il',fd) // z_label.foreground
       mput(l.background,'il',fd) // z_label.background
       mput(bool2s(l.fill_mode=='on'),'c',fd) // z_label.fill_mode
@@ -185,6 +189,7 @@ function save_graphichandle(h,fd)
     mput(h.font_style,'c',fd) // font_style
     mput(h.font_size,'c',fd) //font_size
     mput(h.font_color,'il',fd) // font_color
+    mput(bool2s(h.fractional_font=='on'),'c',fd) // fractional_font
     mput(bool2s(h.isoview=='on'),'c',fd)    // isoview
     mput(bool2s(h.cube_scaling=='on'),'c',fd) // cube_scaling
     mput(h.rotation_angles,'dl',fd) // rotation_angles
@@ -496,6 +501,7 @@ function save_graphichandle(h,fd)
     mput(h.foreground,'il',fd) // foreground
     mput(h.font_style,'c',fd) // font_style
     mput(h.font_size,'c',fd) // font_size
+    mput(bool2s(h.fractional_font=='on'),'c',fd) // fractional_font
     mput(length(h.clip_state),'c',fd); // clip_state
     mput(ascii(h.clip_state),'c',fd);
     if h.clip_state=='on' then
@@ -530,6 +536,7 @@ function save_graphichandle(h,fd)
     
     mput(length(h.alignment),'c',fd);
     mput(ascii(h.alignment),'c',fd) ; // alignment
+    mput(bool2s(h.fractional_font=='on'),'c',fd) // fractional_font
     
     mput(length(h.clip_state),'c',fd); // clip_state
     mput(ascii(h.clip_state),'c',fd);
@@ -554,6 +561,7 @@ function save_graphichandle(h,fd)
     save_text_vector(h.tics_labels,fd) // tics_labels
     mput(h.labels_font_size,'il',fd) // label_font_size
     mput(h.labels_font_color,'il',fd) // labels_font_color
+    mput(bool2s(h.fractional_font=='on'),'c',fd) // fractional_font
     mput(length(h.clip_state),'c',fd); // clip_state
     mput(ascii(h.clip_state),'c',fd);
     if h.clip_state=='on' then

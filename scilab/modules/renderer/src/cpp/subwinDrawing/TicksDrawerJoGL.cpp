@@ -69,7 +69,8 @@ void TicksDrawerJoGL::initializeDrawing(void)
                                                  sciGetGraphicContext(pObj)->foregroundcolor,
                                                  sciGetFontStyle(pObj),
                                                  sciGetFontSize(pObj),
-                                                 sciGetFontContext(pObj)->foregroundcolor);
+                                                 sciGetFontContext(pObj)->foregroundcolor,
+                                                 sciGetIsUsingFractionalMetrics(pObj) == TRUE);
 
   if (m_pGridDrawer != NULL)
   {

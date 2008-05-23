@@ -375,8 +375,10 @@ typedef struct
   char *pfontname;		 
   /** renvoi la longueur de fontname */
   unsigned int fontnamelen;	
-  /** */
+  /** type of the font */
   int fonttype; /* scilab font index 0 to 9 */
+  /** specify if the font size must be stucks to Scilab font sizes 0:6 or might be any double */
+  BOOL useFractionalMetrics;
   /** Gets the width of the character in tenth of point */
   double fontSize;		
   /** this is coded in radian*/

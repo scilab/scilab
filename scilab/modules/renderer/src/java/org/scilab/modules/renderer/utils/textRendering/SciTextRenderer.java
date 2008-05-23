@@ -37,16 +37,30 @@ public class SciTextRenderer {
 	/** font size of the renderer object */
 	private float scaleFactor;
 	
+	private boolean useFractionalMetrics;
+	
 	/**
 	 * Constructor from a Font to use.
 	 * @param fontSize font Size of the font
 	 * @param renderer mapped text renderer
 	 */
 	public SciTextRenderer(TextRenderer renderer, float fontSize) {
-	
 		this.fontSize = fontSize;
 		this.renderer = renderer;
-		this.scaleFactor = fontSize / renderer.getFont().getSize2D();
+		setUseFractionalMetrics(true);
+		updateScaleFactor();
+	}
+	
+	/**
+	 * Update the scale factor to use
+	 */
+	private void updateScaleFactor() {
+		//if (useFractionalMetrics) {
+			this.scaleFactor = fontSize / renderer.getFont().getSize2D();
+//			
+//		} else {
+//			this.scaleFactor = 1.0f;
+//		}
 	}
 	
 	
@@ -67,11 +81,30 @@ public class SciTextRenderer {
 		//gl.glScalef(fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
 		//			fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
 		//			fontSize / TextRendererManager.DEFAULT_FONT_SIZE);
-		renderer.draw3D(str, (float) x, (float) y, (float) z, scaleFactor);
+		if (useFractionalMetrics) {
+			renderer.draw3D(str, (float) x, (float) y, (float) z, scaleFactor);
+		} else {
+			renderer.draw3D(str, (float) x, (float) y, (float) z, 1.0f);
+		}
 		
 		// flush since we moved rendering position
 		//renderer.flush();
 		//gl.glPopMatrix();
+	}
+	
+	/**
+	 * Specify wether the font size must stuck with Scilab font Size (integer from 0 to 6) or
+	 * if intermediate sizes can be used.
+	 * @param useFractionalMetrics if ture useFractionnal metrics
+	 */
+	public void setUseFractionalMetrics(boolean useFractionalMetrics) {
+		this.useFractionalMetrics = useFractionalMetrics;
+		if (useFractionalMetrics) {
+			renderer.setSmoothing(true);
+		} else {
+			renderer.setSmoothing(false);
+		}
+		updateScaleFactor();
 	}
 	
 	/**
@@ -103,7 +136,7 @@ public class SciTextRenderer {
 	 */
 	public void setFontSize(float newFontSize) {
 		this.fontSize = newFontSize;
-		this.scaleFactor = fontSize / renderer.getFont().getSize2D();
+		updateScaleFactor();
 	}
 	
 	/**

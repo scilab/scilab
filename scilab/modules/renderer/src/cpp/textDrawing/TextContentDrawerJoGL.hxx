@@ -65,7 +65,7 @@ protected:
    */
   void getPixelLength(sciPointObj * parentSubwin, const double startingPoint[3],
                       double userWidth, double userHeight,
-                      int * pixelWidth, int * pixelHeight );
+                      double & pixelWidth, double & pixelHeight );
 
   /**
    * Get position of the text to display.
@@ -90,7 +90,7 @@ protected:
   /**
    * Compute the size in pixel of the user bounding box
    */
-  void getUserSizePix(int & boxWidthPix, int & boxHeightPix);
+  void getUserSizePix(double & boxWidthPix, double & boxHeightPix);
 
   /**
    * Get the object performing mapping with Java class.

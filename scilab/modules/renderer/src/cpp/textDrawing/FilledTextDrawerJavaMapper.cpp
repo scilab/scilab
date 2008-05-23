@@ -63,10 +63,10 @@ void FilledTextDrawerJavaMapper::setFigureIndex(int figureIndex)
 }
 /*---------------------------------------------------------------------------------*/
 void FilledTextDrawerJavaMapper::setTextParameters(int textAlignment, int color, int fontStyle,
-                                                   double defaultFontSize, double rotationAngle)
+                                                   double defaultFontSize, double rotationAngle, bool useFractionalMetrics)
 {
   m_pJavaObject->setTextParameters(textAlignment, color, fontStyle, defaultFontSize,
-                                   rotationAngle);
+                                   rotationAngle, useFractionalMetrics);
 }
 /*---------------------------------------------------------------------------------*/
 void FilledTextDrawerJavaMapper::setTextContent(char ** text, int nbRow, int nbCol)
@@ -99,7 +99,7 @@ double FilledTextDrawerJavaMapper::getFontSize(void)
   return m_pJavaObject->getScilabFontSize();
 }
 /*---------------------------------------------------------------------------------*/
-void FilledTextDrawerJavaMapper::setFilledBoxSize(int boxWidth, int boxHeight)
+void FilledTextDrawerJavaMapper::setFilledBoxSize(double boxWidth, double boxHeight)
 {
   m_pJavaObject->setFilledBoxSize(boxWidth, boxHeight);
 }

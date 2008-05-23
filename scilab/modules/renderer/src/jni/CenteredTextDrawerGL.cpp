@@ -108,7 +108,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
+voidsetTextParametersjintjintjintjdoublejdoublejbooleanID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -118,7 +118,7 @@ voidsetCenterPositionjdoublejdoublejdoubleID=NULL;
 jdoubleArraydrawTextContentID=NULL; 
 jdoubleArraygetBoundingRectangleID=NULL; 
 jintArraygetScreenBoundingBoxID=NULL; 
-voidsetFilledBoxSizejintjintID=NULL; 
+voidsetFilledBoxSizejdoublejdoubleID=NULL; 
 
 
 }
@@ -150,7 +150,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
+voidsetTextParametersjintjintjintjdoublejdoublejbooleanID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -160,7 +160,7 @@ voidsetCenterPositionjdoublejdoublejdoubleID=NULL;
 jdoubleArraydrawTextContentID=NULL; 
 jdoubleArraygetBoundingRectangleID=NULL; 
 jintArraygetScreenBoundingBoxID=NULL; 
-voidsetFilledBoxSizejintjintID=NULL; 
+voidsetFilledBoxSizejdoublejdoubleID=NULL; 
 
 
 }
@@ -299,17 +299,19 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void CenteredTextDrawerGL::setTextParameters (long textAlignment, long color, long fontStyle, double fontSize, double rotationAngle){
+void CenteredTextDrawerGL::setTextParameters (long textAlignment, long color, long fontStyle, double fontSize, double rotationAngle, bool useFractionalMetrics){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voidsetTextParametersjintjintjintjdoublejdoubleID==NULL) { /* Use the cache Luke */ voidsetTextParametersjintjintjintjdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setTextParameters", "(IIIDD)V" ) ;
-if (voidsetTextParametersjintjintjintjdoublejdoubleID == NULL) {
+if (voidsetTextParametersjintjintjintjdoublejdoublejbooleanID==NULL) { /* Use the cache Luke */ voidsetTextParametersjintjintjintjdoublejdoublejbooleanID = curEnv->GetMethodID(this->instanceClass, "setTextParameters", "(IIIDDZ)V" ) ;
+if (voidsetTextParametersjintjintjintjdoublejdoublejbooleanID == NULL) {
 std::cerr << "Could not access to the method " << "setTextParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoublejdoubleID ,textAlignment, color, fontStyle, fontSize, rotationAngle);
+jboolean useFractionalMetrics_ = ((bool) useFractionalMetrics ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoublejdoublejbooleanID ,textAlignment, color, fontStyle, fontSize, rotationAngle, useFractionalMetrics_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
@@ -487,17 +489,17 @@ return myArray;
 
 }
 
-void CenteredTextDrawerGL::setFilledBoxSize (long boxWidth, long boxHeight){
+void CenteredTextDrawerGL::setFilledBoxSize (double boxWidth, double boxHeight){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voidsetFilledBoxSizejintjintID==NULL) { /* Use the cache Luke */ voidsetFilledBoxSizejintjintID = curEnv->GetMethodID(this->instanceClass, "setFilledBoxSize", "(II)V" ) ;
-if (voidsetFilledBoxSizejintjintID == NULL) {
+if (voidsetFilledBoxSizejdoublejdoubleID==NULL) { /* Use the cache Luke */ voidsetFilledBoxSizejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setFilledBoxSize", "(DD)V" ) ;
+if (voidsetFilledBoxSizejdoublejdoubleID == NULL) {
 std::cerr << "Could not access to the method " << "setFilledBoxSize" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voidsetFilledBoxSizejintjintID ,boxWidth, boxHeight);
+                         curEnv->CallVoidMethod( this->instance, voidsetFilledBoxSizejdoublejdoubleID ,boxWidth, boxHeight);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

@@ -402,12 +402,13 @@ sciInitFontContext (sciPointObj * pobj)
   case SCI_FIGURE:
     if (pobj == pfiguremdl)
     {
-      sciInitFontStyle (pobj, 6); /* set helvetica font */
+       sciInitFontStyle (pobj, 6); /* set helvetica font */
       (sciGetFontContext(pobj))->backgroundcolor = 33;
       (sciGetFontContext(pobj))->foregroundcolor = 32;
       (sciGetFontContext(pobj))->fontSize = 1.0;
       (sciGetFontContext(pobj))->textorientation = 0.0;
       (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
+      (sciGetFontContext(pobj))->useFractionalMetrics = TRUE;
 	  
       if (
         ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,

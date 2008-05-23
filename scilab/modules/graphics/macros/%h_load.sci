@@ -162,6 +162,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     if is_higher_than([4 1 2 0]) then
       set(titl,"font_foreground", mget(1,'il',fd)); // title.font_foreground
+      set(titl,"fractional_font", toggle(mget(1,'c',fd))); //title.fractional_font
     end
     set(titl,"foreground", mget(1,'il',fd)); // title.foreground
     if is_higher_than([3 1 0 0]) then
@@ -190,6 +191,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     if is_higher_than([4 1 2 0]) then
       set(x_label,"font_foreground", mget(1,'il',fd)); // x_label.font_foreground
+      set(x_label,"fractional_font", toggle(mget(1,'c',fd))); //x_label.fractional_font
     end
     set(x_label,"foreground", mget(1,'il',fd)); // x_label.foreground
     if is_higher_than([3 0 0 0]) then
@@ -217,6 +219,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     if is_higher_than([4 1 2 0]) then
       set(y_label,"font_foreground", mget(1,'il',fd)); // y_label.font_foreground
+      set(y_label,"fractional_font", toggle(mget(1,'c',fd))); //y_label.fractional_font
     end
     set(y_label,"foreground"     , mget(1,'il',fd));
     if is_higher_than([3 0 0 0]) then
@@ -246,6 +249,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       end
       if is_higher_than([4 1 2 0]) then
 	set(z_label,"font_foreground", mget(1,'il',fd)); // z_label.font_foreground
+        set(z_label,"fractional_font", toggle(mget(1,'c',fd))); //z_label.fractional_font
       end
       set(z_label,"foreground"     , mget(1,'il',fd));
       if is_higher_than([3 0 0 0]) then
@@ -307,6 +311,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(a,"font_style"           , mget(1,'c',fd));  // font_style
     set(a,"font_size"            , mget(1,'c',fd));  // font_size
     set(a,"font_color"           , mget(1,'il',fd)); // font_color
+    if is_higher_than([4 1 2 0]) then
+      set(a,"fractional_font", toggle(mget(1,'c',fd))); // fractional_font
+    end
     set(a,"isoview"              , toggle(mget(1,'c',fd))) // isoview
  
     cube_scaling    = toggle(mget(1,'c',fd)) // cube_scaling
@@ -1012,6 +1019,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     
     set(h,"font_style", mget(1,'c',fd)); // font_style
     set(h,"font_size" , mget(1,'c',fd)); // font_size
+    if is_higher_than( [4 1 2 0] ) then
+      set(h,"fractional_font" , toggle(mget(1,'c',fd))); // fractional_font
+    end
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state
     if clip_state=='on' then
       set(h,"clip_box",mget(4,'dl',fd)); // clip_box
@@ -1066,6 +1076,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     
     if is_higher_than( [4 1 2 0] ) then
       set( h, "alignment", ascii(mget(mget(1,'c',fd),'c',fd)  ) ) ; // alignment
+      set( h, "fractional_font", toggle( mget( 1, 'c', fd ) ) ) ; // fractional_font
     end
     
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state
@@ -1105,6 +1116,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       end
       h.labels_font_size = labelfontsize // label_font_size
       h.labels_font_color= mget(1,'il',fd); // labels_font_color
+      if is_higher_than( [4 1 2 0] ) then
+        set( h, "fractional_font", toggle( mget( 1, 'c', fd ) ) ) ; // fractional_font
+      end
       // h.tics_style=tics_style // jb Silvy apparently strange
 
       clip_state       = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state

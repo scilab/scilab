@@ -108,7 +108,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
+voidsetTextParametersjintjintjintjdoublejdoublejbooleanID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -149,7 +149,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetTextParametersjintjintjintjdoublejdoubleID=NULL; 
+voidsetTextParametersjintjintjintjdoublejdoublejbooleanID=NULL; 
 voidsetTextContentjobjectArrayjintjintID=NULL; 
 
 jclass localStringArrayClass = curEnv->FindClass("Ljava/lang/String;");
@@ -297,17 +297,19 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void StandardTextDrawerGL::setTextParameters (long textAlignment, long color, long fontStyle, double fontSize, double rotationAngle){
+void StandardTextDrawerGL::setTextParameters (long textAlignment, long color, long fontStyle, double fontSize, double rotationAngle, bool useFractionalMetrics){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voidsetTextParametersjintjintjintjdoublejdoubleID==NULL) { /* Use the cache Luke */ voidsetTextParametersjintjintjintjdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setTextParameters", "(IIIDD)V" ) ;
-if (voidsetTextParametersjintjintjintjdoublejdoubleID == NULL) {
+if (voidsetTextParametersjintjintjintjdoublejdoublejbooleanID==NULL) { /* Use the cache Luke */ voidsetTextParametersjintjintjintjdoublejdoublejbooleanID = curEnv->GetMethodID(this->instanceClass, "setTextParameters", "(IIIDDZ)V" ) ;
+if (voidsetTextParametersjintjintjintjdoublejdoublejbooleanID == NULL) {
 std::cerr << "Could not access to the method " << "setTextParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoublejdoubleID ,textAlignment, color, fontStyle, fontSize, rotationAngle);
+jboolean useFractionalMetrics_ = ((bool) useFractionalMetrics ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetTextParametersjintjintjintjdoublejdoublejbooleanID ,textAlignment, color, fontStyle, fontSize, rotationAngle, useFractionalMetrics_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

@@ -269,6 +269,9 @@ int sciSetImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw);
 int sciInitUseNurbs(sciPointObj * pObj, BOOL useNurbs);
 int sciSetUseNurbs(sciPointObj * pObj, BOOL useNurbs); /* SET */
 
+int sciInitIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics);
+int sciSetIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics); /* SET */
+
 BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/

@@ -40,14 +40,15 @@ void CenteredTextDrawerJoGL::setDrawerParameters(void)
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
 
   getCenteredTextDrawerJavaMapper()->setTextParameters(sciGetAlignment(pObj), sciGetFontContext(pObj)->foregroundcolor,
-                                                       sciGetFontStyle(pObj), sciGetFontSize(pObj), sciGetFontOrientation(pObj));
+                                                       sciGetFontStyle(pObj), sciGetFontSize(pObj), sciGetFontOrientation(pObj),
+                                                       sciGetIsUsingFractionalMetrics(pObj) == TRUE);
 
   StringMatrix * textMatrix = sciGetText(pObj);
   getCenteredTextDrawerJavaMapper()->setTextContent(getStrMatData(textMatrix), getMatNbRow(textMatrix), getMatNbCol(textMatrix));
 
   // set box size
-  int boxWidth;
-  int boxHeight;
+  double boxWidth;
+  double boxHeight;
   getUserSizePix(boxWidth, boxHeight);
   getCenteredTextDrawerJavaMapper()->setFilledBoxSize(boxWidth, boxHeight);
 
@@ -59,8 +60,8 @@ void CenteredTextDrawerJoGL::setDrawerParameters(void)
 void CenteredTextDrawerJoGL::redrawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
 {
   // box size may have changed so update it
-  int boxWidth;
-  int boxHeight;
+  double boxWidth;
+  double boxHeight;
   getUserSizePix(boxWidth, boxHeight);
   getCenteredTextDrawerJavaMapper()->setFilledBoxSize(boxWidth, boxHeight);
 

@@ -94,10 +94,11 @@ void TopXTicksDrawerJavaMapper::setAxesBounds(double xMin, double xMax,
 }
 /*--------------------------------------------------------------------------*/
 void TopXTicksDrawerJavaMapper::setAxisParamerters(int lineStyle, float lineWidth, int lineColor,
-                                                int fontType, double fontSize, int fontColor)
+                                                   int fontType, double fontSize, int fontColor,
+                                                   bool useFractionalMetrics)
 {
   m_pJavaObject->setAxisParameters(lineStyle, lineWidth, lineColor,
-                                   fontType, fontSize, fontColor);
+                                   fontType, fontSize, fontColor, useFractionalMetrics);
 }
 /*--------------------------------------------------------------------------*/
 }

@@ -64,9 +64,9 @@ void StandardTextDrawerJavaMapper::setFigureIndex(int figureIndex)
 }
 /*---------------------------------------------------------------------------------*/
 void StandardTextDrawerJavaMapper::setTextParameters(int textAlignment, int color, int fontStyle,
-                                                     double fontSize, double rotationAngle)
+                                                     double fontSize, double rotationAngle, bool useFractionalMetrics)
 {
-  m_pJavaObject->setTextParameters(textAlignment, color, fontStyle, fontSize, rotationAngle);
+  m_pJavaObject->setTextParameters(textAlignment, color, fontStyle, fontSize, rotationAngle, useFractionalMetrics);
 }
 /*---------------------------------------------------------------------------------*/
 void StandardTextDrawerJavaMapper::setTextContent(char ** text, int nbRow, int nbCol)

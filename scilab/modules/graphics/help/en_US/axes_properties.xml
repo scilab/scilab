@@ -290,14 +290,28 @@
             <varlistentry>
               <term>font_size: </term>
               <listitem>
-                <para>An integer specifying the font size used to draw the tics
-            labels.</para>
+                <para>An real value specifying the font size used to draw the tics
+			labels.
+			If <literal>fractional_font</literal> property is <literal>"off"</literal>
+		 	only the integer part of the value is used.
+		</para>	
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>font_color: </term>
               <listitem>
                 <para>This property determines the color of the tics labels.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>fractional_font: </term>
+              <listitem>
+	        <para>
+		  This property specify whether ticks might be displayed using fractional font sizes.
+		  Its value must be either <literal>"on"</literal> or <literal>"off"</literal>.
+		  If <literal>"on"</literal> the floating point value of <literal>font_size</literal>
+		  is used for display. If <literal>"off"</literal> only the integer part is used.
+		</para>
               </listitem>
             </varlistentry>
             <varlistentry>

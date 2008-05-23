@@ -266,6 +266,8 @@ void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6]); /* GET */
 
 BOOL sciGetUseNurbs(sciPointObj * pObj); /* GET */
 
+BOOL sciGetIsUsingFractionalMetrics(sciPointObj * pObj); /* GET */
+
 void printSetGetErrorMessage(const char * propertyName);
 
 #endif /* __SCI_GET_PROPERTY__ */

@@ -42,7 +42,6 @@ public class CenteredAlignedTextGL implements TextAlignementStrategy {
 	 */
 	public void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix) {
 		renderer.begin3DRendering();
-		
 		for (int i = 0; i < text.getNbRow(); i++) {
 			for (int j = 0; j < text.getNbCol(); j++) {
 				Vector3D[] curCell = positionMatrix.getCellCoordinates(i, j);

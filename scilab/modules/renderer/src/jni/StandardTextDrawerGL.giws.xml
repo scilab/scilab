@@ -22,6 +22,7 @@
       <param type="int" name="fontStyle" />
       <param type="double" name="fontSize" />
       <param type="double" name="rotationAngle" />
+      <param type="boolean" name="useFractionalMetrics" />
     </method>
     <method name="setTextContent" returnType="void">
       <param type="String[]" name="text" />

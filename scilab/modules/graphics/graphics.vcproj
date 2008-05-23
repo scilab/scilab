@@ -683,6 +683,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_fractional_font_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_grid_property.c"
 				>
 			</File>
@@ -1564,6 +1568,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_format_n_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_fractional_font_property.c"
 				>
 			</File>
 			<File

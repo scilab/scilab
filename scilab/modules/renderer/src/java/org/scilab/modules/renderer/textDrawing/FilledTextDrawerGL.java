@@ -51,9 +51,9 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 	 * @param boxWidth width of the box.
 	 * @param boxHeight height of the box.
 	 */
-	public void setFilledBoxSize(int boxWidth, int boxHeight) {
-		filledBoxWidth = (double) boxWidth;
-		filledBoxHeight = (double) boxHeight;
+	public void setFilledBoxSize(double boxWidth, double boxHeight) {
+		filledBoxWidth = boxWidth;
+		filledBoxHeight = boxHeight;
 	}
 	
 	/**
@@ -87,6 +87,7 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		realCenter = new Vector3D(getTextCenterPix());
 		double newBoxWidth = filledBoxWidth;
 		double newBoxHeight = filledBoxHeight;
+		
 		// when axes are reversed size might be negative
 		if (newBoxWidth < 0) {
 			newBoxWidth = -newBoxWidth;
@@ -101,9 +102,10 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 		// compute the needed size for each dimension.
 		double xFactor = newBoxWidth / curWidth;
 		double yFactor = newBoxHeight / curHeight;
-		
+				
 		// apply scale factor
 		double factor = Math.min(xFactor, yFactor);
+		
 		
 		// check if resizing is really needed
 		if (factor < FACTOR_CHANGE_INTERVAL[0] || factor >  FACTOR_CHANGE_INTERVAL[1]) {

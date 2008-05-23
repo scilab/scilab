@@ -456,12 +456,13 @@ int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
     strcpy( destFC->pfontname, sourceFC->pfontname ) ;
   }
   
-  destFC->fontnamelen     = sourceFC->fontnamelen     ;
-  destFC->backgroundcolor = sourceFC->backgroundcolor ;
-  destFC->foregroundcolor = sourceFC->foregroundcolor ;
-  destFC->fonttype        = sourceFC->fonttype        ;
-  destFC->fontSize        = sourceFC->fontSize        ;
-  destFC->textorientation = sourceFC->textorientation ;
+  destFC->fontnamelen          = sourceFC->fontnamelen         ;
+  destFC->backgroundcolor      = sourceFC->backgroundcolor     ;
+  destFC->foregroundcolor      = sourceFC->foregroundcolor     ;
+  destFC->fonttype             = sourceFC->fonttype            ;
+  destFC->fontSize             = sourceFC->fontSize            ;
+  destFC->textorientation      = sourceFC->textorientation     ;
+  destFC->useFractionalMetrics = sourceFC->useFractionalMetrics;
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/

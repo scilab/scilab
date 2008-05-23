@@ -52,13 +52,13 @@ public:
   virtual long * getScreenBoundingBox(void);
 
   virtual void setTextParameters(int textAlignment, int color, int fontStyle,
-                                 double defaultFontSize, double rotationAngle);
+                                 double defaultFontSize, double rotationAngle, bool useFractionalMetrics);
   /*----------------------------------------------------------------------*/
   // specific for filled text drawer
 
   virtual double getFontSize(void);
 
-  virtual void setFilledBoxSize(int boxWidth, int boxHeight);
+  virtual void setFilledBoxSize(double boxWidth, double boxHeight);
   /*----------------------------------------------------------------------*/
 
 private:

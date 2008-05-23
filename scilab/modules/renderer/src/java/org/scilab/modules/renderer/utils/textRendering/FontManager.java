@@ -24,17 +24,19 @@ import java.util.ArrayList;
  */
 public class FontManager {
 
-	private static final float[] INTERVALS = {3.0f, 4.0f};
+	private static final float[] INTERVALS = {3.0f, 4.0f, 5.0f};
 	private static final float[] FIRST_POLY = {2.0f, 8.0f};
 	private static final float[] SECOND_POLY = {4.0f, 2.0f};
 	private static final float[] THIRD_POLY = {6.0f, -6.0f};
+	private static final float[] FOURTH_POLY = {10.0f, -26.0f};
 	
 	private static final float SIX = 6.0f;
 	
-	private static final float[] INV_INTERVALS = {3.0f, 4.0f};
+	private static final float[] INV_INTERVALS = {14.0f, 18.0f, 24.0f};
 	private static final float[] INV_FIRST_POLY = {0.5f, -4.0f};
 	private static final float[] INV_SECOND_POLY = {0.25f, -0.5f};
 	private static final float[] INV_THIRD_POLY = {1.0f / SIX, 1.0f};
+	private static final float[] INV_FOURTH_POLY = {0.1f, 2.6f};
 	
 	
 	// logical awt fonts
@@ -140,8 +142,10 @@ public class FontManager {
 			return FIRST_POLY[0] * sciSizef + FIRST_POLY[1];
 		} else if (sciSizef < INTERVALS[1]) {
 			return SECOND_POLY[0] * sciSizef + SECOND_POLY[1];
-		} else {
+		} else if (sciSizef < INTERVALS[2]) {
 			return THIRD_POLY[0] * sciSizef + THIRD_POLY[1];
+		} else {
+			return FOURTH_POLY[0] * sciSizef + FOURTH_POLY[1];
 		}
 	}
 	
@@ -156,8 +160,10 @@ public class FontManager {
 			return INV_FIRST_POLY[0] * size + INV_FIRST_POLY[1];
 		} else if (size < INV_INTERVALS[1]) {
 			return INV_SECOND_POLY[0] * size + INV_SECOND_POLY[1];
-		} else {
+		} else if (size < INV_INTERVALS[2]) {
 			return INV_THIRD_POLY[0] * size + INV_THIRD_POLY[1];
+		} else {
+			return INV_FOURTH_POLY[0] * size + INV_FOURTH_POLY[1];
 		}
 	}
 	

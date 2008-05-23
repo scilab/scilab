@@ -49,11 +49,12 @@ void FilledTextDrawerJoGL::setDrawerParameters(void)
 
   getFilledTextDrawerJavaMapper()->setTextParameters(sciGetAlignment(pObj), sciGetFontContext(pObj)->foregroundcolor,
                                                      sciGetFontStyle(pObj), m_pDrawed->getDefaultFontSize(),
-                                                     sciGetFontOrientation(pObj));
+                                                     sciGetFontOrientation(pObj),
+                                                     sciGetIsUsingFractionalMetrics(pObj) == TRUE);
 
   // set box size
-  int boxWidth;
-  int boxHeight;
+  double boxWidth;
+  double boxHeight;
   getUserSizePix(boxWidth, boxHeight);
   getFilledTextDrawerJavaMapper()->setFilledBoxSize(boxWidth, boxHeight);
 
@@ -71,8 +72,8 @@ void FilledTextDrawerJoGL::drawTextContent(double corner1[3], double corner2[3],
 void FilledTextDrawerJoGL::redrawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
 {
   // box size may have changed so update it
-  int boxWidth;
-  int boxHeight;
+  double boxWidth;
+  double boxHeight;
   getUserSizePix(boxWidth, boxHeight);
   getFilledTextDrawerJavaMapper()->setFilledBoxSize(boxWidth, boxHeight);
 

@@ -46,7 +46,8 @@ public:
                              double zMin, double zMax) = 0;
 
   virtual void setAxisParamerters(int lineStyle, float lineWidth, int lineColor,
-                                  int fontType, double fontSize, int fontColor) = 0;
+                                  int fontType, double fontSize, int fontColor,
+                                  bool useFractionalMetrics) = 0;
   /*----------------------------------------------------------------------*/
 
 protected:

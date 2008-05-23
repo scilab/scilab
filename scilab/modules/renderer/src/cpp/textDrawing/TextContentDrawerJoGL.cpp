@@ -20,6 +20,8 @@
 
 #include "TextContentDrawerJoGL.hxx"
 #include "GetJavaProperty.h"
+#include "../subwinDrawing/Camera.h"
+#include "getHandleDrawer.h"
 
 extern "C"
 {
@@ -106,7 +108,7 @@ void TextContentDrawerJoGL::showTextContent(void)
 /*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::getPixelLength(sciPointObj * parentSubwin, const double startingPoint[3],
                                            double userWidth, double userHeight,
-                                           int * pixelWidth, int * pixelHeight )
+                                           double & pixelWidth, double & pixelHeight )
 {
   // get the extreme bound along X axis
   double extremeX[3];
@@ -120,19 +122,24 @@ void TextContentDrawerJoGL::getPixelLength(sciPointObj * parentSubwin, const dou
   extremeY[1] = startingPoint[1] + userHeight;
   extremeY[2] = startingPoint[2];
 
+  Camera * cam = getSubwinDrawer(parentSubwin)->getCamera();
+
   // convert every one in pixel coordinates
-  int textPosPix[2];
-  sciGetJava2dViewPixelCoordinates(parentSubwin, startingPoint, textPosPix);
+  double textPosPix[3];
+  cam->get2dViewPixelCoordinates(startingPoint, textPosPix);
+  //sciGetJava2dViewPixelCoordinates(parentSubwin, startingPoint, textPosPix);
 
-  int extremeXPix[2];
-  sciGetJava2dViewPixelCoordinates(parentSubwin, extremeX, extremeXPix);
+  int extremeXPix[3];
+  cam->get2dViewPixelCoordinates(extremeX, extremeXPix);
+  //sciGetJava2dViewPixelCoordinates(parentSubwin, extremeX, extremeXPix);
 
-  int extremeYPix[2];
-  sciGetJava2dViewPixelCoordinates(parentSubwin, extremeY, extremeYPix);
+  int extremeYPix[3];
+  cam->get2dViewPixelCoordinates(extremeY, extremeYPix);
+  //sciGetJava2dViewPixelCoordinates(parentSubwin, extremeY, extremeYPix);
 
   // compute lengths accordingly
-  *pixelWidth = extremeXPix[0] - textPosPix[0];
-  *pixelHeight = textPosPix[1] - extremeYPix[1]; // Y axis is inverted
+  pixelWidth = extremeXPix[0] - textPosPix[0];
+  pixelHeight = textPosPix[1] - extremeYPix[1]; // Y axis is inverted
 }
 /*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::getTextDisplayPos(double pos[3])
@@ -191,7 +198,7 @@ void TextContentDrawerJoGL::convertCornersArray(const double corners[12],
     &(corner4[0]), &(corner4[1]), &(corner4[2]));
 }
 /*---------------------------------------------------------------------------------*/
-void TextContentDrawerJoGL::getUserSizePix(int & boxWidthPix, int & boxHeightPix)
+void TextContentDrawerJoGL::getUserSizePix(double & boxWidthPix, double & boxHeightPix)
 {
   // get box size in user coordinates
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
@@ -204,7 +211,7 @@ void TextContentDrawerJoGL::getUserSizePix(int & boxWidthPix, int & boxHeightPix
   sciGetTextPos(pObj, textPos);
 
   // convert the user lengths to pixel ones.
-  getPixelLength(sciGetParentSubwin(pObj), textPos, boxWidth, boxHeight, &boxWidthPix, &boxHeightPix);
+  getPixelLength(sciGetParentSubwin(pObj), textPos, boxWidth, boxHeight, boxWidthPix, boxHeightPix);
 }
 /*---------------------------------------------------------------------------------*/
 TextContentDrawerJavaMapper * TextContentDrawerJoGL::getTextContentDrawerJavaMapper(void)

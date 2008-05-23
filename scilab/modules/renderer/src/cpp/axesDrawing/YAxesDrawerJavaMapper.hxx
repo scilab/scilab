@@ -59,7 +59,8 @@ public:
                              double zMin, double zMax);
 
   virtual void setAxisParamerters(int lineStyle, float lineWidth, int lineColor,
-                                  int fontType, double fontSize, int fontColor);
+                                  int fontType, double fontSize, int fontColor,
+                                  bool useFractionalMetrics);
   /*----------------------------------------------------------------------*/
   // specific for YAxesDrawer
   virtual void setConstantCoordinates(double xCoordinate, double zCoordinate);

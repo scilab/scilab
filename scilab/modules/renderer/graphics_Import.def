@@ -140,4 +140,4 @@ vectSubstract3D
 sciSetZooming
 sciSetVisibility
 sciGetUseNurbs
-sciSetFontSize
+sciGetIsUsingFractionalMetrics
