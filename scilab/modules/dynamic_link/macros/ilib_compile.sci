@@ -68,6 +68,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	  [msg,ierr] = unix_g(cmd) ; 
 	  if ierr <> 0 then
 	    disp(msg);
+		chdir(oldPath); // Go back to the working dir
 	    return ;
 	  end
 	  // Copy the produce lib to the working path
