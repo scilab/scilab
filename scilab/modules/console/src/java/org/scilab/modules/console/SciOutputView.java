@@ -24,7 +24,6 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.LinkedList;
-import java.util.MissingFormatArgumentException;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -74,7 +73,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 
 	private Thread thread;
 	
-	private int insertPosition = 0;
+	private int insertPosition;
 	
 	/**
 	 * Constructor
