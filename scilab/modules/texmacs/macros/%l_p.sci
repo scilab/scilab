@@ -13,15 +13,15 @@ function %l_p(s)
   case 16 then
     f=getfield(1,s),1,-1
     first=2
-    write(%io(2),'   tlist of type '+f(1)+' with fields:')
+    write(%io(2),gettext('   tlist of type ')+f(1)+gettext(' with fields:'))
   case 17 then
     f=getfield(1,s),1,-1
     first=2
-    write(%io(2),'   mlist of type '+f(1)+' with fields:')
+    write(%io(2),gettext('   mlist of type ')+f(1)+gettext(' with fields:'))
   else
     f=[]
     first=1
-    write(%io(2),'   list with entries:')
+    write(%io(2),gettext('   list with entries:'))
   end
   ll=lines()
   nf=size(f,'*');ns=lstsize(s)
