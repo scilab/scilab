@@ -18,4 +18,8 @@ for ll=69:73,lines(0,ll),t,end
 
 
 t=(1:13);
-for ll=69:6:85,lines(0,ll),t,end
+for ll=69:6:90,lines(0,ll),t,end
+
+t=int32(1:23);
+for ll=55:2:65,lines(0,ll),t,end
+
