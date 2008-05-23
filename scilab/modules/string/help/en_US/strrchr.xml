@@ -28,7 +28,7 @@
       <varlistentry>
         <term>str1</term>
         <listitem>
-          <para>string or matrix of strings</para>
+          <para>A character string or matrix of character strings</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +40,7 @@
       <varlistentry>
         <term>res</term>
         <listitem>
-          <para>string or matrix of strings</para>
+          <para>A character string or matrix of character strings</para>
         </listitem>
       </varlistentry>
     </variablelist>

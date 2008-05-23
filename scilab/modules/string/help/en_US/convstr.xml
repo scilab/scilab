@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -20,21 +20,35 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[y]=convstr(str-matrix, ["flag"])</synopsis>
+    <synopsis>[y]=convstr(str, [flag])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>str-matrix, y</term>
+        <term>str, y</term>
         <listitem>
-          <para>matrices of strings</para>
+          <para>A matrix of character strings</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>"flag"  </term>
-        <listitem>
-          <para>string (<literal>"u"</literal> for upper or <literal>"l"</literal> for lower (default value))</para>
+        <term>flag</term>
+		<listitem>
+			<para>A character option with possible values</para>
+			<variablelist>
+				<varlistentry>
+					<term>'u'</term>
+					<listitem>
+						<para>for upper</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>'l'</term>
+					<listitem>
+						<para>for lower</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
         </listitem>
       </varlistentry>
     </variablelist>

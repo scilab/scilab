@@ -28,13 +28,13 @@
       <varlistentry>
         <term>mp,c</term>
         <listitem>
-          <para>string matrices</para>
+          <para>Matrix of character strings.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>integer vector.</para>
+          <para>Integer row vector.</para>
         </listitem>
       </varlistentry>
     </variablelist>

@@ -30,10 +30,8 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-
 ['this','is'; 'a 2x2','matrix']
 "matrix"=="mat"+"rix"
- 
   ]]></programlisting>
   </refsection>
   <refsection>

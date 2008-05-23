@@ -37,20 +37,19 @@ str=strsubst(string,searchStr,replaceStr,[flag])</synopsis>
       <varlistentry>
         <term>searchStr</term>
         <listitem>
-          <para>a character string. The string to search in
-          <literal>string</literal>.</para>
+          <para>A character string. The string to search in <literal>string</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>replaceStr</term>
         <listitem>
-          <para>a character string. The replacement string.</para>
+          <para>A character string. The replacement string.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>a matrix of character string. The result of the substitution
+          <para>A matrix of character strings. The result of the substitution
           on <literal>searchStr</literal> by <literal>replaceStr</literal> in <literal>string</literal></para>
         </listitem>
       </varlistentry>

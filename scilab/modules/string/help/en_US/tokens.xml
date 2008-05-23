@@ -28,7 +28,7 @@
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>a character string. The string where to search the tokens.</para>
+          <para>A character string. The string where to search the tokens.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

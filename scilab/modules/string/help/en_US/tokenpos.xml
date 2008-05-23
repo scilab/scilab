@@ -28,19 +28,19 @@
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>a character string. The string where to search the tokens.</para>
+          <para>A character string. The string where to search the tokens.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>delimiter</term>
         <listitem>
-          <para>(optional) a character or a vector of characters. The tokens delimeters.</para>
+          <para>(optional) A character or a vector of characters. The tokens delimeters.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>kdf</term>
         <listitem>
-          <para>two columns matrix, first column gives the index of the beginning of the tokens, the second gives the index of the last character of the tokens.</para>
+          <para>Two columns matrix, first column gives the index of the beginning of the tokens, the second gives the index of the last character of the tokens.</para>
         </listitem>
       </varlistentry>
     </variablelist>

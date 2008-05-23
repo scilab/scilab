@@ -28,13 +28,13 @@
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>a string</para>
+          <para>A character string.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>res</term>
         <listitem>
-          <para>boolean matrix.</para>
+          <para>A Boolean matrix.</para>
         </listitem>
       </varlistentry>
     </variablelist>

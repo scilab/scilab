@@ -29,13 +29,13 @@
       <varlistentry>
         <term>string_one</term>
         <listitem>
-          <para>string or matrix of strings</para>
+          <para>A character string or matrix of character strings</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>string_two</term>
         <listitem>
-          <para>string or matrix of strings</para>
+          <para>A character string or matrix of character strings</para>
         </listitem>
       </varlistentry>
       <varlistentry>

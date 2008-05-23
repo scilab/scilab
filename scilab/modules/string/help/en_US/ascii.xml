@@ -29,13 +29,13 @@ txt=ascii(a)</synopsis>
       <varlistentry>
         <term>txt</term>
         <listitem>
-          <para>character string or matrix of strings.</para>
+          <para>A character string or a matrix of character strings.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>a</term>
         <listitem>
-          <para>vector of integer ascii codes</para>
+          <para>A vector of integer ascii codes</para>
         </listitem>
       </varlistentry>
     </variablelist>

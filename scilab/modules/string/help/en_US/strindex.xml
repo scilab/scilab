@@ -30,14 +30,14 @@
       <varlistentry>
         <term>haystack</term>
         <listitem>
-          <para>a character string. The string where to search occurrences of
+          <para>A character string. The string where to search occurrences of
           <literal>needle </literal></para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>needle </term>
         <listitem>
-          <para>a character string or character string vector . The string(s)
+          <para>A character string or character string vector . The string(s)
           to search in <literal>haystack</literal></para>
         </listitem>
       </varlistentry>

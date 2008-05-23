@@ -29,19 +29,19 @@
       <varlistentry>
         <term>str</term>
         <listitem>
-          <para>string or matrix of strings</para>
+          <para>A character string or matrix of character strings</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>d</term>
         <listitem>
-          <para>real or matrix of reals</para>
+          <para>A real or matrix of reals</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>endstr</term>
         <listitem>
-          <para>string or matrix of strings</para>
+          <para>A character string or matrix of character strings</para>
         </listitem>
       </varlistentry>
     </variablelist>

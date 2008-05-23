@@ -30,19 +30,19 @@ s=emptystr(m,n)</synopsis>
       <varlistentry>
         <term>a</term>
         <listitem>
-          <para>any type of matrix</para>
+          <para>Any type of matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>s</term>
         <listitem>
-          <para>character string matrix</para>
+          <para>A matrix of character strings</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>m,n</term>
         <listitem>
-          <para>integers</para>
+          <para>Integers</para>
         </listitem>
       </varlistentry>
     </variablelist>

@@ -28,19 +28,19 @@
       <varlistentry>
         <term>T</term>
         <listitem>
-          <para>a matrix of character string.</para>
+          <para>A matrix of character string.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Tj</term>
         <listitem>
-          <para>a matrix of character string. the justified result</para>
+          <para>A matrix of character string. the justified result</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>opt</term>
         <listitem>
-          <para>a character string option with possible values</para>
+          <para>A character option with possible values</para>
           <variablelist>
             <varlistentry>
               <term>'r'  </term>

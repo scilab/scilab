@@ -29,7 +29,7 @@
       <varlistentry>
         <term>txt</term>
         <listitem>
-          <para>string or matrix of strings</para>
+          <para>A character string or matrix of character strings</para>
         </listitem>
       </varlistentry>
       <varlistentry>
