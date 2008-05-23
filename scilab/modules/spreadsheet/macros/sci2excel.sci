@@ -18,7 +18,11 @@ function sci2spreadsheet(var,fname,sep,dec)
 // sci2spreadsheet(a,'/tmp/foo.txt',sep=',')
 if exists('sep','local')==0 then sep=code2str(-40),end
 if exists('dec','local')==0 then dec=',',end
-if dec<>['.',','] then error('decimal mark must be ''.'' or '','''),end
+
+if dec<>['.',','] then 
+  error(msprintf(gettext("%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"), 'sci2excel', 3, '.', ','));
+end
+
 if type(var)==1 then
   var=string(var)
   if dec<>'.' then var =strsubst(var,'.',','),end

@@ -87,11 +87,11 @@ int C2F(sci_xls_open)(char *fname,unsigned long fname_len)
 			result == OLEER_MINIFAT_READ_FAIL || 
 			result == OLEER_PROPERTIES_READ_FAIL)
 		{
-			Scierror(999,_("%s: File %s is not an ole2 file\n"),fname,IN);
+			Scierror(999,_("%s: File %s is not an ole2 file.\n"),fname,IN);
 		}
 		else if(result == -1)
 		{
-			Scierror(999,_("Cannot open file %s.\n"),IN);
+			Scierror(999,_("%s: Cannot open file %s.\n"),fname,IN);
 		}
 		return 0;
 	}
@@ -100,7 +100,7 @@ int C2F(sci_xls_open)(char *fname,unsigned long fname_len)
 	C2F(mopen)(&fd, TMP,"rb", &f_swap, &res, &ierr);
 	if (ierr != 0)
 	{
-		Scierror(999,_("%s :There is no xls stream in the ole2 file %s\n"),fname,IN);
+		Scierror(999,_("%s: There is no xls stream in the ole2 file %s.\n"),fname,IN);
 		return 0;
 	}
 	CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&one,&one,&l2);
@@ -122,12 +122,12 @@ int C2F(sci_xls_open)(char *fname,unsigned long fname_len)
 			break;
 
 		case 1:
-			Scierror(999,_("%s :Not an ole2 file.\n"),fname);
+			Scierror(999,_("%s: Not an ole2 file.\n"),fname);
 			return 0;
 			break;
 
 		case 2:
-			Scierror(999,_("%s : The file has no Workbook directory.\n"),fname);
+			Scierror(999,_("%s: The file has no Workbook directory.\n"),fname);
 			return 0;
 			break;
 
@@ -137,12 +137,12 @@ int C2F(sci_xls_open)(char *fname,unsigned long fname_len)
 			break;
 
 		case 4:
-			Scierror(990,_("%s : Incorrect or corrupted file.\n"),fname);
+			Scierror(990,_("%s: Incorrect or corrupted file.\n"),fname);
 			return 0;
 			break;
 
 		case 5:
-			Scierror(999,_("%s : Only BIFF8 file format is handled.\n"),fname);
+			Scierror(999,_("%s: Only BIFF8 file format is handled.\n"),fname);
 			return 0;
 			break;
 		default :

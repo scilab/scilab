@@ -283,7 +283,7 @@ int ROLE_validate(struct ripOLE_object *role )
 	int result = 0;
 
 	if (role->inputfile == NULL) {
-		fprintf(stderr,_("ripOLE requires an input file to decode\n"));
+		fprintf(stderr,_("ripOLE requires an input file to decode.\n"));
 		return -1;
 	}
 
@@ -317,7 +317,7 @@ int main( int argc, char **argv )
 	ole = MALLOC(sizeof(struct OLE_object));
 	if (ole == NULL)
 	{
-		LOGGER_log(_("ripOLE: Cannot allocate memory for OLE object"));
+		LOGGER_log(_("ripOLE: Cannot allocate memory for OLE object."));
 		return 1;
 	}
 
@@ -397,7 +397,7 @@ int ripole(char *inputfile, char *outputdir, int debug, int verbose)
 
 
        if ((result != 0)&&(verbose==1))
-         LOGGER_log(_("ripOLE: decoding of %s resulted in error %d\n"), inputfile, result );
+         LOGGER_log(_("ripOLE: decoding of %s resulted in error %d.\n"), inputfile, result );
 
        /*if (ole != NULL) FREE(ole);*/
        return result;

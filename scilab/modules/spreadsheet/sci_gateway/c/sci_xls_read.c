@@ -35,11 +35,18 @@ int C2F(sci_xls_read)(char *fname,unsigned long fname_len)
 	CheckLhs(2,2);
 	CheckRhs(2,2);
 
-	if ( (VarType(1) != sci_matrix) || (VarType(2) != sci_matrix) )
+	if (VarType(1) != sci_matrix)
 	{
-		Scierror(999,"%s :Invalid parameter(s).\n",fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname,1);
 		return 0;
 	}
+
+	if (VarType(2) != sci_matrix)
+	{
+		Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname,2);
+		return 0;
+	}
+
 
 	/*  checking variable fd */
 	GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -53,15 +60,15 @@ int C2F(sci_xls_read)(char *fname,unsigned long fname_len)
 	switch (ierr)
 	{
 	case 1 :
-		Scierror(999,_("%s :Not enough memory to allocate results\n"),fname);
+		Scierror(999,_("%s: No more memory.\n"),fname);
 		return 0;
 		break;
 	case 2 :
-		Scierror(999,_("%s :Failed to read expected data, may be invalid xls file\n"),fname);
+		Scierror(999,_("%s: Failed to read expected data, may be invalid xls file.\n"),fname);
 		return 0;
 		break;
 	case 3 :
-		Scierror(999,_("%s :End of File\n"),fname);
+		Scierror(999,_("%s: End of file.\n"),fname);
 		return 0;
 		break;
 	default :
