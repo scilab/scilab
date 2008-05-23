@@ -452,11 +452,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\DestroyUicontrol.c"
+				RelativePath="..\cpp\DestroyUicontrol.c"
 				>
 			</File>
 			<File
-				RelativePath=".\DestroyUimenu.c"
+				RelativePath="..\cpp\DestroyUimenu.c"
 				>
 			</File>
 			<File

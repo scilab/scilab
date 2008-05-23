@@ -19,9 +19,7 @@ src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
 src/c/CreateUIControl.c \
-src/c/DestroyUicontrol.c \
 src/c/CreateUimenu.c \
-src/c/DestroyUimenu.c \
 src/c/InitWaitBar.c \
 src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
@@ -31,6 +29,8 @@ src/c/messageboxoptions.c
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
+src/cpp/DestroyUimenu.cpp \
+src/cpp/DestroyUicontrol.cpp \
 src/cpp/DestroyJavaUicontrol.cpp \
 src/cpp/DestroyWaitBar.cpp \
 src/cpp/CallJxclick.cpp \

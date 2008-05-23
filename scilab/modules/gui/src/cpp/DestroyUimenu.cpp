@@ -11,7 +11,10 @@
  *
  */
 
+extern "C"
+{
 #include "DestroyUimenu.h"
+}
 
 /**
  * DestroyUimenu
@@ -28,7 +31,7 @@ int DestroyUimenu (sciPointObj * pthis)
 
   if (pUIMENU_FEATURE (pthis)->callback != NULL)
     {
-      FREE (pUIMENU_FEATURE (pthis)->callback);
+      delete[] (pUIMENU_FEATURE (pthis)->callback);
     }
 
   if (pUIMENU_FEATURE (pthis)->tag != NULL)

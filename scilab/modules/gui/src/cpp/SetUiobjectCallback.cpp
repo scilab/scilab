@@ -84,7 +84,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
       // Clear previous callback
       if (pUIMENU_FEATURE(sciObj)->callback != NULL)
         {
-          delete (pUIMENU_FEATURE(sciObj)->callback);
+          delete[] (pUIMENU_FEATURE(sciObj)->callback);
         }
 
       // Set the new callback
@@ -117,7 +117,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
       // Clear previous callback
       if (pUICONTROL_FEATURE(sciObj)->callback != NULL)
         {
-          delete (pUICONTROL_FEATURE(sciObj)->callback);
+          delete[] (pUICONTROL_FEATURE(sciObj)->callback);
         }
 
       // Set the new callback

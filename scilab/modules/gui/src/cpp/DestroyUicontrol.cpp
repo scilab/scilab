@@ -11,9 +11,11 @@
  *
  */
 
+extern "C"
+{
 #include "DestroyUicontrol.h"
 #include "DestroyObjects.h"
-
+}
 /**
  * DestroyUicontrol
  * This function deletes Uicontrol structure.
@@ -34,7 +36,7 @@ int  DestroyUicontrol (sciPointObj * pthis)
 
   if (pUICONTROL_FEATURE (pthis)->callback != NULL)
     {
-      FREE (pUICONTROL_FEATURE (pthis)->callback);
+      delete[] (pUICONTROL_FEATURE (pthis)->callback);
     }
 
   if (pUICONTROL_FEATURE (pthis)->tag != NULL)
