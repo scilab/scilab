@@ -24,6 +24,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.LinkedList;
+import java.util.MissingFormatArgumentException;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -72,7 +73,9 @@ public class SciOutputView extends JTextPane implements OutputView {
 	private SciConsole console;
 
 	private Thread thread;
-
+	
+	private int insertPosition = 0;
+	
 	/**
 	 * Constructor
 	 */
@@ -82,7 +85,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 
 		// Enabled Drag&Drop with this component
 		this.setDragEnabled(true);
-
+		this.setDoubleBuffered(true);
 
 		activeStyle = StyleContext.DEFAULT_STYLE;
 		bufferQueue = new ArrayBlockingQueue<StringBuffer>(BUFFER_SIZE);
@@ -157,18 +160,51 @@ public class SciOutputView extends JTextPane implements OutputView {
 	 */
 	private void displayLineBuffer(String buff, String style) {
 
-		/*
-		 * Temporary variables created to avoid to long line (checkstyle
-		 */
 		int sDocLength = getStyledDocument().getLength();
+		
+		if (buff.equals("\r")) {
+			/* If \r sent by mprintf then display nothing but prepare next display */
+			/* Insertion will be done just after last NEW_LINE */
+			try {
+				sDocLength = getStyledDocument().getLength();
+				String outputTxt = getStyledDocument().getText(0, sDocLength);
+				insertPosition = outputTxt.lastIndexOf(StringConstants.NEW_LINE) + 1;
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
+			return;
+		} else {
+			/* Change position for insertion if a previous \r still influence display */
+			if ((insertPosition != 0) && (insertPosition < sDocLength)) {
+				sDocLength = insertPosition;
+				try {
+					/* Remove chars to be replaced */
+					if (insertPosition + buff.length() <= getStyledDocument().getLength()) {
+						getStyledDocument().remove(insertPosition, buff.length());
+					} else {
+						/* Remove end of line */
+						getStyledDocument().remove(insertPosition, getStyledDocument().getLength() - insertPosition);
+					}
+				} catch (BadLocationException e) {
+					e.printStackTrace();
+				}
+			} else {
+				/* Reinit insertPosition: 0 is equivalent to insertPosition value ignored */
+				insertPosition = 0;
+			}
+		}
+		
 		try {
-			getStyledDocument().insertString(sDocLength, buff,
-					getStyledDocument().getStyle(style));
+			getStyledDocument().insertString(sDocLength, buff, getStyledDocument().getStyle(style));
+			/* Move insertPosition to the end of last inserted data */
+			if (insertPosition != 0) {
+				insertPosition += buff.length();
+			}
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		/* Special case for Scilab when clc or tohome have been used */
 		String[] lines = buff.split(
 				StringConstants.NEW_LINE);
@@ -325,6 +361,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#setCaretPositionToBeginning()
 	 */
 	public void setCaretPositionToBeginning() {
+		insertPosition = 0;
 		setCaretPosition(0);
 	}
 
@@ -334,6 +371,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 	 * @see com.artenum.rosetta.interfaces.ui.OutputView#setCaretPositionToEnd()
 	 */
 	public void setCaretPositionToEnd() {
+		insertPosition = 0;
 		setCaretPosition(getStyledDocument().getLength());
 	}
 

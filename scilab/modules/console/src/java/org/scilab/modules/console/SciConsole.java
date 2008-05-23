@@ -123,6 +123,7 @@ public abstract class SciConsole extends JPanel {
 
 		sciConsole = ConsoleBuilder.buildConsole(config, this);
 		jSP = new JScrollPane(sciConsole);
+
 		this.add(jSP, BorderLayout.CENTER);
 
 		// The console is given to the outputView so that updateScrollPosition is is accessible
@@ -442,6 +443,8 @@ public abstract class SciConsole extends JPanel {
 
 		InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
 
+		getConfiguration().getOutputView().setCaretPositionToEnd();
+		
 		displayPrompt();
 
 		// Display Cursor to show Scilab is available.
