@@ -7,7 +7,7 @@ cd $PATHTOCONFIGURE
 # Relaunch configure if files are missing
 if test ! -s Makefile.orig; then 
 	echo "Detection of C/C++/Fortran Compilers"
-	./configure --disable-static --disable-dependency-tracking $@
+	./configure --disable-static --disable-dependency-tracking "$@"
 	mv Makefile Makefile.orig	
 else 
 	echo "Detection of compilers already done"
