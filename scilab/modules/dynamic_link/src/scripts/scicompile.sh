@@ -3,7 +3,7 @@
 ORIGINALLIBNAME=libsciexternal
 
 if test ! -s Makefile.orig; then 
-	echo "The compiler detection has been performed. Please launch compilerDetection.sh before"
+	echo "The compiler detection has been performed. Please launch compilerDetection.sh before."
 	exit -1
 fi
 
@@ -16,15 +16,19 @@ fi
 # retrieve parameters
 LIB=$1
 shift
-SOURCES=$*
+SOURCES_TEMP=$*
 
-# Check if files exist
-for file in $SOURCES; do
+# Check if files really exist and removes include files
+for file in $SOURCES_TEMP; do
 	CFILE=`echo $file|sed -e 's|\.o|\.c|'`
 	FFILE=`echo $file|sed -e 's|\.o|\.f|'`
 	if test ! -s $file -a -s $CFILE -a -s $FFILE; then 
-		echo "Cannot find $file"
+		echo "Error: Cannot find $file"
 		exit -3
+	fi
+	# It is an include file, do not build it!
+	if test ! `echo $file|grep -E "(\.h$|\.hh$|\.hxx$|\.H$)"`; then
+		SOURCES="$SOURCES $file"
 	fi
 done
 
