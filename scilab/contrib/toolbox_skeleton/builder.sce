@@ -47,7 +47,7 @@ else
 end
 // ====================================================================
 disp('Build help');
-disp('Please notice that you need JDK in your path.');
+disp('Please notice that you need JDK in your path to build the help.');
 chdir(main_dir_tlbx_sklt);
 if ( isdir('help') ) then 
  chdir('help');
