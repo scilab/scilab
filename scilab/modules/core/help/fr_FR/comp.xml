@@ -9,7 +9,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>comp(function)</synopsis>
+    <synopsis>comp(function [,opt])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -20,23 +20,41 @@
           <para>une fonction non "compilée" (type 11)</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+	<term>opt</term>
+        <listitem>
+          <para>flag with value 0 (default) or 2.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>comp(function)</literal> "compile" la fonction <literal>function</literal>.
-    Les fonctions "compilées" et interprétées sont équivalentes mais les
-    fonctions "compilées" sont plus rapides.
-    Les fonctions fournies dans les librairies standard de Scilab sont "compilées".
-  </para>
-    <para>
-      La définition en line des fonction ainsi que la forme courte des
-      fonctions <literal>getf</literal> et  <literal>deff</literal> produisent des
-      fonctions compilées. L'usage de la fonction comp est donc réservé a des
-      usages très particuliers. Pour générer des fonction non compilées, il
-      faut appeler les fonctions <literal>getf</literal> ou  <literal>deff</literal> avec
-      l'option <literal>"n"</literal>.
-    </para>
+    <para><literal>comp(function)</literal> "compile" la fonction
+    <literal>function</literal>.  Les fonctions "compilées" et
+    interprétées sont équivalentes mais les fonctions
+    "compilées" sont plus rapides.  Les fonctions fournies dans les
+    librairies standard de Scilab sont "compilées".</para>
+
+    <para>La définition en line des fonction ainsi que la forme
+    courte des fonctions <literal>getf</literal> et
+    <literal>deff</literal> produisent des fonctions
+    compilées. L'usage de la fonction <literal>comp</literal> est
+    donc réservé a des usages très particuliers. Pour
+    générer des fonction non compilées, il faut appeler les
+    fonctions <link linkend="getf">getf</link> ou <link
+    linkend="deff">deff</link> avec l'option
+    <literal>"n"</literal>.</para>
+
+    <para>L'option opt==2 requiert que la compilation produise aussi
+    les instructions de profilage..  A noter qu'il est possible
+    d'ajouter ces instructions de profilage à une fonction
+    déjà compileée en utilisant la fonction <link
+    linkend="add_profile">add_profile</link>.</para>
+
+   <para>L'option opt==1 est obsolete est équivalente à
+    opt==0.</para>
+
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
@@ -49,6 +67,9 @@
       </member>
       <member>
         <link linkend="function">function</link>
+     <member><link linkend="add_profile">add_profile</link></member>
+      <member><link linkend="profile">profile</link></member>
+
       </member>
     </simplelist>
   </refsection>
