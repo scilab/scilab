@@ -65,9 +65,10 @@ function libn = ilib_compile(lib_name,makename,files, ..
 
           //** BEWARE : this function can cause errors if used with "old style" Makefile inside a Scilab 5
           //**          environment where the Makefile are created from a "./configure"  
-	  [msg,ierr] = unix_g(cmd) ; 
+	  [msg,ierr, stderr] = unix_g(cmd) ; 
 	  if ierr <> 0 then
-	    disp(msg);
+		disp(gettext("An error occured during the compilation:"))
+	    disp(stderr);
 		chdir(oldPath); // Go back to the working dir
 	    return ;
 	  end
