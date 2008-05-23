@@ -56,9 +56,9 @@ int sci_Playsound (char *fname,unsigned long fname_len)
   else
   {
     if ( rep == -1 )
-		{
-			Scierror(999,_("Error in PlaySound\n"));
-		}
+	{
+		Scierror(999,_("%s: An error occurred: %s\n"),fname,_("Cannot play file.") );
+	}
     LhsVar(1)=0;
   }
   PutLhsVar();

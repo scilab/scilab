@@ -24,7 +24,7 @@ function []=sound(y,fs,bits,aplay)
 //   See also SOUNDSC.
   [nargout,nargin] = argn(0)
   if nargin<1 then
-    error('Not enough input arguments.');
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),'sound',1));
   end
   if nargin<2 then
     fs = 22050;
@@ -38,7 +38,7 @@ function []=sound(y,fs,bits,aplay)
   // Make sure that there's one column
   // per channel.
   if length(size(y)) > 2 then
-    error('Requires 2-D values only.');
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'sound',gettext('Requires 2-D values only.')));
   end
   playsnd(y,fs,bits,aplay);
 endfunction

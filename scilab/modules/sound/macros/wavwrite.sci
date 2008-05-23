@@ -15,7 +15,7 @@ function []=wavwrite(y,Fs,nbits,wavefile)
   nbits_pref = 16;
    
   if rhs<2|rhs>4 then
-    error('Incorrect number of input arguments.');
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),'wavwrite',2,3));
   elseif rhs<3 then
      wavefile = Fs;
      Fs = Fs_pref;
@@ -26,7 +26,7 @@ function []=wavwrite(y,Fs,nbits,wavefile)
   end
   
   if (nbits<>16) then
-    error('only 16 bits for the encoding.');
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'wavwrite',gettext('only 16 bits for the encoding.')));
   end
   
   savewave(wavefile,y,Fs);

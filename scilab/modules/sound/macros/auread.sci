@@ -31,7 +31,7 @@ function [y,Fs,bits]=auread(aufile,ext)
 	[nargout,nargin] = argn(0);
 	
 	if nargin>2 then
-		error('Too many input arguments.');
+	  error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),'auread',1,2));
 	end
 	// Append .au extension if it's missing:
 	if strindex(aufile,'.')==[] then
@@ -40,7 +40,7 @@ function [y,Fs,bits]=auread(aufile,ext)
 	
 	[fid,junk] = mopen(aufile,'rb',0);
 	if junk<0 then
-		error('Can''t open .au sound file for input.');
+	  error(msprintf(gettext("%s: Cannot open file %s.\n"),'auread',aufile));
 	end
 	
 	snd = read_sndhdr(fid);
@@ -62,7 +62,7 @@ function [y,Fs,bits]=auread(aufile,ext)
 			y = [snd('samples'),snd('chans')];
 			return
 		elseif exts>2 then
-			error('Index range must be specified as a scalar or 2-element vector.');
+		  error(msprintf(gettext("%s: An error occurred: %s\n"),'auread',gettext('Index range must be specified as a scalar or 2-element vector.')));
 		elseif exts==1 then
 			ext = [1,ext];
 		end
@@ -104,13 +104,13 @@ function [new_snd]=read_sndata(fid,snd,ext)
 		// all samples
 	else
 		if prod(size(ext))~=2 then
-			error('Sample limit vector must have 2 elements.')
+		  error(msprintf(gettext("%s: An error occurred: %s\n"),'read_sndata',gettext('Sample limit vector must have 2 elements.')));
 		end
 		if ext(1)<1|ext(2)>SamplesPerChannel then
-			error('Sample limits out of range.')
+			error(msprintf(gettext("%s: An error occurred: %s\n"),'read_sndata',gettext('Sample limits out of range.')));
 		end
 		if ext(1)>ext(2) then
-			error('Sample limits must be given in ascending order.')
+			error(msprintf(gettext("%s: An error occurred: %s\n"),'read_sndata',gettext('Sample limits must be given in ascending order.')));
 		end
 	end
 	// Skip over leading samples:
@@ -118,7 +118,7 @@ function [new_snd]=read_sndata(fid,snd,ext)
 		// Skip over leading samples, if specified:
 		status = mseek(BytesPerSample*(ext(1)-1)*snd('chans'),fid,'cur');
 		if status==(-1) then
-			error('Error in file format.')
+		  error(msprintf(gettext("%s: An error occurred: %s\n"),'read_sndata',gettext('Error in file format.')));
 		end
 	end
 	
@@ -174,7 +174,7 @@ function [snd]=read_sndhdr(fid)
 	[info,cnt] = mtlb_fread(fid,info_len,'char');
 	snd('info')=stripblanks(ascii(info'))
 	if cnt~=info_len then
-		error('Error while reading sound file.')
+	  error(msprintf(gettext("%s: An error occurred: %s\n"),'read_sndhdr',gettext('Error while reading sound file.')));
 	end
 	
 	// Determine file length
@@ -206,11 +206,11 @@ function [snd]=read_sndhdr(fid)
 		snd('bits')=64
 		// Double-precision
 	else
-		error('Unrecognized data format.')
+		error(msprintf(gettext("%s: An error occurred: %s\n"),'read_sndhdr',gettext('Unrecognized data format.')));
 	end
 	// Determine # of samples per channel:
 	snd('samples')=snd('databytes')*8/snd('bits')/snd('chans')
 	if snd('samples')~=fix(snd('samples')) then
-		error('Truncated data file.')
+	  error(msprintf(gettext("%s: An error occurred: %s\n"),'read_sndhdr',gettext('Truncated data file.')));
 	end
 endfunction

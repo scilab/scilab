@@ -39,9 +39,9 @@ function []=auwrite(y,Fs,nbits,method,aufile)
   method_pref = 'mu';
  
   if nargin==1 then
-    error('Incorrect number of input arguments.');
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),'auwrite',2,5));
   elseif nargin>5 then
-    error('Incorrect number of input arguments.');
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),'auwrite',2,5));
   elseif nargin==4 then
     aufile = method;
     method = method_pref;
@@ -57,7 +57,7 @@ function []=auwrite(y,Fs,nbits,method,aufile)
   end
  
   if ~(type(aufile)==10) then
-    error('Filename must be a string.');
+    error(msprintf(gettext("%s: Wrong values for input argument: Filename must be a string.\n"),'auwrite'));
   end
   if strindex(aufile,'.')==[] then
     aufile = aufile+'.au';
@@ -65,11 +65,11 @@ function []=auwrite(y,Fs,nbits,method,aufile)
 
   [fid,junk] = mopen(aufile,'wb',0) // Big-endian
   if junk<0 then
-    error('Cannot open .au sound file');
+    error(msprintf(gettext("%s: Cannot open file %s.\n"),'auwrite',aufile));
   end
   
   if length(size(y)) > 2 then
-    error('Data array must have 1- or 2-dimensions, only.');
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'auwrite',gettext('Data array must have 1- or 2-dimensions only.')));
   end
   if size(y,2)==1 then
     y = y';
@@ -79,13 +79,13 @@ function []=auwrite(y,Fs,nbits,method,aufile)
   i = matrix(find(abs(y)>1),1,-1);
   if ~(i==[]) then
     y(i) = sign(y(i));
-    warning('Data clipped during write to file.');
+    warning(gettext('Data clipped during write to file.'));
   end
  
   snd = write_sndhdr(fid,Fs,nbits,method,size(y));
 
   if write_sndata(fid,snd,y) then
-    error('Error while writing sound file.');
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'auwrite',gettext('Error while writing sound file.')));
   end
   mclose(fid);
 endfunction
@@ -122,7 +122,7 @@ function [snd]=write_sndhdr(fid,Fs,nbits,method,sz)
 // write header part 
   if method=='mu' then
     if nbits~=8 then
-      error('Mu-law can only be used with 8 bit data.'+' Use method=''linear'' instead.');
+      error(msprintf(gettext("%s: An error occurred: %s\n"),'auwrite',gettext('Mu-law can only be used with 8 bit data. Use method=''linear'' instead.')));
     end
     snd.format = 1;
     snd.bits = 8;
@@ -140,11 +140,11 @@ function [snd]=write_sndhdr(fid,Fs,nbits,method,sz)
       snd.format=7;  // Double-precision
       snd.bits=64;
     else
-      error('Wavwrite: unrecognized data format');
+      error(msprintf(gettext("%s: An error occurred: %s\n"),'auwrite',gettext('unrecognized data format.')));
       return
     end
   else
-    error('Unrecognized data format');
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'auwrite',gettext('unrecognized data format.')));
   end
  
   // Define sound header structure:

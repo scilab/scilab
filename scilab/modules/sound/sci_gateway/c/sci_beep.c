@@ -48,7 +48,7 @@ int sci_Beep(char *fname,unsigned long fname_len)
 			{
 				BeepON=0;
 			}
-			else Scierror(999,_("Unknown command option.\n"));
+			else Scierror(999,_("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"),fname,1,"on","off");
 		}
 	}
 	else
