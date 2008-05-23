@@ -128,7 +128,12 @@ c     rhs analyzed
       goto 60
  50   continue
 c     invalid syntax
-      err=lct(8)
+      if(rio.ne.rte) then
+         err=lct(8)
+      else
+         err=-1
+      endif
+
       call error(37)
       lct(8)=1
       return

@@ -304,7 +304,10 @@ try,catch */
 		break;
 		case 37:
 		{
-			displayAndStoreError(_("Incorrect function at line %d.\n"),Err);
+		  if (Err>0) 
+		    displayAndStoreError(_("Incorrect function at line %d.\n"),Err);
+		  else
+		    displayAndStoreError(_("Incorrect function.\n"));
 		}
 		break;
 		case 38:
