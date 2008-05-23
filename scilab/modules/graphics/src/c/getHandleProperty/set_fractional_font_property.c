@@ -25,7 +25,7 @@
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
-int src/c/getHandleProperty/set_arc_drawing_method_property.c \( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+int set_fractional_font_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
 
   if (   sciGetEntityType(pobj) != SCI_SUBWIN
