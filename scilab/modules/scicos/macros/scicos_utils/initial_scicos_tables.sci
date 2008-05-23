@@ -18,12 +18,7 @@
 //
 // See the file ./license.txt
 //
-
-function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
-          %scicos_display_mode, modelica_libs,scicos_pal_libs, ...
-          %scicos_lhb_list, %CmenuTypeOneVector,%scicos_gif, ...
-          %scicos_contrib] = initial_scicos_tables()
-
+//
 //**
 //** INRIA
 //** Comments by Simone Mannori
@@ -31,9 +26,16 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 //**
 //** 30 August 2007: some data structure are moved from scicos.sci here.
 //**
+//** 23 May 2008 : final porting on Scilab 5  
 //**
-//** N.B. :
-//**        This function is called from "scilab/scilab.star" at Scilab's startup
+//** N.B. : This function is called from "SCI/modules/scicos/etc/scicos.start" 
+//**        at Scilab's startup IF the "scicos" module is active in
+//**        "SCI/etc/modules.xml" file :)
+
+function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
+          %scicos_display_mode, modelica_libs,scicos_pal_libs, ...
+          %scicos_lhb_list, %CmenuTypeOneVector,%scicos_gif, ...
+          %scicos_contrib] = initial_scicos_tables()
 
   %scicos_display_mode = 0 ; //** obsolete: with the new graphics the display mode
                              //** is fixed
@@ -51,11 +53,11 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                'Others'     ;'Branching'       ;'Electrical'      ;'ThermoHydraulics';
                'OldBlocks'  ;'DemoBlocks'];
 
-  scicos_pal= [pal_names  'SCI/modules/scicos/macros/scicos_scicos/'+pal_names+'.cosf']
+  scicos_pal = [pal_names  'SCI/modules/scicos/macros/scicos_scicos/'+pal_names+'.cosf']
 
-  %scicos_gif= SCI+"/modules/scicos/help/scicos_doc/man/gif_icons/";
+  %scicos_gif = SCI+"/modules/scicos/help/scicos_doc/man/gif_icons/";
 
-  %scicos_contrib= [];
+  %scicos_contrib = [];
 
   //Scicos palettes libs list ========================================================
   //**
@@ -72,14 +74,10 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 	      'Save',..
 	      'Save As',..
 	      'Save as Interf Func',..
+  	      'Export',..
+  	      'Export All',..
               'Exit Scicos',..
 	      'Quit' ];
-// @TODO : Move this before "Exit Scicos"
-// Export disable for Scilab 5.0 Alpha Version
-// Will be fixed before Release
-  //	      'Export',..
-  //	      'Export All',..
-
 
   Diagram  = ['Diagram',..
               'Replot',..
@@ -95,7 +93,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 	      'Pal editor',..
 	      'Load as Palette',..
 	      'Save as Palette',..
-              'Pal Tree'];
+              'Pal Tree']; 
 
   Edit     = ['Edit',..
               'Undo',..
@@ -118,7 +116,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
               'Zoom in',..
 	      'Zoom out',..
               'Fit diagram to figure',..
-	      'Default window parameters',..
+  	      'Default window parameters',..
               'Available Parameters',..
               'Grid'];
 
@@ -179,6 +177,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
   %scicos_lhb_list(1) = list('Open/Set',..
 			     'Cut',..
 			     'Copy',..
+                             'Paste',..
                              'Delete',..
 			     'Smart Move',..
 			     'Move',..
@@ -198,14 +197,14 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                                    'Details',..
 			           'Identification',..
 			           'Block Documentation'),..
-			     'Code Generation',..
+			           'Code Generation',..
                              list( 'Mask',..
                                    'Create Mask',..
                                    'Remove Mask',..
                                    'Customize Mask',..
                                    'Save Block GUI'),..
-			     'Region to Super Block',..
-			     'Help');
+			           'Region to Super Block',..
+			           'Help');
 
   //** state_var = 2 : right click in the void of the CURRENT Scicos Window
   %scicos_lhb_list(2) = list('Undo',..
@@ -242,6 +241,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 		 'c','Duplicate';
 		 'm','Move';
 		 'z','Smart Move';
+                 'w','Identification';
 		 'u','Undo';
 		 'f','Flip';
 		 't','Rotate Left';

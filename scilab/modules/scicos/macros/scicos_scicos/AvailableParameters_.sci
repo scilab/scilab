@@ -25,6 +25,6 @@ function AvailableParameters_()
   //**
   //** Waiting for a Java tree. Will be available for release.
   //**
-  //tree_show(%scicos_context,'Available parameters:')
-  x_message("Not Available in Scilab 5.0 Alpha")
+       tree_show(%scicos_context,'Available parameters:')
+  //**
 endfunction
