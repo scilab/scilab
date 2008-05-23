@@ -24,7 +24,6 @@ import javax.help.DefaultHelpModel;
 import javax.help.HelpSet;
 import javax.help.HelpSetException;
 import javax.help.JHelp;
-import javax.help.JHelpIndexNavigator;
 import javax.help.JHelpSearchNavigator;
 import javax.help.JHelpTOCNavigator;
 import javax.help.plaf.basic.BasicSearchNavigatorUI;
@@ -149,7 +148,13 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	public void searchKeywork(String keyword) {
 		try {
 			Enumeration navigators = getHelpNavigators();
-			setCurrentNavigator((JHelpTOCNavigator) navigators.nextElement());
+			if (navigators.hasMoreElements()) {
+				setCurrentNavigator((JHelpTOCNavigator) navigators.nextElement());
+			} else {
+				System.out.println("Scilab help files not loaded. Please check if " 
+						+ mainJarPath + "*" + jarExtension + " files exist and are Java Help files.");
+				return;
+			}
 			setCurrentID(keyword);
 		} catch (BadIDException e) {
 			fullTextSearch(keyword);
