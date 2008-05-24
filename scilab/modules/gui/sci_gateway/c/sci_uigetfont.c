@@ -90,7 +90,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
           return FALSE;
         }
     }

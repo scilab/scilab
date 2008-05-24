@@ -617,13 +617,6 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xgetfile.c, line: 172
-# File: sci_gateway/c/sci_xgetfile.c, line: 190
-#, c-format
-msgid "%s: Wrong type for input argument#%d: A string expected.\n"
-msgstr ""
-
-#
 # File: macros/addmenu.sci, line: 27
 # File: macros/addmenu.sci, line: 47
 # File: macros/addmenu.sci, line: 65
@@ -796,12 +789,6 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_toolbar.c, line: 107
-#, c-format
-msgid "%s: Wrong size for input argument#%d: A string expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_toolbar.c, line: 117
 # File: sci_gateway/c/sci_ClipBoard.c, line: 65
 # File: sci_gateway/c/sci_ClipBoard.c, line: 86
@@ -814,12 +801,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_x_mdialog.c, line: 59
 msgid "Scilab Multiple Values Request"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_x_mdialog.c, line: 106
-#, c-format
-msgid "%s: Wrong type for input argument#%d: String vector expected.\n"
 msgstr ""
 
 #
@@ -935,12 +916,6 @@ msgstr ""
 # File: sci_gateway/c/sci_uigetfont.c, line: 73
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single value expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_uigetfont.c, line: 93
-#, c-format
-msgid "%s: Wrong type for input argument#%d: A boolean expected.\n"
 msgstr ""
 
 #

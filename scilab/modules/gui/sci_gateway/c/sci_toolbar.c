@@ -104,7 +104,7 @@ int sci_toolbar(char *fname,unsigned long l)
           GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&param);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
               return FALSE;
             }
           

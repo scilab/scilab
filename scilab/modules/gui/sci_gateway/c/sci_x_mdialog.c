@@ -103,7 +103,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
     }
   else 
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: String vector expected.\n"), fname, 3);
+      Scierror(999, _("%s: Wrong type for input argument #%d: String vector expected.\n"), fname, 3);
       return FALSE;
     }
 
