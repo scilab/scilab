@@ -10,6 +10,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <stdio.h>
 #include "gw_sound.h"
 #include "stack-c.h"
 #include "MALLOC.h"
@@ -77,9 +78,7 @@ void BeepLinuxWindows(void)
 	#ifdef _MSC_VER
 		MessageBeep((UINT)-1);
 	#else
-  /* !!!! This code MUST be rewrited !!! It is not at all the way of playing
-	 sound with Linux */
-		system("echo -en \"\a\"");
+		puts("\a");
 	#endif
 }
 /*--------------------------------------------------------------------------*/
