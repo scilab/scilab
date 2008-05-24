@@ -43,7 +43,7 @@ int C2F(sci_x_choose)(char *fname,unsigned long fname_len)
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for first input argument: String vector expected.\n"), "x_choose");
+      Scierror(999, _("%s: Wrong type for input argument #%d: String vector expected.\n"), fname);
       return FALSE;
     }
 
@@ -53,7 +53,7 @@ int C2F(sci_x_choose)(char *fname,unsigned long fname_len)
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for second input argument: String vector expected.\n"), "x_choose");
+      Scierror(999, _("%s: Wrong type for input argument #%d: String vector expected.\n"), fname, 2);
       return FALSE;
     }
 
@@ -76,13 +76,13 @@ int C2F(sci_x_choose)(char *fname,unsigned long fname_len)
           GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&buttonLabelAdr);
           if (nbRow*nbCol != 1)
           {
-            Scierror(999, _("%s: Wrong type for third input argument: Single string expected.\n"), "x_choose");
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
             return FALSE;
           }
         }
       else 
         {
-          Scierror(999, _("%s: Wrong type for third input argument: Single string expected.\n"), "x_choose");
+          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
           return FALSE;
         }
 

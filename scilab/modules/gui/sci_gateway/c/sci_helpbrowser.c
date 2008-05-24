@@ -46,13 +46,13 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
             }
           else
             {
-              Scierror(999, _("%s: Wrong type for first input argument: String matrix expected.\n"), "helpbrowser");
+              Scierror(999, _("%s: Wrong type for input argument #%d: String matrix expected.\n"), fname, 1);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for first input argument: String matrix expected.\n"), "helpbrowser");
+          Scierror(999, _("%s: Wrong type for input argument #%d: String matrix expected.\n"), fname, 1);
           return FALSE;
         }
     }
@@ -64,13 +64,13 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
           GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &languageAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"), "helpbrowser");
+              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for second input argument: String matrix expected.\n"), "helpbrowser");
+          Scierror(999, _("%s: Wrong type for input argument #%d: String matrix expected.\n"), fname, 2);
           return FALSE;
         }
 
@@ -90,13 +90,13 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
           GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &keywordAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"), "helpbrowser");
+              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for second input argument: Single string expected.\n"), "helpbrowser");
+          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
           return FALSE;
         }
       
@@ -105,13 +105,13 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
           GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &languageAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for third input argument: Single string expected.\n"), "helpbrowser");
+              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for third input argument: Single string expected.\n"), "helpbrowser");
+          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
           return FALSE;
         }
       
@@ -120,13 +120,13 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
           GetRhsVar(4, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &fullTextAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for fourth input argument: Single boolean expected.\n"), "helpbrowser");
+              Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 4);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for fourth second argument: Single boolean expected.\n"), "helpbrowser");
+          Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 4);
           return FALSE;
         }
       
@@ -141,7 +141,7 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
     }
   else
     {
-      Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "helpbrowser", 2, 4);
+      Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 4);
       return FALSE;
     }
   

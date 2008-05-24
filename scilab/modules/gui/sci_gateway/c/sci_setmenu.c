@@ -41,7 +41,7 @@ int sci_setmenu(char *fname,unsigned long fname_len)
       // Unset a Menu of Scilab Main Window
       if (VarType(1) != sci_strings)
         {
-          Scierror(999, _("%s: Wrong type for first input argument: String expected.\n"),fname);
+          Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
           return FALSE;
         }
 
@@ -49,7 +49,7 @@ int sci_setmenu(char *fname,unsigned long fname_len)
 
       if (nbCol != 1)
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"),fname);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 1);
           return FALSE;
         }
 
@@ -64,7 +64,7 @@ int sci_setmenu(char *fname,unsigned long fname_len)
       
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong type for first input argument: Scalar expected.\n"),fname);
+              Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 1);
               return FALSE;
             }
           
@@ -80,7 +80,7 @@ int sci_setmenu(char *fname,unsigned long fname_len)
       
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong type for first input argument: Scalar expected.\n"),fname);
+              Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 2);
               return FALSE;
             }
           
@@ -98,7 +98,7 @@ int sci_setmenu(char *fname,unsigned long fname_len)
       
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong type for first input argument: Scalar expected.\n"),fname);
+              Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 1);
               return FALSE;
             }
           
@@ -108,7 +108,7 @@ int sci_setmenu(char *fname,unsigned long fname_len)
       
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong type for third input argument: Scalar expected.\n"),fname);
+              Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 3);
               return FALSE;
             }
           

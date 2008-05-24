@@ -68,7 +68,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
     {
       if (VarType(1) != sci_handles)
         {
-          Scierror(999,_("%s: Wrong type for first input argument: Graphic handle expected.\n"),fname);
+          Scierror(999,_("%s: Wrong type for input argument #%d: Graphic handle expected.\n"),fname, 1);
           return FALSE;
         }
       else /* Get parent ID */
@@ -77,7 +77,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
 
           if (nbRow*nbCol != 1)
             {
-	      Scierror(999,_("%s: Wrong size for first input argument: Single handle expected.\n"),fname);
+	      Scierror(999,_("%s: Wrong size for input argument #%d: Single handle expected.\n"),fname, 1);
 	      return FALSE;
             }
 	  pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));

@@ -62,13 +62,13 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                 }
               else
                 {
-                  Scierror(999,_("%s: Wrong value for first input argument: ""paste"" or ""pastespecial"" expected.\n"), "clipboard");
+					Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "paste", "pastespecial");
                   return FALSE;
                 }
             }
           else
             {
-              Scierror(999,_("%s: Wrong type for first input argument: Single string expected.\n"), "clipboard");
+              Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
               return FALSE;
             }
         } 
@@ -83,7 +83,7 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
 
               if (n1!=1)
                 {
-                  Scierror(999,_("%s: Wrong value for first input argument: must be ""do"" or ""copy"".\n"), "clipboard");
+                  Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "do","copy");
                   return FALSE;
                 }
 
@@ -117,7 +117,7 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                         }
                       else
                         {
-                          Scierror(999,_("%s: Wrong value for second input argument: must be ""copy"", ""paste"" or ""empty"".\n"), "clipboard");
+                          Scierror(999,_("%s: Wrong value for input argument #%d: must be '%s', '%s' or '%s'.\n"), fname, 2, "copy","paste","empty");
                           return FALSE;
                         }
                       
@@ -154,7 +154,7 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                           char **buffer = (char**)MALLOC( (m1*n1)*sizeof(char *) );
                           if (buffer==NULL)
                             {
-                              Scierror(999, _("%s: No more memory.\n"), "clipboard");
+                              Scierror(999, _("%s: No more memory.\n"), fname);
                               return FALSE;
                             }
                           
@@ -204,13 +204,13 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                     }
                   else
                     {
-                      Scierror(999,_("%s: Wrong value for first input argument: must be ""do"" or ""copy"".\n"), "clipboard");
+                      Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "do","copy");
                       return FALSE;
                     }
                 }
               else
                 {
-                  Scierror(999,_("%s: Wrong type for second input argument: Single string expected.\n"), "clipboard");
+                  Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
                   return FALSE;
                 }
             }
@@ -229,7 +229,7 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
 
               if (m1*n1!=1)
                 {
-                  Scierror(999,_("%s: Wrong type for first input argument: Single double value expected.\n"), "clipboard");
+                  Scierror(999,_("%s: Wrong type for input argument #%d: A double value expected.\n"), fname, 1);
                   return FALSE;
                 }
 
@@ -263,34 +263,34 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                         }
                       else
                         {
-                          Scierror(999,_("%s: Wrong value for first input argument: must be >= 0 .\n"), "clipboard");
+                          Scierror(999,_("%s: Wrong value for input argument #%d: Must be >= %d .\n"), fname, 1, 0);
                           return FALSE;
                         }
 
                     }
                   else
                     {
-                      Scierror(999,_("%s: Wrong value for second input argument: must be ""EMF"" or ""DIB"".\n"), "clipboard");
+                      Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 2, "EMF","DIB");
                       return FALSE;
                     }
                   
                 }
               else
                 {
-                  Scierror(999,_("%s: Wrong type for second input argument: Single string expected.\n"), "clipboard");
+                  Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
                   return FALSE;
                 }
             }
           else
             {
-              Scierror(999,_("%s: Wrong type for first input argument: Single string or Single double value expected.\n"), "clipboard");
+              Scierror(999,_("%s: Wrong type for input argument #%d: A string or a double value expected.\n"), fname, 1);
               return FALSE;
             }
         }
     }
   else
     {
-      Scierror(999,_("%s: function not available in NWNI mode.\n"), "clipboard");
+      Scierror(999,_("%s: Function not available in NWNI mode.\n"), fname);
       return FALSE;
     }
 

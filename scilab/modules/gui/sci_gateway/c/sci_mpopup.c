@@ -42,7 +42,7 @@ int sci_mpopup(char *fname,unsigned long fname_len)
     }
   else
     {
-      Scierror(999,_("%s: Wrong type for first input argument: String vector expected.\n"),fname);
+      Scierror(999,_("%s: Wrong type for input argument #%d: String vector expected.\n"),fname, 1);
       return FALSE;
     }
 

@@ -40,7 +40,7 @@ int sci_delmenu(char *fname,unsigned long fname_len)
       // Unset a Menu of Scilab Main Window
       if (VarType(1) != sci_strings)
         {
-          Scierror(999, _("%s: Wrong type for first input argument: String expected.\n"),fname);
+          Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
           return FALSE;
         }
 
@@ -48,7 +48,7 @@ int sci_delmenu(char *fname,unsigned long fname_len)
 
       if (nbCol != 1)
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"),fname);
+          Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"),fname, 1);
           return FALSE;
         }
 
@@ -59,20 +59,20 @@ int sci_delmenu(char *fname,unsigned long fname_len)
       // Unset a Menu a Scilab Graphic Window
       if (VarType(1) != sci_matrix)
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Double value expected.\n"),fname);
+          Scierror(999, _("%s: Wrong type for input argument #%d: Double value expected.\n"),fname, 1);
           return FALSE;
         }
       GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
       
       if (nbRow*nbCol != 1)
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Scalar expected.\n"),fname);
+          Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 1);
           return FALSE;
         }
 
       if (VarType(2) != sci_strings)
         {
-          Scierror(999, _("%s: Wrong type for second input argument: String expected.\n"),fname);
+          Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"),fname, 2);
           return FALSE;
         }
       GetRhsVar(2, STRING_DATATYPE, &nbRow1, &nbCol1, &stkAdr1);

@@ -46,14 +46,14 @@ int sci_toolbar(char *fname,unsigned long l)
       GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&nbRow,&nbCol,&stkAdr);
       if (nbRow*nbCol != 1)
         {
-          Scierror(999, _("%s: Wrong size for first input argument: Scalar expected.\n"), fname);
+          Scierror(999, _("%s: Wrong size for input argument #%d: Scalar expected.\n"), fname, 1);
           return FALSE;
         }
       figNum = *istk(stkAdr);
       
       if (figNum < -1)
         {
-          Scierror(999, _("%s: Wrong value for first input argument: value greater than -2 expected.\n"), fname);
+          Scierror(999, _("%s: Wrong value for input argument #%d: Must be > %d expected.\n"), fname, 1, -1);
           return FALSE;
         }
 
@@ -61,7 +61,7 @@ int sci_toolbar(char *fname,unsigned long l)
         {
           if (getFigureFromIndex(figNum)==NULL)
             {
-              Scierror(999, _("%s: Wrong value for first input argument: 'Graphic Window Number %d' does not exist.\n"), fname, figNum);
+              Scierror(999, _("%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not exist.\n"), fname, 1, figNum);
               return FALSE;
             }
         }
@@ -72,20 +72,20 @@ int sci_toolbar(char *fname,unsigned long l)
 
           if (nbRow*nbCol != 1)
             {
-              Scierror(999,_("%s: Wrong size for first input argument: Single handle expected.\n"),fname);
+              Scierror(999,_("%s: Wrong size for input argument #%d: Single handle expected.\n"),fname, 1);
               return FALSE;
             }
           pObj=sciGetPointerFromHandle((long)*hstk(stkAdr));
           
           if (pObj == NULL)
             {
-              Scierror(999, _("%s: Wrong value for first input argument: this handle does not exist.\n"), fname);
+              Scierror(999, _("%s: Wrong value for input argument #%d: this handle does not exist.\n"), fname, 1);
               return FALSE;
             }
           
           if ( (sciGetEntityType (pObj) != SCI_FIGURE) )
             {
-              Scierror(999, _("%s: Wrong type for first input argument: Double value or Figure handle expected.\n"), fname);
+              Scierror(999, _("%s: Wrong type for input argument #%d: Double value or Figure handle expected.\n"), fname, 1);
               return FALSE;
             }
 
@@ -93,7 +93,7 @@ int sci_toolbar(char *fname,unsigned long l)
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for first input argument: Double value or Figure handle expected.\n"), fname);
+      Scierror(999, _("%s: Wrong type for input argument #%d: Double value or Figure handle expected.\n"), fname, 1);
       return FALSE;
     }
 
@@ -104,7 +104,7 @@ int sci_toolbar(char *fname,unsigned long l)
           GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&param);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for second input argument: 'on' or 'off' expected.\n"), fname);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
               return FALSE;
             }
           
@@ -114,13 +114,13 @@ int sci_toolbar(char *fname,unsigned long l)
             }
           else
             {
-              Scierror(999, _("%s: Wrong value second input argument: 'on' or 'off' expected.\n"), fname);
+              Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 2, "on", "off");
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for second input argument: 'on' or 'off' expected.\n"), fname);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
           return FALSE;
         }
     }

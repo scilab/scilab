@@ -31,13 +31,13 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
 
   if ((Rhs!=0) && (Rhs!=1) && (Rhs!=3)) /* Bad use */
     {
-          Scierror(999, _("%s: Wrong number of input arguments: 0, 1 or 3 expected.\n"), "uigetcolor");
+          Scierror(999, _("%s: Wrong number of input arguments: %d, % or %d expected.\n"), fname, 0, 1, 3);
           return FALSE;
     }
       
   if ((Lhs!=1) && (Lhs!=3)) /* Bad use */
     {
-          Scierror(999, _("%s: Wrong number of output arguments: 1 or 3 expected.\n"), "uigetcolor");
+          Scierror(999, _("%s: Wrong number of output arguments: %d or %expected.\n"), fname, 1, 3);
           return FALSE;
     }
 
@@ -49,13 +49,13 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
           GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for first input argument: Single value expected.\n"), "uigetcolor");
+              Scierror(999, _("%s: Wrong size for input argument #%d: A value expected.\n"), fname, 1);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single value expected.\n"), "uigetcolor");
+          Scierror(999, _("%s: Wrong type for input argument #%d: A value expected.\n"), fname, 1);
           return FALSE;
         }
     }
@@ -66,13 +66,13 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
           GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
           if (nbRow*nbCol != 3)
             {
-              Scierror(999, _("%s: Wrong size for first input argument: three double values vector expected.\n"), "uigetcolor");
+              Scierror(999, _("%s: Wrong size for input argument #%d: Three double values vector expected.\n"), fname, 1);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for first input argument: three double values vector expected.\n"), "uigetcolor");
+          Scierror(999, _("%s: Wrong type for input argument #%d: Three double values vector expected.\n"), fname, 1);
           return FALSE;
         }
     }
@@ -84,13 +84,13 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
         GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &greenAdr);
         if (nbRow*nbCol != 1)
           {
-            Scierror(999, _("%s: Wrong size for second input argument: Single value expected.\n"), "uigetcolor");
+            Scierror(999, _("%s: Wrong size for input argument #%d: A value expected.\n"), fname, 2);
             return FALSE;
           }
       }
     else
       {
-        Scierror(999, _("%s: Wrong type for second input argument: Single value expected.\n"), "uigetcolor");
+        Scierror(999, _("%s: Wrong type for input argument #%d: A value expected.\n"), fname, 2);
         return FALSE;
       }
   }
@@ -102,13 +102,13 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
         GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &blueAdr);
         if (nbRow*nbCol != 1)
           {
-            Scierror(999, _("%s: Wrong size for third input argument: Single value expected.\n"), "uigetcolor");
+            Scierror(999, _("%s: Wrong size for input argument #%d: A value expected.\n"), fname, 3);
             return FALSE;
           }
       }
     else
       {
-        Scierror(999, _("%s: Wrong type for third input argument: Single value expected.\n"), "uigetcolor");
+        Scierror(999, _("%s: Wrong type for input argument #%d: A value expected.\n"), fname, 3);
         return FALSE;
       }
   }

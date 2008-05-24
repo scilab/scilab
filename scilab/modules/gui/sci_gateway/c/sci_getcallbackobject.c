@@ -33,14 +33,14 @@ int sci_getcallbackobject(char *fname,unsigned long fname_len)
       GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
       if (nbRow * nbCol !=1)
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single value expected.\n"), "getcallbackobject");
+          Scierror(999, _("%s: Wrong size for input argument #%d: A value expected.\n"), fname, 1);
           return FALSE;
         }
       pObj = sciGetPointerFromJavaIndex((int) *stk(stkAdr));
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for first input argument: Single value expected.\n"), "getcallbackobject");
+      Scierror(999, _("%s: Wrong type for input argument #%d: A value expected.\n"), fname);
       return FALSE;
     }
  

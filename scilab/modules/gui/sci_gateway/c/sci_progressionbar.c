@@ -45,7 +45,7 @@ int sci_progressionbar(char *fname,unsigned long fname_len)
           GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &handleAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for first input argument: Single handle expected.\n"), "progressionbar");
+              Scierror(999, _("%s: Wrong size for input argument #%d: Single handle expected.\n"), fname, 1);
               return FALSE;
             }
         }
@@ -55,7 +55,7 @@ int sci_progressionbar(char *fname,unsigned long fname_len)
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single handle or String expected.\n"), "progressionbar");
+          Scierror(999, _("%s: Wrong type for input argument #%d: a Handle or String expected.\n"), fname, 1);
           return FALSE;
         }
 
@@ -87,7 +87,7 @@ int sci_progressionbar(char *fname,unsigned long fname_len)
           GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &handleAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for first input argument: Single handle expected.\n"), "progressionbar");
+              Scierror(999, _("%s: Wrong size for input argument #%d: A handle expected.\n"), fname, 1);
               return FALSE;
             }
           GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRowMessage, &nbColMessage, &messageAdr);
@@ -101,7 +101,7 @@ int sci_progressionbar(char *fname,unsigned long fname_len)
        }
       else
         {
-          Scierror(999, _("%s: Bad use with two input arguments.\n"), "progressionbar");
+          Scierror(999, _("%s: Bad use with two input arguments.\n"), fname);
           return FALSE;
         }
     }
