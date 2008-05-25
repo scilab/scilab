@@ -1,0 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// eye100x100.mat -v5 only
+loadmatfile(SCI+'/modules/matio/tests/unit_tests/eye100x100.mat','a')
+ref = eye(100,100);
+if ~and(a == ref) then pause,end
