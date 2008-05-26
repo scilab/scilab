@@ -18,7 +18,8 @@
 #include "stack-c.h"
 #include "do_xxprintf.h"
 #include "Scierror.h"
-#include "sciprint.h"
+#include "Scierror.h"
+#include "scilabmode.h"
 #include "localization.h"
 #include "set_xxprintf.h"
 #include "fileio.h"
@@ -193,7 +194,10 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 						break;
 					case 'n':
 #ifdef _MSC_VER
-						if ( fp == stdout ) (*xxprintf) ((VPTR) target, "\r");
+						if (getScilabMode() != SCILAB_STD)
+						{
+							if ( fp == stdout ) (*xxprintf) ((VPTR) target, "\r");
+						}
 #endif
 						(*xxprintf) ((VPTR) target, "\n");
 						currentchar++;
