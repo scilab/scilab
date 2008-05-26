@@ -20,7 +20,6 @@
 //
 
 function drawobjs(scs_m, gh_window)
-//**
 
    drawlater() ;
    
@@ -30,33 +29,33 @@ function drawobjs(scs_m, gh_window)
    rhs = argn(2) ; //** get the number of right side arguments
    
    if rhs==1 then //** without arguments (default) assume ...
-       //** 
-       gh_curwin = gcf(); //** get the handle of the current graphics window
-       gh_axes   = gca(); //** and axes 
-       
-       if exists('%scicos_with_grid') & %scicos_with_grid then
-           drawgrid();
-       end
 
-       for i=1 : lstsize(scs_m.objs) //** draw object by object
-            scs_m_index = i ; //** creation of a semiglobal variable for object indexing
-	    gh_blk = drawobj(scs_m.objs(i), gh_curwin);
-       end
+       gh_curwin = gcf(); //** get the handle of the current graphics window
 
     else //** the argument is explicit
-       //** 
+      
        gh_curwin = scf(gh_window) ; //** set the handle of the current graphics window
-       gh_axes   = gca();           //** and axes
 
-       if exists('%scicos_with_grid') & %scicos_with_grid then
-           drawgrid(gh_curwin);
-       end
+   end
 
-       for i=1 : lstsize(scs_m.objs) //** draw object by object
-            scs_m_index = i ; //** creation of a semiglobal variable for object indexing
-            gh_blk = drawobj(scs_m.objs(i), gh_curwin);
-       end
+   gh_axes = gca(); //** axes
 
+
+   //** ** TEXT use integer size / non aliased fonts ***
+   gh_axes.fractional_font = "off";
+  
+   //** ** ARC/CIRCLE use line/segment ***
+   gh_axes.arc_drawing_method = "lines"; 
+   
+   //** draw grid     
+   if exists('%scicos_with_grid') & %scicos_with_grid then
+     drawgrid(gh_curwin);
+   end
+
+   //** Main Loop for objects 
+   for i=1 : lstsize(scs_m.objs) //** draw object by object
+      scs_m_index = i ; //** creation of a semiglobal variable for object indexing
+      gh_blk = drawobj(scs_m.objs(i), gh_curwin);
    end
 
    //** Update selected object
@@ -65,8 +64,7 @@ function drawobjs(scs_m, gh_window)
      o_size = size (gh_axes.children);
      for i=find(Select(:,2)==gh_curwin.figure_id)
        gh_k = get_gri(Select(i,1),o_size(1)) ;
-       gh_axes.children(gh_k).children(1).mark_mode="on" ; //** set the mark
-       //** draw(gh_curwin.children.children(gh_k).children(1)) ; //** draw the object
+       gh_axes.children(gh_k).children(1).mark_mode = "on" ; //** set the mark
      end
    end
 
@@ -74,6 +72,5 @@ function drawobjs(scs_m, gh_window)
    show_info(scs_m.props.doc) ; //** User defined function (usually empty, do nothing) 
    
    drawnow();
-   //** show_pixmap() ; //** not useful on Scilab 5
-
+  
 endfunction

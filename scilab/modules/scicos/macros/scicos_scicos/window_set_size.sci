@@ -80,6 +80,13 @@ function window_set_size(gh_window, viewport)
   //** axes settings
   gh_axes.tight_limits = "on"  ; //** set the limit "gh_axes.data_bounds" in "hard mode"
 
+  //** ** TEXT use integer size / non aliased fonts ***
+  gh_axes.fractional_font = "off";
+  
+  //** ** ARC/CIRCLE use line/segment ***
+  gh_axes.arc_drawing_method = "lines"; 
+  
+
   //** The default margin are [ 0.125 0.125 0.125 0.125 ]
   //** margins (default normalized values)
   //** Alan - No margins for axes please
@@ -106,8 +113,11 @@ function window_set_size(gh_window, viewport)
     //** If no variable is passed 
     %XSHIFT = max( (width - r(1) ) / 2, 0) ;
     %YSHIFT = max( (height- r(2) ) / 2, 0) ;
-    //** This correction is really needed BUT uses old graphics primitives :(
-    if ~MSDOS then %YSHIFT = %YSHIFT+30 ; end //** correction for the UNIX system
+
+    
+    //** NO difference using JAVA :) 
+    //** //** This correction is really needed BUT uses old graphics primitives :(
+    //** if ~MSDOS then %YSHIFT = %YSHIFT+30 ; end //** correction for the UNIX system
     
     //** Beware ! : I'm forced to use old graphics instructions because there are not
     //**            direct equivalent inside the new graphics (24 may 2006)

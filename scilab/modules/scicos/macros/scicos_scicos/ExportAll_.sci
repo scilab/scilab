@@ -20,8 +20,11 @@
 //
 
 function ExportAll_()
-Cmenu=[]
-%exp_dir=tk_getdirectory()
+
+Cmenu = []
+
+%exp_dir = tk_getdirectory()
+
 if %exp_dir<>[] then 
   systexport(scs_m,%exp_dir),
   if MSDOS then

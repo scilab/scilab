@@ -57,9 +57,11 @@ function pwindow_set_size(gh_window)
   %wdd = min(933, %zoom*%wsiz(1)) + 30 ;
   %hdd = min(700, %zoom*%wsiz(2)) + 30 ;
   
-  if ~MSDOS then
-    %hdd=%hdd+50
-  end
+  
+  //** NO difference using JAVA :)
+  //** if ~MSDOS then
+  //**  %hdd=%hdd+50
+  //** end
     
   //** set the the size of the phisical window on the screen (in pixel)
   //** with minimum w,h values  
