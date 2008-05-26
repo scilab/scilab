@@ -19,6 +19,7 @@
 
 void C2F(out) (char *str,unsigned int);
 void C2F(ccharf) ( int *n, char **ip, int *op);
+void C2F(cchar) ( int *n, char **ip, int *op);
 void C2F(cdoublef) ( int *n, double *ip[], double *op);
 void C2F(cintf) ( int *n, int *ip[], double *op);
 void C2F(cfloatf) ( int *n, float *ip[], double *op);
