@@ -10,9 +10,10 @@ path=get_absolute_file_path('optimization.dem');
 oldln=lines();lines(0);
 
 
-demolist=['LMITOOL',                    'lmitool/lmi.dem'
-	  'Multiflow problem'           'multiflow/multiflow.dem'
-          'Non linear data fitting'     'datafit/datafit.dem']
+demolist=['LMITOOL',                       'lmitool/lmi.dem'
+	  'Multiflow problem'              'multiflow/multiflow.dem'
+          'Non linear data fitting'        'datafit/datafit.dem'
+	  'Optimal ressource allocation'   'optloc/optloc.dem']
 
 
 deff('[]=demoex(num)','exec(path+demolist(num,2),-1)')
