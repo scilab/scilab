@@ -43,4 +43,5 @@ EXPORTS
  getWarningMode
  callFunctionFromGateway
  freeArrayOfString
+ getScilabMode
  
