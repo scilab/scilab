@@ -8,11 +8,8 @@
 function demo_multiflow(gfile)
 //              The Graph
   //demo_help demo_multiflot
-  grs=get('old_style');set('old_style','on')
-  win=edit_graph(editgraph_diagram(),1,[700,616])
-  xset("wpos",600,16);xset("wdim",600*0.9,400*0.9);
-  ge_set_nodes_id('Label')
-  ge_set_arcs_id('Label')
+//  win=edit_graph(editgraph_diagram(),1,[700,616])
+//  xset("wpos",600,16);xset("wdim",600*0.9,400*0.9);
   
   G=load_graph(gfile);
   G.default_font_size=14;
@@ -30,19 +27,19 @@ function demo_multiflow(gfile)
 
   // set node source and sink nodes types in Graph data structure
   source=2;sink=1;
-  G.node_type=zeros(1,p);
-  G.node_type(sources)=source;
-  G.node_type(sinks)=sink;
+  G.nodes.graphics.type=zeros(1,p);
+  G.nodes.graphics.type(sources)=source;
+  G.nodes.graphics.type(sinks)=sink;
 
   // set node source and sink nodes colors in Graph data structure
-  G.node_color(sources)=colors;
-  G.node_color(sinks)=colors;
+  G.nodes.graphics.colors(sources,1)=colors;
+  G.nodes.graphics.colors(sinks,1)=colors;
 
   //add label to the nodes
-  G.node_label=emptystr(1,p);  
-  G.node_label(sources)=string(values)
-  G.node_label(sinks)=string(-values)
-
+  G = add_node_data(G,'label',emptystr(1,p));
+  G.nodes.data.label(sources)=string(values);
+  G.nodes.data.label(sinks)=string(-values);
+  G.nodes.graphics.display='label';
   show_graph(G)
 
   //add a title
@@ -113,24 +110,21 @@ function demo_multiflow(gfile)
   w2=find(I(:,2)==1&sum(I,2)~=2);
   w3=find(sum(I,2)==2);
 
-  G.edge_color(w1)=colors(1);
-  G.edge_color(w2)=colors(2);
+  G.edges.graphics.foreground(w1)=colors(1);
+  G.edges.graphics.foreground(w2)=colors(2);
 
-  G.edge_label(n)=' ';
-  G.edge_label(w1)=part(string(x1(w1)),1:2);
-  G.edge_label(w2)=part(string(x2(w2)),1:2);
+  G = add_edge_data(G,'label',emptystr(1,p));
+  G.edges.data.label(w1)=part(string(x1(w1)),1:2);
+  G.edges.data.label(w2)=part(string(x2(w2)),1:2);
 
-  G.edge_label(w3)='SAT';
-  G.edge_label=G.edge_label';
-  ge_set_arcs_id('Label')
+  G.edges.data.label(w3)='SAT';
+  G.edges.graphics.display='label'
   show_graph(G);
   xstringb(50,600,'Computed flows',600,  80,'fill');
   ;;
   realtimeinit(0.1);for k=1:30,realtime(k),end // wait a little
   ge_do_quit(%f)
   xdel(win)
- 
-  set('old_style',stripblanks(grs))
 endfunction
 
 
