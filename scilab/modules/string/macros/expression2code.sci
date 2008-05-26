@@ -238,7 +238,7 @@ else
       end
     end
   end
-  if part(operator,1)=="." & part(operator,length(operator))=="." then
+  if part(operator,1)=="." & part(operator,length(operator))=="." | or(operator==["&","|"]) then
     C=strcat(operands," "+operator+" ")
   elseif part(operator,1)=="." then
     C=strcat(operands," "+operator)
