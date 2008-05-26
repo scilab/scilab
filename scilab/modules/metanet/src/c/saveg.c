@@ -100,8 +100,8 @@ void C2F(saveg) (char *path, int *lpath,
 #endif
     else {
       strcpy(nname,StripGraph(my_basename(path)));
-      if (dirname(path) == NULL) getcwd(dir,(int)strlen(dir));
-      else strcpy(dir,dirname(path));
+      if (my_dirname(path) == NULL) getcwd(dir,(int)strlen(dir));
+      else strcpy(dir,my_dirname(path));
     }
   }
 #if !(defined _MSC_VER)
