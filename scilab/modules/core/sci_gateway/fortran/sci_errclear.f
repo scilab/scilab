@@ -16,6 +16,7 @@ c
       if(.not.checkrhs('errclear',0,1)) return
 
       err2=0
+      call freemsgtable()
       if(rhs.eq.1) top=top-1
       top=top+1
       call objvide('errclear',top)
