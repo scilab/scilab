@@ -18,10 +18,7 @@ List of missing/buggy features:
       used to select a new value.
 
 - Graphics know bugs
-    * Graphics rendering can be slow, speed will be improved for Scilab 5.0 release.
-       * Display of text objects is much slower than in Scilab 4.x.
-       * Graphic rendering is much slower in a large graphic window than in a small one.
-    * Some colours might be different from Scilab 4.x.
+    * Graphic rendering is slower in a large graphic window than in a small one.
     * Legend and labels might be misplaced.
     * Text object space management.
     * Rendering is slow or not functional on some

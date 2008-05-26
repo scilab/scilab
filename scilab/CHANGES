@@ -42,7 +42,7 @@ Graphics:
 Graphic file export:
 ====================
   - xs2jpeg, xs2png, xs2svg, xs2pdf functions added to export graphics under JPEG, PNG, SVG and PDF formats.     	
-  - Removed function xs2fig from export graphics.
+  - Option color in xs2eps and xs2ps has been removed.
 
 
 Signal processing:
