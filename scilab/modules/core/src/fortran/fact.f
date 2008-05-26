@@ -15,15 +15,15 @@ c
       include 'stack.h'
 c     
       parameter (nz1=nsiz-1,nz2=nsiz-2)
-      logical eqid,eptover
-      integer r,excnt,psym,chars,p
+      logical eptover
+      integer r,excnt,psym,p
       integer id(nsiz),op,fun1
       integer star,dstar,semi,eol,blank,percen
       integer comma,lparen,rparen,hat,dot,equal
       integer quote,left,right,colon,slash,not
       integer num,name,cmt
       integer cconc,extrac,rconc
-      logical recurs,compil,first,dotsep,nullarg,ok
+      logical recurs,compil,dotsep,nullarg,ok
       integer setgetmode
       
       data star/47/,dstar/62/,semi/43/,eol/99/,blank/40/,percen/56/
@@ -202,8 +202,7 @@ c
 c     --- named variable, function evaluation or matrix element   x(...)
 c     
  30   call putid(id,syn(1))
- 31   call getsym
-      
+      call getsym
       if (sym .eq. lparen) then
 c     .     check for blank separator in matrix definition
          if(abs(lin(lpt(3)-2)).ne.blank.or.rstk(pt-2).ne.301) then
@@ -286,8 +285,11 @@ c       %% next lines added  for runtime set rhs args number
 c     
 c     eval function or variable arguments
  38   call getsym
-c     
       if(.not.dotsep.and.sym.eq.rparen) then
+         if(char1.eq.dot.or.char1.eq.lparen) then
+            call error(250)
+            return
+         endif
 c     .  function has no input parameter
          if(rstk(pt).lt.0) then
 c     .    a(...)()
@@ -357,7 +359,8 @@ c     .     (.. ,) syntax
          return
       endif
 
- 40   if(sym.ne.name.or.char1.ne.equal) goto 42
+ 40   continue
+      if(sym.ne.name.or.char1.ne.equal) goto 42
 c     next lines to manage named arguments (..,a=..)
 
       fun=fun1
@@ -515,14 +518,11 @@ c     all arguments evaluated
 
 c     get function or variable to be evaluated for computed arguments
       fin=0
-c      if(comp(1).eq.0) then
-         fin=-2
-         call stackg(id)
-         if(err.gt.0) return
-c      endif
+      fin=-2
+      call stackg(id)
+      if(err.gt.0) return
       if(comp(1).ne.0) goto 47
-
-      if(fin.eq.0) then
+      if(fin.ge.0) then
 c     .  id is not a standard variable
          if (recurs) then
             call error(250)
@@ -531,7 +531,6 @@ c     .  id is not a standard variable
          if(err1.gt.0) goto 60
          call funs(id)
          if(err.gt.0) return
-
          if(fun.gt.0)  goto 53
          fin=-2
          call stackg(id)
@@ -676,7 +675,6 @@ c     Copyright INRIA
 c     given a variable name code in id, creates a string variable 
 c     on the top of the stack
       integer id(nsiz)
-      character*(nlgh) name
       integer iadr,sadr
 c
       iadr(l)=l+l-1
