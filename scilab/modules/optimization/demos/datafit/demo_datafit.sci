@@ -15,16 +15,18 @@ function demo_datafit()
   Z=[Y;X];
   //show the data points
   clf()
-  xset("wpos",600,16);
-  xset("wdim",600*0.9,400*0.9);
   xselect();
-  plot2d(X',Y',style=-1,leg='Experimental data');
+  plot(X,Y,'+')
+  l=legend('Experimental data',2)
   realtimeinit(0.1);for k=1:20,realtime(k),end
   // solve the non linear data fitting
   [p,err]=datafit(G,Z,[3;5;10])
   // show the fitting curve
-  plot2d(X',FF(X)',[5,2],'002','Fitting function')
-  ;;
+  drawlater()
+  plot(X,FF(X),'r');
+  delete(l)
+  l=legend(['Experimental data';'Fitting function'],2)
+  drawnow()
   realtimeinit(0.1);for k=1:30,realtime(k),end
 endfunction
 

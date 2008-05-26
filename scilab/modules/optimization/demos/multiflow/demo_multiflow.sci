@@ -8,21 +8,19 @@
 function demo_multiflow(gfile)
 //              The Graph
   //demo_help demo_multiflot
-//  win=edit_graph(editgraph_diagram(),1,[700,616])
-//  xset("wpos",600,16);xset("wdim",600*0.9,400*0.9);
   
   G=load_graph(gfile);
-  G.default_font_size=14;
+  G.default_font_size=2;
   As=full(graph_2_mat(G));  //Node-Edge incidence Matrix
-  p=size(As,1);       //Number of nodes
-  n=size(As,2);       //Number of arcs
+  p=size(As,1);             //Number of nodes
+  n=size(As,2);             //Number of arcs
 
   //              Image The Multiflow problem on the graph
-  K=2;            //number of flows           
+  K=2;             //number of flows           
   sources=[1,10];  // sources nodes index
-  sinks=[6,3];    // sink nodes index
-  colors=[3,10];  // color of sources and sink for each flows 
-  values=[5,4];   // values of each flow
+  sinks=[6,3];     // sink nodes index
+  colors=[3,10];   // color of sources and sink for each flows 
+  values=[5,4];    // values of each flow
 
 
   // set node source and sink nodes types in Graph data structure
@@ -32,19 +30,18 @@ function demo_multiflow(gfile)
   G.nodes.graphics.type(sinks)=sink;
 
   // set node source and sink nodes colors in Graph data structure
-  G.nodes.graphics.colors(sources,1)=colors;
-  G.nodes.graphics.colors(sinks,1)=colors;
+  G.nodes.graphics.colors(1,sources)=colors;
+  G.nodes.graphics.colors(1,sinks)=colors;
 
   //add label to the nodes
   G = add_node_data(G,'label',emptystr(1,p));
   G.nodes.data.label(sources)=string(values);
   G.nodes.data.label(sinks)=string(-values);
   G.nodes.graphics.display='label';
-  show_graph(G)
+  show_graph(G,"new",0.7,[700 600])
 
   //add a title
-  xstringb(50,600,'Oriented graph with sources and sinks',600, ...
-	   80,'fill')
+  xstringb(0,600,'Oriented graph with sources and sinks',600,50,'fill')
   realtimeinit(0.1);for k=1:50,realtime(k),end // wait a little
   //              Definition of the LP problem (As,B,c,U)
   //let X(i,k) the flow of commodity k on arc i and x=matrix(X,K*n;1)
@@ -112,19 +109,18 @@ function demo_multiflow(gfile)
 
   G.edges.graphics.foreground(w1)=colors(1);
   G.edges.graphics.foreground(w2)=colors(2);
-
-  G = add_edge_data(G,'label',emptystr(1,p));
-  G.edges.data.label(w1)=part(string(x1(w1)),1:2);
-  G.edges.data.label(w2)=part(string(x2(w2)),1:2);
+  G = add_edge_data(G,'label',emptystr(1,n));
+  G.edges.data.label(w1)=part(string(x1(w1)'),1:2);
+  G.edges.data.label(w2)=part(string(x2(w2)'),1:2);
 
   G.edges.data.label(w3)='SAT';
-  G.edges.graphics.display='label'
-  show_graph(G);
-  xstringb(50,600,'Computed flows',600,  80,'fill');
+  G.edges.graphics.display='label';
+  show_graph(G,"rep",0.7,[700 600]);
+  xstringb(0,550,'Computed flows',600,  80,'fill');
   ;;
   realtimeinit(0.1);for k=1:30,realtime(k),end // wait a little
-  ge_do_quit(%f)
-  xdel(win)
+//  ge_do_quit(%f)
+  delete(gcf())
 endfunction
 
 
