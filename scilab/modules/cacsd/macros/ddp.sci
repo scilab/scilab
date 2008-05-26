@@ -53,8 +53,8 @@ if RHS==4 then Beta=-1;Alfa=-1;end
 if RHS==3 then Beta=-1;Alfa=-1;flag='st';end
 if RHS==2 then Beta=-1;Alfa=-1;flag='st';D1=zeros(size(Sys('C'),1),size(B1,2));
 end
-if size(B1,1) ~= size(Sys('A'),1) then error('dims of B1 and A are not compatible');end
-if size(D1,2) ~= size(B1,2) then error('dims of D1 and B1 are not compatible');end
+if size(B1,1) ~= size(Sys('A'),1) then error(msprintf(gettext("%s: Wrong size for input arguments: %s and %s are not compatible.\n"),"ddp","B1","A"));end
+if size(D1,2) ~= size(B1,2) then error(msprintf(gettext("%s: Wrong size for input arguments: %s and %s are not compatible.\n"),"ddp","D1","B1"));end
 Sys1=Sys(zeroed,:);
 not_zeroed=1:size(Sys,1);not_zeroed(zeroed)=[];
 [X,dims,F,U,k,Z]=abinv(Sys1,Alfa,Beta,flag);nv=dims(3);
@@ -83,7 +83,7 @@ rowG=size(B22,2);colG=size(B1,2);
 if size(K,2) > colG then K=K(:,1:colG);end
 Kup=K(1:size(K,2),:);
 if rcond(Kup) <= 1.d-10 then 
-	warning('Bad conditioning!');
+	warning(msprintf(gettext("%s: Bad conditioning.\n"),"ddp"));
 	K1=K*pinv(Kup);G=K1(size(K,2)+1:$,:);return
 end
 K1=K*inv(Kup);   //test conditioning here!

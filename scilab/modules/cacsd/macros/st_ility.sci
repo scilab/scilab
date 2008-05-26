@@ -19,7 +19,7 @@ end
 end
   [a,b,c,d,x0,dom]=sl(2:7);
   if dom==[] then 
-    dom='c';warning('st_ility: time domain not given => sl assumed continuous!');
+    dom='c';warning(msprintf(gettext("%s: time domain not given => sl assumed continuous!"),"st_ility"));
   end
   typ='c';if dom<>'c' then typ='d',end
   [na,na]=size(a);

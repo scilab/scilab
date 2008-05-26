@@ -17,15 +17,15 @@ case 1 then
   u=u(:)
 case 10 then
   select part(u,1)
-  case 'i' then
-    u=eye(npt,1)
+  case 'i' then 
+   u=eye(npt,1)
   case 's' then
     u=ones(npt,1)
   else
-    error(' time_id: waiting for ''i'' or ''s'' ')
+    error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'' or ''%s'' expected.\n"),"time_id","i","s"))
   end
 else
-  error(' time_id: waiting for ''i'' or ''s'' ')
+  error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'' or ''%s'' expected.\n"),"time_id","i","s"))
 end
 if y(1)==0 then // strictly proper case
   m(npt-1,2*n)=0;

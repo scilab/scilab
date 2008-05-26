@@ -108,8 +108,7 @@ scale=nobc/noa; a=a/noa; b=b/nob; c=c/noc; d=d/scale; nd=norm(d);
 s=real(spec(a));
  
 if mini(abs(s)) < RELTOL then
-   write(%io(2),..
-     'WARNING: the A matrix has eigenvalues near the imaginary axis');
+   write(%io(2),msprintf(gettext("%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"),"linfn"));
 end
  
  
@@ -207,14 +206,12 @@ if ga>UPP/10 then upper=UPP*10; UPP=upper; end
 //------------------
  
 if lower > INFTY then
-   write(%io(2),..
-     'controllable & observable mode(s) of A near the imaginary axis');
+   write(%io(2),msprintf(gettext("%s: Controllable & observable mode(s) of A near the imaginary axis"),"linfn"));
    x=scale*lower;
    return;
 else if upper < 1.0e-10 then
    x=scale*upper;
-   write(%io(2),..
-     'All modes of A are nearly nonminimal so that || G || is almost 0');
+   write(%io(2),msprintf(gettext("%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"),"linfn"));
    return;
 else if 1-lower/upper < PREC,
    ga=sqrt(lower*upper);
@@ -229,7 +226,7 @@ else if 1-lower/upper < PREC,
        [dist,frequ]=heval_test(e,f,RELTOL,'freq');
    end
    if frequ==[] then
-      write(%io(2),'The computed value of || G || may be inaccurate');
+	 write(%io(2),msprintf(gettext("%s: The computed value of || G || may be inaccurate.\n"),"linfn"));
    end
  
 // evaluate the condition of the eigenproblem of (e,f) near || G ||
@@ -238,7 +235,7 @@ else if 1-lower/upper < PREC,
       f=[a,nul,-b/gt;cc,at,Cd/gt;dc/gt,bt/gt,eye(dd)-dd/(gt**2)]
       co=cond_test(e,f,frequ,RELTOL);
       if co < RELTOL then
-         write(%io(2),'The computed value of || G || may be inaccurate');
+         write(%io(2),msprintf(gettext("%s: The computed value of || G || may be inaccurate.\n"),"linfn"));
       end
    end
 //-----------

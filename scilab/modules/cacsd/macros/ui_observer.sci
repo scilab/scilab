@@ -67,8 +67,8 @@ if RHS==6 then Beta=-1;end
 if RHS==5 then Beta=-1;Alfa=-1;end
 if RHS==4 then Beta=-1;Alfa=-1;flag='st';end
 if RHS==3 then Beta=-1;Alfa=-1;flag='st';D1=[];end
-if size(C1,2) ~= size(Sys('A'),1) then error('dims of C1 and A are not compatible');end
-if size(D1,2) ~= size(Sys('B'),2) then error('dims of D1 and B are not compatible');end
+if size(C1,2) ~= size(Sys('A'),1) then error(msprintf(gettext("%s: ''%s'' and ''%s'' have incompatible dimensions.\n"),"ui_observer","C1","A"));end
+if size(D1,2) ~= size(Sys('B'),2) then error(msprintf(gettext("%s: ''%s'' and ''%s'' have incompatible dimensions.\n"),"ui_observer","D1","B"));end
 not_reject=1:size(Sys,'c');not_reject(reject)=[];
 Sys1=Sys(:,reject);      //A,B1,C2,D21
 [X,dims,J,Y,k,Z]=cainv(Sys1,Alfa,Beta,flag);
@@ -85,7 +85,7 @@ D11=D1(:,reject);D21=Dnew(:,reject);
 C11=C1new(:,1:ns);C21=Cnew(:,1:ns);
 //N s.t. [I,N]*[C11 D11;C21 D21]=[0,0] 
 N=lowlevel();
-disp('residual norm =');
+disp(gettext("residual norm = "));
 disp(norm([eye(size(N,1),size(N,1)),N]*[C11,D11;C21,D21]));
 D12=D1(:,not_reject);C12=C1new(:,ns+1:$);
 UIobs('C')=[C12+N*C22];UIobs('D')=[D12+N*D22,-N];
@@ -99,9 +99,9 @@ colN=size(C21,1);rowN=size(C11,1);
 if size(K,1) > rowN then K=K(1:rowN,:);end
 Kleft=K(:,1:size(K,1))
 if size(Kleft,'*')==1 & abs(Kleft) <1.d-8 then 
-N=[];error('Bad conditioning!');return;end
+N=[];error(gettext("Bad conditioning!"));return;end
 if rcond(Kleft) <= 1.d-10 then 
-	warning('Bad conditioning!');
+	warning(gettext("Bad conditioning!"));
 	K1=pinv(Kleft)*K;N=K1(:,size(K,1)+1:$);return
 end
 K1=inv(Kleft)*K;   //test conditioning here!

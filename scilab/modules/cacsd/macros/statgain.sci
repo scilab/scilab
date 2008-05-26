@@ -17,10 +17,10 @@ case 'lss'
   dom=sl(7);
   [m,p]=size(sl(2));
   if dom=='c' then
-    if rank(sl(2)) <> m then error('singular A matrix'),end
+    if rank(sl(2)) <> m then error(msprintf(gettext("%s: Singular A matrix.\n"),"statgain")),end
     st=sl(5)-sl(4)*inv(sl(2))*sl(3);
   else
-    if rank(eye(m,m)-sl(2))<>m then error('singular eye-a matrix'),end
+    if rank(eye(m,m)-sl(2))<>m then error(msprintf(gettext("%s: Singular eye-a matrix.\n"),"statgain")),end
     st=sl(5)+sl(4)*inv(eye(m,m)-sl(2))*sl(3);
   end;
 case 'r' then

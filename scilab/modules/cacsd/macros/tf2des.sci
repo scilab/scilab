@@ -17,7 +17,7 @@ function [S]=tf2des(G,flag)
 
 [LHS,RHS]=argn(0);
 if RHS==1 then flag=[];end
-if RHS==2&flag<>"withD" then warning("tf2des: unknown flag");end
+if RHS==2&flag<>"withD" then warning(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),"tf2des",2,"withD"));end
 Num=G(2);Den=G(3);
 %s=poly(0,varn(Den));
 [n,m]=size(Num);

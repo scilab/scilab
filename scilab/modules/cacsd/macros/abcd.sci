@@ -11,7 +11,7 @@ function [A,B,C,D]=abcd(sl)
 // Retrieves [A,B,C,D] matrices from linear system sl
 
 if type(sl)<>16 then
-  error('abcd: invalid input')
+  error(msprintf(gettext("%s: Wrong type for first input argument: Typed list expected.\n"),"abcd"))
   return;
 end
 typis=sl(1);

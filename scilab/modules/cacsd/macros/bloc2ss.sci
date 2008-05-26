@@ -14,11 +14,11 @@ function [sl,name]=bloc2ss(syst)
 [lhs,rhs]=argn(0)
  
 if type(syst)<>15 then
-    error('input must be a list for block-diagram')
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A list expected.\n"),"bloc2ss",1))
 end;
 syst1=syst(1);
 if syst1(1)<>'blocd' then
-    error('input must be a list for block-diagram')
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A list expected.\n"),"bloc2ss",1))
 end;
 
 nsyst=size(syst)
@@ -45,11 +45,11 @@ for l=2:nsyst
           dom=d
         elseif dom<>d then
           if dom=='c'  then
-             error('Hybrid system not implemented')
+             error(msprintf(gettext("%s: Hybrid system not implemented.\n"),"bloc2ss"))
           elseif dom=='d'&type(d)==1 then
              dom=d
           elseif type(dom)==1&type(d)==1 then
-             error('Multi rate discrete system  not implemented')
+             error(msprintf(gettext("%s: Multi rate discrete system not implemented.\n"),"bloc2ss"))
           end
         end
       end 
@@ -114,7 +114,7 @@ for numero=lliens
 
   nnum=size(fil)-3
   if nnum<=0 then 
-     error('incorrect link:'+string(numero))
+	error(msprintf(gettext("%s: Incorrect link: %s"),"bloc2ss",string(numero)))
   end
   debut=fil(3)
   bdebut=debut(1)  //numero de la boite origine du lien ou de l'entree
@@ -178,21 +178,21 @@ for numero=lliens
         pfin=1:prod(size(pdebut))
       end
       if prod(size(pfin))<>prod(size(pdebut)) then
-        error('le fil issu du bloc '+string(bdebut)+..
-               ' est de dimension  incorrecte')
+        error(msprintf(gettext("%s: Wrong size for link from block %s.\n"),"bloc2ss",string(bdebut)))
       end
       out=[out, (outsize(bdebut)-1)*ones(pfin)+pdebut(pfin)]
     end
   end
 end
 if or(size(d')<>size(k)) then
-  error('invalid data')
+  error(msprintf(gettext("%s: Invalid sizes found during the process.\n"),"bloc2ss"))
 end
 sl=syslin([],a,b,c,d)/.(-k)
 sl=sl(out,in)
 sl(7)=dom
 
 endfunction
+
 function [lboites,lliens,lentrees,lsorties]=blocdext(syst)
 //!
 //
@@ -222,12 +222,12 @@ for k=2:nsyst
             end;
                       else lentrees(1,-obj2(1))=k,
          end;
-     else error('undefined type')
+     else error(msprintf(gettext("%s: Undefined type ''%s''.\n"),"bloc2ss",part(obj(1),1)))
   end;
   end,end
 end;
-if lsorties==[] then error('no output'),end
-if lentrees==[] then error('no input'),end
-if mini(lsorties)==0 then error('undefined input'),end
-if mini(lentrees)==0 then error('undefined output'),end
+if lsorties==[] then error(msprintf(gettext("%s: Internal error: Wrong number of output arguments.\n"),"bloc2ss")),end
+if lentrees==[] then error(msprintf(gettext("%s: Internal error: Wrong number of input arguments.\n"),"bloc2ss")),end
+if mini(lsorties)==0 then error(msprintf(gettext("%s: Internal error: Undefined input.\n"),"bloc2ss")),end
+if mini(lentrees)==0 then error(msprintf(gettext("%s: Internal error: Undefined output.\n"),"bloc2ss")),end
 endfunction

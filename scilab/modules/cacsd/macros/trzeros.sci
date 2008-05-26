@@ -17,7 +17,7 @@ if type(Sl)==2 then
   D=Sl;
   [m,n]=size(D);
   if m<>n then 
-    error('Trzeros: Polynomial matrix--> must be square');
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Square polynomial matrix expected.\n"),"trzeros",1));
     return;
   end
   chis=det(D);nt=roots(chis);dt=ones(nt);
@@ -28,7 +28,7 @@ if type(Sl)==2 then
 end
 flag=Sl(1);
 if flag(1)<>'lss'&flag(1)<>'r' then 
-error('Input to trzeros must be a linear system or polynomial matrix');
+  error(msprintf(gettext("%s: Wrong type for input argument: Linear system or polynomial matrix expected.\n"),"trzeros"));
 end
 if flag(1)=='r' then 
    if size(Sl)==1 then nt=roots(Sl('num'));dt=[];rk=1;return;end
@@ -38,7 +38,7 @@ end
 [A,B,C,D]=Sl(2:5);
 if type(D)==2 then 
   [m,n]=size(D);
-if m<>n then error('Trzeros: Polynomial D matrix -->must be square');return;end
+  if m<>n then error(msprintf(gettext("%s: Wrong value for input argument %s: Square matrix expected.\n'),"trzeros","D"));return;end
    chis=det(systmat(Sl));nt=roots(chis);dt=ones(nt);
    if LHS==1 then nt=nt./dt;dt=[];rk=[];end
    return;
@@ -47,7 +47,7 @@ if size(A,'*')==0 then
     if type(D)==1 then nt=[];dt=[];return;end;
     if type(D)==2 then 
        [m,n]=size(D);
-       if m<>n then error('D(s) must be square');return;end
+       if m<>n then error(msprintf(gettext("%s: Wrong value for input argument %s: Square expected.\n"),"trzeros","D(s)"));return;end
        chis=det(D);nt=roots(chis);dt=ones(nt);
        if LHS==1 then nt=nt./dt;dt=[];rk=[];end
     return;

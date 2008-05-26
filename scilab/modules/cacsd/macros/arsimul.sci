@@ -14,7 +14,7 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
 [lhs,rhs]=argn(0)
 // switch to ar representation 
 if type(x1)<>15&type(x1)<>16 then 
-   if rhs < 5, write(%io(2),'arsimul: error expecting at least 5 arguments');
+   if rhs < 5, write(%io(2),msprintf(gettext("%s: Wrong number of input argument: At least %d expected.\n"),"arsimul",5));
 	return;end;
    ar=armac(x1,x2,x3,size(x1,'r'),size(x5,'r'),x4);
    if rhs==5,z=arsimul(ar,x5);return;end
@@ -28,7 +28,7 @@ u=x2;
 [bl,bc]=size(b);[al,ac]=size(a);[dl,dc]=size(d);
 [mmu,Nu]=size(u);
 if mmu<>x1('nu') then 
-  write(%io(2),'number of rows of u are incompatible with arma object');
+  write(%io(2),msprintf(gettext("%s: Number of rows of u are incompatible with arma object.\n"),"arsimul"));
   return;
 end;
 // X = [y_{n-1},y_{n-2},...y_{n-ka},u_{n-1},....,u_{n-kb},e_{n-1},....,e_{n-kd}
@@ -67,14 +67,13 @@ if rhs <=2,
 else
    up=x3;
    if bl1==0 then 
-      if up<>[] then write(%io(2),"up should be set to []");
+      if up<>[] then write(%io(2),msprintf(gettext("%s: Wrong size for input argument #%d: [] expected.\n"),"arsimul",3))
 		return ;
       end;
    else 
       up_s=size(up)
       if up_s(1)<>mmu|up_s(2)<>(bl1/mmu) then
-      	write(%io(2)," up=[u(0),u(-1),..,] must be of dimension ("...
-         +string(mmu)+','+string(bl1/mmu)+')');
+      	write(%io(2),msprintf(gettext("%s: up=[u(0),u(-1),..,] must be of dimension (%s,%s).\n'),"arsimul",string(mmu),string(bl1/mmu)));
         return 
       end
       up=matrix(up,bl1,1);
@@ -87,14 +86,13 @@ if rhs <=3,
 else
    yp=x4;
    if al1==0 then 
-      if yp<>[] then write(%io(2),"yp should be set to []");
+      if yp<>[] then write(%io(2),msprintf(gettext("%s: Wrong size for input argument #%d: [] expected.\n"),"arsimul",4))
 		return ;
       end;
    else 
      yp_s=size(yp);
      if yp_s(1)<>al|yp_s(2)<>(al1/al) then 
-      write(%io(2)," yp=[y(0),y(-1),..,] must be of dimension ("...
-      +string(al)+','+string(al1/al)+')');
+      write(%io(2),msprintf(gettext("%s: yp=[y(0),y(-1),..,] must be of dimension (%s, %s).\n"), "arsimul",string(al), string(al1/al)));
       return;
      end
      yp=matrix(yp,al1,1);
@@ -107,14 +105,13 @@ if rhs <=4,
 else
    ep=x5
    if dl1==0 then 
-      if ep<>[] then write(%io(2),"ep should be set to []");
+      if ep<>[] then write(%io(2),msprintf(gettext("%s: Wrong size for input argument #%d: [] expected.\n"),"arsimul",5))
 		return ;
       end;
    else 
       ep_s=size(ep);
       if ep_s(1)<>al|ep_s(2)<>(dl1/al) then
-         write(%io(2)," ep=[e(0),e(-1),..,] must be of dimension ("...
-           +string(al)+','+string(dl1/al)+')');
+		       write(%io(2),msprintf(gettext("%s: ep=[e(0),e(-1),..,] must be of dimension (%s, %s).\n"), "arsimul",string(al), string(dl1/al)));
          return;
       end
       ep=matrix(ep,dl1,1);

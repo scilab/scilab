@@ -16,13 +16,13 @@ function [K,X]=lqr(P12)
 //      |0   B'  0|   | S    0   D'D|      |0   0   0|   | S   -B'   D'D|
 
 flag=P12(1)
-if flag(1)<>'lss' then error('lqr: state-space only!');end
+if flag(1)<>'lss' then error(msprintf(gettext("%s: state-space only.\n"),"lqr"));end
 [A,B2,C1,D12]=P12(2:5);
 [n,nu]=size(B2);
 [ny,n]=size(C1);
 select P12(7)
   case [] then
-error('lqr: time domain is not defined ( P(7)=''c'' or ''d'')')
+   error(msprintf(gettext("%s: Time domain is not defined (P(7)=''c'' or ''d'').\n"),"lqr"))
   case 'c' then
 Z=0*A;I=eye(A);
 E=[I,Z,0*B2;
@@ -33,12 +33,12 @@ Aa=[A,Z,B2;
     -C1'*C1,-A',-C1'*D12;
      D12'*C1,B2',D12'*D12];
 [w,ks]=schur(Aa,E,'c');
-if ks<>n then error('lqr: stable subspace too small!');end
+if ks<>n then error(msprintf(gettext("%s: Stable subspace too small.\n"),"lqr"));end
 ws=w(:,1:n);
 X12=ws(1:n,:);
 phi12=ws(n+1:2*n,:);
 u12=ws(2*n+1:2*n+nu,:);
-if rcond(X12)< 1.d-5 then warning('lqr: bad conditionning!');end
+if rcond(X12)< 1.d-5 then warning(msprintf(gettext("%s: Bad conditionning.\n"),"lqr"));end
 K=u12/X12;
 X=phi12/X12;
 return
@@ -53,12 +53,12 @@ Aa=[A,Z, B2;
      D12'*C1, 0*B2', D12'*D12];
 
 [w,ks]=schur(Aa,E,'d');
-if ks<>n then error('lqr: stable subspace too small!');end
+if ks<>n then error(msprintf(gettext("%s: Stable subspace too small.\n"),"lqr"));end
 ws=w(:,1:n);
 X12=ws(1:n,:);
 phi12=ws(n+1:2*n,:);
 u12=ws(2*n+1:2*n+nu,:);
-if rcond(X12)< 1.d-5 then warning('lqr: bad conditionning!');end
+if rcond(X12)< 1.d-5 then warning(msprintf(gettext("%s: Bad conditionning.\n"),"lqr"));end
 K=u12/X12;
 X=phi12/X12;
 return

@@ -20,7 +20,7 @@ if type(a)==16 then
     a=tf2ss(a),
     [a,b,c,d]=a(2:5)
     if type(d)<>1 then 
-      error(gettext("The given transfer fuction is not proper."))
+      error(msprintf(gettext("%s: The given transfer fuction is not proper.\n"),"plzr"));
     end
   else 
     error(97,1)
@@ -65,6 +65,6 @@ plot2d([mnx;mxx],[0;0],4,"000",' ')
 plot2d([0;0],[-my;my],4,"000",' ')
 
 xarc(-1,1,2,2,0,360*64)
-xtitle('transmission zeros and poles','real axis','imag. axis');
+xtitle(gettext("Transmission zeros and poles','real axis','imag. axis'));
 xset("mark",xx(1),xx(2));
 endfunction

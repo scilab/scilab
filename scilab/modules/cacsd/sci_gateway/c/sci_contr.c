@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -38,18 +37,23 @@ int intab01od(char* fname)
 	CheckRhs(2,3);  
 	CheckLhs(1,6);
 	theTOL=(double) C2F(dlamch)("e",1L);
-	GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&mA,&nA,&ptrA);   A=1;        /*     A */
+	GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&mA,&nA,&ptrA);   
+	A=1;        /*     A */
 	N=mA;
 	theTOL=0.2*sqrt(2*theTOL)*N;
-	GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&mB,&nB,&ptrB);   B=2;        /*     B */
+	GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&mB,&nB,&ptrB);   
+	B=2;        /*     B */
 	M=nB;
 	if (nA != mB || mA != nA )
-	{ Scierror(999,_("Invalid A,B matrices\n"));  return 0; }
+		{ 
+			Scierror(999,_("%s: Wrong values for input arguments #%d and #%d.\n"),fname, 1, 2);  return 0; 
+		}
 	if (Rhs == 3) {
 		/*    TOL is given:   ab01od(A,B,tol)   */
-		GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&mtol,&ntol,&ptrTOL);  theTOL=*stk(ptrTOL);    /*     TOL */
+		GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&mtol,&ntol,&ptrTOL);  
+		theTOL=*stk(ptrTOL);    /*     TOL */
 		if (theTOL>1.0||theTOL<0.0) {
-			Scierror(999,_("TOL must be in [0 1]\n"));  return 0;
+			Scierror(999,_("%s: Wrong value for input argument #%d: Must be in [%d %d].\n"), fname, 3, 0, 1);  return 0;
 		}
 	}
 

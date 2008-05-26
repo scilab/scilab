@@ -21,12 +21,12 @@ typ=type(h);h1=h(1);
 
 if typ==16&h1(1)=='r' then
   if size(h('num'))<>[1 1] then
-    error(' SISO plant only')
+    error(msprintf(gettext("%s: SISO plant only"),"trfmod"))
   end
   flag='r'
 elseif typ==16&h1(1)=='lss' then
   if size(h('D'))<>[1 1] then
-    error('trfmod: SISO plant only')
+	error(msprintf(gettext("%s: SISO plant only"),"trfmod"))
   end
   flag='lss'
   den=real(poly(h('A'),'s'))
@@ -43,7 +43,7 @@ elseif typ==16&h1(1)=='lss' then
   num=-(real(poly(al,'s'))-den)*ci
   h=syslin(h(7),num+h(5)*den,den);
 else
-  error('waiting for a transfer function as argument ')
+  error(msprintf(gettext("%s: Waiting for a transfer function as argument.\n"),"trfmod"))
 end
  
  
@@ -102,12 +102,9 @@ txt=['Gain :';string(g);'Numerator :';num;'Denominator : ';den]
  
 id=[]
 if job=='p' then
-  tit=['  Irreducible Factors        ';
-       '  of transfer function (click below)  ']
+  tit=[gettext("Irreducible Factors of transfer function (click below)")]
 else
-  tit=['  Irreducible Factors               ';
-       '  of transfer function              ';
-       '  natural frequency and damping factor (click below) ']
+  tit=[gettext("Irreducible Factors of transfer function natural frequency and damping factor (click below)")]
 end
 while id==[] then
   t=x_dialog(tit,txt)
@@ -140,7 +137,7 @@ for in=1:prod(size(tnum))
         f=poly(f,var)
       case 2 then
         f=poly([f(1)*f(1), 2*f(1)*f(2),1],var,'c')
-      else error('incorrect answer...')
+      else error(msprintf(gettext("%s: Incorrect answer.\n"),"trfmod"))
       end
     end
   end
@@ -168,7 +165,7 @@ for id=1:prod(size(tden))
         f=poly(f,var)
       case 2 then
         f=poly([f(1)*f(1), 2*f(1)*f(2),1],var,'c')
-      else error('incorrect answer...')
+      else error(msprintf(gettext("%s: Incorrect answer.\n"),"trfmod"))
       end
     end
   end

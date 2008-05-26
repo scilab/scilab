@@ -51,25 +51,25 @@ for i=1:size(scs_m.objs)
 end
 IN=-sort(-IN);
 if or(IN<>[1:size(IN,'*')]) then 
-  error('Input ports are not numbered properly.')
+  error(msprintf(gettext("%s: Input ports are not numbered properly.\n"),"lincos"))
 end
 OUT=-sort(-OUT);
 if or(OUT<>[1:size(OUT,'*')]) then 
-  error('Output ports are not numbered properly.')
+  error(msprintf(gettext("%s: Output ports are not numbered properly.\n"),"lincos"))
 end
 //load scicos lib
 load('SCI/macros/scicos/lib')
 //compile scs_m
 [bllst,connectmat,clkconnect,cor,corinv,ok]=c_pass1(scs_m);
 if ~ok then
-  error('Diagram does not compile in pass 1');
+  error(msprintf(gettext("%s: Diagram does not compile in pass %d.\n"),"lincos",1));
 end
 %cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv);
 if %cpr==list() then 
   ok=%f,
 end
 if ~ok then
-  error('Diagram does not compile in pass 2');
+  error(msprintf(gettext("%s: Diagram does not compile in pass %d.\n'),"lincos",2))
 end 
 sim=%cpr.sim;state=%cpr.state;
 //
@@ -107,7 +107,7 @@ if rhs<3 then
   x0=zeros(nx,1);u0=zeros(nu,1);
 else
   if size(x0,'*')<>nx | size(u0,'*')<>nu then
-    error('u0 or x0 does not have the correct size')
+    error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d.\n"),"lincos", 2, 3))
   end
 end
 if rhs==4 then 

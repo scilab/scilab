@@ -21,7 +21,7 @@ g1=g(1);
 if g1(1)=='r' then g=tf2ss(g);end
       if type(g)==1,if norm(g)==0,n=0,return,end,end,
       if g(7)=='d' then
-         error('system must be continuous')
+         error(gettext(msprintf("%s: system must be continuous"),"linf"))
       else
          g(7)='c'
       end

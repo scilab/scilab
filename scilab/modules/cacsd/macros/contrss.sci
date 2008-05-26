@@ -16,7 +16,7 @@ flag=a(1);
      error(91,1),
  end;
 if rhs==1 then tol=sqrt(%eps);end
-if rhs>2 then error('1 or 2 inputs to contrss : sl [,tol]')
+if rhs>2 then error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"contrss",1,2))
  end;
  [a,b,c,d,x0,dom]=a(2:7)
 //

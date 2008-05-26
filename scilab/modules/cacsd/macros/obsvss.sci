@@ -12,20 +12,20 @@ function [a,b,c]=obsvss(a,b,c,tol)
 [lhs,rhs]=argn(0)
 select type(a)
 case 1
- if lhs<>3 then error('3 outputs args: ac,bc,cc'),end
+ if lhs<>3 then error(msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"),"obsvss",3)),end
  select rhs
    case 3 then tol = 100*%eps
    case 4 then ,
-   else error('3 or 4 inputs : a,b,c [,tol]')
+   else error(msprintf(gettext("%s Wrong number of input arguments: %d or %d expected.\n"),"obsvss",3,4))
  end;
 case 16
  flag=a(1);
  if flag(1)<>'lss' then error(91,1),end;
- if lhs<>1 then error('1 output argument: sl'),end
+ if lhs<>1 then error(msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"),"obsvss",1)),end
  select rhs
    case 1 then tol=100*%eps
    case 2 then tol=b
-   else error('1 or 2 inputs: sl [,tol]')
+   else  error(msprintf(gettext("%s Wrong number of input arguments: %d or %d expected.\n"),"obsvss",1,2))
  end;
  [a,b,c,d,x0,dom]=a(2:7)
 end;

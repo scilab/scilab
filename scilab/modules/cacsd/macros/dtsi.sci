@@ -34,7 +34,7 @@ if g1(1)=='r' then
     for j=1:t2,
       n=num(i,j),d=den(i,j),
       dn=degree(n),dd=degree(d),
-      if dn>dd then error('degree  num. > degree  den.'),end,
+      if dn>dd then error(msprintf(gettext("%s: Degree num. > degree den.\n"),"dtsi")),end,
       //alf and bet /alf*d1(unstable) and bet*d2(stable)=n.
       if dd==0 then 
         num2(i,j)=n,
@@ -113,7 +113,7 @@ for i=1:nn,
     n=num(i,j),d=den(i,j),
     dn=degree(n),dd=degree(d),
     if dn>dd then 
-      error('Improper system'),
+      error(msprintf(gettext("%s: Improper system.\n"),"dtsi")),
     else
       if dn==dd then
         D(i,j)=coeff(n,dn)/coeff(d,dd)

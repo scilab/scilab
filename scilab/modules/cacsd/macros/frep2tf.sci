@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - 
+// Copyright (C) ENPC -
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [best_h,best_w]=frep2tf(frq,repf,dg,dom,tols,weight)
 // iterative use of frep2tf_b jpc fd 1997 
 
@@ -30,7 +40,7 @@ for k=1:N
   if ( (abs(err-err1) < rtol *err & err > err1 )| err1 < atol) then break;end;
   if err1 < err then best_err = err1 ; best_h = h; end 
   err=err1;
-  write(%io(2),'iteration '+string(k+1)+', error='+string(err1));
+  write(%io(2),msprintf(gettext("%s: Iteration %s, error=%s.\n"), "frep2tf", string(k+1), string(err1)));
 end
 endfunction
 
@@ -92,7 +102,7 @@ end
 // user given renormalization
 if weight<>[] then 
   if size(frq,'*')<>size(weight,'*') then
-	  error('frq and weight must have same size');
+	  error(msprintf(gettext("%s: Wrong type for input arguments: %s and %s must have same size.\n"),"frep2tf","frq", "weight"))
 	  return;
   end
   w1=weight(:)*ones(1,size(a,2));

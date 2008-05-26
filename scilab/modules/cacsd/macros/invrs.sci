@@ -23,7 +23,7 @@ Sl(2)=Sl(2)-alfa*eye(Sl(2)); //Slnew(s)=Slold(s+alfa)
 if rcond(Sreg(5)) >1.d-6 then
   Sli=invsyslin(Sreg)*Wss;
 else
-  error('square but singular system');
+  error(msprintf(gettext("%s: Square but singular system.\n"),"invrs"));
 end
 [Q,M]=pbig(Sli(2),0.001,'d');
 Sli=projsl(Sli,Q,M);//Remove poles at zero.

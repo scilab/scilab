@@ -26,18 +26,18 @@ case 16 then
   if flag(1)<>'lss' then error(91,1),end
   [a,b,domaine]=a([2,3,7])
   if domaine==[] then
-    write(%io(2),'Warning: ctr_gram --> By default time-domain is continuous')
+    write(%io(2),msprintf(gettext("%s: By default time-domain is continuous.\n"),"ctr_gram"))
     domaine='c';
   end
   [n,n]=size(a)    
 else 
-  error('(a,b) pair or syslin state-space')
+  error(msprintf(gettext("%s: (a,b) pair or syslin state-space.\n"),"ctr_gram"))
 end
 s=spec(a)
 if part(domaine,1)=='c' then
-  if maxi(real(s))>=0 then error('Unstable system'),end
+  if maxi(real(s))>=0 then error(msprintf(gettext("%s: Unstable system.\n"),"ctr_gram")),end
 else
-  if maxi(abs(s))>=1 then error('Unstable system'),end
+  if maxi(abs(s))>=1 then error(msprintf(gettext("%s: Unstable system.\n"),"ctr_gram")),end
 end
 gc=lyap(a',-b*b',domaine)
 endfunction

@@ -19,7 +19,7 @@ if ttp(1)<>'lss' then error(91,1),end
 if dom==[] then error(96,1),end
 domain='c';
 if dom<>'c' then domain='d',end
-if lhs>2  then error('balreal: 1 or 2 output arguments: slb [,u]'),end
+if lhs>2  then error(msprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n'),"balreal",1,2)),end
 wc=lyap(a',-b*b',domain)
 wo=lyap(a,-c'*c,domain)
 r=chol(wo);x=r*wc*r';[u,s,v]=svd(x);s=diag(s);

@@ -26,7 +26,7 @@ if RHS==1 then
      l=l-1;n1=l;
      end
 end
-if n1<>n then warning('cannot find n!');end
+if n1<>n then warning(msprintf(gettext("%s: Cannot find n.\n"),"sm2des"));end
 E=E(1:n,1:n);
 A=coeff(sysmat(1:n,1:n),0);
 B=coeff(sysmat(1:n,n+1:nc),0);

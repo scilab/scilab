@@ -17,12 +17,12 @@ case 1 then  //sampled system
   if size(domain,'*')<=2 then
     tp=domain
   else
-    error('domain (1rst argument of syslin) must be a scalar')
+    error(msprintf(gettext("%s: Wrong type for first input argument: Scalar expected.\n"),"syslin"))
   end
   z='z'
 case 10 //continuous or discrete
   if size(domain,'*')<>1 then
-    error('domain (1rst argument of syslin) must be a single string')
+    error(msprintf(gettext("%s: Wrong type for first input argument: Single string expected.\n"),"syslin"))
   end
   domain=part(domain,1)
   select domain
@@ -34,7 +34,7 @@ case 10 //continuous or discrete
     error(domain+' : unknown time domain')
   end;
 else 
-  error('1rst argument of syslin should be a string, a scalar or a [] matrix')
+  error(msprintf(gettext("%s: Wrong type for first input argument: Single, Scalar or [] matrix expected.\n"),"syslin"))
 end;
 //============================================================================
 if rhs==2 then //syslin(domaine,sys)
@@ -45,8 +45,8 @@ if rhs==2 then //syslin(domaine,sys)
     if a(1)(1)=='r'|a(1)(1)=='lss' then
       sl=a;
       sl('dt')=domain
-    else
-      error('syslin : H must be a linear state space or a transfer function')
+	else
+	  error(msprintf(gettext("%s: Wrong type for second input argument: Linear state space or a transfer function expected.\n"),"syslin"))
     end
   end
 //============================================================================
