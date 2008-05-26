@@ -63,6 +63,6 @@ typedef int (*PF)(const void *,const void *);
 int CheckGraphName(char *name,char *dir);
 char *StripGraph(char *name);
 char *my_basename (char *name);
-char* dirname (char *path);
+char* my_dirname (char *path);
 
 #endif /* !__FILES_UTILS_H__ */

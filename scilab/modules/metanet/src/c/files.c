@@ -73,12 +73,11 @@ char *my_basename (char *name)
   return base ? base + 1 : name;
 }
 
-char* dirname (char *path)
+char* my_dirname (char *path)
 {
   char *newpath;
   char *slash;
   int length;    /* Length of result, not including NUL. */
-
   slash = strrchr (path, '/');
   if (slash == 0)
     {
