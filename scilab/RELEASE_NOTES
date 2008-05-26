@@ -44,16 +44,12 @@ List of missing/buggy features:
 
 - Scicos:
     * The basic features of the editor are fully functional and tested.
-    * The Scicos simulation engine is correcly working (standard and
+    * The Scicos simulation engine is correcly working (interactive and
       "scicos_simulate()" batch mode)
+    * All the demos are now active (see "?"->"Demos") 
       BUT ...
-        * Some functionalites of the new graphics API are still not fully 
-          available/working at the moment (see above for the details) of this
-          beta release
-        * Some minor feature of the Scicos editor are still not functional. 
-        * BEWARE : Some blocks may have bizarre look for the presence of
-                   older graphics instructions not supported anymore
-
+        * The TCL/TK functions are still "passive" (visualized but not working)
+        * some mouse event are not handled properly (windows closing, drag block from palette)
 
 - Name of the functions in "Genetic Algorithms" and Simulated Annealing" modules may change in the stable version
 
