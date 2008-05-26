@@ -14,9 +14,7 @@ function demo_datafit()
   for x=0:.1:3, Y=[Y,FF(x)+100*(rand()-.5)];X=[X,x];end
   Z=[Y;X];
   //show the data points
-  xbasc();
-  fs = get('figure_style');
-  set figure_style old;
+  clf()
   xset("wpos",600,16);
   xset("wdim",600*0.9,400*0.9);
   xselect();
