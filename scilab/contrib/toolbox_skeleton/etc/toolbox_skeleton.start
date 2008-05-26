@@ -15,8 +15,8 @@ root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length('\etc\') );
 pathmacros = pathconvert( root_tlbx ) + 'macros'+ filesep();
 
 disp('Load macros');
-//Load  functions librarie
-load(pathmacros+'lib');
+//Load  functions library
+toolbox_skeletonlib = lib(pathmacros);
 
 // load gateways
 disp('Load gateways');
