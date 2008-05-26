@@ -671,11 +671,9 @@ proc sciGUIEditVarSetMatrixSize { winId winId2 } {
     set sciGUITable(win,$winId,data,ni) $newNbRow
     set sciGUITable(win,$winId,data,nj) $newNbCol
 
-    ScilabEval "$sciGUITable(win,$winId,data,name)=resize_matrix($sciGUITable(win,$winId,data,name),$newNbRow,$newNbCol,'$sciGUITable(win,$winId,data,type)');" "seq"
+    ScilabEval "$sciGUITable(win,$winId,data,name)=resize_matrix($sciGUITable(win,$winId,data,name),$newNbRow,$newNbCol,'$sciGUITable(win,$winId,data,type)');" "sync" "seq"
 
-    ScilabEval "editvar_set_values( $sciGUITable(win,$winId,data,name), '$winId' );" "seq"
-
-    ScilabEval "flush"
+    ScilabEval "editvar_set_values( $sciGUITable(win,$winId,data,name), '$winId' );" "sync" "seq"
 
     set w "[sciGUIName $winId].editor"
     destroy $w.editzone
