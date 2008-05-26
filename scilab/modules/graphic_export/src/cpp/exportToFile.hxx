@@ -46,7 +46,16 @@ typedef enum
   EXPORT_GL2PS_UNINITIALIZED = 6
 } ExportError;
 
-int exportToFile(sciPointObj * pFigure, const char * fileName, ExportFileType fileType);
+typedef enum
+{
+  EXPORT_PORTRAIT = 0,
+  EXPORT_LANDSCAPE = 1
+} ExportOrientation;
+
+int exportToFile(sciPointObj * pFigure,
+                 const char * fileName,
+                 ExportFileType fileType,
+                 ExportOrientation orientation);
 
 #ifdef __cplusplus
 }

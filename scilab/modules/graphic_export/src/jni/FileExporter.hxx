@@ -52,7 +52,7 @@ JavaVM * jvm;
 jobject instance;
 
 jclass instanceClass; // cache class
-jmethodID jintfileExportjintjstringjintID; // cache method id
+jmethodID jintfileExportjintjstringjintjintID; // cache method id
 
 
 /**
@@ -94,7 +94,7 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static long fileExport(JavaVM * jvm_, long figureIndex, char * fileName, long fileType);
+static long fileExport(JavaVM * jvm_, long figureIndex, char * fileName, long fileType, long orientation);
 
 
                         /**

@@ -24,12 +24,16 @@ extern "C"
 
 
 /*---------------------------------------------------------------------------------*/
-int exportToFile(sciPointObj * pFigure, const char * fileName, ExportFileType fileType)
+int exportToFile(sciPointObj * pFigure,
+                 const char * fileName,
+                 ExportFileType fileType,
+                 ExportOrientation orientation)
 {
 
   return org_scilab_modules_graphic_export::FileExporter::fileExport(getScilabJavaVM(),
-																	 sciGetNum(pFigure),
-																	 (char *)fileName,
-																	 fileType);
+								     sciGetNum(pFigure),
+								     (char *)fileName,
+								     fileType,
+                                                                     orientation);
 }
 /*---------------------------------------------------------------------------------*/

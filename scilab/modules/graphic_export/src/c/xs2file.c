@@ -40,7 +40,7 @@ int xs2file(char * fname, ExportFileType fileType )
       fileName = cstk(l1);
 
       /* Call the function for exporting file */
-      status = exportToFile(getFigureFromIndex(figurenum), fileName, fileType);
+      status = exportToFile(getFigureFromIndex(figurenum), fileName, fileType, EXPORT_PORTRAIT);
 
 	  switch(status)
 	  {

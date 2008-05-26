@@ -16,6 +16,7 @@
       <parameter name="figureIndex" type="int"/>
       <parameter name="fileName" type="String"/>
       <parameter name="fileType" type="int"/>
+      <parameter name="orientation" type="int"/>
     </method>
   </object>
 </package>

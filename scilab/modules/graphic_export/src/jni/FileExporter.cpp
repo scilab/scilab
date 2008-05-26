@@ -102,7 +102,7 @@ exit(EXIT_FAILURE);
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
-jintfileExportjintjstringjintID=NULL; 
+jintfileExportjintjstringjintjintID=NULL; 
 
 
 }
@@ -128,7 +128,7 @@ jclass localClass = curEnv->GetObjectClass(JObj);
                exit(EXIT_FAILURE);
         }
         /* Methods ID set to NULL */
-        jintfileExportjintjstringjintID=NULL; 
+        jintfileExportjintjstringjintjintID=NULL; 
 
 
 }
@@ -153,21 +153,21 @@ exit(EXIT_FAILURE);
 
 // Method(s)
 
-long FileExporter::fileExport (JavaVM * jvm_, long figureIndex, char * fileName, long fileType){
+long FileExporter::fileExport (JavaVM * jvm_, long figureIndex, char * fileName, long fileType, long orientation){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jintfileExportjintjstringjintID = curEnv->GetStaticMethodID(cls, "fileExport", "(ILjava/lang/String;I)I" ) ;
-if (jintfileExportjintjstringjintID == NULL) {
+jmethodID jintfileExportjintjstringjintjintID = curEnv->GetStaticMethodID(cls, "fileExport", "(ILjava/lang/String;II)I" ) ;
+if (jintfileExportjintjstringjintjintID == NULL) {
 std::cerr << "Could not access to the method " << "fileExport" << std::endl;
 exit(EXIT_FAILURE);
 }
 
 jstring fileName_ = curEnv->NewStringUTF( fileName );
 
-                        jint res =  (jint) curEnv->CallIntMethod(cls, jintfileExportjintjstringjintID ,figureIndex, fileName_, fileType);
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintfileExportjintjstringjintjintID ,figureIndex, fileName_, fileType, orientation);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
