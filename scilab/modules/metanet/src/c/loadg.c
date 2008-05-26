@@ -23,14 +23,11 @@ static int CompString(char **s1,char **s2)
 
 static char description[2*MAXNAM];
 
-void C2F(loadg)(char *path, int *lpath, int *directed, int *n, int **tail, int **head,
-		char **name, int *lname,
+void C2F(loadg)(char *path, int *lpath, char **name, int *lname, int *directed, int *n, int **tail, int **head,
 		char ***node_name,
 		int **node_type, int **node_x, int **node_y, int **node_color, int **node_diam, int **node_border,
-		int **node_font_size,
-		double **node_demand,
-		char ***edge_name,
-		int **edge_color,int **edge_width, int **edge_hi_width, int **edge_font_size,
+		int **node_font_size, double **node_demand,
+		char ***edge_name, int **edge_color,int **edge_width, int **edge_hi_width, int **edge_font_size,
 		double **edge_length, double **edge_cost, double **edge_min_cap, double **edge_max_cap,
 		double **edge_q_weight, double **edge_q_orig, double **edge_weight,
 		int *default_node_diam, int *default_node_border, int *default_edge_width,
@@ -62,8 +59,11 @@ void C2F(loadg)(char *path, int *lpath, int *directed, int *n, int **tail, int *
     return;
   }
 #endif
-  if (dirname(path) == NULL) getcwd(dir, (int) strlen(dir));
-  else strcpy(dir,dirname(path));
+  if (my_dirname(path) == NULL){ 
+  getcwd(dir, (int) strlen(dir));}
+  else {
+    strcpy(dir,my_dirname(path));
+  }
 #ifndef _MSC_VER
   if ((dirp=opendir(dir)) == NULL)
   {
@@ -73,9 +73,7 @@ void C2F(loadg)(char *path, int *lpath, int *directed, int *n, int **tail, int *
   }
   closedir(dirp);
 #endif
-
   pname = StripGraph(my_basename(path));
-
   *lname = (int)strlen(pname);
 
   if ((*name = (char *)MALLOC((unsigned)sizeof(char)*(*lname + 1))) == NULL)
@@ -84,9 +82,7 @@ void C2F(loadg)(char *path, int *lpath, int *directed, int *n, int **tail, int *
     return;
   }
   strcpy(*name,pname);
-
   if (pname) { FREE(pname); pname=NULL;}
-
 #ifndef _MSC_VER
   if(!CheckGraphName(*name,dir))
   {
@@ -315,7 +311,6 @@ void C2F(loadg)(char *path, int *lpath, int *directed, int *n, int **tail, int *
     }
     strcpy(node.data,strname);
 	myhsearch(node,SCIENTER);
-
 	if (node.data) {FREE(node.data);node.data=NULL;}
 	if (node.key) {FREE(node.key);node.key=NULL;}
   }
