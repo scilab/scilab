@@ -136,67 +136,54 @@ if comments==' ' then
    hx=0.43
 end;
 
-[wrect,frect]=xgetech();
+
+drawlater()
+sciCurAxes=gca();
+axes=sciCurAxes;
+wrect=axes.axes_bounds;
+
+
 //magnitude
-xsetech(wrect=[wrect(1)+0,wrect(2)+0,wrect(3)*1.0,wrect(4)*hx*0.95]);
+axes.axes_bounds=[wrect(1)+0,wrect(2)+0,wrect(3)*1.0,wrect(4)*hx*0.95]
 rect=[mini(frq),mini(d);maxi(frq),maxi(d)]
-
-// xgrid first 
-xgrid(4);
-// now the curves 
-plot2d1("oln",frq',d') ;
-axes = gca() ;
-axes.data_bounds = rect ;
-a.log_flags = "lnn" ;
-
+plot2d(frq',d') ;
 if type(dom)==1 then
-  [xx1,xx2]=xgetech();
-  val= xx2([2;4])';
-  plot2d1("oln",max(frq)*[1;1],val,5,"000"," ",rect);
+  plot2d(max(frq)*[1;1],axes.data_bounds(:,2));
 end
+axes.data_bounds = rect; axes.log_flags = "lnn" ;
+axes.grid=[4 4];
 xtitle('Magnitude ',' Hz','db');
+
 //phase
-xsetech(wrect=[wrect(1)+0,wrect(2)+wrect(4)*hx,wrect(3)*1.0,wrect(4)*hx*0.95]);
-
-// get the axes of the phase
-sciCurAxes = get("current_axes") ;
-
+axes=newaxes();
+axes.axes_bounds=[wrect(1)+0,wrect(2)+wrect(4)*hx,wrect(3)*1.0,wrect(4)*hx*0.95];
 rect=[mini(frq),mini(phi);maxi(frq),maxi(phi)]
-
-xgrid(4);
-//  now the curves
-plot2d1( "oln",frq',phi' ) ;
-axes = gca() ;
-axes.data_bounds = rect ;a.log_flags = "lnn" ;
-
-
+plot2d(frq',phi' ) ;
 if type(dom)==1 then
-  [xx1,xx2]=xgetech();
-  val= xx2([2;4])';
-  plot2d1("oln",max(frq)*[1;1],val,5,"000");
+  plot2d(max(frq)*[1;1],axes.data_bounds(:,2));
 end
+axes.data_bounds = rect ;a.log_flags = "lnn" ;
+axes.grid=[4 4];
 xtitle('Phase ',' Hz','degrees');
 
 // create legend
 if mnc>0 then
-  xsetech([wrect(1)+0,wrect(2)+wrect(4)*2*hx,wrect(3)*1.0,wrect(4)*0.1],[0 0 1 1]);
-  dash=xget('color')
+  axes=newaxes()
+  axes.axes_bounds=[wrect(1)+0,wrect(2)+wrect(4)*2*hx,wrect(3)*1.0,wrect(4)*0.1];
+  axes.data_bounds=[0 0; 1 1];
   y0=0.7;dy=-1/2
   x0=0;dx=1/2
   count=0
   for k=1:mnc
-    xset('color',k)
-    xsegs([x0;x0+0.08],[y0;y0])
+    xsegs([x0;x0+0.08],[y0;y0],k)
     rect=xstringl(x0+0.1,y0,comments(k))
-    xset('color',dash(1));
     xstring(x0+0.1,y0-rect(4)/3,comments(k))
     count=count+1
     y0=y0+dy
     if count==3 then x0=x0+dx;y0=0.7,end
   end
-  xset('color',dash(1))
 end
-
+drawnow()
 // return to the previous scale
 set( "current_axes", sciCurAxes ) ;
 
