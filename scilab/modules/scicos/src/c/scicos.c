@@ -300,6 +300,9 @@ void call_debug_scicos(double *, double *, double *, double *,double *,integer
 
 static integer debug_block;
 
+
+//** ----------- The Very Scicos simulation engine start here ---------------------------
+
 /* Subroutine */
 int C2F(scicos)(double *x_in, integer *xptr_in, double *z__,
                 void **work,integer *zptr,integer *modptr_in,
@@ -1268,12 +1271,20 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
   }
 } /* idoit_ */
 
-/* Subroutine */ void cossim(told)
+/* Subroutine */
+void cossim(told)
      double *told;
-
 {
   /* System generated locals */
   integer i3;
+
+  /* La vita e bella ! */
+  //** used for the [stop] button 
+  static char CommandToUnstack[1024];
+  static int CommandLength;
+  static int SeqSync;
+  static int zero = 0;
+  static int one = 1;
 
   /* Local variables */
   static integer flag__;
@@ -1292,14 +1303,8 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
   int flag, flagr;
   int cnt=0;
 
-/* La vita e bella ! */
-static char CommandToUnstack[1024];
-static int CommandLength;
-static int SeqSync;
-static int zero = 0;
-static int one = 1;
 
-  jroot=NULL;
+  jroot = NULL;
   if (ng!=0) {
     if((jroot=MALLOC(sizeof(int)*ng))== NULL ){
       *ierr =10000;
@@ -1424,9 +1429,10 @@ static int one = 1;
   }
   /*--discrete zero crossings----dzero--------------------*/ 
   
-
+  //** 
+  //** STARDARD SCICOS SIMULATION LOOP : EXPLICIT SOLVER 
+  //** 
   /*     main loop on time */
-
   while(*told < *tf) { /* while time is less than simulation final time */
 
   // removed in scilab 5
@@ -1437,28 +1443,27 @@ static int one = 1;
        }
   */
   
-    //** BRUNO/SIMONE : patch for scicos halt (STOP) simulation 
-    //** 
+  //** BRUNO/SIMONE : patch for scicos halt (STOP) simulation 
+  while (ismenu()) //** if the user has done something, do the actions  
+       {
+	SeqSync = GetCommand(CommandToUnstack); //** get at the action 
+        CommandLength = (int)strlen(CommandToUnstack);
+        syncexec(CommandToUnstack, &CommandLength, &zero, &one, CommandLength); //** execute it 
+       }
+  //** Typically the user click over the "STOP" button; the "haltscicos" callback macros is executed
+  //*  then the built in "sci_haltscicos()" put set "C2F(coshlt).halt = 1", the the following if is true :)
 
- while (ismenu())
-	{
-	SeqSync = GetCommand(CommandToUnstack);
-	CommandLength = (int)strlen(CommandToUnstack);
-	syncexec(CommandToUnstack, &CommandLength, &zero, &one, CommandLength);
-	}
-
-	if (C2F(coshlt).halt != 0)  /* if the menu has ben activated OR the simulation has been forced to stop */
-      {
-       
-        if (C2F(coshlt).halt==2) 
-          *told=*tf;   /* if the simulation has been stopped because the final time is reached  */
+  if (C2F(coshlt).halt != 0)  /* if the menu has ben activated OR the simulation has been forced to stop */
+    {
+      if (C2F(coshlt).halt==2) 
+         *told=*tf;   /* if the simulation has been stopped because the final time is reached  */
       
-        C2F(coshlt).halt = 0; //** reset the flag for the next simulation  
+      C2F(coshlt).halt = 0; //** reset the flag for the next simulation  
       
-        freeall;
+      freeall;
 
-        return; //** EXIT from the function 
-      }
+      return; //** EXIT from the function 
+    }
 
     if (*pointi == 0) {
       t = *tf;
@@ -1721,13 +1726,22 @@ static int one = 1;
 
 
 
-/* Subroutine */ void cossimdaskr(told)
+/* Subroutine */ 
+void cossimdaskr(told)
      double *told;
 {
   /* Initialized data */
   static integer otimer = 0;
   /* System generated locals */
   integer i3;
+
+  /* La vita e bella ! */
+  //** used fot the [stop] button 
+  static char CommandToUnstack[1024];
+  static int CommandLength;
+  static int SeqSync;
+  static int zero = 0;
+  static int one = 1;
 
   /* Local variables */
   static integer flag__;
@@ -2040,21 +2054,40 @@ static int one = 1;
     for (jj = 0; jj < ng; ++jj)
       if(g[jj]>=0) jroot[jj]=5;else jroot[jj]=-5;
   }
-  /*     main loop on time */
-  while (*told < *tf) {
-	  // removed in scilab 5
-/*
-    if (inxsci == 1 && scilab_timer_check() == 1) {
-      C2F(sxevents)();
-      //     .     sxevents can modify halt 
-    }
-*/
-    if (C2F(coshlt).halt != 0) {
-      if (C2F(coshlt).halt ==2) *told=*tf; /* end simulation */
-      C2F(coshlt).halt = 0;
-      freeallx;
-      return;
-    }
+  
+  //** 
+  //** MODELICA SIMULATION LOOP : IMPLICIT SOLVER 
+  //** 
+  /* main loop on time */
+  while (*told < *tf) { //** util the end of simulation time 
+      // removed in scilab 5
+        /*
+          if (inxsci == 1 && scilab_timer_check() == 1) {
+              C2F(sxevents)();
+              //     .     sxevents can modify halt 
+            }
+      */
+ 
+     //** BRUNO/SIMONE : patch for scicos halt (STOP) simulation 
+     while (ismenu()) //** if the user has done something, do the actions  
+          { 
+   	    SeqSync = GetCommand(CommandToUnstack); //** get at the action 
+            CommandLength = (int)strlen(CommandToUnstack);
+            syncexec(CommandToUnstack, &CommandLength, &zero, &one, CommandLength); //** execute it 
+          }
+     //** Typically the user click over the "STOP" button; the "haltscicos" callback macros is executed
+     //*  then the built in "sci_haltscicos()" put set "C2F(coshlt).halt = 1", the the following if is true :)
+
+    if (C2F(coshlt).halt != 0)
+      {
+        if (C2F(coshlt).halt ==2)
+          *told = *tf;  /* end simulation */
+        
+        C2F(coshlt).halt = 0;
+        freeallx;
+        return; //** exit from the simulation 
+      }
+ 
     if (*pointi == 0) {
       t = *tf;
     } else {

@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
+function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver] = do_run(%cpr)
 // realize action associated to the run button
 // performs necessary diagram (re-)compilation
 // performs simulation initialisation
@@ -31,43 +31,43 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
 // define user possible choices
 
   //** extract tolerances from scs_m.props.tol
-  tolerances=scs_m.props.tol
-  //** extract solver from tolerances
-  solver=tolerances(6)
+  tolerances = scs_m.props.tol ;
+  //** extract solver type from tolerances
+  solver = tolerances(6) ; 
 
   //** update parameters or compilation results
-  [%cpr,%state0_n,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcompile)
+  [%cpr,%state0_n,needcompile,alreadyran,ok] = do_update(%cpr,%state0,needcompile)
   //** if an error has ocurred in do_update
   //** then we exit from do_run
   if ~ok then
-    %tcur=[]
-    alreadyran=%f
+    %tcur = []
+    alreadyran = %f ;
     return
   end
 
   //** if alreadyran then set the var choice
   if alreadyran then
-    choix=['Continue';'Restart';'End']
+    choix = ['Continue';'Restart';'End']
   else
-    choix=[]
+    choix = [] ;
   end
 
-  issequal=%t;
+  issequal = %t;
   //** initial state has been changed
   if ~isequal(%state0_n,%state0) then
-    issequal=%f
+    issequal = %f
   else
     //** test typeof outtb element
     for i=1:lstsize(%state0_n.outtb)
       if typeof(%state0_n.outtb(i))<>typeof(%state0.outtb(i))
-        issequal=%f
+        issequal = %f
         break
       end
     end
     //** test typeof oz element
     for i=1:lstsize(%state0_n.oz)
       if typeof(%state0_n.oz(i))<>typeof(%state0.oz(i))
-        issequal=%f
+        issequal = %f
         break
       end
     end
@@ -76,115 +76,117 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
   //** if state have changed
   //** finish the simulation via do_terminate()
   if ~issequal then
-     %state0=%state0_n
-    [alreadyran,%cpr]=do_terminate()
-    choix=[]
+     %state0 = %state0_n
+    [alreadyran,%cpr] = do_terminate()
+    choix = []
   end
 
   //** switch appropriate solver
   if %cpr.sim.xptr($)-1<size(%cpr.state.x,'*') & solver<100 then
-    message(['Diagram has been compiled for implicit solver'
-             'switching to implicit Solver'])
-    solver=100
-    tolerances(6)=solver
-  elseif (%cpr.sim.xptr($)-1==size(%cpr.state.x,'*')) & ..
-        (solver==100 & size(%cpr.state.x,'*')<>0) then
-    message(['Diagram has been compiled for explicit solver'
-             'switching to explicit Solver'])
-    solver=0
-    tolerances(6)=solver
+    message(["Diagram has been compiled for implicit solver"
+             "switching to implicit Solver"])
+    solver = 100 ; //** Magic number 
+    tolerances(6) = solver ; //** save Magic number solver type
+  elseif (%cpr.sim.xptr($)-1==size(%cpr.state.x,'*')) & (solver==100 & size(%cpr.state.x,'*')<>0) then
+    message(["Diagram has been compiled for explicit solver"
+             "switching to explicit Solver"])
+    solver = 0 ; //** Magic number 
+    tolerances(6) = solver ; //** save Magic number solver type
   end
 
   //** ask user what to do
   if choix<>[] then
     //** open dialog box
-    to_do=choose(choix,'What do you want to do')
+    to_do = choose(choix,"What do you want to do")
 
     //** if cancel then exit
     if to_do==0 then
-      ok=%f
+      ok = %f
       return
     end
 
     select choix(to_do)
 
-      case 'Continue' then 
-        needstart=%f
-        state=%cpr.state
+      case "Continue" then 
+        needstart = %f ;
+        state     = %cpr.state ;
 
-      case 'Restart' then 
-        needstart=%t
-        state=%state0
+      case "Restart" then 
+        needstart = %t ;
+        state     = %state0 ;
 
-      case 'End' then 
-        state=%cpr.state
-        needstart=%t
-        tf=scs_m.props.tf;
+      case "End" then 
+        state     = %cpr.state ;
+        needstart = %t ;
+        tf        = scs_m.props.tf;
 
         //Alan: ONPEUTPASAPPELLERDOTERMINATEICI?
         //reponse : non, car do_terminate() ne rend
         //          pas forc�ment la main � l'utilisateur
 
         //** run scicosim via 'finish' flag
-        ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
-                     '''finish'',tolerances)','errcatch')
+        ierr = execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
+                       '''finish'',tolerances)','errcatch')
 
-        %cpr.state=state
-        alreadyran=%f
+        %cpr.state = state
+        alreadyran = %f
 
         //** error case
         if ierr<>0 then
-          str_err=split_lasterror(lasterror());
-
-          kfun=curblock()
-          corinv=%cpr.corinv
+          str_err = split_lasterror(lasterror());
+          kfun    = curblock()
+          corinv  = %cpr.corinv
 
           if kfun<>0 then //** block error
-            path=corinv(kfun)
+            path = corinv(kfun)
             //** get error cmd for the block
-            cmd=get_errorcmd(path,'End problem.',str_err);
+            cmd = get_errorcmd(path,'End problem.',str_err);
             //** send error cmd to scicos via the Scicos_commands global variable
-            global Scicos_commands
-            Scicos_commands=cmd;
+            global Scicos_commands ; 
+            Scicos_commands = cmd;
           else //** simulator error
-            message(['End problem:';str_err])
+            message(["End problem:";str_err])
             scf(curwin);
           end
-          ok=%f
+          ok = %f
         end
-        //xset('window',curwin)
+       
         return
     end
-  else
-    needstart=%t
-    state=%state0
+  
+  else //** Normal first start simulation 
+
+    needstart = %t
+    state     = %state0
+
   end
 
-  //win=xget('window')
   gh_win = gcf();
 
- //** scicos initialisation
+  //** scicos initialisation
   if needstart then
     //** if the simulation have already ran
     //** and is not finished then call do_terminate
     if alreadyran then
-      [alreadyran,%cpr]=do_terminate()
-      alreadyran=%f
+      [alreadyran,%cpr] = do_terminate()
+      alreadyran = %f ;
     end
     //** set initial values for a new simulation
-    %tcur=0
-    %cpr.state=%state0
+    %tcur = 0
+    %cpr.state = %state0
     tf=scs_m.props.tf;
     if tf*tolerances==[] then 
-      x_message(['Simulation parameters not set';'use setup button']);
+      message(["Simulation parameters not set";"use setup button"]);
       return;
     end
 
-    //** run scicosim via 'start' flag
-    ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
-                 '''start'',tolerances)','errcatch')
+    //** Run the normal first start simulation here 
 
-    %cpr.state=state
+    //** run scicosim via 'start' flag
+    ierr = execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
+                   '''start'',tolerances)','errcatch')
+
+    %cpr.state = state ; //** save the state 
     //** error case
     if ierr<>0 then
       str_err=split_lasterror(lasterror());
