@@ -58,7 +58,7 @@ int sci_TCL_GetVar(char *fname,unsigned long l)
 	    {
 	      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 	      TCLinterpreter=Tcl_GetSlave(getTclInterp(),cstk(l2));
-	      releaseTclInterp();
+	      //releaseTclInterp();
 	      if (TCLinterpreter==NULL)
 		{
 		  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
