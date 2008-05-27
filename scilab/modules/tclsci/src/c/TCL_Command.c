@@ -120,7 +120,7 @@ void startTclLoop()
 
 	/* Reinit local interpreter,
 	   default is the biggest one. */
-	LocalTCLinterp = requestTclInterp();
+	LocalTCLinterp = getTclInterp();
 
 	/* Check if it's supposed to be run in root or slave */
 	if(TclSlave != NULL)
@@ -168,6 +168,7 @@ void startTclLoop()
 	printf("[SIGNAL] executionDone\n");
 	fflush(NULL);
 #endif
+	releaseTclInterp();
 	__Signal(&workIsDone);
 	__UnLock(&launchCommand);
       }
