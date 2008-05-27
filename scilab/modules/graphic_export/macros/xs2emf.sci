@@ -9,12 +9,6 @@
 
 function xs2emf(figureNumber, fileName, orientation)
 
-	//When the graphic-export is too long, we inform the user that the figure is exporting
-	f = gcf();
-	oldInfoMessage = f.info_message;
-	f.info_message = "Exporting figure, please wait...";
-	
-
 	[lhs,rhs]=argn(0);
 	
 	//Input arguments checking
@@ -42,8 +36,7 @@ function xs2emf(figureNumber, fileName, orientation)
 		elseif orientation == 'p' | orientation == 'portrait' then 
 			orientation = "portrait"; 
 		else
-			error(msprintf(gettext("%s: Wrong input argument #%d: %s or %s expected.\n"), "xs2emf", 3, "portrait", "landscape"));
-			//error(msprintf(gettext("%s: Wrong type for input argument: String ""landscape"" or ""portrait"" expected.\n"), "xs2emf"));
+			error(msprintf(gettext("%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"), "xs2emf", 3, "landscape", "portrait"));
 			return;
 		end
 	else
@@ -77,6 +70,11 @@ function xs2emf(figureNumber, fileName, orientation)
 	  pstoeditPath = "pstoedit";
 	end
 	
+	//When the graphic-export is too long, we inform the user that the figure is exporting
+	f = gcf();
+	oldInfoMessage = f.info_message;
+	f.info_message = "Exporting figure, please wait...";	
+	
 	//create the eps file
 	fileExport = TMPDIR + filesep() + fname + ".eps";	
 	xs2eps(figureNumber, fileExport, orientation);
@@ -92,17 +90,17 @@ function xs2emf(figureNumber, fileName, orientation)
 	//Check if we have the permission to export this file
 	[fd,errPermission]=mopen(generatedFileName, "w");
 	if errPermission <> 0 then
+		f.info_message = oldInfoMessage;
 		error(msprintf(gettext("%s: Unable to create export file, permission denied.\n"), "xs2emf"));
 		return;
 	else
 		mclose(fd);
 	end
 	
-	[stdout, status, stderr] = unix_g(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);	
-	
-	
+	[stdout, status, stderr] = unix_g(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);		
 		
 	if status <> 0 then
+		f.info_message = oldInfoMessage;
 		error(msprintf(gettext("%s: Unable to execute pstoedit.\n"), "xs2emf"));
 		disp(stderr);
 	end

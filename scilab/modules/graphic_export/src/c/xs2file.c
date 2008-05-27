@@ -12,6 +12,8 @@
  *
  */
 
+#include <string.h>
+
 #include "xs2file.h"
 #include "stack-c.h"
 #include "GetProperty.h"
@@ -66,11 +68,11 @@ int xs2file(char * fname, ExportFileType fileType )
 		sciOrientation = cstk(stackPointer);
 		/* Value should be 'landscape' or 'portrait' but check only the first character */
 		/* for compatibility with Scilab 4*/
-		if (sciOrientation[0] == 'l')
+		if (strcmp(sciOrientation, "landscape") == 0 || strcmp(sciOrientation, "l") == 0)
 		{
 			orientation = EXPORT_LANDSCAPE;
 		}
-		else if( sciOrientation[0] == 'p')
+		else if(strcmp(sciOrientation, "portrait") == 0 || strcmp(sciOrientation, "p") == 0)
 		{
 			orientation = EXPORT_PORTRAIT;
 		}
