@@ -285,27 +285,3 @@ BOOL Set_Shell(void)
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/
-void Default_LC_MESSAGES_Environment_Variable(void)
-{
-	extern char* getLocaleUserInfo(void);
-	char *DefaultLanguage = getenv (EXPORTENVLOCALESTR);
-	if (DefaultLanguage == NULL)
-	{
-		DefaultLanguage = getLocaleUserInfo();
-		if (DefaultLanguage)
-		{
-			char *env = NULL;
-			int length_env = (int)(strlen(EXPORTENVLOCALESTR)+strlen("=")+strlen(DefaultLanguage));
-			env = (char*)MALLOC(sizeof(char)*(length_env+1));
-			if (env)
-			{
-				sprintf(env,"%s=%s",EXPORTENVLOCALESTR,DefaultLanguage);
-				_putenv(env);
-				FREE(env);
-				env = NULL;
-			}
-		}
-		FREE(DefaultLanguage);
-	}
-}
-/*--------------------------------------------------------------------------*/

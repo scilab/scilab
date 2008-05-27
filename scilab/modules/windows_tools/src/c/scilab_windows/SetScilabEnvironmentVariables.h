@@ -20,8 +20,5 @@
 */
 void SetScilabEnvironmentVariables(char *DefaultSCIPATH);
 
-/* defines LC_MESSAGES environment variable if no exists */
-void Default_LC_MESSAGES_Environment_Variable(void);
-
 #endif /* __SETSCILABENVIRONMENTVARIABLES_H__ */
 /*--------------------------------------------------------------------------*/ 

@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;;&quot;$(SolutionDir)modules\core\includes&quot;;&quot;$(SolutionDir)libs\MALLOC\includes&quot;"
 				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -129,7 +129,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;;&quot;$(SolutionDir)modules\core\includes&quot;;&quot;$(SolutionDir)libs\MALLOC\includes&quot;"
 				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -213,7 +213,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;;&quot;$(SolutionDir)modules\core\includes&quot;;&quot;$(SolutionDir)libs\MALLOC\includes&quot;"
 				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
 				EnableEnhancedInstructionSet="1"
@@ -298,7 +298,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;;&quot;$(SolutionDir)modules\core\includes&quot;;&quot;$(SolutionDir)libs\MALLOC\includes&quot;"
 				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
 				EnableEnhancedInstructionSet="0"
