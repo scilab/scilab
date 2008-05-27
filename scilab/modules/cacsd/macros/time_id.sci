@@ -22,7 +22,7 @@ case 10 then
   case 's' then
     u=ones(npt,1)
   else
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"time_id",2,"i","s"))
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"time_id",2,"i","s"))
   end
 else
   error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"time_id",2,"i","s"))
