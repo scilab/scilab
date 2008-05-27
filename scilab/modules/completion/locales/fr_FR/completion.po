@@ -16,6 +16,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
 
+# File: sci_gateway/c/sci_completion.c, line: 39
+# File: sci_gateway/c/sci_completion.c, line: 103
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_completion.c, line: 92
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_completion.c, line: 115
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr ""
+
 #
 # File: src/nocompletion/nocompletion.c, line: 13
 msgid "Scilab completion module not installed.\n"
@@ -26,5 +46,5 @@ msgstr ""
 # File: sci_gateway/c/sci_completion.c, line: 85
 # File: sci_gateway/c/sci_completion.c, line: 96
 # File: sci_gateway/c/sci_completion.c, line: 108
-msgid "Invalid parameter(s).\n"
-msgstr "Paramètre(s) incorrect(s).\n"
+#~ msgid "Invalid parameter(s).\n"
+#~ msgstr "Paramètre(s) incorrect(s).\n"
