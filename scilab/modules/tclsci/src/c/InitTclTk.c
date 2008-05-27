@@ -114,8 +114,7 @@ static void *DaemonOpenTCLsci(void* in)
 #ifdef _MSC_VER
 		/* Initialize TCL_LIBRARY & TK_LIBRARY variables environment */
 		/* Windows only */
-		Set_TCL_LIBRARY_PATH(SciPath);
-		Set_TK_LIBRARY_PATH(SciPath);
+		SetTclTkEnvironment(SciPath);
 #endif
 
 		if ( getTclInterp() == NULL )

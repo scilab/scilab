@@ -388,6 +388,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ConvertSlash.c"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainScilab_Windows.c"
 				>
 			</File>
@@ -466,6 +470,10 @@
 			</File>
 			<File
 				RelativePath=".\console_main.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\ConvertSlash.h"
 				>
 			</File>
 			<File

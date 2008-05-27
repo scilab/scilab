@@ -18,6 +18,7 @@
 #include "setgetSCIpath.h"
 #include "getScilabDirectory.h"
 #include "scilabDefaults.h"
+#include "ConvertSlash.h"
 /*--------------------------------------------------------------------------*/
 #define putenv _putenv
 /*--------------------------------------------------------------------------*/
@@ -120,24 +121,6 @@ char *GetScilabDirectory(BOOL UnixStyle)
 	return SciPathName;
 }
 /*--------------------------------------------------------------------------*/
-BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix)
-{
-	BOOL bOK=TRUE;
-	if ( (pathunix) && (pathwindows) )
-	{
-		int i=0;
-		strcpy(pathunix,pathwindows);
-		for (i=0;i<(int)strlen(pathunix);i++)
-		{
-			if (pathunix[i]=='\\') pathunix[i]='/';
-		}
-	}
-	else bOK=FALSE;
-
-	return bOK;
-
-}
-/*--------------------------------------------------------------------------*/
 BOOL Set_SCI_PATH(char *DefaultPath)
 {
 	BOOL bOK = FALSE;
@@ -151,7 +134,7 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 		/* to be sure that it's unix 8.3 format */
 		/* c:/progra~1/scilab-5.0 */
 		GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
-		ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
+		AntislashToSlash(ShortPath,CopyOfDefaultPath);
 
 		sprintf (env, "SCI=%s",ShortPath);
 		setSCIpath(ShortPath);
@@ -193,7 +176,7 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 			/* to be sure that it's unix format */
 			/* c:/progra~1/scilab-3.1 */
 			GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
-			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
+			slashToAntislash(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "HOME=%s",ShortPath);
 
 			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
@@ -203,7 +186,7 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 		{
 			/* to be sure that it's unix format */
 			/* c:/progra~1/scilab-3.1 */
-			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
+			slashToAntislash(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "HOME=%s",CopyOfDefaultPath);
 			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 		}
@@ -216,8 +199,8 @@ BOOL Set_HOME_PATH(char *DefaultPath)
 
 		/* to be sure that it's unix format */
 		/* c:/progra~1/scilab-3.1 */
-		GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
-		ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
+		AntislashToSlash(DefaultPath,CopyOfDefaultPath);
+		GetShortPathName(CopyOfDefaultPath,ShortPath,PATH_MAX);
 		sprintf (env, "HOME=%s",ShortPath);
 		
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
@@ -255,7 +238,7 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 
 	if ( GetSystemMetrics(SM_REMOTESESSION) ) 
 	{
-		_putenv ("SCILAB_MSTS_SESSION=OK");
+		putenv ("SCILAB_MSTS_SESSION=OK");
 	}
 
 	return bOK;

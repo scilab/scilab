@@ -383,10 +383,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\ConvertPathUnixToWindows.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\createdirectory.c"
 				>
 			</File>
@@ -630,10 +626,6 @@
 			>
 			<File
 				RelativePath=".\includes\addfile.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\ConvertPathUnixToWindows.h"
 				>
 			</File>
 			<File

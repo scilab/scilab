@@ -33,7 +33,6 @@ src/c/getshortpathname.c \
 src/c/getlongpathname.c \
 src/c/FindFileExtension.c \
 src/c/URIFileToFilename.c \
-src/c/ConvertPathUnixToWindows.c \
 src/c/createdirectory.c \
 src/c/isdir.c \
 src/c/isDrive.c \
@@ -105,7 +104,6 @@ includes/gw_fileio.h \
 includes/findfiles.h \
 includes/FindFileExtension.h \
 includes/URIFileToFilename.h \
-includes/ConvertPathUnixToWindows.h \
 includes/createdirectory.h \
 includes/isdir.h \
 includes/removedir.h \

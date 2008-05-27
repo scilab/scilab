@@ -20,19 +20,11 @@
 #include "BOOL.h"
 
 /**
-* Set TCL_LIBRARY environment variable on Windows
+* Set TCL_LIBRARY,TK_LIBRARY, ... environment variables on Windows
 * @param[in] scilab root path
-* @return TRUE if environment variable is correct
+* @return TRUE if environment variables are correct
 */
-BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath);
-
-/**
-* Set TK_LIBRARY environment variable on Windows
-* @param[in] scilab root path
-* @return TRUE if environment variable is correct
-*/
-BOOL Set_TK_LIBRARY_PATH(char *DefaultPath);
-
+BOOL SetTclTkEnvironment(char *DefaultPath);
 #endif
 
 #endif /* __ENVTCLTK_H__ */
