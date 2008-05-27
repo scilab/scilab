@@ -102,7 +102,7 @@ double dsigns(double _dblRef, double _dblVal)
 }
 
 /*up round*/
-int dceils(double _dblVal)
+double dceils(double _dblVal)
 {
 	/*
 	3.14 -> 3
@@ -111,13 +111,7 @@ int dceils(double _dblVal)
 	-3.14 -> -3
 	-4.00 -> -4
 	*/
-	if((int)_dblVal == _dblVal)
-		return (int)(_dblVal);
-
-	if(_dblVal >= 0)
-		return (int)(_dblVal + 1);
-
-	return (int)(_dblVal);
+	return ceil(_dblVal);
 }
 
 /*up round with precision*/
