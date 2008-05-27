@@ -283,19 +283,22 @@ c     if special compilation mode skip  commands
 C     compilation quit:<17>
       if (compil(17,0,0,0,0)) return
       if (paus .ne. 0) then
-C     quit dans une pause
+C     quit dans une pause, decrease recursion level up to the pause one
          pt = pt + 1
  51      pt = pt - 1
-         print *, 'ici',pt,rstk(pt)
+c     .  suppress loop variables if any
+         if (rstk(pt).eq.802 .or. rstk(pt).eq.612 .or.
+     &        (rstk(pt).eq.805.and.ids(1,pt).eq.iselect) .or.
+     &        (rstk(pt).eq.616.and.pstk(pt).eq.10)) top = top - 1
          if (rstk(pt) .ne. 503) goto 51
-C$$$        k = lpt(1) - (13+nsiz)
+c
+C$$$         k = lpt(1) - (13+nsiz)
 C$$$         lpt(1) = lin(k+1)
 C$$$         lpt(2) = lin(k+4)
 C$$$         lpt(6) = k
 C$$$         bot = lin(k+5)
 C$$$         pt = pt - 1
 C$$$         rio = pstk(pt)
-C$$$         print *, 'la',pt,rstk(pt)
 C$$$         if (rstk(pt) .eq. 701.or.rstk(pt).eq.604) then
 C$$$            errct=ids(2,pt+1)
 C$$$            err2=ids(3,pt+1)
@@ -305,9 +308,10 @@ C$$$            pt = pt - 1
 C$$$         endif
 C$$$         paus = paus - 1
 C$$$         goto 46
+c     recall macro to terminate the pause level
          fun=0
          fin=2
-      return
+         return
       else
 C     quit (sortie)
          fun = 99
