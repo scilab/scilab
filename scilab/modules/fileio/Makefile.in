@@ -115,7 +115,6 @@ am__objects_1 = libscifileio_la-FileExist.lo libscifileio_la-fileio.lo \
 	libscifileio_la-getlongpathname.lo \
 	libscifileio_la-FindFileExtension.lo \
 	libscifileio_la-URIFileToFilename.lo \
-	libscifileio_la-ConvertPathUnixToWindows.lo \
 	libscifileio_la-createdirectory.lo libscifileio_la-isdir.lo \
 	libscifileio_la-isDrive.lo libscifileio_la-removedir.lo \
 	libscifileio_la-set_xxprintf.lo
@@ -381,7 +380,6 @@ src/c/getshortpathname.c \
 src/c/getlongpathname.c \
 src/c/FindFileExtension.c \
 src/c/URIFileToFilename.c \
-src/c/ConvertPathUnixToWindows.c \
 src/c/createdirectory.c \
 src/c/isdir.c \
 src/c/isDrive.c \
@@ -448,7 +446,6 @@ includes/gw_fileio.h \
 includes/findfiles.h \
 includes/FindFileExtension.h \
 includes/URIFileToFilename.h \
-includes/ConvertPathUnixToWindows.h \
 includes/createdirectory.h \
 includes/isdir.h \
 includes/removedir.h \
@@ -599,7 +596,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-ConvertPathUnixToWindows.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-FileExist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-FindFileExtension.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-Status2Mode.Plo@am__quote@
@@ -890,13 +886,6 @@ libscifileio_la-URIFileToFilename.lo: src/c/URIFileToFilename.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/URIFileToFilename.c' object='libscifileio_la-URIFileToFilename.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-URIFileToFilename.lo `test -f 'src/c/URIFileToFilename.c' || echo '$(srcdir)/'`src/c/URIFileToFilename.c
-
-libscifileio_la-ConvertPathUnixToWindows.lo: src/c/ConvertPathUnixToWindows.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-ConvertPathUnixToWindows.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-ConvertPathUnixToWindows.Tpo -c -o libscifileio_la-ConvertPathUnixToWindows.lo `test -f 'src/c/ConvertPathUnixToWindows.c' || echo '$(srcdir)/'`src/c/ConvertPathUnixToWindows.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-ConvertPathUnixToWindows.Tpo $(DEPDIR)/libscifileio_la-ConvertPathUnixToWindows.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ConvertPathUnixToWindows.c' object='libscifileio_la-ConvertPathUnixToWindows.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-ConvertPathUnixToWindows.lo `test -f 'src/c/ConvertPathUnixToWindows.c' || echo '$(srcdir)/'`src/c/ConvertPathUnixToWindows.c
 
 libscifileio_la-createdirectory.lo: src/c/createdirectory.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-createdirectory.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-createdirectory.Tpo -c -o libscifileio_la-createdirectory.lo `test -f 'src/c/createdirectory.c' || echo '$(srcdir)/'`src/c/createdirectory.c
