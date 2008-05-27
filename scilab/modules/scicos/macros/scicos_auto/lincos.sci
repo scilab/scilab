@@ -97,8 +97,12 @@ OUT=-sort(-OUT);
 if or(OUT<>[1:size(OUT,'*')]) then 
   error(msprintf(gettext("%s: Output ports are not numbered properly.\n"),"lincos"))
 end
+
 //load scicos lib
-load('SCI/macros/scicos/lib')
+load('SCI/modules/scicos/macros/scicos_auto/lib')
+load('SCI/modules/scicos/macros/scicos_scicos/lib')
+load('SCI/modules/scicos/macros/scicos_utils/lib')
+
 //compile scs_m
 [bllst,connectmat,clkconnect,cor,corinv,ok]=c_pass1(scs_m);
 if ~ok then
