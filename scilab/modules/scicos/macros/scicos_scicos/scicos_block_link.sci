@@ -19,41 +19,62 @@
 // See the file ../license.txt
 //
 
-function ok=scicos_block_link(funam,txt,flag)
-  if flag=='c' then mflag='C', else mflag='fortran',end
+//** 27 May 2008 : updated for Scilab 5 by Simone Mannori 
+
+function ok = scicos_block_link(funam, txt, flag)
+
+//** typ. usage is "ok = scicos_block_link(funam,txt,'c'); "
+//** funam : (string) function name
+//** txt   : (string vector) text, e.g. "C" source code   
+ 
+  if (flag<>"c")&(flag<>"f") then
+     ok = %f;
+     message("Sorry: Only C or FORTRAN languages are supported");
+     return; 
+  end
+  
   if stripblanks(funam)==emptystr() then 
-    ok=%f;
-    x_message('sorry file name not defined in '+flag+' block');return
+    ok = %f;
+    message("Sorry file name not defined in "+flag+" block");
+    return; 
   end
-  cur_wd = getcwd();
-  chdir(TMPDIR);
-  mputl(txt,funam+'.'+flag);
-  ilib_for_link=ilib_for_link;//load ilib_for_link and its subfunctions
-  ilib_compile=ilib_compile;//load ilib_for_link and its subfunctions
-  ilib_link_gen_loader(funam,flag,'loader.sce',[],"");
-  ilib_link_gen_Make(funam,funam+'.o',[],'Makelib',"",...
-		     "","","","",flag);
-  [make_command,lib_name_make,lib_name,path,makename,files]= ...
-      ilib_compile_get_names('lib'+funam,'Makelib',funam+'.o')
-  ierr= execstr('unix_s(make_command+makename + '' ''+ files)',..
-		'errcatch');
-  if ierr<> 0 then 
-    chdir(cur_wd)
-    x_message('Sorry compilation problem');ok=%f;return;
-  end
-  [a,b]=c_link(funam); while a;  ulink(b);[a,b]=c_link(funam);end
-  ierr= execstr('unix_s(make_command+makename + '' ''+ lib_name)', ...
-		'errcatch');
-  if ierr<> 0 then 
-    chdir(cur_wd)
-    x_message('Sorry shared lib cannot be created');ok=%f;return;
-  end
-  ierr= exec('loader.sce','errcatch')
-  if ierr<> 0 then     
-    chdir(cur_wd)
-    x_message('Sorry link problem');ok=%f;return;
-  end
-  chdir(cur_wd)
-  ok=%t
+
+  cur_wd = getcwd(); //** get and save current working directory 
+
+  chdir(TMPDIR); //** change to TMPDIR 
+
+  //**---------------------------------------------------------------------
+
+  mputl(txt, funam+'.'+flag); //** writes strings in an ascii file
+                              //** with the appropriate extension 
+
+  entry_names = [funam]; 
+  file_names = funam + ".o"  ;
+  libs  = ""  ; //** CBLOCKs does not support external libraries 
+  //** flag is already defined  
+  makename = "Makelib" ;
+  loadername = "loader.sce" ;
+  libname = "" ;
+  ldflags = "" ;
+  //** BEWARE:
+  //**     1 - Remember to use WSCI for the Windows version
+  //**     2 - This setting OVERRIDE the original one 
+  cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include 
+  fflags = ""; //** no Fortran 
+  cc = ""; //** default "C" compiler 
+  
+  disp("Compile and link Modelica generated C code");
+
+  libn = ilib_for_link(entry_names, file_names, libs, flag, makename, loadername, libname, ldflags, cflags, fflags, cc); 
+
+  exec("loader.sce"); //** load the shared library
+
+  //**--------------------------------------------------------------------- 
+  
+  chdir(cur_wd); //** go back to the original working directory 
+  
+  ok = %t ; //** signal the correct execution 
+
+
 endfunction
 

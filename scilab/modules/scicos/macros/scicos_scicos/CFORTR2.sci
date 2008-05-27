@@ -20,8 +20,10 @@
 //
 
 function [ok,tt]=CFORTR2(funam,tt)
-//
-if tt==[] then
+
+//** this function provide a skeleton for C/FORTRAN Scicos blocks
+
+if tt==[] then //** if the block is empty, put the skeleton inside 
   
   textmp=[
 	  '#include <math.h>';
@@ -120,21 +122,26 @@ else
   textmp=tt;
 end
 
-while 1==1
-  [txt]=x_dialog(['Function definition in C';
-		  'Here is a skeleton of the functions which';'you shoud edit'],..
-		 textmp);
+//** After the editing, try to compile and load the lib 
+
+while %t 
+  [txt] = x_dialog(['Function definition in C';
+		    'Here is a skeleton of the functions which';
+                    'you shoud edit'],..
+	  	    textmp);
   
   if txt<>[] then
-    tt=txt
-    [ok]=scicos_block_link(funam,tt,'c')
+    tt = txt
+    [ok] = scicos_block_link(funam,tt,'c'); //** compile, link and load the shared library 
     if ok then
-      textmp=txt;
+      textmp = txt;
     end
     break;
   else
-    ok=%f;break;
-  end  
+    ok = %f;
+    break  ;
+  end 
+ 
 end
 
 

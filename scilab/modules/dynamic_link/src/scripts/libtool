@@ -44,7 +44,7 @@ available_tags=" CXX F77"
 
 # ### BEGIN LIBTOOL CONFIG
 
-# Libtool was configured on host korcula:
+# Libtool was configured on host pinarellu.inria.fr:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -325,10 +325,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=no
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec=" /usr/lib/gcc/i486-linux-gnu/4.2.3/ /usr/lib/gcc/i486-linux-gnu/4.2.3/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../../i486-linux-gnu/lib/i486-linux-gnu/4.2.3/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../../i486-linux-gnu/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../i486-linux-gnu/4.2.3/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../../lib/ /lib/i486-linux-gnu/4.2.3/ /lib/../lib/ /usr/lib/i486-linux-gnu/4.2.3/ /usr/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../../i486-linux-gnu/lib/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../ /lib/ /usr/lib/"
+sys_lib_search_path_spec=" /usr/lib/gcc/i386-redhat-linux/4.1.2/ /usr/lib/gcc/i386-redhat-linux/4.1.2/ /usr/lib/gcc/i386-redhat-linux/4.1.2/../../../../i386-redhat-linux/lib/i386-redhat-linux/4.1.2/ /usr/lib/gcc/i386-redhat-linux/4.1.2/../../../../i386-redhat-linux/lib/ /usr/lib/gcc/i386-redhat-linux/4.1.2/../../../i386-redhat-linux/4.1.2/ /usr/lib/gcc/i386-redhat-linux/4.1.2/../../../ /lib/i386-redhat-linux/4.1.2/ /lib/ /usr/lib/i386-redhat-linux/4.1.2/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/local/lib /usr/lib/atlas "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/atlas /usr/lib/sse /usr/lib/opensync/ /usr/lib/opensync/formats/ /usr/lib/opensync/plugins/ /usr/lib/qt-3.3/lib /usr/local/lib/ /home/simone/MedINRIA/MedINRIA-1.7.0-linux_FC5-x86 "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7223,7 +7223,7 @@ disable_libs=static
 # End:
 # ### BEGIN LIBTOOL TAG CONFIG: CXX
 
-# Libtool was configured on host korcula:
+# Libtool was configured on host pinarellu.inria.fr:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7405,11 +7405,11 @@ striplib="strip --strip-unneeded"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
-predep_objects="/usr/lib/gcc/i486-linux-gnu/4.2.3/../../../../lib/crti.o /usr/lib/gcc/i486-linux-gnu/4.2.3/crtbeginS.o"
+predep_objects="/usr/lib/gcc/i386-redhat-linux/4.1.2/../../../crti.o /usr/lib/gcc/i386-redhat-linux/4.1.2/crtbeginS.o"
 
 # Dependencies to place after the objects being linked to create a
 # shared library.
-postdep_objects="/usr/lib/gcc/i486-linux-gnu/4.2.3/crtendS.o /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../../lib/crtn.o"
+postdep_objects="/usr/lib/gcc/i386-redhat-linux/4.1.2/crtendS.o /usr/lib/gcc/i386-redhat-linux/4.1.2/../../../crtn.o"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
@@ -7421,7 +7421,7 @@ postdeps="-lstdc++ -lm -lgcc_s -lc -lgcc_s"
 
 # The library search path used internally by the compiler when linking
 # a shared library.
-compiler_lib_search_path="-L/usr/lib/gcc/i486-linux-gnu/4.2.3 -L/usr/lib/gcc/i486-linux-gnu/4.2.3 -L/usr/lib/gcc/i486-linux-gnu/4.2.3/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/i486-linux-gnu/4.2.3/../../.."
+compiler_lib_search_path="-L/usr/lib/gcc/i386-redhat-linux/4.1.2 -L/usr/lib/gcc/i386-redhat-linux/4.1.2 -L/usr/lib/gcc/i386-redhat-linux/4.1.2/../../.."
 
 # Method to check whether dependent libraries are shared objects.
 deplibs_check_method="pass_all"
@@ -7501,10 +7501,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=no
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec=" /usr/lib/gcc/i486-linux-gnu/4.2.3/ /usr/lib/gcc/i486-linux-gnu/4.2.3/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../../i486-linux-gnu/lib/i486-linux-gnu/4.2.3/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../../i486-linux-gnu/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../i486-linux-gnu/4.2.3/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../../lib/ /lib/i486-linux-gnu/4.2.3/ /lib/../lib/ /usr/lib/i486-linux-gnu/4.2.3/ /usr/lib/../lib/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../../i486-linux-gnu/lib/ /usr/lib/gcc/i486-linux-gnu/4.2.3/../../../ /lib/ /usr/lib/"
+sys_lib_search_path_spec=" /usr/lib/gcc/i386-redhat-linux/4.1.2/ /usr/lib/gcc/i386-redhat-linux/4.1.2/ /usr/lib/gcc/i386-redhat-linux/4.1.2/../../../../i386-redhat-linux/lib/i386-redhat-linux/4.1.2/ /usr/lib/gcc/i386-redhat-linux/4.1.2/../../../../i386-redhat-linux/lib/ /usr/lib/gcc/i386-redhat-linux/4.1.2/../../../i386-redhat-linux/4.1.2/ /usr/lib/gcc/i386-redhat-linux/4.1.2/../../../ /lib/i386-redhat-linux/4.1.2/ /lib/ /usr/lib/i386-redhat-linux/4.1.2/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/local/lib /usr/lib/atlas "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/atlas /usr/lib/sse /usr/lib/opensync/ /usr/lib/opensync/formats/ /usr/lib/opensync/plugins/ /usr/lib/qt-3.3/lib /usr/local/lib/ /home/simone/MedINRIA/MedINRIA-1.7.0-linux_FC5-x86 "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7528,7 +7528,7 @@ include_expsyms=""
 
 # ### BEGIN LIBTOOL TAG CONFIG: F77
 
-# Libtool was configured on host korcula:
+# Libtool was configured on host pinarellu.inria.fr:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7809,10 +7809,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=no
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec=" /usr/lib/gcc/i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../../i486-linux-gnu/lib/i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../../i486-linux-gnu/lib/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../i486-linux-gnu/3.4.6/ /usr/lib/gcc/i486-linux-gnu/3.4.6/../../../ /lib/i486-linux-gnu/3.4.6/ /lib/ /usr/lib/i486-linux-gnu/3.4.6/ /usr/lib/"
+sys_lib_search_path_spec=" /usr/lib/gcc/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../../i386-redhat-linux/lib/i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../../i386-redhat-linux/lib/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../i386-redhat-linux/3.4.6/ /usr/lib/gcc/i386-redhat-linux/3.4.6/../../../ /lib/i386-redhat-linux/3.4.6/ /lib/ /usr/lib/i386-redhat-linux/3.4.6/ /usr/lib/"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/X11R6/lib /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/local/lib /usr/lib/atlas "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/atlas /usr/lib/sse /usr/lib/opensync/ /usr/lib/opensync/formats/ /usr/lib/opensync/plugins/ /usr/lib/qt-3.3/lib /usr/local/lib/ /home/simone/MedINRIA/MedINRIA-1.7.0-linux_FC5-x86 "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""

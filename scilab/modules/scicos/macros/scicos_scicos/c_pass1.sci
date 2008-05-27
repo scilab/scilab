@@ -20,7 +20,7 @@
 // See the file ../license.txt
 //
 
-function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,flgcdgen)
+function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof] = c_pass1(scs_m,flgcdgen)
 //derived from c_pass1 for implicit diagrams
 //%Purpose
 // Determine one level blocks and connections matrix
@@ -45,82 +45,81 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,f
 //          in the scs_m structure
 //!
 //c_pass1;
-  if argn(2)<=1 then flgcdgen=-1, end
-  freof=[]; 
-  [cor,corinvt,links_table,cur_fictitious,sco_mat,ok]=scicos_flat(scs_m);
-  if ok then
-     [links_table,sco_mat,ok]=global_case(links_table,sco_mat)
+
+  if argn(2)<=1 then
+    flgcdgen=-1
   end
+  
+  freof=[]; 
+  [cor,corinvt,links_table,cur_fictitious,sco_mat,ok] = scicos_flat(scs_m);
+
+  if ok then
+     [links_table,sco_mat,ok] = global_case(links_table,sco_mat)
+  end
+
   if ~ok then 
     blklst=[];cmat=[],ccmat=[],cor=[],corinv=[]
     return;
   end
+
   index1=find(sco_mat(:,2)=='-1')
+
   if index1<>[] then
        for i=index1
-         [path]=findinlist(cor,-evstr(sco_mat(i,1)))
+         [path] = findinlist(cor,-evstr(sco_mat(i,1)))
          full_path=path(1)
          if flgcdgen<>-1 then full_path=[numk full_path];scs_m=all_scs_m;end
             hilite_path(full_path,"Error in compilation, There is a FROM ''"+(sco_mat(i,3))+ "'' without a GOTO",%t)
-//          else     
-//           mxwin=maxi(winsid())
-//           for k=1:size(full_path,'*')
-//               hilite_obj(numk(k))
-//               scs_m1=all_scs_m.objs(numk(k)).model.rpar;
-//               scs_show(scs_m1,mxwin+k)
-//           end
-//           hilite_obj(full_path($))          
-//           message("Error in compilation, There is a FROM ''"+(sco_mat(i,3))+"'' without a GOTO");
-//           for k=size(full_path,'*'):-1:1,
-//              gh_del = scf(mxwin+k);
-//              delete(gh_del)
-//           end
-//           scf(gh_wins);
-//           unhilite_obj(numk(1))
-//           scs_m1=[]
-//          end 
-          ok=%f;
+            ok = %f;
           blklst=[];cmat=[],ccmat=[],cor=[],corinv=[]
           return;
         end
   end
+
   nb=size(corinvt);
   reg=1:nb
+  
   //form the block lists
   blklst=list();kr=0 ; //regular  block list 
   blklstm=list();km=0; //modelica block list
 
-  //if ind(i)>0  ith block is a regular  block and stored in blklst(ind(i))
-  //if ind(i)<0  ith block is a modelica block and stored in blklstm(-ind(i))
+  //** scan ALL the blocks; eventually compile it if required 
   ind=[];
   for kb=1:nb
-    o=scs_m(scs_full_path(corinvt(kb)));
+    o = scs_m(scs_full_path(corinvt(kb)));
+    
     if is_modelica_block(o) then
-      km=km+1;blklstm(km)=o.model;
-      ind(kb)=-km;
-      [modelx,okx]=build_block(o); // compile modelica block type 30004
+      km = km+1;
+      blklstm(km) = o.model;
+      ind(kb) = -km;
+      [modelx,okx] = build_block(o); // compile modelica block type 30004
       if ~okx then 
 	cmat=[],ccmat=[],cor=[],corinv=[]
 	return
       end
-    else
-      [model,ok]=build_block(o);
+    else 
+      [model,ok] = build_block(o); //** compile the others C block 
       if ~ok then 
 	cmat=[],ccmat=[],cor=[],corinv=[]
 	return,
       end
+      
       if or(model.sim(1)==['plusblk']) then
-	[model,links_table]=adjust_sum(model,links_table,kb);
+	[model,links_table] = adjust_sum(model,links_table,kb);
       end
-      kr=kr+1;blklst(kr)=model;
-      ind(kb)=kr;
+      
+      kr = kr+1;
+      blklst(kr) = model;
+      ind(kb) = kr;
     end
-  end
+  
+  end //** for loop on all blocks 
+  
   if (find(sco_mat(:,5)==string(4))<>[]) then
    if flgcdgen ==-1 then
-    [links_table,blklst,corinvt,ind,ok]=sample_clk(sco_mat,links_table,blklst,corinvt,scs_m,ind,flgcdgen)
+    [links_table,blklst,corinvt,ind,ok] = sample_clk(sco_mat,links_table,blklst,corinvt,scs_m,ind,flgcdgen)
    else 
-    [links_table,blklst,corinvt,ind,ok,scs_m,flgcdgen,freof]=sample_clk(sco_mat,links_table,blklst,corinvt,scs_m,ind,flgcdgen)
+    [links_table,blklst,corinvt,ind,ok,scs_m,flgcdgen,freof] = sample_clk(sco_mat,links_table,blklst,corinvt,scs_m,ind,flgcdgen)
    end
      if ~ok then
         cmat=[],ccmat=[],cor=[],corinv=[]
@@ -225,7 +224,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,f
   end
    cor=update_cor(cor,reg)
 endfunction
-
+//**-----------------------------------------------------------------------------------------------------------------
 
 function [model,links_table]=adjust_sum(model,links_table,k)
 //sum blocks have variable number of input ports, adapt the associated

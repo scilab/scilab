@@ -19,7 +19,7 @@
 // See the file ./license.txt
 //
 
-function sys=lincos(scs_m,x0,u0,param)
+function sys = lincos(scs_m,x0,u0,param)
 // NAME
 // lincos - Constructs by linearization a linear state-space 
 // model from a general dynamical system described by a
@@ -27,7 +27,7 @@ function sys=lincos(scs_m,x0,u0,param)
 
 // CALLING SEQUENCE
 //
-// sys= lincos(scs_m [,x0,u0 [,param] ])
+// sys = lincos(scs_m [,x0,u0 [,param] ])
 // 
 //
 // PARAMETERS
@@ -56,18 +56,19 @@ function sys=lincos(scs_m,x0,u0,param)
 //             load('mysystem.cos')
 // which creates by default a variable called scs_m.
 
-[lhs,rhs]=argn(0)
-IN=[];OUT=[];
+[lhs,rhs] = argn(0)
+IN  = [];
+OUT = [];
 
-//check version
+// check version
 current_version = get_scicos_version()
-scicos_ver = find_scicos_version(scs_m)
+scicos_ver      = find_scicos_version(scs_m)
 
-//do version
+// do version
 if scicos_ver<>current_version then
-  ierr=execstr('scs_m=do_version(scs_m,scicos_ver)','errcatch')
+  ierr = execstr('scs_m=do_version(scs_m,scicos_ver)','errcatch')
   if ierr<>0 then
-    error('Can''t convert old diagram (problem in version)')
+    error("Can''t convert old diagram (problem in version)")
     return
   end
 end
@@ -89,50 +90,61 @@ for i=1:size(scs_m.objs)
     end
   end
 end
+
 IN=-sort(-IN);
 if or(IN<>[1:size(IN,'*')]) then 
   error(msprintf(gettext("%s: Input ports are not numbered properly.\n"),"lincos"))
 end
+
 OUT=-sort(-OUT);
 if or(OUT<>[1:size(OUT,'*')]) then 
   error(msprintf(gettext("%s: Output ports are not numbered properly.\n"),"lincos"))
 end
 
-//load scicos lib
+
+//** Please check the utility of these libs 
+//** Load scicos lib
 load('SCI/modules/scicos/macros/scicos_auto/lib')
 load('SCI/modules/scicos/macros/scicos_scicos/lib')
 load('SCI/modules/scicos/macros/scicos_utils/lib')
 
+
 //compile scs_m
-[bllst,connectmat,clkconnect,cor,corinv,ok]=c_pass1(scs_m);
+[bllst, connectmat, clkconnect,cor,corinv,ok] = c_pass1(scs_m);
 if ~ok then
   error(msprintf(gettext("%s: Diagram does not compile in pass %d.\n"),"lincos",1));
 end
-%cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv);
+
+%cpr = c_pass2(bllst,connectmat,clkconnect,cor,corinv);
 
 if %cpr==list() then 
-  ok=%f,
+  ok = %f ; 
 end
+
 if ~ok then
   error(msprintf(gettext("%s: Diagram does not compile in pass %d.\n'),"lincos",2))
-end 
-sim=%cpr.sim;state=%cpr.state;
+end
+ 
+sim   = %cpr.sim;
+state = %cpr.state;
 //
-inplnk=sim.inplnk;inpptr=sim.inpptr;
-outlnk=sim.outlnk;outptr=sim.outptr;ipptr=sim.ipptr;
+inplnk = sim.inplnk;
+inpptr = sim.inpptr;
+outlnk = sim.outlnk;
+outptr = sim.outptr;
+ipptr  = sim.ipptr;
 
 ki=[];ko=[];nyptr=1;
 for kfun=1:length(sim.funs)
   if sim.funs(kfun)=='output' then
     sim.funs(kfun)='bidon'
     ko=[ko;[kfun,sim.ipar(ipptr(kfun))]];
-
   elseif sim.funs(kfun)=='input' then
     sim.funs(kfun)='bidon'
     ki=[ki;[kfun,sim.ipar(ipptr(kfun))]];
-    
   end
 end
+
 [junk,ind]=sort(-ko(:,2));ko=ko(ind,1);
 [junk,ind]=sort(-ki(:,2));ki=ki(ind,1);
 
@@ -157,6 +169,7 @@ else
     error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d.\n"),"lincos", 2, 3))
   end
 end
+
 if rhs==4 then 
   del = param(1)+param(1)*1d-4*abs([x0;u0])
   t=param(2)
@@ -205,5 +218,7 @@ for i=1:nx+nu
   zo=[state.x;zo];
   F(:,i)=(zo-zo0)/del(i);
 end
-sys=syslin('c',F(1:nx,1:nx),F(1:nx,nx+1:nx+nu),F(nx+1:nx+ny,1:nx),F(nx+1:nx+ny,nx+1:nx+nu));
+
+sys = syslin('c',F(1:nx,1:nx),F(1:nx,nx+1:nx+nu),F(nx+1:nx+ny,1:nx),F(nx+1:nx+ny,nx+1:nx+nu));
+
 endfunction

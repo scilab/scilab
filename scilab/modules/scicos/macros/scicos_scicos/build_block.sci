@@ -19,32 +19,40 @@
 // See the file ../license.txt
 //
 
-function [model,ok]=build_block(o)
+function [model,ok] = build_block(o)
+
 // build the simulation function associated with the block if necessary
-  model=o.model;
-  graphics=o.graphics;
+
+  model    = o.model;
+  graphics = o.graphics;
 
   if model.sim(1)=='scifunc' then
     if model.ipar==0 then
-      message('A scifunc block has not been defined')
-      ok=%f; return
+      message("A scifunc block has not been defined")
+      ok = %f;
+      return
     end
-    model.sim=list(genmac(model.ipar,size(model.in,'*'),size(model.out,'*')),3)
+    model.sim = list(genmac(model.ipar,size(model.in,'*'),size(model.out,'*')),3);
+
   elseif type(model.sim)==15 then
-    modsim=modulo(model.sim(2),10000)
+    modsim = modulo(model.sim(2),10000)
+    
     if int(modsim/1000)==1 then   //Fortran Block
-      funam=model.sim(1)
-      if ~c_link(funam) then
+      funam = model.sim(1)
+      if ~c_link(funam) then 
 	tt=graphics.exprs(2);
 	ok=scicos_block_link(funam,tt,'f')
       end
+    
     elseif int(modsim/1000)==2 then   //C Block
-      funam=model.sim(1)
-      if ~c_link(funam) then
-	tt=graphics.exprs(2);
-	ok=scicos_block_link(funam,tt,'c')
+      funam = model.sim(1)
+      if ~c_link(funam) then //** if the function is not already linked 
+	tt = graphics.exprs(2);
+	ok = scicos_block_link(funam,tt,'c'); 
       end
+    
     elseif model.sim(2)==30004 then //modelica generic file type 30004
+      
       //funam=model.sim(1);tt=graphics.exprs(2);
       if type(graphics.exprs)==15 then //compatibility
         funam=model.sim(1);
