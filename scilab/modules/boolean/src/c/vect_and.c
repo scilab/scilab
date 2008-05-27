@@ -13,8 +13,7 @@
 #ifdef _MSC_VER
 	#include <Windows.h>
 #endif
-/*--------------------------------------------------------------------------*/
-void vect_and(int *v,int m, int n,int *r,int opt);
+#include "vect_and.h"
 /*--------------------------------------------------------------------------*/
 void vect_and(int *v,int m, int n,int *r,int opt)
 {

@@ -20,6 +20,7 @@ GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_bool2s.f \
 sci_gateway/fortran/sci_find.f
 
 libsciboolean_la_CFLAGS=  	-Iincludes/ \
+				-Isrc/c/ \
 				-I$(top_builddir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libsciboolean.la

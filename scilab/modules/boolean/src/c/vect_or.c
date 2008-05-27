@@ -13,8 +13,7 @@
 #ifdef _MSC_VER
 	#include <Windows.h>
 #endif
-/*--------------------------------------------------------------------------*/
-void vect_or(int *v,int m,int n,int *r,int opt);
+#include "vect_or.h"
 /*--------------------------------------------------------------------------*/
 void vect_or(int *v,int m,int n,int *r,int opt)
 {
