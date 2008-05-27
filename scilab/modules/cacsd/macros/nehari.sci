@@ -17,8 +17,8 @@ function [x]=nehari(r,tol)
 
 [lhs,rhs]=argn(0);
 r1=r(1);
-if r1(1)<>'lss' then error('State-space only!'),end
-if r(7)=='d' then error('Continuous-time only!'),end
+if r1(1)<>'lss' then error(msprintf(gettext("%s: State-space only.\n"),"nehari")),end
+if r(7)=='d' then error(msprintf(gettext("%s: Continuous-time only.\n'),"nehari")),end
 r(7)='c'
 //
 if rhs==1 then tol=1e-6,end,
@@ -46,7 +46,7 @@ if rhs==1 then tol=1000*%eps,end,
 if sl==0 then nk=0,return,end,
 lf=spec(sl(2)),
 if mini(abs(lf))<=tol then
-     error('Imaginary axis poles!'),end,
+     error(msprintf(gettext("%s: Imaginary axis poles.\n"),"nehari")),end,
 if maxi(real(lf))<tol then nk=0,return,end,
 sl=dtsi(sl);
 lc=ctr_gram(sl),lo=obs_gram(sl),

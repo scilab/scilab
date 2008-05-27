@@ -37,7 +37,7 @@ if typeof(A)~='state-space' then
 [ns,nc,U,sl]=st_ility(syslin('c',A,B,[]));
 [nx,nx]=size(A);[nn,nu]=size(B);
 if ns<nx then 
-warning('system not stabilizable (or detectable)=>stabilizing the stabilizable part');
+  warning(msprintf(gettext("%s: System not stabilizable (or detectable) => Stabilizing the stabilizable part.\n"),"stabil"));
 end
 if RHS==2 then 
   alfa=-ones(1,nx);

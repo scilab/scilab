@@ -15,23 +15,23 @@ select type(a)
 case 16
   flag=a(1)
   if flag(1)<>'lss' then error(91,1),end
-  if lhs<>1 then error('output: sle'),end;
+  if lhs<>1 then error(msprintf(gettext("%s: Wrong number of output arguments.\n"),"minreal")),end;
   select rhs
   case 1 then istol=0
   case 2 then istol=1,tol=b,
-  else error('2 inputs to minreal: sl [,tol]'),
+  else error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"minreal",1,2)),
   end;
   [a,b,c,d,x0,dom]=a(2:7);
   if dom==[] then error(96,1),end
   domaine='c';if dom<>'c' then domaine='d',end
 case 1
   if lhs<>3 then
-    error('3 outputs to minreal: ae,be,ce'),
+	 error(msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"),"minreal",3)),
   end;
   select rhs
   case 4 then istol=0
   case 5 then istol=1,
-  else error('4 or 5 outputs :a,b,c,domaine [,tol]'),
+  else 	 error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"minreal",4,5)),
   end;
 else 
   error(91,1)

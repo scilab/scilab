@@ -20,7 +20,7 @@ if rhs <=2;dflag=0;end
 [n1,n2]=size(x)
 [p1,p2]=size(y)
 if n2<>p2 then 
-  error("reglin: [n1,n2]=size(x),[p1,p2]=size(y), n2 must be equal to p2");
+  error(msprintf(gettext("%s: Wrong value for input arguments: %s equal to %s expected.\n"),"reglin","[n1,n2]=size(x),[p1,p2]=size(y), n2","p2"));
 end;
 
 xmoy=sum(x,2)/n2

@@ -36,7 +36,7 @@ function [svm] = svplot(Sl,w)
 // Compute the singular values of the frequency response
 select Sl(7)
 case []
-   warning('svplot: time domain not defined-->assumed continuous');
+   warning(msprintf(gettext("%s: Time domain not defined: Assumed continuous.\n."),"svplot"));
 if nargin == 1
    w = logspace(-3,3);
 end

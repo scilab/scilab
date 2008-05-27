@@ -12,7 +12,7 @@ function [Bfs,Bis,tf]=des2tf(des)
 //des admits a D matrix.
 
 [LHS,RHS]=argn(0);
-if LHS<>1 & LHS<> 3 then error('des2tf: 1 or 3 output args needed');end
+if LHS<>1 & LHS<> 3 then error(msprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "des2tf",1,3)); end
 [A,B,C,D,E]=des(2:6);
 [Bfs,Bis,chis]=glever(E,A);
 if LHS==3 then Bfs=C*Bfs*B; Bis=C*Bis*B+D;tf=chis;return;end

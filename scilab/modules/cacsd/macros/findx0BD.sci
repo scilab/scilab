@@ -58,10 +58,10 @@ x0=[];B=[];D=[];V=[];rcnd=[];
 ni = nargin;
 nout = nargout;
 if ni<4 then
-  error('FINDX0BD needs at least 4 input parameters');
+  error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"findx0BD",4));
 end
 if nout<1 then
-  error('FINDX0BD needs at least 1 output parameters');
+  error(msprintf(gettext("%s: Wrong number of output arguments: At least %d expected.\n"),"findx0BD",1));
 end
 // 
 if ni<8 then
@@ -74,7 +74,7 @@ if ni<6 then
 elseif withd ==[] then
   withd = 1;
 elseif (withd~=0)&(withd~=1) then
-  error('withd could only be 0 or 1');
+  warning(msprintf(gettext("%s: Wrong value for input argument #%d: %d or %d expected.\n"),"findx0BD",6,0,1))
 end
 if ni<5 then  withx0 = 1;end
 if withx0 ==[] then  withx0 = 1;end

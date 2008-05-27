@@ -32,7 +32,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
   [a,b,c,d]=Sl(2:5);
   eiga=spec(a);
   if maxi(real(eiga)) >= -1e-12 then 
-    warning(msprintf(_('%s: system is not stable !'),'h_norm'))
+    warning(msprintf(_("%s: System is not stable.\n"),"h_norm"))
   end
   if rhs==1 then rerr=1e-8; end;
   [no,ns] = size(c); [ns,ni] = size(b);
@@ -79,9 +79,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
   end;
   if M == 1.d30 then
     lb=svdd;
-    warning(msprintf(_('%s: norm cannot be computed. Relative accuracy smaller than 1e-3\n'+..
-    'Hinfnorm is probably exactly max sv(D)\n'+..
-    'The system might be all-pass'),'h_norm'))
+    warning(msprintf(gettext("%s: norm cannot be computed. Relative accuracy smaller than 1e-3\nHinfnorm is probably exactly max sv(D)\nThe system might be all-pass"),"h_norm"))
   end;
   if exists('ub')==0 then ub=lb;end
   hinfnorm = 0.5 * (ub+lb); frequency = M;
@@ -98,7 +96,7 @@ function gama=dhnorm(Sl,tol,gamamax)
   n=0;
   while %T
     gama=(gamamin+gamamax)/2;n=n+1;
-    if n>1000 then warning('dhnorm: more than 1000 iterations!');return;end
+    if n>1000 then warning(msprintf(gettext("%s: More than %d iterations.\n"),"dhnorm",1000));return;end
     if dhtest(Sl,gama) then
       gamamax=gama; else gamamin=gama
     end

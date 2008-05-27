@@ -52,28 +52,23 @@ INIT_LOW=1.0e-3; INIT_UPP=1.0e6;  INFTY=10e10;
 RELACCU=1.0e-10; //relative accuracy on generalized eigenvalue computations
 gopt=-1;
  
- 
 //parameter recovery
 [a,b1,b2,c1,c2,d11,d12,d21,d22]=smga(g,r);
- 
  
 //dimensions
 [na,na]=size(a); twona=2*na;
 [p1,m2]=size(d12),
 [p2,m1]=size(d21),
  
- 
- 
- 
 //CHECK HYPOTHESES
 //****************
  
 if m2 > p1 then
-  write(%io(2),'WARNING: the dimensions of D12 are inadequate');
+  warning(msprintf(gettext("%s: Dimensions of %s are inadequate.\n"),"gamitg","D12"));
 end
  
 if p2 > m1 then
-  write(%io(2),'WARNING: the dimensions of D21 are inadequate');
+  warning(msprintf(gettext("%s: Dimensions of %s are inadequate.\n"),"gamitg","D21"));
 end
  
 [u12,s12,v12]=svd(d12);   s12=s12(1:m2,:);
@@ -84,11 +79,11 @@ v21=v21(:,1:p2);   //d21 = u21 s21 v21'
 //rank condition on D12 and D21
 //-----------------------------
 if s12(m2,m2)/s12(1,1) <= 100*%eps then
-  write(%io(2),'WARNING: D12 is not full rank at the machine precision');
+  warning(msprintf(gettext("%s: %s is not full rank at the machine precision.\n"),"gamitg","D12"));
 end
  
 if s21(p2,p2)/s21(1,1) <= 100*%eps then
-  write(%io(2),'WARNING: D21 is not full rank at the machine precision');
+  warning(msprintf(gettext("%s: %s is not full rank at the machine precision.\n"),"gamitg","D21"));
 end
  
 //(A,B2,C2) stabilizable + detectable
@@ -97,12 +92,12 @@ noa=maxi(abs(a));  nob2=maxi(abs(b2)); noc2=maxi(abs(c2));
  
 ns=st_ility(syslin('c',a,b2,c2),1.0e-10*maxi(noa,nob2));
 if ns<na then
-  write(%io(2),'WARNING: (A,B2) is nearly unstabilizable');
+  warning(msprintf(gettext("%s: %s is nearly unstabilizable.\n"),"gamitg","(A,B2)"));
 end
  
 nd=dt_ility(syslin('c',a,b2,c2),1.0e-10*maxi(noa,noc2));
 if nd>0 then
-  write(%io(2),'WARNING: (C2,A) is nearly undetectable');
+  warning(msprintf(gettext("%s: %s is nearly unstabilizable.\n"),"gamitg","(C2,A)"));
 end
  
 //Imaginary axis zeros: test the Hamiltonian spectra at gamma=infinity
@@ -112,7 +107,7 @@ ah=a-b2*v12/s12*u12'*c1;  bh=b2*v12; ch=u12'*c1;
 hg=[ah,-bh/(s12**2)*bh';ch'*ch-c1'*c1,-ah'];
 spech=spec(hg);
 if mini(abs(real(spech))) < 1.0e-9*maxi(abs(hg)) then
-  write(%io(2),'WARNING: G12 has zero(s) near the imaginary axis');
+  warning(msprintf(gettext("%s: %s has zero(s) near the imaginary axis.\n"),"gamitg","G12"));
 end
  
  
@@ -120,7 +115,7 @@ ah=a-b1*v21/s21*u21'*c2;  ch=u21'*c2; bh=b1*v21;
 jg=[ah',-ch'/(s21**2)*ch;bh*bh'-b1*b1',-ah];
 specj=spec(jg);
 if mini(abs(real(specj))) < 1.0e-9*maxi(abs(jg)) then
-  write(%io(2),'WARNING: G21 has zero(s) near the imaginary axis');
+    warning(msprintf(gettext("%s: %s has zero(s) near the imaginary axis.\n"),"gamitg","G21"));
 end
  
  
@@ -229,7 +224,7 @@ if T_EVALH==1 then
    if mini(abs(real(hev))) <= RELACCU*maxi(abs(hev)) then
       lower=ga; DONE=1;   //Hg HAS EVAL ON iR -> NEXT LOOP
       if str_member('t',options) then
-         write(%io(2),'H has pure imaginary eigenvalue(s)');
+		 mprintf(gettext("%s: %s has pure imaginary eigenvalue(s).\n"),"gamitg","H");
       end
    end
 end
@@ -243,7 +238,7 @@ if DONE==0 then
      if mini(abs(real(jev))) <= RELACCU*maxi(abs(jev)) then
         lower=ga; DONE=1;   //Jg HAS EVAL ON iR -> NEXT LOOP
         if str_member('t',options) then
-           write(%io(2),'J has pure imaginary eigenvalue(s)');
+		  mprintf(gettext("%s: %s has pure imaginary eigenvalue(s).\n"),"gamitg","J");
         end
       end
    end
@@ -279,7 +274,8 @@ if DONE==0 then
         if mini(abs([e(i),f(i)])) >= RELACCU & real(e(i)/f(i)) <= 0 then
           lower=ga;  DONE=1;  T_EVALH=0;  i=na+1;
           if str_member('t',options) then
-                          write(%io(2),'X is indefinite');end
+			mprintf(gettext("%s: %s is indefinite.\n"),"gamitg","X");
+		  end
         else
           i=i+1;
         end
@@ -302,7 +298,7 @@ if DONE==0 then
         if mini(abs([e(i),f(i)])) >= RELACCU & real(e(i)/f(i)) <= 0 then
           lower=ga;  DONE=1;  T_EVALJ=0;  i=na+1;
           if str_member('t',options) then
-                           write(%io(2),'Y is indefinite');end
+			mprintf(gettext("%s: %s is indefinite.\n"),"gamitg","Y");end;
         else
           i=i+1;
         end
@@ -337,14 +333,12 @@ end
 //------------------
  
 if lower > INFTY then
-   write(%io(2),..
-     'controllable & observable mode(s) of A near the imaginary axis');
+   mprintf(gettext("%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"),"gamitg","A");
    gopt=lower;
    return;
 else if upper < 1.0e-10 then
    gopt=upper;
-   write(%io(2),..
-     'All modes of A are nearly nonminimal so that || G || is almost 0');
+   mprintf(gettext("%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"),"gamitg","A","|| G ||",0);
    return;
 else if 1-lower/upper < PREC,
    gopt=sqrt(lower*upper);

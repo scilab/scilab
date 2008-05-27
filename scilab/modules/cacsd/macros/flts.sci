@@ -35,7 +35,7 @@ select flag(1)
       y=sl(4)*x+rtitr(sl(5),eye(sl(5)),u)
     end
    case 'r'  then  
-    if lhs>1 then error('flts: invalid lhs'),end
+    if lhs>1 then error(msprintf(gettext("%s: Wrong number of output argument: %d expected.\"),"flts",1)),end
     [num,den]=sl(['num','den']);[ns,ne]=size(num)
        select sl('dt')
         case 'c' then error(94,2),
@@ -52,7 +52,7 @@ select flag(1)
     if rhs==3 then
        [mx,nx]=size(x0);maxdgd=maxi(degree(nden))
        if nx<maxdgd then
-         error('AT LEAST '+string(maxdgd)+' PAST VALUES!')
+         error(msprintf(gettext("%s: At least %s past values.\n"),"flts",string(maxdgd)))
        end;
        if mx<>ns+ne then error(60),end
     end;

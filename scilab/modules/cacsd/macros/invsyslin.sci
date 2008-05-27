@@ -15,7 +15,7 @@ if type(t)<>16 then error(91,1),end
 flag=t(1);
 if flag(1) <> 'lss' then error(91,1),end;
 [p,m]=size(t(5));
-if p <> m then  warning('non square D matrix'),end
+if p <> m then  warning(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"invsyslin",1)),end
 //
 d=pinv(t(5));
 a=t(2)-t(3)*d*t(4);

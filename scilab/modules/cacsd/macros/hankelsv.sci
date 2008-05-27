@@ -11,17 +11,17 @@ function [nk,W]=hankelsv(sl,tol)
 //!
 
 sl1=sl(1);
-if sl1(1)<>'lss' then error('State-space only :use tf2ss'),end
-if sl(7)=='d' then error('Continuous time only'),end
+if sl1(1)<>'lss' then error(msprintf(gettext("%s: State-space only.\n"),"hankelsv")),end
+if sl(7)=='d' then error(msprintf(gettext("%s: Continuous-time only.\n'),"hankelsv")),end
 sl(7)='c'
 //
 [lhs,rhs]=argn(0),
 if rhs==1 then tol=1000*%eps,end,
 lf=spec(sl(2)),
 if mini(abs(lf))<=tol then
-     error('Imaginary-axis poles!')
+     error(msprintf(gettext("%s: Imaginary axis poles.\n"),"hankelsv")),
 end
-if maxi(real(lf)) > tol then warning('unstable !'),end,
+if maxi(real(lf)) > tol then warning(msprintf(gettext("%s: Unstable.\n"),"hankelsv")),end,
 [sla,sls,d]=dtsi(sl);
 lc=ctr_gram(sls),lo=obs_gram(sls),W=lc*lo;
 nk=sort(real(spec(W)));

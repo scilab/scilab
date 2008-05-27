@@ -53,7 +53,7 @@ if RHS==1 then
    if cond(W1) > 1.d+10*norm(H,1) then Hb=H,W1=eye(W1);end
  
    [W2,n]=schur(Hb,'c');Hb=[]
-   if n<>n1 then write(%io(2),'Stationary Riccati solver fails!!!!');end
+   if n<>n1 then mprintf(gettext("%s: Stationary Riccati solver failed.\n"),"ric_desc");end
    W1=W1*W2;W2=[]
    UV=W1(:,1:n1);W1=[]
    X2=UV(1:n1,:);X1=UV(n1+1:n2,:);UV=[];

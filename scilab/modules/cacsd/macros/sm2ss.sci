@@ -25,9 +25,9 @@ if RHS==1 then
      l=l-1;n1=l;
      end
 end
-if n1<>n then warning('sm2ss: cannot find n!');end
+if n1<>n then warning(msprintf(gettext("%s: Cannot find %s.\n"),"sm2ss","n"));end
 E=E(1:n,1:n);
-if E<>eye(n,n) then error('sm2ss: not state-space system?');end
+if E<>eye(n,n) then error(msprintf(gettext("%s: Not state-space system?.\n"),"sm2ss"));end
 A=coeff(sysmat(1:n,1:n),0);
 B=coeff(sysmat(1:n,n+1:nc),0);
 C=coeff(sysmat(n+1:nl,1:n),0);

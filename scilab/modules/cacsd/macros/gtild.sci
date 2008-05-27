@@ -39,7 +39,7 @@ if flag=='c'
 elseif flag=='d'  
   Gt=dp_tilde(G);
 elseif flag==[]
-  warning('gtild: flag not given! --> assumes c');
+  warning(msprintf(gettext("%s: Wrong value for input argument #%d: %s assumed.\n"),"gtild",2,"c"));
   Gt=cp_tilde(G);return;
 end
 
@@ -50,7 +50,7 @@ if flag=='c'
 elseif flag=='d' 
   Gt=horner(G',1/s);return;
 elseif flag==[]
-  warning('Flag not given : assumes c');
+  warning(msprintf(gettext("%s: Wrong value for input argument #%d: %s assumed.\n"),"gtild",2,"c"));
   Gt=cp_tilde(G);return;
 end
 
@@ -83,6 +83,8 @@ end
 case 'constant'
 Gt=G';return;
 end
+
+
 
 endfunction
 function mpt=dp_tilde(mp)

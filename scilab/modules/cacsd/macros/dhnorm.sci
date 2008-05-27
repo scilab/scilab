@@ -18,7 +18,7 @@ gamamin=sqrt(%eps);
 n=0;
 while %T
 gama=(gamamin+gamamax)/2;n=n+1;
-if n>1000 then warning('dhnorm: more than 1000 iterations!');return;end
+if n>1000 then warning(msprintf(gettext("%s: More than %d iterations.\n"),"dhnorm",1000));return;end
  if dhtest(Sl,gama) then
   gamamax=gama; else gamamin=gama
  end

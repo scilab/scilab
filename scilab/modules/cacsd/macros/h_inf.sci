@@ -100,20 +100,20 @@ P22=syslin('c',A,B2,C2);
  
 [ns,Us,St]=st_ility(P22,1.d-10)
  
-if ns<>na then write(%io(2),'Warning: P22 not stabilizable');end
-if ns==na then write(%io(2),'P22 is stabilizable');end
+if ns<>na then warning(msprintf(gettext("%s: %s not stabilizable.\n"),"h_inf","P22"));end
+if ns==na then mprintf(gettext("%s: %s is stabilizable.\n"),"h_inf","P22");end
 
 [nd,Ud,Sd]=dt_ility(P22,1.d-10)
 
-if nd <> 0 then write(%io(2),'Warning: P22 not detectable');end
-if nd==0 then write(%io(2),'P22 is detectable');end
+if nd <> 0 then warning(msprintf(gettext("%s: %s not detectable.\n"),"h_inf","P22"));end
+if nd==0 then mprintf(gettext("%s: %s is detectable.\n"),"h_inf","P22");end
 
 // rank P21=[A,B2,C1,D12] = m2 ?
      P12=syslin('c',A,B2,C1,D12);
      [nt,dt]=trzeros(P12),rzt=real(nt./dt),
      if size(nt,'*') > 0 then
        if mini(abs(rzt)) < sqrt(%eps) then 
-     write(%io(2),'Warning P12 has a zero on/close the imaginary axis'),
+     warning(msprintf(gettext("%s: %s has a zero on/close the imaginary axis.\n"),"h_inf","P12")),
        end,
      end,
 
@@ -122,7 +122,7 @@ if nd==0 then write(%io(2),'P22 is detectable');end
      [nt,dt]=trzeros(P21),rzt=real(nt./dt),
      if size(nt,'*')>0 then
         if mini(abs(rzt)) < sqrt(%eps) then 
-    write(%io(2),'Warning: P21 has a zero on/close the imaginary axis'),
+    warning(msprintf(gettext("%s: %s has a zero on/close the imaginary axis.\n"),"h_inf","P21")),
         end,
      end,
 
@@ -130,12 +130,12 @@ if nd==0 then write(%io(2),'P22 is detectable');end
 
 //Row compression of D12 (bottom)
      [T1,r1]=rowcomp(D12),
- if r1<>m2 then error('D12 not full column rank'),end,
+ if r1<>m2 then error(msprintf(gettext("%s: %s not full column rank.\n"),"h_inf","D12")),end,
      T1=[T1(r1+1:p1,:);T1(1:r1,:)],
      D12=T1*D12,
 //Column compression of D21 (right)
      [S1,r2]=colcomp(D21),
- if r2<>p2 then error('D21 not full row rank'),end,
+ if r2<>p2 then error(msprintf(gettext("%s: %s not full row rank.\n"),"h_inf","D21")),end,
      D21=D21*S1,
 //Updating 
      B1=B1*S1,C1=T1*C1,
@@ -239,8 +239,8 @@ B1=B1+B2*Kinf*D21;
 C1=C1+D12*Kinf*C2;
 D11=D11+D12*Kinf*D21;
 
-if norm(D11) >= gama then write(%io(2),'error : gamma too small');
-    P6=[]; Kinf=[];Uc#i=[];Yc#i=[];return;end
+if norm(D11) >= gama then 
+    P6=[]; Kinf=[];Uc#i=[];Yc#i=[];error(msprintf(gettext("%s: gamma too small.\n"),"h_inf"));end
 
 //P3=list(A,B1,B2,C1,C2,D11,D12,D21,D22) with norm(D11) < gama.
 
@@ -280,12 +280,12 @@ D22=0*D22#;
 
 //Row compression of D12
      [T1,r1]=rowcomp(D12);
- if r1<>m2 then error('D12 not full rank! '),end
+ if r1<>m2 then error(msprintf(gettext("%s: %s not full rank.\n"),"h_inf_st","D12")),end
      T1=[T1(r1+1:p1,:);T1(1:r1,:)],
      D12=T1*D12,
 //Column compression of D21
      [S1,r2]=colcomp(D21),
- if r2<>p2 then error('D21 not full rank! '),end,
+ if r2<>p2 then error(msprintf(gettext("%s: %s not full rank.\n"),"h_inf_st","D21")),end,
      D21=D21*S1,
 //Updating
      B1=B1*S1,C1=T1*C1,
@@ -325,14 +325,14 @@ H=[Ax Rx;
 dx=mini(abs(real(spec(H))));
 //write(%io(2),dx);
        if dx < 1.d-9 then
- write(%io(2),'An eigenvalue of H (controller) is close to Imaginary axis !');
+		 mprintf(gettext("%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"),"h_inf","H");
      write(%io(2),dx);
        indic=1;test=1;
        end
  if indic ==0 then
    [X1,X2,errx]=ric_desc(H);
      if errx > 1.d-4 then
-       write(%io(2),'Riccati solution inaccurate ');
+       mprintf(gettext("%s: Riccati solution inaccurate.\n"),"h_inf");
        write(%io(2),errx);
      end
 //Optimal observer :
@@ -350,14 +350,14 @@ dx=mini(abs(real(spec(H))));
     dy=mini(abs(real(spec(J))));
 //write(%io(2),dy);
       if dy < 1.d-9 then
-   write(%io(2),'An eigenvalue of J (observer) is close to Imaginary axis !');
-      write(%io(2),dy);
-      indic=1 ;test=1;
+		mprintf(gettext("%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"),"h_inf","J");
+		write(%io(2),dy);
+		indic=1 ;test=1;
        end
      if indic==0 then
        [Y1,Y2,erry]=ric_desc(J);
         if erry > 1.d-4 then 
-          write(%io(2),'Riccati solution inaccurate ');
+		  mprintf(gettext("%s: Riccati solution inaccurate.\n"),"h_inf");
           write(%io(2),erry);
         end
 //Tests
@@ -386,6 +386,7 @@ end
 //if exists('tv')==1 then write(%io(2),[tv,maxi(tv)],'(4f15.10)');end
 if exists('tv')==1 then 
    if answer>0 then 
+	 // @TODO This stuff should be localized... To bored to understand it for now.
                if no==1 then
  write(%io(2),[1/sqrt(mu),answer],'('' gama = '',f18.10,'' Unfeasible (Hx hamiltonian)  test = '',e15.5)');
                        end
@@ -448,11 +449,12 @@ function [Sk,polesH,polesJ]=h_contr(P,r,mu,U2i,Y2i)
   dx=mini(abs(real(polesH)));
 //write(%io(2),dx);
 if dx < 1.d-6 then
- write(%io(2),'An eigenvalue of H (controller) is close to Imaginary axis !');
+  mprintf(gettext("%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"),"h_inf","H");
+
 end
    [X1,X2,errx]=ric_desc(H);
 if errx > 1.d-4 then 
-   write(%io(2),'Riccati solution inaccurate ');
+   mprintf(gettext("%s: Riccati solution inaccurate.\n"),"h_inf");
    write(%io(2),errx);
 end
 
@@ -466,12 +468,12 @@ end
   dy=mini(abs(real(polesJ)));
 //write(%io(2),dy);
 if dy < 1.d-6 then
-   write(%io(2),'An eigenvalue of J (observer) is close to Imaginary axis !');
+   mprintf(gettext("%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"),"h_inf","J");
 end
   [Y1,Y2,erry]=ric_desc(J);
 if erry > 1.d-4 then 
-   write(%io(2),'Riccati solution inaccurate ');
-   write(%io(2),erry);
+  mprintf(gettext("%s: Riccati solution inaccurate.\n"),"h_inf");
+     write(%io(2),erry);
 end
 
 //Controller in descriptor form

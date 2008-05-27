@@ -12,10 +12,10 @@ function [f,r]=dscr(a,dt,m)
 
 [lhs,rhs]=argn(0);lst=0
 if type(dt)<>1 then
-  error('dscr: sampling period must be a positive real scalar')
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A positive real expected.\n"),"dscr",2))
 end
 if size(dt,'*')<>1|~isreal(dt)|dt<=0 then
-  error('dscr: sampling period must be a positive  real scalar')
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A positive real expected.\n"),"dscr",2))
 end
 
 flag=a(1);
@@ -29,7 +29,7 @@ else
   error(97,1),
 end;
 if dom<>'c' then 
-  warning('dscr: time domain assumed to be continuous'),
+  warning(msprintf(gettext("%s: Time domain not defined: Assumed continuous.\n."),"dscr")),
 end
 [n1,m1]=size(b),
 s=expm([a,b;0*ones(m1,n1+m1)]*dt),

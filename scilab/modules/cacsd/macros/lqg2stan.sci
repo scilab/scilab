@@ -36,7 +36,7 @@ C1=Qhalf(:,1:nx);D12=Qhalf(:,nx+1:nx+nu);
 C2=C;
 D11=0*C1*B1;
 dom=P22(7);
-if dom==[] then warning('lqg2stan: time domain (?) assumed continuous');end
+if dom==[] then warning(msprintf(gettext("%s: Time domain not defined: Assumed continuous.\n."),"lqg2stan"));end
 P=syslin(dom,A,real([B1,B2]),real([C1;C2]),real([D11,D12;D21,D22]));
 m=size(C2*B2);
 if flag==1 then

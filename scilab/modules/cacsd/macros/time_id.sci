@@ -22,10 +22,10 @@ case 10 then
   case 's' then
     u=ones(npt,1)
   else
-    error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'' or ''%s'' expected.\n"),"time_id","i","s"))
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"time_id",2,"i","s"))
   end
 else
-  error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'' or ''%s'' expected.\n"),"time_id","i","s"))
+  error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"time_id",2,"i","s"))
 end
 if y(1)==0 then // strictly proper case
   m(npt-1,2*n)=0;

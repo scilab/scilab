@@ -17,9 +17,9 @@ function [y,R]=kpure(sl,eps)
     sl=ss2tf(sl)
     if size(sl.num,'*') > 1 then error(95,1),end
   else
-    error('kpure: first argument must be a linear dynamical system')
+    error(gettext(msprintf("%s: Wrong type for argument #%d: Linear dynamic system expected.\n"),"kpure",1))
   end
-  if sl.dt<>'c' then error('System must be continuous'),end
+  if sl.dt<>'c' then error(msprintf(gettext("%s: System must be continuous.\n"),"kpure")),end
 
   //build the Routh table of the given system
   r=routh_t(sl,poly(0,'k')),
@@ -28,7 +28,7 @@ function [y,R]=kpure(sl,eps)
   //Check of infinite solution
   for i=1:s,
     if and(coeff(r(i,:))==0) then 
-      error('kpure: ---> infinite solution'),
+      error(msprintf(gettext("%s: Infinite solution.\n"),"kpure")),
     end
   end,
 

@@ -16,7 +16,7 @@ case 'r' then [n,d,dom]=n(2:4)
 case 'lss' then n=ss2tf(n);[n,d,dom]=n(['num','den','dt'])
 else error(97,1),
 end;
-if dom<>'c' then error('System must be continuous'),end
+if dom<>'c' then error(gettext(msprintf("%s: System must be continuous.\n"),"krac2")),end
 if size(n,'*')<>1 then error(95,1),end
 
 x=[];

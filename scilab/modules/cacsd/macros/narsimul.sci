@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ENPC - 
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
 function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
 //function z=narsimul(a,b,d,sig,u,up,yp,ep)
 //   or 
@@ -15,7 +25,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
 [lhs,rhs]=argn(0)
 // switch to ar representation 
 if type(x1)<>15&type(x1)<>16 then 
-   if rhs < 5, write(%io(2),'arsimul: error expecting at least 5 arguments');
+   if rhs < 5, error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"narsimul",5));
 	return;end;
    ar=armac(x1,x2,x3,size(x1,'r'),size(x5,'r'),x4);
    if rhs==5,z=narsimul(ar,x5);return;end
@@ -28,7 +38,7 @@ a=x1('a');b=x1('b');d=x1('d');sig=x1('sig');
 u=x2;
 [mmu,Nu]=size(u);
 if mmu<>x1('nu') then 
-  write(%io(2),'number of rows of u are incompatible with arma object');
+    error(msprintf(gettext("%s: Number of rows of %s are incompatible with %s object.\n"),"arsimul","u",'arma"));
   return;
 end;
 // dimensions 
@@ -56,24 +66,21 @@ if rhs <=5,
    up=0*ones(mmu,(bdeg-1));
 else
    if size(up)<>[mmu,(bdeg-1)],
-    write(%io(2)," up=[u(0),u(-1),..,] must be of dimension ("...
-    +strin(mmu)+','+string(bdeg-1));
+    error(msprintf(gettext("%s: %s must be of dimension (%s, %s).\n"),"narsimul","up=[u(0),u(-1),..,]",string(mmu),string(bdeg-1)));
     return;end
 end
 if rhs <=6,
    yp=0*ones(al,(adeg-1));
 else
   if size(yp)<>[al,(adeg-1)]
-    write(%io(2)," yp=[y(0),y(-1),..,] must be of dimension ("...
-    +strin(al)+','+string(adeg-1));
+    error(msprintf(gettext("%s: %s must be of dimension (%s, %s).\n"),"narsimul","yp=[y(0),y(-1),..,]",string(al),string(adeg-1)));
     return;end
 end
 if rhs <=7,
    ep=0*ones(al,(ddeg-1));
 else
   if size(ep)<>[al,(ddeg-1)]
-    write(%io(2)," ep=[e(0),e(-1),..,] must be of dimension ("...
-    +strin(al)+','+string(ddeg-1));
+    error(msprintf(gettext("%s: %s must be of dimension (%s, %s).\n"),"narsimul","ep=[e(0),e(-1),..,]",string(al),string(ddeg-1)));
     return;end
 end;
 // 

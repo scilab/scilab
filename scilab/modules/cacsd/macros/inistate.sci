@@ -52,10 +52,10 @@ if mtlb_isa(A,'lti') then
   // Special call     x0 = inistate(sys,y,u,tol,printw); 
   // 
   if A.dt=='c' then
-    error('The system SYS must be a discrete-time system');
+    error(msprintf(gettext("%s: The system %s must be a discrete-time system.\n"),"inistate","SYS"));
   end
   if ni<2 then
-    error('INISTATE needs at least 2 input parameters');
+    error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"inistate",2));
   end
   [As,Bs,Cs,Ds] = abcd(A)
   [ny,nu] = size(A);
@@ -105,7 +105,7 @@ else
   //                  x0 = inistate(A,C,y,tol,printw); 
   // 
   if ni<3 then
-    error('INISTATE needs at least 3 input parameters');
+    error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"inistate",3));
   end
   [m2,n2] = size(B);
   [m3,n3] = size(C);

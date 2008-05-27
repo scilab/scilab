@@ -51,10 +51,10 @@ function [y,x]=csim(u,dt,sl,x0,tol)
   case  'r'  then sl=tf2ss(sl)
   else  error(97,1),
   end;
-  if sl(7)<>'c' then warning('csim: time domain is assumed continuous'),end
+  if sl(7)<>'c' then warning(msprintf(gettext("%s: Time domain not defined: Assumed continuous.\n."),"csim")),end
   //
   [a,b,c,d]=sl(2:5);
-  if type(d)==2&degree(d)>0 then d=coeff(d,0);warning('D set to constant');end
+  if type(d)==2&degree(d)>0 then d=coeff(d,0);warning(msprintf(gettext("csim: %s set to constant.\n"),"csim","D"));end
   [ma,mb]=size(b);
   //
   imp=0;text='if t==0 then y=0, else y=1,end'
@@ -66,13 +66,13 @@ function [y,x]=csim(u,dt,sl,x0,tol)
       //impuse response
       imp=1;
       if norm(d,1)<>0 then
-	warning('direct feedthrough (d) <> 0;set to zero');
+	warning(msprintf(gettext("%s: Direct feedthrough %s <> %d;set to zero.\n"),"csim","(d)",0));
 	d=0*d;
       end;
     elseif part(u,1)=='s' then
       //step response
     else
-      error('Invalid response type requested. Should be ""step"" or ""impuls""')
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"csim",1,"step","impuls"))
     end;
     deff('[y]=u(t)',text);
   case 11 then //input given by a function of time
@@ -80,7 +80,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
   case 13 then //input given by a function of time
   case 1 then //input given by a vector of data
     [mbu,ntu]=size(u);
-    if mbu<>mb | ntu<>size(dt,'*') then error('wrong size of u'), end
+    if mbu<>mb | ntu<>size(dt,'*') then error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"),"csim",1)), end
   case 15 then  //input given by a list: function of time with parameters
     uu=u(1),
     if type(uu)==11 then 

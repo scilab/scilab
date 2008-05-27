@@ -56,7 +56,7 @@ if RHS==1 then Alfa=-1;Beta=-1;flag='ge';end
 if RHS==2 then Beta=Alfa;flag='ge';end
 if RHS==3 then flag='ge';end
 if RHS==4 then 
-if type(flag)~=10 then error('abinv: flag must be a string');end
+if type(flag)~=10 then error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"cainv",4));end
 end
 [X,ddims,F,U,k,Z]=abinv(Sl',Beta,Alfa,flag);
 [nx,nx]=size(X);

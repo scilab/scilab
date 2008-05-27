@@ -30,11 +30,11 @@ D21=D(l2,k1);
 D22=D(l2,k2);
 [U,n]=rowcomp(D12);
 //n=r(2) ?
-if n<>r(2) then write(%io(2)," D12 not full rank !"),end
+if n<>r(2) then mprintf(gettext("%s: %s not full rank.\n"),"h_inf_st","D12"),end
 U=U([n+1:l-r(1),1:n],:);       //Bottom Compression
 [V,m]=colcomp(D21);
 //m=r(1) ?
-if m<>r(1) then write(%io(2)," D21 not full rank !"),end
+if m<>r(1) then mprintf(gettext("%s: %s not full rank.\n"),"h_inf_st","D21"),end
 //   Update
 D12=U*D12;
 D11=U*D11*V;

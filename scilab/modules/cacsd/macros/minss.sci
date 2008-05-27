@@ -15,7 +15,7 @@ flag=Sl(1);
  select rhs
    case 1 then tol=[]
    case 2 then tol=tol
-   else error('1 or 2 inputs: sl [,tol]')
+   else error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"minss",1,2))
  end;
  [a,b,c,d,x0,dom]=Sl(2:7)
 //

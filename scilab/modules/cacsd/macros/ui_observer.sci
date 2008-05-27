@@ -85,8 +85,8 @@ D11=D1(:,reject);D21=Dnew(:,reject);
 C11=C1new(:,1:ns);C21=Cnew(:,1:ns);
 //N s.t. [I,N]*[C11 D11;C21 D21]=[0,0] 
 N=lowlevel();
-disp(gettext("residual norm = "));
-disp(norm([eye(size(N,1),size(N,1)),N]*[C11,D11;C21,D21]));
+mprintf(gettext("%s: Residual norm = "),"ui_observer");
+mprintf(norm([eye(size(N,1),size(N,1)),N]*[C11,D11;C21,D21]));
 D12=D1(:,not_reject);C12=C1new(:,ns+1:$);
 UIobs('C')=[C12+N*C22];UIobs('D')=[D12+N*D22,-N];
 
@@ -99,9 +99,9 @@ colN=size(C21,1);rowN=size(C11,1);
 if size(K,1) > rowN then K=K(1:rowN,:);end
 Kleft=K(:,1:size(K,1))
 if size(Kleft,'*')==1 & abs(Kleft) <1.d-8 then 
-N=[];error(gettext("Bad conditioning!"));return;end
+N=[];error(msprintf(gettext("%s: Bad conditionning.\n"),"ui_observer"));return;end
 if rcond(Kleft) <= 1.d-10 then 
-	warning(gettext("Bad conditioning!"));
+	warning(msprintf(gettext("%s: Bad conditionning.\n"),"ui_observer"));
 	K1=pinv(Kleft)*K;N=K1(:,size(K,1)+1:$);return
 end
 K1=inv(Kleft)*K;   //test conditioning here!

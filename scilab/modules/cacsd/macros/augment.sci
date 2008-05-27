@@ -44,7 +44,7 @@ case 'o'
   select long
   case 3 then
     // 'SRT'
-    if SRT<>"SRT" then error(msprintf(gettext("%s: Wrong value for input argument: ''%s'' expected."), 'augment','SRT'),9999);
+    if SRT<>"SRT" then error(msprintf(gettext("%s: Wrong value for input argument: ''%s'' expected.\n"), 'augment','SRT'),9999);
       return
     end
     if ssSRT==0 then
@@ -116,7 +116,7 @@ case 'o'
       end
       return  
     end 
-    error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'' or ''%s'' expected."),'augment','SR','ST','RT'),9999);
+    error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'' or ''%s'' expected.\n"),'augment','SR','ST','RT'),9999);
   case 1 then
     if SRT=='S' then
       if ssSRT==0 then
@@ -177,7 +177,7 @@ case 'i'
   select long
   case 3 then
     // 'SRT'
-    if SRT<>"SRT" then error(msprintf(gettext("%s: Wrong value for input argument: ''%s'' expected."),'augment','SRT'),9999);
+    if SRT<>"SRT" then error(msprintf(gettext("%s: Wrong value for input argument: ''%s'' expected.\n"),'augment','SRT'),9999);
       return;
     end;
     if ssSRT==0 then
@@ -245,7 +245,7 @@ case 'i'
       end
       return  
     end 
-    error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'' or ''%s'' expected."),'augment','SR','ST','RT'),9999);
+    error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'' or ''%s'' expected.\n"),'augment','SR','ST','RT'),9999);
   case 1 then
     if SRT=='S' then
       if ssSRT==0 then

@@ -20,10 +20,10 @@ if type(g)==1,if norm(g)==0,nh=0,return,end,end,
 if rhs==1 then tol=1000*%eps,end;
 g1=g(1);
 if g1(1)=='lss' then
-  if norm(g(5))>0 then error('non zero D'),end;
+  if norm(g(5))>0 then error(msprintf(gettext("%s: Non zero D.\n"),"h2norm")),end;
   sp=spec(g(2)),
   if maxi(real(sp))>=-tol then
-    error('unstable system!'),
+     error(msprintf(gettext("%s: Unstable system.\n"),"h2norm"))
   end,
   w=obs_gram(g(2),g(4),'c'),
   nh=abs(sqrt(sum(diag(g(3)'*w*g(3))))),return,
@@ -38,11 +38,11 @@ else,
 	nh(i,j)=0,
       else
 	if degree(n)>=degree(d) then
-	  error('improper system'),
+	  error(msprintf(gettext("%s: Improper system.\n"),"h2norm"))
 	end
 	pol=roots(d),
 	if maxi(real(pol))>-tol then
-	error('unstable system!'),end,
+	error(msprintf(gettext("%s: Unstable system.\n"),"h2norm")),end,
 	nt=horner(n,-s),dt=horner(d,-s),
 	nh(i,j)=residu(n*nt,d,dt),
       end,

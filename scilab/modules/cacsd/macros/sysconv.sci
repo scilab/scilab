@@ -62,10 +62,10 @@ select s2('dt')
 end;
 select t1+4*t2
 case 0 then,
-case 1 then  warning('time domains are not compatible')
+case 1 then  warning(msprintf(gettext("%s: time domains are not compatible.\n"), "sysconv"))
 case 2 then  s2=dscr(s2,s1('dt'))
 case 3 then  s1('dt')='c'
-case 4 then  warning('time domains are not compatible')
+case 4 then  warning(msprintf(gettext("%s: time domains are not compatible.\n"), "sysconv"))
 case 5 then,
 case 6 then  s2('dt')=s1('dt')
 case 7 then  s1('dt')='d'
@@ -73,7 +73,7 @@ case 8 then  s1=dscr(s1,s2('dt'))
 case 9 then  s1('dt')=s2('dt')
 case 10 then
   if s1('dt')<>s2('dt') then
-    warning('time domains are not compatible')
+    warning(msprintf(gettext("%s: time domains are not compatible.\n"), "sysconv"))
   end
 case 11 then s1('dt')=s2('dt')
 case 12 then s2('dt')='c'

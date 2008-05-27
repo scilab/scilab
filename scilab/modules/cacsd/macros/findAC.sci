@@ -57,7 +57,7 @@ if tol==[] then tol = 0;end
 if nin<5 then meth = 1;end
 if meth==[] then meth = 1;end
 if nin<4 then
-  error('Wrong number of input arguments');
+  error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"findAC",4));
 end
 // 
 // Compute system matrices A and C.
@@ -70,7 +70,7 @@ elseif nout==2 then
 elseif nout==3 then
   [A,C,rcnd] = sident(meth,job,s,n,l,R,tol,nsmpl,[],[],printw);
 else
-  error('Wrong number of output arguments');
+  error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"),"findAC",1,3));
 end
 // 
 // end findAC

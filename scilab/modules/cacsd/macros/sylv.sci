@@ -13,10 +13,10 @@ function X = sylv(A,B,C,flag)
   if size(A,1)<> size(A,2) then error(20,1),end
   if size(B,1)<> size(B,2) then error(20,2),end
   if size(C,1)<> size(A,1) then 
-    error(msprintf(gettext("%s: First and third input arguments have incompatible number of rows.\n"),"sylv"))
+    error(msprintf(gettext("%s: Wrong values for input arguments #%d and #%d: Incompatible number of rows.\n"),"sylv",1,3))
   end
   if size(C,2)<> size(B,2) then 
-	error(msprintf(gettext("%s: Second and third input arguments have incompatible number of columns.\n"),"sylv"))
+	error(msprintf(gettext("%s: Wrong values for input arguments #%d and #%d: Incompatible number of columns.\n"),"sylv",2,3))
   end
     
   if flag=='c' then 

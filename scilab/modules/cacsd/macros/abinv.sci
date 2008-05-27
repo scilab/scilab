@@ -51,10 +51,10 @@ if RHS==1 then Alfa=-1;Beta=-1;flag='ge';end
 if RHS==2 then Beta=Alfa;flag='ge';end
 if RHS==3 then flag='ge';end
 if RHS==4 then 
-if type(flag)~=10 then error(msprintf(gettext("%s: Wrong type for fourth input argument: String expected.\n"),"abinv"));end
+if type(flag)~=10 then error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"abinv",4));end
 end
 timedomain=Sl.dt;
-if timedomain==[] then warning(msprintf(gettext("%s: Time domain not given => Sl assumed continuous (default).\n"),"abinv"));timedomain='c';end
+if timedomain==[] then    warning(msprintf(gettext("%s: Time domain not defined: Assumed continuous.\n."),"abinv"));timedomain='c';end
 [A,B,C,D]=abcd(Sl);
 [nx,nu]=size(B);
 Vi=eye(A);
@@ -121,7 +121,7 @@ A11=A11+B1bar*F1bar;  //add B1bar*F1bar is not necessary.
 if B1t ~= [] then
 	voidB1t=%f;
        if RHS==1 then
-         warning(msprintf(gettext("%s: Needs Alfa => use default value Alfa=-1.\n"),"abinv"))
+         warning(msprintf(gettext("%s: Needs %s => Use default value %s=%d.\n"),"abinv","Alfa","Alfa",-1))
          Alfa=-1;
        end
 	F1t_tmp=0*sl1('B')'; //nu-k rows, dimV columns
@@ -138,7 +138,7 @@ end
 sl2=syslin(timedomain,A22,B2*Urange,0*(B2*Urange)');
 [ns2,nc2,U2,sl3]=st_ility(sl2);
 if (nc2~=0)&(RHS==1|RHS==2) then
-  warning(msprintf(gettext("%s: Needs Beta => use default value Beta=-1.\n"),"abinv"));
+  warning(msprintf(gettext("%s: Needs %s => Use default value %s=%d.\n"),"abinv","Beta","Beta",-1));
 end
 F2=Urange*stabil(sl2('A'),sl2('B'),Beta);
 

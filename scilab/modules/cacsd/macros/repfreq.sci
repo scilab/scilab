@@ -42,7 +42,7 @@ case 3 then
   pas=pas_def
 case 4 then ,
 else 
-  error('calling sequences: sys,fmin,fmax [,pas] or sys,frq')
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "repfreq",1,4))
 end;
 splitf=1
 if rhs<>2 then
@@ -61,7 +61,7 @@ if rhs<>2 then
       frq= [exp(l10*((log(-fmax)/l10):pas:(log(-fmin)/l10))) -fmin];
       frq=-frq($:-1:1);
     elseif fmin >= fmax then
-      error('repfrq: fmin must be < fmax');
+	  error(msprintf(gettext("%s: Wrong value for input argument: %s < %s expected.\"),"reqfreq","fmin","fmax"));
     else
       fmin=max(eps,fmin);
       frq=[exp(l10*((log(fmin)/l10):pas:(log(fmax)/l10))) fmax];

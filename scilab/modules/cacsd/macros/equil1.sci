@@ -37,7 +37,7 @@ q=t2*q*t2';t3=eye(n,n);
 if np<>n then
   x=diag(ones(nq,1)./(sigma1.*sigma1))*q(1:nq,np+1:n)
   t3(1:nq,np+1:n)=-x;
-  q=t3'*q*t3;// ici t3 vaut en fait t3**-1
+  q=t3'*q*t3;// here t3 value is in reality t3**-1
   t3(1:nq,np+1:n)=x;
 end;
 //

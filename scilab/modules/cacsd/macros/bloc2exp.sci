@@ -13,10 +13,10 @@ function [h,name]=bloc2exp(syst,sexp)
 [lhs,rhs]=argn(0)
 
 if type(syst)<>15 then
-  error('argument must be a list describing the blocks')
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A list expected.\n"),"bloc2exp",1));
 end;
 if syst(1)<>'blocd' then
-  error('argument must be a list describing the blocks')
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A list expected.\n"),"bloc2exp",1));
 end;
 //inter%connection matrix
 nsyst=size(syst)
@@ -56,12 +56,6 @@ function [ab,nio,name]=construct(syst)
 //!
 [lhs,rhs]=argn(0)
 
-if type(syst)<>15 then
-  error('input must be a list for block-diagramm representation')
-end;
-if syst(1)<>'blocd' then
-  error('input must be a list for block-diagramm representation')
-end;
 [lboites,lliens,lentrees,lsorties]=blocdext(syst)
 nio=[prod(size(lentrees)),prod(size(lsorties))]
 lliens=[lliens,lsorties]
@@ -133,12 +127,12 @@ for k=2:nsyst
             end;
                       else lentrees(1,-obj2(1))=k,
          end;
-     else error('undefined element')
+     else  error(msprintf(gettext("%s: Undefined type ''%s''.\n"),"bloc2exp",obj(1)))
   end;
   end,end
 end;
-if mini(lsorties)==0 then error('undefined output'),end
-if mini(lentrees)==0 then error('undefined input'),end
+if mini(lsorties)==0 then error(msprintf(gettext("%s: Internal error: Undefined output.\n"),"bloc2exp")),end
+if mini(lentrees)==0 then error(msprintf(gettext("%s: Internal error: Undefined input.\n"),"bloc2exp")),end
 
 endfunction
 function [where_x]=%connect(bloc,lliens,syst)

@@ -22,24 +22,22 @@ function [ar]=armac(a,b,d,ny,nu,sig)
 
 [na,la]=size(a);
 if na<>ny then 
-	write(%io(2),"armac: a(:,1) must be of dimension "+string(ny));
-	return;
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: %s must be of dimension %s.\n"),"armac",1,"a(:,1)", string(ny)));
+
 end
 [nb,lb]=size(b);
 if nb<>0 & nb<>ny then 
- 	write(%io(2),"armac: b(:,1) must be of dimension "+string(ny));
-	return;
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: %s must be of dimension %s.\n"),"armac",2,"b(:,1)", string(ny)));
 end;
 if lb<>0 & nu<>0 then 
  if modulo(lb,nu)<>0 then 
- 	write(%io(2),"armac: number of columns of b are incompatible with nu');
-	return;
+   error(msprintf(gettext("%s: Wrong size of input argument #%d: Number of columns are incompatible with %s.\n"),"armac",2,"nu"));
   end;
 end      
 [nd,ld]=size(d);
 if nd<>ny then 
-	write(%io(2),"armac: d(:,1) must be of dimension "+string(ny));
-	return;
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: %s must be of dimension %s.\n"),"armac",3,"d(:,1)", string(ny)));
+
 end
 ar=tlist(['ar','a','b','d','ny','nu','sig'],a,b,d,ny,nu,sig);
 endfunction
