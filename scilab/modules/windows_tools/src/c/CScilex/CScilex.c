@@ -138,6 +138,7 @@ int main (int argc, char **argv)
 static void setLC_MESSAGES(void)
 {
 	#define LENGTH_BUFFER 1024
+	#define FORMAT_LOCALE "%s_%s"
 	char buffer_LOCALE_SISO639LANGNAME[LENGTH_BUFFER];
 	char buffer_LOCALE_SISO3166CTRYNAME[LENGTH_BUFFER];
 	char *localeStr = NULL;
@@ -156,12 +157,11 @@ static void setLC_MESSAGES(void)
 		{
 			int length_localeStr = (int)(strlen(buffer_LOCALE_SISO639LANGNAME)+
 										 strlen(buffer_LOCALE_SISO3166CTRYNAME)+
-										 strlen("_"));
+										 strlen(FORMAT_LOCALE));
 			localeStr = (char*)MALLOC(sizeof(char)*(length_localeStr)+1);
 			if (localeStr)
 			{
-				#define FORMAT_LOCALE "%s_%s"
-				StringCchPrintfA(localeStr,length_localeStr,"%s_%s",buffer_LOCALE_SISO639LANGNAME,buffer_LOCALE_SISO3166CTRYNAME);
+				StringCchPrintfA(localeStr,length_localeStr,FORMAT_LOCALE,buffer_LOCALE_SISO639LANGNAME,buffer_LOCALE_SISO3166CTRYNAME);
 				SetEnvironmentVariableA(EXPORTENVLOCALESTR,localeStr);
 				FREE(localeStr);
 			}
