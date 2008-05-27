@@ -37,6 +37,7 @@ DrawableObject::EDisplayStatus DrawableRectangle::draw( void )
   }
   initializeDrawing() ;
   clip();
+  reinitMove();
   drawRectangle() ;
   unClip();
   endDrawing();
@@ -51,7 +52,9 @@ DrawableObject::EDisplayStatus DrawableRectangle::show( void )
   }
   initializeDrawing();
   clip();
+  translate();
   showRectangle();
+  endTranslate();
   unClip();
   endDrawing();
   return SUCCESS;
@@ -65,7 +68,9 @@ DrawableObject::EDisplayStatus DrawableRectangle::redraw(void)
   }
   initializeDrawing();
   clip();
+  translate();
   redrawRectangle();
+  endTranslate();
   unClip();
   endDrawing();
   return SUCCESS;

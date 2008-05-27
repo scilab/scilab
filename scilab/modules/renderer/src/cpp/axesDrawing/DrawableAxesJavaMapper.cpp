@@ -63,6 +63,16 @@ void DrawableAxesJavaMapper::setFigureIndex(int figureIndex)
   m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::translate(const double translation[3])
+{
+  m_pJavaObject->translate(translation[0], translation[1], translation[2]);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableAxesJavaMapper::endTranslate(void)
+{
+  m_pJavaObject->endTranslate();
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableAxesJavaMapper::clipX(double xMin, double xMax)
 {
   m_pJavaObject->clipX(xMin, xMax);

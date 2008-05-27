@@ -37,6 +37,11 @@ extern "C" {
   void sciDrawObj( sciPointObj * pObj ) ;
 
   /**
+   * Move a graphic handle
+   */
+  void sciMoveObj(sciPointObj * pObj, const double translation[3]);
+
+  /**
   * Draw a single graphic handle.
   * Should normally not be called directly. Observers should call it automatically.
   */
@@ -63,6 +68,12 @@ extern "C" {
    * To be used when several objects are modified in the same time.
    */
   void forceRedraw(sciPointObj * pObj);
+
+  /**
+   * Force a move an object.
+   * The move is schedule for the next redraw
+   */
+  void forceMove(sciPointObj * pObj, double tx, double ty, double tz);
 
 #ifdef __cplusplus
 }

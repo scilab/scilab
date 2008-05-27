@@ -117,9 +117,25 @@ public:
   void setDrawableImp( DrawableObjectBridge * imp ) ;
 
   /**
-  * Get the driver dependent implementation of algorithm
-  * Each graphic object must have is own
-  */
+   * Apply a translation to the object.
+   * The next call to show will take it into account
+   */
+  void move(const double translation[3]);
+
+  /**
+   * Reinit the move translation
+   */
+  void reinitMove(void);
+
+  /**
+   * Get the translation
+   */
+  void getMoveTranslation(double translation[3]);
+
+  /**
+   * Get the driver dependent implementation of algorithm
+   * Each graphic object must have is own
+   */
   DrawableObjectBridge * getDrawableImp( void ) { return m_pImp ; }
 
 protected:
@@ -143,6 +159,16 @@ protected:
    * By default just call show
    */
   virtual EDisplayStatus redraw(void);
+
+  /**
+   * Translate the object with the record move in camera coordinates
+   */
+  virtual void translate(void);
+
+  /**
+   * End translation
+   */
+  virtual void endTranslate(void);
 
   /**
    * Common to every object. Check its visibility.
@@ -182,6 +208,9 @@ protected:
    *  Contains drivers independent algorithm common to all DrawableObjects
    */
   DrawableObjectBridge * m_pImp ;
+
+  /** Record the translation needed by the move */
+  double m_aMoveTranslation[3];
   /*---------------------------------------------------------------------------------*/
 
 } ;

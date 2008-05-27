@@ -30,6 +30,7 @@ DrawableObject::EDisplayStatus DrawablePolyline::draw( void )
   }
   initializeDrawing() ;
   clip();
+  reinitMove();
   drawPolyline() ;
   unClip();
   endDrawing();
@@ -44,7 +45,9 @@ DrawableObject::EDisplayStatus DrawablePolyline::show( void )
   }
   initializeDrawing();
   clip();
+  translate();
   showPolyline();
+  endTranslate();
   unClip();
   endDrawing();
   return SUCCESS;
@@ -58,7 +61,9 @@ DrawableObject::EDisplayStatus DrawablePolyline::redraw( void )
   }
   initializeDrawing();
   clip();
+  translate();
   redrawPolyline();
+  endTranslate();
   unClip();
   endDrawing();
   return SUCCESS;

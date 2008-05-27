@@ -56,6 +56,16 @@ public:
   virtual void endShowing( void ) ;
 
   /**
+   * Translate the object with the record move in camera coordinates
+   */
+  virtual void translate(const double translation[3]);
+
+  /**
+   * Translate the object with the record move in camera coordinates
+   */
+  virtual void endTranslate(void);
+
+  /**
    * Call the display list of an object
    */
   virtual void show( void ) ;

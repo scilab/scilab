@@ -62,6 +62,16 @@ void DrawableRectangleJavaMapper::setFigureIndex(int figureIndex)
   m_pJavaObject->setFigureIndex(figureIndex);
 }
 /*----------------------------------------------------------------------*/
+void DrawableRectangleJavaMapper::translate(const double translation[3])
+{
+  m_pJavaObject->translate(translation[0], translation[1], translation[2]);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableRectangleJavaMapper::endTranslate(void)
+{
+  m_pJavaObject->endTranslate();
+}
+/*----------------------------------------------------------------------*/
 void DrawableRectangleJavaMapper::clipX(double xMin, double xMax)
 {
   m_pJavaObject->clipX(xMin, xMax);

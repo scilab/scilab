@@ -62,6 +62,16 @@ void DrawableTextJavaMapper::setFigureIndex(int figureIndex)
 {
   m_pJavaObject->setFigureIndex(figureIndex);
 }
+/*---------------------------------------------------------------------------------*/
+void DrawableTextJavaMapper::translate(const double translation[3])
+{
+  m_pJavaObject->translate(translation[0], translation[1], translation[2]);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableTextJavaMapper::endTranslate(void)
+{
+  m_pJavaObject->endTranslate();
+}
 /*----------------------------------------------------------------------*/
 void DrawableTextJavaMapper::clipX(double xMin, double xMax)
 {

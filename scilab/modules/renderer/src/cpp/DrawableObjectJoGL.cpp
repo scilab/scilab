@@ -53,6 +53,16 @@ void DrawableObjectJoGL::endShowing( void )
   
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableObjectJoGL::translate(const double translation[3])
+{
+  getJavaMapper()->translate(translation);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableObjectJoGL::endTranslate(void)
+{
+  getJavaMapper()->endTranslate();
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::show( void )
 {
   getJavaMapper()->show(sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())));

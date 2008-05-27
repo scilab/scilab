@@ -25,6 +25,7 @@ DrawableObject::EDisplayStatus DrawableSegs::draw( void )
   }
   initializeDrawing();
   clip();
+  reinitMove();
   drawSegs();
   unClip();
   endDrawing();
@@ -39,7 +40,9 @@ DrawableObject::EDisplayStatus DrawableSegs::show( void )
   }
   initializeDrawing();
   clip();
+  translate();
   showSegs();
+  endTranslate();
   unClip();
   endDrawing();
   return SUCCESS;
@@ -53,7 +56,9 @@ DrawableObject::EDisplayStatus DrawableSegs::redraw(void)
   }
   initializeDrawing();
   clip();
+  translate();
   redrawSegs();
+  endTranslate();
   unClip();
   endDrawing();
   return SUCCESS;

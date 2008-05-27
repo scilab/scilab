@@ -62,6 +62,16 @@ void DrawablePolylineJavaMapper::setFigureIndex(int figureIndex)
 {
   m_pJavaObject->setFigureIndex(figureIndex);
 }
+/*---------------------------------------------------------------------------------*/
+void DrawablePolylineJavaMapper::translate(const double translation[3])
+{
+  m_pJavaObject->translate(translation[0], translation[1], translation[2]);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawablePolylineJavaMapper::endTranslate(void)
+{
+  m_pJavaObject->endTranslate();
+}
 /*----------------------------------------------------------------------*/
 void DrawablePolylineJavaMapper::clipX(double xMin, double xMax)
 {

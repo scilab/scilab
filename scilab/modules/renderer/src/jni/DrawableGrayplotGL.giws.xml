@@ -16,6 +16,13 @@
     <method name="setFigureIndex" returnType="void">
       <param type="int" name="figureIndex" />
     </method>
+    <method name="translate" returnType="void">
+      <param type="double" name="tx" />
+      <param type="double" name="ty" />
+      <param type="double" name="tz" />
+    </method>
+    <method name="endTranslate" returnType="void">
+    </method>
     <method name="clipX" returnType="void">
       <param type="double" name="xMin" />
       <param type="double" name="xMax" />

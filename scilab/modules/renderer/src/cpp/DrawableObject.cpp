@@ -30,6 +30,7 @@ DrawableObject::DrawableObject( sciPointObj * drawed )
   m_bNeedDraw = true   ; // a first call to draw is necessary
   m_bNeedRedraw = false  ;
   m_pImp = NULL ;
+  reinitMove();
 }
 /*---------------------------------------------------------------------------------*/
 DrawableObject::~DrawableObject( void )
@@ -163,9 +164,66 @@ void DrawableObject::setDrawableImp( DrawableObjectBridge * imp )
   m_pImp = imp;
 }
 /*------------------------------------------------------------------------------------------*/
+void DrawableObject::move(const double translation[3])
+{
+  // disable move in logarithmic scale
+  // move is to be used with affine transformations
+  // TODO create specific cases for each object
+  sciPointObj * parentSubwin = sciGetParentSubwin(m_pDrawed);
+  char logFlags[3];
+  sciGetLogFlags(parentSubwin, logFlags);
+  if (logFlags[0] == 'l' || logFlags[1] == 'l' || logFlags[2] == 'l')
+  {
+    // use has changed instead
+    hasChanged();
+    return;
+  }
+
+  // add the new translation
+  m_aMoveTranslation[0] += translation[0];
+  m_aMoveTranslation[1] += translation[1];
+  m_aMoveTranslation[2] += translation[2];
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::reinitMove(void)
+{
+
+  m_aMoveTranslation[0] = 0.0;
+  m_aMoveTranslation[1] = 0.0;
+  m_aMoveTranslation[2] = 0.0;
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::getMoveTranslation(double translation[3])
+{
+  translation[0] = m_aMoveTranslation[0];
+  translation[1] = m_aMoveTranslation[1];
+  translation[2] = m_aMoveTranslation[2];
+}
+/*------------------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableObject::redraw(void)
 {
   return show();
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::translate(void)
+{
+  // translate only if needed
+  if (m_aMoveTranslation[0] != 0.0 ||
+      m_aMoveTranslation[1] != 0.0 ||
+      m_aMoveTranslation[2] != 0.0)
+  {
+    getDrawableImp()->translate(m_aMoveTranslation);
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+void DrawableObject::endTranslate(void)
+{
+  if (m_aMoveTranslation[0] != 0.0 ||
+    m_aMoveTranslation[1] != 0.0 ||
+    m_aMoveTranslation[2] != 0.0)
+  {
+    getDrawableImp()->endTranslate();
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 bool DrawableObject::checkVisibility( void )

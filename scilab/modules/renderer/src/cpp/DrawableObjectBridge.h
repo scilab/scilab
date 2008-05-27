@@ -63,6 +63,16 @@ public:
   virtual void endShowing( void ) = 0 ;
 
   /**
+   * Translate the object with the record move in camera coordinates
+   */
+  virtual void translate(const double translation[3]) = 0;
+
+  /**
+   * Translate the object with the record move in camera coordinates
+   */
+  virtual void endTranslate(void) = 0;
+
+  /**
    * Display an object which whose representation has been already saved (ie dl created).
    */
   virtual void show( void ) = 0 ;

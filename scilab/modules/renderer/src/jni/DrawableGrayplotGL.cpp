@@ -108,6 +108,8 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
+voidtranslatejdoublejdoublejdoubleID=NULL; 
+voidendTranslateID=NULL; 
 voidclipXjdoublejdoubleID=NULL; 
 voidclipYjdoublejdoubleID=NULL; 
 voidclipZjdoublejdoubleID=NULL; 
@@ -144,6 +146,8 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
+voidtranslatejdoublejdoublejdoubleID=NULL; 
+voidendTranslateID=NULL; 
 voidclipXjdoublejdoubleID=NULL; 
 voidclipYjdoublejdoubleID=NULL; 
 voidclipZjdoublejdoubleID=NULL; 
@@ -279,6 +283,44 @@ exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void DrawableGrayplotGL::translate (double tx, double ty, double tz){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidtranslatejdoublejdoublejdoubleID==NULL) { /* Use the cache Luke */ voidtranslatejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "translate", "(DDD)V" ) ;
+if (voidtranslatejdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method " << "translate" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidtranslatejdoublejdoublejdoubleID ,tx, ty, tz);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void DrawableGrayplotGL::endTranslate (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidendTranslateID==NULL) { /* Use the cache Luke */ voidendTranslateID = curEnv->GetMethodID(this->instanceClass, "endTranslate", "()V" ) ;
+if (voidendTranslateID == NULL) {
+std::cerr << "Could not access to the method " << "endTranslate" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidendTranslateID );
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

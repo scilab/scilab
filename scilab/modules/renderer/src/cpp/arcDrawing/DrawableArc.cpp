@@ -37,6 +37,7 @@ DrawableObject::EDisplayStatus DrawableArc::draw( void )
   }
   initializeDrawing() ;
   clip();
+  reinitMove();
   drawArc() ;
   unClip();
   endDrawing();
@@ -56,7 +57,9 @@ DrawableObject::EDisplayStatus DrawableArc::show( void )
     return UNCHANGED ;
   }
   clip();
+  translate();
   showArc();
+  endTranslate();
   unClip();
   return SUCCESS;
 }

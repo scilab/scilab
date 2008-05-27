@@ -26,6 +26,7 @@ DrawableObject::EDisplayStatus DrawableGrayplot::draw( void )
   }
   initializeDrawing();
   clip();
+  reinitMove();
   drawGrayplot();
   unClip();
   endDrawing();
@@ -38,7 +39,13 @@ DrawableObject::EDisplayStatus DrawableGrayplot::show( void )
   {
     return UNCHANGED;
   }
+  initializeDrawing();
+  clip();
+  translate();
   showGrayplot();
+  endTranslate();
+  unClip();
+  endDrawing();
   return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/

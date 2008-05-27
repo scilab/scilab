@@ -17,18 +17,27 @@ package org.scilab.modules.renderer.grayplotDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.AutoDrawableObjectGL;
+import org.scilab.modules.renderer.DrawableClippedObjectGL;
 
 /**
  * Class containing functions called by DrawableGrayplotJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
-public class DrawableGrayplotGL extends AutoDrawableObjectGL {
+public class DrawableGrayplotGL extends DrawableClippedObjectGL {
 
 	/**
 	 * Default Constructor
 	 */
 	public DrawableGrayplotGL() {
 		super();
+	}
+	
+	/**
+	 * Display the object by displaying its display list
+	 * @param parentFigureIndex index of the parent figure in which the object will be drawn
+	 */
+	public void show(int parentFigureIndex) {
+		displayDL();
 	}
 	
 	/**
@@ -50,6 +59,8 @@ public class DrawableGrayplotGL extends AutoDrawableObjectGL {
 		// rectangles are used to render each pixel
 		// Using textures would be much faster
 		// hower it would not be compatible with GL2PS, so for now we keep th eslow version
+		
+		startRecordDL();
 		gl.glBegin(GL.GL_QUADS);
 		for (int i = 0; i < nbCol; i++) {
 			for (int j = 0; j < nbRow; j++) {
@@ -62,7 +73,7 @@ public class DrawableGrayplotGL extends AutoDrawableObjectGL {
 			}
 		}
 		gl.glEnd();
-		
+		endRecordDL();
 		
 	}
 	

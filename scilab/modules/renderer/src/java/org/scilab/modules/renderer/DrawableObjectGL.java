@@ -15,6 +15,8 @@ package org.scilab.modules.renderer;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
+import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
@@ -62,6 +64,43 @@ public abstract class DrawableObjectGL extends ObjectGL {
  		dlIndex = GLTools.UNINIT_DL_INDEX;
 	}
 	
+	
+	/**
+	 * Function called before beginning to use OpenGL methods.
+	 * @param parentFigureIndex index of the parent figure.
+	 *                          Needed to get the GL context to draw in.
+	 */
+	public void initializeDrawing(int parentFigureIndex) {
+		super.initializeDrawing(parentFigureIndex);
+		
+	}
+	
+	/**
+	 * Function called at the end of the OpenGL use.
+	 */
+	public void endDrawing() {
+		super.endDrawing();
+	}
+	
+	/**
+	 * Translate the object
+	 * @param tx x displacement
+	 * @param ty y displacement
+	 * @param tz z displacement
+	 */
+	public void translate(double tx, double ty, double tz) {
+		getGL().glPushMatrix();
+		getGL().glTranslated(tx, ty, tz);
+		CoordinateTransformation.getTransformation(getGL()).setAdditionalTranslation(new Vector3D(tx, ty, tz));
+	}
+	
+	/**
+	 * Finish the translation of the object
+	 */
+	public void endTranslate() {
+		getGL().glPopMatrix();
+		CoordinateTransformation.getTransformation(getGL()).setAdditionalTranslation(null);
+	}
 	
 	
 	/**

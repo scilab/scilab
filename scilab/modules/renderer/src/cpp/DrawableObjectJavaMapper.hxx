@@ -37,6 +37,10 @@ public:
 
   virtual void setFigureIndex(int figureIndex) = 0;
 
+  virtual void translate(const double translation[3]) { };
+
+  virtual void endTranslate(void) { };
+
 };
 
 }

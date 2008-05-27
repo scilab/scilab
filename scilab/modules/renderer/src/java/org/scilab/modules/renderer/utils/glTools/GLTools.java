@@ -17,6 +17,7 @@ package org.scilab.modules.renderer.utils.glTools;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
+import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 /**
  * Class containing functions to ease Gl calls
  * @author Jean-Baptiste Silvy Silvy
@@ -136,6 +137,12 @@ public final class GLTools {
 		gl.glLoadIdentity();
 		
 		ClipPlane3DManager.changeAllPlanesFrame(gl);
+		
+		// transform additional translation to pixels
+		Vector3D translation = CoordinateTransformation.getTransformation(gl).getAdditionalTranslationPix(gl);
+		if (translation != null) {
+			gl.glTranslated(translation.getX(), translation.getY(), translation.getZ());
+		}
 	}
 	
 	/**
@@ -149,7 +156,18 @@ public final class GLTools {
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glPopMatrix();
 		
-		ClipPlane3DManager.popAllPlanes(gl);
+		Vector3D translation = CoordinateTransformation.getTransformation(gl).getAdditionalTranslation();
+		if (translation != null) {
+			// we have an additional translation here
+			// so clipping the plane with its previous equation is not valid here
+			// the plane would be translated too. So remove the translation and use it again
+			gl.glTranslated(-translation.getX(), -translation.getY(), -translation.getZ());
+			ClipPlane3DManager.popAllPlanes(gl);
+			gl.glTranslated(translation.getX(), translation.getY(), translation.getZ());
+		} else {
+			ClipPlane3DManager.popAllPlanes(gl);
+		}
+		
 		
 	}
 	

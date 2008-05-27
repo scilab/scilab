@@ -48,6 +48,14 @@ void sciDrawObj( sciPointObj * pObj )
   getHandleDrawer( sciGetParentFigure( pObj ) )->display() ;
 }
 /*---------------------------------------------------------------------------------*/
+void sciMoveObj(sciPointObj * pObj, const double translation[3])
+{
+  /* Specify that the object has moved */
+  getHandleDrawer(pObj)->move(translation);
+  /* redisplay everything, including this handle */
+  getHandleDrawer( sciGetParentFigure( pObj ) )->display() ;
+}
+/*---------------------------------------------------------------------------------*/
 void sciDrawSingleObj( sciPointObj * pObj )
 {
   /* force a redraw of the object */
@@ -79,3 +87,13 @@ void forceRedraw(sciPointObj * pObj)
   getHandleDrawer(pObj)->hasChanged();
 }
 /*---------------------------------------------------------------------------------*/
+void forceMove(sciPointObj * pObj, double tx, double ty, double tz)
+{
+  double displacement[3];
+  displacement[0] = tx;
+  displacement[1] = ty;
+  displacement[2] = tz;
+  getHandleDrawer(pObj)->move(displacement);
+}
+/*---------------------------------------------------------------------------------*/
+

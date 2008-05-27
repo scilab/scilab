@@ -58,6 +58,8 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
+jmethodID voidtranslatejdoublejdoublejdoubleID; // cache method id
+jmethodID voidendTranslateID; // cache method id
 jmethodID voidclipXjdoublejdoubleID; // cache method id
 jmethodID voidclipYjdoublejdoubleID; // cache method id
 jmethodID voidclipZjdoublejdoubleID; // cache method id
@@ -115,6 +117,10 @@ void show(long figureIndex);
 void destroy(long parentFigureIndex);
 
 void setFigureIndex(long figureIndex);
+
+void translate(double tx, double ty, double tz);
+
+void endTranslate();
 
 void clipX(double xMin, double xMax);
 

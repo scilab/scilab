@@ -61,6 +61,16 @@ void DrawableGrayplotJavaMapper::setFigureIndex(int figureIndex)
 {
   m_pJavaObject->setFigureIndex(figureIndex);
 }
+/*---------------------------------------------------------------------------------*/
+void DrawableGrayplotJavaMapper::translate(const double translation[3])
+{
+  m_pJavaObject->translate(translation[0], translation[1], translation[2]);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableGrayplotJavaMapper::endTranslate(void)
+{
+  m_pJavaObject->endTranslate();
+}
 /*----------------------------------------------------------------------*/
 void DrawableGrayplotJavaMapper::clipX(double xMin, double xMax)
 {

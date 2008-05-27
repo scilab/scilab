@@ -38,6 +38,9 @@ public class CoordinateTransformation {
 	private Matrix4D unprojectMatrix;
 	private double[] viewPort;
 	
+	private Vector3D additionalTranslation;
+	private Vector3D additionalTranslationPix;
+	
 	/**
 	 * default constructor
 	 */
@@ -45,6 +48,8 @@ public class CoordinateTransformation {
 		projectMatrix = null;
 		unprojectMatrix = null;
 		viewPort = new double[VIEW_PORT_SIZE];
+		additionalTranslation = null;
+		additionalTranslationPix = null;
 	}
 	
 	/**
@@ -78,6 +83,37 @@ public class CoordinateTransformation {
 	 */
 	public synchronized double[] getViewPort() {
 		return viewPort;
+	}
+	
+	/**
+	 * @param trans translation to apply
+	 */
+	public synchronized void setAdditionalTranslation(Vector3D trans) {
+		this.additionalTranslation = trans;
+		this.additionalTranslationPix = null; // not up to date
+		
+	}
+	
+	/**
+	 * @return additional translation
+	 */
+	public synchronized Vector3D getAdditionalTranslation() {
+		return additionalTranslation;
+	}
+	
+	/**
+	 * @param gl current OpenGL pipeline
+	 * @return additional translation
+	 */
+	public synchronized Vector3D getAdditionalTranslationPix(GL gl) {
+		if (additionalTranslation == null) {
+			return null;
+		} else if (additionalTranslationPix == null) {
+			additionalTranslationPix = getCanvasDirection(gl, additionalTranslation);
+			return additionalTranslationPix;
+		} else {
+			return additionalTranslationPix;
+		}
 	}
 	
 	/**

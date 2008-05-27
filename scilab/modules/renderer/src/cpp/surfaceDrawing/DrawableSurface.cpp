@@ -26,6 +26,7 @@ DrawableObject::EDisplayStatus DrawableSurface::draw( void )
   }
   initializeDrawing();
   clip();
+  reinitMove();
   drawSurface();
   unClip();
   endDrawing();
@@ -40,7 +41,9 @@ DrawableObject::EDisplayStatus DrawableSurface::show( void )
   }
   initializeDrawing();
   clip();
+  translate();
   showSurface();
+  endTranslate();
   unClip();
   endDrawing();
   return SUCCESS;
@@ -54,7 +57,9 @@ DrawableObject::EDisplayStatus DrawableSurface::redraw(void)
   }
   initializeDrawing();
   clip();
+  translate();
   redrawSurface();
+  endTranslate();
   unClip();
   endDrawing();
   return SUCCESS;

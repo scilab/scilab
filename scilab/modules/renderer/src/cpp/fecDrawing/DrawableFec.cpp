@@ -25,6 +25,7 @@ DrawableObject::EDisplayStatus DrawableFec::draw( void )
   }
   initializeDrawing();
   clip();
+  reinitMove();
   drawFec();
   unClip();
   endDrawing();
@@ -39,7 +40,9 @@ DrawableObject::EDisplayStatus DrawableFec::show( void )
   }
   initializeDrawing();
   clip();
+  translate();
   showFec();
+  endTranslate();
   unClip();
   endDrawing();
   return SUCCESS;

@@ -25,6 +25,7 @@ DrawableObject::EDisplayStatus DrawableAxes::draw( void )
   }
   initializeDrawing();
   clip();
+  reinitMove();
   drawAxes();
   unClip();
   endDrawing();
@@ -39,7 +40,9 @@ DrawableObject::EDisplayStatus DrawableAxes::show( void )
   }
   initializeDrawing();
   clip();
+  translate();
   showAxes();
+  endTranslate();
   unClip();
   endDrawing();
   return SUCCESS;

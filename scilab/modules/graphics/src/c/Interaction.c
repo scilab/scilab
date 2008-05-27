@@ -552,23 +552,27 @@ sciExecCallback (sciPointObj * pthis)
 
 static int moveObj(sciPointObj * pobj, double displacement[], int displacementSize)
 {
+  int i,n;
   double x = displacement[0];
   double y = displacement[1];
   double z = (displacementSize == 3? displacement[2] : 0.0);
-  int i,n;
 
   switch (sciGetEntityType (pobj))
   {    
   case SCI_SUBWIN:
-    pSUBWIN_FEATURE(pobj)->FRect[0] +=x;
-    pSUBWIN_FEATURE(pobj)->FRect[2] +=x;
-    pSUBWIN_FEATURE(pobj)->FRect[1] +=y;
-    pSUBWIN_FEATURE(pobj)->FRect[3] +=y;
+    {
+      sciSons * psonstmp = sciGetSons(pobj);
+      while ((psonstmp != NULL) && (psonstmp->pointobj != NULL))
+      {
+        moveObj(psonstmp->pointobj, displacement, displacementSize);
+        psonstmp = psonstmp->pnext;
+      }
+    }
     break;
   case SCI_ARC:
     pARC_FEATURE(pobj)->x +=x;
     pARC_FEATURE(pobj)->y += y; 
-    if (displacementSize == 3) pRECTANGLE_FEATURE(pobj)->z += z;
+    if (displacementSize == 3) pARC_FEATURE(pobj)->z += z;
     break;
   case SCI_RECTANGLE: 
     pRECTANGLE_FEATURE(pobj)->x += x;  
@@ -630,11 +634,29 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
       pFEC_FEATURE(pobj)->pvecy[i] += y;
     }
     break;
-  case SCI_GRAYPLOT:   
-    for (i=0;i<pGRAYPLOT_FEATURE(pobj)->nx;i++)
-      pGRAYPLOT_FEATURE(pobj)->pvecx[i] += x; 
-    for (i=0;i<pGRAYPLOT_FEATURE(pobj)->ny;i++)
-      pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
+  case SCI_GRAYPLOT:
+    if (pGRAYPLOT_FEATURE(pobj)->type == 2)
+    {
+      /* Matplot 1, it is not possible to move a Matplot*/
+      pGRAYPLOT_FEATURE(pobj)->pvecx[0] += x;
+      pGRAYPLOT_FEATURE(pobj)->pvecx[2] += x;
+      pGRAYPLOT_FEATURE(pobj)->pvecx[1] += y;
+      pGRAYPLOT_FEATURE(pobj)->pvecx[3] += y;
+    }
+    else if (pGRAYPLOT_FEATURE(pobj)->type == 0)
+    {
+      /* Grayplot */
+      for (i=0;i<pGRAYPLOT_FEATURE(pobj)->nx;i++)
+        pGRAYPLOT_FEATURE(pobj)->pvecx[i] += x; 
+      for (i=0;i<pGRAYPLOT_FEATURE(pobj)->ny;i++)
+        pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
+    }
+    else
+    {
+      sciprint(_("This object can not be moved.\n"));
+      return -1;
+    }
+    
     break;
   case SCI_SURFACE: 
     switch(pSURFACE_FEATURE (pobj)->typeof3d)
@@ -704,7 +726,7 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
   }    
   
   /* update the object */
-  forceRedraw(pobj);
+  forceMove(pobj, x, y, z);
 
   return 0;
 }
@@ -719,7 +741,7 @@ int Objmove (sciPointObj * pobj, double d[], int m,BOOL opt)
   }
   else
   {
-    sciRefreshObj(pobj);
+    sciDrawObj(sciGetParentFigure(pobj));
   }
     
   return status;

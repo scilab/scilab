@@ -57,12 +57,22 @@ void DrawableFecJavaMapper::destroy(int parentFigureIndex)
 {
   m_pJavaObject->destroy(parentFigureIndex);
 }
-/*--------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
 void DrawableFecJavaMapper::setFigureIndex(int figureIndex)
 {
   m_pJavaObject->setFigureIndex(figureIndex);
 }
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
+void DrawableFecJavaMapper::translate(const double translation[3])
+{
+  m_pJavaObject->translate(translation[0], translation[1], translation[2]);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFecJavaMapper::endTranslate(void)
+{
+  m_pJavaObject->endTranslate();
+}
+/*---------------------------------------------------------------------------------*/
 void DrawableFecJavaMapper::clipX(double xMin, double xMax)
 {
   m_pJavaObject->clipX(xMin, xMax);

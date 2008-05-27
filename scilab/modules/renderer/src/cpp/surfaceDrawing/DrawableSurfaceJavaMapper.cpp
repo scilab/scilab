@@ -62,6 +62,16 @@ void DrawableSurfaceJavaMapper::setFigureIndex(int figureIndex)
 {
   m_pJavaObject->setFigureIndex(figureIndex);
 }
+/*---------------------------------------------------------------------------------*/
+void DrawableSurfaceJavaMapper::translate(const double translation[3])
+{
+  m_pJavaObject->translate(translation[0], translation[1], translation[2]);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableSurfaceJavaMapper::endTranslate(void)
+{
+  m_pJavaObject->endTranslate();
+}
 /*----------------------------------------------------------------------*/
 void DrawableSurfaceJavaMapper::clipX(double xMin, double xMax)
 {
