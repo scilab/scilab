@@ -12,9 +12,9 @@
 #include <strsafe.h>
 #include <string.h>
 #include <stdio.h>
-#include "scilabDefaults.h"
 #include "GetWindowsVersion.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "setLC_MESSAGES.h"
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_2K_OR_MORE "Scilab requires Windows 2000 or more."
 #define MSG_WARNING "Warning"
@@ -27,7 +27,6 @@
 #define LENGTH_BUFFER_SECURITY 64
 /*--------------------------------------------------------------------------*/
 typedef int (*MYPROC2) (int , char **);
-static void setLC_MESSAGES(void);
 /*--------------------------------------------------------------------------*/
 int main (int argc, char **argv)
 {
@@ -129,43 +128,5 @@ int main (int argc, char **argv)
 
     return 0;
 
-}
-/*--------------------------------------------------------------------------*/
-/* patch to initialize LC_MESSAGES */
-/* bug on Windows multi language */
-/* thanks to J-B & Simoné */
-/*--------------------------------------------------------------------------*/
-static void setLC_MESSAGES(void)
-{
-	#define LENGTH_BUFFER 1024
-	#define FORMAT_LOCALE "%s_%s"
-	char buffer_LOCALE_SISO639LANGNAME[LENGTH_BUFFER];
-	char buffer_LOCALE_SISO3166CTRYNAME[LENGTH_BUFFER];
-	char *localeStr = NULL;
-	int ret = 0;
-	ret = GetLocaleInfoA(LOCALE_USER_DEFAULT,
-						LOCALE_SISO639LANGNAME,
-						&buffer_LOCALE_SISO639LANGNAME[0],
-						LENGTH_BUFFER);
-	if (ret > 0)
-	{
-		ret = GetLocaleInfoA(LOCALE_USER_DEFAULT,
-							LOCALE_SISO3166CTRYNAME,
-							&buffer_LOCALE_SISO3166CTRYNAME[0],
-							LENGTH_BUFFER);
-		if (ret >0)
-		{
-			int length_localeStr = (int)(strlen(buffer_LOCALE_SISO639LANGNAME)+
-										 strlen(buffer_LOCALE_SISO3166CTRYNAME)+
-										 strlen(FORMAT_LOCALE));
-			localeStr = (char*)MALLOC(sizeof(char)*(length_localeStr)+1);
-			if (localeStr)
-			{
-				StringCchPrintfA(localeStr,length_localeStr,FORMAT_LOCALE,buffer_LOCALE_SISO639LANGNAME,buffer_LOCALE_SISO3166CTRYNAME);
-				SetEnvironmentVariableA(EXPORTENVLOCALESTR,localeStr);
-				FREE(localeStr);
-			}
-		}
-	}
 }
 /*--------------------------------------------------------------------------*/
