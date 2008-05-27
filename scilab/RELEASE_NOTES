@@ -26,7 +26,7 @@ List of missing/buggy features:
       Errors often appear on ATI and Intel cards under Linux and also with 
       old Nvidia drivers.
     * Sgrayplot display might be corrupted.
-    * Symbol police is not comptible with the one used in Scilab 4.
+    * The Symbol font is not comptible with the one used in Scilab 4.
 
 
 - It is strongly recommended to update graphic cards drivers to the latest revision:
