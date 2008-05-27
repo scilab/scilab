@@ -15,7 +15,7 @@ C     id(nsiz) coded name of the command
       include 'stack.h'
       logical compil
 C     
-      integer lunit,mode(2),top0
+      integer lunit,mode(2)
       double precision x
       integer ix(2)
       equivalence (x,ix(1))
@@ -30,7 +30,7 @@ C
       integer iff(nsiz),func(nsiz),endfunc(nsiz)
       integer semi,comma,eol,percen,lparen,slash
       integer count,equal,nchar,pchar
-      logical eqid,cresmat,cremat
+      logical eqid,cremat
       integer iadr
       common/cmds/cmd
       save cmds
@@ -284,25 +284,30 @@ C     compilation quit:<17>
       if (compil(17,0,0,0,0)) return
       if (paus .ne. 0) then
 C     quit dans une pause
-         paus = paus - 1
          pt = pt + 1
  51      pt = pt - 1
+         print *, 'ici',pt,rstk(pt)
          if (rstk(pt) .ne. 503) goto 51
-         k = lpt(1) - (13+nsiz)
-         lpt(1) = lin(k+1)
-         lpt(2) = lin(k+4)
-         lpt(6) = k
-         bot = lin(k+5)
-         pt = pt - 1
-         rio = pstk(pt)
-         if (rstk(pt) .eq. 701.or.rstk(pt).eq.604) then
-            errct=ids(2,pt+1)
-            err2=ids(3,pt+1)
-            err1=ids(4,pt+1)
-            errpt=ids(5,pt+1)
-            pt = pt - 1
-         endif
-         goto 46
+C$$$        k = lpt(1) - (13+nsiz)
+C$$$         lpt(1) = lin(k+1)
+C$$$         lpt(2) = lin(k+4)
+C$$$         lpt(6) = k
+C$$$         bot = lin(k+5)
+C$$$         pt = pt - 1
+C$$$         rio = pstk(pt)
+C$$$         print *, 'la',pt,rstk(pt)
+C$$$         if (rstk(pt) .eq. 701.or.rstk(pt).eq.604) then
+C$$$            errct=ids(2,pt+1)
+C$$$            err2=ids(3,pt+1)
+C$$$            err1=ids(4,pt+1)
+C$$$            errpt=ids(5,pt+1)
+C$$$            pt = pt - 1
+C$$$         endif
+C$$$         paus = paus - 1
+C$$$         goto 46
+         fun=0
+         fin=2
+      return
       else
 C     quit (sortie)
          fun = 99
@@ -351,8 +356,6 @@ c     if you modify pwd position in core gateway , you need change fin
       return
 C     
 
- 60   continue
-      
 C     
 C     abort
 C     -----
