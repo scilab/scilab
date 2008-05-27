@@ -41,16 +41,16 @@ void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_
 		{//*     handle (spurious) overflow by scaling a and b
 			double dblRealTemp = _dblRealIn / 16;
 			double dblImgTemp = _dblImgIn / 16;
-			dblTemp = dsqrts(2 * (dabss(_dblRealIn) + dpythags(_dblRealIn, _dblImgIn)));
+			dblTemp = dsqrts(2 * (dabss(_dblRealIn) + dpythags(_dblRealIn, dblImgTemp)));
 			if(dblRealTemp >= 0)
 			{
 				*_pdblRealOut	= 2 * dblTemp;
-				*_pdblImgOut	= 4 * _dblImgIn / dblTemp;
+				*_pdblImgOut	= 4 * dblImgTemp / dblTemp;
 			}
 			else
 			{
-				*_pdblRealOut	= 4 * dabss(_dblImgIn) / dblTemp;
-				*_pdblImgOut	= dsigns(2, _dblImgIn) * dblTemp;
+				*_pdblRealOut	= 4 * dabss(dblImgTemp) / dblTemp;
+				*_pdblImgOut	= dsigns(2, dblImgTemp) * dblTemp;
 			}
 		}
 		else if(_dblRealIn >= 0) //classic switch to get the stable formulas
