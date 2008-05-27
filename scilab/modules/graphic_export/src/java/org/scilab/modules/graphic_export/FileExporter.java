@@ -21,9 +21,12 @@ import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
  * @author Jean-Baptiste Silvy
  */
 public class FileExporter {
+	
+	/** Export waiting message */
+	private static final String exportingMessage = "Exporting figure, please wait...";
 
 	/**
-	 * Defualt constuctor
+	 * Default constructor
 	 */
 	protected FileExporter() {
 		
@@ -31,13 +34,14 @@ public class FileExporter {
 	
 	/**
 	 * Export a figure into a file
-	 * @param figureIndex index of tghe figure to export
+	 * @param figureIndex index of the figure to export
 	 * @param fileName name of the file to create
 	 * @param fileType kind of the file
+	 * @param fileOrientation orientation of the file
 	 * @return 0 if everything worked fine, a non null integer if an exception occured
 	 *         depending on the kind of error
 	 */
-	public static int fileExport(int figureIndex, String fileName, int fileType) {
+	public static int fileExport(int figureIndex, String fileName, int fileType, int fileOrientation) {
 		DrawableFigureGL exportedFig = FigureMapper.getCorrespondingFigure(figureIndex);
 		
 		if (exportedFig == null) {
@@ -45,12 +49,19 @@ public class FileExporter {
 			return ExportRenderer.IOEXCEPTION_ERROR;
 		}		
 		
+		//When the graphic-export is too long, we inform the user that the figure is exporting
+		String oldInfoMessage = exportedFig.getInfoMessage();
+		exportedFig.setInfoMessage(exportingMessage);
+		
 		ExportRenderer export;		
-		export = ExportRenderer.createExporter(figureIndex, fileName, fileType);
+		export = ExportRenderer.createExporter(figureIndex, fileName, fileType, fileOrientation);
 				
 		exportedFig.getRenderingTarget().addGLEventListener(export);
 		exportedFig.drawCanvas();
 		exportedFig.getRenderingTarget().removeGLEventListener(export);
+		
+		//Put back the old infoMessage
+		exportedFig.setInfoMessage(oldInfoMessage);
 		
 		return ExportRenderer.getErrorNumber();		
 	}	

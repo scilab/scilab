@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="xs2ppm" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="xs2emf" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -22,15 +22,15 @@
   </info>
 
   <refnamediv>
-    <refname>xs2ppm</refname>
+    <refname>xs2fig</refname>
 
-    <refpurpose>send graphics to a file in PPM syntax</refpurpose>
+    <refpurpose>send graphics to a file in FIG syntax</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>xs2ppm(win_num,filen)</synopsis>
+    <synopsis>xs2fig(win_num, filen [,orientation])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -41,7 +41,7 @@
         <term>win_num</term>
 
         <listitem>
-          <para>integer scalar or vector .</para>
+          <para>integer scalar.</para>
         </listitem>
       </varlistentry>
 
@@ -52,24 +52,36 @@
           <para>string, file name.</para>
         </listitem>
       </varlistentry>
+	  
+	  <varlistentry>
+        <term>orientation</term>
+
+        <listitem>
+          <para>optional character, with possible values 'p' (portrait) or 'l' (landscape). The default value is 'p'.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
     <title>Description</title>
 
-    <para><literal>xs2ppm</literal> sends the recorded graphics of the window
-    <literal>win_num</literal> in the file <literal>filen</literal> in PPM
+    <para><literal>xs2fig</literal> sends the recorded graphics of the window
+    <literal>win_num</literal> in the file <literal>filen</literal> in FIG
     format. </para>
+
+    <para>For format FIG we create an EPS file which will be convert into FIG
+    format by pstoedit.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">    scf(0)
+    <programlisting role="example"> 
+    //simple example
+    scf(0)
     plot2d()
-    //PPM export
-    xs2ppm(0,'foo.ppm')
+    xs2fig(0,'foo.fig')
   </programlisting>
   </refsection>
 
@@ -85,6 +97,8 @@
 
       <member><link linkend="xs2png">xs2png</link></member>
 
+      <member><link linkend="xs2ppm">xs2ppm</link></member>
+
       <member><link linkend="xs2eps">xs2eps</link></member>
 
       <member><link linkend="xs2pdf">xs2pdf</link></member>
@@ -93,9 +107,13 @@
 
       <member><link linkend="xs2ps">xs2ps</link></member>
 
-      <member><link linkend="xs2fig">xs2fig</link></member>
-
-      <member><link linkend="xs2emf">xs2emf</link></member>
+      <member><link linkend="xs2fig">xs2emf</link></member>
     </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>S.K</para>
   </refsection>
 </refentry>

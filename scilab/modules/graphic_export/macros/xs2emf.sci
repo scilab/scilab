@@ -7,12 +7,18 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function xs2emf(figureNumber, fileName)
+function xs2emf(figureNumber, fileName, orientation)
+
+	//When the graphic-export is too long, we inform the user that the figure is exporting
+	f = gcf();
+	oldInfoMessage = f.info_message;
+	f.info_message = "Exporting figure, please wait...";
+	
 
 	[lhs,rhs]=argn(0);
 	
 	//Input arguments checking
-	if rhs <> 2 then
+	if rhs <> 2 & rhs <> 3 then
 		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "xs2emf",2));
 		return;
 	end
@@ -27,6 +33,21 @@ function xs2emf(figureNumber, fileName)
 	if type(fileName) <> 10 | fileName == "" then
 		error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"), "xs2emf"));
 		return;
+	end
+	
+	//third argument checking
+	if rhs == 3 then  
+		if orientation == 'l' | orientation == 'landscape' then 
+			orientation = "landscape";
+		elseif orientation == 'p' | orientation == 'portrait' then 
+			orientation = "portrait"; 
+		else
+			error(msprintf(gettext("%s: Wrong input argument #%d: %s or %s expected.\n"), "xs2emf", 3, "portrait", "landscape"));
+			//error(msprintf(gettext("%s: Wrong type for input argument: String ""landscape"" or ""portrait"" expected.\n"), "xs2emf"));
+			return;
+		end
+	else
+		orientation = "portrait";
 	end
 	
 	if ~MSDOS then
@@ -58,7 +79,7 @@ function xs2emf(figureNumber, fileName)
 	
 	//create the eps file
 	fileExport = TMPDIR + filesep() + fname + ".eps";	
-	xs2eps(figureNumber, fileExport);
+	xs2eps(figureNumber, fileExport, orientation);
 		
 	// convert it to emf
 	//get short  path name for windows because path is > then 6 caracters
@@ -88,6 +109,9 @@ function xs2emf(figureNumber, fileName)
 	
 	//delete the temporary eps file 
 	mdelete(fileExport);
+	
+	//Put back the old infoMessage
+	f.info_message = oldInfoMessage;
   
 endfunction
 

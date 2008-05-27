@@ -47,9 +47,10 @@ public class GL2PSRenderer extends ExportRenderer {
 	 * @param figureIndex index of the figure
 	 * @param fileName file name
 	 * @param fileType file type
+	 * @param fileOrientation file orientation
 	 */
-	public GL2PSRenderer(int figureIndex, String fileName, int fileType) {
-		super(fileName, fileType);
+	public GL2PSRenderer(int figureIndex, String fileName, int fileType, int fileOrientation) {
+		super(fileName, fileType, fileOrientation);
 		this.figureIndex = figureIndex;
 		setGL2PSFile(fileName, fileType);		
 	}
@@ -73,7 +74,7 @@ public class GL2PSRenderer extends ExportRenderer {
 									   format = GL2PS.GL2PS_SVG;
 		break;				  
 		case ExportRenderer.PS_EXPORT:  setFileName(ExportRenderer.getFileName() + ".ps");
-		   format = GL2PS.GL2PS_PS;
+		   							   format = GL2PS.GL2PS_PS;
 		break;	
 		default: return ExportRenderer.INVALID_FILE;
 		}
@@ -91,15 +92,26 @@ public class GL2PSRenderer extends ExportRenderer {
 		sciRend = new SciRenderer(this.figureIndex);
 		
 		setErrorNumber(ExportRenderer.SUCCESS);
-		
+				
 		//Check if we have the permission to export
 		File filePermission = new File(ExportRenderer.getFileName());
 		if (checkWritePermission(filePermission) == ExportRenderer.SUCCESS) {
 			
-			int gl2psBeginPageStatut = gl2ps.gl2psBeginPage("MyTitle", "MySoftware", null, format, 
-					GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
-					/*| GL2PS.GL2PS_OCCLUSION_CULL | GL2PS.GL2PS_LANDSCAPE | GL2PS.GL2PS_DRAW_BACKGROUND*/,
-					GL.GL_RGBA, 0, null, null, null, null, 
+			DrawableFigureGL exportedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
+			
+			//int[] viewport = exportedFigure.getViewport();
+			//int[] viewport = {0, 0, 780, 600};
+			
+			int exportOrientation;
+			if (ExportRenderer.getFileOrientation() == 1) {
+				exportOrientation = GL2PS.GL2PS_LANDSCAPE;
+			} else {
+				exportOrientation = 0;
+			}						
+			
+			int gl2psBeginPageStatut = gl2ps.gl2psBeginPage(exportedFigure.getTitle(), "Scilab", null, format, 
+					GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT 
+					| exportOrientation, GL.GL_RGBA, 0, null, null, null, null, 
 					0, 0, 0, buffsize, ExportRenderer.getFileName());	
 
 			if (gl2psBeginPageStatut != GL2PS.GL2PS_SUCCESS) {
@@ -112,7 +124,7 @@ public class GL2PSRenderer extends ExportRenderer {
 			GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
 			gLDrawable.setGL(newGL);
 
-			DrawableFigureGL exportedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
+			
 			exportedFigure.setTextRendererFactory(new PSTextRendererFactory());
 			exportedFigure.setArcRendererFactory(new FastArcRendererFactory());
 			exportedFigure.setShadeFacetDrawer(new GL2PSShadeFacetDrawer());

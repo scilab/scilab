@@ -43,10 +43,15 @@ public abstract class ExportRenderer implements GLEventListener {
 	public static final int PDF_EXPORT = 7;
 	public static final int SVG_EXPORT = 8;
 	public static final int PS_EXPORT = 9;
+	
+	/** Orientation of the exported figure */
+	public static final int PORTRAIT = 0;
+	public static final int LANDSCAPE = 1;
 
 	/** File name & file type */
 	private static String fileName;
 	private static int fileType;
+	private static int fileOrientation;
 	
 	/** give the type of the error */
 	private static int errorNumber;
@@ -55,10 +60,12 @@ public abstract class ExportRenderer implements GLEventListener {
 	 * Constructor
 	 * @param fileName name of the file
 	 * @param fileType type of the file
+	 * @param fileOrientation orientation of the file
 	 */
-	protected ExportRenderer(String fileName, int fileType) {
+	protected ExportRenderer(String fileName, int fileType, int fileOrientation) {
 		this.fileName = fileName;
 		this.fileType = fileType;	
+		this.fileOrientation = fileOrientation;
 		removeExtension();
 	}	
 
@@ -67,9 +74,10 @@ public abstract class ExportRenderer implements GLEventListener {
 	 * @param figureIndex type of the file
 	 * @param fileName name of the file
 	 * @param fileType type of the file
+	 * @param fileOrientation orientation of the file
 	 * @return GL2PSRenderer export a postscript screen-shot
 	 */
-	public static ExportRenderer createExporter(int figureIndex, String fileName, int fileType) {
+	public static ExportRenderer createExporter(int figureIndex, String fileName, int fileType, int fileOrientation) {
 		
 		GL2PS gl2ps = new GL2PS();
 		
@@ -80,12 +88,12 @@ public abstract class ExportRenderer implements GLEventListener {
 		case JPG_EXPORT:
 		case PNG_EXPORT:
 		case PPM_EXPORT:
-			return new BitmapRenderer(fileName, fileType);
+			return new BitmapRenderer(fileName, fileType, fileOrientation);
 		case EPS_EXPORT:
 		case PDF_EXPORT:
 		case SVG_EXPORT:
 		case PS_EXPORT:
-			return new GL2PSRenderer(figureIndex, fileName, fileType);
+			return new GL2PSRenderer(figureIndex, fileName, fileType, fileOrientation);
 		default: System.err.println(ExportRenderer.INVALID_FILE);
 		}
 		return null;			
@@ -121,6 +129,20 @@ public abstract class ExportRenderer implements GLEventListener {
 	 */
 	public void setFileType(int fileType) {
 		this.fileType = fileType;
+	}	
+
+	/**
+	 * @return the fileOrientation
+	 */
+	public static int getFileOrientation() {
+		return fileOrientation;
+	}
+
+	/**
+	 * @param fileOrientation the fileOrientation to set
+	 */
+	public static void setFileOrientation(int fileOrientation) {
+		ExportRenderer.fileOrientation = fileOrientation;
 	}
 
 	/**

@@ -28,9 +28,10 @@ public class BitmapRenderer  extends ExportRenderer {
 	 * Default constructor
 	 * @param fileName name of the figure to render
 	 * @param fileType type of the figure to render
+	 * @param fileOrientation orientation of the figure to render
 	 */
-	public BitmapRenderer(String fileName, int fileType) {
-		super(fileName, fileType);
+	public BitmapRenderer(String fileName, int fileType, int fileOrientation) {
+		super(fileName, fileType, fileOrientation);
 	}
 	
 	/**

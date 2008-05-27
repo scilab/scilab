@@ -21,26 +21,72 @@
 #include "localization.h"
 #include "SetJavaProperty.h"
 #include "Scierror.h"
+
+/*--------------------------------------------------------------------------*/
+BOOL isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/
 int xs2file(char * fname, ExportFileType fileType )
 {
   CheckLhs(0,1);
-  CheckRhs(2,2);
+  if (isVectorialExport(fileType))
+  {
+	CheckRhs(2,3);
+  }
+  else
+  {
+	CheckRhs(2,2);
+  }
+  
   if ( (GetType(2) == sci_strings) && IsAScalar(1) )
   {
     integer m1,n1,l1;
     int figurenum=-1;
     GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
     figurenum = *istk(l1);
-    if (figurenum>=0)
+    if (figurenum >= 0)
     {
       char * fileName=NULL;
 	  int status;
+      ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
+		
+	  /* Get orientation */
+	  if (Rhs == 3)
+	  {
+		int nbCol;
+		int nbRow;
+		int stackPointer;
+		char * sciOrientation;
+		/* vectorial export with orientation specified */
+		if (GetType(3) != sci_strings)
+		{
+			Scierror(999,_("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"),fname, 3, "portrait", "landscape");
+		    return 0;
+		}
+		GetRhsVar(3,STRING_DATATYPE,&nbRow,&nbCol,&stackPointer);
+		sciOrientation = cstk(stackPointer);
+		/* Value should be 'landscape' or 'portrait' but check only the first character */
+		/* for compatibility with Scilab 4*/
+		if (sciOrientation[0] == 'l')
+		{
+			orientation = EXPORT_LANDSCAPE;
+		}
+		else if( sciOrientation[0] == 'p')
+		{
+			orientation = EXPORT_PORTRAIT;
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"),fname, 3, "portrait", "landscape");
+		    return 0;
+		}
+
+	  }
+
       GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
       fileName = cstk(l1);
 
       /* Call the function for exporting file */
-      status = exportToFile(getFigureFromIndex(figurenum), fileName, fileType, EXPORT_PORTRAIT);
+      status = exportToFile(getFigureFromIndex(figurenum), fileName, fileType, orientation);
 
 	  switch(status)
 	  {
@@ -56,7 +102,7 @@ int xs2file(char * fname, ExportFileType fileType )
     }
     else
     {
-      Scierror(999,_("%s: Wrong input argument: %s expected.\n"),fname,">=0");
+      Scierror(999,_("%s: Wrong type for input argument #%d: Positive integer expected.\n"),fname, 1);
       return 0;
     }
 
@@ -65,17 +111,25 @@ int xs2file(char * fname, ExportFileType fileType )
   {
     if ( IsAScalar(1) )
     {
-      Scierror(999,_("%s: Wrong type for first input argument: integer scalar expected.\n"),fname);
-      return 0;
+		Scierror(999,_("%s: Wrong type for input argument #%d: Positive integer expected.\n"),fname, 1);
+        return 0;
     }
     if ( GetType(2) != sci_strings)
     {
-      Scierror(999,_("%s: Wrong type for second input argument: String expected.\n"),fname);
-      return 0;
+		Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname, 2);
+        return 0;
     }
   }
 
   LhsVar(1)=0;
   return 0;
+}
+/*--------------------------------------------------------------------------*/
+BOOL isVectorialExport(ExportFileType fileType)
+{
+	return   fileType == EPS_EXPORT
+		  || fileType == PS_EXPORT
+		  || fileType == PDF_EXPORT
+		  || fileType == SVG_EXPORT;
 }
 /*--------------------------------------------------------------------------*/
