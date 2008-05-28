@@ -8,7 +8,7 @@
     <button icon="document-open.png" tooltiptext="Open a file">
         <callback 
         instruction='
-          %fileToOpen = xgetfile("*.sci", getcwd(), getext("Select a file to open with Scipad"));
+          %fileToOpen = xgetfile("*.sci", getcwd(), gettext("Select a file to open with Scipad"));
           if ~isempty(%fileToOpen) then 
             scipad(%fileToOpen);
           end
