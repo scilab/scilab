@@ -1320,3 +1320,233 @@ int iGetOrient(int _iVal)
 	}
 	return iMode;
 }
+
+/*Reserve space in stack for a matrix of double*/
+int iAllocMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealData)
+{
+	if(_iPos + 1 > Bot) 
+		return 10;//Too many names
+
+	return iAllocComplexMatrixOfDouble(_iPos, 0, _iRows, _iCols, _pdblRealData, NULL);
+}
+
+/*Reserve space in stack for a matrix of complex*/
+int	iAllocComplexMatrixOfDouble(int _iPos, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
+{
+	int iNewPos			= Top - Rhs + _iPos;
+	//int iNewPos			= Top + _iPos;
+	int iSize			= _iRows * _iCols * (_iComplex + 1);
+	int iAddr			= iadr(*Lstk(iNewPos));
+	int iAddrData		= iAddr + 4;
+
+	Err					= sadr(iAddr + 4) - *Lstk(Bot);
+
+	if(Err > -iSize)
+		return 17;
+
+	*istk(iAddr)		= sci_matrix;
+	*istk(iAddr + 1 )	= Min(_iRows, _iRows * _iCols);
+	*istk(iAddr + 2 )	= Min(_iCols, _iRows * _iCols);
+	*istk(iAddr + 3 )	= _iComplex;
+
+	*_pdblRealData	= stk(sadr(iAddrData));
+
+	if(_iComplex != 0)
+		*_pdblImgData	= *_pdblRealData + _iRows * _iCols;
+
+	intersci_.ntypes[_iPos - 1]	= '$';
+	intersci_.iwhere[_iPos - 1]	= *Lstk(iNewPos);
+	intersci_.lad[_iPos - 1]	= sadr(iAddrData);
+
+	*Lstk(iNewPos + 1) = sadr(iAddrData) + _iRows * _iCols * (_iComplex + 1);
+	return 0;
+}
+
+/*Reserve space in stack for a matrix of polynom*/
+int iAllocMatrixOfPoly(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData)
+{
+	return iAllocComplexMatrixOfPoly(_iNewVal, 0, _piVarName, _iRows, _iCols, _piPow, _pdblRealData, NULL);
+}
+
+/*Reserve space in stack for a matrix of complex polynom*/
+int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData)
+{
+	int iNewPos			= Top - Rhs + _iNewVal;
+	//int iNewPos			= Top + _iNewVal;
+	int iIndex			= 0;
+	int iAddrBase		= iadr(*Lstk(iNewPos));
+	int iAddrPtr		= 0;
+	int iAddrData		= 0;
+
+	*istk(iAddrBase)	= sci_poly;
+	*istk(iAddrBase + 1)= _iRows;
+	*istk(iAddrBase + 2)= _iCols;
+	*istk(iAddrBase + 3)= 0; // Non complex values
+	memcpy(istk(iAddrBase + 4), *_piVarName, 4 * sizeof(int)); // name of variable ( scilab format )
+
+	iAddrPtr = iAddrBase + 8;
+	*istk(iAddrPtr) = 1;
+	iAddrPtr++;
+	for(iIndex = 0 ; iIndex < _iRows * _iCols ; iIndex++)
+	{
+		*istk(iAddrPtr + iIndex) = _piPow[iIndex] + *istk(iAddrPtr -1 + iIndex);
+	}
+	iAddrData = iAddrBase + (9 + _iRows * _iCols);
+
+
+	*_pdblRealData = stk(sadr(iAddrData));
+	if(_iComplex != 0)
+		*_pdblRealData = stk(sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols));
+
+	C2F(intersci).ntypes[_iNewVal - 1]	= '$';
+	C2F(intersci).iwhere[_iNewVal - 1]	= *Lstk(iNewPos);
+	C2F(intersci).lad[_iNewVal - 1]		= sadr(iAddrData);
+
+	*Lstk(iNewPos + 1) = sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols) * (_iComplex + 1);
+	return 0;
+}
+
+/*Reserve space in stack for a sparse matrix*/
+int iAllocSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData)
+{
+	return iAllocComplexSparseMatrix(_iNewVal, 0, _iRows, _iCols, _iTotalElem, _piElemByRow, _piColByRow, _pdblRealData, NULL);
+}
+
+/*Reserve space in stack for a complex sparse matrix*/
+int iAllocComplexSparseMatrix(int _iNewVal,int _iComplex, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData, double** _pdblImgData)
+{
+	int iNewPos			= Top - Rhs + _iNewVal;
+	//int iNewPos			= Top + _iNewVal;
+	int iIndex			= 0;
+	int iAddrBase		= iadr(*Lstk(iNewPos));
+	int iAddElemByRow	= 0;
+	int iAddrColByRow	= 0;
+	int iAddrRealData	= 0;
+	int iAddrImgData	= 0;
+
+	*istk(iAddrBase)	= sci_sparse;
+	*istk(iAddrBase + 1)= _iRows;
+	*istk(iAddrBase + 2)= _iCols;
+	*istk(iAddrBase + 3)= 0; // Non complex values
+	*istk(iAddrBase + 4)= _iTotalElem;
+
+	iAddElemByRow		= iAddrBase + 5;
+	iAddrColByRow		= iAddElemByRow + _iRows;
+	iAddrRealData		= iAddrColByRow + _iTotalElem;
+	iAddrImgData		= iAddrColByRow + 2 * _iTotalElem;
+
+
+	*_piElemByRow = istk(iAddElemByRow);
+	*_piColByRow = istk(iAddrColByRow);
+	*_pdblRealData = stk(sadr(iAddrRealData));
+
+	if(_iComplex != 0)
+	{
+		*istk(iAddrBase + 3)= 1; // Use complex values
+		*_pdblImgData = stk(sadr(iAddrImgData) + iIndex);
+	}
+
+	C2F(intersci).ntypes[_iNewVal - 1]	= '$';
+	C2F(intersci).iwhere[_iNewVal - 1]	= *Lstk(iNewPos);
+	C2F(intersci).lad[_iNewVal - 1]		= sadr(iAddrRealData);
+
+	if(_iComplex == 0)
+		*Lstk(iNewPos + 1) = sadr(iAddrRealData) + _iTotalElem;
+	else
+		*Lstk(iNewPos + 1) = sadr(iAddrRealData) + 2 * _iTotalElem;
+
+	return 0;
+
+}
+
+/*Reserve space in stack for a matrix of boolean value*/
+int iAllocMatrixOfBoolean(int _iNewVal, int _iRows, int _iCols, int** _piBoolData)
+{
+	int iNewPos			= Top - Rhs + _iNewVal;
+	//int iNewPos			= Top + _iNewVal;
+	int iIndex			= 0;
+	int iAddrBase		= iadr(*Lstk(iNewPos));
+	int iAddrRealData	= 0;
+
+	*istk(iAddrBase)	= sci_boolean;
+	*istk(iAddrBase + 1)= _iRows;
+	*istk(iAddrBase + 2)= _iCols;
+	iAddrRealData		= iAddrBase + 3;
+
+	*_piBoolData = istk(iAddrRealData);
+
+	C2F(intersci).ntypes[_iNewVal - 1]	= '$';
+	C2F(intersci).iwhere[_iNewVal - 1]	= *Lstk(iNewPos);
+	C2F(intersci).lad[_iNewVal - 1]		= sadr(iAddrRealData);
+
+	*Lstk(iNewPos + 1) = sadr(iAddrRealData) + _iRows * _iCols;
+	return 0;
+}
+
+
+/*Reserve space in stack for a boolean sparse matrix*/
+int iAllocBooleanSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow)
+{
+	int iNewPos			= Top - Rhs + _iNewVal;
+	//int iNewPos			= Top + _iNewVal;
+	int iIndex			= 0;
+	int iAddrBase		= iadr(*Lstk(iNewPos));
+	int iAddElemByRow	= 0;
+	int iAddrColByRow	= 0;
+	int iAddrRealData	= 0;
+
+	*istk(iAddrBase)	= sci_boolean_sparse;
+	*istk(iAddrBase + 1)= _iRows;
+	*istk(iAddrBase + 2)= _iCols;
+	*istk(iAddrBase + 3)= 0; // Non complex values
+	*istk(iAddrBase + 4)= _iTotalElem;
+
+	iAddElemByRow		= iAddrBase + 5;
+	iAddrColByRow		= iAddElemByRow + _iRows;
+	iAddrRealData		= iAddrColByRow + _iTotalElem;
+
+	*_piElemByRow = istk(iAddElemByRow);
+	*_piColByRow = istk(iAddrColByRow);
+
+	C2F(intersci).ntypes[_iNewVal - 1]	= '$';
+	C2F(intersci).iwhere[_iNewVal - 1]	= *Lstk(iNewPos);
+	C2F(intersci).lad[_iNewVal - 1]		= sadr(iAddrRealData);
+
+	*Lstk(iNewPos + 1) = sadr(iAddrRealData);
+	return 0;
+}
+
+/*Reserve space in stack for a matrix of string*/
+int iAllocMatricOfString(int _iNewVal, int _iRows, int _iCols, int *_piLen, char** _pszRealData)
+{
+	int iNewPos			= Top - Rhs + _iNewVal;
+	//int iNewPos			= Top + _iNewVal;
+	int iIndex			= 0;
+	int iAddrBase		= iadr(*Lstk(iNewPos));
+	int iAddrPtr		= 0;
+	int iAddrData		= 0;
+
+	*istk(iAddrBase)	= sci_strings;
+	*istk(iAddrBase + 1)= _iRows;
+	*istk(iAddrBase + 2)= _iCols;
+	*istk(iAddrBase + 3)= 0; // Non complex values
+
+	iAddrPtr = iAddrBase + 4;
+	*istk(iAddrPtr) = 1;
+	iAddrPtr++;
+	for(iIndex = 0 ; iIndex < _iRows * _iCols ; iIndex++)
+	{
+		*istk(iAddrPtr + iIndex) = _piLen[iIndex] + *istk(iAddrPtr -1 + iIndex);
+	}
+	iAddrData = iAddrBase + (5 + _iRows * _iCols);
+
+	*_pszRealData = cstk(sadr(iAddrData));
+
+	C2F(intersci).ntypes[_iNewVal - 1]	= '$';
+	C2F(intersci).iwhere[_iNewVal - 1]	= *Lstk(iNewPos);
+	C2F(intersci).lad[_iNewVal - 1]		= sadr(iAddrData);
+
+	*Lstk(iNewPos + 1) = sadr(iAddrData) + iArraySum(_piLen, 0, _iRows * _iCols);
+	return 0;
+}
+
