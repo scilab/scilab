@@ -162,7 +162,7 @@ plot2d(frq',phi' ) ;
 if type(dom)==1 then
   plot2d(max(frq)*[1;1],axes.data_bounds(:,2));
 end
-axes.data_bounds = rect ;a.log_flags = "lnn" ;
+axes.data_bounds = rect ;axes.log_flags = "lnn" ;
 axes.grid=[4 4];
 xtitle('Phase ',' Hz','degrees');
 
