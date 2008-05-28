@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT (java version)
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,20 +31,20 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
 
   if ((Rhs!=0) && (Rhs!=1) && (Rhs!=3)) /* Bad use */
     {
-          Scierror(999, _("%s: Wrong number of input arguments: %d, % or %d expected.\n"), fname, 0, 1, 3);
+          Scierror(999, _("%s: Wrong number of input arguments: %d, %d or %d expected.\n"), fname, 0, 1, 3);
           return FALSE;
     }
-      
+
   if ((Lhs!=1) && (Lhs!=3)) /* Bad use */
     {
-          Scierror(999, _("%s: Wrong number of output arguments: %d or %expected.\n"), fname, 1, 3);
+          Scierror(999, _("%s: Wrong number of output arguments: %d or %d expected.\n"), fname, 1, 3);
           return FALSE;
     }
 
   /* Default red value */
   if (Rhs > 1)
     {
-      if (VarType(1) == sci_matrix) 
+      if (VarType(1) == sci_matrix)
         {
           GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
           if (nbRow*nbCol != 1)
@@ -61,7 +61,7 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
     }
   else if (Rhs==1) /* Rhs==1 then redAdr contains RBG values */
     {
-      if (VarType(1) == sci_matrix) 
+      if (VarType(1) == sci_matrix)
         {
           GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
           if (nbRow*nbCol != 3)
@@ -79,7 +79,7 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
 
   /* Default green value */
   if (Rhs == 3) {
-    if (VarType(2) == sci_matrix) 
+    if (VarType(2) == sci_matrix)
       {
         GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &greenAdr);
         if (nbRow*nbCol != 1)
@@ -97,7 +97,7 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
 
   /* Default blue value */
   if (Rhs == 3) {
-    if (VarType(3) == sci_matrix) 
+    if (VarType(3) == sci_matrix)
       {
         GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &blueAdr);
         if (nbRow*nbCol != 1)
@@ -128,12 +128,12 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
           setColorChooserDefaultRGB(colorChooserID, stk(redAdr));
         }
     }
-  
+
   /* Display it and wait for a user input */
   colorChooserDisplayAndWait(colorChooserID);
 
   /* Return the selected color */
-  
+
   /* Read the user answer */
   selectedRGB = getColorChooserSelectedRGB(colorChooserID);
 
@@ -147,7 +147,7 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
           CreateVarFromPtr(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &selectedRGB);
           LhsVar(1) = Rhs+1;
         }
-  
+
       if (Lhs>=2)
         {
           nbCol = 1;
@@ -170,10 +170,10 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
         {
           /* Return [] */
           CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
-          
+
           LhsVar(1) = Rhs+1;
         }
-  
+
       if (Lhs>=2)
         {
           CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
@@ -185,7 +185,7 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
           LhsVar(3) = Rhs+3;
         }
     }
-  
+
   C2F(putlhsvar)();
   return TRUE;
 }
