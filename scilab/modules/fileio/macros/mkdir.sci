@@ -22,7 +22,7 @@ function [status,msg]=mkdir(varargin)
 	select rhs
 
 	case 0
-		error('Number of parameters incorrect.');
+	  error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),'mkdir'));
 		break
 	
 	case 1
@@ -44,7 +44,7 @@ function [status,msg]=mkdir(varargin)
 		break
 		
 	else
-		error('Number of parameters incorrect.');
+		error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),'mkdir'));
 	end
 	
 	if (fileinfo(NewDirectory)==[]) then
@@ -69,7 +69,7 @@ function [status,msg]=mkdir(varargin)
 	case 1
 		status = createdir(NewDirectory);
 		if (~status) then
-			msg    = "Error(s) Impossible to create directory "+NewDirectory+".";
+			msg    =  msprintf(gettext("%s: An error occurred: %s\n"),'mkdir',gettext('Impossible to create directory ')) + NewDirectory;
 			status = 0;
 		else
 			msg    = '';
@@ -78,15 +78,15 @@ function [status,msg]=mkdir(varargin)
 		break
 		
 	case 2
-		msg = "This directory already exists in "+DirName+".";
+	  msg    =  msprintf(gettext("%s: An error occurred: %s\n"),'mkdir',gettext('This directory already exists in ')) + NewDirectory;
 		break
 
 	case -2
-		msg = "A file with the same name already exists in "+DirName+".";
+	  msg    =  msprintf(gettext("%s: An error occurred: %s\n"),'mkdir',gettext('A file with the same name already exists in ')) + DirName;
 		break
-	
+
 	else
-		msg = "Error(s) Impossible to create directory "+NewDirectory+".";
+		msg    =  msprintf(gettext("%s: An error occurred: %s\n"),'mkdir',gettext('Impossible to create directory ')) + NewDirectory;
 	end
 	
 endfunction

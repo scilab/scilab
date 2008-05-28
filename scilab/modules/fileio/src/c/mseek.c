@@ -52,7 +52,7 @@ void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 		iflag = SEEK_END;
 	else 
 	{
-		sciprint(_("%s: Wrong value for third input argument: '%s', '%s' or '%s' expected.\n"),"mseek","set","cur","end");
+		sciprint(_("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"),"mseek",3,"set","cur","end");
 		*err=1;
 		return;
 	}

@@ -37,7 +37,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		if (m1*n1 != 1) 
 		{
-			Scierror(999,_("%s: Wrong size for first input argument: Scalar expected.\n"),fname);
+			Scierror(999,_("%s: Wrong size for input argument #%d: Scalar expected.\n"),fname,1);
 			return 0;
 		}
 		iarg=2;
@@ -71,7 +71,7 @@ int int_objscanf(char *fname,unsigned long fname_len)
 
 		if(status != 0) 
 		{
-			Scierror(999,_("Error: in scanf\n"));
+			Scierror(999,_("%s: An error occurred: %s\n"),fname,"[EOF]"); 
 			return 0;
 		}
 
@@ -79,14 +79,6 @@ int int_objscanf(char *fname,unsigned long fname_len)
 		/** use the scaned line as input **/
 		args = Rhs; /* args set to Rhs on entry */
 		if (do_xxscanf("scanf",(FILE *) 0,cstk(l1),&args,String,&retval,buf,type) < 0) return 0;
-
-		if ( retval == EOF)
-		{
-			/* 
-			Scierror(999,"Error: in %s: end of file reached\n",fname);
-			return 0;
-			*/
-		}
 
 		if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,buf,&data,rowcount,args)) <0 )
 		{

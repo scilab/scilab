@@ -20,7 +20,7 @@ function path=cd(path)
       chdir(path)
     else
       if ~isdir(path) then
-        error('Can''t go to directory '+path,998);
+        error(msprintf(gettext("%s: Cannot go to directory %s\n"),'cd',path),998);
       end
       chdir(path)
     end 

@@ -58,7 +58,7 @@ int C2F(sci_getshortpathname)(char *fname,unsigned long l)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
 	}
 	return 0;
 }

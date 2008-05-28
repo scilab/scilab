@@ -27,7 +27,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
 		return 0;
 	}
 
@@ -46,13 +46,13 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for second input argument: Real values expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Real values expected.\n"),fname,2);
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for second input argument: Matrix of floating point numbers expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of floating point numbers expected.\n"),fname,2);
 		return 0;
 	}
 

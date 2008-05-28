@@ -19,7 +19,7 @@ function [status,msg]=rmdir(varargin)
   
   select rhs
     case 0
-     error('Number of parameters incorrect.');	
+     error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),'rmdir'));
     break
     case 1
       DirName = varargin(1);
@@ -30,11 +30,11 @@ function [status,msg]=rmdir(varargin)
       if (SubDir == 'S') then
         SubDirMode = %T;
       else
-        error('Second parameters incorrect.');
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be ''%s''.\n"),'rmdir',2,'s'));
       end
     break
   else
-     error('Number of parameters incorrect.');
+     error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),'rmdir'));
   end
   
   if ~SubDirMode then
@@ -59,11 +59,11 @@ function [status,msg]=hidden_rmdir(DirName)
       msg = '';
       status = 1;
     else
-      msg = 'Error : Undefined error.';
+      msg = msprintf(gettext("%s: An error occurred: %s\n"),'rmdir', gettext('Undefined'));
       status = 0;
     end
   else
-    msg = 'Error : The system cannot find the file specified.'; 
+    msg = msprintf(gettext("%s: An error occurred: %s\n"),'rmdir', gettext('The system cannot find the file specified.'));
     status = 0;
   end
   

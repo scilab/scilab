@@ -238,7 +238,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				{
 					if (target > sprintf_limit)	/* over sprintf_limit */
 					{
-						Scierror(998,_("%s: Buffer too small.\n"),fname);
+						Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Buffer too small."));
 						return RET_BUG;
 					}
 					else
@@ -343,11 +343,11 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				{
 					if (*tmpcurrentchar == 's')
 					{
-						Scierror(998,_("%s: Bad conversion l or h flag mixed with s directive.\n"),fname);
+						Scierror(998,_("%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"),fname);
 					}
 					else /* 'c' */
 					{
-						Scierror(998,_("%s: Bad conversion l or h flag mixed with c directive.\n"),fname);
+						Scierror(998,_("%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"),fname);
 					}
 				}
 
@@ -412,7 +412,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			case 'G':
 			if (high_flag + low_flag)
 			{
-				Scierror(998,_("%s: Bad conversion.\n"),fname);
+				Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Bad conversion."));
 				return RET_BUG;
 			}
 			rval=GetScalarDouble(fname,&prev,&arg_count,nargs,&ccount,lcount,&dval);
@@ -429,12 +429,12 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			break;
 
 		case 'o':
-			Scierror(998,_("%s: 'o' format not allowed.\n"),fname);
+			Scierror(998,_("%s: An error occurred: %s\n"),fname,_("'o' format not allowed."));
 			return RET_BUG;
 			break;
 
 		default:
-			Scierror(998,_("%s: Bad conversion.\n"),fname);
+			Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Bad conversion."));
 			return RET_BUG;
 		}
 

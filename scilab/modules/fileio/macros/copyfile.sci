@@ -33,7 +33,7 @@ case 3
   if (flag=='WRITABLE') then
 	Writable=%T;
   else
-	error(msprintf(gettext("%s: Wrong value for third input argument: %s expected.\n"),fname,"WRITABLE"));
+	error(msprintf(gettext("%s: Wrong value for input argument #%d: %s expected.\n"),fname,3,"WRITABLE"));
   end
   break
 else

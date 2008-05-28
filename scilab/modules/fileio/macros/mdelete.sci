@@ -27,7 +27,7 @@ function mdelete(filename)
 	end
 	
 	if type(filename)<>10 | size(filename,"*")<>1 then
-		error("Wrong type argument, expecting a character string");
+		error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"),'mdelete'));
 	end
 	
 	// Handle file path

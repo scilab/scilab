@@ -23,7 +23,7 @@ int C2F(sci_getlongpathname)(char *fname,unsigned long l)
 {
 	static int l1,n1,m1;
 
-	CheckRhs(0,1);
+	CheckRhs(1,1);
 	CheckLhs(1,2);
 
 	if (GetType(1) == sci_strings)
@@ -57,7 +57,7 @@ int C2F(sci_getlongpathname)(char *fname,unsigned long l)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
 	}
 	return 0;
 }

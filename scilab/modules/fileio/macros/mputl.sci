@@ -37,7 +37,9 @@ else
     opened=%t;
     fil=fd;
     [fd,ierr]=mopen(fil,'wb');
-    if ierr~=0 then error('File '+fil+' cannot be opened for writing'),end
+    if ierr~=0 then 
+      error(msprintf(gettext("%s: Cannot open file %s.\n"),'mputl',fil));
+    end
   else // file given by its logical unit
     opened=%f;
   end

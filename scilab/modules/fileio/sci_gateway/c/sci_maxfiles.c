@@ -78,13 +78,13 @@ int C2F(sci_maxfiles)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong size for first input argument: Scalar expected.\n"),fname);
+				Scierror(999,_("%s: Wrong size for input argument: Scalar expected.\n"),fname);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for first input argument: Matrix expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument: Matrix expected.\n"),fname);
 			return 0;
 		}
 	}

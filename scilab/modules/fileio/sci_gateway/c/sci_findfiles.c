@@ -76,7 +76,7 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+				Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
 				return 0;
 			}
 
@@ -97,7 +97,7 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong type for first and/or second argument(s): Strings expected.\n"),fname);
+				Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname); 
 				return 0;
 			}
 		}

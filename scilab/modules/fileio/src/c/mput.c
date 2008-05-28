@@ -56,7 +56,7 @@ switch ( cf )  \
 	  swap = (islittleendian()==1) ? 0 : 1; \
 	  MPUT_NC(Type,Fswap); break; \
 	default: \
-	  sciprint(_("%s: Wrong value for fourth input argument (%s): '%s' or '%s' or '%s' expected.\n"),"mput",type," ","b","l"); \
+	sciprint(_("%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"),"mput",4,type," ","b","l"); \
 	  *ierr=1;return; \
 }
 /*--------------------------------------------------------------------------*/
@@ -135,7 +135,7 @@ switch ( cf )  \
 	  swap = (islittleendian()==1) ? 0 : 1; \
 	  MPUT(Type,Fswap); break; \
   default: \
-	  sciprint(_("%s: Wrong value for fourth input argument (%s): '%s' or '%s' or '%s' expected.\n"),"mput",type," ","b","l"); \
+  sciprint(_("%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"),"mput",4,type," ","b","l"); \
 	  *ierr=1;return; \
 }
 /*--------------------------------------------------------------------------*/
@@ -178,7 +178,7 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	*ierr=0;
 	if ((nc = (int)strlen(type)) == 0) 
 	{
-		sciprint(_("%s: Wrong size for fourth input argument ('%s'): Non-empty string expected.\n"),"mput",type);
+		sciprint(_("%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"),"mput",4,type);
 		*ierr=2;
 		return;
 	}
@@ -186,7 +186,7 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	{
 		swap2 = GetSwapStatus(*fd);
 		mput2(fa,swap2,res,*n,type,ierr);
-		if (*ierr > 0) sciprint(_("%s: Wrong value for fourth input argument ('%s'): Format not recognized.\n"),"mput",type);
+		if (*ierr > 0) sciprint(_("%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"),"mput",4,type);
 	}
 	else 
 	{

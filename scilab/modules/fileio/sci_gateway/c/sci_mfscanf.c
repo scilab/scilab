@@ -33,7 +33,7 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		if (m1*n1 != 1 )
 		{
-			Scierror(999,_("%s: Wrong size for first input argument: Scalar expected.\n"),fname);
+			Scierror(999,_("%s: Wrong size for input argument #%d: Scalar expected.\n"),fname,1);
 			return 0;
 		}
 		iarg=2;

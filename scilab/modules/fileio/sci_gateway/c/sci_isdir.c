@@ -34,7 +34,7 @@ int C2F(sci_isdir)(char *fname,unsigned long fname_len)
 	
 	if (! (GetType(1) == sci_strings))
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
 		return 0;
 	}
 	else
@@ -52,7 +52,7 @@ int C2F(sci_isdir)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong size for first input argument: Single string expected.\n"),fname);
+			Scierror(999,_("%s: Wrong size for input argument: Single string expected.\n"),fname);
 			return 0;
 		}
 
@@ -60,7 +60,7 @@ int C2F(sci_isdir)(char *fname,unsigned long fname_len)
 		
 		if( strlen(path) > PATH_MAX )
 		{
-		  Scierror(999,_("%s: Wrong size for first input argument: Must be less than %d characters.\n"),fname,PATH_MAX);
+		  Scierror(999,_("%s: Wrong size for input argument: Must be less than %d characters.\n"),fname,PATH_MAX);
 		}
 		
 		/* Crappy workaround because a / was added after SCI & ~ into 

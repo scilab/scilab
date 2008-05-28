@@ -53,7 +53,7 @@ int swap = 0;
 	    swap = (islittleendian()==1) ? 0:1; \
 	    MGET_NC(NumType,Fswap);  break; \
 	  default: \
-	    sciprint(_("%s: Wrong value for fourth input argument: '%s' or '%s' or '%s' expected.\n"),"mget"," ","b","l"); \
+	  sciprint(_("%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"),"mget",4," ","b","l"); \
 	    *ierr=1; return; \
 	} \
 }
@@ -169,7 +169,7 @@ void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	*ierr=0;
 	if ( nc == 0) 
 	{
-		sciprint(_("%s: Wrong size for fourth input argument: Non-empty string expected.\n"),"mput",type);
+		sciprint(_("%s: Wrong size for input argument #%d: Non-empty string expected.\n"),"mput",4,type);
 		*ierr=2;
 		return;
 	}
@@ -178,7 +178,7 @@ void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 	{
 		swap2 = GetSwapStatus(*fd);
 		mget2(fa,swap2,res,*n,type,ierr);
-		if (*ierr > 0) sciprint(_("%s: Wrong value for fourth input argument: Format not recognized.\n"),"mget");
+		if (*ierr > 0) sciprint(_("%s: Wrong value for input argument #%d: Format not recognized.\n"),"mget",4);
 	}
 	else 
 	{
