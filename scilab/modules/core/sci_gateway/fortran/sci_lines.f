@@ -33,7 +33,7 @@ c     .  set lines properties
          if(rhs.eq.2) then
 c     .     number of columns
             if(.not.getscalar('lines',topk,top,l)) return
-            lct(5)=max(10,int(stk(l)))
+            lct(5)=max(25,int(stk(l)))
             top=top-1
          endif
 c     .  number of lines
