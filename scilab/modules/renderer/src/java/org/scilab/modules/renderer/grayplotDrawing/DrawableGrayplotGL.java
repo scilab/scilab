@@ -16,7 +16,6 @@ package org.scilab.modules.renderer.grayplotDrawing;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.AutoDrawableObjectGL;
 import org.scilab.modules.renderer.DrawableClippedObjectGL;
 
 /**
