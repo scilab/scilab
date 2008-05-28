@@ -86,14 +86,14 @@ elseif rhs>3 then // syslin(domaine,A,B,C [,D [X0]])
   end
   [mb,nb]=size(b);
   if na<>mb&mb<>0 then 
-    error(msprintf(gettext("%s: Wrong size for input argument #%d and #%d.\n"),"syslin",2,3));
+    error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d (row dimension).\n"),"syslin",2,3));
   end
   if type(c)<>1 then
 	error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of real expected.\n"),"syslin",4))
   end
   [mc,nc]=size(c);
   if na<>nc&nc<>0 then 
-	error(msprintf(gettext("%s: Wrong size for input argument #%d and #%d.\n"),"syslin",2,4));
+	error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d (column dimension).\n"),"syslin",2,4));
   end
   if rhs<6 then
     x0=0*ones(na,1)
