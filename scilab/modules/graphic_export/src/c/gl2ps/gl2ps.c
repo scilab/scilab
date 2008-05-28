@@ -88,7 +88,7 @@
 #define GL2PS_EPSILON       5.0e-3F
 #define GL2PS_ZSCALE        1000.0F
 #define GL2PS_ZOFFSET       5.0e-2F
-#define GL2PS_ZOFFSET_LARGE 20.0F
+#define GL2PS_ZOFFSET_LARGE 1.0f /* value set by GL2PS is 20.0Fn however it seems a bit large */
 #define GL2PS_ZERO(arg)     (fabs(arg) < 1.e-20)
 
 /* Primitive types */
