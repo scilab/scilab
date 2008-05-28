@@ -34,7 +34,7 @@ end
 
 // check the size
 if ( size( cText ) <> 1 ) then
-  error(msprintf(gettext("%s: Wrong size for first input argument: A character string expected.\n"),"arobasestring2strings"));
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: A character string expected.\n"),"arobasestring2strings",1));
   return ;
 end
 
