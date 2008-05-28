@@ -51,7 +51,7 @@ static int c__0 = 0;
 #define extrac  3
 #define semi  43
 #define equal  50
-
+#define iselect 3
 #define Pt (C2F(recu).pt)
 extern int C2F(stackp)(int *,int *);
 extern int C2F(eqid)(int *,int *);
@@ -1012,7 +1012,22 @@ int C2F(run)()
   /*     quit */
 
  L120:
-  C2F(com).fun = 99;
+  if (C2F(recu).paus!=0) {
+    /*   quit in a pause: decrease recursion level up to the pause one (Rstk[Pt] == 503) */
+    Pt = Pt + 1;
+  L121:  
+    Pt = Pt - 1;
+    /*  suppress loop variables if any */
+    if (Rstk[Pt]==802 || Rstk[Pt]==612 || 
+	(Rstk[Pt]==805 && Ids[1 + Pt * nsiz]==iselect) ||  
+	(Rstk[Pt]==616 && Pstk[Pt] ==10)) Top--;
+    if (Rstk[Pt] != 503) goto L121;
+    /* recall macro to terminate the pause level */
+    C2F(com).fun=0;
+    return 0;
+  }
+  else
+    C2F(com).fun = 99;
   return 0;
 
   /*     named variable */

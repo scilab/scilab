@@ -5,13 +5,59 @@
   </info>
   <refnamediv>
     <refname>quit</refname>
-    <refpurpose> décrémente le niveau de pause ou quitte Scilab  </refpurpose>
+    <refpurpose>Quitte Scilab ou décrémente le niveau de pause  </refpurpose>
   </refnamediv>
+  <refsynopsisdiv>
+    <title>Syntaxe d'appel</title>
+    <synopsis>quit</synopsis>
+  </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>quit</literal> décrémente le niveau de <literal>pause</literal> ou quitte Scilab, si l'on se trouve au niveau principal.
-  </para>
+    <para>La commande <literal>quit</literal> à deux significations
+    différentes selon le contexte d'appel: </para>
+    <variablelist>
+      <varlistentry>
+        <term>S'il n'y a pas de <literal>pause</literal> active,</term>
+        <listitem>
+          <para> alors la commande <literal>quit</literal> provoque la sortie
+          de Scilab, même si la commande est appelée dans une
+          fonction.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>S'il y a une <literal>pause</literal> active,</term>
+        <listitem>
+          <para>alors la commande <literal>quit</literal> termine
+          cette pause, en avortant les instructions lancées depuis ce
+          niveau de pause.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
+ <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+      // Quitter Scilab
+      function foo(x),if x then quit,end,endfunction
+      foo(%t) //quitte Scilab
+
+      //avorte les instructions lancées depuis la pause et termine la pause
+      function foo(x),if x then quit,end,endfunction
+      pause
+      foo(%t) //Retourne ou prompt principal
+
+      function foo1(x),
+        mprintf('P1\n')
+        if x then pause, mprintf('P2\n'),end,
+        mprintf('P3\n')
+      endfunction
+     
+      foo1(%t) //entrez l'instruction "quit" au prompt
+
+  </programlisting>
+  </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
     <simplelist type="inline">
