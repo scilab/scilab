@@ -26,8 +26,8 @@ import javax.media.opengl.GL;
  */
 public class GL2PSGL extends DebugGL {
 	
-	private static double[] GL2PS_DEPTH_TEST_RANGE = {0.0, 0.95};
-	private static double[] GL2PS_NO_DEPTH_TEST_RANGE = {0.95, 1.0};
+	private static final double[] GL2PS_DEPTH_TEST_RANGE = {0.0, 0.95};
+	private static final double[] GL2PS_NO_DEPTH_TEST_RANGE = {0.95, 1.0};
 	
 	private GL gl;
 	private GL2PS gl2ps;
