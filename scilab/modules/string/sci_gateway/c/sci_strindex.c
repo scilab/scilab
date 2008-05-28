@@ -114,7 +114,7 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings or empty matrix expected.\n"),fname,3);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"),fname,3);
 			return 0;
 		}
 	}
@@ -140,7 +140,7 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 		if (m1n1 != 1)
 		{
 			freeArrayOfString(Strings_Input1,m1n1);
-			Scierror(999,_("%s: Wrong size for input argument #%d: Single character string expected.\n"),fname,1);
+			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 			return 0;
 		}
 		
@@ -151,7 +151,7 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 		{
 			freeArrayOfString(Strings_Input1,m1n1);
 			freeArrayOfString(Strings_Input2,m2n2);
-			Scierror(999,_("%s: Wrong type for input argument #%d: Row vector of character strings or column vector of character strings expected.\n"),fname,2);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Row vector of strings or column vector of strings expected.\n"),fname,2);
 			return 0;
 		}
 		
@@ -263,11 +263,11 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 	{
 		if(VarType(1) != sci_strings)
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname,1);
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Row vector of character strings or column vector of character strings expected.\n"),fname,2);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Row vector of strings or column vector of strings expected.\n"),fname,2);
 		}
 		return 0;
 	}

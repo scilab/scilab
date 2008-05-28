@@ -81,11 +81,11 @@ int C2F(sci_strcspn)(char *fname,unsigned long fname_len)
 	{
 		if(GetType(1) != sci_strings)
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,1);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),fname,1);
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,2);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),fname,2);
 		}
 	}
 	return 0;

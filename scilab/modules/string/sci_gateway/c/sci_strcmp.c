@@ -62,7 +62,7 @@ int C2F(sci_strcmp)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname,3);
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,3);
 			return 0;
 		}
 	}
@@ -124,11 +124,11 @@ int C2F(sci_strcmp)(char *fname,unsigned long fname_len)
 	{
 		if(Type_One != sci_strings)
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,1);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),fname,1);
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of character strings expected.\n"),fname,2);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),fname,2);
 		}
 	}
 	return 0;

@@ -1,6 +1,11 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 //===============================
 // unit tests convstr
-// INRIA 2007
 //===============================
 if convstr('ABC')<>'abc' then bugmes();quit;end
 if convstr('ABC','l')<>'abc' then bugmes();quit;end
@@ -52,3 +57,8 @@ STR = ['this','is';'my','matrix'];
 if convstr(STR,'u') <> ['THIS' 'IS';'MY' 'MATRIX'] then bugmes();quit;end
 if convstr(STR,'l') <> STR then bugmes();quit;end
 //===============================
+//===============================
+// interface tests
+//===============================
+if execstr("convstr(''abc'',''i''))","errcatch") <= 0 then bugmes();quit;end
+if execstr("convstr(''abc'',''i''))","errcatch") <= 0 then bugmes();quit;end

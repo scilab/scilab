@@ -325,7 +325,7 @@ static int asciiIntMatrix(char *fname)
 /*--------------------------------------------------------------------------*/
 static int asciiOthers(char *fname)
 {
-	Scierror(999,_("%s: Wrong type for argument #%d: Matrix of character strings or Integer matrix expected.\n"),fname,1);
+	Scierror(999,_("%s: Wrong type for argument #%d: Matrix of strings or Integer matrix expected.\n"),fname,1);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

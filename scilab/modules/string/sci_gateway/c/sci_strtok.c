@@ -51,13 +51,13 @@ int C2F(sci_strtok)(char *fname,unsigned long fname_len)
 			if (m2n2 != 1)
 			{
 				freeArrayOfString(Input_strings2,m2n2);
-				Scierror(999,_("%s: Wrong size for input argument #%d: Single character string expected.\n"),fname,2);
+				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname,2);
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
 			return 0;
 		}
 	}
@@ -71,14 +71,14 @@ int C2F(sci_strtok)(char *fname,unsigned long fname_len)
 		{
 			freeArrayOfString(Input_strings1,m1n1);
 			freeArrayOfString(Input_strings2,m2n2);
-			Scierror(999,_("%s: Wrong size for input argument #%d: Single character string expected.\n"),fname,1);
+			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 			return 0;
 		}
 	}
 	else
 	{
 		freeArrayOfString(Input_strings2,m2n2);
-		Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname,1);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 

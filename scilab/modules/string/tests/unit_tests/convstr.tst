@@ -8,6 +8,7 @@
 //===============================
 // unit tests convstr
 //===============================
+
 if convstr('ABC')<>'abc' then pause,end
 if convstr('ABC','l')<>'abc' then pause,end
 if convstr('ABC','u')<>'ABC' then pause,end
@@ -59,3 +60,9 @@ if convstr(STR,'u') <> ['THIS' 'IS';'MY' 'MATRIX'] then pause,end
 if convstr(STR,'l') <> STR then pause,end
 //===============================
 
+//===============================
+// interface tests
+//===============================
+
+if execstr("convstr(''abc'',''i''))","errcatch") <= 0 then pause,end
+if execstr("convstr(''abc'',''i''))","errcatch") <= 0 then pause,end

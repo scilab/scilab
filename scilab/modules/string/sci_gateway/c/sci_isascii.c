@@ -41,7 +41,7 @@ int C2F(sci_isascii)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: Real matrix or matrix of character strings expected.\n"),fname,1);
+		Scierror(999,_("%s: Wrong type for input argument #%d: Real matrix or matrix of strings expected.\n"),fname,1);
 	}
 	return 0;
 }

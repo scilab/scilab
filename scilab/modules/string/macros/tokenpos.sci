@@ -13,10 +13,10 @@ function kdf=tokenpos(str,sep)
   if argn(2)<2 then sep=[' ',ascii(9)],end
 
   if size(str,'*')<> 1 then 
-    error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"tokenpos",1));
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A character string expected.\n"),"tokenpos",1));
   end
   if or(length(sep)<>1) then
-    error(msprintf(gettext("%s: Wrong size for input argument #%d: Single character or vector of characters expected.\n"),"tokenpos",2));
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A character or vector of characters expected.\n"),"tokenpos",2));
   end
   str=sep(1)+str+sep(1)
   k1=strindex(str,sep)
