@@ -161,7 +161,7 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 					canBeAMnemonic = false;
 				}
 
-				if (canBeAMnemonic && menuName.charAt(charIndex + 1) != '&') {
+				if ((charIndex + 1 < menuName.length()) && (canBeAMnemonic && menuName.charAt(charIndex + 1) != '&')) {
 					// A mnemonic
 					// Have to remove the & used to set a Mnemonic
 					String firstPart = menuName.substring(0, Math.max(charIndex - 1, 0)); // Before &
