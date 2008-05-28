@@ -1,10 +1,163 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA
+// Copyright (C) 2008 - INRIA - Vincent Couvert <vincent.couvert@inria.fr>
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// eye100x100.mat -v5 only
-loadmatfile(SCI+'/modules/matio/tests/unit_tests/eye100x100.mat','a')
-ref = eye(100,100);
-if ~and(a == ref) then pause,end
+
+// This Scilab script loads MAT-files to test the MATIO module
+
+clear all
+
+//
+// Loads all MAT-files
+//
+matFiles = listfiles("SCI/modules/matio/tests/unit_tests/*.mat");
+for fileIndex=1:size(matFiles, "*")
+  loadmatfile(matFiles(fileIndex));
+end
+
+//
+// TESTS FOR CELL ARRAYS
+//
+
+// TODO
+
+//
+// TESTS FOR STRUCTURE ARRAYS
+//
+
+// TODO
+
+//
+// TESTS FOR OBJECTS
+//
+
+// TODO
+
+//
+// TESTS FOR CHARACTER ARRAYS
+//
+
+//if or(emptystringmatrix <> '') then pause; end // CHECK !!!
+if or(emptystringmatrix <> []) then pause; end // CHECK !!!
+if or(stringscalar <> "a") then pause; end
+if or(stringrowvector <> ["abc"]) then pause; end
+if or(stringcolvector <> ["a";"b";"c"]) then pause; end
+if or(stringmatrix <> ["abc";"def"]) then pause; end
+
+// TODO: ND-Array tests ?
+
+//
+// TESTS FOR DOUBLE PRECISION ARRAYS
+//
+
+if or(emptydoublematrix <> []) then pause; end
+
+if or(realdoublescalar <> 1.23) then pause; end
+if or(cplxdoublescalar <> 1.23 + 4.56*%i) then pause; end
+
+if or(realdoublerowvector <> [1.23 -4.56 7.89]) then pause; end
+if or(cplxdoublerowvector <> [1.23+7.89*%i 4.56-1.23*%i 7.89+4.56*%i]) then pause; end
+
+if or(realdoublecolvector <> [1.23;-4.56;7.89]) then pause; end
+if or(cplxdoublecolvector <> [1.23+7.89*%i;4.56-1.23*%i;7.89+4.56*%i]) then pause; end
+
+if or(realdoublematrix <> [1.23 -4.56 7.89;9.87 6.54 -3.21]) then pause; end
+if or(cplxdoublematrix <> [1.23+7.89*%i 4.56-1.23*%i 7.89+4.56*%i;9.87+3.21*%i 6.54+9.87*%i 3.21-6.54*%i]) then pause; end
+
+// TODO: ND-Array tests ?
+
+//
+// TESTS FOR SINGLE PRECISION ARRAYS
+//
+
+// TODO
+
+//
+// TESTS FOR SPARSE MATRICES
+//
+
+// TODO
+
+//
+// TESTS FOR 8-BITS SIGNED INTEGERS
+//
+
+if or(emptyint8matrix <> int8([])) then pause; end
+if or(int8scalar <> int8(1)) then pause; end
+if or(int8rowvector <> int8([1 -4 7])) then pause; end
+if or(int8colvector <> int8([1;-4;7])) then pause; end
+if or(int8matrix <> int8([1 -4 7;-9 6 -3])) then pause; end
+
+//
+// TESTS FOR 16-BITS SIGNED INTEGERS
+//
+
+if or(emptyint16matrix <> int16([])) then pause; end
+if or(int16scalar <> int16(1)) then pause; end
+if or(int16rowvector <> int16([1 -4 7])) then pause; end
+if or(int16colvector <> int16([1;-4;7])) then pause; end
+if or(int16matrix <> int16([1 -4 7;-9 6 -3])) then pause; end
+
+//
+// TESTS FOR 32-BITS SIGNED INTEGERS
+//
+
+if or(emptyint32matrix <> int32([])) then pause; end
+if or(int32scalar <> int32(1)) then pause; end
+if or(int32rowvector <> int32([1 -4 7])) then pause; end
+if or(int32colvector <> int32([1;-4;7])) then pause; end
+if or(int32matrix <> int32([1 -4 7;-9 6 -3])) then pause; end
+
+// TODO: int64 tests ?
+
+//
+// TESTS FOR 8-BITS UNSIGNED INTEGERS
+//
+
+if or(emptyuint8matrix <> uint8([])) then pause; end
+if or(uint8scalar <> uint8(1)) then pause; end
+//if or(uint8rowvector <> uint8([1 -4 7])) then pause; end
+if or(uint8rowvector <> [1 0 7]) then pause; end
+//if or(uint8colvector <> uint8([1;-4;7])) then pause; end
+if or(uint8colvector <> [1;0;7]) then pause; end
+//if or(uint8matrix <> uint8([1 -4 7;-9 6 -3])) then pause; end
+if or(uint8matrix <> [1 0 7;0 6 0]) then pause; end
+
+//
+// TESTS FOR 16-BITS UNSIGNED INTEGERS
+//
+
+if or(emptyuint16matrix <> uint16([])) then pause; end
+if or(uint16scalar <> uint16(1)) then pause; end
+//if or(uint16rowvector <> uint16([1 -4 7])) then pause; end
+if or(uint16rowvector <> [1 0 7]) then pause; end
+//if or(uint16colvector <> uint16([1;-4;7])) then pause; end
+if or(uint16colvector <> [1;0;7]) then pause; end
+//if or(uint16matrix <> uint16([1 -4 7;-9 6 -3])) then pause; end
+if or(uint16matrix <> [1 0 7;0 6 0]) then pause; end
+
+//
+// TESTS FOR 32-BITS UNSIGNED INTEGERS
+//
+
+if or(emptyuint32matrix <> uint32([])) then pause; end
+if or(uint32scalar <> uint32(1)) then pause; end
+//if or(uint32rowvector <> uint32([1 -4 7])) then pause; end
+if or(uint32rowvector <> [1 0 7]) then pause; end
+//if or(uint32colvector <> uint32([1;-4;7])) then pause; end
+if or(uint32colvector <> [1;0;7]) then pause; end
+//if or(uint32matrix <> uint32([1 -4 7;-9 6 -3])) then pause; end
+if or(uint32matrix <> [1 0 7;0 6 0]) then pause; end
+
+// TODO: uint64 tests ?
+
+// TODO: ND-Array tests ?
+
+//
+// MISC
+//
+if or(eye100x100 <> eye(100,100)) then pause; end
+
+// TODO: read all variables from a single file ?
