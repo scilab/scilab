@@ -126,6 +126,7 @@ void startTclLoop()
 	if(TclSlave != NULL)
 	  {
 	    LocalTCLinterp = Tcl_GetSlave(LocalTCLinterp, TclSlave);
+	    releaseTclInterp();
 	    FREE(TclSlave);
 	    TclSlave = NULL;
 	  }
@@ -169,6 +170,8 @@ void startTclLoop()
 	fflush(NULL);
 #endif
 	releaseTclInterp();
+	Tcl_Eval(getTclInterp(), "update");
+	releaseTclInterp();
 	__Signal(&workIsDone);
 	__UnLock(&launchCommand);
       }
@@ -180,7 +183,8 @@ void startTclLoop()
     else
       {
 	__Lock(&wakeUpLock);
-	Tcl_Eval(requestTclInterp(), "update");
+	Tcl_Eval(getTclInterp(), "update");
+	releaseTclInterp();
 #ifdef __LOCAL_DEBUG__
 	printf("[TCL Daemon] Wait\n");
 	fflush(NULL);
