@@ -26,5 +26,6 @@ EXPORTS
  vartype_
  callFunctionFromGateway
  freeArrayOfString
+ getWarningMode
 ;
 

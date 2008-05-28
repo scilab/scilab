@@ -17,7 +17,7 @@
   <refnamediv>
     <refname>get_absolute_file_path</refname>
     <refpurpose>Given an absolute
-  pathname.</refpurpose>
+  pathname of a file opened in scilab.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -42,7 +42,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Given the absolute pathname.</para>
+    <para>Given the absolute pathname of a file already opened in scilab.</para>
+    <para>if file not opened , it will return current directory path.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

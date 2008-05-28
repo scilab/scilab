@@ -32,6 +32,9 @@
 #include "getfiledesc.h"
 #include "getfileinfo.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
+#include "warningmode.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_get_absolute_file_path)(char *fname,unsigned long fname_len)
 {
@@ -47,86 +50,105 @@ int C2F(sci_get_absolute_file_path)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		char *filename=NULL;
+		char **parametersIN = NULL;
 
-		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		if ( n1==1 )
+		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&parametersIN);
+
+		if ( (m1 == 1) && (n1 == 1) )
 		{
-			int i=0;
-			int fdmax=0;
-			char fileNameFormList[PATH_MAX];
-			char *absolute_file_path=NULL;
-
-			filename=cstk(l1);
-
-			C2F(getfiledesc)(&fdmax);
-			for(i=fdmax-1;i>=0;i--)
+			if ( strcmp(parametersIN[0],"") == 0 ) /* */
 			{
-				FILE fa;
-				integer swap2=0;
-				integer type=0;
-				integer mode=0;
+				Scierror(999,_("%s: Wrong value for input argument: no empty string expected.\n"),fname);
+				freeArrayOfString(parametersIN,m1*n1);
+				return 0;
+			}
+			else
+			{
+				int i=0;
+				int fdmax=0;
+				char fileNameFormList[PATH_MAX];
+				char *absolute_file_path = NULL;
+				char *filename = parametersIN[0];
 
-				integer lf=0;
-				integer ierr=0;
-
-				int posBeginFileName=0;
-
-				C2F(getfileinfo)(&i, &fa, &swap2,&type,&mode,fileNameFormList,&lf,&ierr);
-				posBeginFileName=(int)(strlen(fileNameFormList)-strlen(filename));
-
-				if (posBeginFileName>0)
+				C2F(getfiledesc)(&fdmax);
+				for(i=fdmax-1;i>=0;i--)
 				{
-					char *cmptmp=NULL;
-					cmptmp=&fileNameFormList[posBeginFileName];
-					if (strcmp(cmptmp,filename)==0)
+					FILE fa;
+					integer swap2 = 0;
+					integer type = 0;
+					integer mode = 0;
+
+					integer lf = 0;
+					integer ierr = 0;
+
+					int posBeginFileName = 0;
+
+					C2F(getfileinfo)(&i, &fa, &swap2,&type,&mode,fileNameFormList,&lf,&ierr);
+					if (ierr == 0)
 					{
-						absolute_file_path=(char *)MALLOC(sizeof(char)*(strlen(fileNameFormList)+1));
-						if (absolute_file_path)
+						posBeginFileName = (int)(strlen(fileNameFormList)-strlen(filename));
+
+						if ( posBeginFileName > 0 )
 						{
-							strncpy(absolute_file_path,fileNameFormList,posBeginFileName);
-							absolute_file_path[posBeginFileName]='\0';
-							break;
+							char *cmptmp = NULL;
+							cmptmp = &fileNameFormList[posBeginFileName];
+							if ( strcmp(cmptmp,filename) == 0 )
+							{	
+								absolute_file_path=(char *)MALLOC(sizeof(char)*(strlen(fileNameFormList)+1));
+								if (absolute_file_path)
+								{
+									strncpy(absolute_file_path,fileNameFormList,posBeginFileName);
+									absolute_file_path[posBeginFileName]='\0';
+									break;
+								}
+							}
 						}
 					}
 				}
-			}
 
-			if (!absolute_file_path) /* file not found in list of files opened by scilab */
-			{
-				int ierr=0;
-				int lpath=0;
-				char *path=NULL;
-
-				C2F(scigetcwd)(&path,&lpath,&ierr);
-				if (ierr) /* Problem to get current directory */
+				if (!absolute_file_path) /* file not found in list of files opened by scilab */
 				{
-					m1=0; n1=0; l1=0; /* returns a empty string */
-					CreateVar(Rhs+1,STRING_DATATYPE,  &m1, &n1, &l1);
-					LhsVar(1)=Rhs+1;
-					C2F(putlhsvar)();
-					return 0;
+					int ierr=0;
+					int lpath=0;
+					char *path=NULL;
+
+					if (  getWarningMode() )
+					{
+						sciprint(_("%s: The file %s not found. current directory returned.\n"),fname,filename);
+					}
+
+					C2F(scigetcwd)(&path,&lpath,&ierr);
+					if (ierr) /* Problem to get current directory */
+					{
+						m1=0; n1=0; l1=0; /* returns a empty string */
+						CreateVar(Rhs+1,STRING_DATATYPE,  &m1, &n1, &l1);
+						LhsVar(1)=Rhs+1;
+						C2F(putlhsvar)();
+						return 0;
+					}
+					else
+					{
+						absolute_file_path=(char *)MALLOC(sizeof(char)*(lpath+(int)strlen(DIR_SEPARATOR)+1));
+						strncpy(absolute_file_path,path,lpath);
+						absolute_file_path[lpath]='\0';
+						/* Add '\' or '/' */
+						strcat(absolute_file_path,DIR_SEPARATOR);
+					}
 				}
-				else
-				{
-					absolute_file_path=(char *)MALLOC(sizeof(char)*(lpath+(int)strlen(DIR_SEPARATOR)+1));
-					strncpy(absolute_file_path,path,lpath);
-					absolute_file_path[lpath]='\0';
-					/* Add '\' or '/' */
-					strcat(absolute_file_path,DIR_SEPARATOR);
-				}
+
+				freeArrayOfString(parametersIN,m1*n1);
+
+				n1=1;
+				CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(absolute_file_path), &m1),&n1,&absolute_file_path);
+				LhsVar(1)=Rhs+1;
+				C2F(putlhsvar)();
+
+				if (absolute_file_path){FREE(absolute_file_path);absolute_file_path=NULL;}
 			}
-
-			n1=1;
-			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(absolute_file_path), &m1),&n1,&absolute_file_path);
-			LhsVar(1)=Rhs+1;
-			C2F(putlhsvar)();
-
-			if (absolute_file_path){FREE(absolute_file_path);absolute_file_path=NULL;}
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong size for input argument: A string expected.\n"),fname);
 		}
 	}
 	return 0;
