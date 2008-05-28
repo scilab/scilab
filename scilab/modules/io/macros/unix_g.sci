@@ -6,12 +6,12 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
 function varargout = unix_g(cmd)
-//unix_g - shell command execution 
+//unix_g - shell command execution
 //%Syntax
 //rep=unix_g(cmd)
 //%Parameters
@@ -25,15 +25,25 @@ function varargout = unix_g(cmd)
 //%See also
 // host unix_x unix_s
 //!
-  
-  [lhs,rhs] = argn(0);
-  
-  if lhs > 3 then
-    error(msprintf(gettext("%s: Wrong number of output argument(s).\n"),"unix_g"));
-  end
-  
-  if prod(size(cmd))<>1 then error(55,1),end
-  
+	
+	[lhs,rhs] = argn(0);
+	
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"unix_g",1));
+	end
+	
+	if type(cmd) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"unix_g",1));
+	end
+	
+	if size(cmd,"*") <> 1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"unix_g",1));
+	end
+	
+	if lhs > 3 then
+		error(msprintf(gettext("%s: Wrong number of output argument(s).\n"),"unix_g"));
+	end
+
   // initialize variables
   stderr = emptystr();
   stat = 1;
@@ -69,9 +79,9 @@ function varargout = unix_g(cmd)
        case -1 then
          // host failed
          if lhs == 3 then
-           stderr = gettext('host does not answer...');
+           stderr = msprintf(gettext("%s: The system interpreter does not answer..."),"unix_g");
          else
-           disp(gettext('host does not answer...'));
+           disp(msprintf(gettext("%s: The system interpreter does not answer..."),"unix_g"));
          end
          rep = emptystr();
        else
@@ -84,7 +94,7 @@ function varargout = unix_g(cmd)
          rep = emptystr();
        end
      
-     mdelete(tmp);   
+     mdelete(tmp);
   end
   
   // output arguments

@@ -23,13 +23,25 @@ function unix_s(cmd)
 // host unix_g unix_x
 //!
 
-  if prod(size(cmd))<>1 then   error(55,1),end
-
+	[lhs,rhs] = argn(0);
+	
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"unix_s",1));
+	end
+	
+	if type(cmd) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"unix_s",1));
+	end
+	
+	if size(cmd,"*") <> 1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"unix_s",1));
+	end
+	
   if MSDOS then 
     [rep,stat]=dos(cmd);
     if (~stat) then
       for i=1:size(rep,'*') do write(%io(2),'   '+rep(i));end
-      error('unix_s: error during ``'+cmd+''''' execution')
+      error(msprintf(gettext("%s: error during ""%s"" execution"),"unix_s",cmd));
     end
   else
      cmd1='('+cmd+')>/dev/null 2>'+TMPDIR+'/unix.err;';
@@ -37,11 +49,11 @@ function unix_s(cmd)
      select stat
         case 0 then
         case -1 then // host failed
-           error(85)
+           error(msprintf(gettext("%s: The system interpreter does not answer..."),"unix_s"))
         else //sh failed
            msg=read(TMPDIR+'/unix.err',-1,1,'(a)');
            for i=1:size(msg,'*') do write(%io(2),'   '+msg(i));end
-           error('unix_s: error during ``'+cmd+''''' execution')
+           error(msprintf(gettext("%s: error during ""%s"" execution"),"unix_s",cmd));
         end
      end 
 endfunction

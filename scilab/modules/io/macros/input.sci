@@ -9,6 +9,15 @@
 
 
 function [x]=input(msg,flag)
+
+	if type(msg) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"input",1));
+	end
+	
+	if size(msg,"*") <> 1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"input",1));
+	end
+
   fmt="%["+ascii(32)+"-"+ascii(254)+"]";// a tricky way to get all ascii codes  sequences
   n=size(msg,"*")
   for k=1:n-1

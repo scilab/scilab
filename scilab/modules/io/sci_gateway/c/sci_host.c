@@ -32,7 +32,7 @@ int C2F(sci_host)(char *fname,unsigned long fname_len)
 		if ( (m1 != 1) && (n1 != 1) )
 		{
 			freeArrayOfString(Str,m1*n1);
-			Scierror(89,_("%s: Wrong size for first input argument.\n"),fname);
+			Scierror(89,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 			return 0;
 		}
 		else
@@ -52,7 +52,7 @@ int C2F(sci_host)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(55,_("%s: Wrong type for input argument: String expected.\n"),fname);
+		Scierror(55,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
 	}
 
 	return 0;

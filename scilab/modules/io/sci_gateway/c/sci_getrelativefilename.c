@@ -31,54 +31,66 @@ int C2F(sci_getrelativefilename)(char *fname, unsigned long l)
 	CheckRhs(2,2);
 	CheckLhs(1,1);
 
-	if (! ((GetType(1) == sci_strings) && (GetType(2) == sci_strings ) ) ){
-
-		Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname);
-		return 0;
-
-	}else{
-
+	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
+	{
 		char *param1=NULL;
 		char *param2=NULL;
 		char *result=(char*)MALLOC(PATH_MAX*sizeof(char));
-
+		
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-
-		if ( n1==1 ){
+		
+		if ( n1*m1==1 )
+		{
 			param1=cstk(l1);
-		}else{
-			Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 			return 0;
 		}
-
-		if ( n2==1 ){
+		
+		if ( n2*m2==1 )
+		{
 			param2=cstk(l2);
-		}else{
-			Scierror(999,_("%s: Wrong type for second input argument: String expected.\n"),fname);
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
 			return 0;
 		}
-
+		
 		// make sure the names are not too long
-
+		
 		if( strlen(param1) > PATH_MAX )
 		{
-			Scierror(999,_("%s: Wrong size for first input argument: Must be less than %d characters.\n"),fname,PATH_MAX);
+			Scierror(999,_("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"),fname,1,PATH_MAX);
 		}
-
+		
 		if( strlen(param2) > PATH_MAX )
 		{
-			Scierror(999,_("%s: Wrong size for second input argument: Must be less than %d characters.\n"),fname,PATH_MAX);
+			Scierror(999,_("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"),fname,2,PATH_MAX);
 		}
-
+		
 		result = getrelativefilename(param1,param2);
-
+		
 		CreateVarFromPtr(Rhs+3,STRING_DATATYPE,(m1=(int)strlen(result), &m1),&n1,&result);
 		LhsVar(1)=Rhs+3;
 		if (result) {FREE(result);result=NULL;}
 		C2F(putlhsvar)();
 	}
-
+	else
+	{
+		if(GetType(1) != sci_strings)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
+		}
+	}
+	
 	return 0;
 }
 

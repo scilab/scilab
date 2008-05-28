@@ -45,7 +45,7 @@ int C2F(sci_get_absolute_file_path)(char *fname,unsigned long fname_len)
 
 	if (! (GetType(1) == sci_strings))
 	{
-		Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"),fname);
 		return 0;
 	}
 	else
@@ -148,7 +148,7 @@ int C2F(sci_get_absolute_file_path)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong size for input argument: A string expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname);
 		}
 	}
 	return 0;

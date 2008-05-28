@@ -22,11 +22,11 @@ v17,v18,v19,v20,v21,v22,v23,v24,v25,v26,v27,v28,v29,v30]=sscanf(buf,frmt)
 	nv         = lhs;
 	
 	if type(frmt)<>10 then
-		error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"),"sscanf",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"sscanf",2));
 	end
 	
 	if size(frmt,"*")<>1 then
-		error(msprintf(gettext("%s: Wrong size for first input argument: Single string expected.\n")),"sscanf");
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")),"sscanf",2);
 	end
 	
 	lb          = 1;

@@ -24,7 +24,19 @@ function unix_x(cmd)
 // host unix_g unix_s
 //!
 
-if prod(size(cmd))<>1 then   error(55,1),end
+	[lhs,rhs] = argn(0);
+	
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"unix_x",1));
+	end
+	
+	if type(cmd) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"unix_x",1));
+	end
+	
+	if size(cmd,"*") <> 1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"unix_x",1));
+	end
 
 if MSDOS then
    [rep,stat]=dos(cmd);
@@ -32,7 +44,7 @@ if MSDOS then
       x_message_modeless(rep);
     else
       for i=1:size(rep,'*') do write(%io(2),'   '+rep(i));end
-      error('unix_x: error during ``'+cmd+''''' execution')
+      error(msprintf(gettext("%s: error during ""%s"" execution"),"unix_x",cmd));
     end 
 else 
   tmp=TMPDIR+'/unix.out';
@@ -46,7 +58,7 @@ else
        end
        x_message_modeless(rep)
     case -1 then // host failed
-      error(85)
+      error(msprintf(gettext("%s: The system interpreter does not answer..."),"unix_x"));
     else //sh failed
       msg=read(TMPDIR+'/unix.err',-1,1,'(a)')
      error('unix_x: '+msg(1))

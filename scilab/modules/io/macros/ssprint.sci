@@ -20,7 +20,6 @@ function []=ssprint(sl,out)
 //!
 
 [lhs,rhs]=argn(0)
-mess='system cannot be displayed in this page'
 fil=%f
 if rhs==1 then 
   out=%io(2),
@@ -89,10 +88,10 @@ if na>0 then
 	write(out,' ')
 	write(out,part(t,n1+1:n2),'(3x,a)')
       else          
-	error(mess)
+	error(msprintf(gettext("%s: system cannot be displayed in this page.\n"),"ssprint"));
       end;
     else 
-      error(mess)
+      error(msprintf(gettext("%s: system cannot be displayed in this page.\n"),"ssprint"));
     end;
   end;
 end
@@ -150,10 +149,10 @@ else
       write(out,' ')
       write(out,part(t,n1+1:n2),'(3x,a)')
     else 
-      error(mess)
+      error(msprintf(gettext("%s: system cannot be displayed in this page.\n"),"ssprint"));
     end
   else 
-    error(mess)
+    error(msprintf(gettext("%s: system cannot be displayed in this page.\n"),"ssprint"));
   end
 end
 if fil then file('close',out),end

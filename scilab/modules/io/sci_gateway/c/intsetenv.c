@@ -48,9 +48,16 @@ int	C2F(intsetenv)(char *fname, unsigned long len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname);
+		if(TypeVar1 != sci_strings)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),fname,1);
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),fname,2);
+		}
 	}
-
+	
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
