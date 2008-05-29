@@ -18,11 +18,20 @@
 #include "machine.h"
 #include "MALLOC.h"
 #include "EnvTclTk.h"
+#include "setenvtcl.h"
 #include "GlobalTclInterp.h"
 #include "localization.h"
 #include "ConvertSlash.h"
 /*--------------------------------------------------------------------------*/
 extern void	TclSetLibraryPath(Tcl_Obj * pathPtr);
+/*--------------------------------------------------------------------------*/
+#if defined(TCL_MAJOR_VERSION) && defined(TCL_MAJOR_VERSION)
+	#if TCL_MAJOR_VERSION == 8 
+		#if TCL_MINOR_VERSION == 4
+static CONST char * Tcl_GetEncodingNameFromEnvironment(Tcl_DString *bufPtr);
+		#endif
+	#endif
+#endif
 /*--------------------------------------------------------------------------*/
 BOOL SetTclTkEnvironment(char *DefaultPath)
 {
@@ -31,6 +40,8 @@ BOOL SetTclTkEnvironment(char *DefaultPath)
 
 	#define TK_LIBRARY "TK_LIBRARY"
 	#define TK_LIBRARY_FORMAT "%s/modules/tclsci/tcl/tk%d.%d"
+
+	#define TCL_DEFAULT_ENCODING_DIR_FORMAT "%s/modules/tclsci/tcl/tcl%d.%d/encoding"
 
 	int tcl_major = 8;
 	int tcl_minor = 4; /* default */
@@ -41,7 +52,9 @@ BOOL SetTclTkEnvironment(char *DefaultPath)
 
 	char TCL_LIBRARY_PATH[PATH_MAX];
 	char TK_LIBRARY_PATH[PATH_MAX];
-	char tcl_encoding[PATH_MAX];
+	char TCL_DEFAULT_ENCODING_DIR[PATH_MAX];
+
+	Tcl_DString encodingName;
 	
 	char ShortPath[PATH_MAX];
 	char *CopyOfDefaultPath = NULL;
@@ -58,11 +71,17 @@ BOOL SetTclTkEnvironment(char *DefaultPath)
 	AntislashToSlash(ShortPath,CopyOfDefaultPath);
 	sprintf (TCL_LIBRARY_PATH, TCL_LIBRARY_FORMAT,CopyOfDefaultPath,tcl_major,tcl_minor);
 	sprintf (TK_LIBRARY_PATH, TK_LIBRARY_FORMAT,CopyOfDefaultPath,tcl_major,tcl_minor);
+	sprintf (TCL_DEFAULT_ENCODING_DIR,
+			 TCL_DEFAULT_ENCODING_DIR_FORMAT,
+			 CopyOfDefaultPath,
+			 tcl_major,
+			 tcl_minor);
 
 	if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 
 	/* TCL_LIBRARY initialization */
 	SetEnvironmentVariable(TCL_LIBRARY,TCL_LIBRARY_PATH);
+	setenvtcl(TCL_LIBRARY,TCL_LIBRARY_PATH);
 	if (Tcl_SetVar(getTclInterp(), "tcl_library", TCL_LIBRARY_PATH, TCL_GLOBAL_ONLY) == NULL)
 	{
 		releaseTclInterp();
@@ -94,6 +113,7 @@ BOOL SetTclTkEnvironment(char *DefaultPath)
 
 	/* TK_LIBRARY initialization */
 	SetEnvironmentVariable(TK_LIBRARY,TK_LIBRARY_PATH);
+	setenvtcl(TK_LIBRARY,TK_LIBRARY_PATH);
 	if (Tcl_SetVar(getTclInterp(), "tk_library", TK_LIBRARY_PATH, TCL_GLOBAL_ONLY) == NULL)
 	{
 		releaseTclInterp();
@@ -106,16 +126,30 @@ BOOL SetTclTkEnvironment(char *DefaultPath)
 	objPtr = Tcl_NewStringObj(TK_LIBRARY_PATH, -1);
 	Tcl_ListObjAppendElement(NULL, pathPtr, objPtr);
 	TclSetLibraryPath(pathPtr);
-
+    
 	/* encoding initialization */
-	sprintf( tcl_encoding,"cp%d", GetACP() );
-	if ( Tcl_SetSystemEncoding(NULL, tcl_encoding) == TCL_ERROR )
+	Tcl_SetDefaultEncodingDir(TCL_DEFAULT_ENCODING_DIR);
+    if ( Tcl_SetSystemEncoding(NULL, Tcl_GetEncodingNameFromEnvironment(&encodingName)) == TCL_ERROR )
 	{
 		fprintf(stderr,_("%s: An error occurred: %s\n"),"Tcl_SetSystemEncoding",
 			_("Impossible to set system encoding."));
 		bOK = FALSE;
 	}
+    Tcl_DStringFree(&encodingName);
 
 	return bOK ;
 }
+/*--------------------------------------------------------------------------*/
+#if defined(TCL_MAJOR_VERSION) && defined(TCL_MAJOR_VERSION)
+	#if TCL_MAJOR_VERSION == 8 
+		#if TCL_MINOR_VERSION == 4
+static CONST char * Tcl_GetEncodingNameFromEnvironment(Tcl_DString *bufPtr)
+{
+    Tcl_DStringInit(bufPtr);
+    wsprintfA(Tcl_DStringValue(bufPtr), "cp%d", GetACP());
+    return Tcl_DStringValue(bufPtr);
+}
+		#endif
+	#endif
+#endif
 /*--------------------------------------------------------------------------*/

@@ -14,14 +14,14 @@
 #include <string.h>
 #include <stdio.h>
 #include <xmlwin32version.h>
+#include <tcl.h>
+#include <tk.h>
 #include "machine.h"
 #include "MALLOC.h"
 #include "getstaticDebugInfo_Windows.h"
 #include "localization.h"
 #include "version.h"
 #include "withtk.h"
-#include "..\..\..\tclsci\includes\tcltk\include\tcl.h"
-#include "..\..\..\tclsci\includes\tcltk\include\tk.h"
 #include "..\..\..\..\libs\pcre\pcre.h"
 /*--------------------------------------------------------------------------*/
 extern BOOL BuildWithVS8ExpressF2C(void);
