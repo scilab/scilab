@@ -36,7 +36,7 @@
 #define Max(x,y)	(((x)>(y))?(x):(y))
 
 typedef  void (scicos0_block) (ARGS_scicos0);
-extern scicos0_block F2C(absblk), F2C(andlog), F2C(gain);
+extern scicos0_block F2C(absblk), F2C(andlog), F2C(bidon), F2C(gain);
 extern scicos0_block F2C(dband), F2C(cosblk);
 
 /*------------------------------------------------
@@ -68,6 +68,20 @@ void C2F(andlog)(flag, nevprt, t, xd, x, nx, z, nz, tvec,
 {
   if ( *flag == 1)  y[0] = ( *nevprt != 3 ) ? -1.00 :  1.00; 
 }
+
+
+/*------------------------------------------------
+ *     Scicos block simulator 
+ *     does nothing 
+ *------------------------------------------------*/
+
+void C2F(bidon)(flag, nevprt, t, xd, x, nx, z, nz, tvec, 
+	ntvec, rpar, nrpar, ipar, nipar, u, nu, y, ny)
+     integer *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
+     double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
+{
+}
+
 
 
 /*------------------------------------------------

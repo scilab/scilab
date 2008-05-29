@@ -30,7 +30,6 @@ src/c/atan_blk.c \
 src/c/atanh_blk.c \
 src/c/automat.c \
 src/c/backlash.c \
-src/c/bidon.c \
 src/c/bit_clear_16.c \
 src/c/bit_clear_32.c \
 src/c/bit_clear_8.c \

@@ -224,19 +224,25 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	end
 
 	//** disable scilab function protection
-	prot = funcprot();
+	prot=funcprot();
 	funcprot(0);
 
 
-	//** Activate Graphics editor in Scicos 
-        exec(SCI+'/modules/graphics/macros/ged.sci',-1); 
+	//** to load functions of ged in scico
+        //** exec(SCI+'/macros/util/ged.sci',-1); //** <----- DEBUG ONLY Not Yet Available
+
+	//** Scicos internal functions override in order to assure full
+	//** compatibility with NGI (J.B. Silvy)
+	//swap_handles = permutobj; //TO be removed in Scilab 5
+
+	//xstringb = xstringb2; //** BEWARE: TO be removed in Scilab 5
 
 	//** restore scilab function protection
 	funcprot(prot)
 
 	//** check and - eventually - load the Scicos function library
-	if exists('scicos_scicoslib')==0 then
-	  load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
+	if exists('scicoslib')==0 then
+	  load('SCI/modules/scicos/macros/scicos_scicos/lib') ;
 	end
 
 	exec(loadpallibs, 1) //** load library that contains the INTERFACING functions
