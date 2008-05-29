@@ -4,7 +4,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [t]=tanh(z)
@@ -15,7 +15,9 @@ function [t]=tanh(z)
 //  METHOD 
 //    based on the formula  tanh(z) = -i tan(i z)
 //
-  if type(z)<>1 then error(53,1),end
+  if type(z)<>1 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"sinhm",1));
+  end
   if isreal(z) then
      t = imag(tan(imult(z)))
   else

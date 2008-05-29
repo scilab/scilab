@@ -1,17 +1,17 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function  y=cat(dims,varargin) 
+function  y=cat(dims,varargin)
 //
 // CAT function concatenates the inputs arguments (included in varargin) according to dims
 // if dims=1 then concatenation is done according to the rows of the input arguments, if dims=2 then concatenation is done according to the columns of the input arguments,... 
-// Output 
+// Output
 // -y : a (multi) array, the result of the concatenation
 // Input
 // -dims : a scalar, the dimension chosen for the concatenation
@@ -19,13 +19,13 @@ function  y=cat(dims,varargin)
 // F.B
 
 // dims must be a positive real  
-if type(dims)==1 & dims>=0 & size(dims,"*")==1 
+if type(dims)==1 & dims>=0 & size(dims,"*")==1
   dims = max(1,round(dims));
 else
-  error(msprintf(gettext("%s: Wrong first input argument: Positive real scalar expected.\n"),"cat"));
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A positive real expected.\n"),"cat",1));
 end
 
-// verify if dims value is superior to the dimension of the input arguments 
+// verify if dims value is superior to the dimension of the input arguments
 dimssupvar = %t;
 for i = 1:size(varargin)
   if ndims(varargin(i))>=dims then

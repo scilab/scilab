@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Pierre MARECHAL
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // =============================================================================
@@ -15,7 +15,7 @@
 function y = dec2oct(x)
 	
 	if or(type(x)<>8) & (or(type(x)<>1) | or(x<0) ) then
-		error(msprintf(gettext("%s: Wrong value for first input argument: Scalar/vector/matrix of positive integers expected.\n"),"dec2oct"));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive integers expected.\n"),"dec2oct",1));
 	end
 	
 	[nr,nc] = size(x);

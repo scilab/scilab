@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function   y=permute(x,dims)
@@ -21,13 +21,16 @@ if argn(2)<>2 then
   error(msprintf(gettext("%s: Wrong number of input arguments: %d expected."),"permute",2));
 end
 
-// Verify if the size of dims corresponds to dimension of x 
+// Verify if the size of dims corresponds to dimension of x
+
 if ndims(dims)<>2 then
-  error(msprintf(gettext("%s: Wrong size for second argument: Vector expected.\n"),"permute"));
+  error(msprintf(gettext("%s: Wrong size for argument #%d: Vector expected.\n"),"permute",2));
+
 elseif or(gsort(dims,"c","i")<>(1:prod(size(dims)))) then
-  error(msprintf(gettext("%s: Wrong size for second input argument.\n"),"permute"));
+  error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"),"permute",2));
+
 elseif prod(size(dims))<ndims(x) then
-  error(msprintf(gettext("%s: Wrong size for second input argument: At least the size of first input argument expected.\n"),"permute"));
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: At least the size of input argument #%d expected.\n"),"permute",2,1));
 end
 
 // Case x is empty

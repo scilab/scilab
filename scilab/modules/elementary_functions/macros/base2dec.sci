@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // =============================================================================
@@ -25,15 +25,15 @@
 function [d]=base2dec(h,b)
 	
 	if type(h)<> 10 then
-		error(msprintf(gettext("%s: Wrong type for first input argument: Matrix of strings expected.\n"),"base2dec"));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"base2dec",1));
 	end
 	
 	if (type(b)<>1) & (size(b,"*")<>1) then
-		error(msprintf(gettext("%s: Wrong type for second input argument: integer expected.\n"),"base2dec"));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: integer expected.\n"),"base2dec",2));
 	end
 	
 	if (b<2) | (b>36) then
-		error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d."),"base2dec",2,36));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d."),"base2dec",2,2,36));
 	end
 	
 	[nr,nc] = size(h)

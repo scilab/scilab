@@ -4,7 +4,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function  y=num2cell(x,dimens)
@@ -40,7 +40,7 @@ elseif argn(2)==1 then
 // check the second input argument is a scalar (or a vector) of positive integers
 else
   if type(dimens)<>1 | or(dimens<=0) | or(dimens-floor(dimens)<>0) | ndims(dimens)>2 then
-    error(msprintf(gettext("%s: Wrong second argument: Positive integer expected.\n"),"num2cell"));
+    error(msprintf(gettext("%s: Wrong argument #%d: Positive integer expected.\n"),"num2cell",2));
   end
   dimens=matrix(dimens,1,-1)
 end

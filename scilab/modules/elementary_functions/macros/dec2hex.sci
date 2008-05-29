@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // =============================================================================
@@ -19,7 +19,7 @@ function h=dec2hex(v)
 	[nr,nc] = size(v);
 	
 	if (find(v<0) <> []) | (norm(round(v)-v,1) > norm(round(v),1)*2*%eps) then
-		error(msprintf(gettext("%s: Wrong values for first input argument: Non-negative integers expected.\n"),"dec2hex"));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: Non-negative integer matrix expected.\n"),"dec2hex",1));
 	end
 	
 	v  = v(:);

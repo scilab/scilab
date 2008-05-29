@@ -5,7 +5,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function z = bitand(x,y)
@@ -52,14 +52,14 @@ function z = bitand(x,y)
 		| (type(x)==8  & (inttype(x)<10) ) ..
 		| (type(x)<>1  & type(x)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong first input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitand"));
+		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitand",1));
 	end
 	
 	if    (type(y)==1  & (y-floor(y)<>0 | y<0)) ..
 		| (type(y)==8  & (inttype(y)<10) ) ..
 		| (type(y)<>1  & type(y)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong second input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitand"));
+		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitand",2));
 	end
 	
 	// Algorithm

@@ -4,7 +4,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function a=toeplitz(c,r)
@@ -20,7 +20,7 @@ nr=size(r,'*');r=matrix(r,1,nr)
 nc=size(c,'*');c=matrix(c,nc,1)
 if nr*nc==0 then a=[],return,end
 if r(1)<>c(1) then
-  error(msprintf(gettext("%s: Wrong values for first and second input arguments: Conflicting r(1) and c(1).\n"),"toeplitz"));
+  error(msprintf(gettext("%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to r(1).\n"),"toeplitz",1,2));
 end
 a(nc,nr)=r(1);k=mini([nr,nc]);
 for l=1:k,a(l,l:nr)=r(1:nr-l+1),a(l:nc,l)=c(1:nc-l+1),end

@@ -5,7 +5,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function z = bitxor(x,y)
@@ -51,7 +51,7 @@ function z = bitxor(x,y)
 		| (type(x)==17 & (type(x.entries<>1) | type(x.entries<>8)) & find(x.entries>0)<>[]) ..
 		| (type(x)<>1  & type(x)<>8 & type(x)<>17) then
 		
-		error(msprintf(gettext("%s: Wrong first input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitxor"));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitxor",1));
 	end
 	
 	if    (type(y)==1  & (y-floor(y)<>0 | y<0)) ..
@@ -59,7 +59,7 @@ function z = bitxor(x,y)
 		| (type(y)==17 & (type(y.entries<>1) | type(y.entries<>8)) & find(y.entries>0)<>[]) ..
 		| (type(y)<>1  & type(y)<>8 & type(y)<>17) then
 		
-		error(msprintf(gettext("%s: Wrong second input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitxor"));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitxor",2));
 	end
 	
 	// Algorithm

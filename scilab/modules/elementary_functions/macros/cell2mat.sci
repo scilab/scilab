@@ -4,7 +4,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function y= cell2mat(c)
@@ -20,12 +20,12 @@ if isempty(c) then
   return
 else
   if typeof(c) <> "ce" then //input argument must be a cell
-    error(msprintf(gettext("%s: Wrong type for input argument: Cell expected.\n"),"cell2mat"));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Cell expected.\n"),"cell2mat",1));
   end
   cecomptype=typeof(c(1).entries) //cecomptype is the type of the first component of the cell
   for i=1:prod(size(c))
     if typeof(c(i).entries) <> cecomptype then //all components of input cell must have the same type
-      error(msprintf(gettext("%s: Wrong type for input argument: Same type expected for all cell contents"),"cell2mat"));
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Same type expected for all cell contents"),"cell2mat",1));
     end
   end
   if  0 < size(size(c),"*") & size(size(c),"*") <= 2 then //size of cell is least or equal to 2

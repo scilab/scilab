@@ -5,7 +5,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function y = bitcmp(x,n)
@@ -53,7 +53,7 @@ function y = bitcmp(x,n)
 		| (type(x)==8  & (inttype(x)<10)) ..
 		| (type(x)<>1  & type(x)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong first input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitcmp"));
+		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitcmp",1));
 	end
 	
 	if  (rhs == 2) & ( ..
@@ -62,7 +62,7 @@ function y = bitcmp(x,n)
 			| (type(n)<>1  & type(n)<>8) ..
 			| (size(n,"*")<>1) ) then
 		
-		error(msprintf(gettext("%s: Wrong second input argument: unsigned integer expected.\n"),"bitcmp"));
+		error(msprintf(gettext("%s: Wrong input argument #%d: An unsigned integer expected.\n"),"bitcmp",2));
 	end
 	
 	// check n value
@@ -77,7 +77,7 @@ function y = bitcmp(x,n)
 		end
 		
 		if (n>nmax) | (n<1) then
-			error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"bitcmp",1,nmax));
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"bitcmp",2,1,nmax));
 		end
 		
 	else

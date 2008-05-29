@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // =============================================================================
@@ -31,11 +31,11 @@ function y=dec2bin(x,n)
 	
 	// check type and size of the input arguments
 	if or(type(x)<>8) & (or(type(x)<>1) | or(x<0)) then
-		error(msprintf(gettext("%s: Wrong value for first input argument: Scalar/vector/matrix of positive integers expected.\n"),"dec2bin"));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive integers expected.\n"),"dec2bin",1));
 	end
 	
 	if rhs==2 & ((type(n)<>8 & (type(n)<>1 | n<0)) | prod(size(n))<>1) then
-		error(msprintf(gettext("%s: Wrong value for second input argument: Scalar positive integer expected"),"dec2bin"));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: A positive integer expected"),"dec2bin",2));
 	end
 	
 	// empty matrix

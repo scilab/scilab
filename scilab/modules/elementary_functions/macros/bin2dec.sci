@@ -1,11 +1,11 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Farid BELAHCENE
 // Copyright (C) 2006 - INRIA - Pierre MARECHAL
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // =============================================================================
@@ -31,7 +31,7 @@
 function y=bin2dec(str)
 
 	if type(str)<>10
-		error(msprintf(gettext("%s: Wrong type for input argument: Matrix of strings expected.\n"),"bin2dec"));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"bin2dec",1));
 	end
 	
 	// delete all spaces included in the str
@@ -44,11 +44,11 @@ function y=bin2dec(str)
 		ind0=strindex(str(i),'0')
 		
 		if length(str(i)) <> sum([prod(size(ind0)) prod(size(ind1))]) then
-			error(msprintf(gettext("%s: Wrong value for input argument: Matrix of strings made of zeros and ones expected.\n"),"bin2dec"));
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: Matrix of strings made of zeros and ones expected.\n"),"bin2dec",1));
 		end
 		
 		if length(str(i)) > 54 then
-			error(msprintf(gettext("%s: Wrong size for input argument: Must be less than 54 characters.\n"),"bin2dec"));
+			error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"),"bin2dec",1,54));
 		end
 		
 		if ~isempty(ind1)

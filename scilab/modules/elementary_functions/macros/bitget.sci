@@ -5,7 +5,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function y = bitget(x,pos)
@@ -60,14 +60,14 @@ function y = bitget(x,pos)
 		| (type(x)==8  & (inttype(x)<10)) ..
 		| (type(x)<>1  & type(x)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong first input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitget"));
+		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitget",1));
 	end
 	
 	if    (type(pos)==1  & (pos-floor(pos)<>0 | pos<0)) ..
 		| (type(pos)==8  & (inttype(pos)<10)) ..
 		| (type(pos)<>1  & type(pos)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong second input argument: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitget"));
+		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitget",2));
 	end
 	
 	// check pos value
@@ -80,7 +80,7 @@ function y = bitget(x,pos)
 	end
 	
 	if (pos>posmax) | (pos<1) then
-		error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"bitget",1,posmax));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"bitget",2,1,posmax));
 	end
 	
 	// Algorithm

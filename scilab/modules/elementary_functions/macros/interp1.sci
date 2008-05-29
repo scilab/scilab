@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function yi=interp1(varargin)
@@ -21,12 +21,12 @@ function yi=interp1(varargin)
 // if size(y)=[C,N1,N2,N3,....] and size(xi)=[M1,M2,M3,M4] then size(xi)=[M1,M2,M3,M4,N1,N2,N3,N4,..], and length of x must be equal to C. 
 // Several kind of intepolations may be computed by selecting the appropriate method  parameter:
 // The methods are:
-// linear : this is the default method (using the interp Scilab function) 
+// linear : this is the default method (using the interp Scilab function)
 // spline : this is the cubic spline interpolation  (using interpln and splin Scilab functions)
-// nearest : yi take the values corresponding to the nearest neighbor of xi  
+// nearest : yi take the values corresponding to the nearest neighbor of xi
 //
 // Several kind of extrapolations may be computed :
-// 'extrap' : the extrapolation points is performed by the defined method 
+// 'extrap' : the extrapolation points is performed by the defined method
 //  real value : you can choose a real value for extrapolation, in this way yp(i) takes this value for xp(i) not in [x1,xn] interval, for example 0 (but also nan or inf).
 // by default the extrapolation is performed by the defined method (for spline method), and by nan for linear and nearest method. 
 // F.B
@@ -47,7 +47,7 @@ function yi=interp1(varargin)
       	X=1:size(varargin(1),1)
       end
     else 
-      error(msprintf(gettext("%s: Wrong size for second input argument: Vector or matrix expected.\n"),"interp1"));
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector or matrix expected.\n"),"interp1",2));
     end
     for i=rhs:-1:1
       varargin(i+1)=varargin(i)
@@ -63,10 +63,10 @@ function yi=interp1(varargin)
   if type(xi)<>1 then
     if typeof(xi)=="hypermat" then
       if type(xi.entries)<>1 then
-      	error(msprintf(gettext("%s: Wrong type for third input argument: Array of reals expected.\n"),"interp1"));
+      	error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"interp1",3));
       end
     else
-      error(msprintf(gettext("%s: Wrong type for third input argument: Array of reals expected.\n"),"interp1"));
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"interp1",3));
     end
   end
   //delete the dimension of xi equal to one after the second dimension
@@ -89,36 +89,36 @@ function yi=interp1(varargin)
   y=varargin(2);
   //x must be real vector
   if type(x)<>1 then
-    error(msprintf(gettext("%s: Wrong type for first input argument: Array of reals expected.\n"),"interp1"));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"interp1",1));
   end
   //y components must be reals
   if type(y)<>1 then
     if typeof(y)=="hypermat" then
       if type(y.entries)<>1 then
-	error(msprintf(gettext("%s: Wrong type for second input argument: Array of reals expected.\n"),"interp1"));
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"interp1",2));
       end
     else
-      error(msprintf(gettext("%s: Wrong type for second input argument: Array of reals expected.\n"),"interp1"));
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"interp1",2));
     end
   end
   //verification of x,y line/column 
   if isvector(x) then
     if find(isnan(x))<>[] then
-      error(msprintf(gettext("%s: Wrong value for first input argument: Reals expected but some NaN found.\n"),"interp1"));
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"),"interp1",1));
     end
     if isvector(y) then 
       if size(x,"*")<>size(y,"*") then
-      	error(msprintf(gettext("%s: Wrong size for first and second input arguments: Same size expected.\n"),"interp1"));
+      	error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"),"interp1",1,2));
       end
     elseif size(size(y),"*")>=2 then
       if size(x,"*")<>size(y,1) then
-      	error(msprintf(gettext("%s: Wrong size for first and second input arguments: Same size expected.\n"),"interp1"));
+      	error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"),"interp1",1,2));
       end
     else
-      error(msprintf(gettext("%s: Wrong size for second input argument: Vector or matrix expected.\n"),"interp1"));
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector or matrix expected.\n"),"interp1",2));
     end
   else
-    error(msprintf(gettext("%s: Wrong size for first input argument: Vector expected.\n"),"interp1"));
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"),"interp1",1));
   end
 
   // xi : increase order sorting (for xi)
@@ -132,7 +132,7 @@ function yi=interp1(varargin)
       y(:,l)=y(p,l)
     end
   else
-    error(msprintf(gettext("%s: Wrong size for second input argument: Vector or matrix expected.\n"),"interp1"));
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector or matrix expected.\n"),"interp1",2));
   end
 
   //-------------------------------------------------
@@ -180,7 +180,7 @@ function yi=interp1(varargin)
       end
       yi=interp1(x,y,xi,'nearest',%nan)
     else
-      error(msprintf(gettext("%s: Wrong fourth input argument: ''%s'' or ''%s'' or ''%s'' expected.\n"),"interp1","linear","nearest"));
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' expected.\n"),"interp1",4,"linear","nearest"));
     end
   end
 
@@ -204,7 +204,7 @@ function yi=interp1(varargin)
 	      end
 	      if type(varargin(5))==10 then 
 	        if varargin(5)<>"extrap" then
-	          error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+	          error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
 	        else
 	          yi=linear_interpn(xitemp,x,y(ind),"natural");
 	        end
@@ -230,7 +230,7 @@ function yi=interp1(varargin)
 	      //extrapolation
 	      if type(varargin(5))==10 then
 	        if varargin(5)<>"extrap" then
-	          error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+	          error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
 	        else
 	          if xitemp==[] then 
 	            yi=[]
@@ -257,7 +257,7 @@ function yi=interp1(varargin)
 	      end  
 	      yi=matrix(yi,[xisize,ky])
       else 
-        error(msprintf(gettext("%s: Wrong size for second input argument: Vector or matrix expected.\n"),"interp1"));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector or matrix expected.\n"),"interp1",2));
       end   
       
       //-------------------------------------------------------------------------------------
@@ -269,7 +269,7 @@ function yi=interp1(varargin)
 	        yi=[]
 	        return
 	      else
-          error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+          error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
 	      end
       end
       xitemp=matrix(xi,-1,1)
@@ -279,7 +279,7 @@ function yi=interp1(varargin)
 	      yi=interp(xitemp,matrix(x,1,-1),matrix(y,1,-1),splin(matrix(x,1,-1),matrix(y,1,-1)),"natural");
 	      if type(varargin(5))==10 then
 	        if varargin(5)<>"extrap" then
-	          error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+	          error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
 	        end
 	      elseif type(varargin(5))==1  then
 	        k=find(xitemp>max(x)|xitemp<min(x)) 
@@ -301,17 +301,17 @@ function yi=interp1(varargin)
 	      //extrapolation
 	      if type(varargin(5))==10 then
 	        if varargin(5)<>"extrap" then
-	          error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+	          error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
 	        end
 	      elseif type(varargin(5))==1  then
-	        k=find(xitemp>max(x)|xitemp<min(x)) 
+	        k=find(xitemp>max(x)|xitemp<min(x))
 	        yi(k,:)=varargin(5)
 	      end  
-	      yi=matrix(yi,[xisize,ky])  
-      else 
-        error(msprintf(gettext("%s: Wrong size for second input argument: Vector or matrix expected.\n"),"interp1"));
+	      yi=matrix(yi,[xisize,ky])
+      else
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector or matrix expected.\n"),"interp1",2));
       end
-      
+
       //---------------------------------------------------------------------------------------
       // Nearest method  yi=interp1(x,y,xi,'nearest','extrap') or yi=interp1(x,y,xi,'nearest',extrapval)
       //---------------------------------------------------------------------------------------    
@@ -322,7 +322,7 @@ function yi=interp1(varargin)
 	        yi=xi
 	        return
 	      else
-          error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
 	      end
       end
       if xi==[] then 
@@ -330,7 +330,7 @@ function yi=interp1(varargin)
 	        yi=[]
 	        return
 	      else
-          error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
 	      end
       end
       //y is vector
@@ -363,13 +363,13 @@ function yi=interp1(varargin)
 	      //extrapolation
 	      if type(varargin(5))==10 then
 	        if varargin(5)<>"extrap" then
-	          error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+	          error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
 	        end
 	      elseif type(varargin(5))==1 then
 	        n=find(xitemp>max(x)|xitemp<min(x)|isnan(xitemp)|isnan(xitemp)) 
 	        yi(n)=varargin(5)
 	      else
-          error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+          error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
 	      end
 	      yitemp=yi
 	      yi(p)=yitemp
@@ -416,7 +416,7 @@ function yi=interp1(varargin)
 	      //extrapolation
 	      if type(varargin(5))==10 then
 	        if varargin(5)<>"extrap" then
-	          error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+	          error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
 	        end
 	      elseif type(varargin(5))==1 then
 	        n=find(xitemp>max(x)|xitemp<min(x))
@@ -424,7 +424,7 @@ function yi=interp1(varargin)
 	          yi(n,l)=varargin(5)
 	        end
 	      else
-          error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
 	      end 
 	      yitemp=yi
 	      for l=1:size(y,"*")/size(y,1)
@@ -438,10 +438,10 @@ function yi=interp1(varargin)
 	      end
 	      yi=matrix(yi,[xisize,ind])
       else
-        error(msprintf(gettext("%s: Wrong size for second input argument: Vector or matrix expected.\n"),"interp1"));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector or matrix expected.\n"),"interp1",2));
       end  
     else
-      error(msprintf(gettext("%s: Wrong fifth input argument: ''%s'' or real expected.\n"),"interp1","extrap"));
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"),"interp1",5,"extrap"));
     end
   end
 endfunction 

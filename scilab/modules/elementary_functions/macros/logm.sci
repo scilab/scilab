@@ -4,7 +4,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function x=logm(a)
@@ -17,13 +17,17 @@ function x=logm(a)
 //%DESCRIPTION
 //computes X=logm(A), matrix log of A
 
-[m,n]=size(a)
-if m<>n then error(20,1),end
+[m,n]=size(a);
+
+if m<>n then
+	error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"logm",1));
+end
+
 flag=or(a<>a')
-if ~flag then 
+if ~flag then
 //Hermitian matrix
   r=and(imag(a)==0)
-  [u,s]=schur(a);w=diag(s); 
+  [u,s]=schur(a);w=diag(s);
   zw=find(w==0);
   if zw<>[] then
     w(zw)=%eps*ones(zw);w1=log(w);w1(zw)=-%inf*ones(zw);
