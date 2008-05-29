@@ -56,6 +56,25 @@ function sys = lincos(scs_m,x0,u0,param)
 //             load('mysystem.cos')
 // which creates by default a variable called scs_m.
 
+
+//** This function can be (ab)used from the Scilab command line and 
+//** inside a Scicos "context". In order to handle the different situations,
+//** the required library are loaded if not already present in the 
+//** "semiglobal-local-environment".       
+
+if exists('scicos_scicoslib')==0 then
+    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
+end
+
+if exists('scicos_autolib')==0 then
+    load("SCI/modules/scicos/macros/scicos_auto/lib") ;
+end
+
+if exists('scicos_utilslib')==0 then
+    load("SCI/modules/scicos/macros/scicos_utils/lib") ;
+end
+
+
 [lhs,rhs] = argn(0)
 IN  = [];
 OUT = [];
@@ -100,14 +119,6 @@ OUT=-sort(-OUT);
 if or(OUT<>[1:size(OUT,'*')]) then 
   error(msprintf(gettext("%s: Output ports are not numbered properly.\n"),"lincos"))
 end
-
-
-//** Please check the utility of these libs 
-//** Load scicos lib
-load('SCI/modules/scicos/macros/scicos_auto/lib')
-load('SCI/modules/scicos/macros/scicos_scicos/lib')
-load('SCI/modules/scicos/macros/scicos_utils/lib')
-
 
 //compile scs_m
 [bllst, connectmat, clkconnect,cor,corinv,ok] = c_pass1(scs_m);
@@ -172,20 +183,23 @@ end
 
 if rhs==4 then 
   del = param(1)+param(1)*1d-4*abs([x0;u0])
-  t=param(2)
+  t   = param(2)
 else
-  del=1.d-6*(1+1d-4*abs([x0;u0]))
-  t=0
+  del = 1.d-6*(1+1d-4*abs([x0;u0]) )
+  t   = 0; 
 end
   
-x0=x0(:);u0=u0(:)
+x0 = x0(:);
+u0 = u0(:);
   
 state.x=x0;
-Uind=1
+
+Uind = 1
 for k=pointi'
- state.outtb(k)=matrix(u0(Uind:Uind+size(state.outtb(k),'*')-1),size(state.outtb(k)));
- Uind=size(state.outtb(k),'*')+1;
+ state.outtb(k) = matrix(u0(Uind:Uind+size(state.outtb(k),'*')-1),size(state.outtb(k)));
+ Uind = size(state.outtb(k),'*')+1;
 end
+
 [state,t]=scicosim(state,t,t,sim,'linear',[.1,.1,.1,.1]);
 Yind=1
 for k=pointo'
