@@ -81,7 +81,7 @@ extern void F2C(diffblk)(ARGS_scicos);
 extern void F2C(constraint)(ARGS_scicos);
 extern void F2C(absblk)(ARGS_scicos);
 extern void F2C(andlog)(ARGS_scicos);
-extern void F2C(bidon)(ARGS_scicos);
+extern void bidon(ARGS_scicos);
 extern void F2C(gain)(ARGS_scicos);
 extern void cdummy(ARGS_scicos);
 extern void F2C(dband)(ARGS_scicos);
@@ -393,7 +393,7 @@ OpTab tabsim[] ={
 {"atanh_blk",(ScicosF) atanh_blk},
 {"automat",(ScicosF) automat},
 {"backlash",(ScicosF) backlash},
-{"bidon",(ScicosF) F2C(bidon)},
+{"bidon",(ScicosF)bidon},
 {"bit_clear_16",(ScicosF) bit_clear_16},
 {"bit_clear_32",(ScicosF) bit_clear_32},
 {"bit_clear_8",(ScicosF) bit_clear_8},
