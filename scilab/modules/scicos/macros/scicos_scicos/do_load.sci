@@ -42,30 +42,26 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   current_version = get_scicos_version() ;
   scicos_ver = "scicos2.2" //** default version,
                            //** for latter version scicos_ver is stored in files
-
-  //** function [p] = tk_getfile(file_mask, path, Title, multip)	   
   
   if %scicos_demo_mode==1 then 
-      //** open a demo file 
+      //** Open a demo file 
       if rhs<=0 then //** additional security  
         file_mask = "*.cos*" ;  //** put a filter 
 	path      =  SCI+"/modules/scicos/demos" ; //** force the demos/scicos path 
-        //** see xgetfile()
-	fname = getfile(file_mask, path, title="Open a Scicos demo diagram") ; 
+        fname     = getfile(file_mask, path, title="Open a Scicos demo diagram") ; 
       end
  
   else 
-      //** conventional Open 
+      //** conventional Open from current working dir  
       if rhs<=0 then
         file_mask = "*.cos*" ;  //** put a filter 
 	path      =  getcwd() ; //** use the current working directory as default 
-        //** xgetfile()
-	fname = getfile(file_mask, path, title="Open a Scicos diagram") ;
+	fname     = getfile(file_mask, path, title="Open a Scicos diagram") ;
       end
   end 
+
   %scicos_demo_mode = []; //** clear the variable  
-  
-  
+    
   fname = stripblanks(fname) ; 
   
   if fname<>emptystr() then
@@ -97,7 +93,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
       return
     end
 
-    //second pass
+    // second pass
     if ext=='cos'|ext=='COS' then
       ierr=execstr('load(fname)','errcatch')
       ok=%t
@@ -127,7 +123,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
         end
       end
     end
-    if scicos_ver=='scicos2.2' then
+    if scicos_ver=="scicos2.2" then
       if scs_m==[] then scs_m=x,end // for compatibility
     end
     if scicos_ver<>current_version then
@@ -141,22 +137,27 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
     // scs_m=list()
     return
   end
-  scs_m.props.title=[scs_m.props.title(1),path]
+
+  scs_m.props.title = [scs_m.props.title(1),path]
 
   if typ=='diagram' then
+    
     if %cpr<>list() then
 
       for jj=1:size(%cpr.sim.funtyp,'*')
-	if type(%cpr.corinv(jj))==15 then
+	
+        if type(%cpr.corinv(jj))==15 then
 	  // force recompilation if diagram contains Modelica Blocks
 	  // Can be improved later, re-generating C code only...
 	  %cpr=list()
 	  edited=%t
 	  return
 	end
-	ft=modulo(%cpr.sim.funtyp(jj),10000)
-	if ft>999 then
-	  funam=%cpr.sim.funs(jj)
+	
+        ft = modulo(%cpr.sim.funtyp(jj),10000)
+	
+        if ft>999 then
+	  funam = %cpr.sim.funs(jj)
 	  // regenerate systematically dynamically linked blocks forsafety
 	  // [a,b]=c_link(funam); while a;  ulink(b);[a,b]=c_link(funam);end
 	  // should be better than
@@ -164,8 +165,8 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 	  // but ulink remove .so files and Makefile doesnt depends on .so file...
 	  if ~c_link(funam) then
 
-	    qqq=%cpr.corinv(jj)
-	    path=list('objs',qqq(1))
+	    qqq  = %cpr.corinv(jj)
+	    path = list('objs',qqq(1))
 	    for kkk=qqq(2:$)
 	      path($+1)='model'
 	      path($+1)='rpar'
@@ -175,15 +176,22 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 
 	    path($+1)='graphics';path($+1)='exprs';path($+1)=2;
 	    tt=scs_m(path)
-	    if ft>1999 then
+	    
+            if ft>1999 then
 	      [ok]=scicos_block_link(funam,tt,'c')
 	    else
 	      [ok]=scicos_block_link(funam,tt,'f')
 	    end
-	  end
-	end
+	  
+           end
+	
+         end
+
       end
+
     end
+  
   end
+
 endfunction
 
