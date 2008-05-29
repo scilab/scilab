@@ -108,8 +108,6 @@ cd.. &gt;nul"/>
 			<FileConfiguration Name="Debug|x64" ExcludedFromBuild="true"/>
 			<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true"/></File>
 		<File RelativePath="..\icnteq.f"/>
-		<File RelativePath="..\icopy.f"/>
-		<File RelativePath="..\iset.f"/>
 		<File RelativePath="..\iswap.f"/>
 		<File RelativePath="..\ivout.f"/>
 		<File RelativePath="..\second.f"/>

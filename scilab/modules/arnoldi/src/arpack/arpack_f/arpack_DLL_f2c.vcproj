@@ -6,7 +6,7 @@
 	ProjectGUID="{34F953E3-9A2C-4359-A8C5-41CEBD0ECE45}"
 	RootNamespace="arpack_f2c_DLL"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -525,14 +525,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\icopy.c"
-				>
-			</File>
-			<File
-				RelativePath="..\iset.c"
-				>
-			</File>
-			<File
 				RelativePath="..\iswap.c"
 				>
 			</File>
@@ -740,14 +732,6 @@
 			</File>
 			<File
 				RelativePath="..\icnteq.f"
-				>
-			</File>
-			<File
-				RelativePath="..\icopy.f"
-				>
-			</File>
-			<File
-				RelativePath="..\iset.f"
 				>
 			</File>
 			<File
