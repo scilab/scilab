@@ -1,5 +1,5 @@
-#!/bin/sh
-# Copyright INRIA/Scilab 2007
+#!/bin/bash
+# Copyright INRIA/Scilab 2007/2008
 # Author : Sylvestre Ledru <sylvestre.ledru@inria.fr>
 # This script goes into a module and updates the localization file by checking
 # the _( and gettext( calls in the code
