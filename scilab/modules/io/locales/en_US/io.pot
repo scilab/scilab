@@ -14,77 +14,138 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-12-18 19:04+0100\n"
+"Revision-Date: 2008-05-28 16:53+0100\n"
 
-# File: sci_gateway/c/sci_host.c, line: 27
+# File: macros/unix_w.sci, line: 30
+# File: macros/unix_s.sci, line: 29
+# File: macros/unix_g.sci, line: 32
+# File: macros/unix_x.sci, line: 30
 #, c-format
-msgid "%s: Input argument has incorrect dimensions.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_host.c, line: 47
+# File: macros/unix_w.sci, line: 34
+# File: macros/unix_s.sci, line: 33
+# File: macros/halt.sci, line: 26
+# File: macros/input.sci, line: 14
+# File: macros/unix_g.sci, line: 36
+# File: macros/sscanf.sci, line: 25
+# File: macros/unix_x.sci, line: 34
+# File: sci_gateway/c/sci_newest.c, line: 60
+# File: sci_gateway/c/sci_newest.c, line: 76
+# File: sci_gateway/c/sci_newest.c, line: 92
+# File: sci_gateway/c/sci_host.c, line: 55
 #, c-format
-msgid "%s: Input argument type must be a character string.\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 34
+# File: macros/unix_w.sci, line: 38
+# File: macros/unix_s.sci, line: 37
+# File: macros/halt.sci, line: 30
+# File: macros/input.sci, line: 18
+# File: macros/unix_g.sci, line: 40
+# File: macros/sscanf.sci, line: 29
+# File: macros/unix_x.sci, line: 38
+# File: sci_gateway/c/sci_host.c, line: 35
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 49
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 59
 #, c-format
-msgid "%s: Input argument incorrect must be a string (a filename).\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 120
+# File: macros/unix_w.sci, line: 44
+# File: macros/unix_s.sci, line: 44
+# File: macros/unix_s.sci, line: 56
+# File: macros/unix_x.sci, line: 47
 #, c-format
-msgid "%s: First input argument incorrect, must be a string (a file).\n"
+msgid "%s: error during %s execution"
 msgstr ""
 #
-# File: sci_gateway/c/intsetenv.c, line: 42
+# File: macros/unix_w.sci, line: 55
+# File: macros/unix_s.sci, line: 52
+# File: macros/unix_g.sci, line: 82
+# File: macros/unix_g.sci, line: 84
+# File: macros/unix_x.sci, line: 61
 #, c-format
-msgid "%s: Invalid type : string required"
+msgid "%s: The system interpreter does not answer..."
 msgstr ""
 #
-# File: sci_gateway/c/sci_newest.c, line: 65
+# File: macros/halt.sci, line: 22
 #, c-format
-msgid "%s: incorrect %dst parameter.\n"
+msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_newest.c, line: 74
+# File: macros/input.sci, line: 27
+# File: macros/input.sci, line: 31
+msgid ": "
+msgstr ""
+#
+# File: macros/unix_g.sci, line: 44
 #, c-format
-msgid "%s: incorrect %dth parameter(s).\n"
+msgid "%s: Wrong number of output argument(s).\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_newest.c, line: 87
-msgid "Not a vector of filename.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 28
+# File: macros/ssprint.sci, line: 91
+# File: macros/ssprint.sci, line: 94
+# File: macros/ssprint.sci, line: 152
+# File: macros/ssprint.sci, line: 155
 #, c-format
-msgid "%s: Wrong type for input argument(s): String expected.\n"
+msgid "%s: system cannot be displayed in this page.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 43
+# File: macros/sscanf.sci, line: 42
 #, c-format
-msgid "%s: Wrong type for first input argument: String expected.\n"
+msgid "%s: Incorrect format.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 50
+# File: macros/sscanf.sci, line: 49
+# File: macros/sscanf.sci, line: 59
 #, c-format
-msgid "%s: Wrong type for second input argument: String expected.\n"
+msgid "%s: Invalid conversion.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 58
+# File: macros/sscanf.sci, line: 57
+#, c-format
+msgid "%s: end of input reached before final conversion.\n"
+msgstr ""
+#
+# File: sci_gateway/c/intsetenv.c, line: 53
+# File: sci_gateway/c/intsetenv.c, line: 57
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 67
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 72
 #, c-format
 msgid ""
-"%s: Wrong size of first input argument: must be less than %d characters.\n"
+"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 63
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 86
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 90
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 151
 #, c-format
-msgid ""
-"%s: Wrong size of the second input argument: must be less than %d "
-"characters.\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: src/c/getenvc.c, line: 20
-# File: src/c/getenvc.c, line: 32
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 48
 #, c-format
-msgid "You must define the environment variable %s\n"
+msgid "%s: Wrong type for input argument #%d: A string.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 61
+#, c-format
+msgid "%s: Wrong value for input argument: no empty string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 117
+#, c-format
+msgid "%s: The file %s not found. current directory returned.\n"
+msgstr ""
+#
+# File: src/c/getenvc.c, line: 28
+# File: src/c/getenvc.c, line: 40
+#, c-format
+msgid "Undefined environment variable %s.\n"
 msgstr ""
