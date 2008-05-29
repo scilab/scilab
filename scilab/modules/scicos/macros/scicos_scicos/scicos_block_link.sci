@@ -63,7 +63,7 @@ function ok = scicos_block_link(funam, txt, flag)
   fflags = ""; //** no Fortran 
   cc = ""; //** default "C" compiler 
   
-  disp("Compile and link Modelica generated C code");
+  disp("Compile and link Scicos C BLOCK code");
 
   libn = ilib_for_link(entry_names, file_names, libs, flag, makename, loadername, libname, ldflags, cflags, fflags, cc); 
 
