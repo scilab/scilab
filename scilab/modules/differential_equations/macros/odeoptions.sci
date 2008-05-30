@@ -8,16 +8,8 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [%ODEOPTIONS]=odeoptions(%ODEOPTIONS)
+function [%ODEOPTIONS] = odeoptions(%ODEOPTIONS)
 
-  options=[1,0,0,%inf,0,2,500,12,5,0,-1,-1];
-  default=[string(options(1:10)),sci2exp(options(11:12))]
-  default(find(default=='Inf'))="%inf"
-  if argn(2)>0 then
-    options=%ODEOPTIONS
-  end
-  lab_=[string(options(1:10)),sci2exp(options(11:12))]
-  lab_(find(lab_=='Inf'))="%inf"
 //%ODEOPTIONS=[itask,tcrit,h0,hmax,hmin,jactyp,mxstep,..
 //             maxordn,maxords,ixpr, ml,mu]
 // This function displays the command line 
@@ -25,7 +17,36 @@ function [%ODEOPTIONS]=odeoptions(%ODEOPTIONS)
 // for defining the variable %ODEOPTIONS
 // This variables sets a number of optional parameters 
 // for the lsod* fortran routines.
-load(SCI+'/macros/scicos/lib')
+
+//** This function can be (ab)used from the Scilab command line and 
+//** inside a Scicos "context". In order to handle the different situations,
+//** the required library are loaded if not already present in the 
+//** "semiglobal-local-environment".  
+
+if exists('scicos_scicoslib')==0 then
+    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
+end
+
+if exists('scicos_autolib')==0 then
+    load("SCI/modules/scicos/macros/scicos_auto/lib") ;
+end
+
+if exists('scicos_utilslib')==0 then
+    load("SCI/modules/scicos/macros/scicos_utils/lib") ;
+end
+
+  options = [1,0,0,%inf,0,2,500,12,5,0,-1,-1];
+  default = [string(options(1:10)),sci2exp(options(11:12))]
+  default(find(default=='Inf'))="%inf"
+
+  if argn(2)>0 then
+    options=%ODEOPTIONS
+  end
+
+  lab_=[string(options(1:10)),sci2exp(options(11:12))]
+  lab_(find(lab_=='Inf'))="%inf"
+
+
 chapeau=["Defining %ODEOPTIONS variable";
          "*****************************";
 	 'Meaning of itask and tcrit:';
@@ -57,26 +78,27 @@ chapeau=["Defining %ODEOPTIONS variable";
 	 " are used"
 	]
 
-dims=list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,..
-	  "vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2);
+dims = list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,..
+	    "vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2);
 
 
-labels=["itask (1,2,3,4,5) ","tcrit (assumes itask=4 or 5)",...
-    "h0 (first step tried)",...
-    "hmax (max step size)","hmin (min step size)",...
-    "jactype (0,1,2,3,4,5)","mxstep (max number of steps allowed)",...
-    "maxordn (maximum non-stiff order allowed, at most 12)",...
-    "maxords(maximum stiff order allowed, at most 5) ",...
-    "ixpr (print level 0 or 1)","[ml,mu]"] +'    ['+default+']';
+labels = ["itask (1,2,3,4,5) ","tcrit (assumes itask=4 or 5)",...
+          "h0 (first step tried)",...
+          "hmax (max step size)","hmin (min step size)",...
+          "jactype (0,1,2,3,4,5)","mxstep (max number of steps allowed)",...
+          "maxordn (maximum non-stiff order allowed, at most 12)",...
+          "maxords(maximum stiff order allowed, at most 5) ",...
+          "ixpr (print level 0 or 1)","[ml,mu]"] +'    ['+default+']';
 
-[ok,itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr,mlmu]=..
-    tk_getvalue(chapeau,labels,dims,lab_);
-ml=mlmu(1);mu=mlmu(2);
-ODEOPTIONS=[itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr, ...
-	 ml,mu];
+[ok,itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr,mlmu] = getvalue(chapeau,labels,dims,lab_);
+ml = mlmu(1);
+mu = mlmu(2);
+ODEOPTIONS = [itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr,ml,mu];
+
 if ODEOPTIONS<>[] then
   %ODEOPTIONS=ODEOPTIONS
 else
   %ODEOPTIONS=options
 end
+
 endfunction
