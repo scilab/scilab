@@ -71,12 +71,16 @@ int img_double()
 		double *pReturnRealData	= NULL;
 		int		iComplex		= 1;
 
+
 		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
 
 		pdblRealData	= stk(iRealData);
 		pdblImgData		= stk(iImgData);
 
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pdblImgData);
+		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
+
+		memcpy(pReturnRealData, pdblImgData, iRows * iCols * sizeof(double));
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pdblImgData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 	}
@@ -88,14 +92,16 @@ int img_double()
 
 		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
 		pdblRealData		= stk(iRealData);
-		pReturnRealData		= (double*)malloc(iRows * iCols * sizeof(double));
+
+		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
+		//pReturnRealData		= (double*)malloc(iRows * iCols * sizeof(double));
 
 		memset(pReturnRealData, 0x00, iRows * iCols * sizeof(double));
 
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
+		//free(pReturnRealData);
 	}
 
 	return 0;
@@ -126,7 +132,10 @@ int img_poly()
 		pdblRealData		= stk(iRealData);
 		pdblImgData			= stk(iImgData);
 
-		CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pdblImgData);
+		iAllocMatrixOfPoly(Rhs + 1, &piVarName, iRows, iCols, piPow, &pReturnRealData);
+
+		memcpy(pReturnRealData, pdblImgData, iRows * iCols * sizeof(double));
+		//CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pdblImgData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 		free(piPow);
@@ -140,12 +149,13 @@ int img_poly()
 
 		pdblRealData	= stk(iRealData);
 		pReturnRealData	= (double*)malloc(iMaxData * sizeof(double));
+		iAllocMatrixOfPoly(Rhs + 1, &piVarName, iRows, iCols, piPow, &pReturnRealData);
 		memset(pReturnRealData, 0x00, iMaxData * sizeof(double));
 
-		CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData);
+		//CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
+		//free(pReturnRealData);
 		free(piPow);
 	}
 	return 0;
@@ -183,9 +193,11 @@ int img_sparse()
 
 		pdblImgData		= stk(iImgData);
 
-		piNewElemByRow		= (int*)malloc(iRows * sizeof(int));
-		piNewColByRow		= (int*)malloc(iTotalElem * sizeof(int));
-		pReturnRealData		= (double*)malloc(iTotalElem * sizeof(double));
+		iAllocSparseMatrix(Rhs + 1, iRows, iCols, iTotalElem, &piNewElemByRow, &piNewColByRow, &pReturnRealData);
+
+		//piNewElemByRow		= (int*)malloc(iRows * sizeof(int));
+		//piNewColByRow		= (int*)malloc(iTotalElem * sizeof(int));
+		//pReturnRealData		= (double*)malloc(iTotalElem * sizeof(double));
 		memset(piNewElemByRow, 0x00, iRows * sizeof(int));
 
 		for(iIndex1 = 0 ; iIndex1 < iRows ; iIndex1++)
@@ -203,37 +215,40 @@ int img_sparse()
 			}
 		}
 
-		CreateSparseVarFromPtr(Rhs + 1, iRows, iCols, iNewTotalItem, piNewElemByRow, piNewColByRow, pReturnRealData);
+		//CreateSparseVarFromPtr(Rhs + 1, iRows, iCols, iNewTotalItem, piNewElemByRow, piNewColByRow, pReturnRealData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 		free(piElemByRow);
 		free(piColByRow);
-		free(piNewElemByRow);
-		free(piNewColByRow);
-		free(pReturnRealData);
+		//free(piNewElemByRow);
+		//free(piNewColByRow);
+		//free(pReturnRealData);
 	}
 	else
 	{
 		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, NULL, NULL, &iRealData);
-		piElemByRow	= (int*)malloc(iRows * sizeof(int));
-		piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
+
+		//WARNING : Tips, use the new variable pointer to get data from the stack
+		iAllocSparseMatrix(Rhs + 1, iRows, iCols, iTotalElem, &piElemByRow, &piColByRow, &pReturnRealData);
+		//piElemByRow	= (int*)malloc(iRows * sizeof(int));
+		//piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
 		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, piElemByRow, piColByRow, &iRealData);
 
 		pdblRealData	= stk(iRealData);
 
-		pReturnRealData	= (double*)malloc(iTotalElem * sizeof(double));
+		//pReturnRealData	= (double*)malloc(iTotalElem * sizeof(double));
 
 		iTotalElem = 0;
 		memset(piElemByRow, 0x00, iRows);
 		memset(pReturnRealData, 0x00, iTotalElem);
 
-		CreateSparseVarFromPtr(Rhs + 1, iRows, iCols, iTotalElem, piElemByRow, piColByRow, pReturnRealData);
+		//CreateSparseVarFromPtr(Rhs + 1, iRows, iCols, iTotalElem, piElemByRow, piColByRow, pReturnRealData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 
-		free(piElemByRow);
-		free(piColByRow);
-		free(pReturnRealData);
+		//free(piElemByRow);
+		//free(piColByRow);
+		//free(pReturnRealData);
 	}
 	return 0;
 }

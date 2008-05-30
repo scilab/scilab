@@ -13,6 +13,11 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
+#include "localization.h"
+#include "Scierror.h"
+#include <time.h>
+#include <sys/types.h>
+#include <sys/timeb.h>
 
 int abs_double();
 int abs_poly();
@@ -29,20 +34,14 @@ int C2F(sci_abs) _PARAMS((char *fname,unsigned long fname_len))
 	switch(GetType(1))
 	{
 	case sci_matrix:
-		{
-			abs_double();
-			break;
-		}
+		abs_double();
+		break;
 	case sci_poly:
-		{
-			abs_poly();
-			break;
-		}
+		abs_poly();
+		break;
 	case sci_sparse:
-		{
-			abs_sparse();
-			break;
-		}
+		abs_sparse();
+		break;
 	default:
 		OverLoad(1);
 		break;
@@ -70,34 +69,35 @@ int abs_double()
 
 		pdblRealData	= stk(iRealData);
 		pdblImgData		= stk(iImgData);
+		//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
 
-		pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
-
+		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
 		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
 			pReturnRealData[iIndex] = dabsz(pdblRealData[iIndex], pdblImgData[iIndex]);
 
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
+		//free(pReturnRealData);
 	}
 	else
 	{
 		double *pdblRealData	= 0;
 		double *pReturnRealData = NULL;
-		int		itr				= 0;
-
+	
 		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
 		pdblRealData		= stk(iRealData);
-		pReturnRealData		= (double*)malloc(iRows * iCols * sizeof(double));
+		//pReturnRealData		= (double*)malloc(iRows * iCols * sizeof(double));
 
-		for(iIndex = 0 ; (iIndex < iRows * iCols) && (itr == 0) ; iIndex++)
+		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
+
+		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
 			pReturnRealData[iIndex] = dabss(pdblRealData[iIndex]);
 
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
+		//free(pReturnRealData);
 	}
 
 	return 0;
@@ -129,12 +129,12 @@ int abs_poly()
 
 		pdblRealData		= stk(iRealData);
 		pdblImgData			= stk(iImgData);
-		pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
+		iAllocMatrixOfPoly(Rhs + 1, &piVarName, iRows, iCols, piPow, &pReturnRealData);
+		//pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
 
 		for(iIndex = 0 ; iIndex < iMaxData ; iIndex++)
-		{
 			pReturnRealData[iIndex] = dabsz(pdblRealData[iIndex], pdblImgData[iIndex]);
-		}
+
 	}
 	else
 	{
@@ -144,20 +144,17 @@ int abs_poly()
 		iMaxData = iArraySum(piPow, 0, iRows * iCols);
 
 		pdblRealData	= stk(iRealData);
-		pReturnRealData	= (double*)malloc(iMaxData * sizeof(double));
-		
+		iAllocMatrixOfPoly(Rhs + 1, &piVarName, iRows, iCols, piPow, &pReturnRealData);
+		//pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
 
 		for(iIndex = 0 ; iIndex < iMaxData ; iIndex++)
-		{
 			pReturnRealData[iIndex] = dabss(pdblRealData[iIndex]);
-		}
-
 	}
-
-	CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData);
+	
+	//CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData);
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
-	free(pReturnRealData);
+	//free(pReturnRealData);
 	free(piPow);
 
 	return 0;
@@ -186,29 +183,33 @@ int abs_sparse()
 	if(iIsComplex(1))
 	{
 		GetRhsCSparseVar(1, &iRows, &iCols, &iTotalElem, NULL, NULL, &iRealData, &iImgData);
-		piElemByRow	= (int*)malloc(iTotalElem * sizeof(int));
-		piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
+		//piElemByRow	= (int*)malloc(iTotalElem * sizeof(int));
+		//piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
+		
+		//Warning, tips to use same variable in out and in !!!
+		iAllocSparseMatrix(Rhs + 1, iRows, iCols, iTotalElem, &piElemByRow, &piColByRow, &pReturnRealData);
 		GetRhsCSparseVar(1, &iRows, &iCols, &iTotalElem, piElemByRow, piColByRow, &iRealData, &iImgData);
 
 		pdblRealData	= stk(iRealData);
 		pdblImgData		= stk(iImgData);
-		pReturnRealData	= (double*)malloc(iTotalElem * sizeof(double));
+		//pReturnRealData	= (double*)malloc(iTotalElem * sizeof(double));
 
 		for(iIndex = 0 ; iIndex < iTotalElem ; iIndex++)
-		{
 			pReturnRealData[iIndex] = dabsz(pdblRealData[iIndex],pdblImgData[iIndex]);
-		}
 	}
 	else
-	{//void GetRhsSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piRowsElem, int* _piColsElem, int* _piReal);
+	{
 		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, NULL, NULL, &iRealData);
-		piElemByRow	= (int*)malloc(iRows * sizeof(int));
-		piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
+		//piElemByRow	= (int*)malloc(iTotalElem * sizeof(int));
+		//piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
+
+		//Warning, tips to use same variable in out and in !!!
+		iAllocSparseMatrix(Rhs + 1, iRows, iCols, iTotalElem, &piElemByRow, &piColByRow, &pReturnRealData);
+
 		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, piElemByRow, piColByRow, &iRealData);
 
 		pdblRealData	= stk(iRealData);
-
-		pReturnRealData	= (double*)malloc(iTotalElem * sizeof(double));
+		//pReturnRealData	= (double*)malloc(iTotalElem * sizeof(double));
 
 		/*This is the "elegante" version, parse two arrays and compute abs(Data)*/
 		/*
@@ -227,13 +228,12 @@ int abs_sparse()
 			pReturnRealData[iIndex] = fabs(pdblRealData[iIndex]);
 	}
 
-	CreateSparseVarFromPtr(Rhs + 1, iRows, iCols, iTotalElem, piElemByRow, piColByRow, pReturnRealData);
+	//CreateSparseVarFromPtr(Rhs + 1, iRows, iCols, iTotalElem, piElemByRow, piColByRow, pReturnRealData);
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
-
-	free(piElemByRow);
-	free(piColByRow);
-	free(pReturnRealData);
+	//free(piElemByRow);
+	//free(piColByRow);
+	//free(pReturnRealData);
 
 	return 0;
 }

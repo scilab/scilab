@@ -49,8 +49,9 @@ int C2F(sci_imult) _PARAMS((char *fname,unsigned long fname_len))
 		pdblRealData	= stk(iRealData);
 		pdblImgData		= stk(iImgData);
 
-		pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
-		pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
+		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
+		//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
+		//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
 		for(iIndex = 0 ; iIndex < iCols * iRows ; iIndex++)
 		{
@@ -58,29 +59,31 @@ int C2F(sci_imult) _PARAMS((char *fname,unsigned long fname_len))
 			pReturnRealData[iIndex] = -pdblImgData[iIndex];
 		}
 
-		CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
+		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
-		free(pReturnImgData);
+		//free(pReturnRealData);
+		//free(pReturnImgData);
 	}
 	else
 	{
 		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
 		pdblRealData	= stk(iRealData);
 
-		pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
-		pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
+		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
+
+		//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
+		//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
 		memset(pReturnRealData, 0x00, iRows * iCols * sizeof(double));
 		for(iIndex = 0 ; iIndex < iCols * iRows ; iIndex++)
 			pReturnImgData[iIndex] = pdblRealData[iIndex];
 
-		CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
+		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
-		free(pReturnImgData);
+		//free(pReturnRealData);
+		///free(pReturnImgData);
 	}
 #else //_NEW_TONIO_
 	C2F(intimult)(id);

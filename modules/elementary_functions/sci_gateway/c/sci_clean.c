@@ -58,7 +58,6 @@ int C2F(sci_clean) _PARAMS((char *fname,unsigned long fname_len))
 
 	if(GetType(1) == sci_poly)
 	{
-
 		C2F(sci_cleanp)(fname, fname_len);
 		return 0;
 	}
@@ -128,8 +127,10 @@ int C2F(sci_clean) _PARAMS((char *fname,unsigned long fname_len))
 		pdblRealData	= stk(iRealData1);
 		pdblImgData		= stk(iImgData1);
 		dblNorm			= wasums(iRows1 * iCols1, pdblRealData, pdblImgData);
-		pReturnRealData = (double*)malloc(iRows1 * iCols1 * sizeof(double));
-		pReturnImgData	= (double*)malloc(iRows1 * iCols1 * sizeof(double));
+
+		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows1, iCols1, &pReturnRealData, &pReturnImgData);
+		//pReturnRealData = (double*)malloc(iRows1 * iCols1 * sizeof(double));
+		//pReturnImgData	= (double*)malloc(iRows1 * iCols1 * sizeof(double));
 		
 		dblEps = Max(dblEpsA, dblEpsR * dblNorm);
 		for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
@@ -137,25 +138,28 @@ int C2F(sci_clean) _PARAMS((char *fname,unsigned long fname_len))
 			pReturnRealData[iIndex] = dabss(pdblRealData[iIndex]) <= dblEps ? 0 : pdblRealData[iIndex];
 			pReturnImgData[iIndex]	= dabss(pdblImgData[iIndex]) <= dblEps ? 0 : pdblImgData[iIndex];
 		}
-		CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &pReturnRealData, &pReturnImgData);
+		
+		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &pReturnRealData, &pReturnImgData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
-		free(pReturnImgData);
+		//free(pReturnRealData);
+		//free(pReturnImgData);
 	}
 	else
 	{
 		GetRhsCVar(iCurrentVar, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &iRealData1, &iImgData1);
 		pdblRealData	= stk(iRealData1);
 		dblNorm			= dasums(iRows1 * iCols1, pdblRealData);
-		pReturnRealData = (double*)malloc(iRows1 * iCols1 * sizeof(double));
+
+		iAllocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pReturnRealData);
+		//pReturnRealData = (double*)malloc(iRows1 * iCols1 * sizeof(double));
 		for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
 			pReturnRealData[iIndex] = dabss(pdblRealData[iIndex]) <= dblEps ? 0 : pdblRealData[iIndex];
 
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &pReturnRealData);
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &pReturnRealData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
+		//free(pReturnRealData);
 	}
 	return 0;
 }

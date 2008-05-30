@@ -36,12 +36,13 @@ int C2F(sci_eye) _PARAMS((char *fname,unsigned long fname_len))
 		Rhs = Max(Rhs,0);
 		iRows = -1;
 		iCols = -1;
-		pReturnRealData = (double*)malloc(sizeof(double));
+		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
+		//pReturnRealData = (double*)malloc(sizeof(double));
 		pReturnRealData[0] = 1;
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
+		//free(pReturnRealData);
 		return 0;
 	}
 	else if(Rhs == 1)
@@ -67,7 +68,8 @@ int C2F(sci_eye) _PARAMS((char *fname,unsigned long fname_len))
 				break;
 			}
 		default:
-			GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
+			GetVarDimension(1, &iRows, &iCols);
+			CheckVarUsed(1);
 			break;
 		}
 	}
@@ -83,20 +85,30 @@ int C2F(sci_eye) _PARAMS((char *fname,unsigned long fname_len))
 		iCols = 0;
 	}
 
-	//ca marche si iRows = 0 et iCols = 0 ???
 	if(iRows * iCols != 0)
 	{
 		iRows = (int)dabss(iRows);
 		iCols = (int)dabss(iCols);
 
-		pReturnRealData = (double*)malloc(sizeof(double) * iRows * iCols);
+		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
+		//pReturnRealData = (double*)malloc(sizeof(double) * iRows * iCols);
 		vDset(iRows * iCols, 0, pReturnRealData, 1);
 		vDset(Min(iRows, iCols), 1, pReturnRealData, iRows + 1);
 
-		CreateVarFromPtr(Rhs +1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-		LhsVar(1) = Rhs +1;
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
+		//free(pReturnRealData);
+	}
+	else
+	{
+		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
+		//pReturnRealData = (double*)malloc(sizeof(double));
+		//pReturnRealData[0] = 0;
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		LhsVar(1) = Rhs + 1;
+		PutLhsVar();
+		//free(pReturnRealData);
 	}
 #else
 	C2F(inteye)(id);

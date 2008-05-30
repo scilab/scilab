@@ -375,8 +375,11 @@ void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 {
 	int iLoop = 0;
 
-	memset(_pdblOcc, 0x00, _iNbElemVal * sizeof(double));
-	*_pdblInfo	= 0;
+	if(_pdblOcc != NULL)
+		memset(_pdblOcc, 0x00, _iNbElemVal * sizeof(double));
+
+	if(_pdblInfo != NULL)
+		*_pdblInfo	= 0;
 	for(iLoop = 0 ; iLoop < _iNbElemX ; iLoop++)
 	{
 		if(_pdblVal[0] <= _pdblX[iLoop] && _pdblX[iLoop] <= _pdblVal[_iNbElemVal])
@@ -392,12 +395,15 @@ void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 				else
 					iIndex1 = iIndex;
 			}
-			_pdblOcc[iIndex2 - 1]++;
+
 			_pdblInd[iLoop]	= iIndex2;
+			if(_pdblOcc != NULL)
+				_pdblOcc[iIndex2 - 1]++;
 		}
 		else
 		{
-			(*_pdblInfo)++;
+			if(_pdblInfo != NULL)
+				(*_pdblInfo)++;
 			_pdblInd[iLoop] = 0;
 		}
 	}
@@ -450,7 +456,8 @@ void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 {
 	int iLoop = 0;
 
-	memset(_pdblOcc, 0x00, _iNbElemVal * sizeof(double));
+	if(_pdblOcc != NULL)
+		memset(_pdblOcc, 0x00, _iNbElemVal * sizeof(double));
 	*_pdblInfo	= 0;
 	for(iLoop = 0 ; iLoop < _iNbElemX ; iLoop++)
 	{
@@ -469,23 +476,27 @@ void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 			}
 			if(_pdblX[iLoop] == _pdblVal[iIndex1])
 			{
-				_pdblOcc[iIndex1]++;
+				if(_pdblOcc != NULL)
+					_pdblOcc[iIndex1]++;
 				_pdblInd[iLoop]	= iIndex1 + 1;
 			}
 			else if(_pdblX[iLoop] == _pdblVal[iIndex2])
 			{
-				_pdblOcc[iIndex2]++;
+				if(_pdblOcc != NULL)
+					_pdblOcc[iIndex2]++;
 				_pdblInd[iLoop]	= iIndex2 + 1;
 			}
 			else
 			{
-				(*_pdblInfo)++;
+				if(_pdblInfo != NULL)
+					(*_pdblInfo)++;
 				_pdblInd[iLoop] = 0;
 			}
 		}
 		else
 		{
-			*_pdblInfo++;
+			if(_pdblInfo != NULL)
+				*_pdblInfo++;
 			_pdblInd[iLoop] = 0;
 		}
 	}

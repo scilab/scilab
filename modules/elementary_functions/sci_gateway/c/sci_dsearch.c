@@ -121,13 +121,21 @@ int C2F(sci_dsearch) _PARAMS((char *fname,unsigned long fname_len))
 	GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
 	pdblRealData		= stk(iRealData);
 
-	pdblRealIndData		= (double*)malloc(iRows * iCols * sizeof(double));
-	pdblRealOccData		= (double*)malloc(iRowOcc * iColOcc * sizeof(double));
-	pdblRealInfoData	= (double*)malloc(sizeof(double));
+	if(Lhs >= 1)
+		iAllocMatrixOfDouble(Rhs + 1, iRows,		iCols,		&pdblRealIndData);
+	if(Lhs >= 2)
+		iAllocMatrixOfDouble(Rhs + 2, iRowOcc,		iColOcc,	&pdblRealOccData);
+	if(Lhs >= 3)
+		iAllocMatrixOfDouble(Rhs + 3, 1,			1,			&pdblRealInfoData);
+	
+	//pdblRealIndData		= (double*)malloc(iRows * iCols * sizeof(double));
+	//pdblRealOccData		= (double*)malloc(iRowOcc * iColOcc * sizeof(double));
+	//pdblRealInfoData	= (double*)malloc(sizeof(double));
 
 	if(iRows == 0 || iCols == 0)
 	{
 		pdblRealInfoData[0] = 0;
+		if(Lhs >= 2)
 		memset(pdblRealOccData, 0x00, iRowOcc * iColOcc * sizeof(double));
 	}
 	else
@@ -145,25 +153,25 @@ int C2F(sci_dsearch) _PARAMS((char *fname,unsigned long fname_len))
 
 	if(Lhs >= 1)
 	{
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pdblRealIndData);
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pdblRealIndData);
 		LhsVar(1) = Rhs + 1;
 	}
 	if(Lhs >= 2)
 	{
-		CreateVarFromPtr(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &iRowOcc, &iColOcc, &pdblRealOccData);
+		//CreateVarFromPtr(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &iRowOcc, &iColOcc, &pdblRealOccData);
 		LhsVar(2) = Rhs + 2;
 	}
 	if(Lhs >= 3)
 	{
-		int iRow = 1;
-		int iCol = 1;
-		CreateVarFromPtr(Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &iRow, &iCol, &pdblRealInfoData);
+		//int iRow = 1;
+		//int iCol = 1;
+		//CreateVarFromPtr(Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &iRow, &iCol, &pdblRealInfoData);
 		LhsVar(3) = Rhs + 3;
 	}
 
-	free(pdblRealIndData);
-	free(pdblRealOccData);
-	free(pdblRealInfoData);
+	//free(pdblRealIndData);
+	//free(pdblRealOccData);
+	//free(pdblRealInfoData);
 	PutLhsVar();
 #else
 	C2F(intdsearch)(id);

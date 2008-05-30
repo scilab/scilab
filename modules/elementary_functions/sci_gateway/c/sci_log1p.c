@@ -71,15 +71,16 @@ int C2F(sci_log1p) _PARAMS((char *fname,unsigned long fname_len))
 			}
 		}
 
-		pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
+		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
+		//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
 
 		for(iIndex = 0; iIndex < iRows * iCols ; iIndex++)
 			pReturnRealData[iIndex] = dlog1ps(pdblRealData[iIndex]);
 
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
+		//free(pReturnRealData);
 	}
 #else // _NEW_TONIO_
 	C2F(intlog1p)(id);

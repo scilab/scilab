@@ -52,26 +52,23 @@ int C2F(sci_frexp) _PARAMS((char *fname,unsigned long fname_len))
 
 	GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
 	pdblRealData		= stk(iRealData);
-	pReturnCoefData		= (double*)malloc(iRows * iCols * sizeof(double));
-	pReturnExpData		= (double*)malloc(iRows * iCols * sizeof(double));
+	iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnCoefData);
+	iAllocMatrixOfDouble(Rhs + 2, iRows, iCols, &pReturnExpData);
+	//pReturnCoefData		= (double*)malloc(iRows * iCols * sizeof(double));
+	//pReturnExpData		= (double*)malloc(iRows * iCols * sizeof(double));
 
 	for(iIndex = 0 ; iIndex < iRows * iCols; iIndex++)
-	{
-//		int iTemp;
 		pReturnCoefData[iIndex] = dfrexps(pdblRealData[iIndex], &pReturnExpData[iIndex]);
-//		pReturnCoefData[iIndex] = dfrexps(pdblRealData[iIndex], &iTemp);
-//		pReturnExpData[iIndex] = iTemp;
-	}
 
-	CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnCoefData);
+	//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnCoefData);
 	LhsVar(1) = Rhs + 1;
 
-	CreateVarFromPtr(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnExpData);
+	//CreateVarFromPtr(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnExpData);
 	LhsVar(2) = Rhs + 2;
 
 	PutLhsVar();
-	free(pReturnCoefData);
-	free(pReturnExpData);
+	//free(pReturnCoefData);
+	//free(pReturnExpData);
 #else
 	C2F(intfrexp)(id);
 #endif

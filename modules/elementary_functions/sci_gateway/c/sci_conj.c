@@ -50,17 +50,18 @@ int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
 			pdblRealData	= stk(iRealData);
 			pdblImgData		= stk(iImgData);
 
-			pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
-			pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
+			iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
+			//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
+			//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
 			memcpy(pReturnRealData, pdblRealData, iRows * iCols * sizeof(double));
 			ddscals(pdblImgData, iRows * iCols, -1, pReturnImgData);
 
-			CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
+			//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
 			LhsVar(1) = Rhs + 1;
 			PutLhsVar();
-			free(pReturnRealData);
-			free(pReturnImgData);
+			//free(pReturnRealData);
+			//free(pReturnImgData);
 
 		}
 		else
@@ -70,12 +71,14 @@ int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
 
 			GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
 			pdblRealData		= stk(iRealData);
-			pReturnRealData		= (double*)malloc(iRows * iCols * sizeof(double));
+
+			iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
+			//pReturnRealData		= (double*)malloc(iRows * iCols * sizeof(double));
 			memcpy(pReturnRealData, pdblRealData, iRows * iCols * sizeof(double));
-			CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+			//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
 			LhsVar(1) = Rhs + 1;
 			PutLhsVar();
-			free(pReturnRealData);
+			//free(pReturnRealData);
 		}
 	}
 	else if(iDataType == sci_poly)
@@ -93,16 +96,17 @@ int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
 
 			pdblRealData		= stk(iRealData);
 			pdblImgData			= stk(iImgData);
-			pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
-			pReturnImgData		= (double*)malloc(iMaxData * sizeof(double));
+			iAllocComplexMatrixOfPoly(Rhs + 1, 1, &piVarName, iRows, iCols, piPow, &pReturnRealData, &pReturnImgData);
+			//pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
+			//pReturnImgData		= (double*)malloc(iMaxData * sizeof(double));
 
 			memcpy(pReturnRealData, pdblRealData, iMaxData * sizeof(double));
 			ddscals(pdblImgData, iMaxData, -1, pReturnImgData);
-			CreateCPolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData, pReturnImgData);
+			//CreateCPolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData, pReturnImgData);
 			LhsVar(1) = Rhs + 1;
 			PutLhsVar();
-			free(pReturnRealData);
-			free(pReturnImgData);
+			//free(pReturnRealData);
+			//free(pReturnImgData);
 			free(piPow);
 		}
 		else
@@ -113,13 +117,14 @@ int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
 			iMaxData			= iArraySum(piPow, 0, iRows * iCols);
 
 			pdblRealData		= stk(iRealData);
-			pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
+			iAllocMatrixOfPoly(Rhs + 1, &piVarName, iRows, iCols, piPow, &pReturnRealData);
+			//pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
 
 			memcpy(pReturnRealData, pdblRealData, iMaxData * sizeof(double));
-			CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData);
+			//CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData);
 			LhsVar(1) = Rhs + 1;
 			PutLhsVar();
-			free(pReturnRealData);
+			//free(pReturnRealData);
 			free(piPow);
 		}
 	}

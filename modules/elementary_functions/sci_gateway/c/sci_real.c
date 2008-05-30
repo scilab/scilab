@@ -71,14 +71,17 @@ int real_poly()
 
 	iMaxData			= iArraySum(piPow, 0, iRows * iCols);
 	pdblRealData		= stk(iRealData);
-	pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
+
+	iAllocMatrixOfPoly(Rhs + 1, &piVarName, iRows, iCols, piPow, &pReturnRealData);
+	//pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
 
 	memcpy(pReturnRealData, pdblRealData, iMaxData * sizeof(double));
-	CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData);
+	//CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData);
 
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
-	free(pReturnRealData);
+	//free(pReturnRealData);
+	free(piPow);
 	return 0;
 }
 
@@ -167,14 +170,13 @@ int real_double()
 	GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
 
 	pdblRealData	= stk(iRealData);
-	pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
-
+	iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
 	memcpy(pReturnRealData, pdblRealData, iRows * iCols * sizeof(double));
 
-	CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+	//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pdblRealData);
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
-	free(pReturnRealData);
+	//free(pReturnRealData);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -33,7 +33,8 @@ int C2F(sci_isreal) _PARAMS((char *fname,unsigned long fname_len))
 	int iRealEsp			= 0;
 	double *pdblRealData	= NULL;
 	int iType				= 0;
-	int iVal				= 0;
+	int *piVal				= NULL;
+	//int iVal				= 0;
 
 	CheckRhs(1,2);
 	CheckLhs(1,1);
@@ -45,12 +46,16 @@ int C2F(sci_isreal) _PARAMS((char *fname,unsigned long fname_len))
 		return 0;
 	}
 
+	iAllocMatrixOfBoolean(Rhs + 1, 1, 1, &piVal);
+
 	if(Rhs == 1)
 	{
 		if(iIsComplex(1))
-			iVal = 0;
+			piVal[0] = 0;
+			//iVal = 0;
 		else
-			iVal = 1;
+			piVal[0] = 1;
+			//iVal = 1;
 		CheckAllVarUsed(-1, -1);
 	}
 	else //Rhs == 2
@@ -67,7 +72,8 @@ int C2F(sci_isreal) _PARAMS((char *fname,unsigned long fname_len))
 	
 		if(iIsComplex(1) == 0) //Not complex
 		{
-			iVal = 1;
+			piVal[0] = 1;
+			//iVal = 1;
 		}
 		else //Complex
 		{
@@ -75,20 +81,23 @@ int C2F(sci_isreal) _PARAMS((char *fname,unsigned long fname_len))
 			switch(iType)
 			{
 			case sci_matrix :
-				iVal = iIsRealDouble(1, dblEsp);
+				piVal[0] = iIsRealDouble(1, dblEsp);
+				//iVal = iIsRealDouble(1, dblEsp);
 				break;
 			case sci_poly :
-				iVal = iIsRealPoly(1, dblEsp);
+				piVal[0] = iIsRealPoly(1, dblEsp);
+				//iVal = iIsRealPoly(1, dblEsp);
 				break;
 			case sci_sparse :
-				iVal = iIsRealSparse(1, dblEsp);
+				piVal[0] = iIsRealSparse(1, dblEsp);
+				//iVal = iIsRealSparse(1, dblEsp);
 				break;
 			default: //never pass here
 				break;
 			}
 		}
 	}
-	CreateBooleanVarFromPtr(Rhs + 1, 1, 1, &iVal);
+	//CreateBooleanVarFromPtr(Rhs + 1, 1, 1, &iVal);
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
 #else
