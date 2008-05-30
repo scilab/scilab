@@ -1230,13 +1230,16 @@ void CheckVarUsed(int _iVarNum)
 	case sci_ints :
 		iAddress += 4;
 		break;
+	case sci_strings :
+		iAddress += 4;
 	default:
 		break;
 	}
+//	C2F(intersci).iwhere[_iNewVal - 1]	= *Lstk(iNewPos);
 
-	C2F(intersci).ntypes[iVar - 1] = '$' ;
-	C2F(intersci).iwhere[iVar - 1] = *Lstk(iVar);
-	C2F(intersci).lad[iVar - 1] = sadr(iAddress);
+	C2F(intersci).ntypes[_iVarNum - 1] = '$' ;
+	C2F(intersci).iwhere[_iVarNum - 1] = *Lstk(iVar);
+	C2F(intersci).lad[_iVarNum - 1] = sadr(iAddress);
 
 }
 
@@ -1479,7 +1482,7 @@ int iAllocMatrixOfBoolean(int _iNewVal, int _iRows, int _iCols, int** _piBoolDat
 	C2F(intersci).iwhere[_iNewVal - 1]	= *Lstk(iNewPos);
 	C2F(intersci).lad[_iNewVal - 1]		= sadr(iAddrRealData);
 
-	*Lstk(iNewPos + 1) = sadr(iAddrRealData) + _iRows * _iCols;
+	*Lstk(iNewPos + 1) = sadr(iAddrBase + _iRows * _iCols + 2);
 	return 0;
 }
 
