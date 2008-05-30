@@ -35,7 +35,8 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
       // Error message in not in standard mode
       if(getScilabMode() != SCILAB_STD)
         {
-          Scierror(999,_("%s: figure number must be given when used in no window mode."),"delmenu");
+          Scierror(999,_("%s: figure number must be given when used in no window mode."), fname);
+          return FALSE;
         }
 
       // Unset a Menu of Scilab Main Window

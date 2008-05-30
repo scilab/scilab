@@ -66,7 +66,7 @@ int C2F(sci_xgetfile)(char *fname,unsigned long fname_len)
                 }
               else
                 {
-					Scierror(999, _("%s: Wrong input argument: '%s' expected.\n"),fname, "title");
+                  Scierror(999, _("%s: Wrong name for optional input argument #%d: '%s' expected.\n"),fname, 1, "title");
                   FREE(optName);
                   return FALSE;
                 }
@@ -76,9 +76,9 @@ int C2F(sci_xgetfile)(char *fname,unsigned long fname_len)
               GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &fileMaskAdr);
               if (nbCol !=1)
                 {
-					Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 1);
-					FREE(optName);
-					return FALSE;
+                  Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 1);
+                  FREE(optName);
+                  return FALSE;
                 }
               fileMask = cstk(fileMaskAdr);
             }
@@ -98,7 +98,7 @@ int C2F(sci_xgetfile)(char *fname,unsigned long fname_len)
           GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &fileMaskAdr);
           if (nbCol !=1)
             {
-              Scierror(999,  _("%s: Wrong type for input argument %d: A string expected.\n"),fname,1);
+              Scierror(999,  _("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
               FREE(optName);
               return FALSE;
             }
@@ -106,7 +106,7 @@ int C2F(sci_xgetfile)(char *fname,unsigned long fname_len)
         }
       else
         {
-          Scierror(999,  _("%s: Wrong type for input argument %d: A string expected.\n"),fname, 1);
+          Scierror(999,  _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 1);
           FREE(optName);
           return FALSE;
         }
@@ -121,7 +121,7 @@ int C2F(sci_xgetfile)(char *fname,unsigned long fname_len)
                   GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
                   if (nbCol !=1)
                     {
-                      Scierror(999,  _("%s: Wrong type for input argument %d: A string expected.\n"),fname, 2);
+                      Scierror(999,  _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 2);
                       FREE(optName);
                       return FALSE;
                     }
@@ -129,7 +129,7 @@ int C2F(sci_xgetfile)(char *fname,unsigned long fname_len)
                 }
               else
                 {
-                  Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname, 2, "title");
+                  Scierror(999, _("%s: Wrong name for optional input argument #%d: '%s' expected.\n"),fname, 2, "title");
                   FREE(optName);
                   return FALSE;
                 }
@@ -210,7 +210,7 @@ int C2F(sci_xgetfile)(char *fname,unsigned long fname_len)
                 }
               else
                 {
-                  Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname, 3, "title");
+                  Scierror(999, _("%s: Wrong name for optional input argument #%d: '%s' expected.\n"),fname, 3, "title");
                   FREE(optName);
                   return FALSE;
                 }

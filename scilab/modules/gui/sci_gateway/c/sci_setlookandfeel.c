@@ -65,7 +65,7 @@ int C2F(sci_setlookandfeel)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),1);
+          Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
 	}
 	return 0;
 }

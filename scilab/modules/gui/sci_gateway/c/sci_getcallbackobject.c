@@ -40,7 +40,7 @@ int sci_getcallbackobject(char *fname,unsigned long fname_len)
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: A value expected.\n"), fname);
+      Scierror(999, _("%s: Wrong type for input argument #%d: A value expected.\n"), fname, 1);
       return FALSE;
     }
  
