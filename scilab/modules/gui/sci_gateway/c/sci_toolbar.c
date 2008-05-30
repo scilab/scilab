@@ -46,7 +46,7 @@ int sci_toolbar(char *fname,unsigned long l)
       GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&nbRow,&nbCol,&stkAdr);
       if (nbRow*nbCol != 1)
         {
-          Scierror(999, _("%s: Wrong size for input argument #%d: Scalar expected.\n"), fname, 1);
+          Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
           return FALSE;
         }
       figNum = *istk(stkAdr);
@@ -72,7 +72,7 @@ int sci_toolbar(char *fname,unsigned long l)
 
           if (nbRow*nbCol != 1)
             {
-              Scierror(999,_("%s: Wrong size for input argument #%d: Single handle expected.\n"),fname, 1);
+              Scierror(999,_("%s: Wrong size for input argument #%d: A graphic handle expected.\n"),fname, 1);
               return FALSE;
             }
           pObj=sciGetPointerFromHandle((long)*hstk(stkAdr));
@@ -85,7 +85,7 @@ int sci_toolbar(char *fname,unsigned long l)
           
           if ( (sciGetEntityType (pObj) != SCI_FIGURE) )
             {
-              Scierror(999, _("%s: Wrong type for input argument #%d: Double value or Figure handle expected.\n"), fname, 1);
+              Scierror(999, _("%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"), fname, 1);
               return FALSE;
             }
 
@@ -93,7 +93,7 @@ int sci_toolbar(char *fname,unsigned long l)
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: Double value or Figure handle expected.\n"), fname, 1);
+      Scierror(999, _("%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"), fname, 1);
       return FALSE;
     }
 

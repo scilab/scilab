@@ -42,7 +42,7 @@ int sci_uigetdir(char *fname,unsigned long l)
           GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname,1);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname,1);
               return FALSE;
             }
           initialDirectory = cstk(initialDirectoryAdr);
@@ -61,7 +61,7 @@ int sci_uigetdir(char *fname,unsigned long l)
           GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
           if (nbCol !=1)
             {
-              Scierror(999, _("%s: Wrong type for input argument: A string expected.\n"), fname, 1);
+              Scierror(999, _("%s: Wrong size for input argument: A string expected.\n"), fname, 1);
               return FALSE;
             }
           initialDirectory = cstk(initialDirectoryAdr);

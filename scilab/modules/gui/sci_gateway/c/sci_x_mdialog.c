@@ -41,14 +41,14 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
   CheckRhs(3,4);
   CheckLhs(0,1);
 
-  /* READ THE MESSAGE */
+  /* READ THE LABELS */
   if (VarType(1) == sci_strings)
     {
       GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &labelsAdr);
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: String vector expected.\n"), fname, 1);
+      Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 1);
       return FALSE;
     }
 
@@ -66,14 +66,14 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
       GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&nbRowLineLabels,&nbColLineLabels,&lineLabelsAdr);
       if (nbRow !=1 && nbCol !=1)
       {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String vector expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 2);
         return FALSE;
       }
       setMessageBoxLineLabels(messageBoxID, getStringMatrixFromStack(lineLabelsAdr), nbColLineLabels*nbRowLineLabels);
     }
   else 
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: String vector expected.\n"), fname, 2);
+      Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 2);
       return FALSE;
     }
   
@@ -85,7 +85,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
           GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRowDefaultValues,&nbColDefaultValues,&defaultValuesAdr);
           if (nbRowDefaultValues !=1 && nbColDefaultValues !=1)
             {
-              Scierror(999, _("%s: Wrong type for input argument #%d: String vector expected.\n"), fname, 3);
+              Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
               return FALSE;
             }
           setMessageBoxDefaultInput(messageBoxID, getStringMatrixFromStack(defaultValuesAdr), nbColDefaultValues*nbRowDefaultValues);
@@ -95,7 +95,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
           GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRowColumnLabels,&nbColColumnLabels,&columnLabelsAdr);
           if (nbRow !=1 && nbCol !=1)
             {
-              Scierror(999, _("%s: Wrong type for input argument #%d: String vector expected.\n"), fname, 3);
+              Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
               return FALSE;
             }
           setMessageBoxColumnLabels(messageBoxID, getStringMatrixFromStack(columnLabelsAdr), nbColColumnLabels*nbRowColumnLabels);
@@ -103,7 +103,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
     }
   else 
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: String vector expected.\n"), fname, 3);
+      Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 3);
       return FALSE;
     }
 
@@ -115,14 +115,14 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
           GetRhsVar(4,MATRIX_OF_STRING_DATATYPE,&nbRowDefaultValues,&nbColDefaultValues,&defaultValuesAdr);
           if ((nbRowDefaultValues != nbRowLineLabels*nbColLineLabels) || (nbColDefaultValues != nbRowColumnLabels*nbColColumnLabels))
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: %d x %d expected.\n"),fname, 4, nbRowLineLabels*nbColLineLabels, nbRowColumnLabels*nbColColumnLabels);
+              Scierror(999, _("%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"),fname, 4, nbRowLineLabels*nbColLineLabels, nbRowColumnLabels*nbColColumnLabels);
               return FALSE;
             }
           setMessageBoxDefaultInput(messageBoxID, getStringMatrixFromStack(defaultValuesAdr), nbColDefaultValues*nbRowDefaultValues);
         }
       else 
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: String matrix expected.\n"), fname, 4);
+          Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 4);
           return FALSE;
         }
     }

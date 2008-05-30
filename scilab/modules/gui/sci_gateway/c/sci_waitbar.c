@@ -46,7 +46,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
           GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &fractionAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: Single double expected.\n"), fname, 1);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
               return FALSE;
             }
         }
@@ -56,7 +56,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
         }
       else
         {
-			Scierror(999, _("%s: Wrong type for input argument #%d: Single double or String expected.\n"), fname, 1);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A real or a string expected.\n"), fname, 1);
           return FALSE;
         }
 
@@ -85,7 +85,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
           GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &fractionAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A double expected.\n"), fname, 1);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
               return FALSE;
             }
           GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRowMessage, &nbColMessage, &messageAdr);
@@ -102,14 +102,14 @@ int sci_waitbar(char *fname,unsigned long fname_len)
           GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &fractionAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A double expected.\n"), fname, 1);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
               return FALSE;
             }
 
           GetRhsVar(2, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &handleAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A handle expected.\n"), fname, 2);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle expected.\n"), fname, 2, "Waitbar");
               return FALSE;
             }
 
@@ -126,7 +126,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
           GetRhsVar(2, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &handleAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A handle expected.\n"), fname, 2);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle expected.\n"), fname, 2, "Waitbar");
               return FALSE;
             }
 
@@ -138,7 +138,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
         }
       else
         {
-			Scierror(999, _("%s: Bad use with two input arguments.\n"), fname);
+          Scierror(999, _("%s: Wrong input arguments: (x, mes), (x, winId) or (mes, winId) expected.\n"), fname);
           return FALSE;
         }
     }
@@ -149,13 +149,13 @@ int sci_waitbar(char *fname,unsigned long fname_len)
           GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &fractionAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A double expected.\n"), fname, 1);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A double expected.\n"), fname, 1);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 1);
           return FALSE;
         }
 
@@ -174,13 +174,13 @@ int sci_waitbar(char *fname,unsigned long fname_len)
           GetRhsVar(3, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &handleAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument %#d: A handle expected.\n"), fname, 3);
+              Scierror(999, _("%s: Wrong size for input argument %#d: A '%s' handle expected.\n"), fname, 3, "Waitbar");
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A handle expected.\n"), fname, 3);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 3, "Waitbar");
           return FALSE;
         }
 

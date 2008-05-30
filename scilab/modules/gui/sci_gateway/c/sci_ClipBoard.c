@@ -62,7 +62,7 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                 }
               else
                 {
-					Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "paste", "pastespecial");
+                  Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "paste", "pastespecial");
                   return FALSE;
                 }
             }
@@ -117,7 +117,7 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                         }
                       else
                         {
-                          Scierror(999,_("%s: Wrong value for input argument #%d: must be '%s', '%s' or '%s'.\n"), fname, 2, "copy","paste","empty");
+                          Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), fname, 2, "copy","paste","empty");
                           return FALSE;
                         }
                       
@@ -229,7 +229,7 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
 
               if (m1*n1!=1)
                 {
-                  Scierror(999,_("%s: Wrong type for input argument #%d: A double value expected.\n"), fname, 1);
+                  Scierror(999,_("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
                   return FALSE;
                 }
 
@@ -263,7 +263,7 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
                         }
                       else
                         {
-                          Scierror(999,_("%s: Wrong value for input argument #%d: Must be >= %d .\n"), fname, 1, 0);
+                          Scierror(999,_("%s: Wrong value for input argument #%d: Must be >= %d expected.\n"), fname, 1, 0);
                           return FALSE;
                         }
 
@@ -283,7 +283,7 @@ int C2F(sci_ClipBoard)(char *fname,unsigned long l)
             }
           else
             {
-              Scierror(999,_("%s: Wrong type for input argument #%d: A string or a double value expected.\n"), fname, 1);
+              Scierror(999,_("%s: Wrong type for input argument #%d: A string or a real expected.\n"), fname, 1);
               return FALSE;
             }
         }

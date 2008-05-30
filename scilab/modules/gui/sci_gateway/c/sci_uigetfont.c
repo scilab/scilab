@@ -64,13 +64,13 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
           GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &fontSizeAdr);
           if (nbRow*nbCol!=1)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: Single value expected.\n"), fname, 2);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 2);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: Single value expected.\n"), fname, 2);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 2);
           return FALSE;
         }
     }
@@ -83,7 +83,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
           GetRhsVar(3,MATRIX_OF_BOOLEAN_DATATYPE,&nbRow,&nbCol,&boldAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 3);
               return FALSE;
             }
 
@@ -103,7 +103,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
           GetRhsVar(4,MATRIX_OF_BOOLEAN_DATATYPE,&nbRow,&nbCol,&italicAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 4);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 4);
               return FALSE;
             }
 

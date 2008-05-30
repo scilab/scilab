@@ -48,7 +48,7 @@ int sci_uiwait( char *fname,unsigned long fname_len )
       GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
       if (nbRow * nbCol !=1)
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A handle expected.\n"), fname, 1);
+          Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
           return FALSE;
         }
       hdl = (unsigned long)*hstk(stkAdr);
@@ -60,13 +60,13 @@ int sci_uiwait( char *fname,unsigned long fname_len )
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: uicontextmenu expected.\n"), fname, 1);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Uicontextmenu");
           return FALSE;
         }
     }
   else
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: A handle expected.\n"), fname, 1);
+      Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
       return FALSE;
     }
  

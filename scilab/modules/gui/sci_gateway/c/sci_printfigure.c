@@ -35,7 +35,7 @@ int sci_printfigure(char *fname,unsigned long l)
           
           if (!IsAScalar(1))
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A double expected.\n"), fname, 1);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
               return FALSE;
             }
           num_win=(int)(*stk(l1));
@@ -53,13 +53,13 @@ int sci_printfigure(char *fname,unsigned long l)
             }
           else
             {
-              Scierror(999,_("%s: Wrong value for input argument #%d: Must be >= %d.\n"), fname, 1, 0);
+              Scierror(999,_("%s: Wrong value for input argument #%d: Must be >= %d expected.\n"), fname, 1, 0);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999,_("%s: Wrong type for input argument #%d: A double expected.\n"), fname, 2);
+          Scierror(999,_("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 2);
           return FALSE;
         }
     }

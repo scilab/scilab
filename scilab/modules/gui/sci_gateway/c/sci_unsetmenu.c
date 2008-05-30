@@ -32,17 +32,17 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
 
   if (Rhs == 1)
     {
-      // Error message in not in standard mode
+      // Error message in not in standard mode (we need figure number)
       if(getScilabMode() != SCILAB_STD)
         {
-          Scierror(999,_("%s: figure number must be given when used in no window mode."), fname);
+          Scierror(999,_("%s: Wrong number of input arguments: %d expected.\n"), fname);
           return FALSE;
         }
 
       // Unset a Menu of Scilab Main Window
       if (VarType(1) != sci_strings)
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 1);
           return FALSE;
         }
 
@@ -50,7 +50,7 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
 
       if (nbCol != 1)
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 1);
+          Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"),fname, 1);
           return FALSE;
         }
 
@@ -65,7 +65,7 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
       
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 1);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"),fname, 1);
               return FALSE;
             }
           
@@ -81,7 +81,7 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
       
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 2);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"),fname, 2);
               return FALSE;
             }
           
@@ -95,25 +95,50 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
     }
   else // Unset a submenu in graphics window
     {
+      if (VarType(1) == sci_matrix)
+        {
           GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &figureNumberAdr);
-      
+          
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 1);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"),fname, 1);
               return FALSE;
             }
-          
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"),fname, 1);
+          return FALSE;
+        }
+      
+      
+      if (VarType(2) == sci_strings)
+        {
           GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 2);
+          return FALSE;
+        }
           
+      if (VarType(3) == sci_matrix)
+        {
           GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &subMenuIndexAdr);
       
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 3);
+              Scierror(999, _("%s: Wrong size for input argument #%d: Scalar expected.\n"),fname, 3);
               return FALSE;
             }
-          
-          EnableFigureSubMenu((int)*stk(figureNumberAdr), cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), FALSE);
+        }
+      else
+        {
+              Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 3);
+              return FALSE;
+        }
+
+      EnableFigureSubMenu((int)*stk(figureNumberAdr), cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), FALSE);
     }
   
   LhsVar(1)=0;

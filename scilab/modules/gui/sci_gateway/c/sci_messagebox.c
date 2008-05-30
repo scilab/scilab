@@ -112,7 +112,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string or string vector expected.\n"), fname, 3);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A string or a string vector expected.\n"), fname, 3);
           return FALSE;
         }
     }
@@ -135,7 +135,7 @@ int sci_messagebox(char *fname,unsigned long fname_len)
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string or String vector expected.\n"), fname, 3);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A string or a string vector expected.\n"), fname, 3);
           return FALSE;
         }
     }

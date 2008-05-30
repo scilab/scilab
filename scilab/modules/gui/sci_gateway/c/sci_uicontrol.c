@@ -86,7 +86,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
       if (VarType(1) != sci_handles)
         {
-          Scierror(999,_("%s: Wrong type for input argument #%d: Graphic handle expected.\n"),fname, 1);
+          Scierror(999,_("%s: Wrong type for input argument #%d: A graphic handle expected.\n"),fname, 1);
           return FALSE;
         }
       else /* Get parent ID */
@@ -95,7 +95,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
           if (nbRow*nbCol != 1)
             {
-              Scierror(999,_("%s: Wrong size for input argument #%d: A handle expected.\n"),fname, 1);
+              Scierror(999,_("%s: Wrong size for input argument #%d: A graphic handle expected.\n"),fname, 1);
               return FALSE;
             }
           pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
@@ -121,13 +121,13 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[1]);
               if (setStatus == SET_PROPERTY_ERROR)
                 {
-                  Scierror(999, _("Could not set property %s.\n"), propertyName);
+                  Scierror(999, _("%s: Could not set property %s.\n"), fname, propertyName);
                   return FALSE;
                 }
             }
           else
             {
-              Scierror(999,_("%s: Wrong type for first input argument: Uicontrol, Figure or Uimenu expected.\n"),fname);
+              Scierror(999,_("%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle expected.\n"),fname,1,"Uicontrol","Figure","Uimenu");
               return FALSE;
             }
         }
@@ -163,10 +163,10 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   if (nbRow*nbCol == 1)
                     {
                       pParent = getFigureFromIndex((int)(*stk(stkAdr)));
-
-                      if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
+                      
+                      if ( (sciGetEntityType (pParent) != SCI_FIGURE) )
                         {
-                          Scierror(999,_("%s: Wrong type for parent: Figure or uimenu expected.\n"),fname);
+                          Scierror(999,_("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"),fname,1,"Figure");
                           return FALSE;
                         }
                       /* First parameter is the parent */
@@ -180,7 +180,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 }
               else
                 {
-                  Scierror(999,_("%s: Wrong type for input argument #%d: Graphic handle expected.\n"),fname, 1);
+                  Scierror(999,_("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"),fname, 1,"Figure");
                   return FALSE;
                 }
             }
@@ -190,13 +190,13 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
               if (nbRow*nbCol != 1)
                 {
-                  Scierror(999,_("%s: Wrong size for input argument #%d:: A handle expected.\n"),fname, 1);
+                  Scierror(999,_("%s: Wrong size for input argument #%d: A '%s' handle expected.\n"),fname, 1, "Figure");
                   return FALSE;
                 }
               pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
-              if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
+              if ( (sciGetEntityType (pParent) != SCI_FIGURE) )
                 {
-                  Scierror(999,_("%s: Wrong type of parent: Figure or uimenu expected.\n"),fname);
+                  Scierror(999,_("%s: Wrong type of input argument #%d: A '%s' handle expected.\n"),fname, 1, "Figure");
                   return FALSE;
                 }
               /* First parameter is the parent */
@@ -223,7 +223,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
           /* Read property name */
           if (VarType(inputIndex) != sci_strings)
             {
-              Scierror(999, _("%s: Wrong type for property name: String expected.\n"), fname);
+              Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, inputIndex);
               return FALSE;
             }
           else
@@ -261,7 +261,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
               if (found == 0)
                 {
-                  Scierror(999, _("%s: Unknown property: %s for uicontrols.\n"), fname, propertyName);
+                  Scierror(999, _("%s: Unknown property: %s for 'Uicontrol' handles.\n"), fname, propertyName);
                   return FALSE;
                 }
             }
@@ -276,7 +276,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             }
           else
             {
-              Scierror(999, _("%s: Wrong type for property name: String expected.\n"), fname);
+              Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, propertiesValuesIndices[0]);
               return FALSE;
             }
         }
@@ -285,7 +285,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
       pUicontrol = CreateUIControl(styleProperty);
       if (pUicontrol == NULL) /* Error in creation */
         {
-          Scierror(999, _("%s: Could not create uicontrol object.\n"), fname);
+          Scierror(999, _("%s: Could not create 'Uicontrol' handle.\n"), fname);
           return FALSE;
         }
       GraphicHandle=sciGetHandle(pUicontrol);
