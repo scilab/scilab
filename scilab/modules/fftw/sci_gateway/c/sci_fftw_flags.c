@@ -143,7 +143,7 @@ int sci_fftw_flags(char *fname,unsigned long fname_len)
 						if (i == nb_flag) 
 							{
 								freeArrayOfString(Str1,m1*n1);
-								Scierror(999,_("%s: Wrong flag for first input argument.\n"),fname);
+								Scierror(999,_("%s: Wrong values for input argument #%d: FFTW flag expected.\n"),fname,1); 
 								return(0);
 							}
 						else 
@@ -155,7 +155,7 @@ int sci_fftw_flags(char *fname,unsigned long fname_len)
 				freeArrayOfString(Str1,m1*n1);
 				break;
 			default:
-				Scierror(53,_("%s: Wrong type for first input argument.\n"),fname);
+				Scierror(53,_("%s: Wrong type for input argument #%d.\n"),fname,1);
 				return(0);
 		}
 	}

@@ -94,8 +94,8 @@ int sci_fftw(char *fname,unsigned long fname_len)
   CheckLhs(1,1);
 
   /* 3 rhs not allowed */
-  if (Rhs==3) {
-	  Scierror(39,_("%s: Wrong number of input arguments: %d expected.\n"),fname,3);
+  if (Rhs == 3) {
+	  Scierror(39,_("%s: Wrong number of input arguments: %d not expected.\n"),fname,3);
    return(0);
   }
 
@@ -162,14 +162,14 @@ int sci_fftw(char *fname,unsigned long fname_len)
    }
    /* if is not int/double then error message */
    else {
-    Scierror(53,_("%s: Wrong type for second input argument: Matrix expected.\n"), fname);
+	Scierror(53,_("%s: Wrong type for input argument #%d: A Real or Complex expected.\n"),fname,2);
     return(0);
    }
 
    /* check value of second rhs argument */
-   if ((isn!=1)&&(isn!=-1)) {
-    Scierror(53,_("%s: Wrong value for second input argument.\n"),
-                fname);
+   if ((isn!=1)&&(isn!=-1)) 
+   {
+	Scierror(53,_("%s: Wrong values for input argument #%d.\n"), fname,2);
     return(0);
    }
 
@@ -182,20 +182,20 @@ int sci_fftw(char *fname,unsigned long fname_len)
     it3 = header[3];
 
     /* look at for type of Rhs(3) */
-    if ((VarType(3)!=sci_ints)&&(VarType(3)!=sci_matrix)) {
-     Scierror(53,_("%s: Wrong type for third input argument.\n"),
-                 fname);
-     return(0);
+    if ((VarType(3)!=sci_ints)&&(VarType(3)!=sci_matrix)) 
+	{
+		Scierror(53,_("%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"),fname,3);
+		return(0);
     }
 
     /* */
     mn3=m3*n3;
 
     /* check dims */
-    if (m3*n3==0) {
-     Scierror(999,_("%s: Wrong size for third input argument.\n"),
-                  fname);
-     return(0);
+    if (m3*n3==0) 
+	{
+		Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname,3);
+		return(0);
     }
 
     /* Get dim/type of Rhs(4) */
@@ -205,41 +205,42 @@ int sci_fftw(char *fname,unsigned long fname_len)
     it4 = header[3];
 
     /* look at for type of Rhs(4) */
-    if ((VarType(4)!=sci_ints)&&(VarType(4)!=sci_matrix)) { /* int */
-     Scierror(53,_("%s: Wrong type for fourth input argument.\n"),
-                 fname);
-     return(0);
+    if ((VarType(4)!=sci_ints)&&(VarType(4)!=sci_matrix)) 
+	{ 
+		/* int */
+		Scierror(53,_("%s: Wrong type for input argument #%d: integer matrix expected.\n"),fname,3);
+		return(0);
     }
 
     /* */
     mn4=m4*n4;
 
     /* check dims */
-    if (m4*n4==0) {
-     Scierror(999,_("%s: Wrong size for fourth input argument.\n"),
-                  fname);
-     return(0);
+    if (m4*n4 == 0) 
+	{
+		Scierror(999,_("%s: Wrong size for input argument #%d.\n"), fname,4);
+		return(0);
     }
 
     /* cross variable size checking */
-    if (mn4!=mn3) {
-     Scierror(999,_("%s: Size of the third and fourth input arguments must be the same.\n"),
-                   fname);
-     return(0);
+    if (mn4 != mn3) 
+	{
+		Scierror(999,_("%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"),fname,3,4);
+		return(0);
     }
 
     /* alloc n/nspn with MALLOC */
-    if ((n=(int *)MALLOC(mn4*sizeof(int)))==NULL) {
-     Scierror(999,_("%s: No more memory.\n"),
-                  fname);
-     return(0);
+    if ((n=(int *)MALLOC(mn4*sizeof(int)))==NULL) 
+	{
+		Scierror(999,_("%s: No more memory.\n"),fname);
+		return(0);
     }
 
-    if ((nspn=(int *)MALLOC(mn4*sizeof(int)))==NULL) {
-     Scierror(999,_("%s: No more memory.\n"),
-                  fname);
-     FREE(n);
-     return(0);
+    if ((nspn=(int *)MALLOC(mn4*sizeof(int)))==NULL) 
+	{
+		Scierror(999,_("%s: No more memory.\n"),fname);
+		FREE(n);
+		return(0);
     }
 
     /* n    <- Rhs(3) */
@@ -291,12 +292,12 @@ int sci_fftw(char *fname,unsigned long fname_len)
       }
      }
      /* check value of n[i] */
-     if (n[i]<=0) {
-      Scierror(999,_("%s: Wrong value for third input argument.\n"),
-                    fname);
-      FREE(n);FREE(nspn);
-      return(0);
-      break;
+     if (n[i]<=0) 
+	 {
+		Scierror(999,_("%s: Wrong values for input argument #%d: Non-negative integers expected.\n"),fname,3);
+		FREE(n);FREE(nspn);
+		return(0);
+		break;
      }
 
      /* Rhs(4) */
@@ -344,12 +345,12 @@ int sci_fftw(char *fname,unsigned long fname_len)
       }
      }
      /* check value of nspn[i] */
-     if (nspn[i]<=0) {
-      Scierror(999,_("%s: Wrong value for fourth input argument.\n"),
-                    fname);
-      FREE(n);FREE(nspn);
-      return(0);
-      break;
+     if (nspn[i]<=0) 
+	 {
+		Scierror(999,_("%s: Wrong values for input argument #%d: Non-negative integers expected.\n"),fname,4);
+		FREE(n);FREE(nspn);
+		return(0);
+		break;
      }
 
     }
@@ -409,10 +410,10 @@ int sci_fftw(char *fname,unsigned long fname_len)
   if ((vect)&&(Rhs<=2)) {
    /* set arguments of fftw_plan_guru_split_dft */
    gdim.rank=1;
-   if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-    Scierror(999,_("%s: No more memory.\n"),
-                 fname);
-    return(0);
+   if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) 
+   {
+		Scierror(999,_("%s: No more memory.\n"),fname);
+		return(0);
    }
 
    gdim.dims[0].n = m1*n1;
@@ -427,10 +428,10 @@ int sci_fftw(char *fname,unsigned long fname_len)
    if (Rhs<=2) {
     /* set arguments of fftw_plan_guru_split_dft */
     gdim.rank=2;
-    if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) {
-     Scierror(999,_("%s: No more memory.\n"),
-                  fname);
-     return(0);
+    if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) 
+	{
+		Scierror(999,_("%s: No more memory.\n"), fname);
+		return(0);
     }
 
     gdim.dims[0].n = m1;
@@ -455,10 +456,10 @@ int sci_fftw(char *fname,unsigned long fname_len)
 
      /* set arguments of fftw_plan_guru_split_dft */
      gdim.rank = 1;
-     if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-      Scierror(999,_("%s: No more memory.\n"),
-                   fname);
-      return(0);
+     if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) 
+	 {
+		Scierror(999,_("%s: No more memory.\n"),fname);
+		return(0);
      }
 
      gdim.dims[0].n = n[0];
@@ -466,10 +467,10 @@ int sci_fftw(char *fname,unsigned long fname_len)
      gdim.dims[0].os = nspn[0];
 
      gdim.howmany_rank = 1;
-     if ((gdim.howmany_dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) {
-      Scierror(999,_("%s: No more memory.\n"),
-                   fname);
-      return(0);
+     if ((gdim.howmany_dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)))==NULL) 
+	 {
+		Scierror(999,_("%s: No more memory.\n"), fname);
+		return(0);
      }
 
      /* find number of transforms to compute */
@@ -489,12 +490,12 @@ int sci_fftw(char *fname,unsigned long fname_len)
 
      if ((p = GetFFTWPlan(&gdim,
                           ri, ii, ro, io,
-                          cur_fftw_flags,isn)) == NULL) {
-      Scierror(999,_("%s: No more memory.\n"),
-                   fname);
-      FREE(gdim.dims);
-      FREE(gdim.howmany_dims);
-      return(0);
+                          cur_fftw_flags,isn)) == NULL)
+	 {
+		Scierror(999,_("%s: No more memory.\n"), fname);
+		FREE(gdim.dims);
+		FREE(gdim.howmany_dims);
+		return(0);
      }
      else {
       if (isn==1) { /* backward */
@@ -529,10 +530,10 @@ int sci_fftw(char *fname,unsigned long fname_len)
     else {
       /* set arguments of fftw_plan_guru_split_dft */
       gdim.rank=mn3;
-      if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) {
-       Scierror(999,_("%s: No more memory.\n"),
-                    fname);
-       return(0);
+      if ((gdim.dims=(fftw_iodim *)MALLOC(sizeof(fftw_iodim)*gdim.rank))==NULL) 
+	  {
+		Scierror(999,_("%s: No more memory.\n"),fname);
+		return(0);
       }
 
       /* */

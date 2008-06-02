@@ -75,14 +75,14 @@ int sci_set_fftw_wisdom(char *fname,unsigned long fname_len)
 		if(!(call_fftw_import_wisdom_from_string(Str))) 
 		{
 			FREE(Str); Str = NULL;
-			Scierror(999,_("%s: FFTW can't read wisdom.\n"),fname);
+			Scierror(999,_("%s: An error occurred: %s\n"),fname,_("FFTW can't read wisdom."));
 			return(0);
 		}
 		FREE(Str); Str = NULL;
 	}
 	else 
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		return(0);
 	}
 
