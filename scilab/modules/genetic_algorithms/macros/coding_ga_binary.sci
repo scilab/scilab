@@ -16,21 +16,9 @@ if ~isdef('param','local') then
 end
 
 // We deal with some parameters to take into account the boundary of the domain and the neighborhood size
-if is_param(param,'binary_length') then
-  BinLen = get_param(param,'binary_length');
-else
-  BinLen = 8;
-end
-if is_param(param,'minbound') then
-  MinBounds = get_param(param,'minbound');
-else
-  MinBounds = -2*ones(size(pop_in(1),1),size(pop_in(1),2));
-end
-if is_param(param,'maxbound') then
-  MaxBounds = get_param(param,'maxbound');
-else
-  MaxBounds = 2*ones(size(pop_in(1),1),size(pop_in(1),2));
-end
+[BinLen,err]    = get_param(param,'binary_length',8);
+[MinBounds,err] = get_param(param,'minbound',-2*ones(size(pop_in(1),1),size(pop_in(1),2)));
+[MaxBounds,err] = get_param(param,'maxbound',2*ones(size(pop_in(1),1),size(pop_in(1),2)));
 
 pop_out   = list();
 Dimension = length(pop_in(1));
@@ -56,6 +44,6 @@ elseif (direction=='decode') then
     end
   end
 else
-  error('coding_ga_binary: wrong direction');
+  error(gettext("coding_ga_binary: wrong direction"));
 end
 endfunction

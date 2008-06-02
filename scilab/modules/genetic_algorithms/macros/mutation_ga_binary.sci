@@ -13,9 +13,9 @@ if ~isdef('param','local') then
   param = [];
 end
 // We deal with some parameters to take into account the boundary of the domain and the neighborhood size
-BinLen     = get_param(param,'binary_length',8);
-MultiMut   = get_param(param,'multi_mut',%F);
-MultiMutNb = get_param(param,'multi_mut_nb',2);
+[BinLen,err]     = get_param(param,'binary_length',8);
+[MultiMut,err]   = get_param(param,'multi_mut',%F);
+[MultiMutNb,err] = get_param(param,'multi_mut_nb',2);
 
 if ~MultiMut then
   pos = ceil((length(Indiv)-1)*rand(1,1))+1;

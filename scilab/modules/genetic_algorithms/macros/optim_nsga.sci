@@ -16,16 +16,16 @@ if ~isdef('param','local') then
   param = [];
 end
 
-codage_func    = get_param(param,'codage_func',coding_ga_identity);
-init_func      = get_param(param,'init_func',init_ga_default);
-crossover_func = get_param(param,'crossover_func',crossover_ga_default);
-mutation_func  = get_param(param,'mutation_func',mutation_ga_default);
-selection_func = get_param(param,'selection_func',selection_ga_elitist);
-nb_couples     = get_param(param,'nb_couples',100);
-pressure       = get_param(param,'pressure',0.05);
+[codage_func,err]    = get_param(param,'codage_func',coding_ga_identity);
+[init_func,err]      = get_param(param,'init_func',init_ga_default);
+[crossover_func,err] = get_param(param,'crossover_func',crossover_ga_default);
+[mutation_func,err]  = get_param(param,'mutation_func',mutation_ga_default);
+[selection_func,err] = get_param(param,'selection_func',selection_ga_elitist);
+[nb_couples,err]     = get_param(param,'nb_couples',100);
+[pressure,err]       = get_param(param,'pressure',0.05);
 
 if ~isdef('ga_f','local') then
-  error('optim_moga: ga_f is mandatory');
+  error(gettext("optim_moga: ga_f is mandatory"));
 end
 
 if ~isdef('pop_size','local') then
@@ -52,7 +52,7 @@ end
 
 // Initialization of the population
 if (Log) then
-  printf('optim_nsga: Initialization of the population\n');
+  printf(gettext("optim_nsga: Initialization of the population\n"));
 end
 
 Pop = list();
@@ -85,7 +85,7 @@ end
 // The genetic algorithm
 for i=1:nb_generation
   if (Log) then
-    printf('optim_nsga: iteration %d / %d', i, nb_generation);
+    printf(gettext("optim_nsga: iteration %d / %d"), i, nb_generation);
   end
 
   // Computation of the niching penality
@@ -119,15 +119,15 @@ for i=1:nb_generation
     // Selection of the first individual in the couple
     Shoot = rand(1,1)*Wheel($);
     Index = find(Wheel<=Shoot);
-    if length(Index>1) then Index = Index($); end;
-    if isempty(Index) then Index = 1; end;
+    if length(Index)>1 then Index = Index($); end;
+    if isempty(Index)  then Index = 1; end;
     Indiv1(j)           = Pop(Index);
     MO_FObj_Indiv1(j,:) = MO_FObj_Pop(Index,:);
     // Selection of the second individual in the couple
     Shoot = rand(1,1)*Wheel($);
     Index = find(Wheel<=Shoot); 
-    if length(Index>1) then Index = Index($); end;
-    if isempty(Index) then Index = 1; end;
+    if length(Index)>1 then Index = Index($); end;
+    if isempty(Index)  then Index = 1; end;
     Indiv2(j)           = Pop(Index);
     MO_FObj_Indiv2(j,:) = MO_FObj_Pop(Index,:);
   end
@@ -215,10 +215,10 @@ for i=1:nb_generation
   // Recombination
   //
 
-  [Pop,FObj_Pop,Efficiency,MO_FObj_Pop] = selection_func_elitist(Pop,Indiv1,Indiv2,FObj_Pop,FObj_Indiv1,FObj_Indiv2, ...
-                                                                 MO_FObj_Pop,MO_FObj_Indiv1,MO_FObj_Indiv2,param);
+  [Pop,FObj_Pop,Efficiency,MO_FObj_Pop] = selection_func(Pop,Indiv1,Indiv2,FObj_Pop,FObj_Indiv1,FObj_Indiv2, ...
+                                                         MO_FObj_Pop,MO_FObj_Indiv1,MO_FObj_Indiv2,param);
   if (Log) then
-    printf(' - min / max value found = %f / %f\n', min(FObj_Pop), max(FObj_Pop));
+    printf(gettext(" - min / max value found = %f / %f\n"), min(FObj_Pop), max(FObj_Pop));
   end
 end
 

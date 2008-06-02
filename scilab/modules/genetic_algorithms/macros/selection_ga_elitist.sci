@@ -19,7 +19,7 @@ if ~isdef('param','local') then
   param = [];
 end
 
-pressure = get_param(param,'pressure',0.05);
+[pressure,err] = get_param(param,'pressure',0.05);
 
 pop_size = length(Pop_in);
 

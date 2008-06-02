@@ -16,16 +16,16 @@ if ~isdef('param','local') then
   param = [];
 end
 
-codage_func    = get_param(param,'codage_func',coding_ga_identity);
-init_func      = get_param(param,'init_func',init_ga_default);
-crossover_func = get_param(param,'crossover_func',crossover_ga_default);
-mutation_func  = get_param(param,'mutation_func',mutation_ga_default);
-selection_func = get_param(param,'selection_func',selection_ga_elitist);
-nb_couples     = get_param(param,'nb_couples',100);
-pressure       = get_param(param,'pressure',0.05);
+[codage_func,err]    = get_param(param,'codage_func',coding_ga_identity);
+[init_func,err]      = get_param(param,'init_func',init_ga_default);
+[crossover_func,err] = get_param(param,'crossover_func',crossover_ga_default);
+[mutation_func,err]  = get_param(param,'mutation_func',mutation_ga_default);
+[selection_func,err] = get_param(param,'selection_func',selection_ga_elitist);
+[nb_couples,err]     = get_param(param,'nb_couples',100);
+[pressure,err]       = get_param(param,'pressure',0.05);
 
 if ~isdef('ga_f','local') then
-  error('optim_ga: ga_f is mandatory');
+  error(gettext('optim_ga: ga_f is mandatory'));
 else
   if typeof(ga_f)=='list' then
     deff('y=_ga_f(x)','y=ga_f(1)(x, ga_f(2:$))');
@@ -52,7 +52,7 @@ end
 
 // Initialization of the population
 if (Log) then
-  printf('optim_ga: Initialization of the population\n');
+  printf(gettext("optim_ga: Initialization of the population\n"));
 end
 
 Pop = list();
@@ -84,7 +84,7 @@ Efficiency = (1 - pressure) * (FObj_Pop_Max - FObj_Pop)/max([FObj_Pop_Max - FObj
 // The genetic algorithm
 for i=1:nb_generation
   if (Log) then
-    printf('optim_ga: iteration %d / %d', i, nb_generation);
+    printf(gettext("optim_ga: iteration %d / %d"), i, nb_generation);
   end
   //
   // Selection
@@ -159,7 +159,7 @@ for i=1:nb_generation
   [Pop, FObj_Pop] = selection_func(Pop,Indiv1,Indiv2,FObj_Pop,FObj_Indiv1,FObj_Indiv2,[],[],[],param);
   
   if (Log) then
-    printf(' - min / max value found = %f / %f\n', min(FObj_Pop), max(FObj_Pop));
+    printf(gettext(" - min / max value found = %f / %f\n"), min(FObj_Pop), max(FObj_Pop));
   end
 end
 

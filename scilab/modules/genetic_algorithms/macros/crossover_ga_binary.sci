@@ -14,9 +14,9 @@ if ~isdef('param','local') then
 end
 
 // We deal with some parameters to take into account the boundary of the domain and the neighborhood size
-BinLen       = get_param(param,'binary_length',8);
-MultiCross   = get_param(param,'multi_cross',%F);
-MultiCrossNb = get_param(param,'multi_cross_nb',2);
+[BinLen,err]       = get_param(param,'binary_length',8);
+[MultiCross,err]   = get_param(param,'multi_cross',%F);
+[MultiCrossNb,err] = get_param(param,'multi_cross_nb',2);
 
 if ~MultiCross then
   mix = ceil((length(Indiv1)-1)*rand(1,1))+1;

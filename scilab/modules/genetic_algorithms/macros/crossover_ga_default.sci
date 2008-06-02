@@ -14,9 +14,9 @@ if ~isdef('param','local') then
 end
 
 // We deal with some parameters to take into account the boundary of the domain and the neighborhood size
-Beta      = get_param(param,'beta',0);
-MinBounds = get_param(param,'minbound',-2*ones(size(Indiv1,1),size(Indiv1,2)));
-MaxBounds = get_param(param,'maxbound',2*ones(size(Indiv1,1),size(Indiv1,2)));
+[Beta,err]      = get_param(param,'beta',0);
+[MinBounds,err] = get_param(param,'minbound',-2*ones(size(Indiv1,1),size(Indiv1,2)));
+[MaxBounds,err] = get_param(param,'maxbound',2*ones(size(Indiv1,1),size(Indiv1,2)));
 
 mix = (1 + 2*Beta)*rand(1,1) - Beta;
 Crossed_Indiv1 =     mix*Indiv1 + (1-mix)*Indiv2;

@@ -16,15 +16,14 @@ if ~isdef('param','local') then
   param = [];
 end
 
-codage_func        = get_param(param,'codage_func',coding_ga_identity);
-init_func          = get_param(param,'init_func',init_ga_default);
-crossover_func     = get_param(param,'crossover_func',crossover_ga_default);
-mutation_func      = get_param(param,'mutation_func',mutation_ga_default);
-selection_strategy = get_param(param,'selection_strategy','elitist');
-nb_couples         = get_param(param,'nb_couples',100);
+[codage_func,err]        = get_param(param,'codage_func',coding_ga_identity);
+[init_func,err]          = get_param(param,'init_func',init_ga_default);
+[crossover_func,err]     = get_param(param,'crossover_func',crossover_ga_default);
+[mutation_func,err]      = get_param(param,'mutation_func',mutation_ga_default);
+[nb_couples,err]         = get_param(param,'nb_couples',100);
 
 if ~isdef('ga_f','local') then
-  error('optim_nsga2: ga_f is mandatory');
+  error(gettext("optim_nsga2: ga_f is mandatory"));
 end
 
 if ~isdef('pop_size','local') then
@@ -45,7 +44,7 @@ end
 
 // Initialization of the population
 if (Log) then
-  printf('optim_nsga2: Initialization of the population\n');
+  printf(gettext("optim_nsga2: Initialization of the population\n"));
 end
 
 Pop = init_func(pop_size,param);
@@ -99,7 +98,7 @@ end
 // The genetic algorithm
 for It=1:nb_generation
   if (Log) then
-    printf('optim_nsga2: iteration %d / %d\n', It, nb_generation);
+    printf(gettext("optim_nsga2: iteration %d / %d\n"), It, nb_generation);
   end
   //
   // Selection
