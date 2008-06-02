@@ -109,7 +109,7 @@ deff('y=f(x)','BinLen = get_param(ga_params,''binary_length''); ...
 ga_params = add_param(ga_params,'binary_length',8);
 ga_params = set_param(ga_params,'crossover_func',crossover_ga_binary);
 ga_params = set_param(ga_params,'mutation_func',mutation_ga_binary);
-ga_params = set_param(ga_params,'codage_func',coding_binary);
+ga_params = set_param(ga_params,'codage_func',coding_ga_binary);
 ga_params = add_param(ga_params,'multi_cross',%T);
 ga_params = add_param(ga_params,'multi_cross_nb',3);
 

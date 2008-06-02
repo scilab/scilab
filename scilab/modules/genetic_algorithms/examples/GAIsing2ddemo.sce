@@ -1,3 +1,5 @@
+lines(0);
+
 // example of use of the genetic algorithm on a 2D Ising model
 
 // Loading test problems
@@ -33,7 +35,7 @@ ga_params = add_param(ga_params,'proba',0.05);
 
 // Parameters to fine tune the Genetic algorithm. All these parameters are optional for continuous optimization
 // If you need to adapt the GA to a special problem, you 
-ga_params = add_param(ga_params,'init_func',init_func_ising2d);
+ga_params = add_param(ga_params,'init_func',init_ga_ising2d);
 ga_params = add_param(ga_params,'crossover_func',crossover_ga_ising2d);
 ga_params = add_param(ga_params,'mutation_func',mutation_ga_ising2d);
 ga_params = add_param(ga_params,'codage_func',coding_ga_identity);
@@ -53,4 +55,6 @@ for i=1:nb_disp
   printf('Individual %d: f = %f\n', i, fobj_pop_opt(i));
   if DisplayIndiv then disp(pop_opt(i)); end
 end
+
+plot_ising2d(pop_opt(1));
 
