@@ -43,7 +43,7 @@ ga_params = add_param(ga_params,'dimension',2);
 ga_params = add_param(ga_params,'beta',0);
 ga_params = add_param(ga_params,'delta',0.1);
 
-[pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga2(deb_1, 50, 10, 0.1, 0.7, %F, ga_params);
+[pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga2(deb_1, 25, 3, 0.1, 0.7, %F, ga_params);
 
 if length(pop_opt)~=length(pop_init) then pause,end
 if size(fobj_pop_opt)~=size(fobj_pop_init) then pause,end

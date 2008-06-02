@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-Pop_init = init_func_default(10,[]);
+Pop_init = init_ga_default(10,[]);
 
 if length(Pop_init)~=10 then pause,end;
 if max(size(Pop_init(1))~=2 then pause,end;
