@@ -57,7 +57,7 @@ if DoSA then
   sa_params = add_param(sa_params,'max_bound',Max);
 
   T0 = compute_initial_temp(x0, f, Proba_start, It_Pre, sa_params);
-  printf('Initial temperatore T0 = %f\n', T0);
+  printf('Initial temperature T0 = %f\n', T0);
 
   [x_opt, f_opt, sa_mean_list, sa_var_list, temp_list] = optim_sa(x0, f, It_extern, It_intern, T0, Log = %T, sa_params);
 
@@ -100,7 +100,7 @@ if DoFSA then
   sa_params = remove_param(sa_params,'neigh_func');
   sa_params = add_param(sa_params,'neigh_func', neigh_func_fsa); // Required to transform SA into FSA
   
-  printf('Initial temperatore T0 = %f\n', T0);
+  printf('Initial temperature T0 = %f\n', T0);
 
   [x_opt, f_opt, sa_mean_list, sa_var_list, temp_list] = optim_sa(x0, f, It_extern, It_intern, T0, Log = %T, sa_params);
 
@@ -147,7 +147,7 @@ if DoVFSA then
   sa_params = remove_param(sa_params,'type_accept');
   sa_params = add_param(sa_params,'type_accept', 'sa'); // We go back to the classical method for computing the starting temperature
 
-  printf('Initial temperatore T0 = %f\n', T0);
+  printf('Initial temperature T0 = %f\n', T0);
 
   [x_opt, f_opt, sa_mean_list, sa_var_list, temp_list] = optim_sa(x0, f, It_extern, It_intern, T0, Log = %T, sa_params);
 
@@ -190,7 +190,7 @@ if DoCSA then
   sa_params = remove_param(sa_params,'neigh_func');
   sa_params = add_param(sa_params,'neigh_func', neigh_func_csa); // Required to transform SA into CSA
 
-  printf('Initial temperatore T0 = %f\n', T0);
+  printf('Initial temperature T0 = %f\n', T0);
 
   [x_opt, f_opt, sa_mean_list, sa_var_list, temp_list] = optim_sa(x0, f, It_extern, It_intern, T0, Log = %T, sa_params);
 
@@ -227,7 +227,7 @@ if DoHuang then
   sa_params = add_param(sa_params,'max_bound',Max);
 
   T0 = compute_initial_temp(x0, f, Proba_start, It_Pre, sa_params);
-  printf('Initial temperatore T0 = %f\n', T0);
+  printf('Initial temperature T0 = %f\n', T0);
 
   [x_opt, f_opt, sa_mean_list, sa_var_list, temp_list] = optim_sa(x0, f, It_extern, It_intern, T0, Log = %T, sa_params);
 

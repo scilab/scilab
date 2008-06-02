@@ -1,3 +1,5 @@
+lines(0);
+
 // example of use of the simulated annealing method
 
 // Loading the test problem
@@ -46,3 +48,6 @@ printf('Initial temperature T0 = %f\n', T0);
 
 printf('optimal solution:\n'); disp(x_opt);
 printf('value of the objective function = %f\n', f_opt);
+
+plot_ising2d(x_opt);
+
