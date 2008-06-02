@@ -52,7 +52,7 @@ int C2F(sci_saveconsecutivecommands)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("Input argument must be a boolean.\n"));
+			Scierror(999,_("%s: Wrong type for input argument #%d: A boolean expected.\n"),fname,1);
 			return 0;
 		}
 	}

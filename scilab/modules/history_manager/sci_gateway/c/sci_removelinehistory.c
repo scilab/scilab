@@ -34,7 +34,7 @@ int C2F(sci_removelinehistory)(char *fname,unsigned long fname_len)
 
 		if ( (N < 0) || (N > getSizeScilabHistory()) )
 		{
-			Scierror(999,_("Invalid parameter.\n"));
+			Scierror(999,_("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"),fname,1,0,getSizeScilabHistory());
 			return 0;
 		}
 		else
@@ -44,7 +44,7 @@ int C2F(sci_removelinehistory)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("Invalid parameter.\n"));
+		Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname,1);
 		return 0;
 	}
 

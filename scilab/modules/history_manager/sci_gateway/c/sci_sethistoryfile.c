@@ -19,8 +19,6 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_sethistoryfile)(char *fname,unsigned long fname_len)
 {
-	char  *filename = NULL;
-
 	CheckRhs(0,1) ;
 	CheckLhs(0,1) ;
 
@@ -31,6 +29,7 @@ int C2F(sci_sethistoryfile)(char *fname,unsigned long fname_len)
 	else
 	{
 		int l1 = 0, m1 = 0, n1 = 0;
+		char  *filename = NULL;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		filename=cstk(l1);

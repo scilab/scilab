@@ -57,7 +57,7 @@ int C2F(sci_gethistory)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for first input argument: Integer expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname,1);
 			return 0;
 		}
 	}

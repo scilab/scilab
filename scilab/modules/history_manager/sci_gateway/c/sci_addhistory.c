@@ -42,7 +42,7 @@ int C2F(sci_addhistory)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("Invalid type of input argument: String or matrix of string expected.\n"));
+		Scierror(999,_("%s: Wrong type for input argument #%d: String array expected.\n"),fname,1);
 		return 0;
 	}
 

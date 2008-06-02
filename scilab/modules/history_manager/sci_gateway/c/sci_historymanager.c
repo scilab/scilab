@@ -74,7 +74,7 @@ int C2F(sci_historymanager)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("Invalid input argument. Must be '%s' or '%s'"),"on","off");
+				Scierror(999,_("%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"),fname,1,"on","off");
 				return 0;
 			}
 		}

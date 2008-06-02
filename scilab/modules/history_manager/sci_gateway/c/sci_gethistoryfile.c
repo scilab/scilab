@@ -39,7 +39,7 @@ int C2F(sci_gethistoryfile)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("Error : Impossible to find the Scilab history file.\n"));
+		Scierror(999,_("%s: An error occurred: %s\n"),fname,_("filename not defined."));
 	}
 	return 0;
 }
