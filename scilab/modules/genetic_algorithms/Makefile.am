@@ -30,4 +30,12 @@ examples/mutation_ga_ising2d.sci \
 examples/NSGA2demo.sce \
 examples/NSGAdemo.sce
 
+libgenetic_algorithms_la_examplesisingdir = $(mydatadir)/examples/Ising
+libgenetic_algorithms_la_examplesising_DATA = \
+examples/Ising/init_ising2d.sci \
+examples/Ising/init_potts2d.sci \
+examples/Ising/ising2d.sci \
+examples/Ising/plot_ising2d.sci \
+examples/Ising/plot_potts2d.sci
+
 include $(top_srcdir)/Makefile.incl.am

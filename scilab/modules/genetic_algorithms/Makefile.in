@@ -90,12 +90,15 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libgenetic_algorithms_la_etcdir)" \
 	"$(DESTDIR)$(libgenetic_algorithms_la_examplesdir)" \
+	"$(DESTDIR)$(libgenetic_algorithms_la_examplesisingdir)" \
 	"$(DESTDIR)$(libgenetic_algorithms_la_rootdir)"
 libgenetic_algorithms_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libgenetic_algorithms_la_examplesDATA_INSTALL = $(INSTALL_DATA)
+libgenetic_algorithms_la_examplesisingDATA_INSTALL = $(INSTALL_DATA)
 libgenetic_algorithms_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libgenetic_algorithms_la_etc_DATA) \
 	$(libgenetic_algorithms_la_examples_DATA) \
+	$(libgenetic_algorithms_la_examplesising_DATA) \
 	$(libgenetic_algorithms_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -304,6 +307,14 @@ examples/mutation_ga_ising2d.sci \
 examples/NSGA2demo.sce \
 examples/NSGAdemo.sce
 
+libgenetic_algorithms_la_examplesisingdir = $(mydatadir)/examples/Ising
+libgenetic_algorithms_la_examplesising_DATA = \
+examples/Ising/init_ising2d.sci \
+examples/Ising/init_potts2d.sci \
+examples/Ising/ising2d.sci \
+examples/Ising/plot_ising2d.sci \
+examples/Ising/plot_potts2d.sci
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -438,6 +449,23 @@ uninstall-libgenetic_algorithms_la_examplesDATA:
 	  echo " rm -f '$(DESTDIR)$(libgenetic_algorithms_la_examplesdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libgenetic_algorithms_la_examplesdir)/$$f"; \
 	done
+install-libgenetic_algorithms_la_examplesisingDATA: $(libgenetic_algorithms_la_examplesising_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libgenetic_algorithms_la_examplesisingdir)" || $(MKDIR_P) "$(DESTDIR)$(libgenetic_algorithms_la_examplesisingdir)"
+	@list='$(libgenetic_algorithms_la_examplesising_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libgenetic_algorithms_la_examplesisingDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgenetic_algorithms_la_examplesisingdir)/$$f'"; \
+	  $(libgenetic_algorithms_la_examplesisingDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgenetic_algorithms_la_examplesisingdir)/$$f"; \
+	done
+
+uninstall-libgenetic_algorithms_la_examplesisingDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libgenetic_algorithms_la_examplesising_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libgenetic_algorithms_la_examplesisingdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libgenetic_algorithms_la_examplesisingdir)/$$f"; \
+	done
 install-libgenetic_algorithms_la_rootDATA: $(libgenetic_algorithms_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libgenetic_algorithms_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libgenetic_algorithms_la_rootdir)"
@@ -493,7 +521,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libgenetic_algorithms_la_etcdir)" "$(DESTDIR)$(libgenetic_algorithms_la_examplesdir)" "$(DESTDIR)$(libgenetic_algorithms_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libgenetic_algorithms_la_etcdir)" "$(DESTDIR)$(libgenetic_algorithms_la_examplesdir)" "$(DESTDIR)$(libgenetic_algorithms_la_examplesisingdir)" "$(DESTDIR)$(libgenetic_algorithms_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -541,6 +569,7 @@ info-am:
 install-data-am: install-data-local \
 	install-libgenetic_algorithms_la_etcDATA \
 	install-libgenetic_algorithms_la_examplesDATA \
+	install-libgenetic_algorithms_la_examplesisingDATA \
 	install-libgenetic_algorithms_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -579,6 +608,7 @@ ps-am:
 
 uninstall-am: uninstall-libgenetic_algorithms_la_etcDATA \
 	uninstall-libgenetic_algorithms_la_examplesDATA \
+	uninstall-libgenetic_algorithms_la_examplesisingDATA \
 	uninstall-libgenetic_algorithms_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -592,6 +622,7 @@ uninstall-am: uninstall-libgenetic_algorithms_la_etcDATA \
 	install-html-local install-info install-info-am \
 	install-libgenetic_algorithms_la_etcDATA \
 	install-libgenetic_algorithms_la_examplesDATA \
+	install-libgenetic_algorithms_la_examplesisingDATA \
 	install-libgenetic_algorithms_la_rootDATA install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
@@ -600,6 +631,7 @@ uninstall-am: uninstall-libgenetic_algorithms_la_etcDATA \
 	uninstall uninstall-am \
 	uninstall-libgenetic_algorithms_la_etcDATA \
 	uninstall-libgenetic_algorithms_la_examplesDATA \
+	uninstall-libgenetic_algorithms_la_examplesisingDATA \
 	uninstall-libgenetic_algorithms_la_rootDATA
 
 
