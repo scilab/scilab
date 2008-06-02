@@ -79,6 +79,7 @@ msgstr ""
 
 #
 # File: macros/csim.sci, line: 75
+# File: macros/time_id.sci, line: 25
 # File: macros/time_id.sci, line: 28
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
@@ -162,9 +163,14 @@ msgstr ""
 
 #
 # File: macros/syslin.sci, line: 89
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d (row dimension).\n"
+msgstr ""
+
+#
 # File: macros/syslin.sci, line: 96
 #, c-format
-msgid "%s: Wrong size for input argument #%d and #%d.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d (column dimension).\n"
 msgstr ""
 
 #
@@ -838,8 +844,28 @@ msgid "%s: The given transfer fuction is not proper.\n"
 msgstr ""
 
 #
+# File: macros/plzr.sci, line: 56
+msgid "Zeros"
+msgstr ""
+
+#
+# File: macros/plzr.sci, line: 63
+msgid "Poles"
+msgstr ""
+
+#
 # File: macros/plzr.sci, line: 68
-msgid "Transmission zeros and poles','real axis','imag. axis'));"
+msgid "Transmission zeros and poles"
+msgstr ""
+
+#
+# File: macros/plzr.sci, line: 68
+msgid "Real axis"
+msgstr ""
+
+#
+# File: macros/plzr.sci, line: 68
+msgid "Imag. axis"
 msgstr ""
 
 #
@@ -925,38 +951,6 @@ msgstr ""
 # File: macros/lqr.sci, line: 25
 #, c-format
 msgid "%s: Time domain is not defined (P(7)=''c'' or ''d'').\n"
-msgstr ""
-
-#
-# File: macros/lincos.sci, line: 54
-#, c-format
-msgid "%s: Input ports are not numbered properly.\n"
-msgstr ""
-
-#
-# File: macros/lincos.sci, line: 58
-#, c-format
-msgid "%s: Output ports are not numbered properly.\n"
-msgstr ""
-
-#
-# File: macros/lincos.sci, line: 65
-#, c-format
-msgid "%s: Diagram does not compile in pass %d.\n"
-msgstr ""
-
-#
-# File: macros/lincos.sci, line: 110
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-msgstr ""
-
-#
-# File: macros/lincos.sci, line: 72
-#, c-format
-msgid ""
-"%s: Diagram does not compile in pass %d.\n"
-"'),"
 msgstr ""
 
 #

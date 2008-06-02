@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-05-27 18:52+0100\n"
+"Revision-Date: 2008-06-02 15:46+0100\n"
 
 # File: macros/stabil.sci, line: 40
 #, c-format
@@ -144,9 +144,13 @@ msgid ""
 msgstr ""
 #
 # File: macros/syslin.sci, line: 89
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d (row dimension).\n"
+msgstr ""
+#
 # File: macros/syslin.sci, line: 96
 #, c-format
-msgid "%s: Wrong size for input argument #%d and #%d.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d (column dimension).\n"
 msgstr ""
 #
 # File: macros/syslin.sci, line: 113
@@ -723,8 +727,24 @@ msgstr ""
 msgid "%s: The given transfer fuction is not proper.\n"
 msgstr ""
 #
+# File: macros/plzr.sci, line: 56
+msgid "Zeros"
+msgstr ""
+#
+# File: macros/plzr.sci, line: 63
+msgid "Poles"
+msgstr ""
+#
 # File: macros/plzr.sci, line: 68
-msgid "Transmission zeros and poles','real axis','imag. axis'));"
+msgid "Transmission zeros and poles"
+msgstr ""
+#
+# File: macros/plzr.sci, line: 68
+msgid "Real axis"
+msgstr ""
+#
+# File: macros/plzr.sci, line: 68
+msgid "Imag. axis"
 msgstr ""
 #
 # File: macros/linfn.sci, line: 111
@@ -796,33 +816,6 @@ msgstr ""
 # File: macros/lqr.sci, line: 25
 #, c-format
 msgid "%s: Time domain is not defined (P(7)=''c'' or ''d'').\n"
-msgstr ""
-#
-# File: macros/lincos.sci, line: 54
-#, c-format
-msgid "%s: Input ports are not numbered properly.\n"
-msgstr ""
-#
-# File: macros/lincos.sci, line: 58
-#, c-format
-msgid "%s: Output ports are not numbered properly.\n"
-msgstr ""
-#
-# File: macros/lincos.sci, line: 65
-#, c-format
-msgid "%s: Diagram does not compile in pass %d.\n"
-msgstr ""
-#
-# File: macros/lincos.sci, line: 110
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-msgstr ""
-#
-# File: macros/lincos.sci, line: 72
-#, c-format
-msgid ""
-"%s: Diagram does not compile in pass %d.\n"
-"'),"
 msgstr ""
 #
 # File: macros/riccati.sci, line: 34
