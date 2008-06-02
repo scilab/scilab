@@ -8,9 +8,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function T = temp_law_huang(T, step_mean, step_var, temp_stage, n,param)
 T = temp_law_huang(10, 9, 8, 7, 6, []);
-
-[lambda,err] = get_param(param,'lambda',0.01);
 
 if norm(T - 10 * exp(-0.01*10/8)) > 1e-3 then pause, end

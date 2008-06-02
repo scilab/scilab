@@ -10,4 +10,4 @@
 
 Level = accept_func_default(10,9,10);
 
-if norm(Level - exp(-(10 - 9)/10))>1e-3 then pause,end
+if norm(Level - exp(-(9 - 10)/10))>1e-3 then pause,end

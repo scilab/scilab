@@ -8,10 +8,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function T = temp_law_vfsa(T, step_mean, step_var, temp_stage, n, param)
 T = temp_law_vfsa(10, 9, 8, 7, 6, []);
-
-[c,err]         = get_param(param,'c',0.01);
-[dimension,err] = get_param(param,'dimension',3);
 
 if norm(T - 10 * (6/(6+1))^(1/3)) > 1e-3 then pause,end

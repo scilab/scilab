@@ -8,7 +8,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function T = temp_law_fsa(T, step_mean, step_var, temp_stage, n, param)
 T = temp_law_fsa(10, 9, 8, 7, 6, []);
 
 if norm(T - 10 * (1+6)/(2+6)) > 1e-3 then pause,end
