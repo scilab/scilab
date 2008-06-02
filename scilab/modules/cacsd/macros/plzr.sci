@@ -53,18 +53,18 @@ plot2d(0,0,1,"051"," ",rect);
 xx=xget("mark")
 xset("mark",xx(1),xx(1)+1);
 if prod(size(nr))<>0 then
-  plot2d(nr,ni,[-9,3],"100",'Zeros')
+  plot2d(nr,ni,[-9,3],"100",gettext("Zeros"))
   strf='100'
   pos=6
 else
   strf='100'
   pos=3
 end;
-plot2d(dr,di,[-2,pos],strf,'Poles');
+plot2d(dr,di,[-2,pos],strf,gettext("Poles"));
 plot2d([mnx;mxx],[0;0],4,"000",' ')
 plot2d([0;0],[-my;my],4,"000",' ')
 
 xarc(-1,1,2,2,0,360*64)
-xtitle(gettext("Transmission zeros and poles','real axis','imag. axis'));
+xtitle(gettext("Transmission zeros and poles"),gettext("Real axis"),gettext("Imag. axis"));
 xset("mark",xx(1),xx(2));
 endfunction
