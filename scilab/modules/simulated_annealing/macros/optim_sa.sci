@@ -25,23 +25,9 @@ if ~isdef('param','local') then
   param = [];
 end
 
-if is_param(param,'temp_law') then
-  temp_law = get_param(param,'temp_law');
-else
-  temp_law = temp_law_default;
-end
-
-if is_param(param,'neigh_func') then
-  neigh_func = get_param(param,'neigh_func');
-else
-  neigh_func = neigh_func_default;
-end
-
-if is_param(param,'accept_func') then
-  accept_func = get_param(param,'accept_func');
-else
-  accept_func = accept_func_default;
-end
+[temp_law,err]    = get_param(param,'temp_law',temp_law_default);
+[neigh_func,err]  = get_param(param,'neigh_func',neigh_func_default);
+[accept_func,err] = get_param(param,'accept_func',accept_func_default);
 
 if (~isdef('Log','local')) then
   Log = %F;
@@ -69,7 +55,7 @@ else
 end
 
 if ~isdef('sa_f','local') then
-  error('optim_sa: sa_f is mandatory');
+  error(gettext("optim_sa: sa_f is mandatory"));
 else
   if typeof(sa_f)=='list' then
     deff('y=_sa_f(x)','y=sa_f(1)(x, sa_f(2:$))');
@@ -131,7 +117,7 @@ for i=1:ItExt
   var_list  = [var_list step_var];
   
   if (Log) then
-    printf('optim_sa: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = %f\n', i, ItExt, T, step_mean, step_var, f_best);
+    printf(gettext("optim_sa: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = %f\n"), i, ItExt, T, step_mean, step_var, f_best);
   end
 
   T = temp_law(T, step_mean, step_var, i, max(size(x_current)), param);

@@ -14,20 +14,11 @@ if (~isdef('param','local')) then
   param = [];
 end
 
-if is_param(param,'neigh_func') then
-  neigh_func = get_param(param,'neigh_func');
-else
-  neigh_func = neigh_func_default;
-end
-
-if is_param(param,'type_accept') then
-  type_accept = get_param(param,'type_accept');
-else
-  type_accept = 'sa';
-end
+[neigh_func,err]  = get_param(param,'neigh_func',neigh_func_default);
+[type_accept,err] = get_param(param,'type_accept','sa');
 
 if ~isdef('cit_f','local') then
-  error('compute_initial_temp: cit_f is mandatory');
+  error(gettext("compute_initial_temp: cit_f is mandatory"));
 else
   if typeof(cit_f)=='list' then
     deff('y=_cit_f(x)','y=cit_f(1)(x, cit_f(2:$))');
@@ -67,6 +58,6 @@ if type_accept=='sa' then
 elseif type_accept=='vfsa' then
   T_init = abs(f_sum / log(1/proba_init - 1));
 else
-  error('compute_initial_temp: error - wrong accept type');
+  error(gettext("compute_initial_temp: error - wrong accept type"));
 end
 endfunction

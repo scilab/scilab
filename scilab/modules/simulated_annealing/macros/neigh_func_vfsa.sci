@@ -13,16 +13,9 @@ if ~isdef('param','local') then
   param = [];
 end
 
-if is_param(param,'delta') then
-  Delta = get_param(param,'delta');
-else
-  Delta = 0.1*ones(size(x_current,1), size(x_current,2));
-end
-if is_param(param,'min_bound') then
-  Min = get_param(param,'min_bound');
-else
-  Min = -%inf*ones(size(x_current,1),size(x_current,2));
-end
+[Delta,err] = get_param(param,'delta',0.1*ones(size(x_current,1), size(x_current,2)));
+[Min,err]   = get_param(param,'min_bound',-%inf*ones(size(x_current,1),size(x_current,2)));
+[Max,err]   = get_param(param,'max_bound',%inf*ones(size(x_current,1),size(x_current,2)));
 
 y = zeros(size(x_current,1), size(x_current,2));
 for i=1:length(y)
