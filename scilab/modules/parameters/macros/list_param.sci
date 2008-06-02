@@ -18,7 +18,7 @@ else
   if nargout==2 then
     err = %T; 
   else
-    warning('list_param: not a plist');
+    warning(gettext("list_param: not a plist"));
   end
 end
 endfunction

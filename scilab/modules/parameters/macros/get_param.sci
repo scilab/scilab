@@ -26,14 +26,14 @@ if typeof(list_name)=='plist' then
     if nargout==2 then 
       err = %T; 
     else
-      warning(sprintf('get_param: parameter %s not defined',param_name));
+      warning(sprintf(gettext("get_param: parameter %s not defined"),param_name));
     end
   end
 else
   if nargout==2 then 
     err = %T; 
   else
-    warning('get_param: not a plist');
+    warning(gettext("get_param: not a plist"));
   end
 end
 endfunction

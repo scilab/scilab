@@ -18,7 +18,7 @@ else
   if nargout==2 then
     err = %T; 
   else
-    warning('add_param: not a plist');
+    warning(gettext("add_param: not a plist"));
   end
 end
 ga_list = list_name;

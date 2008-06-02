@@ -17,13 +17,13 @@ if typeof(list_name)=='plist' then
     ga_list(param_name) = param_value;
   else
     err = %T;
-    warning('set_param: parameter doesn''t exist');
+    warning(gettext("set_param: parameter doesn''t exist"));
   end
 else
   if nargout==2 then 
     err = %T;
   else
-    warning('set_param: not a plist');
+    warning(gettext("set_param: not a plist"));
   end
 end
 endfunction
