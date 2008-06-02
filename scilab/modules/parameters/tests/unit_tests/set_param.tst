@@ -10,6 +10,6 @@
 
 test_list = init_param();
 
-test_list = set_param(test_list,'test',%T);
+test_list = add_param(test_list,'test',%T);
 
 if get_param(test_list,'test')~=%T then pause,end

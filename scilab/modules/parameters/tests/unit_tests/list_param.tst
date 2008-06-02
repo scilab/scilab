@@ -15,4 +15,4 @@ test_list = add_param(test_list,'param_2',2);
 
 list_of_params = list_param(test_list);
 
-if length(list_of_params)~=2 then pause,end
+if size(list_of_params,2)~=2 then pause,end
