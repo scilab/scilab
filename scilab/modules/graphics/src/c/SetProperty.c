@@ -2360,7 +2360,7 @@ int sciInitWindowDim( sciPointObj * pobj, int newWidth, int newHeight )
 
 int sciSetWindowDim( sciPointObj * pobj, int newWidth, int newHeight )
 {
-  if ( sciGetWindowWidth(pobj) == newWidth || sciGetWindowHeight(pobj) == newHeight )
+  if ( sciGetWindowWidth(pobj) == newWidth && sciGetWindowHeight(pobj) == newHeight )
   {
     /* nothing to do */
     return 1 ;
