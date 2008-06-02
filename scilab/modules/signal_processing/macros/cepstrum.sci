@@ -60,7 +60,7 @@ if domeg(1)<=dw(1) & domeg(nptsfst)>=dw(nptsslo)
     fresp(i)=wrat*xhat(p) + (1-wrat)*xhat(p-1);
   end
 else
-  error('not sampled high enough')
+  error(msprintf(gettext("%s: An error occurred: %s\n"),'cepstrum',gettext('Not sampled high enough.')));
 end
 fresp=fresp(:);
 

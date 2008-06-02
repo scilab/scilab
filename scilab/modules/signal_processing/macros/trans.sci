@@ -47,7 +47,7 @@ function [hzt]=trans(pd,zd,gd,tr_type,frq)
     num=(k+1)-2*alpha*z+(1-k)*z^2;
     den=(k+1)*z^2-2*alpha*z+(1-k);
   else
-    error('Unknown filter type --- program termination'),
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: %s\n"),'trans',4,gettext('Unknown filter type.')));
   end
   [pt,zt,gt]=bilt(pd,zd,gd,num,den);
   hzt=rlist(gt*real(poly(zt,'z')),real(poly(pt,'z')),'d');

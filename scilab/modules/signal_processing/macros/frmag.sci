@@ -42,7 +42,7 @@ function [xm,fr]=frmag(num,den,npts)
          xz=poly(num,'z','c');
          xm=abs(freq(xz,1,dfr))
       else,
-         error('Error---Input arguments wrong data type')
+         error(msprintf(gettext("%s: Wrong type for input argument(s).\n"),'frmag'));
       end,
       end,
       end,
@@ -54,7 +54,7 @@ function [xm,fr]=frmag(num,den,npts)
          dz=poly(den,'z','c');
          xm=abs(freq(nz,dz,dfr));
       else,
-         error('Error---Input arguments wrong data type')
+         error(msprintf(gettext("%s: Wrong type for input argument(s).\n"),'frmag'));
       end,
       end,
    end,

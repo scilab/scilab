@@ -38,7 +38,8 @@ select part(approx,1);
         last=part(approx,length(approx));
         if last=='1' then iapro=2,end;
         if last=='2' then iapro=3,end
-   else write(%io(2),'iir : unknown filter approximation');
+   else write(%io(2),msprintf(gettext("%s: An error occurred: %s\n"),'eqiir',gettext('Unknown filter approximation.')) );
+   
         return;
 end
 select ftype;
@@ -50,7 +51,8 @@ select ftype;
         ityp=3
    case 'sb'
         ityp=4
-   else write(%io(2),'iir : wrong first input parameter');
+   else write(%io(2),msprintf(gettext("%s: Wrong values for input argument #%d"),'equiir',1));
+    
      return;
    end
 if maxi(size(om))==2 then

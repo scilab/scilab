@@ -69,7 +69,7 @@ mindeg=max(abs(sl0),-slinf);
 end
 
 if mindeg > order
-  warning('Filter order too small');
+  warning(msprintf(gettext('%s: Filter order too small.\n'),'frfit'));
   sl0=sign(sl0)*min(order,sl0);
   if sl0>0 then
     slinf=-(order-abs(sl0));

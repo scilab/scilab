@@ -70,6 +70,6 @@ n=coeff(num);
       end
       ngn=real(ngn*(gw**(ms-ns)));
    else
-      error('error bilt --- wrong order transform')
+     error(msprintf(gettext("%s: An error occurred: %s\n"),'bilt',gettext('Wrong order transform.')));
    end
 endfunction

@@ -36,7 +36,7 @@ function xh=hilb(n,wtype,par)
      xh0=[]
    else
      xh0=0
-      //error('Error---Filter length must be odd')
+      //error(msprintf(gettext("%s: An error occurred: %s\n"),'hilb',gettext('Filter length must be odd.')));
    end,
    th=zeros(1,no2);
    th(1:2:no2)=ones(1:2:no2)./(1:2:no2);

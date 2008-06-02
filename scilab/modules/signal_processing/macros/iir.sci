@@ -36,8 +36,13 @@ function hz=iir(n,ftype,fdesign,frq,delta)
 
 //select analog filter design for low-pass filter with fc=.25
 
-if maxi(abs(frq))>0.5 then error('iir:frq components must be less than 0.5'),end
-if delta(1)<0|delta(2)>1 then error('iir: delta components must be in [0 1]'),end
+if maxi(abs(frq))>0.5 then 
+  error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be less than 0.5\n"),'iir',4));
+end
+
+if delta(1)<0|delta(2)>1 then 
+  error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be [%d %d].\n"),'iir',5,0,1));
+end
 
 [hs,pc,zc,gc]=analpf(n,fdesign,delta,2);
 //make digital low-pass filter from analog low-pass filter

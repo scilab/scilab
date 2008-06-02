@@ -22,19 +22,20 @@ function [s]=sincd(n,flag)
    eps=(-1)**(n-1);
    select flag
    case 1,
-   s1=sin(n*om);s2=sin(om);
-   s1(1)=n;s2(1)=1;s1(npt+1)=n*eps;s2(npt+1)=1;
-   s=s1./s2;
-   s=[s(npt+1:-1:2) s];
-   s=s/n;
+     s1=sin(n*om);s2=sin(om);
+     s1(1)=n;s2(1)=1;s1(npt+1)=n*eps;s2(npt+1)=1;
+     s=s1./s2;
+     s=[s(npt+1:-1:2) s];
+     s=s/n;
    case 2,
-   om=om-ones(om)*%pi/2/n;
-   s1=sin(n*om);
-   s2=sin(om);
-   s1(3)=n;s2(3)=1;
-   s=s1./s2;
-   s=[eps*s s(2:npt+1)];
-   s=s/n;
-   else,error('flag must be equal to 1 or 2')
+     om=om-ones(om)*%pi/2/n;
+     s1=sin(n*om);
+     s2=sin(om);
+     s1(3)=n;s2(3)=1;
+     s=s1./s2;
+     s=[eps*s s(2:npt+1)];
+     s=s/n;
+   else
+     error(msprintf(gettext("%s: Input argument #%d must be equal to 1 or 2.\n"),'sincd',2));
    end;
 endfunction

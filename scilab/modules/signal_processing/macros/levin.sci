@@ -43,9 +43,13 @@ function [la,sig,lb]=levin(n,cov)
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
    [lhs,rhs]=argn(0);
-   if rhs<>2,error('wrong number of arguments');end
+   if rhs<>2 then
+     error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),'levin'));
+   end
       [l,d]=size(cov);
-   if d>l,error('bad dimension for the covariance sequence');end
+   if d>l then
+     error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"),'levin',2));
+   end
 //
 //   Initializations
 //

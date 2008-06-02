@@ -60,7 +60,7 @@ function [win_l,cwp]=window(wtype,n,par)
       end
       win_l=e/eb;
     else
-      error('Parameter beta out of bounds (beta]0) --- program termination');
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'window',gettext('beta value out of bounds.')));
     end
   case 'ch' then           //Chebyshev window 
     
@@ -72,7 +72,7 @@ function [win_l,cwp]=window(wtype,n,par)
 	unknown='df';
 	dp=par(1);
     else,
-      error('Parameter par should be [dp,df] where one of dp, df is equal to -1')
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"),'window',3,'dp','df'));
     end
   end,
   
@@ -147,8 +147,7 @@ function [win_l,cwp]=window(wtype,n,par)
   win_l=real(win_l');
   
   //Error in window type
-  
-   else
-      error('Unknown window type'),
+   else 
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'window',gettext('Unknown window type.')));
    end
 endfunction

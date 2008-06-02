@@ -53,6 +53,6 @@ function [hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
       [zers,pols,gain]=zpell(epsilon,att,omega,omegar);
       hs=gain*real(poly(zers,'s'))./real(poly(pols,'s'));
    else
-      error('Unknown design type --- program termination'),
+     error(msprintf(gettext("%s: An error occurred: %s\n"),'analpf',gettext("Unknown design type --- program termination.")));
    end
 endfunction

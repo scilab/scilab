@@ -107,6 +107,6 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
 //input error
  
    else,
-      error('section step is bigger then section length');
+    error(msprintf(gettext("%s: An error occurred: %s\n"),'pspect',gettext('Section step is bigger than section length.')));
    end
 endfunction

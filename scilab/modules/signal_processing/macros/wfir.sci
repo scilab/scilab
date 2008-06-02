@@ -35,40 +35,40 @@ wft=[];wfm=[];fr=[]
 if rhs<=0 then,
  
   //Query user for filter type and filter length
-  nc=x_choose(['low pass';
-               'high pass';
-	       'band pass';
-	       'stop band'],'Choose type of filter to be designed')
+  nc=x_choose([gettext('low pass');
+               gettext('high pass');
+	       gettext('band pass');
+	       gettext('stop band')],gettext('Choose type of filter to be designed'))
   //Select filter type and Query user for cut-off frequencies
   flag=0;
   select nc
   case 1 then //low pass
-    [ok,fl,forder]=getvalue('Input filter characteristics',..
-                    ['cut-off frequency (0.<frequ<.5):';
-		     'filter length'],..
+    [ok,fl,forder]=getvalue(gettext('Input filter characteristics'),..
+                    [gettext('cut-off frequency (0.<frequ<.5):');
+		     gettext('filter length')],..
 		    list('vec',1,'vec',1),[' ';' '])
     ftype='lp'
     fh=0;
   case 2 then //high pass
-    [ok,fl,forder]=getvalue('Input filter characteristics',..
-                    ['cut-off frequency (0.<frequ<.5):';
-		     'filter length (odd value)'],..
+    [ok,fl,forder]=getvalue(gettext('Input filter characteristics'),..
+                    [gettext('cut-off frequency (0.<frequ<.5):');
+		     gettext('filter length (odd value)')],..
 		    list('vec',1,'vec',1),[' ';' '])
     fh=0;
     flag=1;
     ftype='hp'
   case 3 then //band pass
-    [ok,fl,fh,forder]=getvalue('Input filter characteristics',..
-                    ['low cut-off frequency (0.<flow<.5):';
-		     'high cut-off frequency (0.<flow<fhi<.5):';
-		     'filter length'],..
+    [ok,fl,fh,forder]=getvalue(gettext('Input filter characteristics'),..
+                    [gettext('low cut-off frequency (0.<flow<.5):');
+		     gettext('high cut-off frequency (0.<flow<fhi<.5):');
+		     gettext('filter length')],..
 		    list('vec',1,'vec',1,'vec',1),[' ';' ';' '])
     ftype='bp'	
   case 4 then //stop band
-    [ok,fl,fh,forder]=getvalue('Input filter characteristics',..
-                    ['low cut-off frequency (0.<flow<.5):';
-		     'high cut-off frequency (0.<flow<fhi<.5):';
-		     'filter length (odd value)'],..
+    [ok,fl,fh,forder]=getvalue(gettext('Input filter characteristics'),..
+                    [gettext('low cut-off frequency (0.<flow<.5):');
+		     gettext('high cut-off frequency (0.<flow<fhi<.5):');
+		     gettext('filter length (odd value)')],..
 		    list('vec',1,'vec',1,'vec',1),[' ';' ';' '])
     flag=1;
     ftype='sb'	
@@ -78,42 +78,42 @@ if rhs<=0 then,
   
   if flag==1 then
     if forder-2*int(forder/2)==0 then
-      x_message(['Even length high pass and stop band filters not allowed';
-	 '---Filter order is being incremented by 1'])
+      x_message([gettext('Even length high pass and stop band filters not allowed');
+	 gettext('---Filter order is being incremented by 1')])
       forder=forder+1;
     end
   end
  
   //Query user for window type and window parameters
-  nc=x_choose(['Kaiser';
-             'Chebyshev';
-	     'Rectangular';
-	     'Triangular';
-	     'Hamming' ],'Input window type')
+  nc=x_choose([gettext('Kaiser');
+             gettext('Chebyshev');
+	     gettext('Rectangular');
+	     gettext('Triangular');
+	     gettext('Hamming') ],gettext('Input window type'))
   select nc
   case 1 then
     wtype='kr'
-    [ok,Beta]=getvalue('Input window characteristics',..
+    [ok,Beta]=getvalue(gettext('Input window characteristics'),..
                      ['beta>0'],list('vec',1),' ')
     fpar(1)=Beta
     fpar(2)=0;
   case 2 then
     wtype='ch' 
-    [ok,name,value]=getvalue(['Input window characteristics:';
+    [ok,name,value]=getvalue([gettext('Input window characteristics:');
              ' ';
-	     'dp (dp>0)   : the maximum value of the window side-lobe height';
-	     'df (0<df<.5): the width of the window main lobe'
+	     gettext('dp (dp>0)   : the maximum value of the window side-lobe height');
+	     gettext('df (0<df<.5): the width of the window main lobe')
 	     ' ';
-	     'only one of this two values is to be defined,'
-	     'the other one is automaticaly deduced'],..
-	     ['name of specified value';
-	     'value'],list('str',-1,'vec',1),['dp','0.3'])
+	     gettext('only one of this two values is to be defined,')
+	     gettext('the other one is automaticaly deduced')],..
+	     [gettext('name of specified value');
+	     gettext('value')],list('str',-1,'vec',1),['dp','0.3'])
     if part(name,1:2)=='dp' then
       fpar=[value,-1]
     elseif part(name,1:2)=='df' then
       fpar=[-1,value]
     else
-      x_message('Incorrect parameter name entered')
+      x_message(gettext('Incorrect parameter name entered'))
       return
     end
   case 3 then

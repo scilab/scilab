@@ -32,7 +32,7 @@ function [Nz,Dz]=yulewalk(Norder, frq, mag)
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 [LHS,RHS]=argn(0);
 if RHS <>3
-   error('Wrong number of input parameters.')
+	error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),'yulewalk'));
 end
    npt=512;
   thelap=fix(npt/25);
@@ -40,7 +40,7 @@ end
 [mf,nf]=size(frq);
 [mm,nn]=size(mag);
 if mm ~= mf | nn ~= nf
-   error('You must specify the same number of frequencies and amplitudes.')
+  error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),'yulewalk',2,3));
 end
 nbrk=max(mf,nf);
 if mf < nf
@@ -49,7 +49,7 @@ if mf < nf
 end
 
 if abs(frq(1)) > %eps | abs(frq(nbrk) - 1) > %eps
-   error('The first frequency must be 0 and the last 1.')
+  error(msprintf(gettext("%s: Wrong values for input argument #%d: The first frequency must be 0 and the last 1.\n"),'yulewalk',2));
 end
 
 npt=npt+1;
@@ -58,7 +58,7 @@ Ht=zeros(1,npt);
 nint=nbrk-1;
 df=frq(2:nf)-frq(1:nf-1);
 if (or(df < 0))
-   error('Frequencies must be non-decreasing.')
+  error(msprintf(gettext("%s: An error occurred: %s\n"),'yulewalk',gettext('Frequencies must be non-decreasing.')));
 end
 
 nb=1;
@@ -71,7 +71,7 @@ for i=1:nint
        ne=int(frq(i+1)*npt);
     end
     if (nb < 0 | ne > npt)
-       error('Too abrupt amplitude change near end of frequency interval.')
+      error(msprintf(gettext("%s: An error occurred: %s\n"),'yulewalk',gettext('Too abrupt amplitude change near end of frequency interval.')));
     end
     j=nb:ne;
     if ne == nb

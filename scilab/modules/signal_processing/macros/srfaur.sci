@@ -31,8 +31,9 @@ if rhs==5,
   l=-%i*t;
   p=l'*l;
 else,
-  if rhs<>9,
-  error('wrong number of arguments');end;
+  if rhs<>9 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),'srfaur',9));
+  end;
 end;
 //recursion
 for j=1:n,

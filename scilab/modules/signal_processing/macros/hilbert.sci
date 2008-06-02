@@ -8,7 +8,9 @@ function x = hilbert(xr)
   
   if n==0 then x=[],return,end
   
-  if ~isreal(xr,0) then error('hilbert: argument must be real'),end
+  if ~isreal(xr,0) then 
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real expected.\n"),'hilbert',1));
+  end
   
   no2 = int(n/2);
   

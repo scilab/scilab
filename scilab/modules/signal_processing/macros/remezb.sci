@@ -38,24 +38,24 @@ function an=remezb(nc,fg,ds,wt)
    f0=fg(1);
    f1=fg(ngrid);
    if f0<0 then
-      error('values of fg must be in [0,.5] --- program stopped'),
+     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"),'remezb',2,0,0.5));
    end,
    if f0>.5 then
-      error('values of fg must be in [0,.5] --- program stopped'),
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"),'remezb',2,0,0.5));
    end,
    if f1<0 then
-      error('values of fg must be in [0,.5] --- program stopped'),
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"),'remezb',2,0,0.5));
    end,
    if f1>.5 then
-      error('values of fg must be in [0,.5] --- program stopped'),
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"),'remezb',2,0,0.5));
    end,
    dsize=maxi(size(ds));
    wsize=maxi(size(wt));
    if dsize<>ngrid then
-      error('fg and ds vectors are not the same length --- program stopped'),
+     error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),'remezb',2,3));
    end,
    if wsize<>ngrid then
-      error('fg and wt vectors are not the same length --- program stopped'),
+      error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),'remezb',2,4));
    end,
  
 //set up the initial guess for the extremal frequencies
