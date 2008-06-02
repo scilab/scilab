@@ -90,12 +90,15 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libsimulated_annealing_la_etcdir)" \
 	"$(DESTDIR)$(libsimulated_annealing_la_examplesdir)" \
+	"$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)" \
 	"$(DESTDIR)$(libsimulated_annealing_la_rootdir)"
 libsimulated_annealing_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libsimulated_annealing_la_examplesDATA_INSTALL = $(INSTALL_DATA)
+libsimulated_annealing_la_examplesisingDATA_INSTALL = $(INSTALL_DATA)
 libsimulated_annealing_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libsimulated_annealing_la_etc_DATA) \
 	$(libsimulated_annealing_la_examples_DATA) \
+	$(libsimulated_annealing_la_examplesising_DATA) \
 	$(libsimulated_annealing_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -300,6 +303,16 @@ examples/SAdemo.sce \
 examples/SAIsing2ddemo.sce
 
 
+#### simulated_annealing : examples/Ising files ####
+libsimulated_annealing_la_examplesisingdir = $(mydatadir)/examples/Ising
+libsimulated_annealing_la_examplesising_DATA = \
+examples/Ising/init_ising2d.sci \
+examples/Ising/init_potts2d.sci \
+examples/Ising/ising2d.sci \
+examples/Ising/plot_ising2d.sci \
+examples/Ising/plot_potts2d.sci
+
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -433,6 +446,23 @@ uninstall-libsimulated_annealing_la_examplesDATA:
 	  echo " rm -f '$(DESTDIR)$(libsimulated_annealing_la_examplesdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsimulated_annealing_la_examplesdir)/$$f"; \
 	done
+install-libsimulated_annealing_la_examplesisingDATA: $(libsimulated_annealing_la_examplesising_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsimulated_annealing_la_examplesisingdir)" || $(MKDIR_P) "$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)"
+	@list='$(libsimulated_annealing_la_examplesising_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libsimulated_annealing_la_examplesisingDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)/$$f'"; \
+	  $(libsimulated_annealing_la_examplesisingDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)/$$f"; \
+	done
+
+uninstall-libsimulated_annealing_la_examplesisingDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsimulated_annealing_la_examplesising_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)/$$f"; \
+	done
 install-libsimulated_annealing_la_rootDATA: $(libsimulated_annealing_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsimulated_annealing_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsimulated_annealing_la_rootdir)"
@@ -488,7 +518,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libsimulated_annealing_la_etcdir)" "$(DESTDIR)$(libsimulated_annealing_la_examplesdir)" "$(DESTDIR)$(libsimulated_annealing_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libsimulated_annealing_la_etcdir)" "$(DESTDIR)$(libsimulated_annealing_la_examplesdir)" "$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)" "$(DESTDIR)$(libsimulated_annealing_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -536,6 +566,7 @@ info-am:
 install-data-am: install-data-local \
 	install-libsimulated_annealing_la_etcDATA \
 	install-libsimulated_annealing_la_examplesDATA \
+	install-libsimulated_annealing_la_examplesisingDATA \
 	install-libsimulated_annealing_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -574,6 +605,7 @@ ps-am:
 
 uninstall-am: uninstall-libsimulated_annealing_la_etcDATA \
 	uninstall-libsimulated_annealing_la_examplesDATA \
+	uninstall-libsimulated_annealing_la_examplesisingDATA \
 	uninstall-libsimulated_annealing_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -587,6 +619,7 @@ uninstall-am: uninstall-libsimulated_annealing_la_etcDATA \
 	install-html-local install-info install-info-am \
 	install-libsimulated_annealing_la_etcDATA \
 	install-libsimulated_annealing_la_examplesDATA \
+	install-libsimulated_annealing_la_examplesisingDATA \
 	install-libsimulated_annealing_la_rootDATA install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
@@ -595,6 +628,7 @@ uninstall-am: uninstall-libsimulated_annealing_la_etcDATA \
 	uninstall uninstall-am \
 	uninstall-libsimulated_annealing_la_etcDATA \
 	uninstall-libsimulated_annealing_la_examplesDATA \
+	uninstall-libsimulated_annealing_la_examplesisingDATA \
 	uninstall-libsimulated_annealing_la_rootDATA
 
 

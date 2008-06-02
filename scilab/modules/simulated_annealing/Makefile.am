@@ -25,4 +25,13 @@ examples/neigh_func_ising2d.sci \
 examples/SAdemo.sce \
 examples/SAIsing2ddemo.sce
 
+#### simulated_annealing : examples/Ising files ####
+libsimulated_annealing_la_examplesisingdir = $(mydatadir)/examples/Ising
+libsimulated_annealing_la_examplesising_DATA = \
+examples/Ising/init_ising2d.sci \
+examples/Ising/init_potts2d.sci \
+examples/Ising/ising2d.sci \
+examples/Ising/plot_ising2d.sci \
+examples/Ising/plot_potts2d.sci
+
 include $(top_srcdir)/Makefile.incl.am
