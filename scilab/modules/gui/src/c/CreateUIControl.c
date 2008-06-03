@@ -157,7 +157,7 @@ sciPointObj * CreateUIControl(char *style)
     }
   else
     {
-      sciprint(_("Could not create uicontrol of type %s."), style);
+      sciprint(_("%s: Could not create uicontrol of type %s."), "CreateUIControl", style);
       FREE(pobj);
       return (sciPointObj *) NULL;
     }

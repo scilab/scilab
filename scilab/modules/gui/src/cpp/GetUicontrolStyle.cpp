@@ -21,7 +21,7 @@ int GetUicontrolStyle(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No %s property for this object.\n"), "Style");
+      sciprint(_("No '%s' property for this object.\n"), "Style");
       return FALSE;
     }
   

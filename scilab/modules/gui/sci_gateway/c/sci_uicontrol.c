@@ -121,7 +121,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[1]);
               if (setStatus == SET_PROPERTY_ERROR)
                 {
-                  Scierror(999, _("%s: Could not set property %s.\n"), fname, propertyName);
+                  Scierror(999, _("%s: Could not set property '%s'.\n"), fname, propertyName);
                   return FALSE;
                 }
             }
@@ -196,7 +196,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
               pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
               if ( (sciGetEntityType (pParent) != SCI_FIGURE) )
                 {
-                  Scierror(999,_("%s: Wrong type of input argument #%d: A '%s' handle expected.\n"),fname, 1, "Figure");
+                  Scierror(999,_("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"),fname, 1, "Figure");
                   return FALSE;
                 }
               /* First parameter is the parent */
@@ -261,7 +261,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
               if (found == 0)
                 {
-                  Scierror(999, _("%s: Unknown property: %s for 'Uicontrol' handles.\n"), fname, propertyName);
+                  Scierror(999, _("%s: Unknown property: %s for '%s' handles.\n"), fname, propertyName, "Uicontrol");
                   return FALSE;
                 }
             }
@@ -334,7 +334,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 }
               if (setStatus == SET_PROPERTY_ERROR)
                 {
-                  Scierror(999, _("%s: Could not set property: %s.\n"), fname, (char*)propertiesNames[inputIndex]);
+                  Scierror(999, _("%s: Could not set property '%s'.\n"), fname, (char*)propertiesNames[inputIndex]);
                   return FALSE;
                 }
             }

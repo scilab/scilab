@@ -152,7 +152,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
       }
       if (setStatus == SET_PROPERTY_ERROR)
         {
-          Scierror(999, _("%s: Could not set property %s.\n"), fname, propertyName);
+          Scierror(999, _("%s: Could not set property '%s'.\n"), fname, propertyName);
           return FALSE;
         }
     }

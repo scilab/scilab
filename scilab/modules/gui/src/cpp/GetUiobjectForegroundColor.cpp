@@ -41,7 +41,7 @@ int GetUiobjectForegroundColor(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No %s property for this object.\n"), "ForegroundColor");
+      sciprint(_("No '%s' property for this object.\n"), "ForegroundColor");
       return FALSE;
     }
           

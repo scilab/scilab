@@ -33,7 +33,7 @@ int GetUicontrolFontName(sciPointObj* sciObj)
      }
   else
     {
-      sciprint(_("No %s property for this object.\n"), "FontName");
+      sciprint(_("No '%s' property for this object.\n"), "FontName");
       return FALSE;
     }
 }

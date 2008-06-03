@@ -31,7 +31,7 @@ if getscilabmode()<>"NWNI" then
 	    s=[];
 	    break;
 	  else
-	    error(gettext("clipboard: Wrong value for second input argument: must be ""copy"", ""paste"" or ""empty"".\n"));
+	    error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"),"clipboard", 2,"copy","paste","empty"));
 	  end
 	else
 	  if ( type(varargin(1))==1 ) & ( (varargin(2) == "EMF") | (varargin(2) == "DIB") ) then
@@ -39,7 +39,7 @@ if getscilabmode()<>"NWNI" then
 	    s=[];
 	    break;
 	  else
-	    error(gettext("clipboard: Wrong value for second input argument: must be ""EMF"" or ""DIB"".\n"));
+	    error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"), "clipboard", 2, "EMF", "DIB"));
 	  end
 	end
       end
@@ -48,7 +48,7 @@ if getscilabmode()<>"NWNI" then
     end
   end 
 else
-  error(gettext("clipboard: function not available in NWNI mode.\n"));
+  error(msprintf(gettext("%s: function not available in NWNI mode.\n"), "clipboard"));
 end
 
 endfunction

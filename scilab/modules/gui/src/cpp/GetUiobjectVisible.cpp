@@ -59,7 +59,7 @@ int GetUiobjectVisible(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No %s property for this object.\n"), "Visible");
+      sciprint(_("No '%s' property for this object.\n"), "Visible");
       return FALSE;
     }
 }

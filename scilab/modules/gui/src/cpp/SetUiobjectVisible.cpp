@@ -23,7 +23,7 @@ int SetUiobjectVisible(sciPointObj* sciObj, int stackPointer, int valueType, int
   if (valueType == sci_strings)
     {
       if (nbCol != 1) {
-        sciprint(_("%s property value must be 'on' or 'off'.\n"), "Visible");
+        sciprint(_("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "Visible", "on", "off");
         return SET_PROPERTY_ERROR;
       }
 
@@ -31,14 +31,14 @@ int SetUiobjectVisible(sciPointObj* sciObj, int stackPointer, int valueType, int
       
       if (stricmp(status, "on")!=0 && stricmp(status, "off")!=0)
         {
-        sciprint(_("%s property value must be 'on' or 'off'.\n"), "Visible");
+        sciprint(_("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "Visible", "on", "off");
         return SET_PROPERTY_ERROR;
 
         }
     }
   else
     {
-      sciprint(_("%s property value must be 'on' or 'off'.\n"), "Visible");
+      sciprint(_("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "Visible", "on", "off");
       return SET_PROPERTY_ERROR;
     }
   
@@ -69,7 +69,7 @@ int SetUiobjectVisible(sciPointObj* sciObj, int stackPointer, int valueType, int
     }
   else
     {
-      sciprint(_("No %s property for this object.\n"), "Visible");
+      sciprint(_("No '%s' property for this object.\n"), "Visible");
       return SET_PROPERTY_ERROR;
     }
 }

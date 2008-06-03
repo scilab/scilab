@@ -23,7 +23,7 @@ int GetUicontrolMin(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No %s property for this object.\n"), "Min");
+      sciprint(_("No '%s' property for this object.\n"), "Min");
       return FALSE;
     }
 }

@@ -51,7 +51,7 @@ double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj)
     case PIXELS_UNITS:
        return ((double) value) * CallScilabBridge::getScreenResolution(getScilabJavaVM()) / POINT_PER_INCH;
     default:
-      sciprint(_("FontUnits property value must be a single string: points, normalized, inches, centimeters or pixels.\n"));
+      sciprint(_("%s: Wrong value for '%s' property: points, normalized, inches, centimeters or pixels expected.\n"), "ConvertFromPoint", "FontUnits");
       return 0.0;
     }
 }
@@ -92,7 +92,7 @@ int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj)
     case PIXELS_UNITS:
       return (int) (value * POINT_PER_INCH / CallScilabBridge::getScreenResolution(getScilabJavaVM()));
     default:
-      sciprint(_("FontUnits property value must be a single string: points, normalized, inches, centimeters or pixels.\n"));
+      sciprint(_("%s: Wrong value for '%s' property: points, normalized, inches, centimeters or pixels expected.\n"), "ConvertToPoint", "FontUnits");
       return 0;
     }
 }

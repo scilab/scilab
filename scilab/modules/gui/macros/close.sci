@@ -27,7 +27,7 @@ else
     end
   else
     // Do not know what to do
-    error(msprintf(gettext("Do not know how to delete an object of type: %d.\n"), type(h)));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"), "close", 1));
   end
 end
 endfunction

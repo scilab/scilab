@@ -23,7 +23,7 @@
 /*--------------------------------------------------------------------------*/
 int gw_gui()
 {
-	Scierror(999,_("Scilab GUI module not installed.\n"));
+	Scierror(999,_("Scilab '%s' module not installed.\n"), "GUI");
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -34,7 +34,7 @@ BOOL TerminateGUI(void)
 /*--------------------------------------------------------------------------*/
 int XClearScreenConsole(char *fname)
 {
-	sciprint(_("Only on Windows Mode.\n"));
+	sciprint(_("%s: Only available under 'STANDARD' mode.\n"), fname);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -135,11 +135,11 @@ int XEvorgetchar(int interrupt){
 }
 /*--------------------------------------------------------------------------*/
 void main_sci (char *startup, int lstartup,int memory){
-	Scierror(999,_("Scilab GUI module not installed.\n"));
+	Scierror(999,_("Scilab '%s' module not installed.\n"), "GUI");
 }
 /*--------------------------------------------------------------------------*/
 void InitXsession(void){
-	Scierror(999,_("Scilab GUI module not installed.\n"));
+	Scierror(999,_("Scilab '%s' module not installed.\n"), "GUI");
 }
 /*--------------------------------------------------------------------------*/
 BOOL InitializeGUI(void)

@@ -26,7 +26,7 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, int stackPointer, int valueType,
       if(nbCol != 1)
         {
           /* Wrong string size */
-          sciprint(_("FontWeight property value must be a single string: light, normal, demi or bold.\n"));
+          sciprint(_("Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"), "FontWeight", "light", "normal", "demi", "bold");
           return SET_PROPERTY_ERROR;
         }
       
@@ -51,7 +51,7 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, int stackPointer, int valueType,
       else
         {
           /* Wrong string format */
-          sciprint(_("FontWeight property value must be a single string: light, normal, demi or bold.\n"));
+          sciprint(_("Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"), "FontWeight", "light", "normal", "demi", "bold");
           return SET_PROPERTY_ERROR;
         }
       
@@ -72,7 +72,7 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, int stackPointer, int valueType,
   else
     {
       /* Wrong datatype */
-      sciprint(_("FontWeight property value must be a single string: light, normal, demi or bold.\n"));
+      sciprint(_("Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"), "FontWeight", "light", "normal", "demi", "bold");
       return SET_PROPERTY_ERROR;
     }
 

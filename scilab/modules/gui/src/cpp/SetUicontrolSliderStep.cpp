@@ -24,7 +24,7 @@ int SetUicontrolSliderStep(sciPointObj* sciObj, int stackPointer, int valueType,
       if((nbRow > 1) || (nbCol != 2))
         {
           /* Wrong value size */
-          sciprint(_("%s property value must be a 2-value row vector.\n"), "SliderStep");
+          sciprint(_("Wrong size for '%s' property: 1 x 2 real row vector.\n"), "SliderStep");
           return SET_PROPERTY_ERROR;
         }
       
@@ -57,7 +57,7 @@ int SetUicontrolSliderStep(sciPointObj* sciObj, int stackPointer, int valueType,
   else
     {
       /* Wrong datatype */
-      sciprint(_("%s property value must be a 2-value row vector.\n"), "SliderStep");
+      sciprint(_("Wrong type for '%s' property: 1 x 2 real row vector.\n"), "SliderStep");
       return SET_PROPERTY_ERROR;
     }
 

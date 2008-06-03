@@ -22,19 +22,19 @@ case 1
     // Create a menu in Scilab main Window
     // The callback is the variable named menu_label
 
-    // Error message in not in standard mode
+    // Error message in not in standard mode (we need a figure index)
     if getscilabmode() <> "STD" then
-      error(msprintf(_("%s: figure number must be given when used in no window mode."),"addmenu"));
+      error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"addmenu", 2));
     end
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Single character string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 1));
     end
 
     addSingleMenu(0, varargin(1));
 
   else
-    error(msprintf(_("%s: Wrong type for first input argument: Single character string expected.\n"),"addmenu"));
+    error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 1));
   end
 case 2
   if type(varargin(1))==10 & type(varargin(2))==10
@@ -44,11 +44,11 @@ case 2
 
     // Error message in not in standard mode
     if getscilabmode() <> "STD" then
-      error(msprintf(_("%s: figure number must be given when used in no window mode."),"addmenu"));
+      error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"addmenu", 3));
     end
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Single character string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 1));
     end
 
     // No verification for submenus labels
@@ -62,15 +62,15 @@ case 2
 
     // Error message in not in standard mode
     if getscilabmode() <> "STD" then
-      error(msprintf(_("%s: figure number must be given when used in no window mode."),"addmenu"));
+      error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"addmenu", 3));
     end
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Single character string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu",1));
     end
 
     if size(varargin(2)) <> 2
-      error(msprintf(_("%s: Wrong type for second input argument: Two-item list expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A two-item list expected.\n"),"addmenu",2));
     end
 
     addSingleMenuCallback(0, varargin(1), varargin(2));
@@ -81,17 +81,17 @@ case 2
     // The callback is the variable named menu_label
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Scalar value expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A real expected.\n"),"addmenu", 1));
     end
 
     if size(varargin(2),"*") <> 1
-      error(msprintf(_("%s: Wrong type for second input argument: Single character string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 2));
     end
 
     addSingleMenu(scf(varargin(1)), varargin(2))
 
   else
-    error(msprintf(_("%s: Wrong type for two input arguments.\n"),"addmenu"));
+    error(msprintf(_("%s: Wrong input arguments: %s or %s expected.\n"),"addmenu","(menu_label, action_in_a_list)","(graphic_window_id,menu_label)"));
   end
 case 3
   if type(varargin(1))==10 & type(varargin(2))==10 & type(varargin(3))==15
@@ -101,17 +101,17 @@ case 3
 
     // Error message in not in standard mode
     if getscilabmode() <> "STD" then
-      error(msprintf(_("%s: figure number must be given when used in no window mode."),"addmenu"));
+      error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"addmenu", 4));
     end
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Scalar value expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A real expected.\n"),"addmenu",1));
     end
 
     // No verification for submenus labels size
 
     if size(varargin(3)) <> 2
-      error(msprintf(_("%s: Wrong type for third input argument: Two-item list expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A two-item list expected.\n"),"addmenu",3));
     end
 
     addMenuSubMenusCallback(0, varargin(1), varargin(2), varargin(3));
@@ -122,11 +122,11 @@ case 3
     // The callbacks are the items of variable named menu_label
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Scalar value expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A real expected.\n"),"addmenu",1));
     end
 
     if size(varargin(2),"*") <> 1
-      error(msprintf(_("%s: Wrong type for second input argument: Single character string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu",2));
     end
 
     // No verification for submenus labels
@@ -139,21 +139,21 @@ case 3
     // The callbacks are the items of variable named menu_label
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Scalar value expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A real expected.\n"),"addmenu", 1));
     end
 
     if size(varargin(2),"*") <> 1
-      error(msprintf(_("%s: Wrong type for second input argument: Single character string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu",2));
     end
 
     if size(varargin(3)) <> 2
-      error(msprintf(_("%s: Wrong type for third input argument: Two-item list expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A two-item list expected.\n"),"addmenu",3));
     end
 
     addSingleMenuCallback(scf(varargin(1)), varargin(2), varargin(3));
 
   else
-    error(msprintf(_("%s: Wrong type for three input arguments"),"addmenu"));
+    error(msprintf(_("%s: Wrong input arguments: %s, %s or %s expected.\n"),"addmenu","(menu_label, submenus_labels, actions_in_a_list)","(graphic_window_id, menu_label, submenus_labels)","(graphic_window_id, menu_label, action_in_a_list)"));
   end
 case 4
     // addmenu(graphic_window_id, menu_label, submenus_labels, action_in_a_list)
@@ -161,23 +161,23 @@ case 4
     // The callbacks are given in a list
 
     if size(varargin(1),"*") <> 1
-      error(msprintf(_("%s: Wrong type for first input argument: Scalar value expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A real expected.\n"),"addmenu",1));
     end
 
     if size(varargin(2),"*") <> 1
-      error(msprintf(_("%s: Wrong type for second input argument: Single character string expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu",2));
     end
 
     // No verification for submenus labels
 
     if size(varargin(4)) <> 2
-      error(msprintf(_("%s: Wrong type for second input argument: Two-item list expected.\n"),"addmenu"));
+      error(msprintf(_("%s: Wrong type for input argument #%d: A two-item list expected.\n"),"addmenu",4));
     end
 
     addMenuSubMenusCallback(scf(varargin(1)), varargin(2), varargin(3), varargin(4));
 
 else
-  error(msprintf(_("%s: Wrong number of input argument(s).\n")),"addmenu");
+  error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"addmenu", 1,4));
 end
 endfunction
 //------------------------------------------------------------------------------
@@ -306,12 +306,12 @@ endfunction
 function [callbackStr, callbackType] = getCallbackProperties(callback)
 callbackType = callback(1);
 if type(callbackType)<>1 | size(callbackType,"*")<>1
-  error(_("Callback type must be a 0, 1 or 2"));
+  error(msprintf(_("%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"), "addmenu", "CallbackType", 0, 1, 2));
 end
 
 callbackStr = callback(2);
 if size(callbackStr,"*")<>1
-  error(_("Callback must be a single string."));
+  error(msprintf(_("%s: Wrong type for ''%s'' property: A string expected.\n"), "addmenu", "Callback"));
 end
 endfunction
 //------------------------------------------------------------------------------

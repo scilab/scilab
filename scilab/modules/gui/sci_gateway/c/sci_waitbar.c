@@ -138,7 +138,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
         }
       else
         {
-          Scierror(999, _("%s: Wrong input arguments: (x, mes), (x, winId) or (mes, winId) expected.\n"), fname);
+          Scierror(999, _("%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"), fname,"(x, mes)", "(x, winId)", "(mes, winId)");
           return FALSE;
         }
     }

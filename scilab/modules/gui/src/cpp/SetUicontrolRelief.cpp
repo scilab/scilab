@@ -26,7 +26,7 @@ int SetUicontrolRelief(sciPointObj* sciObj, int stackPointer, int valueType, int
       if(nbCol != 1 || nbRow == 0)
         {
           /* Wrong string size */
-          sciprint(_("Relief property value must be a single string: flat, groove, raised, ridge, solid or sunken.\n"));
+          sciprint(_("Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
           return SET_PROPERTY_ERROR;
         }
       
@@ -59,7 +59,7 @@ int SetUicontrolRelief(sciPointObj* sciObj, int stackPointer, int valueType, int
       else
         {
           /* Wrong string format */
-          sciprint(_("Relief property value must be a single string: flat, groove, raised, ridge, solid or sunken.\n"));
+          sciprint(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
           return SET_PROPERTY_ERROR;
         }
       
@@ -82,7 +82,7 @@ int SetUicontrolRelief(sciPointObj* sciObj, int stackPointer, int valueType, int
   else
     {
       /* Wrong datatype */
-          sciprint(_("Relief property value must be a single string: flat, groove, raised, ridge, solid or sunken.\n"));
+      sciprint(_("Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
       return SET_PROPERTY_ERROR;
     }
 

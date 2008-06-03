@@ -47,7 +47,7 @@ for menu=listOfMenus
       menu(1)=null();
       createPopupItems(h1, menu);
     else
-      error(gettext("createPopupItems: empty cascading menu."));
+      error(gettext("createPopupItems: found an empty cascading menu."));
     end
   end
 end

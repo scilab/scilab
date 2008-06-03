@@ -46,13 +46,13 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
             }
           else
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A string matrix expected.\n"), fname, 1);
+              Scierror(999, _("%s: Wrong size for input argument #%d: Matrix of strings expected.\n"), fname, 1);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string matrix expected.\n"), fname, 1);
+          Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 1);
           return FALSE;
         }
     }

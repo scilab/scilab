@@ -26,7 +26,7 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
       if(nbRow > 1)
         {
           /* Wrong value size */
-          sciprint(_("%s property value must be a row vector.\n"), "Value");
+          sciprint(_("Wrong size for '%s' property: A real row vector expected.\n"), "Value");
           return SET_PROPERTY_ERROR;
         }
       
@@ -57,7 +57,7 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
       if(nbCol > 1 || nbRow > 1)
         {
           /* Wrong value size */
-          sciprint(_("%s property value must be single character string.\n"), "Value");
+          sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Value");
           return SET_PROPERTY_ERROR;
         }
 
@@ -66,7 +66,7 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
       if(nbValue != 1)
         {
           /* Wrong value size */
-          sciprint(_("%s property value must be single character string.\n"), "Value");
+          sciprint(_("Wrong value for '%s' property: A string expected.\n"), "Value");
           return SET_PROPERTY_ERROR;
         }
 
@@ -77,7 +77,7 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
   else
     {
       /* Wrong datatype */
-      sciprint(_("%s property value must be scalar value.\n"), "Value");
+      sciprint(_("Wrong type for '%s' property: A real row vector or a string expected.\n"), "Value");
       return SET_PROPERTY_ERROR;
     }
 
@@ -107,7 +107,7 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
           if (pUICONTROL_FEATURE(sciObj)->valueSize != 1)
             {
               /* Wrong value size */
-              sciprint(_("%s property value must be a scalar value.\n"), "Value");
+              sciprint(_("Wrong size for '%s' property: A real expected.\n"), "Value");
               return SET_PROPERTY_ERROR;
             }
           else

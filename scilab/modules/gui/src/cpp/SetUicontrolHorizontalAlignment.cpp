@@ -26,7 +26,7 @@ int SetUicontrolHorizontalAlignment(sciPointObj* sciObj, int stackPointer, int v
       if(nbCol != 1 || nbRow == 0)
         {
           /* Wrong string size */
-          sciprint(_("HorizontalAlignment property value must be a single string: left, center or right.\n"));
+          sciprint(_("Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"), "HorizontalAlignment", "left", "center", "right");
           return SET_PROPERTY_ERROR;
         }
       
@@ -47,7 +47,7 @@ int SetUicontrolHorizontalAlignment(sciPointObj* sciObj, int stackPointer, int v
       else
         {
           /* Wrong string format */
-          sciprint(_("HorizontalAlignment property value must be a single string: left, center or right.\n"));
+          sciprint(_("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"), "HorizontalAlignment", "left", "center", "right");
           return SET_PROPERTY_ERROR;
         }
       
@@ -66,7 +66,7 @@ int SetUicontrolHorizontalAlignment(sciPointObj* sciObj, int stackPointer, int v
   else
     {
       /* Wrong datatype */
-      sciprint(_("HorizontalAlignment property value must be a single string: left, center or right.\n"));
+      sciprint(_("Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"), "HorizontalAlignment", "left", "center", "right");
       return SET_PROPERTY_ERROR;
     }
 

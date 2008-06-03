@@ -55,7 +55,7 @@ int GetUiobjectTag(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No %s property for this object.\n"), "Tag");
+      sciprint(_("No '%s' property for this object.\n"), "Tag");
       return FALSE;
     }
 }

@@ -29,13 +29,13 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
   if (valueType == sci_strings)
     {
       if (nbCol != 1) {
-        sciprint(_("%s property value must be a single character string.\n"), "Callback");
+        sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Callback");
         return SET_PROPERTY_ERROR;
       }
       
       if (nbRow == 0) {
         // This case should never happen because if nbRow==0 then nbCol is also 0
-        sciprint(_("%s property value must be a single character string.\n"), "Callback");
+        sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Callback");
         return SET_PROPERTY_ERROR;
       }
 
@@ -45,14 +45,14 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
     {
       if (nbRow * nbCol != 2)
         {
-          sciprint(_("%s property value must be a 2-items list.%d %d\n"), "Callback", nbRow , nbCol);
+          sciprint(_("Wrong size for '%s' property: a 2-item list expected.\n"), "Callback");
           return SET_PROPERTY_ERROR;
         }
 
       GetListRhsVar(stackPointer, 1, MATRIX_OF_DOUBLE_DATATYPE, &typeNbRow, &typeNbCol, &typeStackPointer);
       if (typeNbRow * typeNbCol !=1)
         {
-          sciprint(_("%s property value must be a scalar value.\n"), "CallbackType");
+          sciprint(_("Wrong size for '%s' property: A real expected.\n"), "CallbackType");
           return SET_PROPERTY_ERROR;
         }
       else
@@ -63,7 +63,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
       GetListRhsVar(stackPointer, 2, STRING_DATATYPE, &strNbRow, &strNbCol, &stringStackPointer);
       if (strNbCol !=1)
         {
-          sciprint(_("%s property value must be a single character string.\n"), "Callback");
+          sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Callback");
           return SET_PROPERTY_ERROR;
         }
       else
@@ -137,7 +137,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, int stackPointer, int valueType, in
     }
   else
     {
-      sciprint(_("No %s property for this object.\n"), "Callback");
+      sciprint(_("No '%s' property for this object.\n"), "Callback");
       return SET_PROPERTY_ERROR;
     }
 }

@@ -89,7 +89,7 @@ int sci_setmenu(char *fname,unsigned long fname_len)
         }
       else
         {
-          Scierror(999, _("%s: Wrong input arguments: (button,nsub) or (gwin,button) expected.\n"),fname);
+          Scierror(999, _("%s: Wrong input arguments: '%s' or '%s' expected.\n"),fname, "(button, nsub)", "(gwin, button)");
           return FALSE;
         }
     }

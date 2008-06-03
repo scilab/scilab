@@ -19,11 +19,11 @@ int SetUiobjectTag(sciPointObj* sciObj, int stackPointer, int valueType, int nbR
 {
   // Label must be only one character string
   if (valueType != sci_strings) {
-    sciprint(_("%s property value must be a single string.\n"), "Tag");
+    sciprint(_("Wrong value for '%s' property: A string expected.\n"), "Tag");
     return SET_PROPERTY_ERROR;
   }
   if (nbCol != 1) {
-    sciprint(_("%s col property value must be a single string.\n"), "Tag");
+    sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Tag");
     return SET_PROPERTY_ERROR;
   }
 
@@ -74,7 +74,7 @@ int SetUiobjectTag(sciPointObj* sciObj, int stackPointer, int valueType, int nbR
     }
   else
     {
-      sciprint(_("No %s property for this object.\n"), "Tag");
+      sciprint(_("No '%s' property for this object.\n"), "Tag");
       return SET_PROPERTY_ERROR;
     }
 }

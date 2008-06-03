@@ -101,7 +101,7 @@ int sci_progressionbar(char *fname,unsigned long fname_len)
        }
       else
         {
-          Scierror(999, _("%s: Wrong input arguments: (id, mes) expected.\n"), fname);
+          Scierror(999, _("%s: Wrong input arguments: '%s' expected.\n"), fname, "(id, mes)");
           return FALSE;
         }
     }

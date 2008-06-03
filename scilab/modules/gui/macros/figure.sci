@@ -24,7 +24,7 @@ else
       // Create a new graphic window or set it (if already exists)
       h = createOrSetFigure(varargin(1));
     else
-      error(gettext("figure: invalid value type."),999);
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: A ''Figure'' handle or a real expected.\n")), "figure", 1);
     end
     
   else
@@ -51,7 +51,7 @@ else
 	  set(h, getFigureProperty(varargin(i)), getPropertyValue(varargin(i),varargin(i+1)));
 	end
       else
-	error(gettext("figure: invalid value type."),999) ;
+	error(msprintf(gettext("%s: Wrong size for input argument #%d: A ''Figure'' handle or a real expected.\n")), "figure", 1);
       end
     end
   end

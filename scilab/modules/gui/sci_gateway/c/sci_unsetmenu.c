@@ -89,7 +89,7 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
         }
       else
         {
-          Scierror(999, _("%s: Wrong input arguments: (button,nsub) or (gwin,button) expected.\n"),fname);
+          Scierror(999, _("%s: Wrong input arguments: '%s' or '%s' expected.\n"),fname, "(button, nsub)", "(gwin, button)");
           return FALSE;
         }
     }
@@ -128,13 +128,13 @@ int sci_unsetmenu(char *fname,unsigned long fname_len)
       
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: Scalar expected.\n"),fname, 3);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"),fname, 3);
               return FALSE;
             }
         }
       else
         {
-              Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 3);
+              Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"),fname, 3);
               return FALSE;
         }
 

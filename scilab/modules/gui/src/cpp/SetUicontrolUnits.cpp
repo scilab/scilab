@@ -26,7 +26,7 @@ int SetUicontrolUnits(sciPointObj* sciObj, int stackPointer, int valueType, int 
       if(nbCol != 1 || nbRow == 0)
         {
           /* Wrong string size */
-          sciprint(_("Units property value must be a single string: points, normalized, inches, centimeters or pixels.\n"));
+          sciprint(_("Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Units", "points", "normalized", "inches", "centimeters", "pixels");
           return SET_PROPERTY_ERROR;
         }
       
@@ -55,7 +55,7 @@ int SetUicontrolUnits(sciPointObj* sciObj, int stackPointer, int valueType, int 
       else
         {
           /* Wrong string format */
-          sciprint(_("Units property value must be a single string: points, normalized, inches, centimeters or pixels.\n"));
+          sciprint(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Units", "points", "normalized", "inches", "centimeters", "pixels");
           return SET_PROPERTY_ERROR;
         }
 
@@ -64,7 +64,7 @@ int SetUicontrolUnits(sciPointObj* sciObj, int stackPointer, int valueType, int 
   else
     {
       /* Wrong datatype */
-      sciprint(_("Units property value must be a single string: points, normalized, inches, centimeters or pixels.\n"));
+      sciprint(_("Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Units", "points", "normalized", "inches", "centimeters", "pixels");
       return SET_PROPERTY_ERROR;
     }
 

@@ -25,7 +25,7 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
 
   if (nbRow*nbCol != 1)
     {
-      sciprint(_("%s property value must be a single handle.\n"), "Parent");
+      sciprint(_("Wrong size for '%s' property: A graphic handle expected.\n"), "Parent");
       return SET_PROPERTY_ERROR;
     }
   
@@ -80,7 +80,7 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
                   CallScilabBridge::removeFrameFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
                   break;
                 default:
-                  sciprint(_("No %s property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
+                  sciprint(_("No '%s' property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
                   return SET_PROPERTY_ERROR;
                 }
             }
@@ -121,7 +121,7 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
               CallScilabBridge::setFrameParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
               break;
             default:
-              sciprint(_("No %s property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
+              sciprint(_("No '%s' property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
               return SET_PROPERTY_ERROR;
             }
           // Scilab default values
@@ -131,14 +131,14 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
       else
         {
           // Parent is not a figure
-          sciprint(_("Could not set an other object than a figure as parent of an uicontrol.\n"));
+          sciprint(_("Wrong value for '%s' property: A 'Figure' handle expected.\n"), "Parent");
           return SET_PROPERTY_ERROR;
         }
     }
   else
     {
       // Do not know how to set the parent
-      sciprint(_("Could not set an other object than a handle as parent of an uicontrol.\n"));
+      sciprint(_("Wrong value for '%' property: A 'Figure' handle expected.\n"), "Parent");
       return SET_PROPERTY_ERROR;
     }
 }

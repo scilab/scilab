@@ -7,7 +7,9 @@ function [y]=x_matrix(mes,x)
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if type(x)<>1 then error(52," x must be a real matrix");end
+if type(x)<>1 then 
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"), "x_matrix", 2));
+end
 [n1,n2]=size(x);
 z=string(x);
 y=[];

@@ -60,7 +60,7 @@ int C2F(sci_x_choose_modeless)(char *fname,unsigned long fname_len)
   messageBoxID = createMessageBox();
 
   /* Title is a default title */
-  setMessageBoxTitle(messageBoxID, _("Scilab choose message"));
+  setMessageBoxTitle(messageBoxID, _("Scilab Choose Message"));
   /* Message */
   setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack(messageAdr), nbCol*nbRow);
   /* ListBox Items */

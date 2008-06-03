@@ -30,7 +30,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
     {
       if(nbCol != 1)
         {
-          sciprint(_("Position property value must be \"x|y|width|height\" or [x, y, width, height].\n"));
+          sciprint(_("Wrong size for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
           return SET_PROPERTY_ERROR;
         }
       
@@ -38,7 +38,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
 
       if (nbvalues != 4)
         {
-          sciprint(_("Position property value must be \"x|y|width|height\" or [x, y, width, height].\n"));
+          sciprint(_("Wrong value for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
           return SET_PROPERTY_ERROR;
         }
 
@@ -52,7 +52,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
     {
        if(nbCol != 4 || nbRow != 1)
         {
-          sciprint(_("Position property value must be \"x|y|width|height\" or [x, y, width, height].\n"));
+          sciprint(_("Wrong size for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
           return SET_PROPERTY_ERROR;
         }
 
@@ -65,7 +65,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
     }
   else
     {
-      sciprint(_("Position property value must be \"x|y|width|height\" or [x, y, width, height].\n"));
+      sciprint(_("Wrong type for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
       return SET_PROPERTY_ERROR;
     }
 

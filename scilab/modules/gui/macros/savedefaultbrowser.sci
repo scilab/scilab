@@ -12,7 +12,7 @@ function savedefaultbrowser(browser)
   DefaultBrowser=browser;
 	if MSDOS then
 		FileBrowser=SCIHOME+"\Browser.ini";
-    if ~or(DefaultBrowser==['Default Windows Browser','Scilab Browser','Old Scilab Browser']) then
+    if ~or(DefaultBrowser==['Default Windows Browser)','Scilab Browser','Old Scilab Browser']) then
       DefaultBrowser='Scilab Browser';
 	  end
   else

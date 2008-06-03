@@ -31,13 +31,13 @@ int GetUicontrolFontWeight(sciPointObj* sciObj)
         case BOLD_FONT:
           return sciReturnString("bold");
         default:
-          sciprint(_("FontWeight property value must be a single string: light, normal, demi or bold.\n"));
+          sciprint(_("Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' expected.\n"), "FontWeight");
           return FALSE;
         }
     }
   else
     {
-      sciprint(_("No %s property for this object.\n"), "FontWeight");
+      sciprint(_("No '%s' property for this object.\n"), "FontWeight");
       return FALSE;
     }
 }

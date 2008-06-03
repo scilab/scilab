@@ -26,16 +26,16 @@ end;
 
 // Check number of inputs
 if rhs ~=2 then
-  error(msprintf(_("%s: Wrong number of input arguments: 2 expected.\n"), "x_choices"));
+  error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "x_choices", 2));
 end
 
 // Type for title
 if typeof(Title)~="string" then
-  error(msprintf(_("%s: Wrong type for first input argument: String expected.\n"), "x_choices"));
+  error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "x_choices", 1));
 end;
 // Type for items
 if typeof(listOfChoices)~="list" then
-  error(msprintf(_("%s: Wrong type for second input argument: List expected.\n"), "x_choices"));
+  error(msprintf(_("%s: Wrong type for input argument #%d: A list expected.\n"), "x_choices", 2));
 end;
 
 n = size(listOfChoices);
@@ -48,31 +48,31 @@ for i = 1:n
   
   // Check that first choose is a list
   if typeof(currentList)~="list" then
-    error(_("x_choices(t,x): Wrong type for x("+string(i)+"): List expected."));
+    error(msprintf(_("%s: Wrong type for %s: A list expected.\n"),"x_choices(t,x)", "x("+string(i)+")"))
   end
   
   // Check that first item (row label in the GUI) is a string
   if typeof(currentList(1))~="string" then
-    error(_("x_choices(t,x): Wrong type for x("+string(i)+")(1): String expected."));
+    error(msprintf(_("%s: Wrong type for %s: A string expected.\n"),"x_choices(t,x)", "x("+string(i)+")(1)"))
   end
   items = [items,currentList(1)];
   
   // Button names must be a row string vector
   if typeof(currentList(3))~="string" then
-    error(_("x_choices(t,x): Wrong type for x("+string(i)+")(3): Row string vector expected."));
+    error(msprintf(_("%s: Wrong type for %s: A row vector of strings expected.\n"),"x_choices(t,x)", "x("+string(i)+")(3)"))
   end
   [nbLines,nbCols] = size(currentList(3));
   if nbLines~=1 then
-    error(_("x_choices(t,x): Wrong type for x("+string(i)+")(3): Row string vector expected."));
+    error(msprintf(_("%s: Wrong size for %s: A row vector of strings expected.\n"),"x_choices(t,x)", "x("+string(i)+")(3)"))
   end
   items = [items,currentList(3)];
 
   // Default button selected
   if typeof(currentList(2))~="constant" then
-    error(_("x_choices(t,x): Wrong type for x("+string(i)+")(2): Single double value expected."));
+    error(msprintf(_("%s: Wrong type for %s: A real expected.\n"),"x_choices(t,x)", "x("+string(i)+")(2)"))
   end
   if size(currentList(2), "*")~=1 then
-    error(_("x_choices(t,x): Wrong type for x("+string(i)+")(2): Single double value expected."));
+    error(msprintf(_("%s: Wrong size for %s: A real expected.\n"),"x_choices(t,x)", "x("+string(i)+")(2)"))
   end
   defv = [defv,currentList(2)];
   

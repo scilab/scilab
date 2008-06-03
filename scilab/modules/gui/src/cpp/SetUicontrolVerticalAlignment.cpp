@@ -26,7 +26,7 @@ int SetUicontrolVerticalAlignment(sciPointObj* sciObj, int stackPointer, int val
       if(nbCol != 1 || nbRow == 0)
         {
           /* Wrong string size */
-          sciprint(_("VerticalAlignment property value must be a single string: top, middle or bottom.\n"));
+          sciprint(_("Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"), "VerticalAlignment", "top", "middle", "bottom");
           return SET_PROPERTY_ERROR;
         }
       
@@ -47,7 +47,7 @@ int SetUicontrolVerticalAlignment(sciPointObj* sciObj, int stackPointer, int val
       else
         {
           /* Wrong string format */
-          sciprint(_("VerticalAlignment property value must be a single string: top, middle or bottom.\n"));
+          sciprint(_("Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"), "VerticalAlignment", "top", "middle", "bottom");
           return SET_PROPERTY_ERROR;
         }
       
@@ -67,7 +67,7 @@ int SetUicontrolVerticalAlignment(sciPointObj* sciObj, int stackPointer, int val
   else
     {
       /* Wrong datatype */
-      sciprint(_("VerticalAlignment property value must be a single string: top, middle or bottom.\n"));
+      sciprint(_("Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"), "VerticalAlignment", "top", "middle", "bottom");
       return SET_PROPERTY_ERROR;
     }
 
