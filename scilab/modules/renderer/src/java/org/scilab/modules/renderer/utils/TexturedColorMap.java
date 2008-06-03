@@ -89,12 +89,32 @@ public class TexturedColorMap extends ColorMap {
 			colorMapTexture = createTexture();
 			hasChanged = false;
 		} else if (hasChanged) {
-			// need to recreate a new texture data
-			colorMapTexture.updateImage(createTextureData());
+			
+			updateColorMapTexture();
 			hasChanged = false;
 		}
 		
 		return colorMapTexture;
+	}
+	
+	/**
+	 * Update the color map with a new image
+	 */
+	protected void updateColorMapTexture() {
+		// need to recreate a new texture data
+		colorMapTexture.updateImage(createTextureData());
+		
+		// also need to reset parameters
+		setTextureParameters(colorMapTexture);
+	}
+	
+	/**
+	 * Set the default paramters for textures in Scilab.
+	 * @param texture texture to update
+	 */
+	protected void setTextureParameters(Texture texture) {
+		texture.setTexParameteri(GL.GL_TEXTURE_MAG_FILTER, GL.GL_NEAREST);
+		texture.setTexParameteri(GL.GL_TEXTURE_MIN_FILTER, GL.GL_NEAREST);
 	}
 	
 	/**
@@ -103,8 +123,7 @@ public class TexturedColorMap extends ColorMap {
 	 */
 	private Texture createTexture() {
 		Texture res = TextureIO.newTexture(getTextureData());
-		res.setTexParameteri(GL.GL_TEXTURE_MAG_FILTER, GL.GL_NEAREST);
-		res.setTexParameteri(GL.GL_TEXTURE_MIN_FILTER, GL.GL_NEAREST);
+		setTextureParameters(res);
 		return res;
 	}
 	
