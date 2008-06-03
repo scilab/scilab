@@ -34,16 +34,17 @@
 /*------------------------------------------------------------------------*/
 #define CHAR_S "s"
 #define CHAR_R "r"
+/*------------------------------------------------------------------------*/
 struct In
 {
 		int data;
 		int position;
 } ;
+/*------------------------------------------------------------------------*/
 int cmp( const void *a ,const void *b)
 {
 return (*(struct In *)a).data > (*(struct In *)b).data ? 1 : -1;
 }
-
 /*------------------------------------------------------------------------*/
 int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 {
@@ -162,7 +163,6 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 		else
 		{
 			values = (struct In *)MALLOC( sizeof(struct In) * ( strlen(Strings_Input1[0]) ) );
-
 		}
 
 		if (bStrindex_with_pattern)
@@ -194,9 +194,10 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
+			/* We don't use pcre library */
 			int x = 0;
 			int pos = 0;
-				/* We don't use pcre library */
+			
 			for (x=0; x < m2n2 ;++x)
 			{
 				int w = 0;
@@ -213,9 +214,10 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 				{
 					do
 					{
-						next=getnext(Strings_Input2[x]);
+						next = getnext(Strings_Input2[x]);
 						/*Str is the input string matrix, Str2[x] is the substring to match; pos is the start point*/
 						w = kmp(*Strings_Input1,Strings_Input2[x],pos,next);
+						if (next) { FREE(next);next = NULL; }
 						if (w !=0)
 						{
 							values[nbValues++].data = w;
