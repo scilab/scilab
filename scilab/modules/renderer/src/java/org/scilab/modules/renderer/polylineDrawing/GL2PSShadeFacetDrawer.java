@@ -64,7 +64,7 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 			
 			//we separate the square on 2 triangle then we work on each triangle
 			paintTriangle(a, b, c, colors[0], colors[1], colors[2]);
-			paintTriangle(c, d, a, colors[2], colors[3], colors[0]);
+			paintTriangle(c, d, a, colors[2], colors[TRIANGLE], colors[0]);
 			
 		}
 		
@@ -88,17 +88,28 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 		for (int i = 0; i < td.getNbPolygons(); i++) {
 			int color = td.getPolygonColor(i);	
 
-			gl.glBegin(GL.GL_POLYGON);
+			//gl.glBegin(GL.GL_POLYGON);
+			// we use gl.glBegin(GL.GL_TRIANGLES)
+			// so we decompose the polygon into triangles
 
 			double[] polyColor = colorMaps.getColor(colorMaps.convertScilabToColorMapIndex(color));
 			gl.glColor3d(polyColor[0], polyColor[1], polyColor[2]);
 			Vector3D[] polygon = td.getPolygon(i);
 			
-			for (int j = 0; j < polygon.length; j++) {
+			// first triangle
+			for (int j = 0; j < TRIANGLE; j++) {
+				gl.glVertex3d(polygon[j].getX(), polygon[j].getY(), polygon[j].getZ());
+			}
+			
+			// following triangles
+			for (int j = TRIANGLE; j < polygon.length; j++) {
+				gl.glVertex3d(polygon[0].getX(), polygon[0].getY(), polygon[0].getZ());
+				gl.glVertex3d(polygon[j - 1].getX(), polygon[j - 1].getY(), polygon[j - 1].getZ());
 				gl.glVertex3d(polygon[j].getX(), polygon[j].getY(), polygon[j].getZ());
 			}
 
-			gl.glEnd();		
+			//gl.glEnd();
+			
 		}
 	}
 
@@ -126,7 +137,7 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 			
 			//we separate the square on 2 triangle then we work on each triangle
 			paintTriangle(a, b, c, triangleColors[0], triangleColors[1], triangleColors[2]);
-			paintTriangle(c, d, a, triangleColors[2], triangleColors[3], triangleColors[0]);
+			paintTriangle(c, d, a, triangleColors[2], triangleColors[TRIANGLE], triangleColors[0]);
 			
 		}		
 	}

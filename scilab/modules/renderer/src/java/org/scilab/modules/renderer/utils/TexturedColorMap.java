@@ -180,8 +180,10 @@ public class TexturedColorMap extends ColorMap {
 		gl.glColor3dv(getColor((int) colorIndex), 0);
 		
 		// use texture
-		// color offset is here to put the index in the missdle of the color
-		gl.glTexCoord1d((colorIndex - COLOR_OFFSET) / getSize());
+		// color offset is here to put the index in the middle of the color
+		// ie each color in the texture is defined between i / n and (i+1)/n
+		// so put it to (i+0.5)/n
+		gl.glTexCoord1d((colorIndex + COLOR_OFFSET) / getSize());
 	}
 	
 }

@@ -27,8 +27,8 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  */
 public abstract class FacetDrawerGL {
 
-	private static final int TRIANGLE_NB_FACETS = 3;
-	private static final int QUAD_NB_FACETS = 4;
+	protected static final int TRIANGLE_NB_EDGE = 3;
+	protected static final int QUAD_NB_EDGE = 4;
 	
 	private int hiddenColor;
 	private int nbVertices;
@@ -70,6 +70,13 @@ public abstract class FacetDrawerGL {
 			return null;
 		}
 	}
+	
+	/**
+	 * @return index of hidden color
+	 */
+	public int getHiddenColorIndex() {
+		return hiddenColor;
+	}
 
 	/**
 	 * Set the hidden color
@@ -84,9 +91,9 @@ public abstract class FacetDrawerGL {
 	 * @param gl current OpenGL pipeline
 	 */
 	public void endDrawing(GL gl) {
-		//gl.glEnd();
+		gl.glEnd();
 		gl.glDisable(GL.GL_CULL_FACE);
-		GLTools.pushPolygonsBack(gl);
+		GLTools.endPushPolygonsBack(gl);
 	}
 
 	/**
@@ -95,6 +102,7 @@ public abstract class FacetDrawerGL {
 	 */
 	public void initializeDrawing(GL gl) {
 		if (getHiddenColor() != null) {
+			
 			// we must draw one face with computed color
 			// and one face with hidden color
 			gl.glEnable(GL.GL_CULL_FACE);
@@ -108,13 +116,10 @@ public abstract class FacetDrawerGL {
 		// and consequently they are drawn with the same Z.
 		GLTools.pushPolygonsBack(gl);
 		
-		/*if (getNbVertices() == TRIANGLE_NB_FACETS) {
-			// triangle
-			//gl.glBegin(GL.GL_TRIANGLES);
-		} else if (getNbVertices() == QUAD_NB_FACETS) {
-			// quad
-			//gl.glBegin(GL.GL_QUADS);
-		}*/
+		// Only use triangles, it is safer than quads
+		// specially if user defines non coplanar quads
+		gl.glBegin(GL.GL_TRIANGLES);
+		
 	}
 
 	/**

@@ -39,7 +39,7 @@ public class ConstantColorComputer extends FacetColorComputer {
 	 * @return array containg the 3 channels for each corner
 	 */
 	public int[] getFacetColor(Vector3D[] corners, int facetIndex) {
-		int[] res = {getColorMap().convertScilabToColorMapIndex(getDefaultColor())};
+		int[] res = {getDefaultColor()};
 		return res;
 	}
 

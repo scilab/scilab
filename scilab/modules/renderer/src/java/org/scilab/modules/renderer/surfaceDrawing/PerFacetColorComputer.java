@@ -43,13 +43,12 @@ public class PerFacetColorComputer extends FacetColorComputer {
 		if (getNbFacets() == getNbColors()) {
 			// only one color per facet
 			res = new int[1];
-			res[0] = getColorMap().convertScilabToColorMapIndex((int) getColor(facetIndex));
+			res[0] = (int) getColor(facetIndex);
 		} else {
 			// one color per vertex
 			res = new int[getNbVertices()];
 			for (int i = 0; i < getNbVertices(); i++) {
-				double curColor = getColor(getNbVertices() * facetIndex + i);
-				res[i] = getColorMap().convertScilabToColorMapIndex((int) curColor);
+				res[i] = (int) getColor(getNbVertices() * facetIndex + i);
 			}
 		}
 		return res;

@@ -16,8 +16,10 @@ package org.scilab.modules.renderer.polylineDrawing;
 
 import javax.media.opengl.GL;
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
-import org.scilab.modules.renderer.utils.TexturedColorMap;
+import org.scilab.modules.renderer.utils.geom3D.GeomAlgos;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+
+import com.sun.opengl.util.texture.Texture;
 
 
 /**
@@ -28,6 +30,8 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
  * @author Jean-Baptiste Silvy
  */
 public class PolylineInterpColorDrawerGL extends FillDrawerGL {	
+	
+	private static final int TRIANGLE_NB_EDGE = 3;
 	
 	/**
 	 * Default constructor
@@ -46,16 +50,44 @@ public class PolylineInterpColorDrawerGL extends FillDrawerGL {
 	public void drawPolyline(double[] xCoords, double[] yCoords,
 							 double[] zCoords, int[] colors) {
 		
-		GL gl = getGL();		
-		TexturedColorMap colorMap = getColorMap();
+		GL gl = getGL();
 		
-		Vector3D[] vertex = new Vector3D[xCoords.length];
+		Vector3D[] vertices = new Vector3D[xCoords.length];
 		for (int i = 0; i < xCoords.length; i++) {
-			vertex[i] = new Vector3D(xCoords[i], yCoords[i], zCoords[i]);
+			vertices[i] = new Vector3D(xCoords[i], yCoords[i], zCoords[i]);
+			// colors are Scilab indices
+			colors[i] = getColorMap().convertScilabToColorMapIndex(colors[i]);
 		}
 		
-		ShadeFacetDrawer sfd = getParentFigureGL().getShadeFacetDrawer();		
-		sfd.paintPolygon(vertex, colors, gl, colorMap);
+		ShadeFacetDrawer sfd = getParentFigureGL().getShadeFacetDrawer();
+		
+		
+		Texture colorMapTexture = getColorMap().getTexture();
+		colorMapTexture.enable();
+		colorMapTexture.bind();
+		
+		gl.glBegin(GL.GL_TRIANGLES);
+		
+		if (vertices.length == TRIANGLE_NB_EDGE) {
+			// only a triangle
+			sfd.paintPolygon(vertices, colors, gl, getColorMap());	
+			
+		} else {
+			
+			// its a quad, decompose it into 2 triangles
+			Vector3D[] triangle1 =  new Vector3D[TRIANGLE_NB_EDGE];
+			Vector3D[] triangle2 =  new Vector3D[TRIANGLE_NB_EDGE];
+			int[] colorT1 = new int[TRIANGLE_NB_EDGE];
+			int[] colorT2 = new int[TRIANGLE_NB_EDGE];
+			GeomAlgos.decomposeQuad(vertices, colors, triangle1, colorT1, triangle2, colorT2);
+			
+			// draw the two decomposed triangles
+			sfd.paintPolygon(triangle1, colorT1, gl, getColorMap());	
+			sfd.paintPolygon(triangle2, colorT2, gl, getColorMap());
+		}
+		gl.glEnd();
+		
+		colorMapTexture.disable();
 	}	
 
 }

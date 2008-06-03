@@ -72,7 +72,7 @@ public class ZDependingColorComputer extends FacetColorComputer {
 		// only one color for the facet
 		int[] res = new int[1];
 		// code taken from old Scilab C code
-		res[0] = (int) Math.floor(((getColorMap().getSize() - 1) * (facetHeight - zMin) / (zRange)) + OFFSET);
+		res[0] = (int) Math.floor(((getColorMap().getSize() - 1) * (facetHeight - zMin) / (zRange)) + OFFSET) + 1;
 		
 		return res;
 	}

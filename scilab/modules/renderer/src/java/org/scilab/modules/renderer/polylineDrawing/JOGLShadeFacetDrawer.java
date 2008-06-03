@@ -5,8 +5,6 @@ import javax.media.opengl.GL;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
-import com.sun.opengl.util.texture.Texture;
-
 /**
  * Decompose triangle with JOGL
  * @author Sylvestre Koumar
@@ -37,22 +35,10 @@ public class JOGLShadeFacetDrawer implements ShadeFacetDrawer {
 		this.gl = gl;
 		this.colorMaps = colorMap;
 
-		
-		Texture colormapTexture = colorMap.getTexture();
-		colormapTexture.enable();
-		colormapTexture.bind();
-
-		gl.glColor3d(0.0, 1.0, 0.0);
-		gl.glBegin(GL.GL_TRIANGLE_FAN); // works with triangles and quads
 		for (int i = 0; i < coords.length; i++) {
 			colorMap.applyTexCoord(gl, colors[i]);
-			//gl.glVertex3d(xCoords[i], yCoords[i], zCoords[i]);
 			gl.glVertex3d(coords[i].getX(), coords[i].getY(), coords[i].getZ());
 		}
-		gl.glEnd();
-		 			
-
-		colormapTexture.disable();
 		
 	}
 
@@ -62,21 +48,9 @@ public class JOGLShadeFacetDrawer implements ShadeFacetDrawer {
 		this.gl = gl;
 		this.colorMaps = colorMap;
 
-		
-		Texture colormapTexture = colorMap.getTexture();
-		colormapTexture.enable();
-		colormapTexture.bind();
-
-		gl.glColor3d(0.0, 1.0, 0.0);
-		gl.glBegin(GL.GL_TRIANGLE_FAN); // works with triangles and quads
 		for (int i = 0; i < triangleCoords.length; i++) {
 			colorMap.applyTexCoord(gl, triangleColors[i]);
-			//gl.glVertex3d(xCoords[i], yCoords[i], zCoords[i]);
 			gl.glVertex3d(triangleCoords[i].getX(), triangleCoords[i].getY(), triangleCoords[i].getZ());
 		}
-		gl.glEnd();
-		 			
-
-		colormapTexture.disable();	
 	}
 }

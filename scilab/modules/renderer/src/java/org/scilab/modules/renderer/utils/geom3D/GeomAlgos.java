@@ -58,4 +58,105 @@ public final class GeomAlgos {
 					
 	}
 	
+	/**
+	 * Aproximate a surface defined by 4 points with 2 triangles.
+	 * This function is useful to draw such a surface. Using quads may lead to
+	 * badly oriented facets is the 4 points are not coplanar.
+	 * @param quad 4 vertices to approximate oredred clockwise or counter-clockwise
+	 * @param firstTriangleIndices indices within the quad defining the first triangle
+	 * @param secondTriangleIndices indices within the quad defining the first triangle
+	 */
+	private static void decomposeQuad(Vector3D[] quad, int[] firstTriangleIndices, int[] secondTriangleIndices) {
+//		 The quad is defined with 4 oreinted Vertices with indiced 0, 1, 2 and 3
+		// Their are only 2 choices for the triangles to preserve orientation:
+		// 0, 1, 2 and 2, 3, 0 or 0, 1, 3 and 1, 2, 3
+		
+		// The selected configuration is the one which as the closest angle with Pi between the two triangles
+		// For configuration one, the angle is approximated with (1, M, 3) where M is the middle of [0 2]
+		Vector3D m = quad[0].add(quad[2]).scalarMult(1.0 / 2.0);
+		// get cosine of the angle
+		Vector3D m1 = quad[1].substract(m).getNormalized();
+		Vector3D m3 = quad[LAST_INDEX].substract(m).getNormalized();
+		double cosAngle1 = m1.dotProduct(m3);
+		
+		// For configuration two, the angle is approximated with (0, M', 2) where M' is the middle of [1 3]
+		m = quad[1].add(quad[LAST_INDEX]).scalarMult(1.0 / 2.0);
+		// get cosine of the angle
+		Vector3D m0 = quad[0].substract(m).getNormalized();
+		Vector3D m2 = quad[2].substract(m).getNormalized();
+		double cosAngle2 = m0.dotProduct(m2);
+		
+		// angle close to Pi <=> cosAngle close to -1
+		if ((cosAngle1 + 1) <= (cosAngle2 + 1)) {
+			// first configuration
+			// default configuration for Scilab 4
+			firstTriangleIndices[0] = 0;
+			firstTriangleIndices[1] = 1;
+			firstTriangleIndices[2] = 2;
+			
+			secondTriangleIndices[0] = 0;
+			secondTriangleIndices[1] = 2;
+			secondTriangleIndices[2] = LAST_INDEX;
+		} else {
+			// second configuration
+			firstTriangleIndices[0] = 0;
+			firstTriangleIndices[1] = 1;
+			firstTriangleIndices[2] = LAST_INDEX;
+			
+			secondTriangleIndices[0] = 1;
+			secondTriangleIndices[1] = 2;
+			secondTriangleIndices[2] = LAST_INDEX;
+		}
+	}
+	
+	/**
+	 * Aproximate a surface defined by 4 points with 2 triangles.
+	 * This function is useful to draw such a surface. Using quads may lead to
+	 * badly oriented facets is the 4 points are not coplanar.
+	 * Also compute colors indices corresponding to each triangle vertices
+	 * @param quad 4 vertices to approximate oredred clockwise or counter-clockwise
+	 * @param colorQuad color indices corresponding to each vertex of the quad
+	 * @param triangle1 first triangle of the decomposition 
+	 * @param colorTriangle1 color indices coresponding to each vertex of the first triangle
+	 * @param triangle2 second triangle
+	 * @param colorTriangle2 color indices coresponding to each vertex of the first triangle
+	 */
+	public static void decomposeQuad(Vector3D[] quad, int[] colorQuad,
+									 Vector3D[] triangle1, int[] colorTriangle1,
+									 Vector3D[] triangle2, int[] colorTriangle2) {
+		int[] firstTriangleIndices = new int[LAST_INDEX];
+		int[] secondTriangleIndices = new int[LAST_INDEX];
+		
+		decomposeQuad(quad, firstTriangleIndices, secondTriangleIndices);
+		
+		for (int i = 0; i < LAST_INDEX; i++) {
+			triangle1[i] = quad[firstTriangleIndices[i]];
+			colorTriangle1[i] = colorQuad[firstTriangleIndices[i]];
+			triangle2[i] = quad[secondTriangleIndices[i]];
+			colorTriangle2[i] = colorQuad[secondTriangleIndices[i]];
+		}
+	}
+							
+										
+	
+	/**
+	 * Aproximate a surface defined by 4 points with 2 triangles.
+	 * This function is useful to draw such a surface. Using quads may lead to
+	 * badly oriented facets is the 4 points are not coplanar
+	 * @param quad 4 vertices to approximate oredred clockwise or counter-clockwise
+	 * @param triangle1 first triangle of the decomposition
+	 * @param triangle2 second triangle
+	 */
+	public static void decomposeQuad(Vector3D[] quad, Vector3D[] triangle1, Vector3D[] triangle2) {
+		int[] firstTriangleIndices = new int[LAST_INDEX];
+		int[] secondTriangleIndices = new int[LAST_INDEX];
+		
+		decomposeQuad(quad, firstTriangleIndices, secondTriangleIndices);
+		
+		for (int i = 0; i < LAST_INDEX; i++) {
+			triangle1[i] = quad[firstTriangleIndices[i]];
+			triangle2[i] = quad[secondTriangleIndices[i]];
+		}
+	}
+	
 }
