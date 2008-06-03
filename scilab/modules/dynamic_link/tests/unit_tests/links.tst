@@ -10,7 +10,7 @@ pref='ext';
 suf='f';
 routines=[pref(ones(1,12))+string(1:12)+suf(ones(1,12))];
 copyfile(SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+filesep()+'unit_tests'+filesep()+'externals.f', TMPDIR);
-chdir(TMPDIR)
+chdir(TMPDIR);
 ilib_for_link(routines,'externals.o',[],"f");
 
 // disable message
