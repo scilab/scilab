@@ -56,7 +56,6 @@ public class GlobalEventFilter {
 	/**
 	 * Update ClickInfos structure when some callback is about to be called.
 	 * 
-	 * @param event : the event caught.
 	 * @param command : the callback that was supposed to be called.
 	 */
 	public static void filterCallback(String command) {
@@ -69,7 +68,23 @@ public class GlobalEventFilter {
 			ClickInfos.getInstance().notify();
 		}
 	}	
-	
+
+	/**
+	 * Update ClickInfos structure when some callback is about to be called.
+	 * 
+	 * @param command : the callback that was supposed to be called.
+	 * @param returnCode : used for closing windows.
+	 */
+	public static void filterCallback(String command, int returnCode) {
+		synchronized (ClickInfos.getInstance()) {
+			ClickInfos.getInstance().setMouseButtonNumber(returnCode);
+			ClickInfos.getInstance().setMenuCallback(command);
+			ClickInfos.getInstance().setWindowID(-1);
+			ClickInfos.getInstance().setXCoordinate(-1);
+			ClickInfos.getInstance().setYCoordinate(-1);
+			ClickInfos.getInstance().notify();
+		}
+	}		
 	/**
 	 * Update ClickInfos structure when a mouse event occurs on a Canvas.
 	 * 

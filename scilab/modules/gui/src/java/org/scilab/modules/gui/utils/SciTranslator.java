@@ -49,6 +49,8 @@ public class SciTranslator {
 	 * other clicks can raise such a code
 	 */
 	public static final int SCIMOVED = -1;
+	/** Internal state CLOSE */
+	public static final int SCICLOSE = -1000;
 	
 	/** Internal state MOVED */
 	public static final int MOVED = -1000;
