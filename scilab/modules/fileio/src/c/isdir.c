@@ -36,14 +36,14 @@ BOOL isdir(const char * path)
 	if (isDrive(path)) return TRUE;
 	else
 	{
-		char *pathTmp=NULL;
-
-		pathTmp=MALLOC(sizeof(char)*((int)strlen(path)+1));
+		char *pathTmp = NULL;
+		pathTmp = MALLOC(sizeof(char)*((int)strlen(path)+1));
 		if (pathTmp)
 		{
 			WIN32_FIND_DATA ffd;
-			HANDLE sh=NULL;
+			HANDLE sh = NULL;
 			strcpy(pathTmp,path);
+
 			if ( (pathTmp[strlen(pathTmp)-1]=='\\') || (pathTmp[strlen(pathTmp)-1]=='/') )
 			{
 				pathTmp[strlen(pathTmp)-1]='\0';
@@ -51,8 +51,16 @@ BOOL isdir(const char * path)
 
 			sh = FindFirstFile(pathTmp, &ffd);
 			FREE(pathTmp);pathTmp=NULL;
-			if(INVALID_HANDLE_VALUE == sh) return FALSE;
-			if(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) bOK=TRUE;
+			if(INVALID_HANDLE_VALUE == sh) 
+			{
+				FindClose(sh);
+				return FALSE;
+			}
+			if(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) 
+			{
+				FindClose(sh);
+				return TRUE;
+			}
 		}
 	}
 #endif

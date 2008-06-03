@@ -89,6 +89,8 @@ int C2F(sci_isdir)(char *fname,unsigned long fname_len)
 		{
 			/* Replaces SCI, ~, HOME by the real path */
 			C2F(cluni0)(myPath, filename, &out_n,m1*n1,lout);
+			FREE(myPath);
+			myPath = NULL;
 		}
 
 		result = isdir(filename);
@@ -99,7 +101,7 @@ int C2F(sci_isdir)(char *fname,unsigned long fname_len)
 		
 		LhsVar(1) = Rhs+1;
 		C2F(putlhsvar)();
-		if (myPath) {FREE(myPath);myPath = NULL;}
+		
 	}
 	return 0;
 	
