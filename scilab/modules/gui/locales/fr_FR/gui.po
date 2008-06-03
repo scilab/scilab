@@ -354,12 +354,6 @@ msgid "Wrong value for '%s' property: A 'Figure' handle expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/SetUicontrolParent.cpp, line: 141
-#, c-format
-msgid "Wrong value for '%' property: A 'Figure' handle expected.\n"
-msgstr ""
-
-#
 # File: src/cpp/SetUimenuLabel.cpp, line: 22
 # File: src/cpp/SetUicontrolString.cpp, line: 22
 # File: src/cpp/SetUicontrolFontName.cpp, line: 22

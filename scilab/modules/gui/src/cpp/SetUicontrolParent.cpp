@@ -138,7 +138,7 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
   else
     {
       // Do not know how to set the parent
-      sciprint(_("Wrong value for '%' property: A 'Figure' handle expected.\n"), "Parent");
+      sciprint(_("Wrong value for '%s' property: A 'Figure' handle expected.\n"), "Parent");
       return SET_PROPERTY_ERROR;
     }
 }
