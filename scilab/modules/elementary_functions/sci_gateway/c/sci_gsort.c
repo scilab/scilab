@@ -65,7 +65,7 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
       CheckLength(3,m3,1);
       if ( (*cstk(l3) != INCREASE_COMMAND) && (*cstk(l3) != DECREASE_COMMAND) )
 	{
-	  Scierror(999,_("%s: Wrong value for third input argument: ''%s'' or ''%s'' expected.\n"),fname,"i","d");
+	  Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"i","d");
 	  return 0;
 	}
       iord[0] = *cstk(l3);
@@ -77,13 +77,13 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
       GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
       if ( m2 == 0 )
 	{
-	  Scierror(999,_("%s: Wrong size for second input argument: Non-empty string expected.\n"),fname);
+	  Scierror(999,_("%s: Wrong size for input argument #%d: Non-empty string expected.\n"),fname,2);
 	  return 0;
 	}
       c = *cstk(l2);
       if ( (c != ROW_SORT) && (c != COLUMN_SORT) && (c != GLOBAL_SORT) && (c != LIST_SORT) )
 	{
-	  Scierror(999,_("%s: Wrong value for second input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),fname,"r","c","g","lr","lc");
+	  Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),fname,2,"r","c","g","lr","lc");
 	  return 0;
 	}
       strcpy(typex,cstk(l2));
@@ -121,7 +121,7 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 	  GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&Im);
 	  break;
 	default :
-	  Scierror(999,_("%s: Wrong type for first input argument: Scalar or matrix of strings expected.\n"),fname);
+	  Scierror(999,_("%s: Wrong type for input argument #%d: Real, complex, integer matrix or matrix of strings expected.\n"),fname,2);
 	  return 0;
 	}
     }
@@ -253,7 +253,7 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 	    break;
 	  default:
 	    if (indices) {FREE(indices); indices = NULL;}
-	    Scierror(999,_("%s: Wrong type for first input argument: Unknown type.\n"),fname);
+	    Scierror(999,_("%s: Wrong type for input argument #%d: Unknown type.\n"),fname,1);
 	    return 0;
 	  }
 
@@ -297,7 +297,7 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 
     default:
       if (indices) {FREE(indices); indices = NULL;}
-      Scierror(999,_("%s: Wrong type for first input argument.\n"),fname);
+      Scierror(999,_("%s: Wrong type for input argument #%d.\n"),fname,1);
       return 0;
       break;
     }
