@@ -54,8 +54,21 @@ function libn = ilib_compile(lib_name,makename,files, ..
    
   else
     //** ---------- Linux section ---------------------  
-	cflags="-I"+SCI+"/modules/core/includes/ -I"+SCI+"/modules/mexlib/includes/ "+cflags
+    // Source tree version
+	if isdir(SCI+"/modules/core/includes/") then
+	  cflags="-I"+SCI+"/modules/core/includes/ -I"+SCI+"/modules/mexlib/includes/ "+cflags
+	end
 
+	// Binary version
+	if isdir(SCI+"/../../include/scilab/core/") then
+	  cflags="-I"+SCI+"/../../include/scilab/core/ -I"+SCI+"/../../include/scilab/mexlib/ "+cflags
+	end
+
+	// System version (ie: /usr/include/scilab/)	
+	if isdir("/usr/includes/scilab/") then
+	  cflags="-I/usr/include/scilab/core/ -I/usr/include/scilab/mexlib/ "+cflags
+	end
+	
       oldPath = pwd();
 	  // Switch back to the TMPDIR where the mandatory files are
 	  chdir(TMPDIR);
@@ -67,8 +80,10 @@ function libn = ilib_compile(lib_name,makename,files, ..
           //**          environment where the Makefile are created from a "./configure"  
 	  [msg,ierr, stderr] = unix_g(cmd) ; 
 	  if ierr <> 0 then
-		disp(gettext("An error occured during the compilation:"))
-	    disp(stderr);
+		mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
+	    mprintf(stderr);
+		mprintf(gettext("%s: The command was:\n"),"ilib_compile");
+		mprintf(cmd);
 		chdir(oldPath); // Go back to the working dir
 	    return ;
 	  end
