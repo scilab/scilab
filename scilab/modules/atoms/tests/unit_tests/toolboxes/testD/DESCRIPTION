@@ -1,0 +1,10 @@
+Toolbox: testD
+Version: 2.5.0
+Date: 2008-03-31
+Title: TestD
+Author: Delphine
+Maintainer: Delphine
+Description: Test de code scilab pour lire les DESCRIPTION.
+Depends: testE
+License: Aucune
+Category: essai

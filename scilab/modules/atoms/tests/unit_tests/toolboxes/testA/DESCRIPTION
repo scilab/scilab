@@ -1,0 +1,10 @@
+Toolbox: testA
+Version: 1.0.0
+Date: 2008-03-31
+Title: TestA
+Author: Delphine
+Maintainer: Delphine
+Description: Test de code scilab pour lire les DESCRIPTION. Avec une ligne de description qui est plus longue que la longueur d'une ligne, pour tester les lignes multiples.
+Depends: testB, testC, testH
+License: Aucune
+Category: essai
