@@ -208,9 +208,17 @@ public class ColorMap {
 	 */
 	public int convertScilabToColorMapIndex(int scilabIndex) {
 		if (scilabIndex == BLACK_INDEX || scilabIndex == 0) {
+			// black color
 			return colormapSize;
 		} else if (scilabIndex == WHITE_INDEX) {
+			// white color
 			return colormapSize + 1;
+		} else if (scilabIndex < WHITE_INDEX) {
+			// first index
+			return 0;
+		} else if (scilabIndex >= colormapSize) {
+			// last index
+			return colormapSize - 1;
 		} else {
 			return scilabIndex - 1;
 		}
