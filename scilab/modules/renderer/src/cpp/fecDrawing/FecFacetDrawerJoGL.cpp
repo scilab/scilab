@@ -41,12 +41,6 @@ void FecFacetDrawerJoGL::drawFec(const double xCoords[], const double yCoords[],
   sciFec * ppFec = pFEC_FEATURE(pFec);
   initializeDrawing();
 
-  if (ppFec->colminmax[0] == 0 && ppFec->colminmax[1] == 0)
-  {
-    ppFec->colminmax[0] = 1;
-    ppFec->colminmax[1] = sciGetNumColors(sciGetParentFigure(pFec));
-  }
-
   getFacetDrawerJavaMapper()->setFacetParameters(ppFec->zminmax[0], ppFec->zminmax[1],
                                                  ppFec->colminmax[0], ppFec->colminmax[1],
                                                  ppFec->colout[0], ppFec->colout[1]);

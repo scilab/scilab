@@ -28,6 +28,8 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  */
 public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 
+	private static final int TRIANGLE_NB_VERTEX = 3;
+	
 	private double zMin;
 	private double zMax;
 	private int colOutLow;
@@ -53,9 +55,22 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 	 */
 	public void setFacetParameters(double zMin, double zMax, int colMin,
 								   int colMax, int colOutLow, int colOutUp) {
+		
+	
+		if (colMin == 0 && colMax == 0) {
+			// default colmin and colmax
+			// use the whole colormap
+			this.colMin = 0;
+			this.colMax = getColorMap().getSize() - 1;
+		} else {
+			// colMin and colMax are scilab indices
+			this.colMin = getColorMap().convertScilabToColorMapIndex(colMin);
+			this.colMax = getColorMap().convertScilabToColorMapIndex(colMax);
+		}
+		
 		if (colOutLow <= -1) {
 			// when outside of colormap use the lowest value in the colormap
-			this.colOutLow = getColorMap().convertScilabToColorMapIndex(colMin);
+			this.colOutLow = this.colMin;
 		} else if (colOutLow == 0) {
 			// don't display polygon
 			this.colOutLow = -1;
@@ -66,7 +81,7 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 		
 		if (colOutUp <= -1) {
 			// when outside of colormap use the highest value in the colormap
-			this.colOutUp = getColorMap().convertScilabToColorMapIndex(colMax);
+			this.colOutUp = this.colMax;
 		} else if (colOutUp == 0) {
 			// don't display polygon
 			this.colOutUp = -1;
@@ -75,9 +90,7 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 			this.colOutUp = getColorMap().convertScilabToColorMapIndex(colOutUp);
 		}
 		
-		// colMin and colMax are scilab indices
-		this.colMin = getColorMap().convertScilabToColorMapIndex(colMin);
-		this.colMax = getColorMap().convertScilabToColorMapIndex(colMax);
+		
 		
 		
 		this.zMin = zMin;
@@ -115,12 +128,12 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 		if (zMin == zMax) {
 			zMin = minMax[0];
 			zMax = minMax[1];
-		}		
+		}
 		
 		GL gl = getGL();
 
-		Vector3D[] triangleCoords = new Vector3D[3];
-		double[] triangleColors = new double[3];
+		Vector3D[] triangleCoords = new Vector3D[TRIANGLE_NB_VERTEX];
+		double[] triangleColors = new double[TRIANGLE_NB_VERTEX];
 		
 		GLTools.pushPolygonsBack(gl);
 	
@@ -208,7 +221,7 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 	 * @param td TriangleDecomposition
 	 * @param gl GL
 	 */
-	private void paintFec (TriangleDecomposition td, GL gl) {
+	private void paintFec(TriangleDecomposition td, GL gl) {
 				
 		for (int j = 0; j < td.getNbPolygons(); j++) {
 			int color = td.getPolygonColor(j);
