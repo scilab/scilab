@@ -175,14 +175,20 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 /*--------------------------------------------------------------------------*/
 BOOL ExistModelicac(void)
 {
+	// @ TO DO remove this
+	// used in getversion (compatibility)
+	#define FORMAT_SCIBIN_PATH "%s/bin/%s"
 	BOOL bOK=FALSE;
 	char *SCIPATH = (char*)getSCIpath();
 	char *fullpathModelicac=NULL;
+	int length_path = strlen(SCIPATH) + 
+					strlen(ModelicacName) + 
+					strlen(FORMAT_SCIBIN_PATH) + 1 ;
 	
-	fullpathModelicac=(char*)MALLOC((strlen(SCIPATH)+strlen(ModelicacName)+1)*sizeof(char));
-	sprintf(fullpathModelicac,"%s%s",SCIPATH,ModelicacName);
+	fullpathModelicac=(char*)MALLOC((length_path)*sizeof(char));
+	sprintf(fullpathModelicac,FORMAT_SCIBIN_PATH,SCIPATH,ModelicacName);
 
-	bOK=FileExist(fullpathModelicac);
+	bOK = FileExist(fullpathModelicac);
 	if (fullpathModelicac) FREE(fullpathModelicac);
 	if (SCIPATH) FREE(SCIPATH);
 	return bOK;

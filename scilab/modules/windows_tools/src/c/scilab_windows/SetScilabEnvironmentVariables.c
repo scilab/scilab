@@ -27,6 +27,7 @@ static BOOL Set_Shell(void);
 static BOOL Set_SCI_PATH(char *DefaultPath);
 static BOOL Set_HOME_PATH(char *DefaultPath);
 static BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void);
+static BOOL Add_SCIBIN_PATH(char *DefaultPath);
 /*--------------------------------------------------------------------------*/
 /**
 * Les variables d'environnements SCI, and some others
@@ -64,6 +65,7 @@ void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 	{
 		Set_SCI_PATH(DefaultSCIPATH);
 		Set_HOME_PATH(DefaultSCIPATH);
+		Add_SCIBIN_PATH(DefaultSCIPATH);
 		Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB();
 	}
 	else
@@ -225,7 +227,7 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 	#ifdef _MSC_VER
 		putenv ("COMPILER=VC++");
 	#endif
-	
+
 	/* WIN32 variable Environment */
     #ifdef _WIN32
 		putenv ("WIN32=OK");
@@ -282,6 +284,45 @@ BOOL Set_Shell(void)
 	}
 	
 	if (WINDIRPATH){ FREE(WINDIRPATH); WINDIRPATH=NULL; }
+	return bOK;
+}
+/*--------------------------------------------------------------------------*/
+BOOL Add_SCIBIN_PATH(char *DefaultPath)
+{
+	#define FORMAT_NEW_PATH_ENV "%s\\bin;%s"
+	BOOL bOK = FALSE;
+	char *GetPATH = NULL;
+	char *newPATH = NULL;
+	int length_newPATH = 0;
+	char ShortPath[PATH_MAX+1];
+	char *CopyOfDefaultPath = NULL;
+	CopyOfDefaultPath = MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
+	if (CopyOfDefaultPath)
+	{
+		/* to be sure that it's short windows format */
+		/* c:\progra~1\scilab-5.0 */
+		slashToAntislash(DefaultPath,CopyOfDefaultPath);
+		GetShortPathName(CopyOfDefaultPath,ShortPath,PATH_MAX);
+
+		GetPATH = getenv("PATH");
+		length_newPATH = (int)( strlen(GetPATH) + 
+					strlen(FORMAT_NEW_PATH_ENV) +
+					strlen(ShortPath) ) + 1 ;
+
+		newPATH = (char*)MALLOC(sizeof(char)*length_newPATH);
+		if (newPATH)
+		{
+			sprintf(newPATH,FORMAT_NEW_PATH_ENV,ShortPath,GetPATH);
+			if ( !_putenv (newPATH))
+			{
+				bOK = TRUE;
+			}
+			FREE(newPATH);
+			newPATH = NULL;
+		}
+		FREE(CopyOfDefaultPath);
+		CopyOfDefaultPath = NULL;
+	}
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/

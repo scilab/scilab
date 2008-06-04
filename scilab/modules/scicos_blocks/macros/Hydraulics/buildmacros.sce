@@ -25,14 +25,17 @@ end
 //------------------------------------
 genlib('Hydraulicslib','SCI/modules/scicos_blocks/macros/Hydraulics',%f,%t);
 //------------------------------------
-if MSDOS then
-  unix("dir /B *.mo >models");
-else
-  unix("ls *.mo >models");
-end
 if with_modelica_compiler() then 
-  models=['Bache.mo';'PerteDP.mo';'PortPHQ1.mo';'PortPHQ2.mo ';
-          'Puits.mo';'Source.mo';'ThermoCarre.mo';'VanneReglante.mo'];
+
+  // create models file in current directory
+  models = findfiles(pwd(),'*.mo');
+  fd = mopen('models','wt');
+  for i=1:size(models,'*')
+    mputstr(models(i) + ascii(13),fd);
+  end
+  mclose(fd);
+    
+  // generate moc files
   exec("../../src/scripts/genmoc.sce");
 end;
 //------------------------------------

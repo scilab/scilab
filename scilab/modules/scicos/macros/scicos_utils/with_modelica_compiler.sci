@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) INRIA - 2008 - Allan CORNET
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,18 +20,25 @@
 // See the file ./license.txt
 //
 
-function r=with_modelica_compiler()
+function r = with_modelica_compiler()
   // check if modelica_compiler exists
   if MSDOS then
-    path = pathconvert(SCI+'/bin/modelicac.exe',%f,%t);
-    r = ( fileinfo(path) <> []);
+    // Add SCI/bin to current PATH env
+    // not defined by default
+    PATH_env = getenv('PATH');
+    setenv('PATH',strsubst(getshortpathname(SCI+'/bin'),'/','\') + pathsep() + PATH_env);
+    compilername = 'modelicac.exe';
   else
-    path = pathconvert(SCI+'/bin/modelicac',%f,%t);
-    r = ( fileinfo(path) <> []);
-    if (r == []) then
-      path = pathconvert('/usr/bin/modelicac',%f,%t);
-      r = ( fileinfo(path) <> []);
-    end
+    compilername = 'modelicac';
   end
-  
+  try
+    [rep,ierr,err] = unix_g(compilername+' --help');
+    if (ierr == 0) then 
+      r = %t;
+    else
+      r = %f;
+    end
+  catch
+    r = %f;
+  end
 endfunction

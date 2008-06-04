@@ -24,12 +24,10 @@
 #define DEFAULT_HISTORY_FILE ".history.scilab"
 #endif
 
-/* Where is the modelicac compiler 
- * @TODO : update for Linux ... it is a wrong path */
 #ifdef _MSC_VER
-#define ModelicacName "/bin/modelicac.exe"
+#define ModelicacName "modelicac.exe"
 #else
-#define ModelicacName "/modules/scicos/bin/modelicac"
+#define ModelicacName "modelicac"
 #endif
 
 /* Where the module list file is */

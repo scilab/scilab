@@ -25,18 +25,22 @@ end
 //------------------------------------
 genlib('Electricallib','SCI/modules/scicos_blocks/macros/Electrical',%f,%t);
 //------------------------------------
-if MSDOS then
-  unix("dir /B *.mo >models");
-else
-  unix("ls *.mo >models");
-end
 if with_modelica_compiler() then 
-  models=['Capacitor.mo'; 'NPN.mo';'PNP.mo';   'Resistor.mo';  'VsourceAC.mo';
-          'ConstantVoltage.mo';  'ExternFunction.mo'; 'OutPort.mo'; 'VsourceDC.mo';
-          'Ground.mo'; 'OutPutPort.mo';   'VVsourceAC.mo'; 'CurrentSensor.mo';
-          'Inductor.mo'; 'Pin.mo'; 'VariableResistor.mo'; 'Diode.mo'; 'InPutPort.mo';
-	  'PotentialSensor.mo';'VoltageSensor.mo';'SineVoltage.mo';
-	  'Switch.mo';'OpAmp.mo';'NMOS.mo';'PMOS.mo';'CVS.mo';'CCS.mo';'IdealTransformer.mo';'Gyrator.mo'];
+
+  // create models file in current directory
+  models = findfiles(pwd(),'*.mo');
+  // Exception, we don't build 'Maths.mo' :(
+  // TO DO : modify this (Simoné or Laurent) move files
+  models = strsubst(models,'Maths.mo','');
+  models = [models(1:find(models == '')-1) ; models(find(models == '')+1:size(models,'*'))];
+  
+  fd = mopen('models','wt');
+  for i=1:size(models,'*')
+    mputstr(models(i) + ascii(13),fd);
+  end
+  mclose(fd);
+    
+  // generate moc files
   exec("../../src/scripts/genmoc.sce");
 end;
 //------------------------------------

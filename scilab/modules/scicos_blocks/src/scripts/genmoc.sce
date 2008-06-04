@@ -27,19 +27,22 @@ end
 
 if ~with_modelica_compiler() then quit,end
 models=stripblanks(models);
+
+// modelicac is defined in PATH environment variable
+
 if MSDOS then
-  compilerpath=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)
+  compilername = 'modelicac.exe';
 else
-  compilerpath=pathconvert(SCI+'/bin/modelicac',%f,%t)
+  compilername = 'modelicac';
 end
 
 for k=1:size(models,1)
   M=models(k)
-  n=newest(M,M+'c',compilerpath)
+  n=newest(M,M+'c',compilername)
   if n<>2 then
     write(%io(2),'Processing file '+M)
     if genmoc_verbose then 
-      ierr=unix(compilerpath+' -c '+M+' -o '+M+'c')
+      ierr=unix(compilername+' -c '+M+' -o '+M+'c')
       if ierr<>0 then 
 	mprintf('------------------------- '+M+..
 		' Compilation error detected')
@@ -47,7 +50,7 @@ for k=1:size(models,1)
       end
     else
       // error will stop unix_s in case of error
-      unix_s(compilerpath+' -c '+M+' -o '+M+'c')
+      unix_s(compilername+' -c '+M+' -o '+M+'c')
     end
   end
 end
