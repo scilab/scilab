@@ -20,7 +20,7 @@ static BOOL convertSlash(char *path_in,char *path_out,BOOL slashToAntislash);
 /*--------------------------------------------------------------------------*/
 BOOL slashToAntislash(char *pathunix,char *pathwindows)
 {
-	return convertSlash(pathwindows,pathunix,TRUE);
+	return convertSlash(pathunix,pathwindows,TRUE);
 }
 /*--------------------------------------------------------------------------*/
 BOOL AntislashToSlash(char *pathwindows,char *pathunix)
