@@ -276,8 +276,6 @@ function %h_p(h)
             u=h.user_data
             t=[t;
                 "children: "+fmtchildren(h.children)
-                
-                "figure_style = "+sci2exp(h.figure_style,0)
                 "figure_position = "+sci2exp(h.figure_position,0)
                 "figure_size = "+sci2exp(h.figure_size,0)
                 "axes_size = "+sci2exp(h.axes_size,0)
