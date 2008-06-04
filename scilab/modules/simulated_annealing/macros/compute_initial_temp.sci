@@ -18,7 +18,7 @@ end
 [type_accept,err] = get_param(param,'type_accept','sa');
 
 if ~isdef('cit_f','local') then
-  error(gettext("compute_initial_temp: cit_f is mandatory"));
+  error(sprintf(gettext("%s: cit_f is mandatory"),"compute_initial_temp"));
 else
   if typeof(cit_f)=='list' then
     deff('y=_cit_f(x)','y=cit_f(1)(x, cit_f(2:$))');
@@ -58,6 +58,6 @@ if type_accept=='sa' then
 elseif type_accept=='vfsa' then
   T_init = abs(f_sum / log(1/proba_init - 1));
 else
-  error(gettext("compute_initial_temp: error - wrong accept type"));
+  error(sprintf(gettext("%s: error - wrong accept type"),"compute_initial_temp"));
 end
 endfunction

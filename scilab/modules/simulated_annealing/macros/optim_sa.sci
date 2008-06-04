@@ -117,7 +117,7 @@ for i=1:ItExt
   var_list  = [var_list step_var];
   
   if (Log) then
-    printf(gettext("optim_sa: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = %f\n"), i, ItExt, T, step_mean, step_var, f_best);
+    printf(gettext("%s: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = %f\n"), "optim_sa", i, ItExt, T, step_mean, step_var, f_best);
   end
 
   T = temp_law(T, step_mean, step_var, i, max(size(x_current)), param);
