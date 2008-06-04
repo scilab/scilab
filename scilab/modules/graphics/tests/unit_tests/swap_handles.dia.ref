@@ -1,7 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- TEST WITH GRAPHIC -->
-// Copyright INRIA 2006
-// Author Jean-Baptiste Silvy
-// basic test for routine swap_handles
 // first test : swap two brothers
 a1 = gca() ;
 xrect(0.1,0.1,0.1,0.1);
@@ -24,7 +27,7 @@ plot3d ;
 
 Demo of plot3d()
 ========================================
-t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
 
 a1 = gca() ;
 e1 = gce() ;
@@ -33,7 +36,7 @@ plot2d ;
 
 Demo of plot2d()
 ========================================
-x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
+x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2], axesflag=1);
 
 e2 = gce() ;
 a2 = gca() ;
@@ -46,7 +49,7 @@ plot3d ;
 
 Demo of plot3d()
 ========================================
-t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
 
 f1 = gcf() ;
 a1 = gca() ;
@@ -55,7 +58,7 @@ plot2d ;
 
 Demo of plot2d()
 ========================================
-x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);
+x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2], axesflag=1);
 
 f2 = gcf() ;
 a2 = gca() ;

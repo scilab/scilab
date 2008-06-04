@@ -1,0 +1,28 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// non regression bug for graphic memory leak
+plot3d;
+
+Demo of plot3d()
+========================================
+x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
+
+a = gca();
+beginFreeMemory = getmemory();
+// rotate for a long time and find if there are memory leaks
+for i = 1:3600,
+  a.rotation_angles(2) = i;
+end;
+endFreeMemory = getmemory();
+// not much should have been allocated.
+memoryIncrease = beginFreeMemory - endFreeMemory
+ memoryIncrease  =
+ 
+    7536.  
+// let say that the rotation should not use more than 10 Meg
+if (memoryIncrease > 10000) then pause; end

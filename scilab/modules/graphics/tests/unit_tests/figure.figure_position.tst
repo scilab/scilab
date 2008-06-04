@@ -1,0 +1,20 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechalinria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// Create a default figure
+my_figure = scf();
+clf(my_figure,"reset");
+
+// Get default value
+my_df_figure_position = my_figure.figure_position;
+my_figure.figure_position = my_df_figure_position + 100;
+if or( my_figure.figure_position <> (my_df_figure_position + 100) ) then pause; end
+
+// Delete
+delete(my_figure);
