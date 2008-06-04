@@ -18,7 +18,7 @@ function y=median(x,orient)
 
 [lhs,rhs]=argn(0)
 if argn(2)<2 then
-  orient=0
+  orient=0;
 else
   if orient=='r' then 
     orient=1
@@ -57,11 +57,11 @@ else
   n=xsize(orient)
   for k=1:N
     for i=1:M
-      ytemp=gsort(x(i+(0:n-1)*M+(k-1)*P),'r','i');
+      ytemp=gsort(x(i+(0:n-1)*M+(k-1)*P),'r','i'); ytemp = ytemp(:);
       if 2*int(n/2)==n then
-	y($+1) = (ytemp(n/2,:)+ytemp(n/2+1,:))/2;
+	    y($+1) = (ytemp(n/2,:)+ytemp(n/2+1,:))/2;
       else 
-	y($+1) = ytemp((n+1)/2,:);
+	    y($+1) = ytemp((n+1)/2,:);
       end
     end
   end
