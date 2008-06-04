@@ -70,7 +70,7 @@ xset('fpf',' ');
 contour(x,y,Z', 10);
 _axes = get("current_axes");
 _axes.data_bounds = [Min(1) Max(1) Min(2) Max(2)];
-xtitle('Genetic Algorithm','x1','x2');
+xtitle('Genetic Algorithm - real variable','x1','x2');
 
 drawnow;
 
@@ -122,7 +122,7 @@ if (size(pop_opt(1)',2)==2) then
   contour(x,y,Z', 10);
   _axes = get("current_axes");
   _axes.data_bounds = [Min(1) Max(1) Min(2) Max(2)];
-  xtitle('Genetic Algorithm - Binary','x1','x2');
+  xtitle('Genetic Algorithm - binary variables','x1','x2');
   
   printf('plotting init population ...\n');
   for i=1:length(pop_init)
