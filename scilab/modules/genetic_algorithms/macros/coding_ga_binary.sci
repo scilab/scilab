@@ -44,6 +44,6 @@ elseif (direction=='decode') then
     end
   end
 else
-  error(gettext("coding_ga_binary: wrong direction"));
+  error(sprintf(gettext("%s: wrong direction"),"coding_ga_binary"));
 end
 endfunction

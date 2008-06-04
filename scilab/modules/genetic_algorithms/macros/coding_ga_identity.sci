@@ -16,6 +16,6 @@ if (direction=='code') then
 elseif (direction=='decode') then
   pop_out = pop_in;
 else
-  error(gettext("coding_ga_identity: wrong direction"));
+  error(sprintf(gettext("%s: wrong direction"),"coding_ga_identity"));
 end
 endfunction

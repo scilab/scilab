@@ -44,7 +44,7 @@ end
 
 // Initialization of the population
 if (Log) then
-  printf(gettext("optim_nsga2: Initialization of the population\n"));
+  printf(gettext("%s: Initialization of the population\n"),"optim_nsga2");
 end
 
 Pop = init_func(pop_size,param);
@@ -98,7 +98,7 @@ end
 // The genetic algorithm
 for It=1:nb_generation
   if (Log) then
-    printf(gettext("optim_nsga2: iteration %d / %d\n"), It, nb_generation);
+    printf(gettext("%s: iteration %d / %d\n"), "optim_nsga2", It, nb_generation);
   end
   //
   // Selection

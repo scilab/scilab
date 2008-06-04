@@ -46,7 +46,7 @@ end
 
 // Initialization of the population
 if (Log) then
-  printf(gettext("optim_moga: Initialization of the population\n"));
+  printf(gettext("%s: Initialization of the population\n"),"optim_moga");
 end
 
 Pop = list();
@@ -85,7 +85,7 @@ end
 // The genetic algorithm
 for i=1:nb_generation
   if (Log) then
-    printf(gettext("optim_moga: iteration %d / %d"), i, nb_generation);
+    printf(gettext("%s: iteration %d / %d"), "optim_moga", i, nb_generation);
   end
   //
   // Selection

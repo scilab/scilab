@@ -25,7 +25,7 @@ end
 [pressure,err]       = get_param(param,'pressure',0.05);
 
 if ~isdef('ga_f','local') then
-  error(gettext('optim_ga: ga_f is mandatory'));
+  error(sprintf(gettext("%s: ga_f is mandatory"),"optim_ga"));
 else
   if typeof(ga_f)=='list' then
     deff('y=_ga_f(x)','y=ga_f(1)(x, ga_f(2:$))');
@@ -52,7 +52,7 @@ end
 
 // Initialization of the population
 if (Log) then
-  printf(gettext("optim_ga: Initialization of the population\n"));
+  printf(gettext("%s: Initialization of the population\n"),"optim_ga");
 end
 
 Pop = list();
@@ -84,7 +84,7 @@ Efficiency = (1 - pressure) * (FObj_Pop_Max - FObj_Pop)/max([FObj_Pop_Max - FObj
 // The genetic algorithm
 for i=1:nb_generation
   if (Log) then
-    printf(gettext("optim_ga: iteration %d / %d"), i, nb_generation);
+    printf(gettext("%s: iteration %d / %d"), "optim_ga", i, nb_generation);
   end
   //
   // Selection

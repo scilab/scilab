@@ -13,7 +13,7 @@ function [F_out, X_out, Ind_out] = pareto_filter(F_in, X_in)
 [nargout,nargin] = argn();
 
 if ~isdef('F_in','local') then
-  error(gettext("pareto_filter: F_in is mandatory"));
+  error(sprintf(gettext("%s: F_in is mandatory"),"pareto_filter"));
 end
 
 x_defined   = (nargout>=2);
