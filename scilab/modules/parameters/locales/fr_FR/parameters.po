@@ -17,31 +17,23 @@ msgstr ""
 "Revision-Date: 2008-06-02 10:00+0100\n"
 
 # File: macros/is_param.sci, line: 21
-# File: macros/get_param.sci, line: 36
-msgid "get_param: not a plist"
-msgstr ""
-#
 # File: macros/add_param.sci, line: 21
-msgid "add_param: not a plist"
+# File: macros/set_param.sci, line: 26
+# File: macros/list_param.sci, line: 21
+# File: macros/get_param.sci, line: 36
+# File: macros/remove_param.sci, line: 40
+#, c-format
+msgid "%s: not a plist"
 msgstr ""
+
 #
 # File: macros/set_param.sci, line: 20
-msgid "set_param: parameter doesn''t exist"
+#, c-format
+msgid "%s: parameter doesn''t exist"
 msgstr ""
-#
-# File: macros/set_param.sci, line: 26
-msgid "set_param: not a plist"
-msgstr ""
-#
-# File: macros/list_param.sci, line: 21
-msgid "list_param: not a plist"
-msgstr ""
+
 #
 # File: macros/get_param.sci, line: 29
 #, c-format
-msgid "get_param: parameter %s not defined"
-msgstr ""
-#
-# File: macros/remove_param.sci, line: 40
-msgid "remove_param: not a plist"
+msgid "%s: parameter %s not defined"
 msgstr ""
