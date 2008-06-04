@@ -464,24 +464,14 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/sciGUI/local_extra/combobox-2.3/README.txt \
 @TCLTK_TRUE@tcl/sciGUI/local_extra/combobox-2.3/combobox.html \
 @TCLTK_TRUE@tcl/sciGUI/local_extra/combobox-2.3/example.tcl \
-@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/gpl.txt \
-@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/license.txt \
-@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/help_2htm.tcl \
-@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/help.tcl \
-@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/help_tbl.tcl \
-@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/readme.txt \
-@TCLTK_TRUE@tcl/sciGUI/local_extra/HelpSystem-1.5/help_chk.tcl \
 @TCLTK_TRUE@tcl/sciGUI/local_extra/balloonhelp.tcl \
 @TCLTK_TRUE@tcl/sciGUI/local_extra/rnotebook.tcl \
 @TCLTK_TRUE@tcl/sciGUI/local_extra/spinbutton.tcl \
 @TCLTK_TRUE@tcl/sciGUI/license.txt \
-@TCLTK_TRUE@tcl/sciGUI/sciBar.tcl \
 @TCLTK_TRUE@tcl/sciGUI/sciGUI.tcl \
 @TCLTK_TRUE@tcl/sciGUI/sciConfig.tcl \
 @TCLTK_TRUE@tcl/sciGUI/sciBrowseVar.tcl \
-@TCLTK_TRUE@tcl/sciGUI/sciDemoPlay.tcl \
 @TCLTK_TRUE@tcl/sciGUI/sciEditVar.tcl \
-@TCLTK_TRUE@tcl/sciGUI/sciBrowseHelp.tcl \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/demo/select.tcl \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/demo/tree.tcl \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/demo/basic.tcl \
@@ -609,7 +599,6 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/BWidget-1.8.0/labelframe.tcl \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/README.txt \
 @TCLTK_TRUE@tcl/BWidget-1.8.0/titleframe.tcl \
-@TCLTK_TRUE@tcl/html_library.tcl \
 @TCLTK_TRUE@tcl/TK_Scilab.tcl
 
 
