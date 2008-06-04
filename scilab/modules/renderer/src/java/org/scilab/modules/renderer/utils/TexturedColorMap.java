@@ -211,8 +211,7 @@ public class TexturedColorMap extends ColorMap {
 		gl.glColor3dv(getColor((int) colorIndex), 0);
 		
 		// use texture
-		
-		if (colorIndex >= getSize()) {
+		if (colorIndex > getSize() - COLOR_OFFSET) {
 			// the index is whitin the two last colors (black and white)
 			// However in the texture, they are stored in the two first colors 
 			gl.glTexCoord1d((getSize() + 1 - colorIndex + COLOR_OFFSET) / (getSize() + 2));

@@ -125,6 +125,14 @@ void DrawableFigure::drawInContext( void )
       endDrawing() ;
     }
   }
+  else
+  {
+    // clear figure, just draw background
+    initializeDrawing() ;
+    drawBackground();
+    endDrawing() ;
+
+  }
   //clock_gettime(0, &t_t3);
 
   //double timeSpent = (double) (t_toc.tv_sec - t_tic.tv_sec) + (double) (t_toc.tv_nsec - t_tic.tv_nsec) * 1.0E-9;
