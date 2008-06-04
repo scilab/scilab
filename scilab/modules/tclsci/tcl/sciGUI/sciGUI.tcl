@@ -34,8 +34,6 @@ proc sciGUILoadExtra { } {
 	global tcl_platform
 	global auto_path
 	set ff [file join $sciGUITable(internal,path) "tcl" "sciGUI" "local_extra"]
-	# The html reader
-	source [file join $ff "HelpSystem-1.5" "help.tcl"]
 	# Balloonn help
 	source [file join $ff "balloonhelp.tcl"]
 	# Notebook

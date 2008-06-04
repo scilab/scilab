@@ -101,24 +101,14 @@ tcl/sciGUI/local_extra/combobox-2.3/combobox.tcl \
 tcl/sciGUI/local_extra/combobox-2.3/README.txt \
 tcl/sciGUI/local_extra/combobox-2.3/combobox.html \
 tcl/sciGUI/local_extra/combobox-2.3/example.tcl \
-tcl/sciGUI/local_extra/HelpSystem-1.5/gpl.txt \
-tcl/sciGUI/local_extra/HelpSystem-1.5/license.txt \
-tcl/sciGUI/local_extra/HelpSystem-1.5/help_2htm.tcl \
-tcl/sciGUI/local_extra/HelpSystem-1.5/help.tcl \
-tcl/sciGUI/local_extra/HelpSystem-1.5/help_tbl.tcl \
-tcl/sciGUI/local_extra/HelpSystem-1.5/readme.txt \
-tcl/sciGUI/local_extra/HelpSystem-1.5/help_chk.tcl \
 tcl/sciGUI/local_extra/balloonhelp.tcl \
 tcl/sciGUI/local_extra/rnotebook.tcl \
 tcl/sciGUI/local_extra/spinbutton.tcl \
 tcl/sciGUI/license.txt \
-tcl/sciGUI/sciBar.tcl \
 tcl/sciGUI/sciGUI.tcl \
 tcl/sciGUI/sciConfig.tcl \
 tcl/sciGUI/sciBrowseVar.tcl \
-tcl/sciGUI/sciDemoPlay.tcl \
 tcl/sciGUI/sciEditVar.tcl \
-tcl/sciGUI/sciBrowseHelp.tcl \
 tcl/BWidget-1.8.0/demo/select.tcl \
 tcl/BWidget-1.8.0/demo/tree.tcl \
 tcl/BWidget-1.8.0/demo/basic.tcl \
@@ -246,7 +236,6 @@ tcl/BWidget-1.8.0/progressbar.tcl \
 tcl/BWidget-1.8.0/labelframe.tcl \
 tcl/BWidget-1.8.0/README.txt \
 tcl/BWidget-1.8.0/titleframe.tcl \
-tcl/html_library.tcl \
 tcl/TK_Scilab.tcl
 
 #### tclsci : gateway declaration ####

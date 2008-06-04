@@ -23,5 +23,8 @@ puts " Error: $m";
 # the root object is the first tk object
 set root .;
 ############################################
-wm withdraw .;
+wm withdraw $root;
+wm title $root "Tk Scilab root Window";
+pack [ label .l ];
+destroy .l;
 ############################################
