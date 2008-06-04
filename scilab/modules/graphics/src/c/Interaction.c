@@ -705,7 +705,7 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
     {
       double pos[3];
       sciGetTextPos(pobj, pos) ;
-      sciSetTextPos(pobj, pos[0] + x, pos[1] + y, pos[2]) ;
+      sciSetTextPos(pobj, pos[0] + x, pos[1] + y, pos[2] + z) ;
       pLABEL_FEATURE(pobj)->auto_position = FALSE;
       break;
     }

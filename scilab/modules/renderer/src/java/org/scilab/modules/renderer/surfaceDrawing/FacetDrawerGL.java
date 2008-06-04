@@ -83,7 +83,7 @@ public abstract class FacetDrawerGL {
 	 * @param hiddenColor color index
 	 */
 	public void setHiddenColor(int hiddenColor) {
-		this.hiddenColor = hiddenColor;
+		this.hiddenColor = getColorMap().convertScilabToColorMapIndex(hiddenColor);
 	}
 	
 	/**

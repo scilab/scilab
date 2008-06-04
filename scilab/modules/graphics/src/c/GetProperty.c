@@ -3631,16 +3631,15 @@ int sciGetHiddenColor( sciPointObj * pObj )
   switch( sciGetEntityType( pObj ) )
   {
   case SCI_SUBWIN:
-    colorIndex = pSUBWIN_FEATURE(pObj)->hiddencolor + 1 ;
+    colorIndex = pSUBWIN_FEATURE(pObj)->hiddencolor;
     break;
   case SCI_SURFACE:
-    colorIndex = pSURFACE_FEATURE(pObj)->hiddencolor + 1 ;
+    colorIndex = pSURFACE_FEATURE(pObj)->hiddencolor;
     break;
   default:
     printSetGetErrorMessage("hidden_color");
     return -10 ;
   }
-  colorIndex = sciGetGoodIndex(pObj, colorIndex);
   return colorIndex ;
 }
 /*----------------------------------------------------------------------------------*/

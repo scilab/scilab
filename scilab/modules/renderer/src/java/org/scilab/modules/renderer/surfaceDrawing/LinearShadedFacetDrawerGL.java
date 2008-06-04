@@ -93,8 +93,19 @@ public class LinearShadedFacetDrawerGL extends FacetDrawerGL {
 		
 		//Paint the polygon given with the table of color
 		
+		// if all the colors within the facet are 0, the don't draw it
+		boolean paintFacet = false;
+		
 		for (int i = 0; i < colors.length; i++) {
+			if (colors[i] > 0) {
+				paintFacet = true;
+				}
 			colors[i] = getColorMap().convertScilabToColorMapIndex(colors[i]);
+		}
+		
+		if (!paintFacet) {
+			// all the colors are 0
+			return;
 		}
 	
 		if (vertices.length == TRIANGLE_NB_EDGE) {

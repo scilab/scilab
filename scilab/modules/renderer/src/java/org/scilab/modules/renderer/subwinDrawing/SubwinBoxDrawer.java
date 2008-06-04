@@ -107,7 +107,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 	 * @param colorIndex colormap index of the color.
 	 */
 	public void setHiddenAxisColor(int colorIndex) {
-		this.hiddenAxisColor = colorIndex;
+		this.hiddenAxisColor = getColorMap().convertScilabToColorMapIndex(colorIndex);
 	}
 	
 	/**
