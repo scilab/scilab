@@ -31,8 +31,7 @@ if with_modelica_compiler() then
   models = findfiles(pwd(),'*.mo');
   // Exception, we don't build 'Maths.mo' :(
   // TO DO : modify this (Simoné or Laurent) move files
-  models = strsubst(models,'Maths.mo','');
-  models = [models(1:find(models == '')-1) ; models(find(models == '')+1:size(models,'*'))];
+  models = [models(1:find(models == 'Maths.mo')-1) ; models(find(models == 'Maths.mo')+1:size(models,'*'))];
   
   fd = mopen('models','wt');
   for i=1:size(models,'*')
