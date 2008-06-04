@@ -17,20 +17,25 @@ msgstr ""
 "Revision-Date: 2008-06-02 10:01+0100\n"
 
 # File: macros/compute_initial_temp.sci, line: 21
-msgid "compute_initial_temp: cit_f is mandatory"
+#, c-format
+msgid "%s: cit_f is mandatory"
 msgstr ""
+
 #
 # File: macros/compute_initial_temp.sci, line: 61
-msgid "compute_initial_temp: error - wrong accept type"
+#, c-format
+msgid "%s: error - wrong accept type"
 msgstr ""
+
 #
 # File: macros/optim_sa.sci, line: 58
 msgid "optim_sa: sa_f is mandatory"
 msgstr ""
+
 #
 # File: macros/optim_sa.sci, line: 120
 #, c-format
 msgid ""
-"optim_sa: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f "
-"f_best = %f\n"
+"%s: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = %"
+"f\n"
 msgstr ""
