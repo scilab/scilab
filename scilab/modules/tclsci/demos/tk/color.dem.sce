@@ -5,6 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+tkpath = get_absolute_file_path("color.dem.sce");
+
 RGB=[];
 RGB1=[0 0 0];
 TCL_SetVar('rgb',tkpath+'rgb.txt');

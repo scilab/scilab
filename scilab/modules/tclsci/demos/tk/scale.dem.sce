@@ -5,11 +5,14 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-TCL_EvalFile(tkpath+'puzzle')
+tkpath = get_absolute_file_path("scale.dem.sce");
+
+getf(tkpath+'demredraw.sci')
+
+xbasc();set figure_style new;plot3d();done=%t
+TCL_EvalFile(tkpath+'vscale')
 while %t //wait for toplevel to disapear
-  order=TCL_GetVar('order');
-  TCL_EvalStr('set h [winfo exists .puzzle]');
+  TCL_EvalStr('set h [winfo exists .vscale]');
   if TCL_GetVar("h")=='0' then break,end
-  sleep(1);
+  sleep(1)
 end
-disp(order)

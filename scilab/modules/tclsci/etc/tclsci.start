@@ -20,7 +20,7 @@ add_module_help_chapter('tclsci');
 // add demos
 path = get_absolute_file_path('tclsci.start');
 path = getshortpathname(path);
-pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/tk/tk.dem',%f,%f);
+pathdemos = pathconvert(part(path,1:(length(path)-5))+"/demos/tk/tcltk.dem.gateway.sce",%f,%f);
 add_demo('Tcl/Tk',pathdemos);
 clear path pathdemos;
 // ====================================================================
