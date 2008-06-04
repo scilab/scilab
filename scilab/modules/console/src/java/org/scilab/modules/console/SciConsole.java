@@ -29,6 +29,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 import javax.xml.parsers.ParserConfigurationException;
+import org.scilab.modules.localization.Messages;
 
 import org.xml.sax.SAXException;
 
@@ -482,7 +483,7 @@ public abstract class SciConsole extends JPanel {
 				config.getOutputViewStyledDocument().remove(0, config.getOutputViewStyledDocument().getLength());
 				config.getOutputView().append(txt);
 			} catch (BadLocationException e) {
-				System.out.println("Could not change the Console Font.");
+				System.out.println(Messages.gettext("Could not change the Console Font."));
 				return;
 			}
 			
@@ -543,7 +544,7 @@ public abstract class SciConsole extends JPanel {
 				config.getOutputViewStyledDocument().remove(0, config.getOutputViewStyledDocument().getLength());
 				config.getOutputView().append(txt);
 			} catch (BadLocationException e) {
-				System.out.println("Could not change the Console Foreground.");
+				System.out.println(Messages.gettext("Could not change the Console Foreground."));
 				return;
 			}
 			
