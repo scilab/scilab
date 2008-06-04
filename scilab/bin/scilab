@@ -20,6 +20,7 @@
 #    => will install Scilab into /my/dir/ and split files to
 #    /my/dir/bin/, /my/dir/share/scilab/, /my/dir/lib/scilab/
 #    /my/dir/include/scilab/
+#    Scilab official binary uses this arch
 # * ./configure; make install prefix=$(DESTDIR)/usr \
 #				   bindir=$(DESTDIR)/usr/bin \
 #				   datadir=$(DESTDIR)/usr/share/scilab ...
@@ -101,6 +102,7 @@ OLDPWD=`pwd`
 found=0
 progname="$0"
 curdir=`dirname "$progname"`
+PATH="$curdir:$PATH"
 
 progbase=`basename "$progname"`
 run_sci="$curdir/$SCILABBIN"
@@ -163,6 +165,8 @@ else
 		# dev env
 		SCILABBIN=$SCI/$SCILABBIN
 		DEVENV=1
+		# add modelica in the path
+		PATH="$PATH:$SCI/modules/scicos/"
 	else
 		echo "Cannot find $SCILABBIN ..."
 		exit 1
@@ -376,14 +380,15 @@ if test $SCIVERBOSE -ne 0; then
 	echo "SCI : $SCI"
 	echo "SCIBIN : $SCIBIN"
 	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
+	echo "PATH : $PATH"
 fi
 
 # Returns to the original path
-cd "$OLDPWD"
-if test "$DISPLAY" = ""; then
-  DISPLAY="unix:0.0"
-fi
-export DISPLAY
+#cd "$OLDPWD"
+#if test "$DISPLAY" = ""; then
+#  DISPLAY="unix:0.0"
+#fi
+#export DISPLAY
 
 #if test "$PVM_ROOT" = ""; then
 #  PVM_ROOT="@PVMROOTR@"
@@ -404,6 +409,7 @@ if test $SCIVERBOSE -ne 0; then
 	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
 fi
 export LD_LIBRARY_PATH
+export PATH
 
 do_scilex()
 {
@@ -430,36 +436,36 @@ do_scilex_now()
 
 do_help()
 {
-echo "Usage:"
-echo     "scilab <options>"
-echo     " "
-echo     "      Possible options are:"
-echo     "      -args Arguments : passes Arguments to Scilab, This Arguments can be retreived"
-echo     "                        by the Scilab function sciargs."
-echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
-echo     "      -d Display      : equivalent to display Display."
-echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
-echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
-echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
-echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
-echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
-echo     "                        -e and -f options are mutually exclusive."
-echo     "      -f File         : execute the scilab script given in File argument."
-echo     "                        -e and -f options are mutually exclusive."
-echo     "      -l Lang         : set the current language. Lang can be equal to fr or en."
-echo     "      -link <objects> : Is used under Unix/linux to produce a local executable code of Scilab"
-echo     "                        linked with the additional files given by the user in  <objects>."
-echo     "                        the -link option should be used without any other option."
-echo     "      -mem N          : set the initial stacksize, for use with -ns option."
-echo     "      -nb             : do not display the Scilab banner at starting time."
-echo     "      -ns             : do not execute scilab.start startup file."
-echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
-echo     "      -nw             : start Scilab without specialized Scilab Window."
-echo     "      -nwni           : start Scilab without user interaction (batch mode)."
-echo     "      -nogui          : start Scilab without user GUI (batch mode)."
-echo     "      -version        : print product version and exit."
-echo     "      --texmacs       : reserved for TeXMacs."
-exit
+	echo "Usage:"
+	echo     "scilab <options>"
+	echo     " "
+	echo     "      Possible options are:"
+	echo     "      -args Arguments : passes Arguments to Scilab, This Arguments can be retreived"
+	echo     "                        by the Scilab function sciargs."
+	echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
+	echo     "      -d Display      : equivalent to display Display."
+	echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
+	echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
+	echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+	echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+	echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
+	echo     "                        -e and -f options are mutually exclusive."
+	echo     "      -f File         : execute the scilab script given in File argument."
+	echo     "                        -e and -f options are mutually exclusive."
+	echo     "      -l Lang         : set the current language. Lang can be equal to fr or en."
+	echo     "      -link <objects> : Is used under Unix/linux to produce a local executable code of Scilab"
+	echo     "                        linked with the additional files given by the user in  <objects>."
+	echo     "                        the -link option should be used without any other option."
+	echo     "      -mem N          : set the initial stacksize, for use with -ns option."
+	echo     "      -nb             : do not display the Scilab banner at starting time."
+	echo     "      -ns             : do not execute scilab.start startup file."
+	echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
+	echo     "      -nw             : start Scilab without specialized Scilab Window."
+	echo     "      -nwni           : start Scilab without user interaction (batch mode)."
+	echo     "      -nogui          : start Scilab without user GUI (batch mode)."
+	echo     "      -version        : print product version and exit."
+	echo     "      --texmacs       : reserved for TeXMacs."
+	exit
 }
 
 do_compile()
