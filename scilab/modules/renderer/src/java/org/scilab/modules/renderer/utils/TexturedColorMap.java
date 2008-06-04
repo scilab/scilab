@@ -34,6 +34,9 @@ public class TexturedColorMap extends ColorMap {
 	/** Move a little the indice in order to get the right color in the colormap */
 	private static final double COLOR_OFFSET = 0.5;
 	
+	private static final int WHITE_COLOR = 0xFFFFFF;
+	private static final int BLACK_COLOR = 0x000000;
+	
 	private Texture colorMapTexture;
 	private BufferedImage textureImage;
 	
@@ -115,6 +118,8 @@ public class TexturedColorMap extends ColorMap {
 	protected void setTextureParameters(Texture texture) {
 		texture.setTexParameteri(GL.GL_TEXTURE_MAG_FILTER, GL.GL_NEAREST);
 		texture.setTexParameteri(GL.GL_TEXTURE_MIN_FILTER, GL.GL_NEAREST);
+		texture.setTexParameteri(GL.GL_TEXTURE_WRAP_S, GL.GL_REPEAT);
+		texture.setTexParameteri(GL.GL_TEXTURE_WRAP_T, GL.GL_REPEAT);
 	}
 	
 	/**
@@ -134,12 +139,19 @@ public class TexturedColorMap extends ColorMap {
 		if (textureImage == null) {
 			// create a new image
 			int colorMapSize = getSize();
-			textureImage = new BufferedImage(colorMapSize, 1, BufferedImage.TYPE_INT_RGB);
+			textureImage = new BufferedImage(colorMapSize + 2, 1, BufferedImage.TYPE_INT_RGB);
 			
 			// fill the image
+			
+			// white and black colors are put in front like in Scilab
+			textureImage.setRGB(0, 0, WHITE_COLOR); // white
+			textureImage.setRGB(1, 0, BLACK_COLOR); // black
+			
+			// remaining colors
 			for (int i = 0; i < colorMapSize; i++) {	
-				textureImage.setRGB(i, 0, toRGBcolor(getRedChannel(i), getGreenChannel(i), getBlueChannel(i)));
+				textureImage.setRGB(i + 2, 0, toRGBcolor(getRedChannel(i), getGreenChannel(i), getBlueChannel(i)));
 			}
+			
 		}
 		return textureImage;
 	}
@@ -199,10 +211,17 @@ public class TexturedColorMap extends ColorMap {
 		gl.glColor3dv(getColor((int) colorIndex), 0);
 		
 		// use texture
-		// color offset is here to put the index in the middle of the color
-		// ie each color in the texture is defined between i / n and (i+1)/n
-		// so put it to (i+0.5)/n
-		gl.glTexCoord1d((colorIndex + COLOR_OFFSET) / getSize());
+		
+		if (colorIndex >= getSize()) {
+			// the index is whitin the two last colors (black and white)
+			// However in the texture, they are stored in the two first colors 
+			gl.glTexCoord1d((getSize() + 1 - colorIndex + COLOR_OFFSET) / (getSize() + 2));
+		} else {
+			// color offset is here to put the index in the middle of the color
+			// ie each color in the texture is defined between i / n and (i+1)/n
+			// so put it to (i+0.5)/n
+			gl.glTexCoord1d((colorIndex + 2 + COLOR_OFFSET) / (getSize() + 2));
+		}
 	}
 	
 }

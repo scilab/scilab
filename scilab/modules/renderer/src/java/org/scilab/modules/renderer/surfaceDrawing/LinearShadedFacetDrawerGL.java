@@ -92,6 +92,10 @@ public class LinearShadedFacetDrawerGL extends FacetDrawerGL {
 	public void drawFacet(GL gl, Vector3D[] vertices, int[] colors) {
 		
 		//Paint the polygon given with the table of color
+		
+		for (int i = 0; i < colors.length; i++) {
+			colors[i] = getColorMap().convertScilabToColorMapIndex(colors[i]);
+		}
 	
 		if (vertices.length == TRIANGLE_NB_EDGE) {
 			// only a triangle
