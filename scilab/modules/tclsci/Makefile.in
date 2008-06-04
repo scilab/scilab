@@ -631,20 +631,20 @@ top_srcdir = @top_srcdir@
 #### tclsci : demos files tk ####
 @TCLTK_TRUE@libscitclsci_la_demostkdir = $(mydatadir)/demos/tk/
 @TCLTK_TRUE@libscitclsci_la_demostk_DATA = demos/tk/timer \
-@TCLTK_TRUE@demos/tk/tk.dem \
+@TCLTK_TRUE@demos/tk/tcltk.dem.gateway.sce \
 @TCLTK_TRUE@demos/tk/rolodex.sce \
 @TCLTK_TRUE@demos/tk/demredraw.sci \
 @TCLTK_TRUE@demos/tk/rgb.txt \
 @TCLTK_TRUE@demos/tk/timer.sce \
 @TCLTK_TRUE@demos/tk/puzzle \
 @TCLTK_TRUE@demos/tk/uicontrol.sci \
-@TCLTK_TRUE@demos/tk/scale.sce \
+@TCLTK_TRUE@demos/tk/scale.dem.sce \
 @TCLTK_TRUE@demos/tk/cscroll \
 @TCLTK_TRUE@demos/tk/tcolor \
-@TCLTK_TRUE@demos/tk/puzzle.sce \
-@TCLTK_TRUE@demos/tk/scroll.sce \
+@TCLTK_TRUE@demos/tk/puzzle.dem.sce \
+@TCLTK_TRUE@demos/tk/scroll.dem.sce \
 @TCLTK_TRUE@demos/tk/uicontrol1.sce \
-@TCLTK_TRUE@demos/tk/tcolor.sce \
+@TCLTK_TRUE@demos/tk/color.dem.sce \
 @TCLTK_TRUE@demos/tk/rolodex \
 @TCLTK_TRUE@demos/tk/vscale
 

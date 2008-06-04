@@ -265,20 +265,20 @@ demos/sciGUI/logo01.gif
 #### tclsci : demos files tk ####
 libscitclsci_la_demostkdir=$(mydatadir)/demos/tk/
 libscitclsci_la_demostk_DATA = demos/tk/timer \
-demos/tk/tk.dem \
+demos/tk/tcltk.dem.gateway.sce \
 demos/tk/rolodex.sce \
 demos/tk/demredraw.sci \
 demos/tk/rgb.txt \
 demos/tk/timer.sce \
 demos/tk/puzzle \
 demos/tk/uicontrol.sci \
-demos/tk/scale.sce \
+demos/tk/scale.dem.sce \
 demos/tk/cscroll \
 demos/tk/tcolor \
-demos/tk/puzzle.sce \
-demos/tk/scroll.sce \
+demos/tk/puzzle.dem.sce \
+demos/tk/scroll.dem.sce \
 demos/tk/uicontrol1.sce \
-demos/tk/tcolor.sce \
+demos/tk/color.dem.sce \
 demos/tk/rolodex \
 demos/tk/vscale
 
