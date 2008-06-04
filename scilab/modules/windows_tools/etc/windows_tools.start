@@ -13,6 +13,11 @@
 //Load  functions librarie
 //load('SCI/modules/windows_tools/macros/lib');
 // ====================================================================
+// Add SCI/bin directory to PATH environment variable
+PATH_env = getenv('PATH');
+setenv('PATH', WSCI + filesep() + 'bin' +pathsep() + PATH_env);
+clear PATH_env;
+// ====================================================================
 if (getscilabmode() == 'STD') then 
   consolebox('off');
 end

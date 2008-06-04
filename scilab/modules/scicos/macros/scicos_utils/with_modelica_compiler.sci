@@ -23,10 +23,6 @@
 function r = with_modelica_compiler()
   // check if modelica_compiler exists
   if MSDOS then
-    // Add SCI/bin to current PATH env
-    // not defined by default
-    PATH_env = getenv('PATH');
-    setenv('PATH',strsubst(getshortpathname(SCI+'/bin'),'/','\') + pathsep() + PATH_env);
     compilername = 'modelicac.exe';
   else
     compilername = 'modelicac';

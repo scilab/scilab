@@ -63,8 +63,7 @@ function bOK = set_msvc90express()
                MSVSDir + filesep() + 'Common7\Tools' + pathsep() + ..
                MSVSDir + filesep() + 'SDK\v2.0\bin' + pathsep() + .. 
                MSVCDir + filesep() + 'VCPackages' + pathsep() + ..
-               PATH + pathsep() + ..
-               WSCI + filesep() + 'bin' + pathsep() );
+               PATH + pathsep() );
   if (err == %F) then bOK = %F,return,end
   
   WINDOWSSDK = get_ms_SDK();
@@ -136,8 +135,7 @@ function bOK = set_msvc80express()
                MSVSDir + filesep() + 'Common7\Tools' + pathsep() + ..
                MSVSDir + filesep() + 'SDK\v2.0\bin' + pathsep() + .. 
                MSVCDir + filesep() + 'VCPackages' + pathsep() + ..
-               PATH + pathsep() + ..
-               WSCI + filesep() + 'bin' + pathsep() );
+               PATH + pathsep() );
   if (err == %F) then bOK=%F,return,end
   
   WINDOWSSDK = get_ms_SDK();
@@ -187,8 +185,7 @@ function bOK = set_msvc71()
                DevEnvDir + pathsep() + ..
                DevEnvDir + filesep() + 'bin' + pathsep() + ..
                MSVCDir + filesep() + '..\Common7\IDE' + pathsep() + ..
-               PATH + pathsep() + ..
-               WSCI + filesep() + 'bin' + pathsep());
+               PATH + pathsep() );
   if (err == %F) then bOK = %F,return,end
   
   INCLUDE = getenv('INCLUDE','');
@@ -235,8 +232,7 @@ function bOK = set_msvc70()
                DevEnvDir + pathsep() + ..
                DevEnvDir + filesep() + 'bin' + pathsep() + ..
                MSVCDir + filesep() + '..\Common7\IDE' + pathsep() + ..
-               PATH + pathsep() + ..
-               SCI + filesep() + 'bin' + pathsep() );
+               PATH + pathsep() );
   if (err == %F) then bOK=%F,return,end
   
   INCLUDE = getenv('INCLUDE','');
@@ -314,8 +310,7 @@ function bOK = commons_msvc80(MS_VS_DIRECTORY)
                MSVSDir + filesep() + 'Common7\Tools'+ pathsep() + ..
                MSVSDir + filesep() + 'SDK\v2.0\bin' + pathsep() + ..
                MSVCDir + filesep() + 'VCPackages' + pathsep() + ..
-               PATH + pathsep() + ..
-               WSCI + filesep() + 'bin' + pathsep());
+               PATH + pathsep() );
     if (err == %F) then bOK=%F,return,end
   
     INCLUDE = getenv('INCLUDE','');  
@@ -370,8 +365,7 @@ function bOK = commons_msvc90(MS_VS_DIRECTORY)
                MSVCDir + filesep() + 'bin' + pathsep() + ..
                MSVSDir + filesep() + 'Common7\Tools'+ pathsep() + ..
                MSVCDir + filesep() + 'VCPackages' + pathsep() + ..
-               PATH + pathsep() + ..
-               WSCI + filesep() + 'bin' + pathsep());
+               PATH + pathsep() );
     if (err == %F) then bOK=%F,return,end
   
     INCLUDE = getenv('INCLUDE','');  
