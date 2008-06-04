@@ -127,6 +127,7 @@ public class SwingScilabTab extends View implements SimpleTab {
 	public void draw() {
 		this.setVisible(true);
 		this.doLayout();
+		this.repaint();
 	}
 	
 	/**

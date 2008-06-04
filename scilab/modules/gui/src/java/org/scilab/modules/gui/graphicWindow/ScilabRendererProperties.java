@@ -49,7 +49,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#forceDisplay()
 	 */
 	public void forceDisplay() {
-		parentCanvas.display();
+		parentTab.draw();
 	}
 
 	/**
