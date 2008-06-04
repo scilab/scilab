@@ -817,7 +817,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		character, not one byte. */
 		else
         {
-			{
 				if (count == PCRE_ERROR_NOMATCH)
 				{
 					if (gmatched == 0) 
@@ -825,8 +824,12 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 						return NO_MATCH;
 					}
 				}
-				break;  /* Out of the /g loop */
-			}
+
+				if (count == PCRE_ERROR_MATCHLIMIT )
+				{
+					return MATCH_LIMIT;
+				}
+				break;  /* Out of loop */
 		}
 
 		/* If not /g or /G we are done */

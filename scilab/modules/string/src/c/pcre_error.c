@@ -51,6 +51,9 @@ void pcre_error(char *fname,int errorCode){
 			case CAN_NOT_COMPILE_PATTERN:
 				Scierror(999,_("%s: Can not compile pattern.\n"),fname);
 				break;
+			case MATCH_LIMIT:
+				Scierror(999,_("%s: Matched text exceeds buffer limit.\n"),fname);
+				break;
 			default:
 				Scierror(999,_("%s: Unknown error.\n"),fname);
 				break;
