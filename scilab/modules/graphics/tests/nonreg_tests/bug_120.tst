@@ -19,12 +19,12 @@
 // create a linerar system
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-title='(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
+my_title='(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
 
 // draw the bode plot between fmin and fmax
 fmin = 0.01;
 fmax = 100;
-bode(h,fmin,fmax,title);
+bode(h,fmin,fmax,my_title);
 
 // check that the axes data bounds are fmin and fmax
 curFig = gcf();

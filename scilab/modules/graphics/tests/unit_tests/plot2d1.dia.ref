@@ -1,0 +1,27 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// non regression bug for plot2d
+// which were erasing figure before each plot
+// two plot2d1
+plot2d1;
+
+Demo of plot2d1()
+========================================
+x=(0:0.1:2*%pi)';plot2d1(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
+
+plot2d1;
+
+Demo of plot2d1()
+========================================
+x=(0:0.1:2*%pi)';plot2d1(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
+
+a = gca();
+// check that there are now two compounds ad axes children
+if ( size(a.children,'*') <> 2 ) then bugmes();quit;end
+if ( a.children(1).type <> "Compound"  ) then bugmes();quit;end
+if ( a.children(2).type <> "Compound"  ) then bugmes();quit;end

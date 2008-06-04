@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- TEST WITH GRAPHIC -->
 // <-- Non-regression test for bug 2045 -->
 //
@@ -7,10 +13,6 @@
 // <-- Short Description -->
 //    xpolys([],[],-1)
 //    kills scilex
-// Copyright INRIA
-// Scilab Project - Jean-Baptiste Silvy
-// Copyright INRIA 2006
-// Date : October 27 2006
 // should not draw anything
 xpolys([],[],-1) ;
 e = gce() ;
@@ -25,10 +27,12 @@ plot3d ;
 
 Demo of plot3d()
 ========================================
-t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
 
 e.data = rand(100,2) ;
+Incorrect argument, must be a Tlist!
 e.data = [] ;
+Incorrect argument, must be a Tlist!
 xdel(winsid()) ;
 // check if nothing is broken
 xpolys(rand(12,12), rand(12,12) ) ;

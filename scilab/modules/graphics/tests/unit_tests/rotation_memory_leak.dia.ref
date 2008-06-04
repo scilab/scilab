@@ -23,6 +23,8 @@ endFreeMemory = getmemory();
 memoryIncrease = beginFreeMemory - endFreeMemory
  memoryIncrease  =
  
-    7536.  
+    100760.  
 // let say that the rotation should not use more than 10 Meg
 if (memoryIncrease > 10000) then pause; end
+Type 'resume' or 'abort' to return to standard level prompt.
+

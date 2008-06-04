@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- TEST WITH GRAPHIC -->
 // <-- Non-regression test for bug 1787 -->
 //
@@ -9,22 +15,16 @@
 //    The calling of procedure xtitle bugs when the drawing of boxes is asked.
 //
 //    Jacques-Deric
-// Copyright INRIA
-// Scilab Project - Jean-Baptiste Silvy
-// Copyright INRIA 2006
-// Date : 10/02/2006
 titleStr  = "Scilab P0W3R" ;
 xLabelStr = "XXX" ;
 yLabelStr = "YYY" ;
 xtitle("Scilab P0W3R",'XXX','YYY',1) ;
 a = gca() ;
-title  = a.title   ;
-Warning : redefining function: title                   
-
-xLabel = a.x_label ;
-yLabel = a.y_label ;
+my_title  = a.title   ;
+xLabel    = a.x_label ;
+yLabel    = a.y_label ;
 // check that a box is drawn around the labels
 // and that they have the rigth text
-if ( title.text  <> titleStr  ) | ( title.fill_mode  <> 'on' ) then bugmes();quit;end
-if ( xLabel.text <> xLabelStr ) | ( xLabel.fill_mode <> 'on' ) then bugmes();quit;end
-if ( yLabel.text <> yLabelStr ) | ( yLabel.fill_mode <> 'on' ) then bugmes();quit;end
+if ( my_title.text  <> titleStr  ) | ( my_title.fill_mode  <> 'on' ) then bugmes();quit;end
+if ( xLabel.text    <> xLabelStr ) | ( xLabel.fill_mode    <> 'on' ) then bugmes();quit;end
+if ( yLabel.text    <> yLabelStr ) | ( yLabel.fill_mode    <> 'on' ) then bugmes();quit;end
