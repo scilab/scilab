@@ -424,6 +424,8 @@ TCL/TK:
  - Provided with version 8.5 of TCL/TK
  - Removed Functions:
 	+ tcl_?
+	+ demoplay is obsolete
+	+ sciGUIhelp is obsolete 
 
 
 Java/Scilab API:
