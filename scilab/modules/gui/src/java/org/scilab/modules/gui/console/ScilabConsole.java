@@ -288,4 +288,12 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	public void setBackground(Color color) {
 		ScilabBridge.setBackground(this, color);
 	}
+
+	/**
+	 * Set the maximum number of lines stored in the Output
+	 * @param nbLines the number of lines 
+	 */
+	public void setMaxOutputSize(int nbLines) {
+		ScilabBridge.setMaxOutputSize(this, nbLines);
+	}
 }

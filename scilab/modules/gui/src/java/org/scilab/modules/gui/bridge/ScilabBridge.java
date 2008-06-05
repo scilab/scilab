@@ -1117,6 +1117,14 @@ public class ScilabBridge {
 		ScilabConsoleBridge.setBackground(console, color);
 	}
 
+	/**
+	 * Set the maximum number of lines stored in the Output
+	 * @param console the console
+	 * @param nbLines the number of lines 
+	 */
+	public static void setMaxOutputSize(Console console, int nbLines) {
+		ScilabConsoleBridge.setMaxOutputSize(console, nbLines);
+	}
 	/*****************/
 	/* Canvas Bridge */
 	/*****************/

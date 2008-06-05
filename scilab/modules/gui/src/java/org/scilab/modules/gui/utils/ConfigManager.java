@@ -63,6 +63,7 @@ public final class ConfigManager {
 	private static final String FOREGROUNDCOLOR = "ForegroundColor";
 	private static final String BACKGROUNDCOLOR = "BackgroundColor";
 	private static final String COLORPREFIX = "#";
+	private static final String MAXOUTPUTSIZE = "MaxOutputSize";
 	
 	private static final String SCILAB_CONFIG_FILE = System.getenv("SCI") + "/modules/console/etc/configuration.xml";
 	
@@ -70,6 +71,8 @@ public final class ConfigManager {
 	
 	private static final int DEFAULT_WIDTH = 650;
 	private static final int DEFAULT_HEIGHT = 550;
+
+	private static final int DEFAULT_MAXOUTPUTSIZE = 10000;
 
 	private static Document document;
 	
@@ -166,6 +169,29 @@ public final class ConfigManager {
 			fos.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Get the maximum number of lines to keep in the output
+	 * @return the nulber of lines
+	 */
+	public static int getMaxOutputSize() {
+		
+		/* Load file */
+		readDocument();
+		
+		Element racine = document.getDocumentElement();
+		
+		NodeList profiles = racine.getElementsByTagName(PROFILE);
+		Element scilabProfile = (Element) profiles.item(0);
+		
+		NodeList allPositionElements = scilabProfile.getElementsByTagName(MAXOUTPUTSIZE);
+		Element maxOutputSize = (Element) allPositionElements.item(0);
+		if (maxOutputSize != null) {
+			return Integer.parseInt(maxOutputSize.getAttribute(VALUE));
+		} else {
+			return DEFAULT_MAXOUTPUTSIZE;
 		}
 	}
 	

@@ -41,6 +41,7 @@
 		<CompletionManager useCache="true" value="org.scilab.modules.console.SciCompletionManager"/>
 		<CompletionWindow useCache="true" value="org.scilab.modules.console.SciCompletionWindow"/>
 		<HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
+		<MaxOutputSize useCache="true" value="10000"/>
 
 		<!-- Key mapping -->
 		<KeyMapping>

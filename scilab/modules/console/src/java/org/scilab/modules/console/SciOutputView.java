@@ -75,6 +75,9 @@ public class SciOutputView extends JTextPane implements OutputView {
 	
 	private int insertPosition;
 	
+	private int maxNumberOfLines;
+	private int numberOfLines;
+	
 	/**
 	 * Constructor
 	 */
@@ -207,6 +210,18 @@ public class SciOutputView extends JTextPane implements OutputView {
 		/* Special case for Scilab when clc or tohome have been used */
 		String[] lines = buff.split(
 				StringConstants.NEW_LINE);
+		
+		numberOfLines = numberOfLines + lines.length;
+		while (numberOfLines > maxNumberOfLines) {
+			try {
+				getStyledDocument().remove(0, 
+						getStyledDocument().getText(0, getStyledDocument().getLength()).indexOf(StringConstants.NEW_LINE, 1));
+				numberOfLines--;
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		/* Change the size of the input command view if necessary */
 		/* - if the console size has been forced to a value */
 		/* - if a carriage return has been appended */
@@ -419,6 +434,14 @@ public class SciOutputView extends JTextPane implements OutputView {
 	 */
 	public Thread getThread() {
 		return thread;
+	}
+	
+	/**
+	 * Set the maximum number of lines to keep before deleting the older one
+	 * @param number the maximum
+	 */
+	public void setMaxSize(int number) {
+		maxNumberOfLines = number;
 	}
 
 }

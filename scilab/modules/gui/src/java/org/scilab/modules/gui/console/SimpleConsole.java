@@ -189,4 +189,10 @@ public interface SimpleConsole {
 	 * @param color the Background Color
 	 */
 	void setBackground(Color color);
+	
+	/**
+	 * Set the maximum number of lines stored in the Output
+	 * @param nbLines the number of lines 
+	 */
+	void setMaxOutputSize(int nbLines);
 }

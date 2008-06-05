@@ -140,6 +140,7 @@ public class Scilab {
 			ScilabConsole.getConsole().addToolBar(toolBar);
 			ScilabConsole.getConsole().addMenuBar(menuBar);
 			ScilabConsole.getConsole().addInfoBar(infoBar);
+			ScilabConsole.getConsole().setMaxOutputSize(ConfigManager.getMaxOutputSize());
 			consoleTab.addMember(ScilabConsole.getConsole());
 			mainView.addTab(consoleTab);
 			mainView.draw();

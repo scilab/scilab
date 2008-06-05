@@ -290,4 +290,13 @@ public class ScilabConsoleBridge {
 	public static void setBackground(Console console, Color color) {
 		console.getAsSimpleConsole().setBackground(color);
 	}
+
+	/**
+	 * Set the maximum number of lines stored in the Output
+	 * @param console the console
+	 * @param nbLines the number of lines 
+	 */
+	public static void setMaxOutputSize(Console console, int nbLines) {
+		console.getAsSimpleConsole().setMaxOutputSize(nbLines);
+	}
 }
