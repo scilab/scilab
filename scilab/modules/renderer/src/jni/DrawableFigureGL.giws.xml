@@ -39,7 +39,7 @@
     </method>
     <method name="getCanvasHeight" returnType="int">
     </method>
-    <method name="setCanvasSize" returnType="void">
+    <method name="setCanvasSize" returnType="boolean">
       <param type="int" name="width" />
       <param type="int" name="height" />
     </method>

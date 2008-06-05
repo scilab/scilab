@@ -92,9 +92,9 @@ void DrawableFigureJoGL::getSize( int size[2] )
 
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::setSize( const int size[2] )
+bool DrawableFigureJoGL::setSize( const int size[2] )
 {
-  getFigureJavaMapper()->setCanvasSize(size[0], size[1]);
+  return getFigureJavaMapper()->setCanvasSize(size[0], size[1]);
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::getWindowPosition( int pos[2] )

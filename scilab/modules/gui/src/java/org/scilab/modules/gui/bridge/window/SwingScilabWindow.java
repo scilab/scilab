@@ -284,4 +284,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	public void close() {
 		dispose();
 	}
+	
+	/**
+	 * @return number of objects (tabs) docked in this window
+	 */
+	public int getNbDockedObjects() {
+		return sciDockingListener.getNbDockedObjects();
+	}
+	
 }

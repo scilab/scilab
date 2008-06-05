@@ -256,6 +256,14 @@ public class ScilabBridge {
 		ScilabWindowBridge.addInfoBar(window, newInfoBar);
 	}
 	
+	/**
+	 * @param window window from which we want the information
+	 * @return number of objects (tabs) docked in this window
+	 */
+	public static int getNbDockedObjects(Window window) {
+		return ScilabWindowBridge.getNbDockedObjects(window);
+	}
+	
 	/*****************/
 	/* ToolBar Bridge */
 	/*****************/

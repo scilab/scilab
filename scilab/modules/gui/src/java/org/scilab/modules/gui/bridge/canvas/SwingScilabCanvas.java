@@ -129,10 +129,7 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		if (!getAutoResizeMode()) {
-			// in autoresize mode, we don't have any control on the object size
-			setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
-		}
+		setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
 	}
 	
 

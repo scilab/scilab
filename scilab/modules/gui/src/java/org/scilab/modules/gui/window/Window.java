@@ -61,8 +61,15 @@ public interface Window extends UIElement {
 	void addInfoBar(TextBox newInfoBar);
 	
 	/**
+	 * @return number of objects (tabs) docked in this window
+	 */
+	int getNbDockedObjects();
+	
+	/**
 	 * Get a InfoBar from this window
 	 * @return this window InfoBar
 	 */
 	TextBox getInfoBar();
+	
+	
 }

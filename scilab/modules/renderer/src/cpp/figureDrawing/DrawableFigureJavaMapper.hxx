@@ -59,7 +59,7 @@ public:
 
   virtual int getCanvasWidth(void);
   virtual int getCanvasHeight(void);
-  virtual void setCanvasSize(int width, int height);
+  virtual bool setCanvasSize(int width, int height);
 
   virtual int getWindowPosX(void);
   virtual int getWindowPosY(void);

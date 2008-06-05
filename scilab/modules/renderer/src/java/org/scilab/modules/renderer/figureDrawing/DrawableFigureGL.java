@@ -388,9 +388,10 @@ public class DrawableFigureGL extends ObjectGL {
 	 * Set the rendering canvas size.
 	 * @param width new width in pixels
 	 * @param height new height in pixels
+	 * @return indicates if the size could be successfully modified
 	 */
-	public void setCanvasSize(int width, int height) {
-		guiProperties.setCanvasSize(width, height);
+	public boolean setCanvasSize(int width, int height) {
+		return guiProperties.setCanvasSize(width, height);
 	}
 	
 	/**

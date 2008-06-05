@@ -174,4 +174,12 @@ public class ScilabWindowBridge {
 	public static void addInfoBar(Window window, TextBox newInfoBar) {
 		window.getAsSimpleWindow().addInfoBar(newInfoBar);
 	}
+	
+	/**
+	 * @param window window from which we want the information
+	 * @return number of objects (tabs) docked in this window
+	 */
+	public static int getNbDockedObjects(Window window) {
+		return window.getAsSimpleWindow().getNbDockedObjects();
+	}
 }

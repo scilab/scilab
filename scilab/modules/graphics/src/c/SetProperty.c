@@ -2287,7 +2287,12 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
       else
       {
         int size[2] = {newWidth, newHeight} ;
-        sciSetJavaFigureSize(pobj, size) ;
+        BOOL status = sciSetJavaFigureSize(pobj, size) ;
+        if (!status)
+        {
+          /* error modifying size */
+          return -1;
+        }
       }
       break;
     case SCI_SUBWIN:

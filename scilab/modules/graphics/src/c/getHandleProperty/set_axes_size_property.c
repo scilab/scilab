@@ -31,6 +31,7 @@
 int set_axes_size_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * newWindowSize = getDoubleMatrixFromStack( stackPointer ) ;
+  int status;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -44,8 +45,14 @@ int set_axes_size_property( sciPointObj * pobj, int stackPointer, int valueType,
     return SET_PROPERTY_ERROR ;
   }
 
-  sciSetDimension(pobj, (int) newWindowSize[0], (int) newWindowSize[1] ) ;
+  status = sciSetDimension(pobj, (int) newWindowSize[0], (int) newWindowSize[1] ) ;
 
-  return SET_PROPERTY_SUCCEED ;
+  if (status == SET_PROPERTY_ERROR)
+  {
+    sciprint(_("'%s' property can not be modified if Figure is docked with other elements.\n"), "axes_size", "Figure") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+  return status;
 }
 /*------------------------------------------------------------------------*/

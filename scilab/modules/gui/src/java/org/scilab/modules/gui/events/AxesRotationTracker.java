@@ -93,7 +93,7 @@ public class AxesRotationTracker extends MouseDisplacementTracker implements Mou
 		if (!recordStarted) {
 			// first call
 			Image icon = Toolkit.getDefaultToolkit().getImage(System.getenv("SCI") + "/modules/gui/images/icons/rotate.png");
-			getTrackedCanvas().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, new Point(0,0), "rotate"));
+			getTrackedCanvas().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(icon, new Point(0, 0), "rotate"));
 			waitForClick(displacement);
 			startRecording(clickPosX, clickPosY);
 			return true;

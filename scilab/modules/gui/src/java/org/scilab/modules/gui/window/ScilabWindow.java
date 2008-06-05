@@ -187,4 +187,12 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 		super.addInfoBar(newInfoBar);
 		ScilabBridge.addInfoBar(this, newInfoBar);
 	}
+	
+	/**
+	 * @return number of objects (tabs) docked in this window
+	 */
+	public int getNbDockedObjects() {
+		return ScilabBridge.getNbDockedObjects(this);
+	}
+	
 }

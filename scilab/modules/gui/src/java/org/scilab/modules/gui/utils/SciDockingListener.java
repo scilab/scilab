@@ -30,12 +30,14 @@ import org.scilab.modules.gui.window.Window;
 public class SciDockingListener implements DockingListener {
 	
 	private int associatedScilabWindowId;
+	private int nbDockedObjects;
 	
 	/**
 	 * Default constructor
 	 */
 	public SciDockingListener() {
 		super();
+		nbDockedObjects = 0;
 	}
 
 	/**
@@ -74,6 +76,9 @@ public class SciDockingListener implements DockingListener {
 		}
 		SwingScilabTab dockedTab = (SwingScilabTab) e.getDockable();
 		dockedTab.setParentWindowId(newId);
+		
+		// one more tab in the list
+		nbDockedObjects++;
 
 	}
 
@@ -109,6 +114,9 @@ public class SciDockingListener implements DockingListener {
 		if (e.getOldDockingPort().getDockables().isEmpty()) {
 			((Window) UIElementMapper.getCorrespondingUIElement(associatedScilabWindowId)).getAsSimpleWindow().close();
 		}
+		
+		// one tab left
+		nbDockedObjects--;
 	}
 
 	/**
@@ -135,6 +143,13 @@ public class SciDockingListener implements DockingListener {
 	 */
 	public int getAssociatedWindowId() {
 		return this.associatedScilabWindowId;
+	}
+	
+	/**
+	 * @return Number of docked objects in the associated window.
+	 */
+	public int getNbDockedObjects() {
+		return nbDockedObjects;
 	}
 	
 	/**

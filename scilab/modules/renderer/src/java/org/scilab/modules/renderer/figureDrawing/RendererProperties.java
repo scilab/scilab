@@ -64,8 +64,9 @@ public interface RendererProperties {
 	 * Specify a new size for the rendering canvas
 	 * @param width new width in pixels
 	 * @param height new height in pixels
+	 * @return indicates if the size could be successfully modified
 	 */
-	void setCanvasSize(int width, int height);
+	boolean setCanvasSize(int width, int height);
 	
 	/**
 	 * Get the rendering window width

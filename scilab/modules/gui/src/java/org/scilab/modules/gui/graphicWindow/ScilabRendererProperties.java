@@ -128,10 +128,39 @@ public class ScilabRendererProperties implements RendererProperties {
 	 * Set the size of the parent canvas
 	 * @param width the width to set to the parent
 	 * @param height the height to set to the parent
+	 * @return indicates if the size could be successfully modified
 	 * @see org.scilab.modules.renderer.figureDrawing.RendererProperties#setCanvasSize(int, int)
 	 */
-	public void setCanvasSize(int width, int height) {
-		parentCanvas.setDims(new Size(width, height));
+	public boolean setCanvasSize(int width, int height) {
+		if (!getAutoResizeMode()) {
+			// autore size off, just resize the canvas
+			parentCanvas.setDims(new Size(width, height));
+			return true;
+		} else if (parentTab.getParentWindow().getNbDockedObjects() == 1) {
+			// canvas tab is the only one in its window
+			// so resize window (tab and canvas will follow)
+			
+			Size currentSize = parentCanvas.getDims();
+			// compute the requested size modifications
+			int deltaX = width - currentSize.getWidth();
+			int deltaY = height - currentSize.getHeight();
+			
+			
+			
+			// apply them to the parent window
+			Size windowSize = parentTab.getParentWindow().getDims();
+			windowSize.setWidth(windowSize.getWidth() + deltaX);
+			windowSize.setHeight(windowSize.getHeight() + deltaY);
+			parentTab.getParentWindow().setDims(windowSize);
+			
+			// also apply on canvas otherwise the canvas is resized twice by Swing
+			parentCanvas.setDims(new Size(width, height));
+			return true;
+		}
+		// if there are several docked objects, don't allow to resize canvas
+		// if it must changed either the tab or window size
+		
+		return false;
 	}
 
 	/**

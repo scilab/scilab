@@ -118,7 +118,7 @@ jdoubleArraygetColorMapDataID=NULL;
 jintgetColorMapSizeID=NULL; 
 jintgetCanvasWidthID=NULL; 
 jintgetCanvasHeightID=NULL; 
-voidsetCanvasSizejintjintID=NULL; 
+jbooleansetCanvasSizejintjintID=NULL; 
 jintgetWindowPosXID=NULL; 
 jintgetWindowPosYID=NULL; 
 voidsetWindowPositionjintjintID=NULL; 
@@ -176,7 +176,7 @@ jdoubleArraygetColorMapDataID=NULL;
 jintgetColorMapSizeID=NULL; 
 jintgetCanvasWidthID=NULL; 
 jintgetCanvasHeightID=NULL; 
-voidsetCanvasSizejintjintID=NULL; 
+jbooleansetCanvasSizejintjintID=NULL; 
 jintgetWindowPosXID=NULL; 
 jintgetWindowPosYID=NULL; 
 voidsetWindowPositionjintjintID=NULL; 
@@ -547,23 +547,25 @@ return res;
 
 }
 
-void DrawableFigureGL::setCanvasSize (long width, long height){
+bool DrawableFigureGL::setCanvasSize (long width, long height){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voidsetCanvasSizejintjintID==NULL) { /* Use the cache Luke */ voidsetCanvasSizejintjintID = curEnv->GetMethodID(this->instanceClass, "setCanvasSize", "(II)V" ) ;
-if (voidsetCanvasSizejintjintID == NULL) {
+if (jbooleansetCanvasSizejintjintID==NULL) { /* Use the cache Luke */ jbooleansetCanvasSizejintjintID = curEnv->GetMethodID(this->instanceClass, "setCanvasSize", "(II)Z" ) ;
+if (jbooleansetCanvasSizejintjintID == NULL) {
 std::cerr << "Could not access to the method " << "setCanvasSize" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voidsetCanvasSizejintjintID ,width, height);
+                        jboolean res =  (jboolean) curEnv->CallBooleanMethod( this->instance, jbooleansetCanvasSizejintjintID ,width, height);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
                         
+return (res == JNI_TRUE);
+
 }
 
 long DrawableFigureGL::getWindowPosX (){

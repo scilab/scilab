@@ -110,6 +110,11 @@ public interface SimpleWindow {
 	void addToolBar(ToolBar newToolBar);
 	
 	/**
+	 * @return number of objects (tabs) docked in this window
+	 */
+	int getNbDockedObjects();
+	
+	/**
 	 * Set the element id for this window
 	 * @param id the id of the corresponding window object
 	 */

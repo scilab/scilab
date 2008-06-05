@@ -25,9 +25,16 @@ void sciSetJavaColormap( sciPointObj * pFigure, const double rgbMat[], int nbCol
   getFigureDrawer(pFigure)->setColorMap( rgbMat, nbColor ) ;
 }
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] )
+BOOL sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] )
 {
-  getFigureDrawer(pFigure)->setSize(size) ;
+  if (getFigureDrawer(pFigure)->setSize(size))
+  {
+    return TRUE;
+  }
+  else
+  {
+    return FALSE;
+  }
 }
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaWindowSize( sciPointObj * pFigure, const int size[2] )

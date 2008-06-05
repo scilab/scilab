@@ -77,8 +77,9 @@ public:
 
   /**
   * Set the size (width, height) of the figure.
+  * @return indicates if the size could be successfully modified
   */
-  virtual void setSize( const int size[2] ) = 0 ;
+  virtual bool setSize( const int size[2] ) = 0 ;
 
   /**
   * Get the size of the window enclosing the figure.
