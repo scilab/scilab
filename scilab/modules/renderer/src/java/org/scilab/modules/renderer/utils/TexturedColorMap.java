@@ -16,6 +16,7 @@ package org.scilab.modules.renderer.utils;
 import java.awt.image.BufferedImage;
 
 import com.sun.opengl.util.texture.Texture;
+import com.sun.opengl.util.texture.TextureCoords;
 import com.sun.opengl.util.texture.TextureData;
 import com.sun.opengl.util.texture.TextureIO;
 import javax.media.opengl.GL;
@@ -40,8 +41,12 @@ public class TexturedColorMap extends ColorMap {
 	private Texture colorMapTexture;
 	private BufferedImage textureImage;
 	
-	/** To konw if the colormap has changed and if we need to recreate a new colormap */
+	/** To know if the colormap has changed and if we need to recreate a new colormap */
 	private boolean hasChanged;
+	
+	/** Texture coordinates might not always be in the interval [0,1] */
+	private double textureLeftCoord;
+	private double textureRightCoord;
 	
 	/**
 	 * Default constructor
@@ -109,6 +114,15 @@ public class TexturedColorMap extends ColorMap {
 		
 		// also need to reset parameters
 		setTextureParameters(colorMapTexture);
+	}
+	
+	/**
+	 * Update left most and right most texture coordinates
+	 */
+	protected void updateTextureCoordinates() {
+		TextureCoords coords = colorMapTexture.getImageTexCoords();
+		textureLeftCoord = coords.left();
+		textureRightCoord = coords.right();
 	}
 	
 	/**
@@ -210,17 +224,24 @@ public class TexturedColorMap extends ColorMap {
 		// We just get texture color with JOGL
 		gl.glColor3dv(getColor((int) colorIndex), 0);
 		
+		// compute texture coordinate to use between 0 and 1.
+		double clampValue;
+		
 		// use texture
 		if (colorIndex > getSize() - COLOR_OFFSET) {
 			// the index is whitin the two last colors (black and white)
-			// However in the texture, they are stored in the two first colors 
-			gl.glTexCoord1d((getSize() + 1 - colorIndex + COLOR_OFFSET) / (getSize() + 2));
+			// However in the texture, they are stored in the two first colors
+			clampValue = (getSize() + 1 - colorIndex + COLOR_OFFSET) / (getSize() + 2);
 		} else {
 			// color offset is here to put the index in the middle of the color
 			// ie each color in the texture is defined between i / n and (i+1)/n
 			// so put it to (i+0.5)/n
-			gl.glTexCoord1d((colorIndex + 2 + COLOR_OFFSET) / (getSize() + 2));
+			clampValue = (colorIndex + 2 + COLOR_OFFSET) / (getSize() + 2);
 		}
+		
+		// Use texture coordinates bounds to apply texture
+		gl.glTexCoord1d((textureRightCoord - textureLeftCoord) * clampValue - textureLeftCoord);
+		
 	}
 	
 }
