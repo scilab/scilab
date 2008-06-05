@@ -114,13 +114,10 @@ int C2F(run)()
   static int nentry, lastindpos;
   static int lcc, kid, nlr;
   int i2;
-
-  /* @TODO Why 80 ? */
-  static char tmp[80];
-
+  static char tmp[80]; /*string for sending debug messages*/
   tref = 0;
 
-  /* @TODO What is 4 ? */
+  /* set debug trace mode on  */
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," run pt:%d rstk(pt):%d",Pt,Rstk[Pt]);
     C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
@@ -477,7 +474,7 @@ int C2F(run)()
  L46:
   nc = Istk[lc];
   l0 = lc + 7;
-  if  (C2F(errgst).errcatch==1 &&C2F(errgst).err1 > 0) {
+  if  (C2F(errgst).errcatch>=1 &&C2F(errgst).err1 > 0) {
     /*an error occured in the loop variable expression evaluation, in 'continue' mode
       skip all the for codes*/
     lc = l0;
@@ -544,7 +541,7 @@ int C2F(run)()
 
   /*     expri */
  L56:
-  if  (C2F(errgst).errcatch==1 && C2F(errgst).err1 > 0 ) {
+  if  (C2F(errgst).errcatch>=1 && C2F(errgst).err1 > 0 ) {
     /*an error occured in the first expression evaluation, in 'continue' mode
       skip all the control structure codes*/
     goto L62;
@@ -569,7 +566,7 @@ int C2F(run)()
 
   /*     instructions i */
  L57:
-  if  (C2F(errgst).errcatch==1 && C2F(errgst).err1 > 0 ) {
+  if  (C2F(errgst).errcatch>=1 && C2F(errgst).err1 > 0 ) {
     /*an error occured in the first expression evaluation, in 'continue' mode
       skip all the control structure codes*/
     goto L62;
@@ -600,7 +597,7 @@ int C2F(run)()
   return 0;
 
  L58:
-  if  (C2F(errgst).errcatch==1 && C2F(errgst).err1 > 0 ) {
+  if  (C2F(errgst).errcatch>=1 && C2F(errgst).err1 > 0 ) {
     /*an error occured in the first expression evaluation, in 'continue' mode
       skip all the control structure codes*/
     goto L62;
