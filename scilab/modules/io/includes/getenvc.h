@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2008 - INRIA - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,5 +24,14 @@
  * @param[in] iflag 
  */
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag);
+
+/**
+* Searches for a file using environment paths
+* @param[in] filename
+* @param[in] environment variable where we search
+* @return path found
+*/
+char *searchEnv(const char *name,const char *env_var);
+
 
 #endif /* __GETENVC_H__ */
