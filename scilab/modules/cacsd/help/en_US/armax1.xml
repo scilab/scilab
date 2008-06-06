@@ -46,7 +46,9 @@
       <varlistentry>
         <term>b0f</term>
         <listitem>
-          <para>optional parameter. Its default value is 0 and it means that the coefficient b0 must be identified. if bof=1 the b0 is supposed to be zero and is not identified</para>
+          <para>optional parameter. Its default value is 0 and it
+          means that the coefficient b0 must be identified. if bof=1
+          the b0 is supposed to be zero and is not identified</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -98,8 +100,8 @@
    
     ]]></programlisting>
     <para>
-    for the method, see Eykhoff in trends and progress in system identification) page 96.
-    with
+    for the method, see Eykhoff in trends and progress in system
+    identification) page 96.  with
     </para>
     <programlisting><![CDATA[
             z(t)=[y(t-1),..,y(t-r),u(t),...,
@@ -116,6 +118,14 @@
     a sequential version of the AR estimation where e(t-i) is replaced 
     by an estimated value is used (RLLS). With q=0 this method is exactly
     a sequential version of armax</para>
+  </refsection>
+  <refsection>
+    <title>Important notice</title>
+    <para>In Scilab versions up to 4.1.2 the returned value in
+    <literal>arc.sig</literal> is the square of <literal>sig</literal>
+    square. To be conform with the help, the display of arma models
+    and the armax function, starting from Scilab-5.0 version the
+    returned <literal>arc.sig</literal> is <literal>sig</literal>. </para>
   </refsection>
   <refsection>
     <title>Authors</title>
