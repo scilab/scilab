@@ -22,6 +22,11 @@ if SCICOS
 # The filename must be the same as the function name
 # since they are used by genblocks.sh to generate the blocks.h
 SCICOS_BLOCKS_C_SOURCES = src/c/absolute_value.c \
+src/c/absblk.c \
+src/c/andlog.c \
+src/c/gain.c \
+src/c/dband.c \
+src/c/cosblk.c \
 src/c/acos_blk.c \
 src/c/acosh_blk.c \
 src/c/asin_blk.c \
@@ -316,7 +321,6 @@ src/c/zcross2.c
 
 NON_BLOCK_C_SOURCES =  src/c/scoGetProperty.c \
 src/c/scoSetProperty.c \
-src/c/blocks.c \
 src/c/scoMisc.c \
 src/c/scoMemoryScope.c\
 src/c/scoWindowScope.c 
