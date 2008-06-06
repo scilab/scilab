@@ -1,0 +1,63 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- Non-regression test for bug 2085 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2085
+//
+// <-- Short Description -->
+// this example fails on some pc ???
+
+// exec SCI/modules/dynamic_link/tests/nonreg_tests/bug_2085.tst;
+
+test_path = get_absolute_file_path('bug_2085.tst');
+
+currentpath = pwd();
+
+cd TMPDIR;
+cd ../;
+OS_TMP_DIR = pwd();
+
+
+mkdir(OS_TMP_DIR,'bug_2085');
+TEST_DIR = OS_TMP_DIR + filesep() + 'bug_2085';
+
+copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_2085.c' , TEST_DIR + filesep() + 'bug_2085.c');
+
+chdir(TEST_DIR);
+
+files=['bug_2085.o'];
+ilib_build('bug',['ex2c_1','intex2c'],files,[]);
+
+// disable message
+warning_mode = warning('query');
+warning('off');
+
+// load the shared library 
+exec loader.sce
+
+// enable message 
+warning(warning_mode);
+
+chdir(currentpath);
+
+//using the new primitive
+r = [1,2,3];
+nr = [4,5,5];
+
+a = ex2c_1(r+%i*nr);
+res = (2 * r) +%i*(nr *3);
+
+if a <> res then pause,end;
+
+// ulink() all libraries
+ulink();
+
+//remove TMP_DIR
+rmdir(TEST_DIR,'s');
+// =============================================================================
