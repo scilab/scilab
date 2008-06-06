@@ -16,7 +16,9 @@ rhs=argn(2);
 
 if rhs < 1 then
   // No handle given so destroy current figure
-  delete(gcf());
+  if ~isempty(winsid()) then
+    delete(gcf());
+  end
 else 
   if type(h) == 9 then // Graphics handle
     delete(h);
