@@ -144,7 +144,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	{
 	  if ( Rhs != 1  ||  Lhs != 1)
 	    {
-	      Scierror(999,"Output argument (LHS) and Input argument (RHS) should be 1 for 'getsd' option\n");
+	      Scierror(999,_("%s: Number of output and input argument should be 1 for 'getsd' option\n"),fname);
 	      return 0;
 	    }
 	      switch(current_gen)
@@ -201,7 +201,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
 	      return 0;}
 
 	      if (! set_initial_seed_clcg4(*stk(l1),*stk(l2), *stk(l3), *stk(l4)) )
-		{   /* => seeds were not good  (info is display by the function) */
+		{   /* => seeds were not good  (info is displayed by the function) */
 		  Error(999);return 0;
 		}
 	      LhsVar(1) = 1;
@@ -562,19 +562,19 @@ int sci_Rand(char *fname,unsigned long fname_len)
       ptot = 0.0;
       for ( l_i= 0 ; l_i < ncat -1 ; l_i++ )
 	{
-	  if ( *stk(lb+l_i) < 0 )
+	  if ( *stk(lb+l_i) < 0.0 )
 	    {
 	      Scierror(999,_("P(%d) < 0\n"),l_i+1);
 	      return 0;
 	    }
-	  if ( *stk(lb+l_i) > 1 )
+	  if ( *stk(lb+l_i) > 1.0 )
 	    {
 	      Scierror(999,_("P(%d) > 1\n"),l_i+1);
 	      return 0;
 	    }
 	  ptot += *stk(lb+l_i);
 	}
-      if ( ptot > 0.99999)
+      if ( ptot > 1.0)
 	{
 	  Scierror(999,_("Sum of P(i) > 1\n"));
 	  return 0;
