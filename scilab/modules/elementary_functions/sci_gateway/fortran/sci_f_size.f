@@ -11,10 +11,8 @@ c
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE 'stack.h'
       integer id(nsiz)
-      logical ref
       integer sel,tops
       integer iadr,sadr
-      integer basetype
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -36,7 +34,7 @@ c     list or tlist case
 c     ------------------
          ll=sadr(il+istk(il+1)+3)
          ilt=iadr(ll)
-         if(istk(ilt).eq.10) then
+         if(istk(il).eq.16.and.istk(ilt).eq.10) then
             mnt=istk(ilt+1)*istk(ilt+2)
             if((istk(ilt+5).eq.2.and.istk(ilt+5+mnt).eq.27).or.
      +           (istk(ilt+5).eq.4.and.
