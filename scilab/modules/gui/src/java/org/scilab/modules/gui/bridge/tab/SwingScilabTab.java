@@ -15,8 +15,10 @@
 package org.scilab.modules.gui.bridge.tab;
 
 import java.awt.Component;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.Action;
+import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.view.View;
@@ -119,15 +121,38 @@ public class SwingScilabTab extends View implements SimpleTab {
 	public String getName() {
 		return this.getTitle();
 	}
+	
+	/**
+	 * Paint immediately this component
+	 */
+	public void paintImmediately() {
+		// paint all
+		paintImmediately(0, 0, getWidth(), getHeight());
+		if (isActive()) {
+			BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
+		}
+	}
 
 	/**
 	 * Draws a swing Scilab tab
 	 * @see org.scilab.modules.gui.uielement.UIElement#draw()
 	 */
 	public void draw() {
-		this.setVisible(true);
-		this.doLayout();
-		this.repaint();
+		// TODO this is a temporary patch
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					setVisible(true);
+					doLayout();
+					paintImmediately();
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/**
