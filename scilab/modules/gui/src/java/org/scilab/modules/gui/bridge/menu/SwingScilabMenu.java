@@ -67,6 +67,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 			for (int i = 0; i < nativeMouseListeners.length; i++) {
 				addMouseListener(nativeMouseListeners[i]);
 			}
+			nativeMouseListeners = null;
 		}
 		super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
 		super.repaint();
@@ -86,6 +87,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 			for (int i = 0; i < nativeMouseListeners.length; i++) {
 				addMouseListener(nativeMouseListeners[i]);
 			}
+			nativeMouseListeners = null;
 		}
 		
 		super.add((SwingScilabMenu) newSubMenu.getAsSimpleMenu());
