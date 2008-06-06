@@ -529,6 +529,8 @@ c     .  id is not a standard variable
             return
          endif
          if(err1.gt.0) goto 60
+C next line added serge 06/08/08: it is not useful to scan funtab
+         if(fin.gt.0) fin=-4
          call funs(id)
          if(err.gt.0) return
          if(fun.gt.0)  goto 53

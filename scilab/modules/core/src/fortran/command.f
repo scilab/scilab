@@ -125,11 +125,15 @@ c     form function like call
          call stackg(id)
          if (fin.gt.0) then
             ityp=abs(istk(iadr(lstk(fin))))
-            fin=0
-            if (ityp.ne.11.and.ityp.ne.13.and.ityp.ne.130) return
+            if (ityp.ne.11.and.ityp.ne.13.and.ityp.ne.130) then
+               fin=0
+               return
+            endif
          endif
       endif
 
+c     id has been found in the stack, it is not useful to scan funtab
+      if (fin.gt.0) fin=-4
       call funs(id)
       if(fin.eq.0) then
          if(comp(1).eq.0) then
