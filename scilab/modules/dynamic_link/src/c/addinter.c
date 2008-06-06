@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA/ENPC
+ * Copyright (C) 2008 - INRIA - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,21 +23,28 @@
 #include "addinter.h" 
 
 #include "error.h"
-#include "stack-def.h"
+#include "stack-c.h"
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 #include "Funtab.h"
 #include "warningmode.h"
 #include "GetenvB.h"
 #include "localization.h"
+#include "Scierror.h"
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
 #endif
 
-#define MAXINTERF 50
-#define INTERFSIZE 25 
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(cvname)();
+#define MAXINTERF 50 /* default value compatibility scilab 4.x */
+/* !!! WARNING !!! */
+/* On Windows , AddInterfaceToScilab based on LoadLibrary C function */
+/* you cannot load more than 80 dynamic libraries at the same time. */
+/* Scilab will return a error (code Windows 1114) in this case.*/
+/* A dynamic link library (DLL) initialization routine failed. */
+
+/* size of interface name */
+/* scilab limitation to nlgh characters (24)*/
+#define INTERFSIZE nlgh + 1 
 /*-----------------------------------------------------------------------------------*/
 typedef struct 
 {
@@ -45,20 +53,26 @@ typedef struct
 	int Nshared; /** id of the shared library **/
 	BOOL ok;    /** flag set to TRUE if entrypoint can be used **/
 } InterfaceElement;
-
-InterfaceElement DynInterf[MAXINTERF];
 /*-----------------------------------------------------------------------------------*/
-static int LastInterf=0;
+InterfaceElement *DynInterf = NULL;
+static int MaxInterfaces = MAXINTERF;
+/*-----------------------------------------------------------------------------------*/
+static int LastInterf = 0;
 static void initializeInterfaces(void);
+static BOOL reallocDynInterf(void);
 /*-----------------------------------------------------------------------------------*/
 int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts)
 {
+	int IdLib = -1; /* Id of library */
+	int idinput = -1; /* Id of a function */
+	int ierr1 = 0;
+	int one = 1;
+	char **subname = NULL;
 	int ierr = 0;
 	int i = 0;
 	int inum = 0;
 	int k1 = 0;
-	int id[nsiz],zero=0,trois=3,fptr = 0,fptr1 = 0,quatre=4;
-
+	
 	initializeLink();
 	initializeInterfaces();
 
@@ -75,8 +89,10 @@ int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts
 
 	/** Try to find a free position in the interface table : inum **/
 	inum=-1;
-	for ( i = 0 ; i < LastInterf ; i++) {
-		if ( DynInterf[i].ok == 0 ) {
+	for ( i = 0 ; i < LastInterf ; i++) 
+	{
+		if ( DynInterf[i].ok == 0 ) 
+		{
 			inum= i;
 		}
 	}
@@ -85,78 +101,83 @@ int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts
 
 	/** Linking Files and add entry point name iname */
 
-	if ( inum >=  MAXINTERF ) 
+	if ( inum >=  MaxInterfaces ) 
 	{
-		return -1;
+		/* Try to resize DynInterf */
+		if ( ( !reallocDynInterf() ) || ( inum >=  MaxInterfaces ) ) return -1;
+	}
+
+	subname = (char **)MALLOC(sizeof (char*));
+	subname[0]= spname;
+
+	/* link then search  */ 
+	/* Trying with the fortran symbol */
+	IdLib =  scilabLink(idinput,filenamelib,subname,one,TRUE,&ierr1);
+	if (ierr1!=0)
+	{
+		/* Haven't been able to find the symbol. Try C symbol */
+		IdLib =  scilabLink(idinput,filenamelib,subname,one,FALSE,&ierr1);
+	}
+
+	subname[0] = NULL;
+	if (subname) { FREE(subname);subname = NULL;}
+
+	if ( IdLib < 0 ) return IdLib;
+
+	/** store the linked function in the interface function table DynInterf **/
+	DynInterf[inum].Nshared = IdLib;
+
+	if ( SearchInDynLinks(spname,&DynInterf[inum].func) < 0 ) 
+	{
+		/* Maximum number of dynamic interfaces */
+		return -6;
 	}
 	else
 	{
-		int IdLib = -1;
-		int idinput = -1;
-		int ierr1 = 0;
-		int one = 1;
-		char **subname = NULL;
-
-		subname = (char **)MALLOC(sizeof (char*));
-		subname[0]= spname;
-
-		/* link then search  */ 
-		/* Trying with the fortran symbol */
-		IdLib =  scilabLink(idinput,filenamelib,subname,one,TRUE,&ierr1);
-		if (ierr1!=0){
-			/* Haven't been able to find the symbol. Try C symbol */
-			IdLib =  scilabLink(idinput,filenamelib,subname,one,FALSE,&ierr1);
-		}
-
-		subname[0]= NULL;
-		if (subname) { FREE(subname);subname = NULL;}
-
-		if ( IdLib < 0 ) return IdLib;
-
-		/** store the linked function in the interface function table DynInterf **/
-		DynInterf[inum].Nshared = IdLib;
-
-		if ( SearchInDynLinks(spname,&DynInterf[inum].func) < 0 ) 
-		{
-			/* Maximum number of dynamic interfaces */
-			return -6;
-		}
-		else
-		{
-			strncpy(DynInterf[inum].name,spname,INTERFSIZE);
-			DynInterf[inum].ok = TRUE;
-		}
-		if ( inum == LastInterf ) LastInterf++;
-
-		k1 = inum+1;
-		for (i = 0;i < sizefcts; i++)
-		{
-			C2F(cvname)(id,fcts[i],&zero,strlen(fcts[i]));
-			fptr1 = fptr = (DynInterfStart+k1)*100 +(i+1);
-			C2F(funtab)(id,&fptr1,&quatre,"NULL_NAME",0); /* clear previous def set fptr1 to 0*/
-			C2F(funtab)(id,&fptr,&trois,"NULL_NAME",0);  /* reinstall */
-		}
+		strncpy(DynInterf[inum].name,spname,INTERFSIZE);
+		DynInterf[inum].ok = TRUE;
 	}
+	if ( inum == LastInterf ) LastInterf++;
+
+	k1 = inum+1;
+	for (i = 0;i < sizefcts; i++)
+	{
+		int id[nsiz],zero=0,trois=3,fptr = 0,fptr1 = 0,quatre=4;
+
+		C2F(cvname)(id,fcts[i],&zero,strlen(fcts[i]));
+		fptr1 = fptr = (DynInterfStart+k1)*100 +(i+1);
+		/* clear previous def set fptr1 to 0*/
+		C2F(funtab)(id,&fptr1,&quatre,"NULL_NAME",0); 
+		/* reinstall */
+		C2F(funtab)(id,&fptr,&trois,"NULL_NAME",0); 
+	}
+
 	return ierr;
 }
 /*-----------------------------------------------------------------------------------*/
 static void initializeInterfaces(void)
 {
-	static int first_entry = 0;
+	static int first_entry_interfaces = 0;
 
-	if ( first_entry == 0) 
+	if ( first_entry_interfaces == 0) 
 	{
-		int i = 0;
-		for ( i= 0 ; i < MAXINTERF ; i++) 
+		if (DynInterf == NULL)
 		{
-			strcpy(DynInterf[i].name,"");
-			DynInterf[i].func = NULL;
+			DynInterf = (InterfaceElement*)MALLOC(sizeof(InterfaceElement)*MaxInterfaces);
+			if (DynInterf)
+			{
+				int i = 0;
+				for ( i= 0 ; i < MaxInterfaces ; i++) 
+				{
+					strcpy(DynInterf[i].name,"");
+					DynInterf[i].func = NULL;
 
-			DynInterf[i].Nshared = -1;
-			DynInterf[i].ok = FALSE;
+					DynInterf[i].Nshared = -1;
+					DynInterf[i].ok = FALSE;
+				}
+			}
 		}
-
-		first_entry++;
+		first_entry_interfaces++;
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -179,7 +200,7 @@ void RemoveInterf(int id)
 /************************************************
 * Used when one want to call a function added 
 * with addinterf the dynamic interface number 
-* is given by k1=(*k/100)-1
+* is given by *k - (DynInterfStart+1)
 ************************************************/
 void C2F(userlk)(integer *k)
 {
@@ -191,6 +212,7 @@ void C2F(userlk)(integer *k)
 		C2F(error)(&imes);
 		return;
 	}
+
 	if ( DynInterf[k1].ok == 1 ) 
 	{
 #ifdef _MSC_VER
@@ -218,5 +240,35 @@ void C2F(userlk)(integer *k)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
+static BOOL reallocDynInterf(void)
+{
+	/* increase table of interfaces by 2 */
+	int newMaxInterfaces = MaxInterfaces * 2;
 
+	if (newMaxInterfaces < ENTRYMAX)
+	{
+		if (DynInterf)
+		{
+			int i = 0;
+			InterfaceElement *newDynInterf = NULL;
 
+			newDynInterf = (InterfaceElement*)REALLOC(DynInterf,sizeof(InterfaceElement)*newMaxInterfaces);
+			if (newDynInterf == NULL) return FALSE;
+
+			DynInterf = newDynInterf;
+
+			for ( i= MaxInterfaces ; i < newMaxInterfaces ; i++) 
+			{
+				strcpy(DynInterf[i].name,"");
+				DynInterf[i].func = NULL;
+				DynInterf[i].Nshared = -1;
+				DynInterf[i].ok = FALSE;
+			}
+			MaxInterfaces = newMaxInterfaces;
+			return TRUE;
+		}
+		else return FALSE;
+	}
+	return FALSE;
+}
+/*-----------------------------------------------------------------------------------*/
