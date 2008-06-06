@@ -23,6 +23,7 @@
 
 #include "machine.h"
 #include "core_math.h"
+#include "elementary_functions.h" /* C2F(dmmul) */
 
 #include "scicos.h"
 

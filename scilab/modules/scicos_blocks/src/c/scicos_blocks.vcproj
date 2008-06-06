@@ -372,6 +372,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\absblk.c"
+				>
+			</File>
+			<File
 				RelativePath=".\absolute_value.c"
 				>
 			</File>
@@ -381,6 +385,10 @@
 			</File>
 			<File
 				RelativePath=".\acosh_blk.c"
+				>
+			</File>
+			<File
+				RelativePath=".\andlog.c"
 				>
 			</File>
 			<File
@@ -436,10 +444,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\blocks.c"
-				>
-			</File>
-			<File
 				RelativePath=".\bounce_ball.c"
 				>
 			</File>
@@ -485,6 +489,10 @@
 			</File>
 			<File
 				RelativePath=".\cos_blk.c"
+				>
+			</File>
+			<File
+				RelativePath=".\cosblk.c"
 				>
 			</File>
 			<File
@@ -545,6 +553,10 @@
 			</File>
 			<File
 				RelativePath=".\curve_c.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dband.c"
 				>
 			</File>
 			<File
@@ -797,6 +809,10 @@
 			</File>
 			<File
 				RelativePath=".\fromws_c.c"
+				>
+			</File>
+			<File
+				RelativePath=".\gain.c"
 				>
 			</File>
 			<File
