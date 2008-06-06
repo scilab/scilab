@@ -127,10 +127,10 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	elementary_functions string dynamic_link history_manager \
-	fileio spreadsheet tclsci renderer shell completion console \
-	localization gui jvm graphics graphic_export optimization \
-	symbolic randlib statistics special_functions interpolation \
-	linear_algebra integer data_structures mexlib \
+	fileio spreadsheet tclsci renderer shell completion \
+	localization console gui jvm graphics graphic_export \
+	optimization symbolic randlib statistics special_functions \
+	interpolation linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double pvm io \
 	intersci metanet signal_processing sound time sparse \
 	windows_tools functions others overloading maple2scilab m2sci \
@@ -326,10 +326,10 @@ top_srcdir = @top_srcdir@
 # since it already linked almost the whole world
 SUBDIRS = core output_stream action_binding arnoldi \
 	elementary_functions string dynamic_link history_manager \
-	fileio spreadsheet tclsci renderer shell completion console \
-	localization gui jvm graphics graphic_export optimization \
-	symbolic randlib statistics special_functions interpolation \
-	linear_algebra integer data_structures mexlib \
+	fileio spreadsheet tclsci renderer shell completion \
+	localization console gui jvm graphics graphic_export \
+	optimization symbolic randlib statistics special_functions \
+	interpolation linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double pvm io \
 	intersci metanet signal_processing core interpolation sound \
 	time randlib sparse windows_tools functions others overloading \
