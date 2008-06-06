@@ -95,10 +95,12 @@ public class TexturedColorMap extends ColorMap {
 		
 		if (colorMapTexture == null) {
 			colorMapTexture = createTexture();
+			updateTextureCoordinates();
 			hasChanged = false;
 		} else if (hasChanged) {
 			
 			updateColorMapTexture();
+			updateTextureCoordinates();
 			hasChanged = false;
 		}
 		
@@ -240,7 +242,7 @@ public class TexturedColorMap extends ColorMap {
 		}
 		
 		// Use texture coordinates bounds to apply texture
-		gl.glTexCoord1d((textureRightCoord - textureLeftCoord) * clampValue - textureLeftCoord);
+		gl.glTexCoord1d((textureRightCoord - textureLeftCoord) * clampValue + textureLeftCoord);
 		
 	}
 	
