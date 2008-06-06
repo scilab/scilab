@@ -134,8 +134,8 @@ public class TexturedColorMap extends ColorMap {
 	protected void setTextureParameters(Texture texture) {
 		texture.setTexParameteri(GL.GL_TEXTURE_MAG_FILTER, GL.GL_NEAREST);
 		texture.setTexParameteri(GL.GL_TEXTURE_MIN_FILTER, GL.GL_NEAREST);
-		texture.setTexParameteri(GL.GL_TEXTURE_WRAP_S, GL.GL_REPEAT);
-		texture.setTexParameteri(GL.GL_TEXTURE_WRAP_T, GL.GL_REPEAT);
+		//texture.setTexParameteri(GL.GL_TEXTURE_WRAP_S, GL.GL_REPEAT);
+		//texture.setTexParameteri(GL.GL_TEXTURE_WRAP_T, GL.GL_REPEAT);
 	}
 	
 	/**
