@@ -138,19 +138,26 @@ public class SwingScilabTab extends View implements SimpleTab {
 	 * @see org.scilab.modules.gui.uielement.UIElement#draw()
 	 */
 	public void draw() {
+		
 		// TODO this is a temporary patch
-		try {
-			SwingUtilities.invokeAndWait(new Runnable() {
-				public void run() {
-					setVisible(true);
-					doLayout();
-					paintImmediately();
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+		if (SwingUtilities.isEventDispatchThread()) {
+			setVisible(true);
+			doLayout();
+			paintImmediately();
+		} else {
+			try {
+				SwingUtilities.invokeAndWait(new Runnable() {
+					public void run() {
+						setVisible(true);
+						doLayout();
+						paintImmediately();
+					}
+				});
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}
