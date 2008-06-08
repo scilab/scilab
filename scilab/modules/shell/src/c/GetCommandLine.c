@@ -16,7 +16,7 @@
 #include "machine.h"
 #include "SetConsolePrompt.h"
 #include "scilabmode.h"
-#include "sci_mem_alloc.h"
+#include "MALLOC.h"
 #include "prompt.h"
 #include "HistoryManager.h"
 #include "dynamic_menus.h" /* for ismenu() */
@@ -24,6 +24,7 @@
 
 
 #ifdef _MSC_VER
+#include "charEncoding.h"
 #define IMPORT_SIGNAL __declspec(dllimport)
 #define strdup _strdup
 #else
@@ -180,7 +181,21 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   ** do not change reference to buffer
   ** or fortran will be lost !!!!
   */
+  #ifdef _MSC_VER
+  {
+	 char *ANSIbuffer = UTF8ToANSI( __CommandLine);
+     /* UTF-8 to ANSI Windows native conversion */
+	 if (ANSIbuffer)
+	 {
+		strcpy(buffer,ANSIbuffer);
+		FREE(ANSIbuffer);
+	 }
+	 else strcpy(buffer, __CommandLine);
+  }
+#else
   strcpy(buffer, __CommandLine);
+#endif
+
   *len_line = (int)strlen(buffer);
   *eof = FALSE;
 }
