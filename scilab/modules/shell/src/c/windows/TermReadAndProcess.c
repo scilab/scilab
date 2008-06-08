@@ -27,16 +27,16 @@ char * TermReadAndProcess(void)
 	char *OEMline = NULL;
 	char *returnedline = NULL;
 
-        if (GetTemporaryPrompt()!=NULL) /* Input function is used */
-          {
-            OEMline = readline_nw(GetTemporaryPrompt());
-            ClearTemporaryPrompt();
-          }
-        else
-          {
-            GetCurrentPrompt(save_prompt);
-            OEMline = readline_nw (save_prompt);
-          }
+    if (GetTemporaryPrompt()!=NULL) /* Input function is used */
+    {
+		OEMline = readline_nw(GetTemporaryPrompt());
+        ClearTemporaryPrompt();
+	}
+	else
+	{
+		GetCurrentPrompt(save_prompt);
+		OEMline = readline_nw (save_prompt);
+	}
         
 	if (OEMline)
 	{
@@ -68,7 +68,5 @@ char * TermReadAndProcess(void)
 	}
 	strcpy(save_prompt,"");
 	return returnedline;
-
-
 }
 /*--------------------------------------------------------------------------*/
