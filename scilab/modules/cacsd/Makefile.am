@@ -262,7 +262,6 @@ includes/gw_slicot.h
 ####�cacsd : demos files ####
 libscicacsd_la_demosdir=$(mydatadir)
 nobase_libscicacsd_la_demos_DATA = demos/cacsd.dem.gateway.sce \
-demos/cacsd.dem.gateway.sce~ \
 demos/cont.dem \
 demos/flat/car.dem.sce \
 demos/flat/car.sci \
