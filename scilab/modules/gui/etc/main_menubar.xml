@@ -174,7 +174,7 @@
             <callback instruction='help();' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Scilab  &amp;Demonstrations">
+        <submenu label="Scilab  &amp;Demonstrations" enabled="false">
              <callback instruction='scilab_demos();' type="0"/>
         </submenu> 
         <separator/>
