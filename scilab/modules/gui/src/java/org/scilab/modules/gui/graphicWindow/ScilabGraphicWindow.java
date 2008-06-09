@@ -67,7 +67,7 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex);
 		/* Destroy the graphic figure when the tab is closed */
 		//graphicTab.setCallback(CallBack.createCallback(getClosingWindowCommand(figureIndex), CallBack.SCILAB_INSTRUCTION));
-		graphicTab.setCallback(ScilabCloseCallBack.create(getClosingWindowCommand(figureIndex)));
+		graphicTab.setCallback(ScilabCloseCallBack.create(figureIndex, getClosingWindowCommand(figureIndex)));
 		Canvas graphicCanvas = ScilabCanvas.createCanvas(figureIndex);
 		graphicTab.addMenuBar(menuBar);
 		graphicTab.addToolBar(toolBar);
