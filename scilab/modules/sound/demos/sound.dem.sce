@@ -18,8 +18,11 @@ s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
 s(nc/2:nc)=sin(330*t(nc/2:nc));
 
 // We can easily make a Fourier analysis of it.
-xbasc();analyze(s);
+my_handle = scf(100001);
+clf(my_handle,"reset");
+analyze(s);
 halt();
+
 // Save the file in WAV format.
 // we renormalize s in order to check that save+load is invariant
 s=s-sum(s)/prod(size(s)); s=s/max(abs(s));
@@ -28,9 +31,9 @@ savewave(TMPDIR+"/test.wav",s);
 s1=loadwave(TMPDIR+"/test.wav");
 if maxi(abs(s1-s)) < 1.e-4;end 
 // Now we can make a complete picture of the sound.
-xbasc();mapsound(s);
+clf(my_handle,"reset");
+mapsound(s);
 halt();
 // Or a Fourier analysis.
-xbasc();analyze(s);
-
-
+clf(my_handle,"reset");
+analyze(s);
