@@ -30,10 +30,15 @@ deff('[ut]=uu(t)','ut=[sin(3*t);cos(0.5*t)]');
 dt=0.05;tmax=60;
 instants=0:dt:tmax;
 totrack=flts(uu(instants),dscr(Model,dt));    //Signal
-xbasc();
+
+my_handle             = scf(100001);
+clf(my_handle,"reset");
 plot2d(instants',totrack');
-halt()
-xbasc()
+
+halt();
+
+clf(my_handle,"reset");
+
 //
 [L,M,T]=gfrancis(Plant,Model);
 
@@ -61,5 +66,3 @@ plot2d([instants',instants'],..
        [totrack(1,:)',z(1,:)'],[1 2],'161',..
        'Signal to track@Computed signal@');
 xtitle('tracking');
-
-

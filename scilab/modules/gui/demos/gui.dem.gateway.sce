@@ -5,11 +5,10 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-demopath = get_absolute_file_path("tcltk.dem.gateway.sce");
+demopath = get_absolute_file_path("gui.dem.gateway.sce");
 
-subdemolist = ["Color"  ,"color.dem.sce"      ; ..
-			"Puzzle" ,"puzzle.dem.sce"     ; ..
-			"Scroll" ,"scroll.dem.sce"     ; ..
-			"Scale"  ,"scale.dem.sce"      ]
+subdemolist = ["Dialogs"   ,"dialog.dem.sce"       ; ..
+			"Uicontrols 1" ,"uicontrol.dem.sce"     ; ..
+			"Uicontrols 2" ,"uicontrol_plot3d.dem.sce"     ]
 			
 subdemolist(:,2) = demopath + subdemolist(:,2);

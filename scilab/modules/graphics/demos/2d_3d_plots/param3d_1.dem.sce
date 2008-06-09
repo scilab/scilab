@@ -5,9 +5,10 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-my_plot_desc          = "param3d : parametric curves in R3";
-
 my_handle             = scf(100001);
+clf(my_handle,"reset");
+
+my_plot_desc          = "param3d : parametric curves in R3";
 my_handle.figure_name = my_plot_desc;
 
 param3d();

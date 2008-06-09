@@ -10,7 +10,7 @@ mode(-1)
 demopath = get_absolute_file_path("surfaces.dem.gateway.sce");
 exec(demopath+"/Macros.sci");
 
-demolist=["Surface with holes 1"    ,"hole3d.sce";
+subdemolist=["Surface with holes 1"    ,"hole3d.sce";
           "Surface with holes 2"    ,"hole3d1.sce";
           "Sphere"                  ,"sphere.sce";
           "Shell"                   ,"shell.sce";

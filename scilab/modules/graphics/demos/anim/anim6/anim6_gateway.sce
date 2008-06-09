@@ -9,7 +9,7 @@
 // Demonstrate animation based on the dynamic of a chain
 // =============================================================================
 
-demo_begin();
-demo_message("SCI/modules/graphics/demos/anim/anim6/anim6.sce");
+//demo_begin();
+//demo_message("SCI/modules/graphics/demos/anim/anim6/anim6.sce");
 demo_run("SCI/modules/graphics/demos/anim/anim6/anim6.sce");
-demo_end();
+//demo_end();

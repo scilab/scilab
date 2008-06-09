@@ -4,11 +4,14 @@
 //
 // This file is distributed under the same license as the Scilab package.
 //
-	
-	my_plot_desc          = "pie chart";
+	mode(-1);
 	
 	my_handle             = scf(100001);
+	clf(my_handle,"reset");
+	
+	my_plot_desc          = "pie chart";
 	my_handle.figure_name = my_plot_desc;
+	
 	expr=[
 	"plot2d(0,0,[0],''032'',''leg'',[-1.5,-1.5 ,1.5,1.5]);"
 	"a=gca(); t=a.title;"

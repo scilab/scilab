@@ -271,13 +271,11 @@ demos/tk/demredraw.sci \
 demos/tk/rgb.txt \
 demos/tk/timer.sce \
 demos/tk/puzzle \
-demos/tk/uicontrol.sci \
 demos/tk/scale.dem.sce \
 demos/tk/cscroll \
 demos/tk/tcolor \
 demos/tk/puzzle.dem.sce \
 demos/tk/scroll.dem.sce \
-demos/tk/uicontrol1.sce \
 demos/tk/color.dem.sce \
 demos/tk/rolodex \
 demos/tk/vscale

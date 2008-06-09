@@ -10,7 +10,9 @@ mode(0);
 
 path=get_absolute_file_path('fec.ex4');
 getf(path+'fec_demo.sci');
-xbasc();
+
+curFig             = scf(100001);
+clf(curFig,"reset");
 
 // compute the mesh
 N=20;n=1:N;
@@ -27,9 +29,7 @@ trianl=[trianl;N,N,1,N+1,0];
 
 xset("colormap",jetcolormap(128));
 
-new_style = get("figure_style")=="new";
-
-if new_style then, drawlater(), end
+drawlater();
 colorbar(1,N+1);
 rect=[-1.2,-1.2,1.2,1.2];
 fec(noeul(:,2),noeul(:,3),trianl,(1:N+1)',"030"," ",rect);
@@ -37,7 +37,6 @@ meshvisu(3,rect);
 a=gca();
 a.title.text="finite element display with colorbar";
 a.title.font_size=3;
-if new_style then, drawnow(), end
+drawnow();
 
 mode(0);
-

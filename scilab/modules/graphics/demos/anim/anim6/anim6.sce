@@ -13,7 +13,9 @@
 path=get_absolute_file_path('anim6.sce');
 yt=read(path+'yt.wrt',20,201);  //load data
 
-curFig = gcf();clf();  // erase window
+curFig             = scf(100001);
+clf(curFig,"reset");
+
 xselect(); //raise the graphic window
 
 //turn off toolbar

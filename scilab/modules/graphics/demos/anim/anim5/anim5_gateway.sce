@@ -9,7 +9,7 @@
 // Demonstrate animation based on the evolution of a 3D surface
 // =============================================================================
 
-demo_begin();
-demo_message("SCI/modules/graphics/demos/anim/anim5/anim5.sce");
+//demo_begin();
+//demo_message("SCI/modules/graphics/demos/anim/anim5/anim5.sce");
 demo_run("SCI/modules/graphics/demos/anim/anim5/anim5.sce");
-demo_end();
+//demo_end();

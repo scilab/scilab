@@ -4,10 +4,12 @@
 //
 // This file is distributed under the same license as the Scilab package.
 //
-	
-	my_plot_desc          = "General functions";
+	mode(-1);
 	
 	my_handle             = scf(100001);
+	clf(my_handle,"reset");
+	
+	my_plot_desc          = "General functions";
 	my_handle.figure_name = my_plot_desc;
 	
 	plot2d([-100,500],[-100,600],[-1,-1],"022");

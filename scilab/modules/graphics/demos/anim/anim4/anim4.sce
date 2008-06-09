@@ -11,7 +11,9 @@
 
 mode(0);
 
-curFig = gcf();clf();  // erase window
+curFig             = scf(100001);
+clf(curFig,"reset");
+
 xselect(); //raise the graphic window
 
 //turn off toolbar

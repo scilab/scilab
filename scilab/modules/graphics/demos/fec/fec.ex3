@@ -8,8 +8,11 @@
 
 mode(0);
 
-xbasc();
+curFig             = scf(100001);
+clf(curFig,"reset");
+
 Sfgrayplot();
-a=gca(); a.title.font_size=3;
+a=gca();
+a.title.font_size=3;
 
 mode(-1);

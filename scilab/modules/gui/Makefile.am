@@ -310,7 +310,11 @@ includes/Widget.h
 
 #### gui : demos files ####
 libscigui_la_demosdir=$(mydatadir)/demos/
-libscigui_la_demos_DATA = demos/dialog.dem
+libscigui_la_demos_DATA = demos/cb_uicontrol_plot3d.dem.sci \
+demos/dialog.dem.sce \
+demos/gui.dem.gateway.sce \
+demos/uicontrol.dem.sce \
+demos/uicontrol_plot3d.dem.sce
 
 
 #### graphics : icons files ####

@@ -7,7 +7,7 @@
 
 demopath = get_absolute_file_path("graphics.dem.gateway.sce");
 
-demolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gateway.sce"             ; ..
+subdemolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gateway.sce"             ; ..
 			"Basic functions"             ,"basic_functions/basic_functions.dem.gateway.sce"     ; ..
 			"Animation"                   ,"anim/anim.dem.gateway.sce"                           ; ..
 			"Finite Elements"             ,"fec/fec.dem.gateway.sce"                             ; ..
@@ -16,3 +16,5 @@ demolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gateway.
 			"Misc"                        ,"misc_new/misc.dem.gateway.sce"          ; ..
 			"Complex elementary functions","cmplxfunc/cmplxfunc.dem.gateway.sce"; ..
 			"bar histogram"               ,"bar/bar.dem"            ]
+			
+subdemolist(:,2) = demopath + subdemolist(:,2);

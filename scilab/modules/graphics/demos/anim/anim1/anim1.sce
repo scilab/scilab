@@ -5,7 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-curFig = gcf();clf();  // erase window
+curFig             = scf(100001);
+clf(curFig,"reset");
 xselect(); //raise the graphic window
 
 //turn off toolbar

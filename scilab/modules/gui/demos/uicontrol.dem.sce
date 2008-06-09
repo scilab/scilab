@@ -5,16 +5,6 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-function add_list_item()
-  if e1<>0&l1<>0 then
-  new = get(e1,'String')
-  list_item = [list_item  new];
-  set(l1,'String',strcat(list_item,'|'));
-  list_item=resume(list_item)
-  end
-endfunction
-
-function myuidialog()
   list_item = ["rouge"  "vert"  "tomate"  "chevre" "Truc"];
   e1=0;l1 =0
   initial=strcat(list_item,'|')
@@ -74,7 +64,7 @@ function myuidialog()
 		 "BackgroundColor",[0 0.7 1],...
 		 "callback"  , "fin=%t");
 
-  fr2= uicontrol(f, "Position"  , [137 128 29 19],...
+  fr2= uicontrol(f, "Position"  , [138 128 29 19],...
 		 "Style"     , "frame",...
 		 "BackgroundColor",[0.9 0.9 0.9]);
 
@@ -82,17 +72,17 @@ function myuidialog()
 		 "Style"     , "text",...
 		 "String"    , "50",...
 		 "BackgroundColor",[1 1 1]);
-  
+  s1=0
   s1 = uicontrol(f, "Position"  , [10 130 120 15],..
 		 "Style"     , "slider",...
 		 "Min"       , 0,...
 		 "Max"       , 100,...
 		 "Value"     , 50,...
 		 "SliderStep", [2 10],...
-		 "callback"  , "set(t2,''String'',string(get(gcbo,''Value'')))");
+		 "callback"  , "set(t2,''String'',string(get(s1,''Value'')))");
   // Note pour un slider la position de ref est ulp
 
-  p1 = uicontrol(f, "Position"  , [90 170 70 20],...
+  p1 = uicontrol(f, "Position"  , [100 170 50 20],...
 		 "Style"     , "popupmenu",...
 		 "String"    , "popup|item1|item2|item3|toto|truc|bidule");
 
@@ -105,5 +95,13 @@ function myuidialog()
   end
   close(f)
 
-  return
+
+
+function add_list_item()
+  if e1<>0&l1<>0 then
+  new = get(e1,'String')
+  list_item = [list_item  new];
+  set(l1,'String',strcat(list_item,'|'));
+  list_item=resume(list_item)
+  end
 endfunction

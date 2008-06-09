@@ -5,9 +5,12 @@
 // This file is distributed under the same license as the Scilab package.
 //
 	
-	my_plot_desc          = "Setting graphic context values";
+	mode(-1);
 	
 	my_handle             = scf(100001);
+	clf(my_handle,"reset");
+	
+	my_plot_desc          = "Setting graphic context values";
 	my_handle.figure_name = my_plot_desc;
 	
 	plot2d([-100,500],[-100,600],[-1,-1],"022");
@@ -17,7 +20,8 @@
 	t.text      = my_plot_desc;
 	t.font_size = 3;
 	
-	xclip('clipgrf');
+	// clipping
+	a.clip_state = "clipgrf";
 	
 	deff('[v]=transl(x,t)','v=x+t*ones(x)');
 	

@@ -7,7 +7,7 @@
 
 demopath = get_absolute_file_path("basic_functions.dem.gateway.sce");
 
-demolist=[                                                           ..
+subdemolist=[                                                                            ..
     "Rectangles, Arcs, Polylines, Segments and Numbers","basic_functions_1.dem.sce" ; ..
     "Rectangles, Arcs, Polylines and Strings"          ,"basic_functions_2.dem.sce" ; ..
     "Setting properties"                               ,"basic_functions_3.dem.sce" ; ..
@@ -16,3 +16,5 @@ demolist=[                                                           ..
     "Colored matrix"                                   ,"basic_functions_6.dem.sce" ; ..
     "Colored histogram"                                ,"basic_functions_7.dem.sce" ; ..
     "Pie Chart"                                        ,"basic_functions_8.dem.sce" ]
+
+subdemolist(:,2) = demopath + subdemolist(:,2);

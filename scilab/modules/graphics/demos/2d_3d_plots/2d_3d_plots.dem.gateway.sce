@@ -7,7 +7,7 @@
 
 demopath = get_absolute_file_path("2d_3d_plots.dem.gateway.sce");
 
-demolist = [                                       ..
+subdemolist = [                                       ..
 	"plot2d"         , "plot2d.dem.sce"          ; ..
 	"plot2d1 (1)"    , "plot2d1_1.dem.sce"       ; ..
 	"plot2d3"        , "plot2d3.dem.sce"         ; ..
@@ -38,23 +38,10 @@ demolist = [                                       ..
 	"fac3d"          , "fac3d.dem.sce"           ; ..
 	"fac3d1"         , "fac3d1.dem.sce"          ];
 	
+subdemolist(:,2) = demopath + subdemolist(:,2);
+	
 function xdemo(info,str)
 	x_message([info;str]);
 	xbasc();
 	execstr(str);
 endfunction
-
-// exec('SCI/modules/graphics/demos/dessin-1.dem');
-
-// nn=prod(size(str_l));
-// 
-// while %t then
-// 	num=x_choose(info_l,'Choose a demo    ');
-// 	if num==0 then
-// 		lines(oldln(1));
-// 		set figure_style new;
-// 		return;
-// 	else
-// 		xdemo(" ",str_l(num));
-// 	end
-// end

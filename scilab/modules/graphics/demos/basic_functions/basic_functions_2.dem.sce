@@ -4,40 +4,44 @@
 //
 // This file is distributed under the same license as the Scilab package.
 //
-	
-	my_plot_desc          = "rectangles, arcs, polylines and strings";
+	mode(-1);
 	
 	my_handle             = scf(100001);
+	clf(my_handle,"reset");
+	
+	my_plot_desc          = "rectangles, arcs, polylines and strings";
 	my_handle.figure_name = my_plot_desc;
 	
 	plot2d([-100,500],[-100,600],[-1,-1],"022");
 	a           = gca();
 	t           = a.title;
-	t.text      = my_plot_desc
+	t.text      = my_plot_desc;
 	t.font_size = 3;
 	
-	xclip('clipgrf');
+	// clipping
+	a.clip_state = "clipgrf";
+	
 	deff('[v]=transl(x,t)','v=x+t*ones(x)');
 	
 	x_message(["[II] Basic Functions of drivers :"]);
 	
 	// Demo II.1
-	expr="xrect(20,120,60,60);"
+	expr="xrect(20,120,60,60);";
 	x_message(["[II.1] xrect : draw one rectangle with current line style";expr]);
 	execstr(expr);
 	
 	// Demo II.2
-	expr="xfrect(100,120,60,60);"
+	expr="xfrect(100,120,60,60);";
 	x_message(["[II.1] xfrect : fill one rectangle with current pattern";expr]);
 	execstr(expr);
 	
 	// Demo II.3
-	expr="xarc(20,200,50,70,0,64*(225));"
+	expr="xarc(20,200,50,70,0,64*(225));";
 	x_message(["[II.2] xarc : draw part of an elipsis";expr]);
 	execstr(expr);
 	
 	// Demo II.4
-	expr="xfarc(100,200,50,70,0,64*225);"
+	expr="xfarc(100,200,50,70,0,64*225);";
 	x_message(["[II.2] xfarc : fill part of an elipsis";expr]);
 	execstr(expr);
 	

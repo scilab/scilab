@@ -7,11 +7,15 @@
 
 mode(-1)
 path=get_absolute_file_path('pendule.dem');
-//
+
 getf(path+'simulation.sci')
 getf(path+'graphics.sci')
-//
-xselect();wdim=xget('wdim')
+
+my_handle             = scf(100001);
+clf(my_handle,"reset");
+
+xselect();
+wdim=xget('wdim')
 //mode(1)
 
  dpnd()

@@ -9,7 +9,9 @@
 // Demonstrate animation based on the evolution of a 3D surface
 // ============================================================================
 
-curFig = gcf();clf();  // erase window
+curFig             = scf(100001);
+clf(curFig,"reset");
+
 xselect(); //raise the graphic window
 
 //turn off toolbar

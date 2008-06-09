@@ -9,10 +9,11 @@
 // Demonstrate animation based on the evolution of a 3d curve
 // =============================================================================
 
-curFig = gcf();clf();  // erase window
+curFig             = scf(100001);
+clf(curFig,"reset");
+
 xselect(); //raise the graphic window
 mode(0);
-
 
 //turn off toolbar
 //----------------
