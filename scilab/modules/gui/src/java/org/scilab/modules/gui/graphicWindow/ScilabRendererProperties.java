@@ -36,7 +36,7 @@ public class ScilabRendererProperties implements RendererProperties {
 	
 	/**
 	 * Default constructor
-	 * @param parentTab the parent tab of this renderer
+	 * @param parentTab the parent tab of this renderer 
 	 * @param parentCanvas the parent canvas of this renderer
 	 */
 	public ScilabRendererProperties(Tab parentTab, Canvas parentCanvas) {
