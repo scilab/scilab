@@ -16,7 +16,10 @@ if w<>[] then
   mode(1)	
   hz=iir(evstr(w(2)),w(1),w(3),evstr(w(4)),evstr(w(5)));
   [hzm,fr]=frmag(hz,256);
-  xselect();xbasc();
-  plot2d(fr',hzm')
+
+  my_handle = scf(100001);
+  clf(my_handle,"reset");
+
+  plot2d(fr',hzm');
   xtitle('Discrete IIR filter '+'( '+ w(3)+' ) ',' ',' ');
 end

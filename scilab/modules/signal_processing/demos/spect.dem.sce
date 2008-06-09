@@ -8,21 +8,20 @@
 ////////////////////////
 //SPECTRAL ESTIMATION///
 ////////////////////////
-mode(1)
-xselect();xbasc(); 
- 
+   mode(1)
+
 //generate white data
    rand('normal');
    rand('seed',0);
    x=rand(1:1024-33+1);
- 
+
 //make low-pass filter with eqfir
    nf=33;
    bedge=[0 .1;.125 .5];
    des=[1 0];
    wate=[1 1];
    h=eqfir(nf,bedge,des,wate);
- 
+
 //filter white data to obtain colored data
    h1=[h 0*ones(1:maxi(size(x))-1)];
    x1=[x 0*ones(1:maxi(size(h))-1)];
@@ -37,23 +36,30 @@ xselect();xbasc();
    hf2=real(hf2.*conj(hf2));
    hsize=maxi(size(hf2));
    fr=(1:hsize)/hsize;
+
+   my_handle = scf(100001);
+   clf(my_handle,"reset");
+
    plot2d(fr',log(hf2)');
    xtitle('Data spectrum','frequency','magnitude');
-   halt();xbasc(); 
- 
+   halt();
+
 //pspect example
    [sm1]=pspect(100,200,'tr',y);
    smsize=maxi(size(sm1));
    fr=(1:smsize)/smsize;
+   clf(my_handle,"reset");
    plot2d(fr',log(sm1)')
    xtitle('Spectral estimation','frequency','spectral power');
-   halt();xbasc(); 
- 
+   halt();
+
 //cspect example
    [sm2]=cspect(100,200,'tr',y);
    smsize=maxi(size(sm2));
    fr=(1:smsize)/smsize;
+   clf(my_handle,"reset");
    plot2d(fr',log(sm2)');
    xtitle(['Spectral estimation ; periodogram method'],' ' ,' ' )
    halt();
-   xbasc(); 
+
+   delete(my_handle);

@@ -8,18 +8,22 @@
 ////////////////////////
 //MINIMAX FIR FILTERS///
 ////////////////////////
-xbasc();xselect();
-mode(1)
+   mode(1);
+
 //Low pass filter (length 33, cut-off in [.23,.27], weight 1/.1)
 
    hn=eqfir(33,[0 .23;.27 .5],[1 0],[1 .1]);
    [hm,fr]=frmag(hn,256);
+
+   my_handle = scf(100001);
+   clf(my_handle,"reset");
+
    plot2d(fr',hm'),
-   title_c=['Minimax FIR filter';
- 	  'low pass  cut-off in [.23,.27]';
-          'length 33'];
+   title_c=["Minimax FIR filter";
+            "low pass  cut-off in [.23,.27]";
+            "length 33"];
    xtitle(title_c);
-   halt(),xbasc();
+   halt();
  
 //Triangular filter created using remezb
    nc=21;
@@ -33,11 +37,13 @@ mode(1)
    hn(nc)=an(1);
    hn(nc+1:2*nc-1)=an(2:nc)/2;
    [hm,fr]=frmag(hn,maxi(size(ds)));
+   clf(my_handle,"reset");
    plot2d(fr',hm'),
    xtitle('Remez Triangular filter','frequency','magnitude');
-   halt();xbasc(); 
+   halt();
+   clf(my_handle,"reset");
    plot2d(fr',(hm-ds)'),
    xtitle(' ','frequency','magnitude error');
-   halt(),xbasc();
+   halt();
 
-
+   delete(my_handle);

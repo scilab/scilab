@@ -459,31 +459,31 @@ modulename = signal_processing
 libscisignal_processing_la_rootdir = $(mydatadir)
 libscisignal_processing_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### signal_processing : init scripts ####
+####ï¿½signal_processing : init scripts ####
 libscisignal_processing_la_etcdir = $(mydatadir)/etc
 libscisignal_processing_la_etc_DATA = etc/signal_processing.quit etc/signal_processing.start
 
-#### signal_processing : gateway declaration ####
+####ï¿½signal_processing : gateway declaration ####
 libscisignal_processing_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing_gateway.xml
 
-#### signal_processing : include files ####
+####ï¿½signal_processing : include files ####
 libscisignal_processing_la_includedir = $(pkgincludedir)/signal_processing
 libscisignal_processing_la_include_HEADERS = includes/gw_signal.h
 
-#### signal_processing : demos files ####
+####ï¿½signal_processing : demos files ####
 libscisignal_processing_la_demosdir = $(mydatadir)
-nobase_libscisignal_processing_la_demos_DATA = demos/arma/arma1.dem \
-demos/arma/arma2.dem \
-demos/arma/arma3.dem \
-demos/winfilt.dem \
-demos/signal.dem \
-demos/spect.dem \
-demos/remezfilt.dem \
-demos/iirfilt.dem \
-demos/iir.dem \
-demos/bode.dem \
-demos/wiener.dem
+nobase_libscisignal_processing_la_demos_DATA = demos/arma/arma1.dem.sce \
+demos/arma/arma2.dem.sce \
+demos/arma/arma3.dem.sce \
+demos/winfilt.dem.sce \
+demos/signal.dem.gateway.sce \
+demos/spect.dem.sce \
+demos/remezfilt.dem.sce \
+demos/iirfilt.dem.sce \
+demos/iir.dem.sce \
+demos/bode.dem.sce \
+demos/wiener.dem.sce
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)

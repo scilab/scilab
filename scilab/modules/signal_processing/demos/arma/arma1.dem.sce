@@ -30,7 +30,9 @@ n=300;
 u=-prbs_a(n,1,int([2.5,5,10,17.5,20,22,27,35]*100/12));
 // simulation 
 zd=narsimul(ar,u);
-xselect();xbasc();
+
+my_handle = scf(100001);
+clf(my_handle,"reset"); 
 plot2d(1:n,[zd',1000*u'],style=[1,3],leg="Simulated output@Input [scaled]") ;
 comp = gce() ;
 comp.children(2:3).polyline_style = 2 ;
@@ -45,4 +47,5 @@ halt();
 [arc1,resid]=armax1(3,3,2,zd(1:n),u,1);
 arc1
 
-
+halt();
+delete(my_handle);

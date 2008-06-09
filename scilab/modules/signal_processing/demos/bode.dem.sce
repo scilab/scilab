@@ -9,7 +9,6 @@
                   //////////////////
                   //BODE PLOTS//////
                   //////////////////
-xbasc();xselect()
 mode(1)
 //First plot using state space representation
 //
@@ -23,23 +22,29 @@ mode(1)
    c=18*%pi;
    d=1;
    sl=syslin('c',a,b,c,d);ssprint(sl)
+
+   my_handle = scf(100001);
+   clf(my_handle,"reset");
    bode(sl,.1,100),
    halt()
-   xbasc();
+
 //Second plot using poly
    s=poly(0,'s');
    h1=1/real((s+2*%pi*(15+100*%i))*(s+2*%pi*(15-100*%i)));
    h1=syslin('c',h1)
+   clf(my_handle,"reset");
    bode(h1,10,1000,.01),
-   halt()
-   xbasc();
- 
-//Third plot which combines the first two plots
-   bode([h1;sl],.1,1000,.01);
+   halt();
 
-   halt()
-   xbasc();
+//Third plot which combines the first two plots
+   clf(my_handle,"reset");
+   bode([h1;sl],.1,1000,.01);
+   halt();
+
 
 // series connection
+   clf(my_handle,"reset");
    bode(h1*sl,.1,1000,.01);
+   halt();
 
+   delete(my_handle);

@@ -31,7 +31,10 @@ for x=fr,res1=[ res1, gxx(x)];end;
 //
 leg="log(p) :using macro mese @ theoriqal value@log(p) : arma identifcation"
 halt();
-xbasc();
+
+my_handle = scf(100001);
+clf(my_handle,"reset");
+
 xtitle('Spectral power','frequency','spectral estimate')
 plot2d([fr;fr;fr]',[20*log(sm/sm(1))/log(10);...
   20*log(res/res(1))/log(10);...
@@ -39,5 +42,5 @@ plot2d([fr;fr;fr]',[20*log(sm/sm(1))/log(10);...
  [2,1,-1],"111",leg, [0,-70,0.5,60]);
 
 
-
-
+halt();
+delete(my_handle);
