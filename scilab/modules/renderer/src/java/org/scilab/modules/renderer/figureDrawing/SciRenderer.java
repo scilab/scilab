@@ -14,7 +14,6 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
-import javax.media.opengl.DebugGL;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GL;
@@ -31,7 +30,7 @@ import org.scilab.modules.renderer.jni.FigureScilabCall;
 public class SciRenderer
   implements GLEventListener {
 	
-	/** index of the figure to render */
+	/** index of the figure to render */ 
 	private int renderedFigure;
 	
 	
@@ -52,10 +51,6 @@ public class SciRenderer
   public void display(GLAutoDrawable gLDrawable) {
 
 	DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
-	
-	GL curGL = gLDrawable.getGL();
-	DebugGL newGL = new DebugGL(curGL);
-	gLDrawable.setGL(newGL);
 	
 	if (curFigure == null) {
 		// figure has been destroyed
@@ -78,9 +73,7 @@ public class SciRenderer
 //	if (!gLDrawable.getAutoSwapBufferMode()) {
 //		gLDrawable.swapBuffers();
 //	}
-	gLDrawable.setGL(curGL);
           
-	curGL.glFlush();
 
   }
     
