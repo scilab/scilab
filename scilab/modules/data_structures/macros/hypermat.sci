@@ -22,7 +22,8 @@ function M=hypermat(dims,v)
 
   if argn(2)<2 then v=zeros(prod(dims),1),end
   if size(v,'*')<> double(prod(dims)) then
-    error('hypermat: Number of entries does not match product of dimensions')
+    
+    error(msprintf(gettext('%s: Number of entries does not match product of dimensions'),'hypermat'));
   end
   if size(dims,'*')<=2 then
     M=matrix(v,dims)

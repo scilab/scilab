@@ -15,6 +15,7 @@
 #include "stcreate.h"
 #include "cvstr.h"
 #include "Scierror.h"
+#include "localization.h"
 
 #define memused(it,mn) ((((mn)*( it % 10))/sizeof(int))+1)
 
@@ -37,9 +38,10 @@ int C2F(stcreate)(integer *lw, integer *nz, integer *sz, integer *nf, char *fnam
     C2F(intersci).ntypes[*lw -Top + Rhs - 1] = '$';
     C2F(intersci).iwhere[*lw -Top + Rhs - 1] = *Lstk(*lw);
 
-    if (*lw > intersiz) {
-      Scierror(998,"Too many arguments in the stack edit stack.h and enlarge intersiz\n");
-	return 1;
+    if (*lw > intersiz) 
+	{
+		Scierror(998,_("Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"));
+		return 1;
     }
     sttyp(&n1, "size", nf, fnames);
 

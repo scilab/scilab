@@ -22,7 +22,7 @@ if rhs==0 then
 end
 
 if floor(rhs/2)*2<>rhs then
-  error("Wrong number of inputs");
+  error(msprintf(gettext("%s: Wrong number of input argument(s)."),'struct'));
 end
 
 nbfields=size(varargin)/2
