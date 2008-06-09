@@ -255,7 +255,7 @@ int safeEqual( double val1, double val2, double accuracy ) ;
 /*----------------------------------------------------------------------------*/
 /* return the number of digits of an integer (ie for 10236 it is 5 or -102 it is 4 )  */
 /* For negative values, the length is increased by 1 because of the '-' sign" */
-#define GET_NB_DIGITS(i) ( (i) >= 0 ? GET_NB_DIGITS_POS(i) : GET_NB_DIGITS_POS(-i) + 1 )
+#define GET_NB_DIGITS(i) ( (i) > 0 ? GET_NB_DIGITS_POS(i) : GET_NB_DIGITS_POS(-i) + 1 )
 /*----------------------------------------------------------------------------*/
 
 
