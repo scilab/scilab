@@ -287,7 +287,7 @@ libsciothers_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libsciothers_la_etcdir = $(mydatadir)/etc
 libsciothers_la_etc_DATA = etc/others.quit etc/others.start
 
-#### others : demos files - velpic ####
+####ï¿½others : demos files - velpic ####
 libsciothers_la_demosdir = $(mydatadir)
 nobase_libsciothers_la_demos_DATA = demos/velpic/id_rgn.desc \
 demos/velpic/velpic.sci \
@@ -319,7 +319,7 @@ demos/simulation/npend/macros.sci \
 demos/simulation/npend/dessin.sci \
 demos/simulation/npend/n_pendulum.sci \
 demos/simulation/npend/yt.wrt \
-demos/simulation/npend/npend.dem \
+demos/simulation/npend/npend.dem.sce \
 demos/simulation/npend/demo_pendulum_fr.htm \
 demos/simulation/npend/demo_pendulum_eng.htm \
 demos/simulation/wheel2/Maple/wheelg.f \
@@ -335,7 +335,7 @@ demos/simulation/wheel2/Maple/wheel.fig \
 demos/simulation/wheel2/Maple/Readme.txt \
 demos/simulation/wheel2/Maple/transfig.tex \
 demos/simulation/wheel2/x.wrt \
-demos/simulation/wheel2/wheel.dem \
+demos/simulation/wheel2/wheel.dem.sce \
 demos/simulation/wheel2/Readme.txt \
 demos/simulation/wheel2/show.sci \
 demos/simulation/ode/lorenz2.dem \
@@ -346,7 +346,7 @@ demos/simulation/ode/odenew.dem \
 demos/simulation/ode/odenew1.dem \
 demos/simulation/ode/odenew2.dem \
 demos/simulation/ode/odeold.dem \
-demos/simulation/ode/ode.dem \
+demos/simulation/ode/ode.dem.sce \
 demos/simulation/ode/odenew1_1.sce \
 demos/simulation/ode/ode1.dem \
 demos/simulation/ode/lorenz.dem \
@@ -363,7 +363,7 @@ demos/simulation/dae/pendc2.sci \
 demos/simulation/dae/pendg3.sce \
 demos/simulation/dae/pendc3.sci \
 demos/simulation/dae/pend3d1s.sce \
-demos/simulation/dae/dae.dem \
+demos/simulation/dae/dae.dem.sce \
 demos/simulation/dae/pendule3d.sci \
 demos/simulation/dae/pendg3.mpl \
 demos/simulation/dae/pend3d1.sce \
@@ -382,8 +382,8 @@ demos/simulation/bike/macros/show.sci \
 demos/simulation/bike/data/x1.dat \
 demos/simulation/bike/data/xdemo.dat \
 demos/simulation/bike/bike2.dem \
-demos/simulation/bike/bike.dem \
-demos/simulation/simulation.dem \
+demos/simulation/bike/bike.dem.sce \
+demos/simulation/simulation.dem.gateway.sce \
 demos/loop_demo/npend/TeX/npend.tex \
 demos/loop_demo/npend/TeX/npend.ps \
 demos/loop_demo/npend/TeX/Texte.tex \

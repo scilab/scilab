@@ -20,7 +20,7 @@ add_module_help_chapter('others');
 //add demos
 path = get_absolute_file_path('others.start');
 path = getshortpathname(path);
-pathdemos1 = pathconvert(part(path,1:(length(path)-5))+'/demos/simulation/simulation.dem',%f,%f);
+pathdemos1 = pathconvert(part(path,1:(length(path)-5))+'/demos/simulation/simulation.dem.gateway.sce',%f,%f);
 pathdemos2 = pathconvert(part(path,1:(length(path)-5))+'/demos/velpic/velpic.dem',%f,%f);
 add_demo("Simulation",pathdemos1);
 add_demo("Others",pathdemos2);

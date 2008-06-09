@@ -11,7 +11,7 @@ mode(0);
 xbasc();
 fs = get('figure_style');
 
-path=get_absolute_file_path('bike.dem');
+path=get_absolute_file_path('bike.dem.sce');
 
 getf(path+'macros/'+'velod.sci');
 getf(path+'macros/'+'velodp.sci');

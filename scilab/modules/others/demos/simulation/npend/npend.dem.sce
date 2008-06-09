@@ -8,7 +8,7 @@
 
 mode(-1);
 
-path=pathconvert(get_absolute_file_path('npend.dem'),%t,%t)	
+path=pathconvert(get_absolute_file_path('npend.dem.sce'),%t,%t)	
 
 global LANGUAGE
 if LANGUAGE=='fr' then

@@ -6,7 +6,7 @@
 //
 
 mode(-1);
-path=get_absolute_file_path("wheel.dem");
+path=get_absolute_file_path("wheel.dem.sce");
 getf(path+'show.sci');
 
 xbasc();
