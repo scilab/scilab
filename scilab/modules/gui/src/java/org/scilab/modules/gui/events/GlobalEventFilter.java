@@ -74,12 +74,13 @@ public class GlobalEventFilter {
 	 * 
 	 * @param command : the callback that was supposed to be called.
 	 * @param returnCode : used for closing windows.
+	 * @param figureIndex : the figure ID where callback occured.
 	 */
-	public static void filterCallback(String command, int returnCode) {
+	public static void filterCallback(String command, int returnCode, int figureIndex) {
 		synchronized (ClickInfos.getInstance()) {
 			ClickInfos.getInstance().setMouseButtonNumber(returnCode);
 			ClickInfos.getInstance().setMenuCallback(command);
-			ClickInfos.getInstance().setWindowID(-1);
+			ClickInfos.getInstance().setWindowID(figureIndex);
 			ClickInfos.getInstance().setXCoordinate(-1);
 			ClickInfos.getInstance().setYCoordinate(-1);
 			ClickInfos.getInstance().notify();

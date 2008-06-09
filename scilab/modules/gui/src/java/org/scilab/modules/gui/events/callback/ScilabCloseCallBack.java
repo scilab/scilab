@@ -16,12 +16,15 @@ import org.scilab.modules.gui.utils.SciTranslator;
  */
 public abstract class ScilabCloseCallBack extends CallBack {
 
+	private int figureIndex;
+	
 	/**
 	 * Constructor
 	 * @param command : the command to execute.
 	 */
-	private ScilabCloseCallBack(String command) {
+	private ScilabCloseCallBack(int figureIndex, String command) {
 		super(command);
+		this.figureIndex = figureIndex;
 	}
 
 	/**
@@ -30,8 +33,8 @@ public abstract class ScilabCloseCallBack extends CallBack {
 	 * @param command : the command to execute.
 	 * @return a usable Scilab callback
 	 */
-	public static ScilabCloseCallBack create(String command) {
-		return (new ScilabCloseCallBack(command) {
+	public static ScilabCloseCallBack create(int figureIndex, String command) {
+		return (new ScilabCloseCallBack(figureIndex, command) {
 
 			private static final long serialVersionUID = -7286803341046313407L;
 
@@ -63,7 +66,7 @@ public abstract class ScilabCloseCallBack extends CallBack {
 		callBack();
 		if (GlobalEventWatcher.isActivated()) {
 			if (this.command != null) {
-				GlobalEventFilter.filterCallback(this.command, SciTranslator.SCICLOSE);
+				GlobalEventFilter.filterCallback(this.command, SciTranslator.SCICLOSE, figureIndex);
 			}
 		}
 	}
