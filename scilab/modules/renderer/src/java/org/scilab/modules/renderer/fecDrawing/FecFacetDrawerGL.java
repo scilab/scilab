@@ -106,7 +106,11 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 	 * @return double
 	 */
 	protected double fecValueToColorMapIndex(double value, double zMin, double zMax) {
-		return ((value - zMin) / (zMax - zMin) * (colMax - colMin + 1.0) + colMin);
+		//return ((value - zMin) / (zMax - zMin) * (colMax - colMin + 1.0) + colMin);
+		return (colMax - colMin) / (zMax - zMin) * (value - zMax) + colMax;
+		
+		//return (colMax - colMin - 1) / (zMax - zMin) * (value - zMax) + colMax;
+		//return (colMax - colMin - zMin) / (zMax - zMin) * (value - zMax) + colMax;
 	}	
 	
 	/**
@@ -145,7 +149,7 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 			triangleColors[0] = fecValueToColorMapIndex(values[firstPoints[i]], zMin, zMax);
 			triangleColors[1] = fecValueToColorMapIndex(values[secondPoints[i]], zMin, zMax);
 			triangleColors[2] = fecValueToColorMapIndex(values[thirdPoints[i]], zMin, zMax);
-			
+								
 			ColoredTriangle ct = new ColoredTriangle(triangleCoords[0],
 													 triangleCoords[1],
 													 triangleCoords[2],

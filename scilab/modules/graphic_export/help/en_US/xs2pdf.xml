@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>xs2pdf</refname>
 
-    <refpurpose>save graphics to a Postscript file.</refpurpose>
+    <refpurpose>save graphics to a PDF file.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -41,7 +41,7 @@
         <term>win_num</term>
 
         <listitem>
-          <para>integer scalar or vector .</para>
+          <para>integer scalar .</para>
         </listitem>
       </varlistentry>
 
@@ -68,11 +68,8 @@
     <title>Description</title>
 
     <para><literal>xs2pdf</literal> saves the recorded graphics of the window
-    <literal>win_num</literal> to file <literal>filen</literal> in Postscript
-    syntax. Note that <literal>filen</literal> must not have extension.</para>
-
-    <para><literal>xs2pdf</literal> produces a complete encapsulated Postscrip
-    file.</para>
+    <literal>win_num</literal> to file <literal>filen</literal> in PDF syntax.
+    Note that <literal>filen</literal> must not have extension.</para>
   </refsection>
 
   <refsection>

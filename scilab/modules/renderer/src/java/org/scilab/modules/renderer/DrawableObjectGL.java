@@ -115,7 +115,7 @@ public abstract class DrawableObjectGL extends ObjectGL {
 		dlIndex = getGL().glGenLists(1);
 		// as advised in OpenGL web site, don't use GL_COMPILE_AND_EXECUTE
 		// but instead compile and then call the display list.
-		getGL().glNewList(dlIndex, GL.GL_COMPILE);
+		getGL().glNewList(dlIndex, GL.GL_COMPILE/*_AND_EXECUTE*/);
 	}
 	
 	/**

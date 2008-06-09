@@ -73,7 +73,7 @@ public class TriangleDecomposition {
 	 * @param polygonIndex of the polygon
 	 */
 	protected void setPolygonColor(double color, int polygonIndex) {
-		this.polygonColors[polygonIndex] = (int) color;
+		this.polygonColors[polygonIndex] = (int) Math.round(color);
 	}
 	
 	

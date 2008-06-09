@@ -158,6 +158,7 @@ public class ColoredTriangle {
 		} else {
 			
 			int nbPolygons = getNbPolygons(colorA, colorB, colorC);
+			double curColor = min;
 			res.setNbPolygons(nbPolygons);
 			
 			//starting the polygon decomposition with the smallest color
@@ -170,7 +171,7 @@ public class ColoredTriangle {
 
 			for (int i = 0; i < nbPolygons - 1; i++) {			
 				// color of the next polygon
-				double curColor = min + i;			
+				
 
 				res.setPolygonColor(curColor, i);			
 				Vector3D[] polygonDecomposed = getPolygon(prevI1, prevI2, prevSideI1, prevSideI2, curColor);
@@ -181,6 +182,9 @@ public class ColoredTriangle {
 				prevI2 = nextI2;
 				prevSideI1 = nextSideI1;
 				prevSideI2 = nextSideI2;
+				
+				
+				curColor += 1;
 			}	
 
 			//ending the polygon decomposition with the biggest color
@@ -205,7 +209,7 @@ public class ColoredTriangle {
 				lastPoly[2] = tempOrientation;				
 			}
 			
-			res.setPolygonColor(max, nbPolygons - 1);
+			res.setPolygonColor(curColor, nbPolygons - 1);
 			res.setPolygon(lastPoly, nbPolygons - 1);
 		}
 		return res;
@@ -219,9 +223,21 @@ public class ColoredTriangle {
 	 * @return number of polygons
 	 */
 	public int getNbPolygons(double colorA, double colorB, double colorC) {
-		double min = Math.min(Math.min(colorA, colorB), colorC);
-		double max = Math.max(Math.max(colorA, colorB), colorC);
-		return (int) Math.round(max - min + 1);
+		// find lowest and highest colors
+		double colMin = Math.min(Math.min(colorA, colorB), colorC);
+		double colMax = Math.max(Math.max(colorA, colorB), colorC);
+		
+		// the number of polygon is the number of x,5 (x integer)
+		// which is between colMin and colMax plus 1.
+		// find x,5 which is just greater than colMin
+		colMin = getSuperiorHalf(colMin);
+		
+		// find x,5 which is just lower than colMax
+		colMax = getInferiorHalf(colMax);
+		
+		int res = (int) (colMax - colMin) + 2;
+		
+		return res;
 	}
 	
 	/**  
@@ -276,8 +292,8 @@ public class ColoredTriangle {
 		
 		int nbIntersections = 0;		
 
-		/** Test for (P1, P2) & (BC) */
-		if (colorB != colorC) {
+		/* Test for (P1, P2) & (BC) */
+		if (colorB != colorC && colorB != curColor) {
 			double res1 = (colorC - curColor) / (colorC - colorB);
 			if (res1 >= 0 && res1 <= 1) {
 				Vector3D i1 = new Vector3D(res1, 0.0, 0.0);
@@ -287,11 +303,11 @@ public class ColoredTriangle {
 			}
 		}		
 		
-		/** Test for (P1, P2) & (AC) */
-		if (colorA != colorC) {
+		/* Test for (P1, P2) & (AC) */
+		if (colorA != colorC && colorA != curColor) {
 			double res2 = (colorC - curColor) / (colorC - colorA);
 
-			if (res2 >= 0 && res2 <= 1 && colorC != colorA) {
+			if (res2 >= 0 && res2 <= 1) {
 				Vector3D i2 = new Vector3D(0.0, res2, 0.0);
 				intersections[nbIntersections] = i2;
 				intersectionSides[nbIntersections] = Side.SIDE_AC;
@@ -299,18 +315,29 @@ public class ColoredTriangle {
 			}
 		}
 		
-		/** Test for (P1, P2) & (AB) */
+		/* Test for (P1, P2) & (AB) */
+		// If colorA or colorB equals curColor, then the intersection
+		// is on B or A. So the two previous tests have already been true.
 		if (colorA != colorB) {
 			double res3 = (colorA - curColor) / (colorA - colorB);
 			double res4 = (colorB - curColor) / (colorB - colorA);
 
-			if (res3 >= 0 && res4 >= 0 && colorA != colorB) {
+			if (res3 >= 0 && res4 >= 0) {
 				Vector3D i3 = new Vector3D(res3, res4, 0.0);
 				intersections[nbIntersections] = i3;
 				intersectionSides[nbIntersections] = Side.SIDE_AB;
 				nbIntersections++;
 			}
 		}
+		
+		
+		
+//		if (nbIntersections == 3) {//			
+//			if (intersections[0].equals(intersections[1])) {
+//				intersections[1] = intersections[2];
+//				intersectionSides[1] = intersectionSides[2];
+//			}			
+//		}
 		
 		//Convert barycentric intersections coordinates to 3D coordinates 
 		for (int i = 0; i < nbIntersections; i++) {
@@ -332,11 +359,12 @@ public class ColoredTriangle {
 		Vector3D[] polygons = null;
 		Vector3D p = new Vector3D();	
 		
-		Vector3D[] intersections = new Vector3D[2];
-		Side[] intersectionsSides = new Side[2];		
+		Vector3D[] intersections = new Vector3D[3];
+		Side[] intersectionsSides = new Side[3];		
 		
 		//finding nextI1 and nextI2	
-		intersectionsManager(curColor + GAP, intersections, intersectionsSides);		
+		double color = getSuperiorHalf(curColor);
+		intersectionsManager(color, intersections, intersectionsSides);		
 		nextI1 = intersections[0];
 		nextI2 = intersections[1];
 		nextSideI1 = intersectionsSides[0];
@@ -455,6 +483,40 @@ public class ColoredTriangle {
 		Vector3D AB = b.substract(a);
 		Vector3D AC = c.substract(a);		
 		return (AB.crossProduct(AC)).dotProduct(orientation) >= 0;
-	}	
+	}
+	
+	/**
+	 * Compute the lowest value under the way of x.5 where x is an integer which is greater
+	 * than the input value.
+	 * @param value input value
+	 * @return result of the function.
+	 */
+	private double getSuperiorHalf(double value) {
+		double res = Math.ceil(value - 0.5) + 0.5;
+		
+		// if value is under the way x.5, res will be equal to value
+		if (res == value) {
+			res += 1.0;
+		}
+		return res;
+	}
+	
+	/**
+	 * Compute the highest value under the way of x.5 where x is an integer which is lower
+	 * than the input value.
+	 * @param value input value
+	 * @return result of the function.
+	 */
+	private double getInferiorHalf(double value) {
+		double res = Math.floor(value + 0.5) - 0.5;
+		
+		// if value is under the way x.5, res will be equal to value
+		if (res == value) {
+			res -= 1.0;
+		}
+		return res;
+	}
+	
+	
 
 }

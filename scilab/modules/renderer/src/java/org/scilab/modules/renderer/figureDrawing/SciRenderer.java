@@ -14,6 +14,7 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
+import javax.media.opengl.DebugGL;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GL;
@@ -52,6 +53,10 @@ public class SciRenderer
 
 	DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
 	
+	GL curGL = gLDrawable.getGL();
+	DebugGL newGL = new DebugGL(curGL);
+	gLDrawable.setGL(newGL);
+	
 	if (curFigure == null) {
 		// figure has been destroyed
 		// nothing to render
@@ -73,7 +78,9 @@ public class SciRenderer
 //	if (!gLDrawable.getAutoSwapBufferMode()) {
 //		gLDrawable.swapBuffers();
 //	}
+	gLDrawable.setGL(curGL);
           
+	curGL.glFlush();
 
   }
     

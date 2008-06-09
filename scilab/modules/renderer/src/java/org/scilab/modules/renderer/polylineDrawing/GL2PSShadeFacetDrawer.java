@@ -80,8 +80,9 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 	 * @param color3 color of the polylines vertices
 	 */
 	public void paintTriangle(Vector3D a, Vector3D b, Vector3D c, double color1, double color2, double color3) {		
-
+		
 		//Calling this class will decompose triangle in colored polygons
+		
 		ColoredTriangle ct = new ColoredTriangle(a, b, c, color1, color2, color3);
 		TriangleDecomposition td = ct.decomposeTriangle();	
 
@@ -92,7 +93,7 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 			// we use gl.glBegin(GL.GL_TRIANGLES)
 			// so we decompose the polygon into triangles
 
-			double[] polyColor = colorMaps.getColor(colorMaps.convertScilabToColorMapIndex(color));
+			double[] polyColor = colorMaps.getColor(color);
 			gl.glColor3d(polyColor[0], polyColor[1], polyColor[2]);
 			Vector3D[] polygon = td.getPolygon(i);
 			
@@ -113,6 +114,13 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 		}
 	}
 
+	/**
+	 * Paint the polygon given with the table of color
+	 * @param triangleCoords coordinates of triangle & square
+	 * @param triangleColors table of color
+	 * @param gl GL 
+	 * @param colorMap TexturedColorMap
+	 */
 	public void paintPolygon(Vector3D[] triangleCoords,
 			double[] triangleColors, GL gl, TexturedColorMap colorMap) {
 

@@ -15,6 +15,7 @@
 import java.io.File;
 import java.io.IOException;
 
+import javax.media.opengl.DebugGL;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
@@ -86,7 +87,9 @@ public class GL2PSRenderer extends ExportRenderer {
 	 * @param gLDrawable gLDrawable
 	 */
 	public void display(GLAutoDrawable gLDrawable) {
+		
 		GL2PS gl2ps = new GL2PS();
+		
 
 		int buffsize = BUFFER_WIDTH * BUFFER_HEIGHT;			
 		sciRend = new SciRenderer(this.figureIndex);
@@ -111,7 +114,7 @@ public class GL2PSRenderer extends ExportRenderer {
 			
 			int gl2psBeginPageStatut = gl2ps.gl2psBeginPage(exportedFigure.getTitle(), "Scilab", null, format, 
 					GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT 
-					| exportOrientation, GL.GL_RGBA, 0, null, null, null, null, 
+					| GL2PS.GL2PS_SIMPLE_LINE_OFFSET | exportOrientation, GL.GL_RGBA, 0, null, null, null, null, 
 					0, 0, 0, buffsize, ExportRenderer.getFileName());	
 
 			if (gl2psBeginPageStatut != GL2PS.GL2PS_SUCCESS) {
@@ -131,6 +134,12 @@ public class GL2PSRenderer extends ExportRenderer {
 
 			sciRend.init(gLDrawable);
 			sciRend.display(gLDrawable);
+			
+			
+			DebugGL debug = new DebugGL(newGL);
+			
+			
+			
 
 			int gl2psEndPageStatut = gl2ps.gl2psEndPage();
 

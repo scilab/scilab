@@ -42,6 +42,14 @@ public class JOGLShadeFacetDrawer implements ShadeFacetDrawer {
 		
 	}
 
+	
+	/**
+	 * Paint the polygon given with the table of color
+	 * @param triangleCoords coordinates of triangle & square
+	 * @param triangleColors table of color
+	 * @param gl GL 
+	 * @param colorMap TexturedColorMap
+	 */
 	public void paintPolygon(Vector3D[] triangleCoords,
 			double[] triangleColors, GL gl, TexturedColorMap colorMap) {
 		

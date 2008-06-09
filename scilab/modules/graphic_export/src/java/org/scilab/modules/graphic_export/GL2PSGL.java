@@ -70,9 +70,9 @@ public class GL2PSGL extends DebugGL {
 		case GL.GL_LINE_STIPPLE:
 			gl2ps.gl2psEnable(GL2PS.GL2PS_LINE_STIPPLE);
 			break;
-		case GL.GL_POLYGON_OFFSET_FILL:
+		/*case GL.GL_POLYGON_OFFSET_FILL:
 			gl2ps.gl2psEnable(GL2PS.GL2PS_POLYGON_OFFSET_FILL);
-			break;
+			break;*/
 		case GL.GL_BLEND:
 			gl2ps.gl2psEnable(GL2PS.GL2PS_BLEND);
 			break;

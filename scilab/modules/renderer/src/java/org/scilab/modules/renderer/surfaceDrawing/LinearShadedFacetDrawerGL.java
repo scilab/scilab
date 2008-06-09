@@ -94,7 +94,7 @@ public class LinearShadedFacetDrawerGL extends FacetDrawerGL {
 		//Paint the polygon given with the table of color
 		
 		// if all the colors within the facet are 0, the don't draw it
-		boolean paintFacet = false;
+		boolean paintFacet = true;
 		
 		for (int i = 0; i < colors.length; i++) {
 			if (colors[i] > 0) {

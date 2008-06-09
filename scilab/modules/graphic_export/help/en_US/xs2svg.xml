@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>xs2svg</refname>
 
-    <refpurpose>save graphics to a Postscript file.</refpurpose>
+    <refpurpose>save graphics to a SVG file.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -68,11 +68,8 @@
     <title>Description</title>
 
     <para><literal>xs2svg</literal> saves the recorded graphics of the window
-    <literal>win_num</literal> to file <literal>filen</literal> in Postscript
-    syntax. Note that <literal>filen</literal> must not have extension.</para>
-
-    <para><literal>xs2svg</literal> produces a complete encapsulated Postscrip
-    file.</para>
+    <literal>win_num</literal> to file <literal>filen</literal> in SVG syntax.
+    Note that <literal>filen</literal> must not have extension.</para>
   </refsection>
 
   <refsection>
