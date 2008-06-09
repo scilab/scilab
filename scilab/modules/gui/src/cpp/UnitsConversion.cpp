@@ -112,6 +112,14 @@ int ConvertToPixel(double value, int oldUnit, sciPointObj *sciObj)
     {
       oldUnit = PIXELS_UNITS;
     }
-  return (int) ConvertFromPoint(ConvertToPoint(value, oldUnit, sciObj), PIXELS_UNITS, NULL);
+
+  if (oldUnit==PIXELS_UNITS)
+    {
+      return (int) value;
+    }
+  else
+    {
+      return (int) ConvertFromPoint(ConvertToPoint(value, oldUnit, sciObj), PIXELS_UNITS, NULL);
+    }
 }
 
