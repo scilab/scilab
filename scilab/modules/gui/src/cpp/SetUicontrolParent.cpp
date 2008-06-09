@@ -125,7 +125,7 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
               return SET_PROPERTY_ERROR;
             }
           // Scilab default values
-          CallScilabBridge::setWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(figure) - 80, 40, 20);
+          CallScilabBridge::setWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, 40, 40, 20);
           return SET_PROPERTY_SUCCEED;
         }
       else
