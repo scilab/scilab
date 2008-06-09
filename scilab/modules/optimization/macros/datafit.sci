@@ -68,7 +68,7 @@ if type(DG)==10|type(DG)==11|type(DG)==13 then
   GR=%t  //Jacobian provided
   varargin(1)=null()
 elseif type(DG)==15 then 
-  error('Jacobian cannot be a list, parameters must be set in G')
+  error(msprintf(gettext('%s: Jacobian cannot be a list, parameters must be set in G.'),'datafit'));
 else
   GR=%f
 end
@@ -76,7 +76,7 @@ end
 Z=varargin(1);
 varargin(1)=null()
 if type(Z)<>1 then 
-  error('datafit : wrong measurement matrix')
+  error(msprintf(gettext('%s: Wrong measurement matrix.'),'datafit'));
 end
 
 nv=size(varargin)
@@ -86,7 +86,7 @@ if nv>=1 then
   else
     W=varargin(1);varargin(1)=null()
     if size(W,1)~=size(W,2) then 
-      error('Weighting matrix must be square');
+      error(msprintf(gettext('%s: Weighting matrix must be square.'),'datafit'));
     end
   end
 end  
@@ -100,7 +100,7 @@ end
 
 if type(G)==10 then  //form function to call hard coded external
   if size(Gparams)==0 then 
-    error('With hard coded function, user must give output size of G'),
+    error(msprintf(gettext('%s: With hard coded function, user must give output size of G.'),'datafit'));
   end
   m=Gparams(1);Gparams(1)=null()
   

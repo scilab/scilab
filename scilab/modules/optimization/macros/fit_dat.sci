@@ -75,9 +75,11 @@ elseif rhs==6 then
 elseif    rhs==7 then
   GR=%t;
 else
-  error('wrong number of arguments')
+  error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"fit_dat"));
 end
-if size(W,1)~=size(W,2) then error('Weighting matrix must be square');end
+if size(W,1)~=size(W,2) then
+  error(msprintf(gettext("%s: Weighting matrix must be square.\n"),"fit_dat"));
+end
 nz=size(Z,2);mz=size(p0,'*');
 deff('e=GG(p,Z)','e=0;for i=1:nz,e=e+G(p,Z(:,i))''*W*G(p,Z(:,i)),end')
 if ~GR then
@@ -95,7 +97,7 @@ if ~boun then
   [err,p]=optim(costf,p0)
 else
   if or(p0<pmin)|or(p0>pmax) then 
-    error('initial guess not feasible')
+    error(msprintf(gettext("%s: Initial guess not feasible.\n"),"fit_dat"));
   end
   [err,p]=optim(costf,'b',pmin,pmax,p0)
 end

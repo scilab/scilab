@@ -25,7 +25,7 @@ function res=edit(macroname,ueditor)
   if rhs>=1 then // macroname is given
     tmpfile= tmpdir+macroname+'.sci';
     if funptr(macroname)<>0 then
-      error(macroname+' is a uneditable hard coded function')
+      error(msprintf(gettext('%s: %s is a uneditable hard coded function.'),'edit',macroname));
     end
     libr=whereis(macroname)
     if libr<>[] then // macroname is the name of a defined function
@@ -82,7 +82,9 @@ function res=edit(macroname,ueditor)
     end
   end
   //load the macro in scilab
-  if tmp then write(%io(2),'modified file may be found in '+fname),end
+  if tmp then 
+    write(%io(2),gettext('modified file may be found in ')+fname);
+  end
   getf(fname,'c')
   //return the loaded variable
   res=evstr(macroname);

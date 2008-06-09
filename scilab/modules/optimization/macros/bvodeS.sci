@@ -66,7 +66,7 @@ function y=%R(f_,x,z)
   elseif type(f_)==13 then
     y=f_(x,z)
   else
-    error('argument has wrong type')
+    error(msprintf(gettext("%s: Wrong type for input argument.\n"),"%%R"));
   end
 endfunction
 
@@ -111,7 +111,7 @@ function [z,LhS]=%RR(f_,x)
   elseif type(f_)==13 then
     [z,LhS]=f_(x)
   else
-    error('argument has wrong type')
+    error(msprintf(gettext("%s: Wrong type for input argument.\n"),"%%RR"));
   end
 endfunction
 

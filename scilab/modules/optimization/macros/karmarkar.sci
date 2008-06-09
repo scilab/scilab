@@ -24,13 +24,19 @@ end
 //verification des donnees
 [n,p]=size(a)
 w=size(b)
-if w(1)<>n then error('invalid B dimension'),end
+if w(1)<>n then 
+  error(msprintf(gettext("%s: Wrong size for input argument #%d."),'karmarkar',2));
+end
 w=size(c)
-if w(1)<>p then error('invalid A dimension'),end
+if w(1)<>p then
+  error(msprintf(gettext("%s: Wrong size for input argument #%d."),'karmarkar',1));
+end
 w=size(x0)
-if w(1)<>p then error('invalid x0 dimension'),end
+if w(1)<>p then
+  error(msprintf(gettext("%s: Wrong size for input argument #%d."),'karmarkar',4));
+end
 if mini(x0)<0|norm(a*x0-b)>eps then 
-  error('x0 is not feasible'),
+  error(msprintf(gettext("%s: x0 is not feasible."),'karmarkar'));
 end
 //
 x1=x0;tc=c';
@@ -46,7 +52,9 @@ while test>eps&count<=maxiter
 //    y=(ax*ax')\(ax*xc)
     d=-xc+ax'*y;
     dk=x1.*d;
-    if mini(dk)>0 then error('Unbounded problem!'),end
+    if mini(dk)>0 then 
+      error(msprintf(gettext("%s: Unbounded problem!"),'karmarkar'));
+    end
     alpha=-Gamma/mini(d);
     test=alpha*(norm(d)**2)/maxi(1,abs(crit));
     x1=x1+alpha*dk;

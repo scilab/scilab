@@ -25,15 +25,20 @@ function [J,H] = derivative(F, x, h, order, H_form, Q)
 //     Rainer von Seggern, Bruno Pincon
 //
    [lhs,rhs]=argn();
-   if rhs<2 | rhs>6 then, error('Wrong number of input arguments'), end
-   if type(x) ~= 1 then, error('x has wrong type'), end
+   if rhs<2 | rhs>6 then
+     error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),'derivative',2,6));
+   end
+   if type(x) ~= 1 then
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"),'derivative',2));
+   end
    [n,p] = size(x)
-   if p ~= 1 then, error('x must be a column vector'), end
-   
+   if p ~= 1 then
+     error(msprintf(gettext("%s: Wrong size for input argument #%d: A column vector expected.\n"),'derivative',2));
+   end
    if ~exists('order','local') then
       order = 2
    elseif (order ~= 1 & order ~= 2 & order ~= 4) then
-      error('order must be 1, 2 or 4')
+     error(msprintf(gettext("%s: Order must be 1, 2 or 4.\n"),'derivative'));
    end
     
    if ~exists('H_form','local'), H_form = 'default', end
@@ -119,6 +124,6 @@ if type(F_)==15 then
 elseif  type(F_)==13  then
   y=F_(x);
 else
-  error('The first input variable has wrong type.');
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A function expected.\n"),'%%R_',1));
 end
 endfunction

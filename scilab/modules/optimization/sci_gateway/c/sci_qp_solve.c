@@ -166,7 +166,7 @@ int C2F(sci_qp_solve)(char *fname,unsigned long fname_len)
 	}
 	else if (ierr == 1)
 	{
-		Scierror(999,_("%s: The minimization problem has no solution\n"),fname);
+		Scierror(999,_("%s: The minimization problem has no solution.\n"),fname);
 	}
 	else if (ierr == 2)
 	{

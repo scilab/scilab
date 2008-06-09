@@ -32,9 +32,9 @@ if type(Dfun)==10 then //the 'b' keyword or the jacobian entry point name
 elseif type(Dfun)==11|type(Dfun)==13 then
   J=%t  //Jacobian provided
 elseif type(Dfun)==15 then 
-  error('Jacobian cannot be a list, parameters must be set in fun')
+  error(msprintf(gettext('%s: Jacobian cannot be a list, parameters must be set in fun.'),'leastsq'));
 else
-  J=%f
+  J=%f;
 end
 if J then, varargin(1)=null(), end  // to correct bug 1219 (bruno, 22 feb 2005)
 kr=1
@@ -44,7 +44,7 @@ x0=varargin(kr)
 
 if type(fn)==10 then //hard coded function given by its name
   if size(params)==0 then 
-    error('With hard coded function, user must give output size of fun'),
+    error(msprintf(gettext('%s: With hard coded function, user must give output size of fun.'),'leastsq'));
   end
   m=params(1);params(1)=null()
   n=size(x0,'*')

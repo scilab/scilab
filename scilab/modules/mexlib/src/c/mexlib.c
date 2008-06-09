@@ -811,7 +811,7 @@ bool mxIsDouble(const mxArray *ptr)
 
 bool mxIsSingle(const mxArray *ptr)
 {
-  mexPrintf(_("Routine mxIsSingle not implemented\n"));
+  mexPrintf(_("Routine mxIsSingle not implemented.\n"));
   exit(1);  /* TO BE DONE */
   return 0;
 }
@@ -861,7 +861,7 @@ void mxClearLogical(mxArray *ptr)
 {
   int *header = Header(ptr);
   if (header[0] != LOGICAL)
-    mexErrMsgTxt(_("Variable is not logical"));
+    mexErrMsgTxt(_("Variable is not logical."));
   header[0] = DOUBLEMATRIX;
 }
 
@@ -924,7 +924,7 @@ mxArray *mxCreateDoubleMatrix (int m, int n, mxComplexity it)
   int k;
   lw = Nbvars + 1;
   if (! C2F(createcvar)(&lw, "d", (int *) &it, &m, &n, &lr, &lc, 1L)) {
-    mexErrMsgTxt(_("No more memory available: increase stacksize"));
+    mexErrMsgTxt(_("No more memory available: increase stacksize."));
   }
   for ( k=0; k<m*n*(it+1); k++ ) {
    *stk(lr+k)=0;
@@ -1980,7 +1980,7 @@ static int mexCallSCI(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *
 	if ((int) prhs[k-1] == C2F(vstk).lstk[kk + Top - Rhs - 1]) break;
       if (kk == nv + 1)
 	{
-	  mexErrMsgTxt(_("mexCallSCILAB: invalid pointer passed to called function"));
+	  mexErrMsgTxt(_("mexCallSCILAB: invalid pointer passed to called function."));
 	  return 1;
 	}
       else
@@ -1995,7 +1995,7 @@ static int mexCallSCI(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *
   if (! C2F(scistring)(&i1, name, &nlhs, &nrhs,(unsigned long) strlen(name) )) {
     if ( jumpflag == 1)
       {
-	mexErrMsgTxt(_("mexCallSCILAB: evaluation failed "));
+	mexErrMsgTxt(_("mexCallSCILAB: evaluation failed. "));
       }
     return 1;
     /*	return 0;  */
@@ -2089,7 +2089,7 @@ int mxGetElementSize(const mxArray *ptr)
    it=header[3];
    return( it%10 );
  default:
-   mexErrMsgTxt(_("GetElementSize error"));
+   mexErrMsgTxt(_("GetElementSize error."));
    return 0;
  }
  return 0;
@@ -2228,7 +2228,7 @@ void mxSetName(mxArray *array_ptr, const char *name)
 
 void mxSetData(mxArray *array_ptr, void *data_ptr)
 {
-  mexErrMsgTxt(_("Routine mxSetData not implemented\n"));
+  mexErrMsgTxt(_("Routine mxSetData not implemented.\n"));
   exit(1);  /* TO BE DONE */
 }
 
@@ -2304,14 +2304,14 @@ void mxSetPi(mxArray *array_ptr, double *pi_data)
 
 const char *mxGetName(const mxArray *array_ptr)
 {
-    mexPrintf(_("Routine mxGetName not implemented\n"));
+    mexPrintf(_("Routine mxGetName not implemented.\n"));
     exit(1);
 	return 0;
 }
 
 int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 {
-  mexPrintf(_("Routine mxSetDimensions not implemented\n"));
+  mexPrintf(_("Routine mxSetDimensions not implemented.\n"));
   exit(1);  /* TO BE DONE */
   return 0;
 }

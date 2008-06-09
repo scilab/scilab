@@ -51,7 +51,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
     end     
     if %sm>=-%tol & %nor<%tol then
       %Xlist=vec2list(%x0,%dim_X,%ind_X);
-      lmisolvertrace(msprintf(_('%s: initial guess is feasible'),'lmisolver'));return; 
+      lmisolvertrace(msprintf(_('%s: initial guess is feasible.'),'lmisolver'));return; 
     end
   end
 
@@ -75,7 +75,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
 
 
   //Construction of canonical representation
-  lmisolvertrace(msprintf(_('%s: Construction of canonical representation'),'lmisolver'));
+  lmisolvertrace(msprintf(_('%s: Construction of canonical representation.'),'lmisolver'));
   %spF_0=sparse(%F_0);
   %spb=sparse(%b);
   %lX=size(%Xinit)
@@ -105,7 +105,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
   if size(%Ncstr,'*')==0 then
     %Ncstr=speye(%nvars,%nvars);
   else
-    lmisolvertrace(msprintf(_('%s: Basis Construction'),'lmisolver'));
+    lmisolvertrace(msprintf(_('%s: Basis Construction.'),'lmisolver'));
     [%x0,%Ncstr]=linsolve(%Ncstr,%b,%x0);
 
   end
@@ -149,7 +149,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
       if size(%linobj,'*') <> 0 then
 	[%ptr,%rk2]=lufact([[%F_is;%linobj] spzeros(%fm+1,%fm+1-%m)]',[%tol,0.001]);
 	if %rk<%rk2 then
-	  error(msprintf(_('%s: solution unbounded'),'lmisolver'));
+	  error(msprintf(_('%s: solution unbounded.'),'lmisolver'));
 	end
       end
     end
@@ -173,7 +173,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
     if %flag then 
       %Xlist=vec2list(%x0,%dim_X,%ind_X);return; 
     else 
-      error(msprintf(_('%s: not feasible or badly defined problem'),'lmisolver'));
+      error(msprintf(_('%s: not feasible or badly defined problem.'),'lmisolver'));
     end   
   end
 
@@ -250,33 +250,33 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
 
     select %info(1)
     case 1
-      error(msprintf(_('%s: Max. iters. exeeded'),'lmisolver'))
+      error(msprintf(_('%s: Max. iters. exceeded.'),'lmisolver'))
     case 2 then
-      lmisolvertrace(msprintf(_('%s: Absolute accuracy reached'),'lmisolver'))
+      lmisolvertrace(msprintf(_('%s: Absolute accuracy reached.'),'lmisolver'))
     case 3 then
-      lmisolvertrace(msprintf(_('%s: Relative accuracy reached'),'lmisolver'))
+      lmisolvertrace(msprintf(_('%s: Relative accuracy reached.'),'lmisolver'))
     case 4 then
-      lmisolvertrace(msprintf(_('%s: Target value reached'),'lmisolver'))
+      lmisolvertrace(msprintf(_('%s: Target value reached.'),'lmisolver'))
     case 5 then
-      error(msprintf(_('%s: Target value not achievable'),'lmisolver'))
+      error(msprintf(_('%s: Target value not achievable.'),'lmisolver'))
     else
-      warning(msprintf(_('%s: No feasible solution found'),'lmisolver'))
+      warning(msprintf(_('%s: No feasible solution found.'),'lmisolver'))
     end
 
 
     if %info(2) == %mite then 
-      error(msprintf(_('%s: max number of iterations exceeded'),'lmisolver'));
+      error(msprintf(_('%s: max number of iterations exceeded.'),'lmisolver'));
     end
     if (%ul(1) > %ato) then 
-      error(msprintf(_('%s: No feasible solution exists'),'lmisolver'));
+      error(msprintf(_('%s: No feasible solution exists.'),'lmisolver'));
     end
     //       if (%ul(1) > 0) then %F_0=%F_0+%ato*%I;end
 
-    lmisolvertrace(msprintf(_('%s: feasible solution found'),'lmisolver'));
+    lmisolvertrace(msprintf(_('%s: feasible solution found.'),'lmisolver'));
 
   else
 
-    lmisolvertrace(msprintf(_('%s: Initial guess feasible'),'lmisolver'));
+    lmisolvertrace(msprintf(_('%s: Initial guess feasible.'),'lmisolver'));
     %xi=zeros(%m,1);
   end
 
