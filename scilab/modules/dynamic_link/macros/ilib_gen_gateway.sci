@@ -51,7 +51,7 @@ function ilib_gen_gateway(name,tables)
     end 
     
     if ( nt <> 3 ) then 
-      error(msprintf(gettext("%s: Wrong size for second input argument: %d expected.\n"),"ilib_gen_gateway",3));
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
     end 
     [gate,names] = new_names(table); 
     

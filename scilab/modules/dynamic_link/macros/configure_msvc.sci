@@ -550,7 +550,7 @@ endfunction
         bOK = set_msvc70();  
       
       else
-    		warning('Microsoft Visual Studio C Compiler not found.');
+    		warning(msprintf(gettext('Microsoft Visual Studio C Compiler not found.')));
         bOK = %F;
       end
     end

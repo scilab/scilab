@@ -31,11 +31,11 @@ function libn = ilib_for_link(names, ..
   if rhs <= 10 then cc  = ""; end 
   
   // generate a loader file
-  write(%io(2),"   Generate a loader file");
+  write(%io(2),gettext("   Generate a loader file"));
   ilib_link_gen_loader(names,flag,loadername,libs,libname);
   
   // generate a Makefile
-  write(%io(2),"   Generate a Makefile");
+  write(%io(2),gettext("   Generate a Makefile"));
 
   ilib_link_gen_Make(names, ..
                      files, ..
@@ -49,7 +49,7 @@ function libn = ilib_for_link(names, ..
 		                 flag);
 		                 
   // we call make
-  write(%io(2),"   Running the Makefile");
+  write(%io(2),gettext("   Running the Makefile"));
   if (libname == "") then libname = names(1);end
   libn = ilib_compile('lib' + libname, makename, files);
   

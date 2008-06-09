@@ -163,6 +163,6 @@ function generateConfigure(workingPath, ..
 		return %F;
 	end
 	
-	return %T
+	return %T;
 
 endfunction

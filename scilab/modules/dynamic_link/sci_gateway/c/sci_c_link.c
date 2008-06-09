@@ -100,7 +100,7 @@ int C2F(sci_c_link)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"), fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname,1);
 		}
 	}
 	else

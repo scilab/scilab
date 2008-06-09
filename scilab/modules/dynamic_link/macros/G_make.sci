@@ -12,13 +12,13 @@
 function [res]=G_make(files,objects_or_dll)
 
   if ~haveacompiler() then
-  	error(_('A Fortran or C compiler is required.'));
+  	error(msprintf(gettext('%s: A Fortran or C compiler is required.\n'),'G_make'))
   end
 
   if MSDOS then // WINDOWS
   
     if typeof(objects_or_dll)<>'string' then 
-      error(sprintf(_('%s: Wrong type for input argument: String expected.'),'G_make'));
+      error(sprintf(gettext('%s: Wrong type for input argument #%d: String expected.'),'G_make',2));
       return;
     end 
     

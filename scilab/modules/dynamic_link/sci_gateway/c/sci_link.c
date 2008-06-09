@@ -61,7 +61,7 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
-					Scierror(999,_("%s : Wrong value for first argument: Unique id of a shared library expected.\n"),fname);
+					Scierror(999,_("%s : Wrong value for argument #%d: %s\n"),fname,1,_("Unique id of a shared library expected."));
 					return 0;
 				}
 			}
@@ -78,7 +78,7 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
-					Scierror(999,_("%s : Wrong type for first input argument: Unique dynamic library name expected.\n"),fname);
+					Scierror(999,_("%s : Wrong type for input argument #%d: %s\n"),fname,1,_("Unique dynamic library name expected."));
 					return 0;
 				}
 
@@ -128,7 +128,7 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s Wrong value for input argument: '%s' or '%s' expected.\n"),fname,"f","c");
+				Scierror(999,_("%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname,3,"f","c");
 				return 0;
 			}
 		}

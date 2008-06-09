@@ -26,7 +26,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
   if rhs < 3 then files = []; end 
   
   if typeof(lib_name)<>'string' then
-    error(msprintf(gettext("%s: Wrong type for first input argument: String expected.\n"),"ilib_compile"));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"ilib_compile",1));
     return ;
   end
   
@@ -76,8 +76,8 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	  
 	  cmd = cmd + gencompilationflags_unix(ldflags, cflags, fflags, cc)
 
-          //** BEWARE : this function can cause errors if used with "old style" Makefile inside a Scilab 5
-          //**          environment where the Makefile are created from a "./configure"  
+    //** BEWARE : this function can cause errors if used with "old style" Makefile inside a Scilab 5
+    //**          environment where the Makefile are created from a "./configure"  
 	  [msg,ierr, stderr] = unix_g(cmd) ; 
 	  if ierr <> 0 then
 		mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");

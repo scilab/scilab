@@ -91,7 +91,8 @@ int scilabLink(int idsharedlibrary,
 
 	if (IdSharedLib == -1 ) 
 	{
-		if ( getWarningMode() ) {
+		if ( getWarningMode() ) 
+		{
 			sciprint(_("Link failed for dynamic library '%s'.\n"),filename);
 			sciprint(_("An error occurred: %s\n"),GetLastDynLibError());
 		}
@@ -316,7 +317,7 @@ int Sci_dlopen( char *loaded_file)
 
 	if ( Nshared == ENTRYMAX ) 
 	{
-		if (getWarningMode()) sciprint(_("You can't open shared files max entry %d reached\n"),ENTRYMAX);
+		if (getWarningMode()) sciprint(_("Cannot open shared files max entry %d reached.\n"),ENTRYMAX);
 		return(FALSE);
 	}
 	/* Warning x64 windows */
@@ -352,7 +353,7 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
 	/** entry was previously loaded **/
 	if ( SearchFandS(ename,ish) >= 0 ) 
 	{
-		sciprint(_("Entry name %s\n"),ename);
+		sciprint(_("Entry name %s.\n"),ename);
 		return -4;
 	}
 	else
@@ -366,13 +367,13 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
 		EP[NEpoints].epoint = (function) GetDynLibFuncPtr (hd1,enamebuf);
 		if ( EP[NEpoints].epoint == NULL )
 		{
-			if (getWarningMode()) sciprint(_("%s is not an entry point\n"),enamebuf);
+			if (getWarningMode()) sciprint(_("%s is not an entry point.\n"),enamebuf);
 			return -5;
 		}
 		else 
 		{
 			/* we don't add the _ in the table */
-			if (debug) sciprint(_("Linking %s\n"),ename);
+			if (debug) sciprint(_("Linking %s.\n"),ename);
 			strncpy(EP[NEpoints].name,ename,MAXNAME);
 			EP[NEpoints].Nshared = ish;
 			NEpoints++;

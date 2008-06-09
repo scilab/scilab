@@ -30,7 +30,7 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
 	end 
 	
 	if nt<>3 then 
-	  error(msprintf(gettext("%s: Wrong size for second input argument.\n"),"ilib_gen_Make"));
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"),"ilib_gen_Make",2));
 	end 
 	
 	tables(it)=table;
@@ -215,3 +215,4 @@ function ilib_gen_Make_lcc(name,table,files,libs,Makename,with_gateway,ldflags,c
  mclose(fd);
 
 endfunction
+//---------------------------------------------------------------------------------------

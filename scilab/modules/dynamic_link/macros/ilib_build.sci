@@ -10,7 +10,7 @@
 function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,ismex,cc)
 
   if ~haveacompiler() then
-  	error(_("A Fortran or C compiler is required."))  
+    error(msprintf(gettext('%s: A Fortran or C compiler is required.\n'),'ilib_build'));
   	return;
   end
   

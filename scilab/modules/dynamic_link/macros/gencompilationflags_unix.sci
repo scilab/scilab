@@ -11,7 +11,7 @@
 function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc)
 					// This function is restricted to Linux/Unix user only
 	if MSDOS then
-	  error(_("Feature not available under Microsoft Windows"))
+	  error(msprintf(gettext("%s: Feature not available under Microsoft Windows.\n"),'gencompilationflags_unix'));
 	  return;
 	end
 

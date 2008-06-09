@@ -21,7 +21,7 @@ function ilib_gen_loader(name,tables,libs)
   for it = 1:L 
     [mt,nt] = size(tables(it));
     if ( (nt <> 3) & ( nt <> 2) ) then 
-      error(msprintf(gettext("%s: Wrong size for second input argument.\n"),"ilib_gen_loader"));
+      error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"),"ilib_gen_loader",2));
     end 
   end
   

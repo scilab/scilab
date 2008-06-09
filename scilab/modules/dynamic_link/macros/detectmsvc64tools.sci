@@ -37,7 +37,7 @@ function bOK = detectmsvc64tools()
                 'Software\Microsoft\VCExpress\9.0\Setup\VS', ..
                 'ProductDir');
      else
-       TXT = _('Microsoft Visual Studio C 2008 Compiler not found.');
+       TXT = gettext('Microsoft Visual Studio C 2008 Compiler not found.');
        warning(TXT);
        bOK = %F;
        return
@@ -47,7 +47,7 @@ function bOK = detectmsvc64tools()
      if fileinfo(MSVCBIN64PATH) <> [] then
        bOK = %T;
      else
-       TXT = _('Microsoft Visual Studio C 2008 x64 Compiler not installed.');
+       TXT = gettext('Microsoft Visual Studio C 2008 x64 Compiler not installed.');
        warning(TXT);
        bOK = %F;
      end

@@ -43,7 +43,7 @@ int C2F(sci_addinter)(char *fname,unsigned long fname_len)
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&sharedlibname);
 		if ( (m1 != n1) && (n1 != 1) )
 		{
-			Scierror(999,_("%s: Wrong size for first input argument.\n"),fname);
+			Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,1);
 			return 0;
 		}
 
@@ -52,13 +52,13 @@ int C2F(sci_addinter)(char *fname,unsigned long fname_len)
 
 		if ( (m2 != n2) && (n2 != 1) )
 		{
-			Scierror(999,_("%s: Wrong size for second input argument.\n"),fname);
+			Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,2);
 			return 0;
 		}
 
 		if ( (m3 > 1) &&  (n3 > 1) ) /* check vector string */
 		{
-			Scierror(999,_("%s: Wrong size for third input argument.\n"),fname);
+			Scierror(999,_("%s: Wrong size for input argument #%d: String vector expected.\n"),fname,3);
 			return 0;
 		}
 		

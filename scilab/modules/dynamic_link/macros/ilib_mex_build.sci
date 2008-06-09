@@ -12,7 +12,7 @@
 function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,cc)
   
   if ~haveacompiler() then
-  	error(_('A Fortran or C compiler is required.'))  
+    error(msprintf(gettext('%s: A Fortran or C compiler is required.\n'),'ilib_mex_build'));
   	return;
   end
   

@@ -26,15 +26,15 @@ void dl_genErrorMessage(char *fname, int errorCode, char* SharedLibraryName){
 				break;
 
 			case -2:
-				Scierror(999,_("You can't open shared files. Max entry %d reached.\n"),ENTRYMAX);
+				Scierror(999,_("%s: Cannot open shared files. Max entry %d reached.\n"),fname,ENTRYMAX);
 				break;
 
 			case -3:
-				Scierror(999,_("Shared lib %s does not exist.\n"),SharedLibraryName);
+				Scierror(999,_("%s: Shared lib %s does not exist.\n"),fname,SharedLibraryName);
 				break;
 
 			case -4:
-				Scierror(999,_(" is already loaded from lib %s\n"),SharedLibraryName);
+				Scierror(999,_("%s: Already loaded from library %s\n"),fname,SharedLibraryName);
 				break;
 			case -5:
 				Scierror(235,_("%s: problem with one of the entry point.\n"),fname,GetLastDynLibError());

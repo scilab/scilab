@@ -58,8 +58,8 @@ function bOK = Exportalibrary(libraryname)
 
 	mclose(fw);
 	mclose(fr);
-	
-	printf('\nBuild '+libraryname+'.lib (Please waiting).\n');
+	printf('\n');
+	printf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
 	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+WSCI+'\bin\lcclib\'+libraryname+'.lib""';
 	unix(command);
 	bOK=%T;
@@ -67,9 +67,10 @@ endfunction
 //==========================================
 function ExportAtlasLibrary()
 	
-	printf('\nExports from blasplus.dll\n')
+	printf('\n');
+	printf(gettext('Exports from blasplus.dll\n'));
 	unix('pedump /exp blasplus.dll >'+TMPDIR+'\blasplus.lcc');
-	printf('Converting Library');
+	printf(gettext('Converting Library'));
 	
 	fw = mopen(TMPDIR+'\blaspluslcc.exp',"wt");
 	fr = mopen(TMPDIR+'\blasplus.lcc',"rt");
@@ -90,8 +91,8 @@ function ExportAtlasLibrary()
 
 	mclose(fw);
 	mclose(fr);
-	
-	printf('\nBuild Atlas.lib\n');
+	printf('\n');
+	printf(gettext('Build %s.lib (Please waiting).\n'),'Atlas');
 	unix('buildLib ""'+TMPDIR+'\Atlaslcc.exp""'+' ""'+WSCI+'\bin\lcclib\'+'blasplus.lib""');
 endfunction
 //==========================================
