@@ -66,41 +66,41 @@ endfunction
 function new_entity()
   entities=['Rectangle','Segment','Polyline','Text','Circle']
   sel=x_choose(entities,'Select the Entity type')
-  f=gcf();pix=f.pixmap;f.pixmap='on'
+  f=gcf();//pix=f.pixmap;f.pixmap='on'
   rep(3)=-1
   select sel
   case 1 then //Rectangle
     [btn,xc,yc]=xclick()
     xrect(xc,yc,0,0)
-    show_pixmap()
+    //show_pixmap()
     r=gce();r.foreground=-1;
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
-      show_pixmap()
+      //show_pixmap()
     end 
  
   case 2 then //Segment
     [btn,xc,yc]=xclick()
     xsegs([xc;xc],[yc;yc])
-    show_pixmap()
+    ////show_pixmap()
     r=gce();r.foreground=-1;
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=[xc,yc;rep(1),rep(2)]
-      show_pixmap()
+      //show_pixmap()
     end 
 
   case 3 then //Polyline
     [btn,xc,yc]=xclick()
     xpoly([xc;xc],[yc;yc])
-    show_pixmap()
+    //show_pixmap()
     r=gce();r.foreground=-1;
     while %t
       while rep(3)==-1 do
 	rep=xgetmouse()
 	r.data($,:)=[rep(1),rep(2)]
-	show_pixmap()
+	//show_pixmap()
       end 
       if rep(3)==2 then break,end
       rep(3)=-1;
@@ -117,7 +117,7 @@ function new_entity()
 	while rep(3)==-1 do
 	  rep=xgetmouse()
 	  r.data=[rep(1),rep(2)]
-	  show_pixmap()
+	  //show_pixmap()
 	end 
       else //compound
 	y0=0
@@ -129,23 +129,23 @@ function new_entity()
 	    rk.data=[rep(1),rk.data(2)+rep(2)-y0]
 	  end
 	  y0=rep(2)
-	  show_pixmap()
+	  //show_pixmap()
 	end
       end
     end
   case 5 then //Circle
     [btn,xc,yc]=xclick()
     xarc(xc,yc,0,0,0,64*360)
-    show_pixmap()
+    //show_pixmap()
     r=gce();r.foreground=-1;
     while rep(3)==-1 do
       rep=xgetmouse()
-      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
-      show_pixmap()
+      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,360]
+      //show_pixmap()
     end 
 
   end
-  f.pixmap=stripblanks(pix)
+  //f.pixmap=stripblanks(pix)
 endfunction
 
 function delete_entity()
@@ -172,21 +172,21 @@ function move_entity()
       rep=xgetmouse()
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
-      show_pixmap()
+      //show_pixmap()
     end 
   case 'Segs' then //Segment
     while rep(3)==-1 do
       rep=xgetmouse()
-      r.data=r.data+ones(2,1)*(rep(1:2)-pos)
+      r.data=r.data+ones(r.data(:,1))*(rep(1:2)-pos)
       pos=rep(1:2)
-      show_pixmap()
+      //show_pixmap()
     end 
   case 'Polyline' then //Polyline
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=r.data+ones(r.data(:,1))*(rep(1:2)-pos)
       pos=rep(1:2)
-      show_pixmap()
+      //show_pixmap()
     end 
   case 'Text' then //Text
     if r.parent.type=="Axes" then
@@ -194,7 +194,7 @@ function move_entity()
 	rep=xgetmouse()
 	r.data=r.data+(rep(1:2)-pos)
 	pos=rep(1:2)
-	show_pixmap()
+	//show_pixmap()
       end 
     else
       r=r.parent
@@ -205,7 +205,7 @@ function move_entity()
 	  rk.data=rk.data+(rep(1:2)-pos)
 	end
 	pos=rep(1:2)
-	show_pixmap()
+	//show_pixmap()
       end 
     end
   case 'Arc' then //Circle
@@ -213,11 +213,12 @@ function move_entity()
       rep=xgetmouse()
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
-      show_pixmap()
+      //show_pixmap()
     end 
 
   end
-  f.pixmap=stripblanks(pix)
+  mprintf("fin new\n")
+  //f.pixmap=stripblanks(pix)
 endfunction
 
 
@@ -275,8 +276,8 @@ function txt=graphical_object_code(rk)
     dy='orig(2)+sz(2)*'+num2string(rk.data(2))
     sx='sz(1)*'+num2string(rk.data(3))
     sy='sz(2)*'+num2string(rk.data(4))
-    a1=num2string(rk.data(5))
-    a2=num2string(rk.data(6))
+    a1=num2string(rk.data(5)*64)
+    a2=num2string(rk.data(6)*64)
     
     txt=[txt;
 	 'xarc('+strcat([dx,dy,sx,sy,a1,a2],',')+');'
