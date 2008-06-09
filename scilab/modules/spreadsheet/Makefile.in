@@ -354,23 +354,23 @@ modulename = spreadsheet
 libscispreadsheet_la_rootdir = $(mydatadir)
 libscispreadsheet_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### spreadsheet : init scripts ####
+####ï¿½spreadsheet : init scripts ####
 libscispreadsheet_la_etcdir = $(mydatadir)/etc
 libscispreadsheet_la_etc_DATA = etc/spreadsheet.quit etc/spreadsheet.start
 
-#### spreadsheet : gateway declaration ####
+####ï¿½spreadsheet : gateway declaration ####
 libscispreadsheet_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscispreadsheet_la_sci_gateway_DATA = sci_gateway/spreadsheet_gateway.xml
 
-#### spreadsheet : include files ####
+####ï¿½spreadsheet : include files ####
 libscispreadsheet_la_includedir = $(pkgincludedir)/spreadsheet
 libscispreadsheet_la_include_HEADERS = includes/gw_spreadsheet.h
 
-#### core : demos files ####
+####ï¿½core : demos files ####
 libscispreadsheet_la_demosdir = $(mydatadir)/demos/
-libscispreadsheet_la_demos_DATA = demos/spreadsheet.dem
+libscispreadsheet_la_demos_DATA = demos/spreadsheet.dem.sce
 
-#### spreadsheet : demos files ####
+####ï¿½spreadsheet : demos files ####
 libscispreadsheet_la_demosxlsdir = $(mydatadir)/demos/xls/
 libscispreadsheet_la_demosxls_DATA = demos/xls/Testo1.xls \
 demos/xls/o1.xls \
