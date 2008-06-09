@@ -1534,8 +1534,9 @@ public class CallScilabBridge {
 	 * @param height the height of the Widget
 	 */
 	public static void setWidgetPosition(int id, int x, int y, int width, int height) {
-		UIElementMapper.getCorrespondingUIElement(id).setPosition(new Position(x, y));
+		/* Dimensions must be set before position beacause of PositionConverter */
 		UIElementMapper.getCorrespondingUIElement(id).setDims(new Size(width, height));
+		UIElementMapper.getCorrespondingUIElement(id).setPosition(new Position(x, y));
 	}
 	
 	/**
@@ -1563,8 +1564,9 @@ public class CallScilabBridge {
 	 * @param height the height of the Frame
 	 */
 	public static void setFramePosition(int id, int x, int y, int width, int height) {
-		UIElementMapper.getCorrespondingUIElement(id).setPosition(new Position(x, y));
+		/* Dimensions must be set before position beacause of PositionConverter */
 		UIElementMapper.getCorrespondingUIElement(id).setDims(new Size(width, height));
+		UIElementMapper.getCorrespondingUIElement(id).setPosition(new Position(x, y));
 	}
 	
 	/**

@@ -30,6 +30,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
@@ -131,7 +132,7 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return new Position(getX(), getY() + getDims().getHeight() - (int) getHorizontalScrollBar().getPreferredSize().getHeight());
+		return PositionConverter.javaToScilab(getLocation(), getSize(), getParent());
 	}
 
 	/**
@@ -140,9 +141,7 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		int absoluteY = getPosition().getY();
 		setSize(newSize.getWidth(), newSize.getHeight());
-		setPosition(new Position(getPosition().getX(), absoluteY));
 	}
 
 	/**
@@ -151,8 +150,8 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		setLocation(newPosition.getX(), newPosition.getY() - getSize().height 
-				+ (int) getHorizontalScrollBar().getPreferredSize().getHeight());
+		Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
+		setLocation(javaPosition.getX(), javaPosition.getY());
 	}
 
 	/**

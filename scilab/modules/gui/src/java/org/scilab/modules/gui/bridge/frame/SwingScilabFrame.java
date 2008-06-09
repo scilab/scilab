@@ -45,6 +45,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
@@ -90,7 +91,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @see org.scilab.modules.gui.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return new Position(this.getX(), this.getY() + getDims().getHeight());
+		return PositionConverter.javaToScilab(getLocation(), getSize(), getParent());
 	}
 
 	/**
@@ -99,9 +100,7 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		int absoluteY = getPosition().getY() + getSize().height;
 		this.setSize(newSize.getWidth(), newSize.getHeight());
-		setPosition(new Position(getPosition().getX(), absoluteY));
 	}
 
 	/**
@@ -110,10 +109,10 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		this.setLocation(newPosition.getX(), newPosition.getY() - getSize().height);
+		Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
+		setLocation(javaPosition.getX(), javaPosition.getY());
 	}
 
-	// TODO : Check wether we want a Console in a Frame or not.
 	/**
 	 * Add a member (dockable element) to container and returns its index
 	 * @param member the member to add

@@ -24,6 +24,7 @@ import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
@@ -74,7 +75,7 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
 	 */
 	public Position getPosition() {
-		return new Position(super.getX(), super.getY());
+		return PositionConverter.javaToScilab(getLocation(), getSize(), getParent());
 	}
 	
 	/**
@@ -85,7 +86,6 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	public void setDims(Size newSize) {
 		setSize(newSize.getWidth(), newSize.getHeight());
 		setPreferredSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
-		//setBounds(getPosition().getX(), getPosition().getY(), newSize.getWidth(), newSize.getHeight());
 	}
 
 	/**
@@ -94,8 +94,8 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
 	 */
 	public void setPosition(Position newPosition) {
-		setLocation(newPosition.getX(), newPosition.getY());
-		setBounds(newPosition.getX(), newPosition.getY(), getDims().getWidth(),	getDims().getHeight());
+		Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
+		setLocation(javaPosition.getX(), javaPosition.getY());
 	}
 	
 	/**

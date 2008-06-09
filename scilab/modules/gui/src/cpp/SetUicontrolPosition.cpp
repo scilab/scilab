@@ -74,7 +74,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
       CallScilabBridge::setFramePosition(getScilabJavaVM(), 
                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
                                           xInt, 
-                                          sciGetHeight(sciGetParent(sciObj)) - yInt, 
+                                          yInt, 
                                           widthInt, 
                                           heightInt);
     }
@@ -87,7 +87,7 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
       CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
                                           pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
                                           xInt, 
-                                          sciGetHeight(sciGetParent(sciObj)) - yInt, 
+                                          yInt, 
                                           widthInt, 
                                           heightInt);
       
