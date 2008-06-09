@@ -384,7 +384,8 @@ if test $SCIVERBOSE -ne 0; then
 fi
 
 # Returns to the original path
-#cd "$OLDPWD"
+cd "$OLDPWD"
+
 #if test "$DISPLAY" = ""; then
 #  DISPLAY="unix:0.0"
 #fi
