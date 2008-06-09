@@ -1,5 +1,13 @@
-// Copyright INRIA
-getf(SCI+'/demos/lmitool/norminf.sci','c')
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+// This file is distributed under the same license as the Scilab package.
+//
+
+path = get_absolute_file_path('testnorminf');
+exec(path+"/norminf.sci");
+
 n=4;nu=2;ny=2;
 E=eye(n,n);
 rand('seed',0)

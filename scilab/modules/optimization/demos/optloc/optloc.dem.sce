@@ -5,7 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-mode(-1)
-path=get_absolute_file_path('datafit.dem');
-getf(path+'demo_datafit.sci')
-demo_datafit()
+mode(-1);
+
+path=get_absolute_file_path('optloc.dem.sce');
+exec(path+'demo_optloc.sci');
+demo_optloc()

@@ -5,7 +5,8 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-mode(-1)
-path=get_absolute_file_path('multiflow.dem');
-getf(path+'demo_multiflow.sci')
-demo_multiflow(path+'ex3.graph')
+mode(-1);
+
+path=get_absolute_file_path('datafit.dem.sce');
+exec(path+'demo_datafit.sci');
+demo_datafit();

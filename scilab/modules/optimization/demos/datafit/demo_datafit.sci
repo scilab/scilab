@@ -14,8 +14,8 @@ function demo_datafit()
   for x=0:.1:3, Y=[Y,FF(x)+100*(rand()-.5)];X=[X,x];end
   Z=[Y;X];
   //show the data points
-  clf()
-  xselect();
+  my_handle             = scf(100001);
+  clf(my_handle,"reset");
   plot(X,Y,'+')
   l=legend('Experimental data',2)
   realtimeinit(0.1);for k=1:20,realtime(k),end

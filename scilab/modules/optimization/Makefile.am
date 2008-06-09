@@ -171,66 +171,67 @@ libscioptimization_la_rootdir = $(mydatadir)
 libscioptimization_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### optimization : init scripts ####
+####ï¿½optimization : init scripts ####
 libscioptimization_la_etcdir = $(mydatadir)/etc
 libscioptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
 
-#### optimization : gateway declaration ####
+####ï¿½optimization : gateway declaration ####
 libscioptimization_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization_gateway.xml
-#### optimization : include files ####
+####ï¿½optimization : include files ####
 libscioptimization_la_includedir=$(pkgincludedir)/optimization
 libscioptimization_la_include_HEADERS = includes/gw_optim.h \
 includes/spd.h
 
 
-#### optimization : demos files ####
+####ï¿½optimization : demos files ####
 libscioptimization_la_demosdir=$(mydatadir)
-nobase_libscioptimization_la_demos_DATA = demos/lmitool/normoptd.sci \
-demos/lmitool/dscr_lyap2.sci \
-demos/lmitool/fullstate.sci \
-demos/lmitool/testdscr_lyap \
-demos/lmitool/of.sci \
-demos/lmitool/lmidem.sci \
-demos/lmitool/norminf.sci \
-demos/lmitool/lmi.dem \
-demos/lmitool/linprog.sci \
-demos/lmitool/h2hinf.sci \
-demos/lmitool/bigM.sci \
-demos/lmitool/test.sci \
-demos/lmitool/tset.sci \
-demos/lmitool/normopt2.sci \
-demos/lmitool/dscr_lyap.sci \
-demos/lmitool/phase1.sci \
-demos/lmitool/testnormopt \
-demos/lmitool/ric_dscr.sci \
-demos/lmitool/testnorminf \
-demos/lmitool/testlinprog \
-demos/lmitool/normopt.sci \
-demos/lmitool/sylvester.sci \
-demos/lmitool/testh2hinf \
-demos/multiflow/ex3.graph \
-demos/multiflow/demo_multiflow.sci \
-demos/multiflow/multiflow.dem \
-demos/multiflow/demo_multiflow_fr.htm \
+nobase_libscioptimization_la_demos_DATA = demos/datafit/datafit.dem.sce \
+demos/datafit/demo_datafit.sci \
+demos/datafit/demo_datafit_fr.htm \
+demos/icse/icob.sci \
+demos/icse/icot.sci \
+demos/icse/icse.contexte \
 demos/icse/icse.sci \
+demos/icse/icsegen.sci \
 demos/icse/icseinit.sce \
 demos/icse/icsu.sci \
 demos/icse/icsua.sci \
 demos/icse/icsuq.sci \
 demos/icse/icsvisu.sci \
-demos/icse/seros.sce \
-demos/icse/navet.sce \
-demos/icse/icob.sci \
-demos/icse/icsegen.sci \
-demos/icse/icot.sci \
-demos/icse/icse.contexte \
 demos/icse/lqv.sce \
-demos/icse/sero.mes \
+demos/icse/navet.sce \
 demos/icse/README \
-demos/datafit/datafit.dem \
-demos/datafit/demo_datafit.sci \
-demos/datafit/demo_datafit_fr.htm \
-demos/optimization.dem
+demos/icse/sero.mes \
+demos/icse/seros.sce \
+demos/lmitool/bigM.sci \
+demos/lmitool/dscr_lyap.sci \
+demos/lmitool/dscr_lyap2.sci \
+demos/lmitool/fullstate.sci \
+demos/lmitool/h2hinf.sci \
+demos/lmitool/linprog.sci \
+demos/lmitool/lmi.dem.sce \
+demos/lmitool/lmidem.sci \
+demos/lmitool/norminf.sci \
+demos/lmitool/normopt.sci \
+demos/lmitool/normopt2.sci \
+demos/lmitool/normoptd.sci \
+demos/lmitool/of.sci \
+demos/lmitool/phase1.sci \
+demos/lmitool/ric_dscr.sci \
+demos/lmitool/sylvester.sci \
+demos/lmitool/test.sci \
+demos/lmitool/testdscr_lyap \
+demos/lmitool/testh2hinf \
+demos/lmitool/testlinprog \
+demos/lmitool/testnorminf \
+demos/lmitool/testnormopt \
+demos/multiflow/demo_multiflow.sci \
+demos/multiflow/demo_multiflow_fr.htm \
+demos/multiflow/ex3.graph \
+demos/multiflow/multiflow.dem.sce \
+demos/optimization.dem.gateway.sce \
+demos/optloc/demo_optloc.sci \
+demos/optloc/optloc.dem.sce
 
 include $(top_srcdir)/Makefile.incl.am

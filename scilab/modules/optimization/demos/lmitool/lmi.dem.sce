@@ -5,9 +5,11 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-path=get_absolute_file_path('lmi.dem')
-getf(path+'lmidem.sci');
 mode(-1);
+
+path=get_absolute_file_path('lmi.dem.sce')
+exec(path+'lmidem.sci');
+
 x_message(['      ';
 	   'LMITOOL is a Scilab package for LMI optimization';
 	   '           ';
@@ -78,5 +80,5 @@ while %t
     disp(X, 'X found is:')
     disp(A*X+X*B-C ,'Check: A*X+X*B-C =')
     mode(-1)
-  end   
+  end
 end

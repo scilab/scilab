@@ -12,9 +12,8 @@ function demo_optloc()
   //The coordinates of the points
   Alpha=round(99*rand(n,1))+1;
   Beta=round(99*rand(n,1))+1;
-  
-  clf();
-  xselect();
+  my_handle             = scf(100001);
+  clf(my_handle,"reset");
   drawlater();
   plot(Alpha,Beta,'*')
   e=gce();e=e.children;e.mark_size=10;
@@ -33,7 +32,7 @@ function demo_optloc()
   e=gce();e=e.children;e.mark_size=10;
   delete(l)
   l=legend([_('Customer locations');
-	    msprintf(_('Service %d locations'),1)])
+  msprintf(_('Service %d locations'),1)])
   drawnow()
   [ic,jc]=find(X1>0);
   xsegs([Alpha(ic) Alpha(jc)]',[Beta(ic),Beta(jc)]',12)
@@ -42,7 +41,7 @@ function demo_optloc()
 
   [X1,Y1]=optloc(Alpha,Beta,C);
   kf=find(Y1>0);
-  
+
   drawlater();
   plot(Alpha(kf),Beta(kf),'go')
   e=gce();e=e.children;e.mark_size=14;
