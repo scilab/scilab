@@ -99,7 +99,7 @@ public final class ScilabRelief {
 		} else if (reliefType.equals(RAISED)) {
 			returnBorder = RAISED_BORDER;
 		} else if (reliefType.equals(RIDGE)) {
-			return RIDGE_BORDER;
+			returnBorder = RIDGE_BORDER;
 		} else if (reliefType.equals(SOLID)) {
 			returnBorder = SOLID_BORDER;
 		}
