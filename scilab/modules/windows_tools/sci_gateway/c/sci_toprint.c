@@ -61,7 +61,7 @@ int sci_toprint(char *fname,unsigned long l)
 			}
 			else
 			{
-				Scierror(999,_("%: Wrong size for input argument #%d: String expected.\n"),fname,1);
+				Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"),fname,1);
 				return 0;
 			}
 		}
