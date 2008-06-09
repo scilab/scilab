@@ -3914,19 +3914,54 @@ int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta)
  */
 int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double theta)
 {
+  /* keep this lower than 10*/
+  #define ANGLE_DECIMAL_NUMBERS 1
+  char angleDisplayFormat[5];
   int returnStatus = -1;
+  double intPart;
+  char * infoMessage = NULL;
+  char formatedInfoMessage[29];
 
-  /* size is 8 for "alpha =", 10 for ", theta =" and at most 5 for each digit (such as "123.5")
-      and 1 for fir the NULL terminating character */
-  char infoMessage[29];
+  /* Size without numbers is 8 for "alpha = ", 10 for ", theta = " and 1 for the null terminating character */
+  int infoMessageSize = 19;
 
-  sprintf(infoMessage, "alpha = %.1f, theta = %.1f", alpha, theta) ;
+  /* set number of digits so format is %.xf where x is ANGLE_DECIMAL_NUMBERS */
+  sprintf(angleDisplayFormat, "%%.%df", ANGLE_DECIMAL_NUMBERS);
+
+  /* compute size of alpha wich is the length of its integer part plus 1 for the dot */
+  /* and the number of decimals */
+  modf(alpha, &intPart); /* get integer part of alpha */
+  infoMessageSize += GET_NB_DIGITS(intPart) + 1 + ANGLE_DECIMAL_NUMBERS;
+
+  /* same for theta */
+  modf(theta, &intPart);
+  infoMessageSize += GET_NB_DIGITS(intPart) + 1 + ANGLE_DECIMAL_NUMBERS;
+
+  /* We use also infomessage string to store the formated massage */
+  /* The needed size might be 19 plus twice the format length so 8 => 27 */
+
+  /* Add alpha size, which is the size of its integer part plus 1 for the dot and only  */
+
+  infoMessage = MALLOC(infoMessageSize * sizeof(char));
+  if (infoMessage == NULL)
+  {
+    /* no more memory */
+    return -1;
+  }
+
+  /* Put the formats in the string */
+  sprintf(formatedInfoMessage, "alpha = %s, theta = %s", angleDisplayFormat, angleDisplayFormat);
+
+  /* convert the formats into the angle values */
+  sprintf(infoMessage, formatedInfoMessage, alpha, theta);
 
   returnStatus = sciSetInfoMessage(pFigure, infoMessage) ;
 
+  FREE(infoMessage);
+
   return returnStatus;
   
-
+  #undef ANGLE_DECIMAL_NUMBERS
 }
 /*-----------------------------------------------------------------------------------*/
 /**
