@@ -48,11 +48,11 @@ public final class PositionConverter {
 		SwingScilabTab parentTab = (SwingScilabTab) parent;
 		ScrolledSwingScilabCanvas canvas = (ScrolledSwingScilabCanvas) parentTab.getContentPane();
 		
-		int xOffset = (parentTab.getDims().getWidth() - canvas.getDims().getWidth()) / 2;
+		int xOffset = (parentTab.getDims().getWidth() - canvas.getDims().getWidth()) / 2; /* Border Width */
 		int yOffset = parentTab.getTitlebar().getHeight();
 		
 		int xCoord = scilabPosition.getX() + xOffset;
-		int yCoord = canvas.getDims().getHeight() - scilabPosition.getY() - objectSize.getHeight() + yOffset;
+		int yCoord = canvas.getDims().getHeight() - scilabPosition.getY() - objectSize.getHeight() + yOffset + xOffset;
 
 		return new Position(xCoord, yCoord);
 	}
@@ -73,11 +73,11 @@ public final class PositionConverter {
 		SwingScilabTab parentTab = (SwingScilabTab) parent;
 		ScrolledSwingScilabCanvas canvas = (ScrolledSwingScilabCanvas) parentTab.getContentPane();
 		
-		int xOffset = (parentTab.getDims().getWidth() - canvas.getDims().getWidth()) / 2;
+		int xOffset = (parentTab.getDims().getWidth() - canvas.getDims().getWidth()) / 2; /* Border Width */
 		int yOffset = parentTab.getTitlebar().getHeight();
 		
 		int xCoord = javaPosition.x - xOffset;
-		int yCoord = canvas.getDims().getHeight() - javaPosition.y - objectSize.height + yOffset;
+		int yCoord = canvas.getDims().getHeight() - javaPosition.y - objectSize.height + yOffset + xOffset;
 
 		return new Position(xCoord, yCoord);
 	}
