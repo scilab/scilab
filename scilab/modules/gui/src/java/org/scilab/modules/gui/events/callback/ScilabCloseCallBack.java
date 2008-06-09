@@ -52,9 +52,16 @@ public abstract class ScilabCloseCallBack extends CallBack {
 	 * @param e The event that launch the callback.
 	 */
 	public void actionPerformed(ActionEvent e) {
-		if (!GlobalEventWatcher.isActivated()) {
-				callBack();
-		} else {
+	/**
+	 * !! WARNING !!
+	 * 
+	 * We need a special behaviour when asking the window to close.
+	 * We really need to close it (i.e exec the callback)
+	 * THEN to inform the global listener close command has been activated (i.e filterCallback).
+	 * 
+	 */
+		callBack();
+		if (GlobalEventWatcher.isActivated()) {
 			if (this.command != null) {
 				GlobalEventFilter.filterCallback(this.command, SciTranslator.SCICLOSE);
 			}
