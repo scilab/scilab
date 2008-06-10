@@ -46,7 +46,6 @@ int set_rotation_angles_property( sciPointObj * pobj, int stackPointer, int valu
   }
 
   Obj_RedrawNewAngle( pobj, values[1], values[0] ) ;
-  setInfoMessageWithRotationAngles(sciGetParentFigure(pobj), values[0], values[1]);
 
   return SET_PROPERTY_SUCCEED ;
 
