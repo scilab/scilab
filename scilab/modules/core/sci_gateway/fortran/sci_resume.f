@@ -115,7 +115,7 @@ c    .      see macro.f code for details
 
 c     .     get location of lhs var names
             lvar=pt-3
-            rstk(pt0)=502
+            rstk(pt0)=504
             pstk(pt0+1)=lvar
             pstk(pt0+2)=count+1
          else

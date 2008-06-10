@@ -36,7 +36,7 @@ c
 c     
       ir=r/100
       if(ir.ne.5) goto 10
-      goto(40,40,60),r-500
+      goto(40,40,60,40),r-500
       goto 99
 c     
  10   continue
@@ -270,7 +270,6 @@ c     .  looking for a previous execstr(....,'errcatch') see intexecstr
          endif
       endif
 
- 
       lhsr=lhs
 c     
       lct(4)=pstk(pt)
@@ -351,6 +350,7 @@ c
       bot=lin(k+5)
       if(lhsr.ne.0) then
 c     .   handle variables returned by resume
+         lpt1 = lpt(1)
          lpt(1)=lin(k+1)
          top1=top
          top=top-lhs
@@ -384,14 +384,20 @@ c     .        retained for 2.7 and earlier version compatibility (old affectati
                if(err.gt.0) return
  44         continue
          else
-c     .     resume in "uncompiled" macros
+c     .     resume in "uncompiled" macros 
+c     .     and in execstr call in a macro (rstk(pt)==504 see sci_resume)
+
             ptr=pstk(pt+1)
             count=pstk(pt+2)
+            lpt1s=lpt(1)
+c     .      reset lpt(1) for error recovery
+            if(rstk(pt).eq.504) lpt(1)=lpt1
             do 45 i=1,lhsr
                call stackp(ids(1,ptr),0)
                if(err.gt.0) return
                ptr=ptr-1
  45         continue
+            lpt(1)=lpt1s
          endif
 c
 c     .  remove top variables relatives to for or select if any
