@@ -50,8 +50,8 @@ int intinterp3d(char *fname,unsigned long fname_len)
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &myp, &nyp, &lyp); yp = stk(lyp);
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mzp, &nzp, &lzp); zp = stk(lzp);
   if ( mxp != myp  ||  nxp != nyp || mxp != mzp  ||  nxp != nzp)
-    {
-      Scierror(999,_("%s: xp, yp and zp must have the same dimensions\n"), fname);
+  {
+	  Scierror(999,_("%s: Incompatible input arguments '#%d', '#%d' and '#%d': Same sizes expected.\n"),fname,1,2,3);
       return 0;
     }
   np = mxp * nxp;
@@ -72,8 +72,7 @@ int intinterp3d(char *fname,unsigned long fname_len)
 			FREE(Str);
 			Str=NULL;
 		}
-
-      Scierror(999,_("%s: 4 th argument is not an tensbs3d tlist\n"), fname);
+      Scierror(999,_("%s: Wrong type for input argument #%d: tensbs3d tlist expected.\n"), fname,4);
       return 0;
     }
   /* Free Str */
@@ -107,7 +106,7 @@ int intinterp3d(char *fname,unsigned long fname_len)
       outmode =  get_type(OutModeTable, NB_OUTMODE, str_outmode, ns);
       if ( outmode == UNDEFINED || outmode == LINEAR || outmode == NATURAL )
 	{
-	  Scierror(999,_("%s: unsupported outmode type\n"),fname);
+	  Scierror(999,_("%s: Wrong values for input argument #%d: Unsupported 'outmode' type.\n"),fname,5);
 	  return 0;
 	};
     }

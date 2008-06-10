@@ -32,8 +32,7 @@ int intlsq_splin(char *fname,unsigned long fname_len)
   ndata = mxd*nxd;  /* number of data points */
   if ( ndata < 4  ||  mxd != myd  || nxd != nyd  ||  (mxd != 1  &&  nxd != 1) )
     {
-      Scierror(999,_("%s: arg 1 and 2 must be vectors of same size with at least %d elements\n"),
-	       fname, 4);
+	  Scierror(999,_("%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n" ),fname,1,2);
       return 0;
     }
 
@@ -56,7 +55,7 @@ int intlsq_splin(char *fname,unsigned long fname_len)
 
   if (! good_order(stk(lx), n))   /* verify strict increasing abscissae */
     {
-      Scierror(999,_("%s: elts of arg %d not (strictly) increasing or +-inf detected\n"), fname, Rhs);
+      Scierror(999,_("%s: elements of argument %d not (strictly) increasing or +-inf detected.\n"), fname, Rhs);
       return 0;
     }
 
@@ -75,11 +74,11 @@ int intlsq_splin(char *fname,unsigned long fname_len)
 
   if (ierr == -1)
     {
-      Scierror(999,_("%s: not enought points for the fit\n"), fname);
+      Scierror(999,_("%s: not enought points for the fit.\n"), fname);
       return 0;
     }
   else if (ierr == 1)
-    sciprint(_("%s warning: rank deficiency of the least square matrix\n"), fname);
+    sciprint(_("%s warning: rank deficiency of the least square matrix.\n"), fname);
 
   LhsVar(1) = Rhs+1;
   LhsVar(2) = Rhs+2;

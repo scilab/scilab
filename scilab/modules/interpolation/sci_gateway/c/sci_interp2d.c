@@ -47,7 +47,7 @@ int intinterp2d(char *fname,unsigned long fname_len)
   if ( mxp != myp || nxp != nyp || mx != 1 || my != 1 || nc != 1 || nx < 2 || ny < 2
        || mc != 16*(nx-1)*(ny-1) )
     {
-      Scierror(999,_("%s: bad inputs\n"), fname);
+	  Scierror(999,_("%s: Incompatible input arguments '#%d' and '#%d': Same sizes expected.\n"),fname,1,2);
       return 0;
     }
 
@@ -58,7 +58,7 @@ int intinterp2d(char *fname,unsigned long fname_len)
       outmode =  get_type(OutModeTable, NB_OUTMODE, str_outmode, ns);
       if ( outmode == UNDEFINED || outmode == LINEAR )
 	{
-	  Scierror(999,"%s: unsupported outmode type\n",fname);
+	  Scierror(999,_("%s: Wrong values for input argument #%d: Unsupported 'outmode' type.\n"),fname,6);
 	  return 0;
 	};
     }

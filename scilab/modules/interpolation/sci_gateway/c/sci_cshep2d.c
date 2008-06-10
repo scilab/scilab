@@ -72,7 +72,7 @@ int intcshep2d(char *fname,unsigned long fname_len)
 
   if ( ier != 0 )
     {
-      Scierror(999,_("%s: duplicate nodes or all nodes colinears (ier = %d)\n"), fname, ier);
+      Scierror(999,_("%s: duplicate nodes or all nodes colinears (ier = %d).\n"), fname, ier);
       return 0;
     }
 

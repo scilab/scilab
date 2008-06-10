@@ -47,14 +47,14 @@ int intsplin(char *fname,unsigned long fname_len)
   n = mx*nx;    /* number of interpolation points */
   if ( n < 2 )
     {
-      Scierror(999,_("%s: Wrong size for first input argument: Must be >= %d.\n"), fname,2);
+		Scierror(999,_("%s: Wrong size for input argument #%d: Must be >= %d.\n"), fname,1,2);
       return 0;
     }
   x = stk(lx); y = stk(ly);
   if (! good_order(x, n))  /* verify strict increasing abscissae */
     {
-      Scierror(999,_("%s: elts of arg 1 not (strictly) increasing or +-inf detected\n"), fname);
-      return 0;
+		Scierror(999,_("%s: elements of argument #%d not (strictly) increasing or +-inf detected\n"), fname,1);
+		return 0;
     }
 
   if ( Rhs >= 3 )   /* get the spline type */
@@ -63,7 +63,7 @@ int intsplin(char *fname,unsigned long fname_len)
       spline_type =  get_type(SplineTable, NB_SPLINE_TYPE, str_spline_type, ns);
       if ( spline_type == UNDEFINED )
 	{
-	  Scierror(999,_("%s: Unknown spline_type.\n"),fname);
+	  Scierror(999,_("%s: Wrong values for input argument #%d: Unknown 'spline' type.\n"),fname,3);
 	  return 0;
 	};
     }
@@ -74,21 +74,21 @@ int intsplin(char *fname,unsigned long fname_len)
     {
       if ( Rhs != 4 )
 	{
-	  Scierror(999,_("%s: for a clamped spline you must give the endpoint slopes\n"),fname);
+	  Scierror(999,_("%s: for a clamped spline you must give the endpoint slopes.\n"),fname);
 	  return 0;
 	}
       GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &mc, &nc, &lc);
       if ( mc*nc != 2 )
 	{
-	  Scierror(999,_("%s: Wrong size for the fourth input argument: endpoint slopes.\n"),fname);
+		Scierror(999,_("%s: Wrong size for input argument #%d: endpoint slopes.\n"),fname,4);
 	  return 0;
 	}
       c = stk(lc);
     }
   else if ( Rhs == 4 )
     {
-      Scierror(999,_("%s: Wrong number of input argument argument: %d expected for a clamped spline.\n"),fname,4);
-      return 0;
+		Scierror(999,_("%s: Wrong number of input argument(s).\n"),fname); 
+		return 0;
     }
 
   /*  verify y(1) = y(n) for periodic splines */

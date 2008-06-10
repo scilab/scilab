@@ -38,7 +38,7 @@ int intinterp1(char *fname,unsigned long fname_len)
 
   if ( mx != my  ||  nx != ny  ||  md != mx || nd != nx || (mx != 1  &&  nx != 1) || mx*nx < 2)
     {
-      Scierror(999,_("%s: bad inputs\n"), fname);
+	  Scierror(999,_("%s: Incompatible input arguments '#%d' and '#%d': Same sizes expected.\n"),fname,2,3);
       return 0;
     }
   n = mx*nx;    /* number of interpolation points */
@@ -50,7 +50,7 @@ int intinterp1(char *fname,unsigned long fname_len)
       outmode =  get_type(OutModeTable, NB_OUTMODE, str_outmode, ns);
       if ( outmode == UNDEFINED )
 	{
-	  Scierror(999,"%s: unknown outmode type\n",fname);
+	  Scierror(999,_("%s: Wrong values for input argument #%d: Unknown 'outmode' type.\n"),fname,5);
 	  return 0;
 	};
     }

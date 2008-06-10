@@ -36,10 +36,10 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lx);
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
   if ( mx != my  ||  nx != ny )
-    {
-      Scierror(999,_("%s: xp and yp must have the same dimension\n"), fname);
-      return 0;
-    }
+  {
+	Scierror(999,_("%s: Incompatible input arguments '#%d' and '#%d': Same sizes expected.\n"),fname,1,2);
+	return 0;
+  }
 
   GetRhsVar(3,TYPED_LIST_DATATYPE,&mt, &nt, &lt);
   GetListRhsVar(3, 1,MATRIX_OF_STRING_DATATYPE, &m1,  &n1, &Str);    /* m1 = 1, n1 = 8 ? a verifier */
@@ -57,8 +57,7 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
 			FREE(Str);
 			Str=NULL;
 		}
-
-      Scierror(999,_("%s: Argument 2 is not an cshep2d tlist\n"), fname);
+	  Scierror(999,_("%s: Wrong type for input argument #%d: cshep2d tlist expected.\n"), fname,2);
       return 0;
     }
   /* Free Str */
