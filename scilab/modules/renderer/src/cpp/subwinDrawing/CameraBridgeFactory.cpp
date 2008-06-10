@@ -15,6 +15,7 @@
 #include "CameraJoGL.h"
 #include "IsoViewCameraJavaMapper.hxx"
 #include "IsometricCameraJavaMapper.hxx"
+#include "getHandleDrawer.h"
 
 extern "C"
 {
@@ -29,9 +30,22 @@ CameraBridge * CameraBridgeFactory::create( void )
 {
   CameraJoGL * newBridge = new CameraJoGL(m_pCamera) ;
 
-  CameraJavaMapper * javaMapper;
+  setStrategies(newBridge);
+  
+  return newBridge;
+}
+/*------------------------------------------------------------------------*/
+void CameraBridgeFactory::update(void)
+{
+  DrawableObjectBridge * curCameraBridge = getSubwinDrawer(m_pCamera->getDrawedObject())->getCamera()->getDrawableImp();
 
-  sciPointObj * pSubwin = m_pCamera->getDrawedObject();
+  setStrategies(dynamic_cast<CameraJoGL *>(curCameraBridge));
+}
+/*------------------------------------------------------------------------*/
+void CameraBridgeFactory::setStrategies(CameraJoGL * cameraImp)
+{
+  sciPointObj * pSubwin = cameraImp->getDrawer()->getDrawedObject();
+  CameraJavaMapper * javaMapper = NULL;
 
   if (sciGetIsIsoView(pSubwin))
   {
@@ -42,9 +56,8 @@ CameraBridge * CameraBridgeFactory::create( void )
     javaMapper = new IsometricCameraJavaMapper() ;
   }
 
-  newBridge->setJavaMapper(javaMapper);
-  
-  return newBridge;
+  cameraImp->setJavaMapper(javaMapper);
+
 }
 /*------------------------------------------------------------------------*/
 

@@ -40,7 +40,7 @@ void CameraFactory::update( void )
   Camera * cam = getSubwinDrawer(m_pDrawed)->getCamera();
   CameraBridgeFactory bf ;
   bf.setCorrespondingCamera( cam ) ;
-  cam->setDrawableImp(bf.create());
+  bf.update();
 }
 /*------------------------------------------------------------------------*/
 }
