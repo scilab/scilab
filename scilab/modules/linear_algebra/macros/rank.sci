@@ -27,8 +27,7 @@ function r=rank(A,tol)
 	execstr('r='+fun+'(A,tol)')
       end
     else
-      error('rank not defined for type ""'+n+'"" .'+..
-	    'Check argument or define function '+fun)
+      error(msprintf(gettext('%s: Type not defined ''%s''.Check argument or define function %s.'),'rank',n,fun));
     end
   end
 endfunction

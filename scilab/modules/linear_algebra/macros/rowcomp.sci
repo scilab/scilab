@@ -30,7 +30,7 @@ function [w,rk]=rowcomp(A,flag,tol)
     tol=sqrt(%eps)*norm(A,1)
   else
     if size(tol,'*')>1|~isreal(tol)|tol<0 then
-      error('rowcomp: third argument should be a real non negative scalar')
+      error(msprintf(gettext("%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"),'rowcomp',3));
     end
   end
   select flag
@@ -39,7 +39,7 @@ function [w,rk]=rowcomp(A,flag,tol)
   case 'svd' then 
     [u,s,v,rk]=svd(A,tol);w=u' ;
   else
-    error('rowcomp: second argument should be ''qr'' or ''svd''')
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),'rowcomp',2,'''qr'',''svd'''));
   end
 endfunction
 

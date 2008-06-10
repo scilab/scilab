@@ -16,6 +16,7 @@
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intdgetrf)(char *fname, unsigned long fname_len);
 extern int C2F(intzgetrf)(char *fname, unsigned long fname_len);
@@ -23,27 +24,32 @@ extern int C2F(intzgetrf)(char *fname, unsigned long fname_len);
 int C2F(intlu)(char *fname,unsigned long fname_len)
 {
 	int *header1;
-	int CmplxA;int ret;
+	int CmplxA;
+	int ret;
 
 	/*   lu(A)  */
-	if (GetType(1)!=sci_matrix) {
+	if (GetType(1)!=sci_matrix) 
+	{
 		OverLoad(1);
 		return 0;
 	}
 	header1 = (int *) GetData(1);
-	CmplxA=header1[3];
-	switch (CmplxA) {
-  case REAL:
-	  ret = C2F(intdgetrf)("lu",2L);
-	  return 0;
-	  break;
-  case COMPLEX:
-	  ret = C2F(intzgetrf)("lu",2L);
-	  return 0;
-	  break;
-  default:
-	  Scierror(999,"%s: Invalid input! \n",fname);
-	  return 0;
+	CmplxA = header1[3];
+	switch (CmplxA) 
+	{
+		case REAL:
+			ret = C2F(intdgetrf)("lu",2L);
+		break;
+
+		case COMPLEX:
+			ret = C2F(intzgetrf)("lu",2L);
+		break;
+
+		default:
+			Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
+			fname,1);
+		break;
 	}
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

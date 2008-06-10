@@ -28,7 +28,7 @@ function [Q,M]=psmall(A,thres,flag)
     deff('[flag]=%smallei(x)','flag=abs(x) < thres')
     deff('[flag]=%bigeig(x)','flag=abs(x) >= thres')
   else
-    error('Invalid flag value, it must be '"c"' or '"d"' ')
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),'psmall',3,'''c'',''d'''));
   end
   // 
   [X,dsmall] = schur(A,%smallei);
@@ -41,7 +41,6 @@ function [Q,M]=psmall(A,thres,flag)
   if rcond(E)>1.d-6 then
     M=E\M1;
   else
-    //warning('bad conditionning--> balancing')
     [Ab,X0]=balanc(A);
     [X,dsmall] = schur(Ab,%smallei);X1=X*X0;Q=X1(:,1:dsmall);
     [Y,dbig] = schur(Ab,%bigeig);Y1=inv(X0)*Y';M=Y1(dbig+1:n,:);

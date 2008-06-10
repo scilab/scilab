@@ -27,7 +27,7 @@ case 'hypermat' then
 case 'constant'
   // it is a standard matrix nothing to do
 else 
-  error(typein+'is not an admissible type in squeeze') ;
+  error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),'squeeze',1))
 end
 
 endfunction

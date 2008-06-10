@@ -26,7 +26,8 @@ function F=randpencil(eps,infi,fin,eta)
 // (bad behavior of the empty matrix!!!!!)
 
   [LHS,RHS]=argn(0);
-  if RHS<>4 then error('randpencil requires 4 (possibly []) input parameters!');
+  if RHS<>4 then 
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),'randpencil',4));
   end
   select type(fin)
   case 1

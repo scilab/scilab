@@ -23,7 +23,9 @@ function [x,dim]=spaninter(a,b,tol)
   if ma*na==0 then dim=0;x=eye(nb,nb);return;end
   if mb*nb==0 then dim=0;x=eye(na,na);return;end
   if rhs==2 then tol=sqrt(%eps);end
-  if na <> nb then error('Uncompatible dimensions'),end
+  if na <> nb then 
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),'spaninter',1,2));
+  end
   if mb > ma then [x,dim]=spaninter(b,a,tol),return,end
   [xp,ra]=rowcomp(a);x=xp'
   //test  trivial cases :

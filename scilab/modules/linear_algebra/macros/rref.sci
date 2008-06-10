@@ -40,8 +40,7 @@ function [A,jb]=rref(A,tol)
     if exists(fun)==1 then
       execstr('[A,jb]='+fun+'(A)')
     else
-      error('rref not defined for type ""'+n+'"" .'+..
-	     'Check argument or define function '+fun)
+      error(msprintf(gettext('%s: Type not defined %s.Check argument or define function %s.'),'rref',n,fun));
     end
   end
 endfunction

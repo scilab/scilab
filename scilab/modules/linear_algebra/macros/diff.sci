@@ -17,20 +17,20 @@ function x=diff(x,N,DIM)
   if DIM=='c' then DIM=2,end
   if DIM=='*' then DIM=-1,end
   if size(DIM,'*')<>1 then 
-    error('diff: third argument should be a scalar')
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n"),'diff',1));
   end
   DIM=round(DIM)
   if DIM<>-1&DIM<1 then 
-    error('diff: third argument should be positive')
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Non-negative integers expected.\n"),'diff',3));
   end
   if DIM>nd then x=[],return,end
   
   if type(N)<>1|size(N,'*')<>1 then 
-    error('diff: second argument should be a scalar')
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n"),'diff',2));
   end
   N=round(N)
   if N<0 then 
-    error('diff: third argument should be 0 or a positive number')
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Non-negative integers expected.\n"),'diff',3));
   end
  
   

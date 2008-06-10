@@ -19,7 +19,7 @@ function [U,S,V]=sva(A,tol)
     if tol>1 then //rank given
       rk=tol
       if rk>min(size(A)) then 
-	error('Requested rank is greater than matrix dimension')
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: Requested rank is greater than matrix dimension."),'sva',1));
       end
     else
       rk = size(find(diag(S) > tol),'*');

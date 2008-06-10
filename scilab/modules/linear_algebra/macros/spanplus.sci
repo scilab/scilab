@@ -22,7 +22,9 @@ function [x,dim,dima]=spanplus(a,b,tol)
   if nb*mb==0 then [x,dima]=rowcomp(a);dim=dima;x=x';return;end
   [lhs,rhs]=argn(0);
   if rhs==2 then tol=%eps*na*nb*ma*mb;end
-  if na<>nb then error('uncompatible dimensions!'),end
+  if na<>nb then 
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),'spanplus',1,2));
+  end
   [x,dima]=rowcomp(a);
   b=x*b;x=x'    //update b,x
   if dima == na then dim=dima,return,end;

@@ -18,7 +18,10 @@ function [X,dim,Y]=im_inv(A,B,tol)
   [lhs,rhs]=argn(0);
   [nA,mA]=size(A);[nB,mB]=size(B);
   if rhs==2 then tol=100*%eps*mA*nA*nB*mB,end;
-  if nA<>nB then error ('im_inv: uncompatible dimensions!'),return,end
+  if nA<>nB then 
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),'im_inv',1,2))
+    return
+  end
   // basis for im(B)
   [Y,rB]=rowcomp(B);//u=Y'
   

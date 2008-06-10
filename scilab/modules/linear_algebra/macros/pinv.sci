@@ -35,8 +35,7 @@ else
       execstr('X='+fun+'(A,tol)')
     end
   else
-    error('pinv not defined for type ""'+n+'"" .'+..
-	  'Check argument or define function '+fun)
+   error(msprintf(gettext('%s: Type not defined for %s. Check argument or define function %s.'),'pinv',n,fun));
   end
 end
 endfunction

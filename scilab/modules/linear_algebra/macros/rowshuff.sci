@@ -29,7 +29,10 @@ function [Ws,Fs1]=rowshuff(Fs,alfa)
   //     
   rk=0;i=0;
   while rk  < n
-    if i==n then error('rowshuffle: singular pencil!');W=[];end
+    if i==n then 
+      error(msprintf(gettext('%s: Singular pencil!'),'rowshuffle'));
+      W=[];
+    end
     [W,rk]=rowcomp(E);
     if rk==n then return;end
     W1=W(1:rk,:);W2=W(rk+1:n,:);

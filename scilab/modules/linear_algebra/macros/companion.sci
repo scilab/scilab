@@ -17,7 +17,7 @@ function A = companion(p)
 // equal to p(i).
 
   if type(p) ~= 2 
-    error('Compan: Input argument must be a polynomial');
+    error(msprintf(gettext('%s: Wrong type for input argument #%d: Polynomial expected.'),'companion',1));
   end
   p=p(:);
   p=p';

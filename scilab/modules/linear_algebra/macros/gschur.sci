@@ -19,7 +19,7 @@ function [As,Es,Z,dim]= gschur(A,E,extern)
     end
   elseif type(extern)==10 then
     if convstr(extern)=='c'|convstr(extern)=='d' then
-      warning('Obsolete function gschur. Please, replace gschur by schur')
+      warning(msprintf(gettext('%s: Obsolete function. Please, replaces ''%s'' by ''%s''.'),'gschur','gschur','schur'));
       if argn(1)==4 then
 	[As,Es,Z,dim]= schur(A,E,extern) 
       elseif argn(1)==2 then
@@ -27,8 +27,7 @@ function [As,Es,Z,dim]= gschur(A,E,extern)
 	Es=dim;As=Z;
       end
     else // hard coded
-      error('Obsolete function gschur, the old external cannot be used. See help')
-      
+      warning(msprintf(gettext('%s: Obsolete function. Old external cannot be used.'),'gschur'));
       //impossible to redefine
     end
   else //coded by a scilab function
@@ -36,7 +35,7 @@ function [As,Es,Z,dim]= gschur(A,E,extern)
        //flag=extern(x) 
        //x(1) ==1 ==> x(2:3)=[al,be]
        //x(1) ==2 ==> x(2:3)=[s,p]
-       warning('Obsolete function. Please, replace gschur by schur and adapt the external')
+       warning(msprintf(gettext('%s: Obsolete function. Please, replaces ''%s'' by ''%s''.'),'gschur','gschur','schur'));
        deff('t=%_rule(Alpha,Beta)',['if imag(Alpha)==0 then'
 		    '  t=extern([1,real(Alpha),Beta])==1'
 		    'else		    '

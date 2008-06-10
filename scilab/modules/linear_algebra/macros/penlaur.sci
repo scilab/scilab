@@ -26,7 +26,10 @@ function [Si,Pi,Di,order]=penlaur(E,A)
   for s0=tests, conditions(k)=cond(s0*E-A);k=k+1;end
   [w,k1]=mini(conditions);
   rand(typ);rand('seed',seed)
-  if w>1.d+20 then error('Singular pencil!');return;end
+  if w>1.d+20 then 
+    error(msprintf(gettext('%s: Singular pencil.'),'penlaur'));
+    return;
+  end
   s0=tests(k1);
   J=inv(s0*E-A);
   [Se,Pe,De,i1]=projspec(J*E);

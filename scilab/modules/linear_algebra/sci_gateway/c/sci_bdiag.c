@@ -94,7 +94,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
     }
 
     if (fail) {
-      Scierror(24,_("%s:  Non convergence in QR steps.\n"),fname);
+      Scierror(24,_("%s: Non convergence in QR steps.\n"),fname);
       return 0;
     }
     if (Lhs == 3) {
