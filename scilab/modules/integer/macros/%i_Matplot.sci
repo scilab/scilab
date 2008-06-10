@@ -28,11 +28,15 @@ if exists('nax' ,'local')==1 then
   opts=[opts,'nax=nax'] 
 end
 if exists('frameflag' ,'local')==1 then 
-  if isframeflag then error('frameflag already defined by the strf argument'),end
+  if isframeflag then
+    error(msprintf(gettext('%s: ''frameflag'' already defined by the strf argument.'),'%%i_Matplot'))
+  end
   opts=[opts,'frameflag=frameflag']  ,
 end
 if exists('axesflag' ,'local')==1 then 
-  if isaxesflag then error('axesflag already defined by the strf argument'),end
+  if isaxesflag then
+    error(msprintf(gettext('%s: ''axesflag'' already defined by the strf argument.'),'%%i_Matplot'))
+  end
   opts=[opts,'axesflag=axesflag']  ,
 end
 if size(opts,2)+1-narg <argn(2) then  

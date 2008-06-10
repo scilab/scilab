@@ -65,7 +65,7 @@ void C2F(mgeti) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
   nc=(int)strlen(type);
   if ( nc == 0) 
     {
-      sciprint(_("%s: format is of 0 length\n"),"mgeti",type);
+      sciprint(_("%s: format is of 0 length.\n"),"mgeti",type);
       *ierr=1;
       return;
     }
@@ -172,13 +172,13 @@ void C2F(mgeti) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
 		}
 	      break;
 	    default :
-	      sciprint(_("%s: %s format not recognized\n"),"mgeti",type);
+	      sciprint(_("%s: %s format not recognized.\n"),"mgeti",type);
 	      *ierr=1;
 	      return;
 	    }
 	  break;
 	default :
-	  sciprint(_("%s: %s format not recognized\n"),"mgeti",type);
+	  sciprint(_("%s: %s format not recognized.\n"),"mgeti",type);
 	  *ierr=1;
 	  return;
 	}
@@ -207,7 +207,7 @@ int nc,swap;
       if (islittleendian()==1) swap=0;else swap=1; 
       break; 
     default:
-      sciprint(_("%s: unknown format %s\n"),"mgeti",type);
+      sciprint(_("%s: unknown format %s.\n"),"mgeti",type);
       swap=-1;
     }
   }
