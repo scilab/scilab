@@ -93,7 +93,7 @@ public abstract class LabelPositionerGL extends BoxTrimmingObjectGL {
 		GL gl = getGL();
 		
 		// compute position of axis segment start and end in pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		Vector3D axisStartPix = transform.getCanvasCoordinates(gl, axisStart);
 		Vector3D axisEndPix = transform.getCanvasCoordinates(gl, axisEnd);
 		Vector3D ticksDirPix = transform.getCanvasCoordinates(gl, ticksDir);

@@ -19,6 +19,8 @@ import java.util.LinkedList;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
+
 /**
  * Store all cliped planes and change everyone of them
  * @author Jean-Baptiste Silvy
@@ -77,11 +79,12 @@ public final class ClipPlane3DManager {
 	/**
 	 * Push all planes.
 	 * @param gl current GL pipeline
+	 * @param transform current transfomrations between 3D, 2D and pixel coordinates
 	 */
-	public static void pushPlanes(GL gl) {
+	public static void pushPlanes(GL gl, CoordinateTransformation transform) {
 		Iterator<MovableClipPlane3D> curPlaneIt = activeClipPlanes.iterator();
 		while (curPlaneIt.hasNext()) {
-			curPlaneIt.next().pushPlane(gl);
+			curPlaneIt.next().pushPlane(gl, transform);
 		}
 	}
 	

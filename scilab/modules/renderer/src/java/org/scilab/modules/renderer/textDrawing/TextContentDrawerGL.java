@@ -247,7 +247,7 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		
 		GL gl = getGL();
 		
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 
 		//Put the text on the figure
 	
@@ -257,20 +257,14 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		
 		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl);
-		
+		GLTools.usePixelCoordinates(gl, transform);
 		
 		// display lists does not work with text rendering
-		//startRecordDL();
-		
 		
 		// draw the text using the new coordinates
 		Vector3D[] res = drawTextContentPix();
-		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 		
-		//endRecordDL();
-		
-		GLTools.endPixelCoordinates(gl);
+		GLTools.endPixelCoordinates(gl, transform);
 		
 		
 		
@@ -290,13 +284,13 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		GL gl = getGL();
 		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl);
+		GLTools.usePixelCoordinates(gl, getCoordinateTransformation());
 		
 		// display the display list of text
 		showTextContentPix();
 		//displayDL();
 		
-		GLTools.endPixelCoordinates(gl);
+		GLTools.endPixelCoordinates(gl, getCoordinateTransformation());
 		
 	}
 	
@@ -360,7 +354,7 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	protected Vector3D[] getBoundingRectangle3D() {
 		GL gl = getGL();		
 		Vector3D[] res = getBoundingRectangle2D();
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		for (int i = 0; i < res.length; i++) {
 			res[i] = transform.retrieveSceneCoordinates(gl, res[i]);
 		}
@@ -373,13 +367,13 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 */
 	public Vector3D[] getBoundingRectangle2D() {
 		GL gl = getGL();
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
-		GLTools.usePixelCoordinates(gl);
+		GLTools.usePixelCoordinates(gl, transform);
 		
 		Vector3D[] resPix = getBoundingRectanglePix();
 		
-		GLTools.endPixelCoordinates(gl);
+		GLTools.endPixelCoordinates(gl, transform);
 		return resPix;
 	}
 	

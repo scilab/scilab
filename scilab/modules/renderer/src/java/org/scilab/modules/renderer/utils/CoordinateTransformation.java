@@ -29,10 +29,9 @@ public class CoordinateTransformation {
 
 	/** transformation matrices sizes */
 	public static final int MATRIX_4X4_SIZE = 16;
-	public static final int VIEW_PORT_SIZE = 4;
 	
-	/** Singleton */
-	private static CoordinateTransformation transform;
+	/** Size of the view port */
+	public static final int VIEW_PORT_SIZE = 4;
 	
 	private Matrix4D projectMatrix;
 	private Matrix4D unprojectMatrix;
@@ -44,7 +43,7 @@ public class CoordinateTransformation {
 	/**
 	 * default constructor
 	 */
-	protected CoordinateTransformation() {
+	public CoordinateTransformation() {
 		projectMatrix = null;
 		unprojectMatrix = null;
 		viewPort = new double[VIEW_PORT_SIZE];
@@ -53,42 +52,30 @@ public class CoordinateTransformation {
 	}
 	
 	/**
-	 * Factory of the singleton
-	 * @param gl current OpenGL pipeline
-	 * @return only instance of singleton
-	 */
-	public static synchronized CoordinateTransformation getTransformation(GL gl) {
-		if (transform == null) {
-			transform = new CoordinateTransformation();
-		}
-		return transform;
-	}
-	
-	/**
 	 * @return current projection matrix
 	 */
-	public synchronized Matrix4D getProjectionMatrix() {
+	public Matrix4D getProjectionMatrix() {
 		return projectMatrix;
 	}
 	
 	/**
 	 * @return current inverse of projection matrix
 	 */
-	public synchronized Matrix4D getUnprojectMatrix() {
+	public Matrix4D getUnprojectMatrix() {
 		return unprojectMatrix;
 	}
 	
 	/**
 	 * @return current viewPort
 	 */
-	public synchronized double[] getViewPort() {
+	public double[] getViewPort() {
 		return viewPort;
 	}
 	
 	/**
 	 * @param trans translation to apply
 	 */
-	public synchronized void setAdditionalTranslation(Vector3D trans) {
+	public void setAdditionalTranslation(Vector3D trans) {
 		this.additionalTranslation = trans;
 		this.additionalTranslationPix = null; // not up to date
 		
@@ -97,7 +84,7 @@ public class CoordinateTransformation {
 	/**
 	 * @return additional translation
 	 */
-	public synchronized Vector3D getAdditionalTranslation() {
+	public Vector3D getAdditionalTranslation() {
 		return additionalTranslation;
 	}
 	
@@ -105,7 +92,7 @@ public class CoordinateTransformation {
 	 * @param gl current OpenGL pipeline
 	 * @return additional translation
 	 */
-	public synchronized Vector3D getAdditionalTranslationPix(GL gl) {
+	public Vector3D getAdditionalTranslationPix(GL gl) {
 		if (additionalTranslation == null) {
 			return null;
 		} else if (additionalTranslationPix == null) {
@@ -120,7 +107,7 @@ public class CoordinateTransformation {
 	 * Update the projection data of the coordinates.
 	 * @param gl current Gl pipeline
 	 */
-	public synchronized void update(GL gl) {
+	public void update(GL gl) {
 		// get OpenGL transformation matrices
 		double[] oglModelViewMatrix = new double[MATRIX_4X4_SIZE];
 		double[] oglProjectionMatrix = new double[MATRIX_4X4_SIZE];
@@ -155,22 +142,12 @@ public class CoordinateTransformation {
 	}
 	
 	/**
-	 * Static function which compute Canvas coordinates unsing current coordinates transformation
-	 * @param gl current OpenGL pipeline
-	 * @param pos coordinates of the position.
-	 * @return Vector the X, Y and Z positions in the canvas frame.
-	 */
-	public static Vector3D getCanvasCoordinatesS(GL gl, Vector3D pos) {
-		return getTransformation(gl).getCanvasCoordinates(gl, pos);
-	}
-	
-	/**
 	 * Perform the same operation as gluProject.
 	 * @param gl unused
 	 * @param pos scene position
 	 * @return pixel coordinate of the point.
 	 */
-	public synchronized Vector3D project(GL gl, Vector3D pos) {
+	public Vector3D project(GL gl, Vector3D pos) {
 		Vector3D canvasCoord = projectMatrix.mult(pos);
 		canvasCoord.setX(viewPort[0] + viewPort[2] * (canvasCoord.getX() + 1.0) / 2.0);
 		canvasCoord.setY(viewPort[1] + viewPort[VIEW_PORT_SIZE - 1] * (canvasCoord.getY() + 1.0) / 2.0);
@@ -184,7 +161,7 @@ public class CoordinateTransformation {
 	 * @param canvasPos canvas position
 	 * @return scene coordinate of the point
 	 */
-	public synchronized Vector3D unProject(GL gl, Vector3D canvasPos) {
+	public Vector3D unProject(GL gl, Vector3D canvasPos) {
 		Vector3D sceneCoord 
 			= new Vector3D(2.0 * (canvasPos.getX() - viewPort[0]) / viewPort[2] - 1.0,
 						   2.0 * (canvasPos.getY() - viewPort[1]) / viewPort[VIEW_PORT_SIZE - 1] - 1.0,

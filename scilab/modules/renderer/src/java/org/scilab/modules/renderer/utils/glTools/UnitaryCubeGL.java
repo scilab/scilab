@@ -47,12 +47,12 @@ public class UnitaryCubeGL {
 	 * Get the extent along x axis and y axis on the z = 0 plane.
 	 * @param gl current GL pipeline.
 	 * @return array of size 2 containing width and height.
+	 * @param transform current transfomrations between 3D, 2D a, dpixel coordinates
 	 */
-	public static double[] getCubeScreenExtent(GL gl) {
+	public static double[] getCubeScreenExtent(GL gl, CoordinateTransformation transform) {
 		
 		Vector3D[] screenCoordinates;
-		
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+	
 		// needed here since we are palcing the camera
 		transform.update(gl);
 		

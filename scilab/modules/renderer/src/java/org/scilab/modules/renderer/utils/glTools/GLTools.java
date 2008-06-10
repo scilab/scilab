@@ -120,16 +120,17 @@ public final class GLTools {
 	 * Change coordinates to pixel values (for x and y).
 	 * To get back to user coordinates call endPixelCoordinates
 	 * @param gl current OpenGL pipeline
+	 * @param transform current transfomrations between 3D, 2D and pixel coordinates
 	 */
-	public static void usePixelCoordinates(GL gl) {
+	public static void usePixelCoordinates(GL gl, CoordinateTransformation transform) {
 		
 		// clipping planes must be modified
-		ClipPlane3DManager.pushPlanes(gl);
+		ClipPlane3DManager.pushPlanes(gl, transform);
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		gl.glPushMatrix();
 		gl.glLoadIdentity();
 		
-		double[] viewPort = CoordinateTransformation.getTransformation(gl).getViewPort();
+		double[] viewPort = transform.getViewPort();
 		gl.glOrtho(0.0, viewPort[2], 0.0, viewPort[VIEWPORT_LENGTH - 1],
 				   MIN_PIXEL_Z, MAX_PIXEL_Z);
 		gl.glMatrixMode(GL.GL_MODELVIEW);
@@ -139,7 +140,7 @@ public final class GLTools {
 		ClipPlane3DManager.changeAllPlanesFrame(gl);
 		
 		// transform additional translation to pixels
-		Vector3D translation = CoordinateTransformation.getTransformation(gl).getAdditionalTranslationPix(gl);
+		Vector3D translation = transform.getAdditionalTranslationPix(gl);
 		if (translation != null) {
 			gl.glTranslated(translation.getX(), translation.getY(), translation.getZ());
 		}
@@ -149,14 +150,15 @@ public final class GLTools {
 	 * To get back to pixels coordinates from user coordinates.
 	 * To be called after a userPixelCoordinates call.
 	 * @param gl current OpenGL pipeline
+	 * @param transform current transfomrations between 3D, 2D and pixel coordinates
 	 */
-	public static void endPixelCoordinates(GL gl) {
+	public static void endPixelCoordinates(GL gl, CoordinateTransformation transform) {
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		gl.glPopMatrix();
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glPopMatrix();
 		
-		Vector3D translation = CoordinateTransformation.getTransformation(gl).getAdditionalTranslation();
+		Vector3D translation = transform.getAdditionalTranslation();
 		if (translation != null) {
 			// we have an additional translation here
 			// so clipping the plane with its previous equation is not valid here

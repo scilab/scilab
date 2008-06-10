@@ -138,13 +138,13 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	public void redrawMarks() {
 		GL gl = getGL();
 		
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		
 		// need to perform this befaore swithching to pixel coordinates
 		Vector3D[] pixCoords = transform.getCanvasCoordinates(gl, markPos);
 		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl);
+		GLTools.usePixelCoordinates(gl, transform);
 		
 		// create the display list using pixel coordinates
 		startRecordDL();
@@ -158,7 +158,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		// we recreate the dl each time
 		//getDrawer().clearDisplayList();
 		
-		GLTools.endPixelCoordinates(gl);
+		GLTools.endPixelCoordinates(gl, transform);
 	}
 	
 	/**
@@ -168,10 +168,10 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		GL gl = getGL();
 		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl);
+		GLTools.usePixelCoordinates(gl, getCoordinateTransformation());
 		displayDL();
 		
-		GLTools.endPixelCoordinates(gl);
+		GLTools.endPixelCoordinates(gl, getCoordinateTransformation());
 	}
 	
 	/**

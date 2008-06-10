@@ -26,6 +26,7 @@ import org.scilab.modules.renderer.arcDrawing.ArcRendererFactory;
 import org.scilab.modules.renderer.arcDrawing.NurbsArcRendererFactory;
 import org.scilab.modules.renderer.polylineDrawing.JOGLShadeFacetDrawer;
 import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 import org.scilab.modules.renderer.utils.selection.RubberBox;
 import org.scilab.modules.renderer.utils.textRendering.JOGLTextRendererFactory;
@@ -90,6 +91,9 @@ public class DrawableFigureGL extends ObjectGL {
 	/** To know if the rendering is requested by Scilab or not */
 	private boolean renderRequested;
 	
+	/** Coordinate transfomrations used to draw this figure */
+	private CoordinateTransformation transform;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -108,6 +112,7 @@ public class DrawableFigureGL extends ObjectGL {
       	backGroundColorIndex = 0;
       	rubberBox = null;
       	renderRequested = false;
+      	transform = new CoordinateTransformation();
     }
 	
 	/**
@@ -144,6 +149,13 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public synchronized boolean getIsRenderingEnable() {
 		return isReadyForRendering;
+	}
+	
+	/**
+	 * @return current coordinate transformation
+	 */
+	public CoordinateTransformation getCoordinateTransformation() {
+		return transform;
 	}
 	
 	/**

@@ -171,7 +171,7 @@ public abstract class BoxTrimmingObjectGL extends DrawableObjectGL {
 		Vector3D pointXmax = new Vector3D(getXmax(), getYmin(), zCoordinate);
 		
 		// find the one which is upper in term of pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		
 		pointXmin = transform.getCanvasCoordinates(gl, pointXmin);
 		pointXmax = transform.getCanvasCoordinates(gl, pointXmax);
@@ -196,7 +196,7 @@ public abstract class BoxTrimmingObjectGL extends DrawableObjectGL {
 		Vector3D pointZmax = new Vector3D(getXmin(), getYmin(), getZmax());
 		
 		// find the one which is upper in term of pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		
 		pointZmin = transform.getCanvasCoordinates(gl, pointZmin);
 		pointZmax = transform.getCanvasCoordinates(gl, pointZmax);
@@ -223,7 +223,7 @@ public abstract class BoxTrimmingObjectGL extends DrawableObjectGL {
 		Vector3D pointYmax = new Vector3D(getXmin(), getYmax(), zCoordinate);
 		
 		// find the one which is upper in term of pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		
 		pointYmin = transform.getCanvasCoordinates(gl, pointYmin);
 		pointYmax = transform.getCanvasCoordinates(gl, pointYmax);
@@ -249,7 +249,7 @@ public abstract class BoxTrimmingObjectGL extends DrawableObjectGL {
 		Vector3D pointYmax = new Vector3D(getXmin(), getYmax(), getZmin());
 		
 		// find the one which is upper in term of pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		
 		pointYmin = transform.getCanvasCoordinates(gl, pointYmin);
 		pointYmax = transform.getCanvasCoordinates(gl, pointYmax);
@@ -275,7 +275,7 @@ public abstract class BoxTrimmingObjectGL extends DrawableObjectGL {
 		Vector3D pointXmax = new Vector3D(getXmax(), getYmin(), getZmin());
 		
 		// find the one which is upper in term of pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		
 		pointXmin = transform.getCanvasCoordinates(gl, pointXmin);
 		pointXmax = transform.getCanvasCoordinates(gl, pointXmax);

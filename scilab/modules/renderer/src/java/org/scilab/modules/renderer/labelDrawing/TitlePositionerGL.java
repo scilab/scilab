@@ -16,7 +16,6 @@ package org.scilab.modules.renderer.labelDrawing;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
@@ -57,7 +56,7 @@ public class TitlePositionerGL extends LabelPositionerGL {
 		// put the title just upper the box
 		Vector3D labelCenterPix = viewingAreaUpperPos.add(new Vector3D(0.0, getBoundingBoxHeight(), 0.0));
 		
-		return CoordinateTransformation.getTransformation(gl).retrieveSceneCoordinates(gl, labelCenterPix);
+		return getCoordinateTransformation().retrieveSceneCoordinates(gl, labelCenterPix);
 	}
 
 }

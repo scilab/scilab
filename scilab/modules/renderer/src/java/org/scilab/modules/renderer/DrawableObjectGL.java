@@ -15,7 +15,6 @@ package org.scilab.modules.renderer;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
@@ -91,7 +90,7 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	public void translate(double tx, double ty, double tz) {
 		getGL().glPushMatrix();
 		getGL().glTranslated(tx, ty, tz);
-		CoordinateTransformation.getTransformation(getGL()).setAdditionalTranslation(new Vector3D(tx, ty, tz));
+		getCoordinateTransformation().setAdditionalTranslation(new Vector3D(tx, ty, tz));
 	}
 	
 	/**
@@ -99,7 +98,7 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	 */
 	public void endTranslate() {
 		getGL().glPopMatrix();
-		CoordinateTransformation.getTransformation(getGL()).setAdditionalTranslation(null);
+		getCoordinateTransformation().setAdditionalTranslation(null);
 	}
 	
 	

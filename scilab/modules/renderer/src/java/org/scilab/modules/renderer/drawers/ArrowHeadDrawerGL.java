@@ -74,10 +74,10 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		GL gl = getGL();
 		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl);
+		GLTools.usePixelCoordinates(gl, getCoordinateTransformation());
 		displayDL();
 		
-		GLTools.endPixelCoordinates(gl);
+		GLTools.endPixelCoordinates(gl, getCoordinateTransformation());
 	}
 	
 	/**
@@ -162,7 +162,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 								  new Vector3D(xMax, yMax, zMax)};
 		
 		// transform axesCorners in pixels
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		axesCorners = transform.getCanvasCoordinates(gl, axesCorners);
 		
 		// Extrems corner along each axis
@@ -223,14 +223,14 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		GL gl = getGL();
 		updateArrowPixelSize();
 		
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		
 		// need to perform this befaore swithching to pixel coordinates
 		Vector3D[] startPixCoords = transform.getCanvasCoordinates(gl, arrowStarts);
 		Vector3D[] endPixCoords = transform.getCanvasCoordinates(gl, arrowEnds);
 		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl);
+		GLTools.usePixelCoordinates(gl, transform);
 		
 		// begin to record display list
 		startRecordDL();
@@ -275,7 +275,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		
 		endRecordDL();
 		
-		GLTools.endPixelCoordinates(gl);
+		GLTools.endPixelCoordinates(gl, transform);
 	}
 	
 	/**

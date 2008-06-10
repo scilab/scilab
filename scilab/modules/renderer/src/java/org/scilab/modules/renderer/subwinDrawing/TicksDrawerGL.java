@@ -25,6 +25,7 @@ import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
 import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
+import org.scilab.modules.renderer.utils.textRendering.TextRendererManager;
 
 /**
  * Class drawing ticks for the one axis
@@ -120,7 +121,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 	 */
 	public void initializeDrawing(int parentFigureIndex) {
 		super.initializeDrawing(parentFigureIndex);
-		transform = CoordinateTransformation.getTransformation(getGL());
+		transform = getCoordinateTransformation();
 	}
 	
 	/**
@@ -689,13 +690,14 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		GL gl = getGL();
 		
 		// get text renderer
-		SciTextRenderer renderer
-			= getParentFigureGL().getTextRendererCreator().createTextRenderer(labelFont, getColorMap().getColor(labelColor), useFractionalMetrics);
+		TextRendererManager textCreator = getParentFigureGL().getTextRendererCreator();
+		double[] textColor = getColorMap().getColor(labelColor);
+		SciTextRenderer renderer = textCreator.createTextRenderer(labelFont, textColor, useFractionalMetrics);
 		
-		GLTools.usePixelCoordinates(gl);
+		GLTools.usePixelCoordinates(gl, transform);
 		
 		if (!checkLabels(renderer, ticksPosPix, ticksDirPix, bboxWidth, bboxHeight)) {
-			GLTools.endPixelCoordinates(gl);
+			GLTools.endPixelCoordinates(gl, transform);
 			return -1.0;
 		}
 		
@@ -704,7 +706,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		
 		double res = drawLabels(renderer, ticksPosPix, ticksDirPix, bboxWidth, bboxHeight);
 		
-		GLTools.endPixelCoordinates(gl);
+		GLTools.endPixelCoordinates(gl, transform);
 		
 		return res;
 		
@@ -801,10 +803,10 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 			= getParentFigureGL().getTextRendererCreator().createTextRenderer(labelFont, color, useFractionalMetrics); 
 		
 		
-		GLTools.usePixelCoordinates(gl);
+		GLTools.usePixelCoordinates(gl, transform);
 		showTicksLines();
 		showLabels(renderer);
-		GLTools.endPixelCoordinates(gl);
+		GLTools.endPixelCoordinates(gl, transform);
 		
 		return labelToAxisDist;
 	}

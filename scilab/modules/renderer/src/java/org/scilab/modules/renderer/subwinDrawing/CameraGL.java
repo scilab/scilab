@@ -103,7 +103,7 @@ public abstract class CameraGL extends ObjectGL {
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadMatrixd(projectionMatrix.getOpenGLRepresentation(), 0);
 		gl.glPushMatrix();
-		CoordinateTransformation.getTransformation(gl).update(gl);
+		getCoordinateTransformation().update(gl);
 	}
 	
 	/**
@@ -176,7 +176,7 @@ public abstract class CameraGL extends ObjectGL {
 	 * Compute width and height of the margins in pixels.
 	 */
 	protected void computeMarginsSize() {
-          marginSize = UnitaryCubeGL.getCubeScreenExtent(getGL());
+          marginSize = UnitaryCubeGL.getCubeScreenExtent(getGL(), getCoordinateTransformation());
 	}
 	
 	/**
@@ -272,7 +272,7 @@ public abstract class CameraGL extends ObjectGL {
 					fittingScale.getZ() / normalizeScale.getZ());
 		
 		// get the size of the viewing area on the screen.
-		double[] screenExtent = UnitaryCubeGL.getCubeScreenExtent(gl);
+		double[] screenExtent = UnitaryCubeGL.getCubeScreenExtent(gl, getCoordinateTransformation());
 		gl.glPopMatrix();
 		return screenExtent;
 	}
@@ -341,10 +341,10 @@ public abstract class CameraGL extends ObjectGL {
 		
 		
 		// compute the matrix for project and unproject.
-		CoordinateTransformation.getTransformation(gl).update(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
+		transform.update(gl);
 		
 		// update coordinate chnage matrices
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
 		this.projectionMatrix = new Matrix4D(transform.getProjectionMatrix());
 		this.unprojectMatrix  = new Matrix4D(transform.getUnprojectMatrix());
 		switchTo2DCoordinates();
@@ -406,7 +406,7 @@ public abstract class CameraGL extends ObjectGL {
 	 * @return Array of size 4 containing the viewPort.
 	 */
 	public double[] getViewPort() {
-		return CoordinateTransformation.getTransformation(getGL()).getViewPort();
+		return getCoordinateTransformation().getViewPort();
 	}
 	
 	/**
@@ -423,7 +423,7 @@ public abstract class CameraGL extends ObjectGL {
 		revertAxes();
 		
 		// update transformation
-		CoordinateTransformation.getTransformation(gl).update(gl);
+		getCoordinateTransformation().update(gl);
 		
 	}
 	
@@ -438,7 +438,7 @@ public abstract class CameraGL extends ObjectGL {
 		revertAxes();
 		
 		// update transformation
-		CoordinateTransformation.getTransformation(gl).update(gl);
+		getCoordinateTransformation().update(gl);
 	}
 	
 	

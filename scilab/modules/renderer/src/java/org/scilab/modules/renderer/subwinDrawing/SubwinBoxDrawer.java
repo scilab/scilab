@@ -222,7 +222,7 @@ public abstract class SubwinBoxDrawer extends DrawableObjectGL {
 	 */
 	protected int findConcealedCorner() {
 		GL gl = getGL();
-		CoordinateTransformation transform = CoordinateTransformation.getTransformation(gl);
+		CoordinateTransformation transform = getCoordinateTransformation();
 		
 		// get box corners in canvas coordinates
 		Vector3D[] canvasCorners = transform.getCanvasCoordinates(gl, boxCorners);

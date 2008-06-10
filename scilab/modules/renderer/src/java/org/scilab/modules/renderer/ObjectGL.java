@@ -17,6 +17,7 @@ import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
 
 /**
@@ -155,16 +156,12 @@ public abstract class ObjectGL {
 		this.parentFigureGL = figureGL;
 	}
 	
-//	/**
-//	 * gevkppzekpgv
-//	 * @throws Throwable egegeg
-//	 */
-//	public void finalize() throws Throwable {
-//		super.finalize();
-//		//nbObjectsCount--;
-//		//System.err.println("destroying object " + this.getClass().getCanonicalName());
-//		System.err.println("Nb objects count: " + nbObjectsCount);
-//	}
+	/**
+	 * @return current coordinate transformation
+	 */
+	public CoordinateTransformation getCoordinateTransformation() {
+		return getParentFigureGL().getCoordinateTransformation();
+	}
 	
 	
 }
