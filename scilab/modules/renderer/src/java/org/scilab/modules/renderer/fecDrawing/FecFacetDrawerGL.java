@@ -227,23 +227,29 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 	 */
 	private void paintFec(TriangleDecomposition td, GL gl) {
 				
+		gl.glBegin(GL.GL_TRIANGLES);
+		
 		for (int j = 0; j < td.getNbPolygons(); j++) {
 			int color = td.getPolygonColor(j);
 			double[] polyColor = getColorFecPolygon(color);
 			
-			if (polyColor != null) {
-				gl.glBegin(GL.GL_POLYGON);
+			if (polyColor != null) {				
 				
 				gl.glColor3d(polyColor[0], polyColor[1], polyColor[2]);
 				Vector3D[] polygon = td.getPolygon(j);
 				
-				for (int k = 0; k < polygon.length; k++) {
-					gl.glVertex3d(polygon[k].getX(), polygon[k].getY(), polygon[k].getZ());
-				}
-	
-				gl.glEnd();
+				paintPolygone(gl, polygon);
+				
+//				// first triangle & following triangles
+//				for (int k = 1; k < polygon.length - 1; k++) {
+//					gl.glVertex3d(polygon[0].getX(), polygon[0].getY(), polygon[0].getZ());
+//					gl.glVertex3d(polygon[k].getX(), polygon[k].getY(), polygon[k].getZ());
+//					gl.glVertex3d(polygon[k + 1].getX(), polygon[k + 1].getY(), polygon[k + 1].getZ());
+//				}				
 			}
 		}
+		
+		gl.glEnd();
 		
 	}
 	
@@ -269,6 +275,22 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 		}
 		
 		return polyColor;
+	}
+	
+	/**
+	 * This function paint the first triangle and the following triangles for the decomposed polygon
+	 * @param gl GL
+	 * @param polygon decomposed polygon 
+	 */
+	public void paintPolygone(GL gl, Vector3D[] polygon) {
+		
+		// first triangle & following triangles
+		for (int k = 1; k < polygon.length - 1; k++) {
+			gl.glVertex3d(polygon[0].getX(), polygon[0].getY(), polygon[0].getZ());
+			gl.glVertex3d(polygon[k].getX(), polygon[k].getY(), polygon[k].getZ());
+			gl.glVertex3d(polygon[k + 1].getX(), polygon[k + 1].getY(), polygon[k + 1].getZ());
+		}
+		
 	}
 	
 }

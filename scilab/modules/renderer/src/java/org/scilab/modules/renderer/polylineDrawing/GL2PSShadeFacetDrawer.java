@@ -89,33 +89,32 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 		for (int i = 0; i < td.getNbPolygons(); i++) {
 			int color = td.getPolygonColor(i);	
 
-			//gl.glBegin(GL.GL_POLYGON);
-			// we use gl.glBegin(GL.GL_TRIANGLES)
-			// so we decompose the polygon into triangles
-
 			double[] polyColor = colorMaps.getColor(color);
 			gl.glColor3d(polyColor[0], polyColor[1], polyColor[2]);
-			Vector3D[] polygon = td.getPolygon(i);
+			Vector3D[] polygon = td.getPolygon(i);			
 			
-			// first triangle
-			for (int j = 0; j < TRIANGLE; j++) {
-				gl.glVertex3d(polygon[j].getX(), polygon[j].getY(), polygon[j].getZ());
-			}
-			
-			// following triangles
-			for (int j = TRIANGLE; j < polygon.length; j++) {
-				gl.glVertex3d(polygon[0].getX(), polygon[0].getY(), polygon[0].getZ());
-				gl.glVertex3d(polygon[j - 1].getX(), polygon[j - 1].getY(), polygon[j - 1].getZ());
-				gl.glVertex3d(polygon[j].getX(), polygon[j].getY(), polygon[j].getZ());
-			}
-
-			//gl.glEnd();
-			
+			paintPolygon(gl, polygon);
 		}
+	}
+	
+	/**
+	 * This function paint the first triangle and the following triangles for the decomposed polygon
+	 * @param gl GL
+	 * @param polygon decomposed polygon 
+	 */
+	public void paintPolygon(GL gl, Vector3D[] polygon) {
+		
+		// first triangle & following triangles
+		for (int k = 1; k < polygon.length - 1; k++) {
+			gl.glVertex3d(polygon[0].getX(), polygon[0].getY(), polygon[0].getZ());
+			gl.glVertex3d(polygon[k].getX(), polygon[k].getY(), polygon[k].getZ());
+			gl.glVertex3d(polygon[k + 1].getX(), polygon[k + 1].getY(), polygon[k + 1].getZ());
+		}
+		
 	}
 
 	/**
-	 * Paint the polygon given with the table of color
+	 * Paint the polygon given with the table of color (not used here)
 	 * @param triangleCoords coordinates of triangle & square
 	 * @param triangleColors table of color
 	 * @param gl GL 
@@ -123,31 +122,8 @@ public class GL2PSShadeFacetDrawer implements ShadeFacetDrawer {
 	 */
 	public void paintPolygon(Vector3D[] triangleCoords,
 			double[] triangleColors, GL gl, TexturedColorMap colorMap) {
-
-		this.gl = gl;
-		this.colorMaps = colorMap;
+		// TODO Auto-generated method stub
 		
-		if (triangleCoords.length == TRIANGLE) { 
-			//Coordinates of the triangle
-			a = new Vector3D(triangleCoords[0]);
-			b = new Vector3D(triangleCoords[1]);
-			c = new Vector3D(triangleCoords[2]);
-			
-			paintTriangle(a, b, c, triangleColors[0], triangleColors[1], triangleColors[2]);
-			
-		} else if (triangleCoords.length >= SQUARE) {
-			//Coordinates of the square
-			//closing the square case
-			a = new Vector3D(triangleCoords[0]);
-			b = new Vector3D(triangleCoords[1]);
-			c = new Vector3D(triangleCoords[2]);
-			d = new Vector3D(triangleCoords[TRIANGLE]);
-			
-			//we separate the square on 2 triangle then we work on each triangle
-			paintTriangle(a, b, c, triangleColors[0], triangleColors[1], triangleColors[2]);
-			paintTriangle(c, d, a, triangleColors[2], triangleColors[TRIANGLE], triangleColors[0]);
-			
-		}		
 	}
 
 }
