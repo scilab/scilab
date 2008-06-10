@@ -38,7 +38,7 @@ int C2F(sci_clc)(char *fname,unsigned long fname_len)
 
 			if (nblines < 0)
 			{
-				Scierror(999,_("%s: Wrong value for first input argument.\n"),fname);
+				Scierror(999,_("%s: Wrong value for input argument #%d.\n"),fname,1);
 				return 0;
 			}
 		}

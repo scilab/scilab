@@ -27,43 +27,43 @@ int C2F(sci_prompt)(char *fname,unsigned long fname_len)
 	CheckRhs(0,1);
 	CheckLhs(0,1);
 
-        if (Rhs == 0) /* Get current Scilab prompt */
-          {
-            GetCurrentPrompt(currentPrompt);
+	if (Rhs == 0) /* Get current Scilab prompt */
+	{
+		GetCurrentPrompt(currentPrompt);
             
-            m1= (int)strlen(currentPrompt);
-            n1=1;
+		m1= (int)strlen(currentPrompt);
+		n1=1;
             
-            CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
-            strcpy(cstk(outIndex), currentPrompt);
+		CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
+		strcpy(cstk(outIndex), currentPrompt);
             
-            LhsVar(1) = Rhs+1;
-            C2F(putlhsvar)();
-          }
-        else /* Tempory change of Scilab prompt */
-          {
-            if (VarType(1) != sci_strings)
-              {
-                Scierror(999, _("%s: Wrong type for first input argument: Scalar character string expected.\n"), fname);
-                return FALSE;
-              }
+		LhsVar(1) = Rhs+1;
+		C2F(putlhsvar)();
+	}
+	else /* Tempory change of Scilab prompt */
+	{
+		if (VarType(1) != sci_strings)
+		{
+			Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname,1);
+			return FALSE;
+		}
 
-            GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
             
-            if (n1 != 1)
-              {
-                Scierror(999, _("%s: Wrong size for first input argument: Scalar character string expected.\n"), fname);
-                return FALSE;
-              }
+		if (n1 != 1)
+		{
+			Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname,1);
+			return FALSE;
+		}
             
-            SetTemporaryPrompt(cstk(l1));
+		SetTemporaryPrompt(cstk(l1));
 
-            m1=0; n1=0;
-            CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+		m1=0; n1=0;
+		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
             
-            LhsVar(1) = Rhs+1;
-            C2F(putlhsvar)();
-          }
+		LhsVar(1) = Rhs+1;
+		C2F(putlhsvar)();
+	}
 
 	return 0;
 }

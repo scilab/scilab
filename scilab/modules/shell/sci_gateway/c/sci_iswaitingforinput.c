@@ -29,16 +29,19 @@ int sci_iswaitingforinput(char *fname,unsigned long fname_len)
 	CheckRhs(0,1);
 	CheckLhs(0,1);
 
-        if (getScilabMode() == SCILAB_STD) {
-          res = ConsoleIsWaitingForInput();
-        } else {
-		sciprint(_("Not implemented in this mode.\n"));
+	if (getScilabMode() == SCILAB_STD) 
+	{
+		res = ConsoleIsWaitingForInput();
+    } 
+	else 
+	{
+		sciprint(_("%s: Not implemented in this mode.\n"),fname);
 	}
 
-        CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE,&un,&un,&outIndex);
-        *istk(outIndex) = res;
+	CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE,&un,&un,&outIndex);
+	*istk(outIndex) = res;
 	
-        LhsVar(1) = Rhs+1;
+	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();
 	return 0;
 }

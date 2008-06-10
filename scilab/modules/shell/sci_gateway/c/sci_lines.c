@@ -54,7 +54,7 @@ int C2F(sci_lines)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong type for second input argument: Matrix expected.\n"),fname);
+				Scierror(999,_("%s: Wrong type for input argument #%d: Matrix expected.\n"),fname,2);
 				return 0;
 			}
 		}
@@ -68,7 +68,7 @@ int C2F(sci_lines)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for first input argument: Matrix expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix expected.\n"),fname,1);
 			return 0;
 		}
 
