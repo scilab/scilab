@@ -42,6 +42,8 @@ sciPointObj * CreateUimenu (void)
 
   pUIMENU_FEATURE (pobj)->MenuPosition=0;
 
+  pUIMENU_FEATURE (pobj)->handle_visible=TRUE;
+
   pUIMENU_FEATURE (pobj)->Enable=TRUE;
 
   /* Initialize the tag */
