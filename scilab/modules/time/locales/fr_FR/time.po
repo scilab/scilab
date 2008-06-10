@@ -17,6 +17,120 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #
+# File: macros/etime.sci, line: 22
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr ""
+
+#
+# File: macros/etime.sci, line: 28
+# File: macros/etime.sci, line: 31
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+
+#
+# File: macros/eomday.sci, line: 18
+#, c-format
+msgid "%s: Wrong size for input argument: Same size expected.\n"
+msgstr ""
+
+#
+# File: macros/calendar.sci, line: 21
+#, c-format
+msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+msgstr ""
+
+#
+# File: macros/calendar.sci, line: 23
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+msgstr ""
+
+#
+# File: macros/calendar.sci, line: 27
+# File: macros/eomday.sci, line: 22
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr ""
+
+#
+# File: macros/weekday.sci, line: 51
+msgid "Jan"
+msgstr ""
+
+#
+# File: macros/date.sci, line: 4
+# File: macros/calendar.sci, line: 32
+msgid "Feb"
+msgstr ""
+
+#
+# File: macros/date.sci, line: 5
+# File: macros/calendar.sci, line: 33
+msgid "Mar"
+msgstr ""
+
+#
+# File: macros/date.sci, line: 6
+# File: macros/calendar.sci, line: 34
+msgid "Apr"
+msgstr ""
+
+#
+# File: macros/date.sci, line: 7
+# File: macros/calendar.sci, line: 35
+msgid "May"
+msgstr ""
+
+#
+# File: macros/date.sci, line: 8
+# File: macros/calendar.sci, line: 36
+msgid "Jun"
+msgstr ""
+
+#
+# File: macros/date.sci, line: 9
+# File: macros/calendar.sci, line: 37
+msgid "Jul"
+msgstr ""
+
+#
+# File: macros/date.sci, line: 10
+# File: macros/calendar.sci, line: 38
+msgid "Aug"
+msgstr ""
+
+#
+# File: macros/date.sci, line: 11
+# File: macros/calendar.sci, line: 39
+msgid "Sep"
+msgstr ""
+
+#
+# File: macros/date.sci, line: 12
+# File: macros/calendar.sci, line: 40
+msgid "Oct"
+msgstr ""
+
+#
+# File: macros/date.sci, line: 13
+# File: macros/calendar.sci, line: 41
+msgid "Nov"
+msgstr ""
+
+#
+# File: macros/date.sci, line: 14
+# File: macros/calendar.sci, line: 42
+msgid "Dec"
+msgstr ""
+
+#
+# File: macros/calendar.sci, line: 46
+msgid "   M      Tu     W      Th     F     Sat     Sun"
+msgstr ""
+
+#
 # File: macros/weekday.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -103,101 +217,6 @@ msgstr ""
 #
 # File: macros/weekday.sci, line: 50
 msgid "Friday"
-msgstr ""
-
-#
-# File: macros/weekday.sci, line: 51
-msgid "Jan"
-msgstr ""
-
-#
-# File: macros/calendar.sci, line: 21
-#, c-format
-msgid "%s: Wrong type for input arguments: Must be scalars.\n"
-msgstr ""
-
-#
-# File: macros/calendar.sci, line: 23
-#, c-format
-msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
-msgstr ""
-
-#
-# File: macros/calendar.sci, line: 27
-# File: macros/eomday.sci, line: 22
-#, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr ""
-
-#
-# File: macros/date.sci, line: 4
-# File: macros/calendar.sci, line: 32
-msgid "Feb"
-msgstr ""
-
-#
-# File: macros/date.sci, line: 5
-# File: macros/calendar.sci, line: 33
-msgid "Mar"
-msgstr ""
-
-#
-# File: macros/date.sci, line: 6
-# File: macros/calendar.sci, line: 34
-msgid "Apr"
-msgstr ""
-
-#
-# File: macros/date.sci, line: 7
-# File: macros/calendar.sci, line: 35
-msgid "May"
-msgstr ""
-
-#
-# File: macros/date.sci, line: 8
-# File: macros/calendar.sci, line: 36
-msgid "Jun"
-msgstr ""
-
-#
-# File: macros/date.sci, line: 9
-# File: macros/calendar.sci, line: 37
-msgid "Jul"
-msgstr ""
-
-#
-# File: macros/date.sci, line: 10
-# File: macros/calendar.sci, line: 38
-msgid "Aug"
-msgstr ""
-
-#
-# File: macros/date.sci, line: 11
-# File: macros/calendar.sci, line: 39
-msgid "Sep"
-msgstr ""
-
-#
-# File: macros/date.sci, line: 12
-# File: macros/calendar.sci, line: 40
-msgid "Oct"
-msgstr ""
-
-#
-# File: macros/date.sci, line: 13
-# File: macros/calendar.sci, line: 41
-msgid "Nov"
-msgstr ""
-
-#
-# File: macros/date.sci, line: 14
-# File: macros/calendar.sci, line: 42
-msgid "Dec"
-msgstr ""
-
-#
-# File: macros/calendar.sci, line: 46
-msgid "   M      Tu     W      Th     F     Sat     Sun"
 msgstr ""
 
 #
@@ -291,12 +310,6 @@ msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
 #
-# File: macros/eomday.sci, line: 18
-#, c-format
-msgid "%s: Wrong size for input argument: Same size expected.\n"
-msgstr ""
-
-#
 # File: macros/eomday.sci, line: 26
 # File: macros/eomday.sci, line: 30
 #, c-format
@@ -304,31 +317,23 @@ msgid "%s: Wrong type for input arguments: Integer expected.\n"
 msgstr ""
 
 #
-# File: macros/etime.sci, line: 22
+# File: src/c/getdate.c, line: 94
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 
 #
-# File: macros/etime.sci, line: 31
+# File: src/c/getdate.c, line: 96
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Must be between %d or %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
 msgstr ""
 
 #
-# File: macros/etime.sci, line: 28
+# File: sci_gateway/c/sci_xpause.c, line: 37
+# File: sci_gateway/c/sci_sleep.c, line: 32
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: Must be between %d or %d.\n"
-"'),"
-msgstr ""
-
-#
-# File: macros/etime.sci, line: 25
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real vector expected.\n"
-"'),"
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
 
 #
@@ -348,24 +353,4 @@ msgstr ""
 # File: sci_gateway/c/sci_getdate.c, line: 141
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_xpause.c, line: 37
-# File: sci_gateway/c/sci_sleep.c, line: 32
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-
-#
-# File: src/c/getdate.c, line: 94
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-
-#
-# File: src/c/getdate.c, line: 96
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
 msgstr ""

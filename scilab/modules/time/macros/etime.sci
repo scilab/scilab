@@ -22,13 +22,13 @@ if type(t1)<>1 then
   error(msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"),"etime",1));
 end
 if type(t0)<>1 then
-  error(msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n'),"etime",2));
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"),"etime",2));
 end
 if and(size(t1,2)<>[6,10]) then
-  error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be between %d or %d.\n'),"etime",1,6,10));
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be between %d and %d.\n"),"etime",1,6,10));
 end
 if and(size(t0,2)<>[6,10]) then
-  error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be between %d or %d.\n"),"etime",2,6,10));
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be between %d and %d.\n"),"etime",2,6,10));
 end
 
 if size(t1,"*")<>size(t0,"*") then
