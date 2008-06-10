@@ -15,7 +15,7 @@ function [t] = atanh(z)
   //  METHOD 
   //     based on the formula  atanh(z) = i atan(-i z)
   //
-  if type(x)<>1 then
+  if type(z)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"atanh",1));
   end
   if isreal(z) then 
