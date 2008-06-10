@@ -69,7 +69,7 @@ int C2F(sci_strspn)(char *fname,unsigned long fname_len)
 		{
 			freeArrayOfString(InputString_Parameter1,m1n1);
 			freeArrayOfString(InputString_Parameter2,m2n2);
-			Scierror(999,_("%s: Wrong size for imput argument #%d.\n"),fname,2);
+			Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname,2);
 			return 0;
 		}
 		
