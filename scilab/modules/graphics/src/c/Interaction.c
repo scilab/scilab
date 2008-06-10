@@ -908,6 +908,8 @@ void interactiveRotation(sciPointObj * pFigure)
   sciSetInfoMessage(pFigure,curInfoMessageCopy);
   endFigureDataWriting(pFigure);
 
+  FREE(curInfoMessageCopy);
+
 }
 /*---------------------------------------------------------------------------------*/
 void interactiveSubwinRotation(sciPointObj * pSubiwn)
