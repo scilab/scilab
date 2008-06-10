@@ -23,7 +23,7 @@ function [t] = acosh(z)
   //
   //     sign(-x) = 2*(0.5 - bool2s(x>0))
   //
-  if type(x)<>1 then
+  if type(z)<>1 then
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"acosh",1));
   end
   if isreal(z) then
