@@ -87,6 +87,9 @@ public class DrawableFigureGL extends ObjectGL {
 	
 	private TextRendererManager textRendererCreator;
 	
+	/** To know if the rendering is requested by Scilab or not */
+	private boolean renderRequested;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -104,6 +107,7 @@ public class DrawableFigureGL extends ObjectGL {
       	setDefaultShadeFacetDrawer();
       	backGroundColorIndex = 0;
       	rubberBox = null;
+      	renderRequested = false;
     }
 	
 	/**
@@ -229,7 +233,24 @@ public class DrawableFigureGL extends ObjectGL {
 	 * Called from C to be sure to be in the right context
 	 */
 	public void drawCanvas() {
+		setRenderingRequested(true);
 		guiProperties.forceDisplay();
+	}
+	
+	/**
+	 * @return true if Scilab requested a redraw, false otherwise
+	 */
+	public synchronized boolean getRenderingRequested() {
+		return renderRequested;
+	}
+	
+	/**
+	 * Specify that scilab has performed some modifications and
+	 * A redraw of the graphic window must be performed
+	 * @param requested if true, next call to the display function will redraw the scene
+	 */
+	public synchronized void setRenderingRequested(boolean requested) {
+		this.renderRequested = requested;
 	}
 
   	/**

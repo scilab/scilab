@@ -57,10 +57,23 @@ public class SciRenderer
 		// nothing to render
 		return;
 	}
-    // should call the draw function of the corresponding figure
-	if (curFigure.getIsRenderingEnable()) {
-		
-		
+	
+	GL gl = gLDrawable.getGL();
+	
+	if (!curFigure.getIsRenderingEnable()) {
+		// fill the background to avoid showing desktop
+		gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // alpha is set to 1
+  		gl.glClear(GL.GL_COLOR_BUFFER_BIT);
+	} else if (!curFigure.getRenderingRequested()) {
+		// figure rendering not requested by Scilab
+		// This is a swing event so just keep the buffer
+		// keep previous buffer
+		gl.glLogicOp(GL.GL_NOOP);
+		gl.glEnable(GL.GL_COLOR_LOGIC_OP);
+	} else {
+		// the requested display has been done, next one won't chnage display unless
+		// it is also requested
+		curFigure.setRenderingRequested(false);
 		if (curFigure.isRubberBoxModeOn()) {
 			curFigure.getRubberBox().drawInContext();
 		} else {
@@ -121,6 +134,8 @@ public class SciRenderer
 		  curFigure.getTextRendererCreator().clear();
 		  FigureScilabCall.redrawFigure(renderedFigure);
       }
+	  // we need to redraw the figure so request one
+	  curFigure.setRenderingRequested(true);
 
     }
     
@@ -147,6 +162,9 @@ public class SciRenderer
 	  
 	  // Axes ticks may change with new shape so redraw all subwins
 	  FigureScilabCall.redrawSubwins(renderedFigure);
+	  
+	  // we need to redraw the figure so request one
+	  curFigure.setRenderingRequested(true);
 	  
 	  if (curFigure.isRubberBoxModeOn()) {
 		// in rubber box mode we don't automatically redraw the figure
