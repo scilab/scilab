@@ -54,7 +54,7 @@ sciPointObj * CreateUIControl(char *style)
   pUICONTROL_FEATURE (pobj)->callback = NULL;
   pUICONTROL_FEATURE (pobj)->callbackType = -1; /* Disabled */
 
-  pUIMENU_FEATURE (pobj)->handle_visible=TRUE;
+  pUICONTROL_FEATURE (pobj)->handle_visible=TRUE;
 
   pUICONTROL_FEATURE (pobj)->Enable = TRUE;
 
