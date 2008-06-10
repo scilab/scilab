@@ -20,6 +20,7 @@ public abstract class ScilabCloseCallBack extends CallBack {
 	
 	/**
 	 * Constructor
+	 * @param figureIndex : the figure ID where callback occured.
 	 * @param command : the command to execute.
 	 */
 	private ScilabCloseCallBack(int figureIndex, String command) {
@@ -30,6 +31,7 @@ public abstract class ScilabCloseCallBack extends CallBack {
 	/**
 	 * Callback Factory to easily create a callback
 	 * just like in scilab.
+	 * @param figureIndex : the figure ID where callback occured.
 	 * @param command : the command to execute.
 	 * @return a usable Scilab callback
 	 */
