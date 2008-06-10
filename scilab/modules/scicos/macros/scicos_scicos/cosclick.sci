@@ -60,8 +60,9 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   
   //**--------------------------------------------------------------------------
  
-  if btn==-100 then //** window closing check 
-  //**------------------------------------------------------------
+  if btn==-1000 then //** window closing check 
+
+ //**------------------------------------------------------------
   //** The window has been closed 
     
     if win==curwin then  //** in the current window ? 
