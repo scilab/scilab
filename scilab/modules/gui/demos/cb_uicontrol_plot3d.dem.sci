@@ -49,16 +49,11 @@ function uicontrol_plot3d()
 	axes_w       = 3*margin_x + frame_w + plot_w; // axes width
 	axes_h       = 2*margin_y + frame_h;          // axes height (100 => toolbar height)
 	
-	fig_w        = axes_w + 50;       // 12    figure width
-	fig_h        = axes_h + 130;      // 100   figure height (100 => toolbar height)
-	
 	demo_plot3d = figure(100001);
 	
-	demo_plot3d.auto_resize     = "off";
 	demo_plot3d.background      = -2;
 	demo_plot3d.color_map       = jetcolormap(128);
 	demo_plot3d.figure_position = [0 0];
-	demo_plot3d.figure_size     = [fig_w  fig_h];
 	demo_plot3d.axes_size       = [axes_w axes_h];
 	demo_plot3d.figure_name     = gettext("Control Plot3d");
 	
@@ -83,6 +78,16 @@ function uicontrol_plot3d()
 	// Frames creation [Control Panel]
 	// =========================================================================
 	
+	my_background = uicontrol( ...
+		"parent"              , demo_plot3d,...
+		"style"               , "text",...
+		"units"               , "pixels",...
+		"string"              , html2str(SCI+"/modules/gui/demos/uicontrol_plot3d.dem.html"), ...
+		"position"            , [ margin_x+1 margin_y+2 frame_w-3 frame_h-3],...
+		"tag"                 , "my_background" ...
+	);
+
+
 	my_frame = uicontrol( ...
 		"parent"              , demo_plot3d,...
 		"relief"              , "groove",...
@@ -114,6 +119,9 @@ function uicontrol_plot3d()
 	);
 	
 	
+
+
+
 	// Rotation Angle
 	// =========================================================================
 	
@@ -676,3 +684,15 @@ function update_title_string
 	my_plot_axes.title.text = get(gcbo,"String");
 	
 endfunction
+
+
+
+function str = html2str(filename)
+	
+	str = mgetl(filename);
+	str = strsubst(str,"SCI",SCI);
+	str = stripblanks(str,%T) + " ";
+	str = strcat(str);
+	
+endfunction
+
