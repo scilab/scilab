@@ -26,47 +26,57 @@ int SetUicontrolPosition(sciPointObj* sciObj, int stackPointer, int valueType, i
   
   float xDouble = 0.0, yDouble = 0.0, widthDouble = 0.0, heightDouble = 0.0;
   
-  if (valueType == sci_strings)
+  if (stackPointer == -1) /* Default values setting */
     {
-      if(nbCol != 1)
-        {
-          sciprint(_("Wrong size for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
-          return SET_PROPERTY_ERROR;
-        }
-      
-      nbvalues = sscanf(getStringFromStack(stackPointer), "%e|%e|%e|%e", &xDouble, &yDouble, &widthDouble, &heightDouble);
-
-      if (nbvalues != 4)
-        {
-          sciprint(_("Wrong value for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
-          return SET_PROPERTY_ERROR;
-        }
-
-      xInt = ConvertToPixel(xDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
-      yInt = ConvertToPixel(yDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
-      widthInt = ConvertToPixel(widthDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
-      heightInt = ConvertToPixel(heightDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
-      
-    }
-  else if (valueType == sci_matrix)
-    {
-       if(nbCol != 4 || nbRow != 1)
-        {
-          sciprint(_("Wrong size for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
-          return SET_PROPERTY_ERROR;
-        }
-
-       allValues = getDoubleMatrixFromStack(stackPointer);
-       xInt = ConvertToPixel(allValues[0], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
-       yInt = ConvertToPixel(allValues[1], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
-       widthInt = ConvertToPixel(allValues[2], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
-       heightInt = ConvertToPixel(allValues[3], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
-     
+      xInt = 20;
+      yInt = 40;
+      widthInt = 40;
+      heightInt = 20;
     }
   else
     {
-      sciprint(_("Wrong type for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
-      return SET_PROPERTY_ERROR;
+      if (valueType == sci_strings)
+        {
+          if(nbCol != 1)
+            {
+              sciprint(_("Wrong size for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
+              return SET_PROPERTY_ERROR;
+            }
+          
+          nbvalues = sscanf(getStringFromStack(stackPointer), "%e|%e|%e|%e", &xDouble, &yDouble, &widthDouble, &heightDouble);
+          
+          if (nbvalues != 4)
+            {
+              sciprint(_("Wrong value for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
+              return SET_PROPERTY_ERROR;
+            }
+          
+          xInt = ConvertToPixel(xDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+          yInt = ConvertToPixel(yDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+          widthInt = ConvertToPixel(widthDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+          heightInt = ConvertToPixel(heightDouble, pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+          
+        }
+      else if (valueType == sci_matrix)
+        {
+          if(nbCol != 4 || nbRow != 1)
+            {
+              sciprint(_("Wrong size for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
+              return SET_PROPERTY_ERROR;
+            }
+          
+          allValues = getDoubleMatrixFromStack(stackPointer);
+          xInt = ConvertToPixel(allValues[0], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+          yInt = ConvertToPixel(allValues[1], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+          widthInt = ConvertToPixel(allValues[2], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+          heightInt = ConvertToPixel(allValues[3], pUICONTROL_FEATURE(sciObj)->fontUnits, sciObj);
+          
+        }
+      else
+        {
+          sciprint(_("Wrong type for '%s' property: A string or a 1 x 4 real row vector expected.\n"), "Position");
+          return SET_PROPERTY_ERROR;
+        }
     }
 
   if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */

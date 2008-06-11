@@ -30,9 +30,6 @@ int setCurentFigureAsLabelParent(sciPointObj* sciObj)
   // Java objects
   parentFigureIndex = sciGetNum(sciGetCurrentFigure());
   CallScilabBridge::setLabelParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-  
-  // Scilab default values
-  CallScilabBridge::setWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(sciGetCurrentFigure()) - 80, 40, 20);
 
   return SET_PROPERTY_SUCCEED;
 }

@@ -34,6 +34,7 @@
 #include "Scierror.h"
 #include "WindowList.h" /* getFigureFromIndex */
 #include "Widget.h" /* requestWidgetFocus */
+#include "SetUicontrolPosition.h"
 /*--------------------------------------------------------------------------*/
 #define NBPROPERTIES 25
 #define MAXPROPERTYNAMELENGTH 20
@@ -290,6 +291,51 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         }
       GraphicHandle=sciGetHandle(pUicontrol);
 
+      /* If no parent given then the current figure is the parent */
+      if(propertiesValuesIndices[1]==NOT_FOUND)
+        {
+          /* Set the parent */
+           switch(pUICONTROL_FEATURE( ((sciPointObj*) GraphicHandle) )->style)
+            {
+            case SCI_PUSHBUTTON:
+              setCurentFigureAsPushButtonParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_EDIT:
+              setCurentFigureAsEditBoxParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_UITEXT:
+              setCurentFigureAsLabelParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_CHECKBOX:
+              setCurentFigureAsCheckBoxParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_RADIOBUTTON:
+              setCurentFigureAsRadioButtonParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_SLIDER:
+              setCurentFigureAsSliderParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_POPUPMENU:
+              setCurentFigureAsPopupMenuParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_LISTBOX:
+              setCurentFigureAsListBoxParent((sciPointObj*) GraphicHandle);
+              break;
+            case SCI_UIFRAME:
+              setCurentFigureAsFrameParent((sciPointObj*) GraphicHandle);
+              break;
+           default:
+              break;
+            }
+        }
+
+      /* If no position given then set the default position */
+      if(propertiesValuesIndices[10]==NOT_FOUND)
+        {
+          /* See SetUicontrolPosition for the use of -1 as stackPointer */
+          SetUicontrolPosition((sciPointObj*) GraphicHandle, -1, 0, 0, 0);
+        }
+
       /* Read and set all properties */
       for(inputIndex = 1; inputIndex<NBPROPERTIES; inputIndex++) /* Style has already been set */
         {
@@ -337,44 +383,6 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   Scierror(999, _("%s: Could not set property '%s'.\n"), fname, (char*)propertiesNames[inputIndex]);
                   return FALSE;
                 }
-            }
-        }
-
-      /* If no parent given then the current figure is the parent */
-      if(propertiesValuesIndices[1]==NOT_FOUND)
-        {
-          /* Set the parent */
-           switch(pUICONTROL_FEATURE( ((sciPointObj*) GraphicHandle) )->style)
-            {
-            case SCI_PUSHBUTTON:
-              setCurentFigureAsPushButtonParent((sciPointObj*) GraphicHandle);
-              break;
-            case SCI_EDIT:
-              setCurentFigureAsEditBoxParent((sciPointObj*) GraphicHandle);
-              break;
-            case SCI_UITEXT:
-              setCurentFigureAsLabelParent((sciPointObj*) GraphicHandle);
-              break;
-            case SCI_CHECKBOX:
-              setCurentFigureAsCheckBoxParent((sciPointObj*) GraphicHandle);
-              break;
-            case SCI_RADIOBUTTON:
-              setCurentFigureAsRadioButtonParent((sciPointObj*) GraphicHandle);
-              break;
-            case SCI_SLIDER:
-              setCurentFigureAsSliderParent((sciPointObj*) GraphicHandle);
-              break;
-            case SCI_POPUPMENU:
-              setCurentFigureAsPopupMenuParent((sciPointObj*) GraphicHandle);
-              break;
-            case SCI_LISTBOX:
-              setCurentFigureAsListBoxParent((sciPointObj*) GraphicHandle);
-              break;
-            case SCI_UIFRAME:
-              setCurentFigureAsFrameParent((sciPointObj*) GraphicHandle);
-              break;
-           default:
-              break;
             }
         }
     }

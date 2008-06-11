@@ -13,6 +13,7 @@
 
 #include "SetUicontrolParent.hxx"
 #include "DestroyJavaUicontrol.hxx"
+#include "SetUicontrolPosition.hxx"
 
 using namespace org_scilab_modules_gui_bridge;
 
@@ -20,6 +21,8 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
 {
 
   int parentFigureIndex = 0; 
+
+  long int * returnValues = NULL;
 
   sciPointObj *figure = NULL;
 
@@ -43,6 +46,18 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
 
       if (sciGetEntityType(figure) == SCI_FIGURE)
         {
+          // Get the position from Java to reset it
+          if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
+            {
+              returnValues = CallScilabBridge::getFramePosition(getScilabJavaVM(),
+                                                                pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+            }
+          else
+            {
+              returnValues = CallScilabBridge::getWidgetPosition(getScilabJavaVM(),
+                                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+            }
+
           // Remove from previous parent
           if (sciGetParent(sciObj) != NULL)
             {
@@ -124,8 +139,26 @@ int SetUicontrolParent(sciPointObj* sciObj, int stackPointer, int valueType, int
               sciprint(_("No '%s' property for uicontrols of style: %s.\n"), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
               return SET_PROPERTY_ERROR;
             }
-          // Scilab default values
-          CallScilabBridge::setWidgetPosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, 40, 40, 20);
+
+          // Adjust position: position read from java and reset
+          if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
+            {
+              CallScilabBridge::setFramePosition(getScilabJavaVM(), 
+                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                                 (int) returnValues[0], 
+                                                 (int) returnValues[1], 
+                                                 (int) returnValues[2], 
+                                                 (int) returnValues[3]);
+            }
+          else /* All other uicontrol styles */
+            {
+              CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
+                                                  pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
+                                                  (int) returnValues[0], 
+                                                  (int) returnValues[1], 
+                                                  (int) returnValues[2], 
+                                                  (int) returnValues[3]);
+            }
           return SET_PROPERTY_SUCCEED;
         }
       else
