@@ -1,0 +1,50 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Serge STEER
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+
+// <-- Non-regression test for bug 1322 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=1322
+//
+// <-- Short Description -->
+//if on call a function stored in tlist to produce more than one output
+//argument the containing tlist is damaged when the function returns.
+
+//simple test
+
+function [d, s,p] = data_sum(val);d=val; s=argn(1);p=88;endfunction;
+tlist1 = tlist(['x';'data';'fn'], 5, data_sum);
+[d1,s1,p1] = tlist1.fn(4);
+if d1<>4|s1<>3|p1<>88 then pause,end
+[d1,s1] = tlist1.fn(4);
+if d1<>4|s1<>2 then pause,end
+
+d1 = tlist1.fn(4);
+if d1<>4 then pause,end
+
+//complex test
+
+function tlst = set_data(tlst, num),tlst.data = num;endfunction;
+function [tlst, d] = get_data(tlst),d = tlst.data;endfunction;
+function [tlst, s] = data_sum(tlst),
+   [tlst.tlist_data, s1] =tlst.tlist_data.get_fn(tlst.tlist_data);
+   s = s1 + tlst.data;
+   tlst.data = s;
+endfunction;
+
+//initialization of tlist objects containing references to functions
+tlist2 = tlist(['x';'data';'set_fn';'get_fn'], [], set_data,get_data);
+tlist1 = tlist(['x';'tlist_data';'data';'sum_fn'], tlist2, 5,data_sum);
+
+tlist1.tlist_data =tlist1.tlist_data.set_fn(tlist1.tlist_data, 3);
+tlist_data=tlist1.tlist_data;
+//problem when executing the member function directly
+[tlist1, tot2] = tlist1.sum_fn(tlist1);
+if tot2<>8|tlist1.data<>8 then pause,end
+if or(tlist1.tlist_data<>tlist_data) then pause,end
+

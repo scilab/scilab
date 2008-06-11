@@ -254,10 +254,13 @@ c     *call* allops
       pt=pt-1
       if (m1.le.icount) then
 c     .  nothing more to do here but to move results at its correct location
-         vol=lstk(top+1)-lstk(top)
-         call unsfdcopy(vol,stk(lstk(top)),1,stk(lstk(top-2)),1)
-         top=top-2
-         lstk(top+1)=lstk(top)+vol
+         top=top-2-lhs
+         do ii=1,lhs
+            top=top+1
+            vol=lstk(top+3)-lstk(top+2)
+            call unsfdcopy(vol,stk(lstk(top+2)),1,stk(lstk(top)),1)
+            lstk(top+1)=lstk(top)+vol
+         enddo
          fin=0
          return
       endif
