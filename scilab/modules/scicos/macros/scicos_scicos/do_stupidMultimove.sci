@@ -293,7 +293,7 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
 
       //** Window change and window closure protection
       gh_figure = gcf();
-      if gh_figure.figure_id<>curwin | rep(3)==-100 then
+      if gh_figure.figure_id<>curwin | rep(3)==-1000 then
 	[%win,Cmenu] = resume(curwin,"Quit") ;
       end
 
@@ -373,7 +373,7 @@ function [scs_m,have_moved] = stupid_MultiMoveObject(scs_m, Select, xc, yc)
 
     //**-----------------------------------------------
     gh_figure = gcf();
-    if gh_figure.figure_id<>curwin | rep(3)==-100 then
+    if gh_figure.figure_id<>curwin | rep(3)==-1000 then
          [%win,Cmenu] = resume(curwin,"Quit") ;
     end
     //**-----------------------------------------------

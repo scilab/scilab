@@ -321,7 +321,7 @@ function [scs_m, fct] = do_addnew(scs_m)
     rep = xgetmouse([%t,%t]); //** 
 
     //** Protection from window closing
-    if rep(3)==-100 then //active window has been closed
+    if rep(3)==-1000 then //active window has been closed
       [%win,Cmenu] = resume(curwin,"Quit")
     end
 

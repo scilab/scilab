@@ -20,7 +20,7 @@
 // See the file ../license.txt
 //
 
-function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
+function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 // edition of a link from an output block to an input  block
 
 //** BEWARE: "d9" state is not yet tested after Replot removal
@@ -216,8 +216,10 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
     while %t do //** infinite loop
       drawlater() ;
       //** for positive event exit from the loop
-      //** Any event on the [right] button end the inner loop
-      if or(rep(3)==[0,2,3,5,-5,-100]) then break,end
+      //** Any event on the [right] button OR a window closing => END the inner loop
+      if or(rep(3)==[0,2,3,5,-5,-1000]) then
+         break; //** EXIT
+      end
 
       //** otherwise ... get a new point
 
@@ -226,16 +228,17 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
       //** rep = xgetmouse(0,[%t,%t])
 
       //** mouse event queque is cleared (15 Mar 2007 bugfix)
-      rep = xgetmouse([%t,%t]) ; //** looks better :)
+      rep = xgetmouse([%t, %t]) ; //** looks better :)
 
       gh_figure = gcf();
-      if gh_figure.figure_id<>curwin | rep(3)==-100 then
-        //active window has been closed
+      // focus has changed OR active window has been closed
+      if gh_figure.figure_id<>curwin | rep(3)==-1000 then
+
         [%win, Cmenu] = resume(curwin,'Quit')
       end
 
       //** any rigth mouse event OR [Esc] OR [d] key : I want to disengage the current Link action
-      if or(rep(3)==[2 5 12 65307 100]) then
+      if or(rep(3)==[2 5 12 27 100]) then
           p_size = size(gh_axes.children)
           d_size = p_size(1)-o_size(1);
           if d_size > 0 then
@@ -562,7 +565,7 @@ function [scs_m,needcompile] = getlink(%pt,scs_m,needcompile)
   end //loop on link segments
 
   gh_figure = gcf();
-  if gh_figure.figure_id<>curwin | rep(3)==-100 then
+  if gh_figure.figure_id<>curwin | rep(3)==-1000 then
       //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
   end

@@ -412,7 +412,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
       if or(rep(3)==[0,2,3,5,-5]) then
           break ; //** ---> EXIT point of the while
-      elseif rep(3)==-100 then //active window has been closed
+      elseif rep(3)==-1000 then //active window has been closed
 	  [%win,Cmenu] = resume(curwin,'Quit')
       end
 
@@ -469,7 +469,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
  //**----------
 
     gh_figure = gcf();
-    if gh_figure.figure_id<>curwin | rep(3)==-100 then
+    if gh_figure.figure_id<>curwin | rep(3)==-1000 then
         [%win,Cmenu] = resume(curwin,'Quit') ;
     end
 
@@ -556,7 +556,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
       rep = xgetmouse([%t,%t]); //** get new position
 
-      if rep(3)==-100 then //** active window has been closed
+      if rep(3)==-1000 then //** active window has been closed
 	[%win,Cmenu] = resume(curwin,"Quit")
       end
 
@@ -575,7 +575,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     //**----------------------------------------------------
 
     gh_figure = gcf();
-    if gh_figure.figure_id<>curwin | rep(3)==-100 then
+    if gh_figure.figure_id<>curwin | rep(3)==-1000 then
         [%win,Cmenu] = resume(curwin,'Quit') ;
     end
 
@@ -677,7 +677,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 	
         rep = xgetmouse([%t,%t]); //** wait for user movement :)
 	
-	if rep(3)==-100 then //active window has been closed
+	if rep(3)==-1000 then //active window has been closed
 	  [%win,Cmenu] = resume(curwin,'Quit')
 	end
 	
@@ -694,7 +694,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
       end //** of while
       //**--- Interactive loop ends -------------------------
       gh_figure = gcf();
-      if gh_figure.figure_id<>curwin | rep(3)==-100 then
+      if gh_figure.figure_id<>curwin | rep(3)==-1000 then
 	[%win,Cmenu] = resume(curwin,'Quit') ; 
       end
       //** xpolys(x1,y1,ct(1)) //draw moving part of the link
@@ -742,7 +742,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 	
         rep = xgetmouse([%t,%t]); //** wait for user movement :)
 	
-	if rep(3)==-100 then //active window has been closed
+	if rep(3)==-1000 then //active window has been closed
 	  [%win,Cmenu] = resume(curwin,'Quit')
 	end
 	
@@ -760,7 +760,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
       end
       //**--- Interactive loop ends -------------------------
       gh_figure = gcf();
-      if gh_figure.figure_id<>curwin | rep(3)==-100 then
+      if gh_figure.figure_id<>curwin | rep(3)==-1000 then
 	[%win,Cmenu] = resume(curwin,'Quit') ;
       end
 
@@ -800,7 +800,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
     while and(rep(3)<>[3 0 2 5]) do
       //** xpolys(x1,y1,ct(1))//draw moving part of the link
       rep = xgetmouse([%t,%t]);
-      if rep(3)==-100 then //active window has been closed
+      if rep(3)==-1000 then //active window has been closed
 	//** driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
       end
@@ -814,7 +814,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
     //**--- Interactive loop ends -------------------------
 
     gh_figure = gcf();
-    if gh_figure.figure_id<>curwin | rep(3)==-100 then
+    if gh_figure.figure_id<>curwin | rep(3)==-1000 then
 	 [%win,Cmenu] = resume(curwin,'Quit') ;
     end
 
@@ -892,7 +892,7 @@ function scs_m = movelink4(scs_m)
     draw(gh_poly); //** draw the moving part of the link //** show on screen
     //** show_pixmap() ; //** not useful on Scilab 5 
 
-    if rep(3)==-100 then //active window has been closed
+    if rep(3)==-1000 then //active window has been closed
       [%win,Cmenu] = resume(curwin,'Quit')
     end
 
@@ -912,7 +912,7 @@ function scs_m = movelink4(scs_m)
 
   //erase rest of the link
   gh_figure = gcf();
-  if gh_figure.figure_id<>curwin | rep(3)==-100 then
+  if gh_figure.figure_id<>curwin | rep(3)==-1000 then
       [%win,Cmenu] = resume(curwin,'Quit') ;
   end
 
@@ -971,7 +971,7 @@ function scs_m = movelink1(scs_m)
 
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
-    if rep(3)==-100 then //active window has been closed
+    if rep(3)==-1000 then //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
     end
 
@@ -993,7 +993,7 @@ function scs_m = movelink1(scs_m)
   end
 
   gh_figure = gcf();
-  if gh_figure.figure_id<>curwin | rep(3)==-100 then
+  if gh_figure.figure_id<>curwin | rep(3)==-1000 then
       [%win,Cmenu] = resume(curwin,'Quit') ;
   end
 
@@ -1110,7 +1110,7 @@ function scs_m = movelink2(scs_m)
     draw(gh_poly); //** draw the moving part of the link //** show on screen
     
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
-    if rep(3)==-100 then //active window has been closed
+    if rep(3)==-1000 then //active window has been closed
 	[%win,Cmenu] = resume(curwin,'Quit') ;
     end
     draw(gh_poly); //** delete the moving part of the link
@@ -1127,7 +1127,7 @@ function scs_m = movelink2(scs_m)
     delete(gh_interactive_move) ; //** delete all the object used during the interactive move
   end
   gh_figure = gcf();
-  if gh_figure.figure_id<>curwin | rep(3)==-100 then
+  if gh_figure.figure_id<>curwin | rep(3)==-1000 then
       [%win,Cmenu] = resume(curwin,'Quit') ;
   end
 
@@ -1242,7 +1242,7 @@ function scs_m = movelink3(scs_m)
 
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
-    if rep(3)==-100 then //active window has been closed
+    if rep(3)==-1000 then //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     draw(gh_poly); //** draw the moving part of the link
@@ -1261,7 +1261,7 @@ function scs_m = movelink3(scs_m)
   end
 
   gh_figure = gcf();
-  if gh_figure.figure_id<>curwin | rep(3)==-100 then
+  if gh_figure.figure_id<>curwin | rep(3)==-1000 then
       [%win,Cmenu] = resume(curwin,'Quit') ;
   end
 
@@ -1347,7 +1347,7 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
     draw(gh_poly); //** draw the moving part of the link
     //** show_pixmap() ; //** not useful on Scilab 5
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
-    if rep(3)==-100 then //active window has been closed
+    if rep(3)==-1000 then //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     draw(gh_poly); //** delete the moving part of the link
@@ -1362,7 +1362,7 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
     delete(gh_interactive_move) ; //** delete all the object used during the interactive move
   end
   gh_figure = gcf();
-  if gh_figure.figure_id<>curwin | rep(3)==-100 then
+  if gh_figure.figure_id<>curwin | rep(3)==-1000 then
       [%win,Cmenu] = resume(curwin,'Quit') ;
   end
 

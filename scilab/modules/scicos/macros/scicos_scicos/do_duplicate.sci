@@ -103,7 +103,7 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
         rep = xgetmouse([%t,%t]); //** 
 
         //** Protection from window closing
-        if rep(3)==-100 then //active window has been closed
+        if rep(3)==-1000 then //active window has been closed
           [%win,Cmenu] = resume(curwin,"Quit")
         end
 

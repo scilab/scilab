@@ -21,9 +21,6 @@
 
 function [rect,btn] = scicos_rubberbox(rect,edit_mode)
 
-//** 21 Feb 2008 : this function needs profound revision in order to work inside  
-//**               Scilab 5.0 
-
 //** 18 Mar 2008 : this function has been renomed "scicos_rubberbox" in order to 
 //**               avoid confusion with the Scilab 5 internal "C" primitive
 //**               "rubberbox" 
@@ -52,8 +49,6 @@ function [rect,btn] = scicos_rubberbox(rect,edit_mode)
 
   opt = [%t edit_mode] ;
 
-  first = %t ; 
-
   if ~initial_rect
     while %t
       [btn,xc,yc] = xclick(0); //** BEWARE !!!
@@ -62,7 +57,7 @@ function [rect,btn] = scicos_rubberbox(rect,edit_mode)
       end
     end
     rect(1) = xc;
-    rect(2) = yc
+    rect(2) = yc;
   end
 
   if size(rect,'*')==2 then
@@ -70,7 +65,7 @@ function [rect,btn] = scicos_rubberbox(rect,edit_mode)
     rect(4)=0;
   end
 
-  rep(3) = -1
+  rep(3) = -1 ; 
   ox = rect(1); xc = ox ;
   oy = rect(2); yc = oy ;
   w = rect(3); h = rect(4)
@@ -81,15 +76,13 @@ function [rect,btn] = scicos_rubberbox(rect,edit_mode)
   pix = f.pixmap;
   
   pixel_drawing_mode = f.pixel_drawing_mode;
-  //**                  Scilab 5 specific mode 
+  //**  Scilab 5 specific mode 
   f.pixel_drawing_mode = "equiv"; //** BEWARE : "xor" mode !!!
   
   xrect(ox,oy,w,h) ;
   r = gce(); 
   r.foreground = -1 ;
   
-
-  //** draw_rect(r,w,h)  ; 
   draw(r)
 
   //** ----- Scilab 5 compliant code inside  ---------
@@ -97,7 +90,7 @@ function [rect,btn] = scicos_rubberbox(rect,edit_mode)
       rep = xgetmouse(opt); //** update for Scilab 5
       
       //** window closing protection 
-      if rep(3)==-100 then // window has been closed
+      if rep(3)==-1000 then // window has been closed
         btn = rep(3);
         return ; //** EXIT 
       end
@@ -113,8 +106,7 @@ function [rect,btn] = scicos_rubberbox(rect,edit_mode)
       r.data = [ox,oy,w,h] ;
 
       draw(r) ; //** update visual 
-  
-      first = %f ;
+
     end 
     
   delete(r)          ; //** delete selection box 

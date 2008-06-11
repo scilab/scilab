@@ -49,7 +49,7 @@ function [reg, rect, prt] = get_region2(xc, yc, win)
   reg = list(); rect = []
   kc = find (win==windows(:,2) )
   if kc==[] then
-    message('This window is not an active palette') ;
+    message("This window is not an active palette") ;
     return ; //** ---> Exit point 
   elseif windows(kc,1)<0 then // click inside a palette window 
     kpal  = -windows(kc,1)  ;
@@ -61,7 +61,7 @@ function [reg, rect, prt] = get_region2(xc, yc, win)
   elseif slevel>1 then
     execstr('scs_m=scs_m_'+string(windows(kc,1))) ;
   else
-    message('This window is not an active palette')
+    message("This window is not an active palette")
     return ;
   end
 
@@ -69,8 +69,8 @@ function [reg, rect, prt] = get_region2(xc, yc, win)
   //** residual old code 
   // [ox, oy, w, h, ok] = get_rectangle(xc,yc) ; //** <-- key function !
 
-  [rect,button] = scicos_rubberbox([xc; yc; 0; 0], %t) ;
-  if or(button == [2 5 12 -100]) then // right button exit OR active window has been closed
+  [rect, button] = scicos_rubberbox([xc; yc; 0; 0], %t) ;
+  if or(button == [2 5 12 -1000]) then //** right button exit action OR active window has been closed
     prt  = [] ;
     rect = [] ;
     return ; //** ---> Exit point

@@ -170,11 +170,11 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
 	global scicos_dblclk
 	scicos_dblclk=[rep(1),rep(2),curwin]
       end
-      if or(rep(3)==[0,2,3,5,-5,-100]) then
+      if or(rep(3)==[0,2,3,5,-5,-1000]) then
 	break
       end
     else
-      if or(rep(3)==[0,2,3,5,-5,-100]) then
+      if or(rep(3)==[0,2,3,5,-5,-1000]) then
         break ; ; //** exit point for the while loop 
       end 
     end 
@@ -188,7 +188,7 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
     rep = xgetmouse([%t,%t]); //** 
 
     gh_figure = gcf();
-    if gh_figure.figure_id<>curwin | rep(3)==-100 then
+    if gh_figure.figure_id<>curwin | rep(3)==-1000 then
          [%win,Cmenu] = resume(curwin,"Quit") ;
     end
 
@@ -212,7 +212,7 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
   //**------------------------------------------------------------------
 
   gh_figure = gcf();
-  if gh_figure.figure_id<>curwin | rep(3)==-100 then
+  if gh_figure.figure_id<>curwin | rep(3)==-1000 then
       [%win,Cmenu] = resume(curwin,'Quit') ;
   end
 

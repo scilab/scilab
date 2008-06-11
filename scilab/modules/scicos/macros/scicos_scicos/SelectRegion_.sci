@@ -41,7 +41,7 @@ function SelectRegion_()
 
   drawnow(); 
   [rect,button] = scicos_rubberbox([%pt(1); %pt(2); 0; 0], %t) ;
-  if or(button == [2 5 12 -100]) then // right button exit OR active window has been closed
+  if or(button == [2 5 12 -1000]) then // right button exit OR active window has been closed
     return ; //** ---> Exit point
   end
 
