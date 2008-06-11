@@ -64,6 +64,7 @@ void mat_pinv(scicos_block *block,int flag)
  u=GetRealInPortPtrs(block,1);
  y=GetRealOutPortPtrs(block,1);
  lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu)-4); 
+ lwork=max(lwork,nu*5); /* see dgesvd.f BDSPAC = 5*N */
              /*init : initialization*/
 if (flag==4)
    {if((*(block->work)=(mat_pinv_struct*) scicos_malloc(sizeof(mat_pinv_struct)))==NULL)
