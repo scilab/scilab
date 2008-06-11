@@ -18,6 +18,15 @@ Graphical User Interface:
  - Dialogs are now Java objects (x_message, x_dialog...)
  - Completion on variable and function names avaible using TAB key or CTRL-SPACE
 
+Event Handling Functions:
+=========================
+ - All the event hadling functions "xclick", "xgetmouse" and the "envent_handler"
+       * they have been rewritten in Java   
+       * they use the same "-1000" code to signal the "window close" actions 
+         (previously "xclick" and "xgetmouse" used "-100" code) 
+ - Obsolete functions:
+       * Using xgetmouse with a flag to avoid the event queue to be cleared is now obsolete. This functionnality will be removed in Scilab 5.1.
+
 Graphics:
 =========
  - New rendering engine based on JOGL (Java Binding for the OpenGL API):
@@ -35,8 +44,7 @@ Graphics:
 	* rotate_axes - Interactive rotation of an Axes handle.
 	* is_handle_valid - Check wether a set of graphic handles is still valid.
  - Obsolete functions:
-  * Using xgetmouse with a flag to avoid the event queue to be cleared is now obsolete. This functionnality will be removed in Scilab 5.1.
-  * xclea, xaxis and xtape functions has been removed because of their imcompatibility with new graphic syntax.
+    * xclea, xaxis and xtape functions has been removed because of their imcompatibility with new graphic syntax.
 
 
 Graphic file export:
