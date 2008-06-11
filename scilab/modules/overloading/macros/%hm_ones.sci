@@ -20,7 +20,7 @@ if nv==1 then
   M=hypermat(dims,ones(prod(double(dims)),1))
 else
   dims=ones(1,nv)
-  for k=1:nv,dims(k)=varargin(k),end
+  for k=1:nv,dims(k)=int(varargin(k)),end
   M=hypermat(dims,ones(prod(dims),1))
 end
 endfunction

@@ -24,10 +24,10 @@ else
   dims=ones(1,nv)
   if type(varargin($))==10 then 
     opt=varargin($),
-    for k=1:nv-1,dims(k)=varargin(k),end
+    for k=1:nv-1,dims(k)=int(varargin(k)),end
     M=hypermat(dims,rand(prod(dims),1,opt))
   else 
-    for k=1:nv,dims(k)=varargin(k),end
+    for k=1:nv,dims(k)=int(varargin(k)),end
     M=hypermat(dims,rand(prod(dims),1))
   end
 end
