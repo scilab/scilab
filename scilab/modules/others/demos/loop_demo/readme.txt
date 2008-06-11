@@ -1,7 +1,0 @@
-This directory contains the material for an animated demo. 
-to start it execute
-exec loop_demo.sce
-
-The size of the graphic window can ba changed by modifying the values at the beginning of the loop.sce file
-
-A compiler must be installed to run some of the demos.
