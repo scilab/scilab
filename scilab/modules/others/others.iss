@@ -40,7 +40,7 @@ Source: modules\{#OTHERS}\macros\buildmacros.bat; DestDir: {app}\modules\{#OTHER
 ;
 Source: modules\{#OTHERS}\demos\*.*; DestDir: {app}\modules\{#OTHERS}\demos; Flags: recursesubdirs; Components: {#COMPN_OTHERS}
 ;
-Source: modules\{#OTHERS}\tests\*.*; DestDir: {app}\modules\{#OTHERS}\tests; Flags: recursesubdirs; Components: {#COMPN_OTHERS} and {#COMPN_TESTS}
+;Source: modules\{#OTHERS}\tests\*.*; DestDir: {app}\modules\{#OTHERS}\tests; Flags: recursesubdirs; Components: {#COMPN_OTHERS} and {#COMPN_TESTS}
 ;
 ;
 ;--------------------------------------------------------------------------------------------------------------
