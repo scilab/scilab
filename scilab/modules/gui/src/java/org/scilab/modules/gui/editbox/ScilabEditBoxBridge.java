@@ -203,6 +203,15 @@ public class ScilabEditBoxBridge {
 	}
 
 	/**
+	 * Gets the enable status of an EditBox
+	 * @param editBox the EditBox we want to get the status of
+	 * @return the enable status of the EditBox (true if the EditBox is enabled, false if not)
+	 */
+	public static boolean isEnabled(EditBox editBox) {
+		return editBox.getAsSimpleEditBox().isEnabled();
+	}
+	
+	/**
 	 * Set the horizontal alignment for the EditBox text
 	 * @param editBox the EditBox we want to set the alignment of
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)

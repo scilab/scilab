@@ -576,6 +576,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUiobjectEnable.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUiobjectForegroundColor.cpp"
 				>
 			</File>
@@ -849,6 +853,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUiobjectCallback.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectEnable.cpp"
 				>
 			</File>
 			<File
@@ -1241,6 +1249,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetUiobjectEnable.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUiobjectEnable.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GetUiobjectForegroundColor.h"
 				>
 			</File>
@@ -1546,6 +1562,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUiobjectCallback.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUiobjectEnable.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectEnable.hxx"
 				>
 			</File>
 			<File

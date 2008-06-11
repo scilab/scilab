@@ -203,6 +203,15 @@ public class ScilabListBoxBridge {
 	}
 	
 	/**
+	 * Gets the enable status of a ListBox
+	 * @param listBox the ListBox we want to get the status of
+	 * @return the enable status of the ListBox (true if the ListBox is enabled, false if not)
+	 */
+	public static boolean isEnabled(ListBox listBox) {
+		return listBox.getAsSimpleListBox().isEnabled();
+	}
+	
+	/**
 	 * Set the horizontal alignment for the ListBox text
 	 * @param listBox the ListBox we want to set the alignment of
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)

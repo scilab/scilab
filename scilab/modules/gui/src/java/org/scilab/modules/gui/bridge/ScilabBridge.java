@@ -475,6 +475,15 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Gets the enable status of the Frame
+	 * @param frame the Frame we want to get the status of
+	 * @return the enable status of the Frame (true if the Frame is enabled, false if not)
+	 */
+	public static boolean isEnabled(Frame frame) {
+		return ScilabFrameBridge.isEnabled(frame);
+	}
+	
+	/**
 	 * Add a callback to the Frame
 	 * @param frame the Frame we want to set the callback of
 	 * @param callback the callback to set
@@ -1417,11 +1426,20 @@ public class ScilabBridge {
 
 	/**
 	 * Set if the menu item is enabled or not
-	 * @param menuItem the MenuItem which we want to add the mnemonic to
+	 * @param menuItem the MenuItem which we want to set the status of
 	 * @param status true if the menu item is enabled
 	 */
 	public static void setEnabled(MenuItem menuItem, boolean status) {
 		ScilabMenuItemBridge.setEnabled(menuItem, status);
+	}
+	
+	/**
+	 * Get the enable status of a MenuItem
+	 * @param menuItem the MenuItem which we want to get the status of
+	 * @return the enable status of the MenuItem (true if the MenuItem is enabled, false if not)
+	 */
+	public static boolean isEnabled(MenuItem menuItem) {
+		return ScilabMenuItemBridge.isEnabled(menuItem);
 	}
 	
 	/**
@@ -1653,13 +1671,22 @@ public class ScilabBridge {
 
 	/**
 	 * Set if the menu is enabled or not
-	 * @param menu the menu which we want to add the mnemonic to
+	 * @param menu the menu which we want to set the status of
 	 * @param status true if the menu item is enabled
 	 */
 	public static void setEnabled(Menu menu, boolean status) {
 		ScilabMenuBridge.setEnabled(menu, status);
 	}
 
+	/**
+	 * Gets the enable status of a Menu
+	 * @param menu the menu which we want to get the status of 
+	 * @return the enable status of the Menu (true if the Menu is enabled, false if not)
+	 */
+	public static boolean isEnabled(Menu menu) {
+		return ScilabMenuBridge.isEnabled(menu);
+	}
+	
 	/**
 	 * Sets the visibility status of a Scilab menu
 	 * @param menu the menu we want to set the visiblity status of
@@ -1836,11 +1863,20 @@ public class ScilabBridge {
 
 	/**
 	 * Set if the contextMenu is enabled or not
-	 * @param contextMenu the contextMenu which we want to add the mnemonic to
+	 * @param contextMenu the contextMenu which we want to set the status of
 	 * @param status true if the contextMenu item is enabled
 	 */
 	public static void setEnabled(ContextMenu contextMenu, boolean status) {
 		ScilabContextMenuBridge.setEnabled(contextMenu, status);
+	}
+
+	/**
+	 * Gets the enable status of a ContextMenu
+	 * @param contextMenu the contextMenu which we want to get the status of
+	 * @return the enable status of the ContextMenu (true if the ContextMenu is enabled, false if not)
+	 */
+	public static boolean isEnabled(ContextMenu contextMenu) {
+		return ScilabContextMenuBridge.isEnabled(contextMenu);
 	}
 
 	/**
@@ -2102,6 +2138,15 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Gets the enable status of a PushButton
+	 * @param pushButton the PushButton we want to get the status of
+	 * @return the enable status of the PushButton (true if the PushButton is enabled, false if not)
+	 */
+	public static boolean isEnabled(PushButton pushButton) {
+		return ScilabPushButtonBridge.isEnabled(pushButton);
+	}
+	
+	/**
 	 * Set the Background color of the pushbutton
 	 * @param pushButton the PushButton we want to set the background of
 	 * @param color the Color
@@ -2274,6 +2319,25 @@ public class ScilabBridge {
 	 */
 	public static boolean isVisible(TextBox textBox) {
 		return ScilabTextBoxBridge.isVisible(textBox);
+	}
+
+	/**
+	 * Set the status of the TextBox
+	 * @param textBox the textBox we want to set the status of
+	 * @param status true if the TextBox is enabled
+	 * @see org.scilab.modules.gui.widget.Widget#setEnabled(boolean)
+	 */
+	public static void setEnabled(TextBox textBox, boolean status) {
+		ScilabTextBoxBridge.setEnabled(textBox, status);
+	}
+
+	/**
+	 * Gets the enable status of a TextBox
+	 * @param textBox the textBox we want to get the status of
+	 * @return the enable status of the TextBox (true if the TextBox is enabled, false if not)
+	 */
+	public static boolean isEnabled(TextBox textBox) {
+		return ScilabTextBoxBridge.isEnabled(textBox);
 	}
 
 	/**
@@ -2575,6 +2639,15 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Gets the enable status of an EditBox
+	 * @param editBox the EditBox we want to get the status of
+	 * @return the enable status of the EditBox (true if the EditBox is enabled, false if not)
+	 */
+	public static boolean isEnabled(EditBox editBox) {
+		return ScilabEditBoxBridge.isEnabled(editBox);
+	}
+	
+	/**
 	 * Add a callback to the EditBox
 	 * @param editBox the EditBox we want to set the callback of
 	 * @param callback the Callback to set.
@@ -2786,6 +2859,15 @@ public class ScilabBridge {
 	 */
 	public static void setEnabled(Label label, boolean status) {
 		ScilabLabelBridge.setEnabled(label, status);
+	}
+	
+	/**
+	 * Gets the enable status of a Label
+	 * @param label the Label we want to get the status of
+	 * @return the enable status of the Label (true if the Label is enabled, false if not)
+	 */
+	public static boolean isEnabled(Label label) {
+		return ScilabLabelBridge.isEnabled(label);
 	}
 	
 	/**
@@ -3002,6 +3084,15 @@ public class ScilabBridge {
 		ScilabCheckBoxBridge.setEnabled(checkBox, status);
 	}
 	
+	/**
+	 * Gets the enable status of the CheckBox
+	 * @param checkBox the CheckBox we want to get the status of
+	 * @return the enable status of the CheckBox (true if the CheckBox is enabled, false if not)
+	 */
+	public static boolean isEnabled(CheckBox checkBox) {
+		return ScilabCheckBoxBridge.isEnabled(checkBox);
+	}
+
 	/**
 	 * Add a callback to the CheckBox
 	 * @param checkBox the CheckBox we want to set the callback of
@@ -3235,6 +3326,15 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Gets the enable status of a RadioButton
+	 * @param radioButton the RadioButton we want to get the status of
+	 * @return the enable status of the RadioButton (true if the RadioButton is enabled, false if not)
+	 */
+	public static boolean isEnabled(RadioButton radioButton) {
+		return ScilabRadioButtonBridge.isEnabled(radioButton);
+	}
+	
+	/**
 	 * Add a callback to the RadioButton
 	 * @param radioButton the RadioButton we want to set the callback of
 	 * @param callback the callback to set.
@@ -3464,6 +3564,15 @@ public class ScilabBridge {
 	 */
 	public static void setEnabled(Slider slider, boolean status) {
 		ScilabSliderBridge.setEnabled(slider, status);
+	}
+	
+	/**
+	 * Gets the enable status of an Slider
+	 * @param slider the Slider we want to get the status of
+	 * @return the enable status of the Slider (true if the Slider is enabled, false if not)
+	 */
+	public static boolean isEnabled(Slider slider) {
+		return ScilabSliderBridge.isEnabled(slider);
 	}
 	
 	/**
@@ -3751,6 +3860,15 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Gets the enable status of a ListBox
+	 * @param listBox the ListBox we want to get the status of
+	 * @return the enable status of the ListBox (true if the ListBox is enabled, false if not)
+	 */
+	public static boolean isEnabled(ListBox listBox) {
+		return ScilabListBoxBridge.isEnabled(listBox);
+	}
+	
+	/**
 	 * Add a callback to the ListBox
 	 * @param listBox the ListBox we want to set the callback of
 	 * @param callback the Callback to set.
@@ -4029,6 +4147,15 @@ public class ScilabBridge {
 	 */
 	public static void setEnabled(PopupMenu popupMenu, boolean status) {
 		ScilabPopupMenuBridge.setEnabled(popupMenu, status);
+	}
+	
+	/**
+	 * Gets the enable status of a PopupMenu
+	 * @param popupMenu the PopupMenu we want to get the status of
+	 * @return the enable status of the PopupMenu (true if the PopupMenu is enabled, false if not)
+	 */
+	public static boolean isEnabled(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.isEnabled(popupMenu);
 	}
 	
 	/**

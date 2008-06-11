@@ -235,6 +235,14 @@ public class ScilabMenuItem extends ScilabWidget implements MenuItem {
 	}
 	
 	/**
+	 * Gets the enable status of a MenuItem
+	 * @return the enable status of the MenuItem (true if the MenuItem is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
+	}
+
+	/**
 	 * Add a Menu to this MenuItem
 	 * @param childMenu the Menu we want to add
 	 */

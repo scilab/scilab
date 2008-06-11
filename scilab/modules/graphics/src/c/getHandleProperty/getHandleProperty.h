@@ -34,6 +34,7 @@
 #include "GetUicontrolFontSize.h"
 #include "GetUicontrolFontAngle.h"
 #include "GetUiobjectTag.h"
+#include "GetUiobjectEnable.h"
 #include "GetUicontrolMin.h"
 #include "GetUicontrolMax.h"
 #include "GetUicontrolUnits.h"
@@ -160,7 +161,6 @@ int get_z_bounds_property(             sciPointObj * pobj ) ;
 int get_user_data_property(            sciPointObj * pobj ) ;
 int get_handle_visible_property(       sciPointObj * pobj ) ;
 int get_callback_type_property(        sciPointObj * pobj ) ;
-int get_menu_enable_property(          sciPointObj * pobj ) ;
 int get_hidden_axis_color_property(    sciPointObj * pobj ) ;
 int get_x_ticks_property(              sciPointObj * pobj ) ;
 int get_y_ticks_property(              sciPointObj * pobj ) ;

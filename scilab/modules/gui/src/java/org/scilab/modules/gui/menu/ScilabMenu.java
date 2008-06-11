@@ -171,6 +171,14 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	}
 	
 	/**
+	 * Gets the enable status of a Menu
+	 * @return the enable status of the Menu (true if the Menu is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
+	}
+
+	/**
 	 * Set the Background color of the menu
 	 * @param color the Color
 	 */

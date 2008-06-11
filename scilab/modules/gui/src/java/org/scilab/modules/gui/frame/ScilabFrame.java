@@ -193,6 +193,14 @@ public class ScilabFrame extends ScilabContainer implements Frame {
 	}
 
 	/**
+	 * Gets the enable status of the Frame
+	 * @return the enable status of the Frame (true if the Frame is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
+	}
+	
+	/**
 	 * Set the Relief of the Frame
 	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
 	 */

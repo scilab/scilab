@@ -173,7 +173,7 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
   { "userdata"            , get_user_data_property            }, /* Compatibility with TK uicontrols */
   { "handle_visible"      , get_handle_visible_property       },
   { "callback_type"       , get_callback_type_property        },
-  { "menu_enable"         , get_menu_enable_property          },
+  { "enable"              , GetUiobjectEnable                 },
   { "hidden_axis_color"   , get_hidden_axis_color_property    },
   { "x_ticks"             , get_x_ticks_property              },
   { "y_ticks"             , get_y_ticks_property              },

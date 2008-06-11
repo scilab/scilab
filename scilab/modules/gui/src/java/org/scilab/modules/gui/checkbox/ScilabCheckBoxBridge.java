@@ -202,6 +202,15 @@ public class ScilabCheckBoxBridge {
 	}
 	
 	/**
+	 * Gets the enable status of the CheckBox
+	 * @param checkBox the CheckBox we want to get the status of
+	 * @return the enable status of the CheckBox (true if the CheckBox is enabled, false if not)
+	 */
+	public static boolean isEnabled(CheckBox checkBox) {
+		return checkBox.getAsSimpleCheckBox().isEnabled();
+	}
+	
+	/**
 	 * Set the horizontal alignment for the CheckBox text
 	 * @param checkBox the CheckBox we want to set the alignment of
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)

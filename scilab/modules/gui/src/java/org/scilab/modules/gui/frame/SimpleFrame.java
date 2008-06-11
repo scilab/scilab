@@ -83,6 +83,12 @@ public interface SimpleFrame extends Container {
 	void setEnabled(boolean status);
 
 	/**
+	 * Gets the enable status of the Frame
+	 * @return the enable status of the Frame (true if the Frame is enabled, false if not)
+	 */
+	boolean isEnabled();
+
+	/**
 	 * Set the callback of the Frame
 	 * @param callback the callback to set
 	 */

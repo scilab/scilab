@@ -153,6 +153,10 @@ jmethodID voidsetRootMenuEnabledjstringjbooleanID; // cache method id
 jmethodID voidsetRootSubMenuEnabledjstringjintjbooleanID; // cache method id
 jmethodID voidsetFigureMenuEnabledjintjstringjbooleanID; // cache method id
 jmethodID voidsetFigureSubMenuEnabledjintjstringjintjbooleanID; // cache method id
+jmethodID voidsetWidgetEnablejintjbooleanID; // cache method id
+jmethodID voidsetFrameEnablejintjbooleanID; // cache method id
+jmethodID jbooleanisWidgetEnablejintID; // cache method id
+jmethodID jbooleanisFrameEnablejintID; // cache method id
 jmethodID voidremoveRootMenujstringID; // cache method id
 jmethodID voidremoveFigureMenujintjstringID; // cache method id
 jmethodID jstringdisplayAndWaitContextMenujintID; // cache method id
@@ -467,6 +471,14 @@ static void setRootSubMenuEnabled(JavaVM * jvm_, char * menuName, long position,
 static void setFigureMenuEnabled(JavaVM * jvm_, long figureID, char * menuName, bool status);
 
 static void setFigureSubMenuEnabled(JavaVM * jvm_, long figureID, char * menuName, long position, bool status);
+
+static void setWidgetEnable(JavaVM * jvm_, long objID, bool status);
+
+static void setFrameEnable(JavaVM * jvm_, long objID, bool status);
+
+static bool isWidgetEnable(JavaVM * jvm_, long objID);
+
+static bool isFrameEnable(JavaVM * jvm_, long objID);
 
 static void removeRootMenu(JavaVM * jvm_, char * menuName);
 

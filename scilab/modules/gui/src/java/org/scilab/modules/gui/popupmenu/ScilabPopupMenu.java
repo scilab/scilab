@@ -193,6 +193,14 @@ public class ScilabPopupMenu extends ScilabWidget implements PopupMenu {
 	}
 
 	/**
+	 * Gets the enable status of a PopupMenu
+	 * @return the enable status of the PopupMenu (true if the PopupMenu is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
+	}
+
+	/**
 	 * Set the horizontal alignment for the PopupMenu text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */

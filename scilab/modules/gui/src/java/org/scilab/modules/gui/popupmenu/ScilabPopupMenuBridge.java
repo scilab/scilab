@@ -203,6 +203,15 @@ public class ScilabPopupMenuBridge {
 	}
 
 	/**
+	 * Gets the enable status of a PopupMenu
+	 * @param popupMenu the PopupMenu we want to get the status of
+	 * @return the enable status of the PopupMenu (true if the PopupMenu is enabled, false if not)
+	 */
+	public static boolean isEnabled(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().isEnabled();
+	}
+	
+	/**
 	 * Set the horizontal alignment for the PopupMenu text
 	 * @param popupMenu the PopupMenu we want to set the alignment of
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)

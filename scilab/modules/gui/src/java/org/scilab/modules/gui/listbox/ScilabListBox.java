@@ -193,6 +193,14 @@ public class ScilabListBox extends ScilabWidget implements ListBox {
 	}
 
 	/**
+	 * Gets the enable status of a ListBox
+	 * @return the enable status of the ListBox (true if the ListBox is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
+	}
+
+	/**
 	 * Set the horizontal alignment for the ListBox text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */

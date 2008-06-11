@@ -149,6 +149,15 @@ public class ScilabPushButtonBridge {
 	}
 
 	/**
+	 * Gets the enable status of a PushButton
+	 * @param pushButton the PushButton we want to get the status of
+	 * @return the enable status of the PushButton (true if the PushButton is enabled, false if not)
+	 */
+	public static boolean isEnabled(PushButton pushButton) {
+		return pushButton.getAsSimplePushButton().isEnabled();
+	}
+	
+	/**
 	 * To set the Background color of the pushbutton
 	 * @param pushButton the PushButton we want to set the background of
 	 * @param color the Color

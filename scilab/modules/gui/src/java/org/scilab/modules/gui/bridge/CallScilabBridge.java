@@ -2430,6 +2430,48 @@ public class CallScilabBridge {
 		return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).isVisible();
 	}
 	
+	/*****************/
+	/*               */
+	/* WIDGET ENABLE */
+	/*               */
+	/*****************/
+	
+	/**
+	 * Set the enable of the Widget
+	 * @param id the id of the Widget
+	 * @param status the new status
+	 */
+	public static void setWidgetEnable(int id, boolean status) {
+		((Widget) UIElementMapper.getCorrespondingUIElement(id)).setEnabled(status);
+	}
+	
+	/**
+	 * Set the enable of the Frame
+	 * @param id the id of the Frame
+	 * @param status the new status
+	 */
+	public static void setFrameEnable(int id, boolean status) {
+		((Frame) UIElementMapper.getCorrespondingUIElement(id)).setEnabled(status);
+	}
+	
+	/**
+	 * Get the enable of the Widget
+	 * @param id the id of the Widget
+	 * @return the status
+	 */
+	public static boolean isWidgetEnable(int id) {
+		return ((Widget) UIElementMapper.getCorrespondingUIElement(id)).isEnabled();
+	}
+	
+	/**
+	 * Get the visibility of the Frame
+	 * @param id the id of the Frame
+	 * @return the status
+	 */
+	public static boolean isFrameEnable(int id) {
+		return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).isEnabled();
+	}
+	
 	/************************/
 	/*                      */
 	/* CLIPBOARD MANAGEMENT */

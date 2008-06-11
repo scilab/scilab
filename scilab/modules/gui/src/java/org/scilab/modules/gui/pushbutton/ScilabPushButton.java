@@ -155,6 +155,14 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 	}
 
 	/**
+	 * Gets the enable status of a PushButton
+	 * @return the enable status of the PushButton (true if the PushButton is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
+	}
+
+	/**
 	 * To set the Background color of the pushbutton
 	 * @param color the Color
 	 */

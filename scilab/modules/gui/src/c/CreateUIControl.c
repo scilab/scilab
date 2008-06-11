@@ -56,8 +56,6 @@ sciPointObj * CreateUIControl(char *style)
 
   pUICONTROL_FEATURE (pobj)->handle_visible=TRUE;
 
-  pUICONTROL_FEATURE (pobj)->Enable = TRUE;
-
   /* Tag is set to NULL as default */
   /* The getter for tag returns "" is tag is NULL */
   pUICONTROL_FEATURE (pobj)->tag = NULL;

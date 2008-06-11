@@ -81,6 +81,12 @@ public interface Widget extends Dockable {
 	void setEnabled(boolean status);
 
 	/**
+	 * Gets the enable status of an UIElement
+	 * @return the enable status of the UIElement (true if the UIElement is enabled, false if not)
+	 */
+	boolean isEnabled();
+
+	/**
 	 * Set the callback of the widget
 	 * @param callback the callback to set
 	 */

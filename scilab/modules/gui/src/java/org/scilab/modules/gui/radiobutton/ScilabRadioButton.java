@@ -193,6 +193,14 @@ public class ScilabRadioButton extends ScilabWidget implements RadioButton {
 	}
 
 	/**
+	 * Gets the enable status of a RadioButton
+	 * @return the enable status of the RadioButton (true if the RadioButton is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
+	}
+
+	/**
 	 * Set the horizontal alignment for the RadioButton text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */

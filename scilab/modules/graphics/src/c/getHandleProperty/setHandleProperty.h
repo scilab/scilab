@@ -37,6 +37,7 @@
 #include "SetUicontrolFontSize.h"
 #include "SetUicontrolFontAngle.h"
 #include "SetUiobjectTag.h"
+#include "SetUiobjectEnable.h"
 #include "SetUicontrolMin.h"
 #include "SetUicontrolMax.h"
 #include "SetUicontrolUnits.h"
@@ -158,7 +159,6 @@ int set_triangles_property(            sciPointObj * pobj, int stackPointer, int
 int set_z_bounds_property(             sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_handle_visible_property(       sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_callback_type_property(        sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
-int set_menu_enable_property(          sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_hidden_axis_color_property(    sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_user_data_property(            sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_x_ticks_property(              sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;

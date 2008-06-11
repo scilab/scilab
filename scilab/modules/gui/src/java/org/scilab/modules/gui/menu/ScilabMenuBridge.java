@@ -125,13 +125,22 @@ public class ScilabMenuBridge {
 
 	/**
 	 * Set if the menu is enabled or not
-	 * @param menu the Menu which we want to add the mnemonic to
+	 * @param menu the Menu which we want to set the status of 
 	 * @param status true if the menu is enabled
 	 */
 	public static void setEnabled(Menu menu, boolean status) {
 		menu.getAsSimpleMenu().setEnabled(status);
 	}
 
+	/**
+	 * Gets the enable status of a Menu
+	 * @param menu the menu which we want to get the status of 
+	 * @return the enable status of the Menu (true if the Menu is enabled, false if not)
+	 */
+	public static boolean isEnabled(Menu menu) {
+		return menu.getAsSimpleMenu().isEnabled();
+	}
+	
 	/**
 	 * Gets the visibility status of a Scilab menu
 	 * @param menu the menu we want to get the visiblity status of

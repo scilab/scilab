@@ -193,6 +193,14 @@ public class ScilabCheckBox extends ScilabWidget implements CheckBox {
 	}
 
 	/**
+	 * Gets the enable status of the CheckBox
+	 * @return the enable status of the CheckBox (true if the CheckBox is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
+	}
+
+	/**
 	 * Set the horizontal alignment for the CheckBox text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */

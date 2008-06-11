@@ -184,7 +184,15 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 	 * @see org.scilab.modules.gui.widget.Widget#setEnabled(boolean)
 	 */
 	public void setEnabled(boolean status) {
-		// TODO Auto-generated method stub
+		ScilabBridge.setEnabled(this, status);
+	}
+
+	/**
+	 * Gets the enable status of a TextBox
+	 * @return the enable status of the TextBox (true if the TextBox is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
 	}
 
 	/**

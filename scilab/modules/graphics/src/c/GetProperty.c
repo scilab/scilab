@@ -1880,9 +1880,6 @@ sciGetVisibility (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
       return sciGetVisibility ( pLABEL_FEATURE (pobj)->text ) ;
       break;
-    case SCI_UIMENU:
-      return pUIMENU_FEATURE (pobj)->visible;
-      break;
     case SCI_CONSOLE:
       return pCONSOLE_FEATURE(pobj)->visible ;
       break ;
@@ -1898,6 +1895,7 @@ sciGetVisibility (sciPointObj * pobj)
     case SCI_SCREEN:
       return pSCREEN_FEATURE(pobj)->visible ;
       break ;
+    case SCI_UIMENU:
     case SCI_SBH:   
     case SCI_PANNER:
     case SCI_SBV:
@@ -3096,7 +3094,7 @@ int sciType (char *marker,sciPointObj * pobj)
   else if (strcmp(marker,"axes_reverse"       ) == 0) {return sci_strings;}
   else if (strcmp(marker,"immediate_drawing"  ) == 0) {return sci_strings;}
   else if (strcmp(marker,"handle_visible"     ) == 0) {return sci_strings;}
-  else if (strcmp(marker,"menu_enable"        ) == 0) {return sci_strings;}
+  else if (strcmp(marker,"enable"             ) == 0) {return sci_strings;}
   else if (strcmp(marker,"callback_type"      ) == 0) {return sci_strings;}
   else if (strcmp(marker,"bounding_rect"      ) == 0) {return sci_matrix;} /*JBS 16/11/05 */
   else if (strcmp(marker,"hidden_axis_color"  ) == 0) {return sci_matrix;} /*       03/06 */

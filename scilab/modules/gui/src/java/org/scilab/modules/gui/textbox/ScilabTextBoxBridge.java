@@ -101,6 +101,25 @@ public class ScilabTextBoxBridge {
 	}
 
 	/**
+	 * Set the status of the TextBox
+	 * @param textBox the textBox we want to set the status of
+	 * @param status true if the TextBox is enabled
+	 * @see org.scilab.modules.gui.widget.Widget#setEnabled(boolean)
+	 */
+	public static void setEnabled(TextBox textBox, boolean status) {
+		textBox.getAsSimpleTextBox().setEnabled(status);
+	}
+
+	/**
+	 * Gets the enable status of a TextBox
+	 * @param textBox the textBox we want to get the status of
+	 * @return the enable status of the TextBox (true if the TextBox is enabled, false if not)
+	 */
+	public static boolean isEnabled(TextBox textBox) {
+		return textBox.getAsSimpleTextBox().isEnabled();
+	}
+
+	/**
 	 * Sets the dimensions (width and height) of a Scilab TextBox
 	 * @param textBox the textBox we want to set the dimensions of
 	 * @param newSize the size we want to set to the textBox

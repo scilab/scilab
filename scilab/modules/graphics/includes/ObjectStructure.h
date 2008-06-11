@@ -671,8 +671,6 @@ sciLabel ;
 typedef struct
 {
   sciRelationShip relationship;
-  /* Label property */
-  char *label;
 
   /* Color property */
   double *foregroundcolor;
@@ -681,25 +679,19 @@ typedef struct
   char *callback;
   int callbackType;
 
-  /** specifies if this object is visible             */
-  BOOL visible;
+  /* Specifies if this object is visible in its parent children */
   BOOL handle_visible;
-  BOOL Enable;
 
   int MenuPosition;
 
-  #ifdef _MSC_VER
-	HMENU hMenu;
-	int IDM_this;
-  #endif
-
-  /* Vincent */
+  /* Userdata property */
   int * user_data;
   int size_of_user_data;
 
+  /* Index in the java UIElementMapper */
   int hashMapIndex;
-  /* Vincent */
 
+  /* Tag property */
   char * tag;
 
 }/** */
@@ -730,10 +722,8 @@ typedef struct
 {
   sciRelationShip relationship;
 
-  /** specifies if this object is visible             */
-  BOOL visible;
+  /* Specifies if this object is visible in its parent children */
   BOOL handle_visible;
-  BOOL Enable;
 
   /* Colors property */
   double *backgroundcolor;

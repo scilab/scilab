@@ -82,13 +82,22 @@ public class ScilabContextMenuBridge {
 
 	/**
 	 * Set if the ContextMenu is enabled or not
-	 * @param contextMenu the ContextMenu which we want to add the mnemonic to
+	 * @param contextMenu the ContextMenu which we want to set the status of
 	 * @param status true if the contextMenu is enabled
 	 */
 	public static void setEnabled(ContextMenu contextMenu, boolean status) {
 		contextMenu.getAsSimpleContextMenu().setEnabled(status);
 	}
 
+	/**
+	 * Gets the enable status of a ContextMenu
+	 * @param contextMenu the contextMenu which we want to get the status of
+	 * @return the enable status of the ContextMenu (true if the ContextMenu is enabled, false if not)
+	 */
+	public static boolean isEnabled(ContextMenu contextMenu) {
+		return contextMenu.getAsSimpleContextMenu().isEnabled();
+	}
+	
 	/**
 	 * Gets the visibility status of a Scilab ContextMenu
 	 * @param contextMenu the contextMenu we want to get the visiblity status of

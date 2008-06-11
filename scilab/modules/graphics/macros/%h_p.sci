@@ -781,17 +781,16 @@ function %h_p(h)
         
         case "uimenu"
             t=[t;
-                "parent: "+h.parent.type
-                "children: "+fmtchildren(h.children)
-                "visible = "+sci2exp(h.visible)
-                "label = "+h.label 
-                "callback = "+h.callback
-                "callback type = "+sci2exp(h.callback_type,0)
-                "handle_visible = "+sci2exp(h.handle_visible)
-                "position = "+sci2exp(h.position,0)
-                "menu_enable = "+sci2exp(h.menu_enable)
-                "foregroundcolor = "+sci2exp(h.foregroundcolor,0)
+                "Parent: "+h.parent.type
+                "Children: "+fmtchildren(h.children)
+		"Enable = "+sci2exp(h.enable)
+                "Foregroundcolor = "+sci2exp(h.foregroundcolor,0)
+                "Label = "+h.label 
+                //"Handle_visible = "+sci2exp(h.handle_visible)
+                //"Position = "+sci2exp(h.position,0)
                 "Visible = "+sci2exp(h.visible)
+                "Callback = "+h.callback
+                "CallbackType = "+sci2exp(h.callback_type,0)
                 "Tag = "+h.tag
             ]
         
@@ -804,7 +803,7 @@ function %h_p(h)
             "Parent: "+h.parent.type
             "Children: "+fmtchildren(h.children)
             "BackgroundColor = "+sci2exp(h.backgroundcolor,0)
-            //"Enable = "+sci2exp(h.menu_enable)
+            "Enable = "+sci2exp(h.enable)
             "FontAngle = "+h.fontangle
             "FontName = "+h.fontname
             "FontSize = "+sci2exp(h.fontsize)
@@ -826,7 +825,7 @@ function %h_p(h)
             "Visible = "+sci2exp(h.visible)
             "Callback = "+h.callback
             "CallbackType = "+sci2exp(h.callback_type,0)
-            //"handle_visible = "+sci2exp(h.handle_visible)
+            //"Handle_visible = "+sci2exp(h.handle_visible)
             "Userdata = "+fmtuser_data(u)
             "Tag = "+h.tag
             ]

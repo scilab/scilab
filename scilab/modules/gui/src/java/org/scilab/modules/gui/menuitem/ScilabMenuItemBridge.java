@@ -116,6 +116,15 @@ public class ScilabMenuItemBridge {
 	}
 
 	/**
+	 * Get the enable status of a MenuItem
+	 * @param menuItem the MenuItem which we want to get the status of
+	 * @return the enable status of the MenuItem (true if the MenuItem is enabled, false if not)
+	 */
+	public static boolean isEnabled(MenuItem menuItem) {
+		return menuItem.getAsSimpleMenuItem().isEnabled();
+	}
+
+	/**
 	 * Gets the visibility status of a Scilab menu
 	 * @param menuItem the menu we want to get the visiblity status of
 	 * @return the visibility status of the menu (true if the menu is visible, false if not)

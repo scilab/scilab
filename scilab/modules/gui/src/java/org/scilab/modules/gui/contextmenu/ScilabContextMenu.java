@@ -151,6 +151,14 @@ public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
 	}
 	
 	/**
+	 * Gets the enable status of a ContextMenu
+	 * @return the enable status of the ContextMenu (true if the ContextMenu is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
+	}
+
+	/**
 	 * Set the Background color of the ContextMenu
 	 * @param color the Color
 	 */

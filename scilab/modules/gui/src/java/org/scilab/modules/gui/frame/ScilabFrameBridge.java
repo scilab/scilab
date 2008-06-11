@@ -201,6 +201,15 @@ public class ScilabFrameBridge {
 	}
 	
 	/**
+	 * Gets the enable status of the Frame
+	 * @param frame the Frame we want to get the status of
+	 * @return the enable status of the Frame (true if the Frame is enabled, false if not)
+	 */
+	public static boolean isEnabled(Frame frame) {
+		return frame.getAsSimpleFrame().isEnabled();
+	}
+	
+	/**
 	 * Set the Relief of the Frame
 	 * @param frame the Frame we want to set the Relief of
 	 * @param reliefType the type of the relief to set (See ScilabRelief.java)

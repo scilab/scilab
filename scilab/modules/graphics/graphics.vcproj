@@ -775,10 +775,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\getHandleProperty\get_menu_enable_property.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\getHandleProperty\get_old_style_property.c"
 				>
 			</File>
@@ -1660,10 +1656,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_mark_style_property.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\getHandleProperty\set_menu_enable_property.c"
 				>
 			</File>
 			<File

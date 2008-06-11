@@ -193,6 +193,14 @@ public class ScilabSlider extends ScilabWidget implements Slider {
 	}
 
 	/**
+	 * Gets the enable status of an Slider
+	 * @return the enable status of the Slider (true if the Slider is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
+	}
+
+	/**
 	 * Set the horizontal alignment for the Slider text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */

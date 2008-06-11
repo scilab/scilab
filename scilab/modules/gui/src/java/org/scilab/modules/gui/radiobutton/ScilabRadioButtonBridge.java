@@ -203,6 +203,15 @@ public class ScilabRadioButtonBridge {
 	}
 	
 	/**
+	 * Gets the enable status of a RadioButton
+	 * @param radioButton the RadioButton we want to get the status of
+	 * @return the enable status of the RadioButton (true if the RadioButton is enabled, false if not)
+	 */
+	public static boolean isEnabled(RadioButton radioButton) {
+		return radioButton.getAsSimpleRadioButton().isEnabled();
+	}
+	
+	/**
 	 * Set the horizontal alignment for the RadioButton text
 	 * @param radioButton the RadioButton we want to set the alignment of
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)

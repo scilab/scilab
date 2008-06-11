@@ -122,7 +122,6 @@ src/c/getHandleProperty/get_grid_property.c \
 src/c/getHandleProperty/get_box_property.c \
 src/c/getHandleProperty/get_hidden_color_property.c \
 src/c/getHandleProperty/get_handle_visible_property.c \
-src/c/getHandleProperty/get_menu_enable_property.c \
 src/c/getHandleProperty/get_labels_font_color_property.c \
 src/c/getHandleProperty/get_surface_color_property.c \
 src/c/getHandleProperty/get_tics_label_property.c \
@@ -232,7 +231,6 @@ src/c/getHandleProperty/set_axes_bounds_property.c \
 src/c/getHandleProperty/set_tics_style_property.c \
 src/c/getHandleProperty/SetHashTable.c \
 src/c/getHandleProperty/set_handle_visible_property.c \
-src/c/getHandleProperty/set_menu_enable_property.c \
 src/c/getHandleProperty/set_labels_font_color_property.c \
 src/c/getHandleProperty/set_parent_property.c \
 src/c/getHandleProperty/set_axes_visible_property.c \

@@ -1019,13 +1019,6 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
       return sciSetStrings( pLABEL_FEATURE(pObjDest)->text, pStrings ) ;
       break;
     case SCI_UIMENU:
-      FREE(pUIMENU_FEATURE (pObjDest)->label) ;
-      pUIMENU_FEATURE (pObjDest)->label = *getStrMatData(pStrings);
-      if ( pUIMENU_FEATURE (pObjDest)->label == NULL )
-      {
-        return -1 ;
-      }
-      break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
@@ -1091,13 +1084,6 @@ sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol )
       return sciSetText( pLABEL_FEATURE(pobj)->text, text, nbRow, nbCol ) ;
       break;
     case SCI_UIMENU:
-      FREE(pUIMENU_FEATURE (pobj)->label) ;
-      pUIMENU_FEATURE (pobj)->label = *text;
-      if ( pUIMENU_FEATURE (pobj)->label == NULL )
-      {
-        return -1 ;
-      }
-      break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
@@ -2048,12 +2034,6 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
       return sciInitVisibility( pLABEL_FEATURE(pobj)->text, value ) ;
       break;
-    case SCI_UIMENU:
-      pUIMENU_FEATURE(pobj)->visible=value;	
-      break;
-    case SCI_UICONTROL:
-      pUICONTROL_FEATURE(pobj)->visible=value;	
-      break;
     case SCI_CONSOLE:
       pCONSOLE_FEATURE(pobj)->visible = value ;
       break;
@@ -2069,7 +2049,8 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
     case SCI_SCREEN:
       pSCREEN_FEATURE(pobj)->visible = value ;
       break;
-
+    case SCI_UIMENU:
+    case SCI_UICONTROL:
     case SCI_SBH:   
     case SCI_PANNER:
     case SCI_SBV:

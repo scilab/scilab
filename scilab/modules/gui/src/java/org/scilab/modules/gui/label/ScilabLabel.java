@@ -193,6 +193,14 @@ public class ScilabLabel extends ScilabWidget implements Label {
 	}
 
 	/**
+	 * Gets the enable status of a Label
+	 * @return the enable status of the Label (true if the Label is enabled, false if not)
+	 */
+	public boolean isEnabled() {
+		return ScilabBridge.isEnabled(this);
+	}
+
+	/**
 	 * Set the horizontal alignment for the Label text
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */

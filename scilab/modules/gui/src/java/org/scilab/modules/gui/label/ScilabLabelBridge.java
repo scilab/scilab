@@ -203,6 +203,15 @@ public class ScilabLabelBridge {
 	}
 	
 	/**
+	 * Gets the enable status of a Label
+	 * @param label the Label we want to get the status of
+	 * @return the enable status of the Label (true if the Label is enabled, false if not)
+	 */
+	public static boolean isEnabled(Label label) {
+		return label.getAsSimpleLabel().isEnabled();
+	}
+	
+	/**
 	 * Set the horizontal alignment for the Label text
 	 * @param label the Label we want to set the alignment of
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)

@@ -83,6 +83,8 @@ src/cpp/SetUiobjectCallback.cpp \
 src/cpp/GetUiobjectCallback.cpp \
 src/cpp/SetUiobjectTag.cpp \
 src/cpp/GetUiobjectTag.cpp \
+src/cpp/SetUiobjectEnable.cpp \
+src/cpp/GetUiobjectEnable.cpp \
 src/cpp/SetUicontrolMin.cpp \
 src/cpp/GetUicontrolMin.cpp \
 src/cpp/SetUicontrolMax.cpp \
@@ -264,6 +266,7 @@ includes/GetUiobjectCallback.h \
 includes/GetUiobjectForegroundColor.h \
 includes/GetUiobjectTag.h \
 includes/GetUiobjectVisible.h \
+includes/GetUiobjectEnable.h \
 includes/InitUIMenu.h \
 includes/Label.h \
 includes/ListBox.h \
@@ -298,6 +301,7 @@ includes/SetUiobjectCallback.h \
 includes/SetUiobjectForegroundColor.h \
 includes/SetUiobjectTag.h \
 includes/SetUiobjectVisible.h \
+includes/SetUiobjectEnable.h \
 includes/Slider.h \
 includes/TerminateGui.h \
 includes/write_scilab.h \
