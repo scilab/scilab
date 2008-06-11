@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -47,11 +47,10 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-
-xset("colormap",hotcolormap(32))
-plot3d1() 
- 
-  ]]></programlisting>
+f = scf();
+f.color_map = hotcolormap(32);
+plot3d1();
+]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
@@ -60,14 +59,51 @@ plot3d1()
         <link linkend="colormap">colormap</link>
       </member>
       <member>
+        <link linkend="autumncolormap">autumncolormap</link>
+      </member>
+      <member>
+        <link linkend="bonecolormap">bonecolormap</link>
+      </member>
+      <member>
+        <link linkend="coolcolormap">coolcolormap</link>
+      </member>
+      <member>
+        <link linkend="coppercolormap">coppercolormap</link>
+      </member>
+      <member>
         <link linkend="graycolormap">graycolormap</link>
+      </member>
+      <member>
+        <link linkend="hot_colormap">hot_colormap</link>
+      </member>
+      <member>
+        <link linkend="hsvcolormap">hsvcolormap</link>
       </member>
       <member>
         <link linkend="jetcolormap">jetcolormap</link>
       </member>
       <member>
-        <link linkend="xset">xset</link>
+        <link linkend="oceancolormap">oceancolormap</link>
+      </member>
+      <member>
+        <link linkend="pinkcolormap">pinkcolormap</link>
+      </member>
+      <member>
+        <link linkend="rainbowcolormap">rainbowcolormap</link>
+      </member>
+      <member>
+        <link linkend="springcolormap">springcolormap</link>
+      </member>
+      <member>
+        <link linkend="summercolormap">summercolormap</link>
+      </member>
+      <member>
+        <link linkend="whitecolormap">whitecolormap</link>
+      </member>
+      <member>
+        <link linkend="wintercolormap">wintercolormap</link>
       </member>
     </simplelist>
   </refsection>
 </refentry>
+

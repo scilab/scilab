@@ -47,10 +47,9 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-
-xset("colormap",jetcolormap(64))
-plot3d1() 
- 
+f = scf();
+f.color_map = jetcolormap(32);
+plot3d1();
   ]]></programlisting>
   </refsection>
   <refsection>
@@ -60,13 +59,49 @@ plot3d1()
         <link linkend="colormap">colormap</link>
       </member>
       <member>
+        <link linkend="autumncolormap">autumncolormap</link>
+      </member>
+      <member>
+        <link linkend="bonecolormap">bonecolormap</link>
+      </member>
+      <member>
+        <link linkend="coolcolormap">coolcolormap</link>
+      </member>
+      <member>
+        <link linkend="coppercolormap">coppercolormap</link>
+      </member>
+      <member>
         <link linkend="graycolormap">graycolormap</link>
       </member>
       <member>
-        <link linkend="hotcolormap">hotcolormap</link>
+        <link linkend="hot_colormap">hot_colormap</link>
       </member>
       <member>
-        <link linkend="xset">xset</link>
+        <link linkend="hsvcolormap">hsvcolormap</link>
+      </member>
+      <member>
+        <link linkend="jetcolormap">jetcolormap</link>
+      </member>
+      <member>
+        <link linkend="oceancolormap">oceancolormap</link>
+      </member>
+      <member>
+        <link linkend="pinkcolormap">pinkcolormap</link>
+      </member>
+      <member>
+        <link linkend="rainbowcolormap">rainbowcolormap</link>
+      </member>
+      <member>
+        <link linkend="springcolormap">springcolormap</link>
+      </member>
+      <member>
+        <link linkend="summercolormap">summercolormap</link>
+      </member>
+      <member>
+        <link linkend="whitecolormap">whitecolormap</link>
+      </member>
+      <member>
+        <link linkend="wintercolormap">wintercolormap</link>
       </member>
     </simplelist>
   </refsection>
