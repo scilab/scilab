@@ -64,7 +64,6 @@
 <module name="sound" activate="yes"/>
 <module name="scipad" activate="yes"/>
 <module name="randlib" activate="yes"/>
-<module name="others" activate="yes"/>
 <module name="scilab2fortran" activate="yes"/>
 <module name="development_tools" activate="yes"/>
 <module name="demo_tools" activate="yes"/>

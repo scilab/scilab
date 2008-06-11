@@ -57,7 +57,6 @@ randlib \
 sparse \
 windows_tools \
 functions \
-others \
 overloading \
 maple2scilab \
 m2sci \
