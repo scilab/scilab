@@ -8,8 +8,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [tf]=typeof(object)
-if exists('object','local')==0 then
-  error(msprintf(_("%s : argument is undefined"),"typeof"))
+if exists("object","local")==0 then
+  error(msprintf(_("%s: Input argument #%s is undefined.\n"),"typeof", 1))
 end
 select type(object)
 case 1 then tf='constant';
