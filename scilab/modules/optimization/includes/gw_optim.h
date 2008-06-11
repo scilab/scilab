@@ -22,8 +22,6 @@ int C2F(sci_semidef) (char *fname,unsigned long fname_len);
 int C2F(sci_fsolve) (char *fname,unsigned long fname_len);
 int C2F(sci_sqrsolve) (char *fname,unsigned long fname_len);
 int C2F(sci_qld) (char *fname,unsigned long fname_len);
-int C2F(sciquapro) (char *fname,unsigned long fname_len);
-int C2F(sci_quapro) (char *fname,unsigned long fname_len);
 int C2F(intqld)(char *fname,unsigned long fname_len);
 int C2F(intlsqrsolve) (char *fname,unsigned long fname_len);
 int C2F(scioptim) (char *fname,unsigned long fname_len);

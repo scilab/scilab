@@ -401,51 +401,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\aind.c"
-				>
-			</File>
-			<File
 				RelativePath=".\ajour.c"
-				>
-			</File>
-			<File
-				RelativePath=".\anfm01.c"
-				>
-			</File>
-			<File
-				RelativePath=".\anfm02.c"
-				>
-			</File>
-			<File
-				RelativePath=".\anfm03.c"
-				>
-			</File>
-			<File
-				RelativePath=".\anfm04.c"
-				>
-			</File>
-			<File
-				RelativePath=".\anfm05.c"
-				>
-			</File>
-			<File
-				RelativePath=".\anfm06.c"
-				>
-			</File>
-			<File
-				RelativePath=".\anrs01.c"
-				>
-			</File>
-			<File
-				RelativePath=".\anrs02.c"
-				>
-			</File>
-			<File
-				RelativePath=".\aux003.c"
-				>
-			</File>
-			<File
-				RelativePath=".\auxo01.c"
 				>
 			</File>
 			<File
@@ -494,22 +450,6 @@
 			</File>
 			<File
 				RelativePath=".\ddd2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\desr03.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dimp03.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dipvtf.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dnrm0.c"
 				>
 			</File>
 			<File
@@ -761,22 +701,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\nvkt03.c"
-				>
-			</File>
-			<File
-				RelativePath=".\optr01.c"
-				>
-			</File>
-			<File
-				RelativePath=".\optr03.c"
-				>
-			</File>
-			<File
-				RelativePath=".\opvf03.c"
-				>
-			</File>
-			<File
 				RelativePath=".\pasr03.c"
 				>
 			</File>
@@ -849,10 +773,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_quapro.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_semidef.c"
 				>
 			</File>
@@ -862,10 +782,6 @@
 			</File>
 			<File
 				RelativePath=".\strang.c"
-				>
-			</File>
-			<File
-				RelativePath=".\tol03.c"
 				>
 			</File>
 			<File
@@ -905,115 +821,7 @@
 			Name="Fortran files"
 			>
 			<File
-				RelativePath=".\aind.f"
-				>
-			</File>
-			<File
 				RelativePath=".\ajour.f"
-				>
-			</File>
-			<File
-				RelativePath=".\anfm01.f"
-				>
-			</File>
-			<File
-				RelativePath=".\anfm02.f"
-				>
-			</File>
-			<File
-				RelativePath=".\anfm03.f"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\anfm04.f"
-				>
-			</File>
-			<File
-				RelativePath=".\anfm05.f"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\anfm06.f"
-				>
-			</File>
-			<File
-				RelativePath=".\anrs01.f"
-				>
-			</File>
-			<File
-				RelativePath=".\anrs02.f"
-				>
-			</File>
-			<File
-				RelativePath=".\aux003.f"
-				>
-			</File>
-			<File
-				RelativePath=".\auxo01.f"
 				>
 			</File>
 			<File
@@ -1062,22 +870,6 @@
 			</File>
 			<File
 				RelativePath=".\ddd2.f"
-				>
-			</File>
-			<File
-				RelativePath=".\desr03.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dimp03.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dipvtf.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dnrm0.f"
 				>
 			</File>
 			<File
@@ -1489,94 +1281,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\nvkt03.f"
-				>
-			</File>
-			<File
-				RelativePath=".\optr01.f"
-				>
-			</File>
-			<File
-				RelativePath=".\optr03.f"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\opvf03.f"
-				>
-			</File>
-			<File
-				RelativePath=".\pasr03.f"
-				>
-			</File>
-			<File
-				RelativePath=".\plcbas.f"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath=".\proj.f"
 				>
 			</File>
@@ -1705,10 +1409,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_quapro.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_semidef.f"
 				>
 			</File>
@@ -1718,10 +1418,6 @@
 			</File>
 			<File
 				RelativePath=".\strang.f"
-				>
-			</File>
-			<File
-				RelativePath=".\tol03.f"
 				>
 			</File>
 			<File
@@ -1738,10 +1434,6 @@
 			</File>
 			<File
 				RelativePath=".\zqnbd.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zthz.f"
 				>
 			</File>
 		</Filter>

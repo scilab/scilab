@@ -7,16 +7,15 @@ EXPORTS
 ; --------------------------------------- 
 fsolj1_
 fsol1_
-intlsqrsolve_
-scioptim_
-sciquapro_
-scisolv_
 ql0001_
 lsqrsolj1_
 lsqrsol1_
 topt2_
 icsemc_
 genros_
-scisemidef_
+scisolv_
+scioptim_
 qpgen1sci_
 qpgen2_
+scisemidef_
+intlsqrsolve_

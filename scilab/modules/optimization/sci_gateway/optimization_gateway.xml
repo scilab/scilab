@@ -32,10 +32,9 @@
 <!-- =================== -->
 
 <PRIMITIVE gatewayId="11" primitiveId="1" primitiveName="optim" />
-<PRIMITIVE gatewayId="11" primitiveId="2" primitiveName="qpqpqp" />
-<PRIMITIVE gatewayId="11" primitiveId="3" primitiveName="semidef" />
-<PRIMITIVE gatewayId="11" primitiveId="4" primitiveName="fsolve" />
-<PRIMITIVE gatewayId="11" primitiveId="5" primitiveName="lsqrsolve" />
-<PRIMITIVE gatewayId="11" primitiveId="6" primitiveName="qld" />
-<PRIMITIVE gatewayId="11" primitiveId="7" primitiveName="qp_solve" />
+<PRIMITIVE gatewayId="11" primitiveId="2" primitiveName="semidef" />
+<PRIMITIVE gatewayId="11" primitiveId="3" primitiveName="fsolve" />
+<PRIMITIVE gatewayId="11" primitiveId="4" primitiveName="lsqrsolve" />
+<PRIMITIVE gatewayId="11" primitiveId="5" primitiveName="qld" />
+<PRIMITIVE gatewayId="11" primitiveId="6" primitiveName="qp_solve" />
 </GATEWAY>

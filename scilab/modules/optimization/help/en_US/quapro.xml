@@ -1,245 +1,33 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quapro">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="quapro" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>quapro</refname>
-    <refpurpose> linear quadratic programming solver</refpurpose>
+
+    <refpurpose>linear quadratic programming solver (obsolete)</refpurpose>
   </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[x,lagr,f]=quapro(Q,p,C,b [,x0])
-[x,lagr,f]=quapro(Q,p,C,b,ci,cs [,x0])
-[x,lagr,f]=quapro(Q,p,C,b,ci,cs,me [,x0])
-[x,lagr,f]=quapro(Q,p,C,b,ci,cs,me,x0 [,imp])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parameters</title>
-    <variablelist>
-      <varlistentry>
-        <term>Q</term>
-        <listitem>
-          <para>real symmetric matrix (dimension <literal>n x n</literal>).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>p</term>
-        <listitem>
-          <para>real (column) vector (dimension <literal> n</literal>)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>C</term>
-        <listitem>
-          <para>real matrix (dimension <literal> (me + md) x n</literal>) (If no
-	    constraints are given, you can set <literal>C = []</literal>)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>b</term>
-        <listitem>
-          <para>RHS column vector (dimension <literal> (me + md)</literal>) (If no
-	    constraints are given, you can set <literal>b = []</literal>)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ci</term>
-        <listitem>
-          <para>column vector of lower-bounds (dimension <literal>n</literal>). If
-	    there are no lower bound constraints, put <literal>ci = []</literal>. If
-	    some components of <literal>x</literal> are bounded from below, set the
-	    other (unconstrained) values of <literal>ci</literal> to a very  large
-	    negative  number (e.g. <literal>ci(j) =
-	      -number_properties('huge')</literal>.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>cs</term>
-        <listitem>
-          <para>column vector of upper-bounds. (Same remarks as above).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>me</term>
-        <listitem>
-          <para>number of equality constraints (i.e. <literal>C(1:me,:)*x = b(1:me)</literal>)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x0</term>
-        <listitem>
-          <para>either an initial guess for <literal>x</literal>    or one of the
-	    character strings <literal>'v'</literal> or <literal>'g'</literal>. If
-	    <literal>x0='v'</literal> the calculated initial feasible point is a
-	    vertex. If <literal>x0='g'</literal> the calculated initial feasible
-	    point is arbitrary.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>imp</term>
-        <listitem>
-          <para>verbose option (optional parameter)   (Try
-	    <literal>imp=7,8,...</literal>). warning the message are output in the
-	    window where scilab has been started.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>optimal solution found.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para>optimal value of the cost function (i.e. <literal>f=0.5*x'*Q*x+p'</literal>).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>lagr</term>
-        <listitem>
-          <para>vector of Lagrange multipliers.  If lower and upper-bounds
-	    <literal>ci,cs</literal> are provided, <literal>lagr</literal> has  <literal>n +
-	      me + md</literal> components and <literal>lagr(1:n)</literal> is the
-	    Lagrange  vector associated with the bound constraints and
-	    <literal>lagr (n+1 : n + me + md)</literal> is the Lagrange vector
-	    associated  with the linear constraints. (If an upper-bound
-	    (resp. lower-bound) constraint <literal>i</literal> is active
-	    <literal>lagr(i)</literal> is &gt; 0 (resp. &lt;0). If no bounds are
-	    provided, <literal>lagr</literal> has only <literal>me + md</literal>
-	    components.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    Minimize <literal>0.5*x'*Q*x + p'*x</literal></para>
-    <para>
-    under the constraint</para>
-    <programlisting><![CDATA[
 
-C*x <= b
-   
-    ]]></programlisting>
-    <para>
-    Minimize <literal> 0.5*x'*Q*x + p'*x</literal></para>
-    <para>
-    under the constraints</para>
-    <programlisting><![CDATA[
-
-C*x <= b          ci <= x <= cs
-   
-    ]]></programlisting>
-    <para>
-    Minimize <literal> 0.5*x'*Q*x + p'*x</literal></para>
-    <para>
-    under the constraints</para>
-    <programlisting><![CDATA[
-
- C(j,:) x = b(j),  j=1,...,me
- C(j,:) x <= b(j), j=me+1,...,me+md
- ci <= x <= cs
-   
-    ]]></programlisting>
-    <para>
-    If no initial point is given the
-    program computes a feasible initial point
-    which is a vertex of the region of feasible points if
-    <literal>x0='v'</literal>.</para>
-    <para>
-    If <literal>x0='g'</literal>, the program computes a feasible initial 
-    point which is not necessarily a vertex. This mode is
-    advisable when the quadratic form is positive
-    definite and there are  few constraints in
-    the problem or when there are large bounds
-    on the variables that are just security bounds and
-    very likely not active at the optimal solution.</para>
-    <para>
-    Note that <literal>Q</literal> is not necessarily non-negative, i.e.
-    <literal>Q</literal> may have negative eigenvalues.</para>
+    <para>This function has been replaced by qpsolve.</para>
   </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
-//Find x in R^6 such that:
-//C1*x = b1 (3 equality constraints i.e me=3)
-C1= [1,-1,1,0,3,1;
-    -1,0,-3,-4,5,6;
-     2,5,3,0,1,0];
-b1=[1;2;3];
-//C2*x <= b2 (2 inequality constraints)
-C2=[0,1,0,1,2,-1;
-    -1,0,2,1,1,0];
-b2=[-1;2.5];
-//with  x between ci and cs:
-ci=[-1000;-10000;0;-1000;-1000;-1000];cs=[10000;100;1.5;100;100;1000];
-//and minimize 0.5*x'*Q*x + p'*x with
-p=[1;2;3;4;5;6]; Q=eye(6,6);
-//No initial point is given;
-C=[C1;C2] ; //
-b=[b1;b2] ;  //
-me=3;
-[x,lagr,f]=quapro(Q,p,C,b,ci,cs,me)
-//Only linear constraints (1 to 4) are active (lagr(1:6)=0):
-[x,lagr,f]=quapro(Q,p,C,b,[],[],me)   //Same result as above
- 
-  ]]></programlisting>
-  </refsection>
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="qld">qld</link>
-      </member>
-      <member>
-        <link linkend="linpro">linpro</link>
-      </member>
-      <member>
-        <link linkend="optim">optim</link>
-      </member>
+      <member><link linkend="qld">qpsolve</link></member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <variablelist>
-      <varlistentry>
-        <term>Eduardo Casas  Renteria</term>
-        <listitem>
-          <para>, Universidad de Cantabria,</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Cecilia Pola Mendez</term>
-        <listitem>
-          <para> , Universidad de Cantabria</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Bibliography</title>
-    <para>E. Casas and C. Pola, An algorithm for indefinite quadratic
-      programming based on a partial Cholesky factorization, RAIRO-Recherche
-      Opérationnelle/Operations Research, 27 (1993), 401-426. </para>
-  </refsection>
-  <refsection>
-    <title>Used Functions</title>
-    <para>
-in routines/optim directory (authors E.Casas, C. Pola Mendez):</para>
-    <para>
-anfm01.f  anfm03.f  anfm05.f  anrs01.f  auxo01.f  dimp03.f  dnrm0.f   optr03.f  pasr03.f  zthz.f
-anfm02.f  anfm04.f  anfm06.f  anrs02.f  desr03.f  dipvtf.f  optr01.f
-opvf03.f  plcbas.f</para>
-    <para> From BLAS library</para>
-    <para>
-daxpy.f dcopy.f ddot.f dnrm2.f dscal.f dswap.f idamax.f</para>
-    <para> in routines/calelm directory (authors INRIA):</para>
-    <para>
-add.f ddif.f dmmul.f</para>
-    <para> From LAPACK library : dlamch.f</para>
   </refsection>
 </refentry>

@@ -80,18 +80,7 @@ lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath=".\aind.f"/>
 		<File RelativePath=".\ajour.f"/>
-		<File RelativePath=".\anfm01.f"/>
-		<File RelativePath=".\anfm02.f"/>
-		<File RelativePath=".\anfm03.f"/>
-		<File RelativePath=".\anfm04.f"/>
-		<File RelativePath=".\anfm05.f"/>
-		<File RelativePath=".\anfm06.f"/>
-		<File RelativePath=".\anrs01.f"/>
-		<File RelativePath=".\anrs02.f"/>
-		<File RelativePath=".\aux003.f"/>
-		<File RelativePath=".\auxo01.f"/>
 		<File RelativePath=".\bfgsd.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\bjlsqrsolv.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\bjsolv.f"/>
@@ -104,10 +93,6 @@ lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath=".\ctonb.f"/>
 		<File RelativePath=".\dcube.f"/>
 		<File RelativePath=".\ddd2.f"/>
-		<File RelativePath=".\desr03.f"/>
-		<File RelativePath=".\dimp03.f"/>
-		<File RelativePath=".\dipvtf.f"/>
-		<File RelativePath=".\dnrm0.f"/>
 		<File RelativePath=".\dogleg.f"/>
 		<File RelativePath=".\dpmpar.f"/>
 		<File RelativePath=".\dpofa.f"/>
@@ -170,12 +155,6 @@ lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath=".\n1qn3a.f"/>
 		<File RelativePath=".\nlis0.f"/>
 		<File RelativePath=".\nlis2.f"/>
-		<File RelativePath=".\nvkt03.f"/>
-		<File RelativePath=".\optr01.f"/>
-		<File RelativePath=".\optr03.f"/>
-		<File RelativePath=".\opvf03.f"/>
-		<File RelativePath=".\pasr03.f"/>
-		<File RelativePath=".\plcbas.f"/>
 		<File RelativePath=".\proj.f"/>
 		<File RelativePath=".\qform.f"/>
 		<File RelativePath=".\ql0001.f"/>
@@ -192,16 +171,13 @@ lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath=".\satur.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_fsolve.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_optim.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_quapro.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_semidef.f"/>
 		<File RelativePath=".\shanph.f"/>
 		<File RelativePath=".\strang.f"/>
-		<File RelativePath=".\tol03.f"/>
 		<File RelativePath=".\util.f"/>
 		<File RelativePath=".\writebuf.f"/>
 		<File RelativePath=".\zgcbd.f"/>
-		<File RelativePath=".\zqnbd.f"/>
-		<File RelativePath=".\zthz.f"/></Filter>
+		<File RelativePath=".\zqnbd.f"/></Filter>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\..\..\bin\lapack.lib"/>
 		<File RelativePath="..\..\Makefile.am"/>
