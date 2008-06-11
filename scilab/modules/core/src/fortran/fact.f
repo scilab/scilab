@@ -16,7 +16,7 @@ c
 c     
       parameter (nz1=nsiz-1,nz2=nsiz-2)
       logical eptover
-      integer r,excnt,psym,p
+      integer r,excnt,psym,p,count
       integer id(nsiz),op,fun1
       integer star,dstar,semi,eol,blank,percen
       integer comma,lparen,rparen,hat,dot,equal
@@ -25,14 +25,16 @@ c
       integer cconc,extrac,rconc
       logical recurs,compil,dotsep,nullarg,ok
       integer setgetmode
+      integer minus,plus
       
       data star/47/,dstar/62/,semi/43/,eol/99/,blank/40/,percen/56/
       data comma/52/,lparen/41/,rparen/42/, hat/62/,dot/51/,equal/50/
       data quote/53/,left/54/,right/55/,colon/44/,slash/48/,not/61/
-
+      data minus/46/,plus/45/
       data num/0/,name/1/,cmt/2/
       data cconc/1/,extrac/3/,rconc/4/
 c     
+      iadr(l)=l+l-1
 c     
       r = rstk(pt)
 c     
@@ -46,10 +48,29 @@ c
       dotsep=.false.
       ir=r/100
       if(ir.ne.3) goto 01
-      goto(25,26,99,29,99,51,43,48,55,62,65,66,41),r-300
+      goto(25,26,91,29,99,51,43,48,55,62,65,66,41),r-300
       goto 99
 c     
- 01   if (sym.eq.left) go to 20
+ 01   continue
+c     next test added to handle syntax like a*-b... or a*--+b....  for Matlab
+c     compatiblity
+      count=0
+ 02   continue
+      if (sym.eq.minus) then
+         count=-count+1
+         call getsym
+         goto 02
+      elseif (sym.eq.plus) then
+         call getsym
+         goto 02
+      endif
+      if(count.ne.0) then
+c     .  memorize sign change to be applied at the end of the factor
+         if ( eptover(1,psiz-1))  return
+         rstk(pt)=303
+      endif
+
+      if (sym.eq.left) go to 20
       if (sym.eq.quote) go to 15
       if (sym.eq.num) go to 10
       excnt = 0
@@ -88,14 +109,14 @@ c     .        errcatch mode off, really send an error
             endif
          endif
          p=pt+1
- 02      p=p-1
-         if(p.le.0) goto 03
+ 03      p=p-1
+         if(p.le.0) goto 04
          r=rstk(p)
-         if(int(r/100).ne.3) goto 02
+         if(int(r/100).ne.3) goto 03
          pt=p
          goto(25,26,99,29,99,51,43,48,55,62,65,66),r-300
       endif
- 03   continue
+ 04   continue
       call error(2)
 c      if (err .gt. 0) return
       return
@@ -590,6 +611,7 @@ c     *call* matfns
       go to 60
 c     
  60   continue
+
 c     check for ', .'  **,  ^ and .^
 
       if (sym .ne. quote) go to 63
@@ -664,7 +686,23 @@ c     *call* allops(dstar)
  66   pt=pt-1
       goto 90
 
- 90   return
+ 90   continue
+c     check for unary minus
+      if (rstk(pt).ne.303) return
+      ids(1,pt) = rhs
+      ids(2,pt) = lhs
+      pstk(pt) = fin
+      fin = minus
+      icall = 4
+      rhs=1
+      return
+c     *call* allops(minus) 
+ 91   continue
+      rhs = ids(1,pt)
+      lhs = ids(2,pt)
+      fin = pstk(pt)
+      pt=pt-1
+      return
 c     
  99   call error(22)
       if (err .gt. 0) return
