@@ -80,4 +80,6 @@ SetUiobjectVisible
 DestroyUimenu
 DestroyJavaUicontrol
 DestroyUicontrol
+GetUiobjectEnable
+SetUiobjectEnable
 ;
