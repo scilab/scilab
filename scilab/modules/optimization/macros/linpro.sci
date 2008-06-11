@@ -7,23 +7,12 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
+
+// @OBSOLETE
+
 function [x,lagr,f]=linpro(p,C,b,ci,cs,mi,x0,imp)
-[lhs,rhs]=argn(0)
-n=maxi(size(p));Q=0*ones(n,n);
-select rhs
- case 8 then
-[x,lagr,f]=quapro(Q,p,C,b,ci,cs,mi,x0,imp)
- case 7 then
-[x,lagr,f]=quapro(Q,p,C,b,ci,cs,mi,x0)
- case 6
-[x,lagr,f]=quapro(Q,p,C,b,ci,cs,mi)
- case 5 then
-[x,lagr,f]=quapro(Q,p,C,b,ci,cs)
- case 4 then
-[x,lagr,f]=quapro(Q,p,C,b,ci)
- case 3 then
-[x,lagr,f]=quapro(Q,p,C,b)
- else
-error('Bad call to linpro')
-end
+  msg = [gettext('This function has been moved to a external contribution.'); ..
+        gettext('Please download quapro toolboxe.'); ..
+        gettext('http://www.scilab.org/contrib/index_contrib.php?page=download.php');];
+ warning(msg);
 endfunction

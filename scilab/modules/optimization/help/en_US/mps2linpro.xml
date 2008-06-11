@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,89 +10,40 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mps2linpro">
+<refentry version="5.0-subset Scilab" xml:id="mps2linpro" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>mps2linpro</refname>
-    <refpurpose> convert lp problem given in MPS format to linpro format</refpurpose>
+
+    <refpurpose>convert lp problem given in MPS format to linpro format
+    (obsolete)</refpurpose>
   </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>lp = mps2linpro(mps)
-[p,C,b,ci,cs,mi] = mps2linpro(mps)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parameters</title>
-    <variablelist>
-      <varlistentry>
-        <term>mps</term>
-        <listitem>
-          <para>either a character string, path of the MPS file, or an mps data structure returned by <literal>readmps</literal></para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>lp</term>
-        <listitem>
-          <para>a linpro data tlist with following fields:</para>
-          <variablelist>
-            <varlistentry>
-              <term>p</term>
-              <listitem>
-                <para>real (column) vector (dimension <literal> n</literal>)</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>C</term>
-              <listitem>
-                <para>real matrix (dimension <literal> (mi + md) x n</literal>) (If no constraints are given, you can set <literal>C = []</literal>)</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>b</term>
-              <listitem>
-                <para>RHS vector (dimension <literal>1 x (mi + md)</literal>)</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>ci</term>
-              <listitem>
-                <para>(column) vector of lower-bounds (dimension <literal> n</literal>). If there are no lower bound constraints, put <literal>ci = []</literal>. If some components of <literal>x</literal> are bounded from below, set the other (unconstrained) values of <literal>ci</literal> to a very  large negative  number (e.g. <literal>ci(j) = -(% eps)^(-1)</literal>.</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>cs</term>
-              <listitem>
-                <para>(column) vector of upper-bounds. (Same remarks as above).</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>mi</term>
-              <listitem>
-                <para>number of equality constraints (i.e. <literal>C(1:mi,:)*x = b(1:mi)</literal>)</para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    mps2linpro forms Linear programing data compatible with linpro out of
-    MPS data format.</para>
+
+    <para>mps2linpro has been moved to a external contribution.</para>
+
+    <para>Please download quapro toolboxe.</para>
+
+    <para>http://www.scilab.org/contrib/index_contrib.php?page=download.php</para>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="linpro">linpro</link>
-      </member>
-      <member>
-        <link linkend="readmps">readmps</link>
-      </member>
+      <member><link linkend="linpro">qpsolve</link></member>
     </simplelist>
   </refsection>
 </refentry>
