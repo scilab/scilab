@@ -682,24 +682,29 @@ void scoAddCoupleOfSegments(ScopeMemory * pScopeMemory, int * color)
           vy2[j] = 0.0;
         }
       
-      style[0] = 0;
+      
+      
 
       pAxes = scoGetPointerAxes(pScopeMemory,i);
 
       for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
         {
 
+          /* Compute color of segments */
+          if (color == NULL)
+          {
+            /* default color */
+            style[0] = 0;
+          }
+          else
+          {
+            /* User specified color */
+            style[0] = color[j];
+          }
+
           pLongDraw = ConstructSegs(pAxes, 0, vx2, vy2, longdraw_size, longdraw_size, NULL, NULL,0,style, 0, TRUE, 0, 0);
           pSEGS_FEATURE(pLongDraw)->Nbr1 = 0;
           pSEGS_FEATURE(pLongDraw)->Nbr2 = 0;
-          if (color == NULL)
-            {
-              sciSetForeground(pLongDraw, -1);
-            }
-          else
-            {
-              sciSetForeground(pLongDraw, color[j]);
-            }
           sciSetIsLine(pLongDraw, 1);
           sciSetLineStyle(pLongDraw, 1);
           sciSetMarkStyle(pLongDraw, 0);
@@ -710,14 +715,7 @@ void scoAddCoupleOfSegments(ScopeMemory * pScopeMemory, int * color)
           pShortDraw = ConstructSegs(pAxes, 0, vx1, vy1, 2, 2, NULL, NULL,0,style, 0, TRUE, 0, 0);
           pSEGS_FEATURE(pShortDraw)->Nbr1 = 0;
           pSEGS_FEATURE(pShortDraw)->Nbr2 = 0;
-          if (color == NULL)
-            {
-              sciSetForeground(pShortDraw, -1);
-            }
-          else
-            {
-              sciSetForeground(pShortDraw, color[j]);
-            }
+
           sciSetIsLine(pShortDraw, 1);
           sciSetLineStyle(pShortDraw, 1);
           sciSetMarkStyle(pShortDraw, 0);
