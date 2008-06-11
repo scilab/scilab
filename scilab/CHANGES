@@ -86,8 +86,10 @@ Sparse LU factorization:
 
 Optimization:
 =============
-  + qpsolve       — Linear quadratic programming solver
+  + qpsolve       - Linear quadratic programming solver
   + qp_solve      - Linear quadratic programming solver builtin
+  - quapro        - This function has been moved in a toolbox
+  - linpro        - This function has been moved in a toolbox
 
 Genetic Algorithms:
 ===================
