@@ -482,8 +482,19 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	}
       else
 	{
+	  int ind_min;
 	  *mn = (abs(ifin-ideb))/abs(ipas)+1;
-	  *ind_max = Max(ideb, ifin);
+	  if ( ipas > 0 )
+            {
+              ind_min = ideb; *ind_max = ideb + (*mn-1)*ipas;
+            }
+          else /* ipas < 0 (the case ipas==0 is treated before) */
+            {
+              *ind_max = ifin; ind_min = ifin  + (*mn-1)*ipas;
+            }
+	  if ( ind_min <= 0 )
+            return 0;    /* at least one index is <= 0 => error */
+
 	  li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li);
 	  ti[0] = ideb-1;  /* -1 to get 0-based indices */
 	  for ( k = 1 ; k < *mn ; k++ ) ti[k] = ti[k-1] + ipas;
