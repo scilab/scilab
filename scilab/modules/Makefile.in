@@ -133,8 +133,8 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	interpolation linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double pvm io \
 	intersci metanet signal_processing sound time sparse \
-	windows_tools functions others overloading maple2scilab m2sci \
-	texmacs scipad scilab2fortran development_tools \
+	windows_tools functions overloading maple2scilab m2sci texmacs \
+	scipad scilab2fortran development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio \
 	scicos_blocks scicos . javasci
@@ -332,7 +332,7 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	interpolation linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double pvm io \
 	intersci metanet signal_processing core interpolation sound \
-	time randlib sparse windows_tools functions others overloading \
+	time randlib sparse windows_tools functions overloading \
 	maple2scilab m2sci texmacs scipad scilab2fortran \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
