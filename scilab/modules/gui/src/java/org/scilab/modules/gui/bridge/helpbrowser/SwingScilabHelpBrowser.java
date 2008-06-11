@@ -58,8 +58,10 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 		super();
 			
 		/* Send information to the user using status bar and cursor */
-		ScilabConsole.getConsole().getInfoBar().setText(Messages.gettext("Loading help browser..."));
-		ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		if (ScilabConsole.getConsole().getInfoBar() != null) {
+			ScilabConsole.getConsole().getInfoBar().setText(Messages.gettext("Loading help browser..."));
+			ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		}
 		
 		File[] jarFiles;
 		if (helps != null) {
@@ -137,16 +139,20 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 			} catch (HelpSetException e) {
 				System.out.println("Could not load file: " + jarFiles[i] + ". Please check its contents, must be a Java Help file.");
 				/* Reinit status bar and cursor */
-				ScilabConsole.getConsole().getInfoBar().setText("");
-				ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				if (ScilabConsole.getConsole().getInfoBar() != null) {
+					ScilabConsole.getConsole().getInfoBar().setText("");
+					ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				}
 				return;
 			}
 			this.getModel().getHelpSet().add(helpSet);
         }
 	    
 		/* Reinit status bar and cursor */
-		ScilabConsole.getConsole().getInfoBar().setText("");
-		ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		if (ScilabConsole.getConsole().getInfoBar() != null) {
+			ScilabConsole.getConsole().getInfoBar().setText("");
+			ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		}
 	}
 	
 	/**
