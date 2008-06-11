@@ -11,6 +11,7 @@ src/c/optimtable.c
 
 OPTIMIZATION_FORTRAN_SOURCES = src/fortran/qrfac.f \
 src/fortran/gcbd.f \
+src/fortran/qpgen2.f \
 src/fortran/n1qn2a.f \
 src/fortran/dogleg.f \
 src/fortran/fuclid.f \

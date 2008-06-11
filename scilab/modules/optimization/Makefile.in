@@ -108,11 +108,11 @@ am__objects_1 = libscioptimization_la-intqld.lo \
 	libscioptimization_la-fsolvetable.lo \
 	libscioptimization_la-lsqrsolvtable.lo \
 	libscioptimization_la-optimtable.lo
-am__objects_2 = qrfac.lo gcbd.lo n1qn2a.lo dogleg.lo fuclid.lo \
-	fmc11b.lo ql0001.lo shanph.lo fajc1.lo majysa.lo fdjac2.lo \
-	icsei.lo majour.lo n1qn1.lo hybrj1.lo n1qn1a.lo n1qn3.lo \
-	fmc11z.lo icse0.lo icse2.lo fmuls1.lo icsec2.lo gcp.lo \
-	n1fc1a.lo n1gc2.lo proj.lo n1gc2a.lo ddd2.lo fremf2.lo \
+am__objects_2 = qrfac.lo gcbd.lo qpgen2.lo n1qn2a.lo dogleg.lo \
+	fuclid.lo fmc11b.lo ql0001.lo shanph.lo fajc1.lo majysa.lo \
+	fdjac2.lo icsei.lo majour.lo n1qn1.lo hybrj1.lo n1qn1a.lo \
+	n1qn3.lo fmc11z.lo icse0.lo icse2.lo fmuls1.lo icsec2.lo \
+	gcp.lo n1fc1a.lo n1gc2.lo proj.lo n1gc2a.lo ddd2.lo fremf2.lo \
 	dcube.lo fcube.lo bfgsd.lo fcomp1.lo fmulb1.lo qrsolv.lo \
 	n1fc1o.lo relvar.lo satur.lo strang.lo hybrd.lo fmc11a.lo \
 	fmani1.lo fmc11e.lo hybrj.lo zqnbd.lo r1updt.lo ajour.lo \
@@ -363,6 +363,7 @@ src/c/optimtable.c
 
 OPTIMIZATION_FORTRAN_SOURCES = src/fortran/qrfac.f \
 src/fortran/gcbd.f \
+src/fortran/qpgen2.f \
 src/fortran/n1qn2a.f \
 src/fortran/dogleg.f \
 src/fortran/fuclid.f \
@@ -817,6 +818,9 @@ qrfac.lo: src/fortran/qrfac.f
 
 gcbd.lo: src/fortran/gcbd.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gcbd.lo `test -f 'src/fortran/gcbd.f' || echo '$(srcdir)/'`src/fortran/gcbd.f
+
+qpgen2.lo: src/fortran/qpgen2.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qpgen2.lo `test -f 'src/fortran/qpgen2.f' || echo '$(srcdir)/'`src/fortran/qpgen2.f
 
 n1qn2a.lo: src/fortran/n1qn2a.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o n1qn2a.lo `test -f 'src/fortran/n1qn2a.f' || echo '$(srcdir)/'`src/fortran/n1qn2a.f
