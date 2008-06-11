@@ -31,14 +31,15 @@ if na==1 then
 end
 // look for an axes with the same axes_bounds
 for k=1:na
-  if and(f.children(k).axes_bounds==axes_bounds) then
+  child = f.children(k);
+  if child.type == "Axes" & and(child).axes_bounds == axes_bounds) then
     //make it current
-    sca(f.children(k))
-    return
+    sca(child);
+    return;
   end
 end	
 //create a new axes
 a=newaxes();
 a.axes_bounds=axes_bounds;
-sca(a)
+sca(a);
 endfunction
