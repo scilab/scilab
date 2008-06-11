@@ -694,10 +694,10 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		double[] textColor = getColorMap().getColor(labelColor);
 		SciTextRenderer renderer = textCreator.createTextRenderer(labelFont, textColor, useFractionalMetrics);
 		
-		GLTools.usePixelCoordinates(gl, transform);
+		GLTools.usePixelCoordinates(gl, getParentFigureGL());
 		
 		if (!checkLabels(renderer, ticksPosPix, ticksDirPix, bboxWidth, bboxHeight)) {
-			GLTools.endPixelCoordinates(gl, transform);
+			GLTools.endPixelCoordinates(gl, getParentFigureGL());
 			return -1.0;
 		}
 		
@@ -706,7 +706,7 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 		
 		double res = drawLabels(renderer, ticksPosPix, ticksDirPix, bboxWidth, bboxHeight);
 		
-		GLTools.endPixelCoordinates(gl, transform);
+		GLTools.endPixelCoordinates(gl, getParentFigureGL());
 		
 		return res;
 		
@@ -803,10 +803,10 @@ public abstract class TicksDrawerGL extends BoxTrimmingObjectGL {
 			= getParentFigureGL().getTextRendererCreator().createTextRenderer(labelFont, color, useFractionalMetrics); 
 		
 		
-		GLTools.usePixelCoordinates(gl, transform);
+		GLTools.usePixelCoordinates(gl, getParentFigureGL());
 		showTicksLines();
 		showLabels(renderer);
-		GLTools.endPixelCoordinates(gl, transform);
+		GLTools.endPixelCoordinates(gl, getParentFigureGL());
 		
 		return labelToAxisDist;
 	}

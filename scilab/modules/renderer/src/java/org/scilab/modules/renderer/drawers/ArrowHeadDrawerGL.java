@@ -74,10 +74,10 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		GL gl = getGL();
 		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl, getCoordinateTransformation());
+		GLTools.usePixelCoordinates(gl, getParentFigureGL());
 		displayDL();
 		
-		GLTools.endPixelCoordinates(gl, getCoordinateTransformation());
+		GLTools.endPixelCoordinates(gl, getParentFigureGL());
 	}
 	
 	/**
@@ -230,7 +230,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		Vector3D[] endPixCoords = transform.getCanvasCoordinates(gl, arrowEnds);
 		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl, transform);
+		GLTools.usePixelCoordinates(gl, getParentFigureGL());
 		
 		// begin to record display list
 		startRecordDL();
@@ -275,7 +275,7 @@ public abstract class ArrowHeadDrawerGL extends DrawableObjectGL {
 		
 		endRecordDL();
 		
-		GLTools.endPixelCoordinates(gl, transform);
+		GLTools.endPixelCoordinates(gl, getParentFigureGL());
 	}
 	
 	/**

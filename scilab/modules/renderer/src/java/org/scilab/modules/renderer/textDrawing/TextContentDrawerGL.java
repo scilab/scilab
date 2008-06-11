@@ -257,14 +257,14 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		
 		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl, transform);
+		GLTools.usePixelCoordinates(gl, getParentFigureGL());
 		
 		// display lists does not work with text rendering
 		
 		// draw the text using the new coordinates
 		Vector3D[] res = drawTextContentPix();
 		
-		GLTools.endPixelCoordinates(gl, transform);
+		GLTools.endPixelCoordinates(gl, getParentFigureGL());
 		
 		
 		
@@ -284,13 +284,13 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		GL gl = getGL();
 		
 		// switch to pixel coordinates
-		GLTools.usePixelCoordinates(gl, getCoordinateTransformation());
+		GLTools.usePixelCoordinates(gl, getParentFigureGL());
 		
 		// display the display list of text
 		showTextContentPix();
 		//displayDL();
 		
-		GLTools.endPixelCoordinates(gl, getCoordinateTransformation());
+		GLTools.endPixelCoordinates(gl, getParentFigureGL());
 		
 	}
 	
@@ -369,11 +369,11 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 		GL gl = getGL();
 		CoordinateTransformation transform = getCoordinateTransformation();
 		textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
-		GLTools.usePixelCoordinates(gl, transform);
+		GLTools.usePixelCoordinates(gl, getParentFigureGL());
 		
 		Vector3D[] resPix = getBoundingRectanglePix();
 		
-		GLTools.endPixelCoordinates(gl, transform);
+		GLTools.endPixelCoordinates(gl, getParentFigureGL());
 		return resPix;
 	}
 	

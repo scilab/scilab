@@ -25,12 +25,12 @@ import org.scilab.modules.renderer.utils.CoordinateTransformation;
  * Store all cliped planes and change everyone of them
  * @author Jean-Baptiste Silvy
  */
-public final class ClipPlane3DManager {
+public class ClipPlane3DManager {
 	
 	/**
 	 * List of clipplane. So every one can access the clipped planes
 	 */
-	private static class ClipPlaneList extends LinkedList<MovableClipPlane3D> {
+	private class ClipPlaneList extends LinkedList<MovableClipPlane3D> {
 		
 		/**
 		 * Needed
@@ -46,18 +46,20 @@ public final class ClipPlane3DManager {
 	}
 	
 	/** List of all active clip planes */
-	private static ClipPlaneList activeClipPlanes = new ClipPlaneList();
+	private ClipPlaneList activeClipPlanes;
 	
 	/**
 	 * Default constructor should not be used
 	 */
-	private ClipPlane3DManager() { }
+	public ClipPlane3DManager() {
+		activeClipPlanes = new ClipPlaneList();
+	}
 	
 	/**
 	 * Add a new plane to the list of clipped planes
 	 * @param plane plane to add
 	 */
-	public static void addClippedPlane(MovableClipPlane3D plane) {
+	public void addClippedPlane(MovableClipPlane3D plane) {
 		activeClipPlanes.add(plane);
 	}
 	
@@ -65,14 +67,14 @@ public final class ClipPlane3DManager {
 	 * Remove a plane from the list of clipped planes
 	 * @param plane plane to remove
 	 */
-	public static void removeClippedPlane(MovableClipPlane3D plane) {
+	public void removeClippedPlane(MovableClipPlane3D plane) {
 		activeClipPlanes.remove(plane);
 	}
 	
 	/**
 	 * @return Iterator on the list of currently active clip planes
 	 */
-	public static Iterator<MovableClipPlane3D> getActiveClipPlanes() {
+	public Iterator<MovableClipPlane3D> getActiveClipPlanes() {
 		return activeClipPlanes.listIterator();
 	}
 	
@@ -81,7 +83,7 @@ public final class ClipPlane3DManager {
 	 * @param gl current GL pipeline
 	 * @param transform current transfomrations between 3D, 2D and pixel coordinates
 	 */
-	public static void pushPlanes(GL gl, CoordinateTransformation transform) {
+	public void pushPlanes(GL gl, CoordinateTransformation transform) {
 		Iterator<MovableClipPlane3D> curPlaneIt = activeClipPlanes.iterator();
 		while (curPlaneIt.hasNext()) {
 			curPlaneIt.next().pushPlane(gl, transform);
@@ -92,7 +94,7 @@ public final class ClipPlane3DManager {
 	 * Pop all planes.
 	 * @param gl current GL pipeline
 	 */
-	public static void popAllPlanes(GL gl) {
+	public void popAllPlanes(GL gl) {
 		Iterator<MovableClipPlane3D> curPlaneIt = activeClipPlanes.iterator();
 		while (curPlaneIt.hasNext()) {
 			curPlaneIt.next().popPlane(gl);
@@ -103,7 +105,7 @@ public final class ClipPlane3DManager {
 	 * Change frame for all clipped planes
 	 * @param gl current GL pipeline
 	 */
-	public static void changeAllPlanesFrame(GL gl) {
+	public void changeAllPlanesFrame(GL gl) {
 		Iterator<MovableClipPlane3D> curPlaneIt = activeClipPlanes.iterator();
 		while (curPlaneIt.hasNext()) {
 			curPlaneIt.next().changeFrame(gl);
@@ -113,7 +115,7 @@ public final class ClipPlane3DManager {
 	/**
 	 * @return string representation of the class.
 	 */
-	public static String getStringRepresentation() {
+	public String getStringRepresentation() {
 		String res = "";
 		Iterator<MovableClipPlane3D> curPlaneIt = activeClipPlanes.iterator();
 		while (curPlaneIt.hasNext()) {

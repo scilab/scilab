@@ -155,7 +155,7 @@ public class RubberBox {
 	    gl.glLogicOp(GL.GL_EQUIV);
 		
 	    // Set pixel coordinates view
-	    GLTools.usePixelCoordinates(gl, parentFigure.getCoordinateTransformation());
+	    GLTools.usePixelCoordinates(gl, parentFigure);
 	    
 	    // use black so will invert color with GL_EQUIV
 	    gl.glColor3d(0.0, 0.0, 0.0);
@@ -173,7 +173,7 @@ public class RubberBox {
 	    previousFirstPoint = new Vector3D(firstPoint);
 	    previousSeconPoint = new Vector3D(secondPoint);
 	    
-	    GLTools.endPixelCoordinates(gl, parentFigure.getCoordinateTransformation());
+	    GLTools.endPixelCoordinates(gl, parentFigure);
 	}
 	
 	/**

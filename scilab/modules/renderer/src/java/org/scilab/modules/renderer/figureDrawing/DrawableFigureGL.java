@@ -28,6 +28,7 @@ import org.scilab.modules.renderer.polylineDrawing.JOGLShadeFacetDrawer;
 import org.scilab.modules.renderer.polylineDrawing.ShadeFacetDrawer;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.TexturedColorMap;
+import org.scilab.modules.renderer.utils.glTools.ClipPlane3DManager;
 import org.scilab.modules.renderer.utils.selection.RubberBox;
 import org.scilab.modules.renderer.utils.textRendering.JOGLTextRendererFactory;
 import org.scilab.modules.renderer.utils.textRendering.TextRendererFactory;
@@ -88,6 +89,8 @@ public class DrawableFigureGL extends ObjectGL {
 	
 	private TextRendererManager textRendererCreator;
 	
+	private ClipPlane3DManager clipPlaneManager;
+	
 	/** To know if the rendering is requested by Scilab or not */
 	private boolean renderRequested;
 	
@@ -113,6 +116,7 @@ public class DrawableFigureGL extends ObjectGL {
       	rubberBox = null;
       	renderRequested = false;
       	transform = new CoordinateTransformation();
+      	clipPlaneManager = new ClipPlane3DManager();
     }
 	
 	/**
@@ -156,6 +160,13 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public CoordinateTransformation getCoordinateTransformation() {
 		return transform;
+	}
+	
+	/**
+	 * @return Object use to manage clip planes
+	 */
+	public ClipPlane3DManager getClipPlaneManager() {
+		return clipPlaneManager;
 	}
 	
 	/**

@@ -16,6 +16,7 @@ package org.scilab.modules.renderer.utils.glTools;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 /**
@@ -120,12 +121,14 @@ public final class GLTools {
 	 * Change coordinates to pixel values (for x and y).
 	 * To get back to user coordinates call endPixelCoordinates
 	 * @param gl current OpenGL pipeline
-	 * @param transform current transfomrations between 3D, 2D and pixel coordinates
+	 * @param parentFigure figure on which to apply the new coordinates
 	 */
-	public static void usePixelCoordinates(GL gl, CoordinateTransformation transform) {
+	public static void usePixelCoordinates(GL gl, DrawableFigureGL parentFigure) {
 		
 		// clipping planes must be modified
-		ClipPlane3DManager.pushPlanes(gl, transform);
+		CoordinateTransformation transform = parentFigure.getCoordinateTransformation();
+		ClipPlane3DManager manager = parentFigure.getClipPlaneManager();
+		manager.pushPlanes(gl, transform);
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		gl.glPushMatrix();
 		gl.glLoadIdentity();
@@ -137,7 +140,7 @@ public final class GLTools {
 		gl.glPushMatrix();
 		gl.glLoadIdentity();
 		
-		ClipPlane3DManager.changeAllPlanesFrame(gl);
+		manager.changeAllPlanesFrame(gl);
 		
 		// transform additional translation to pixels
 		Vector3D translation = transform.getAdditionalTranslationPix(gl);
@@ -150,24 +153,26 @@ public final class GLTools {
 	 * To get back to pixels coordinates from user coordinates.
 	 * To be called after a userPixelCoordinates call.
 	 * @param gl current OpenGL pipeline
-	 * @param transform current transfomrations between 3D, 2D and pixel coordinates
+	 * @param parentFigure figure on which to apply the new coordinates
 	 */
-	public static void endPixelCoordinates(GL gl, CoordinateTransformation transform) {
+	public static void endPixelCoordinates(GL gl, DrawableFigureGL parentFigure) {
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		gl.glPopMatrix();
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glPopMatrix();
 		
+		CoordinateTransformation transform = parentFigure.getCoordinateTransformation();
+		ClipPlane3DManager manager = parentFigure.getClipPlaneManager();
 		Vector3D translation = transform.getAdditionalTranslation();
 		if (translation != null) {
 			// we have an additional translation here
 			// so clipping the plane with its previous equation is not valid here
 			// the plane would be translated too. So remove the translation and use it again
 			gl.glTranslated(-translation.getX(), -translation.getY(), -translation.getZ());
-			ClipPlane3DManager.popAllPlanes(gl);
+			manager.popAllPlanes(gl);
 			gl.glTranslated(translation.getX(), translation.getY(), translation.getZ());
 		} else {
-			ClipPlane3DManager.popAllPlanes(gl);
+			manager.popAllPlanes(gl);
 		}
 		
 		

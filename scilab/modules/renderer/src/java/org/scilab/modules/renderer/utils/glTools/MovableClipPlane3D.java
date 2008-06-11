@@ -108,7 +108,6 @@ public class MovableClipPlane3D extends ClipPlane3D {
 	@Override
 	public void clip(GL gl) {
 		super.clip(gl);
-		ClipPlane3DManager.addClippedPlane(this);
 	}
 	
 	/**
@@ -118,7 +117,6 @@ public class MovableClipPlane3D extends ClipPlane3D {
 	@Override
 	public void unClip(GL gl) {
 		super.unClip(gl);
-		ClipPlane3DManager.removeClippedPlane(this);
 	}
 	
 	/**
