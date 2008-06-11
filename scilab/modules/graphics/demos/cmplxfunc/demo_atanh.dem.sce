@@ -1,32 +1,27 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
+// Copyright (C) 2008 - INRIA
 //
 // This file is distributed under the same license as the Scilab package.
 //
 
 // =============================================================================
-// rings()
+// atanh
 // =============================================================================
 
-function rings()
-
+function demo_atanh()
+	
+	R     = 2;
+	e     = 0.001;
+	theta = -110;
+	alpha = 75;
+	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
 	
-	rr = 0.2;
-	t  = linspace(0,2*%pi,10);
-	s  = linspace(0,2*%pi,41); n=length(s);
-	r  = dup(1+cos(t)*rr,n)'; m=length(t);
-	x  = dup(cos(s),m).*r; y=dup(sin(s),m).*r;
-	z  = dup(sin(t)*rr,n)';
-	X  = [x;(x+1.3);(x-1.3)];
-	Y  = [y;-z;-z];
-	Z  = [z;y;y];
+	PlotCmplxFunc(R,e,"Square","Ox",41,"atanh",theta,alpha,[-0.99,0.99]);
 	
-	plot3d2(X,Y,Z,[m,2*m]);
-
 endfunction
 
-rings();
-clear rings;
+demo_atanh()
+clear demo_atanh;

@@ -39,9 +39,3 @@ subdemolist = [                                       ..
 	"fac3d1"         , "fac3d1.dem.sce"          ];
 	
 subdemolist(:,2) = demopath + subdemolist(:,2);
-	
-function xdemo(info,str)
-	x_message([info;str]);
-	xbasc();
-	execstr(str);
-endfunction

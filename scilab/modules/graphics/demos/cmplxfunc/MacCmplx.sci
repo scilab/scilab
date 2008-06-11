@@ -80,13 +80,49 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 	[xr,yr,zr,xi,yi,zi] = CmplxFacets(R,e,TypeDomain,TypeCut,n,StrFunc)
 	
 	// draw
+	// ============================================
 	
-	delete('all');
-	scf(0);
-	current_figure_hdl = gcf();
-	current_figure_hdl.figure_size = [650 650];
+	current_figure_hdl = scf(100001);
+	clf(my_handle,"reset");
 	
 	drawlater();
+	
+	// plot Im(z)
+	// ============================================
+	
+	subplot(1,2,1);
+	plot3d(xi,yi,zi,theta,alpha,"Re(z)@Im(z)@",[2 6 4]);
+	xtitle("Im("+StrFunc+"(z))");
+	
+	// plot Re(z) + the real restriction
+	// ============================================
+	
+	subplot(1,2,2);
+	plot3d(xr,yr,zr,theta,alpha,"Re(z)@Im(z)@",[ 2 6 4]);
+	xtitle("Re("+StrFunc+"(z))");
+	
+	// real function in yellow
+	// ============================================
+	
+	if DomReal(2) > DomReal(1) then
+		xstring(0.1,-0.15," In yellow : the real "+StrFunc+" function")
+	end
+	
+	if DomReal(2) > DomReal(1) then
+		xx = linspace(DomReal(1),DomReal(2),40)';
+		yy = zeros(xx);
+		zz = evstr(StrFunc+"(xx)");
+		param3d1(xx,yy,list(zz,32),theta,alpha,flag=[0,0]);
+		yellow_line = get('hdl');
+		yellow_line.thickness = 3;
+	end
+	
+	// Title
+	// ============================================
+	
+	my_title_axes = newaxes();
+	
+	my_title_axes.margins = [ 0 0 0 0 ]
 	
 	Rs = string(R);
 	
@@ -99,43 +135,15 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 	if StrFunc == "f" then
 		the_title = "Your Custom (named f) Complex" + end_title;
 	else
-		the_title = "The Complex "+StrFunc+ end_title;
+		the_title = "The Complex " + StrFunc + end_title;
 	end
 	
 	xtitle(the_title);
-	MyAxe_hdl = gca();
-	MyAxe_hdl.title.font_size = 3;
-	MyAxe_hdl.title.font_style = 2;
 	
-	if DomReal(2) > DomReal(1) then
-		xstring(0.1,-0.15," In yellow : the real "+StrFunc+" function")
-	end
-	
-	// plot Im(z)
-	subplot(1,2,1);
-	
-	plot3d(xi,yi,zi,theta,alpha,"Re(z)@Im(z)@",[2 6 4]);
-	MyFirstAxe_hdl = gca();
-	MyFirstAxe_hdl.axes_bounds(2) = 0.1;
-	
-	xtitle("Im("+StrFunc+"(z))");
-	
-	// plot Re(z) + the real restriction
-	subplot(1,2,2);
-	
-	plot3d(xr,yr,zr,theta,alpha,"Re(z)@Im(z)@",[ 2 6 4]);
-	MySecondAxe_hdl = gca();
-	MySecondAxe_hdl.axes_bounds(2) = 0.1;
-	
-	xtitle("Re("+StrFunc+"(z))");
-	if DomReal(2) > DomReal(1) then
-		xx = linspace(DomReal(1),DomReal(2),40)';
-		yy = zeros(xx);
-		zz = evstr(StrFunc+"(xx)");
-		param3d1(xx,yy,list(zz,32),theta,alpha,flag=[0,0]);
-		yellow_line = get('hdl');
-		yellow_line.thickness = 3;
-	end
+	my_title_axes.title.text       = the_title;
+	my_title_axes.title.font_size  = 3;
+	my_title_axes.title.font_style = 2;
+	my_title_axes.title.position   = [0.5 0.97];
 	
 	drawnow();
 	

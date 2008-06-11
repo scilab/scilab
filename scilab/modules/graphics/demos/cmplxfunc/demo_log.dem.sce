@@ -1,32 +1,27 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 //
 // This file is distributed under the same license as the Scilab package.
 //
 
 // =============================================================================
-// rings()
+// log
 // =============================================================================
 
-function rings()
-
+function demo_log()
+	
+	R     = 4;
+	e     = 0.001;
+	theta = 30;
+	alpha = 60;
+	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
 	
-	rr = 0.2;
-	t  = linspace(0,2*%pi,10);
-	s  = linspace(0,2*%pi,41); n=length(s);
-	r  = dup(1+cos(t)*rr,n)'; m=length(t);
-	x  = dup(cos(s),m).*r; y=dup(sin(s),m).*r;
-	z  = dup(sin(t)*rr,n)';
-	X  = [x;(x+1.3);(x-1.3)];
-	Y  = [y;-z;-z];
-	Z  = [z;y;y];
+	PlotCmplxFunc(R,e,"Disk","Ox",[40 20],"log",theta,alpha,[e,R]);
 	
-	plot3d2(X,Y,Z,[m,2*m]);
-
 endfunction
 
-rings();
-clear rings;
+demo_log()
+clear demo_log;
