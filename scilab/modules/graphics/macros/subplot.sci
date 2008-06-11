@@ -32,7 +32,7 @@ end
 // look for an axes with the same axes_bounds
 for k=1:na
   child = f.children(k);
-  if child.type == "Axes" & and(child).axes_bounds == axes_bounds) then
+  if child.type == "Axes" & and(child.axes_bounds == axes_bounds) then
     //make it current
     sca(child);
     return;
