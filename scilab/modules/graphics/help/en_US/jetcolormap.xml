@@ -48,8 +48,8 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 f = scf();
-f.color_map = jetcolormap(32);
 plot3d1();
+f.color_map = jetcolormap(32);
   ]]></programlisting>
   </refsection>
   <refsection>
