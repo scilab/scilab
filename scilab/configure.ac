@@ -1130,7 +1130,6 @@ modules/scicos/Makefile
 modules/scicos_blocks/Makefile
 modules/functions/Makefile
 modules/dynamic_link/Makefile
-modules/others/Makefile
 modules/overloading/Makefile
 modules/javasci/Makefile
 modules/maple2scilab/Makefile
