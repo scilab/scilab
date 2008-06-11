@@ -72,7 +72,7 @@
     <para>Calculates the convolution <literal>y= h*x</literal> of two discrete
     sequences by using the fft. The convolution is defined as follow:</para>
 
-   
+   <!--
 <math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
  <math:semantics>
   <math:mrow>
@@ -111,6 +111,7 @@
 </math:annotation>
  </math:semantics>
 </math:math>
+  -->
     <para></para>
 
     <para>Overlap add method can be used.</para>
