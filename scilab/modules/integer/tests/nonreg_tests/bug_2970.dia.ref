@@ -1,0 +1,23 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 2970 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2970
+//
+// <-- Short Description -->
+//-->u=mopen('foo','wb');
+//-->mput(int32(1996),'l',u)
+//Warning !!!
+//Scilab has found a critical error (EXCEPTION_ACCESS_VIOLATION)
+u = mopen(TMPDIR+filesep()+'foo','wb');
+mput(int32(1996),'l',u)
+mclose(u);
+u = mopen(TMPDIR+filesep()+'foo','rb');
+r = mget(u,'l');
+mclose(u);
+if ( r <> int32(1996) ) then bugmes();quit;end
