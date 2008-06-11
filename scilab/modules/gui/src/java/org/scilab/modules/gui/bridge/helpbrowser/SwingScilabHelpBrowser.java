@@ -11,6 +11,7 @@
  */
 package org.scilab.modules.gui.bridge.helpbrowser;
 
+import java.awt.Cursor;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.net.MalformedURLException;
@@ -29,7 +30,10 @@ import javax.help.JHelpTOCNavigator;
 import javax.help.plaf.basic.BasicSearchNavigatorUI;
 import javax.help.search.SearchQuery;
 
+import org.scilab.modules.console.SciConsole;
+import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.helpbrowser.SimpleHelpBrowser;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Scilab Help Browser in GUIs
@@ -51,7 +55,11 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	 * @param language Scilab current language
 	 */		
 	public SwingScilabHelpBrowser(String[] helps, String language) {
-		super();	
+		super();
+			
+		/* Send information to the user using status bar and cursor */
+		ScilabConsole.getConsole().getInfoBar().setText(Messages.gettext("Loading help browser..."));
+		ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		
 		File[] jarFiles;
 		if (helps != null) {
@@ -128,10 +136,17 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 				helpSet = new HelpSet(/*classLoader*/ null, helpSetURL);
 			} catch (HelpSetException e) {
 				System.out.println("Could not load file: " + jarFiles[i] + ". Please check its contents, must be a Java Help file.");
+				/* Reinit status bar and cursor */
+				ScilabConsole.getConsole().getInfoBar().setText("");
+				ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				return;
 			}
 			this.getModel().getHelpSet().add(helpSet);
         }
+	    
+		/* Reinit status bar and cursor */
+		ScilabConsole.getConsole().getInfoBar().setText("");
+		ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	
 	/**

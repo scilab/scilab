@@ -15,6 +15,7 @@
 package org.scilab.modules.gui.bridge;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 
 import javax.media.opengl.GL;
@@ -1142,6 +1143,16 @@ public class ScilabBridge {
 	public static void setMaxOutputSize(Console console, int nbLines) {
 		ScilabConsoleBridge.setMaxOutputSize(console, nbLines);
 	}
+	
+	/**
+	 * Set the cursor pointer over the Console
+	 * @param console the console
+	 * @param cursor the Cursor to set
+	 */
+	public static void setCursor(Console console, Cursor cursor) {
+		ScilabConsoleBridge.setCursor(console, cursor);
+	}
+
 	/*****************/
 	/* Canvas Bridge */
 	/*****************/

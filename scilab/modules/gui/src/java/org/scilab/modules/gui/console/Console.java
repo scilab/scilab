@@ -14,6 +14,7 @@
 package org.scilab.modules.gui.console;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 
 import org.scilab.modules.gui.dockable.Dockable;
@@ -144,4 +145,10 @@ public interface Console extends Dockable {
 	 * @param nbLines the number of lines 
 	 */
 	void setMaxOutputSize(int nbLines);
+	
+	/**
+	 * Set the cursor pointer over the Console
+	 * @param cursor the Cursor to set
+	 */
+	void setCursor(Cursor cursor);
 }

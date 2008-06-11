@@ -12,6 +12,7 @@
 package org.scilab.modules.gui.console;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
@@ -299,4 +300,14 @@ public class ScilabConsoleBridge {
 	public static void setMaxOutputSize(Console console, int nbLines) {
 		console.getAsSimpleConsole().setMaxOutputSize(nbLines);
 	}
+	
+	/**
+	 * Set the cursor pointer over the Console
+	 * @param console the console
+	 * @param cursor the Cursor to set
+	 */
+	public static void setCursor(Console console, Cursor cursor) {
+		console.getAsSimpleConsole().setCursor(cursor);
+	}
+
 }
