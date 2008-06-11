@@ -471,7 +471,6 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       x = (double) nmax;
       C2F(ddmpev)( stk(l), istk(il+8), &one, &x, px, &one, &one, &trois);
       ideb = (int) px[0]; ipas = (int) px[1]; ifin = (int) px[2];
-
       if ( ipas == 0  ||  (ifin-ideb)*sign(ipas) < 0 )   /* index is finaly [] */
 	{
 	  *mn = 0; *ind_max = -1;
@@ -483,7 +482,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	}
       else
 	{
-	  *mn = (abs(ifin-ideb)+1)/abs(ipas);
+	  *mn = (abs(ifin-ideb))/abs(ipas)+1;
 	  *ind_max = Max(ideb, ifin);
 	  li = 4; CreateVar(pos_ind,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, mn,   &one,   &li); ti = istk(li);
 	  ti[0] = ideb-1;  /* -1 to get 0-based indices */
