@@ -11,7 +11,7 @@
  */
 
 #ifndef __GETUIOBJECTENABLE_H__
-#define __GETUIOBJECTVISIBLE_H__
+#define __GETUIOBJECTENABLE_H__
 
 #include "ObjectStructure.h"
 #include "returnProperty.h"
