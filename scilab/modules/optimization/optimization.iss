@@ -40,3 +40,4 @@ Source: modules\{#OPTIMIZATION}\demos\*.*; DestDir: {app}\modules\{#OPTIMIZATION
 Source: modules\{#OPTIMIZATION}\tests\*.*; DestDir: {app}\modules\{#OPTIMIZATION}\tests; Flags: recursesubdirs; Components: {#COMPN_OPTIM}  and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
+
