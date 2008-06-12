@@ -55,7 +55,7 @@ Fi=C*(z*eye()-A)^(-1)*B;       //transfer function evaluation
 F(:,1)*Fi                    //operations with rationals
 M=[Mp -Mp; Mp' Mp+eye()]       //concatenation of polynomial matrices
 [Fi, Fi(:,1)]                // ... or rationals
-F=syslin('c',F);             
+F=syslin('c',F);
 Num=F('num');Den=F('den');           //operation on transfer matrix
 
 //                  SOME NUMERICAL PRIMITIVES
@@ -71,8 +71,9 @@ poly(A-B*K,'z')-poly([-1-%i -1+%i -1],'z')    //Check...
 
 s=sin(0:0.1:5*%pi);
 ss=fft(s(1:128),-1);        //FFT
-xbasc();
-plot2d3("enn",1,abs(ss)');      //simple plot
+
+my_handle = scf(100001);clf(my_handle,"reset");
+plot2d3("enn",1,abs(ss)'); //simple plot
 
 
 //              ON LINE DEFINITION OF FUNCTION
@@ -101,7 +102,8 @@ sl=syslin('c',1/(s*s+0.2*s+1))
 instants=0:0.05:20;
 //             step response:
 y=csim('step',instants,sl);
-xbasc();plot2d(instants',y')
+my_handle = scf(100001);clf(my_handle,"reset");
+plot2d(instants',y')
 //             Delayed step response
 deff('[in]=u(t)','if t<3 then in=0;else in=1;end');
 y1=csim(u,instants,sl);plot2d(instants',y1');
@@ -117,7 +119,7 @@ sld=dscr(tf2ss(sl),0.05);
 //               Step response
 u=ones(instants);
 yyy=flts(u,sld);
-xbasc();
+my_handle = scf(100001);clf(my_handle,"reset");
 plot(instants,yyy);
 clear u;
 
@@ -125,7 +127,7 @@ clear u;
 //              Impulse response
 u=0*ones(instants);u(1)=1/dt;
 yy=flts(u,sld);
-xbasc();
+my_handle = scf(100001);clf(my_handle,"reset");
 plot(instants,yy);
 clear u;
 //            system interconnexion

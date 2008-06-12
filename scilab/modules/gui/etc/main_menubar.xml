@@ -174,9 +174,9 @@
             <callback instruction='help();' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Scilab  &amp;Demonstrations" enabled="false">
-             <callback instruction='scilab_demos();' type="0"/>
-        </submenu> 
+        <submenu label="Scilab  &amp;Demonstrations">
+             <callback instruction='demo_gui();' type="0"/>
+        </submenu>
         <separator/>
         <submenu label="&amp;Web links"> 
             <submenu label="Scilab  &amp;Web Site"> 

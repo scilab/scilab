@@ -72,22 +72,12 @@ function uicontrol_plot3d()
 	
 	uimenu( "parent"    , h,                 ..
 			"label"     , gettext("Close"),  ..
-			"callback"  , "demo_quit",       ..
+			"callback"  , "demo_plot3d=get_figure_handle(100001);delete(demo_plot3d);", ..
 			"tag"       , "close_menu");
 	
 	// Frames creation [Control Panel]
 	// =========================================================================
 	
-	my_background = uicontrol( ...
-		"parent"              , demo_plot3d,...
-		"style"               , "text",...
-		"units"               , "pixels",...
-		"string"              , html2str(SCI+"/modules/gui/demos/uicontrol_plot3d.dem.html"), ...
-		"position"            , [ margin_x+1 margin_y+2 frame_w-3 frame_h-3],...
-		"tag"                 , "my_background" ...
-	);
-
-
 	my_frame = uicontrol( ...
 		"parent"              , demo_plot3d,...
 		"relief"              , "groove",...
@@ -119,9 +109,6 @@ function uicontrol_plot3d()
 	);
 	
 	
-
-
-
 	// Rotation Angle
 	// =========================================================================
 	
@@ -339,9 +326,6 @@ function uicontrol_plot3d()
 		"tag"                 , "pushbutton_bac" ...
 	);
 	
-	
-	
-	
 	// show/hide frame creation
 	// =========================================================================
 	
@@ -446,9 +430,6 @@ function uicontrol_plot3d()
 		"background"          , [1 1 1], ...
 		"callback"           , "update_edges_visible",...
 		"tag"                , "edges_checkbox");
-		
-	
-	
 	
 	// Edit title
 	// =========================================================================
@@ -684,8 +665,6 @@ function update_title_string
 	my_plot_axes.title.text = get(gcbo,"String");
 	
 endfunction
-
-
 
 function str = html2str(filename)
 	
