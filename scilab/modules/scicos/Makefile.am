@@ -160,49 +160,102 @@ macros/scicos_scicos/Threshold.cosf
 #### scicos : demos files ####
 #### Custom Scicos Demos for Scilab 5.0 ALPHA #########
 libsciscicos_la_demosdir=$(mydatadir)
-nobase_libsciscicos_la_demos_DATA = demos/bounce.cosf \
+nobase_libsciscicos_la_demos_DATA = demos/anim_pen.sci \
+demos/bounce.cos \
+demos/bounce.cosf \
+demos/bounce_V1.cos \
 demos/Bouncing_ball.cos \
+demos/Bouncing_ball.cosf \
 demos/Cont.Disc-Observer.cos \
+demos/Cont.Disc-Observer.cosf \
+demos/Cont.Disc-Observer.dem.sce \
+demos/Controller.cos \
 demos/Controller.cosf \
+demos/Controller.dem.sce \
 demos/demo_Datatype.cosf \
+demos/demo_Datatype.dem.sce \
 demos/demo_flipflop.cosf \
+demos/demo_flipflop.dem.sce \
+demos/demo_watertank.cos \
 demos/demo_watertank.cosf \
+demos/demo_watertank.dem.sce \
+demos/dialogs.sci \
 demos/dialogs_learn.sci \
 demos/dialogs_play.sci \
-demos/dialogs.sci \
 demos/Discrete-KalmanFilter.cosf \
 demos/fibo.cos \
+demos/fibo.cosf \
+demos/fibo.dem.sce \
 demos/Finite_state_Buck.cosf \
+demos/Finite_state_SwingUp.cos \
 demos/Finite_state_SwingUp.cosf \
+demos/go_pend_5.sci \
+demos/goto_demo.cos \
 demos/goto_demo.cosf \
+demos/goto_demo.dem.sce \
+demos/Hydraulics.cos \
 demos/Hydraulics.cosf \
+demos/Ifsub.cos \
 demos/Ifsub.cosf \
+demos/Ifsub.dem.sce \
 demos/imppart_Hydraulics.mo \
 demos/Inverted_pendulum.cos \
+demos/Inverted_pendulum.cosf \
+demos/Inverted_pendulum.dem.sce \
 demos/Kalman_1.cos \
+demos/Kalman_1.cosf \
+demos/Kalman_1.dem.sce \
 demos/live.dat \
+demos/live.dem.gateway.sce \
+demos/LogicalAnd.cos \
 demos/Lorentz.cos \
+demos/Lorentz.cosf \
+demos/Lorentz.dem.sce \
+demos/OldGainTest.cosf \
+demos/PENDULUM_ANIM.sci \
+demos/pendulum_anim45.cos \
+demos/PID-Demo.cos \
+demos/Plant_DiscreteController.cos \
 demos/Plant_DiscreteController.cosf \
+demos/Plant_DiscreteController.dem.sce \
 demos/scicos.dem \
+demos/scicos.dem.gateway.sce \
 demos/scicos_learn.sci \
 demos/scicos_play.sci \
 demos/Scilab_Block.cosf \
+demos/Scilab_Block.dem.sce \
 demos/setw.sci \
 demos/Signal_Builder.cosf \
+demos/Simple_Demo.cos \
 demos/Simple_Demo.cosf \
+demos/Simple_Demo.dem.sce \
 demos/Simple_Thermostat.cos \
+demos/Simple_Thermostat.cosf \
+demos/Simple_Thermostat.dem.sce \
 demos/sound.cosf \
 demos/System-Observer.cos \
+demos/System-Observer.cosf \
+demos/System-Observer.dem.sce \
 demos/Table_Lookup.cosf \
+demos/Table_Lookup.dem.sce \
 demos/Temp.cos \
+demos/Temp.cosf \
+demos/Temp.dem.sce \
 demos/Thermique_bloc.cosf \
 demos/Threshold_ZeroCrossing.cosf \
+demos/Threshold_ZeroCrossing.dem.sce \
 demos/tut1 \
+demos/tut1.dem.sce \
 demos/tut2 \
+demos/tut2.dem.sce \
 demos/tut3 \
+demos/tut3.dem.sce \
 demos/tut4 \
+demos/tut4.dem.sce \
 demos/tut5 \
-demos/tut6
+demos/tut5.dem.sce \
+demos/tut6 \
+demos/tut6.dem.sce
 
 libsciscicos_la_demosCodeGendir=$(mydatadir)/demos/CodeGen/
 nobase_libsciscicos_la_demosCodeGen_DATA = demos/CodeGen/Fibo_standalone.c \

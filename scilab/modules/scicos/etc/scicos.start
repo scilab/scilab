@@ -21,7 +21,7 @@ add_module_help_chapter('scicos');
 path=get_absolute_file_path('scicos.start');
 path=getshortpathname(path);
 path=strsubst(path,'\','/');
-pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/scicos.dem',%f,%f);
+pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/scicos.dem.gateway.sce',%f,%f);
 add_demo("Scicos",pathdemos);
 clear path pathdemos;
 
