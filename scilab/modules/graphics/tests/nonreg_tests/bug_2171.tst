@@ -21,6 +21,4 @@ Matplot(Lenna,axesflag=0,frameflag=4)
 
 fig = gcf();
 // check exported file
-xs2eps(fig.figure_id, SCI + "/modules/graphics/tests/nonreg_tests/bug_1981.eps");
-
-
+xs2eps(fig.figure_id, TMPDIR + "/bug_1981.eps");

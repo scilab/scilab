@@ -41,6 +41,7 @@ function demo_custom()
 	axes_h       = 2*margin_y + frame_h;          // axes height (100 => toolbar height)
 	
 	demo_fig = figure(100001);
+	clf(demo_fig,"reset");
 	
 	demo_fig.background      = -2;
 	demo_fig.color_map       = jetcolormap(128);

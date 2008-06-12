@@ -692,10 +692,13 @@ demos/fec/MESH \
 demos/fec/MESH.VAL \
 demos/graphics.dem.gateway.sce \
 demos/misc/misc.dem \
+demos/misc/misc.dem.sce \
+demos/misc/misc.dem.sci \
 demos/misc/numerique.dem \
 demos/misc/oscil.dem \
 demos/misc/oscil.sci \
 demos/misc/point.dem \
+demos/misc.dem.sci \
 demos/misc_new/misc.dem.gateway.sce \
 demos/misc_new/misc.sce \
 demos/misc_new/numerique.dem \

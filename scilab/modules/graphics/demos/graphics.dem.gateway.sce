@@ -13,7 +13,7 @@ subdemolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gatew
                "Finite Elements"             ,"fec/fec.dem.gateway.sce"                             ; ..
                "Bezier curves and surfaces"  ,"bezier/bezier.dem.gateway.sce"                       ; ..
                "More surfaces"               ,"surface/surfaces.dem.gateway.sce"                    ; ..
-               "Misc"                        ,"misc_new/misc.dem.gateway.sce"                       ; ..
+               "Misc"                        ,"misc/misc.dem.sce"                                   ; ..
                "Complex elementary functions","cmplxfunc/cmplxfunc.dem.gateway.sce"                 ; ..
                "bar histogram"               ,"bar/bar.dem"                                         ; ..
                "Colormap"                    ,"colormap.dem.sce"                                    ];

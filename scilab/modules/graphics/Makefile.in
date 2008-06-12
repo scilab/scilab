@@ -1761,10 +1761,13 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@demos/fec/MESH.VAL \
 @GUI_TRUE@demos/graphics.dem.gateway.sce \
 @GUI_TRUE@demos/misc/misc.dem \
+@GUI_TRUE@demos/misc/misc.dem.sce \
+@GUI_TRUE@demos/misc/misc.dem.sci \
 @GUI_TRUE@demos/misc/numerique.dem \
 @GUI_TRUE@demos/misc/oscil.dem \
 @GUI_TRUE@demos/misc/oscil.sci \
 @GUI_TRUE@demos/misc/point.dem \
+@GUI_TRUE@demos/misc.dem.sci \
 @GUI_TRUE@demos/misc_new/misc.dem.gateway.sce \
 @GUI_TRUE@demos/misc_new/misc.sce \
 @GUI_TRUE@demos/misc_new/numerique.dem \

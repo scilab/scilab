@@ -17,9 +17,9 @@ function moebius()
 	// the Moebius band
 	t=linspace(-1,1,20)';
 	x=linspace(0,%pi,40);
-	factor=2+ t*cos(x);
-	X=factor*diag(cos(2*x));
-	Y=factor*diag(sin(2*x));
+	my_factor=2+ t*cos(x);
+	X=my_factor*diag(cos(2*x));
+	Y=my_factor*diag(sin(2*x));
 	Z=t*sin(x);
 	
 	my_handle                   = scf(100001);

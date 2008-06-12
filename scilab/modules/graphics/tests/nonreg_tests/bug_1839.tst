@@ -30,9 +30,5 @@ TL.color = [c;c+1;c+2;c+3];
 h.data = TL;
 
 // try to export to GIF or PPM
-xs2gif(f.figure_id, "test.gif");
-xs2ppm(f.figure_id, "test.ppm");
-
-
-
-
+xs2gif(f.figure_id, TMPDIR + "/test.gif");
+xs2ppm(f.figure_id, TMPDIR + "/test.ppm");

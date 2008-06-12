@@ -16,9 +16,9 @@ function torus1
 	
 	x=linspace(0,2*%pi,40);
 	y=linspace(0,2*%pi,20)';
-	factor=1.5+cos(y);
-	X=factor*cos(x);
-	Y=factor*sin(x);
+	my_factor=1.5+cos(y);
+	X=my_factor*cos(x);
+	Y=my_factor*sin(x);
 	Z=sin(y)*ones(x)+ ones(y)*cos(2*x);
 	
 	my_handle                   = scf(100001);
