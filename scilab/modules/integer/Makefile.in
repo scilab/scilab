@@ -102,11 +102,10 @@ libsciinteger_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/libst/libscilibst.la
 am__objects_1 = libsciinteger_la-genconcatcol.lo \
 	libsciinteger_la-genprod.lo libsciinteger_la-genrdiv.lo \
-	libsciinteger_la-mputi.lo libsciinteger_la-genmin2.lo \
-	libsciinteger_la-i_nextj.lo libsciinteger_la-genmax2.lo \
-	libsciinteger_la-genextrac1.lo libsciinteger_la-genextrac2.lo \
-	libsciinteger_la-gencopy.lo libsciinteger_la-gentril.lo \
-	libsciinteger_la-mgeti.lo libsciinteger_la-gencheck.lo \
+	libsciinteger_la-genmin2.lo libsciinteger_la-i_nextj.lo \
+	libsciinteger_la-genmax2.lo libsciinteger_la-genextrac1.lo \
+	libsciinteger_la-genextrac2.lo libsciinteger_la-gencopy.lo \
+	libsciinteger_la-gentril.lo libsciinteger_la-gencheck.lo \
 	libsciinteger_la-tpconv.lo libsciinteger_la-genmdiag.lo \
 	libsciinteger_la-genscal.lo libsciinteger_la-gentriu.lo \
 	libsciinteger_la-genvmul.lo libsciinteger_la-genconcatrow.lo \
@@ -360,7 +359,6 @@ top_srcdir = @top_srcdir@
 INTEGER_C_SOURCES = src/c/genconcatcol.c \
 src/c/genprod.c \
 src/c/genrdiv.c \
-src/c/mputi.c \
 src/c/genmin2.c \
 src/c/i_nextj.c \
 src/c/genmax2.c \
@@ -368,7 +366,6 @@ src/c/genextrac1.c \
 src/c/genextrac2.c \
 src/c/gencopy.c \
 src/c/gentril.c \
-src/c/mgeti.c \
 src/c/gencheck.c \
 src/c/tpconv.c \
 src/c/genmdiag.c \
@@ -672,8 +669,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-genvmul.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-gw_integer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-i_nextj.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-mgeti.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-mputi.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-tpconv.Plo@am__quote@
 
 .c.o:
@@ -717,13 +712,6 @@ libsciinteger_la-genrdiv.lo: src/c/genrdiv.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/genrdiv.c' object='libsciinteger_la-genrdiv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciinteger_la_CFLAGS) $(CFLAGS) -c -o libsciinteger_la-genrdiv.lo `test -f 'src/c/genrdiv.c' || echo '$(srcdir)/'`src/c/genrdiv.c
-
-libsciinteger_la-mputi.lo: src/c/mputi.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciinteger_la_CFLAGS) $(CFLAGS) -MT libsciinteger_la-mputi.lo -MD -MP -MF $(DEPDIR)/libsciinteger_la-mputi.Tpo -c -o libsciinteger_la-mputi.lo `test -f 'src/c/mputi.c' || echo '$(srcdir)/'`src/c/mputi.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciinteger_la-mputi.Tpo $(DEPDIR)/libsciinteger_la-mputi.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mputi.c' object='libsciinteger_la-mputi.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciinteger_la_CFLAGS) $(CFLAGS) -c -o libsciinteger_la-mputi.lo `test -f 'src/c/mputi.c' || echo '$(srcdir)/'`src/c/mputi.c
 
 libsciinteger_la-genmin2.lo: src/c/genmin2.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciinteger_la_CFLAGS) $(CFLAGS) -MT libsciinteger_la-genmin2.lo -MD -MP -MF $(DEPDIR)/libsciinteger_la-genmin2.Tpo -c -o libsciinteger_la-genmin2.lo `test -f 'src/c/genmin2.c' || echo '$(srcdir)/'`src/c/genmin2.c
@@ -773,13 +761,6 @@ libsciinteger_la-gentril.lo: src/c/gentril.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gentril.c' object='libsciinteger_la-gentril.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciinteger_la_CFLAGS) $(CFLAGS) -c -o libsciinteger_la-gentril.lo `test -f 'src/c/gentril.c' || echo '$(srcdir)/'`src/c/gentril.c
-
-libsciinteger_la-mgeti.lo: src/c/mgeti.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciinteger_la_CFLAGS) $(CFLAGS) -MT libsciinteger_la-mgeti.lo -MD -MP -MF $(DEPDIR)/libsciinteger_la-mgeti.Tpo -c -o libsciinteger_la-mgeti.lo `test -f 'src/c/mgeti.c' || echo '$(srcdir)/'`src/c/mgeti.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciinteger_la-mgeti.Tpo $(DEPDIR)/libsciinteger_la-mgeti.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mgeti.c' object='libsciinteger_la-mgeti.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciinteger_la_CFLAGS) $(CFLAGS) -c -o libsciinteger_la-mgeti.lo `test -f 'src/c/mgeti.c' || echo '$(srcdir)/'`src/c/mgeti.c
 
 libsciinteger_la-gencheck.lo: src/c/gencheck.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciinteger_la_CFLAGS) $(CFLAGS) -MT libsciinteger_la-gencheck.lo -MD -MP -MF $(DEPDIR)/libsciinteger_la-gencheck.Tpo -c -o libsciinteger_la-gencheck.lo `test -f 'src/c/gencheck.c' || echo '$(srcdir)/'`src/c/gencheck.c
