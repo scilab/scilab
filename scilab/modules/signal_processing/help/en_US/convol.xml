@@ -72,8 +72,12 @@
     <para>Calculates the convolution <literal>y= h*x</literal> of two discrete
     sequences by using the fft. The convolution is defined as follow:</para>
 
-   <!--
-<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+
+ <para>    
+ <inlinemediaobject>
+ <imageobject>
+ <imagedata>
+ <math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
  <math:semantics>
   <math:mrow>
    <math:msub>
@@ -108,13 +112,15 @@
    </math:mrow>
   </math:mrow>
   <math:annotation math:encoding="StarMath 5.0">y_k=sum_j h_j*x_{k+1-j}
-</math:annotation>
+ </math:annotation>
  </math:semantics>
-</math:math>
-  -->
-    <para></para>
-
-    <para>Overlap add method can be used.</para>
+ </math:math>
+ </imagedata>
+ </imageobject>
+ </inlinemediaobject>
+ </para>
+ 
+   <para>Overlap add method can be used.</para>
 
     <para>USE OF OVERLAP ADD METHOD: For x=[x1,x2,...,xNm1,xN] First call is
     [y1,e1]=convol(h,x1); Subsequent calls : [yk,ek]=convol(h,xk,ekm1); Final
