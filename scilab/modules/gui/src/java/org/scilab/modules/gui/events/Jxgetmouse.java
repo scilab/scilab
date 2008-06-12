@@ -109,6 +109,15 @@ public final class Jxgetmouse {
 		return ClickInfos.getInstance().getYCoordinate();
 	}
 	/**
+	 * @return the WindowsID
+	 */
+	public static int getWindowsID() {
+		return ClickInfos.getInstance().getWindowID();
+	}
+	
+	
+	
+	/**
 	 * Manage xgetmouse behaviour for keyboard entry.
 	 * 1 - Key has been pressed.
 	 * 2 - CTRL + Key has been pressed.
