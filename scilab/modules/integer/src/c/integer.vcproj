@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="integer"
 	ProjectGUID="{C7865CAA-EC7C-41EB-8324-2B81C384CA20}"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -506,14 +506,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\mgeti.c"
-				>
-			</File>
-			<File
-				RelativePath=".\mputi.c"
-				>
-			</File>
-			<File
 				RelativePath=".\tpconv.c"
 				>
 			</File>
@@ -696,14 +688,6 @@
 			</File>
 			<File
 				RelativePath=".\i_nextj.h"
-				>
-			</File>
-			<File
-				RelativePath=".\mgeti.h"
-				>
-			</File>
-			<File
-				RelativePath=".\mputi.h"
 				>
 			</File>
 			<File

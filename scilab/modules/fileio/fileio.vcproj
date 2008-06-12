@@ -419,6 +419,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\filesmanagement.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\FindFileExtension.c"
 				>
 			</File>
@@ -483,6 +487,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\mgeti.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\mgetstr.c"
 				>
 			</File>
@@ -492,6 +500,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\mput.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mputi.c"
 				>
 			</File>
 			<File
@@ -661,6 +673,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\filesmanagement.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\FindFileExtension.h"
 				>
 			</File>
@@ -729,6 +745,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\mgeti.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\mgetstr.h"
 				>
 			</File>
@@ -738,6 +758,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\mput.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mputi.h"
 				>
 			</File>
 			<File

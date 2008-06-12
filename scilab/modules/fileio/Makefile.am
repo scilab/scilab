@@ -11,6 +11,7 @@ src/c/findfiles.c \
 src/c/Status2Mode.c \
 src/c/addfile.c \
 src/c/delfile.c \
+src/c/filesmanagement.c \
 src/c/getfiledesc.c \
 src/c/getfileinfo.c \
 src/c/getfiletype.c \
@@ -19,9 +20,11 @@ src/c/mclose.c \
 src/c/meof.c \
 src/c/merror.c \
 src/c/mget.c \
+src/c/mgeti.c \
 src/c/mgetstr.c \
 src/c/mopen.c \
 src/c/mput.c \
+src/c/mputi.c \
 src/c/mputstr.c \
 src/c/mseek.c \
 src/c/mtell.c \
@@ -103,6 +106,7 @@ libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
 includes/findfiles.h \
 includes/FindFileExtension.h \
+includes/filesmanagement.h \
 includes/URIFileToFilename.h \
 includes/createdirectory.h \
 includes/isdir.h \

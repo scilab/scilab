@@ -6,7 +6,6 @@
 INTEGER_C_SOURCES = src/c/genconcatcol.c \
 src/c/genprod.c \
 src/c/genrdiv.c \
-src/c/mputi.c \
 src/c/genmin2.c \
 src/c/i_nextj.c \
 src/c/genmax2.c \
@@ -14,7 +13,6 @@ src/c/genextrac1.c \
 src/c/genextrac2.c \
 src/c/gencopy.c \
 src/c/gentril.c \
-src/c/mgeti.c \
 src/c/gencheck.c \
 src/c/tpconv.c \
 src/c/genmdiag.c \

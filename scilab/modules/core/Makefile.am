@@ -65,7 +65,6 @@ src/c/scilabmode.c \
 src/c/GetXmlFileEncoding.c \
 src/c/GetenvB.c \
 src/c/islittleendian.c \
-src/c/filesmanagement.c \
 src/c/terme.c \
 src/c/ifexpr.c \
 src/c/expr.c \
@@ -358,7 +357,6 @@ includes/commandwords.h \
 includes/core_math.h \
 includes/ExceptionMessage.h \
 includes/existfunction.h \
-includes/filesmanagement.h \
 includes/freeArrayOfString.h \
 includes/fromjava.h \
 includes/Funtab.h \

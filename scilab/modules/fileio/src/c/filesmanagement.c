@@ -42,11 +42,15 @@ static int CurrentMaxFiles=DEFAULT_MAX_FILES;
 FILE *GetFileOpenedInScilab(int Id)
 {
 	int fd1=0;
+	FILE *returnedFILE = NULL;
 
 	fd1 = (Id != -1) ?  Min(Max(Id,0),GetMaximumFileOpenedInScilab()-1) : CurFile ;
 
-	if ( fd1 != -1 ) return(ScilabFileList[fd1].ftformat);
-	return((FILE *) 0);
+	if ( fd1 != -1 ) 
+	{
+		returnedFILE = ScilabFileList[fd1].ftformat;
+	}
+	return returnedFILE;
 }
 /*--------------------------------------------------------------------------*/
 int GetCurrentFileId(void)

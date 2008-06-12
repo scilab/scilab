@@ -42,7 +42,7 @@ void C2F(mputi) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
 {  
   char c1,c2;
   int i,nc,swap;
-  FILE *fa;
+  FILE *fa = NULL;
   ft_t ft;
   char *RES_c;
   unsigned char *RES_uc;
