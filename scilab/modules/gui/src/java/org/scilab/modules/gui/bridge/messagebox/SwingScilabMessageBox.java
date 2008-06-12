@@ -13,8 +13,11 @@
 package org.scilab.modules.gui.bridge.messagebox;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -55,6 +58,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	private static final int WINDOW_WIDTH = 650;
 	private static final int MESSAGE_HEIGHT = 200;
 	private static final int LISTBOX_HEIGHT = 200;
+	
+	private static final int X_MDIALOG_MARGIN = 5;
 	
 	private static final int X_MESSAGE_TYPE = 0;
 	private static final int X_DIALOG_TYPE = 1;
@@ -342,7 +347,14 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 				numberOfColumns = columnLabels.length + 1;
 				numberOfLines = lineLabels.length + 1;
 			}
-			JPanel panel = new JPanel(new GridLayout(numberOfLines, numberOfColumns));
+			//JPanel panel = new JPanel(new GridLayout(numberOfLines, numberOfColumns));
+			GridBagLayout layout = new GridBagLayout();
+			JPanel panel = new JPanel(layout);
+			GridBagConstraints constraints = new GridBagConstraints();
+			constraints.gridx = 0;
+			constraints.gridy = 0;
+			constraints.fill = GridBagConstraints.HORIZONTAL;
+			constraints.insets = new Insets(X_MDIALOG_MARGIN, X_MDIALOG_MARGIN, X_MDIALOG_MARGIN, X_MDIALOG_MARGIN);
 
 			int line = 0;
 			int col = 0;
@@ -350,8 +362,12 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			if (columnLabels != null) {
 				panel.add(new JLabel(""));
 				for (col = 0; col < columnLabels.length; col++) {
-					panel.add(new JLabel(columnLabels[col]));
+					JLabel colLabel = new JLabel(columnLabels[col]);
+					colLabel.setHorizontalAlignment(JLabel.CENTER);
+					panel.add(colLabel, constraints);
+					constraints.gridx++; 
 				}
+				constraints.gridy++;
 			}
 			
 			
@@ -363,14 +379,19 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 				userValues = new String[lineLabels.length * columnLabels.length];
 				textFields = new JTextField[lineLabels.length * columnLabels.length];
 			}
-			
 			for (line = 0; line < lineLabels.length; line++) {
-				panel.add(new JLabel(lineLabels[line]));
+				constraints.gridx = 0; 
+				JLabel lineLabel = new JLabel(lineLabels[line]);
+				lineLabel.setHorizontalAlignment(JLabel.CENTER);
+				panel.add(lineLabel, constraints);
+				constraints.gridx++; 
 				for (col = 0; col < numberOfColumns - 1; col++) {
 					textFields[line * (numberOfColumns - 1) + col] = 
 						new JTextField(defaultInput[line * (numberOfColumns - 1) + col]);
-					panel.add(textFields[line * (numberOfColumns - 1) + col]);
+					panel.add(textFields[line * (numberOfColumns - 1) + col], constraints);
+					constraints.gridx++; 
 				}
+				constraints.gridy++;
 			}
 
 			panel.doLayout();
