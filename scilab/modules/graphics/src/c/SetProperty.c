@@ -1585,11 +1585,20 @@ int sciInitIsClipping( sciPointObj * pobj, int value )
       pAXES_FEATURE (pobj)->isclip = value;
       if(value>0) pAXES_FEATURE (pobj)->clip_region_set=1;
       break;
-    case SCI_SURFACE:  
+    case SCI_SURFACE:
+      pSURFACE_FEATURE (pobj)->isclip = value;
+      if(value>0) pSURFACE_FEATURE (pobj)->clip_region_set=1;
+      break;
+    case SCI_FEC:
+      pFEC_FEATURE (pobj)->isclip = value;
+      if(value>0) pFEC_FEATURE (pobj)->clip_region_set=1;
+      break;
+    case SCI_GRAYPLOT:
+      pGRAYPLOT_FEATURE (pobj)->isclip = value;
+      if(value>0) pGRAYPLOT_FEATURE (pobj)->clip_region_set=1;
+      break;
     case SCI_LEGEND: 
-    case SCI_TITLE:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:    
+    case SCI_TITLE:  
     case SCI_AGREG:
     case SCI_FIGURE:
     case SCI_SBH:   
@@ -1634,35 +1643,34 @@ sciSetClipping (sciPointObj * pobj, double pclip[4] )
   switch (sciGetEntityType (pobj))
     {
     case SCI_SUBWIN:
-      for(i=0;i<4;i++) pSUBWIN_FEATURE (pobj)->clip_region[i] = pclip[i];
+      for(i=0;i<4;i++) {pSUBWIN_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break;
     case SCI_ARC:
-      for(i=0;i<4;i++) pARC_FEATURE (pobj)->clip_region[i] = pclip[i];
+      for(i=0;i<4;i++) {pARC_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break;
     case SCI_POLYLINE:
-      for(i=0;i<4;i++) pPOLYLINE_FEATURE (pobj)->clip_region[i] = pclip[i];
+      for(i=0;i<4;i++) {pPOLYLINE_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break;
     case SCI_RECTANGLE:
-      for(i=0;i<4;i++) pRECTANGLE_FEATURE (pobj)->clip_region[i] = pclip[i];
+      for(i=0;i<4;i++) {pRECTANGLE_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break;
     case SCI_SEGS: 
-      for(i=0;i<4;i++) pSEGS_FEATURE (pobj)->clip_region[i] = pclip[i];
+      for(i=0;i<4;i++) {pSEGS_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break;      
     case SCI_TEXT: 
-      for(i=0;i<4;i++) pTEXT_FEATURE (pobj)->clip_region[i] = pclip[i];
+      for(i=0;i<4;i++) {pTEXT_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break;   
     case SCI_LIGHT: 
-      for(i=0;i<4;i++) pLIGHT_FEATURE (pobj)->clip_region[i] = pclip[i]; /* not used for now 04.04.2005 */
+      for(i=0;i<4;i++) {pLIGHT_FEATURE (pobj)->clip_region[i] = pclip[i];} /* not used for now 04.04.2005 */
       break;   
     case SCI_AXES: 
-      for(i=0;i<4;i++) pAXES_FEATURE (pobj)->clip_region[i] = pclip[i];
+      for(i=0;i<4;i++) {pAXES_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break;
-      /* not used for now 04.04.2005 */
-      /*     case SCI_SURFACE: */
-      /*       for(i=0;i<4;i++) pSURFACE_FEATURE (pobj)->clip_region[i] = pclip[i]; */
-      /*       break; */
+    case SCI_SURFACE:
+      for(i=0;i<4;i++) {pSURFACE_FEATURE (pobj)->clip_region[i] = pclip[i];}
+      break;
     case SCI_LEGEND:
-      for(i=0;i<4;i++) pLEGEND_FEATURE (pobj)->clip_region[i] = pclip[i];
+      for(i=0;i<4;i++) {pLEGEND_FEATURE (pobj)->clip_region[i] = pclip[i];}
       break; 
       /*     case SCI_TITLE:   */
       /*       for(i=0;i<4;i++) pSURFACE_FEATURE (pobj)->clip_region[i] = pclip[i]; */
@@ -1670,20 +1678,17 @@ sciSetClipping (sciPointObj * pobj, double pclip[4] )
       /*     case SCI_AGREG:  */
       /*       for(i=0;i<4;i++) pAGREG_FEATURE (pobj)->clip_region[i] = pclip[i]; /\* not used for now 04.04.2005 *\/ */
       /*       break; */
-      /*     case SCI_FEC:  */
-      /*       for(i=0;i<4;i++) pFEC_FEATURE (pobj)->clip_region[i] = pclip[i]; /\* not used for now 04.04.2005 *\/ */
-      /*       break; */
-      /*     case SCI_GRAYPLOT: */
-      /*       for(i=0;i<4;i++) pGRAYPLOT_FEATURE (pobj)->clip_region[i] = pclip[i]; /\* not used for now 04.04.2005 *\/ */
-      /*       break; */
+    case SCI_FEC:
+      for(i=0;i<4;i++) {pFEC_FEATURE (pobj)->clip_region[i] = pclip[i];}
+      break;
+    case SCI_GRAYPLOT:
+      for(i=0;i<4;i++) {pGRAYPLOT_FEATURE (pobj)->clip_region[i] = pclip[i];}
+      break;
     case SCI_LABEL:
       return sciSetClipping( pLABEL_FEATURE (pobj)->text, pclip ) ;
       break;
-    case SCI_SURFACE:
     case SCI_TITLE:    
     case SCI_AGREG:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
     case SCI_FIGURE:
     case SCI_UIMENU:
     default:

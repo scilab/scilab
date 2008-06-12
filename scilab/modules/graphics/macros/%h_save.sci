@@ -303,6 +303,11 @@ function save_graphichandle(h,fd)
       mput(clr,'il',fd)
     end
     mput(h.hiddencolor,'il',fd) // hidden_color
+    mput(length(h.clip_state),'c',fd); // clip_state
+    mput(ascii(h.clip_state),'c',fd);
+    if h.clip_state=='on' then
+      mput(h.clip_box,'dl',fd) // clip_box
+    end
     user_data=h.user_data;save(fd,user_data) // user_data
     
   case "Fac3d";
@@ -335,6 +340,11 @@ function save_graphichandle(h,fd)
       mput(ascii(part(h.cdata_mapping,1)),'c',fd) ; // cdata_mapping
     end
     mput(h.hiddencolor,'il',fd) // hidden_color
+    mput(length(h.clip_state),'c',fd); // clip_state
+    mput(ascii(h.clip_state),'c',fd);
+    if h.clip_state=='on' then
+      mput(h.clip_box,'dl',fd) // clip_box
+    end
     user_data=h.user_data;save(fd,user_data) // user_data
   
   case "Compound"

@@ -1468,12 +1468,18 @@ sciGetIsClipRegionValuated (sciPointObj * pobj)
       return pAXES_FEATURE (pobj)->clip_region_set;
       break;
     case SCI_SURFACE:
+      return pSURFACE_FEATURE (pobj)->clip_region_set;
+      break;
+    case SCI_FEC:
+      return pFEC_FEATURE (pobj)->clip_region_set;
+      break;
+    case SCI_GRAYPLOT:
+      return pGRAYPLOT_FEATURE (pobj)->clip_region_set;
+      break;
     case SCI_LEGEND: 
     case SCI_TITLE:    
     case SCI_AGREG: 
     case SCI_FIGURE: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
     case SCI_SBH:   
     case SCI_PANNER:
     case SCI_SBV:
@@ -1520,12 +1526,18 @@ sciGetIsClipping (sciPointObj * pobj)
       return pAXES_FEATURE (pobj)->isclip;
       break;
     case SCI_SURFACE:
+      return pSURFACE_FEATURE(pobj)->isclip;
+      break;
+    case SCI_FEC:
+      return pFEC_FEATURE(pobj)->isclip;
+      break;
+    case SCI_GRAYPLOT:
+      return pGRAYPLOT_FEATURE(pobj)->isclip;
+      break;
     case SCI_LEGEND: 
     case SCI_TITLE:    
     case SCI_AGREG: 
     case SCI_FIGURE: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
     case SCI_SBH:   
     case SCI_PANNER:
     case SCI_SBV:
@@ -1580,12 +1592,18 @@ sciGetClipping (sciPointObj * pobj)
     case SCI_LEGEND:
       return pLEGEND_FEATURE (pobj)->clip_region;
       break;
-    case SCI_UIMENU:
     case SCI_SURFACE:
+      return pSURFACE_FEATURE (pobj)->clip_region;
+      break;
+    case SCI_FEC:
+      return pFEC_FEATURE (pobj)->clip_region;
+      break;
+    case SCI_GRAYPLOT:
+      return pGRAYPLOT_FEATURE (pobj)->clip_region;
+      break;
+    case SCI_UIMENU:
     case SCI_TITLE:    
     case SCI_AGREG:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
     case SCI_FIGURE: 
     default:
       printSetGetErrorMessage("clip_box");

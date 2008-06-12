@@ -1165,6 +1165,10 @@ typedef struct
   int flag_x; /* 1 if the vector is increasing, -1 if decreasing. */
               /* The vector should be either increasing or decreasing. */
   int flag_y;
+
+  int isclip; /**< Clipping state of the object */
+  double clip_region[4]; /**< Clipping region */
+  int clip_region_set; /**< To know if the clippign region is set */
   
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
@@ -1348,6 +1352,11 @@ typedef struct
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
+
+  int isclip; /**< Clipping state of the object */
+  double clip_region[4]; /**< Clipping region */
+  int clip_region_set; /**< To know if the clippign region is set */
+
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
 }
@@ -1384,6 +1393,11 @@ typedef struct
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
+
+  int isclip; /**< Clipping state of the object */
+  double clip_region[4]; /**< Clipping region */
+  int clip_region_set; /**< To know if the clippign region is set */
+
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
 }

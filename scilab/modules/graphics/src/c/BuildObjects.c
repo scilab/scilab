@@ -1537,6 +1537,9 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       psurf->m3n= *m3n;
       psurf->n3n= *n3n;
 
+      sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
+      sciSetClipping(pobj, sciGetClipping(pparentsubwin)) ;
+
       if (((psurf->pvecx = MALLOC ((nx * sizeof (double)))) == NULL))
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -1774,6 +1777,9 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
       pGRAYPLOT_FEATURE (pobj)->type = type;
       pGRAYPLOT_FEATURE (pobj)->pvecx = (double *)NULL;
       pGRAYPLOT_FEATURE (pobj)->pvecy = (double *)NULL;
+
+      sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
+      sciSetClipping(pobj, sciGetClipping(pparentsubwin)) ;
 
       strcpy( pGRAYPLOT_FEATURE (pobj)->datamapping, "scaled" ) ;
       pgray = pGRAYPLOT_FEATURE (pobj);
@@ -2048,8 +2054,12 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 
       pFEC_FEATURE (pobj)->isselected = TRUE; 
       pFEC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+
+      sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
+      sciSetClipping(pobj, sciGetClipping(pparentsubwin)) ;
    
       pfec = pFEC_FEATURE (pobj);
+
       
       if ((pfec->pvecx = MALLOC (Nnode * sizeof (double))) == NULL)
 	{

@@ -332,6 +332,8 @@ function %h_p(h)
                 "data.y = "+dy
                 "data.z = "+dz
                 "data_mapping = "+sci2exp(h.data_mapping)
+                "clip_state = "+sci2exp(h.clip_state)
+                "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
             ]
         
@@ -352,6 +354,8 @@ function %h_p(h)
                 "children: "+fmtchildren(h.children)
                 "visible = "+sci2exp(h.visible)
                 "data = "+d
+                "clip_state = "+sci2exp(h.clip_state)
+                "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
             ]
         
@@ -380,6 +384,8 @@ function %h_p(h)
                 "data = "+d
                 "triangles = "+f
                 "z_bounds = "+sci2exp(h.z_bounds,0)
+                "clip_state = "+sci2exp(h.clip_state)
+                "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
             ]
 
@@ -601,6 +607,8 @@ function %h_p(h)
                     "color_mode = "+string(h.color_mode)
                     "color_flag = "+sci2exp(h.color_flag,0)
                     "hiddencolor = "+string(h.hiddencolor)
+                    "clip_state = "+sci2exp(h.clip_state)
+                    "clip_box = "+sci2exp(h.clip_box,0)
                     "user_data = "+fmtuser_data(u)
                 ]
             else
@@ -623,6 +631,8 @@ function %h_p(h)
                     "color_mode = "+string(h.color_mode)
                     "color_flag = "+sci2exp(h.color_flag,0)
                     "hiddencolor = "+string(h.hiddencolor)
+                    "clip_state = "+sci2exp(h.clip_state)
+                    "clip_box = "+sci2exp(h.clip_box,0)
                     "user_data = "+fmtuser_data(u)
                 ]
             end
@@ -684,6 +694,8 @@ function %h_p(h)
                     "color_flag = "+sci2exp(h.color_flag,0)
                     "cdata_mapping = "+sci2exp(h.cdata_mapping)
                     "hiddencolor = "+string(h.hiddencolor)
+                    "clip_state = "+sci2exp(h.clip_state)
+                    "clip_box = "+sci2exp(h.clip_box,0)
                     "user_data = "+fmtuser_data(u)
                 ]
             else
@@ -706,6 +718,8 @@ function %h_p(h)
                     "color_mode = "+string(h.color_mode)
                     "color_flag = "+sci2exp(h.color_flag,0)
                     "hiddencolor = "+string(h.hiddencolor)
+                    "clip_state = "+sci2exp(h.clip_state)
+                    "clip_box = "+sci2exp(h.clip_box,0)
                     "user_data = "+fmtuser_data(u)
                 ]
             end

@@ -602,6 +602,15 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"mark_mode",mark_mode)
     set(h,"color_flag",color_flag),
     set(h,"hiddencolor",hiddencolor),
+
+    if is_higher_than([4 1 2 0])
+      clip_state     = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state
+      if clip_state=='on' then
+        set(h,"clip_box", mget(4,'dl',fd)) // clip_box
+      end
+      set(h,"clip_state",clip_state); 
+    end
+
     load_user_data(fd)
     
   case "Fac3d" then
@@ -682,6 +691,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     
     if is_higher_than([3 1 0 1]) & color_flag >= 2 then
       set(h,"cdata_mapping",cdata_mapping);
+    end
+
+    if is_higher_than([4 1 2 0])
+      clip_state     = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state
+      if clip_state=='on' then
+        set(h,"clip_box", mget(4,'dl',fd)) // clip_box
+      end
+      set(h,"clip_state",clip_state); 
     end
     
     load_user_data(fd) ; // user_data

@@ -60,6 +60,37 @@
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>clip_state: </term>
+        <listitem>
+          <para>This field contains the <literal>clip_state</literal> property value for
+        the Matplot. It should be :</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> this means that the Matplot is not
+            clipped.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"clipgrf"</literal> this means that the Matplot is clipped
+            outside the Axes box.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"on"</literal> this means that the Matplot is clipped
+            outside the rectangle given by property clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_box: </term>
+        <listitem>
+          <para>This field is to determinate the <literal>clip_box</literal> property.
+        By Default its value should be an empty matrix if clip_state is "off".
+        Other cases the vector <literal>[x,y,w,h]</literal> (upper-left point width
+        height) defines the portions of the Matplot to display, however
+        <literal>clip_state</literal> property value will be changed.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>user_data: </term>
         <listitem>
           <para>This field can be use to store any scilab variable in the Matplot
