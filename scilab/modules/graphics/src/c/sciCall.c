@@ -690,8 +690,11 @@ void Objplot3d ( char    * fname ,
 
     sciSetCurrentObj( pNewSurface ) ;
     
-    pSURFACE_FEATURE (sciGetCurrentObj())->flag_x = flag_x;
-    pSURFACE_FEATURE (sciGetCurrentObj())->flag_y = flag_y;
+    pSURFACE_FEATURE (pNewSurface)->flag_x = flag_x;
+    pSURFACE_FEATURE (pNewSurface)->flag_y = flag_y;
+
+    /* Force clipping */
+    sciSetIsClipping(pNewSurface, 0);  /* clipgrf */
     
     
   }
