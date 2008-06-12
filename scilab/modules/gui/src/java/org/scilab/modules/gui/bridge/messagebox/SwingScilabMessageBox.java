@@ -362,9 +362,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			if (columnLabels != null) {
 				panel.add(new JLabel(""));
 				for (col = 0; col < columnLabels.length; col++) {
-					JLabel colLabel = new JLabel(columnLabels[col]);
-					colLabel.setHorizontalAlignment(JLabel.CENTER);
-					panel.add(colLabel, constraints);
+					panel.add(new JLabel(columnLabels[col]), constraints);
 					constraints.gridx++; 
 				}
 				constraints.gridy++;
@@ -381,9 +379,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 			}
 			for (line = 0; line < lineLabels.length; line++) {
 				constraints.gridx = 0; 
-				JLabel lineLabel = new JLabel(lineLabels[line]);
-				lineLabel.setHorizontalAlignment(JLabel.CENTER);
-				panel.add(lineLabel, constraints);
+				panel.add(new JLabel(lineLabels[line]), constraints);
 				constraints.gridx++; 
 				for (col = 0; col < numberOfColumns - 1; col++) {
 					textFields[line * (numberOfColumns - 1) + col] = 
