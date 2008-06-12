@@ -30,7 +30,6 @@ import javax.help.JHelpTOCNavigator;
 import javax.help.plaf.basic.BasicSearchNavigatorUI;
 import javax.help.search.SearchQuery;
 
-import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.helpbrowser.SimpleHelpBrowser;
 import org.scilab.modules.localization.Messages;
