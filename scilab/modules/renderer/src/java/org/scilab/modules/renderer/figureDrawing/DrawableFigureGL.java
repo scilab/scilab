@@ -684,4 +684,11 @@ public class DrawableFigureGL extends ObjectGL {
 		return textRendererCreator;
 	}
 	
+	/**
+	 * Put the figure in top of other windows
+	 */
+	public void showWindow() {
+		getRendererProperties().showWindow();
+	}
+	
 }

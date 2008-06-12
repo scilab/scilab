@@ -71,5 +71,10 @@ public interface Window extends UIElement {
 	 */
 	TextBox getInfoBar();
 	
+	/**
+	 * Deiconify the window and put it in front of other window
+	 */
+	void raise();
+	
 	
 }

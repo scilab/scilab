@@ -67,6 +67,13 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 	public void draw() {
 		ScilabBridge.draw(this);
 	}
+	
+	/**
+	 * Deiconify the window and put it in front of other window
+	 */
+	public void raise() {
+		ScilabBridge.raise(this);
+	}
 
 	/**
 	 * Gets the dimensions (width and height) of a Scilab window

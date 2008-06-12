@@ -98,6 +98,11 @@ public interface SimpleWindow {
 	void draw();
 	
 	/**
+	 * Deiconify the window and put it in front of other window
+	 */
+	void raise();
+	
+	/**
 	 * Sets a MenuBar to a window
 	 * @param newMenuBar the MenuBar to add to the window
 	 */

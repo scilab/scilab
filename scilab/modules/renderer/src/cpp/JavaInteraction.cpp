@@ -39,3 +39,8 @@ void stopJavaRotationRecording(sciPointObj * pFigure)
   getFigureDrawer(pFigure)->stopRotationRecording();
 }
 /*---------------------------------------------------------------------------------*/
+void javaShowWindow(sciPointObj * pFigure)
+{
+  getFigureDrawer(pFigure)->showWindow();
+}
+/*---------------------------------------------------------------------------------*/

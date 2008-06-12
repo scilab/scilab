@@ -327,5 +327,12 @@ public class ScilabRendererProperties implements RendererProperties {
 	public void stopRotationRecording() {
 		parentCanvas.stopRotationRecording();
 	}
+	
+	/**
+	 * Put the figure in top of other windows
+	 */
+	public void showWindow() {
+		parentTab.getParentWindow().raise();
+	}
 
 }

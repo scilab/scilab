@@ -26,11 +26,12 @@
 #include "InitObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
+#include "Interaction.h"
+#include "WindowList.h"
 /*--------------------------------------------------------------------------*/
 int sci_show_window( char *fname,unsigned long fname_len )
 {
-  int winNum = 0 ;
-  sciPointObj * curFigure = sciGetCurrentFigure();
+  sciPointObj * shownFigure = NULL;
 
   CheckRhs(0,1);
   CheckLhs(0,1);
@@ -45,53 +46,66 @@ int sci_show_window( char *fname,unsigned long fname_len )
 
     if ( isParameterHandle( paramType ) )
     {
-      sciPointObj * shownFigure   = NULL ;
-
+      /* by tis handle */
       GetRhsVar( 1,GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
 
       if ( nbRow * nbCol != 1 )
       {
-        sciprint(_("%s: Only one window can be shown.\n"),fname);
+        sciprint(_("%s: Wrong size for input argument #%d: A 'Figure' handle or a real scalar expected.\n"),fname, 1);
         return -1 ;
       }
 
       shownFigure = sciGetPointerFromHandle( getHandleFromStack(stackPointer) );
 
-      if ( shownFigure == NULL )
+      if (sciGetEntityType(shownFigure) != SCI_FIGURE)
       {
-        sciprint(_("%s: Figure does not or no longer exists.\n"),fname);
+        sciprint(_("%s: Wrong type for input argument #%d: A 'Figure' handle or a real scalar expected.\n"),fname, 1);
         return -1 ;
       }
-
-      winNum = sciGetNum( shownFigure );
 
     }
     else if ( isParameterDoubleMatrix( paramType ) )
     {
+      /* by its number */
+      int winNum;
       GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stackPointer );
       if ( nbRow * nbCol != 1 )
       {
-        sciprint(_("Only one window can be shown.\n"));
+        sciprint(_("%s: Wrong size for input argument #%d: A 'Figure' handle or a real scalar expected.\n"),fname, 1);
         return -1 ;
       }
       winNum = (int) getDoubleFromStack(stackPointer);
+      shownFigure = getFigureFromIndex(winNum);
 
+      if (shownFigure == NULL)
+      {
+        /* No window with this number, create one */
+        sciSetUsedWindow(winNum);
+        shownFigure = sciGetCurrentFigure();
+      }
     }
     else
     {
-      sciprint(_("Parameter should be a handle on the window to redraw or it's number.\n"));
+      sciprint(_("%s: Wrong type for input argument #%d: A 'Figure' handle or a real scalar expected.\n"),fname,1);
     }
 
-    sciSetUsedWindow( winNum );
-
   }
-  
-  /* if no window were opened (ie curFigure is NULL) then we created the first figure */
-  /* and it is already the selected one */
-  if( Rhs == 1 && curFigure != NULL )
+  else
   {
-    sciSetUsedWindow( sciGetNum( curFigure ) );
+    /* Rhs == 0 */
+    /* raise current figure */
+    shownFigure = sciGetCurrentFigure();
   }
+
+  /* Check that the requested figure really exists */
+  if ( shownFigure == NULL )
+  {
+    sciprint(_("%s: 'Figure' handle does not or no longer exists.\n"),fname);
+    return -1 ;
+  }
+
+  /* Actually show the window */
+  showWindow(shownFigure);
 
   LhsVar(1)=0;
   return 0;

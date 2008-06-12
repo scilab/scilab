@@ -53,7 +53,11 @@ BOOL getJavaRotationDisplacement(sciPointObj * pFigure, int displacement[2]);
  */
 void stopJavaRotationRecording(sciPointObj * pFigure);
 
-
+/**
+ * Put the figure in top of other windows.
+ * @pram pFigure figure corresponding to the window
+ */
+void javaShowWindow(sciPointObj * pFigure);
 
 #ifdef __cplusplus
 }

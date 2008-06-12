@@ -76,5 +76,11 @@ void interactiveRotation(sciPointObj * pFigure);
  */
 void interactiveSubwinRotation(sciPointObj * pSubiwn);
 
+/**
+ * Put the figure in top of other windows.
+ * @pram pFigure figure corresponding to the window
+ */
+void showWindow(sciPointObj * pFigure);
+
 
 #endif /* __SCI_INTERACTION__ */

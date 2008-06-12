@@ -117,6 +117,17 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		this.setVisible(true);
 		this.doLayout();
 	}
+	
+	/**
+	 * Deiconify the window and put it in front of other window
+	 */
+	public void raise() {
+		// deiconify the window if needed
+		this.setState(NORMAL);
+		
+		// put it in front of others
+		this.toFront();
+	}
 
 	/**
 	 * Gets the dimensions (width and height) of a swing Scilab window

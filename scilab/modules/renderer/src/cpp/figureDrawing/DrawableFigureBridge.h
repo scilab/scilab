@@ -167,6 +167,11 @@ public:
   virtual void stopRotationRecording(void) = 0;
 
   /**
+   * Put the figure in top of other windows.
+   */
+  virtual void showWindow(void) = 0;
+
+  /**
    * Return the drawed object
    */
   virtual DrawableFigure * getFigureDrawer( void ) = 0 ;

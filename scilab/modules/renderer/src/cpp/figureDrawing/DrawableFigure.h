@@ -176,6 +176,11 @@ public:
    */
   void stopRotationRecording(void);
 
+  /**
+   * Put the figure in top of other windows.
+   */
+  void showWindow(void);
+
   /*-----------------------------------------------------------------------------*/
    /**
     * Get the synchronization object that protect this figure.

@@ -85,6 +85,7 @@ jmethodID jintArrayrubberBoxjbooleanjbooleanjintArrayID; // cache method id
 jmethodID voidsetTitlejstringID; // cache method id
 jmethodID jintArraygetRotationDisplacementID; // cache method id
 jmethodID voidstopRotationRecordingID; // cache method id
+jmethodID voidshowWindowID; // cache method id
 
 
 /**
@@ -191,6 +192,8 @@ void setTitle(char * title);
 long * getRotationDisplacement();
 
 void stopRotationRecording();
+
+void showWindow();
 
 
                         /**

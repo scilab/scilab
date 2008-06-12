@@ -135,6 +135,7 @@ jintArrayrubberBoxjbooleanjbooleanjintArrayID=NULL;
 voidsetTitlejstringID=NULL; 
 jintArraygetRotationDisplacementID=NULL; 
 voidstopRotationRecordingID=NULL; 
+voidshowWindowID=NULL; 
 
 
 }
@@ -193,6 +194,7 @@ jintArrayrubberBoxjbooleanjbooleanjintArrayID=NULL;
 voidsetTitlejstringID=NULL; 
 jintArraygetRotationDisplacementID=NULL; 
 voidstopRotationRecordingID=NULL; 
+voidshowWindowID=NULL; 
 
 
 }
@@ -938,6 +940,25 @@ exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidstopRotationRecordingID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void DrawableFigureGL::showWindow (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidshowWindowID==NULL) { /* Use the cache Luke */ voidshowWindowID = curEnv->GetMethodID(this->instanceClass, "showWindow", "()V" ) ;
+if (voidshowWindowID == NULL) {
+std::cerr << "Could not access to the method " << "showWindow" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidshowWindowID );
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

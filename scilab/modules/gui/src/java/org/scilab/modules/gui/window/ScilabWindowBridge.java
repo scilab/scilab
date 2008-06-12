@@ -44,6 +44,14 @@ public class ScilabWindowBridge {
 	public static void draw(Window window) {
 		window.getAsSimpleWindow().draw();
 	}
+	
+	/**
+	 * Deiconify the window and put it in front of other window
+	 * @param window the window to raise
+	 */
+	public static void raise(Window window) {
+		window.getAsSimpleWindow().raise();
+	}
 
 	/**
 	 * Creates a Scilab window
@@ -182,4 +190,5 @@ public class ScilabWindowBridge {
 	public static int getNbDockedObjects(Window window) {
 		return window.getAsSimpleWindow().getNbDockedObjects();
 	}
+	
 }

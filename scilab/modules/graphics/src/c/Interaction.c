@@ -956,3 +956,8 @@ void trackSubwinRotation(sciPointObj * pSubwin)
 
 }
 /*---------------------------------------------------------------------------------*/
+void showWindow(sciPointObj * pFigure)
+{
+  javaShowWindow(pFigure);
+}
+/*---------------------------------------------------------------------------------*/

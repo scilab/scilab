@@ -90,5 +90,7 @@
     </method>
     <method name="stopRotationRecording" returnType="void">
     </method>
+    <method name="showWindow" returnType="void">
+    </method>
   </object>
 </package>

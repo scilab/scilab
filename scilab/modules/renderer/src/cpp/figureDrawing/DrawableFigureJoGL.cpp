@@ -192,4 +192,9 @@ void DrawableFigureJoGL::stopRotationRecording(void)
   getFigureJavaMapper()->stopRotationRecording();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::showWindow(void)
+{
+  getFigureJavaMapper()->showWindow();
+}
+/*---------------------------------------------------------------------------------*/
 }

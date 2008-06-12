@@ -194,4 +194,9 @@ public interface RendererProperties {
 	 */
 	void stopRotationRecording();
 	
+	/**
+	 * Put the figure in top of other windows
+	 */
+	void showWindow();
+	
 }

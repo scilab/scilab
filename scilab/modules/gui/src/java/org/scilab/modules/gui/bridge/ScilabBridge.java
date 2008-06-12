@@ -138,6 +138,14 @@ public class ScilabBridge {
 	public static void draw(Window window) {
 		ScilabWindowBridge.draw(window);
 	}
+	
+	/**
+	 * Deiconify the window and put it in front of other window
+	 * @param window the window to raise
+	 */
+	public static void raise(Window window) {
+		ScilabWindowBridge.raise(window);
+	}
 
 	/**
 	 * Gets the dimensions (width and height) of a window

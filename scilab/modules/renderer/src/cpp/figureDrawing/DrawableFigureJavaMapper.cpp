@@ -249,4 +249,9 @@ void DrawableFigureJavaMapper::stopRotationRecording(void)
   m_pJavaObject->stopRotationRecording();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::showWindow(void)
+{
+  m_pJavaObject->showWindow();
+}
+/*---------------------------------------------------------------------------------*/
 }

@@ -277,4 +277,9 @@ void DrawableFigure::stopRotationRecording(void)
   return getFigureImp()->stopRotationRecording();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigure::showWindow(void)
+{
+  return getFigureImp()->showWindow();
+}
+/*---------------------------------------------------------------------------------*/
 }
