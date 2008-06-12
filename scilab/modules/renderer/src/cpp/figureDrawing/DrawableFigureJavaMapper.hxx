@@ -87,7 +87,7 @@ public:
 
   virtual bool getRotationDisplacement(int displacement[2]);
   virtual void stopRotationRecording(void);
-  virtual void DrawableFigureJavaMapper::showWindow(void);
+  virtual void showWindow(void);
 
   /*----------------------------------------------------------------------*/
 
