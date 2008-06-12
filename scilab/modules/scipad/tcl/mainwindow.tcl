@@ -49,6 +49,16 @@ eval destroy [winfo children $pad]
 wm withdraw $pad ; # $pad will be deiconified after Scipad's startup is completely over
 wm iconname $pad $winTitle
 
+set iconimage [image create photo $pad.icon1 -format gif \
+                    -file [file join $iconsdir scipad-editor.gif]]
+# wm iconphoto is officially implemented in Tk 8.5 only
+# however it is also in Tk 8.4.8 onwards
+# see http://groups.google.com/group/comp.lang.tcl/browse_thread/thread/8c6e1a59ea384573
+# to avoid testing for complicated versions and platforms, I lazily catch this...
+# there is anyway no fallback when wm iconphoto is not supported
+# (ok, there is wm iconbitmap with a .ico file on Windows only, well...)
+catch {wm iconphoto $pad -default $iconimage}
+
 # catch the kill of the windowmanager
 wm protocol $pad WM_DELETE_WINDOW {idleexitapp}
 wm minsize $pad 1 1 
