@@ -133,7 +133,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newWindowSize) {
-		this.setSize(newWindowSize.getWidth(), newWindowSize.getHeight());
+		setSize(newWindowSize.getWidth(), newWindowSize.getHeight());
+		validate();
 	}
 
 	/**
