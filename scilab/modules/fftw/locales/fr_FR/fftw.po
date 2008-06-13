@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2007-11-23 11:10+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,21 +16,130 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
 
+#
+# File: sci_gateway/c/sci_fftw.c, line: 90
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Mauvais nombre d'argument d'entrée, 3 attendus.\n"
+
+#
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 59
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 66
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 86
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 92
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 60
+# File: sci_gateway/c/sci_fftw_flags.c, line: 176
+# File: sci_gateway/c/sci_fftw_flags.c, line: 183
+# File: sci_gateway/c/sci_fftw_flags.c, line: 201
+# File: sci_gateway/c/sci_fftw_flags.c, line: 208
+# File: sci_gateway/c/sci_fftw.c, line: 235
+# File: sci_gateway/c/sci_fftw.c, line: 241
+# File: sci_gateway/c/sci_fftw.c, line: 415
+# File: sci_gateway/c/sci_fftw.c, line: 433
+# File: sci_gateway/c/sci_fftw.c, line: 461
+# File: sci_gateway/c/sci_fftw.c, line: 472
+# File: sci_gateway/c/sci_fftw.c, line: 495
+# File: sci_gateway/c/sci_fftw.c, line: 535
+# File: sci_gateway/c/sci_fftw.c, line: 561
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 78
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 62
+#, fuzzy
+msgid "FFTW can't read wisdom."
+msgstr "%s: FFTW ne peut pas créer wisdom\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 289
+#, fuzzy, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr "%s: Mauvaise valeur pour le troisième argument d'entrée : %d\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 180
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Mauvais type pour le troisième argument d'entrée\n"
+
+#
+# File: sci_gateway/c/gw_fftw.c, line: 37
+#, c-format
+msgid "FFTW Library %s not found.\n"
+msgstr "Bibliothèque FFTW %s introuvable.\n"
+
+#
+# File: sci_gateway/c/gw_fftw.c, line: 41
+msgid "FFTW Library not found.\n"
+msgstr "Bibliothèque FFTW introuvable.\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 90
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d not expected.\n"
+msgstr "%s: Mauvais nombre d'argument d'entrée, 3 attendus.\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 158
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
+msgstr ""
+"%s: Mauvais type pour le deuxième argument d'entrée, matrice attendue.\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 289
+#, fuzzy, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: Mauvaise valeur pour le troisième argument d'entrée : %d\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 158
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr ""
+"%s: Mauvais type pour le deuxième argument d'entrée, matrice attendue.\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 190
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Mauvaise taille pour le troisième argument d'entrée\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 158
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: integer matrix expected.\n"
+msgstr ""
+"%s: Mauvais type pour le deuxième argument d'entrée, matrice attendue.\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 228
+#, c-format
+msgid "%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 90
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s: Mauvais nombre d'argument d'entrée, 3 attendus.\n"
+
 # File: src/nofftw/nofftw.c, line: 11
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Module Scilab FFTW non installé.\n"
 
 #
-# File: sci_gateway/c/sci_fftw_flags.c, line: 128
-#, c-format
-msgid "%s: Bad flag %s for the first input parameter\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_fftw_flags.c, line: 148
-#, c-format
-msgid "%s: Bad type for the first input parameter\n"
-msgstr "%s: Mauvais type pour le premier argument d'entrée\n"
+#~ msgid "%s: Bad type for the first input parameter\n"
+#~ msgstr "%s: Mauvais type pour le premier argument d'entrée\n"
 
 #
 # File: sci_gateway/c/sci_fftw_flags.c, line: 166
@@ -51,97 +160,42 @@ msgstr "%s: Mauvais type pour le premier argument d'entrée\n"
 # File: sci_gateway/c/sci_fftw.c, line: 487
 # File: sci_gateway/c/sci_fftw.c, line: 528
 # File: sci_gateway/c/sci_fftw.c, line: 555
-#, c-format
-msgid "%s: Memory allocation error\n"
-msgstr "%s: Erreur d'allocation mémoire\n"
-
-#
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 62
-#, c-format
-msgid "%s: FFTW can't read wisdom\n"
-msgstr "%s: FFTW ne peut pas créer wisdom\n"
+#~ msgid "%s: Memory allocation error\n"
+#~ msgstr "%s: Erreur d'allocation mémoire\n"
 
 #
 # File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 68
-#, c-format
-msgid "%s: Bad type for the input parameter\n"
-msgstr "%s: Mauvais type de l'argument d'entrée\n"
-
-#
-# File: sci_gateway/c/gw_fftw.c, line: 37
-#, c-format
-msgid "FFTW Library %s not found.\n"
-msgstr "Bibliothèque FFTW %s introuvable.\n"
-
-#
-# File: sci_gateway/c/gw_fftw.c, line: 41
-msgid "FFTW Library not found.\n"
-msgstr "Bibliothèque FFTW introuvable.\n"
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 90
-#, c-format
-msgid "%s: Wrong number of input arguments, expecting 3.\n"
-msgstr "%s: Mauvais nombre d'argument d'entrée, 3 attendus.\n"
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 158
-#, c-format
-msgid "%s: Wrong type for the second input argument, expecting matrix.\n"
-msgstr ""
-"%s: Mauvais type pour le deuxième argument d'entrée, matrice attendue.\n"
+#~ msgid "%s: Bad type for the input parameter\n"
+#~ msgstr "%s: Mauvais type de l'argument d'entrée\n"
 
 #
 # File: sci_gateway/c/sci_fftw.c, line: 165
-#, c-format
-msgid "%s: Wrong value for the second input argument.\n"
-msgstr "%s: Mauvaise valeur pour le deuxième argument d'entrée\n"
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 180
-#, c-format
-msgid "%s: Wrong type for the third input argument.\n"
-msgstr "%s: Mauvais type pour le troisième argument d'entrée\n"
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 190
-#, c-format
-msgid "%s: Wrong size for the third input argument\n"
-msgstr "%s: Mauvaise taille pour le troisième argument d'entrée\n"
+#~ msgid "%s: Wrong value for the second input argument.\n"
+#~ msgstr "%s: Mauvaise valeur pour le deuxième argument d'entrée\n"
 
 #
 # File: sci_gateway/c/sci_fftw.c, line: 203
-#, c-format
-msgid "%s: Wrong type for the fourth input argument\n"
-msgstr "%s: Mauvaise type pour le quatrième argument d'entrée\n"
+#~ msgid "%s: Wrong type for the fourth input argument\n"
+#~ msgstr "%s: Mauvaise type pour le quatrième argument d'entrée\n"
 
 #
 # File: sci_gateway/c/sci_fftw.c, line: 213
-#, c-format
-msgid "%s: Wrong size for the fourth input argument\n"
-msgstr "%s: Mauvaise taille pour le quatrième argument d'entrée\n"
+#~ msgid "%s: Wrong size for the fourth input argument\n"
+#~ msgstr "%s: Mauvaise taille pour le quatrième argument d'entrée\n"
 
 #
 # File: sci_gateway/c/sci_fftw.c, line: 220
-#, c-format
-msgid "%s: Size of the third and fourth input arguments must be the same\n"
-msgstr ""
-"%s: La taille du troisième et quatrième arguments d'entrée doit être la "
-"même\n"
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 289
-#, c-format
-msgid "%s: Wrong value for the third input argument : %d\n"
-msgstr "%s: Mauvaise valeur pour le troisième argument d'entrée : %d\n"
+#~ msgid "%s: Size of the third and fourth input arguments must be the same\n"
+#~ msgstr ""
+#~ "%s: La taille du troisième et quatrième arguments d'entrée doit être la "
+#~ "même\n"
 
 #
 # File: sci_gateway/c/sci_fftw.c, line: 342
-#, c-format
-msgid "%s: Wrong value for the fourth input argument : %d\n"
-msgstr "%s: Mauvaise valeur pour le quatrième argument d'entrée : %d\n"
+#~ msgid "%s: Wrong value for the fourth input argument : %d\n"
+#~ msgstr "%s: Mauvaise valeur pour le quatrième argument d'entrée : %d\n"
 
 #
 # File: sci_gateway/c/sci_loadfftwlibrary.c, line: 42
-msgid "Invalid parameter type.\n"
-msgstr "Type du paramètre incorrect.\n"
+#~ msgid "Invalid parameter type.\n"
+#~ msgstr "Type du paramètre incorrect.\n"

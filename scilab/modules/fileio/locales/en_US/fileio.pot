@@ -14,345 +14,449 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2007-11-26 18:05+0100\n"
+"Revision-Date: 2008-06-13 13:33+0100\n"
 
+# File: macros/copyfile.sci, line: 36
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s expected.\n"
+msgstr ""
+#
+# File: macros/copyfile.sci, line: 40
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr ""
+#
+# File: macros/copyfile.sci, line: 54
+#, c-format
+msgid "%s: Source directory %s does not exist or is unreadable.\n"
+msgstr ""
+#
+# File: macros/copyfile.sci, line: 67
+#, c-format
+msgid "%s: Source file %s does not exist or unable to access.\n"
+msgstr ""
+#
+# File: macros/copyfile.sci, line: 73
+#, c-format
+msgid "%s: Destination directory %s does not exist or is unreadable.\n"
+msgstr ""
+#
 # File: macros/listvarinfile.sci, line: 53
 #, c-format
-msgid "Unknown variable type (%s?), maybe wrong or corrupted file"
+msgid ""
+"%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
+"corrupted.\n"
 msgstr ""
 #
-# File: src/c/do_xxprintf.c, line: 36
-msgid "Error:\tprintf: not enough arguments\n"
-msgstr ""
-#
-# File: src/c/do_xxprintf.c, line: 220
-msgid "Error:\tsprintf problem, buffer too small\n"
-msgstr ""
-#
-# File: src/c/do_xxprintf.c, line: 324
-msgid "Warning:\tprintf: bad conversion l or h flag mixed with s directive\n"
-msgstr ""
-#
-# File: src/c/do_xxprintf.c, line: 328
-msgid "Warning:\tprintf: bad conversion l or h flag mixed with c directive\n"
-msgstr ""
-#
-# File: src/c/do_xxprintf.c, line: 386
-# File: src/c/do_xxprintf.c, line: 408
-msgid "Error:\tprintf: bad conversion\n"
-msgstr ""
-#
-# File: src/c/do_xxprintf.c, line: 403
-msgid "Error:\tprintf: \"o\" format not allowed\n"
-msgstr ""
-#
-# File: src/c/mput.c, line: 49
-# File: src/c/mput.c, line: 127
-# File: src/c/mput.c, line: 178
+# File: macros/ls.sci, line: 28
 #, c-format
-msgid "mput : %s format not recognized\n"
+msgid "%s: Options ignored.\n"
 msgstr ""
 #
-# File: src/c/mput.c, line: 61
-# File: src/c/mput.c, line: 182
-# File: src/c/mget.c, line: 57
-# File: src/c/mget.c, line: 172
+# File: macros/cd.sci, line: 23
 #, c-format
-msgid "No input file associated to logical unit %d\n"
+msgid "%s: Cannot go to directory %s\n"
 msgstr ""
 #
-# File: src/c/mput.c, line: 170
-msgid "mput : format is of length 0\n"
-msgstr ""
-#
-# File: src/c/mseek.c, line: 33
-msgid "mseek: wrong file logical unit\n"
-msgstr ""
-#
-# File: src/c/mseek.c, line: 45
+# File: macros/mkdir.sci, line: 25
+# File: macros/mkdir.sci, line: 47
+# File: macros/rmdir.sci, line: 22
+# File: macros/rmdir.sci, line: 37
 #, c-format
-msgid "mseek : flag = %s not recognized\n"
+msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 #
-# File: src/c/mseek.c, line: 61
-msgid "mseek: error\n"
+# File: macros/mkdir.sci, line: 72
+# File: macros/mkdir.sci, line: 81
+# File: macros/mkdir.sci, line: 85
+# File: macros/mkdir.sci, line: 89
+# File: macros/rmdir.sci, line: 62
+# File: macros/rmdir.sci, line: 66
+# File: sci_gateway/c/sci_msscanf.c, line: 55
+# File: sci_gateway/c/sci_mscanf.c, line: 74
+# File: src/c/do_xxprintf.c, line: 241
+# File: src/c/do_xxprintf.c, line: 415
+# File: src/c/do_xxprintf.c, line: 432
+# File: src/c/do_xxprintf.c, line: 437
+# File: src/c/do_xxscanf.c, line: 136
+# File: src/c/do_xxscanf.c, line: 147
+# File: src/c/do_xxscanf.c, line: 187
+# File: src/c/do_xxscanf.c, line: 207
+# File: src/c/do_xxscanf.c, line: 273
+# File: src/c/do_xxscanf.c, line: 289
+#, c-format
+msgid "%s: An error occurred: %s\n"
 msgstr ""
 #
-# File: src/c/mtell.c, line: 17
-msgid "mtell: wrong file logical unit\n"
+# File: macros/rmdir.sci, line: 33
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
 msgstr ""
 #
-# File: src/c/mputstr.c, line: 18
-msgid "No input file \n"
+# File: macros/mputl.sci, line: 41
+# File: sci_gateway/c/sci_fileio.c, line: 82
+# File: sci_gateway/c/sci_fprintfMat.c, line: 77
+#, c-format
+msgid "%s: Cannot open file %s.\n"
 msgstr ""
 #
-# File: src/c/mgetstr.c, line: 24
+# File: macros/mdelete.sci, line: 30
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_mfscanf.c, line: 36
+# File: sci_gateway/c/sci_msscanf.c, line: 35
+# File: sci_gateway/c/sci_mscanf.c, line: 40
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_mfscanf.c, line: 55
+# File: sci_gateway/c/sci_mfprintf.c, line: 41
+#, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_mfscanf.c, line: 84
+# File: sci_gateway/c/sci_msscanf.c, line: 84
+# File: sci_gateway/c/sci_mscanf.c, line: 91
+#, c-format
+msgid "%s: Data mismatch.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_mfscanf.c, line: 92
+# File: sci_gateway/c/sci_mfscanf.c, line: 103
+# File: sci_gateway/c/sci_fscanfMat.c, line: 40
+# File: sci_gateway/c/sci_fscanfMat.c, line: 86
+# File: sci_gateway/c/sci_fscanfMat.c, line: 111
+# File: sci_gateway/c/sci_fscanfMat.c, line: 134
+# File: sci_gateway/c/sci_fscanfMat.c, line: 149
+# File: sci_gateway/c/sci_fscanfMat.c, line: 160
+# File: sci_gateway/c/sci_msprintf.c, line: 111
+# File: sci_gateway/c/sci_msprintf.c, line: 116
+# File: sci_gateway/c/sci_msprintf.c, line: 126
+# File: sci_gateway/c/sci_msprintf.c, line: 150
+# File: sci_gateway/c/sci_msprintf.c, line: 157
+# File: sci_gateway/c/sci_msprintf.c, line: 164
+# File: sci_gateway/c/sci_msprintf.c, line: 175
+# File: sci_gateway/c/sci_fileio.c, line: 87
+# File: sci_gateway/c/sci_msscanf.c, line: 91
+# File: sci_gateway/c/sci_msscanf.c, line: 103
+# File: sci_gateway/c/sci_fileext.c, line: 61
+# File: sci_gateway/c/sci_mscanf.c, line: 98
+# File: sci_gateway/c/sci_mscanf.c, line: 110
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 #
-# File: src/c/mgetstr.c, line: 36
-# File: src/c/mgetstr.c, line: 56
-msgid "No input file\n"
-msgstr ""
-#
-# File: src/c/mclose.c, line: 47
+# File: sci_gateway/c/sci_isdir.c, line: 37
+# File: sci_gateway/c/sci_getshortpathname.c, line: 61
+# File: sci_gateway/c/sci_getlongpathname.c, line: 60
+# File: sci_gateway/c/sci_createdir.c, line: 63
+# File: sci_gateway/c/sci_removedir.c, line: 56
+# File: sci_gateway/c/sci_fileext.c, line: 66
+# File: sci_gateway/c/sci_deletefile.c, line: 51
 #, c-format
-msgid "File %d not active\n"
+msgid "%s: Wrong type for input argument: A string expected.\n"
 msgstr ""
 #
-# File: src/c/mclose.c, line: 53
-msgid "No file to close\n"
-msgstr ""
-#
-# File: src/c/fileio.c, line: 77
-msgid "Error:\ttoo many directive in scanf\n"
-msgstr ""
-#
-# File: src/c/mopen.c, line: 27
+# File: sci_gateway/c/sci_isdir.c, line: 55
 #, c-format
-msgid "Warning : file '%s' already opened in scilab.\n"
+msgid "%s: Wrong size for input argument: A string expected.\n"
 msgstr ""
 #
-# File: src/c/mget.c, line: 43
-# File: src/c/mget.c, line: 168
+# File: sci_gateway/c/sci_isdir.c, line: 63
 #, c-format
-msgid "mget : %s format not recognized\n"
+msgid "%s: Wrong size for input argument: Must be less than %d characters.\n"
 msgstr ""
 #
-# File: src/c/mget.c, line: 159
-msgid "mget : format is of length 0\n"
-msgstr ""
-#
-# File: src/c/do_xxscanf.c, line: 126
-msgid "Error:\tscanf, unclosed [ directive\n"
-msgstr ""
-#
-# File: src/c/do_xxscanf.c, line: 137
-msgid "Error:\tscanf unclosed [ directive\n"
-msgstr ""
-#
-# File: src/c/do_xxscanf.c, line: 154
+# File: sci_gateway/c/sci_mprintf.c, line: 27
+# File: sci_gateway/c/sci_msprintf.c, line: 33
 #, c-format
-msgid "Error:\tscanf too many (> %d) conversion required\n"
+msgid "%s: Wrong number of input arguments: Must be > 0.\n"
 msgstr ""
 #
-# File: src/c/do_xxscanf.c, line: 165
+# File: sci_gateway/c/sci_mprintf.c, line: 58
+# File: sci_gateway/c/sci_msprintf.c, line: 63
 #, c-format
-msgid "Error:\tscanf, width field %d is too long (> %d) for %%[ directive\n"
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 #
-# File: src/c/do_xxscanf.c, line: 177
-# File: src/c/do_xxscanf.c, line: 197
-# File: src/c/do_xxscanf.c, line: 263
-# File: src/c/do_xxscanf.c, line: 279
-msgid "Error:\tscanf: bad conversion\n"
-msgstr ""
-#
-# File: src/c/do_xxscanf.c, line: 184
+# File: sci_gateway/c/sci_mprintf.c, line: 85
+# File: sci_gateway/c/sci_msprintf.c, line: 80
 #, c-format
-msgid "Error:\tscanf, width field %d is too long (< %d) for %%s directive\n"
+msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr ""
 #
-# File: src/c/do_xxscanf.c, line: 206
+# File: sci_gateway/c/sci_fscanfMat.c, line: 72
 #, c-format
-msgid "Error:\tscanf width field %d is too long (< %d) for %%c directive\n"
+msgid "%s: Cannot open file '%s'.\n"
 msgstr ""
 #
-# File: src/c/do_xxscanf.c, line: 307
+# File: sci_gateway/c/sci_fscanfMat.c, line: 96
 #, c-format
-msgid "Error:\tscanf, format is too long (> %d)\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_fileext.c, line: 46
-# File: sci_gateway/c/sci_deletefile.c, line: 42
-msgid "Invalid parameter , it must be a filename (string).\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_fscanfMat.c, line: 31
-# File: sci_gateway/c/sci_fscanfMat.c, line: 68
-# File: sci_gateway/c/sci_fscanfMat.c, line: 91
-# File: sci_gateway/c/sci_fscanfMat.c, line: 114
-# File: sci_gateway/c/sci_fscanfMat.c, line: 130
-# File: sci_gateway/c/sci_fscanfMat.c, line: 142
-#, c-format
-msgid "Error: in function %s, cannot allocate enough memory\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_fscanfMat.c, line: 55
-# File: sci_gateway/c/sci_fprintfMat.c, line: 76
-#, c-format
-msgid "Error: in function %s, cannot open file %s\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_fscanfMat.c, line: 78
-#, c-format
-msgid "Error: in function %s, cannot read data in file %s\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_createdir.c, line: 41
-msgid ""
-"Warning: Directory already exists.\n"
-"\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_createdir.c, line: 54
-# File: sci_gateway/c/sci_removedir.c, line: 47
-msgid "Invalid parameter , it must be a directory (string).\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_msprintf.c, line: 29
-# File: sci_gateway/c/sci_mprintf.c, line: 23
-msgid "Error:\tInput parameters (RHS) must be > 0\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_msprintf.c, line: 48
-msgid "sprintf: Invalid format.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_msprintf.c, line: 138
-msgid "sprintf: cannot allocate cannot allocate more memory\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_findfiles.c, line: 41
-msgid "Problem with current directory.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_findfiles.c, line: 67
-msgid "Invalid parameter, it must be a path (string).\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_findfiles.c, line: 88
-msgid "Invalid parameter(s), it must be a path and a filespec (string).\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_fileio.c, line: 72
-#, c-format
-msgid "%s:  Could not open the file!\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_mscanf.c, line: 40
-msgid "Error: in scanf: incorrect first argument\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_mscanf.c, line: 57
-msgid "Error: in scanf: format cannot include \\n\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_mscanf.c, line: 74
-msgid "Error: in scanf\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_mscanf.c, line: 99
-# File: sci_gateway/c/sci_mfscanf.c, line: 84
-msgid "Error: in fscanf: data mismatch\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_mscanf.c, line: 106
-msgid "Error: in scanf: cannot allocate more memory\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_mscanf.c, line: 118
-# File: sci_gateway/c/sci_mfscanf.c, line: 103
-# File: sci_gateway/c/sci_msscanf.c, line: 100
-# File: sci_gateway/c/sci_msscanf.c, line: 112
-msgid "Error: in sscanf: cannot allocate more memory\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_maxfiles.c, line: 48
-#, c-format
-msgid "Warning : %d > Maximum of files (%d).\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_maxfiles.c, line: 59
-msgid "Problem to extend the limit of scilab's files opened.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_maxfiles.c, line: 66
-msgid ""
-"Warning : only extend the limit for the number of scilab's files opened "
-"simultaneously.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_maxfiles.c, line: 72
-msgid "invalid numbers of parameters.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_maxfiles.c, line: 78
-msgid "invalid parameter type.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_fprintfMat.c, line: 29
-msgid "first parameter must be a filename.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_fprintfMat.c, line: 48
-# File: sci_gateway/c/sci_fprintfMat.c, line: 54
-#, c-format
-msgid "%s works only with reals.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_isdir.c, line: 24
-msgid "Parameter incorrect must be a string (a file pathname).\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_isdir.c, line: 42
-msgid "First parameter incorrect, must be a string (a file pathname).\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_isdir.c, line: 50
-#, c-format
-msgid "The parameter is too long : must be less than %d characters.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getshortpathname.c, line: 52
-# File: sci_gateway/c/sci_getlongpathname.c, line: 51
-msgid "Not a path string"
-msgstr ""
-#
-# File: sci_gateway/c/sci_mfscanf.c, line: 36
-msgid "Error: in fscanf: incorrect first argument\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_mfscanf.c, line: 55
-#, c-format
-msgid "fprintf:\t wrong file descriptor %d\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_mfscanf.c, line: 92
-msgid "Error: in fscanf: cannot allocate more memory\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_fullpath.c, line: 50
-msgid "Invalid path.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_fullpath.c, line: 55
-msgid "Invalid parameter , it must be a path (string).\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_mprintf.c, line: 45
-# File: sci_gateway/c/sci_mfprintf.c, line: 56
-msgid "mfprintf: Invalid format.\n"
+msgid "%s: Cannot read data in file '%s'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_mfprintf.c, line: 26
-msgid "Error:\tInput parameters (RHS) must be >= 2\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_mfprintf.c, line: 41
 #, c-format
-msgid "mfprintf:\t wrong file descriptor %d\n"
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msscanf.c, line: 35
-msgid "Error: in sscanf: incorrect first argument\n"
+# File: sci_gateway/c/sci_mfprintf.c, line: 56
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_createdir.c, line: 50
+#, c-format
+msgid "%s: Warning: Directory '%s' already exists.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_msscanf.c, line: 55
-msgid "Error: in sscanf: not enough entries in str\n"
+msgid "Not enough entries."
 msgstr ""
 #
-# File: sci_gateway/c/sci_msscanf.c, line: 93
-msgid "Error: in sscanf: data mismatch\n"
+# File: sci_gateway/c/sci_maxfiles.c, line: 57
+#, c-format
+msgid ""
+"%s: Warning: Specified maximum number of files (%d) > Absolute maximum "
+"number of files allowed (%d).\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_maxfiles.c, line: 68
+#, c-format
+msgid ""
+"%s: Could not extend the number of files simultaneously open in Scilab.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_maxfiles.c, line: 75
+#, c-format
+msgid ""
+"%s: Warning : only extend the limit for the number of scilab's files opened "
+"simultaneously.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_maxfiles.c, line: 81
+#, c-format
+msgid "%s: Wrong size for input argument: Scalar expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_maxfiles.c, line: 87
+#, c-format
+msgid "%s: Wrong type for input argument: Matrix expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_mscanf.c, line: 57
+#, c-format
+msgid "%s: Specified format cannot include any '\\n'\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_findfiles.c, line: 53
+#, c-format
+msgid "%s: Error while trying to retrieve the name of the current directory.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_findfiles.c, line: 79
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_findfiles.c, line: 100
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fullpath.c, line: 59
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fullpath.c, line: 64
+# File: sci_gateway/c/sci_fprintfMat.c, line: 30
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 49
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 55
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of floating point numbers "
+"expected.\n"
+msgstr ""
+#
+# File: src/c/mclose.c, line: 56
+#, c-format
+msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
+msgstr ""
+#
+# File: src/c/mclose.c, line: 62
+#, c-format
+msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
+msgstr ""
+#
+# File: src/c/mgetstr.c, line: 70
+# File: src/c/mputi.c, line: 179
+#, c-format
+msgid "%s: No input file.\n"
+msgstr ""
+#
+# File: src/c/mgeti.c, line: 68
+# File: src/c/mputi.c, line: 64
+#, c-format
+msgid "%s: format is of 0 length.\n"
+msgstr ""
+#
+# File: src/c/mgeti.c, line: 175
+# File: src/c/mgeti.c, line: 181
+# File: src/c/mputi.c, line: 166
+# File: src/c/mputi.c, line: 172
+#, c-format
+msgid "%s: %s format not recognized.\n"
+msgstr ""
+#
+# File: src/c/mgeti.c, line: 192
+msgid "No input file\n"
+msgstr ""
+#
+# File: src/c/mgeti.c, line: 210
+#, c-format
+msgid "%s: unknown format %s.\n"
+msgstr ""
+#
+# File: src/c/mopen.c, line: 35
+#, c-format
+msgid "Warning: file '%s' already opened in Scilab.\n"
+msgstr ""
+#
+# File: src/c/mput.c, line: 59
+# File: src/c/mput.c, line: 138
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: src/c/mput.c, line: 71
+# File: src/c/mget.c, line: 70
+# File: src/c/mget.c, line: 185
+#, c-format
+msgid "%s: No input file associated to logical unit %d.\n"
+msgstr ""
+#
+# File: src/c/mput.c, line: 181
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"
+msgstr ""
+#
+# File: src/c/mput.c, line: 189
+#, c-format
+msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgstr ""
+#
+# File: src/c/mput.c, line: 193
+# File: src/c/mseek.c, line: 43
+# File: src/c/mputstr.c, line: 27
+# File: src/c/mtell.c, line: 26
+#, c-format
+msgid "%s: Error while opening, reading or writing '%s'.\n"
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 50
+#, c-format
+msgid "%s: Not enough arguments.\n"
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 241
+msgid "Buffer too small."
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 346
+#, c-format
+msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 350
+#, c-format
+msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 415
+# File: src/c/do_xxprintf.c, line: 437
+# File: src/c/do_xxscanf.c, line: 187
+# File: src/c/do_xxscanf.c, line: 207
+# File: src/c/do_xxscanf.c, line: 273
+# File: src/c/do_xxscanf.c, line: 289
+msgid "Bad conversion."
+msgstr ""
+#
+# File: src/c/do_xxprintf.c, line: 432
+msgid "'o' format not allowed."
+msgstr ""
+#
+# File: src/c/mseek.c, line: 55
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: src/c/mseek.c, line: 72
+#, c-format
+msgid "%s: An error occurred in %s: errno=%s\n"
+msgstr ""
+#
+# File: src/c/mget.c, line: 56
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: src/c/mget.c, line: 172
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr ""
+#
+# File: src/c/mget.c, line: 181
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
+msgstr ""
+#
+# File: src/c/fileio.c, line: 90
+#, c-format
+msgid "%s: Too many directives in scanf.\n"
+msgstr ""
+#
+# File: src/c/do_xxscanf.c, line: 136
+# File: src/c/do_xxscanf.c, line: 147
+msgid "unclosed [ directive."
+msgstr ""
+#
+# File: src/c/do_xxscanf.c, line: 164
+#, c-format
+msgid "%s: An error occurred: too many (> %d) conversion required.\n"
+msgstr ""
+#
+# File: src/c/do_xxscanf.c, line: 175
+#, c-format
+msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgstr ""
+#
+# File: src/c/do_xxscanf.c, line: 194
+#, c-format
+msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgstr ""
+#
+# File: src/c/do_xxscanf.c, line: 216
+#, c-format
+msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgstr ""
+#
+# File: src/c/do_xxscanf.c, line: 317
+#, c-format
+msgid "%s: An error occurred: format is too long (> %d).\n"
 msgstr ""

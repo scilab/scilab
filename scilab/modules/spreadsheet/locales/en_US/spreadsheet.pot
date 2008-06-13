@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-05-27 19:00+0100\n"
+"Revision-Date: 2008-06-13 13:31+0100\n"
 
 # File: macros/sci2excel.sci, line: 23
 #, c-format
@@ -81,24 +81,6 @@ msgstr ""
 # File: sci_gateway/c/sci_xls_read.c, line: 71
 #, c-format
 msgid "%s: End of file.\n"
-msgstr ""
-#
-# File: src/nospreadsheet/nospreadsheet.c, line: 20
-msgid "Scilab spreadsheet module not installed.\n"
-msgstr ""
-#
-# File: src/c/pldstr.c, line: 501
-#, c-format
-msgid ""
-"%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform "
-"replacement operation"
-msgstr ""
-#
-# File: src/c/pldstr.c, line: 583
-#, c-format
-msgid ""
-"%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' "
-"with '%s'"
 msgstr ""
 #
 # File: src/c/ole.c, line: 102
@@ -202,6 +184,20 @@ msgstr ""
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
 msgstr ""
 #
+# File: src/c/pldstr.c, line: 501
+#, c-format
+msgid ""
+"%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform "
+"replacement operation"
+msgstr ""
+#
+# File: src/c/pldstr.c, line: 583
+#, c-format
+msgid ""
+"%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' "
+"with '%s'"
+msgstr ""
+#
 # File: src/c/logger.c, line: 118
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -215,6 +211,41 @@ msgstr ""
 # File: src/c/logger.c, line: 343
 #, c-format
 msgid "LOGGER-Default: %s%s"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 157
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from '%"
+"s' and '%s'"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 169
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 176
+#, c-format
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 282
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 294
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
+msgstr ""
+#
+# File: src/c/olestream-unwrap.c, line: 335
+#, c-format
+msgid "Unable to decode stream with element string '%s'\n"
 msgstr ""
 #
 # File: src/c/ripole.c, line: 131
@@ -264,37 +295,6 @@ msgstr ""
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr ""
 #
-# File: src/c/olestream-unwrap.c, line: 157
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from '%"
-"s' and '%s'"
-msgstr ""
-#
-# File: src/c/olestream-unwrap.c, line: 169
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
-msgstr ""
-#
-# File: src/c/olestream-unwrap.c, line: 176
-#, c-format
-msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
-msgstr ""
-#
-# File: src/c/olestream-unwrap.c, line: 282
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr ""
-#
-# File: src/c/olestream-unwrap.c, line: 294
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
-msgstr ""
-#
-# File: src/c/olestream-unwrap.c, line: 335
-#, c-format
-msgid "Unable to decode stream with element string '%s'\n"
+# File: src/nospreadsheet/nospreadsheet.c, line: 20
+msgid "Scilab spreadsheet module not installed.\n"
 msgstr ""

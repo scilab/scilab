@@ -1,8 +1,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007-2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
-
 # Localization of the module sound
 # Please see in SCI/tools/localization for localization management
 #
@@ -17,6 +16,169 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
+
+# File: macros/wavwrite.sci, line: 18
+# File: macros/auread.sci, line: 34
+# File: macros/auwrite.sci, line: 42
+# File: macros/auwrite.sci, line: 44
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/wavwrite.sci, line: 29
+# File: macros/auread.sci, line: 65
+# File: macros/auread.sci, line: 107
+# File: macros/auread.sci, line: 110
+# File: macros/auread.sci, line: 113
+# File: macros/auread.sci, line: 121
+# File: macros/auread.sci, line: 177
+# File: macros/auread.sci, line: 209
+# File: macros/auread.sci, line: 214
+# File: macros/sound.sci, line: 41
+# File: macros/auwrite.sci, line: 72
+# File: macros/auwrite.sci, line: 88
+# File: macros/auwrite.sci, line: 125
+# File: macros/auwrite.sci, line: 143
+# File: macros/auwrite.sci, line: 147
+# File: macros/wavread.sci, line: 65
+# File: macros/wavread.sci, line: 70
+# File: macros/wavread.sci, line: 84
+# File: macros/wavread.sci, line: 90
+# File: macros/wavread.sci, line: 101
+# File: macros/wavread.sci, line: 114
+# File: macros/wavread.sci, line: 137
+# File: macros/wavread.sci, line: 148
+# File: macros/wavread.sci, line: 156
+# File: macros/wavread.sci, line: 165
+# File: macros/wavread.sci, line: 176
+# File: macros/wavread.sci, line: 226
+# File: macros/wavread.sci, line: 241
+# File: macros/wavread.sci, line: 245
+# File: macros/wavread.sci, line: 248
+# File: sci_gateway/c/sci_PlaySound.c, line: 60
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr ""
+
+#
+# File: macros/auread.sci, line: 43
+# File: macros/auwrite.sci, line: 68
+# File: macros/wavread.sci, line: 34
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""
+
+#
+# File: macros/sound.sci, line: 27
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#
+# File: macros/auwrite.sci, line: 60
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr ""
+
+#
+# File: macros/wavread.sci, line: 43
+# File: macros/wavread.sci, line: 58
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be %s, an integer or a vector "
+"of 2 integers.\n"
+msgstr ""
+
+#
+# File: macros/wavread.sci, line: 48
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Index range must be specified as a "
+"scalar or 2-element vector.\n"
+msgstr ""
+
+#
+# File: macros/wavread.sci, line: 212
+#, c-format
+msgid "%s: An error occurred: Data compression format %s is not supported.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_beep.c, line: 52
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_PlaySound.c, line: 60
+msgid "Cannot play file."
+msgstr ""
+
+#
+# File: src/nosound/nosound.c, line: 11
+msgid "Scilab sound module not installed.\n"
+msgstr ""
+
+#
+# File: src/c/sox.c, line: 67
+#, c-format
+msgid "Can't open input file '%s': %s\n"
+msgstr ""
+
+#
+# File: src/c/sox.c, line: 84
+# File: src/c/sox.c, line: 91
+# File: src/c/sox.c, line: 114
+msgid "Error while reading\n"
+msgstr ""
+
+#
+# File: src/c/sox.c, line: 97
+#, c-format
+msgid "Input file: using sample rate %lu\n"
+msgstr ""
+
+#
+# File: src/c/sox.c, line: 99
+#, c-format
+msgid "\tsize %s, style %s, %d %s\n"
+msgstr ""
+
+#
+# File: src/c/sox.c, line: 118
+msgid "Sorry wav file too big\n"
+msgstr ""
+
+#
+# File: src/c/sox.c, line: 165
+#, c-format
+msgid "Can't open output file '%s': %s\n"
+msgstr ""
+
+#
+# File: src/c/sox.c, line: 276
+#, c-format
+msgid "Sampling rate for %s file was not given\n"
+msgstr ""
+
+#
+# File: src/c/sox.c, line: 282
+#, c-format
+msgid "Sampling rate %lu for %s file is bogus\n"
+msgstr ""
+
+#
+# File: src/c/sox.c, line: 290
+#, c-format
+msgid "Data size was not given for %s file\n"
+msgstr ""
+
+#
+# File: src/c/sox.c, line: 296
+#, c-format
+msgid "Data style was not given for %s file\n"
+msgstr ""
 
 #
 # File: src/c/raw.c, line: 140
@@ -61,143 +223,108 @@ msgid "Sorry, don't have code to write %s, %s\n"
 msgstr ""
 
 #
-# File: src/c/sox.c, line: 67
-#, c-format
-msgid "Can't open input file '%s': %s\n"
-msgstr ""
-
-#
-# File: src/c/sox.c, line: 84
-# File: src/c/sox.c, line: 91
-# File: src/c/sox.c, line: 114
-msgid "Error while reading\n"
-msgstr ""
-
-#
-# File: src/c/sox.c, line: 97
-#, c-format
-msgid "Input file: using sample rate %lu\n"
-msgstr ""
-
-#
-# File: src/c/sox.c, line: 99
-#, c-format
-msgid "\tsize %s, style %s, %d %s\n"
-msgstr ""
-
-#
-# File: src/c/sox.c, line: 121
-msgid " Sorry wav file too big\n"
-msgstr ""
-
-#
-# File: src/c/sox.c, line: 165
-#, c-format
-msgid "Can't open output file '%s': %s\n"
-msgstr ""
-
-#
-# File: src/c/sox.c, line: 276
-#, c-format
-msgid "Sampling rate for %s file was not given\n"
-msgstr ""
-
-#
-# File: src/c/sox.c, line: 282
-#, c-format
-msgid "Sampling rate %lu for %s file is bogus\n"
-msgstr ""
-
-#
-# File: src/c/sox.c, line: 290
-#, c-format
-msgid "Data size was not given for %s file\n"
-msgstr ""
-
-#
-# File: src/c/sox.c, line: 296
-#, c-format
-msgid "Data style was not given for %s file\n"
-msgstr ""
-
-#
 # File: src/c/wav.c, line: 71
-msgid "Sorry, .wav input file must be a file, not a pipe\n"
+#, c-format
+msgid "%s: .wav input file must be a file, not a pipe.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 78
-msgid "Sorry, not a RIFF file\n"
+#, c-format
+msgid "%s : not a RIFF file.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 87
-msgid "Sorry, not a WAVE file\n"
+#, c-format
+msgid "%s: not a WAVE file.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 96
-msgid "Sorry, missing fmt spec\n"
+#, c-format
+msgid "%s: missing fmt spec.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 111
-msgid "Sorry, fmt chunk is too short\n"
+#, c-format
+msgid "%s : fmt chunk is too short\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 120
-msgid "Sorry, this WAV file is in Microsoft Official Unknown format.\n"
+#, c-format
+msgid "%s: this WAV file is in Microsoft Official Unknown format.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 125
-# File: src/c/wav.c, line: 137
-# File: src/c/wav.c, line: 143
-# File: src/c/wav.c, line: 208
-# File: src/c/wav.c, line: 218
-# File: src/c/wav.c, line: 228
-msgid "User options overiding style read in .wav header\n"
+#, c-format
+msgid "%s: user options overiding style read in .wav header\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 129
-msgid "Sorry, this WAV file is in Microsoft ADPCM format.\n"
+#, c-format
+msgid "%s : this WAV file is in Microsoft ADPCM format.\n"
+msgstr ""
+
+#
+# File: src/c/wav.c, line: 137
+# File: src/c/wav.c, line: 208
+# File: src/c/wav.c, line: 218
+# File: src/c/wav.c, line: 228
+#, c-format
+msgid "%s: User options overiding style read in .wav header.\n"
+msgstr ""
+
+#
+# File: src/c/wav.c, line: 143
+#, c-format
+msgid "%s: User options overiding style read in .wav header\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 147
-msgid "Sorry, this WAV file is in OKI ADPCM format.\n"
+#, c-format
+msgid "%s: this WAV file is in OKI ADPCM format.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 153
-msgid "Sorry, this WAV file is in Digistd format.\n"
+#, c-format
+msgid "%s: this WAV file is in Digistd format.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 158
-msgid "Sorry, this WAV file is in Digifix format.\n"
+#, c-format
+msgid "%s: this WAV file is in Digifix format.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 163
-msgid "Sorry, this WAV file is in IBM U-law format.\n"
+#, c-format
+msgid "%s: this WAV file is in IBM U-law format.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 168
-msgid "Sorry, this WAV file is in IBM A-law format.\n"
+#, c-format
+msgid "%s: this WAV file is in IBM A-law format.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 173
-msgid "Sorry, this WAV file is in IBM ADPCM format.\n"
+#, c-format
+msgid "%s: this WAV file is in IBM ADPCM format.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 178
-msgid "Sorry, don't understand format\n"
+#, c-format
+msgid "%s: don't understand format.\n"
 msgstr ""
 
 #
@@ -214,17 +341,20 @@ msgstr ""
 # File: src/c/wav.c, line: 204
 # File: src/c/wav.c, line: 214
 # File: src/c/wav.c, line: 224
-msgid "User options overiding size read in .wav header\n"
+#, c-format
+msgid "%s: User options overiding size read in .wav header.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 232
-msgid "Sorry, don't understand .wav size\n"
+#, c-format
+msgid "%s: Incorrect .wav size.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 248
-msgid "Sorry, missing data chunk\n"
+#, c-format
+msgid "%s: missing data chunk.\n"
 msgstr ""
 
 #
@@ -241,19 +371,19 @@ msgstr ""
 
 #
 # File: src/c/wav.c, line: 294
-msgid "Premature EOF on .wav input file\n"
+msgid "Premature EOF on .wav input file.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 321
-msgid "Length in output .wav header will wrong since can't seek to fix it\n"
+msgid "Length in output .wav header will wrong since can't seek to fix it.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 345
 # File: src/c/wav.c, line: 352
 # File: src/c/wav.c, line: 359
-msgid "User options overiding style written to .wav header\n"
+msgid "User options overiding style written to .wav header.\n"
 msgstr ""
 
 #
@@ -266,28 +396,28 @@ msgstr ""
 # File: src/c/wav.c, line: 375
 #, c-format
 msgid ""
-"Sciprinting - writing bad .wav file using unsigned data and %d bits/sample\n"
+"Sciprinting - writing bad .wav file using unsigned data and %d bits/sample.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 380
 #, c-format
 msgid ""
-"Sciprinting - writing bad .wav file using signed data and %d bits/sample\n"
+"Sciprinting - writing bad .wav file using signed data and %d bits/sample.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 385
 #, c-format
 msgid ""
-"Sciprinting - writing bad .wav file using A-law data and %d bits/sample\n"
+"Sciprinting - writing bad .wav file using A-law data and %d bits/sample.\n"
 msgstr ""
 
 #
 # File: src/c/wav.c, line: 390
 #, c-format
 msgid ""
-"Sciprinting - writing bad .wav file using U-law data and %d bits/sample\n"
+"Sciprinting - writing bad .wav file using U-law data and %d bits/sample.\n"
 msgstr ""
 
 #
@@ -371,19 +501,4 @@ msgstr ""
 #
 # File: src/c/wav.c, line: 487
 msgid "Unknown"
-msgstr ""
-
-#
-# File: src/nosound/nosound.c, line: 11
-msgid "Scilab sound module not installed.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_beep.c, line: 43
-msgid "Unknown command option.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_PlaySound.c, line: 47
-msgid "Error in PlaySound\n"
 msgstr ""

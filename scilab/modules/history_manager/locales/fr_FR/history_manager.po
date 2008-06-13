@@ -17,6 +17,54 @@ msgstr ""
 "Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
 
 #
+# File: sci_gateway/c/sci_addhistory.c, line: 35
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"L'argument d'entrée doit être une chaîne de caractère ou une matrice de "
+"chaîne de caractère.\n"
+
+#
+# File: sci_gateway/c/sci_gethistoryfile.c, line: 42
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_gethistoryfile.c, line: 42
+msgid "filename not defined."
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_addhistory.c, line: 35
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"L'argument d'entrée doit être une chaîne de caractère ou une matrice de "
+"chaîne de caractère.\n"
+
+#
+# File: sci_gateway/c/sci_historymanager.c, line: 68
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"
+msgstr "Argument d'entrée incorrect. Doit être '%s' ou '%s'"
+
+#
+# File: sci_gateway/c/sci_removelinehistory.c, line: 37
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_addhistory.c, line: 35
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"L'argument d'entrée doit être une chaîne de caractère ou une matrice de "
+"chaîne de caractère.\n"
+
+#
 # File: src/c/getCommentDateSession.c, line: 12
 msgid "// Begin Session : "
 msgstr "// Début de la session : "
@@ -129,33 +177,21 @@ msgstr "Module de gestion de l'historique (history_manager) non installé.\n"
 #
 # File: sci_gateway/c/sci_saveafterncommands.c, line: 49
 # File: sci_gateway/c/sci_gethistory.c, line: 50
-msgid "Input argument must be a integer.\n"
-msgstr "L'argument d'entrée doit être un entier.\n"
+#~ msgid "Input argument must be a integer.\n"
+#~ msgstr "L'argument d'entrée doit être un entier.\n"
 
 #
 # File: sci_gateway/c/sci_gethistoryfile.c, line: 34
-msgid "Error : Impossible to find the Scilab history file.\n"
-msgstr "Erreur : Impossible de trouver le fichier d'historique Scilab.\n"
+#~ msgid "Error : Impossible to find the Scilab history file.\n"
+#~ msgstr "Erreur : Impossible de trouver le fichier d'historique Scilab.\n"
 
 #
 # File: sci_gateway/c/sci_removelinehistory.c, line: 27
 # File: sci_gateway/c/sci_removelinehistory.c, line: 37
-msgid "Invalid parameter.\n"
-msgstr "Argument d'entrée incorrect.\n"
+#~ msgid "Invalid parameter.\n"
+#~ msgstr "Argument d'entrée incorrect.\n"
 
 #
 # File: sci_gateway/c/sci_saveconsecutivecommands.c, line: 48
-msgid "Input argument must be a boolean.\n"
-msgstr "L'argument d'entrée doit être un booléen.\n"
-
-#
-# File: sci_gateway/c/sci_addhistory.c, line: 35
-msgid "Invalid type of input argument: String or matrix of string expected.\n"
-msgstr "L'argument d'entrée doit être une chaîne de caractère ou une matrice de chaîne de caractère.\n"
-
-#
-# File: sci_gateway/c/sci_historymanager.c, line: 68
-#, c-format
-msgid "Invalid input argument. Must be '%s' or '%s'"
-msgstr "Argument d'entrée incorrect. Doit être '%s' ou '%s'"
-
+#~ msgid "Input argument must be a boolean.\n"
+#~ msgstr "L'argument d'entrée doit être un booléen.\n"

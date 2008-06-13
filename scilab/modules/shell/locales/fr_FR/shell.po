@@ -1,8 +1,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007-2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
-
 #
 # Localization of the module shell
 # Please see in SCI/tools/localization for localization management
@@ -20,34 +19,84 @@ msgstr ""
 "Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
 
 #
-# File: src/c/windows/command.c, line: 68
-msgid "Input line too long"
-msgstr "Ligne saisie trop longue"
+# File: sci_gateway/c/sci_clc.c, line: 51
+# File: sci_gateway/c/sci_tohome.c, line: 24
+#, fuzzy, c-format
+msgid "%s: This feature has not been implemented in this mode.\n"
+msgstr "Pas impl�ment� dans ce mode.\n"
 
 #
-# File: src/c/others/GetCharWithEventsLoop.c, line: 55
-msgid "Error.\n"
-msgstr "Erreur.\n"
+# File: sci_gateway/c/sci_lines.c, line: 57
+# File: sci_gateway/c/sci_lines.c, line: 71
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
 
 #
-# File: src/c/more.c, line: 18
-msgid "[More (y or n ) ?] "
-msgstr "[Plus (y ou n) ?] "
+# File: sci_gateway/c/sci_prompt.c, line: 47
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
 
 #
-# File: sci_gateway/c/sci_lines.c, line: 50
-# File: sci_gateway/c/sci_lines.c, line: 66
-msgid "Invalid parameter(s).\n"
-msgstr "Param�tre(s) incorrect(s).\n"
-
-#
-# File: sci_gateway/c/sci_clc.c, line: 32
-# File: sci_gateway/c/sci_clc.c, line: 38
-msgid "Invalid parameter.\n"
-msgstr "Param�tre incorrect.\n"
+# File: sci_gateway/c/sci_prompt.c, line: 55
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_clc.c, line: 51
 # File: sci_gateway/c/sci_tohome.c, line: 24
-msgid "Not implemented in this mode.\n"
+#, fuzzy, c-format
+msgid "%s: Not implemented in this mode.\n"
 msgstr "Pas impl�ment� dans ce mode.\n"
+
+#
+# File: sci_gateway/c/sci_clc.c, line: 41
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_clc.c, line: 47
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr ""
+
+#
+# File: src/c/more.c, line: 25
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+
+#
+# File: src/c/others/GetCharWithEventsLoop.c, line: 68
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr ""
+
+#
+# File: src/c/windows/command.c, line: 68
+#~ msgid "Input line too long"
+#~ msgstr "Ligne saisie trop longue"
+
+#
+# File: src/c/others/GetCharWithEventsLoop.c, line: 55
+#~ msgid "Error.\n"
+#~ msgstr "Erreur.\n"
+
+#
+# File: src/c/more.c, line: 18
+#~ msgid "[More (y or n ) ?] "
+#~ msgstr "[Plus (y ou n) ?] "
+
+#
+# File: sci_gateway/c/sci_lines.c, line: 50
+# File: sci_gateway/c/sci_lines.c, line: 66
+#~ msgid "Invalid parameter(s).\n"
+#~ msgstr "Param�tre(s) incorrect(s).\n"
+
+#
+# File: sci_gateway/c/sci_clc.c, line: 32
+# File: sci_gateway/c/sci_clc.c, line: 38
+#~ msgid "Invalid parameter.\n"
+#~ msgstr "Param�tre incorrect.\n"
