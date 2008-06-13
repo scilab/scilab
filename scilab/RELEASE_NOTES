@@ -27,6 +27,8 @@ List of missing/buggy features:
       old Nvidia drivers.
     * Sgrayplot display might be corrupted.
     * The Symbol font is not compatible with the one used in Scilab 4.
+    * It is strongly recommended to update graphic cards drivers after 
+      Windows XP Service Pack 3 update (http://bugzilla.scilab.org/show_bug.cgi?id=3138)
 
 
 - It is strongly recommended to update graphic cards drivers to the latest revision:
