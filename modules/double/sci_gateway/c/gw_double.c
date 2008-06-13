@@ -12,6 +12,8 @@
  */
 
 #include "stack-c.h"
+#include "double.h"
+
 /*--------------------------------------------------------------------------*/
 static integer colon = 44;
 static integer quote = 53;
@@ -49,7 +51,7 @@ extern int C2F(vecimpl)();
 extern int C2F(matldiv)();
 extern int C2F(vecrdiv)();
 extern int C2F(matrdiv)();
-extern int C2F(matmult)();
+//extern int C2F(matmult)();
 extern int C2F(matxpow)();
 /*--------------------------------------------------------------------------*/
 int C2F(matops)(void)
@@ -147,6 +149,7 @@ int C2F(matops)(void)
 		{
 			/* \ */
 			C2F(matldiv)();
+			//C2F(tonio_matldiv)();
 			return 0;
 		}
 	case 7:  
