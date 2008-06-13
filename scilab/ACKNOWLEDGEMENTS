@@ -31,7 +31,7 @@ dcd: Library of Fortran Routines for Cumulative Distribution
          Biomathematics, Box 237, The University of Texas,
          M.D. Anderson Cancer Center. 1515 Holcombe
          Boulevard. Houston, TX 77030.
-     Interfaced by J.P Chancelier and B. Pinçon.
+        Interfaced by J.P Chancelier and B. Pinçon.
 
 dld: is a library package of C functions that performs "dynamic link
          editing" from Wilson Ho (how@cs.ucdavis.edu). It is used on
@@ -39,7 +39,6 @@ dld: is a library package of C functions that performs "dynamic link
 
 FreeBSD port: by Dan McMahill.
 
-graphics: Scilab graphics routines by Jean-Philippe Chancelier (Enpc).
 
 graphics based on entities: INRIA (M. Philippe, D. Abdemouche).
  
@@ -47,22 +46,21 @@ integ: routines from Odepack and Quadpack.
          dassl: L. Petzold (LLNL).
          hybrd: Minpack (ANL).
 	 routines colnew from U. Ascher and G. Bader
+	 Sundials : Nonlinear Solvers and Differential Equations Project, Lawrence Livermore National Laboratory
 
 interf: Scilab interface with numerical libraries (INRIA/ENPC).
 
-menusX: Scilab menus (J.P.Chancelier/INRIA).
 
 metanet: routines for network analysis (Metanet, INRIA and many public
          programs).
 
 optim: optimization routines (Modulopt library, INRIA).
-         quapro: E. Casas Renteria & C. Pola Mendez (Universidad de Cantabria).
-         semidef: L. Vandenberghe- S. Boyd code (sp.c, see copyright notice in
-         /routines/optim).
+       semidef : L. Vandenberghe- S. Boyd code sp.c,
+       qld     : K.Schittkowski, A.L. Tits and J.L. Zhou
+       qpsolve : Berwin A. Turlach
 
 poly: Scilab polynomial library (INRIA).
 
-PDE Scicos palette: developped by  EADS-CCR.
 
 pvm: interface routines with PVM developed by ReMaP and Resedas projects 
      at INRIA.
@@ -81,11 +79,11 @@ scipad: an embedded text editor scipad derived from TkNotepad
 SciGui: a tcl gui environment developed by Jaime Urzua: jaime_urzua@yahoo.com
 	used for the help browser, waitbar and editvar 
 
-signal: routines from IEEE Signal processing library.
+signal: routines from IEEE Signal processing library, (interfaced by C. Bunks)
 
 Slicot : automatic control routines (www.win.tue.nl/wgs/slicot.html)
 
-sparse: Operations on sparse matrices (S. Steer INRIA)
+sparse: Operations on sparse matrices (interfaced by S. Steer INRIA, Bruno Pincon)
 
          sparse Lu factorization and resolution comes from Sparse 1.3
          by Kenneth S. Kundert, Alberto Sangiovanni-Vincentelli and
@@ -107,14 +105,7 @@ os_specific: system specific Scilab routines (INRIA/ENPC).
          by B.Lapeyre.
          zzledt.c is from Mitchell and Gauthier ass.
 
-tksci: interface with TCL/TK (obsolete) developed by Bertrand Guiheneuf.
-
 tclsci: interface with TCL/TK developed by Allan CORNET.
 
-X11: optionnal Xaw and Xmu routines  (from MIT X11 distribution).
-
-xsci: top level window and utilities using code from: xterm, xxgdb, xfig 
-	 combined and modified by J.P. Chancelier.
-
-wsci: Scilab programs for the windows version derived from 
-         gnuplot/gsview (gvwprn.c) (J.P.Chancelier).
+scicos: developped by then INRIA's Metalau project
+        PDE Scicos palette: developped by  EADS-CCR.
