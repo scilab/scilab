@@ -16,6 +16,6 @@ libdemo_tools_la_etc_DATA = etc/demo_tools.quit etc/demo_tools.start
 
 #### demo_tools : images files ####
 libdemo_tools_la_imagesdir=$(mydatadir)/images
-libdemo_tools_la_images_DATA = images/log_scilab.png
+libdemo_tools_la_images_DATA = images/logo_scilab.png
 
 include $(top_srcdir)/Makefile.incl.am
