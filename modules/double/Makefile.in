@@ -50,7 +50,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
-@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la 
+@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @GUI_TRUE@am__append_3 = java
@@ -94,12 +94,14 @@ libscidouble_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(am__append_1) $(am__append_2)
-am__objects_1 = libscidouble_la-gw_double.lo
-am__objects_2 = vecldiv.lo vecmul.lo matxpow.lo vecimpl.lo matldiv.lo \
+am__objects_1 = libscidouble_la-matmult.lo
+am__objects_2 = libscidouble_la-gw_double.lo
+am__objects_3 = vecldiv.lo vecmul.lo matxpow.lo vecimpl.lo matldiv.lo \
 	matsubst.lo vecrdiv.lo matchsgn.lo matrdiv.lo matrc.lo \
-	matpow.lo matins1.lo matins2.lo matcmp.lo matmult.lo \
-	matext1.lo matext2.lo mattr.lo matcc.lo mattrc.lo matadd.lo
-am_libscidouble_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+	matpow.lo matins1.lo matins2.lo matcmp.lo matext1.lo \
+	matext2.lo mattr.lo matcc.lo mattrc.lo matadd.lo
+am_libscidouble_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3)
 libscidouble_la_OBJECTS = $(am_libscidouble_la_OBJECTS)
 libscidouble_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
@@ -313,6 +315,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+DOUBLE_C_SOURCES = src/c/matmult.c
 GATEWAY_C_SOURCES = sci_gateway/c/gw_double.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/vecldiv.f \
 sci_gateway/fortran/vecmul.f \
@@ -328,7 +331,6 @@ sci_gateway/fortran/matpow.f \
 sci_gateway/fortran/matins1.f \
 sci_gateway/fortran/matins2.f \
 sci_gateway/fortran/matcmp.f \
-sci_gateway/fortran/matmult.f \
 sci_gateway/fortran/matext1.f \
 sci_gateway/fortran/matext2.f \
 sci_gateway/fortran/mattr.f \
@@ -338,8 +340,11 @@ sci_gateway/fortran/matadd.f
 
 pkglib_LTLIBRARIES = libscidouble.la
 libscidouble_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
-libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/elementary_functions/includes \
+				-I$(top_srcdir)/modules/double/includes
+
+libscidouble_la_SOURCES = $(DOUBLE_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscidouble_la_LIBADD =  \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
@@ -491,6 +496,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-gw_double.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-matmult.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -512,6 +518,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscidouble_la-matmult.lo: src/c/matmult.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -MT libscidouble_la-matmult.lo -MD -MP -MF $(DEPDIR)/libscidouble_la-matmult.Tpo -c -o libscidouble_la-matmult.lo `test -f 'src/c/matmult.c' || echo '$(srcdir)/'`src/c/matmult.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscidouble_la-matmult.Tpo $(DEPDIR)/libscidouble_la-matmult.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matmult.c' object='libscidouble_la-matmult.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -c -o libscidouble_la-matmult.lo `test -f 'src/c/matmult.c' || echo '$(srcdir)/'`src/c/matmult.c
 
 libscidouble_la-gw_double.lo: sci_gateway/c/gw_double.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -MT libscidouble_la-gw_double.lo -MD -MP -MF $(DEPDIR)/libscidouble_la-gw_double.Tpo -c -o libscidouble_la-gw_double.lo `test -f 'sci_gateway/c/gw_double.c' || echo '$(srcdir)/'`sci_gateway/c/gw_double.c
@@ -570,9 +583,6 @@ matins2.lo: sci_gateway/fortran/matins2.f
 
 matcmp.lo: sci_gateway/fortran/matcmp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matcmp.lo `test -f 'sci_gateway/fortran/matcmp.f' || echo '$(srcdir)/'`sci_gateway/fortran/matcmp.f
-
-matmult.lo: sci_gateway/fortran/matmult.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matmult.lo `test -f 'sci_gateway/fortran/matmult.f' || echo '$(srcdir)/'`sci_gateway/fortran/matmult.f
 
 matext1.lo: sci_gateway/fortran/matext1.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matext1.lo `test -f 'sci_gateway/fortran/matext1.f' || echo '$(srcdir)/'`sci_gateway/fortran/matext1.f

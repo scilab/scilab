@@ -15,5 +15,5 @@
 
 
 /*Multiplication*/
-int C2F(matmult)();
+int matmult();
 int C2F(tonio_matldiv)();
