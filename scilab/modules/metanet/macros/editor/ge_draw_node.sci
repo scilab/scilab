@@ -38,6 +38,7 @@ function e=ge_drawnode_0(n)
   e1.fill_mode='on';
   e1.foreground=node_colors(1);
   e1.background=node_colors(2);
+  e1.arc_drawing_method='lines"; //to make the drawin less slow
   
 
   // Node label

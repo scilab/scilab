@@ -20,7 +20,8 @@ function e=ge_draw_edge(n)
 
     [arc,xya,xyl,ang]=ge_profile2real(n)
     if size(arc,'*')==6 then
-      xarc(arc(1),arc(2),arc(3),arc(4),arc(5),arc(6));e1=gce();
+      xarc(arc(1),arc(2),arc(3),arc(4),arc(5),arc(6));e1=gce(); 
+      e1.arc_drawing_method='lines"; //to make the drawin less slow
     else
       xpoly(arc(:,1),arc(:,2));e1=gce();
     end
