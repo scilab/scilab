@@ -118,4 +118,6 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
 
 void SciWin(void);
 
+sciPointObj * createFullFigure(int * winNum);
+
 #endif /* __SCI_BUILD__ */

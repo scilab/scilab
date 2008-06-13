@@ -122,6 +122,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * Deiconify the window and put it in front of other window
 	 */
 	public void raise() {
+		// force visibility
+		this.setVisible(true);
+		
 		// deiconify the window if needed
 		this.setState(NORMAL);
 		

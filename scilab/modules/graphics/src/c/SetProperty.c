@@ -3047,29 +3047,15 @@ sciSetdrawmode (BOOL mode)
 
 int sciSwitchWindow(int winnum)
 { 
-  static sciPointObj *mafigure;
-  static sciPointObj *masousfen;  
   /* find if exist figure winnum */
   /* une autre methode c est de tester CurXGC->mafigure = NULL */
   if ( !sciIsExistingFigure(winnum) ) 
   {
-    /** Figure winnum don't exist **/
-    /* For now, no higher entities than figure */
-    if ((mafigure = ConstructFigure(NULL, &winnum)) != NULL)
+    /* Figure winnum don't exist, create it! */
+    if( createFullFigure(&winnum) == NULL)
     {
-      sciSetCurrentObj(mafigure); /* F.Leray 25.03.04*/
-      sciSetCurrentFigure(mafigure);
-      if ((masousfen = ConstructSubWin (mafigure)) != NULL)
-      {
-        sciSetCurrentObj(masousfen);
-        sciSetOriginalSubWin(mafigure, masousfen);
-      }
+      return -1; /* failed to switch */
     }
-    else
-    {
-	return -1; /* failed to switch */
-    }
-     
   }
   else
   {

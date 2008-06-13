@@ -50,6 +50,7 @@
 #include "WindowList.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
+#include "Interaction.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"
@@ -2723,5 +2724,50 @@ void SciWin(void)
   {
     sciGetCurrentFigure();
   }
+}
+/*----------------------------------------------------------------------------*/
+/**
+ * Create a new figure with already a subwindow inside and show it.
+ * @param winNum if not NULL a pointer to the figure number otherwise
+ *               a default figure number is chosen.
+ * @return a pointer on the created figure or NULL if the creation could
+ *         not be performed
+ */
+sciPointObj * createFullFigure(int * winNum)
+{
+  sciPointObj * newFig = NULL;
+  sciPointObj * newSubwin = NULL;
+
+  startGraphicDataWriting();
+
+  /* Create figure */
+  newFig = ConstructFigure(NULL, winNum);
+
+  if (newFig == NULL)
+  {
+    endGraphicDataWriting();
+    return NULL;
+  }
+
+  sciSetCurrentFigure(newFig);
+
+  /* Add a subwindow inside the figure */
+  newSubwin = ConstructSubWin (newFig);
+  if (newSubwin == NULL)
+  {
+    DestroyFigure(newFig);
+    endGraphicDataWriting();
+    return NULL;
+  }
+
+  sciSetOriginalSubWin(newFig, newSubwin);
+  sciSetCurrentObj(newSubwin);
+
+  endGraphicDataWriting();
+
+  /* show th enewly created window */
+  showWindow(newFig);
+
+  return newFig;
 }
 /*----------------------------------------------------------------------------*/

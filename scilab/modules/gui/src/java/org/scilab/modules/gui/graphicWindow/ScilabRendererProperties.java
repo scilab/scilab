@@ -21,6 +21,7 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.renderer.figureDrawing.RendererProperties;
 
 
@@ -147,12 +148,12 @@ public class ScilabRendererProperties implements RendererProperties {
 			int deltaY = height - currentSize.getHeight();
 			
 			
-			
 			// apply them to the parent window
-			Size windowSize = parentTab.getParentWindow().getDims();
+			Window parentWindow = parentTab.getParentWindow();
+			Size windowSize = parentWindow.getDims();
 			windowSize.setWidth(windowSize.getWidth() + deltaX);
 			windowSize.setHeight(windowSize.getHeight() + deltaY);
-			parentTab.getParentWindow().setDims(windowSize);
+			parentWindow.setDims(windowSize);
 			
 			// also apply on canvas otherwise the canvas is resized twice by Swing
 			parentCanvas.setDims(new Size(width, height));

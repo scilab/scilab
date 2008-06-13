@@ -25,6 +25,7 @@
 #include "GraphicSynchronizerInterface.h"
 #include "WindowList.h"
 #include "InitObjects.h"
+#include "Interaction.h"
 
 /*----------------------------------------------------------------------------------*/
 /* root of the graphic hierarchy */
@@ -54,17 +55,7 @@ sciPointObj * sciGetCurrentFigure( void )
   {
     /* it would mean that we have change the driver to GIF,Pos or PPM and perform a xinit F.Leray 22.07.04 */
     /* for now, no higher entities than figure */
-    startGraphicDataWriting();
-    if ( (pfigure = ConstructFigure(NULL, NULL)) != NULL )
-    {
-      sciSetCurrentObj(pfigure);
-      sciInitCurrentFigure(pfigure);
-      if ((pSousFen = ConstructSubWin(pfigure)) != NULL) {
-        sciSetCurrentObj (pSousFen);
-        sciSetOriginalSubWin (pfigure, pSousFen);
-      }
-    }
-    endGraphicDataWriting();
+    pfigure = createFullFigure(NULL);
   }
 
   return pfigure;
