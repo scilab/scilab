@@ -16,10 +16,10 @@ function [Gnew,modified]=update_graph(G)
    modified=%t
    return
   end
-  if G.version=='5.0.0' then
+  if or(G.version==['5.0.0' '5.0.1']) then
     Gnew=G
   else
-    error('Graph data structure version: '+version+' is not yet handled')
+    error('Graph data structure version: '+G.version+' is not yet handled')
   end
 endfunction
 
@@ -47,15 +47,10 @@ function GraphList=update_graphv5(G)
   GraphList.nodes.graphics.border=matrix(G.node_border,1,-1)
   GraphList.nodes.graphics.colors=[matrix(G.node_color,1,-1);zeros(1,n)]
   GraphList.nodes.graphics.font=[matrix(G.node_font_size,1,-1);zeros(2,n)]
-  
+
   //optional data fields for nodes
   if or(G.node_demand<>0) then
-    data=GraphList.nodes.data
-    F=getfield(1,data)
-    F(1,$+1)='demand'
-    setfield(1,F,data)
-    data.demand=matrix(G.node_demand,1,-1);
-    GraphList.nodes.data=data;
+    GraphList=add_node_data(GraphList,"demand",G.node_demand)
   end
   
   //edges
@@ -74,14 +69,10 @@ function GraphList=update_graphv5(G)
   GraphList.edges.graphics.profile_index=index;
   
   //  add missing data fields for edges
-  data=GraphList.edges.data
-  F=getfield(1,data)
   for f=['min_cap','max_cap','q_orig','cost','weight','length']
     if or(G('edge_'+f)<>0) then
-      F(1,$+1)=f
-      setfield(1,F,data)
-      data(f)=matrix(G('edge_'+f),1,-1);
+      GraphList=add_edge_data(GraphList,f,G('edge_'+f))
     end
   end
-  GraphList.edges.data=data;
+
 endfunction
