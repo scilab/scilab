@@ -308,7 +308,6 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp \
 	src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp \
 	src/cpp/segsDrawing/SegsDecomposer.cpp \
-	src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp \
 	src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
 	src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
 	src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
@@ -573,7 +572,6 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-SegsArrowDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-SegsArrowDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-SegsDecomposer.lo \
-@GUI_TRUE@	libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-SegsLineDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-SegsLineDrawerJoGL.lo \
 @GUI_TRUE@	libscirenderer_la-SegsMarkDrawerJavaMapper.lo \
@@ -1064,7 +1062,6 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp \
 @GUI_TRUE@src/cpp/segsDrawing/SegsDecomposer.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp \
 @GUI_TRUE@src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
 @GUI_TRUE@src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
@@ -1553,7 +1550,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsDecomposer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsLineDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsLineDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsLineDrawerJoGL.Plo@am__quote@
@@ -3279,13 +3275,6 @@ libscirenderer_la-SegsDecomposer.lo: src/cpp/segsDrawing/SegsDecomposer.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/SegsDecomposer.cpp' object='libscirenderer_la-SegsDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsDecomposer.lo `test -f 'src/cpp/segsDrawing/SegsDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsDecomposer.cpp
-
-libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo: src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.Tpo -c -o libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo `test -f 'src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp' object='libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsLengthDependentArrowDrawerJoGL.lo `test -f 'src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp
 
 libscirenderer_la-SegsLineDrawerJavaMapper.lo: src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SegsLineDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SegsLineDrawerJavaMapper.Tpo -c -o libscirenderer_la-SegsLineDrawerJavaMapper.lo `test -f 'src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp
