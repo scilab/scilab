@@ -701,14 +701,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\pasr03.c"
-				>
-			</File>
-			<File
-				RelativePath=".\plcbas.c"
-				>
-			</File>
-			<File
 				RelativePath=".\proj.c"
 				>
 			</File>
@@ -798,10 +790,6 @@
 			</File>
 			<File
 				RelativePath=".\zqnbd.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zthz.c"
 				>
 			</File>
 		</Filter>
