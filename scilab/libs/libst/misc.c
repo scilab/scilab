@@ -15,23 +15,23 @@
 #include "misc.h"
 /*-----------------------------------------------------------------------------------*/
 char *sizes[] = {
-			 "NONSENSE!",
-			 "bytes",
-			 "shorts",
-			 "NONSENSE",
-			 "longs",
-			 "32-bit floats",
-			 "64-bit floats",
-			 "IEEE floats"
-		       };
+  "NONSENSE!",
+  "bytes",
+  "shorts",
+  "NONSENSE",
+  "longs",
+  "32-bit floats",
+  "64-bit floats",
+  "IEEE floats"
+};
 
 char *styles[] = {
-			  "NONSENSE!",
-			  "unsigned",
-			  "signed (2's complement)",
-			  "u-law",
-			  "a-law"
-			};
+  "NONSENSE!",
+  "unsigned",
+  "signed (2's complement)",
+  "u-law",
+  "a-law"
+};
 
 char readerr[] = "Premature EOF while reading sample file.";
 char writerr[] = "Error writing sample file.  You are probably out of disk space.";
@@ -230,7 +230,7 @@ void wdouble(ft_t ft, double d)
 }
 /*-----------------------------------------------------------------------------------*/
 /* generic swap routine */
-static void swapb(char *l, char *f, int n)
+void swapb(char *l, char *f, int n)
 {    
   int i;
   for (i= 0; i< n; i++) f[i]= l[n-i-1];

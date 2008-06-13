@@ -11,9 +11,10 @@
 double 	       swapd(P1(double d));			/* Swap double */
 unsigned short swapw(P1(unsigned short us));		/* Swap short */
 unsigned long  swapl(P1(unsigned long ul));		/* Swap long */
+unsigned long long swapll(P1(unsigned long long ul));		/* Swap long long */
 float  	       swapf(P1(float f));			/* Swap float */
 unsigned int   swapi(P1(unsigned int us));		/* Swap int */
-
+void           swapb(char *l, char *f, int n);          /* Swap bytes */
 /*-----------------------------------------------------------------------------------*/
 struct  signalinfo {
 	long		rate;		/* sampling rate */
