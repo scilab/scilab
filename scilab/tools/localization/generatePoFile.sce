@@ -49,10 +49,26 @@ if (List_files <> []) then
 end
 
 endfunction
+// ======================================
+function languages = findLanguagesToBuild()
 
+languages = [];
+
+langs = ls('SCI/modules/core/locales/');
+// check that we have a .pot or .po
+
+for i = 1:size(langs,'*')
+  f1 = findfiles('SCI/modules/core/locales/'+langs(i),'*.pot');
+  f2 = findfiles('SCI/modules/core/locales/'+langs(i),'*.po');
+
+  if (f1 <> []) | (f2 <> []) then 
+    languages = [languages,langs(i)];
+  end
+end  
+endfunction
 // ======================================
 // Main
-LANGUAGES = ['fr_FR','en_US'];
+LANGUAGES = findLanguagesToBuild();
 for L = LANGUAGES
   generatePoFile(L);
 end
