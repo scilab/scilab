@@ -27,13 +27,13 @@
 *        This is a Fortran-77 translation of an algorithm by William Kahan,
 *        which appears in his article "Branch cuts for complex elementary
 *        functions, or much ado about nothing's sign bit",
-*        Editors: Iserles, A. and Powell, M. J. D. 
+*        Editors: Iserles, A. and Powell, M. J. D.
 *        in "States of the Art in Numerical Analysis"
 *        Oxford, Clarendon Press, 1987
 *        ISBN 0-19-853614-3
 *
 *     AUTHOR
-*        Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>, 
+*        Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>,
 *        Thanks to Lydia van Dijk <lvandijk@hammersmith-consulting.com>
 */
 double dpythags(double _dblVal1, double _dblVal2)
@@ -204,8 +204,8 @@ void zwmuls(double _dblReal1, double _dblImg1, double _dblReal2, double _dblImg2
 	*_pRealOut	= _dblReal1 * _dblReal2 - _dblImg1 * _dblImg2;
 }
 
-void zwmmuls(double* _pdblReal1	, double* _pdblImg1	, int _iRows1, 
-			 double* _pdblReal2	, double* _pdblImg2	, int _iRows2, 
+void zwmmuls(double* _pdblReal1	, double* _pdblImg1	, int _iRows1,
+			 double* _pdblReal2	, double* _pdblImg2	, int _iRows2,
 			 double *_pRealOut	, double *_pImgOut	, int _iRowsOut,
 			 int _iColsOut		, int _iCols1		, int _iCols2)
 {
@@ -378,9 +378,9 @@ void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc)
 /*
 PURPOSE
    val(0..n) being an array (with strict increasing order and n >=1)
-   representing intervals, this routine, by the mean of a 
+   representing intervals, this routine, by the mean of a
    dichotomic search, computes :
-      
+
       a/ for each X(i) its interval number indX(i) :
                 indX(i) = j if  X(i) in (val(j-1), val(j)]
                         = 1 if  X(i) = val(0)
@@ -390,7 +390,7 @@ PURPOSE
 
          occ(j) = # { X(i) such that X(i) in (val(j-1), val(j)] } for j>1
     and  occ(1) = # { X(i) such that X(i) in [val(0), val(1)] }
-        
+
 PARAMETERS
    inputs :
       m         integer
@@ -464,7 +464,7 @@ void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
     val(1..n) being a strictly increasing array, this
     routines by the mean of a dichotomic search computes :
 
-    a/ the number of occurences (occ(j)) of each value val(j) 
+    a/ the number of occurences (occ(j)) of each value val(j)
        in the array X :
 
           occ(j) = #{ X(i) such that X(i) = val(j) }
@@ -630,7 +630,7 @@ double dblNearFloat(double _dblVal, double _dblMode)
 
 		dblEp	= pow(dblBase, iE);
 
-		// 2/ got the mantissa 
+		// 2/ got the mantissa
 		dblMant	= dblAbsVal / dblEp;
 
 		// 3/ verify that 1 <= m < BASE
@@ -669,7 +669,7 @@ double dblNearFloat(double _dblVal, double _dblMode)
 		else
 			return dblSignMode * dblRMin;
 	}
-	else //x is a denormalised number 
+	else //x is a denormalised number
 		return _dblVal + dblSignMode * dblTiny;
 }
 
@@ -747,7 +747,7 @@ parameters
     na   : a matrix leading dimension
     m    : a matrix row dimension
     n    : a matrix column dimension
-    v    : array containing the result, 
+    v    : array containing the result,
            vr (resp vi) may be confused with a row or
            a column of the ar (resp ai) matrix
            if flag==0 size(v)>=1
@@ -765,14 +765,14 @@ void vWDmProd(int _iMode, double* _pdblIn1, double* _pdblIn2, int _iLeadDim, int
 		_pdblOut1[iIndex] = 1;
 		_pdblOut2[iIndex] = 0;
 		for(iLoop = 0 ; iLoop < _iCols ; iLoop++)
-			vWvmul(_iRows, _pdblIn1 + _iRows * iLoop, _pdblIn2 + _iRows * iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, 1, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex); 
+			vWvmul(_iRows, _pdblIn1 + _iRows * iLoop, _pdblIn2 + _iRows * iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, 1, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex);
 		break;
 	case 1 :
 		for(iLoop = 0 ; iLoop < _iCols ; iLoop++)
 		{
 			_pdblOut1[iIndex] = 1;
 			_pdblOut2[iIndex] = 0;
-			vWvmul(_iRows, _pdblIn1 + _iRows * iLoop, _pdblIn2 + _iRows * iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, 1, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex); 
+			vWvmul(_iRows, _pdblIn1 + _iRows * iLoop, _pdblIn2 + _iRows * iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, 1, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex);
 			iIndex += _iInc;
 		}
 		break;
@@ -781,7 +781,7 @@ void vWDmProd(int _iMode, double* _pdblIn1, double* _pdblIn2, int _iLeadDim, int
 		{
 			_pdblOut1[iIndex] = 1;
 			_pdblOut2[iIndex] = 0;
-			vWvmul(_iCols, _pdblIn1 + iLoop, _pdblIn2 + iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, _iRows, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex); 
+			vWvmul(_iCols, _pdblIn1 + iLoop, _pdblIn2 + iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, _iRows, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex);
 			iIndex += _iInc;
 		}
 		break;
@@ -832,14 +832,15 @@ int nint(double _iVal)
 }
 
 /*aint return double round val */
+/*
 double danints(double _dblVal)
 {
 	double dblSign = dsigns(1, _dblVal);
 	if(finite(dabss(_dblVal)) == 0)
 	{//Infinite case !
-		return _dblVal;		
+		return _dblVal;
 	}
 
 	return (double)(__int64)(_dblVal + (0.5 * dblSign));
 }
-
+*/
