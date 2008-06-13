@@ -109,11 +109,6 @@ public:
   virtual void setInfoMessage( const char * message ) ;
 
   /**
-   * Specify if the figure can be render or not.
-   */
-  virtual void setRenderingEnable(bool isEnable);
-
-  /**
    * Set the auto_resize status (on or off).
    */
   virtual void setAutoResizeMode(bool onOrOff);

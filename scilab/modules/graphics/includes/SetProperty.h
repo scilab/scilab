@@ -259,8 +259,6 @@ int sciSetLogFlags(sciPointObj * pObj, char logFlags[3]) ; /* SET */
 int sciInitAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ);
 int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ); /* SET */
 
-int sciSetRenderingEnable(sciPointObj * pObj, BOOL enable); /* SET */
-
 int sciSetZoomBox(sciPointObj * pObj, const double zoomBox[6]); /* SET */
 
 int sciInitImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw);

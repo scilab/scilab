@@ -78,7 +78,6 @@ jmethodID voidsetWindowSizejintjintID; // cache method id
 jmethodID voidsetInfoMessagejstringID; // cache method id
 jmethodID voidsetAutoResizeModejbooleanID; // cache method id
 jmethodID jbooleangetAutoResizeModeID; // cache method id
-jmethodID voidsetIsRenderingEnablejbooleanID; // cache method id
 jmethodID jintArraygetViewportID; // cache method id
 jmethodID voidsetViewportjintjintjintjintID; // cache method id
 jmethodID jintArrayrubberBoxjbooleanjbooleanjintArrayID; // cache method id
@@ -178,8 +177,6 @@ void setInfoMessage(char * infoMessage);
 void setAutoResizeMode(bool onOrOff);
 
 bool getAutoResizeMode();
-
-void setIsRenderingEnable(bool isEnable);
 
 long * getViewport();
 

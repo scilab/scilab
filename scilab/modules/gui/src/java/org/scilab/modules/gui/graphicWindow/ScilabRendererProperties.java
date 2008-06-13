@@ -234,6 +234,9 @@ public class ScilabRendererProperties implements RendererProperties {
      * Close the rendering canvas
      */
    public void closeCanvas() {
+	   // hide tab before to avoid unwanted display
+	   parentTab.setVisible(false);
+	   
 	   parentTab.close();
    }
    

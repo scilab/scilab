@@ -128,7 +128,6 @@ voidsetWindowSizejintjintID=NULL;
 voidsetInfoMessagejstringID=NULL; 
 voidsetAutoResizeModejbooleanID=NULL; 
 jbooleangetAutoResizeModeID=NULL; 
-voidsetIsRenderingEnablejbooleanID=NULL; 
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
 jintArrayrubberBoxjbooleanjbooleanjintArrayID=NULL; 
@@ -187,7 +186,6 @@ voidsetWindowSizejintjintID=NULL;
 voidsetInfoMessagejstringID=NULL; 
 voidsetAutoResizeModejbooleanID=NULL; 
 jbooleangetAutoResizeModeID=NULL; 
-voidsetIsRenderingEnablejbooleanID=NULL; 
 jintArraygetViewportID=NULL; 
 voidsetViewportjintjintjintjintID=NULL; 
 jintArrayrubberBoxjbooleanjbooleanjintArrayID=NULL; 
@@ -753,27 +751,6 @@ curEnv->ExceptionDescribe() ;
                         
 return (res == JNI_TRUE);
 
-}
-
-void DrawableFigureGL::setIsRenderingEnable (bool isEnable){
-
-JNIEnv * curEnv = getCurrentEnv();
-
-if (voidsetIsRenderingEnablejbooleanID==NULL) { /* Use the cache Luke */ voidsetIsRenderingEnablejbooleanID = curEnv->GetMethodID(this->instanceClass, "setIsRenderingEnable", "(Z)V" ) ;
-if (voidsetIsRenderingEnablejbooleanID == NULL) {
-std::cerr << "Could not access to the method " << "setIsRenderingEnable" << std::endl;
-exit(EXIT_FAILURE);
-}
-}
-jboolean isEnable_ = ((bool) isEnable ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallVoidMethod( this->instance, voidsetIsRenderingEnablejbooleanID ,isEnable_);
-                        
-if (curEnv->ExceptionOccurred()) {
-curEnv->ExceptionDescribe() ;
-}
-
-                        
 }
 
 long * DrawableFigureGL::getViewport (){

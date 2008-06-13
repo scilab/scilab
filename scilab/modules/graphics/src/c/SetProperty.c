@@ -4071,22 +4071,6 @@ int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL a
 }
 /*----------------------------------------------------------------------------------*/
 /**
- * Specify to a figure that is now ready to be rendered
- * ie that all its parameters are set
- */
-int sciSetRenderingEnable(sciPointObj * pObj, BOOL enable)
-{
-  switch(sciGetEntityType(pObj))
-  {
-  case SCI_FIGURE:
-    sciSetJavaRenderingEnable(pObj, enable);
-    return 0;
-  default:
-    return -1;
-  }
-}
-/*----------------------------------------------------------------------------------*/
-/**
  * Specify a new zoom box for a subwin object.
  * @param zoomBox [xMin, xMax, yMin, yMax, zMin, zMax] vector.
  */

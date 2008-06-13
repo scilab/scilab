@@ -223,8 +223,6 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   /* Add the figure in the list of created figures */
   addNewFigureToList(pobj);
 
-  sciSetRenderingEnable(pobj, TRUE);
-
   return pobj;
 }
 

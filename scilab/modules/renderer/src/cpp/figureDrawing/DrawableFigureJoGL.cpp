@@ -128,11 +128,6 @@ void DrawableFigureJoGL::setInfoMessage( const char * message )
   delete[] infoMessage;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJoGL::setRenderingEnable(bool isEnable)
-{
-  getFigureJavaMapper()->setRenderingEnable(isEnable);
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setAutoResizeMode(bool onOrOff)
 {
   getFigureJavaMapper()->setAutoResizeMode(onOrOff);

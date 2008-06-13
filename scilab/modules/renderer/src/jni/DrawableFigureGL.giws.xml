@@ -67,9 +67,6 @@
     </method>
     <method name="getAutoResizeMode" returnType="boolean">
     </method>
-    <method name="setIsRenderingEnable" returnType="void">
-      <param type="boolean" name="isEnable" />
-    </method>
     <method name="getViewport" returnType="int[]">
     </method>
     <method name="setViewport" returnType="void">

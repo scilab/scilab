@@ -227,11 +227,6 @@ void DrawableFigure::setWindowPosition( const int pos[2] )
   getFigureImp()->setWindowPosition(pos) ;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigure::setRenderingEnable(bool isEnable)
-{
-  getFigureImp()->setRenderingEnable(isEnable);
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableFigure::setAutoResizeMode(bool onOrOff)
 {
   getFigureImp()->setAutoResizeMode(onOrOff);

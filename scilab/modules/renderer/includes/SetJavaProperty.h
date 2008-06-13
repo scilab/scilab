@@ -54,11 +54,6 @@ void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] ) ;
 void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage ) ;
 
 /**
- * Specify if the figure can be renderered now
- */
-void sciSetJavaRenderingEnable(sciPointObj * pFigure, BOOL isEnable);
-
-/**
  * Zoom a subwin object with the specified rectangle in pixels
  * @return TRUE if the axes box has been zoomed, FALSE otherwise
  */

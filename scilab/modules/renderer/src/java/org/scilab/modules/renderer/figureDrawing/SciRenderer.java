@@ -60,11 +60,7 @@ public class SciRenderer
 	
 	GL gl = gLDrawable.getGL();
 	
-	if (!curFigure.getIsRenderingEnable()) {
-		// fill the background to avoid showing desktop
-		gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // alpha is set to 1
-  		gl.glClear(GL.GL_COLOR_BUFFER_BIT);
-	} else if (!curFigure.getRenderingRequested()) {
+	if (!curFigure.getRenderingRequested()) {
 		// figure rendering not requested by Scilab
 		// This is a swing event so just keep the buffer
 		// keep previous buffer
@@ -128,12 +124,11 @@ public class SciRenderer
       gl.glEnable(GL.GL_COLOR_LOGIC_OP); // to use pixel drawing mode
       gl.glLogicOp(GL.GL_COPY);
       
-	  if (curFigure.getIsRenderingEnable()) {
-		  curFigure.getColorMap().clearTexture();
-		  // free all the text renderers
-		  curFigure.getTextRendererCreator().clear();
-		  FigureScilabCall.redrawFigure(renderedFigure);
-      }
+      curFigure.getColorMap().clearTexture();
+      // free all the text renderers
+      curFigure.getTextRendererCreator().clear();
+      FigureScilabCall.redrawFigure(renderedFigure);
+		  
 	  // we need to redraw the figure so request one
 	  curFigure.setRenderingRequested(true);
 
@@ -156,7 +151,7 @@ public class SciRenderer
   public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height)	{
 	  DrawableFigureGL curFigure = FigureMapper.getCorrespondingFigure(renderedFigure);
 	  
-	  if (curFigure == null || !curFigure.getIsRenderingEnable()) {
+	  if (curFigure == null) {
 		  return;
 	  }
 	  

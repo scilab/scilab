@@ -157,11 +157,6 @@ void DrawableFigureJavaMapper::setInfoMessage(char * infoMessage)
   m_pJavaObject->setInfoMessage(infoMessage);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableFigureJavaMapper::setRenderingEnable(bool isEnable)
-{
-  m_pJavaObject->setIsRenderingEnable(isEnable);
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableFigureJavaMapper::setAutoResizeMode(bool onOrOff)
 {
   m_pJavaObject->setAutoResizeMode(onOrOff);

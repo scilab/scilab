@@ -69,9 +69,6 @@ public class DrawableFigureGL extends ObjectGL {
 	/** To get all the objects which needs to be destroyed */
 	private ObjectGLCleaner destroyedObjects;
 	
-	/** To know if the figure can be displayed */
-	private boolean isReadyForRendering;
-	
 	/** Keep a pointer on the OpenGL rendering target (Canvas, pBuffer, ...). */
 	private GLAutoDrawable renderingTarget;
 
@@ -106,7 +103,6 @@ public class DrawableFigureGL extends ObjectGL {
       	setColorMap(TexturedColorMap.create());
       	figureId = -1; // figure ids should be greater than 0.
       	destroyedObjects = new ObjectGLCleaner();
-      	isReadyForRendering = false;
       	renderingTarget = null;
       	textRendererCreator = new TextRendererManager();
       	setDefaultTextRenderer();
@@ -138,21 +134,6 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
 	public void setDefaultShadeFacetDrawer() {
 		shadeFacetDrawer = new JOGLShadeFacetDrawer();
-	}
-	
-	/**
-	 * Specify a new state for the rendering enable mode
-	 * @param isEnalbe if true figure can no be rendered
-	 */
-	public synchronized void setIsRenderingEnable(boolean isEnalbe) {
-		isReadyForRendering = isEnalbe;
-	}
-	
-	/**
-	 * @return true if the figure can be rendered, false otherwise
-	 */
-	public synchronized boolean getIsRenderingEnable() {
-		return isReadyForRendering;
 	}
 	
 	/**
@@ -378,8 +359,9 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
   	@Override
 	public void destroy(int parentFigureIndex) {
-  		setIsRenderingEnable(false);
+  		setRenderingRequested(false);
   		FigureMapper.removeMapping(figureId);
+ 
   		
 
   		// then destroy canvas

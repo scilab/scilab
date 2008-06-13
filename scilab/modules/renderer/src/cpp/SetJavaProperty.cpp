@@ -52,11 +52,6 @@ void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage )
   getFigureDrawer(pFigure)->setInfoMessage(infoMessage);
 }
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaRenderingEnable(sciPointObj * pFigure, BOOL isEnable)
-{
-  getFigureDrawer(pFigure)->setRenderingEnable(isEnable == TRUE);
-}
-/*---------------------------------------------------------------------------------*/
 BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height)
 {
   if (getSubwinDrawer(pSubwin)->getCamera()->zoomRect(posX, posY, width, height))
