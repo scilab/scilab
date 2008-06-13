@@ -238,17 +238,19 @@ void ConcreteDrawableSubwin::drawTicks(void)
   double distToXaxis = 0.0;
   double distToYaxis = 0.0;
   double distToZaxis = 0.0;
-  if (m_pXTicksDrawer != NULL)
+  
+  // Z ticks are deeper qo draw them before
+  if (m_pZTicksDrawer != NULL)
   {
-    distToXaxis = m_pXTicksDrawer->draw();
+    distToZaxis = m_pZTicksDrawer->draw();
   }
   if (m_pYTicksDrawer != NULL)
   {
     distToYaxis = m_pYTicksDrawer->draw();
   }
-  if (m_pZTicksDrawer != NULL)
+  if (m_pXTicksDrawer != NULL)
   {
-    distToZaxis = m_pZTicksDrawer->draw();
+    distToXaxis = m_pXTicksDrawer->draw();
   }
 
   /* for title there is no displayable ticks */
