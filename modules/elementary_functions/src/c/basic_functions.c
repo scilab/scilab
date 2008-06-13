@@ -101,6 +101,17 @@ double dsigns(double _dblRef, double _dblVal)
 		return -_dblRef;
 }
 
+double dsignsEx(double _dblVal)
+{
+	if(_dblVal == 0)
+		return 0;
+	if(_dblVal > 0)
+		return 1;
+	if(_dblVal < 0)
+		return -1;
+	return _dblVal;
+
+}
 /*up round*/
 double dceils(double _dblVal)
 {
@@ -172,6 +183,45 @@ void ddscals(double* _pdblIn, int _iNbElem, double _dblMulti, double* _pdblOut)
 	{
 		_pdblOut[iIndex] = _dblMulti * _pdblIn[iIndex];
 	}
+}
+
+/*scales a vector by a complex constant*/
+void zwscals(double* _pdblRealIn, double* _pdblImgIn, int _iNbElem, double _dblMultiReal, double _dblMultiImg, double* _pdblRealOut, double* _pdblImgOut, int _iInc)
+{
+	int iIndex = 0;
+	int iIndex2 = 0;
+	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex++)
+	{
+		zwmuls(_dblMultiReal, _dblMultiImg, _pdblRealIn[iIndex2], _pdblImgIn[iIndex2], &_pdblRealOut[iIndex2], &_pdblImgOut[iIndex2]);
+		iIndex2 += _iInc;
+	}
+}
+
+
+void zwmuls(double _dblReal1, double _dblImg1, double _dblReal2, double _dblImg2, double *_pRealOut, double *_pImgOut)
+{
+	*_pImgOut	= _dblReal1 * _dblImg2 + _dblImg1 * _dblReal2;
+	*_pRealOut	= _dblReal1 * _dblReal2 - _dblImg1 * _dblImg2;
+}
+
+void zwmmuls(double* _pdblReal1	, double* _pdblImg1	, int _iRows1, 
+			 double* _pdblReal2	, double* _pdblImg2	, int _iRows2, 
+			 double *_pRealOut	, double *_pImgOut	, int _iRowsOut,
+			 int _iColsOut		, int _iCols1		, int _iCols2)
+{
+	double dblOne		= 1;
+	double dblMinusOne	= -1;
+	double dblZero		= 0;
+
+	//Cr <-  1*Ar*Br + 0*Cr
+
+	F2C(dgemm)("N","N", &_iRowsOut, &_iCols2, &_iCols1, &dblOne		, _pdblReal1	, &_iRows1, _pdblReal2	, &_iRows2, &dblZero	, _pRealOut	, &_iRowsOut);
+	//Cr <- -1*Ai*Bi + 1*Cr
+	F2C(dgemm)("N","N", &_iRowsOut, &_iCols2, &_iCols1, &dblMinusOne	, _pdblImg1		, &_iRows1, _pdblImg2	, &_iRows2, &dblOne	, _pRealOut	, &_iRowsOut);
+	//Ci <-  1*Ar*Bi + 0*Ci
+	F2C(dgemm)("N","N", &_iRowsOut, &_iCols2, &_iCols1, &dblOne		, _pdblReal1	, &_iRows1, _pdblImg2	, &_iRows2, &dblZero	, _pImgOut	, &_iRowsOut);
+	//Ci <-  1*Ai*Br + 1*Ci
+	F2C(dgemm)("N","N", &_iRowsOut, &_iCols2, &_iCols1, &dblOne		, _pdblImg1		, &_iRows1, _pdblReal2	, &_iRows2, &dblOne	, _pImgOut	, &_iRowsOut);
 }
 
 /*Cumulative product*/
@@ -780,3 +830,16 @@ int nint(double _iVal)
 {
 	return (int)(_iVal + 0.5);
 }
+
+/*aint return double round val */
+double danints(double _dblVal)
+{
+	double dblSign = dsigns(1, _dblVal);
+	if(finite(dabss(_dblVal)) == 0)
+	{//Infinite case !
+		return _dblVal;		
+	}
+
+	return (double)(__int64)(_dblVal + (0.5 * dblSign));
+}
+
