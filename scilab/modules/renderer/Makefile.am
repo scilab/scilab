@@ -236,7 +236,6 @@ src/cpp/segsDrawing/DrawableSegsJoGL.cpp \
 src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp \
 src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp \
 src/cpp/segsDrawing/SegsDecomposer.cpp \
-src/cpp/segsDrawing/SegsLengthDependentArrowDrawerJoGL.cpp \
 src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
 src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
 src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \

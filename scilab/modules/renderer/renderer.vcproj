@@ -1296,10 +1296,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\cpp\segsDrawing\SegsLengthDependentArrowDrawerJoGL.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\src\jni\SegsLineDrawerGL.cpp"
 					>
 				</File>
@@ -2583,10 +2579,6 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\segsDrawing\SegsDecomposer.hxx"
-					>
-				</File>
-				<File
-					RelativePath=".\src\cpp\segsDrawing\SegsLengthDependentArrowDrawerJoGL.hxx"
 					>
 				</File>
 				<File

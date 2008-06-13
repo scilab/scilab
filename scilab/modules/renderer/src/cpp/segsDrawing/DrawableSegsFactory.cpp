@@ -21,7 +21,6 @@
 #include "ConcreteDrawableSegs.hxx"
 #include "getHandleDrawer.h"
 #include "SegsArrowDrawerJoGL.hxx"
-#include "SegsLengthDependentArrowDrawerJoGL.hxx"
 #include "SegsMarkDrawerJoGL.hxx"
 
 extern "C"
@@ -67,13 +66,9 @@ void DrawableSegsFactory::setStrategies( ConcreteDrawableSegs * segs )
 
   segs->addDrawingStrategy(new SegsLineDrawerJoGL(segs));
 
-  if (sciGetArrowSize(pSegs) > 0)
+  if (sciGetArrowSize(pSegs) != 0)
   {
     segs->addDrawingStrategy(new SegsArrowDrawerJoGL(segs));
-  }
-  else if (sciGetArrowSize(pSegs) < 0)
-  {
-    segs->addDrawingStrategy(new SegsLengthDependentArrowDrawerJoGL(segs));
   }
   // if 0 no heads are drawn
 
