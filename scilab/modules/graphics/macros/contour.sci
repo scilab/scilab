@@ -11,12 +11,16 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
 	rhs=argn(2);
 	
 	if rhs == 0 then   // demo
+		
 		deff('[z]=Surf1(x,y)','z=x^2+y^3');
-		x=-1:0.1:1;
-		y=x;
+		deff('[z]=Surf2(x,y)','z=x^2+y^2');
+		
+		x = -1:0.1:1;
+		y = x;
+		z = eval3d(Surf2,x,y)
+		
 		subplot(211);
 		contour(x,y,Surf1,10);
-		z=eval3d(Surf2,x,y)
 		subplot(212);
 		plot3d(x,y,z);
 		contour(x,y,z+0.1,10,flag=[0 2 4]);
