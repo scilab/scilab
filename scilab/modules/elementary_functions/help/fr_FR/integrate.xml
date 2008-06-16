@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,55 +16,55 @@
   </info>
   <refnamediv>
     <refname>integrate</refname>
-    <refpurpose> intégration numérique d'une expression  </refpurpose>
+    <refpurpose> intÃ©gration numÃ©rique d'une expression  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>x=integrate(expr,v,x0,x1 [,atol [,rtol]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>expr  </term>
         <listitem>
-          <para>chaîne de caractères, définit l'expression scilab </para>
+          <para>chaÃ®ne de caractÃ¨res, dÃ©finit l'expression scilab </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>v  </term>
         <listitem>
-          <para>chaîne de caractères, le nom de la variable d'intégration.</para>
+          <para>chaÃ®ne de caractÃ¨res, le nom de la variable d'intÃ©gration.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x0 </term>
         <listitem>
-          <para>nombre réel, la borne inférieure de l'intégration.</para>
+          <para>nombre rÃ©el, la borne infÃ©rieure de l'intÃ©gration.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x1 </term>
         <listitem>
-          <para>vecteur de nombres réels, les bornes supérieures d'intégration.</para>
+          <para>vecteur de nombres rÃ©els, les bornes supÃ©rieures d'intÃ©gration.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>atol  </term>
         <listitem>
-          <para>nombre réel positif (borne sur l'erreur absolue) par défaut : 1d-8</para>
+          <para>nombre rÃ©el positif (borne sur l'erreur absolue) par dÃ©faut : 1d-8</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rtol  </term>
         <listitem>
-          <para>nombre réel positif (borne sur l'erreur relative) par défaut : 1.d-14</para>
+          <para>nombre rÃ©el positif (borne sur l'erreur relative) par dÃ©faut : 1.d-14</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x</term>
         <listitem>
-	  <para>vecteur de nombres réels, la valeur de l'intégrale pour chaque <literal>x1(i)</literal>.</para>
+	  <para>vecteur de nombres rÃ©els, la valeur de l'intÃ©grale pour chaque <literal>x1(i)</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -72,30 +72,50 @@
   <refsection>
     <title>Description</title>
     <para>
-    calcule :
-  </para>
-  <programlisting><![CDATA[
-                       /x1
-                      [
-                  x = I  f(v)dv , i=1:size(x1,'*'), 
-                      ]
-                     /x0
-		     ]]></programlisting>
-   <para>
-     où <literal>f(v)</literal> est donnée par l'expression <literal>expr</literal>
-   </para>
-    <para>
-    L'approximation satisfait (on l'espère) l'affirmation suivante
-    sur l'erreur : <literal>abs(I-x)&lt;=
-    max(atol,rtol*abs(I))</literal> où <literal>I</literal>
-    représente la valeur exacte de l'intégrale.
-  </para>
-    <para>
-  </para>
+      calcule :<subscript><inlinemediaobject>
+        <imageobject>
+          <imagedata>
+            <mml:math display="block"><mml:mi mathvariant="normal">x</mml:mi> <mml:mrow>
+            <mml:mrow> <mml:mo>(</mml:mo> <mml:mi mathvariant="normal">i</mml:mi> <mml:mo
+            >)</mml:mo> </mml:mrow> <mml:mo >=</mml:mo> <mml:mrow>
+	      <mml:msubsup> <mml:mo >âˆ«</mml:mo> <mml:msub> <mml:mi
+	      mathvariant="normal">x</mml:mi> <mml:mn>0</mml:mn>
+	      </mml:msub> <mml:mrow> <mml:msub> <mml:mi
+	      mathvariant="normal">x</mml:mi> <mml:mn>1</mml:mn>
+	      </mml:msub> <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
+	      mathvariant="normal">i</mml:mi> <mml:mo >)</mml:mo>
+	      </mml:mrow> </mml:mrow> </mml:msubsup> <mml:mi
+	      mathvariant="normal">f</mml:mi> </mml:mrow> </mml:mrow>
+	      <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
+	      mathvariant="normal">v</mml:mi> <mml:mo>)</mml:mo>
+	      </mml:mrow> <mml:mi>d</mml:mi><mml:mi
+	      mathvariant="normal">v</mml:mi> <mml:annotation
+	      mml:encoding="StarMath 5.0">x(i)=int_{x_0}^{x_1(i)}
+	      f(v)dv</mml:annotation></mml:math>
+          </imagedata>
+        </imageobject>
+      </inlinemediaobject></subscript> pour <literal>i=1:size(x1,'*')</literal> </para>
+
+      <para>oÃ¹ <inlinemediaobject>
+        <imageobject>
+          <imagedata>
+            <mml:math display="block"><mml:mi>f</mml:mi> <mml:mo
+           >(</mml:mo> <mml:mi>v</mml:mi> <mml:mo
+           >)</mml:mo></mml:math>
+          </imagedata>
+        </imageobject>
+      </inlinemediaobject> est donnÃ©e par l'expression <literal>expr</literal>
+      </para>
+    <para> L'approximation satisfait (on l'espÃ¨re) l'affirmation suivante
+    sur l'erreur :</para> 
+    <para><literal>abs(I-x)&lt;= 
+    max(atol,rtol*abs(I))</literal> </para><para>oÃ¹ <literal>I</literal>
+    reprÃ©sente la valeur exacte de l'intÃ©grale. </para>
+  
   </refsection>
   <refsection>
     <title>Restriction</title>
-    <para>L'expression fournie ne doit pas référencer de variables dont le nom commence avec un  <literal>%</literal>. </para>
+    <para>L'expression fournie ne doit pas rÃ©fÃ©rencer de variables dont le nom commence avec un  <literal>%</literal>. </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
