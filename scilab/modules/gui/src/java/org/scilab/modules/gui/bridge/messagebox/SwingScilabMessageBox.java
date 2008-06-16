@@ -60,6 +60,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 	private static final int LISTBOX_HEIGHT = 200;
 	
 	private static final int X_MDIALOG_MARGIN = 5;
+	private static final int X_MDIALOG_TEXTFIELD_SIZE = 10;
 	
 	private static final int X_MESSAGE_TYPE = 0;
 	private static final int X_DIALOG_TYPE = 1;
@@ -385,6 +386,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 					textFields[line * (numberOfColumns - 1) + col] = 
 						new JTextField(defaultInput[line * (numberOfColumns - 1) + col]);
 					panel.add(textFields[line * (numberOfColumns - 1) + col], constraints);
+					textFields[line * (numberOfColumns - 1) + col].setColumns(X_MDIALOG_TEXTFIELD_SIZE);
 					constraints.gridx++; 
 				}
 				constraints.gridy++;
