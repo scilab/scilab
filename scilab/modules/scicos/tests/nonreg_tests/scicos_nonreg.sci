@@ -109,27 +109,25 @@ function launch_nonreg(baseDir, testName)
   // testDir        = fullfile(baseDir, testName)
   // mkdir(testDir) // create a subfolder for test results (NOT outputs)
   
+  currentScilabFamily = get_scilab_family();
+  
   testFilename   = fullfile(baseDir, testName + '.test')
   modelFilename  = fullfile(baseDir, testName + '.cos')
   
-  if ~isempty(grep(getversion(),'scilab-4')) ..
-    | ~isempty(grep(getversion(), 'Scilab-4')) ..
-    | ~isempty(grep(getversion(), 'scicos_work'))
-   
+  select currentScilabFamily
+  
+  case "4" then
     diaryFilename  = fullfile(baseDir, testName + '_v4.log')
     resFilename    = fullfile(baseDir, testName + '_v4.res')
     errFilename    = fullfile(baseDir, testName + '_v4.err')
     
-  elseif ~isempty(grep(getversion(), 'trunk')) ..
-    | ~isempty(grep(getversion(), 'scilab-5'))
-       
+  case "5" then
     diaryFilename  = fullfile(baseDir, testName + '_v5.log')
     resFilename    = fullfile(baseDir, testName + '_v5.res')
     errFilename    = fullfile(baseDir, testName + '_v5.err')
     
   else
-  
-    disp(msprintf('%-25s: ERROR: Unknown Scilab version (%s)', testName, getversion()))
+    disp(msprintf('%-25s: ERROR: Currently using unknown Scilab version (%s)', testName, getversion()))
     return
     
   end
@@ -150,8 +148,27 @@ function launch_nonreg(baseDir, testName)
           '// Start logging output';
           'diary(''' + diaryFilename + ''')';
           '';
+          '// Load some helper functions (findIOblocks, renameIO, setW2Fformat, ...)';
+          'getd(''./utils'')';
+          '';
           '// Load and launch simulation, displaying some debug data in the mean time';
           'load(''' + modelFilename + ''')';
+          '';
+          '//-- Rename output file to match variant name';
+          '//-- Override any existing format with predefined one (''(7(e22.15,1x))'')'; 
+          '// This modification is not saved, it only exists during simulation';
+          '[idxWrite, idxRead] = findIOblocks(scs_m)';
+          'if ~isempty(idxWrite) & size(idxWrite,''*'') == 1';
+          '  scs_m = renameIO(scs_m, idxWrite, ''' + testName + '.out'')';
+          '  scs_m = setW2Fformat(scs_m, idxWrite, ''(7(e22.15,1x))'')';
+          'end';
+          '';
+          '//-- Rename input file (if present) to match variant name';
+          '// This modification is not saved, it only exists during simulation';
+          'if ~isempty(idxRead) & size(idxRead,''*'') == 1';
+          '  scs_m = renameIO(scs_m, idxRead, ''' + testName + '.in'')';
+          'end';
+          '';
           'disp(scs_m)';
           '// Info = list()';
           '// Force compilation';
@@ -160,13 +177,14 @@ function launch_nonreg(baseDir, testName)
           'try';
           '  Info = scicos_simulate(scs_m,Info,[],''nw'')';
           'catch';
-          '  disp(msprintf(''%-25s: ERROR while launching simulation'',''' + testName + '''))';
+          '  disp(msprintf(''%-25s: ERROR while simulating '',''' + testName + '''))';
           'end';
           'disp(Info)';
           '';
           '// Stop logging output';
           'diary(0)';
           '';
+          '// Quit background Scilab session';
           'exit'];
   mputl(txt, testFilename);
 
@@ -177,7 +195,7 @@ function launch_nonreg(baseDir, testName)
 	else
 		SCI_BIN = SCI;
 	end
-  
+  // Launch previous script inside a NW Scilab and redirect both standard and error output to files
   if MSDOS then
 		cmd = '(""' + SCI_BIN + '\bin\scilex.exe"" -nw -nb -args -nouserstartup -f ""' + testFilename + '"" > ""' + resFilename + '"") 2> ""' + errFilename + '""'
 	else
@@ -185,10 +203,11 @@ function launch_nonreg(baseDir, testName)
 	end
   host(cmd)
 
+  //-- Which version of Scilab was used ?
+  select currentScilabFamily
+    
   //-- Non-regression tests launched under Scilab 4.X ?  
-  if ~isempty(grep(getversion(),'scilab-4')) ..
-    | ~isempty(grep(getversion(), 'Scilab-4')) ..
-    | ~isempty(grep(getversion(), 'scicos_work'))
+  case "4" then
   
     //-- Rename file.out -> file.out.ref
     mdelete(outRefFilename)
@@ -202,9 +221,8 @@ function launch_nonreg(baseDir, testName)
     end
   
   //-- Non-regression tests launched under Scilab 5.X ?  
-  elseif ~isempty(grep(getversion(), 'trunk')) ..
-    | ~isempty(grep(getversion(), 'scilab-5'))
-  
+  case "5" then
+
     //-- Compare output data with reference data:
     
     //-- Read output data
@@ -243,11 +261,36 @@ function launch_nonreg(baseDir, testName)
     if ~status.ok
       disp(msprintf('%s', status.details))
     end  
+  end  
+endfunction
+
+// -----------------------------------------------------------------------------
+
+function family = get_scilab_family()
+// Get family (major version) of currently running Scilab
+
+  //-- Initialize output to [] <=> unknow version of Scilab
+  family = [];
+
+  //-- Get complete version name
+  version = getversion();
   
-  else
-    mprintf('%s: Warning: Unknown Scilab version, did nothing more than launching the simulation...', testName)
+  //-- Extract family from a known pattern found in version name
+  if ~isempty(grep(getversion(),'scilab-4')) ..
+    | ~isempty(grep(getversion(), 'Scilab-4')) ..
+    | ~isempty(grep(getversion(), 'scicos_work'))
+
+    // 4.X version
+    family = "4";
+    
+  elseif ~isempty(grep(getversion(), 'trunk')) ..
+    | ~isempty(grep(getversion(), 'scilab-5'))
+    
+    // 5.X version
+    family = "5";
+    
   end
-  
+
 endfunction
 
 // -----------------------------------------------------------------------------
