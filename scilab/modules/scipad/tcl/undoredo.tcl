@@ -82,7 +82,9 @@ proc undoredo {textarea action} {
     # in the alloted space (i.e. the scrollbars are disabled)
     if {$linenumbersmargins != "hide"} {
         foreach ta [getfullpeerset $textarea] {
-            updatelinenumbersmargin $ta
+            if {[isdisplayed $ta]} {
+                updatelinenumbersmargin $ta
+            }
         }
     }
 }

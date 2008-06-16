@@ -1244,6 +1244,8 @@ proc updatelinenumbersmargin {ta} {
 
     # assert: when entering this proc, we have $linenumbersmargins != "hide"
 
+    # assert: when entering this proc, [isdisplayed $ta] is true
+
     set tamargin [getpaneframename $ta].margin
 
     # start modifying margin content

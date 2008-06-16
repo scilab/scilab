@@ -3307,3 +3307,8 @@ Francois VOGEL, 12/06/08
  * Fixed bug 3105 (no icon set for Scipad) - Should work on both Linux and
    Windows as long as Tk version is at least 8.4.8 - Icon courtesy of Enrico
  * version --> 6.145
+
+Francois VOGEL, 16/06/08
+ * Fixed Tcl error - invalid command name "none.margin" - happening when
+   using undo in a textarea having hidden (non displayed) peers
+ * version --> 6.146
