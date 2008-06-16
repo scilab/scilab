@@ -15,25 +15,14 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
 
 	[lhs,rhs]=argn()
 	if rhs == 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of Sfgrayplot()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			'deff(''[z]=Surf(x,y)'',''z=x.^3+y'');';
-			'xbasc()';
-			'xset(""colormap"",jetcolormap(64))';
-			'colorbar(-2,2)';
-			'Sfgrayplot(-1:0.1:1,-1:0.1:1,Surf,strf=""031"",rect=[-1,-1,1,1]);';
-			'xtitle(''Sfgrayplot demo: f(x,y)=x^3+y'')'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		deff("[z]=Surf(x,y)","z=x.^3+y");
+		f=gcf();
+		f.color_map = jetcolormap(64);
+		f.immediate_drawing = "off";
+		colorbar(-2,2);
+		Sfgrayplot(-1:0.1:1,-1:0.1:1,Surf,strf="031",rect=[-1,-1,1,1]);
+		xtitle("Sfgrayplot demo: f(x,y)=x^3+y");
+		f.immediate_drawing = "on";
 		return
 	elseif rhs < 3 then
 		error("bad number of input arguments");

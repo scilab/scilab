@@ -16,21 +16,8 @@ function []=fplot2d(xr,f,style,strf,leg,rect,nax,void)
 	
 	[lhs,rhs]=argn(0)
 	if rhs <= 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of fplot2d()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			'deff(''[y]=f(x)'',''y=sin(x)+cos(x)'');';
-			'fplot2d(0:0.1:%pi,f);'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		deff("[y]=f(x)","y=sin(x)+cos(x)");
+		fplot2d(0:0.1:%pi,f);
 		return
 	end
 	

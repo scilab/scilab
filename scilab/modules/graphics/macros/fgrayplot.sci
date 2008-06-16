@@ -23,21 +23,8 @@ function []=fgrayplot(x,y,f,strf,rect,nax,void)
 	[lhs,rhs]=argn(0);
 	
 	if rhs <= 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of fgrayplot()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			'deff(''[z]=Surf(x,y)'',''z=x**2+y**2'');';
-			'fgrayplot(-1:0.1:1,-1:0.1:1,Surf);'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		deff("[z]=Surf(x,y)","z=x**2+y**2");
+		fgrayplot(-1:0.1:1,-1:0.1:1,Surf);
 		return
 	end
 

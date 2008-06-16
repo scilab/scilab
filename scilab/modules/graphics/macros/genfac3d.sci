@@ -26,23 +26,10 @@ function [xx,yy,zz]=genfac3d(x,y,zmat,mask)
 	[lhs,rhs]=argn(0)
 	
 	if rhs <= 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of genfac3d()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			't=(0:10)''*%pi/5;';
-			'zmat=sin(t)*cos(t'');';
-			'[xx,yy,zz]=genfac3d(t,t,zmat,zmat>=0);';
-			'plot3d(xx,yy,zz)'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		t=(0:10)'*%pi/5;
+		zmat=sin(t)*cos(t');
+		[xx,yy,zz]=genfac3d(t,t,zmat,zmat>=0);
+		plot3d(xx,yy,zz);
 		return
 	end
 

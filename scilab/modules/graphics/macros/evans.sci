@@ -19,23 +19,9 @@ function []=evans(n,d,kmax)
 	[lhs,rhs]=argn(0)
 	
 	if rhs <= 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of evans()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			'xbasc();';
-			'n=real(poly([0.1-%i 0.1+%i,-10],''s''));';
-			'd=real(poly([-1 -2 -%i %i],''s''));';
-			'evans(n,d,80);'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		n=real(poly([0.1-%i 0.1+%i,-10],'s'));
+		d=real(poly([-1 -2 -%i %i],'s'));
+		evans(n,d,80);
 		return
 	end
 

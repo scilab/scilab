@@ -23,26 +23,14 @@ function []=errbar(x,y,em,ep)
 	[lhs,rhs]=argn(0)
 	
 	if rhs == 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of errbar()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			'x=0:0.1:2*%pi;';
-			'y=[sin(x);cos(x)]'';x=[x;x]''';
-			'plot2d(x,y);';
-			'errbar(x,y,0.05*ones(x),0.03*ones(x));'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
-		return
+		x=0:0.1:2*%pi;;
+		y=[sin(x);cos(x)]';
+		x=[x;x]';
+		plot2d(x,y);
+		errbar(x,y,0.05*ones(x),0.03*ones(x));
+		return;
 	end
-   
+ 
 xselect();
 [n1,n2]=size(x);
 y1=matrix(y-em,1,n1*n2);

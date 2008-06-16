@@ -38,22 +38,10 @@ function fcontour(xr,yr,f,nz,teta,alpha,leg,flag,ebox,zlev)
 //!
 
 	[lhs,rhs]=argn(0)
+	
 	if rhs == 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of fcontour()';
-			'========================================';
-			''];
-		
-		s_mat=[
-			'deff(''[z]=Surf(x,y)'',''z=x**2+y**2'');';
-			'fcontour(-1:0.1:1,-1:0.1:1,Surf,10);'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
+		deff("[z]=Surf(x,y)","z=x**2+y**2");
+		fcontour(-1:0.1:1,-1:0.1:1,Surf,10);
 		return
 	end
 

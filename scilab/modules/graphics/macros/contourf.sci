@@ -13,20 +13,10 @@ function contourf(x,y,z,nv,style,strf,leg,rect,nax)
 	newstyle = get('figure_style')=='new'
 	
 	if nin == 0 then   // demo
-		
-		title_demo = [
-			'';
-			'Demo of contourf()';
-			'========================================';
-			''];
-		
-		s_mat=['t=-%pi:0.1:%pi;m=sin(t)''*cos(t);contourf(t,t,m);'];
-		
-		write(%io(2),title_demo);
-		write(%io(2),s_mat);
-		write(%io(2),' ');
-		execstr(s_mat);
-		return
+		t = -%pi:0.1:%pi;
+		m = sin(t)'*cos(t);
+		contourf(t,t,m);
+		return;
 	end
 
 if nin <= 8 then nax=[1,10,1,10];end 
