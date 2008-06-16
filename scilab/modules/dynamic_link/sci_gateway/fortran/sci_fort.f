@@ -15,10 +15,9 @@ c     =====================================
 cc      implicit undefined (a-z)
       character*(*) fname
       character*1   type
-      logical checkrhs,checklhs,getsmat,checkval,cresmat2,bufstore
+      logical getsmat,checkval,cresmat2,bufstore
       logical flag,getscalar ,getmat,getrhsvar,cremat,lcres
-      logical createvar,pulhsvar
-      integer gettype,sadr,iadr,top2,tops,topl,topk
+      integer gettype,sadr,iadr,top2,tops,topl,topk,loc
 
       parameter (fortname=24)
       character  name*25
@@ -204,13 +203,21 @@ c           we must check that dimensions and type are compatible
  910        continue
  911        continue 
             if ( iecor.eq.0 ) then 
-c           we must create a new entry 
-c           for an output variable 
+c     .        we must create a new entry for an output variable 
                icre=icre+1
-               if (.not.createvar(rhs+icre,type,m1,n1,lr1)) return
+C     .        bug 2119 fix, create a variable of type "d" in any case
+C     .        to avoid overlaping
+               if (.not.cremat(fname,top+icre,0,m1,n1,lr1,lc1)) return
+               if (type.eq.'d') then
+                  lr2 = lr1
+               else if (type.eq.'r'.or. (type.eq.'i')) then 
+                  lr2=iadr(lr1)
+               else if (type.eq.'c') then 
+                  lr2 = 4*lr1-1
+               endif
                ipos=6*(ie+i-1)
                ibuf(ipos+1) = ipla  
-               ibuf(ipos+2) = lr1
+               ibuf(ipos+2) = lr2
                ibuf(ipos+3) = ichar(type)
                ibuf(ipos+4) = m1
                ibuf(ipos+5) = n1 
@@ -219,17 +226,9 @@ c           for an output variable
                if(narg.gt.namax) then
                   call error(70)
                   return
-               endif            
-               if (type.eq.'d' ) then 
-                  ladr(ipla) = lr1 
-               else if (type.eq.'r') then 
-                  ladr(ipla) = sadr(lr1)
-               else if (type.eq.'i') then 
-                  ladr(ipla) = sadr(lr1)
-               else if (type.eq.'c') then 
-                  ladr(ipla) = sadr((lr1/4)+1)
-               endif
-            else
+               endif    
+               ladr(ipla) = lr1         
+          else
 c           we must check input-output consistency 
                ii=6*(iecor-1)
                if (m1*n1.gt.ibuf(ii+4)*ibuf(ii+5)
@@ -259,28 +258,41 @@ c           we must check input-output consistency
          top=top2
          call objvide(fname,top)
       else
-c        check if output variabe are in increasing order in the stack 
+c        check if output variables are in increasing order in the stack 
          lcres=.true.
+C     .   bug 2119 fix verify that the  variables are in increasing
+C     .   order in the stack and not in the routine calling sequence
          ibufprec=0
          do 105 i=1,lhs 
-            ir1= 6*(ie+1-1)
-            if ( ibuf(ir1+1).lt.ibufprec) then 
+            ir1= 6*(ie+i-1)
+            type=char(ibuf(ir1+3))
+            if(type.eq.'r'.or.type.eq.'i') then
+               loc=sadr(ibuf(ir1+2))
+            elseif(type.eq.'r') then
+               loc=sadr((lr1/4)+1)
+            else
+               loc=ibuf(ir1+2)
+            endif
+            if ( loc.lt.ibufprec) then 
                lcres=.false.
                goto 106 
             else
-               ibufprec = ibuf(ir1+1)
+               ibufprec = loc
             endif
  105     continue
  106     continue
          if ( lcres) then 
             top=top2-1
+c     .     next lines to have topl and topk initialized in any case
+            topl=top
+            topk=top
          else
             topk=top2-1
             topl=top+icre
             top=topl
          endif
-         ir1= 6*(ie+1-1)
          do 104 i=1,lhs
+            ir1= 6*(ie+i-1)
             top=top+1
             type=char(ibuf(ir1+3)) 
             m = ibuf(ir1+4)
@@ -301,7 +313,6 @@ c     overlapping object is necessary
                l1=ibuf(ir1+2)
                call stackc2i(m*n,l1,lr1)
             endif
-            ir1=ir1+6
  104     continue
          if (.not.lcres) then 
             do 107 i=1,lhs 
