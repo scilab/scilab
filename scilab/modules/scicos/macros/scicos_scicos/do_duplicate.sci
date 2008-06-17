@@ -47,10 +47,8 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
     //** the double click is the  main window
     elseif win==curwin then 
       
-
       k = getblocktext(scs_m,[xc;yc]); 
       
-
       if k<>[] then
           o = disconnect_ports(scs_m.objs(k)) //** mark ports as disconnected
       end
@@ -100,7 +98,8 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
         end ; 
 
         //** get new position
-        rep = xgetmouse([%t,%t]); //** 
+        [rep, m_win] = xgetmouse([%t,%t]); //** 
+        //** disp(m_win); DEBUG ONLY !
 
         //** Protection from window closing
         if rep(3)==-1000 then //active window has been closed

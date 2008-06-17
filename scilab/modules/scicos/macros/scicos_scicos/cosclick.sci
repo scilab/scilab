@@ -49,7 +49,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   end                                        //**    CLEAR ANY PREVIOUS
                                              //EVENT in the queue
   //** DEBUG ONLY
-  //**disp("...Start ....."); disp (btn, xc ,yc ,win ,str); disp("...End ......");
+  //** disp("...Start ....."); disp (btn, xc ,yc ,win ,str); disp("...End ......");
 
   //**--------------------------------------------------------------------------- //
 
@@ -75,18 +75,11 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     return  //** --> EXIT  
   end
 
-  //**-----------------------------------------------------------
-       // chngwin=%f  //not needed anymore because of modification of rubberbox
-  if or(btn==[20,21,22]) then 
-    btn = btn-20
-       // chngwin=%t //not needed anymore because of modification of rubberbox
-  end
-  //**-----------------------------------------------------------  
-
-  if (win==-1)& (btn==-2)&part(str,1:7)=='execstr' then
-    from = max(strindex(str,'_'))+1;
-    to   = max(strindex(str,'('))-1
-    win  = evstr(part(str,from:to))
+  //** a dynamic menu has been selected 
+  if (win==-1)&(btn==-2)&part(str,1:7)=="execstr" then
+    from = max(strindex(str,'_'))+1 ;
+    to   = max(strindex(str,'('))-1 ;
+    win  = evstr(part(str,from:to)) ;
   end
 
   
@@ -97,14 +90,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     global Scicos_commands
     pathh = inactive_windows(1)(find(win==inactive_windows(2)))
 
-    // not needed anymore because of modification of rubberbox    
-    //    if chngwin & or(btn==[0,1]) then btn=3,end  // in case of window
-                                                     // switching to another
-                                                    // superblock only
-                                                   // consider click to
-                                                  // avoid problem with rubberbox
-    
-   //**----------------------------------------------------------------------------
+  //**----------------------------------------------------------------------------
    if (btn==-2) then
       cmd = 'Cmenu='+part(str,9:length(str)-1)+';execstr(''Cmenu=''+Cmenu)'
     
@@ -121,10 +107,9 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       cmd='Cmenu = '"Popup'"';
     
     elseif (btn>=32) & (btn<288)
-      //09/10/2007, Alan's patch search in %scicos_short
-      //the assiocated menu
+      //09/10/2007, Alan's patch search in %scicos_short 
       if exists('%scicos_short') then
-        ind=find(ascii(btn)==%scicos_short(:,1))
+        ind = find(ascii(btn)==%scicos_short(:,1))
         if ind<>[] then
           ind=ind($)
           cmd='Cmenu='''+%scicos_short(ind,2)+''''
@@ -226,12 +211,12 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     elseif (btn==1118) then            //** [CTRL]+[v] --> Paste 
       Cmenu="Paste"; %pt = [xc,yc] ;   //** acquire the position for the "Paste"
     
-    elseif (btn==127)  then  //** [Delete] key 
+    elseif (btn==127)| (btn==8) then  //** [Delete] or [backspace]key 
       Cmenu="Delete"; %pt=[];
     
     //** ----- Mouse + Keyb. combos ---------------------------  
-    elseif (btn==1003) | (btn==2003) then  //** [CTRL]+[Left btn click] OR [Shift]+[Left btn click]
-      Cmenu="CtrlSelect";                  //** Multiple, additive object selection 
+    elseif (btn==1003) then  //** [CTRL]+[Left btn click] 
+      Cmenu="CtrlSelect";    //** Multiple, additive object selection 
     
     elseif (btn==1122) then                //**  [CTRL]+[z] --> Undo 
       Cmenu="Undo";

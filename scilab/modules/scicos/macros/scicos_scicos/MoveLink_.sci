@@ -34,10 +34,7 @@ function MoveLink_()
   elseif %win<>curwin then //** the press is not in the current window 
     
     kc = find(%win==windows(:,2)); 
-    
-    if kc==[] then //** the press is not inside an scicos actiview window 
-      //** This message has been suppressed : have a good day :)
-      //** message("This window is not an active scicos window")
+    if kc==[] then //** no valid block has be found 
       Cmenu=[]; %pt=[]; return
     elseif windows(kc,1)<0 then //** the press is inside a palette 
       kpal = -windows(kc,1)    ; 
@@ -93,11 +90,8 @@ function MoveLink_()
     else //** if the press is in the void of the current window 
 
       Cmenu = "SelectRegion" ; //** "SelectRegion" will be called later 
-      %ppt = []; Select = [] ; //** NB: the %pt information is
-			       //preserved for "SelectRegion"
-                                //operation 
-      if with_gtk()|MSDOS then %ppt=%pt; end	// first click under windows treated as
-						// press move (always the case under gtk)		
+      %ppt = []; Select = [] ; 
+
     end
   
   end
