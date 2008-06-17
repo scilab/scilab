@@ -98,6 +98,17 @@
       </varlistentry>
 
       <varlistentry>
+        <term>Enable</term>
+
+        <listitem>
+          <para>{on} | off</para>
+
+          <para>Enable or disable the uicontrol. If this property is set to <literal>"on"</literal> (default), the uicontrol is operational, 
+          but if this property is set to <literal>"off"</literal>, the uicontrol will not respond to the mouse actions and will be grayed out.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term>FontAngle</term>
 
         <listitem>
@@ -326,7 +337,7 @@
           <para>This property represents the text appearing in a uicontrol
           (Except for Frame and Slider styles). For ListBoxes and PopupMenus,
           the value can be a vector of string or a string where the items are
-          separated by a "|".</para>
+          separated by a "|". For Text uicontrols, this string can contain HTML code to format the text.</para>
         </listitem>
       </varlistentry>
 

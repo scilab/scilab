@@ -1,83 +1,136 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="uimenu">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="uimenu" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>uimenu</refname>
-    <refpurpose> Create a menu or a submenu in a figure</refpurpose>
+
+    <refpurpose>Create a menu or a submenu in a figure</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>h=uimenu([prop1,val1] [,prop2, val2] ...)
 h=uimenu(parent,[prop1, val1] [,prop2, val2] ...)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
-        <term>parent </term>
+        <term>parent</term>
+
         <listitem>
           <para>integer Handle of menu's parent</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>prop{1, 2 ...}</term>
+
         <listitem>
           <para>string character name of a property to set up</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>val{1, 2 ...}</term>
+
         <listitem>
-          <para>scilab object value to affect to the corresponding property</para>
+          <para>scilab object value to affect to the corresponding
+          property</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>h</term>
+
         <listitem>
           <para>integer handle of the corresponding menu</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    This allows to create menus in a figure.
-    If <literal>parent</literal> is a figure, then
-    the menu item will be added to the menu bar of the figure.
-    If <literal>parent</literal> is a menu item , then the new item will be added to the parent
-    item, allowing to create cascaded submenu.
-    To create a customized menu, you can use the properties listed below:
-    </para>
+
+    <para>This allows to create menus in a figure. If
+    <literal>parent</literal> is a figure, then the menu item will be added to
+    the menu bar of the figure. If <literal>parent</literal> is a menu item ,
+    then the new item will be added to the parent item, allowing to create
+    cascaded submenu. To create a customized menu, you can use the properties
+    listed below:</para>
   </refsection>
+
   <refsection>
     <title>Properties</title>
+
     <variablelist>
       <varlistentry>
-        <term>callback</term>
+        <term>Callback</term>
+
         <listitem>
-          <para>string: allows to set up the scilab instruction to call when the item is selected by the user.</para>
+          <para>String</para>
+
+          <para>Instruction evaluated by the Scilab interpreter when the menu
+          is activated.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>label</term>
+        <term>Enable</term>
+
         <listitem>
-          <para>string: allows to set up the text appearing for the item.</para>
+          <para>{on} | off</para>
+
+          <para>Enable or disable the menu. If this property is set to
+          <literal>"on"</literal> (default), the menu is operational, but if
+          this property is set to <literal>"off"</literal>, the menu will not
+          respond to the mouse actions and will be grayed out.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>tag</term>
+        <term>String</term>
+
         <listitem>
-          <para>string: this property is generally used to identify the menu. It allows to give it a "name". Mainly used in conjontion with <link linkend="findobj">findobj</link>.</para>
+          <para>String.</para>
+
+          <para>This property represents the text appearing in the
+          menu.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Tag</term>
+
+        <listitem>
+          <para>String</para>
+
+          <para>This property is generally used to identify the menu. It
+          allows to give it a "name". Mainly used in conjunction with
+          <literal>findobj()</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
 
 f=figure('position', [10 10 300 200]);
 // create a figure
@@ -92,27 +145,26 @@ m12=uimenu(m1,'label', 'clear  window', 'callback',"xbasc()");
 close(f);
 // close the figure
  
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="figure">figure</link>
-      </member>
-      <member>
-        <link linkend="uicontrol">uicontrol</link>
-      </member>
-      <member>
-        <link linkend="set">set</link>
-      </member>
-      <member>
-        <link linkend="get">get</link>
-      </member>
+      <member><link linkend="figure">figure</link></member>
+
+      <member><link linkend="uicontrol">uicontrol</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <para>Bertrand Guiheneuf</para>
   </refsection>
 </refentry>
