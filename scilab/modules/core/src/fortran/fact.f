@@ -667,6 +667,11 @@ c     .        issue an error
             endif
          endif
          goto 90
+      elseif (sym.eq.num.and.abs(lin(lpt(3) - 2)) .ne. blank) then 
+c     .   issue an error
+         lpt(2)=lpt(3)+1
+         call error(276)
+         if (err.gt.0) return
       else
          goto 90
       endif

@@ -38,8 +38,10 @@ int C2F(terme)(void)
   if (C2F(iop).ddt == 4) { }
 
   if ( (r / 100) != 2) 
-    {
+    { /* first factor */
       ++C2F(recu).pt;
+
+      /* escape to call fact */
       C2F(recu).rstk[C2F(recu).pt - 1] = 201;
       C2F(recu).icall = 3;
       return 0;
@@ -48,7 +50,7 @@ int C2F(terme)(void)
   switch (r - 200) 
     {
     case 1: 
-      {
+      { /* return point after  first factor evaluation*/
 	--C2F(recu).pt;
 	op = 0;
 	if (C2F(com).sym == char_dot) 
@@ -69,10 +71,13 @@ int C2F(terme)(void)
 	    C2F(recu).pstk[C2F(recu).pt - 1] = op;
 	    if (C2F(com).sym != char_not) 
 	      {
+		/* escape to call fact */
 		C2F(recu).rstk[C2F(recu).pt - 1] = 202;
 		C2F(recu).icall = 3;
 		return 0;
 	      }
+	   
+	    /* escape to call expr */
 	    C2F(recu).rstk[C2F(recu).pt - 1] = 204;
 	    C2F(recu).icall = 1;
 	    return 0;
@@ -86,16 +91,18 @@ int C2F(terme)(void)
 	return 0;
       }
     case 2:
-      {
+      { /* return point after n th factor evaluation*/
 	Fin = C2F(recu).pstk[C2F(recu).pt - 1];
 	/* evaluation */
-	C2F(recu).rstk[C2F(recu).pt - 1] = 203;
 	Rhs = 2;
+
+	/* escape to call allops(op) */
+	C2F(recu).rstk[C2F(recu).pt - 1] = 203;
 	C2F(recu).icall = 4;
 	return 0;
       }
     case 3: 
-      {
+      {  /* return point after operation evaluation (allops(op))*/
 	--C2F(recu).pt;
 	op = 0;
 	if (C2F(com).sym == char_dot) 
@@ -116,10 +123,15 @@ int C2F(terme)(void)
 	    if (C2F(com).sym != char_not) 
 	      {
 		C2F(recu).rstk[C2F(recu).pt - 1] = 202;
-		if (C2F(com).sym == char_plus || C2F(com).sym == char_minus) C2F(recu).icall = 1;
-		else C2F(recu).icall = 3;
+		/*next line added to handle syntax like a*-b for Matlab compatiblity */
+		if (C2F(com).sym == char_plus || C2F(com).sym == char_minus) 
+		  C2F(recu).icall = 1; /* escape to call expr */
+		else
+		  C2F(recu).icall = 3; /* escape to call fact */
 		return 0;
 	      }
+
+	    /* escape to evaluate a logical factor (in expr) */
 	    C2F(recu).rstk[C2F(recu).pt - 1] = 204;
 	    C2F(recu).icall = 1;
 	    return 0;
@@ -133,11 +145,12 @@ int C2F(terme)(void)
 	return 0;
       }
     case 4: 
-      {
+      { /* return point after logical factor evaluation (in expr)*/ 
 	Fin = C2F(recu).pstk[C2F(recu).pt - 1];
-	/* evaluation */
-	C2F(recu).rstk[C2F(recu).pt - 1] = 203;
 	Rhs = 2;
+
+	/* escape to call allops(op) */
+	C2F(recu).rstk[C2F(recu).pt - 1] = 203;
 	C2F(recu).icall = 4;
 	return 0;
       }
