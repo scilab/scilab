@@ -1,8 +1,8 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[600,450,0,0,600,450],..
-            Title=["goto_demo","/home/fady/scilab_BUILD_4_scicos/demos/scicos/"],..
+            wpar=[-63.285221,531.63612,-14.592879,493.44986,813,692,0,63,813,692,200,200,1.4],..
+            Title=["goto_demo","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
             tf=30,..
             context=" ",..
@@ -1986,7 +1986,7 @@ scs_m.objs(22)=mlist(["Text","graphics","model","void","gui"],..
                mlist(..
                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                "peout","gr_i","id","in_implicit","out_implicit"],..
-               [162.72556,389.80729],[90.277007,5.8751856],%t,0,..
+               [49.033508,392.74003],[90.277007,5.8751856],%t,0,..
                ["Goto/From Demonstration";"5";"6"],[],[],[],[],[],"",[],[]),..
                mlist(..
                ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..

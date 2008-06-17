@@ -7,12 +7,19 @@
 
 demopath = get_absolute_file_path("standard.dem.gateway.sce");
 
-subdemolist = ["Simple Demo"                              , "simple_demo.dem.sce"    ; ..
-               "Bouncing Ball"                            , "bouncing_ball.dem.sce"  ; ..
-               "Space Balls"                              , "bounce.dem.sce"     ; ..
-               "Flip-Flop Logic"                          , "demo_flipflop.dem.sce " ; ..
-               "Signal Builder"                           , "bignal_builder.dem.sce" ; ..
-               "Table Lookup"                             , "table_lookup.dem.sce"   ; ..
-               "The Cblock2 block"                        , "goto_demo.dem.sce"   ];
+subdemolist = ["Simple Demo"                          , "simple_demo.dem.sce"    ; ..
+               "Bouncing Ball"                        , "bouncing_ball.dem.sce"  ; ..
+               "Space Balls"                          , "bounce.dem.sce"            ; ..
+               "Simple Thermostat"                    , "simple_thermostat.dem.sce" ; ..
+               "Table Lookup"                         , "table_lookup.dem.sce"      ; ..
+               "Signal Builder"                       , "signal_builder.dem.sce"    ; ..
+               "Fibonacci Numbers"                    , "fibonacci.dem.sce"         ; ..
+               "Scilab block"                         , "scilab_block.dem.sce"      ; ..
+               "Scicos data types"                    , "data_type.dem.sce"         ; ..
+               "Zero Crossing"                        , "zero_crossing.dem.sce"     ; .. 
+               "_IF_ Scicos block"                    , "if_scicos_block.dem.sce"   ; ..
+               "FLIP_FLOP logic"                      , "flip_flop_logic.dem.sce"   ; ..
+               "Goto/From blocks"                     , "goto_from.dem.sce"            ; ..
+              ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);

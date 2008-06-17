@@ -1,8 +1,8 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[600,450,0,0,600,450],..
-            Title=["demo_flipflop","/home/fady/scilab_BUILD_4_scicos/demos/scicos/"],..
+            wpar=[-47.338985,1085.9375,-10.581004,449.07756,1545,631,224,0,1097,631,200,200,1.4],..
+            Title=["demo_flipflop","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
             tf=100,..
             context=" ",..
@@ -15,7 +15,7 @@ scs_m=scicos_diagram(..
 scs_m.objs(1)=scicos_block(..
               gui="GENSQR_f",..
               graphics=scicos_graphics(..
-                       orig=[111.504,113.45067],..
+                       orig=[138.65536,113.45067],..
                        sz=[60,40],..
                        flip=%t,..
                        theta=0,..
@@ -376,7 +376,7 @@ scs_m.objs(12)=mlist(["Text","graphics","model","void","gui"],..
                mlist(..
                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                "peout","gr_i","id","in_implicit","out_implicit"],..
-               [395.11971,321.14262],[77.734402,7.3070276],%t,0,..
+               [403.92556,316.77019],[77.734402,7.3070276],%t,0,..
                ["Digital Pulse Generator";"5";"6"],[],[],[],[],[],"",[],[]),..
                mlist(..
                ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
@@ -386,7 +386,7 @@ scs_m.objs(12)=mlist(["Text","graphics","model","void","gui"],..
                "Digital Pulse Generator",[5;6],list(),"c",[],[%f,%f],"",0,0,..
                list())," ","TEXT_f")
 scs_m.objs(13)=scicos_link(..
-                 xx=[180.07543;195.104;195.104;237.45087],..
+                 xx=[207.22679;195.104;195.104;237.45087],..
                  yy=[133.45067;133.45067;133.45067;133.45067],..
                  id="drawlink",..
                  thick=[0,0],..
@@ -3214,7 +3214,7 @@ scs_m.objs(57)=scicos_link(..
 scs_m.objs(58)=scicos_block(..
                gui="SampleCLK",..
                graphics=scicos_graphics(..
-                        orig=[111.34738,177.85334],..
+                        orig=[138.49874,177.85334],..
                         sz=[60,40],..
                         flip=%t,..
                         theta=0,..
@@ -3252,7 +3252,7 @@ scs_m.objs(58)=scicos_block(..
                         equations=list()),..
                doc=list())
 scs_m.objs(59)=scicos_link(..
-                 xx=[141.34738;141.504],..
+                 xx=[168.49874;168.65536],..
                  yy=[177.85334;159.16496],..
                  id="drawlink",..
                  thick=[0,0],..
