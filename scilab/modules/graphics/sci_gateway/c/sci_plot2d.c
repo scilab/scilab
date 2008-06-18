@@ -71,8 +71,8 @@ int sci_plot2d( char * fname, unsigned long fname_len )
                             {-1,NULL,NULL,0,0}};
   if (Rhs == 0) 
   {
-    int one = 1 ;
-    sci_demo(fname,str,&one);
+    int zero = 0 ;
+    sci_demo(fname,str,&zero);
     return 0;
   }
 

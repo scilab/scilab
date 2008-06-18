@@ -59,7 +59,7 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   int *axes=&axes_def;
   integer iskip,test;
   integer m1 = 0,n1 = 0,l1 = 0, m2 = 0, n2 = 0, l2 = 0, lt, i, j ;
-  int one = 1 ;
+  int zero=0;
 
   static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
                             {-1,"frameflag","?",0,0,0},
@@ -84,22 +84,22 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
     if ( strcmp( fname, "plot2d2" ) == 0 )
     {
       char demo[]="x=(0:0.1:2*%pi)';plot2d2(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
-      sci_demo( fname, demo, &one ) ;
+      sci_demo( fname, demo, &zero ) ;
     }
     else if ( strcmp( fname, "plot2d3" ) == 0 )
     {
       char demo[]="x=(0:0.1:2*%pi)';plot2d3(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
-      sci_demo( fname, demo, &one ) ;
+      sci_demo( fname, demo, &zero ) ;
     }
     else if ( strcmp( fname, "plot2d4" ) == 0 )
     {
       char demo[]="x=(0:0.1:2*%pi)';plot2d4(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
-      sci_demo( fname, demo, &one ) ;
+      sci_demo( fname, demo, &zero ) ;
     }
     else
     {
       char demo[]="x=(0:0.1:2*%pi)';plot2d1(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
-      sci_demo( fname, demo, &one ) ;
+      sci_demo( fname, demo, &zero ) ;
     }
     /* sci_demo(fname,str,&one); */
     return 0;

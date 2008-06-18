@@ -52,8 +52,8 @@ int sci_geom3d( char * fname, unsigned long fname_len )
 
   if ( Rhs <= 0 )
   {
-    int one = 1 ;
-    sci_demo( fname, "t=0:0.1:5*%pi,[x,y]=geom3d(sin(t),cos(t),t/10)", &one ) ;
+    int zero = 0 ;
+    sci_demo( fname, "t=0:0.1:5*%pi,[x,y]=geom3d(sin(t),cos(t),t/10)", &zero ) ;
     return 0 ;
   }
 

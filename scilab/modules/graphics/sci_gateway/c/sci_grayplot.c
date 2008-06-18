@@ -50,8 +50,8 @@ int sci_grayplot( char *fname, unsigned long fname_len )
 
   if (Rhs <= 0)
   {
-    int one = 1 ;
-    sci_demo(fname, "t=-%pi:0.1:%pi;m=sin(t)'*cos(t);grayplot(t,t,m);",&one);
+    int zero=0;
+    sci_demo(fname, "t=-%pi:0.1:%pi;m=sin(t)'*cos(t);grayplot(t,t,m);",&zero);
     return 0;
   }
   CheckRhs(3,7);

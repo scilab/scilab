@@ -59,13 +59,13 @@ int sci_champ_G(char *fname,int (*func) (),unsigned long fname_len)
   if (Rhs <= 0) {
     if (strcmp(fname,"champ")==0) 
     {
-      int one = 1 ;
-      sci_demo(fname,"champ(1:10,1:10,rand(10,10),rand(10,10),1.0);",&one);
+      int zero=0;
+      sci_demo(fname,"champ(1:10,1:10,rand(10,10),rand(10,10),1.0);",&zero);
     }
     else if (strcmp(fname,"champ1")==0)
     {
-      int one = 1 ;
-      sci_demo(fname,"champ1(1:10,1:10,rand(10,10),rand(10,10),1.0);",&one);
+      int zero=0;
+      sci_demo(fname,"champ1(1:10,1:10,rand(10,10),rand(10,10),1.0);",&zero);
     }
     return 0;
   } 

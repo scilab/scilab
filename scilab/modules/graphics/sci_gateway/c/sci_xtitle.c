@@ -45,8 +45,8 @@ int sci_xtitle( char * fname, unsigned long fname_len )
 
   if (Rhs <= 0)
   {
-    int one = 1 ;
-    sci_demo(fname,"x=(1:10)';plot2d(x,x);xtitle(['Titre';'Principal'],'x','y');",&one);
+    int zero = 0;
+    sci_demo(fname,"x=(1:10)';plot2d(x,x);xtitle(['Titre';'Principal'],'x','y');",&zero);
     return 0;
   }
 

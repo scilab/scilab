@@ -29,8 +29,8 @@ int sci_matplot1( char * fname, unsigned long fname_len )
   integer m1, n1, l1,m2,n2,l2;
   if ( Rhs <= 0 )
   {
-    int one = 1 ;
-    sci_demo(fname,"plot2d([0,10],[0,10],0);a=ones(50,50);a= 3*tril(a)+2*a;Matplot1(a,[4,4,9,9]);", &one);
+    int zero = 0 ;
+    sci_demo(fname,"plot2d([0,10],[0,10],0);a=ones(50,50);a= 3*tril(a)+2*a;Matplot1(a,[4,4,9,9]);", &zero);
     return 0;
   }
 

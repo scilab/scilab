@@ -59,9 +59,9 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 
   if (Rhs <= 0)
   {
-    int one = 1 ;
+    int zero = 0 ;
     sprintf(C2F(cha1).buf,"x = %%pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);%s(x, x, z, 70, 70);e=gce();e.color_flag = 1;",fname);
-    sci_demo(fname,C2F(cha1).buf, &one);
+    sci_demo(fname,C2F(cha1).buf, &zero);
     return 0;
   }
 
