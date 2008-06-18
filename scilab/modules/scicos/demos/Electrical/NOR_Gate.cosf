@@ -1,10 +1,10 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[-238.67085,1085.66,-42.50856,491.72918,1433,579,119,0,1087,579,7,76,1.1110567],..
-            Title=["NOR_Gate",..
-            "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/Electrical/"],..
-            tol=[0.0001;0.000001;1.000D-10;100001;0;100;0],..
+            wpar=[-171.45618,795.25623,-72.533299,459.08306,1046,579,137,56,772,579,550,385,..
+            1.1110567],..
+            Title=["NOR_Gate","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/Electrical/"],..
+            tol=[0.0001;0.000001;1.000E-10;100001;0;100;0],..
             tf=0.05,..
             context=" ",..
             void1=[],..
@@ -18,7 +18,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[600,450,0,0,600,450],..
               Title="Untitled",..
-              tol=[0.0001,0.000001,1.000D-10,100001,0,0],..
+              tol=[0.0001,0.000001,1.000E-10,100001,0,0],..
               tf=100000,..
               context=[],..
               void1=[],..
@@ -314,7 +314,7 @@ scs_m.objs(4)=scicos_block(..
                        "-1 -1";
                        "12 12";
                        "0.05 0.05";
-                       "5";
+                       "100";
                        "0";
                        "out,(in1,in2)"],..
                        pin=[7;46],..
@@ -339,7 +339,7 @@ scs_m.objs(4)=scicos_block(..
                        dstate=[],..
                        odstate=list(),..
                        rpar=[0;0.05;0.05;-1;12;-1;12],..
-                       ipar=[1;2;5;-1;-1;-1;-1;1;2;2;5;3;0],..
+                       ipar=[1;2;100;-1;-1;-1;-1;1;2;2;5;3;0],..
                        opar=list(),..
                        blocktype="c",..
                        firing=[],..
@@ -923,7 +923,7 @@ scs_m_1=scicos_diagram(..
               wpar=[-227.93485,1083.196,-58.332425,502.08309,1418,606,148,38,1087,579,66,155,..
               1.1110567],..
               Title=["NOR","/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/Electrical/"],..
-              tol=[0.0001;0.000001;1.000D-10;100001;0;100;0],..
+              tol=[0.0001;0.000001;1.000E-10;100001;0;100;0],..
               tf=0.05,..
               context=" ",..
               void1=[],..
@@ -2369,7 +2369,7 @@ scs_m.objs(45)=scicos_link(..
                  to=[43,2,1])
 scs_m.objs(46)=scicos_link(..
                  xx=[264.16393;557.03667;557.03667;566.23182],..
-                 yy=[148.18916;148.18916;172.71803;172.71803],..
+                 yy=[148.18916;148.18916;172.71803;172.71802],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[7,1],..
