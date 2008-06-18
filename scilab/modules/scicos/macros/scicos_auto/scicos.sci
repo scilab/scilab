@@ -431,8 +431,8 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       getcolor = tk_getcolor; //** Tk    "        "
 
       //** --------- Popup OS dependent definition -----------------
-      getfile = xgetfile;
-      savefile = getfile;
+      getfile  = xgetfile; //** using Java most of these aliases 
+      savefile = getfile;  //** are _obsolete_
       mpopup = createpopup;
       mdialog = x_mdialog;
       getvalue = x_getvalue;

@@ -22,6 +22,7 @@
 function SaveAs_()
   Cmenu=[]
 
+  //** Inside a super block 
   if super_block then
     r = x_choose(['Diagram';'Super Block'],..
 	         ['Save content of the Super Block or'
@@ -38,7 +39,11 @@ function SaveAs_()
     end
   end
 
-  [scs_m,editedx]=do_SaveAs()
-  if ~super_block then edited=editedx;end
+  //** From the main diagram 
+  [scs_m,editedx] = do_SaveAs(); 
+
+  if ~super_block then
+     edited = editedx
+  end
 
 endfunction

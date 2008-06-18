@@ -23,8 +23,8 @@ function [scs_m, edited] = do_SaveAs()
 //
 
 
-  tit = ["Use .cos extension for binary and .cosf for ascii file"];
-  fname = savefile('*.cos*',emptystr(),tit)
+  msg = ["Use .cos extension for binary and .cosf for ASCII file"];
+  fname = savefile('*.cos*', getcwd(), msg) //** alias of "getfile" aka "xgetfile" :(
 
   if fname==emptystr() then
     return ; //** EXIT point 
@@ -45,8 +45,8 @@ function [scs_m, edited] = do_SaveAs()
    case "" then
      ok = %t
      frmt = 'unformatted'
-     fname=fname+".cos"
-     ext='cos'
+     fname = fname+".cos"
+     ext = 'cos'
   else
     message("Only *.cos binary or cosf ascii files allowed");
     return //** EXIT Point 
