@@ -1,10 +1,10 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[-71.42777,819.07735,155.96043,479.30625,1246,455,182,0,857,455,156,33,1.4374844],..
-            Title=["Transformer",..
-            "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/Electrical/"],..
-            tol=[0.00001;0.000001;1.000D-10;100001;0;100;0],..
+            wpar=[-71.42777,819.07735,145.06542,491.36801,1246,488,182,58,900,488,153,264,..
+            1.4374844],..
+            Title=["Transformer","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/Electrical/"],..
+            tol=[0.00001;0.000001;1.000E-10;100001;0;100;0],..
             tf=20,..
             context=" ",..
             void1=[],..
@@ -71,7 +71,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[600,450,0,0,600,450],..
               Title=["Sigbuilder","./"],..
-              tol=[0.0001;0.000001;1.000D-10;100001;0;0;0],..
+              tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
               tf=100,..
               context=" ",..
               void1=[],..
@@ -453,7 +453,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[600,450,0,0,600,450],..
               Title="Untitled",..
-              tol=[0.0001,0.000001,1.000D-10,100001,0,0],..
+              tol=[0.0001,0.000001,1.000E-10,100001,0,0],..
               tf=100000,..
               context=[],..
               void1=[],..
@@ -673,7 +673,17 @@ scs_m.objs(6)=scicos_block(..
                        sz=[40,40],..
                        flip=%t,..
                        theta=0,..
-                       exprs=["1 1";"2 5 5 7 9 11 13 15";"-1";"[]";"[]";"-10 -20";"30 60";"20 20";"20";"0";""],..
+                       exprs=["1 1";
+                       "2 5 5 7 9 11 13 15";
+                       "-1";
+                       "[]";
+                       "[]";
+                       "-10 -20";
+                       "30 60";
+                       "20 20";
+                       "200";
+                       "0";
+                       ""],..
                        pin=[16;15],..
                        pout=[],..
                        pein=7,..
@@ -696,7 +706,7 @@ scs_m.objs(6)=scicos_block(..
                        dstate=[],..
                        odstate=list(),..
                        rpar=[0;20;20;-10;30;-20;60],..
-                       ipar=[-1;2;20;-1;-1;-1;-1;1;1;2;5;0],..
+                       ipar=[-1;2;200;-1;-1;-1;-1;1;1;2;5;0],..
                        opar=list(),..
                        blocktype="c",..
                        firing=[],..
@@ -1069,7 +1079,7 @@ scs_m.objs(14)=scicos_block(..
                doc=list())
 scs_m.objs(15)=scicos_link(..
                  xx=[596.22761;604.2783],..
-                 yy=[291.77623;292.78034],..
+                 yy=[291.77623;292.78033],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[1,1],..

@@ -1,10 +1,9 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[-2.869707,708.94433,28.871085,393.3776,970,500,141,16,677,500,594,10,1.4],..
-            Title=["RLC_circuit",..
-            "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/Electrical/"],..
-            tol=[0.0001;0.000001;1.000D-10;100001;0;100],..
+            wpar=[7.9748161,707.35722,29.207174,406.78132,953,519,118,75,717,519,89,362,1.4],..
+            Title=["RLC_circuit","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/Electrical/"],..
+            tol=[0.0001;0.000001;1.000E-10;100001;0;100],..
             tf=2,..
             context=" ",..
             void1=[],..
@@ -172,7 +171,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[600,450,0,0,600,450],..
               Title="Untitled",..
-              tol=[0.0001,0.000001,1.000D-10,100001,0,0],..
+              tol=[0.0001,0.000001,1.000E-10,100001,0,0],..
               tf=100000,..
               context=[],..
               void1=[],..
@@ -331,7 +330,7 @@ scs_m_1.objs(6)=scicos_link(..
 scs_m.objs(4)=scicos_block(..
               gui="CLOCK_f",..
               graphics=scicos_graphics(..
-                       orig=[536.07238,249.2668],..
+                       orig=[536.80584,236.17174],..
                        sz=[40,40],..
                        flip=%t,..
                        theta=0,..
@@ -397,27 +396,26 @@ scs_m.objs(6)=mlist(["Text","graphics","model","void","gui"],..
               mlist(..
               ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
               "peout","gr_i","id","in_implicit","out_implicit"],..
-              [463.94342,240.69935],[35.957617,5.1030912],%t,0,..
-              ["Voltemeter";"2";"1"],[],[],[],[],[],"",[],[]),..
+              [463.94342,240.69935],[39.60678;8.7300377],%t,0,..
+              ["Voltmeter";"2";"1"],[],[],[],[],[],"",[],[]),..
               mlist(..
               ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
               "evtout","state","dstate","odstate","rpar","ipar","opar",..
               "blocktype","firing","dep_ut","label","nzcross","nmode",..
-              "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
-              "Voltemeter",[2;1],list(),"c",[],[%f,%f],"",0,0,list())," ",..
-              "TEXT_f")
+              "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),"Voltmeter",..
+              [2;1],list(),"c",[],[%f,%f],"",0,0,list())," ","TEXT_f")
 scs_m.objs(7)=mlist(["Text","graphics","model","void","gui"],..
               mlist(..
               ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
               "peout","gr_i","id","in_implicit","out_implicit"],..
-              [159.06342,250.7451],[37.041805,8.8957232],%t,0,..
-              ["Alternateur";"2";"1"],[],[],[],[],[],"",[],[]),..
+              [161.2638,246.38008],[40.340239;8.7300377],%t,0,..
+              ["Alternator";"2";"1"],[],[],[],[],[],"",[],[]),..
               mlist(..
               ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
               "evtout","state","dstate","odstate","rpar","ipar","opar",..
               "blocktype","firing","dep_ut","label","nzcross","nmode",..
               "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
-              "Alternateur",[2;1],list(),"c",[],[%f,%f],"",0,0,list())," ",..
+              "Alternator",[2;1],list(),"c",[],[%f,%f],"",0,0,list())," ",..
               "TEXT_f")
 scs_m.objs(8)=scicos_block(..
               gui="VoltageSensor",..
@@ -486,11 +484,11 @@ scs_m.objs(9)=scicos_link(..
 scs_m.objs(10)=scicos_block(..
                gui="VsourceAC",..
                graphics=scicos_graphics(..
-                        orig=[158.8763,257.77778],..
+                        orig=[161.07668,257.77778],..
                         sz=[40,40],..
                         flip=%t,..
                         theta=0,..
-                        exprs=["2";"1"],..
+                        exprs=["2.0";"1"],..
                         pin=15,..
                         pout=22,..
                         pein=[],..
@@ -644,7 +642,7 @@ scs_m.objs(14)=scicos_block(..
                         ["n";"n"],[],list([],list()))),..
                doc=list())
 scs_m.objs(15)=scicos_link(..
-                 xx=[133.85547;133.85547;133.85547;150.30487],..
+                 xx=[133.85547;133.85547;133.85547;152.50525],..
                  yy=[165.54769;165.91649;277.77778;277.77778],..
                  id="drawlink",..
                  thick=[0,0],..
@@ -666,7 +664,7 @@ scs_m.objs(17)=scicos_block(..
                         sz=[40,40],..
                         flip=%t,..
                         theta=0,..
-                        exprs=["1 1";"5 2 9 11 13 15";"1";"[]";"[]";"-0.01 -10";"0.01 10";"2 2";"5";"0";""],..
+                        exprs=["1 1";"5 2 9 11 13 15";"1";"[]";"[]";"-0.01 -10";"0.01 10";"2 2";"30";"0";""],..
                         pin=[18;19],..
                         pout=[],..
                         pein=20,..
@@ -689,7 +687,7 @@ scs_m.objs(17)=scicos_block(..
                         dstate=[],..
                         odstate=list(),..
                         rpar=[0;2;2;-0.01;0.01;-10;10],..
-                        ipar=[1;2;5;-1;-1;-1;-1;1;1;5;2;0],..
+                        ipar=[1;2;30;-1;-1;-1;-1;1;1;5;2;0],..
                         opar=list(),..
                         blocktype="c",..
                         firing=[],..
@@ -716,8 +714,8 @@ scs_m.objs(19)=scicos_link(..
                  from=[12,2,0],..
                  to=[17,2,1])
 scs_m.objs(20)=scicos_link(..
-                 xx=[556.07238;556.07238],..
-                 yy=[243.55252;171.99549],..
+                 xx=[556.80584;556.07238],..
+                 yy=[230.45746;171.99549],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[5,-1],..
@@ -770,7 +768,7 @@ scs_m.objs(21)=scicos_block(..
                         list("R",list(0.2)),list([],list()))),..
                doc=list())
 scs_m.objs(22)=scicos_link(..
-                 xx=[207.44773;234.38909],..
+                 xx=[209.64811;234.38909],..
                  yy=[277.77778;277.77778],..
                  id="drawlink",..
                  thick=[0,0],..
