@@ -19,14 +19,14 @@
 	"plot2d(0,0,[0],''012'',''leg'',rect);"
 	"a=gca();t=a.title;"
 	"t.text=""set of rectangles""; t.font_size=3"
-	"xclip(''clipgrf'');"
+	"a.clip_state = ''clipgrf'';"
 	"x=[-1 1 1 -1 -1]'';y=[-1 -1 1 1 -1]'';"
 	"xx=x*(n-1);yy=y*(n-1);"
 	"for k=2:n,;"
 	"  xx=[xx,x*((n-k))]; yy=[yy,y*(n-k)];"
 	"end;"
 	"c=0:(n-1);"
-	"xfpolys(xx,yy,c);xclip();"];
+	"xfpolys(xx,yy,c);a.clip_state = ''off'';"];
 	x_message(["[V] set of rectangles";expr]);
 	execstr(expr);
 	

@@ -17,7 +17,7 @@
 	"plot2d(0,0,[0],''012'',''leg'',rect);"
 	"a=gca(); t=a.title;"
 	"t.text=""colored matrix""; t.font_size=3;"
-	"xclip(''clipgrf'');"
+	"a.clip_state = ''clipgrf'';"
 	"x=[0 25 25  0 0]'';y=[0 0 25 25 0]'';d=25*[1 1 1 1 1]'';"
 	"xx=[];yy=[];i=0;"
 	"for k=1:4"
@@ -26,7 +26,7 @@
 	"    xx=[xx,(l-1)*d+x];yy=[yy,y+(k-1)*d];"
 	"  end"
 	"end"
-	"xfpolys(xx,yy,(1:16));xclip();"];
+	"xfpolys(xx,yy,(1:16));a.clip_state = ''off'';"];
 	x_message(["[VI]";expr]);
 	execstr(expr);
 	

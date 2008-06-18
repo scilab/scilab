@@ -16,12 +16,12 @@
 	"plot2d(0,0,[0],''032'',''leg'',[-1.5,-1.5 ,1.5,1.5]);"
 	"a=gca(); t=a.title;"
 	"t.text=""pie chart""; t.font_size=3;"
-	"xclip(''clipgrf'');"
+	"a.clip_state = ''clipgrf'';"
 	"alls=[-1,1,2,2,0,64*90;"
 	"    -1,1,2,2,64*90,64*(30);"
 	"    -1,1,2,2,64*(120),64*(70);"
 	"    -1,1,2,2,64*(190),64*(360-190)];"
-	"xfarcs(alls'',[1,3,5,7]);xclip();"];
+	"xfarcs(alls'',[1,3,5,7]);a.clip_state = ''off'';"];
 	x_message(["[VIII  Colored histogram]";expr]);
 	
 	execstr(expr);

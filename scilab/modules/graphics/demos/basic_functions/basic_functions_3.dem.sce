@@ -37,13 +37,13 @@
 	
 	// Demo III.2
 	expr=["xrect(150,460,100,150);";
-	"xclip(150,460,100,150);";
+	"a.clip_box = [150,460,100,150];";
 	"x=0:0.2:2*%pi;";
 	"x1=[sin(x);10*sin(x)];";
 	"y1=[cos(x);10*cos(x)];";
 	"y1=transl(y1,20);";
 	"xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));";
-	"xset(''clipgrf'');";];
+	"a.clip_state = ''clipgrf'';";];
 	x_message(["[III.2] segments+clipping zone";expr]);
 	execstr(expr);
 	
