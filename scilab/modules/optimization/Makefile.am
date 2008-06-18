@@ -179,34 +179,10 @@ demos/icse/navet.sce \
 demos/icse/README \
 demos/icse/sero.mes \
 demos/icse/seros.sce \
-demos/lmitool/bigM.sci \
-demos/lmitool/dscr_lyap.sci \
-demos/lmitool/dscr_lyap2.sci \
-demos/lmitool/fullstate.sci \
-demos/lmitool/h2hinf.sci \
-demos/lmitool/linprog.sci \
-demos/lmitool/lmi.dem.sce \
-demos/lmitool/lmidem.sci \
-demos/lmitool/norminf.sci \
-demos/lmitool/normopt.sci \
-demos/lmitool/normopt2.sci \
-demos/lmitool/normoptd.sci \
-demos/lmitool/of.sci \
-demos/lmitool/phase1.sci \
-demos/lmitool/ric_dscr.sci \
-demos/lmitool/sylvester.sci \
-demos/lmitool/test.sci \
-demos/lmitool/testdscr_lyap \
-demos/lmitool/testh2hinf \
-demos/lmitool/testlinprog \
-demos/lmitool/testnorminf \
-demos/lmitool/testnormopt \
 demos/multiflow/demo_multiflow.sci \
 demos/multiflow/demo_multiflow_fr.htm \
 demos/multiflow/ex3.graph \
 demos/multiflow/multiflow.dem.sce \
-demos/optimization.dem.gateway.sce \
-demos/optloc/demo_optloc.sci \
-demos/optloc/optloc.dem.sce
+demos/optimization.dem.gateway.sce
 
 include $(top_srcdir)/Makefile.incl.am
