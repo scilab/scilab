@@ -5,7 +5,6 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-thispath = get_absolute_file_path("inverted_pendulum.dem.sce");
-exec (thispath+"/setw.sci");
-scicos(thispath+"/Inverted_pendulum.cosf");
+thispath = get_absolute_file_path("cont_sys_disc_cont.dem.sce");
+scicos(thispath+"/Cont.Disc-Observer.cosf");
 clear thispath;

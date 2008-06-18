@@ -19,7 +19,7 @@ subdemolist = ["Simple Demo"                          , "simple_demo.dem.sce"   
                "Zero Crossing"                        , "zero_crossing.dem.sce"     ; .. 
                "_IF_ Scicos block"                    , "if_scicos_block.dem.sce"   ; ..
                "FLIP_FLOP logic"                      , "flip_flop_logic.dem.sce"   ; ..
-               "Goto/From blocks"                     , "goto_from.dem.sce"            ; ..
+               "Goto/From blocks"                     , "goto_from.dem.sce"         ; ..
               ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);

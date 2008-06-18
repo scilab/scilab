@@ -8,10 +8,10 @@
 demopath = get_absolute_file_path("scicos.dem.gateway.sce");
 
 subdemolist = ["Standard demos"                       , "standard.dem.gateway.sce"       ; ..
-               "Control Systems"                      , "control_systems.gateway.sce"    ; ..
-               "Electrical Systems"                   , "electrical_systems.gateway.sce" ; ..
-               "Modelica demos"                       , "modelica_demos.gateway.sce"     ; ..
-               "Old demos"                            , "old_demos.gateway.sce"          ; ..
+               "Control Systems"                      , "control_systems.dem.gateway.sce"    ; ..
+               "Electrical Systems"                   , "electrical_systems.dem.gateway.sce" ; ..
+               "Modelica demos"                       , "modelica_demos.dem.gateway.sce"     ; ..
+               "Old demos"                            , "old_demos.dem.gateway.sce"          ; ..
               ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);

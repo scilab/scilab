@@ -1,8 +1,9 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[600,450,0,0,600,450],..
-            Title=["Inverted_pendulum","/usr/local/src/BUILD_4_scicos/scilab/demos/scicos/"],..
+            wpar=[-553.17528,446.64958,-95.157575,586.45371,1600,1091,56,66,1488,1091,62,40,..
+            1.6575211],..
+            Title=["Inverted_pendulum","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
             tf=30,..
             context=["A=[0 1 0 0;20.601 0 0 0;0 0 0 1;-0.4905 0 0 0] ";
@@ -871,16 +872,16 @@ scs_m.objs(31)=mlist(["Text","graphics","model","void","gui"],..
                mlist(..
                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                "peout","gr_i","id","in_implicit","out_implicit"],..
-               [-117.28086,491.00098],[119.73208,7.3483464],%t,0,..
-               ["Inverted-Pendulum Control System";"3";"10"],[],[],[],[],[],"",..
-               [],[]),..
+               [-44.943109,485.15381],[250.62473;17.541499],%t,0,..
+               ["Inverted-Pendulum Control System";"2";"4"],[],[],[],[],[],"",[],..
+               []),..
                mlist(..
                ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
                "evtout","state","dstate","odstate","rpar","ipar","opar",..
                "blocktype","firing","dep_ut","label","nzcross","nmode",..
                "equations"],"text",[],[],1,[],[],1,[],[],[],[],list(),..
-               "Inverted-Pendulum Control System",[3;10],list(),"c",[],[%f,%f],..
-               "",0,0,list())," ","TEXT_f")
+               "Inverted-Pendulum Control System",[2;4],list(),"c",[],[%f,%f],"",..
+               0,0,list())," ","TEXT_f")
 scs_m.objs(32)=scicos_link(..
                  xx=[51.214973;59.044202;72.258117;72.995346;72.995346;155.26342;155.26342],..
                  yy=[421.93148;421.96009;422.00837;422.01107;369.01317;369.01317;369.01317],..

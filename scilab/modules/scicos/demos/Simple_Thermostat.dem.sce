@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("Simple_Thermostat.dem.sce");
-scicos(thispath+"/Simple_Thermostat.cos");
+scicos(thispath+"/Simple_Thermostat.cosf");
 clear thispath;

@@ -5,7 +5,7 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-demopath = get_absolute_file_path("control_systems.gateway.sce");
+demopath = get_absolute_file_path("control_systems.dem.gateway.sce");
 
 subdemolist = ["Basic controller"                     , "basic_controller.dem.sce"  ;..
                "Discrete Controller"                  , "discrete_controller.dem.sce" ;..
@@ -13,6 +13,9 @@ subdemolist = ["Basic controller"                     , "basic_controller.dem.sc
                "Discrete Kalman Filter"               , "discrete_kalman.dem.sce"   ; ..
                "Cont.Plant-Hybrid Observer"           , "cont_sys_disc_cont.dem.sce" ; ..
                "Temperature Controller"               , "temp_controller.dem.sce"    ; ..
-               "Inverted Pendulum"                    , "inverted_pendulum.dem.sce"      ];
+               "Inverted Pendulum"                    , "inverted_pendulum.dem.sce"  ; ..
+               "Animated Inv.Pendulum"                , "inv_pend_anim.dem.sce"  ; ..
+               "Lorentz butterfly"                    , "lorentz.dem.sce"            ; .. 
+              ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
