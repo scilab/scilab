@@ -162,7 +162,17 @@ public class SwingScilabRadioButton extends JRadioButton implements SimpleRadioB
 	 * @param status true to set the RadioButton checked
 	 */
 	public void setChecked(boolean status) {
+		/* Remove the listener to avoid the callback to be executed */
+		if (this.callback != null) {
+			removeActionListener(this.callback);
+		}
+
 		setSelected(status);
+
+		/* Put back the listener */
+		if (this.callback != null) {
+			addActionListener(this.callback);
+		}
 	}
 	
 	/**

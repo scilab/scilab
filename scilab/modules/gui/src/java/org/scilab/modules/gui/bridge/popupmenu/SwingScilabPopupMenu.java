@@ -186,7 +186,17 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 		for (int i = 0; i < getItemCount(); i++) {
 			// Scilab indices in Value begin at 1 and Java indices begin at 0
 			if (i == (index - 1)) {
+				/* Remove the listener to avoid the callback to be executed */
+				if (this.callback != null) {
+					removeActionListener(this.callback);
+				}
+				
 				getModel().setSelectedItem(getItemAt(i));
+				
+				/* Put back the listener */
+				if (this.callback != null) {
+					addActionListener(this.callback);
+				}
 			}
 		}
 	}

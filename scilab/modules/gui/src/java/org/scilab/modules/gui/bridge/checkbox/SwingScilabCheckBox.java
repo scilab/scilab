@@ -162,7 +162,17 @@ public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
 	 * @param status true to set the CheckBox checked
 	 */
 	public void setChecked(boolean status) {
+		/* Remove the listener to avoid the callback to be executed */
+		if (this.callback != null) {
+			removeActionListener(this.callback);
+		}
+		
 		setSelected(status);
+
+		/* Put back the listener */
+		if (this.callback != null) {
+			addActionListener(this.callback);
+		}
 	}
 	
 	/**

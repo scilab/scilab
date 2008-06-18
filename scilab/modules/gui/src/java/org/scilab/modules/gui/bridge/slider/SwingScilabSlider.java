@@ -194,7 +194,17 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 * @param value the minimum value
 	 */
 	public void setMinimumValue(int value) {
+		/* Remove the listener to avoid the callback to be executed */
+		if (adjustmentListener != null) {
+			removeAdjustmentListener(adjustmentListener);
+		}
+		
 		setMinimum(value);	
+		
+		/* Put back the listener */
+		if (adjustmentListener != null) {
+			addAdjustmentListener(adjustmentListener);
+		}
 	}
 
 	/**
@@ -202,7 +212,17 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 * @param value the maximum value
 	 */
 	public void setMaximumValue(int value) {
+		/* Remove the listener to avoid the callback to be executed */
+		if (adjustmentListener != null) {
+			removeAdjustmentListener(adjustmentListener);
+		}
+		
 		setMaximum(value);	
+		
+		/* Put back the listener */
+		if (adjustmentListener != null) {
+			addAdjustmentListener(adjustmentListener);
+		}
 	}
 
 	/**
@@ -269,6 +289,24 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	public TextBox getInfoBar() {
 		/* Unimplemented for Sliders */
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Set the current value of the Slider
+	 * @param value the new value
+	 */
+	public void setValue(int value) {
+		/* Remove the listener to avoid the callback to be executed */
+		if (adjustmentListener != null) {
+			removeAdjustmentListener(adjustmentListener);
+		}
+		
+		super.setValue(value);
+		
+		/* Put back the listener */
+		if (adjustmentListener != null) {
+			addAdjustmentListener(adjustmentListener);
+		}
 	}
 
 }

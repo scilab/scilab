@@ -323,7 +323,18 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 		for (int i = 0; i < javaIndices.length; i++) {
 			javaIndices[i] = javaIndices[i] - 1;
 		}
+		
+		/* Remove the listener to avoid the callback to be executed */
+		if (listSelectionListener != null) {
+			getList().removeListSelectionListener(listSelectionListener);
+		}
+		
 		getList().setSelectedIndices(javaIndices);
+		
+		/* Put back the listener */
+		if (listSelectionListener != null) {
+			getList().addListSelectionListener(listSelectionListener);
+		}
 	}
 	
 	/**
