@@ -26,13 +26,16 @@ function scicos_nonreg(varargin)
 //     cd SCI/modules/scicos/tests/nonreg_tests;
 //     getf('scicos_nonreg.sci'); scicos_nonreg();
 //
-//  Algorithm: (grep "^\s*//--" scicos_nonreg.sci | awk -F "//-- " '{print "//  " $1 $2}')
+//  Algorithm: (grep '^\s*//--' scicos_nonreg.sci | awk -F '//-- ' '{print '//  ' $1 $2}')
 //
 //    Parse input arguments
 //    Disable vertical paging
+//    Keep track of number of successful and failed tests  
 //    List and sort available tests (*.cos files)
 //      For each available test
 //        Launch test and display result
+//        Update lists of successful and failed tests
+//      Display overall report
 //
 //  Notes:
 //
@@ -67,19 +70,72 @@ function scicos_nonreg(varargin)
   //-- Disable vertical paging
   lines(0)
 
+  //-- Keep track of number of successful and failed tests  
+  listSuccessful  = list() // list of successful tests
+  listFailed      = list() // list of failed tests
+  listSkipped     = list() // list of skipped tests
+  failureDetails  = ''     // details about every failed test
+
   //-- List and sort available tests (*.cos files)
   baseDir    = pwd()
   cosFiles   = gsort(basename(listfiles('*.cos')),'lr','i')
-  nbCosFiles = size(cosFiles,'*')
-  if nbCosFiles ~= 0
+  nbTests = size(cosFiles,'*')
+  if nbTests ~= 0
   
     //-- For each available test
-    for k = 1:nbCosFiles
+    for k = 1:nbTests
+    
+      //-- Print some info about current test
+			printf('   %03d/%03d - ', k, nbTests)
+			printf('[%s] %s','scicos',cosFiles(k))
+			for j = length('scicos' + cosFiles(k)):50
+				printf('.')
+			end
     
       //-- Launch test and display result
-      launch_nonreg(baseDir,cosFiles(k))
+      try
+        status = launch_nonreg(baseDir,cosFiles(k))
+      catch
+        // Set status.ok to false in case of error in launch_nonreg
+        status.ok = %f
+        status.msg = ''
+        status.details = ''
+      end
+      printf('%s \n', status.msg)      
       
+      //-- Update lists of successful and failed tests
+      if status.ok
+        listSuccessful($+1) = cosFiles(k)
+      else
+        listFailed($+1)     = cosFiles(k)
+				failureDetails = [ failureDetails ; sprintf('   TEST : [%s] %s','scicos',cosFiles(k)) ]
+				failureDetails = [ failureDetails ; sprintf('     %s', status.msg) ]
+				failureDetails = [ failureDetails ; status.details ]
+				failureDetails = [ failureDetails ; '' ]
+      end
     end
+    
+    //-- Display overall report
+    nbPassed  = length(listSuccessful)
+    nbFailed  = length(listFailed)
+    nbSkipped = length(listSkipped)
+
+		printf('\n')
+		printf('   --------------------------------------------------------------------------\n')
+		printf('   Summary\n\n')
+		printf('   tests                     %4d - 100.0 %% \n', nbTests)
+		printf('   passed                    %4d - %5.1f %% \n', nbPassed,  nbPassed/nbTests*100)
+		printf('   failed                    %4d - %5.1f %% \n', nbFailed,  nbFailed/nbTests*100)
+		printf('   skipped                   %4d - %5.1f %% \n', nbSkipped, nbSkipped/nbTests*100)
+		printf('   --------------------------------------------------------------------------\n')
+
+		if nbFailed > 0 then
+			printf('   Details\n\n')
+			printf('%s\n', failureDetails)
+			printf('\n')
+			printf('   --------------------------------------------------------------------------\n')
+		end
+    
   else
     error(mprintf('%s: No test found in following directory: ''%s''', 'run.sce', baseDir))
   end
@@ -88,13 +144,14 @@ endfunction
 
 // -----------------------------------------------------------------------------
 
-function launch_nonreg(baseDir, testName)
+function status = launch_nonreg(baseDir, testName)
 
-//  Algorithm: (grep "^\s*//--" scicos_nonreg.sci | awk -F "//-- " '{print "//  " $1 $2}')
+//  Algorithm: (grep '^\s*//--' scicos_nonreg.sci | awk -F '//-- ' '{print '//  ' $1 $2}')
 //
 //    Initializations
 //    Build a script whose purpose is to launch simulation and log console output   
 //    Launch script using a background Scilab
+//    Which version of Scilab was used ?
 //    Non-regression tests launched under Scilab 4.X ?  
 //      Rename file.out -> file.out.ref
 //    Non-regression tests launched under Scilab 5.X ?  
@@ -105,35 +162,46 @@ function launch_nonreg(baseDir, testName)
 //      Display result
 
   //-- Initializations
-
-  // testDir        = fullfile(baseDir, testName)
-  // mkdir(testDir) // create a subfolder for test results (NOT outputs)
   
-  currentScilabFamily = get_scilab_family();
+  status.ok      = %f
+  status.msg     = []
+  status.details = []
+
+  // Define some aliases
+  currentScilabFamily = get_scilab_family()
   
   testFilename   = fullfile(baseDir, testName + '.test')
   modelFilename  = fullfile(baseDir, testName + '.cos')
   
   select currentScilabFamily
   
-  case "4" then
+  case '4' then
     diaryFilename  = fullfile(baseDir, testName + '_v4.log')
     resFilename    = fullfile(baseDir, testName + '_v4.res')
     errFilename    = fullfile(baseDir, testName + '_v4.err')
     
-  case "5" then
+  case '5' then
     diaryFilename  = fullfile(baseDir, testName + '_v5.log')
     resFilename    = fullfile(baseDir, testName + '_v5.res')
     errFilename    = fullfile(baseDir, testName + '_v5.err')
     
   else
-    disp(msprintf('%-25s: ERROR: Currently using unknown Scilab version (%s)', testName, getversion()))
+    disp(sprintf('%-25s: ERROR: Currently using unknown Scilab version (%s)', testName, getversion()))
     return
     
   end
   
-  outFilename    = fullfile(baseDir, testName + '.out')
-  outRefFilename = outFilename + '.ref'
+  // Keep separate references and results for Windows and Linux, as results given
+  // by the two versions have always been different (though it's not logical)
+  if MSDOS
+    outFilename = fullfile(baseDir, testName + '.out.win') // foo.out.win
+  else
+    outFilename = fullfile(baseDir, testName + '.out.gnu') // foo.out.gnu
+  end
+  outRefFilename = outFilename + '.ref' // foo.out.win.ref or foo.out.gnu.ref
+  
+  // Define format used in 'Write to File' blocks to log output (Fortran syntax)
+  outputFormat = '(7(e22.15,1x))'
   
   
   //-- Build a script whose purpose is to launch simulation and log console output   
@@ -143,6 +211,7 @@ function launch_nonreg(baseDir, testName)
           'lines(28,72)';
           'lines(0)';
           '';
+          '// Go to folder containing the diagram to test';
           'cd(''' + baseDir + ''')';
           '';
           '// Start logging output';
@@ -154,31 +223,36 @@ function launch_nonreg(baseDir, testName)
           '// Load and launch simulation, displaying some debug data in the mean time';
           'load(''' + modelFilename + ''')';
           '';
-          '//-- Rename output file to match variant name';
-          '//-- Override any existing format with predefined one (''(7(e22.15,1x))'')'; 
+          '// Rename output file to match variant name';
+          '// Override any existing format with predefined one (''' + outputFormat + ''')'; 
           '// This modification is not saved, it only exists during simulation';
           '[idxWrite, idxRead] = findIOblocks(scs_m)';
           'if ~isempty(idxWrite) & size(idxWrite,''*'') == 1';
-          '  scs_m = renameIO(scs_m, idxWrite, ''' + testName + '.out'')';
-          '  scs_m = setW2Fformat(scs_m, idxWrite, ''(7(e22.15,1x))'')';
+          '  if MSDOS';
+          '    scs_m = renameIO(scs_m, idxWrite, ''' + testName + '.out.win'')';
+          '  else';
+          '    scs_m = renameIO(scs_m, idxWrite, ''' + testName + '.out.gnu'')';
+          '  end';
+          '  scs_m = setW2Fformat(scs_m, idxWrite, ''' + outputFormat + ''')';
           'end';
           '';
-          '//-- Rename input file (if present) to match variant name';
-          '// This modification is not saved, it only exists during simulation';
+          '// Rename input file (if present) to match variant name';
+          '// This modification is only valid during simulation, thus not saved';
           'if ~isempty(idxRead) & size(idxRead,''*'') == 1';
           '  scs_m = renameIO(scs_m, idxRead, ''' + testName + '.in'')';
           'end';
           '';
           'disp(scs_m)';
-          '// Info = list()';
+          '';
           '// Force compilation';
           '//          %tcur  %cpr    alreadyran  needstart  needcompile  %state0';
           'Info = list(0,     list(), %f,         %t,        4,           list())';
           'try';
           '  Info = scicos_simulate(scs_m,Info,[],''nw'')';
           'catch';
-          '  disp(msprintf(''%-25s: ERROR while simulating '',''' + testName + '''))';
+          '  disp(sprintf(''%-25s: ERROR while simulating '',''' + testName + '''))';
           'end';
+          '';
           'disp(Info)';
           '';
           '// Stop logging output';
@@ -186,18 +260,18 @@ function launch_nonreg(baseDir, testName)
           '';
           '// Quit background Scilab session';
           'exit'];
-  mputl(txt, testFilename);
+  mputl(txt, testFilename)
 
   //-- Launch script using a background Scilab
   // Binary or source version ?
 	if (~MSDOS) & isempty(fileinfo(SCI + '/bin/scilab')) then
-		SCI_BIN = strsubst(SCI, '/share/scilab', '');
+		SCI_BIN = strsubst(SCI, '/share/scilab', '')
 	else
-		SCI_BIN = SCI;
+		SCI_BIN = SCI
 	end
   // Launch previous script inside a NW Scilab and redirect both standard and error output to files
   if MSDOS then
-		cmd = '(""' + SCI_BIN + '\bin\scilex.exe"" -nw -nb -args -nouserstartup -f ""' + testFilename + '"" > ""' + resFilename + '"") 2> ""' + errFilename + '""'
+		cmd = '(''' + SCI_BIN + '\bin\scilex.exe'' -nw -nb -args -nouserstartup -f ''' + testFilename + ''' > ''' + resFilename + ''') 2> ''' + errFilename + ''''
 	else
 		cmd = '(' + SCI_BIN + '/bin/scilab -nw -nb -args -nouserstartup -f ' + testFilename + ' > ' + resFilename + ') 2> ' + errFilename
 	end
@@ -207,21 +281,25 @@ function launch_nonreg(baseDir, testName)
   select currentScilabFamily
     
   //-- Non-regression tests launched under Scilab 4.X ?  
-  case "4" then
+  case '4' then
   
     //-- Rename file.out -> file.out.ref
     mdelete(outRefFilename)
-    [status, msg] = copyfile(outFilename, outRefFilename)
+    [status.ok, msg] = copyfile(outFilename, outRefFilename)
     mdelete(outFilename)
   
-    if status
-      disp(msprintf('%-25s: Reference file successfully generated',testName))
+    // Status determines if copy succeeded or failed
+    // A failure might indicate that simulation failed and did not produce any output
+    if status.ok
+      status.msg = 'passed  : Reference file successfully generated'
+      status.details = ''
     else
-      disp(msprintf('%-25s: WARNING: Reference file not generated',testName))
+      status.msg = 'failed  : Reference file NOT generated'
+      status.details = 'It might indicate a failure during simulation'
     end
   
   //-- Non-regression tests launched under Scilab 5.X ?  
-  case "5" then
+  case '5' then
 
     //-- Compare output data with reference data:
     
@@ -231,7 +309,9 @@ function launch_nonreg(baseDir, testName)
       out = mgetl(fidOut)
       mclose(fidOut)
     catch
-      disp(msprintf('%-25s: ERROR: Cannot read output data from file ' + outFilename, testName))
+      status.ok = %f
+      status.msg = 'failed  : Cannot read output data'
+      status.details = sprintf('Cannot read output data from file ''%s''', outFilename)
       return // go on to next test
     end
   
@@ -241,26 +321,26 @@ function launch_nonreg(baseDir, testName)
       ref = mgetl(fidRef)
       mclose(fidRef)
     catch
-      mprintf('%-25s: ERROR: Cannot read reference data from file ''%s''', testName, outRefFilename)
+      status.ok = %f
+      status.msg = 'failed  : Cannot read reference data'
+      status.details = sprintf('   Cannot read reference data from file ''%s''', outRefFilename)
       return // go on to next test
     end
   
     //-- Compare (%F meaning identical) and update status
     if or(out<>ref)
-      status.msg     = 'ERROR: Output and reference are not equal'
-      status.details = msprintf('  Compare the following files for more details: %s and %s', outFilename, outRefFilename)
       status.ok      = %f
+      status.msg     = 'failed  : Output and reference are NOT equal'
+      status.details = sprintf('     Compare the following files for more details:')
+      status.details = [ status.details ; sprintf('     - %s', outFilename) ]
+      status.details = [ status.details ; sprintf('     - %s', outRefFilename) ]
+      return
     else
-      status.msg     = 'OK'
-      status.details = ''
       status.ok      = %t
+      status.msg     = 'passed  : Output and reference are equal'
+      status.details = ''
+      return
     end
-  
-    //-- Display result
-    disp(msprintf('%-25s: %s', testName, status.msg))
-    if ~status.ok
-      disp(msprintf('%s', status.details))
-    end  
   end  
 endfunction
 
@@ -268,12 +348,19 @@ endfunction
 
 function family = get_scilab_family()
 // Get family (major version) of currently running Scilab
+//
+// Algorithm: (grep '^\s*//--' scicos_nonreg.sci | awk -F '//-- ' '{print '//  ' $1 $2}')
+//
+//    Initialize output to [] <=> unknow version of Scilab
+//    Get complete version name
+//    Extract family from a known pattern found in version name
+
 
   //-- Initialize output to [] <=> unknow version of Scilab
-  family = [];
+  family = []
 
   //-- Get complete version name
-  version = getversion();
+  version = getversion()
   
   //-- Extract family from a known pattern found in version name
   if ~isempty(grep(getversion(),'scilab-4')) ..
@@ -281,13 +368,13 @@ function family = get_scilab_family()
     | ~isempty(grep(getversion(), 'scicos_work'))
 
     // 4.X version
-    family = "4";
+    family = '4'
     
   elseif ~isempty(grep(getversion(), 'trunk')) ..
     | ~isempty(grep(getversion(), 'scilab-5'))
     
     // 5.X version
-    family = "5";
+    family = '5'
     
   end
 
