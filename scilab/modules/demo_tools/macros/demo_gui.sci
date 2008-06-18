@@ -33,8 +33,8 @@ function demo_gui()
 	margin_x     = 15;      // Horizontal margin between each elements
 	margin_y     = 15;      // Vertical margin between each elements
 	
-	button_w     = 0;     // Button width
-	button_h     = 0;      // Button height
+	button_w     = 0;       // Button width
+	button_h     = 0;       // Button height
 	
 	defaultfont  = "arial"; // Default Font
 	
@@ -103,17 +103,23 @@ function create_frame(my_fig_handle,fr_position,fr_title,fr_items)
 	// fr_position   : position de la frame à créer
 	// fr_position   : titre de la frame à créer
 	// fr_items      : liste des items de la listbox
+
+	// Parameters
+	// =========================================================================
 	
-	global margin_x;
-	global margin_y;
+	frame_w      = 200;     // Frame width
+	frame_h      = 450;     // Frame height
 	
-	global frame_w;
-	global frame_h;
+	margin_x     = 15;      // Horizontal margin between each elements
+	margin_y     = 15;      // Vertical margin between each elements
 	
-	global button_w;
-	global button_h;
+	button_w     = 0;       // Button width
+	button_h     = 0;       // Button height
 	
-	global defaultfont;
+	defaultfont  = "arial"; // Default Font
+	
+	// =========================================================================
+	
 	
 	// if no item, no display
 	if fr_items == []  then
@@ -159,6 +165,7 @@ function create_frame(my_fig_handle,fr_position,fr_title,fr_items)
 		"fontname"            , defaultfont,...
 		"fontunits"           , "points",...
 		"fontsize"            , 9,...
+		"fontWeight"          , "bold",...
 		"horizontalalignment" , "center", ...
 		"background"          , [1 1 1], ...
 		"visible"             , my_visible, ...
@@ -217,6 +224,12 @@ function script_path = demo_gui_update()
 	
 	my_selframe     = get(gcbo,"tag");
 	
+	// Suppression d'une figure précédemment dessiné, si figure il y a ...
+	fig_to_del = get_figure_handle(100001);
+	if fig_to_del <> [] then
+		delete(fig_to_del);
+	end
+	
 	// Handle de la figure
 	demo_fig        = gcbo.parent;
 
@@ -253,14 +266,21 @@ endfunction
 
 function resize_gui(my_fig_handle,frame_number)
 	
-	global margin_x;
-	global margin_y;
+	// Parameters
+	// =========================================================================
 	
-	global frame_w;
-	global frame_h;
+	frame_w      = 200;     // Frame width
+	frame_h      = 450;     // Frame height
 	
-	global button_w;
-	global button_h;
+	margin_x     = 15;      // Horizontal margin between each elements
+	margin_y     = 15;      // Vertical margin between each elements
+	
+	button_w     = 0;       // Button width
+	button_h     = 0;       // Button height
+	
+	defaultfont  = "arial"; // Default Font
+	
+	// =========================================================================
 	
 	axes_w                     = (frame_number+1)*margin_x + frame_number*frame_w; // axes width
 	my_fig_handle.axes_size(1) = axes_w;
