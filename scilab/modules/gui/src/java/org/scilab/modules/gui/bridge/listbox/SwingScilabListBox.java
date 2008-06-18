@@ -15,14 +15,14 @@ package org.scilab.modules.gui.bridge.listbox;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.StringTokenizer;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.listbox.SimpleListBox;
@@ -45,7 +45,7 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 
 	private CallBack callback;
 	
-	private ListSelectionListener listSelectionListener;
+	private MouseListener mouseListener;
 	
 	/**
 	 * the JList we use
@@ -169,20 +169,26 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @param cb the callback to set.
 	 */
 	public void setCallback(CallBack cb) {
-		if (listSelectionListener != null) {
-			getList().removeListSelectionListener(listSelectionListener);
+		if (mouseListener != null) {
+			getList().removeMouseListener(mouseListener);
 		}
 		this.callback = cb;
 		
-		listSelectionListener = new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
-				if (!arg0.getValueIsAdjusting()) {
-					callback.actionPerformed(null);	
+		mouseListener = new MouseListener() {
+
+			public void mouseClicked(MouseEvent e) {
+				if (e.getButton() == MouseEvent.BUTTON1) {
+					callback.actionPerformed(null);
 				}
 			}
+
+			public void mouseEntered(MouseEvent arg0) { }
+			public void mouseExited(MouseEvent arg0) { }
+			public void mousePressed(MouseEvent arg0) { }
+			public void mouseReleased(MouseEvent arg0) { }
 		};
 		
-		getList().addListSelectionListener(listSelectionListener);
+		getList().addMouseListener(mouseListener);
 	}
 
 	/**
@@ -325,15 +331,15 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 		}
 		
 		/* Remove the listener to avoid the callback to be executed */
-		if (listSelectionListener != null) {
-			getList().removeListSelectionListener(listSelectionListener);
+		if (mouseListener != null) {
+			getList().removeMouseListener(mouseListener);
 		}
 		
 		getList().setSelectedIndices(javaIndices);
 		
 		/* Put back the listener */
-		if (listSelectionListener != null) {
-			getList().addListSelectionListener(listSelectionListener);
+		if (mouseListener != null) {
+			getList().addMouseListener(mouseListener);
 		}
 	}
 	
