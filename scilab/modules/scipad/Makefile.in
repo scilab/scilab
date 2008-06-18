@@ -417,7 +417,8 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/icons/prompt_ready_48x24.gif \
 @TCLTK_TRUE@tcl/icons/removeallbp.gif \
 @TCLTK_TRUE@tcl/icons/setbp.gif \
-@TCLTK_TRUE@tcl/icons/stepstep.gif
+@TCLTK_TRUE@tcl/icons/stepstep.gif \
+@TCLTK_TRUE@tcl/icons/scipad-editor.gif
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)

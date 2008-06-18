@@ -109,7 +109,8 @@ tcl/icons/prompt_busy_48x24.gif \
 tcl/icons/prompt_ready_48x24.gif \
 tcl/icons/removeallbp.gif \
 tcl/icons/setbp.gif \
-tcl/icons/stepstep.gif
+tcl/icons/stepstep.gif \
+tcl/icons/scipad-editor.gif
 
 include $(top_srcdir)/Makefile.incl.am
 
