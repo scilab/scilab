@@ -46,7 +46,6 @@ Graphics:
  - Obsolete functions:
     * xclea, xaxis and xtape functions has been removed because of their imcompatibility with new graphic syntax.
 
-
 Graphic file export:
 ====================
   - xs2jpeg, xs2png, xs2svg, xs2pdf functions added to export graphics under JPEG, PNG, SVG and PDF formats.     	
@@ -292,7 +291,7 @@ Online Help management:
 Metanet : graph and network toolbox
 ===================================
  - Data structures have been reorganized and made more flexible (user
-   can define and handle its own datya fields for nodes and edges)
+   can define and handle its own data fields for nodes and edges)
  - New functions:
 	+ hilite_edges   - highlights a set of edges
 	+ unhilite_edges - unhighlights a set of edges
@@ -487,6 +486,23 @@ Scicos:
   + Non-regression tests (vs. Scicos 4.2 in Scilab 4.1.2) (95% done)
   + Benchmarks (0% done)
 
+
+Known incompatibilty
+--------------------
+
+  - The Metanet graph data structure has been completely redesigned
+    see update_graph for translation, Graph saving is not more
+    possible in a formatted way.
+
+  - due to a bug fix the xstringb x and y arguments meaning had
+    changed "lower" and "left" are now relative to user coordinates
+    order.
+
+  - the xgetmouse flag option has been removed 
+
+  - For licence reasons, The quapro and linpro functions are no more
+    available in the Scilab distribution, but as an external free
+    toolbox.
 
                      Main Changes Scilab 3.0 -> 4.0
                      ==============================
