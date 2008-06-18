@@ -92,6 +92,7 @@ int C2F(intzneupd)(char *fname,unsigned long fname_len)
   LhsVar(4)=IPARAM; LhsVar(5)=IPNTR;
   LhsVar(6)=WORKD; LhsVar(7)=WORKL;
   LhsVar(8)=RWORK; LhsVar(9)=INFO;
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/
