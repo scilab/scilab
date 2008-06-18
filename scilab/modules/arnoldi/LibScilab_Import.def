@@ -6,6 +6,7 @@ EXPORTS
  intersci_
  stack_
  getrhsvar_
+ putlhsvar_
  checklhs_
  checkrhs_
  errorinfo_
