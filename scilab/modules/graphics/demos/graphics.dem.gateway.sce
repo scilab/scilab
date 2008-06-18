@@ -15,7 +15,7 @@ subdemolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gatew
                "More surfaces"               ,"surface/surfaces.dem.gateway.sce"                    ; ..
                "Misc"                        ,"misc/misc.dem.sce"                                   ; ..
                "Complex elementary functions","cmplxfunc/cmplxfunc.dem.gateway.sce"                 ; ..
-               "bar histogram"               ,"bar/bar.dem"                                         ; ..
+               "bar histogram"               ,"bar/bar.dem.sce"                                         ; ..
                "Colormap"                    ,"colormap.dem.sce"                                    ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);

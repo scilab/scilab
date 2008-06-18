@@ -5,13 +5,7 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-function showinstr(mac)
-	if type(mac)==11 then
-		[in,out,txt]=string(mac)
-		x_message(txt)
-	end
-endfunction
-
+funcprot(0);
 
 function [X,Y]=field(x,y)
 	// x and y are two vectors defining a grid
@@ -81,3 +75,5 @@ function cplxroot(n,m,varargin)
 	s = r.^(1/n) * exp(%i*theta/n);
 	cplxmap(z,s,varargin(:))
 endfunction
+
+funcprot(1);

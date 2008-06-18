@@ -51,7 +51,6 @@ function demo_misc()
 	
 	demo_plot3d.background      = -2;
 	demo_plot3d.color_map       = jetcolormap(128);
-	demo_plot3d.figure_position = [0 0];
 	demo_plot3d.axes_size       = [axes_w axes_h];
 	demo_plot3d.figure_name     = gettext("Misc");
 	

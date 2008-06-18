@@ -635,7 +635,7 @@ demos/anim/anim6/anim6_gateway.sce \
 demos/anim/anim6/yt.wrt \
 demos/anim/anim7/anim7.sce \
 demos/anim/anim7/anim7_gateway.sce \
-demos/bar/bar.dem \
+demos/bar/bar.dem.sce \
 demos/basic_functions/basic_functions.dem.gateway.sce \
 demos/basic_functions/basic_functions_1.dem.sce \
 demos/basic_functions/basic_functions_2.dem.sce \

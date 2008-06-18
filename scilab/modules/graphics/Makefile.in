@@ -1704,7 +1704,7 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@demos/anim/anim6/yt.wrt \
 @GUI_TRUE@demos/anim/anim7/anim7.sce \
 @GUI_TRUE@demos/anim/anim7/anim7_gateway.sce \
-@GUI_TRUE@demos/bar/bar.dem \
+@GUI_TRUE@demos/bar/bar.dem.sce \
 @GUI_TRUE@demos/basic_functions/basic_functions.dem.gateway.sce \
 @GUI_TRUE@demos/basic_functions/basic_functions_1.dem.sce \
 @GUI_TRUE@demos/basic_functions/basic_functions_2.dem.sce \

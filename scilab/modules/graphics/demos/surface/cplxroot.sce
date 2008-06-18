@@ -5,6 +5,6 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-xbasc();
-showinstr(cplxroot);
-cplxroot(2,20,130,45);
+	my_handle = scf(100001);
+	clf(my_handle,"reset");
+	cplxroot(2,20,130,45);
