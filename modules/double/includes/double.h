@@ -9,11 +9,84 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#ifndef __DOUBLE_H__
+#define __DOUBLE_H__
+
 
 #include "basic_functions.h"
 #include "stack-c.h"
+#include "../../core/src/c/parse.h"
+#include <stdio.h>
 
 
 /*Multiplication*/
 int matmult();
-int C2F(tonio_matldiv)();
+int matldiv();
+int matrdiv();
+
+extern double C2F(dlange)();
+extern C2F(dlacpy)();
+extern C2F(dgetrf)();
+extern C2F(dgecon)();
+extern C2F(dgetrs)();
+extern C2F(dgelsy1)();
+
+extern double C2F(zlange)();
+extern C2F(zlacpy)();
+extern C2F(zgetrf)();
+extern C2F(zgecon)();
+extern C2F(zgetrs)();
+extern C2F(zgelsy1)();
+
+
+/*Tools to convert memory matrix storage from C to Z and Z to C*/
+doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
+void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
+void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
+
+int	iLeftDivisonOfRealMatrix(
+			double *_pdblReal1,		int _iRows1,	int _iCols1,
+			double *_pdblReal2,		int _iRows2,	int _iCols2,
+			double *_pdblRealOut,	int _iRowsOut,	int _iColsOut);
+
+int	iLeftDivisonOfComplexMatrix(
+			double *_pdblReal1,		double *_pdblImg1,		int _iRows1,	int _iCols1,
+			double *_pdblReal2,		double *_pdblImg2,		int _iRows2,	int _iCols2,
+			double *_pdblRealOut,	double *_pdblImgOut,	int _iRowsOut,	int _iColsOut);
+
+int iRightDivisionRealMatrixByRealMatrix(
+			double *_pdblReal1, int _iInc1, 
+			double *_pdblReal2, int _iInc2, 
+			double *_pdblRealOut, int _iIncOut, int _iSize);
+
+int iRightDivisonComplexByReal(
+			double _dblReal1, double _dblImg1, 
+			double _dblReal2, 
+			double *_pdblRealOut, double *_pdblImgOut);
+
+int iRightDivisionComplexMatrixByRealMatrix(
+			double *_pdblReal1,		double *_pdblImg1,		int _iInc1, 
+			double *_pdblReal2,								int _iInc2, 
+			double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
+
+int iRightDivisionRealByComplex(
+			double _dblReal1, 
+			double _dblReal2, double _dblImg2, 
+			double *_pdblRealOut, double *_pdblImgOut);
+
+int iRightDivisionRealMatrixByComplexMatrix(
+			double *_pdblReal1,								int _iInc1, 
+			double *_pdblReal2,		double *_pdblImg2,		int _iInc2, 
+			double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
+
+int iRightDivisionComplexByComplex(
+			double _dblReal1, double _dblImg1, 
+			double _dblReal2, double _dblImg2, 
+			double *_pdblRealOut, double *_pdblImgOut);
+
+int iRightDivisionComplexMatrixByComplexMatrix(
+			double *_pdblReal1,		double *_pdblImg1,		int _iInc1, 
+			double *_pdblReal2,		double *_pdblImg2,		int _iInc2, 
+			double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
+
+#endif //__DOUBLE_H__

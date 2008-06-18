@@ -345,6 +345,14 @@
 				RelativePath=".\matmult.c"
 				>
 			</File>
+			<File
+				RelativePath=".\matrdiv.c"
+				>
+			</File>
+			<File
+				RelativePath=".\matrix_division.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
