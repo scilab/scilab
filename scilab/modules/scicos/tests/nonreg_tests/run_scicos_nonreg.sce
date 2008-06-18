@@ -21,7 +21,3 @@ getf('scicos_nonreg.sci');
 
 //-- Launch non-regression tests
 scicos_nonreg();
-
-//-- Exit
-exit
-
