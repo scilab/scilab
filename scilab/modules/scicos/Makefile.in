@@ -881,8 +881,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@libsciscicos_la_demosMBlockdir = $(mydatadir)/demos/MBlock/
 @SCICOS_TRUE@nobase_libsciscicos_la_demosMBlock_DATA = demos/MBlock/Ball_Platform.cosf \
 @SCICOS_TRUE@demos/MBlock/BouncingBall_Modelica.cosf \
-@SCICOS_TRUE@demos/MBlock/Chaos_Modelica.cosf \
-@SCICOS_TRUE@demos/MBlock/RLC_Modelica.cos
+@SCICOS_TRUE@demos/MBlock/Chaos_Modelica.cosf
 
 
 #### scicos : MACROS ####
