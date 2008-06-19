@@ -161,19 +161,25 @@ macros/scicos_scicos/Threshold.cosf
 #### Custom Scicos Demos for Scilab 5.0 ALPHA #########
 libsciscicos_la_demosdir=$(mydatadir)
 nobase_libsciscicos_la_demos_DATA = demos/anim_pen.sci \
+demos/basic_controller.dem.sce \
 demos/bounce.cos \
 demos/bounce.cosf \
+demos/bounce.dem.sce \
 demos/bounce_V1.cos \
 demos/Bouncing_ball.cos \
 demos/Bouncing_ball.cosf \
+demos/bouncing_ball.dem.sce \
 demos/Cont.Disc-Observer.cos \
 demos/Cont.Disc-Observer.cosf \
-demos/Cont.Disc-Observer.dem.sce \
+demos/cont_sys_disc_cont.dem.sce \
+demos/control_systems.dem.gateway.sce \
+demos/control_systems.gateway.sce \
 demos/Controller.cos \
 demos/Controller.cosf \
-demos/Controller.dem.sce \
+demos/data_type.dem.sce \
 demos/demo_Datatype.cosf \
 demos/demo_Datatype.dem.sce \
+demos/demo_flipflop.cos \
 demos/demo_flipflop.cosf \
 demos/demo_flipflop.dem.sce \
 demos/demo_watertank.cos \
@@ -182,68 +188,88 @@ demos/demo_watertank.dem.sce \
 demos/dialogs.sci \
 demos/dialogs_learn.sci \
 demos/dialogs_play.sci \
+demos/Discrete-KalmanFilter.cos \
 demos/Discrete-KalmanFilter.cosf \
+demos/discrete_controller.dem.sce \
+demos/discrete_kalman.dem.sce \
+demos/electrical_systems.dem.gateway.sce \
+demos/electrical_systems.gateway.sce \
 demos/fibo.cos \
 demos/fibo.cosf \
 demos/fibo.dem.sce \
+demos/Fibonacci.cos \
+demos/Fibonacci.cosf \
+demos/fibonacci.dem.sce \
 demos/Finite_state_Buck.cosf \
 demos/Finite_state_SwingUp.cos \
 demos/Finite_state_SwingUp.cosf \
+demos/flip_flop_logic.dem.sce \
 demos/go_pend_5.sci \
 demos/goto_demo.cos \
 demos/goto_demo.cosf \
 demos/goto_demo.dem.sce \
+demos/goto_from.dem.sce \
 demos/Hydraulics.cos \
 demos/Hydraulics.cosf \
+demos/IF_block.cosf \
+demos/if_scicos_block.dem.sce \
 demos/Ifsub.cos \
 demos/Ifsub.cosf \
-demos/Ifsub.dem.sce \
 demos/imppart_Hydraulics.mo \
+demos/inv_pend_anim.dem.sce \
+demos/inverted_pend.dem.sce \
 demos/Inverted_pendulum.cos \
 demos/Inverted_pendulum.cosf \
-demos/Inverted_pendulum.dem.sce \
+demos/inverted_pendulum.dem.sce \
+demos/Kalman.cosf \
+demos/kalman.dem.sce \
 demos/Kalman_1.cos \
 demos/Kalman_1.cosf \
-demos/Kalman_1.dem.sce \
 demos/live.dat \
 demos/live.dem.gateway.sce \
 demos/LogicalAnd.cos \
 demos/Lorentz.cos \
 demos/Lorentz.cosf \
-demos/Lorentz.dem.sce \
+demos/lorentz.dem.sce \
+demos/modelica_demos.dem.gateway.sce \
+demos/modelica_demos.gateway.sce \
+demos/old_demos.dem.gateway.sce \
+demos/old_demos.gateway.sce \
+demos/OldGainTest.cos \
 demos/OldGainTest.cosf \
 demos/PENDULUM_ANIM.sci \
 demos/pendulum_anim45.cos \
+demos/pendulum_anim5.cosf \
 demos/PID-Demo.cos \
 demos/Plant_DiscreteController.cos \
 demos/Plant_DiscreteController.cosf \
-demos/Plant_DiscreteController.dem.sce \
 demos/scicos.dem \
 demos/scicos.dem.gateway.sce \
 demos/scicos_learn.sci \
 demos/scicos_play.sci \
+demos/Scilab_Block.cos \
 demos/Scilab_Block.cosf \
-demos/Scilab_Block.dem.sce \
+demos/scilab_block.dem.sce \
 demos/setw.sci \
 demos/Signal_Builder.cosf \
+demos/signal_builder.dem.sce \
 demos/Simple_Demo.cos \
 demos/Simple_Demo.cosf \
-demos/Simple_Demo.dem.sce \
+demos/simple_demo.dem.sce \
 demos/Simple_Thermostat.cos \
 demos/Simple_Thermostat.cosf \
-demos/Simple_Thermostat.dem.sce \
+demos/simple_thermostat.dem.sce \
 demos/sound.cosf \
+demos/standard.dem.gateway.sce \
 demos/System-Observer.cos \
 demos/System-Observer.cosf \
-demos/System-Observer.dem.sce \
 demos/Table_Lookup.cosf \
-demos/Table_Lookup.dem.sce \
+demos/table_lookup.dem.sce \
 demos/Temp.cos \
 demos/Temp.cosf \
-demos/Temp.dem.sce \
+demos/temp_controller.dem.sce \
 demos/Thermique_bloc.cosf \
 demos/Threshold_ZeroCrossing.cosf \
-demos/Threshold_ZeroCrossing.dem.sce \
 demos/tut1 \
 demos/tut1.dem.sce \
 demos/tut2 \
@@ -255,35 +281,47 @@ demos/tut4.dem.sce \
 demos/tut5 \
 demos/tut5.dem.sce \
 demos/tut6 \
-demos/tut6.dem.sce
+demos/tut6.dem.sce \
+demos/zero_crossing.dem.sce
 
 libsciscicos_la_demosCodeGendir=$(mydatadir)/demos/CodeGen/
-nobase_libsciscicos_la_demosCodeGen_DATA = demos/CodeGen/Fibo_standalone.c \
-demos/CodeGen/Therm.cosf \
-demos/CodeGen/Therm_standalone.c \
-demos/CodeGen/fibo.cosf \
+nobase_libsciscicos_la_demosCodeGen_DATA = demos/CodeGen/controller.cosf \
 demos/CodeGen/data \
-demos/CodeGen/controller.cosf
+demos/CodeGen/fibo.cosf \
+demos/CodeGen/Fibo_standalone.c \
+demos/CodeGen/Therm.cosf \
+demos/CodeGen/Therm_standalone.c
 
 libsciscicos_la_demosElectricaldir=$(mydatadir)/demos/Electrical/
-nobase_libsciscicos_la_demosElectrical_DATA = demos/Electrical/DC_DC_Buck_Converter.cosf \
-demos/Electrical/Bridge_Rectifier.cosf \
-demos/Electrical/Colpitts_Oscillator.cosf \
+nobase_libsciscicos_la_demosElectrical_DATA = demos/Electrical/AND_Gate.cosf \
+demos/Electrical/boost_conv.dem.sce \
 demos/Electrical/Boost_Converter.cosf \
-demos/Electrical/Switched_capacitor_integrator.cosf \
-demos/Electrical/NOR_Gate.cosf \
-demos/Electrical/AND_Gate.cosf \
+demos/Electrical/Bridge_Rectifier.cosf \
+demos/Electrical/bridge_rectifier.dem.sce \
+demos/Electrical/buck_conv.dem.sce \
+demos/Electrical/colpitts_osc.dem.sce \
+demos/Electrical/Colpitts_Oscillator.cosf \
+demos/Electrical/DC_DC_Buck_Converter.cosf \
 demos/Electrical/Difference_amplifier.cosf \
+demos/Electrical/differential_amp.dem.sce \
+demos/Electrical/logic_and.dem.sce \
+demos/Electrical/logic_nor.dem.sce \
+demos/Electrical/NOR_Gate.cosf \
+demos/Electrical/op_amplier.dem.sce \
+demos/Electrical/Opamp_Amplifier.cosf \
 demos/Electrical/RLC_circuit.cosf \
+demos/Electrical/rlc_circuit.dem.sce \
+demos/Electrical/switched_cap_filter.dem.sce \
+demos/Electrical/Switched_capacitor_integrator.cosf \
 demos/Electrical/Transformer.cosf \
-demos/Electrical/Opamp_Amplifier.cosf
+demos/Electrical/transformer.dem.sce
 
 
 libsciscicos_la_demosMBlockdir=$(mydatadir)/demos/MBlock/
-nobase_libsciscicos_la_demosMBlock_DATA = demos/MBlock/Chaos_Modelica.cosf \
+nobase_libsciscicos_la_demosMBlock_DATA = demos/MBlock/Ball_Platform.cosf \
 demos/MBlock/BouncingBall_Modelica.cosf \
-demos/MBlock/RLC_Modelica.cosf \
-demos/MBlock/Ball_Platform.cosf
+demos/MBlock/Chaos_Modelica.cosf \
+demos/MBlock/RLC_Modelica.cos
 
 
 #### scicos : MACROS ####

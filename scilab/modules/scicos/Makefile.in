@@ -723,19 +723,25 @@ JARMASK = *.jar
 #### Custom Scicos Demos for Scilab 5.0 ALPHA #########
 @SCICOS_TRUE@libsciscicos_la_demosdir = $(mydatadir)
 @SCICOS_TRUE@nobase_libsciscicos_la_demos_DATA = demos/anim_pen.sci \
+@SCICOS_TRUE@demos/basic_controller.dem.sce \
 @SCICOS_TRUE@demos/bounce.cos \
 @SCICOS_TRUE@demos/bounce.cosf \
+@SCICOS_TRUE@demos/bounce.dem.sce \
 @SCICOS_TRUE@demos/bounce_V1.cos \
 @SCICOS_TRUE@demos/Bouncing_ball.cos \
 @SCICOS_TRUE@demos/Bouncing_ball.cosf \
+@SCICOS_TRUE@demos/bouncing_ball.dem.sce \
 @SCICOS_TRUE@demos/Cont.Disc-Observer.cos \
 @SCICOS_TRUE@demos/Cont.Disc-Observer.cosf \
-@SCICOS_TRUE@demos/Cont.Disc-Observer.dem.sce \
+@SCICOS_TRUE@demos/cont_sys_disc_cont.dem.sce \
+@SCICOS_TRUE@demos/control_systems.dem.gateway.sce \
+@SCICOS_TRUE@demos/control_systems.gateway.sce \
 @SCICOS_TRUE@demos/Controller.cos \
 @SCICOS_TRUE@demos/Controller.cosf \
-@SCICOS_TRUE@demos/Controller.dem.sce \
+@SCICOS_TRUE@demos/data_type.dem.sce \
 @SCICOS_TRUE@demos/demo_Datatype.cosf \
 @SCICOS_TRUE@demos/demo_Datatype.dem.sce \
+@SCICOS_TRUE@demos/demo_flipflop.cos \
 @SCICOS_TRUE@demos/demo_flipflop.cosf \
 @SCICOS_TRUE@demos/demo_flipflop.dem.sce \
 @SCICOS_TRUE@demos/demo_watertank.cos \
@@ -744,68 +750,88 @@ JARMASK = *.jar
 @SCICOS_TRUE@demos/dialogs.sci \
 @SCICOS_TRUE@demos/dialogs_learn.sci \
 @SCICOS_TRUE@demos/dialogs_play.sci \
+@SCICOS_TRUE@demos/Discrete-KalmanFilter.cos \
 @SCICOS_TRUE@demos/Discrete-KalmanFilter.cosf \
+@SCICOS_TRUE@demos/discrete_controller.dem.sce \
+@SCICOS_TRUE@demos/discrete_kalman.dem.sce \
+@SCICOS_TRUE@demos/electrical_systems.dem.gateway.sce \
+@SCICOS_TRUE@demos/electrical_systems.gateway.sce \
 @SCICOS_TRUE@demos/fibo.cos \
 @SCICOS_TRUE@demos/fibo.cosf \
 @SCICOS_TRUE@demos/fibo.dem.sce \
+@SCICOS_TRUE@demos/Fibonacci.cos \
+@SCICOS_TRUE@demos/Fibonacci.cosf \
+@SCICOS_TRUE@demos/fibonacci.dem.sce \
 @SCICOS_TRUE@demos/Finite_state_Buck.cosf \
 @SCICOS_TRUE@demos/Finite_state_SwingUp.cos \
 @SCICOS_TRUE@demos/Finite_state_SwingUp.cosf \
+@SCICOS_TRUE@demos/flip_flop_logic.dem.sce \
 @SCICOS_TRUE@demos/go_pend_5.sci \
 @SCICOS_TRUE@demos/goto_demo.cos \
 @SCICOS_TRUE@demos/goto_demo.cosf \
 @SCICOS_TRUE@demos/goto_demo.dem.sce \
+@SCICOS_TRUE@demos/goto_from.dem.sce \
 @SCICOS_TRUE@demos/Hydraulics.cos \
 @SCICOS_TRUE@demos/Hydraulics.cosf \
+@SCICOS_TRUE@demos/IF_block.cosf \
+@SCICOS_TRUE@demos/if_scicos_block.dem.sce \
 @SCICOS_TRUE@demos/Ifsub.cos \
 @SCICOS_TRUE@demos/Ifsub.cosf \
-@SCICOS_TRUE@demos/Ifsub.dem.sce \
 @SCICOS_TRUE@demos/imppart_Hydraulics.mo \
+@SCICOS_TRUE@demos/inv_pend_anim.dem.sce \
+@SCICOS_TRUE@demos/inverted_pend.dem.sce \
 @SCICOS_TRUE@demos/Inverted_pendulum.cos \
 @SCICOS_TRUE@demos/Inverted_pendulum.cosf \
-@SCICOS_TRUE@demos/Inverted_pendulum.dem.sce \
+@SCICOS_TRUE@demos/inverted_pendulum.dem.sce \
+@SCICOS_TRUE@demos/Kalman.cosf \
+@SCICOS_TRUE@demos/kalman.dem.sce \
 @SCICOS_TRUE@demos/Kalman_1.cos \
 @SCICOS_TRUE@demos/Kalman_1.cosf \
-@SCICOS_TRUE@demos/Kalman_1.dem.sce \
 @SCICOS_TRUE@demos/live.dat \
 @SCICOS_TRUE@demos/live.dem.gateway.sce \
 @SCICOS_TRUE@demos/LogicalAnd.cos \
 @SCICOS_TRUE@demos/Lorentz.cos \
 @SCICOS_TRUE@demos/Lorentz.cosf \
-@SCICOS_TRUE@demos/Lorentz.dem.sce \
+@SCICOS_TRUE@demos/lorentz.dem.sce \
+@SCICOS_TRUE@demos/modelica_demos.dem.gateway.sce \
+@SCICOS_TRUE@demos/modelica_demos.gateway.sce \
+@SCICOS_TRUE@demos/old_demos.dem.gateway.sce \
+@SCICOS_TRUE@demos/old_demos.gateway.sce \
+@SCICOS_TRUE@demos/OldGainTest.cos \
 @SCICOS_TRUE@demos/OldGainTest.cosf \
 @SCICOS_TRUE@demos/PENDULUM_ANIM.sci \
 @SCICOS_TRUE@demos/pendulum_anim45.cos \
+@SCICOS_TRUE@demos/pendulum_anim5.cosf \
 @SCICOS_TRUE@demos/PID-Demo.cos \
 @SCICOS_TRUE@demos/Plant_DiscreteController.cos \
 @SCICOS_TRUE@demos/Plant_DiscreteController.cosf \
-@SCICOS_TRUE@demos/Plant_DiscreteController.dem.sce \
 @SCICOS_TRUE@demos/scicos.dem \
 @SCICOS_TRUE@demos/scicos.dem.gateway.sce \
 @SCICOS_TRUE@demos/scicos_learn.sci \
 @SCICOS_TRUE@demos/scicos_play.sci \
+@SCICOS_TRUE@demos/Scilab_Block.cos \
 @SCICOS_TRUE@demos/Scilab_Block.cosf \
-@SCICOS_TRUE@demos/Scilab_Block.dem.sce \
+@SCICOS_TRUE@demos/scilab_block.dem.sce \
 @SCICOS_TRUE@demos/setw.sci \
 @SCICOS_TRUE@demos/Signal_Builder.cosf \
+@SCICOS_TRUE@demos/signal_builder.dem.sce \
 @SCICOS_TRUE@demos/Simple_Demo.cos \
 @SCICOS_TRUE@demos/Simple_Demo.cosf \
-@SCICOS_TRUE@demos/Simple_Demo.dem.sce \
+@SCICOS_TRUE@demos/simple_demo.dem.sce \
 @SCICOS_TRUE@demos/Simple_Thermostat.cos \
 @SCICOS_TRUE@demos/Simple_Thermostat.cosf \
-@SCICOS_TRUE@demos/Simple_Thermostat.dem.sce \
+@SCICOS_TRUE@demos/simple_thermostat.dem.sce \
 @SCICOS_TRUE@demos/sound.cosf \
+@SCICOS_TRUE@demos/standard.dem.gateway.sce \
 @SCICOS_TRUE@demos/System-Observer.cos \
 @SCICOS_TRUE@demos/System-Observer.cosf \
-@SCICOS_TRUE@demos/System-Observer.dem.sce \
 @SCICOS_TRUE@demos/Table_Lookup.cosf \
-@SCICOS_TRUE@demos/Table_Lookup.dem.sce \
+@SCICOS_TRUE@demos/table_lookup.dem.sce \
 @SCICOS_TRUE@demos/Temp.cos \
 @SCICOS_TRUE@demos/Temp.cosf \
-@SCICOS_TRUE@demos/Temp.dem.sce \
+@SCICOS_TRUE@demos/temp_controller.dem.sce \
 @SCICOS_TRUE@demos/Thermique_bloc.cosf \
 @SCICOS_TRUE@demos/Threshold_ZeroCrossing.cosf \
-@SCICOS_TRUE@demos/Threshold_ZeroCrossing.dem.sce \
 @SCICOS_TRUE@demos/tut1 \
 @SCICOS_TRUE@demos/tut1.dem.sce \
 @SCICOS_TRUE@demos/tut2 \
@@ -817,34 +843,46 @@ JARMASK = *.jar
 @SCICOS_TRUE@demos/tut5 \
 @SCICOS_TRUE@demos/tut5.dem.sce \
 @SCICOS_TRUE@demos/tut6 \
-@SCICOS_TRUE@demos/tut6.dem.sce
+@SCICOS_TRUE@demos/tut6.dem.sce \
+@SCICOS_TRUE@demos/zero_crossing.dem.sce
 
 @SCICOS_TRUE@libsciscicos_la_demosCodeGendir = $(mydatadir)/demos/CodeGen/
-@SCICOS_TRUE@nobase_libsciscicos_la_demosCodeGen_DATA = demos/CodeGen/Fibo_standalone.c \
-@SCICOS_TRUE@demos/CodeGen/Therm.cosf \
-@SCICOS_TRUE@demos/CodeGen/Therm_standalone.c \
-@SCICOS_TRUE@demos/CodeGen/fibo.cosf \
+@SCICOS_TRUE@nobase_libsciscicos_la_demosCodeGen_DATA = demos/CodeGen/controller.cosf \
 @SCICOS_TRUE@demos/CodeGen/data \
-@SCICOS_TRUE@demos/CodeGen/controller.cosf
+@SCICOS_TRUE@demos/CodeGen/fibo.cosf \
+@SCICOS_TRUE@demos/CodeGen/Fibo_standalone.c \
+@SCICOS_TRUE@demos/CodeGen/Therm.cosf \
+@SCICOS_TRUE@demos/CodeGen/Therm_standalone.c
 
 @SCICOS_TRUE@libsciscicos_la_demosElectricaldir = $(mydatadir)/demos/Electrical/
-@SCICOS_TRUE@nobase_libsciscicos_la_demosElectrical_DATA = demos/Electrical/DC_DC_Buck_Converter.cosf \
-@SCICOS_TRUE@demos/Electrical/Bridge_Rectifier.cosf \
-@SCICOS_TRUE@demos/Electrical/Colpitts_Oscillator.cosf \
+@SCICOS_TRUE@nobase_libsciscicos_la_demosElectrical_DATA = demos/Electrical/AND_Gate.cosf \
+@SCICOS_TRUE@demos/Electrical/boost_conv.dem.sce \
 @SCICOS_TRUE@demos/Electrical/Boost_Converter.cosf \
-@SCICOS_TRUE@demos/Electrical/Switched_capacitor_integrator.cosf \
-@SCICOS_TRUE@demos/Electrical/NOR_Gate.cosf \
-@SCICOS_TRUE@demos/Electrical/AND_Gate.cosf \
+@SCICOS_TRUE@demos/Electrical/Bridge_Rectifier.cosf \
+@SCICOS_TRUE@demos/Electrical/bridge_rectifier.dem.sce \
+@SCICOS_TRUE@demos/Electrical/buck_conv.dem.sce \
+@SCICOS_TRUE@demos/Electrical/colpitts_osc.dem.sce \
+@SCICOS_TRUE@demos/Electrical/Colpitts_Oscillator.cosf \
+@SCICOS_TRUE@demos/Electrical/DC_DC_Buck_Converter.cosf \
 @SCICOS_TRUE@demos/Electrical/Difference_amplifier.cosf \
+@SCICOS_TRUE@demos/Electrical/differential_amp.dem.sce \
+@SCICOS_TRUE@demos/Electrical/logic_and.dem.sce \
+@SCICOS_TRUE@demos/Electrical/logic_nor.dem.sce \
+@SCICOS_TRUE@demos/Electrical/NOR_Gate.cosf \
+@SCICOS_TRUE@demos/Electrical/op_amplier.dem.sce \
+@SCICOS_TRUE@demos/Electrical/Opamp_Amplifier.cosf \
 @SCICOS_TRUE@demos/Electrical/RLC_circuit.cosf \
+@SCICOS_TRUE@demos/Electrical/rlc_circuit.dem.sce \
+@SCICOS_TRUE@demos/Electrical/switched_cap_filter.dem.sce \
+@SCICOS_TRUE@demos/Electrical/Switched_capacitor_integrator.cosf \
 @SCICOS_TRUE@demos/Electrical/Transformer.cosf \
-@SCICOS_TRUE@demos/Electrical/Opamp_Amplifier.cosf
+@SCICOS_TRUE@demos/Electrical/transformer.dem.sce
 
 @SCICOS_TRUE@libsciscicos_la_demosMBlockdir = $(mydatadir)/demos/MBlock/
-@SCICOS_TRUE@nobase_libsciscicos_la_demosMBlock_DATA = demos/MBlock/Chaos_Modelica.cosf \
+@SCICOS_TRUE@nobase_libsciscicos_la_demosMBlock_DATA = demos/MBlock/Ball_Platform.cosf \
 @SCICOS_TRUE@demos/MBlock/BouncingBall_Modelica.cosf \
-@SCICOS_TRUE@demos/MBlock/RLC_Modelica.cosf \
-@SCICOS_TRUE@demos/MBlock/Ball_Platform.cosf
+@SCICOS_TRUE@demos/MBlock/Chaos_Modelica.cosf \
+@SCICOS_TRUE@demos/MBlock/RLC_Modelica.cos
 
 
 #### scicos : MACROS ####
