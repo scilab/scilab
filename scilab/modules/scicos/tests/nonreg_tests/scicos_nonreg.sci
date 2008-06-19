@@ -15,7 +15,9 @@ function scicos_nonreg(varargin)
 //
 //  Input argument(s):
 //
-//    -
+//    testNames - OPTIONAL - matrix of strings
+//      Only tests in this list will be run
+//        DEFAULT: '*' (all tests are run)
 //
 //  Output argument(s):
 //
@@ -24,7 +26,10 @@ function scicos_nonreg(varargin)
 //  Usage:
 //
 //     cd SCI/modules/scicos/tests/nonreg_tests;
-//     getf('scicos_nonreg.sci'); scicos_nonreg();
+//     exec('scicos_nonreg.sci');
+//     scicos_nonreg();
+//     scicos_nonreg('disease');
+//     scicos_nonreg(['disease','rossler']);
 //
 //  Algorithm: (grep '^\s*//--' scicos_nonreg.sci | awk -F '//-- ' '{print '//  ' $1 $2}')
 //
@@ -50,7 +55,7 @@ function scicos_nonreg(varargin)
   rhs = argn(2)
 
   // Define default input arguments
-  defaultArgs = list()
+  defaultArgs = list('*')
   inputArgs   = defaultArgs 
   
   // Define maximum number of input arguments
@@ -75,13 +80,35 @@ function scicos_nonreg(varargin)
   listFailed      = list() // list of failed tests
   listSkipped     = list() // list of skipped tests
   failureDetails  = ''     // details about every failed test
+  
+  baseDir = fullfile(SCI,'modules','scicos','tests','nonreg_tests')
 
-  //-- List and sort available tests (*.cos files)
-  baseDir    = pwd()
-  cosFiles   = gsort(basename(listfiles('*.cos')),'lr','i')
+  //-- Check if user explicitly supplied a list of tests to run
+  if inputArgs(1) == defaultArgs(1)
+    //-- No: list and sort all available tests (*.cos files)
+    cosFiles   = gsort(basename(listfiles('*.cos')),'lr','i')
+  else
+    //-- Yes: check that given list is valid (test existence of diagrams) 
+    cosFiles = inputArgs(1)
+    idxFilesToDelete = []
+    for k = 1:size(cosFiles,'*')
+      if isempty(fileinfo(fullfile(baseDir,cosFiles(k) + '.cos')))
+        // File does not exist: warn user and mark test for deletion
+        printf(' WARNING: Test ''%s'' could not be found in ''%s''\n', cosFiles(k), baseDir)
+        idxFilesToDelete = [ idxFilesToDelete ; k ]
+      end
+    end
+    
+    // Delete marked tests (invalid tests)
+    cosFiles(idxFilesToDelete) = []
+  end
+  
   nbTests = size(cosFiles,'*')
+  
   if nbTests ~= 0
   
+    printf('\n')
+
     //-- For each available test
     for k = 1:nbTests
     
@@ -137,7 +164,7 @@ function scicos_nonreg(varargin)
 		end
     
   else
-    error(mprintf('%s: No test found in following directory: ''%s''', 'run.sce', baseDir))
+    printf('\n ERROR: No valid test found in following directory: ''%s''\n', baseDir)
   end
 
 endfunction
@@ -175,19 +202,21 @@ function status = launch_nonreg(baseDir, testName)
   
   select currentScilabFamily
   
-  case '4' then
-    diaryFilename  = fullfile(baseDir, testName + '_v4.log')
-    resFilename    = fullfile(baseDir, testName + '_v4.res')
-    errFilename    = fullfile(baseDir, testName + '_v4.err')
-    
-  case '5' then
-    diaryFilename  = fullfile(baseDir, testName + '_v5.log')
-    resFilename    = fullfile(baseDir, testName + '_v5.res')
-    errFilename    = fullfile(baseDir, testName + '_v5.err')
-    
-  else
-    disp(sprintf('%-25s: ERROR: Currently using unknown Scilab version (%s)', testName, getversion()))
-    return
+    case '4' then
+      diaryFilename  = fullfile(baseDir, testName + '_v4.log')
+      resFilename    = fullfile(baseDir, testName + '_v4.res')
+      errFilename    = fullfile(baseDir, testName + '_v4.err')
+      
+    case '5' then
+      diaryFilename  = fullfile(baseDir, testName + '_v5.log')
+      resFilename    = fullfile(baseDir, testName + '_v5.res')
+      errFilename    = fullfile(baseDir, testName + '_v5.err')
+      
+    else
+      status.ok = %f
+      status.msg = 'failed  : Unknown Scilab version'
+      status.details = sprintf('     Unknown Scilab version (%s)', getversion())
+      return
     
   end
   
@@ -280,68 +309,72 @@ function status = launch_nonreg(baseDir, testName)
   //-- Which version of Scilab was used ?
   select currentScilabFamily
     
-  //-- Non-regression tests launched under Scilab 4.X ?  
-  case '4' then
-  
-    //-- Rename file.out -> file.out.ref
-    mdelete(outRefFilename)
-    [status.ok, msg] = copyfile(outFilename, outRefFilename)
-    mdelete(outFilename)
-  
-    // Status determines if copy succeeded or failed
-    // A failure might indicate that simulation failed and did not produce any output
-    if status.ok
-      status.msg = 'passed  : Reference file successfully generated'
-      status.details = ''
-    else
-      status.msg = 'failed  : Reference file NOT generated'
-      status.details = sprintf('     It might indicate a failure during simulation')
-      status.details = [ status.details ; sprintf('     Try running the simulation manually by opening ''%s.cos'' in Scicos', testName) ]
-    end
-  
-  //-- Non-regression tests launched under Scilab 5.X ?  
-  case '5' then
-
-    //-- Compare output data with reference data:
+    //-- Non-regression tests launched under Scilab 4.X ?  
+    case '4' then
     
-    //-- Read output data
-    try
-      fidOut = mopen(outFilename, 'r')
-      out = mgetl(fidOut)
-      mclose(fidOut)
-    catch
-      status.ok = %f
-      status.msg = 'failed  : Cannot read output data'
-      status.details = sprintf('Cannot read output data from file ''%s''', outFilename)
-      return // go on to next test
-    end
+      //-- Rename file.out -> file.out.ref
+      mdelete(outRefFilename)
+      [status.ok, msg] = copyfile(outFilename, outRefFilename)
+      mdelete(outFilename)
+    
+      // Status determines if copy succeeded or failed
+      // A failure might indicate that simulation failed and did not produce any output
+      if status.ok
+        status.msg = 'passed  : Reference file successfully generated'
+        status.details = ''
+        return
+      else
+        status.msg = 'failed  : Reference file NOT generated'
+        status.details = sprintf('     It might indicate a failure during simulation')
+        status.details = [ status.details ; sprintf('     Try running the simulation manually by opening ''%s.cos'' in Scicos', testName) ]
+        return
+      end
+    
+    //-- Non-regression tests launched under Scilab 5.X ?  
+    case '5' then
   
-    //-- Read reference data
-    try
-      fidRef = mopen(outRefFilename, 'r')
-      ref = mgetl(fidRef)
-      mclose(fidRef)
-    catch
-      status.ok = %f
-      status.msg = 'failed  : Cannot read reference data'
-      status.details = sprintf('   Cannot read reference data from file ''%s''', outRefFilename)
-      return // go on to next test
-    end
-  
-    //-- Compare (%F meaning identical) and update status
-    if or(out<>ref)
-      status.ok      = %f
-      status.msg     = 'failed  : Output and reference are NOT equal'
-      status.details = sprintf('     Compare the following files for more details:')
-      status.details = [ status.details ; sprintf('     - %s', outFilename) ]
-      status.details = [ status.details ; sprintf('     - %s', outRefFilename) ]
-      return
-    else
-      status.ok      = %t
-      status.msg     = 'passed  : Output and reference are equal'
-      status.details = ''
-      return
-    end
+      //-- Compare output data with reference data:
+      
+      //-- Read output data
+      try
+        fidOut = mopen(outFilename, 'r')
+        out = mgetl(fidOut)
+        mclose(fidOut)
+      catch
+        status.ok = %f
+        status.msg = 'failed  : Cannot read output data'
+        status.details = sprintf('     Cannot read output data from file ''%s''', outFilename)
+        status.details = [ status.details ; sprintf('     It might indicate a failure during simulation') ]
+        status.details = [ status.details ; sprintf('     Try running the simulation manually by opening ''%s.cos'' in Scicos', testName) ]
+        return // go on to next test
+      end
+    
+      //-- Read reference data
+      try
+        fidRef = mopen(outRefFilename, 'r')
+        ref = mgetl(fidRef)
+        mclose(fidRef)
+      catch
+        status.ok = %f
+        status.msg = 'failed  : Cannot read reference data'
+        status.details = sprintf('     Cannot read reference data from file ''%s''', outRefFilename)
+        return // go on to next test
+      end
+    
+      //-- Compare (%F meaning identical) and update status
+      if or(out<>ref)
+        status.ok      = %f
+        status.msg     = 'failed  : Output and reference are NOT equal'
+        status.details = sprintf('     Compare the following files for more details:')
+        status.details = [ status.details ; sprintf('     - %s', outFilename) ]
+        status.details = [ status.details ; sprintf('     - %s', outRefFilename) ]
+        return
+      else
+        status.ok      = %t
+        status.msg     = 'passed  : Output and reference are equal'
+        status.details = ''
+        return
+      end
   end  
 endfunction
 
