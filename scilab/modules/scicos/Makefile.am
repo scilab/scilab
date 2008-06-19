@@ -317,10 +317,10 @@ demos/Electrical/Transformer.cosf \
 demos/Electrical/transformer.dem.sce
 
 
-libsciscicos_la_demosMBlockdir=$(mydatadir)/demos/MBlock/
-nobase_libsciscicos_la_demosMBlock_DATA = demos/MBlock/Ball_Platform.cosf \
-demos/MBlock/BouncingBall_Modelica.cosf \
-demos/MBlock/Chaos_Modelica.cosf
+libsciscicos_la_demosModelicaBlocksdir=$(mydatadir)/demos/ModelicaBlocks/
+nobase_libsciscicos_la_demosModelicaBlocks_DATA = demos/ModelicaBlocks/Ball_Platform.cosf \
+demos/ModelicaBlocks/BouncingBall_Modelica.cosf \
+demos/ModelicaBlocks/Chaos_Modelica.cosf
 
 
 #### scicos : MACROS ####
