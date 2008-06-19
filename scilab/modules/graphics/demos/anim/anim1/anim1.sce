@@ -9,16 +9,6 @@ curFig             = scf(100001);
 clf(curFig,"reset");
 xselect(); //raise the graphic window
 
-//turn off toolbar
-//----------------
-id=curFig.figure_id;
-tb=toolbar(id); //preserve setting
-toolbar(id,"off");
-
-// set double buffer mode to avoid blinking animation
-//---------------------------------------------------
-pix = curFig.pixmap; //preserve old setting
-curFig.pixmap = "on";
 
 // set a new colormap
 //-------------------
@@ -54,11 +44,4 @@ realtimeinit(0.1);//set time step and date reference
 for i=1:size(Angles,2) // loop on theta angle
   realtime(i); //wait till date 0.1*i seconds
   curAxe.rotation_angles = Angles(:,i); //change the view angles property
-  show_pixmap(); //send  buffer to screen
 end
-
-// Reset initial properties
-//--------------------------------
-toolbar(id,tb);//turn on toolbar
-curFig.pixmap = pix;
-
