@@ -3,20 +3,22 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function R=legend(varargin)
-  f=gcf()
-  vis=f.immediate_drawing;
-  narg=size(varargin)
-  k0=1
-  H=[]
-  leg=[]
-  Acur=gca();A=Acur;
-  opt=1
-  with_box=%t
-  
+
+  f        = gcf();
+  vis      = f.immediate_drawing;
+  narg     = size(varargin);
+  k0       = 1;
+  H        = [];
+  leg      = [];
+  Acur     = gca();
+  A        = Acur;
+  opt      = 1;
+  with_box = %T;
+
   while type(varargin(k0))==9 then //a handle that could be an Axes, Agreg. or Polyline handle.
     tmpH=varargin(k0)
     if tmpH.type=='Axes' then
@@ -51,13 +53,13 @@ function R=legend(varargin)
   //case (a little tricky)
   xsetech(wrect=[r1(1),r1(2),r1(3)/1000,r1(4)/1000],frect=[0 0 1,1]/1000,arect=[0,0,0,0])
   xmin=arect(1);xmax=1-arect(2);ymin=-1+arect(4);ymax=-arect(3);
-  axleg=gca();
-  axleg.clip_state='off';
-  axleg.font_style=A.font_style;
-  axleg.font_size=A.font_size;
-  axleg.foreground=A.foreground
-  axleg.background=A.background
-  axleg.font_color=A.font_color
+  axleg            = gca();
+  axleg.clip_state = "off";
+  axleg.font_style = A.font_style;
+  axleg.font_size  = A.font_size;
+  axleg.foreground = A.foreground
+  axleg.background = A.background
+  axleg.font_color = A.font_color
 
   dy=ymax-ymin
   drx=(xmax-xmin)/20 //length of the line

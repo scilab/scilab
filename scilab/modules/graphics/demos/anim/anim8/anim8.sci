@@ -5,52 +5,131 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+funcprot(0);
+
 function demo_riemann()
 	
-	//demo_help demo_riemann
-	my_handle             = scf(100001);my_handle
+	global quit_var;
+	global pause_var;
+	
+	quit_var  = 0;
+	pause_var = 0;
+	
+	// Figure creation
+	// =========================================================================
+	my_handle = scf(100001);
 	clf(my_handle,"reset");
 	
-	my_handle.pixmap     = "on";
-	C                   = hotcolormap(200);
-	C                   = C(1:$-40,:);
-	my_handle.color_map = C;
-	my_handle.axes_size = [597,634];
-	[z,s]               = cplxroot(4,35); //compute
+	// Drawlater
+	// =========================================================================
+	my_handle.immediate_drawing = "off";
+	
+	
+	// Colormap
+	// =========================================================================
+	my_handle.color_map = rainbowcolormap(128);
+	
+	
+	// Compute
+	// =========================================================================
+	[z,s]               = cplxroot(4,35);
+	
+	
+	// Draw
+	// =========================================================================
 	cplxmap(z,s,163,69);  //draw
 	
-	color_management();
 	
-	show_pixmap();
+	// Adjust some graphical parameters
+	// =========================================================================
+	my_axe               = gca();
+	my_fac3d             = gce();
 	
-	realtimeinit(0.03)
-	for k=1:300
+	my_handle.axes_size  = [ 650 650 ];
+	
+	my_handle.background = -1;                 // black
+	my_axe.background    = -1;                 // gray
+	my_axe.foreground    = 14;                 // white
+	my_fac3d.color_mode  =  1;                 // no lines
+	
+	
+	// Stop => Pushbutton
+	// =========================================================================
+	
+	my_quit_button = uicontrol( ...
+		"parent"              , my_handle,...
+		"style"               , "pushbutton",...
+		"string"              , "STOP",...
+		"units"               , "pixels",...
+		"position"            , [ 200 10 40 40 ],...
+		"background"          , [1 1 1], ...
+		"callback"            , "quit_riemann",...
+		"tag"                 , "pushbutton_bac" ...
+	);
+	
+	my_pause_button = uicontrol( ...
+		"parent"              , my_handle,...
+		"style"               , "pushbutton",...
+		"string"              , "PAUSE",...
+		"units"               , "pixels",...
+		"position"            , [ 300 10 40 40 ],...
+		"background"          , [1 1 1], ...
+		"callback"            , "pause_riemann",...
+		"tag"                 , "my_pause_button" ...
+	);
+	
+	my_play_button = uicontrol( ...
+		"parent"              , my_handle,...
+		"style"               , "pushbutton",...
+		"string"              , "PLAY",...
+		"units"               , "pixels",...
+		"position"            , [ 300 10 40 40 ],...
+		"background"          , [1 1 1], ...
+		"callback"            , "play_riemann",...
+		"visible"             , "off",...
+		"tag"                 , "my_play_button" ...
+	);
+	
+	// Drawnow
+	// =========================================================================
+	my_handle.immediate_drawing = "on";
+	
+	
+	realtimeinit(0.01);
+	
+	for k=1:360
+		
 		realtime(k);
-		if modulo(k,10)==0 then
-			clear_pixmap();
-			drawlater();
-			cplxmap(z,s,163+k/10,69+k/20);  //draw
-			// color_management();
-			drawnow();
-			show_pixmap();
+		
+		if quit_var == 1 then
+			delete(my_handle);
+			return;
+		end
+		
+		if play_var == 1 & my_play_button.visible == "on" then
+			my_play_button.visible  = "off";
+			my_pause_button.visible = "on";
+		end
+		
+		if pause_var == 0 then
+			if my_play_button.visible == "on" then
+				my_play_button.visible   = "on";
+				my_pause_button.visible  = "off";
+			end
+			my_axe.rotation_angles = my_axe.rotation_angles + [0 1];
+		end
+		
+	end
+	
+	for k=1:360
+		realtime(k);
+		if stop == 0 then
+			my_axe.rotation_angles = my_axe.rotation_angles + [1 0];
 		end
 	end
 	
 endfunction
 
-function color_management()
-	
-	my_handle            = gcf();
-	my_axe               = gca();
-	my_fac3d             = gce();
-	
-	my_handle.background = -1; // black
-	my_axe.background    = -1; // black
-	my_axe.foreground    = -1; // black
-	my_fac3d.color_mode  = -1; // no lines
-	
-	
-endfunction
 
 function cplxmap(z,w,varargin)
 	
@@ -77,6 +156,8 @@ function cplxmap(z,w,varargin)
 	
 endfunction
 
+
+
 function [z,s]=cplxroot(n,m)
 	
 	//cplxroot(n,m,T,A,leg,flags,ebox)
@@ -99,3 +180,28 @@ function [z,s]=cplxroot(n,m)
 	s     = r.^(1/n) * exp(%i*theta/n);
 	
 endfunction
+
+
+
+
+function quit_riemann
+	global quit_var;
+	quit_var = 1;
+endfunction
+
+
+function pause_riemann
+	global pause_var;
+	pause_var = 1;
+endfunction
+
+
+function play_riemann
+	global pause_var;
+	pause_var = 0;
+endfunction
+
+
+
+
+funcprot(1);
