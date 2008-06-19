@@ -14,6 +14,7 @@ Source: modules\{#SCIPAD}\VERSION.xml; DestDir: {app}\modules\{#SCIPAD}; Compone
 Source: modules\{#SCIPAD}\readme.txt; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_TCLSCI} and {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\license.txt; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_TCLSCI} and {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\changelog.txt; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_TCLSCI} and {#COMPN_SCIPAD}
+Source: modules\{#SCIPAD}\BUGS; DestDir: {app}\modules\{#SCIPAD}; Components: {#COMPN_TCLSCI} and {#COMPN_SCIPAD}
 ;
 Source: modules\{#SCIPAD}\etc\{#SCIPAD}.quit; DestDir: {app}\modules\{#SCIPAD}\etc; Components: {#COMPN_TCLSCI} and {#COMPN_SCIPAD}
 Source: modules\{#SCIPAD}\etc\{#SCIPAD}.start; DestDir: {app}\modules\{#SCIPAD}\etc; Components: {#COMPN_TCLSCI} and {#COMPN_SCIPAD}
