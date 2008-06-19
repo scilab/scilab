@@ -114,7 +114,7 @@ proc changedmodified {textarea} {
 # colorization of an area in the status bar
     global closeinitialbufferallowed listoftextarea
 
-    # this test is needed because proc changedmodified is binded to the Text
+    # this test is needed because proc changedmodified is bound to the Text
     # class, i.e. it might trigger also for non textareas such as the call
     # stack widget of the watch window
     if {[lsearch -exact $listoftextarea $textarea] == -1} {
@@ -129,18 +129,23 @@ proc resetmodified {textarea} {
 # Reset the modified flag and the undo/redo stacks for the given textarea,
 # and update the visual indications relative to the modified state
     global listoffile
+
+    # the undo stack is common to all peers
     $textarea edit reset
+
+    # the modified flag is also common to all peers
+    $textarea edit modified false
+
     foreach ta [getfullpeerset $textarea] {
         set listoffile("$ta",redostackdepth) 0
+        # Tk 8.4 sends automatically a <<Modified>> event to a text widget when
+        # editing the modified flag of this text widget, but 8.5 does only when
+        # the modified flag changes state (consistent with the manual) - See Tk
+        # bug 1799782 (fixed in 8.5.0) - However fixing that bug revealed another
+        # bug (Tk bug 1871474), so rather always manually send the needed event:
+        # the line below fixes Scilab bug 2650
+        event generate $ta <<Modified>>
     }
-    $textarea edit modified false
-    # Tk 8.4 sends automatically a <<Modified>> event to a text widget when
-    # editing the modified flag of this text widget, but 8.5 does only when
-    # the modified flag changes state (consistent with the manual) - See Tk
-    # bug 1799782 (fixed in 8.5.0) - However fixing that bug revealed another
-    # bug (Tk bug 1871474), so rather always manually send the needed event:
-    # the line below fixes Scilab bug 2650
-    event generate $textarea <<Modified>>
 }
 
 proc commonPrefix {a b} {

@@ -1,3 +1,9 @@
+Francois VOGEL, 19/06/08
+ * Fixed missing update of peer titles when saving a textarea: a peer <1>
+   could be in a non modified state while another peer <2> could still
+   display "... <2> (modified)"
+ * version --> 6.147
+
 Francois VOGEL, 16/06/08
  * Fixed Tcl error - invalid command name "none.margin" - happening when
    using undo in a textarea having hidden (non displayed) peers
