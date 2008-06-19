@@ -45,12 +45,17 @@ function demo_riemann()
 	my_axe               = gca();
 	my_fac3d             = gce();
 	
-	my_handle.axes_size  = [ 650 650 ];
+	my_handle.axes_size  = [ 600 650 ];
 	
 	my_handle.background = -1;                 // black
 	my_axe.background    = -1;                 // gray
 	my_axe.foreground    = 14;                 // white
 	my_fac3d.color_mode  =  1;                 // no lines
+	
+	
+	// Drawnow
+	// =========================================================================
+	my_handle.immediate_drawing = "on";
 	
 	
 	// Stop => Pushbutton
@@ -59,9 +64,9 @@ function demo_riemann()
 	my_quit_button = uicontrol( ...
 		"parent"              , my_handle,...
 		"style"               , "pushbutton",...
-		"string"              , "STOP",...
+		"string"              , "QUIT",...
 		"units"               , "pixels",...
-		"position"            , [ 200 10 40 40 ],...
+		"position"            , [ 350 15 100 40 ],...
 		"background"          , [1 1 1], ...
 		"callback"            , "quit_riemann",...
 		"tag"                 , "pushbutton_bac" ...
@@ -72,7 +77,7 @@ function demo_riemann()
 		"style"               , "pushbutton",...
 		"string"              , "PAUSE",...
 		"units"               , "pixels",...
-		"position"            , [ 300 10 40 40 ],...
+		"position"            , [ 150 15 100 40 ],...
 		"background"          , [1 1 1], ...
 		"callback"            , "pause_riemann",...
 		"tag"                 , "my_pause_button" ...
@@ -83,21 +88,19 @@ function demo_riemann()
 		"style"               , "pushbutton",...
 		"string"              , "PLAY",...
 		"units"               , "pixels",...
-		"position"            , [ 300 10 40 40 ],...
+		"position"            , [ 150 15 100 40 ],...
 		"background"          , [1 1 1], ...
 		"callback"            , "play_riemann",...
 		"visible"             , "off",...
 		"tag"                 , "my_play_button" ...
 	);
 	
-	// Drawnow
-	// =========================================================================
-	my_handle.immediate_drawing = "on";
-	
-	
 	realtimeinit(0.01);
 	
-	for k=1:360
+	my_rotation_dir = [0 1];
+	my_counter      = 0;
+	
+	for k=1:100000
 		
 		realtime(k);
 		
@@ -106,26 +109,26 @@ function demo_riemann()
 			return;
 		end
 		
-		if play_var == 1 & my_play_button.visible == "on" then
-			my_play_button.visible  = "off";
-			my_pause_button.visible = "on";
+		if pause_var == 1 & my_play_button.visible == "off" then
+			my_play_button.visible  = "on";
+			my_pause_button.visible = "off";
 		end
 		
 		if pause_var == 0 then
-			if my_play_button.visible == "on" then
-				my_play_button.visible   = "on";
-				my_pause_button.visible  = "off";
+			if my_pause_button.visible == "off" then
+				my_play_button.visible   = "off";
+				my_pause_button.visible  = "on";
 			end
-			my_axe.rotation_angles = my_axe.rotation_angles + [0 1];
+			my_axe.rotation_angles = my_axe.rotation_angles + my_rotation_dir;
+			my_counter             = my_counter + 1;
 		end
 		
-	end
-	
-	for k=1:360
-		realtime(k);
-		if stop == 0 then
-			my_axe.rotation_angles = my_axe.rotation_angles + [1 0];
+		if modulo(my_counter,720) == 0 then
+			my_rotation_dir = [0 1];
+		elseif modulo(my_counter,360) == 0 then
+			my_rotation_dir = [1 0];
 		end
+		
 	end
 	
 endfunction
@@ -200,8 +203,5 @@ function play_riemann
 	global pause_var;
 	pause_var = 0;
 endfunction
-
-
-
 
 funcprot(1);
