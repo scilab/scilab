@@ -194,11 +194,11 @@ function status = launch_nonreg(baseDir, testName)
   // Keep separate references and results for Windows and Linux, as results given
   // by the two versions have always been different (though it's not logical)
   if MSDOS
-    outFilename = fullfile(baseDir, testName + '.out.win') // foo.out.win
+    outFilename = fullfile(baseDir, testName + '.win.out') // foo.win.out
   else
-    outFilename = fullfile(baseDir, testName + '.out.gnu') // foo.out.gnu
+    outFilename = fullfile(baseDir, testName + '.unix.out') // foo.unix.out
   end
-  outRefFilename = outFilename + '.ref' // foo.out.win.ref or foo.out.gnu.ref
+  outRefFilename = outFilename + '.ref' // foo.win.out.ref or foo.unix.out.ref
   
   // Define format used in 'Write to File' blocks to log output (Fortran syntax)
   outputFormat = '(7(e22.15,1x))'
