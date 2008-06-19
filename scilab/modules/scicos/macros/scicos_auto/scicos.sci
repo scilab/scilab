@@ -435,7 +435,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       savefile = getfile;  //** are _obsolete_
       mpopup = createpopup;
       mdialog = x_mdialog;
-      getvalue = x_getvalue;
+      // getvalue = x_getvalue; //** Please check the two files !! (getvalue.sci and x_getvalue.sci in scicos_utils)
 
       if MSDOS then
 	//** Windows 

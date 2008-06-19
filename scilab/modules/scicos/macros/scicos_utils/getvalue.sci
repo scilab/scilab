@@ -87,6 +87,11 @@ end
 %16=[];%17=[];%18=[];%19=[];%20=[];
 
 if %rhs==3 then  %ini=emptystr(%nn,1),end
+
+// Transform a list of strings into a vector of strings
+// Has no effect if %ini is already a vector of strings
+%ini = cat(1,%ini(:))
+
 %ok=%t
 while %t do
   %str=x_mdialog(%desc,%labels,%ini)
