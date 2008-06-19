@@ -229,9 +229,9 @@ function status = launch_nonreg(baseDir, testName)
           '[idxWrite, idxRead] = findIOblocks(scs_m)';
           'if ~isempty(idxWrite) & size(idxWrite,''*'') == 1';
           '  if MSDOS';
-          '    scs_m = renameIO(scs_m, idxWrite, ''' + testName + '.out.win'')';
+          '    scs_m = renameIO(scs_m, idxWrite, ''' + testName + '.win.out'')';
           '  else';
-          '    scs_m = renameIO(scs_m, idxWrite, ''' + testName + '.out.gnu'')';
+          '    scs_m = renameIO(scs_m, idxWrite, ''' + testName + '.unix.out'')';
           '  end';
           '  scs_m = setW2Fformat(scs_m, idxWrite, ''' + outputFormat + ''')';
           'end';
@@ -295,7 +295,8 @@ function status = launch_nonreg(baseDir, testName)
       status.details = ''
     else
       status.msg = 'failed  : Reference file NOT generated'
-      status.details = 'It might indicate a failure during simulation'
+      status.details = sprintf('     It might indicate a failure during simulation')
+      status.details = [ status.details ; sprintf('     Try running the simulation manually by opening ''%s.cos'' in Scicos', testName) ]
     end
   
   //-- Non-regression tests launched under Scilab 5.X ?  
