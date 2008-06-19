@@ -314,7 +314,7 @@ top_srcdir = @top_srcdir@
 #### scipad : Conf files ####
 @TCLTK_TRUE@libsciscipad_la_rootdir = $(mydatadir)
 @TCLTK_FALSE@libsciscipad_la_root_DATA = changelog.txt license.txt readme.txt version.xml BUGS
-@TCLTK_TRUE@libsciscipad_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+@TCLTK_TRUE@libsciscipad_la_root_DATA = changelog.txt license.txt readme.txt version.xml BUGS
 @TCLTK_FALSE@MACROSDIRSEXT = macros/scipad_internals
 @TCLTK_TRUE@MACROSDIRSEXT = macros/scipad_internals
 
