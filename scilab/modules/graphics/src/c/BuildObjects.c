@@ -115,6 +115,7 @@ ConstructStatusBar (sciPointObj * pparentfigure)
 
 /**ConstructFigure
  * This function creates the parents window (manager) and the elementaries structures
+ * The function is graphic thread safe.
  * @param figureIndex if NULL then a default value is chosen, otherwise use the pointed integer.
  */
 /************ 18/01/2002 ***********/
@@ -126,6 +127,8 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciPointObj * pfiguremdl = getFigureModel() ;
   sciFigure   * ppFigure = NULL ;
   sciFigure   * ppModel  = pFIGURE_FEATURE(pfiguremdl) ;
+  int ** userData = NULL ;
+  int *  udSize   = NULL ;
 
   /* memory allocation for the new Figure   affectation du type allocation de la structure */
 
@@ -143,24 +146,40 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   
   ppFigure = pFIGURE_FEATURE(pobj) ;
 
-  if ( sciStandardBuildOperations( pobj, pparent ) == NULL )
-  {
-    FREE( pobj->pfeatures ) ;
-    FREE( pobj ) ;
-    return NULL ;
-  }
+  /* No synchronization is needed here because nobody knows about the figure */
+  /* until we add it to the lists */
+
+  /* Don't call standard build operation since it add the figure to the handle list */
+  sciInitSelectedSons( pobj ) ;
+
+  sciGetRelationship(pobj)->psons        = NULL ;
+  sciGetRelationship(pobj)->plastsons    = NULL ;
+  sciGetRelationship(pobj)->pSelectedSon = NULL ;
+  sciGetRelationship(pobj)->pparent = NULL ;
+
+  sciInitVisibility( pobj, TRUE ) ;
+
+  sciGetPointerToUserData( pobj, &userData, &udSize ) ;
+  *userData = NULL ;
+  *udSize   = 0    ;
+
+ 
+  pobj->pObservers = DoublyLinkedList_new() ;
+  createDrawingObserver( pobj ) ;
+  
+
+  pobj->pDrawer = NULL ;
+  
 
   /* initialisation de context et mode graphique par defaut (figure model)*/
   if (sciInitGraphicContext (pobj) == -1)
     {
-      sciDelHandle (pobj);
       FREE(pobj->pfeatures);
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
   if (sciInitGraphicMode (pobj) == -1)
     {
-      sciDelHandle (pobj);
       FREE(pobj->pfeatures);
       FREE(pobj);
       return (sciPointObj *) NULL;
@@ -169,7 +188,6 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   /* F.Leray 08.04.04 */
   if (sciInitFontContext (pobj) == -1)
     {
-      sciDelHandle (pobj);
       FREE(pobj->pfeatures);	  
       FREE(pobj);
       return (sciPointObj *) NULL;
@@ -221,7 +239,17 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciInitBackground(pobj, sciGetBackground(pfiguremdl));
 
   /* Add the figure in the list of created figures */
+  /* Here we need to synchronize */
+  startGraphicDataWriting();
+  /* add the handle in the handle list */
+  if ( sciAddNewHandle(pobj) == -1 )
+  {
+    FREE(pobj->pfeatures);	  
+    FREE(pobj);
+    return NULL ;
+  }
   addNewFigureToList(pobj);
+  endGraphicDataWriting();
 
   return pobj;
 }
@@ -2736,10 +2764,11 @@ sciPointObj * createFullFigure(int * winNum)
   sciPointObj * newFig = NULL;
   sciPointObj * newSubwin = NULL;
 
-  startGraphicDataWriting();
 
   /* Create figure */
   newFig = ConstructFigure(NULL, winNum);
+
+  startFigureDataWriting(newFig);
 
   if (newFig == NULL)
   {
@@ -2761,7 +2790,7 @@ sciPointObj * createFullFigure(int * winNum)
   sciSetOriginalSubWin(newFig, newSubwin);
   sciSetCurrentObj(newSubwin);
 
-  endGraphicDataWriting();
+  endFigureDataWriting(newFig);
 
   /* show th enewly created window */
   showWindow(newFig);
