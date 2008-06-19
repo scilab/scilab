@@ -5,6 +5,6 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-thispath = get_absolute_file_path("demo_watertank.dem.sce");
-scicos(thispath+"/demo_watertank.cosf");
+thispath = get_absolute_file_path("ball_platform.dem.sce");
+scicos(thispath+"/Ball_Platform.cosf");
 clear thispath;

@@ -5,6 +5,6 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-thispath = get_absolute_file_path("demo_watertank.dem.sce");
-scicos(thispath+"/demo_watertank.cosf");
+thispath = get_absolute_file_path("modelica_fsm_boost.dem.sce");
+scicos(thispath+"/Finite_state_SwingUp.cosf");
 clear thispath;

@@ -1,10 +1,10 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[149.91399,549.87319,137.54103,442.04938,630,480,0,0,630,480,569,171,1.5995076],..
+            wpar=[149.91398,549.8732,137.54103,442.04938,630,480,28,61,630,480,343,227,1.5995076],..
             Title=["Ball_Platform",..
-            "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/MBlock/"],..
-            tol=[0.00001;1.000D-07;1.000D-10;100001;0;100;0],..
+            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/ModelicaBlocks/"],..
+            tol=[0.00001;1.000E-07;1.000E-10;100001;0;100;0],..
             tf=40,..
             context=" ",..
             void1=[],..
@@ -67,7 +67,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[600,450,0,0,600,450],..
               Title="Untitled",..
-              tol=[0.0001,0.000001,1.000D-10,100001,0,0],..
+              tol=[0.0001,0.000001,1.000E-10,100001,0,0],..
               tf=100000,..
               context=[],..
               void1=[],..

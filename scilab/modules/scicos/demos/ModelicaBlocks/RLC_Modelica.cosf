@@ -1,10 +1,10 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[6.9075308,659.09797,33.19871,398.08183,889,500,130,16,622,500,157,143,1.4],..
+            wpar=[6.9075301,659.09798,17.943277,414.96925,889,545,130,0,677,545,683,515,1.4],..
             Title=["RLC_Modelica",..
-            "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/MBlock/"],..
-            tol=[0.0001;0.000001;1.000D-10;100001;0;100],..
+            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/ModelicaBlocks/"],..
+            tol=[0.0001;0.000001;1.000E-10;100001;0;100],..
             tf=2,..
             context="L=.0001; ",..
             void1=[],..
@@ -121,7 +121,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[600,450,0,0,600,450],..
               Title="Untitled",..
-              tol=[0.0001,0.000001,1.000D-10,100001,0,0],..
+              tol=[0.0001,0.000001,1.000E-10,100001,0,0],..
               tf=100000,..
               context=[],..
               void1=[],..
@@ -705,7 +705,17 @@ scs_m.objs(19)=scicos_block(..
                         sz=[40,40],..
                         flip=%t,..
                         theta=0,..
-                        exprs=["1 1";"1 3 5 7 9 11 13 15";"1";"[]";"[]";"-0.01 -10";"0.01 10";"2 2";"5";"0";""],..
+                        exprs=["1 1";
+                        "1 3 5 7 9 11 13 15";
+                        "1";
+                        "[]";
+                        "[]";
+                        "-0.01 -10";
+                        "0.01 10";
+                        "2 2";
+                        "10";
+                        "0";
+                        ""],..
                         pin=[20;21],..
                         pout=[],..
                         pein=22,..
@@ -728,7 +738,7 @@ scs_m.objs(19)=scicos_block(..
                         dstate=[],..
                         odstate=list(),..
                         rpar=[0;2;2;-0.01;0.01;-10;10],..
-                        ipar=[1;2;5;-1;-1;-1;-1;1;1;1;3;0],..
+                        ipar=[1;2;10;-1;-1;-1;-1;1;1;1;3;0],..
                         opar=list(),..
                         blocktype="c",..
                         firing=[],..

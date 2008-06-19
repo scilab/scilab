@@ -320,7 +320,19 @@ demos/Electrical/transformer.dem.sce
 libsciscicos_la_demosModelicaBlocksdir=$(mydatadir)/demos/ModelicaBlocks/
 nobase_libsciscicos_la_demosModelicaBlocks_DATA = demos/ModelicaBlocks/Ball_Platform.cosf \
 demos/ModelicaBlocks/BouncingBall_Modelica.cosf \
-demos/ModelicaBlocks/Chaos_Modelica.cosf
+demos/ModelicaBlocks/Chaos_Modelica.cosf \
+demos/ModelicaBlocks/modelica_hydraulics.dem.sce \
+demos/ModelicaBlocks/ball_platform.dem.sce \
+demos/ModelicaBlocks/Hydraulics.cosf \
+demos/ModelicaBlocks/modelica_fsm_buck.dem.sce \
+demos/ModelicaBlocks/modelica_fsm_boost.dem.sce \
+demos/ModelicaBlocks/modelica_chaos.dem.sce \
+demos/ModelicaBlocks/modelica_bouncing_ball.dem.sce \
+demos/ModelicaBlocks/Finite_state_Buck.cosf \
+demos/ModelicaBlocks/Finite_state_SwingUp.cosf \
+demos/ModelicaBlocks/modelica_rlc_circuit.dem.sce \
+demos/ModelicaBlocks/Chaos_Modelica.cosf \
+demos/ModelicaBlocks/RLC_Modelica.cosf 
 
 
 #### scicos : MACROS ####

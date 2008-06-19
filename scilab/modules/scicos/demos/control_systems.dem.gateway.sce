@@ -8,6 +8,7 @@
 demopath = get_absolute_file_path("control_systems.dem.gateway.sce");
 
 subdemolist = ["Basic controller"                     , "basic_controller.dem.sce"  ;..
+               "Water tank"                           , "demo_watertank.dem.sce"      ; ..
                "Discrete Controller"                  , "discrete_controller.dem.sce" ;..
                "Kalman Filter"                        , "kalman.dem.sce"            ; ..
                "Discrete Kalman Filter"               , "discrete_kalman.dem.sce"   ; ..
