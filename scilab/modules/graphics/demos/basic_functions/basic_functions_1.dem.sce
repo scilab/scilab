@@ -9,6 +9,7 @@ mode(-1);
 
 my_handle             = scf(100001);
 clf(my_handle,"reset");
+demo_viewCode("basic_functions_1.dem.sce");
 
 my_plot_desc          = "rectangles, arcs, polylines, segments and numbers";
 my_handle.figure_name = my_plot_desc;
