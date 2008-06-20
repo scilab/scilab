@@ -87,6 +87,7 @@ src/c/edgetrig.c \
 src/c/evaluate_expr.c \
 src/c/evtdly4.c \
 src/c/evtvardly.c \
+src/c/scicosexit.c \
 src/c/expblk_m.c \
 src/c/extdiag.c \
 src/c/extdiagz.c \
