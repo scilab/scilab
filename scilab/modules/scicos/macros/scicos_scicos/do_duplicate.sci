@@ -82,9 +82,8 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
       gh_blk = drawobj(o); //** draw the block (in the buffer) - using the corresponding Interface Function
                            //** Scilab Language - of the specific block (blk) and get back the graphic handler
                            //** to handle the block as a single entity
-      //** draw(gh_blk.parent)
-      drawnow();
-      //** show_pixmap() ; //** not useful on Scilab 5
+
+      drawnow(); //** update diagram 
 
       //**--------------------------------------------------------------------------
       //** ---> main loop that move the empty box until you click
@@ -99,23 +98,26 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
 
         //** get new position
         [rep, m_win] = xgetmouse([%t,%t]); //** 
-        //** disp(m_win); DEBUG ONLY !
+        //** disp(m_win); //** DEBUG ONLY !
 
         //** Protection from window closing
         if rep(3)==-1000 then //active window has been closed
           [%win,Cmenu] = resume(curwin,"Quit")
         end
 
-        xm = rep(1) ; ym = rep(2) ;
-        dx = xm - %xc ; dy = ym - %yc ;
+        if m_win==curwin then //** if the mouse is in the current window 
+            xm = rep(1) ; ym = rep(2) ;
+            dx = xm - %xc ; dy = ym - %yc ;
+
+            drawlater();
+              move (gh_blk , [dx dy]); //** move the block 
+            drawnow();
  
-        drawlater();
-         move (gh_blk , [dx dy]);
-         //** draw(gh_blk.parent);
-        drawnow();
-        //** show_pixmap();
+            %xc = xm ; %yc = ym ; //** position update
+        end 
         
-         %xc = xm ; %yc = ym ; //** position update
+
+
       end //** of the infinite while loop 
       //**---------------------------------------------------------------------------
       
