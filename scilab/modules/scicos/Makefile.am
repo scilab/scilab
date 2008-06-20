@@ -28,7 +28,6 @@ SCICOS_C_SOURCES = src/c/tree.c \
 src/c/sciblk2i.c \
 src/c/scicos_malloc.c \
 src/c/import.c \
-src/c/scicosexit.c \
 src/c/slider.c \
 src/c/scicos.c \
 src/c/scicos_free.c \
