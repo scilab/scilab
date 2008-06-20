@@ -33,6 +33,7 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
+#include "DrawingBridge.h"
 
 /** \fn canimxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
