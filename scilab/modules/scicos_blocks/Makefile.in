@@ -133,36 +133,37 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 	src/c/deriv.c src/c/dmmul1.c src/c/dmmul.c src/c/dollar4.c \
 	src/c/dollar4_m.c src/c/dsslti4.c src/c/edgetrig.c \
 	src/c/evaluate_expr.c src/c/evtdly4.c src/c/evtvardly.c \
-	src/c/expblk_m.c src/c/extdiag.c src/c/extdiagz.c \
-	src/c/extract_bit_16_LH.c src/c/extract_bit_16_LSB.c \
-	src/c/extract_bit_16_MSB0.c src/c/extract_bit_16_MSB1.c \
-	src/c/extract_bit_16_RB0.c src/c/extract_bit_16_RB1.c \
-	src/c/extract_bit_16_UH0.c src/c/extract_bit_16_UH1.c \
-	src/c/extract_bit_32_LH.c src/c/extract_bit_32_LSB.c \
-	src/c/extract_bit_32_MSB0.c src/c/extract_bit_32_MSB1.c \
-	src/c/extract_bit_32_RB0.c src/c/extract_bit_32_RB1.c \
-	src/c/extract_bit_32_UH0.c src/c/extract_bit_32_UH1.c \
-	src/c/extract_bit_8_LH.c src/c/extract_bit_8_LSB.c \
-	src/c/extract_bit_8_MSB0.c src/c/extract_bit_8_MSB1.c \
-	src/c/extract_bit_8_RB0.c src/c/extract_bit_8_RB1.c \
-	src/c/extract_bit_8_UH0.c src/c/extract_bit_8_UH1.c \
-	src/c/extract_bit_u16_MSB1.c src/c/extract_bit_u16_RB1.c \
-	src/c/extract_bit_u16_UH1.c src/c/extract_bit_u32_MSB1.c \
-	src/c/extract_bit_u32_RB1.c src/c/extract_bit_u32_UH1.c \
-	src/c/extract_bit_u8_MSB1.c src/c/extract_bit_u8_RB1.c \
-	src/c/extract_bit_u8_UH1.c src/c/extract.c src/c/extractor.c \
-	src/c/extractz.c src/c/exttril.c src/c/exttrilz.c \
-	src/c/exttriu.c src/c/exttriuz.c src/c/fromws_c.c \
-	src/c/gainblk.c src/c/gainblk_i16e.c src/c/gainblk_i16n.c \
-	src/c/gainblk_i16s.c src/c/gainblk_i32e.c src/c/gainblk_i32n.c \
-	src/c/gainblk_i32s.c src/c/gainblk_i8e.c src/c/gainblk_i8n.c \
-	src/c/gainblk_i8s.c src/c/gainblk_ui16e.c \
-	src/c/gainblk_ui16n.c src/c/gainblk_ui16s.c \
-	src/c/gainblk_ui32e.c src/c/gainblk_ui32n.c \
-	src/c/gainblk_ui32s.c src/c/gainblk_ui8e.c \
-	src/c/gainblk_ui8n.c src/c/gainblk_ui8s.c src/c/hystheresis.c \
-	src/c/integral_func.c src/c/integralz_func.c src/c/invblk4.c \
-	src/c/logicalop.c src/c/logicalop_i16.c src/c/logicalop_i32.c \
+	src/c/scicosexit.c src/c/expblk_m.c src/c/extdiag.c \
+	src/c/extdiagz.c src/c/extract_bit_16_LH.c \
+	src/c/extract_bit_16_LSB.c src/c/extract_bit_16_MSB0.c \
+	src/c/extract_bit_16_MSB1.c src/c/extract_bit_16_RB0.c \
+	src/c/extract_bit_16_RB1.c src/c/extract_bit_16_UH0.c \
+	src/c/extract_bit_16_UH1.c src/c/extract_bit_32_LH.c \
+	src/c/extract_bit_32_LSB.c src/c/extract_bit_32_MSB0.c \
+	src/c/extract_bit_32_MSB1.c src/c/extract_bit_32_RB0.c \
+	src/c/extract_bit_32_RB1.c src/c/extract_bit_32_UH0.c \
+	src/c/extract_bit_32_UH1.c src/c/extract_bit_8_LH.c \
+	src/c/extract_bit_8_LSB.c src/c/extract_bit_8_MSB0.c \
+	src/c/extract_bit_8_MSB1.c src/c/extract_bit_8_RB0.c \
+	src/c/extract_bit_8_RB1.c src/c/extract_bit_8_UH0.c \
+	src/c/extract_bit_8_UH1.c src/c/extract_bit_u16_MSB1.c \
+	src/c/extract_bit_u16_RB1.c src/c/extract_bit_u16_UH1.c \
+	src/c/extract_bit_u32_MSB1.c src/c/extract_bit_u32_RB1.c \
+	src/c/extract_bit_u32_UH1.c src/c/extract_bit_u8_MSB1.c \
+	src/c/extract_bit_u8_RB1.c src/c/extract_bit_u8_UH1.c \
+	src/c/extract.c src/c/extractor.c src/c/extractz.c \
+	src/c/exttril.c src/c/exttrilz.c src/c/exttriu.c \
+	src/c/exttriuz.c src/c/fromws_c.c src/c/gainblk.c \
+	src/c/gainblk_i16e.c src/c/gainblk_i16n.c src/c/gainblk_i16s.c \
+	src/c/gainblk_i32e.c src/c/gainblk_i32n.c src/c/gainblk_i32s.c \
+	src/c/gainblk_i8e.c src/c/gainblk_i8n.c src/c/gainblk_i8s.c \
+	src/c/gainblk_ui16e.c src/c/gainblk_ui16n.c \
+	src/c/gainblk_ui16s.c src/c/gainblk_ui32e.c \
+	src/c/gainblk_ui32n.c src/c/gainblk_ui32s.c \
+	src/c/gainblk_ui8e.c src/c/gainblk_ui8n.c src/c/gainblk_ui8s.c \
+	src/c/hystheresis.c src/c/integral_func.c \
+	src/c/integralz_func.c src/c/invblk4.c src/c/logicalop.c \
+	src/c/logicalop_i16.c src/c/logicalop_i32.c \
 	src/c/logicalop_i8.c src/c/logicalop_m.c \
 	src/c/logicalop_ui16.c src/c/logicalop_ui32.c \
 	src/c/logicalop_ui8.c src/c/logic.c src/c/mat_bksl.c \
@@ -311,6 +312,7 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 @SCICOS_TRUE@	libsciscicos_blocks_la-evaluate_expr.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-evtdly4.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-evtvardly.lo \
+@SCICOS_TRUE@	libsciscicos_blocks_la-scicosexit.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-expblk_m.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-extdiag.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-extdiagz.lo \
@@ -920,6 +922,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@src/c/evaluate_expr.c \
 @SCICOS_TRUE@src/c/evtdly4.c \
 @SCICOS_TRUE@src/c/evtvardly.c \
+@SCICOS_TRUE@src/c/scicosexit.c \
 @SCICOS_TRUE@src/c/expblk_m.c \
 @SCICOS_TRUE@src/c/extdiag.c \
 @SCICOS_TRUE@src/c/extdiagz.c \
@@ -1607,6 +1610,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-samphold4_m.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-satur.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-scalar2vector.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-scicosexit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-scoGetProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-scoMemoryScope.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-scoMisc.Plo@am__quote@
@@ -2152,6 +2156,13 @@ libsciscicos_blocks_la-evtvardly.lo: src/c/evtvardly.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/evtvardly.c' object='libsciscicos_blocks_la-evtvardly.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-evtvardly.lo `test -f 'src/c/evtvardly.c' || echo '$(srcdir)/'`src/c/evtvardly.c
+
+libsciscicos_blocks_la-scicosexit.lo: src/c/scicosexit.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-scicosexit.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-scicosexit.Tpo -c -o libsciscicos_blocks_la-scicosexit.lo `test -f 'src/c/scicosexit.c' || echo '$(srcdir)/'`src/c/scicosexit.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscicos_blocks_la-scicosexit.Tpo $(DEPDIR)/libsciscicos_blocks_la-scicosexit.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scicosexit.c' object='libsciscicos_blocks_la-scicosexit.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-scicosexit.lo `test -f 'src/c/scicosexit.c' || echo '$(srcdir)/'`src/c/scicosexit.c
 
 libsciscicos_blocks_la-expblk_m.lo: src/c/expblk_m.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-expblk_m.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-expblk_m.Tpo -c -o libsciscicos_blocks_la-expblk_m.lo `test -f 'src/c/expblk_m.c' || echo '$(srcdir)/'`src/c/expblk_m.c

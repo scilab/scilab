@@ -128,12 +128,12 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @SCICOS_TRUE@	$(am__append_4)
 am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/c/tree.c src/c/sciblk2i.c src/c/scicos_malloc.c \
-	src/c/import.c src/c/scicosexit.c src/c/slider.c \
-	src/c/scicos.c src/c/scicos_free.c src/c/sciblk2.c \
-	src/c/scicosclip.c src/c/sciblk4.c src/fortran/scitovv.f \
-	src/fortran/vvtosci.f src/fortran/skipvars.f \
-	src/fortran/coselm.f src/fortran/scitod.f src/fortran/sctree.f \
-	src/fortran/scierr.f src/fortran/ftree2.f src/fortran/ftree3.f \
+	src/c/import.c src/c/slider.c src/c/scicos.c \
+	src/c/scicos_free.c src/c/sciblk2.c src/c/scicosclip.c \
+	src/c/sciblk4.c src/fortran/scitovv.f src/fortran/vvtosci.f \
+	src/fortran/skipvars.f src/fortran/coselm.f \
+	src/fortran/scitod.f src/fortran/sctree.f src/fortran/scierr.f \
+	src/fortran/ftree2.f src/fortran/ftree3.f \
 	src/fortran/list2vars.f src/fortran/ftree4.f \
 	src/fortran/scitoi.f src/fortran/scifunc.f \
 	sci_gateway/c/intcscicos.c sci_gateway/c/gw_scicos.c \
@@ -169,7 +169,6 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 @SCICOS_TRUE@	libsciscicos_la-sciblk2i.lo \
 @SCICOS_TRUE@	libsciscicos_la-scicos_malloc.lo \
 @SCICOS_TRUE@	libsciscicos_la-import.lo \
-@SCICOS_TRUE@	libsciscicos_la-scicosexit.lo \
 @SCICOS_TRUE@	libsciscicos_la-slider.lo \
 @SCICOS_TRUE@	libsciscicos_la-scicos.lo \
 @SCICOS_TRUE@	libsciscicos_la-scicos_free.lo \
@@ -573,7 +572,6 @@ JARMASK = *.jar
 @SCICOS_TRUE@src/c/sciblk2i.c \
 @SCICOS_TRUE@src/c/scicos_malloc.c \
 @SCICOS_TRUE@src/c/import.c \
-@SCICOS_TRUE@src/c/scicosexit.c \
 @SCICOS_TRUE@src/c/slider.c \
 @SCICOS_TRUE@src/c/scicos.c \
 @SCICOS_TRUE@src/c/scicos_free.c \
@@ -1073,7 +1071,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-scicos_free.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-scicos_malloc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-scicosclip.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-scicosexit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-slider.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-tree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/nvector_serial.Plo@am__quote@
@@ -1137,13 +1134,6 @@ libsciscicos_la-import.lo: src/c/import.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/import.c' object='libsciscicos_la-import.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_la-import.lo `test -f 'src/c/import.c' || echo '$(srcdir)/'`src/c/import.c
-
-libsciscicos_la-scicosexit.lo: src/c/scicosexit.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -MT libsciscicos_la-scicosexit.lo -MD -MP -MF $(DEPDIR)/libsciscicos_la-scicosexit.Tpo -c -o libsciscicos_la-scicosexit.lo `test -f 'src/c/scicosexit.c' || echo '$(srcdir)/'`src/c/scicosexit.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscicos_la-scicosexit.Tpo $(DEPDIR)/libsciscicos_la-scicosexit.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scicosexit.c' object='libsciscicos_la-scicosexit.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_la-scicosexit.lo `test -f 'src/c/scicosexit.c' || echo '$(srcdir)/'`src/c/scicosexit.c
 
 libsciscicos_la-slider.lo: src/c/slider.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -MT libsciscicos_la-slider.lo -MD -MP -MF $(DEPDIR)/libsciscicos_la-slider.Tpo -c -o libsciscicos_la-slider.lo `test -f 'src/c/slider.c' || echo '$(srcdir)/'`src/c/slider.c
