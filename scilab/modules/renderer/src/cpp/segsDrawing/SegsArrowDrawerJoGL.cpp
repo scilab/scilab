@@ -46,7 +46,7 @@ void SegsArrowDrawerJoGL::drawSegs(const double xStarts[], const double xEnds[],
                                             bounds[2], bounds[3],
                                             bounds[4], bounds[5]);
 
-  getArrowDrawerJavaMapper()->setArrowSize(sciGetArrowSize(pSegs));
+  getArrowDrawerJavaMapper()->setArrowSize(sciGetLineWidth(pSegs) * sciGetArrowSize(pSegs));
   getArrowDrawerJavaMapper()->drawSegs(xStarts, xEnds,
                                        yStarts, yEnds,
                                        zStarts, zEnds,
