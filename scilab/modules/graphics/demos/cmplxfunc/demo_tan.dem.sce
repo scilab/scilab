@@ -17,6 +17,7 @@ function demo_tan()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
+	demo_viewCode("demo_tan.dem.sce");
 	
 	PlotCmplxFunc(R,0,"Square","Ox",41,"tan",theta,alpha,[-R,R]);
 	

@@ -18,6 +18,7 @@ function demo_atanh()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
+	demo_viewCode("demo_atanh.dem.sce");
 	
 	PlotCmplxFunc(R,e,"Square","Ox",41,"atanh",theta,alpha,[-0.99,0.99]);
 	

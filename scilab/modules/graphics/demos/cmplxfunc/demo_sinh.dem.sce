@@ -18,6 +18,7 @@ function demo_sinh()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
+	demo_viewCode("demo_sinh.dem.sce");
 	
 	PlotCmplxFunc(R,0,"Disk","Ox",[40 20],"sinh",theta,alpha,[-R,R]);
 	

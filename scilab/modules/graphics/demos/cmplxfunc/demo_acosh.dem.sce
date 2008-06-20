@@ -18,6 +18,7 @@ function demo_acosh()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
+	demo_viewCode("demo_acosh.dem.sce");
 	
 	PlotCmplxFunc(R,e,"Square","Ox",41,"acosh",theta,alpha,[1,R]);
 	
