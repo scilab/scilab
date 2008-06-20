@@ -16,6 +16,7 @@ function bh(nn)
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
+	demo_viewCode("bh.sce");
 	
 	x         = linspace(0,2*%pi,nn);
 	t         = linspace(0,1,20);

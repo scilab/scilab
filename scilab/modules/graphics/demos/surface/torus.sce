@@ -25,6 +25,8 @@ function torus
 	
 	my_handle                   = scf(100001);
 	clf(my_handle,"reset");
+	demo_viewCode("torus.sce");
+	
 	my_axe                      = my_handle.children;
 	my_handle.immediate_drawing = "off";
 	plot3d2(X,Y,Z);

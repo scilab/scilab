@@ -27,6 +27,8 @@ function tube(nn)
 	
 	my_handle                   = scf(100001);
 	clf(my_handle,"reset");
+	demo_viewCode("tube.sce");
+	
 	my_axe                      = my_handle.children;
 	my_handle.immediate_drawing = "off";
 	plot3d2(x1,y1,z,-1,35,70);

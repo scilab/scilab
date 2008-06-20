@@ -13,6 +13,7 @@ function hole3d()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
+	demo_viewCode("hole3d.sce");
 	
 	t     = linspace(-%pi,%pi,40);
 	z     = sin(t)'*cos(t);

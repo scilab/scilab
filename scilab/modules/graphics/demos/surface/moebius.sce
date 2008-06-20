@@ -13,6 +13,7 @@ function moebius()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
+	demo_viewCode("moebius.sce");
 	
 	// the Moebius band
 	t=linspace(-1,1,20)';

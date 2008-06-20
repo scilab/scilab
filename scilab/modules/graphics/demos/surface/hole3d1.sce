@@ -13,6 +13,7 @@ function hole3d1()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
+	demo_viewCode("hole3d1.sce");
 	
 	deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";
 	"y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";

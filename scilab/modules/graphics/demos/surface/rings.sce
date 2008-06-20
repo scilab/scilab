@@ -13,6 +13,7 @@ function rings()
 
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
+	demo_viewCode("rings.sce");
 	
 	rr = 0.2;
 	t  = linspace(0,2*%pi,10);
