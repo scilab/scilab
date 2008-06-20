@@ -82,4 +82,5 @@ DestroyJavaUicontrol
 DestroyUicontrol
 GetUiobjectEnable
 SetUiobjectEnable
+getJxgetmouseWindowsID
 ;
