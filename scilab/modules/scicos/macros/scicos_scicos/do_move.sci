@@ -26,8 +26,7 @@ function [scs_m] = do_move(%pt, scs_m)
 //** 19 October 2007: I have prayed for all my sins : TXH to Alan Layec that
 //**                  has show me the way to redemption.
 
-//** 05 May 2008: This routine is still bugged on Scilab 5 because the drawing mode 
-//**              different than "copy" are not fully 4.x compatible 
+//** 20 June 2008 : finally, the green light for a brand new revision 
 
 //** Acquire the current window and axes handles 
   gh_curwin = scf(%win) ;
@@ -60,12 +59,12 @@ function [scs_m] = do_move(%pt, scs_m)
   scs_m_save = scs_m ; //** save the diagram
 
   //**-------------------- Block or Text ---------------------------------
-  if typeof(scs_m.objs(k))=='Block' | typeof(scs_m.objs(k))=='Text' then
+  if typeof(scs_m.objs(k))=="Block" | typeof(scs_m.objs(k))=="Text" then
     needreplay = replayifnecessary() ;    //** to be removed later (obsolete)
     scs_m = moveblock(scs_m, k, xc, yc) ; //** see below in the code
 
   //**------------------- Link ------------------------------
-  elseif typeof(scs_m.objs(k))=='Link' then
+  elseif typeof(scs_m.objs(k))=="Link" then
    //** filter the two possible link cases
     if wh>0 then
       // if positive 'pt' lies on segment [ind ind+1] where 'ind = wh; '
@@ -73,22 +72,23 @@ function [scs_m] = do_move(%pt, scs_m)
         disp ("SmartMove:Link:-->Segment... wh= "); disp(wh) ;
       end
       
-      scs_m = movelink(scs_m, k, xc, yc, wh); //** tmp disbled for debug
+      scs_m = movelink(scs_m, k, xc, yc, wh);
 
     else
-      // if 'wh' is negative, the polyline closest point is a polyline corner of
+      //**  if 'wh' is negative, the polyline closest point is a polyline corner of
       //**  coordinate pt = [xp(-ind) yp(-ind)] ,   where 'ind = wh;'
-      //** WARNING:  the "dist2polyline" routine has some corner detection problems
+      //**  WARNING:  the "dist2polyline" routine has some corner detection problems
+      //** 
       if %scicos_debug_gr
         disp ("SmartMove:Link:-->Corner...wh= "); disp(wh) ;
       end
-      scs_m = movecorner(scs_m,k,xc,yc,wh) ; //** tmp disbled for debug
+      scs_m = movecorner(scs_m,k,xc,yc,wh) ;
     end
    //**-------------------------------------------------------
   end
 
-  if Cmenu=='Quit' then
-       //active window has been closed
+  if Cmenu=="Quit" then
+       //** active window has been closed
        [%win,Cmenu] = resume(%win,Cmenu) ;
   end
   if %scicos_debug_gr
@@ -111,42 +111,18 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 //** - interactive move of block (replace by an empty box to speed the moving operation)
 //** - if the move is valid, update the scs_m data structure with the new object coordinates    
 //**----------------------------------------------------------------------------------------------
-  //** The code below is modified according the new graphics API
 
-  //** For the first time I try to use the XOR mode for the intaractive part of the SmartMove
-  //** changing "gh_curwin.pixel_drawing_mode
-
-  //** pixel_drawing_mode: This field defines the bitwise operation used to draw the pixel on the
-  //** screen. The default mode is 'copy' what is to say the pixel is drawn as required.
-  //** More generally the bitwise operation is performed between the color of the source pixel and
-  //** the color of the pixel already present on the screen.
-  //** Operations are :
-  //** 	"clear"       ,
-  //** 	"and"         ,
-  //** 	"andReverse"  ,
-  //** 	"copy"        , <------- Normal operation 
-  //** 	"andInverted" ,
-  //** 	"noop"        ,
-  //** 	"xor"         , 
-  //** 	"or"          ,
-  //** 	"nor"         , <------- Interactive move (used to visually delete object) 
-  //** 	"equiv"       ,
-  //** 	"invert"      ,
-  //** 	"orReverse"   ,
-  //** 	"copyInverted",
-  //** 	"orInverted"  ,
-  //** 	"nand"        ,
-  //** 	"set"         , 
-//**-----------------------------------------------------------------------------------
+  //** The code below is modified according the new graphics API using the standard "copy" mode 
+  //** "xor" mode is "desuete" in Scilab 5
+  
 
 //**-----------------------------------------------------------------------------------
   //** Acquire the current window and axes handles 
   gh_curwin = scf(%win) ;
   gh_axes = gca(); 
 
-  //** NO: for correct XOR operation in Scilab 5 you must work in drawnow() mode
-  drawnow(); 
-  //** drawlater(); //** go in drawlater mode
+  drawnow(); //** for the moment I keep the immediate draw mode active 
+  //** drawlater(); //** go in drawlater mode (for further revision) 
 
   //** at this point I need to build the [scs_m] <-> [gh_window] datastructure 
   //** I need an equivalent index for the graphics
@@ -181,8 +157,9 @@ function scs_m = moveblock(scs_m,k,xc,yc)
   connected = unique(get_connected(scs_m,k)) ; //** connected links
   o  = scs_m.objs(k) ; //** block
 
+  kl = connected ;//** scs_m index of the connected links  
   xx = [] ;//** matrix of the 'x' coordinate of the moving link(s)
-  yy = [] ;//**               'y'
+  yy = [] ;//**    "   "   "  'y'      "      "  "     "     "
   ii = [] ;//** three value vector (link type, see above)
   mx = [] ;//** ?
   my = [] ;//** ?
@@ -190,7 +167,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
   // build movable segments for all connected links
 
   gh_objs_invisible = [] ; //** vector of handles of object(s) that I need put invisible
-                           //** during the intaractive move
+                           //** during the interactive move
 
   clr_nrm = [] ;//** vector that specify the 'color' of the normal (in & out) moving link(s)
   clr_per = [] ;//** vector that specify the 'color' of the perverted (in & out over same block) moving link(s)
@@ -294,7 +271,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 	  my=[my,[1;1;0;0]]
 	end
       end
-      xx=[xx x1];yy=[yy y1] //store  movable segments for this link
+      xx=[xx x1];yy=[yy y1] // store  movable segments for this link
     end
 
   end //** end of 'connected' link classification 
@@ -305,7 +282,8 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
   if connected<>[] then // move a block and connected links
     
-    //** NO: NO: NO: for Scilab 5
+    //** --------------- BLOCK WITH CONNECTED LINKS -----------------------------------
+    //** 
     //** drawlater(); //** postpone the drawing
     [xmin,ymin] = getorigin(o) ;
     xc = xmin ;
@@ -313,27 +291,34 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
     [xy,sz] = (o.graphics.orig,o.graphics.sz)
 
-    //** clear block
-    gr_k=get_gri(k,o_size(1)) ; //** from scs_m to gh_
+    //** Put the block to "invisible" 
+    gr_k = get_gri(k, o_size(1)) ; //** from scs_m to gh_
     gh_block_invisible = gh_axes.children(gr_k);
     gh_block_invisible.visible = "off"; //** put the block invisible
     gh_objs_invisible = [gh_objs_invisible gh_block_invisible] ; //** add at the list
+    
+    //** Put the links to "invisible 
+    gh_link_invisible = [];
+    for i=connected
+       gr_k = get_gri(i, o_size(1)) ; //** from scs_m to gh_
+       gh_link_invisible = gh_axes.children(gr_k); 
+       gh_link_invisible.visible = "off"; //** put the link invisible
+       gh_objs_invisible = [gh_objs_invisible gh_link_invisible] ; //** add at the list
+    end 
 
-    //** draw(gh_curwin.children); //** update the screen
-    drawnow();
-    //** drawlater() ; //** go back in immediate_drawing = "off" :)
-    //** show_pixmap() ; //** not useful on Scilab 5
+    drawnow(); //** update the screen 
 
-    //** -------------- eXORcist mode ON -------------------------------------------- 
-    //**-------------------------------------------------------------
-    gh_curwin.pixel_drawing_mode = "equiv"  ; //** 
-    //** Interactive loop that move object and link
+    //**-------------------------------------------------------------------------------
+
+    //** Interactive loop that move block and links
+
+    drawlater(); //** all the operation are done in "drawlater" mode 
 
     //** This vector contains the handle(s) of the temporary object(s)
-    //** created and used for the SpartMove; these object(s) are erased
+    //** created and used for the SmartMove; these object(s) are erased
     //** at the end of operation
     gh_interactive_move = [] ; //** initialize the object vector
-
+   
     //** Create the empty block rectangle and store the handles
     //** rectangle (block)
     xrect(xc, yc+sz(2), sz(1), sz(2)) ; //** the damned empty rectangle block
@@ -371,18 +356,20 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
     //** These variables are used to emulate the "incremental" move in order to avoid the
     //** the "block and links postion step" at the beginning of the move
-    //** This sophisitication is not necessary for the link because you need to place the
-    //** mouse EXACTLY on the link to move it (insteas
+    //** This sophistication is not necessary for the link because you need to place the
+    //** mouse EXACTLY on the link to move it.
     delta_x = 0 ;
     delta_y = 0 ;
 
-    while (1) // move loop
+    while (1) //** move loop
+
+      drawlater();
 
       //**-------------------------------------------------------
       // draw block shape
       //** xrect(xc, yc+sz(2),sz(1),sz(2)); //**
       gh_rect_bloc.data = [xc yc+sz(2) sz(1) sz(2) ];
-      draw(gh_rect_bloc); //** draw the empty rectangle (block)
+      // draw(gh_rect_bloc); //** draw the empty rectangle (block)
 
       // draw normal moving links
       //** xpolys(xx + mx*(xc-xmin), yy+my*(yc-ymin),clr);
@@ -390,7 +377,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
       for i=1:isopoly
          ngx = ngxx(:,i) ; ngy = ngyy(:,i) ;
          gh_poly_stdlink(i).data = [ngx ngy] ;
-	 draw(gh_poly_stdlink(i)); //** draw the moving segment
+	 // draw(gh_poly_stdlink(i)); //** draw the moving segment
       end
 
       // draw perverted moving link
@@ -398,16 +385,17 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 	oi = scs_m.objs(i);
 	//** xpolys(oi.xx+(xc-xmin),oi.yy+(yc-ymin),oi.ct(1));
 	gh_poly_perlink(i).data = [oi.xx+(xc-xmin)  oi.yy+(yc-ymin) ];
-	draw( gh_poly_perlink(i) ); //** draw the moving segment
+	// draw( gh_poly_perlink(i) ); //** draw the moving segment
       end
 
-      //** show_pixmap() ; //** not useful on Scilab 5
+      drawnow(); //** update the screen 
 
       //**-------------------------------------------------------
       // get new position
 
       // rep = xgetmouse(0,[%t,%t]); (original by Serge)
-      //** My version clear the event queque
+      //** My version clear the event queque in order to minimize the 
+      //** load and spped up the operation 
       rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
       if or(rep(3)==[0,2,3,5,-5]) then
@@ -415,31 +403,6 @@ function scs_m = moveblock(scs_m,k,xc,yc)
       elseif rep(3)==-1000 then //active window has been closed
 	  [%win,Cmenu] = resume(curwin,'Quit')
       end
-
-      //** BLOCK
-      // clear block shape
-      gh_rect_bloc.data = [xc yc+sz(2) sz(1) sz(2) ];
-      draw(gh_rect_bloc); //** the object is drawn on the screen
-
-      //** Normal Links
-      // clear moving part of links
-      //** xpolys(xx+mx*(xc-xmin),yy+my*(yc-ymin),clr)
-      ngxx = xx+mx*(xc-xmin) ; ngyy = yy+my*(yc-ymin) ;
-      for i=1:isopoly
-         ngx = ngxx(:,i) ; ngy = ngyy(:,i)   ;
-         gh_poly_stdlink(i).data = [ngx ngy] ;
-	 draw(gh_poly_stdlink(i));
-      end 
-
-      //** Perverted Link
-      for i=full_move
-	oi = scs_m.objs(i)
-	//** xpolys(oi.xx+(xc-xmin),oi.yy+(yc-ymin),oi.ct(1));
-	gh_poly_perlink(i).data = [oi.xx+(xc-xmin)  oi.yy+(yc-ymin) ];
-	draw( gh_poly_perlink(i) );
-      end
-      //** just "show" (each object is singularly updated)
-      //** show_pixmap() ; //** not useful on Scilab 5 
 
       delta_x = rep(1) - xo_mouse ; //** compute delta positions
       delta_y = rep(2) - yo_mouse ;
@@ -455,22 +418,19 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     end //** ... end of while() loop
     //**-----------------------------------------------------------
      
-    //** NO: For Scilab 5 
-    //** drawlater();
-    
-    //** At the exit of the interactive loop pass to the "copy" mode
-    gh_curwin.pixel_drawing_mode = "copy"  ; //** normal mode
 
-    delete(gh_interactive_move) ; //** delete all the object used during the interc move
+    drawlater();
+    
+    delete(gh_interactive_move) ; //** delete all the object used during the interactive move 
     if %scicos_debug_gr then
       disp("SmartMoveConnLink:End_Interactive_Loop"); //** pause ; //** debug only
     end
 
- //**----------
+    //**----------
 
     gh_figure = gcf();
     if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-        [%win,Cmenu] = resume(curwin,'Quit') ;
+        [%win,Cmenu] = resume(curwin,"Quit") ;
     end
 
     // update  block
@@ -478,7 +438,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
         o.graphics.orig = xy;
 	scs_m.objs(k) = o ;
     end
-    //udate moved links in scicos structure
+    //** update moved links in scicos structure
     xx = xx+mx*(xc-xmin)
     yy=yy+my*(yc-ymin)
     i=0;
@@ -510,15 +470,15 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 	  xl=xx(4:-1:1,i)
 	  yl=yy(4:-1:1,i)
 	end
-      else //full move
+      else // full move
 	xl=xl+(xc-xmin)
 	yl=yl+(yc-ymin)
       end
       nl=prod(size(xl))
-      //eliminate double points
+      // eliminate double points
       kz=find((xl(2:nl)-xl(1:nl-1))^2+(yl(2:nl)-yl(1:nl-1))^2==0)
       xl(kz)=[];yl(kz)=[]
-      //store
+      // store
       //** xpolys(xl,yl,oi.ct(1))// erase thin link
       if  and(rep(3)<>[2 5]) then
 	oi.xx=xl;
@@ -530,8 +490,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     //** Clear the graphic window WITHOUT changing his paramaters ! :)
     delete(gh_axes.children) ; //** wipe out all the temp graphics object
     drawobjs(scs_m, gh_curwin) ;   //** re-draw all the graphics object
-    //** drawnow(); //** draw the graphic object and show on screen (now included in "drawobjs()"
-    //** show_pixmap() ; //** not useful on Scilab 5
+    drawnow(); //** draw the graphic object and show on screen (now included in "drawobjs()"
 
 //**---  
   else // move an unconnected block
@@ -547,10 +506,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     //** Interactive Bloc move
 
     delta_move_x = 0 ; delta_move_y = 0 ; //** init 
-
-    //**  NO: for Scilab 5 
-    //** drawlater(); 
-    
+   
     rep(3) = -1 ;
     while rep(3)==-1 , // move loop
 
@@ -562,8 +518,6 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
       delta_x = rep(1) - xc ; delta_y = rep(2) - yc ; //** calc the differential position because
       move (gh_blk , [delta_x , delta_y]);            //** "move()" works only in differential
-      draw(gh_blk.parent); //** draw the block //** show it 
-      //** show_pixmap() ; //** not useful on Scilab 5
 
       delta_move_x = delta_move_x + delta_x ; //** accumulate the delta to compute the
       delta_move_y = delta_move_y + delta_y ; //** physical displacement of the block 
@@ -606,13 +560,12 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 //** Actions: move the  segment 'wh' of the link 'k' and modify the other segments if necessary
 //**
 //** ----> This routine handle the main case of a LINK ONLY move <-----------------------------
+//**
+//** 20 June 2008 : "copy" mode only for Scilab 5 
 
   //** Acquire the current clicked window handles
   gh_curwin = scf(%win) ;
   gh_axes = gca(); 
-
-  //** NO: for Scilab 5 
-  //** drawlater(); //** stay in drawlater mode
   
   //** at this point I need to build the [scs_m] <-> [gh_window] datastructure
   //** I need an equivalent index for the graphics
@@ -620,18 +573,15 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
   //** "k" is the object index in the data structure "scs_m"
   //** compute the equivalent "gh_k" for the graphics datastructure
   gh_k   = get_gri(k,o_size(1));
-  gh_blk = gh_axes.children(gh_k);
- 
-  //** NO: for Scilab 5
-  //** drawlater(); //** postpone the drawing
+  gh_link = gh_axes.children(gh_k);
+
+  //** Put the link to "invisible" 
+  gh_link.visible = "off"; //** put the link invisible
   
-  //** ------------- eXORcist mode ON -------------------------------------------------------
-  gh_curwin.pixel_drawing_mode = "equiv"  ; //** nor mode
-  gh_interactive_move = [] ; //** initialize the object vector
+  gh_interactive_move = [] ; //** initialize the object vector used for the 
+                             //** interactive operations
   o = scs_m.objs(k)
-  //** drawobj(o) //erase link :NO
   [xx, yy, ct] = (o.xx,o.yy,o.ct)
-  //** xpolys(xx,yy,ct(1)) //redraw thin  link :NO 
 
   nl = size(o.xx,'*')  // number of link points
 
@@ -649,6 +599,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
     //** WARNING: 'movelink1()' is up to date BUT I'm not able to create an examples !
     //**  
       scs_m = movelink1(scs_m) ; //** see below for the code
+
     elseif ~is_split(scs_m.objs(from(1))) | nl<3 then //** ok
     //** the link start is NOT a split (is a Block output) OR the link has two segment
     //**
@@ -659,48 +610,42 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
       Y1= [yy(1); p(2); yy(2)] ;
       x1= X1;
       y1= Y1;
-      //** xpolys( x1, y1, ct(1) ) //erase moving part of the link
+
       xpoly( x1, y1 ) ; //** create the moving object
       gh_poly = gce() ; //** get the handle of the moving object
       gh_poly.foreground = ct(1) ; //** set the color
-      draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the realtive
-                     //** polyline part   
+      
       gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
-                     //** the object to be delated at the end of the operation
-      //**---- Interactive loop -----------------------------
+                             //** the object to be delated at the end of the operation
+      //**---- Interactive loop ----------------------------- 
       rep(3)=-1
       while and(rep(3)<>[3 0 2 5]) do
-	
-	//** xpolys(x1,y1,ct(1)) ; //draw moving part of the link
-	draw(gh_poly); //** draw the moving part of the link //** show on screen
-        //** show_pixmap() ; //** not useful on Scilab 5
-	
+ 
         rep = xgetmouse([%t,%t]); //** wait for user movement :)
 	
-	if rep(3)==-1000 then //active window has been closed
-	  [%win,Cmenu] = resume(curwin,'Quit')
+	if rep(3)==-1000 then // active window has been closed
+	  [%win,Cmenu] = resume(curwin,"Quit")
 	end
-	
-        //** xpolys(x1,y1,ct(1))//erase moving part of the link
-        draw(gh_poly); //** delete the moving part of the link
-        //** show_pixmap() ; //** not useful on Scilab 5
 	
         xc1 = rep(1) ; //** acquire muse coordinate
 	yc1 = rep(2) ;
 	x1(2) = X1(2)-(xc-xc1)  ;
 	y1(2) = Y1(2)-(yc-yc1)  ; //** update coordinate
 
-	gh_poly.data = [x1 y1];
+	gh_poly.data = [x1 y1]; //** update object 
       end //** of while
       //**--- Interactive loop ends -------------------------
+      
+      //** accidental window closing protection 
       gh_figure = gcf();
       if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-	[%win,Cmenu] = resume(curwin,'Quit') ; 
+	[%win,Cmenu] = resume(curwin,"Quit") ; 
       end
-      //** xpolys(x1,y1,ct(1)) //draw moving part of the link
+      
+      //** update link data structure 
       xx = [xx(1);x1(2);xx(2:$)] ;
       yy = [yy(1);y1(2);yy(2:$)] ;
-      //** xpolys(xx,yy,ct(1)) // erase thin link
+
       if and(rep(3)<>[2 5]) then 
 	o.xx = xx ;
 	o.yy = yy ;
@@ -710,8 +655,12 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
     else  //** ok
       //** link comes from a split
       scs_m = movelink2(scs_m) ; //** ok
-      if Cmenu=='Quit' then [%win,Cmenu] = resume(curwin,Cmenu), end
-    end //** and of "I'm in the first segnment of a link"
+    
+      if Cmenu=="Quit" then 
+        [%win,Cmenu] = resume(curwin,Cmenu)
+      end
+    
+    end //** and of "I'm in the first segment of a link"
 
   //**-----------------------------------------------------------
   elseif wh>=nl-1 then
@@ -724,31 +673,22 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
       Y1= [yy($-1);p(2);yy($)]
       x1= X1;
       y1= Y1;
-      //** xpolys(x1,y1,ct(1)) //erase moving part of the link
-     xpoly( x1, y1 ) ; //** create the moving object 
+
+      xpoly( x1, y1 ) ; //** create the moving object 
       gh_poly = gce() ; //** get the handle of the moving object 
       gh_poly.foreground = ct(1) ; //** set the color 
-      draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the realtive
-                     //** polyline part   
+   
       gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                      //** the object to be delated at the end of the operation
       rep(3)=-1
       //**---- Interactive loop -----------------------------
       while and(rep(3)<>[3 0 2 5]) do
 	
-	//** xpolys(x1,y1,ct(1))//draw moving part of the link
-	draw(gh_poly); //** draw the moving part of the link //** show on screen
-        //** show_pixmap() ; //** not useful on Scilab 5
-	
         rep = xgetmouse([%t,%t]); //** wait for user movement :)
 	
 	if rep(3)==-1000 then //active window has been closed
 	  [%win,Cmenu] = resume(curwin,'Quit')
 	end
-	
-	//** xpolys(x1,y1,ct(1))//erase moving part of the link
-        draw(gh_poly); //** delete the moving part of the link
-        //** show_pixmap() ; //** not useful on Scilab 5
 
 	xc1 = rep(1) ; 
 	yc1 = rep(2) ;
@@ -759,19 +699,21 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 	
       end
       //**--- Interactive loop ends -------------------------
+
+      //** window closing protection 
       gh_figure = gcf();
       if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-	[%win,Cmenu] = resume(curwin,'Quit') ;
+	[%win,Cmenu] = resume(curwin,"Quit") ;
       end
 
-      //** xpolys(x1,y1,ct(1))//draw moving part of the link
+      //** link data structure update 
       xx = [xx(1:$-1);x1(2);xx($)]
       yy = [yy(1:$-1);y1(2);yy($)]
-      //** xpolys(xx,yy,ct(1)) // erase thin link
-      if and(rep(3)<>[2 5]) then
+      
+      if and(rep(3)<>[2 5]) then //** if the user has not "clered" the op
 	o.xx = xx ;
 	o.yy = yy ;
-	scs_m.objs(k)=o
+	scs_m.objs(k) = o ; //** update the diagram 
       end
 
     else // link goes to a split
@@ -781,7 +723,9 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
          //** 
       scs_m = movelink3(scs_m) ; //** see below in the code
 
-      if Cmenu=='Quit' then [%win,Cmenu]=resume(curwin,Cmenu),end
+      if Cmenu=="Quit" then
+        [%win,Cmenu] = resume(curwin,Cmenu)
+      end
 
     end
   //**----------------------------------------------------------------
@@ -795,48 +739,48 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
     Y1 = [yy(wh);p(2);yy(wh+1)]
     x1 = X1 ;
     y1 = Y1 ;
+
     rep(3)=-1
     //**---- Interactive loop -----------------------------
     while and(rep(3)<>[3 0 2 5]) do
-      //** xpolys(x1,y1,ct(1))//draw moving part of the link
+      
       rep = xgetmouse([%t,%t]);
-      if rep(3)==-1000 then //active window has been closed
-	//** driver(dr);
+
+      if rep(3)==-1000 then // active window has been closed
 	[%win,Cmenu]=resume(curwin,'Quit')
       end
-      //** if pixmap then xset('wshow'),end
-      //** xpolys(x1,y1,ct(1))//erase moving part of the link
+
       xc1 = rep(1) ;
       yc1 = rep(2) ; 
       x1(2) = X1(2)-(xc-xc1)
       y1(2) = Y1(2)-(yc-yc1)
+
+      gh_poly.data = [x1 y1];
+
     end
     //**--- Interactive loop ends -------------------------
 
     gh_figure = gcf();
     if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-	 [%win,Cmenu] = resume(curwin,'Quit') ;
+	 [%win,Cmenu] = resume(curwin,"Quit") ;
     end
 
-    //** xpolys(x1,y1,ct(1))//draw moving part of the link
+    //** update data structure 
     xx=[xx(1:wh);x1(2);xx(wh+1:$)]
     yy=[yy(1:wh);y1(2);yy(wh+1:$)]
-    //** xpolys(xx,yy,ct(1)) // erase thin link
+
     if and(rep(3)<>[2 5]) then
       o.xx = xx ;
       o.yy = yy ;
-      scs_m.objs(k)=o
+      scs_m.objs(k) = o
     end
-    //** driver(dr)
-    //** drawobj(o)
-    //** if pixmap then xset('wshow'),end
 
   else
   //**---> the user has cliked over at least 4 segment long link, NOR at the start NOR at the end
 
     scs_m = movelink4(scs_m) ; //** see below in the code
 
-    if Cmenu=='Quit' then
+    if Cmenu=="Quit" then
       [%win,Cmenu] = resume(curwin,Cmenu)
     end
 
@@ -849,10 +793,8 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
      gh_curwin.background = options.Background(1) ; //** "options" is sub structure of scs_m
      gh_axes.background   = options.Background(1) ;
 
-     gh_curwin.pixel_drawing_mode = "copy"  ; //** normal mode
-     drawobjs(scs_m, gh_curwin) ;   //** re-draw all the graphics object
-  //** drawnow(); //** draw the graphic object and show on screen: now included in drawobjs();
-  //** show_pixmap() ; //** not useful on Scilab 5
+     drawobjs(scs_m, gh_curwin) ;   
+  drawnow(); 
 
 endfunction
 
@@ -875,28 +817,20 @@ function scs_m = movelink4(scs_m)
   xpoly(x1, y1) ; //** create the moving object
   gh_poly = gce() ; //** get the handle of the moving object
   gh_poly.foreground = ct(1) ; //** set the color
-  draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the relative
-                 //** polyline part
+
   gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                                  //** the object to be deleted at the end of the operation
 
   rep(3)=-1
   //**---- Interactive loop -----------------------------
   while and(rep(3)<>[3 0 2 5]) do
-    //** xpolys(x1,y1,ct(1))//draw moving part of the link
-    draw(gh_poly); //** draw the moving part of the link //** show on screen
-    //** show_pixmap() ; //** not useful on Scilab 5
 
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
-
-    draw(gh_poly); //** draw the moving part of the link //** show on screen
-    //** show_pixmap() ; //** not useful on Scilab 5 
 
     if rep(3)==-1000 then //active window has been closed
       [%win,Cmenu] = resume(curwin,'Quit')
     end
 
-    //** xpolys(x1,y1,ct(1))//erase moving part of the link
     xc1 = rep(1); yc1 = rep(2)
     x1(2:3) = X1(2:3)+e(1)*(xc-xc1) ;
     y1(2:3) = Y1(2:3)+e(2)*(yc-yc1) ;
@@ -910,19 +844,16 @@ function scs_m = movelink4(scs_m)
     delete(gh_interactive_move) ; //** delete all the object used during the interactive move
   end
 
-  //erase rest of the link
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
       [%win,Cmenu] = resume(curwin,'Quit') ;
   end
 
-  //** xpolys(xx(1:wh-1),yy(1:wh-1),ct(1))
-  //** xpolys(xx(wh+2:$),yy(wh+2:$),ct(1))
 
   if and(rep(3)<>[2 5]) then
     o.xx(wh-1:wh+2) = x1 ;
     o.yy(wh-1:wh+2) = y1 ;
-    scs_m.objs(k) = o
+    scs_m.objs(k) = o    ; 
   end
 
  endfunction
@@ -950,12 +881,10 @@ function scs_m = movelink1(scs_m)
 
   gh_interactive_move = [];
 
-  //** xpolys(xx,yy,ct(1))//erase  the link
   xpoly(xx, yy) ; //** create the moving object
   gh_poly = gce() ; //** get the handle of the moving object
   gh_poly.foreground = ct(1) ; //** set the color
-  draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the realtive
-                 //** polyline part
+
   gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                                  //** the object to be deleted at the end of the operation
   X1 = xx ;
@@ -965,19 +894,11 @@ function scs_m = movelink1(scs_m)
   //**---- Interactive loop ----------------------------- 
   while and(rep(3)<>[3 0 2 5]) do
 
-    //** xpolys(xx,yy,ct(1))  //draw  the link
-    draw(gh_poly); //** draw the moving part of the link //** show on screen
-    //** show_pixmap() ; //** not useful on Scilab 5
-
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
     if rep(3)==-1000 then //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
     end
-
-    //** xpolys(xx,yy,ct(1)) //erase moving part of the link
-    draw(gh_poly); //** draw the moving part of the link //** show on screen
-    //** show_pixmap() ; //** not useful on Scilab 5 
 
     xc1 = rep(1); yc1 = rep(2) ; //** acquire muse coordinate
     xx = X1 + e(1)*(xc-xc1) ;
@@ -994,7 +915,7 @@ function scs_m = movelink1(scs_m)
 
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-      [%win,Cmenu] = resume(curwin,'Quit') ;
+      [%win,Cmenu] = resume(curwin,"Quit") ;
   end
 
   if and(rep(3)<>[2 5]) then
@@ -1004,19 +925,17 @@ function scs_m = movelink1(scs_m)
 
   scs_m.objs(k) = o ;
 
-  if or(rep(3)==[2 5]) then return,end
-
-  //move split block and update other connected links
-  connected = [get_connected(scs_m,from(1)),get_connected(scs_m,to(1))]
-
-  for j=find(connected<>k),
-    drawobj(scs_m.objs(connected(j))),//erase  other connected links
+  if or(rep(3)==[2 5]) then
+     return ; 
   end
+
+  // move split block and update other connected links
+  connected = [get_connected(scs_m,from(1)),get_connected(scs_m,to(1))] ; 
 
   // change links
   if connected(1)<>k then
     //update links coordinates
-    o=scs_m.objs(connected(1));
+    o = scs_m.objs(connected(1));
 
     if size(o.xx,'*')>2 then
       if o.xx($)==o.xx($-1) then
@@ -1034,8 +953,8 @@ function scs_m = movelink1(scs_m)
       o.yy($)=o.yy($)+e(2)*(yc-yc1);
     end
 
-    scs_m.objs(connected(1))=o;
-    //** drawobj(o) //redraw link
+    scs_m.objs(connected(1)) = o;
+   
   end
 
   for kk=2:size(connected,'*')
@@ -1059,22 +978,21 @@ function scs_m = movelink1(scs_m)
 	o.yy(1)=o.yy(1)+e(2)*(yc-yc1)
       end
 
-      scs_m.objs(connected(kk))=o;
+      scs_m.objs(connected(kk)) = o;
     end
 
   end
 
-  //update split coordinates
-  o=scs_m.objs(from(1))
-  o.graphics.orig(1)=o.graphics.orig(1)+e(1)*(xc-xc1);
-  o.graphics.orig(2)=o.graphics.orig(2)+e(2)*(yc-yc1);
-  //**drawobj(o)//redraw split//**--- Interactive loop ends ------------------------
+  // update split coordinates
+  o = scs_m.objs(from(1)) ; 
+  o.graphics.orig(1) = o.graphics.orig(1)+e(1)*(xc-xc1);
+  o.graphics.orig(2) = o.graphics.orig(2)+e(2)*(yc-yc1);
 
-  scs_m.objs(from(1))=o
-  o=scs_m.objs(to(1))
-  o.graphics.orig(1)=o.graphics.orig(1)+e(1)*(xc-xc1);
-  o.graphics.orig(2)=o.graphics.orig(2)+e(2)*(yc-yc1);
-  scs_m.objs(to(1))=o
+  scs_m.objs(from(1)) = o ;
+  o = scs_m.objs(to(1));
+  o.graphics.orig(1) = o.graphics.orig(1)+e(1)*(xc-xc1);
+  o.graphics.orig(2) = o.graphics.orig(2)+e(2)*(yc-yc1);
+  scs_m.objs(to(1))  = o ; 
 
 endfunction
 
@@ -1086,49 +1004,48 @@ function scs_m = movelink2(scs_m)
 //** if the move is valid, also the 'split' object is moved accordly at the link starting point
 //** it is nice and it's works ! 
 
-  o; //** local copy of an external variable "o" 
+  o   ; //** local copy of an external variable "o" 
   e = [min(yy(1:2))-max(yy(1:2)), min(xx(1:2))-max(xx(1:2))];
-  e = e/norm(e)
-  X1 = xx(1:3)
-  Y1 = yy(1:3)
-  x1 = X1;
-  y1 = Y1;
+  e = e/norm(e) ;
+  X1 = xx(1:3) ;
+  Y1 = yy(1:3) ;
+  x1 = X1 ;
+  y1 = Y1 ;
 
   gh_interactive_move = [];
 
   xpoly( x1, y1 ) ; //** create the moving object
   gh_poly = gce() ; //** get the handle of the moving object
   gh_poly.foreground = ct(1) ; //** set the color
-  draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the realtive
-                 //** polyline part   
+ 
   gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                      //** the object to be delated at the end of the operation
 
   rep(3)=-1
   //**---- Interactive loop -----------------------------
   while and(rep(3)<>[3 0 2 5]) do
-    draw(gh_poly); //** draw the moving part of the link //** show on screen
     
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
+
     if rep(3)==-1000 then //active window has been closed
-	[%win,Cmenu] = resume(curwin,'Quit') ;
+	[%win,Cmenu] = resume(curwin,"Quit") ;
     end
-    draw(gh_poly); //** delete the moving part of the link
-    //** show_pixmap() ; //** not useful on Scilab 5
     
     xc1 = rep(1); yc1 = rep(2); //** acquire muse coordinate
     x1(1:2) = X1(1:2)+e(1)*(xc-xc1) ; //** update coordinate
     y1(1:2) = Y1(1:2)+e(2)*(yc-yc1) ;
     gh_poly.data = [x1 y1];
+
   end
   //**--- Interactive loop ends -------------------------
 
   if gh_interactive_move <> [] 
     delete(gh_interactive_move) ; //** delete all the object used during the interactive move
   end
+
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-      [%win,Cmenu] = resume(curwin,'Quit') ;
+      [%win,Cmenu] = resume(curwin,"Quit") ;
   end
 
   if and(rep(3)<>[2 5]) then //** if valid move
@@ -1142,12 +1059,6 @@ function scs_m = movelink2(scs_m)
 
   //move split block and update other connected links
   connected = get_connected(scs_m,from(1))
-
-  for j=find(connected<>k),
-    //** drawobj(scs_m.objs(connected(j))); //erase  other connected links
-  end
-
-  //** drawobj(scs_m.objs(from(1)))//erase split
 
   // change links
   if connected(1)<>k then
@@ -1200,12 +1111,12 @@ function scs_m = movelink2(scs_m)
   end
 
   //update split coordinates
-  o=scs_m.objs(from(1))
-  o.graphics.orig(1)=o.graphics.orig(1)+e(1)*(xc-xc1);
-  o.graphics.orig(2)=o.graphics.orig(2)+e(2)*(yc-yc1);
+  o = scs_m.objs(from(1))
+  o.graphics.orig(1) = o.graphics.orig(1)+e(1)*(xc-xc1);
+  o.graphics.orig(2) = o.graphics.orig(2)+e(2)*(yc-yc1);
 
-  scs_m.objs(from(1))=o
-  //** if pixmap then xset('wshow'),end
+  scs_m.objs(from(1)) = o ; //** update diagram 
+
 
 endfunction
 //**---------- End of movelink2 ---------------------------------------------------
@@ -1229,25 +1140,19 @@ function scs_m = movelink3(scs_m)
   xpoly(x1, y1) ; //** create the moving object
   gh_poly = gce() ; //** get the handle of the moving object
   gh_poly.foreground = ct(1) ; //** set the color
-  draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the relative
-                 //** polyline part
+  
   gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                                  //** the object to be deleted at the end of the operation
   rep(3)=-1
   //**---- Interactive loop -----------------------------
   while and(rep(3)<>[3 0 2 5]) do
-    //** xpolys(x1,y1,ct(1))//draw moving part of the link
-    draw(gh_poly); //** draw the moving part of the link
-    //** show_pixmap() ; //** not useful on Scilab 5
-
+  
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
     if rep(3)==-1000 then //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
     end
-    draw(gh_poly); //** draw the moving part of the link
-    //** show_pixmap() ; //** not useful on Scilab 5
-
+  
     xc1 = rep(1); yc1 = rep(2)
     x1($-1:$) = X1($-1:$)+e(1)*(xc-xc1) ;
     y1($-1:$) = Y1($-1:$)+e(2)*(yc-yc1) ;
@@ -1273,16 +1178,12 @@ function scs_m = movelink3(scs_m)
     scs_m.objs(k) = o ;
   end
 
-  if or(rep(3)==[2 5]) then return,end
+  if or(rep(3)==[2 5]) then
+    return
+  end
 
   //move split block and update other connected links
   connected = get_connected(scs_m,to(1))
-
-  for j=find(connected<>k),
-    drawobj(scs_m.objs(connected(j))),//erase connected links
-  end
-
-  //** drawobj(scs_m.objs(to(1))) //erase split
 
   for kk=2:size(connected,'*')
     //update links coordinates
@@ -1305,11 +1206,13 @@ function scs_m = movelink3(scs_m)
     scs_m.objs(connected(kk))=o;
     //** drawobj(o) // redraw connected links
   end //** of for loop
+  
   o = scs_m.objs(to(1))
   o.graphics.orig(1) = o.graphics.orig(1)+e(1)*(xc-xc1);
   o.graphics.orig(2) = o.graphics.orig(2)+e(2)*(yc-yc1);
 
   scs_m.objs(to(1))=o
+
 endfunction
 
 //**--------------------------------------------------------------------------------
@@ -1318,6 +1221,7 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
 //** the user has clicked near a link corner (link segment joint)
   o = scs_m.objs(k) ; //** get the object
   [xx,yy,ct] = (o.xx,o.yy,o.ct)
+
   if wh==-1|wh==-size(xx,'*') then // link endpoint is choosen
     scs_m = movelink(scs_m,k,xc,yc,-wh)
     return
@@ -1326,6 +1230,7 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
   wh = [-wh-1 -wh] ; //** ??? Ask Serge
 
   wh = [wh wh($)+1] ; //** ??? Ask Serge
+
   X1 = xx(wh) ;
   Y1 = yy(wh) ;
   x1 = X1 ;
@@ -1335,27 +1240,25 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
   xpoly( x1, y1 ) ; //** create the moving object
   gh_poly = gce() ; //** get the handle of the moving object
   gh_poly.foreground = ct(1) ; //** set the color
-  draw(gh_poly); //** draw the segment in 'nor' mode in order to clear the realtive
-                 //** polyline part
+
   gh_interactive_move = [gh_interactive_move gh_poly] ; //** add the object at the list of
                      //** the object to be delated at the end of the operation
 
   rep(3)=-1
   //**---- Interactive loop -----------------------------
   while and(rep(3)<>[3 0 2 5]) do
-    //** xpolys(x1,y1,ct(1))//draw moving part of the link
-    draw(gh_poly); //** draw the moving part of the link
-    //** show_pixmap() ; //** not useful on Scilab 5
+
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
+
     if rep(3)==-1000 then //active window has been closed
       [%win,Cmenu]=resume(curwin,'Quit')
     end
-    draw(gh_poly); //** delete the moving part of the link
-    //** show_pixmap() ; //** not useful on Scilab 5
+
     xc1 = rep(1); yc1 = rep(2) ;
     x1(2) = X1(2)-(xc-xc1) ;
     y1(2) = Y1(2)-(yc-yc1) ;
     gh_poly.data = [x1 y1];
+
   end
   //**--- Interactive loop ends ------------------------
   if gh_interactive_move <> []
@@ -1366,21 +1269,22 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
       [%win,Cmenu] = resume(curwin,'Quit') ;
   end
 
-  //** Dead code here ???
-  //** [frect1, frect] = xgetech();
-  //** //0.04*min(abs(frect(3)-frect(1)),abs(frect(4)-frect(2)))
   eps = 16 ;
+
   if abs(x1(1)-x1(2))<eps then
     x1(2) = x1(1) 
   elseif abs(x1(2)-x1(3))<eps then
     x1(2) = x1(3)
   end
+
   if abs(y1(1)-y1(2))<eps then
     y1(2) = y1(1)
   elseif abs(y1(2)-y1(3))<eps then
     y1(2) = y1(3)
   end
+
   d = projaff([x1(1);x1(3)],[y1(1);y1(3)],[x1(2);y1(2)]);
+
   if norm(d(:)-[x1(2);y1(2)])<eps then
     xx(wh) = x1
     yy(wh) = y1
@@ -1392,8 +1296,11 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
     xx(wh) = x1
     yy(wh) = y1
   end
+
   if and(rep(3)<>[2 5]) then
-    o.xx=xx;o.yy=yy
-    scs_m.objs(k)=o
+    o.xx = xx ;
+    o.yy = yy ;
+    scs_m.objs(k) = o ; 
   end
+
 endfunction
