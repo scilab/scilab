@@ -142,8 +142,8 @@ int C2F(matops)(void)
 	case 5:
 		{
 			/* division a droite */
-			C2F(matrdiv)();
-			//matrdiv();
+			//C2F(matrdiv)();
+			matrdiv();
 			return 0;
 		}
 	case 6:

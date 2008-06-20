@@ -44,12 +44,47 @@ doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg,
 void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
 void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
 
-int	iLeftDivisonOfRealMatrix(
+void vTransposeRealMatrix(
+			double *_pdblRealIn, 
+			int _iRowsIn,			int _iColsIn, 
+			double *_pdblRealOut);
+
+void vTransposeComplexMatrix(
+			double *_pdblRealIn,	double *_pdblImgIn, 
+			int _iRowsIn,			int _iColsIn, 
+			double *_pdblRealOut,	double *_pdblImgOut);
+
+void vTransposeDoubleComplexMatrix(
+			doublecomplex *_poIn, 
+			int _iRowsIn,			int _iColsIn, 
+			doublecomplex *_poOut);
+
+void vPretransposeRealMatrix(
+			double *_pdblRealIn, 
+			int _iRowsIn,			int _iColsIn, 
+			double *_pdblRealOut);
+
+void vPretransposeComplexMatrix(
+			double *_pdblRealIn,	double *_pdblImgIn, 
+			int _iRowsIn,			int _iColsIn, 
+			double *_pdblRealOut,	double *_pdblImgOut);
+
+int	iLeftDivisionOfRealMatrix(
 			double *_pdblReal1,		int _iRows1,	int _iCols1,
 			double *_pdblReal2,		int _iRows2,	int _iCols2,
 			double *_pdblRealOut,	int _iRowsOut,	int _iColsOut);
 
-int	iLeftDivisonOfComplexMatrix(
+int	iRightDivisionOfRealMatrix(
+			double *_pdblReal1,		int _iRows1,	int _iCols1,
+			double *_pdblReal2,		int _iRows2,	int _iCols2,
+			double *_pdblRealOut,	int _iRowsOut,	int _iColsOut);
+
+int	iLeftDivisionOfComplexMatrix(
+			double *_pdblReal1,		double *_pdblImg1,		int _iRows1,	int _iCols1,
+			double *_pdblReal2,		double *_pdblImg2,		int _iRows2,	int _iCols2,
+			double *_pdblRealOut,	double *_pdblImgOut,	int _iRowsOut,	int _iColsOut);
+
+int	iRightDivisionOfComplexMatrix(
 			double *_pdblReal1,		double *_pdblImg1,		int _iRows1,	int _iCols1,
 			double *_pdblReal2,		double *_pdblImg2,		int _iRows2,	int _iCols2,
 			double *_pdblRealOut,	double *_pdblImgOut,	int _iRowsOut,	int _iColsOut);
@@ -59,7 +94,7 @@ int iRightDivisionRealMatrixByRealMatrix(
 			double *_pdblReal2, int _iInc2, 
 			double *_pdblRealOut, int _iIncOut, int _iSize);
 
-int iRightDivisonComplexByReal(
+int iRightDivisionComplexByReal(
 			double _dblReal1, double _dblImg1, 
 			double _dblReal2, 
 			double *_pdblRealOut, double *_pdblImgOut);

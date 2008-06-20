@@ -10,9 +10,10 @@
 *
 */
 
+#include <stdio.h>
 #include "double.h"
 
-int matldiv()
+int matrdiv()
 {
 	int iRows1	= 0, iRows2	= 0, iCols1	= 0, iCols2	= 0;
 	int iReal1	= 0, iReal2 = 0, iImg1	= 0, iImg2	= 0;
@@ -68,7 +69,7 @@ int matldiv()
 	}
 	else
 	{
-		if(iRows2 < 0)
+		if(iRows1 < 0)
 		{
 			Error(14);
 			return 0;
@@ -76,14 +77,14 @@ int matldiv()
 
 		if(iRows2 == 0)
 		{
-			LhsVar(1) = 2;
+			LhsVar(1) = 1;
 			PutLhsVar();
 			return 0;
 		}
 
-		if(iRows1 != iRows2)
+		if(iCols1 != iCols2)
 		{
-			Error(265);
+			Error(266);
 			return 0;
 		}
 
@@ -95,6 +96,7 @@ int matldiv()
 			return 0;
 		}
 
+		//Check if A and B matrices contains Inf or NaN's
 		if(iComplex1)
 		{
 			for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
@@ -140,14 +142,13 @@ int matldiv()
 				}
 			}
 		}
-
-		if(iRows1 * iCols1 != 1)
+		if(iSize2 != 1)
 		{
 
 			if(iComplex1 == 0 && iComplex2 == 0)
 			{// A and B are both real
-				iAllocMatrixOfDouble(Rhs + 1, iCols1, iCols2, &pReturnReal);
-				iRet = iLeftDivisionOfRealMatrix(pReal1, iRows1, iCols1, pReal2, iRows2, iCols2, pReturnReal, iCols1, iCols2);
+				iAllocMatrixOfDouble(Rhs + 1, iRows2, iRows1, &pReturnReal);
+				iRet = iRightDivisionOfRealMatrix(pReal1, iRows1, iCols1, pReal2, iRows2, iCols2, pReturnReal, iRows2, iRows1);
 
 				if(iRet != 0)
 				{
@@ -162,11 +163,11 @@ int matldiv()
 			}
 			else
 			{/* A real, B complex : complexify A */
-				iAllocComplexMatrixOfDouble(Rhs + 1, 1, iCols1, iCols2, &pReturnReal, &pReturnImg);
-				iRet = iLeftDivisionOfComplexMatrix(
+				iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows2, iRows1, &pReturnReal, &pReturnImg);
+				iRet = iRightDivisionOfComplexMatrix(
 					pReal1, pImg1, iRows1, iCols1, 
 					pReal2, pImg2, iRows2, iCols2, 
-					pReturnReal, pReturnImg, iCols1, iCols2);
+					pReturnReal, pReturnImg, iRows2, iRows1);
 
 				if(iRet != 0)
 				{
@@ -181,42 +182,42 @@ int matldiv()
 			}
 		}
 		else
-		{// Real \ Matrix 
+		{// Scalar / Matrix 
 			int iErr = 0;
 			if(iRows1 < 0 && iSize2 != 1)
 			{
 				Error(14);
 				return 0;
 			}
-			iAllocComplexMatrixOfDouble(Rhs + 1, iGlobalComplex, iRows2, iCols2, &pReturnReal, &pReturnImg);
+			iAllocComplexMatrixOfDouble(Rhs + 1, iGlobalComplex, iRows1, iCols1, &pReturnReal, &pReturnImg);
 
 			if(iComplex1 == 0 && iComplex2 == 0)
 			{// Real1 \ Real2 -> Real2 / Real1
 				iErr = iRightDivisionRealMatrixByRealMatrix(
-					pReal2,						1, 
-					pReal1,						0, 
-					pReturnReal, 1, iSize2);
-			}
-			else if(iComplex1 == 0 && iComplex2 == 1)
-			{// Real \ Complex -> Complex / Real
-				iErr = iRightDivisionComplexMatrixByRealMatrix(
-					pReal2,			pImg2,		1, 
-					pReal1,						0,
-					pReturnReal,	pReturnImg, 1, iSize2);
+					pReal1,						1, 
+					pReal2,						0, 
+					pReturnReal, 1, iSize1);
 			}
 			else if(iComplex1 == 1 && iComplex2 == 0)
+			{// Real \ Complex -> Complex / Real
+				iErr = iRightDivisionComplexMatrixByRealMatrix(
+					pReal1,			pImg1,		1, 
+					pReal2,						0,
+					pReturnReal,	pReturnImg, 1, iSize1);
+			}
+			else if(iComplex1 == 0 && iComplex2 == 1)
 			{// Complex \ Real -> Real / Complex
 				iErr = iRightDivisionRealMatrixByComplexMatrix(
-					pReal2,						1, 
-					pReal1,			pImg1,		0, 
-					pReturnReal,	pReturnImg,	1,  iSize2);
+					pReal1,						1, 
+					pReal2,			pImg2,		0, 
+					pReturnReal,	pReturnImg,	1,  iSize1);
 			}
 			else if(iComplex1 == 1 && iComplex2 == 1)
 			{// Complex \ Complex
 				iErr = iRightDivisionComplexMatrixByComplexMatrix(
-					pReal2,			pImg2,		1, 
-					pReal1,			pImg1,		0,
-					pReturnReal,	pReturnImg,	1, iSize2);
+					pReal1,			pImg1,		1, 
+					pReal2,			pImg2,		0,
+					pReturnReal,	pReturnImg,	1, iSize1);
 			}
 
 			if(iErr != 0)
@@ -237,4 +238,3 @@ int matldiv()
 	}
 	return 0;
 }
-
