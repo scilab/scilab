@@ -65,7 +65,6 @@ void LogarithmicBoundsComputer::pointScale(double coord, double * scaledCoord)
 /*------------------------------------------------------------------------------------------*/
 void LogarithmicBoundsComputer::inversePointScale(double scaledCoord, double * coord)
 {
-  // nothing to do, this is linear
   *coord = exp10(scaledCoord);
 }
 /*------------------------------------------------------------------------------------------*/
@@ -74,6 +73,14 @@ void LogarithmicBoundsComputer::pointScale(double vector[], int vectorLength)
   for (int i = 0; i < vectorLength; i++)
   {
     vector[i] = log10(vector[i]);
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+void LogarithmicBoundsComputer::inversePointScale(double vector[], int vectorLength)
+{
+  for (int i = 0; i < vectorLength; i++)
+  {
+    vector[i] = exp10(vector[i]);
   }
 }
 /*------------------------------------------------------------------------------------------*/

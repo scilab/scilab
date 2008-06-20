@@ -30,50 +30,40 @@
 /*------------------------------------------------------------------------*/
 int get_y_ticks_property( sciPointObj * pobj )
 {
-  sciSubWindow * ppSubWin = NULL ;
-  BOOL autoTicks[3];
-  char c_format[5];
+  
+  int nbTicks;
+
   if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this label.\n"),"y_ticks") ;
+    sciprint(_("%s property does not exist for this label.\n"),"x_ticks") ;
     return -1 ;
   }
 
-  ppSubWin = pSUBWIN_FEATURE( pobj ) ;
-
-  /* compute the c_format used for convert double to char (for labels) */
-  ChooseGoodFormat( c_format, ppSubWin->logflags[1], ppSubWin->axes.ygrads, ppSubWin->axes.nygrads ) ;
-
-  sciGetAutoTicks(pobj, autoTicks);
-  if( autoTicks[1] )
+  /* retrieve number of ticks */
+  nbTicks = sciGetNbYTicks(pobj);
+  if (nbTicks == 0)
   {
-    int       nbtics        = ppSubWin->axes.nygrads ;
-    char   ** ticklabel     = NULL                   ;
-    double *  ticksPosition = NULL                   ;
-
-    ticksPosition = ReBuildTicksLog2Lin( ppSubWin->logflags[1], nbtics, ppSubWin->axes.ygrads ) ;
-
-    /* convert double to strings */
-    ticklabel = copyFormatedArray( ticksPosition, nbtics, c_format, 100 ) ;
-
-    /* construction de la tlist */
-    buildTListForTicks( ticksPosition, ticklabel, nbtics ) ;
-
-    /* free ticklabel */
-    destroyStringArray( ticklabel, nbtics ) ;
-    FREE( ticksPosition ) ;
-    return 0 ;
+    /* return empty matrices */
+    buildTListForTicks( NULL, NULL, 0) ;
   }
-  else /* we display the x tics specified by the user*/
+  else
   {
-    int      nbtics        = ppSubWin->axes.u_nygrads ;
-    double * ticksPosition = ReBuildTicksLog2Lin( ppSubWin->logflags[1], nbtics, ppSubWin->axes.u_ygrads ) ;
+    char ** labels;
+    double * positions;
+    /* allocate arrays */
+    positions = MALLOC(nbTicks * sizeof(double));
+    labels = createStringArray(nbTicks);
 
-    buildTListForTicks( ticksPosition, ppSubWin->axes.u_ylabels, nbtics ) ;
+    sciGetYTicksPos(pobj, positions, labels);
 
-    FREE( ticksPosition ) ;
-    return 0 ;
+    buildTListForTicks( positions, labels, nbTicks ) ;
+
+    /* free arrays */
+    destroyStringArray(labels, nbTicks);
+    FREE(positions);
   }
+
+  return 0;
 
 }
 /*------------------------------------------------------------------------*/

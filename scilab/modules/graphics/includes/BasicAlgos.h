@@ -99,6 +99,11 @@ int * createIntArrayCopy( const int src[], int nbElement ) ;
  * allocate a copy of a string array
  */
 char ** createStringArrayCopy( char * src[], int nbElement ) ;
+
+/**
+ * allocate a string array and set all its element to NULL
+ */
+char ** createStringArray(int nbElement);
 /*--------------------------------------------------------------------------*/
 
 #endif /* _BASIC_ALGOS_H_ */

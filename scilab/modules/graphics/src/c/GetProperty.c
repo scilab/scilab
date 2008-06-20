@@ -4437,6 +4437,57 @@ BOOL sciGetIsUsingFractionalMetrics(sciPointObj * pObj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * Get number of ticks along X axis of a subwindow.
+ */
+int sciGetNbXTicks(sciPointObj * pSubwin)
+{
+  return sciGetJavaNbXTicks(pSubwin);
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the labels and positions of ticks along X axis.
+ * String composing ticksLabels are allocated with MALLOC.
+ */
+void sciGetXTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels)
+{
+  sciGetJavaXTicksPos(pSubwin, ticksPos, ticksLabels);
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get number of ticks along Y axis of a subwindow.
+ */
+int sciGetNbYTicks(sciPointObj * pSubwin)
+{
+  return sciGetJavaNbYTicks(pSubwin);
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the labels and positions of ticks along Y axis.
+ * String composing ticksLabels are allocated with C++ new.
+ */
+void sciGetYTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels)
+{
+  sciGetJavaYTicksPos(pSubwin, ticksPos, ticksLabels);
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get number of ticks along Z axis of a subwindow.
+ */
+int sciGetNbZTicks(sciPointObj * pSubwin)
+{
+  return sciGetJavaNbZTicks(pSubwin);
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the labels and positions of ticks along Z axis.
+ * String composing ticksLabels are allocated with C++ new.
+ */
+void sciGetZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels)
+{
+  sciGetJavaZTicksPos(pSubwin, ticksPos, ticksLabels);
+}
+/*----------------------------------------------------------------------------------*/
+/**
  * Print the message "This object has no xxx property." in Scilab.
  */
 void printSetGetErrorMessage(const char * propertyName)

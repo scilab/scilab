@@ -64,6 +64,55 @@ double TicksDrawer::draw(void)
   return dist;
 }
 /*------------------------------------------------------------------------------------------*/
+int TicksDrawer::getInitNbTicks(void)
+{
+  m_pTicksComputer->reinit();
+  return m_pTicksComputer->getNbTicks();
+}
+/*------------------------------------------------------------------------------------------*/
+void TicksDrawer::getInitTicksPos(double ticksPositions[], char ** ticksLabels)
+{
+  m_pTicksComputer->reinit();
+  
+
+  if (m_pTicksComputer->isDisplayingLabelsExponents())
+  {
+    int nbTicks = m_pTicksComputer->getNbTicks();
+    char ** labels = BasicAlgos::createStringArray(nbTicks);
+    char ** labelsExponents = BasicAlgos::createStringArray(nbTicks);
+
+    // get positions, labels and exponents
+    m_pTicksComputer->getTicksPosition(ticksPositions, labels, labelsExponents);
+
+    // concatenate labels and exponents
+    for (int i = 0; i < nbTicks; i++)
+    {
+      int labelLength = strlen(labels[i]);
+      int exponentLength = strlen(labelsExponents[i]);
+
+      // +1 for the e and +1 for the null terminating character
+      if (ticksLabels[i] != NULL)
+      {
+        delete[] ticksLabels[i];
+      }
+      ticksLabels[i] = new char[labelLength + exponentLength + 2];
+
+      // copy all inside res
+      sprintf(ticksLabels[i], "%se%s", labels[i], labelsExponents[i]);
+    }
+
+    BasicAlgos::destroyStringArray(labelsExponents, nbTicks);
+    BasicAlgos::destroyStringArray(labels, nbTicks);
+
+  }
+  else
+  {
+    // no exponents, everything is in labels
+    m_pTicksComputer->getTicksPosition(ticksPositions, ticksLabels, NULL);
+  }
+
+}
+/*------------------------------------------------------------------------------------------*/
 double TicksDrawer::drawTicks(void)
 {
   m_pTicksComputer->reinit();

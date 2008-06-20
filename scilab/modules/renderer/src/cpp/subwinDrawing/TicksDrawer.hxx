@@ -44,6 +44,17 @@ public:
    */
   virtual double showTicks(void) = 0;
 
+  /**
+   * Get the initial number of ticks (with no reduction) that will be drawn
+   */
+  int getInitNbTicks(void);
+
+  /**
+   * Get the initial ticks positions and labels (with no reduction) that will be drawn.
+   * To be used to know the positions and labels from outside the rendering process
+   */
+  void getInitTicksPos(double ticksPositions[], char ** ticksLabels);
+
 protected:
 
   /*----------------------------------------------------------------------*/

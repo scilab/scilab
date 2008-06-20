@@ -51,6 +51,11 @@ public:
   virtual void pointScale(double vector[], int vectorLength) = 0;
 
   /**
+   * Apply inverse scale on a vector.
+   */
+  virtual void inversePointScale(double vector[], int vectorLength) = 0;
+
+  /**
    * Apply non linear scaling on direction vector (opposite as point vector).
    * Since scaling is non linear, we need to have a starting point of the vector.
    */

@@ -268,6 +268,13 @@ BOOL sciGetUseNurbs(sciPointObj * pObj); /* GET */
 
 BOOL sciGetIsUsingFractionalMetrics(sciPointObj * pObj); /* GET */
 
+int sciGetNbXTicks(sciPointObj * pSubwin);
+void sciGetXTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
+int sciGetNbYTicks(sciPointObj * pSubwin);
+void sciGetYTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
+int sciGetNbZTicks(sciPointObj * pSubwin);
+void sciGetZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
+
 void printSetGetErrorMessage(const char * propertyName);
 
 #endif /* __SCI_GET_PROPERTY__ */

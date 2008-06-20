@@ -95,6 +95,40 @@ BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure);
  */
 void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4]);
 
+/**
+ * Get number of ticks along X axis of a subwindow.
+ */
+int sciGetJavaNbXTicks(sciPointObj * pSubwin);
+
+/**
+ * Get the labels and positions of ticks along X axis.
+ * String composing ticksLabels are allocated with MALLOC.
+ */
+void sciGetJavaXTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
+
+/**
+ * Get number of ticks along Y axis of a subwindow.
+ */
+int sciGetJavaNbYTicks(sciPointObj * pSubwin);
+
+/**
+ * Get the labels and positions of ticks along Y axis.
+ * String composing ticksLabels are allocated with MALLOC.
+ */
+void sciGetJavaYTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
+
+/**
+ * Get number of ticks along Z axis of a subwindow.
+ */
+int sciGetJavaNbZTicks(sciPointObj * pSubwin);
+
+/**
+ * Get the labels and positions of ticks along Z axis.
+ * String composing ticksLabels are allocated with MALLOC.
+ */
+void sciGetJavaZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
+
+
 #ifdef __cplusplus
 }
 #endif

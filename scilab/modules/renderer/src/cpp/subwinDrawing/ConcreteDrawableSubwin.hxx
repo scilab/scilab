@@ -89,6 +89,39 @@ public:
    */
   virtual void updateScale(void);
 
+  /**
+   * Get the initial number of ticks (with no reduction) that will be drawn.
+   */
+  virtual int getNbXTicks(void);
+
+  /**
+   * Get the initial ticks positions and labels (with no reduction) that will be drawn.
+   * To be used to know the positions and labels from outside the rendering process
+   */
+  virtual void getXTicksPos(double ticksPositions[], char ** ticksLabels);
+
+  /**
+   * Get the initial number of ticks (with no reduction) that will be drawn.
+   */
+  virtual int getNbYTicks(void);
+
+  /**
+   * Get the initial ticks positions and labels (with no reduction) that will be drawn.
+   * To be used to know the positions and labels from outside the rendering process
+   */
+  virtual void getYTicksPos(double ticksPositions[], char ** ticksLabels);
+
+  /**
+   * Get the initial number of ticks (with no reduction) that will be drawn.
+   */
+  virtual int getNbZTicks(void);
+
+  /**
+   * Get the initial ticks positions and labels (with no reduction) that will be drawn.
+   * To be used to know the positions and labels from outside the rendering process
+   */
+  void getZTicksPos(double ticksPositions[], char ** ticksLabels);
+
 
 protected:
 

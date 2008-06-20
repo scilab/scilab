@@ -224,6 +224,75 @@ void ConcreteDrawableSubwin::updateScale(void)
   sciSetXorMode(parentFigure, pixelMode);
 }
 /*------------------------------------------------------------------------------------------*/
+int ConcreteDrawableSubwin::getNbXTicks(void)
+{
+  if (m_pXTicksDrawer != NULL)
+  {
+    return m_pXTicksDrawer->getInitNbTicks();
+  }
+  else
+  {
+    return 0;
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::getXTicksPos(double ticksPositions[], char ** ticksLabels)
+{
+  if (m_pXTicksDrawer != NULL)
+  {
+    m_pXTicksDrawer->getInitTicksPos(ticksPositions, ticksLabels);
+
+    // revert log scale if needed
+    m_pXBoundsStrategy->inversePointScale(ticksPositions, getNbXTicks());
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+int ConcreteDrawableSubwin::getNbYTicks(void)
+{
+  if (m_pYTicksDrawer != NULL)
+  {
+    return m_pYTicksDrawer->getInitNbTicks();
+  }
+  else
+  {
+    return 0;
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::getYTicksPos(double ticksPositions[], char ** ticksLabels)
+{
+  if (m_pYTicksDrawer != NULL)
+  {
+    m_pYTicksDrawer->getInitTicksPos(ticksPositions, ticksLabels);
+
+    // revert log scale if needed
+    m_pYBoundsStrategy->inversePointScale(ticksPositions, getNbYTicks());
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+int ConcreteDrawableSubwin::getNbZTicks(void)
+{
+  if (m_pZTicksDrawer != NULL)
+  {
+    return m_pZTicksDrawer->getInitNbTicks();
+  }
+  else
+  {
+    return 0;
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::getZTicksPos(double ticksPositions[], char ** ticksLabels)
+{
+  if (m_pZTicksDrawer != NULL)
+  {
+    m_pZTicksDrawer->getInitTicksPos(ticksPositions, ticksLabels);
+
+    // revert log scale if needed
+    m_pZBoundsStrategy->inversePointScale(ticksPositions, getNbZTicks());
+  }
+}
+/*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::drawBox(void)
 {
   // If axes is not displayed m_pAxesbox is not drawn.

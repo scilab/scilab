@@ -64,6 +64,11 @@ void LinearBoundsComputer::pointScale(double vector[], int vectorLength)
   // nothing to do, this is linear
 }
 /*------------------------------------------------------------------------------------------*/
+void LinearBoundsComputer::inversePointScale(double vector[], int vectorLength)
+{
+  // nothing to do, this is linear
+}
+/*------------------------------------------------------------------------------------------*/
 void LinearBoundsComputer::directionScale(double coord,  double startingPoint, double * scaledCoord)
 
 {

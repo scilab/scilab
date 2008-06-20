@@ -312,14 +312,16 @@ double * createCopyDoubleMatrixFromList( AssignedList * list, int * nbRow, int *
 /*--------------------------------------------------------------------------*/
 char ** createCopyStringMatrixFromList( AssignedList * list, int * nbRow, int * nbCol )
 {
-  /* get the matrix */
-  char ** stackValues = getCurrentStringMatrixFromList( list, nbRow, nbCol ) ;
+  char ** stackValues = NULL; 
   int nbElement = (*nbRow) * (*nbCol) ;
 
   if ( nbElement == 0 )
   {
     return NULL ;
   }
+
+  /* get the matrix */
+  stackValues = getCurrentStringMatrixFromList( list, nbRow, nbCol ) ;
 
   return createStringArrayCopy( stackValues, nbElement ) ;
 }

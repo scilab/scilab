@@ -70,21 +70,16 @@ int set_x_ticks_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
   ppSubWin->axes.u_xgrads = createCopyDoubleMatrixFromList( tlist, &nbTicsRow, &nbTicsCol ) ;
 
-  if ( ppSubWin->axes.u_xgrads == NULL )
+  if ( ppSubWin->axes.u_xgrads == NULL && nbTicsRow == -1 )
   {
-    if ( nbTicsRow == -1 )
-    {
-      sciprint(_("%s: No more memory.\n"),"set_x_ticks_property");
-      return SET_PROPERTY_ERROR ;
-    }
-    /* empty matrix nothing to do*/
-    return SET_PROPERTY_SUCCEED ;
+    sciprint(_("%s: No more memory.\n"),"set_x_ticks_property");
+    return SET_PROPERTY_ERROR ;
   }
 
   if ( ppSubWin->logflags[0] == 'l' )
   {
     int  i ;
-    for ( i = 0 ; i < nbTicsCol * nbTicsCol ; i++ )
+    for ( i = 0 ; i < nbTicsCol * nbTicsRow ; i++ )
     {
       ppSubWin->axes.u_xgrads[i] = log10( ppSubWin->axes.u_xgrads[i] ) ;
     }

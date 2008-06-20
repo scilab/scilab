@@ -70,15 +70,11 @@ int set_z_ticks_property( sciPointObj * pobj, int stackPointer, int valueType, i
 
   ppSubWin->axes.u_zgrads = createCopyDoubleMatrixFromList( tlist, &nbTicsRow, &nbTicsCol ) ;
 
-  if ( ppSubWin->axes.u_zgrads == NULL )
+  if ( ppSubWin->axes.u_zgrads == NULL && nbTicsRow == -1 )
   {
-    if ( nbTicsRow == -1 )
-    {
-      sciprint(_("%s: No more memory.\n"),"set_z_ticks_property");
-      return SET_PROPERTY_ERROR ;
-    }
-    /* empty matrix nothing to do*/
-    return SET_PROPERTY_SUCCEED ;
+    // if nbTicsRow = 0, it's just an empty matrix
+    sciprint(_("%s: No more memory.\n"),"set_z_ticks_property");
+    return SET_PROPERTY_ERROR ;
   }
 
   if ( ppSubWin->logflags[2] == 'l' )

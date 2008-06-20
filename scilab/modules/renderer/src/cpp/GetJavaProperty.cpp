@@ -14,6 +14,12 @@
 #include "GetJavaProperty.h"
 #include "getHandleDrawer.h"
 #include "figureDrawing/DrawableFigure.h"
+#include "BasicAlgos.hxx"
+
+extern "C"
+{
+#include "BasicAlgos.h"
+}
 
 using namespace sciGraphics ;
 
@@ -90,5 +96,65 @@ BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure)
 void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4])
 {
   getFigureDrawer(pFigure)->getViewport(viewport);
+}
+/*---------------------------------------------------------------------------------*/
+int sciGetJavaNbXTicks(sciPointObj * pSubwin)
+{
+  return getSubwinDrawer(pSubwin)->getNbXTicks();
+}
+/*---------------------------------------------------------------------------------*/
+void sciGetJavaXTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels)
+{
+  // ticksLabels comes from graphics so is allocated with MALLOC
+  // however getTicksPos will use new to allocate
+  int nbTicks = sciGetJavaNbXTicks(pSubwin);
+  char ** javaLabels = BasicAlgos::createStringArray(nbTicks);
+  
+  getSubwinDrawer(pSubwin)->getXTicksPos(ticksPos, javaLabels);
+
+  // copy it into ticksLabels
+  stringArrayCopy(ticksLabels, javaLabels, nbTicks);
+
+  BasicAlgos::destroyStringArray(javaLabels, nbTicks);
+}
+/*---------------------------------------------------------------------------------*/
+int sciGetJavaNbYTicks(sciPointObj * pSubwin)
+{
+  return getSubwinDrawer(pSubwin)->getNbYTicks();
+}
+/*---------------------------------------------------------------------------------*/
+void sciGetJavaYTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels)
+{
+  // ticksLabels comes from graphics so is allocated with MALLOC
+  // however getTicksPos will use new to allocate
+  int nbTicks = sciGetJavaNbYTicks(pSubwin);
+  char ** javaLabels = BasicAlgos::createStringArray(nbTicks);
+  
+  getSubwinDrawer(pSubwin)->getYTicksPos(ticksPos, javaLabels);
+
+  // copy it into ticksLabels
+  stringArrayCopy(ticksLabels, javaLabels, nbTicks);
+
+  BasicAlgos::destroyStringArray(javaLabels, nbTicks);
+}
+/*---------------------------------------------------------------------------------*/
+int sciGetJavaNbZTicks(sciPointObj * pSubwin)
+{
+  return getSubwinDrawer(pSubwin)->getNbZTicks();
+}
+/*---------------------------------------------------------------------------------*/
+void sciGetJavaZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels)
+{
+  // ticksLabels comes from graphics so is allocated with MALLOC
+  // however getTicksPos will use new to allocate
+  int nbTicks = sciGetJavaNbZTicks(pSubwin);
+  char ** javaLabels = BasicAlgos::createStringArray(nbTicks);
+  
+  getSubwinDrawer(pSubwin)->getZTicksPos(ticksPos, javaLabels);
+
+  // copy it into ticksLabels
+  stringArrayCopy(ticksLabels, javaLabels, nbTicks);
+
+  BasicAlgos::destroyStringArray(javaLabels, nbTicks);
 }
 /*---------------------------------------------------------------------------------*/

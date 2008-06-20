@@ -27,9 +27,18 @@ int buildTListForTicks( const double * locations, char * labels[], int nbTics )
 
   returnedList * tList = createReturnedList( 2, variable_tlist ) ;
 
-  addColVectorToReturnedList( tList, locations, nbTics ) ;
-  addStringColVectorToReturnedList( tList, labels, nbTics ) ;
-
+  if (nbTics == 0)
+  {
+    // two empty matrices
+    addColVectorToReturnedList( tList, NULL, 0 ) ;
+    addColVectorToReturnedList( tList, NULL, 0 ) ;
+  }
+  else
+  {
+    addColVectorToReturnedList( tList, locations, nbTics ) ;
+    addStringColVectorToReturnedList( tList, labels, nbTics ) ;
+  }
+  
   destroyReturnedList( tList ) ;
 
   return 0;

@@ -207,6 +207,21 @@ int * createIntArrayCopy( const int src[], int nbElement )
 /*--------------------------------------------------------------------------*/
 char ** createStringArrayCopy( char * src[], int nbElement )
 {
+  char ** res = createStringArray(nbElement);
+
+  if ( res == NULL )
+  {
+    return NULL ;
+  }
+
+  stringArrayCopy( res, src, nbElement ) ;
+
+  return res ;
+
+}
+/*--------------------------------------------------------------------------*/
+char ** createStringArray(int nbElement)
+{
   int i ;
   char ** res = MALLOC( nbElement * sizeof(char *) ) ;
 
@@ -220,9 +235,6 @@ char ** createStringArrayCopy( char * src[], int nbElement )
     res[i] = NULL ;
   }
 
-  stringArrayCopy( res, src, nbElement ) ;
-
   return res ;
-
 }
 /*--------------------------------------------------------------------------*/
