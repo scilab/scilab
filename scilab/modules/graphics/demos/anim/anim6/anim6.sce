@@ -15,6 +15,7 @@ yt=read(path+'yt.wrt',20,201);  //load data
 
 curFig             = scf(100001);
 clf(curFig,"reset");
+demo_viewCode("anim6.sce");
 
 drawnow();
 

@@ -7,6 +7,9 @@
 
 my_handle             = scf(100001);
 clf(my_handle,"reset");
+demo_viewCode("xgeom.dem.sce");
+
+// DEMO START
 
 my_plot_desc          = "plot3d and use of xgeom";
 my_handle.figure_name = my_plot_desc;
@@ -42,3 +45,5 @@ xsegs(x1,y1);
 xstring(x1(1),y1(1),"The point (0,0,0)");
 
 xtitle(my_plot_desc," "," "," ");
+
+// DEMO END

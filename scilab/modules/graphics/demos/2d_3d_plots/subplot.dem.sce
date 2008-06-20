@@ -7,6 +7,9 @@
 
 my_handle             = scf(100001);
 clf(my_handle,"reset");
+demo_viewCode("subplot.dem.sce");
+
+// DEMO START
 
 my_plot_desc          = "subplot";
 my_handle.figure_name = my_plot_desc;
@@ -21,3 +24,5 @@ subplot(2,2,4);
 grayplot();
 
 xtitle(my_plot_desc," "," "," ");
+
+// DEMO END

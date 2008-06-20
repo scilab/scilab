@@ -11,6 +11,7 @@
 
 curFig             = scf(100001);
 clf(curFig,"reset");
+demo_viewCode("anim5.sce");
 
 drawlater();
 

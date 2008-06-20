@@ -7,6 +7,9 @@
 
 my_handle             = scf(100001);
 clf(my_handle,"reset");
+demo_viewCode("fac3d.dem.sce");
+
+// DEMO START
 
 my_plot_desc          = "fac3d";
 my_handle.figure_name = my_plot_desc;
@@ -14,3 +17,5 @@ my_handle.figure_name = my_plot_desc;
 fac3d();
 
 xtitle(my_plot_desc," "," "," ");
+
+// DEMO END

@@ -11,6 +11,7 @@
 
 curFig             = scf(100001);
 clf(curFig,"reset");
+demo_viewCode("anim7.sce");
 
 xselect(); //raise the graphic window
 

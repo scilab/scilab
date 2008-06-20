@@ -7,9 +7,14 @@
 
 my_handle             = scf(100001);
 clf(my_handle,"reset");
+demo_viewCode("fplot3d1.dem.sce");
+
+// DEMO START
 
 my_plot_desc          = "fplot3d1 : z=f(x,y), f external";
 my_handle.figure_name = my_plot_desc;
 
 fplot3d1();
 xtitle(my_plot_desc," "," "," ");
+
+// DEMO END
