@@ -113,16 +113,13 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 //**----------------------------------------------------------------------------------------------
 
   //** The code below is modified according the new graphics API using the standard "copy" mode 
-  //** "xor" mode is "desuete" in Scilab 5
+  //** "xor" mode is now "desuete" in Scilab 5
   
 
 //**-----------------------------------------------------------------------------------
   //** Acquire the current window and axes handles 
   gh_curwin = scf(%win) ;
   gh_axes = gca(); 
-
-  drawnow(); //** for the moment I keep the immediate draw mode active 
-  //** drawlater(); //** go in drawlater mode (for further revision) 
 
   //** at this point I need to build the [scs_m] <-> [gh_window] datastructure 
   //** I need an equivalent index for the graphics
@@ -156,8 +153,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
   connected = unique(get_connected(scs_m,k)) ; //** connected links
   o  = scs_m.objs(k) ; //** block
-
-  kl = connected ;//** scs_m index of the connected links  
+  
   xx = [] ;//** matrix of the 'x' coordinate of the moving link(s)
   yy = [] ;//**    "   "   "  'y'      "      "  "     "     "
   ii = [] ;//** three value vector (link type, see above)
@@ -284,20 +280,19 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     
     //** --------------- BLOCK WITH CONNECTED LINKS -----------------------------------
     //** 
-    //** drawlater(); //** postpone the drawing
+    drawlater(); //** postpone the drawing
+    
     [xmin,ymin] = getorigin(o) ;
     xc = xmin ;
     yc = ymin ;
 
     [xy,sz] = (o.graphics.orig,o.graphics.sz)
 
-    //** Put the block to "invisible" 
+    //** look for the handle of the block to move 
     gr_k = get_gri(k, o_size(1)) ; //** from scs_m to gh_
-    gh_block_invisible = gh_axes.children(gr_k);
-    gh_block_invisible.visible = "off"; //** put the block invisible
-    gh_objs_invisible = [gh_objs_invisible gh_block_invisible] ; //** add at the list
+    gh_block_move = gh_axes.children(gr_k);
     
-    //** Put the links to "invisible 
+    //** Put the links to "invisible"
     gh_link_invisible = [];
     for i=connected
        gr_k = get_gri(i, o_size(1)) ; //** from scs_m to gh_
@@ -306,26 +301,15 @@ function scs_m = moveblock(scs_m,k,xc,yc)
        gh_objs_invisible = [gh_objs_invisible gh_link_invisible] ; //** add at the list
     end 
 
-    drawnow(); //** update the screen 
-
     //**-------------------------------------------------------------------------------
 
     //** Interactive loop that move block and links
-
-    drawlater(); //** all the operation are done in "drawlater" mode 
 
     //** This vector contains the handle(s) of the temporary object(s)
     //** created and used for the SmartMove; these object(s) are erased
     //** at the end of operation
     gh_interactive_move = [] ; //** initialize the object vector
    
-    //** Create the empty block rectangle and store the handles
-    //** rectangle (block)
-    xrect(xc, yc+sz(2), sz(1), sz(2)) ; //** the damned empty rectangle block
-    gh_rect_bloc = gce() ;
-    gh_rect_bloc.foreground = default_color(0) ;
-    gh_interactive_move = [gh_interactive_move gh_rect_bloc] ;
-
     //** --------> perverted links <----------------------------------
     //** the 'perverted' links are handled as full link
     full_move = connected(find(ii==0))
@@ -360,32 +344,26 @@ function scs_m = moveblock(scs_m,k,xc,yc)
     //** mouse EXACTLY on the link to move it.
     delta_x = 0 ;
     delta_y = 0 ;
-
+    dxdy = [delta_x , delta_y] ; 
     while (1) //** move loop
 
       drawlater();
 
-      //**-------------------------------------------------------
-      // draw block shape
-      //** xrect(xc, yc+sz(2),sz(1),sz(2)); //**
-      gh_rect_bloc.data = [xc yc+sz(2) sz(1) sz(2) ];
-      // draw(gh_rect_bloc); //** draw the empty rectangle (block)
+      //** move the block       
+      dxdy = [delta_x , delta_y] ;
+      move(gh_block_move, dxdy)  ;
 
-      // draw normal moving links
-      //** xpolys(xx + mx*(xc-xmin), yy+my*(yc-ymin),clr);
+      //** draw normal moving links
       ngxx = xx+mx*(xc-xmin) ; ngyy = yy+my*(yc-ymin) ;
       for i=1:isopoly
          ngx = ngxx(:,i) ; ngy = ngyy(:,i) ;
          gh_poly_stdlink(i).data = [ngx ngy] ;
-	 // draw(gh_poly_stdlink(i)); //** draw the moving segment
       end
 
-      // draw perverted moving link
+      //** draw perverted moving link
       for i=full_move
 	oi = scs_m.objs(i);
-	//** xpolys(oi.xx+(xc-xmin),oi.yy+(yc-ymin),oi.ct(1));
 	gh_poly_perlink(i).data = [oi.xx+(xc-xmin)  oi.yy+(yc-ymin) ];
-	// draw( gh_poly_perlink(i) ); //** draw the moving segment
       end
 
       drawnow(); //** update the screen 
