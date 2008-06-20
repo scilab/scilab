@@ -433,21 +433,24 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       //** --------- Popup OS dependent definition -----------------
       getfile  = xgetfile; //** using Java most of these aliases 
       savefile = getfile;  //** are _obsolete_
+      
       mpopup = createpopup;
       mdialog = x_mdialog;
-      // getvalue = x_getvalue; //** Please check the two files !! (getvalue.sci and x_getvalue.sci in scicos_utils)
+      
+      //** In Scilab 4.1.2 "getvalue  = tk_getvalue ;"
+      //** In scilab 5 we use "modules/scicos/macros/scicos_util/getvalue.sci"
+      //** by Alan Layec, modified in order to accept string, etc. 
 
       if MSDOS then
 	//** Windows 
-	choose    = tk_scicos_choose   ;
+	choose    = tk_scicos_choose ; //** please check with Allan Cornet 
        else
         //** Linux 
  	deff('x = choose(varargin)', 'x = x_choose(varargin(1:$))');
       end
 
       funcprot(prot);
-      //** -------- ... end of popup --------------------------------
-
+      
     else
       //** Scicos works in "text mode"
       deff('x=getfile(varargin)','x=xgetfile(varargin(1:$))');
