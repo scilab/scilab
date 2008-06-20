@@ -129,13 +129,13 @@ void MatplotDecomposer::decomposeMatplot1(double xGrid[], double yGrid[])
   // fill xgrid
   for (int i = 0; i < nbCol; i++)
   {
-    xGrid[i] = xMin + i * (xMax - xMin) / (nbRow - 1);
+    xGrid[i] = xMin + i * (xMax - xMin) / (nbCol - 1);
   }
 
   // top of the matrix starts on Y max
   for (int j = 0; j < nbRow; j++)
   {
-    yGrid[j] = yMax - j * (yMax - yMin) / (nbCol - 1);
+    yGrid[j] = yMax - j * (yMax - yMin) / (nbRow - 1);
   }
 }
 /*---------------------------------------------------------------------------------*/
