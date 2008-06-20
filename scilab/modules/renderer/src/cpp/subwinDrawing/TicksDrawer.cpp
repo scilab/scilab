@@ -11,6 +11,8 @@
  *
  */
 
+#include <cstdio>
+
 #include "TicksDrawer.hxx"
 #include "BasicAlgos.hxx"
 
