@@ -164,6 +164,9 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
   double userBounds[6];
   sciGetDisplayedDataBounds(m_pDrawed, userBounds);
 
+  // check wether the subwin is zoomed or not
+  bool isZoomed = (sciGetZooming(m_pDrawed) == TRUE);
+
   double bestBounds[6]; // output bounds
 
   // take sub arrays
@@ -180,20 +183,21 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
   m_pYBoundsStrategy->applyScaleModification(userYBounds, bestYBounds);
   m_pZBoundsStrategy->applyScaleModification(userZBounds, bestZBounds);
 
-    // if the X or Y axis are middle then we need to add 0
-  if (pSUBWIN_FEATURE(m_pDrawed)->axes.xdir == 'c')
+  // if the X or Y axis are middle then we need to add 0
+  // and only if not in zoom mode
+  if (pSUBWIN_FEATURE(m_pDrawed)->axes.xdir == 'c' && !isZoomed)
   {
     addZeroInRange(bestYBounds);
   }
 
   // same for Y axis
-  if (pSUBWIN_FEATURE(m_pDrawed)->axes.ydir == 'c')
+  if (pSUBWIN_FEATURE(m_pDrawed)->axes.ydir == 'c' && !isZoomed)
   {
     addZeroInRange(bestXBounds);
   }
 
   // fit them if needed
-  if (!sciGetTightLimitsOn(m_pDrawed))
+  if (!sciGetTightLimitsOn(m_pDrawed) && !isZoomed)
   {
     m_pXBoundsStrategy->applyBestFitting(bestXBounds, bestXBounds);
     m_pYBoundsStrategy->applyBestFitting(bestYBounds, bestYBounds);

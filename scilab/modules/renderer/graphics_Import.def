@@ -142,3 +142,4 @@ sciSetVisibility
 sciGetUseNurbs
 sciGetIsUsingFractionalMetrics
 stringArrayCopy
+sciGetZooming
