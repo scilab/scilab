@@ -3,11 +3,11 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2007-2008 - INRIA - Vincent Couvert
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -34,6 +34,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
 {
   integer  m1=1,n1=3,l1,l2;
   int mouseButtonNumber = 0;
+  int windowsID = 0;
   integer sel[2],m,n;
 
   int pixelCoords[2];
@@ -76,7 +77,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
           Scierror(999, _("%s: Wrong type for first input argument: Single double expected.\n"), "xgetmouse");
           return FALSE;
         }
-      
+
       if (GetType(2)==sci_boolean)
         {
           selPosition = 2;
@@ -99,7 +100,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     {
       sciprint(_("Using xgetmouse with a flag to avoid the event queue to be cleared is obsolete.\nThis functionnality will be permanently removed in Scilab 5.1.\n"));
     }
-  
+
   // Call Java to get mouse information
   if (selPosition!=0)
     {
@@ -107,7 +108,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
       CheckDims(selPosition,m*n,1,2,1);
       sel[0]=*istk(l1);
       sel[1]=*istk(l1+1);
-  
+
       // Call Java xgetmouse
       CallJxgetmouseWithOptions(sel[0], sel[1]);
     }
@@ -115,19 +116,20 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     {
       CallJxgetmouse();
     }
-  
+
   // Get return values
   mouseButtonNumber = getJxgetmouseMouseButtonNumber();
   pixelCoords[0] = (int) getJxgetmouseXCoordinate();
   pixelCoords[1] = (int) getJxgetmouseYCoordinate();
+  windowsID = (int )getJxgetmouseWindowsID();
 
   // Convert pixel coordinates to user coordinates
-  clickedSubwin = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
+  clickedSubwin = sciGetFirstTypedSelectedSon(getFigureFromIndex(windowsID), SCI_SUBWIN);
   updateSubwinScale(clickedSubwin);
   sciGet2dViewCoordFromPixel(clickedSubwin, pixelCoords, userCoords2D);
 
   switch (Lhs) {
-  case 1: 
+  case 1:
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
     if (mouseButtonNumber==-100)
     {
@@ -160,11 +162,11 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     LhsVar(1) = Rhs+1;
 
     CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&m1,&l2);
-    *stk(l2) = sciGetNum(sciGetCurrentFigure()); /* this is the window number */
+    *stk(l2) = windowsID; /* this is the window number */
     LhsVar(2) = Rhs+2;
     return 0;
   }
   return -1 ;
-} 
+}
 
 /*--------------------------------------------------------------------------*/
