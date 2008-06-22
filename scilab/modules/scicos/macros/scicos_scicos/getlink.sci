@@ -652,7 +652,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       // xpoly([xl(nx-1);xl(nx);xo;xc2],[yl(nx-1);yl(nx);yo;yc2],'lines')
       //draw last 2 segments
       // xpoly([xl(nx-1);xl(nx);xc2],[yl(nx-1);yc2;yc2],'lines')
-      //drawlater ;
+      drawlater() ;
         nx = prod(size(xl)) ;
         gh_link_del = gh_axes.children(1) ;
         delete( gh_link_del );
@@ -662,8 +662,8 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         gh_link = gh_axes.children(1) ;
         gh_link.foreground = clr
         //** draw(gh_link.parent) ; //** display the buffer
-        drawnow();
-        //** show_pixmap(); 
+      drawnow();
+      //** show_pixmap(); 
       //form link datas
       xl=[xl;xc2];yl=[yl(1:nx-1);yc2;yc2]
 
@@ -674,7 +674,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       // xpoly([xl(nx-1);xl(nx);xo;xc2],[yl(nx-1);yl(nx);yo;yc2],'lines')
       //draw last 2 sgements
       //xpoly([xl(nx-1);xc2;xc2],[yl(nx-1);yl(nx);yc2],'lines')
-      //drawlater ;
+      drawlater ;
         nx = prod(size(xl)) ;
         gh_link_del = gh_axes.children(1) ;
         delete( gh_link_del );
@@ -684,8 +684,8 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         gh_link = gh_axes.children(1) ;
         gh_link.foreground = clr
         //** draw(gh_link.parent); //** display the buffer
-        drawnow(); 
-        //** show_pixmap(); 
+      drawnow(); 
+      //** show_pixmap(); 
 
       //form link datas
       xl=[xl(1:nx-1);xc2;xc2];yl=[yl;yc2]
@@ -797,8 +797,9 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
   nx = size(scs_m.objs)+1 ;
   scs_m.objs($+1) = lk ;
 
-  drawobj(lk) ;
-  //** draw(gh_curwin.children); //** display the buffer
+  drawlater(); 
+    drawobj(lk) ;
+    //** draw(gh_curwin.children); //** display the buffer
   drawnow();
   //** show_pixmap(); 
 
