@@ -49,17 +49,18 @@ fi
 # --with-matio-library set then check in this dir
 if test "x$with_matio_library" != "xyes"; then
 	save_LIBS="$LIBS"
-	LIBS="-L$with_matio_library -lmatio $ZLIB"
+	# -lm to allow static linking (floor, which is needed by matio, is in libm)
+	LIBS="-L$with_matio_library -lm -lmatio $ZLIB"
 	AC_CHECK_LIB([matio], [Mat_Open],
-			[MATIO_LIB="-L$with_matio_library -lmatio $ZLIB"],
+			[MATIO_LIB="-L$with_matio_library -lm -lmatio $ZLIB"],
             [AC_MSG_ERROR([libmatio : library missing. (Cannot find symbol Mat_Open) in $with_matio_library. Check if libmatio is installed and if the version is correct])]
 			)
 	LIBS="$save_LIBS"
 else
 	save_LIBS="$LIBS"
-	LIBS="$ZLIB"
+	LIBS="$ZLIB -lm"
 	AC_CHECK_LIB([matio], [Mat_Open],
-			[MATIO_LIB="-lmatio $ZLIB"],
+			[MATIO_LIB="-lmatio  -lm $ZLIB"],
             [AC_MSG_ERROR([libmatio : library missing. (Cannot Mat_Open). Check if libmatio is installed and if the version is correct])]
 			)
 	LIBS="$save_LIBS"
