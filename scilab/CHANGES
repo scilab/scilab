@@ -87,8 +87,8 @@ Optimization:
 =============
   + qpsolve       - Linear quadratic programming solver
   + qp_solve      - Linear quadratic programming solver builtin
-  - quapro        - This function has been moved in a toolbox
-  - linpro        - This function has been moved in a toolbox
+  - quapro        - This function has been moved in a toolbox (due to license restrictions from the Universidad de Cantabria)
+  - linpro        - This function has been moved in a toolbox (due to license restrictions from the Universidad de Cantabria)
 
 Genetic Algorithms:
 ===================
