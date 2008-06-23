@@ -103,19 +103,16 @@ black(frq,repf [,comments])</synopsis>
     <title>Description</title>
 
     <para>Black's diagram (Nichols'chart) for a linear system
-    <literal>sl</literal>. <literal>sl</literal> can be a
-    continuous-time or discrete-time SIMO system (see <link
-    linkend="syslin">syslin</link>). In case of multi-output the
-    outputs are plotted with different symbols.</para>
+    <literal>sl</literal>. <literal>sl</literal> can be a continuous-time or
+    discrete-time SIMO system (see <literal>syslin</literal>). In case of
+    multi-output the outputs are plotted with different symbols.</para>
 
     <para>The frequencies are given by the bounds
-    <literal>fmin</literal>,<literal>fmax</literal> (in Hz) or by a
-    row-vector (or a matrix for multi-output)
-    <literal>frq</literal>.</para>
+    <literal>fmin</literal>,<literal>fmax</literal> (in Hz) or by a row-vector
+    (or a matrix for multi-output) <literal>frq</literal>.</para>
 
-    <para><literal>step</literal> is the ( logarithmic )
-    discretization step.  (see <link linkend="calfrq">calfrq</link>
-    for the choice of default value).</para>
+    <para><literal>step</literal> is the ( logarithmic ) discretization step.
+    (see <literal>calfrq</literal> for the choice of default value).</para>
 
     <para><literal>comments</literal> is a vector of character strings
     (captions).</para>
@@ -127,13 +124,14 @@ black(frq,repf [,comments])</synopsis>
     response.</para>
 
     <para>To plot the grid of iso-gain and iso-phase of
-    <literal>y/(1+y)</literal> use <link linkend="chart">chart()</link>.</para>
+    <literal>y/(1+y)</literal> use <link
+    linkend="chart">chart()</link>.</para>
 
     <para>Default values for <literal>fmin</literal> and
     <literal>fmax</literal> are <literal>1.d-3</literal>,
     <literal>1.d+3</literal> if <literal>sl</literal> is continuous-time or
-    <literal>1.d-3</literal>, <literal>0.5</literal> if <literal>sl</literal>
-    is discrete-time.</para>
+    <literal>1.d-3</literal>, <literal>0.5*nyquist_frequency</literal> if
+    <literal>sl</literal> is discrete-time.</para>
   </refsection>
 
   <refsection>
@@ -150,7 +148,6 @@ h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
 clf()
 black([h1;h],0.01,100,['h1';'h'])
  
-h=syslin('c',(600+250*s-18*s^2+48*s^3-4*s^4)/(60+525*s+282*s^2+30*s^3+s^4))
   </programlisting>
   </refsection>
 
