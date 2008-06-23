@@ -20,11 +20,11 @@ tol=0.01     // Tolerance for testing pure imaginary numbers
 // Check inputs
 // ------------
 if type(h)<>15&type(h)<>16 then 
-  error(msprintf(gettext("%s: Wrong type for input argument #%d: A syslin list expected.\n"),"calfrq"));
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A syslin list expected.\n"),"calfrq",1));
   end
 flag=h(1);
 if flag(1)<>'lss'&h(1)<>'r' then 
-  error(msprintf(gettext("%s: Wrong type for input argument #%d: A syslin list expected.\n"),"calfrq"));
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A syslin list expected.\n"),"calfrq",1));
 end
 if flag(1)=='lss' then
   h=ss2tf(h)
@@ -46,11 +46,11 @@ end;
 if type(dom)==1 then 
   nyq_frq=1/2/dom;
   if fmax>nyq_frq then 
-    warning(msprintf(gettext("%s: Frequencies beyond Nyquist f are ignored.\n"),"calfrq"));
+    warning(msprintf(gettext("%s: Frequencies beyond Nyquist frequency are ignored.\n"),"calfrq"));
     fmax=min(fmax,nyq_frq)
   end
   if fmin<-nyq_frq then 
-    warning(msprintf(gettext("%s: Negative frequencies below Nyquist f are ignored.\n"),"calfrq"));
+    warning(msprintf(gettext("%s: Negative frequencies below Nyquist frequency are ignored.\n"),"calfrq"));
     fmin=max(fmin,-nyq_frq)
   end
 end
@@ -93,7 +93,8 @@ elseif fmin<0&fmax<=0 then
   bnds=[bnds(1),bnds(2),-bnds(4),-bnds(3)];
   return;
 elseif fmin >= fmax then
-  error(msprintf(gettext("%s: Wrong value for input argument: %s < %s expected.\"),"calfrq","fmin","fmax"));
+  error(msprintf(gettext("%s: Wrong value for input argument: %s < %s expected.\n"),..
+		 "calfrq","fmin","fmax"));
 end
 
 // Compute dicretisation over a given range
