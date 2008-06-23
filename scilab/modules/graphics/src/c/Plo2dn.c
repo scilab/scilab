@@ -239,10 +239,13 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     for (jj = 0;jj < *n1; jj++) {/*A.Djalel 3D axes*/
       sciPointObj * pobj = NULL;
       if (style[jj] > 0) { 
+	BOOL isline = TRUE;
+	if (ptype==3) isline=FALSE;
 	sciSetCurrentObj (ConstructPolyline
 			  (sciGetCurrentSubWin(),&(x[jj*(*n2)]),
 			   &(y[jj*(*n2)]),PD0,closeflag,*n2,ptype,
-			   &style[jj],NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE));
+			   &style[jj],NULL,NULL,NULL,NULL, 
+			   isline,FALSE,FALSE,FALSE));
       }
       else {
 	int minusstyle = -style[jj];
