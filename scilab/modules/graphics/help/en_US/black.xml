@@ -130,8 +130,8 @@ black(frq,repf [,comments])</synopsis>
     <para>Default values for <literal>fmin</literal> and
     <literal>fmax</literal> are <literal>1.d-3</literal>,
     <literal>1.d+3</literal> if <literal>sl</literal> is continuous-time or
-    <literal>1.d-3</literal>, <literal>0.5*nyquist_frequency</literal> if
-    <literal>sl</literal> is discrete-time.</para>
+    <literal>1.d-3</literal>, <literal>0.5</literal>/sl.dt (nyquist frequency)
+    if <literal>sl</literal> is discrete-time.</para>
   </refsection>
 
   <refsection>
