@@ -73,8 +73,6 @@ function chart(attenu,angl,flags)
   phi_max=ax.data_bounds(2,1)
   k1=floor(phi_min/180)
   k2=ceil(phi_max/180)
-  disp([k1 k2])
-
   //
   drawlater()
   if flags(2) then xtitle(titre,'phase(y) - degree','magnitude(y) - db'),end
@@ -99,6 +97,7 @@ function chart(attenu,angl,flags)
     
     //use symetry and period to extend the curve on [k1*180 k2*180]
     p=[];m=[];
+    S=[]
     for k=k1:k2-1
       if pmodulo(k,2)==0 then
 	p=[p %nan k*180-phi($:-1:1)]
@@ -106,6 +105,7 @@ function chart(attenu,angl,flags)
 	if att>0 then 
 	  xstring(p($),m($),string(att),0,0),
 	  e=gce();e.clip_state='off';
+	  S=[e S]
 	end
       else
 	p=[p %nan ((k+1)*180)+phi]
@@ -113,20 +113,17 @@ function chart(attenu,angl,flags)
 	if att<0 then 
 	  xstring(p($),m($),string(att),0,0),
 	  e=gce();e.clip_state='off';
+	  S=[e S]
 	end
       end
       
     end
     xpoly(p,m)
     e=gce();e.foreground=flags(3);//e.line_style=3,
- 
-//     if att<0 then 
-//       xstring(phi(n)+llrect(3),module(n),string(att),0,0);
-//       e=gce();e.clip_state='off';
-//     else 
-//       xstring(phi(1),module(1)+llrect(4)/4,string(att),0,0);
-//     end
+    if size(S,'*')>1 then S=glue(S),end
+    S=glue([S,e]);S.user_data=att;
   end;
+  glue(ax.children(size(attenu,'*'):-1:1))
 
   //isophase curves
   eps=100*%eps;
@@ -150,13 +147,10 @@ function chart(attenu,angl,flags)
 	m=[m %nan module]
       end
     end
-    //xpoly([w,-360*ones(w)-w(n:-1:1)],[module,module(n:-1:1)]);
     xpoly(p,m)
-    e=gce();e.foreground=flags(4);//e.line_style=3,
-    if ax.data_bounds(1,2)>0  then
-      xpoly(360+[w,-360*ones(w)-w(n:-1:1)],[module,module(n:-1:1)]);
-      e=gce();e.foreground=flags(4);//e.line_style=3,
-    end
+    e=gce();e.foreground=flags(3);//e.line_style=3,
+    e.user_data=teta
   end;
+  glue(ax.children(size(angl,'*'):-1:1))
   drawnow() ;
 endfunction

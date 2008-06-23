@@ -7,7 +7,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function []=black(sl,fmin,fmax,pas,comments)
+function black(varargin)
 //Black's diagram (Nichols chart) for a linear system sl.
 //sl can be a continuous-time, discrete-time or sampled SIMO system
 //Syntax:
@@ -43,86 +43,73 @@ function []=black(sl,fmin,fmax,pas,comments)
 //See also:
 //  bode nyquist  abaque freq repfreq 
 //!
-  [lhs,rhs]=argn(0);
-  pas_def='auto' 
-
-  ilf=0
-  typ=type(sl)
-  //-compat next line added for list/tlist compatibility
-  if typ==15 then typ=16,end
-  select typ
-  case 16 then  // sl,fmin,fmax [,pas] [,comments]
-    typ=sl(1);typ=typ(1);
-    if typ<>'lss'&typ<>'r' then
-      error(97,1)
-    end
-    select rhs
-    case 1 then //sl
-      comments=' '
-      [frq,repf]=repfreq(sl);
-      [d,phi]=dbphi(repf);
-      sl=[] 
-    case 2 then // sl,frq
-      comments=' '
-      [frq,repf]=repfreq(sl,fmin);
-      [d,phi]=dbphi(repf);
-      fmin=[];sl=[]
-    case 3 ,
-      if type(fmax)==1 then
-	comments=' '
-	[frq,repf]=repfreq(sl,fmin,fmax,pas_def),
-	[d,phi]=dbphi(repf);
-	sl=[]
-      else
-	comments=fmax
-	[frq,repf]=repfreq(sl,fmin);
-	[d,phi]=dbphi(repf);
-	fmin=[];sl=[]
+    rhs=size(varargin)
+  if type(varargin($))==10 then
+    comments=varargin($),rhs=rhs-1;
+  else
+    comments=[];
+  end
+  fmax=[]
+  if or(typeof(varargin(1))==['state-space' 'rational']) then 
+    //sys,fmin,fmax [,pas] or sys,frq
+    if rhs==1 then
+      [frq,repf]=repfreq(varargin(1),1d-3,1d3)
+    elseif rhs==2 then //sys,frq
+      if size(varargin(2),2)<2 then
+	error(msprintf(_("%s : Invalid argument #%d. It must be a row vector with length > %d"),..
+		     "black",1,1))
       end
-    case 4 ,
-      if type(pas)==1 then 
-	comments=' ',
-      else 
-	comments=pas;pas=pas_def
-      end,
-      [frq,repf]=repfreq(sl,fmin,fmax,pas)
-      [d,phi]=dbphi(repf);
-    case 5 then,
-      [frq,repf]=repfreq(sl,fmin,fmax,pas)
-      [d,phi]=dbphi(repf);
-    else 
-      error('invalid call: sys,fmin,fmax [,pas] [,com]')
-    end;
-  case 1 then //frq,db,phi [,comments] or frq, repf [,comments]
-    select rhs
-    case 2 , //frq,repf
-      comments=' '
-      [phi,d]=phasemag(fmin),fmin=[]
-    case 3 then
-      if type(fmax)==1 then
-	comments=' '//frq db phi
-	d=fmin,fmin=[]
-	phi=fmax,fmax=[]
-      else
-	[phi,d]=phasemag(fmin);fmin=[]
-	comments=fmax
-      end;
-    case 4 then 
-      comments=pas;d=fmin;fmin=[];phi=fmax;fmax=[]
-    else 
-      error('invalid call :frq,db,phi,[com] ou frq,repf,[com]')
-    end;
-    frq=sl;sl=[];[mn,n]=size(frq);
-    if mn<>1 then
-      ilf=1;
+      [frq,repf]=repfreq(varargin(1:rhs))
+    elseif or(rhs==(3:4)) then //sys,fmin,fmax [,pas]
+      [frq,repf]=repfreq(varargin(1:rhs))
     else
-      ilf=0;
-    end;
-  else 
-    error('invalid call to black')
+      error(msprintf(_("%s : Invalid call: sys,fmin,fmax [,pas] [,com]'),"black"))
+    end
+    [phi,d]=phasemag(repf)
+    if rhs>=3 then fmax=varargin(3),end
+  elseif  type(varargin(1))==1 then 
+    //frq,db,phi [,comments] or frq, repf [,comments]
+    select rhs
+    case 2 then //frq,repf
+      frq=varargin(1);
+      if size(frq,2)<2 then
+	error(msprintf(_("%s : Invalid argument #%d. It must be a row vector with length > %d"),..
+		     "black",1,1))
+      end
+      if size(frq,2)<>size(varargin(2),2) then
+	error(msprintf(_("%s : Incompatible dimensions of arguments #%d and #%d."),..
+			 "black",1,2))
+      end
+      [phi,d]=phasemag(varargin(2))
+    case 3 then  //frq,db,phi
+      [frq,d,phi]=varargin(1:rhs)
+      if size(frq,2)<>size(d,2) then
+	error(msprintf(_("%s : Incompatible dimensions of arguments #%d and #%d."),..
+			 "black",1,2))
+      end
+      if size(frq,2)<>size(phi,2) then
+	error(msprintf(_("%s : Incompatible dimensions of arguments #%d and #%d."),..
+			 "black",1,3))
+      end
+    else 
+      error(msprintf(_("%s : Invalid call: frq, db,phi [,com] or frq,repf [,com]'),"black"))
+    end
+  else
+    error(msprintf(_("%s : Invalid argument #%d. It must be a linear"+..
+		     " dynamical system (syslin) or a real array"),"black",1))
   end;
-
+  
+  if size(frq,1)==1 then
+    ilf=0
+  else
+    ilf=1
+  end
+ 
   [mn,n]=size(phi);
+  if and(size(comments,'*')<>[0 mn]) then
+    error(msprintf(_("%s : Invalid dimension for argument #%d"),"black",rhs+1))
+  end
+
   //
   xmn=floor(min(phi)/90)*90
   xmx=ceil(max(phi)/90)*90
@@ -140,8 +127,8 @@ function []=black(sl,fmin,fmax,pas,comments)
 
   while kk<n
     kk=kk+1
-    dst=dst+mini(((phi(:,kk-1)-phi(:,kk))^2)/dx2+((d(:,kk-1)-d(:,kk))^2)/dy2)
-    if dst>0.001 then
+    dst=dst+min(sqrt(((phi(:,kk-1)-phi(:,kk))^2)/dx2+((d(:,kk-1)-d(:,kk))^2)/dy2))
+    if dst>0.1 then
       if mini(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
 	ks=[ks kk]
 	dst=0
@@ -160,18 +147,28 @@ function []=black(sl,fmin,fmax,pas,comments)
   ax.axes_visible='on';
   ax.clip_state="clipgrf";
   E=[]
+  if ks($)<size(phi,2) then last=$;else	last=$-1;end
   for k=1:mn
-    xpoly(phi(k,:),d(k,:));e=gce()
-    e.foreground=k;
-    xpoly(phi(k,ks),d(k,ks),'marks',0);e=gce();
-    e.mark_style=2;e.mark_size_unit="point";e.mark_size=6;e.foreground=k;
+    xpoly(phi(k,:),d(k,:));e1=gce()
+    e1.foreground=k;
+    e2=[]
+    if size(ks,'*') >1 then
+      d_phi=phi(k,ks(1:last)+1)-phi(k,ks(1:last));
+      d_d=d(k,ks(1:last)+1)-d(k,ks(1:last));
+      dd=150*sqrt((d_phi/dx).^2+(d_d/dy).^2);
+      if dd>0 then
+	xarrows([phi(k,ks(1:last));phi(k,ks(1:last))+d_phi./dd],..
+		[d(k,ks(1:last));d(k,ks(1:last))+d_d./dd],1.5)
+	e2=gce();e2.foreground=k;
+      end
+    end
     //add frequency values
     ne=size(ax.children,'*')
     xnumb(phi(k,ks),d(k,ks),frq(kf,ks),0);
     nn=size(ax.children,'*')-ne
-    if nn>1 then glue(ax.children(nn:-1:1)),end
+    if nn>1 then e3=glue(ax.children(nn:-1:1)),else e3=ax.children(1);end
     // glue entities relative to a single black curve
-    E=[E glue(ax.children(3:-1:1))]
+    E=[E glue([e3 e2 e1])]
     kf=kf+ilf
   end
  
@@ -185,8 +182,8 @@ function []=black(sl,fmin,fmax,pas,comments)
   lgmt=log(-r*crcl+r*lmda*ones(crcl));
   xpoly([180*(imag(lgmt)/%pi-ones(lgmt))],[(20/log(10)*real(lgmt))])
   e=gce();e.foreground=2;e.line_style=3;
-  if stripblanks(comments)<>' ' then
-    c=[];for k=1:mn,c=[c E(k).children(3)];end
+  if comments<>[] then
+    c=[];for k=1:mn,c=[c E(k).children(1)];end
     legend([c e],[comments;'2.3Db'])
   end
   drawnow()
