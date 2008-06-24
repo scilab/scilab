@@ -39,7 +39,7 @@ c
       endif
       il1=iadr(lstk(top))
       typ=abs(istk(il1))
-      if (typ.lt.15.or.typ.gt.17) then 
+      if (typ.ne.15) then 
          call putid(ids(1,pt+1),id)
          call error(140)
          return
