@@ -217,8 +217,8 @@ function %h_p(h)
             "visible = "+sci2exp(h.visible)
             "text = "+sci2exp(h.text)
             "font_style = "+string(h.font_style)
-            "font_size = "+string(h.font_size)]
-            "fractional_font = " + sci2exp(h.fractional_font)
+            "font_size = "+string(h.font_size)
+            "fractional_font = " + sci2exp(h.fractional_font)]
         
         // Rectangle
         // =====================================================================
