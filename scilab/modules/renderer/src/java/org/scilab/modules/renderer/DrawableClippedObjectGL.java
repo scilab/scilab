@@ -13,7 +13,6 @@
 
 
 package org.scilab.modules.renderer;
-import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.utils.glTools.MovableClipPlane3D;
 
@@ -23,6 +22,9 @@ import org.scilab.modules.renderer.utils.glTools.MovableClipPlane3D;
  */
 public abstract class DrawableClippedObjectGL extends DrawableObjectGL {
 
+	/** Experimental value to avoid to strict clipping */
+	private static final double EPSILON = 1.0e-6;
+	
 	private MovableClipPlane3D planeXmin;
 	private MovableClipPlane3D planeXmax;
 	private MovableClipPlane3D planeYmin;
@@ -36,12 +38,15 @@ public abstract class DrawableClippedObjectGL extends DrawableObjectGL {
 	 * @param xMax maximum shown value on X axis
 	 */
 	public void clipX(double xMin, double xMax) {
+		// add a little offset to avoid being to strict on clipping
+		double offset = (xMax - xMin) * EPSILON;
+		
 		// drawn points (x,y,z) are the one verifying a.x + b.y + c.z + d >= 0.
-		double[] equationXmin = {1.0, 0.0, 0.0, -xMin}; // x >= xMin
+		double[] equationXmin = {1.0, 0.0, 0.0, -xMin + offset}; // x >= xMin - offset
 		planeXmin = new MovableClipPlane3D(equationXmin);
 		clipPlane(planeXmin);
 
-		double[] equationXmax = {-1.0, 0.0, 0.0, xMax}; // x <= xMax
+		double[] equationXmax = {-1.0, 0.0, 0.0, xMax + offset}; // x <= xMax + offset
 		planeXmax = new MovableClipPlane3D(equationXmax);
 		clipPlane(planeXmax);
 	}
@@ -52,11 +57,13 @@ public abstract class DrawableClippedObjectGL extends DrawableObjectGL {
 	 * @param yMax maximum shown value on Y axis
 	 */
 	public void clipY(double yMin, double yMax) {
-		double[] equationYmin = {0.0, 1.0, 0.0, -yMin};
+		double offset = (yMax - yMin) * EPSILON;
+		
+		double[] equationYmin = {0.0, 1.0, 0.0, -yMin + offset};
 		planeYmin = new MovableClipPlane3D(equationYmin);
 		clipPlane(planeYmin);
 
-		double[] equationYmax = {0.0, -1.0, 0.0, yMax};
+		double[] equationYmax = {0.0, -1.0, 0.0, yMax + offset};
 		planeYmax = new MovableClipPlane3D(equationYmax);
 		clipPlane(planeYmax);
 	}
@@ -67,11 +74,13 @@ public abstract class DrawableClippedObjectGL extends DrawableObjectGL {
 	 * @param zMax maximum shown value on Z axis
 	 */
 	public void clipZ(double zMin, double zMax) {
-		double[] equationZmin = {0.0, 0.0, 1.0, -zMin};
+		double offset = (zMax - zMin) * EPSILON;
+		
+		double[] equationZmin = {0.0, 0.0, 1.0, -zMin + offset};
 		planeZmin = new MovableClipPlane3D(equationZmin);
 		clipPlane(planeZmin);
 
-		double[] equationZmax = {0.0, 0.0, -1.0, zMax};
+		double[] equationZmax = {0.0, 0.0, -1.0, zMax + offset};
 		planeZmax = new MovableClipPlane3D(equationZmax);
 		clipPlane(planeZmax);
 	}
