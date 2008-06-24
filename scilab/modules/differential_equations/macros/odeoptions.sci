@@ -60,7 +60,7 @@ chapeau=["Defining %ODEOPTIONS variable";
 	 '0 : functional iterations (no jacobian used (''adams'' or ''stiff'' only))';
 	 '1 : user-supplied full jacobian';
 	 '2 : internally generated full jacobian';
-	 '3 : internally generated diagonal jacobian (''adams'' or ''stiff'' only))';
+	 '3 : internally generated diagonal jacobian (''adams'' or ''stiff'' only)';
 	 '4 : user-supplied banded jacobian (see ml,mu)';
 	 '5 : internally generated banded jacobian (see ml,mu)';
 	 ' ';
