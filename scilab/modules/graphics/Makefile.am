@@ -389,7 +389,8 @@ sci_gateway/c/sci_fec.c \
 sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
 sci_gateway/c/sci_is_handle_valid.c \
-sci_gateway/c/sci_show_pixmap.c
+sci_gateway/c/sci_show_pixmap.c \
+sci_gateway/c/sci_Legend.c
 
 libscigraphics_la_CFLAGS +=	$(JAVA_JNI_INCLUDE) \
 				-Isrc/cpp \
@@ -545,7 +546,8 @@ includes/TerminateGraphics.h \
 includes/sci_rubberbox.h \
 includes/sci_rotate_axes.h \
 includes/sci_is_handle_valid.h \
-includes/sci_show_pixmap.h
+includes/sci_show_pixmap.h \
+includes/sci_Legend.h
 
 ### graphics : ged files ###
 libscigraphics_la_geddir = $(mydatadir)/tcl/ged

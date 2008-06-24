@@ -85,6 +85,7 @@
 #include "sci_rotate_axes.h"
 #include "sci_is_handle_valid.h"
 #include "sci_clear_pixmap.h"
+#include "sci_Legend.h"
 /*--------------------------------------------------------------------------*/ 
 int gw_graphics(void);
 /*--------------------------------------------------------------------------*/ 
