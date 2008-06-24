@@ -31,7 +31,8 @@ int set_fractional_font_property( sciPointObj * pobj, int stackPointer, int valu
   if (   sciGetEntityType(pobj) != SCI_SUBWIN
       && sciGetEntityType(pobj) != SCI_TEXT
       && sciGetEntityType(pobj) != SCI_LABEL
-      && sciGetEntityType(pobj) != SCI_AXES)
+      && sciGetEntityType(pobj) != SCI_AXES
+      && sciGetEntityType(pobj) != SCI_LEGEND)
   {
     sciprint(_("Incompatible type for property %s.\n"),"fractional_font") ;
     return SET_PROPERTY_ERROR ;
