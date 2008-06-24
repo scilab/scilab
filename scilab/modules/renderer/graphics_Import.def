@@ -143,3 +143,7 @@ sciGetUseNurbs
 sciGetIsUsingFractionalMetrics
 stringArrayCopy
 sciGetZooming
+ConstructPolyline
+vectAdd2D
+scalarMult2D
+isPointInTriangle

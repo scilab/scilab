@@ -139,6 +139,18 @@ void vectSubstract2D(const double vect1[2], const double vect2[], double res[2])
   res[1] = vect1[1] - vect2[1];
 }
 /*----------------------------------------------------------------------------*/
+void vectAdd2D(const double v1[2], const double v2[2], double res[2])
+{
+  res[0] = v1[0] + v2[0];
+  res[1] = v1[1] + v2[1];
+}
+/*----------------------------------------------------------------------------*/
+void scalarMult2D(const double v[2], const double scalar, double res[2])
+{
+  res[0] = scalar * v[0];
+  res[1] = scalar * v[1];
+}
+/*----------------------------------------------------------------------------*/
 void normalize2d( double vect[2] )
 {
   double norm = NORM_2D(vect) ;
@@ -151,6 +163,43 @@ void iNormalize2d( int vect[2] )
   double norm = NORM_2D(vect) ;
   vect[0] = round( vect[0] / norm ) ;
   vect[1] = round( vect[1] / norm ) ;
+}
+/*----------------------------------------------------------------------------*/
+BOOL isPointInTriangle(const double point[2], const double a[2],
+                       const double b[2], const double c[2])
+{
+  return (   areOnSameSideOfLine(point, a, b, c)
+          && areOnSameSideOfLine(point, b, a, c)
+          && areOnSameSideOfLine(point, c, a, b));
+}
+/*----------------------------------------------------------------------------*/
+BOOL areOnSameSideOfLine(const double p1[2], const double p2[2],
+                         const double a[2], const double b[2])
+{
+  // point are on the same if and only if (AB^AP1).(AB^AP2) >= 0
+  double ab[3];
+  double ap1[3];
+  double ap2[3];
+  double cp1[3];
+  double cp2[3];
+
+  ab[0] = b[0] - a[0];
+  ab[1] = b[1] - a[1];
+  ab[2] = 0.0;
+ 
+  ap1[0] = p1[0] - a[0];
+  ap1[1] = p1[1] - a[1];
+  ap1[2] = 0.0;
+
+  ap2[0] = p2[0] - a[0];
+  ap2[1] = p2[1] - a[1];
+  ap2[2] = 0.0;
+
+  crossProduct(ab, ap1, cp1);
+  crossProduct(ab, ap2, cp2);
+
+  return (DOT_PROD_3D(cp1, cp2) >= 0.0);
+
 }
 /*----------------------------------------------------------------------------*/
 void crossProduct( const double v1[3], const double v2[3], double res[3] )
@@ -179,7 +228,7 @@ void vectAdd3D(const double v1[3], const double v2[3], double res[3])
   res[2] = v1[2] + v2[2];
 }
 /*----------------------------------------------------------------------------*/
-void scalarMult3D(const double v[3], const double scalar, double res[3])
+void scalarMult3D(const double v[3], double scalar, double res[3])
 {
   res[0] = scalar * v[0];
   res[1] = scalar * v[1];

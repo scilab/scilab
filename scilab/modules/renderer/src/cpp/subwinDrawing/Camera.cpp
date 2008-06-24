@@ -20,6 +20,7 @@ extern "C"
 #include "math_graphics.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
+#include "BuildObjects.h"
 }
 
 namespace sciGraphics
@@ -230,8 +231,6 @@ bool Camera::zoomRect(const double corners[4][2])
   double selectionLines[4][2][3]; // contains 4 lines which are actually 2 points
   computeZoomAreaLines(corners, selectionLines);
 
-  
-
   // second step project lines on each of the 6 axes cube plane
   // actually we just need the found the bounds of the intersection of
   // the selectionArea and the axes cube. And the bounds are found on the cube.
@@ -257,69 +256,98 @@ bool Camera::zoomRect(const double corners[4][2])
   // the four intersections with one plane
   double intersections[4][3];
 
-  // intersection with x = Xmin axis
-  if (   getXaxisIntersections(selectionLines, oldXmin, intersections)
-      && checkXIntersections(intersections, oldYmin, oldYmax, oldZmin, oldZmax))
-  {
-    // ok we found points and the selection intersect the side of the cube
-    // update Y and Z coordinates
-    // don't try to update X here, it's just xMin
-    updateYCoordinate(intersections, oldYmin, oldYmax, newYmin, newYmax);
-    updateZCoordinate(intersections, oldZmin, oldZmax, newZmin, newZmax);
+  // edges of the intersection and the axes cube face
+  double projectedIntersections[8][3];
 
-    newXmin = oldXmin;
+
+
+  // intersection with x = Xmin axis
+  if (getXaxisIntersections(selectionLines, oldXmin, intersections))
+  {
+    int nbProjectedIntersections = getProjectedXIntersections(intersections, projectedIntersections,
+                                                              oldXmin, oldYmin, oldYmax, oldZmin, oldZmax);
+    if (nbProjectedIntersections > 0)
+    {
+      // ok we found points and the selection intersect the side of the cube
+      // update Y and Z coordinates
+      // don't try to update X here, it's just xMin
+      updateYCoordinate(projectedIntersections, nbProjectedIntersections, oldYmin, oldYmax, newYmin, newYmax);
+      updateZCoordinate(projectedIntersections, nbProjectedIntersections, oldZmin, oldZmax, newZmin, newZmax);
+
+      newXmin = oldXmin;
+    }
   }
 
  
 
   // same with x = Xmax axis
-  if (   getXaxisIntersections(selectionLines, oldXmax, intersections)
-      && checkXIntersections(intersections, oldYmin, oldYmax, oldZmin, oldZmax))
+  if (getXaxisIntersections(selectionLines, oldXmax, intersections))
   {
-    updateYCoordinate(intersections, oldYmin, oldYmax, newYmin, newYmax);
-    updateZCoordinate(intersections, oldZmin, oldZmax, newZmin, newZmax);
+    int nbProjectedIntersections = getProjectedXIntersections(intersections, projectedIntersections,
+                                                              oldXmax, oldYmin, oldYmax, oldZmin, oldZmax);
+    if (nbProjectedIntersections > 0)
+    {
+      updateYCoordinate(projectedIntersections, nbProjectedIntersections, oldYmin, oldYmax, newYmin, newYmax);
+      updateZCoordinate(projectedIntersections, nbProjectedIntersections, oldZmin, oldZmax, newZmin, newZmax);
 
-    newXmax = newXmax;
+      newXmax = oldXmax;
+    }
   }
 
   // same with y = Ymin axis
-  if (   getYaxisIntersections(selectionLines, oldYmin, intersections)
-      && checkYIntersections(intersections, oldXmin, oldXmax, oldZmin, oldZmax))
+  if (getYaxisIntersections(selectionLines, oldYmin, intersections))
   {
-    updateXCoordinate(intersections, oldXmin, oldXmax, newXmin, newXmax);
-    updateZCoordinate(intersections, oldZmin, oldZmax, newZmin, newZmax);
+    int nbProjectedIntersections = getProjectedYIntersections(intersections, projectedIntersections,
+                                                              oldYmin, oldXmin, oldXmax, oldZmin, oldZmax);
+    if (nbProjectedIntersections > 0)
+    {
+      updateXCoordinate(projectedIntersections, nbProjectedIntersections, oldXmin, oldXmax, newXmin, newXmax);
+      updateZCoordinate(projectedIntersections, nbProjectedIntersections, oldZmin, oldZmax, newZmin, newZmax);
 
-    newYmin = oldYmin;
+      newYmin = oldYmin;
+    }
   }
 
   // same with y = Ymax axis
-  if (   getYaxisIntersections(selectionLines, oldYmax, intersections)
-      && checkYIntersections(intersections, oldXmin, oldXmax, oldZmin, oldZmax))
+  if (getYaxisIntersections(selectionLines, oldYmax, intersections))
   {
-    updateXCoordinate(intersections, oldXmin, oldXmax, newXmin, newXmax);
-    updateZCoordinate(intersections, oldZmin, oldZmax, newZmin, newZmax);
+    int nbProjectedIntersections = getProjectedYIntersections(intersections, projectedIntersections,
+                                                              oldYmax, oldXmin, oldXmax, oldZmin, oldZmax);
+    if (nbProjectedIntersections > 0)
+    {
+      updateXCoordinate(projectedIntersections, nbProjectedIntersections, oldXmin, oldXmax, newXmin, newXmax);
+      updateZCoordinate(projectedIntersections, nbProjectedIntersections, oldZmin, oldZmax, newZmin, newZmax);
 
-    newYmax = oldYmax;
+      newYmax = oldYmax;
+    }
   }
 
   // same with z = Zmin axis
-  if (   getZaxisIntersections(selectionLines, oldZmin, intersections)
-      && checkZIntersections(intersections, oldXmin, oldXmax, oldYmin, oldYmax))
+  if (getZaxisIntersections(selectionLines, oldZmin, intersections))
   {
-    updateXCoordinate(intersections, oldXmin, oldXmax, newXmin, newXmax);
-    updateYCoordinate(intersections, oldYmin, oldYmax, newYmin, newYmax);
+    int nbProjectedIntersections = getProjectedZIntersections(intersections, projectedIntersections,
+                                                              oldZmin, oldXmin, oldXmax, oldYmin, oldYmax);
+    if (nbProjectedIntersections > 0)
+    {
+      updateXCoordinate(projectedIntersections, nbProjectedIntersections, oldXmin, oldXmax, newXmin, newXmax);
+      updateYCoordinate(projectedIntersections, nbProjectedIntersections, oldYmin, oldYmax, newYmin, newYmax);
 
-    newZmin = oldZmin;
+      newZmin = oldZmin;
+    }
   }
 
   // same with z = Zmax axis
-  if (   getZaxisIntersections(selectionLines, oldZmax, intersections)
-      && checkZIntersections(intersections, oldXmin, oldXmax, oldYmin, oldYmax))
+  if (getZaxisIntersections(selectionLines, oldZmax, intersections))
   {
-    updateXCoordinate(intersections, oldXmin, oldXmax, newXmin, newXmax);
-    updateYCoordinate(intersections, oldYmin, oldYmax, newYmin, newYmax);
+    int nbProjectedIntersections = getProjectedZIntersections(intersections, projectedIntersections,
+                                                              oldZmax, oldXmin, oldXmax, oldYmin, oldYmax);
+    if (nbProjectedIntersections > 0)
+    {
+      updateXCoordinate(projectedIntersections, nbProjectedIntersections, oldXmin, oldXmax, newXmin, newXmax);
+      updateYCoordinate(projectedIntersections, nbProjectedIntersections, oldYmin, oldYmax, newYmin, newYmax);
 
-    newZmax = oldZmax;
+      newZmax = oldZmax;
+    }
   }
 
   // check that the view was not outside
@@ -455,6 +483,7 @@ bool Camera::getZaxisIntersections(const double areaLines[4][2][3], double plane
 
     if (alpha == 1.0)
     {
+      // lines are parallel to the plane
       return false;
     }
     
@@ -470,11 +499,12 @@ void Camera::getIntersection(const double p1[3], const double p2[3], double alph
   scalarMult3D(intersection, 1.0 / (alpha - 1.0), intersection); // I = (P1 + a.P2) / (a - 1)
 }
 /*--------------------------------------------------------------------------*/
-void Camera::updateXCoordinate(const double intersections[4][3],
+void Camera::updateXCoordinate(const double intersections[][3],
+                               int nbIntersections,
                                double oldXmin, double oldXmax,
                                double & newXmin, double & newXmax)
 {
-  for (int i = 0; i < 4; i++)
+  for (int i = 0; i < nbIntersections; i++)
   {
     if (intersections[i][0] < newXmin)
     {
@@ -489,11 +519,12 @@ void Camera::updateXCoordinate(const double intersections[4][3],
   }
 }
 /*--------------------------------------------------------------------------*/
-void Camera::updateYCoordinate(const double intersections[4][3],
+void Camera::updateYCoordinate(const double intersections[][3],
+                               int nbIntersections,
                                double oldYmin, double oldYmax,
                                double & newYmin, double & newYmax)
 {
-  for (int i = 0; i < 4; i++)
+  for (int i = 0; i < nbIntersections; i++)
   {
     if (intersections[i][1] < newYmin)
     {
@@ -508,11 +539,12 @@ void Camera::updateYCoordinate(const double intersections[4][3],
   }
 }
 /*--------------------------------------------------------------------------*/
-void Camera::updateZCoordinate(const double intersections[4][3],
+void Camera::updateZCoordinate(const double intersections[][3],
+                               int nbIntersections,
                                double oldZmin, double oldZmax,
                                double & newZmin, double & newZmax)
 {
-  for (int i = 0; i < 4; i++)
+  for (int i = 0; i < nbIntersections; i++)
   {
     if (intersections[i][2] < newZmin)
     {
@@ -527,52 +559,435 @@ void Camera::updateZCoordinate(const double intersections[4][3],
   }
 }
 /*--------------------------------------------------------------------------*/
-bool Camera::checkXIntersections(const double intersections[4][3],
-                                 double oldYmin, double oldYmax,
-                                 double oldZmin, double oldZmax)
+int Camera::getProjectedXIntersections(const double intersections[4][3], double projectedIntersections[8][3],
+                                       double planeXCoord,
+                                       double yMin, double yMax, double zMin, double zMax)
 {
+  int nbIntersections = 0;
+  double intersections2D[4][2];
+  double projectedIntersections2D[8][2];
+
+  // project on the plane
   for (int i = 0; i < 4; i++)
   {
-    if (   intersections[i][1] >= oldYmin && intersections[i][1] <= oldYmax
-        && intersections[i][2] >= oldZmin && intersections[i][2] <= oldZmax)
-    {
-      // at least one point in the side
-      return true;
-    }
+    projectOnXPlane(intersections[i], intersections2D[i]);
   }
-  return false;
+
+  // get intersections on the plane
+  nbIntersections = getProjectedIntersections2D(intersections2D, projectedIntersections2D,
+                                                yMin, yMax, zMin, zMax);
+
+  // project back
+  for (int i = 0; i < nbIntersections; i++)
+  {
+    unProjectOnXPlane(projectedIntersections2D[i], projectedIntersections[i], planeXCoord);
+  }
+  return nbIntersections;
 }
 /*--------------------------------------------------------------------------*/
-bool Camera::checkYIntersections(const double intersections[4][3],
-                                 double oldXmin, double oldXmax,
-                                 double oldZmin, double oldZmax)
+int Camera::getProjectedYIntersections(const double intersections[4][3], double projectedIntersections[8][3],
+                                       double planeYCoord,
+                                       double xMin, double xMax, double zMin, double zMax)
 {
+  int nbIntersections = 0;
+  double intersections2D[4][2];
+  double projectedIntersections2D[8][2];
+
+  // project on the plane
   for (int i = 0; i < 4; i++)
   {
-    if (   intersections[i][0] >= oldXmin && intersections[i][0] <= oldXmax
-        && intersections[i][2] >= oldZmin && intersections[i][2] <= oldZmax)
-    {
-      // at least one point in the side
-      return true;
-    }
+    projectOnYPlane(intersections[i], intersections2D[i]);
   }
-  return false;
+
+  // get intersections on the plane
+  nbIntersections = getProjectedIntersections2D(intersections2D, projectedIntersections2D,
+                                                xMin, xMax, zMin, zMax);
+
+  // project back
+  for (int i = 0; i < nbIntersections; i++)
+  {
+    unProjectOnYPlane(projectedIntersections2D[i], projectedIntersections[i], planeYCoord);
+  }
+  return nbIntersections;
 }
 /*--------------------------------------------------------------------------*/
-bool Camera::checkZIntersections(const double intersections[4][3],
-                                 double oldXmin, double oldXmax,
-                                 double oldYmin, double oldYmax)
+int Camera::getProjectedZIntersections(const double intersections[4][3], double projectedIntersections[8][3],
+                                       double planeZCoord,
+                                       double xMin, double xMax, double yMin, double yMax)
 {
+  int nbIntersections = 0;
+  double intersections2D[4][2];
+  double projectedIntersections2D[8][2];
+
+  // project on the plane
   for (int i = 0; i < 4; i++)
   {
-    if (   intersections[i][0] >= oldXmin && intersections[i][0] <= oldXmax
-        && intersections[i][1] >= oldYmin && intersections[i][1] <= oldYmax)
+    projectOnZPlane(intersections[i], intersections2D[i]);
+  }
+
+  // get intersections on the plane
+  nbIntersections = getProjectedIntersections2D(intersections2D, projectedIntersections2D,
+                                                xMin, xMax, yMin, yMax);
+
+  // project back
+  for (int i = 0; i < nbIntersections; i++)
+  {
+    unProjectOnZPlane(projectedIntersections2D[i], projectedIntersections[i], planeZCoord);
+  }
+  return nbIntersections;
+}
+/*--------------------------------------------------------------------------*/
+void Camera::projectOnXPlane(const double point[3], double proj[2])
+{
+  // only Y and Z coordinates are useful
+  proj[0] = point[1];
+  proj[1] = point[2];
+}
+/*--------------------------------------------------------------------------*/
+void Camera::unProjectOnXPlane(const double proj[2], double point[3], double planeXCoord)
+{
+  point[0] = planeXCoord;
+  point[1] = proj[0];
+  point[2] = proj[1];
+}
+/*--------------------------------------------------------------------------*/
+void Camera::projectOnYPlane(const double point[3], double proj[2])
+{
+  // only X and Z coordinates are useful
+  proj[0] = point[0];
+  proj[1] = point[2];
+}
+/*--------------------------------------------------------------------------*/
+void Camera::unProjectOnYPlane(const double proj[2], double point[3], double planeYCoord)
+{
+  point[0] = proj[0];
+  point[1] = planeYCoord;
+  point[2] = proj[1];
+}
+/*--------------------------------------------------------------------------*/
+void Camera::projectOnZPlane(const double point[3], double proj[2])
+{
+  // only X and Y coordinates are useful
+  proj[0] = point[0];
+  proj[1] = point[1];
+}
+/*--------------------------------------------------------------------------*/
+void Camera::unProjectOnZPlane(const double proj[2], double point[3], double planeZCoord)
+{
+  point[0] = proj[0];
+  point[1] = proj[1];
+  point[2] = planeZCoord;
+}
+/*--------------------------------------------------------------------------*/
+int Camera::getProjectedIntersections2D(const double intersections[4][2], double projectedIntersections[8][2],
+                                        double xMin, double xMax, double yMin, double yMax)
+{
+  int nbIntersections = 0;
+  for (int i = 0; i < 4; i++)
+  {
+    if (computeLineFillRectangleIntersections(intersections[i],
+                                              intersections[(i + 1) %4],
+                                              xMin, xMax, yMin, yMax,
+                                              &(projectedIntersections[nbIntersections])))
     {
-      // at least one point in the side
-      return true;
+      // intersection found
+      nbIntersections += 2;
     }
   }
-  return false;
+
+  if (nbIntersections == 2)
+  {
+    // only one edge has been crossed
+    // this means that part of the rectangle is inside the quadrangle
+    // Two points af the rectangle are inside
+    // we need to add them to the intersections
+    double rectangleCorner[2];
+
+    // first point
+    rectangleCorner[0] = xMin;
+    rectangleCorner[1] = yMin;
+    if (isPointInQuadrangle(rectangleCorner, intersections))
+    {
+      // add it
+      projectedIntersections[nbIntersections][0] = rectangleCorner[0];
+      projectedIntersections[nbIntersections][1] = rectangleCorner[1];
+      nbIntersections++;
+    }
+
+    // seconf point
+    rectangleCorner[0] = xMin;
+    rectangleCorner[1] = yMax;
+    if (isPointInQuadrangle(rectangleCorner, intersections))
+    {
+      // add it
+      projectedIntersections[nbIntersections][0] = rectangleCorner[0];
+      projectedIntersections[nbIntersections][1] = rectangleCorner[1];
+      nbIntersections++;
+    }
+
+    // first point
+    rectangleCorner[0] = xMax;
+    rectangleCorner[1] = yMin;
+    if (isPointInQuadrangle(rectangleCorner, intersections))
+    {
+      // add it
+      projectedIntersections[nbIntersections][0] = rectangleCorner[0];
+      projectedIntersections[nbIntersections][1] = rectangleCorner[1];
+      nbIntersections++;
+    }
+
+    // first point
+    rectangleCorner[0] = xMax;
+    rectangleCorner[1] = yMax;
+    if (isPointInQuadrangle(rectangleCorner, intersections))
+    {
+      // add it
+      projectedIntersections[nbIntersections][0] = rectangleCorner[0];
+      projectedIntersections[nbIntersections][1] = rectangleCorner[1];
+      nbIntersections++;
+    }
+  }
+
+  return nbIntersections;
+}
+/*--------------------------------------------------------------------------*/
+bool Camera::computeLineFillRectangleIntersections(const double p1[2], const double p2[2],
+                                                   double xMin, double xMax, double yMin, double yMax,
+                                                   double intersections[2][2])
+{
+  // compute the number of intersections with the rectangle (just boundary not inside)
+  int nbIntersectionWithRectangle
+    = computeLineRectangleIntersections(p1, p2, xMin, xMax, yMin, yMax, intersections);
+
+  if (nbIntersectionWithRectangle == 1)
+  {
+    // one of the point lies inside the rectangle
+    if (isInsideRectangle(p1, xMin, xMax, yMin, yMax))
+    {
+      // p1 is inside
+      intersections[1][0] = p1[0];
+      intersections[1][1] = p1[1];
+    }
+    else
+    {
+      // p2 is inside
+      intersections[1][0] = p2[0];
+      intersections[1][1] = p2[1];
+    }
+  }
+  else if (nbIntersectionWithRectangle == 0)
+  {
+    // both of the points lies inside the rectangle or any
+    if (isInsideRectangle(p1, xMin, xMax, yMin, yMax))
+    {
+      // p1 and p2 are inside
+      intersections[0][0] = p1[0];
+      intersections[0][1] = p1[1];
+      intersections[1][0] = p2[0];
+      intersections[1][1] = p2[1];
+    }
+    else
+    {
+      // no intersections
+      return false;
+    }
+  }
+
+  // if the two intersections have been found, just return them
+  return true;
+}
+/*--------------------------------------------------------------------------*/
+bool Camera::isInsideRectangle(const double p[2], double xMin, double xMax, double yMin,
+                               double yMax)
+{
+  return (p[0] >= xMin && p[0] <= xMax && p[1] >= yMin && p[1] <= yMax);
+}
+/*--------------------------------------------------------------------------*/
+int Camera::computeLineRectangleIntersections(const double p1[2], const double p2[2],
+                                              double xMin, double xMax, double yMin, double yMax,
+                                              double intersections[2][2])
+{
+  int nbIntersections = 0;
+  
+  // check intersection with x = xMin
+  // Let's I be the intersection of p1, p2 with x = xMin
+  // I lies on (p1,p2), so I = p1 + a.p1p2
+  // then with a projection on x, Ix = p1x + a.(p2x - p1x) = xMin.
+  // So a = (xMin - p1x) / (p2x - p1x), if p2x != p1x
+  // Consequnently, I is on the rectangle if p2x != p1x and 0 < a < 1
+  // so that I is between A and B and also that Iy is between yMin and yMax
+  if (p1[0] != p2[0])
+  {
+    if (checkXIntersection(p1, p2, intersections[nbIntersections],
+                           xMin, yMin, yMax))
+    {
+      nbIntersections++;
+    }
+
+    // same for x = xMax
+    if (checkXIntersection(p1, p2, intersections[nbIntersections],
+                           xMax, yMin, yMax))
+    {
+      nbIntersections++;
+    }
+
+  }
+
+  // same for Y axis
+  if (p1[1] != p2[1])
+  {
+    if (checkYIntersection(p1, p2, intersections[nbIntersections],
+                           yMin, xMin, xMax))
+    {
+      nbIntersections++;
+    }
+
+    // same for x = xMax
+    if (checkYIntersection(p1, p2, intersections[nbIntersections],
+                           yMax, xMin, xMax))
+    {
+      nbIntersections++;
+    }
+
+  }
+
+  return nbIntersections;
+}
+/*--------------------------------------------------------------------------*/
+bool Camera::checkXIntersection(const double p1[2], const double p2[2], double res[2],
+                                double rectXCoord, double yMin, double yMax)
+{
+  double a = (rectXCoord - p1[0]) / (p2[0] - p1[0]);
+
+  if ( a <= 0.0 || a >= 1.0)
+  {
+    // Intersection is not between p1 and p2
+    return false;
+  }
+
+  // compute res = p1 + a.p1p2
+  p1PlusAP1P2(p1, p2, a, res);
+
+  // check that the intersection is between yMin and yMax
+  if (res[1] < yMin || res[1] > yMax)
+  {
+    return false;
+  }
+
+  return true;
+
+}
+/*--------------------------------------------------------------------------*/
+bool Camera::checkYIntersection(const double p1[2], const double p2[2], double res[2],
+                                double rectYCoord, double xMin, double xMax)
+{
+  double a = (rectYCoord - p1[1]) / (p2[1] - p1[1]);
+
+  if ( a <= 0.0 || a >= 1.0)
+  {
+    // Intersection is not between p1 and p2
+    return false;
+  }
+
+  // compute res = p1 + a.p1p2
+  p1PlusAP1P2(p1, p2, a, res);
+
+  // check that the intersection is between yMin and yMax
+  if (res[0] < xMin || res[0] > xMax)
+  {
+    return false;
+  }
+
+  return true;
+
+}
+/*--------------------------------------------------------------------------*/
+void Camera::p1PlusAP1P2(const double p1[2], const double p2[2], double a, double res[2])
+{
+  // compute res = p1 + a.p1p2
+  vectSubstract2D(p2, p1, res); // res = p1p2
+  scalarMult2D(res, a, res); // res = a.p1p2
+  vectAdd2D(res, p1, res); // res = p1 + a.p1p2
+}
+/*--------------------------------------------------------------------------*/
+bool Camera::isPointInQuadrangle(const double point[2], const double corners[4][2])
+{
+  // decompose the quad into two triangles and find if the point
+  // is in one or the other
+  return (   isPointInTriangle(point, corners[0], corners[1], corners[2])
+          || isPointInTriangle(point, corners[1], corners[2], corners[3]));
+}
+/*--------------------------------------------------------------------------*/
+void Camera::visualizeZoomingArea(const double intersections[4][2][3])
+{
+  double intersectionsView[4][2][3];
+
+  for (int i = 0; i < 4; i++)
+  {
+    double lineDir[3];
+    vectSubstract3D(intersections[i][0], intersections[i][1], lineDir);
+    scalarMult3D(lineDir, 5.0, lineDir);
+
+    double linePoint1[3];
+    vectAdd3D(intersections[i][0], lineDir, linePoint1);
+
+    scalarMult3D(lineDir, -1.0, lineDir);
+
+    double linePoint2[3];
+    vectAdd3D(intersections[i][0], lineDir, linePoint2);
+
+    for (int j = 0; j < 3; j++)
+    {
+      intersectionsView[i][0][j] = linePoint1[j];
+      intersectionsView[i][1][j] = linePoint2[j];
+    }
+  }
+
+  int color = 0;
+  // draw viewing area
+  for (int i = 0; i < 4; i++)
+  {
+    
+    color++;
+
+    double xCoords[4] = {intersectionsView[i][0][0], intersectionsView[i][1][0],
+                         intersectionsView[(i + 1)%4][1][0], intersectionsView[(i+1)%4][0][0]};
+    double yCoords[4] = {intersectionsView[i][0][1], intersectionsView[i][1][1],
+                         intersectionsView[(i + 1)%4][1][1], intersectionsView[(i+1)%4][0][1]};
+    double zCoords[4] = {intersectionsView[i][0][2], intersectionsView[i][1][2],
+                         intersectionsView[(i + 1)%4][1][2], intersectionsView[(i+1)%4][0][2]};
+    sciPointObj * polyline = ConstructPolyline(m_pDrawed, xCoords, yCoords, zCoords,
+                                               FALSE, 4, 1, &color, &color, &color,
+                                               &color, &color, FALSE, TRUE, FALSE,
+                                               FALSE);
+    // clipgrf
+    sciSetIsClipping(polyline, 0);
+    
+
+  }
+}
+/*--------------------------------------------------------------------------*/
+void Camera::visualizeIntersection(const double intersections[4][3])
+{
+  int color = 0;
+  int mark = 0;
+  double xCoords[4];
+  double yCoords[4];
+  double zCoords[4];
+  for (int i = 0; i < 4; i++)
+  {
+    xCoords[i] = intersections[i][0];
+    yCoords[i] = intersections[i][1];
+    zCoords[i] = intersections[i][2];
+  }
+
+  sciPointObj * polyline = ConstructPolyline(m_pDrawed, xCoords, yCoords, zCoords,
+                                             TRUE, 4, 1, &color, &color, &mark,
+                                             &color, &color, TRUE, FALSE, TRUE,
+                                             FALSE);
+  // clipgrf
+  sciSetIsClipping(polyline, -1);
+
 }
 /*--------------------------------------------------------------------------*/
 CameraBridge * Camera::getCameraImp( void )

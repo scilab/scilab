@@ -143,6 +143,18 @@ void iNormalize2d( int vect[2] ) ;
 void vectSubstract2D(const double vect1[2], const double vect2[], double res[2]);
 
 /**
+ * substraction of two vector
+ * @param res result of v1 + v2
+ */
+void vectAdd2D(const double v1[2], const double v2[2], double res[2]);
+
+/**
+ * Multiply a vector by a scalar
+ * @param res scalar.v
+ */
+void scalarMult2D(const double v[2], const double scalar, double res[2]);
+
+/**
  * return the scalar product of two 2d vectors.
  */
 #define DOT_PROD_2D(v1,v2) ( ((v1)[0]) * ((v2)[0]) + ((v1)[1]) * ((v2)[1]) )
@@ -156,6 +168,18 @@ void vectSubstract2D(const double vect1[2], const double vect2[], double res[2])
  * Norm of a 2D vector
  */
 #define NORM_2D(v) ( sqrt( SQUARE_NORM_2D(v) ) )
+
+/**
+ * Compute wether the point lies within the triangle defined by A, B and C
+ */
+BOOL isPointInTriangle(const double point[2], const double a[2],
+                       const double b[2], const double c[2]);
+
+/**
+ * Compute wether p1 and p2 are on the same side of line (A,B).
+ */
+BOOL areOnSameSideOfLine(const double p1[2], const double p2[2],
+                         const double a[2], const double b[2]);
 
 /************************************************************************/
 /* 3D algorithms                                                        */
@@ -198,7 +222,7 @@ void vectAdd3D(const double v1[3], const double v2[3], double res[3]);
  * Multiply a vector by a scalar
  * @param res scalar.v
  */
-void scalarMult3D(const double v[3], const double scalar, double res[3]);
+void scalarMult3D(const double v[3], double scalar, double res[3]);
 
 /**
  * Normalize a 3D vector

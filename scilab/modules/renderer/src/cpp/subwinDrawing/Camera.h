@@ -149,6 +149,14 @@ protected:
   bool zoomRect(const double corners[4][2]);
 
   /**
+   * Return the real type of implementation object
+   */
+  CameraBridge * getCameraImp( void ) ;
+
+
+private:
+  
+   /**
    * Compute the lines composing the zooming selection area
    * @param areaPixCorners corners of the selction rectangle in pixels
    * @param areaLines 4 line composing the selection area in 3D
@@ -194,7 +202,8 @@ protected:
    * @param[in/out] newYmin currently computed minimum X bound
    * @param[in/out] newYmax currently computed maximum X bound
    */
-  void updateXCoordinate(const double intersections[4][3],
+  void updateXCoordinate(const double intersections[][3],
+                         int nbIntersections,
                          double oldXmin, double oldXmax,
                          double & newXmin, double & newXmax);
 
@@ -206,7 +215,8 @@ protected:
    * @param[in/out] newYmin currently computed minimum Y bound
    * @param[in/out] newYmax currently computed maximum Y bound
    */
-  void updateYCoordinate(const double intersections[4][3],
+  void updateYCoordinate(const double intersections[][3],
+                         int nbIntersections,
                          double oldYmin, double oldYmax,
                          double & newYmin, double & newYmax);
 
@@ -218,45 +228,194 @@ protected:
    * @param[in/out] newYmin currently computed minimum Z bound
    * @param[in/out] newYmax currently computed maximum Z bound
    */
-  void updateZCoordinate(const double intersections[4][3],
+  void updateZCoordinate(const double intersections[][3],
+                         int nbIntersections,
                          double oldZmin, double oldZmax,
                          double & newZmin, double & newZmax);
 
   /**
-   * test if part of the intersections is within a cube side
-   * with equatuion x = cst
-   * @return true if the intersection are within the side and
-   *              that intersections may be used to update data bounds
+   * Compute the summits of the intersection of the viewing volume and on of the axes cub face
+   * aligned with X axis.
+   * @param intersections summits of the intsection between the viewing area and the plane
+   *                      (infinite) of the face
+   * @param projectedIntersections result, summit (up to 8) of the resulting area
+   * @param planeXCoord X coordinate of the face
+   * @param yMin bound of the face
+   * @param yMax bound of the face
+   * @param zMin bound of the face
+   * @param zMax bound of the face
+   * @return number of summits founds (from 0 to 8), if 0 the viewing area does not intersect the face
    */
-  bool checkXIntersections(const double intersections[4][3],
-                           double oldYmin, double oldYmax,
-                           double oldZmin, double oldZmax);
+  int getProjectedXIntersections(const double intersections[4][3], double projectedIntersections[8][3],
+                                 double planeXCoord,
+                                 double yMin, double yMax, double zMin, double zMax);
 
   /**
-   * test if part of the intersections is within a cube side
-   * with equatuion x = cst
-   * @return true if the intersection are within the side and
-   *              that intersections may be used to update data bounds
+   * Compute the summits of the intersection of the viewing volume and on of the axes cub face
+   * aligned with Y axis.
+   * @param intersections summits of the intsection between the viewing area and the plane
+   *                      (infinite) of the face
+   * @param projectedIntersections result, summit (up to 8) of the resulting area
+   * @param planeYCoord Y coordinate of the face
+   * @param xMin bound of the face
+   * @param xMax bound of the face
+   * @param zMin bound of the face
+   * @param zMax bound of the face
+   * @return number of summits founds (from 0 to 8), if 0 the viewing area does not intersect the face
    */
-  bool checkYIntersections(const double intersections[4][3],
-                           double oldXmin, double oldXmax,
-                           double oldZmin, double oldZmax);
+  int getProjectedYIntersections(const double intersections[4][3], double projectedIntersections[8][3],
+                                 double planeYCoord,
+                                 double xMin, double xMax, double zMin, double zMax);
 
   /**
-   * test if part of the intersections is within a cube side
-   * with equatuion x = cst
-   * @return true if the intersection are within the side and
-   *              that intersections may be used to update data bounds
+   * Compute the summits of the intersection of the viewing volume and on of the axes cub face
+   * aligned with Z axis.
+   * @param intersections summits of the intsection between the viewing area and the plane
+   *                      (infinite) of the face
+   * @param projectedIntersections result, summit (up to 8) of the resulting area
+   * @param planeZCoord Z coordinate of the face
+   * @param xMin bound of the face
+   * @param xMax bound of the face
+   * @param yMin bound of the face
+   * @param yMax bound of the face
+   * @return number of summits founds (from 0 to 8), if 0 the viewing area does not intersect the face
    */
-  bool checkZIntersections(const double intersections[4][3],
-                           double oldXmin, double oldXmax,
-                           double oldYmin, double oldYmax);
+  int getProjectedZIntersections(const double intersections[4][3], double projectedIntersections[8][3],
+                                 double planeZCoord,
+                                 double xMin, double xMax, double yMin, double yMax);
+
+  /**
+   * Get the projection in 2D of a point on a plane aligned with X axis
+   */
+  void projectOnXPlane(const double point[3], double proj[2]);
+
+  /**
+   * Get the 3D coordiates of a point lying on a plane aligned with X axis
+   * @param planeXCoord X coordinate of the plane
+   */
+  void unProjectOnXPlane(const double proj[2], double point[3], double planeXCoord);
+
+  /**
+   * Get the projection in 2D of a point on a plane aligned with Y axis
+   */
+  void projectOnYPlane(const double point[3], double proj[2]);
+
+  /**
+   * Get the 3D coordiates of a point lying on a plane aligned with Y axis
+   * @param planeYCoord Y coordinate of the plane
+   */
+  void unProjectOnYPlane(const double proj[2], double point[3], double planeYCoord);
+
+  /**
+   * Get the projection in 2D of a point on a plane aligned with Z axis
+   */
+  void projectOnZPlane(const double point[3], double proj[2]);
+
+  /**
+   * Get the 3D coordiates of a point lying on a plane aligned with Z axis
+   * @param planeZCoord Z coordinate of the plane
+   */
+  void unProjectOnZPlane(const double proj[2], double point[3], double planeZCoord);
+
+  /**
+   * Compute the summits of the intersection of a quandrangle and an axis aliged rectangle
+   * @param intersections summits of the intsection between the quadrangle and the rectangme
+   * @param projectedIntersections result, summit (up to 8) of the resulting area
+   * @param xMin bound of the rectangle
+   * @param xMax bound of the rectangle
+   * @param yMin bound of the rectangle
+   * @param yMax bound of the rectangle
+   * @return number of summits founds (from 0 to 8), if 0 the quadrandle does not intersect the face
+   */
+  int getProjectedIntersections2D(const double intersections[4][2], double projectedIntersections[8][2],
+                                  double xMin, double xMax, double yMin, double yMax);
+
+  /**
+   * Compute the two extremities of teh segment resulting in the intersection
+   * of a rectangle (filled) and a segment in 2D.
+   * @param p1 first end of the segment
+   * @param p2 second end of the segment
+   * @param xMin bound of the rectangle
+   * @param xMax bound of the rectangle
+   * @param yMin bound of the rectangle
+   * @param yMax bound of the rectangle
+   * @param intersections result, if an intersection has been found, contains the two ends
+   *                      of the intersection
+   * @return if true an intersection has been found, if false there is no intersection between
+   *         the segment and the rectangle
+   */
+  bool computeLineFillRectangleIntersections(const double p1[2], const double p2[2],
+                                             double xMin, double xMax, double yMin, double yMax,
+                                             double intersections[2][2]);
+  /**
+   * Check if a point is inside an axis aligned rectangle
+   */
+  bool isInsideRectangle(const double p[2], double xMin, double xMax, double yMin,
+                               double yMax);
+
+  /**
+   * Compute the intersection between a segment and the outside of a rectangle
+   * @param p1 first end of the segment
+   * @param p2 second end of the segment
+   * @param xMin bound of the rectangle
+   * @param xMax bound of the rectangle
+   * @param yMin bound of the rectangle
+   * @param yMax bound of the rectangle
+   * @param intersection result, positions of the found intersection(s).
+   * @return number of found intersections, might be 0, 1 or 2
+   */
+  int computeLineRectangleIntersections(const double p1[2], const double p2[2],
+                                        double xMin, double xMax, double yMin, double yMax,
+                                        double intersections[2][2]);
+
+  /**
+   * Compute intersection between a segment and an edge a rectangle aligned with X axis
+   * @param p1 first end of the segment
+   * @param p2 second end of the segment
+   * @param res result, position of the intersection if one has been found
+   * @param rectXCoord X coordinate of the edge
+   * @param yMin bound of the edge
+   * @param yMax bound of the edge
+   * @return true if the segement intersect the edge, false otherwise
+   */
+  bool checkXIntersection(const double p1[2], const double p2[2], double res[2],
+                          double rectXCoord, double yMin, double yMax);
 
 
   /**
-   * Return the real type of implementation object
+   * Compute intersection between a segment and an edge a rectangle aligned with Y axis
+   * @param p1 first end of the segment
+   * @param p2 second end of the segment
+   * @param res result, position of the intersection if one has been found
+   * @param rectYCoord Y coordinate of the edge
+   * @param xMin bound of the edge
+   * @param xMax bound of the edge
+   * @return true if the segement intersect the edge, false otherwise
    */
-  CameraBridge * getCameraImp( void ) ;
+  bool checkYIntersection(const double p1[2], const double p2[2], double res[2],
+                          double rectYCoord, double xMin, double xMax);
+
+  /**
+   * Compute P1 + a.P1P2
+   */
+  void p1PlusAP1P2(const double p1[2], const double p2[2], double a, double res[2]);
+
+  /**
+   * Check if a point is inside a quad defined by its four summits)
+   */
+  bool isPointInQuadrangle(const double point[2], const double corners[4][2]);
+
+  /**
+   * Create some graphic objects to represent the zooming area
+   * For debug urpose only.
+   */
+  void visualizeZoomingArea(const double intersections[4][2][3]);
+
+  /**
+   * Create some objects to help visulazing intersections
+   * For debug purpose only.
+   */
+  void visualizeIntersection(const double intersections[4][3]);
 
 };
 

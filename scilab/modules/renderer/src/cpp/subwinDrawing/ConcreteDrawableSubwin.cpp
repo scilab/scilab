@@ -197,6 +197,8 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
   }
 
   // fit them if needed
+  // for a more accurate zoom, tigth limits are enable if the zoom
+  // is enable
   if (!sciGetTightLimitsOn(m_pDrawed) && !isZoomed)
   {
     m_pXBoundsStrategy->applyBestFitting(bestXBounds, bestXBounds);
