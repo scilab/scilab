@@ -1240,18 +1240,22 @@ sciGetLegendPlace (sciPointObj * pobj)
 /**sciGetLegendPos
  * Returns the Title Position
  */
-POINT2D
-sciGetLegendPos (sciPointObj * pobj)
+
+void sciGetLegendPos (sciPointObj * pobj, double position[2])
 {
   POINT2D tmppoint;
-  if (sciGetEntityType (pobj) == SCI_LEGEND)
-    return pLEGEND_FEATURE (pobj)->pos;
+  if (sciGetEntityType (pobj) == SCI_LEGEND) {
+    tmppoint= pLEGEND_FEATURE (pobj)->pos;
+    position[0] = tmppoint.x;
+    position[1] = tmppoint.y;
+  }
+
   else
     {
-      tmppoint.x = -1;
-      tmppoint.y = -1;
+      position[0] = -1;
+      position[1] = -1;
       sciprint (_("You are not using a legend object.\n"));
-      return tmppoint;
+      return;
     }
 }
 

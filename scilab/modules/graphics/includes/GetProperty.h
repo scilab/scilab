@@ -87,7 +87,7 @@ sciTitlePlace sciGetTitlePlace (sciPointObj * pobj); /* GET */
 
 /* Legend */
 sciLegendPlace sciGetLegendPlace (sciPointObj * pobj);
-POINT2D sciGetLegendPos (sciPointObj * pobj);
+void sciGetLegendPos (sciPointObj * pobj , double position[]);
 
 /* Figure / Subwin main functions */
 sciPointObj *sciGetParentFigure (sciPointObj * pobj); /* GET */

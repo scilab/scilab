@@ -118,8 +118,8 @@ int sciSetTitlePlace (sciPointObj * pobj, sciTitlePlace place); /* SET */
 int sciInitLegendPlace(sciPointObj * pobj, sciLegendPlace place);
 int sciSetLegendPlace (sciPointObj * pobj, sciLegendPlace place); /* SET */
 
-int sciInitLegendPos(sciPointObj * pobj, int x, int y);
-int sciSetLegendPos (sciPointObj * pobj, int x, int y); /* SET */
+int sciInitLegendPos(sciPointObj * pobj, double position[]);
+int sciSetLegendPos (sciPointObj * pobj, double position[]); /* SET */
 
 /* GMODE */
 int sciInitIsClipping(sciPointObj * pobj, int value) ;

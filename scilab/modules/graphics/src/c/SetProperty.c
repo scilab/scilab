@@ -1459,7 +1459,7 @@ sciSetTitlePlace (sciPointObj * pobj, sciTitlePlace place)
 
 int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
 {
-  int x = 0;
+  double position[2]={0.0,0.0};
   int y = 0;
 
   if (sciGetEntityType (pobj) == SCI_TITLE)
@@ -1469,7 +1469,7 @@ int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
      * en fonction de la taille de la police 
      * de la fenetre...
      */
-    return sciInitLegendPos (pobj, x, y);
+    return sciInitLegendPos (pobj, position );
   }
   
   sciprint(_("You are not using a legend object.\n"));
@@ -1495,13 +1495,13 @@ sciSetLegendPlace (sciPointObj * pobj, sciLegendPlace place)
   
 }
 
-int sciInitLegendPos( sciPointObj * pobj, int x, int y )
+int sciInitLegendPos( sciPointObj * pobj, double position[] )
 {
   switch (sciGetEntityType (pobj))
     {
     case SCI_LEGEND:
-      pLEGEND_FEATURE (pobj)->pos.x = x;
-      pLEGEND_FEATURE (pobj)->pos.y = y;
+      pLEGEND_FEATURE (pobj)->pos.x = position[0];
+      pLEGEND_FEATURE (pobj)->pos.y = position[1];
       break;
     case SCI_TITLE:
     case SCI_FIGURE:
@@ -1537,16 +1537,16 @@ int sciInitLegendPos( sciPointObj * pobj, int x, int y )
  * @return 0 if ok, -1 if not
  */
 int
-sciSetLegendPos (sciPointObj * pobj, int x, int y)
+sciSetLegendPos (sciPointObj * pobj, double position[])
 {
-
-  POINT2D pos = sciGetLegendPos( pobj ) ;
-  if ( pos.x == x && pos.y == y )
+  double position_old[2] ;
+  sciGetLegendPos( pobj ,position_old) ;
+  if ( position[0] ==  position_old[0] && position[1] == position_old[1] )
   {
     /* nothing to do */
     return 1 ;
   }
-  return sciInitLegendPos( pobj, x, y ) ;
+  return sciInitLegendPos( pobj, position ) ;
 }
 
 int sciInitIsClipping( sciPointObj * pobj, int value )

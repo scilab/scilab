@@ -56,6 +56,12 @@ int get_position_property( sciPointObj * pobj )
       sciGetTextPos( pobj, position ) ;
       return sciReturnRowVector( position, 2 ) ;
     }
+  else if ( sciGetEntityType(pobj) == SCI_LEGEND )
+    {
+      double position[2] ;
+      sciGetLegendPos( pobj, position ) ;
+      return sciReturnRowVector( position, 2 ) ;
+    }
   sciprint(_("%s does not exist for this handle.\n"), "position") ;
   return -1;
 }

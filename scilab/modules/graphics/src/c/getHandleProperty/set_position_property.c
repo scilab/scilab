@@ -59,6 +59,11 @@ int set_position_property( sciPointObj * pobj, int stackPointer, int valueType, 
     sciGetTextPos(pobj, curPos);
     return sciSetTextPos( pobj, values[0], values[1], curPos[2] ) ;
   }
+  else if ( sciGetEntityType(pobj) == SCI_LEGEND )
+    {
+      double * values = getDoubleMatrixFromStack( stackPointer ) ;
+      return sciSetLegendPos( pobj, values ) ;
+    }
   else
   {
     sciprint(_("%s does not exist for this handle.\n"), "position") ;
