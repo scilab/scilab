@@ -48,8 +48,8 @@ wdim = [1,1];
 r = wdim(1)/wdim(2);
 n = round(sqrt(N/r));
 m = int(n*r);
-H = m*30;
-W = n*30;
+H = m*45; // These numbers set the size of the getcolor window
+W = n*45;
 f.figure_size = [H,W];
 
 if ~MSDOS then
@@ -130,6 +130,7 @@ cmdcancel = "execstr(File_"+string(win)+"(2))";
 c_i = 0;
 c = cini;
 while %t
+  str = '';
   [c_i,cx,cy,cw,str] = xclick();
   if c_i==(-2) then
     if str==cmdok then k = k1; c = k; break;end;
@@ -138,7 +139,7 @@ while %t
   if c_i==(-100) then k = []; break;end;
   mc = int(cx/dx)+1;
   nc = n-int(cy/dy);
-  k = (mc-1)*n+nc;
+  k = (mc-1)*n+nc; 
   if or(c_i==[0,3])&k<=N&k>0 then
     if k1~=0 then
       move(rector,[rects(1,k)-rects(1,k1),rects(2,k)-rects(2,k1)]);
