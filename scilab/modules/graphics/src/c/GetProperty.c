@@ -3207,7 +3207,6 @@ int CheckForCompound(long *handelsvalue, int number)
 	case SCI_POLYLINE:
 	case SCI_TEXT:
 	case SCI_TITLE:
-	case SCI_LEGEND:
 	case SCI_SURFACE:
 	case SCI_AXES:
 	case SCI_LIGHT:
@@ -3245,6 +3244,7 @@ int CheckForCompound(long *handelsvalue, int number)
 	case SCI_SBH:
 	case SCI_LABEL: /* F.Leray 28.05.04 A REVOIR...*/
 	case SCI_UIMENU:
+	case SCI_LEGEND:
 	default:
 	  return -(i+1); /* not a basic entity*/
 	}
