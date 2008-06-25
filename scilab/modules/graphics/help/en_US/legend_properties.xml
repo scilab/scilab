@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,117 +10,141 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="legend_properties">
+<refentry version="5.0-subset Scilab" xml:id="legend_properties" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>legend_properties</refname>
-    <refpurpose>description of the Legend entity
-  properties. <emphasis role="bold">Warning</emphasis>This object will be rebuild in the next
-  version.</refpurpose>
+
+    <refpurpose>description of the Legend entity properties. <emphasis
+    role="bold">Warning</emphasis>This object will be rebuild in the next
+    version.</refpurpose>
   </refnamediv>
+
   <refsection>
     <title>Description</title>
+
     <para>The Legend entity is a leaf of the graphics entities hierarchy. This
-    entity defines the parameters for legends drawn below <literal>plot2dx</literal>
-    graphs. For each line plotted, the legend shows a sample of the line type,
-    marker symbol, and color.</para>
+    entity defines the parameters for legends drawn below
+    <literal>plot2dx</literal> graphs. For each line plotted, the legend shows
+    a sample of the line type, marker symbol, and color.</para>
+
     <variablelist>
       <varlistentry>
-        <term>parent: </term>
+        <term>parent:</term>
+
         <listitem>
-          <para>This property contains the handle of the parent. The parent of the
-        legend entity should be of the type <literal>"Compound"</literal>. This
-        Compound entity contains also the remainder of the graph's
-        entities.</para>
+          <para>This property contains the handle of the parent. The parent of
+          the legend entity should be of the type
+          <literal>"Compound"</literal>. This Compound entity contains also
+          the remainder of the graph's entities.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>children: </term>
+        <term>children:</term>
+
         <listitem>
-          <para>This property contains a vector with the <literal>children</literal> of
-        the handle. However, <literal>legend</literal> handles currently do not have
-        any <literal>children</literal>.</para>
+          <para>This property contains a vector with the
+          <literal>children</literal> of the handle. However,
+          <literal>legend</literal> handles currently do not have any
+          <literal>children</literal>.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>line_mode: </term>
+        <term>visible:</term>
+
         <listitem>
-          <para>This field contains the default <literal>line_mode</literal> property
-        value for the segs. Its value should be <literal>"on" </literal>(line drawn)
-        or <literal>"off"</literal> (no line drawn).</para>
+          <para>This field contains the <literal>visible</literal> property
+          value for the entity . It should be <literal>"on" </literal> or
+          <literal>"off"</literal> . If <literal>"on"</literal> the legend is
+          drawn , If <literal>"off"</literal> the legend is not displayed on
+          the screen.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>mark_mode: </term>
+        <term>visible:</term>
+
         <listitem>
-          <para>This field contains the default <literal>mark_mode</literal> property
-        value for the polyline. Its value should be <literal>"on"</literal> (marks
-        drawn) or <literal>"off"</literal> (no marks drawn).</para>
+          <para>This field contains the <literal>visible</literal> property
+          value for the entity . It should be <literal>"on" </literal> or
+          <literal>"off"</literal> . If <literal>"on"</literal> the legend is
+          drawn , If <literal>"off"</literal> the legend is not displayed on
+          the screen.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>mark_foreground: </term>
-        <listitem>
-          <para>This field contains the <literal>mark_foreground</literal> property
-        value which is the marks' edge color. Its value should be a color
-        index (relative to the current color_map).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>mark_background: </term>
-        <listitem>
-          <para>This field contains the <literal>mark_background</literal> property
-        value which is the marks' face color. Its value should be a color
-        index (relative to the current color_map).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>foreground: </term>
-        <listitem>
-          <para>This field contains the color index used to draw legend. Its value
-        should be a color index (relative to the current colormap).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>visible: </term>
-        <listitem>
-          <para>This field contains the <literal>visible</literal> property value for
-        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal> .
-        If <literal>"on"</literal> the legend is drawn , If <literal>"off"</literal> the
-        legend is not displayed on the screen.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>text: </term>
+        <term>text:</term>
+
         <listitem>
           <para>This field is the character string vector which contains the
-        legend.</para>
+          legends catenated in a single string with "<literal>@</literal>" as
+          legend separator.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>font_size: </term>
+        <term>font_size:</term>
+
         <listitem>
-          <para>The <literal>font_size</literal> property is used to select the type of
-        size of the text. Its value should be an integer in between 0 and 5
-        which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</para>
+          <para>The <literal>font_size</literal> property is used to select
+          the type of size of the text. Its value should be an integer in
+          between 0 and 5 which stands for 8pt, 10pt, 12pt, 14pt, 18pt and
+          24pt.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>font_style: </term>
+        <term>font_style:</term>
+
         <listitem>
           <para>Seven differents fonts are available : "Courrier", "Symbol",
-        "Times", "Times Italic", "Times Bold", "User defined". The
-        <literal>font_style</literal> property is an index in [0 6] which is
-        associated to the previous font names.</para>
+          "Times", "Times Italic", "Times Bold", "User defined". The
+          <literal>font_style</literal> property is an index in [0 6] which is
+          associated to the previous font names.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fractional_font:</term>
+
+        <listitem>
+          <para>This property specify whether text might be displayed using
+          fractional font sizes. Its value must be either
+          <literal>"on"</literal> or <literal>"off"</literal>. If
+          <literal>"on"</literal> the floating point value of
+          <literal>font_size</literal> is used for display. If
+          <literal>"off"</literal> only the integer part is used.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>links:</term>
+
+        <listitem>
+          <para>A row array of handles. They refer to the associated
+          polylines.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
    
 // x initialisation 
 x=[0:0.1:2*%pi]';
@@ -128,30 +152,33 @@ plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
   [1,2,3],leg="L1@L2@L3")
 a=get("current_axes");
 l=a.children.children(1)
+l.links
 l.text="sin(x)@sin(2*x)@sin(3*x)";
 l.visible="off"; // invisible
 l.font_size = 2;
 l.font_style = 5;
-l.visible='on';
+l.visible='off';
 
     
 
  
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="plot2d">plot2d</link>
-      </member>
-      <member>
-        <link linkend="graphics_entities">graphics_entities</link>
-      </member>
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

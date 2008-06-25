@@ -10,7 +10,7 @@
 
 
 function %h_save(h,fd)
-  version=[5 0 0 0]
+  version=[5 0 0 1]
   mput(version,'c',fd)
   
   hsize = size(h);
@@ -166,22 +166,30 @@ function save_graphichandle(h,fd)
     
     mput(size(h.auto_ticks,'*'),'c',fd); // auto_ticks
     mput(bool2s(h.auto_ticks=='on'),'c',fd)
-    
-    mput(size(h.x_ticks.locations,'*'),'sl',fd); // x_ticks.locations
-    mput(h.x_ticks.locations,'dl',fd)
-    mput(length(h.x_ticks.labels),'c',fd); // x_ticks.labels
-    mput(ascii(strcat(h.x_ticks.labels)),'c',fd);
-  
-    mput(size(h.y_ticks.locations,'*'),'sl',fd); // y_ticks.locations
-    mput(h.y_ticks.locations,'dl',fd)
-    mput(length(h.y_ticks.labels),'c',fd); // y_ticks.labels
-    mput(ascii(strcat(h.y_ticks.labels)),'c',fd);
-
-    mput(size(h.z_ticks.locations,'*'),'sl',fd); // z_ticks.locations
-    mput(h.z_ticks.locations,'dl',fd)
-    mput(length(h.z_ticks.labels),'c',fd); // z_ticks.labels
-    mput(ascii(strcat(h.z_ticks.labels)),'c',fd);
-    
+    // x_ticks
+    sz=size(h.x_ticks.locations,'*');
+    mput(sz,'sl',fd); 
+    if sz>0 then
+      mput(h.x_ticks.locations,'dl',fd)
+      mput(length(h.x_ticks.labels),'c',fd); // x_ticks.labels
+      mput(ascii(strcat(h.x_ticks.labels)),'c',fd);
+    end
+     // y_ticks
+    sz=size(h.y_ticks.locations,'*');
+    mput(sz,'sl',fd);
+    if sz>0 then
+      mput(h.y_ticks.locations,'dl',fd)
+      mput(length(h.y_ticks.labels),'c',fd); // y_ticks.labels
+      mput(ascii(strcat(h.y_ticks.labels)),'c',fd);
+    end
+    // z_ticks
+    sz=size(h.z_ticks.locations,'*');
+    mput(sz,'sl',fd); 
+    if sz>0 then
+      mput(h.z_ticks.locations,'dl',fd)
+      mput(length(h.z_ticks.labels),'c',fd); // z_ticks.labels
+      mput(ascii(strcat(h.z_ticks.labels)),'c',fd);
+    end
     mput(length(h.box), 'c', fd ) ; // box
     mput(ascii(h.box),  'c', fd ) ;
     mput(size(h.sub_tics,'*'),'c',fd);mput(h.sub_tics,'c',fd); // sub_ticks
@@ -502,22 +510,18 @@ function save_graphichandle(h,fd)
   case "Legend"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd); //type
     mput(bool2s(h.visible=='on'),'c',fd) // visible
-    mput(bool2s(h.line_mode=='on'),'c',fd) // line_mode
-    mput(bool2s(h.mark_mode=='on'),'c',fd) // mark_mode
-    mput(h.mark_foreground,'il',fd); // mark_foreground
-    mput(h.mark_background,'il',fd); // mark_background
-    //mput(length(h.text),'c',fd);mput(ascii(h.text),'c',fd); // text
     save_text_vector(h.text,fd); // text
-    mput(h.foreground,'il',fd) // foreground
     mput(h.font_style,'c',fd) // font_style
     mput(h.font_size,'c',fd) // font_size
     mput(bool2s(h.fractional_font=='on'),'c',fd) // fractional_font
-    mput(length(h.clip_state),'c',fd); // clip_state
-    mput(ascii(h.clip_state),'c',fd);
-    if h.clip_state=='on' then
-      mput(h.clip_box,'dl',fd) // clip_box
+    //replace links by a path relative to the parent axes
+    links=h.links;nlegends=size(links,'*');
+    mput(nlegends,'c',fd)
+    for kl=1:nlegends
+      p=get_entity_path(links(kl))
+      mput(size(p,'*'),'il',fd)
+      mput(p,'il',fd)
     end
-    
     
   case "Text"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd); // type
@@ -601,5 +605,22 @@ function save_text_matrix(strMat,fd)
       mput(length(strMat(i,j)),'c',fd) ;
       mput(ascii(strMat(i,j)),'c',fd) ;
     end
+  end
+endfunction
+
+function p=get_entity_path(e)
+// given a handle e on an entity this function returns its path relative
+// to its parent axes.
+// the path is a vector of child index.
+  p=[];
+  while %t 
+    parent=e.parent
+    pos=find(parent.children==e,1)
+    if pos==[] then
+      error(msprintf(_("%s : Invalid entity %s\n"),"save","Legend"))
+    end
+    p=[pos p]
+    if or(parent.type==['Axes' 'Figure']) then break,end
+    e=parent
   end
 endfunction

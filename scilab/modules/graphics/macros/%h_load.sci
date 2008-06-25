@@ -47,7 +47,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       init_immediate_drawing = 1;
     end
   end
- 
+//  mprintf('----------------------------- %s ----------------------\n',typ)
   select typ
   case "Figure"
     
@@ -128,7 +128,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     load_user_data(fd); // user_data
   case "Axes"
-    
     a=gca() ;
     titl=a.title ;
     x_label=a.x_label ;
@@ -276,26 +275,40 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       
       ticks=['ticks','locations','labels']
       sz=mget(1,'sl',fd) // x_ticks.locations
-      x_ticks_locations=mget(sz,'dl',fd)'
-      lz=mget(sz,'c',fd) // x_ticks.label
-      x_ticks_labels=[];for ks=1:sz,x_ticks_labels(ks)=ascii(mget(lz(ks),'c',fd));end
-      set(a,'x_ticks',tlist(ticks,x_ticks_locations,x_ticks_labels))
+      if sz>0 then
+	x_ticks_locations=mget(sz,'dl',fd)'
+	lz=mget(sz,'c',fd) // x_ticks.label
+	x_ticks_labels=[];for ks=1:sz,x_ticks_labels(ks)=ascii(mget(lz(ks),'c',fd));end
+      else
+	x_ticks_labels=[];
+	x_ticks_locations=[];
+      end
+	set(a,'x_ticks',tlist(ticks,x_ticks_locations,x_ticks_labels))
       
       sz=mget(1,'sl',fd) // y_ticks.locations
-      y_ticks_locations=mget(sz,'dl',fd)'
-      lz=mget(sz,'c',fd) // y_ticks.label
-      y_ticks_labels=[];for ks=1:sz,y_ticks_labels(ks)=ascii(mget(lz(ks),'c',fd));end
+      if sz>0 then
+	y_ticks_locations=mget(sz,'dl',fd)'
+	lz=mget(sz,'c',fd) // y_ticks.label
+	y_ticks_labels=[];for ks=1:sz,y_ticks_labels(ks)=ascii(mget(lz(ks),'c',fd));end
+      else
+	y_ticks_labels=[];
+	y_ticks_locations=[];
+      end
       set(a,'y_ticks',tlist(ticks,y_ticks_locations,y_ticks_labels))
 
       sz=mget(1,'sl',fd) // z_ticks.locations
-      z_ticks_locations=mget(sz,'dl',fd)'
-      lz=mget(sz,'c',fd) // z_ticks.labels
-      z_ticks_labels=[];for ks=1:sz,z_ticks_labels(ks)=ascii(mget(lz(ks),'c',fd));end
+      if sz>0 then
+	z_ticks_locations=mget(sz,'dl',fd)'
+	lz=mget(sz,'c',fd) // z_ticks.labels
+	z_ticks_labels=[];for ks=1:sz,z_ticks_labels(ks)=ascii(mget(lz(ks),'c',fd));end
+      else
+	z_ticks_labels=[];
+	z_ticks_locations=[];
+      end
       set(a,'z_ticks',tlist(ticks,z_ticks_locations,z_ticks_labels))
 
       set(a,"auto_ticks"           , auto_ticks)
     end
-    
     if is_higher_than([4 1 2 0]) then
       // migth be now 'off','hidden_axis','back_half' or 'on'
       boxtype = ascii(mget(mget(1,'c',fd),'c',fd)) ;
@@ -421,7 +434,24 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
     h=a;
     load_user_data(fd) ; // user_data
+    global %LEG
     
+    if %LEG<>[] then
+      labels=tokens(%LEG.text,'@')
+      //get handles from paths
+      links=get_links_from_path(a,%LEG.paths)
+      if links<>[] then
+	L=Legend(links,labels)
+	L.visible=%LEG.visible
+	L.font_style=%LEG.font_style
+	L.font_size=%LEG.font_size
+	L.fractional_font=%LEG.fractional_font
+      else
+	 warning(msprintf(_("%s: Legend does fit with the current context. Skipped\n"),"load"));
+      end
+    end
+    clearglobal %LEG
+      
   case "Polyline"
 
     visible=toggle(mget(1,'c',fd)) // visible
@@ -1003,48 +1033,63 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"clip_state",clip_state);
     load_user_data(fd) // user_data
     
-    // remove case because of bugs  
-  case "Legend"
-    visible        = toggle(mget(1,'c',fd)) // visible
-    line_mode       = toggle(mget(1,'c',fd)) // line_mode
-    mark_mode       = toggle(mget(1,'c',fd)) // mark_mode
-    mark_foreground = mget(1,'il',fd) ; // mark_foreground
-    mark_background = mget(1,'il',fd) ; // mark_background
-    //text=ascii(mget(mget(1,'c',fd),'c',fd)) // text
-    
-    text = load_text_vector(fd); // text
-    
-    //create the legend
-    //get the number of lines of the legend
-    lineFeedPosition = strindex(text,'@')
-    nbLines = size( lineFeedPosition ) ;
-    nbLines = nbLines(2) + 1
-    //create as many curves as lines in the text
-    nullVector = zeros(1,nbLines);
-    //draw the legend
-    plot2d(0,nullVector,leg=text) ;
-    H=unglue(get('hdl'));
-    h=H(1);
-    delete(H(2));
-  
-    set(h,"visible",visible)
-    set(h,"line_mode",line_mode);
-    set(h,"mark_mode",mark_mode);
-    set(h,"mark_foreground",mark_foreground) ;
-    set(h,"mark_background",mark_background) ;
-    set(h,"foreground", mget(1,'il',fd)); // foreground
-    
-    set(h,"font_style", mget(1,'c',fd)); // font_style
-    set(h,"font_size" , mget(1,'c',fd)); // font_size
-    if is_higher_than( [4 1 2 0] ) then
-      set(h,"fractional_font" , toggle(mget(1,'c',fd))); // fractional_font
+   case "Legend"
+    if is_higher_than( [5 0 0 0] ) then
+      global %LEG
+      %LEG=[];
+      %LEG.visible         = toggle(mget(1,'c',fd)) // visible
+      %LEG.text            = load_text_vector(fd); // text
+      %LEG.font_style      = mget(1,'c',fd); // font_style
+      %LEG.font_size       = mget(1,'c',fd); // font_size
+      %LEG.fractional_font = toggle(mget(1,'c',fd)); // fractional_font
+      nlegends             = mget(1,'c',fd);
+      paths = list()
+      for kl=1:nlegends
+	paths($+1)         = mget(mget(1,'il',fd),'il',fd);
+      end
+      %LEG.paths=paths
+    else
+      visible         = toggle(mget(1,'c',fd)) // visible
+      line_mode       = toggle(mget(1,'c',fd)) // line_mode
+      mark_mode       = toggle(mget(1,'c',fd)) // mark_mode
+      mark_foreground = mget(1,'il',fd) ; // mark_foreground
+      mark_background = mget(1,'il',fd) ; // mark_background
+      
+      //text=ascii(mget(mget(1,'c',fd),'c',fd)) // text
+      
+      text = load_text_vector(fd); // text
+      
+      //create the legend
+      //get the number of lines of the legend
+      lineFeedPosition = strindex(text,'@')
+      nbLines = size( lineFeedPosition ) ;
+      nbLines = nbLines(2) + 1
+      //create as many curves as lines in the text
+      nullVector = zeros(1,nbLines);
+      //draw the legend
+      plot2d(0,nullVector,leg=text) ;
+      H=unglue(get('hdl'));
+      h=H(1);
+      delete(H(2));
+      
+      set(h,"visible",visible)
+      set(h,"line_mode",line_mode);
+      set(h,"mark_mode",mark_mode);
+      set(h,"mark_foreground",mark_foreground) ;
+      set(h,"mark_background",mark_background) ;
+      set(h,"foreground", mget(1,'il',fd)); // foreground
+      
+      set(h,"font_style", mget(1,'c',fd)); // font_style
+      set(h,"font_size" , mget(1,'c',fd)); // font_size
+      if is_higher_than( [4 1 2 0] ) then
+	set(h,"fractional_font" , toggle(mget(1,'c',fd))); // fractional_font
+      end
+      clip_state     = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state
+      if clip_state=='on' then
+	set(h,"clip_box",mget(4,'dl',fd)); // clip_box
+      end
+      set(h,"clip_state",clip_state);
     end
-    clip_state     = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state
-    if clip_state=='on' then
-      set(h,"clip_box",mget(4,'dl',fd)); // clip_box
-    end
-    set(h,"clip_state",clip_state);
-    
     
   case "Text"
     visible         = toggle(mget(1,'c',fd)) // visible
@@ -1195,4 +1240,25 @@ function strMat = load_text_matrix( fd )
       strMat(i,j) = ascii(mget(mget(1,'c',fd),'c',fd)) ;
     end
   end
+endfunction
+
+function links=get_links_from_path(ax,paths)
+//  ax is a  handle on an axes entity
+//  paths a list or row vector which gives the set of paths relative to
+//  the axes
+  links=[];ok=%t
+  for p=paths
+    e=ax;
+    for kp=1:size(p,'*'), 
+      if or(e.type==['Axes','Compound'])&p(kp)<=size(e.children,'*') then
+	e=e.children(p(kp)),
+      else
+	ok=%f
+	break
+      end
+    end
+    if ~ok then break,end
+    links=[links,e]
+  end
+  if ~ok then links=[],end
 endfunction

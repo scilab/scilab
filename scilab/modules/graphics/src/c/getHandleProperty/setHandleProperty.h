@@ -174,5 +174,6 @@ int set_event_handler_enable_property( sciPointObj * pobj, int stackPointer, int
 int set_event_handler_property(        sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_arc_drawing_method_property(   sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 int set_fractional_font_property(      sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
+int set_links_property(                sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol ) ;
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

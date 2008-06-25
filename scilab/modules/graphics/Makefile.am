@@ -146,6 +146,7 @@ src/c/getHandleProperty/get_event_handler_property.c \
 src/c/getHandleProperty/get_event_handler_enable_property.c \
 src/c/getHandleProperty/get_arc_drawing_method_property.c \
 src/c/getHandleProperty/get_fractional_font_property.c \
+src/c/getHandleProperty/get_links_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -277,6 +278,7 @@ src/c/getHandleProperty/set_event_handler_property.c \
 src/c/getHandleProperty/set_event_handler_enable_property.c \
 src/c/getHandleProperty/set_arc_drawing_method_property.c \
 src/c/getHandleProperty/set_fractional_font_property.c \
+src/c/getHandleProperty/set_links_property.c \
 src/c/DefaultCommandArg.c \
 src/c/graphicSession.c \
 src/c/Axes.c \

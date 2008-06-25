@@ -252,6 +252,7 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/getHandleProperty/get_event_handler_enable_property.c \
 	src/c/getHandleProperty/get_arc_drawing_method_property.c \
 	src/c/getHandleProperty/get_fractional_font_property.c \
+	src/c/getHandleProperty/get_links_property.c \
 	src/c/getHandleProperty/GetHashTable.c \
 	src/c/graphicModuleLoad.c \
 	src/c/getHandleProperty/set_old_style_property.c \
@@ -383,6 +384,7 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/getHandleProperty/set_event_handler_enable_property.c \
 	src/c/getHandleProperty/set_arc_drawing_method_property.c \
 	src/c/getHandleProperty/set_fractional_font_property.c \
+	src/c/getHandleProperty/set_links_property.c \
 	src/c/DefaultCommandArg.c src/c/graphicSession.c src/c/Axes.c \
 	src/c/sciMatrix.c src/c/DrawObjects.c src/c/Vect2Matrix.c \
 	src/c/Plo3d.c src/c/GetProperty.c src/c/Contour.c \
@@ -569,6 +571,7 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-get_event_handler_enable_property.lo \
 @GUI_TRUE@	libscigraphics_la-get_arc_drawing_method_property.lo \
 @GUI_TRUE@	libscigraphics_la-get_fractional_font_property.lo \
+@GUI_TRUE@	libscigraphics_la-get_links_property.lo \
 @GUI_TRUE@	libscigraphics_la-GetHashTable.lo \
 @GUI_TRUE@	libscigraphics_la-graphicModuleLoad.lo \
 @GUI_TRUE@	libscigraphics_la-set_old_style_property.lo \
@@ -700,6 +703,7 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-set_event_handler_enable_property.lo \
 @GUI_TRUE@	libscigraphics_la-set_arc_drawing_method_property.lo \
 @GUI_TRUE@	libscigraphics_la-set_fractional_font_property.lo \
+@GUI_TRUE@	libscigraphics_la-set_links_property.lo \
 @GUI_TRUE@	libscigraphics_la-DefaultCommandArg.lo \
 @GUI_TRUE@	libscigraphics_la-graphicSession.lo \
 @GUI_TRUE@	libscigraphics_la-Axes.lo \
@@ -1226,6 +1230,7 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@src/c/getHandleProperty/get_event_handler_enable_property.c \
 @GUI_TRUE@src/c/getHandleProperty/get_arc_drawing_method_property.c \
 @GUI_TRUE@src/c/getHandleProperty/get_fractional_font_property.c \
+@GUI_TRUE@src/c/getHandleProperty/get_links_property.c \
 @GUI_TRUE@src/c/getHandleProperty/GetHashTable.c \
 @GUI_TRUE@src/c/graphicModuleLoad.c \
 @GUI_TRUE@src/c/getHandleProperty/set_old_style_property.c \
@@ -1357,6 +1362,7 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@src/c/getHandleProperty/set_event_handler_enable_property.c \
 @GUI_TRUE@src/c/getHandleProperty/set_arc_drawing_method_property.c \
 @GUI_TRUE@src/c/getHandleProperty/set_fractional_font_property.c \
+@GUI_TRUE@src/c/getHandleProperty/set_links_property.c \
 @GUI_TRUE@src/c/DefaultCommandArg.c \
 @GUI_TRUE@src/c/graphicSession.c \
 @GUI_TRUE@src/c/Axes.c \
@@ -2048,6 +2054,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_labels_font_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_line_mode_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_line_style_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_links_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_log_flags_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_margins_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_mark_background_property.Plo@am__quote@
@@ -2258,6 +2265,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_labels_font_size_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_line_mode_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_line_style_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_links_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_log_flags_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_margins_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_mark_background_property.Plo@am__quote@
@@ -3264,6 +3272,13 @@ libscigraphics_la-get_fractional_font_property.lo: src/c/getHandleProperty/get_f
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_fractional_font_property.lo `test -f 'src/c/getHandleProperty/get_fractional_font_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_fractional_font_property.c
 
+libscigraphics_la-get_links_property.lo: src/c/getHandleProperty/get_links_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_links_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_links_property.Tpo -c -o libscigraphics_la-get_links_property.lo `test -f 'src/c/getHandleProperty/get_links_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_links_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-get_links_property.Tpo $(DEPDIR)/libscigraphics_la-get_links_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_links_property.c' object='libscigraphics_la-get_links_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_links_property.lo `test -f 'src/c/getHandleProperty/get_links_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_links_property.c
+
 libscigraphics_la-GetHashTable.lo: src/c/getHandleProperty/GetHashTable.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-GetHashTable.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-GetHashTable.Tpo -c -o libscigraphics_la-GetHashTable.lo `test -f 'src/c/getHandleProperty/GetHashTable.c' || echo '$(srcdir)/'`src/c/getHandleProperty/GetHashTable.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-GetHashTable.Tpo $(DEPDIR)/libscigraphics_la-GetHashTable.Plo
@@ -4180,6 +4195,13 @@ libscigraphics_la-set_fractional_font_property.lo: src/c/getHandleProperty/set_f
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_fractional_font_property.c' object='libscigraphics_la-set_fractional_font_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_fractional_font_property.lo `test -f 'src/c/getHandleProperty/set_fractional_font_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_fractional_font_property.c
+
+libscigraphics_la-set_links_property.lo: src/c/getHandleProperty/set_links_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-set_links_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-set_links_property.Tpo -c -o libscigraphics_la-set_links_property.lo `test -f 'src/c/getHandleProperty/set_links_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_links_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-set_links_property.Tpo $(DEPDIR)/libscigraphics_la-set_links_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_links_property.c' object='libscigraphics_la-set_links_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_links_property.lo `test -f 'src/c/getHandleProperty/set_links_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_links_property.c
 
 libscigraphics_la-DefaultCommandArg.lo: src/c/DefaultCommandArg.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-DefaultCommandArg.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DefaultCommandArg.Tpo -c -o libscigraphics_la-DefaultCommandArg.lo `test -f 'src/c/DefaultCommandArg.c' || echo '$(srcdir)/'`src/c/DefaultCommandArg.c

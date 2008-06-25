@@ -222,7 +222,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
-	  if ((hdltab = MALLOC ((*n1+2) * sizeof (long))) == NULL) {
+	  if ((hdltab = MALLOC ((*n1+1) * sizeof (long))) == NULL) {
 		  sciprint(_("%s: No more memory.\n"),"plot2d");
 		  return 0;
     }
@@ -273,10 +273,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       sciSetCurrentObj (ConstructLegend
                         (sciGetCurrentSubWin(),
 			 legend,  (int)strlen(legend), *n1, style, pptabofpointobj)); 
-      hdl=sciGetHandle(sciGetCurrentObj ());   
+      /*     hdl=sciGetHandle(sciGetCurrentObj ());   
       hdltab[cmpt]=hdl;
       cmpt++;
-      FREE(pptabofpointobj);
+      FREE(pptabofpointobj);*/
     }
 
     /*---- construct Compound ----*/
