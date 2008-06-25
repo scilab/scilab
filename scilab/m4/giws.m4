@@ -13,10 +13,10 @@ AC_DEFUN([AC_GIWS], [
    fi
 
 ## If the user is providing a path to the option
-if test "$with_giws_generation" != 'yes' -a "$with_giws_generation" != 'no'; then
+if test "$enable_build_giws" != 'yes' -a "$enable_build_giws" != 'no'; then
 
    AC_MSG_CHECKING([giws])
-   GIWS_BIN="$with_giws_generation/giws.py" 
+   GIWS_BIN="$enable_build_giws/giws.py" 
    if test -f "$GIWS_BIN"; then
                 AC_MSG_RESULT([$GIWS_BIN])
         else

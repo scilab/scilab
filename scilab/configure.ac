@@ -99,19 +99,19 @@ AC_ARG_WITH(intelcompilers,
     AC_HELP_STRING([--with-intelcompilers],[Use Intel C (icc) and Fortran (ifort) proprietary compilers (GNU/Linux only) ]))
 
 AC_ARG_WITH(tk,
-    AC_HELP_STRING([--without-tk],[do not compile with TCL/TK ]))
+    AC_HELP_STRING([--without-tk],[Do not compile with TCL/TK ]))
 
 AC_ARG_WITH(javasci,
-    AC_HELP_STRING([--without-javasci],[do not compile the Java/Scilab module ]))
+    AC_HELP_STRING([--without-javasci],[Do not compile the Java/Scilab module ]))
 
 AC_ARG_WITH(gui,
-    AC_HELP_STRING([--without-gui],[do not compile the Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
+    AC_HELP_STRING([--without-gui],[Do not compile the Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
-AC_ARG_WITH(swig-generation,
-    AC_HELP_STRING([--with-swig-generation],[Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)]))
+AC_ARG_ENABLE(build-swig,
+    AC_HELP_STRING([--enable-build-swig],[Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)]))
 
-AC_ARG_WITH(giws-generation,
-    AC_HELP_STRING([--with-giws-generation],[Regenerate C/C++ => Java wrappers produces by Giws (A Java Development Kit (JDK) is mandatory for this option)]))
+AC_ARG_ENABLE(build-giws,
+    AC_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produces by Giws (A Java Development Kit (JDK) is mandatory for this option)]))
 
 
 ##############################
@@ -532,28 +532,44 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
 		JAVA_CLASSPATH=$ac_java_classpath
 		AC_JAVA_TOOLS
 		AC_JAVA_ANT
+
 		if test "$with_gui" != no; then
+
+				# Docking system
 				AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
 				FLEXDOCK=$PACKAGE_JAR_FILE
 				AC_SUBST(FLEXDOCK)
+
+				# JOGL
 				AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 1.1.1-pre 20071112])
 				JOGL=$PACKAGE_JAR_FILE
 				AC_SUBST(JOGL)
+
+				# Jhall
 				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser])
 				JHALL=$PACKAGE_JAR_FILE
 				AC_SUBST(JHALL)
+
+				# JoGL Native <=> Java connector
 				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
 				GLUEGEN_RT=$PACKAGE_JAR_FILE
 				AC_SUBST(GLUEGEN_RT)
+
+				# Console API
 				AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
 				JROSETTA_API=$PACKAGE_JAR_FILE
 				AC_SUBST(JROSETTA_API)
+
+				# Console Core
 				AC_JAVA_CHECK_PACKAGE([jrosetta-engine],[com.artenum.rosetta.core.action.AbstractConsoleAction],[JRosetta : Console Core Artenum / Scilab])
 				JROSETTA_ENGINE=$PACKAGE_JAR_FILE
 				AC_SUBST(JROSETTA_ENGINE)
+
+				# Logging (flexdock dep)
 				AC_JAVA_CHECK_PACKAGE([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
+
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...])
 		fi
 	else
@@ -566,7 +582,7 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
 
-	if test "$with_swig_generation" != no -a "$with_swig_generation" != ""; then
+	if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
 		SWIG_PROG()
 		SWIG_ENABLE_JAVA()
 		AC_SUBST(SWIG_BIN)
@@ -576,7 +592,7 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
 
 	# Giws is the equivalent of Swig developped by the Scilab team
 	# in order to provide a wrapper to Java from C/C++
-	if test "$with_giws_generation" != no -a "$with_giws_generation" != ""; then
+	if test "$enable_build_giws" != no -a "$enable_build_giws" != ""; then
 		AC_GIWS()
 	fi
 
@@ -584,8 +600,8 @@ fi
 
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
-AM_CONDITIONAL(SWIG, test "$with_swig_generation" != no -a "$with_swig_generation" != "")
-AM_CONDITIONAL(GIWS, test "$with_giws_generation" != no  -a "$with_giws_generation" != "")
+AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
+AM_CONDITIONAL(GIWS, test "$enable_build_giws" != no  -a "$enable_build_giws" != "")
 
 ##############################################################
 ## test for functions in standard C library and C math library
@@ -805,15 +821,15 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-AC_ARG_WITH(localization-generation,
-		AC_HELP_STRING([--with-localization-generation],[enable the localization generation]),
+AC_ARG_ENABLE(build-localization,
+		AC_HELP_STRING([--enable-build-localization],[Enable the localization build]),
 		[with_localization=yes],
 		[with_localization='no']
 		)
 
 if test $with_localization != no; then
 
-   ALL_LINGUAS="en_US fr_FR"
+   ALL_LINGUAS="en_US fr_FR zh_TW"
    AC_SUBST(ALL_LINGUAS)
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
@@ -821,7 +837,7 @@ if test $with_localization != no; then
    AC_PATH_PROG(XGETTEXT, xgettext, no)
 
    if test x$MSGFMT = xno; then
-	  AC_ERROR([As you used to the option --with-localization-generation, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
+	  AC_ERROR([As you used to the option --with-build-localization, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
 	  fi
 	if test x$MSGCAT = xno; then
 	  AC_ERROR([As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
@@ -963,28 +979,52 @@ AM_CONDITIONAL(MATIO, test "$with_matio" != no)
 ## Man management
 #################
 
-dnl check for xsltproc
-AC_ARG_WITH(sablotron,
+AC_ARG_ENABLE(build-help,
+		AC_HELP_STRING([--enable-build-help],[Enable the help build])
+		)
+
+if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
+
+   dnl check for xsltproc
+   AC_ARG_WITH(sablotron,
 		AC_HELP_STRING([--with-sablotron],[Generates man pages using sablotron]),
 		[with_sablotron=$withval],
 		[with_sablotron='']
 	)
 
-AC_ARG_WITH(xsltproc,
+	AC_ARG_WITH(xsltproc,
 		AC_HELP_STRING([--with-xsltproc],[Generates man pages using xsltproc]),
 		[with_xsltproc=$withval],
 		[with_xsltproc='']
 		)
 
-if test "x$with_xsltproc" != 'x' -a "x$with_sablotron" != 'x'; then
-	AC_MSG_ERROR([Conflicting options : you specified two XSLT processor (sablotron & xsltproc)])
-fi
+	if test "x$with_xsltproc" != 'x' -a "x$with_sablotron" != 'x'; then
+		AC_MSG_ERROR([Conflicting options : you specified two XSLT processor (sablotron & xsltproc)])
+	fi
 
-AC_CHECK_MAN_GENERATOR([$with_sablotron],[Sablotron],[sabcmd])
-if test "x$MANGENERATOR" = 'x' -o "x$with_xsltproc" != 'x'; then
-   AC_CHECK_MAN_GENERATOR([$with_xsltproc],[xsltproc],[xsltproc])
-fi
-AC_SUBST(MANGENERATOR)
+	AC_CHECK_MAN_GENERATOR([$with_sablotron],[Sablotron],[sabcmd])
+	if test "x$MANGENERATOR" = 'x' -o "x$with_xsltproc" != 'x'; then
+	   AC_CHECK_MAN_GENERATOR([$with_xsltproc],[xsltproc],[xsltproc])
+	fi
+	AC_SUBST(MANGENERATOR)
+
+	# xml.apache.org SVG Library
+	AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library])
+	BATIK_PACKAGE=$PACKAGE_JAR_FILE
+	AC_SUBST(BATIK_PACKAGE)
+
+	# Saxon XSLT Processor
+	AC_JAVA_CHECK_PACKAGE([saxon],[com.icl.saxon.Loader],[Saxon XSLT Processor])
+	SAXON=$PACKAGE_JAR_FILE
+	AC_SUBST(SAXON)
+
+	# XML to PDF Translator
+	AC_JAVA_CHECK_PACKAGE([fop],[org.apache.fop.pdf.PDFInfo],[XML to PDF Translator (fop)])
+	FOP=$PACKAGE_JAR_FILE
+	AC_SUBST(FOP)
+
+
+fi #build help
 
 AC_ARG_WITH(install-help-xml,
 		AC_HELP_STRING([--with-install-help-xml],[make install will install XML files]),

@@ -18,7 +18,7 @@
 AC_DEFUN([SWIG_PROG],[
 	AC_PATH_PROG([SWIG_BIN],[swig])
 	if test -z "$SWIG_BIN" ; then
-		AC_MSG_ERROR([Cannot find swig. Please install it (package swig under Debian) or remove the option --with-swig-generation])
+		AC_MSG_ERROR([Cannot find swig. Please install it (package swig under Debian) or remove the option --enable-build-swig])
 	elif test -n "$1" ; then
 		AC_MSG_CHECKING([for SWIG version])
 		[swig_version=`$SWIG_BIN -version 2>&1 | grep 'SWIG Version' | sed 's/.*\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/g'`]
