@@ -146,12 +146,14 @@ clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
 
-#  The user wants to compile the localization files
+# The user wants to compile the localization files
+# Please note that ALL_LINGUAS is defined in configure.ac 
 if GENERATE_LOCALIZATION_FILES
 localization:
 	@echo "-- Build localization (.mo from .po) --"; \
 	MASK="modules/*/locales/"; \
 	LC=LC_MESSAGES; \
+	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 	FILENAME="*.po*"; \
 	rm modules/*/locales/*/*~ 2> /dev/null; \
 	for LOCALE in $(ALL_LINGUAS); do \

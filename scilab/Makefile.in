@@ -53,9 +53,10 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	COPYING config/compile config/config.guess config/config.rpath \
-	config/config.sub config/depcomp config/install-sh \
-	config/ltmain.sh config/missing
+	ABOUT-NLS COPYING config.guess config.sub config/compile \
+	config/config.guess config/config.rpath config/config.sub \
+	config/depcomp config/install-sh config/ltmain.sh \
+	config/missing depcomp install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
@@ -159,6 +160,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+BATIK_PACKAGE = @BATIK_PACKAGE@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
@@ -186,6 +188,7 @@ FFTW3_LIB = @FFTW3_LIB@
 FFTW_ENABLE = @FFTW_ENABLE@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
+FOP = @FOP@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
 GREP = @GREP@
@@ -251,6 +254,7 @@ PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
+SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
@@ -1080,11 +1084,13 @@ clean-tests:
 clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
-#  The user wants to compile the localization files
+# The user wants to compile the localization files
+# Please note that ALL_LINGUAS is defined in configure.ac 
 @GENERATE_LOCALIZATION_FILES_TRUE@localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@echo "-- Build localization (.mo from .po) --"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	MASK="modules/*/locales/"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	LC=LC_MESSAGES; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	FILENAME="*.po*"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	rm modules/*/locales/*/*~ 2> /dev/null; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	for LOCALE in $(ALL_LINGUAS); do \
