@@ -38,6 +38,7 @@ sciReturnRowVector
 sciReturnInt
 sciReturnColHandleVector
 sciReturnRowStringVector
+sciReturnRowHandleVector
 sciReturnEmptyMatrix
 sciReturnMatrix
 sciReturnHandle

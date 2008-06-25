@@ -743,6 +743,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_links_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_log_flags_property.c"
 				>
 			</File>
@@ -1628,6 +1632,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_line_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_links_property.c"
 				>
 			</File>
 			<File

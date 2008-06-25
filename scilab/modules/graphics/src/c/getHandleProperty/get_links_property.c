@@ -28,6 +28,7 @@ int get_links_property( sciPointObj * pobj )
   int nblegends=pLEGEND_FEATURE(pobj)->nblegends;
   int i;
   long *handles;
+  int status;
   if (sciGetEntityType(pobj) != SCI_LEGEND)
   {
     sciprint(_("%s property does not exist for this handle.\n"), "links") ;
@@ -41,7 +42,10 @@ int get_links_property( sciPointObj * pobj )
   for (i=0; i<nblegends; i++) {
     handles[i]=sciGetHandle( pLEGEND_FEATURE(pobj)->pptabofpointobj[i]);
   }
-  return  sciReturnRowHandleVector(handles, nblegends);
+  status = sciReturnRowHandleVector(handles, nblegends);
  
+  FREE(handles);
+
+  return status;
 }
 /*------------------------------------------------------------------------*/
