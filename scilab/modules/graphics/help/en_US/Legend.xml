@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Legend" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Legend</refname>
+
+    <refpurpose>draw graph Legend</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>hl=Legend(h, strings)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>vector of handles on polyline entities.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strings</term>
+
+        <listitem>
+          <para>n vector of strings, strings(i) is the Legend of the ith
+          polyline</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hl</term>
+
+        <listitem>
+          <para>a handle of type "<literal>Legend</literal>", points to the
+          structure containing all the Legend information (see <link
+          linkend="legend_properties">legend_properties</link>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Puts a Legend on the current plot at the in the bottom left corner
+    of the graphic window using the specified strings as labels. Legend
+    prepends labels by a recall of the corresponding polylines. The type and
+    properties are recover from the given handles:</para>
+
+    <para>This function correspond to the leg argument of <link
+    linkend="plot2d">plot2d</link>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+t=0:0.1:2*%pi;
+a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
+
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[1,2 3]);  
+e=gce();
+e.children(1).thickness=3;
+e.children(2).line_style=4;
+
+hl=Legend(e.children,['cos(t)';'cos(2*t)';'cos(3*t)']);
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="legend">legend</link></member>
+
+      <member><link
+      linkend="polyline_properties">polyline_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>
