@@ -11,7 +11,8 @@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
-src/c/loadsavelanguage.c
+src/c/loadsavelanguage.c \
+src/c/localetoutf.c
 
 if GUI
 #LOCALIZATION_C_SOURCES += src/c/org_scilab_modules_localization_QueryString.c

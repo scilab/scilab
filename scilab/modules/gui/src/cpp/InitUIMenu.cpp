@@ -1,3 +1,16 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ * Copyright (C) 2007-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2008 - Yung-Jang Lee
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 #include "InitUIMenu.hxx"
 #include "getHandleDrawer.h"
@@ -82,7 +95,7 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
         } 
       else
         {
-          sciprint(_("%s: Wrong type for '%s' property: A 'Figure' or 'Uimenu' handle expected.\n"),"SetMenuParent", "Parent");
+          sciprint(_("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
           return SET_PROPERTY_ERROR;
         }
     }
@@ -95,38 +108,46 @@ int setMenuParent(sciPointObj* sciObj, int stackPointer, int valueType, int nbRo
     } 
   else
     {
-      sciprint(_("%s: Wrong type for '%s' property: A 'Figure' or 'Uimenu' handle expected.\n"),"SetMenuParent", "Parent");
+      sciprint(_("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
       return SET_PROPERTY_ERROR;
     }
   
 }
 
+extern "C" void localeToUTF(char** buffer)  ; 
+
 void EnableRootMenu(char *name, BOOL status)
 {
+  localeToUTF(&name);
   CallScilabBridge::setRootMenuEnabled(getScilabJavaVM(), name, BOOLtobool(status));
 }
 
 void EnableRootSubMenu(char *name, int position, BOOL status)
 {
+  localeToUTF(&name);
   CallScilabBridge::setRootSubMenuEnabled(getScilabJavaVM(), name, position, BOOLtobool(status));
 }
 
 void EnableFigureMenu(int figurenum, char *name, BOOL status)
 {
+  localeToUTF(&name);
   CallScilabBridge::setFigureMenuEnabled(getScilabJavaVM(), figurenum, name, BOOLtobool(status));
 }
 
 void EnableFigureSubMenu(int figurenum, char *name, int position, BOOL status)
 {
-  CallScilabBridge::setFigureSubMenuEnabled(getScilabJavaVM(), figurenum, name, position, BOOLtobool(status));
+  localeToUTF(&name);
+ CallScilabBridge::setFigureSubMenuEnabled(getScilabJavaVM(), figurenum, name, position, BOOLtobool(status));
 }
 
 void DeleteRootMenu(char *name)
 {
+  localeToUTF(&name);
   CallScilabBridge::removeRootMenu(getScilabJavaVM(), name);
 }
 
 void DeleteFigureMenu(int figurenum, char *name)
 {
+  localeToUTF(&name);
   CallScilabBridge::removeFigureMenu(getScilabJavaVM(), figurenum, name);
 }

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2008 - Yung-Jang Lee
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,6 +34,8 @@
 #ifdef _MSC_VER
 #include "getLocaleInfo_Windows.h"
 #endif
+
+#include "localetoutf.h"
 
 #include "setgetlanguage.h"
 #include "MALLOC.h"
@@ -95,6 +98,9 @@ BOOL setlanguage(char *lang,BOOL updateHelpIndex, BOOL updateMenus)
 				}
 				setlanguagecode(CURRENTLANGUAGESTRING);
 				exportLocaleToSystem(CURRENTLANGUAGESTRING);
+
+				openLocaleToUTFConverter(ret,CURRENTLANGUAGESTRING);/*open a localeToUTF converter if needed*/
+
 
 				/*
 				  Commented since we want the user to restart scilab when the locale is changed
