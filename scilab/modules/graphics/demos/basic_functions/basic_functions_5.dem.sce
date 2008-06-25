@@ -28,7 +28,11 @@ expr=[
 "  xx=[xx,x*((n-k))]; yy=[yy,y*(n-k)];"
 "end;"
 "c=0:(n-1);"
-"xfpolys(xx,yy,c);a.clip_state = ''off'';"];
+"xfpolys(xx,yy,c);"
+"e = gce();"
+"for i = 1:n, move(e.children(i), [0,0,i/n]);end" // displace the rectangles from each others
+                                                  // so every one will appear
+"a.clip_state = ''off'';"];
 x_message(["[V] set of rectangles";expr]);
 execstr(expr);
 
