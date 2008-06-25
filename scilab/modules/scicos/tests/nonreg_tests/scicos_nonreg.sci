@@ -31,16 +31,20 @@ function scicos_nonreg(varargin)
 //     scicos_nonreg('disease');
 //     scicos_nonreg(['disease','rossler']);
 //
-//  Algorithm: (grep '^\s*//--' scicos_nonreg.sci | awk -F '//-- ' '{print '//  ' $1 $2}')
+//  Algorithm: (grep "^\s*//--" scicos_nonreg.sci | awk -F "//-- " '{print "//  " $1 $2}')
 //
 //    Parse input arguments
 //    Disable vertical paging
 //    Keep track of number of successful and failed tests  
-//    List and sort available tests (*.cos files)
+//    Check if user explicitly supplied a list of tests to run
+//      No: list and sort all available tests (*.cos files)
+//      Yes: check that given list is valid (test existence of diagrams) 
 //      For each available test
+//        Print some info about current test
 //        Launch test and display result
 //        Update lists of successful and failed tests
 //      Display overall report
+
 //
 //  Notes:
 //
@@ -81,7 +85,8 @@ function scicos_nonreg(varargin)
   listSkipped     = list() // list of skipped tests
   failureDetails  = ''     // details about every failed test
   
-  baseDir = fullfile(SCI,'modules','scicos','tests','nonreg_tests')
+  // baseDir = fullfile(SCI,'modules','scicos','tests','nonreg_tests')
+  baseDir = pwd()
 
   //-- Check if user explicitly supplied a list of tests to run
   if inputArgs(1) == defaultArgs(1)
@@ -179,39 +184,50 @@ function status = launch_nonreg(baseDir, testName)
 //    Build a script whose purpose is to launch simulation and log console output   
 //    Launch script using a background Scilab
 //    Which version of Scilab was used ?
-//    Non-regression tests launched under Scilab 4.X ?  
-//      Rename file.out -> file.out.ref
-//    Non-regression tests launched under Scilab 5.X ?  
-//      Compare output data with reference data:
-//      Read output data
-//      Read reference data
-//      Compare (%F meaning identical) and update status
-//      Display result
+//      Non-regression tests launched under Scilab 4.X ?  
+//        Rename file.out -> file.out.ref
+//      Non-regression tests launched under Scilab 5.X ?  
+//        Compare output data with reference data:
+//        Read output data
+//        Read reference data
+//        Compare (%F meaning identical) and update status
+
 
   //-- Initializations
   
   status.ok      = %f
   status.msg     = []
   status.details = []
-
+  
   // Define some aliases
   currentScilabFamily = get_scilab_family()
-  
   testFilename   = fullfile(baseDir, testName + '.test')
   modelFilename  = fullfile(baseDir, testName + '.cos')
+  // Keep separate references and results for Windows and Linux, as results given
+  // by the two versions have always been different (though it's not logical)
+  if MSDOS
+    baseName = testName + '.win'
+  else
+    baseName = testName + '.unix'
+  end
+  outFilename    = fullfile(baseDir, baseName + '.out') // foo.win.out, foo.unix.out
+  diaryFilename  = fullfile(baseDir, baseName + '.log') // foo.win.log, foo.unix.log
+  resFilename    = fullfile(baseDir, baseName + '.res') // foo.res.res, foo.unix.res
+  errFilename    = fullfile(baseDir, baseName + '.err') // foo.err.err, foo.unix.err
+
   
   select currentScilabFamily
   
     case '4' then
-      diaryFilename  = fullfile(baseDir, testName + '_v4.log')
-      resFilename    = fullfile(baseDir, testName + '_v4.res')
-      errFilename    = fullfile(baseDir, testName + '_v4.err')
+    // Add additional suffix to generate reference files
+      outFilename    = outFilename   + '.ref' // foo.win.out.ref, foo.unix.out.ref
+      diaryFilename  = diaryFilename + '.ref' // foo.win.log.ref, foo.unix.log.ref
+      resFilename    = resFilename   + '.ref' // foo.win.res.ref, foo.unix.res.ref
+      errFilename    = errFilename   + '.ref' // foo.win.err.ref, foo.unix.err.ref
       
     case '5' then
-      diaryFilename  = fullfile(baseDir, testName + '_v5.log')
-      resFilename    = fullfile(baseDir, testName + '_v5.res')
-      errFilename    = fullfile(baseDir, testName + '_v5.err')
-      
+    // Do nothing, filenames are already OK  
+    
     else
       status.ok = %f
       status.msg = 'failed  : Unknown Scilab version'
@@ -220,18 +236,16 @@ function status = launch_nonreg(baseDir, testName)
     
   end
   
-  // Keep separate references and results for Windows and Linux, as results given
-  // by the two versions have always been different (though it's not logical)
-  if MSDOS
-    outFilename = fullfile(baseDir, testName + '.win.out') // foo.win.out
-  else
-    outFilename = fullfile(baseDir, testName + '.unix.out') // foo.unix.out
-  end
-  outRefFilename = outFilename + '.ref' // foo.win.out.ref or foo.unix.out.ref
+  // Delete any existing files holding the same names as the ones that are going to be generated
+  // After the simulation, a test on the existence of these files can ensure that simulation went all right
+  mdelete(testFilename)
+  mdelete(outFilename)
+  mdelete(diaryFilename)
+  mdelete(resFilename)
+  mdelete(errFilename)
   
   // Define format used in 'Write to File' blocks to log output (Fortran syntax)
   outputFormat = '(7(e22.15,1x))'
-  
   
   //-- Build a script whose purpose is to launch simulation and log console output   
   txt = [ '// Set display settings';
@@ -257,11 +271,7 @@ function status = launch_nonreg(baseDir, testName)
           '// This modification is not saved, it only exists during simulation';
           '[idxWrite, idxRead] = findIOblocks(scs_m)';
           'if ~isempty(idxWrite) & size(idxWrite,''*'') == 1';
-          '  if MSDOS';
-          '    scs_m = renameIO(scs_m, idxWrite, ''' + testName + '.win.out'')';
-          '  else';
-          '    scs_m = renameIO(scs_m, idxWrite, ''' + testName + '.unix.out'')';
-          '  end';
+          '  scs_m = renameIO(scs_m, idxWrite, ''' + get_filename(outFilename) + ''')';
           '  scs_m = setW2Fformat(scs_m, idxWrite, ''' + outputFormat + ''')';
           'end';
           '';
@@ -289,7 +299,7 @@ function status = launch_nonreg(baseDir, testName)
           '';
           '// Quit background Scilab session';
           'exit'];
-  mputl(txt, testFilename)
+  mputl(txt, get_filename(testFilename))
 
   //-- Launch script using a background Scilab
   // Binary or source version ?
@@ -300,11 +310,15 @@ function status = launch_nonreg(baseDir, testName)
 	end
   // Launch previous script inside a NW Scilab and redirect both standard and error output to files
   if MSDOS then
-		cmd = '(''' + SCI_BIN + '\bin\scilex.exe'' -nw -nb -args -nouserstartup -f ''' + testFilename + ''' > ''' + resFilename + ''') 2> ''' + errFilename + ''''
+		cmd = '(""' + SCI_BIN + '\bin\scilex.exe"" -nw -nb -args -nouserstartup -f ""' + testFilename + '"" > ""' + resFilename + '"") 2> ""' + errFilename + '""'
 	else
-		cmd = '(' + SCI_BIN + '/bin/scilab -nw -nb -args -nouserstartup -f ' + testFilename + ' > ' + resFilename + ') 2> ' + errFilename
+		cmd = '(''' + SCI_BIN + '/bin/scilab'' -nw -nb -args -nouserstartup -f ''' + testFilename + ''' > ''' + resFilename + ''') 2> ''' + errFilename + ''''
 	end
+	// mputl(cmd, fullfile(baseDir, testName + '.cmd')) // Log the command for debug purpose
   host(cmd)
+	
+	// Sleep for 100 ms to let files be created and saved
+	sleep(100)
 
   //-- Which version of Scilab was used ?
   select currentScilabFamily
@@ -312,10 +326,8 @@ function status = launch_nonreg(baseDir, testName)
     //-- Non-regression tests launched under Scilab 4.X ?  
     case '4' then
     
-      //-- Rename file.out -> file.out.ref
-      mdelete(outRefFilename)
-      [status.ok, msg] = copyfile(outFilename, outRefFilename)
-      mdelete(outFilename)
+      //-- Check that reference file has been created and exists
+      status.ok = ~isempty(fileinfo(outFilename))
     
       // Status determines if copy succeeded or failed
       // A failure might indicate that simulation failed and did not produce any output
@@ -327,6 +339,8 @@ function status = launch_nonreg(baseDir, testName)
         status.msg = 'failed  : Reference file NOT generated'
         status.details = sprintf('     It might indicate a failure during simulation')
         status.details = [ status.details ; sprintf('     Try running the simulation manually by opening ''%s.cos'' in Scicos', testName) ]
+				status.details = [ status.details ; sprintf('     Last know error:') ]
+				status.details = [ status.details ; lasterror() ]
         return
       end
     
@@ -334,7 +348,7 @@ function status = launch_nonreg(baseDir, testName)
     case '5' then
   
       //-- Compare output data with reference data:
-      
+      outRefFilename = outFilename + '.ref'      
       //-- Read output data
       try
         fidOut = mopen(outFilename, 'r')
@@ -346,6 +360,8 @@ function status = launch_nonreg(baseDir, testName)
         status.details = sprintf('     Cannot read output data from file ''%s''', outFilename)
         status.details = [ status.details ; sprintf('     It might indicate a failure during simulation') ]
         status.details = [ status.details ; sprintf('     Try running the simulation manually by opening ''%s.cos'' in Scicos', testName) ]
+				status.details = [ status.details ; sprintf('     Last know error:') ]
+				status.details = [ status.details ; lasterror() ]
         return // go on to next test
       end
     
@@ -358,6 +374,8 @@ function status = launch_nonreg(baseDir, testName)
         status.ok = %f
         status.msg = 'failed  : Cannot read reference data'
         status.details = sprintf('     Cannot read reference data from file ''%s''', outRefFilename)
+				status.details = [ status.details ; sprintf('     Last know error:') ]
+				status.details = [ status.details ; lasterror() ]
         return // go on to next test
       end
     
@@ -411,6 +429,20 @@ function family = get_scilab_family()
     family = '5'
     
   end
+
+endfunction
+
+// -----------------------------------------------------------------------------
+
+function filename = get_filename(fullPath)
+// Extract filename from a full path
+// Ex: --> get_filename('/home/vaylet/dev/scicos_work/modules/scicos/tests/nonreg_tests/constant.test')
+//      ans =
+//
+//      contant.test
+
+  [path,base,extension] = fileparts(fullPath)
+  filename = base + extension
 
 endfunction
 
