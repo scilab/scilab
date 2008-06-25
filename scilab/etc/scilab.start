@@ -137,7 +137,7 @@ if sciargs()<>'-nouserstartup' then
     else
       [startup,ierr]=mopen('scilab.ini','r')
       if ierr==0 then
-	exec(startup,-1);mclose(startup)
+		exec(startup,-1);mclose(startup)
       end
     end
   end
