@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Legend" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="captions" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -23,15 +23,15 @@
   </info>
 
   <refnamediv>
-    <refname>Legend</refname>
+    <refname>captions</refname>
 
-    <refpurpose>draw graph Legend</refpurpose>
+    <refpurpose>draw graph captions</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>hl=Legend(h, strings)</synopsis>
+    <synopsis>hl=captions(h, strings)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -50,7 +50,7 @@
         <term>strings</term>
 
         <listitem>
-          <para>n vector of strings, strings(i) is the Legend of the ith
+          <para>n vector of strings, strings(i) is the caption of the ith
           polyline</para>
         </listitem>
       </varlistentry>
@@ -60,7 +60,7 @@
 
         <listitem>
           <para>a handle of type "<literal>Legend</literal>", points to the
-          structure containing all the Legend information (see <link
+          structure containing all the captions information (see <link
           linkend="legend_properties">legend_properties</link>.</para>
         </listitem>
       </varlistentry>
@@ -70,12 +70,12 @@
   <refsection>
     <title>Description</title>
 
-    <para>Puts a Legend on the current plot at the in the bottom left corner
-    of the graphic window using the specified strings as labels. Legend
+    <para>Puts  captions on the current plot at the in the bottom left corner
+    of the graphic window using the specified strings as labels. <literal>captions</literal>
     prepends labels by a recall of the corresponding polylines. The type and
-    properties are recover from the given handles:</para>
+    properties are recovered from the given handles:</para>
 
-    <para>This function correspond to the leg argument of <link
+    <para>This function correspond to the <literal>leg</literal> argument of <link
     linkend="plot2d">plot2d</link>.</para>
   </refsection>
 
@@ -92,7 +92,7 @@ e=gce();
 e.children(1).thickness=3;
 e.children(2).line_style=4;
 
-hl=Legend(e.children,['cos(t)';'cos(2*t)';'cos(3*t)']);
+hl=captions(e.children,['cos(t)';'cos(2*t)';'cos(3*t)']);
  
   </programlisting>
   </refsection>
@@ -102,11 +102,9 @@ hl=Legend(e.children,['cos(t)';'cos(2*t)';'cos(3*t)']);
 
     <simplelist type="inline">
       <member><link linkend="plot2d">plot2d</link></member>
-
       <member><link linkend="legend">legend</link></member>
-
-      <member><link
-      linkend="polyline_properties">polyline_properties</link></member>
+      <member><link linkend="polyline_properties">polyline_properties</link></member>
+      <member><link linkend="legend_properties">legend_properties</link></member>
     </simplelist>
   </refsection>
 </refentry>
