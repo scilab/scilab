@@ -1123,6 +1123,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_Legend.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_matplot.c"
 				>
 			</File>
@@ -2134,6 +2138,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_is_handle_valid.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_Legend.h"
 				>
 			</File>
 			<File
