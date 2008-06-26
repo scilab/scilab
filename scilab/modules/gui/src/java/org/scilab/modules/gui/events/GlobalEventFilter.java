@@ -97,13 +97,6 @@ public class GlobalEventFilter {
 	 */
 	public static void filterMouse(MouseEvent mouseEvent, SwingScilabCanvas source, int buttonAction, boolean isControlDown) {
 		synchronized (ClickInfos.getInstance()) {
-			//System.out.println("Good X = "+(mouseEvent.getLocationOnScreen().getX() - ((JComponent) source).getLocationOnScreen().getX()));
-			//System.out.println("Good Y = "+(mouseEvent.getLocationOnScreen().getY() - ((JComponent) source).getLocationOnScreen().getY()));
-			//System.out.println("New X = "+(mouseEvent.getX() + ((JComponent) mouseEvent.getSource()).getLocationOnScreen().getX() - ((JComponent) source).getLocationOnScreen().getX()));
-			//System.out.println("New Y = "+(mouseEvent.getY() + ((JComponent) mouseEvent.getSource()).getLocationOnScreen().getY() - ((JComponent) source).getLocationOnScreen().getY()));
-			//System.out.println("Get X = "+(mouseEvent.getX()));
-			//System.out.println("Get Y = "+(mouseEvent.getY()));
-
 			ClickInfos.getInstance().setXCoordinate(mouseEvent.getX() + ((JComponent) mouseEvent.getSource()).getLocationOnScreen().getX() - ((JComponent) source).getLocationOnScreen().getX());
 			ClickInfos.getInstance().setYCoordinate(mouseEvent.getY() + ((JComponent) mouseEvent.getSource()).getLocationOnScreen().getY() - ((JComponent) source).getLocationOnScreen().getY());
 			ClickInfos.getInstance().setMouseButtonNumber(
