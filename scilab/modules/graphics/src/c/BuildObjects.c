@@ -935,7 +935,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
  * This function creates  Legend structure
  */
 sciPointObj *
-ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends, int *pstyle
+ConstructLegend (sciPointObj * pparentsubwin, char **text, int n, int nblegends, int *pstyle
 		 , sciPointObj **pptabofpointobj)
 {
   sciPointObj * pobj = (sciPointObj *) NULL;
@@ -989,7 +989,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       
       ppLegend->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
 
-      ppLegend->text.pStrings = newFullStringMatrix( &text, 1, 1 ) ;
+      ppLegend->text.pStrings = newFullStringMatrix( text,nblegends,1 ) ;
 
       /* Allocation de la structure sciText */
       if ( ppLegend->text.pStrings == NULL)

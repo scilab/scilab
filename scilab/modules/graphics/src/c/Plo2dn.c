@@ -269,14 +269,34 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     
     /*---- Drawing the Legends ----*/
     startFigureDataWriting(curFigure);
+
     if (with_leg) {
+      char ** Str;
+      int nleg;
+      if (scitokenize(legend, &Str, &nleg)) {
+	FREE(pptabofpointobj);
+	FREE(hdltab);
+	sciprint(_("%s: No more memory.\n"),"plot2d");
+	return 0;
+      }
+      if (nleg != *n1) {
+	FREE(pptabofpointobj);
+	FREE(hdltab);
+	for (jj = 0; jj < *n1; jj++) FREE(Str[jj]);
+	FREE(Str);
+	sciprint(_("%s: Invalid legend.\n"),"plot2d");
+	return 0;
+      }
+	
       sciSetCurrentObj (ConstructLegend
                         (sciGetCurrentSubWin(),
-			 legend,  (int)strlen(legend), *n1, style, pptabofpointobj)); 
+			 Str,  1, *n1, style, pptabofpointobj)); 
       /*     hdl=sciGetHandle(sciGetCurrentObj ());   
       hdltab[cmpt]=hdl;
-      cmpt++;
-      FREE(pptabofpointobj);*/
+      cmpt++;*/
+      for (jj = 0; jj < *n1; jj++) FREE(Str[jj]);
+      FREE(Str);
+      FREE(pptabofpointobj);
     }
 
     /*---- construct Compound ----*/

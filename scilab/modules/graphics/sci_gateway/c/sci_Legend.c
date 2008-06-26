@@ -35,14 +35,20 @@ int sci_Legend( char * fname, unsigned long fname_len )
   int outindex,i;
   int *pstyle;
   sciPointObj *pobj;
-  sciPointObj * pparentsubwin;
   sciPointObj **pptabofpointobj;
+  sciPointObj * psubwin = NULL;
+  sciPointObj * pFigure = NULL;
+
   sciEntityType type;
   char **Str = NULL;
 
   CheckRhs(2,2);
   CheckLhs(0,1);
 
+  startGraphicDataWriting();
+  pFigure = sciGetCurrentFigure();
+  psubwin = sciGetCurrentSubWin();
+  endGraphicDataWriting();
 
   /*  set or create a graphic window */
   GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&l1); 
@@ -58,22 +64,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
     Scierror(999,_("%s: Input arguments %d and %d have incompatible dimensions.\n"),fname,1,2);
     return 0;
   }
-  numrow = 1;
-  numcol = 1;
-  CreateVar(3,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
-  hstk(outindex)[0] = sciGetHandle((sciPointObj *) sciGetCurrentObj());
-  LhsVar(1) = 3;
-
-  strcpy(C2F(cha1).buf,Str[0]);
-  for ( i= 1 ; i <n ; i++) 
-    {
-      strcat(C2F(cha1).buf,"@"); 
-      strcat(C2F(cha1).buf,Str[i]);
-    }
-  freeArrayOfString(Str,n);
-
  
-  /* we must change the pobj to the Compound type */
   pptabofpointobj = (sciPointObj **)MALLOC(n*sizeof(sciPointObj *));
   if (pptabofpointobj == NULL) {
       Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
@@ -83,13 +74,10 @@ int sci_Legend( char * fname, unsigned long fname_len )
   for (i = 0; i < n;i++)
   {
     handelsvalue = (unsigned long) (hstk(l1))[i];
-    if (i==0)
-      pparentsubwin = sciGetParentSubwin(handelsvalue);
-    else
-      if (pparentsubwin!=sciGetParentSubwin(handelsvalue)) {
-	Scierror(999,_("%s: Objects must have the same axes.\n"),fname);
-	return 0;
-      }
+    if (psubwin!=sciGetParentSubwin(handelsvalue)) {
+      Scierror(999,_("%s: Objects must have the same axes.\n"),fname);
+      return 0;
+    }
 
     pobj = sciGetPointerFromHandle(handelsvalue);
     if (pobj == NULL) {
@@ -104,8 +92,13 @@ int sci_Legend( char * fname, unsigned long fname_len )
     pptabofpointobj[i]=pobj;
     
   }
-  sciSetCurrentObj ((sciPointObj *)ConstructLegend (pparentsubwin, C2F(cha1).buf, 
+  sciSetCurrentObj ((sciPointObj *)ConstructLegend (psubwin, Str, 
 						    0, n, pstyle , pptabofpointobj));
+  startFigureDataReading(pFigure);
+  sciDrawObjIfRequired(sciGetCurrentObj ());
+  endFigureDataReading(pFigure);
+
+  freeArrayOfString(Str,n);
   FREE(pptabofpointobj);
   numrow = 1;
   numcol = 1;

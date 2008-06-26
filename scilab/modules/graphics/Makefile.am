@@ -320,7 +320,8 @@ src/c/fill_grid_rectangles.c \
 src/c/get_rgb.c \
 src/c/getcolordef.c \
 src/c/getwindowdim.c \
-src/c/periEmpty.c
+src/c/periEmpty.c\
+src/c/scitokenize.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \
