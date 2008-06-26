@@ -174,22 +174,11 @@ sub check_tree {
 	}
 	
 	# macros/ must contain only .sci and .sce files
-	# If it exists and is non-empty, it must contains buildmacros.sce
-	my $macros_empty = 1;
-	my $macros_has_builder = 0;
 	foreach (grep { $_ =~ m#^macros/# } keys %tree) {
-		if(/\.sc[ie]$/) {
-			$macros_empty = 0;
-			$macros_has_builder = 1 if(m#/buildmacros\.sce$#);
-		}
-		elsif(!/\/$/) { # Don't be /too/ nazi: allow sub-directories :)
+		if(!/(\.sc[ie]|\/)$/) {
 			die "Incorrect archive: macros/ must contain only .sci and .sce files".
 			    " (\"$_\" found)";
 		}
-	}
-	
-	if(!$macros_empty && !$macros_has_builder) {
-		die "Incorrect archive: macros/ not empty and no buildmacros.sce script found";
 	}
 	
 	# All fortran files must be in src/fortran
@@ -208,54 +197,38 @@ sub check_tree {
 		}
 	}
 	
-	# if src/c contains at least a .c file, src/c/buildsrc_c.sce must exists
-	my $has_c_source = grep { $_ =~ m#^src/c/.+\.[ch]$# } keys %tree;
-	my $has_c_src_builder = defined($tree{"src/c/buildsrc_c.sce"});
-	if($has_c_source && !$has_c_src_builder) {
-		die "Incorrect archives: C source found in src/c/ but no buildsrc_c.sce ".
-		    "script found";
+	# Constraints: if $key exists, $constraints{$key} must exist
+	my %constraints = (
+		qr#help/.+\.xml$# => "help/buildhelp.sce",
+		qr#macros/.+\.sc[ie]$# => "macros/buildmacros.sce");
+	
+	# Build constraints for allowed languages
+	my %languages = (
+		"c" => qr/[ch]/,
+		"fortran" => qr/f/);
+	
+	foreach (keys %languages) {
+		# if src/(lang) has source files, src/(lang)/buildsrc_(lang).sce must exist
+		$constraints{qr#^src/$_/.+\.$languages{$_}$#} = "src/$_/buildsrc_$_.sce";
+		
+		# if sci_gateway/(lang) has C sources, sci_gateway/(lang)/buildgateway_(lang).sce
+		# must exist
+		$constraints{qr#^sci_gateway/$_/.+[ch]$#} = "sci_gateway/$_/buildgateway_$_.sce";
+		
+		# if src/(lang)/buildsrc_(lang).sce exist, src/buildsrc.sce must exist
+		$constraints{qr#^src/$_/buildsrc_$_.sce$#} = "src/buildsrc.sce";
+		
+		# if sci_gateway/(lang)/buildgateway_(lang).sce exist, sci_gateway/buildgateway.sce must exist
+		$constraints{qr#^sci_gateway/$_/buildgateway_$_.sce$#} = "sci_gateway/buildgateway.sce";
 	}
 	
-	# if src/fortran contains at least a .f file, src/fortran/buildsrc_fortran.sce must exists
-	my $has_f_source = grep { $_ =~ m#^src/fortran/.+\.f$# } keys %tree;
-	my $has_f_src_builder = defined($tree{"src/fortran/buildsrc_fortran.sce"});
-	if($has_f_source && !$has_f_src_builder) {
-		die "Incorrect archives: Fortran source found in src/fortran/ ".
-		    "but no buildsrc_fortran.sce script found";
-	}
-	
-	# if src/*/buildsrc_*.sce exists, src/buildsrc.sce must exists 
-	my $has_src_builder = defined($tree{"src/buildsrc.sce"});
-	if(($has_f_source || $has_c_source) && !$has_src_builder) {
-		die "Incorrect archive: sources file found but no buildsrc.sce script found";
-	}
-	
-	# if sci_gateway/fortran contains at least a .c file,
-	# sci_gateway/fortran/buildgateway_fortran.sce must exists.
-	my $has_f_gateway = grep { m#^sci_gateway/fortran/.+\.[ch]$# } keys %tree;
-	my $has_f_gateway_builder = defined($tree{"sci_gateway/fortran/buildgateway_fortran.sce"});
-	if($has_f_gateway && !$has_f_gateway_builder) {
-		die "Incorrect archive: Fortran gateway found but can't find any builder for it";
-	}
-	
-	# if sci_gateway/c contains at least a .c file, sci_gateway/c/buildgateway_c.sce must exists
-	my $has_c_gateway = grep { m#^sci_gateway/c/.+\.[ch]$# } keys %tree;
-	my $has_c_gateway_builder = defined($tree{"sci_gateway/c/buildgateway_c.sce"});
-	if($has_c_gateway && !$has_c_gateway_builder) {
-		die "Incorrect archive: C gateway found but can't find any builder for it";
-	}
-	
-	# if sci_gateway/*/buildgateway_*.sce exists, sci_gateway/buildgateway.sce must exists
-	my $has_gateway_builder = defined($tree{"sci_gateway/buildgateway.sce"});
-	if(($has_c_gateway || $has_f_gateway) && !$has_gateway_builder) {
-		die "Incorrect archive: gateway found no gateway builder (buildgateway.sce) found";
-	}
-	
-	# if help/ contains .xml files, it must contains a buildhelp.sce file
-	my $has_help = grep { m#^help/.+\.xml$# } keys %tree;
-	my $has_help_builder = defined($tree{"help/buildhelp.sce"});
-	if($has_help && !$has_help_builder) {
-		die "Incorrect archive: help files found but no help builder (buildhelp.sce) found";
+	# Check constraints
+	foreach my $constraint (keys %constraints) {
+		my $required = $constraints{$constraint};
+		my @found = grep { $_ =~ $constraint } keys %tree;
+		if(@found && !defined($tree{$required})) {
+			die "Invalid archive: \"$found[0]\" needs \"$required\", which isn't in the archive";
+		}
 	}
 }
 
