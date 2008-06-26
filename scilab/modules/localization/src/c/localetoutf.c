@@ -63,7 +63,7 @@ void openLocaleToUTFConverter(char *sysLocale,char *lang)
 	}
   
 	unicodeSubset=TRUE;/* default */
-#ifndef _MSC_VER
+#ifdef _MSC_VER
 	/*  Under Windows only Code page 1252 (iso-8859-1) is subset of UNICODE
 		http://www.science.co.il/Language/Character-Sets.asp */
 	if ( stricmp("CP1252", encoding) !=0 ) 
