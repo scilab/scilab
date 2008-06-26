@@ -8,7 +8,7 @@ use Cwd;
 
 my ($TOOLBOXFILE, # Toolbox archive to compile
     $TOOLBOXNAME, # Name of the toolbox
-	$STAGE); # Current stage
+    $STAGE); # Current stage
 
 # common_log:
 #    Print a log message. Seconf argument is the type of the
@@ -104,7 +104,7 @@ sub is_zip {
 sub get_tree_from_tgz {
 	my %files;
 	
-	my $fd = common_exec("tar -tzf ${TOOLBOXFILE}");
+	my $fd = common_exec("zcat ${TOOLBOXFILE} | tar -t");
 	
 	while(<$fd>) {
 		chomp;
@@ -121,13 +121,15 @@ sub get_tree_from_zip {
 	my (%files, $line);
 	
 	# tail & head are here to skip header & footer
-	my $fd = common_exec("unzip -l ${TOOLBOXFILE} | tail -n +4 | head -n -2");
+	my $fd = common_exec("unzip -l ${TOOLBOXFILE}");
 	
 	while(<$fd>) {
-		# zip output format: size date time filename
-		/\s*\d+\s+\d+-\d+-\d+\s+\d+:\d+\s+(.+)/ or common_die "Bad output of unzip";
-		chomp $1;
-		$files{$1} = 1;
+		if(((/^\s*-+/)...(/^\s*-+/)) && !/^\s*-+/) { # Delete header & footer
+			# zip output format: size date time filename
+			/\s*\d+\s+\d+-\d+-\d+\s+\d+:\d+\s+(.+)/ or common_die "Bad output of unzip";
+			chomp $1;
+			$files{$1} = 1;
+		}
 	}
 	
 	close $fd;
@@ -150,14 +152,14 @@ sub get_tree {
 #    Extract given file from the .zip archive
 sub read_file_from_tgz {
 	my $filename = shift;
-	return common_exec("tar -xOzf ${TOOLBOXFILE} ${TOOLBOXNAME}/$filename");
+	return common_exec("zcat ${TOOLBOXFILE} | tar -xO ${TOOLBOXNAME}/$filename");
 }
 
 # read_file_from_tgz:
 #    Extract given file from the .tar.gz archive
 sub read_file_from_zip {
 	my $filename = shift;
-	return common_exec("unzip -c ${TOOLBOXFILE} ${TOOLBOXNAME}/$filename | tail -n +3 | head -n -1");
+	return common_exec("unzip -p ${TOOLBOXFILE} ${TOOLBOXNAME}/$filename");
 }
 
 # read_file_from_archive:
