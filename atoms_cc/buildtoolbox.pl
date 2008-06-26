@@ -147,13 +147,19 @@ sub read_description {
 #   (required files are present, files are at their right place, and so on...)
 sub check_tree {
 	my %tree = @_;
+	my %newtree;
 	
 	# Check that all files are under a root which has the same name as the toolbox
+	# Delete this root to simplify other tests
 	foreach (keys %tree) {
-		if(!m#^\Q$TOOLBOXNAME\E/#) {
+		if(s#^\Q$TOOLBOXNAME\E(/|$)##) {
+			$newtree{$_} = 1 if $_;
+		}
+		else {
 			die "Incorrect archive: \"$_\" is not a child of \"$TOOLBOXNAME\"";
 		}
 	}
+	%tree = %newtree;
 	
 	# Check that basic files are here
 	my @required = qw(DESCRIPTION DESCRIPTION-FUNCTIONS readme.txt license.txt
@@ -162,12 +168,95 @@ sub check_tree {
 	push(@required, "etc/$TOOLBOXNAME.end");
 	
 	foreach (@required) {
-		if(!defined($tree{"$TOOLBOXNAME/$_"})) {
+		if(!defined($tree{$_})) {
 			die "Incorrect archive: required file \"$_\" not present";
 		}
 	}
 	
-	# 
+	# macros/ must contain only .sci and .sce files
+	# If it exists and is non-empty, it must contains buildmacros.sce
+	my $macros_empty = 1;
+	my $macros_has_builder = 0;
+	foreach (grep { $_ =~ m#^macros/# } keys %tree) {
+		if(/\.sc[ie]$/) {
+			$macros_empty = 0;
+			$macros_has_builder = 1 if(m#/buildmacros\.sce$#);
+		}
+		elsif(!/\/$/) { # Don't be /too/ nazi: allow sub-directories :)
+			die "Incorrect archive: macros/ must contain only .sci and .sce files".
+			    " (\"$_\" found)";
+		}
+	}
+	
+	if(!$macros_empty && !$macros_has_builder) {
+		die "Incorrect archive: macros/ not empty and no buildmacros.sce script found";
+	}
+	
+	# All fortran files must be in src/fortran
+	foreach (grep { $_ =~ /\.f$/} keys %tree) {
+		if(!m#^src/fortran/#) {
+			die "Incorrect archive: \"$_\" is a fortran source and hence has to be in ".
+			    "src/fortran";
+		}
+	}
+
+	# All c files must be in src/c or sci_gateway/{c,fortran}
+	foreach (grep { $_ =~ /\.[ch]$/} keys %tree) {
+		if(!m#^(src/c|sci_gateway/(c|fortran))/#) {
+			die "Incorrect archive: \"$_\" is a C source and hence has to be in ".
+			    "src/c, sci_gateway/c or sci_gateway/fortran";
+		}
+	}
+	
+	# if src/c contains at least a .c file, src/c/buildsrc_c.sce must exists
+	my $has_c_source = grep { $_ =~ m#^src/c/.+\.[ch]$# } keys %tree;
+	my $has_c_src_builder = defined($tree{"src/c/buildsrc_c.sce"});
+	if($has_c_source && !$has_c_src_builder) {
+		die "Incorrect archives: C source found in src/c/ but no buildsrc_c.sce ".
+		    "script found";
+	}
+	
+	# if src/fortran contains at least a .f file, src/fortran/buildsrc_fortran.sce must exists
+	my $has_f_source = grep { $_ =~ m#^src/fortran/.+\.f$# } keys %tree;
+	my $has_f_src_builder = defined($tree{"src/fortran/buildsrc_fortran.sce"});
+	if($has_f_source && !$has_f_src_builder) {
+		die "Incorrect archives: Fortran source found in src/fortran/ ".
+		    "but no buildsrc_fortran.sce script found";
+	}
+	
+	# if src/*/buildsrc_*.sce exists, src/buildsrc.sce must exists 
+	my $has_src_builder = defined($tree{"src/buildsrc.sce"});
+	if(($has_f_source || $has_c_source) && !$has_src_builder) {
+		die "Incorrect archive: sources file found but no buildsrc.sce script found";
+	}
+	
+	# if sci_gateway/fortran contains at least a .c file,
+	# sci_gateway/fortran/buildgateway_fortran.sce must exists.
+	my $has_f_gateway = grep { m#^sci_gateway/fortran/.+\.[ch]$# } keys %tree;
+	my $has_f_gateway_builder = defined($tree{"sci_gateway/fortran/buildgateway_fortran.sce"});
+	if($has_f_gateway && !$has_f_gateway_builder) {
+		die "Incorrect archive: Fortran gateway found but can't find any builder for it";
+	}
+	
+	# if sci_gateway/c contains at least a .c file, sci_gateway/c/buildgateway_c.sce must exists
+	my $has_c_gateway = grep { m#^sci_gateway/c/.+\.[ch]$# } keys %tree;
+	my $has_c_gateway_builder = defined($tree{"sci_gateway/c/buildgateway_c.sce"});
+	if($has_c_gateway && !$has_c_gateway_builder) {
+		die "Incorrect archive: C gateway found but can't find any builder for it";
+	}
+	
+	# if sci_gateway/*/buildgateway_*.sce exists, sci_gateway/buildgateway.sce must exists
+	my $has_gateway_builder = defined($tree{"sci_gateway/buildgateway.sce"});
+	if(($has_c_gateway || $has_f_gateway) && !$has_gateway_builder) {
+		die "Incorrect archive: gateway found no gateway builder (buildgateway.sce) found";
+	}
+	
+	# if help/ contains .xml files, it must contains a buildhelp.sce file
+	my $has_help = grep { m#^help/.+\.xml$# } keys %tree;
+	my $has_help_builder = defined($tree{"help/buildhelp.sce"});
+	if($has_help && !$has_help_builder) {
+		die "Incorrect archive: help files found but no help builder (buildhelp.sce) found";
+	}
 }
 
 # Init global vars, check arguments
