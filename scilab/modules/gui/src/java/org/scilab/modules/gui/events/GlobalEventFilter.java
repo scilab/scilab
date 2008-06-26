@@ -97,8 +97,8 @@ public class GlobalEventFilter {
 	 */
 	public static void filterMouse(MouseEvent mouseEvent, SwingScilabCanvas source, int buttonAction, boolean isControlDown) {
 		synchronized (ClickInfos.getInstance()) {
-			ClickInfos.getInstance().setXCoordinate(mouseEvent.getXOnScreen() - ((JComponent) source).getLocationOnScreen().getX());
-			ClickInfos.getInstance().setYCoordinate(mouseEvent.getYOnScreen() - ((JComponent) source).getLocationOnScreen().getY());
+			ClickInfos.getInstance().setXCoordinate(mouseEvent.getLocationOnScreen().getX() - ((JComponent) source).getLocationOnScreen().getX());
+			ClickInfos.getInstance().setYCoordinate(mouseEvent.getLocationOnScreen().getY() - ((JComponent) source).getLocationOnScreen().getY());
 			ClickInfos.getInstance().setMouseButtonNumber(
 					SciTranslator.javaButton2Scilab(mouseEvent.getButton(), buttonAction, isControlDown)
 					);
