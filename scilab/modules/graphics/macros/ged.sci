@@ -6,6 +6,27 @@ function ged(k,win)
    return
   end
 
+  // Check number of arguments
+  if argn(2) <> 2 then
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "ged", 2));
+  end
+  
+  // Check argument #1
+  if typeof(k) <> "constant" then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A Real expected.\n"), "ged", 1));
+  end
+  if size(k, "*") <> 1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A Real expected.\n"), "ged", 1));
+  end
+  
+  // Check argument #2
+  if typeof(win) <> "constant" then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A Real expected.\n"), "ged", 2));
+  end
+  if size(win, "*") <> 1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A Real expected.\n"), "ged", 2));
+  end
+  
   global ged_current_figure
   global ged_cur_fig_handle
   
