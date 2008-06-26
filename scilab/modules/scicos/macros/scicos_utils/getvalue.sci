@@ -90,7 +90,18 @@ if %rhs==3 then  %ini=emptystr(%nn,1),end
 
 // Transform a list of strings into a vector of strings
 // Has no effect if %ini is already a vector of strings
-%ini = cat(1,%ini(:))
+// An empty item in the source list is converted to an empty string in the
+//  destination vector
+// %ini = cat(1,%ini(:))
+%new_ini = []
+for k = 1:length(%ini)
+  if isempty(%ini(k))
+    %new_ini(k) = ''
+  else
+    %new_ini(k) = %ini(k)
+  end
+end
+%ini = %new_ini
 
 %ok=%t
 while %t do
