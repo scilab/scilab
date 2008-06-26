@@ -16,26 +16,12 @@ function [k1,k2]=getmark()
 	win=max(winsid()+1);
 	xset('window',win);
 	
-	if ~MSDOS then
-		delmenu(win,'3D Rot.')
-		delmenu(win,'UnZoom')
-		delmenu(win,'Zoom')
-		delmenu(win,"Edit")
-		delmenu(win,'File')
-		delmenu(win,'Insert')
-	else
-		hidetoolbar(win)
-		// French
-		delmenu(win,'&Fichier')
-		delmenu(win,'&Editer')
-		delmenu(win,'&Outils')
-		delmenu(win,'&Inserer')
-		// English
-		delmenu(win,'&File')
-		delmenu(win,'&Edit')
-		delmenu(win,'&Tools')
-		delmenu(win,'&Insert')
-	end
+	delmenu(win,_("&File")); 
+	delmenu(win,_("&Edit"));
+	delmenu(win,_("&Tools"));
+	delmenu(win,_("&?")); 
+
+	toolbar(win, "off");
 	
 	//Event handler and menu definition
 	
