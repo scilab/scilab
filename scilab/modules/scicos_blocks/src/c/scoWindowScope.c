@@ -79,14 +79,18 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
       pTemp = getFigureFromIndex(win_id);
       if (pFIGURE_FEATURE(pTemp)->user_data != NULL)
         {
-      user_data = scoGetUserData(pTemp);
+           user_data = scoGetUserData(pTemp);
         }
+    
+        sciClearFigure(pTemp); //** if already present is cleared 
+
     }
   /*if ((user_data == -1 ) || (user_data == win_id))*/
   if ((user_data == -1 ) || (user_data == block_number))
     {
       scoSetWindowID(pScopeMemory,win_id);
-      DeleteObjs(win_id);
+      //** DeleteObjs(win_id);
+      
       scoSetScopeActivation(pScopeMemory,1); //Activate It ! Let's Rock !
       //Dont forget this kind of command
       sciSetUsedWindow(scoGetWindowID(pScopeMemory));
