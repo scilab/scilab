@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="gui"
 	ProjectGUID="{45CA5B12-7601-4968-AE16-16069FD1A152}"
 	RootNamespace="gui"
@@ -576,6 +576,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUiobjectEnable.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUiobjectForegroundColor.cpp"
 				>
 			</File>
@@ -849,6 +853,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUiobjectCallback.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectEnable.cpp"
 				>
 			</File>
 			<File
@@ -1241,6 +1249,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUiobjectEnable.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GetUiobjectForegroundColor.h"
 				>
 			</File>
@@ -1546,6 +1558,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUiobjectCallback.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectEnable.hxx"
 				>
 			</File>
 			<File
