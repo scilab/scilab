@@ -1230,9 +1230,9 @@ sciGetLegendPlace (sciPointObj * pobj)
   else
   {
     sciprint (_("You are not using a legend object.\n"));
-    return SCI_LEGEND_OUTSIDE ;
+    return SCI_LEGEND_OUT_LOWER_LEFT;
   }
-  return SCI_LEGEND_OUTSIDE ;
+  return SCI_LEGEND_OUT_LOWER_LEFT;
 }
 
 
@@ -4309,6 +4309,7 @@ void sciGetTextBoundingBox(sciPointObj * pObj, double corner1[3], double corner2
   case SCI_LABEL:
     sciGetTextBoundingBox(pLABEL_FEATURE(pObj)->text, corner1, corner2, corner3, corner4);
     break;
+
   default:
     printSetGetErrorMessage("bounding box");
     break;

@@ -1462,7 +1462,7 @@ int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
   double position[2]={0.0,0.0};
   int y = 0;
 
-  if (sciGetEntityType (pobj) == SCI_TITLE)
+  if (sciGetEntityType (pobj) == SCI_LEGEND)
   {
     pLEGEND_FEATURE (pobj)->place = place;
     /* calcul de l emplacement relatif du titre 

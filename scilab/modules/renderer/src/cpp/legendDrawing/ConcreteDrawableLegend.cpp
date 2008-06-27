@@ -23,6 +23,7 @@ extern "C"
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "MALLOC.h"
+#include "sciprint.h"
 }
 
 namespace sciGraphics
@@ -250,6 +251,7 @@ void ConcreteDrawableLegend::getLineBox(double upperLeftCorner[3], double lowerL
                                         double lowerRightCorner[3], double upperRightCorner[3])
 {
   sciPointObj * parentSubwin = sciGetParentSubwin(m_pNames);
+ 
   // get viewing area used by axes
   int axesXpos;
   int axesYpos;
@@ -263,7 +265,6 @@ void ConcreteDrawableLegend::getLineBox(double upperLeftCorner[3], double lowerL
   int corner3[2];
   int corner4[2];
   sciGetPixelBoundingBox(m_pNames, corner1, corner2, corner3, corner4);
-
   // the height of the box equals the text height
    double boxPixelHeight = Abs(corner1[1] - corner3[1]);
 
@@ -283,10 +284,55 @@ void ConcreteDrawableLegend::getLineBox(double upperLeftCorner[3], double lowerL
   double pixelDepth = pointOnAxes[2];
 
   // we got all the information we need, we can compute the 4 corners
-  // upper left point
-  // just behind axes box, that's why the 1.05
-  double pixCorner1[3] = {axesXpos, axesYpos + axesHeight * 1.05, pixelDepth};
 
+  // Set upper left point
+  double pixCorner1[3];
+  pixCorner1[2] = pixelDepth;
+  switch(sciGetLegendPlace(m_pDrawed))  {
+  case  SCI_LEGEND_OUT_UPPER_RIGHT: 
+    pixCorner1[0] = axesXpos + axesWidth+ boxPixelWidth*0.1;
+    pixCorner1[1] = axesYpos; //- boxPixelHeight*1.1;
+    break;
+  case  SCI_LEGEND_OUT_UPPER_LEFT: 
+    pixCorner1[0] = axesXpos - boxPixelWidth*1.2 - (corner3[0]-corner1[0]) ;
+    pixCorner1[1] = axesYpos; //- boxPixelHeight*1.1;
+    break;
+  case  SCI_LEGEND_OUT_LOWER_RIGHT: 
+    pixCorner1[0] = axesXpos + axesWidth+ boxPixelWidth*0.1;
+    pixCorner1[1] = axesYpos + axesHeight - boxPixelHeight;
+    break;
+  case SCI_LEGEND_OUT_LOWER_LEFT: 
+    pixCorner1[0] = axesXpos - boxPixelWidth*1.2 - (corner3[0]-corner1[0]) ;
+    pixCorner1[1] = axesYpos + axesHeight- boxPixelHeight;
+    break;
+  case  SCI_LEGEND_IN_UPPER_RIGHT: 
+    pixCorner1[0] = axesXpos + axesWidth-boxPixelWidth*1.2 - (corner3[0]-corner1[0]);
+    pixCorner1[1] = axesYpos;
+    break;
+  case  SCI_LEGEND_IN_UPPER_LEFT: 
+    pixCorner1[0] = axesXpos + boxPixelWidth*0.1;
+    pixCorner1[1] = axesYpos;
+    break;
+  case  SCI_LEGEND_IN_LOWER_RIGHT: 
+    pixCorner1[0] = axesXpos + axesWidth-boxPixelWidth*1.2 - (corner3[0]-corner1[0]);
+    pixCorner1[1] = axesYpos + axesHeight - boxPixelHeight;
+    break;
+  case  SCI_LEGEND_IN_LOWER_LEFT: 
+    pixCorner1[0] = axesXpos + boxPixelWidth*0.1;
+    pixCorner1[1] = axesYpos + axesHeight- boxPixelHeight;
+    break;
+   case  SCI_LEGEND_LOWER_CAPTION: 
+    pixCorner1[0] = axesXpos;
+    pixCorner1[1] = axesYpos + axesHeight* 1.05 ;
+    break;
+   case  SCI_LEGEND_UPPER_CAPTION: 
+    pixCorner1[0] = axesXpos;
+    pixCorner1[1] = axesYpos -  axesHeight*0.05;
+    break;
+      
+  }
+
+ 
   // lower left point
   double pixCorner2[3] = {pixCorner1[0], pixCorner1[1] + boxPixelHeight, pixelDepth};
 

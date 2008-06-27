@@ -1044,7 +1044,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, int n, int nblegends,
       ppLegend->pos.y = 0;
       ppLegend->width = 0;
       ppLegend->height = 0;
-      ppLegend->place = SCI_LEGEND_IN_INSIDE;
+      ppLegend->place = SCI_LEGEND_LOWER_CAPTION;
       ppLegend->isselected = TRUE;
       ppLegend->issurround = FALSE;
 
