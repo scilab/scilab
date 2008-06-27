@@ -22,15 +22,17 @@
 #include "gw_graphics.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
-#include "../../elementary_functions/includes/elementary_functions.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
+#include "GraphicSynchronizerInterface.h"
+#include "DrawObjects.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_Legend( char * fname, unsigned long fname_len )
 {
-  integer numrow,numcol,l1,l2,lind,n,cx1=1,ret,m2,n2,nblegends ;
-  unsigned long hdl = 0, parenthdl = 0 ;
+  integer numrow,numcol,l1,n,m2,n2;
   long handelsvalue = NULL ;
   int outindex,i;
   int *pstyle;
@@ -45,32 +47,37 @@ int sci_Legend( char * fname, unsigned long fname_len )
   CheckRhs(2,2);
   CheckLhs(0,1);
 
+  
+  GetMatrixdims(1,&numrow,&numcol);
+  n=numrow*numcol;
+  if (numrow==0 || numcol==0) {
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numrow,&numcol,&l1);
+    LhsVar(1) = Rhs+1;
+    return 0;
+  }
+  GetMatrixdims(2,&m2,&n2);
+  if (m2*n2 != n) {
+    Scierror(999,_("%s: Input arguments %d and %d have incompatible dimensions.\n"),fname,1,2);
+    return 0;
+  }
+
+
+  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&l1); 
+  GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str);
+  
+  pptabofpointobj = (sciPointObj **)MALLOC(n*sizeof(sciPointObj *));
+  if (pptabofpointobj == NULL) {
+    freeArrayOfString(Str,n);
+    Scierror(999,_("%s: No more memory.\n"),fname);
+    return 0;
+  }
+    
   startGraphicDataWriting();
   pFigure = sciGetCurrentFigure();
   psubwin = sciGetCurrentSubWin();
   endGraphicDataWriting();
 
-  /*  set or create a graphic window */
-  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&l1); 
-  GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str);
-  n=numrow*numcol;
-  if (n==0) {
-    Scierror(999,_("%s: Input argument #%d must not be empty.\n"),fname,1);
-    return 0;
-  }
 
-  if (m2*n2 != n) {
-    freeArrayOfString(Str,n);
-    Scierror(999,_("%s: Input arguments %d and %d have incompatible dimensions.\n"),fname,1,2);
-    return 0;
-  }
- 
-  pptabofpointobj = (sciPointObj **)MALLOC(n*sizeof(sciPointObj *));
-  if (pptabofpointobj == NULL) {
-      Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
-      return 0;
-    }
-    
   for (i = 0; i < n;i++)
   {
     handelsvalue = (unsigned long) (hstk(l1))[i];
@@ -81,11 +88,15 @@ int sci_Legend( char * fname, unsigned long fname_len )
 
     pobj = sciGetPointerFromHandle(handelsvalue);
     if (pobj == NULL) {
-      Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
+      freeArrayOfString(Str,n);
+      FREE(pptabofpointobj);
+      Scierror(999,_("%s: No more memory.\n"),fname);
       return 0;
     }
     type=sciGetEntityType(pobj);
     if (type != SCI_POLYLINE) {
+      freeArrayOfString(Str,n);
+      FREE(pptabofpointobj);
       Scierror(999,_("%s: The %d th handle is not a polyline handle.\n"),fname,i+1);
       return 0;
     }
