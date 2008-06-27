@@ -60,11 +60,21 @@ start_electric_fence() {
 
 start_debug() {
 	  if test -n "$DEVENV"; then
-		  echo "Running debug of Scilab  : " $SCI/libtool --mode=execute gdb --args $SCILABBIN $sci_args
+		  echo "Running debug of Scilab [gdb]  : " $SCI/libtool --mode=execute gdb --args $SCILABBIN $sci_args
 		  "$SCI"/libtool --mode=execute gdb --args "$SCILABBIN" $sci_args
 	  else
-		  echo "Running debug of Scilab  : " gdb --args "$SCILABBIN" $sci_args
+		  echo "Running debug of Scilab [gdb]  : " gdb --args "$SCILABBIN" $sci_args
 		  gdb --args $SCILABBIN $sci_args
+	  fi
+}
+
+start_debug_kdbg() {
+	  if test -n "$DEVENV"; then
+		  echo "Running debug of Scilab [kdbg]  : " $SCI/libtool --mode=execute kdbg $SCILABBIN $sci_args
+		  "$SCI"/libtool --mode=execute kdbg "$SCILABBIN" $sci_args
+	  else
+		  echo "Running debug of Scilab [kdbg]  : " kdbg "$SCILABBIN" $sci_args
+		  kdbg $SCILABBIN $sci_args
 	  fi
 }
 
@@ -176,7 +186,7 @@ fi
 export SCI
 
 ############# JAVA DETECTION ##############
-# Basic inspiration from Eclipse
+#ï¿½Basic inspiration from Eclipse
 #
 # Scilab is looking for Java in various places with different ways :
 # * if JAVA_HOME is specificed, use it
@@ -446,6 +456,7 @@ do_help()
 	echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
 	echo     "      -d Display      : equivalent to display Display."
 	echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
+	echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
 	echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
 	echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
 	echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
@@ -650,6 +661,7 @@ sci_args=
 if test "$rest" = "yes"; then
 
   debug=
+  debug_kdbg=
   profiling=
   profiling_visu=
   electric_fence=
@@ -682,6 +694,9 @@ if test "$rest" = "yes"; then
           ;;
       -debug)
           DEBUG="-debug"
+          ;;
+      -debug-kdbg)
+          DEBUG_KDBG="-debug-kdbg"
           ;;
       -profiling)
           PROFILING="-profiling"
@@ -755,6 +770,9 @@ if test "$rest" = "yes"; then
   if test -n "$DEBUG"; then
 	  start_debug
   else
+  if test -n "$DEBUG_KDBG"; then
+	  start_debug_kdbg
+  else
 	if test -n "$PROFILING"; then
 		start_profiling
 	else
@@ -771,8 +789,9 @@ if test "$rest" = "yes"; then
 					sci_exe="do_scilex"
 					$sci_exe $sci_args
 				fi # now
-			fi # Not electric fense
+			fi # not electric fense
 		fi # not profiling visu
 	fi # not profiling
-  fi #not debug
-fi # if rest
+  fi # not debug kdbg
+  fi # not debug
+fi # if rest
