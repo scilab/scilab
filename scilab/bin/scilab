@@ -182,8 +182,9 @@ else
 		exit 1
 	fi
 fi
-# should be removed
+
 export SCI
+PATH="$SCI:$PATH"
 
 ############# JAVA DETECTION ##############
 #�Basic inspiration from Eclipse
@@ -424,24 +425,6 @@ export PATH
 
 do_scilex()
 {
-    PATH=$PATH:$SCI:$SCI/util
-    export PATH
-
-    XAPPLRESDIR=$SCI/X11_defaults
-    export XAPPLRESDIR
-
-#    tty -s && stty kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
-    "$SCILABBIN" $*
-}
-
-do_scilex_now()
-{
-    PATH=$PATH:$SCI:$SCI/util
-    export PATH
-
-    XAPPLRESDIR=$SCI/X11_defaults
-    export XAPPLRESDIR
-
     "$SCILABBIN" $*
 }
 
@@ -754,6 +737,7 @@ if test "$rest" = "yes"; then
   fi
 
   if test -n "$start_exp"; then
+	  echo "'$start_exp'"
     sci_args="$sci_args -e $start_exp"
   fi
 
@@ -762,7 +746,7 @@ if test "$rest" = "yes"; then
   fi
 
   if test -n "$arguments"; then
-    sci_args="$sci_args  $arguments"
+    sci_args="$sci_args $arguments"
   fi
   if test -n "$mem"; then
     sci_args="$sci_args -mem  $mem"
@@ -783,11 +767,9 @@ if test "$rest" = "yes"; then
 				start_electric_fence
 			else
 				if test -n "$now"; then
-					sci_exe="do_scilex_now"
-					$sci_exe $sci_args
+					do_scilex $sci_args
 				else
-					sci_exe="do_scilex"
-					$sci_exe $sci_args
+					do_scilex $sci_args
 				fi # now
 			fi # not electric fense
 		fi # not profiling visu
