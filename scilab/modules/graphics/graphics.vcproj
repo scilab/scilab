@@ -1351,6 +1351,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\scitokenize.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_alignment_property.c"
 				>
 			</File>

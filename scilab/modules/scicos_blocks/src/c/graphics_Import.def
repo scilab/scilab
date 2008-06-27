@@ -47,3 +47,4 @@ sciSetFontSize
 sciSetText
 ConstructGrayplot
 ConstructSurface
+sciClearFigure
