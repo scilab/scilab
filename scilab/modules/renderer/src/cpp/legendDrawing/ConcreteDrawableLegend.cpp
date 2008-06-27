@@ -114,10 +114,10 @@ void ConcreteDrawableLegend::setTextParameters(void)
 
   // get the text of the legend
   // use malloc since it will destroyed by FREE in deallocate text
-  char ** textMat = new char *[nbLegends];
-  computeTextMatrix(textMat);
-
-
+  //char ** textMat = new char *[nbLegends];
+  char ** textMat = getStrMatData(sciGetText(m_pDrawed));
+  //computeTextMatrix(textMat);
+  
   // create a text object and set its data from the legend object
   int background = sciGetBackground(m_pDrawed);
   int foreground = sciGetForeground(m_pDrawed);
@@ -127,11 +127,11 @@ void ConcreteDrawableLegend::setTextParameters(void)
                           FALSE, FALSE, FALSE, ALIGN_LEFT);
 
   // textMat has been copied
-  for (int i = 0; i < nbLegends; i++)
-  {
-    delete[] textMat[i];
-  }
-  delete[] textMat;
+ //  for (int i = 0; i < nbLegends; i++)
+//   {
+//     delete[] textMat[i];
+//   }
+//   delete[] textMat;
 
   sciInitFontSize(m_pNames, sciGetFontSize(m_pDrawed));
   sciInitFontForeground(m_pNames, sciGetForeground(m_pDrawed));
@@ -175,6 +175,7 @@ void ConcreteDrawableLegend::setLinesParameters(void)
     sciInitMarkForeground(m_aLines[i], sciGetMarkForeground(legendedObject));
     sciInitMarkBackground(m_aLines[i], sciGetMarkBackground(legendedObject));
     sciInitIsMark(m_aLines[i], sciGetIsMark(legendedObject));
+    sciInitMarkStyle(m_aLines[i],sciGetMarkStyle(legendedObject));
 
     // same for lines
     sciInitForeground(m_aLines[i], sciGetForeground(legendedObject));
