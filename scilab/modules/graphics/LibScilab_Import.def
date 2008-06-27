@@ -64,3 +64,5 @@ IsAScalar
 GetData
 GetDataSize
 freeArrayOfString
+sciGetLegendPlace
+getmatdims_

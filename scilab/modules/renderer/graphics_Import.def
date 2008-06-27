@@ -147,3 +147,5 @@ ConstructPolyline
 vectAdd2D
 scalarMult2D
 isPointInTriangle
+sciInitMarkStyle
+sciGetLegendPlace

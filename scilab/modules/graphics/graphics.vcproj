@@ -735,6 +735,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_legend_location_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_line_mode_property.c"
 				>
 			</File>
@@ -1628,6 +1632,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_labels_font_size_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_legend_location_property.c"
 				>
 			</File>
 			<File

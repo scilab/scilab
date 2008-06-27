@@ -620,6 +620,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\BottomXAxisPositioner.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\BottomXTicksDrawerGL.cpp"
 					>
 				</File>
@@ -740,6 +744,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\MiddleXAxisPositioner.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\MiddleXTicksDrawerGL.cpp"
 					>
 				</File>
@@ -764,6 +772,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\SubwinAxisPositioner.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\TicksDrawer.cpp"
 					>
 				</File>
@@ -773,6 +785,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\TicksDrawerJoGL.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\TopXAxisPositioner.cpp"
 					>
 				</File>
 				<File
@@ -789,6 +805,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\UserDefLogTicksComputer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XAxisPositioner.cpp"
 					>
 				</File>
 				<File
@@ -1436,6 +1456,10 @@
 				Name="AxesDrawing"
 				>
 				<File
+					RelativePath=".\src\cpp\axesDrawing\AxesPositioner.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\axesDrawing\AxesTicksComputer.cpp"
 					>
 				</File>
@@ -1730,6 +1754,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\AxisPositioner.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\BackTrihedronDrawerGL.hxx"
 					>
 				</File>
@@ -1739,6 +1767,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\BackTrihedronDrawerJoGL.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\BottomXAxisPositioner.hxx"
 					>
 				</File>
 				<File
@@ -1886,6 +1918,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\MiddleXAxisPositioner.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\MiddleXTicksDrawerGL.hxx"
 					>
 				</File>
@@ -1910,6 +1946,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\SubwinAxisPositioner.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\TicksDrawer.hxx"
 					>
 				</File>
@@ -1926,6 +1966,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\TopXAxisPositioner.hxx"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\TopXTicksDrawerGL.hxx"
 					>
 				</File>
@@ -1939,6 +1983,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\subwinDrawing\UserDefLogTicksComputer.hxx"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\XAxisPositioner.hxx"
 					>
 				</File>
 				<File
@@ -2701,6 +2749,10 @@
 			<Filter
 				Name="AxesDrawing"
 				>
+				<File
+					RelativePath=".\src\cpp\axesDrawing\AxesPositioner.hxx"
+					>
+				</File>
 				<File
 					RelativePath=".\src\cpp\axesDrawing\AxesTicksComputer.hxx"
 					>
