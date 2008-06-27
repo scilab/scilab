@@ -977,9 +977,9 @@ FigureModelData * newFigureModelData( void )
   if ( modelData == NULL ) { return NULL ; }
 
   modelData->figureWidth  = 610 ;
-  modelData->figureHeight = 461 ;
-  modelData->windowWidth  = 610 ;
-  modelData->windowHeight = 461 ;
+  modelData->figureHeight = 460 ;
+  modelData->windowWidth  = 620 ;
+  modelData->windowHeight = 590 ;
   modelData->windowPosition[0] = 200 ;
   modelData->windowPosition[1] = 200 ;
   modelData->colorMap = NULL ;
@@ -988,7 +988,7 @@ FigureModelData * newFigureModelData( void )
   modelData->viewport[0] = 0;
   modelData->viewport[1] = 0;
   modelData->viewport[2] = 610;
-  modelData->viewport[0] = 461;
+  modelData->viewport[3] = 461;
 
   return modelData ;
 }
