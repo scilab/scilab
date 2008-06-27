@@ -260,8 +260,8 @@ public class ScilabSlider extends ScilabWidget implements Slider {
 	 * Sets the current value of the Slider
 	 * @param value the new value
 	 */
-	public void setValue(int value) {
-		ScilabBridge.setValue(this, value);	
+	public void setUserValue(int value) {
+		ScilabBridge.setUserValue(this, value);	
 	}
 	
 	/**

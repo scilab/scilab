@@ -428,7 +428,7 @@ public class CallScilabBridge {
 		slider.setText(""); /* Because Name property is null at creation */
 		slider.setMinimumValue(0);
 		slider.setMaximumValue(1);
-		slider.setValue(0);
+		slider.setUserValue(0);
 		
 		return id;
 	}
@@ -1826,7 +1826,7 @@ public class CallScilabBridge {
 	 * @param value the new value
 	 */
 	public static void setSliderValue(int id, int value) {
-		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setValue(value);		
+		((Slider) UIElementMapper.getCorrespondingUIElement(id)).setUserValue(value);		
 	}
 
 	/**

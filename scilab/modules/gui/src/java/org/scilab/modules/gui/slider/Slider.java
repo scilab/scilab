@@ -38,7 +38,7 @@ public interface Slider extends Widget {
 	 * Sets the current value of the Slider
 	 * @param value the new value
 	 */
-	void setValue(int value);
+	void setUserValue(int value);
 	
 	/**
 	 * Set the minor tick spacing for a Slider

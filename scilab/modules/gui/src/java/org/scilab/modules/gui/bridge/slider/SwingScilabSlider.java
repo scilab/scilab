@@ -295,12 +295,12 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 * Set the current value of the Slider
 	 * @param value the new value
 	 */
-	public void setValue(int value) {
+	public void setUserValue(int value) {
 		/* Remove the listener to avoid the callback to be executed */
 		if (adjustmentListener != null) {
 			removeAdjustmentListener(adjustmentListener);
 		}
-		
+
 		super.setValue(value);
 		
 		/* Put back the listener */

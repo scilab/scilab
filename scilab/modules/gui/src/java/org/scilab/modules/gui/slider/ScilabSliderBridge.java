@@ -279,8 +279,8 @@ public class ScilabSliderBridge {
 	 * @param slider the Slider we want to set the value of
 	 * @param value the new value
 	 */
-	public static void setValue(Slider slider, int value) {
-		slider.getAsSimpleSlider().setValue(value);	
+	public static void setUserValue(Slider slider, int value) {
+		slider.getAsSimpleSlider().setUserValue(value);	
 	}
 
 	/**
