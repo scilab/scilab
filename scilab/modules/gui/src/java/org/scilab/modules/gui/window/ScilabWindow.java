@@ -202,4 +202,12 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 		return ScilabBridge.getNbDockedObjects(this);
 	}
 	
+	/**
+	 * Update the dimension of the window and its component.
+	 * Only useful when the window is not yet visible
+	 */
+	public void updateDimensions() {
+		ScilabBridge.updateDimensions(this);
+	}
+	
 }

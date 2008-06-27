@@ -76,5 +76,11 @@ public interface Window extends UIElement {
 	 */
 	void raise();
 	
+	/**
+	 * Update the dimension of the window and its component.
+	 * Only useful when the window is not yet visible.
+	 */
+	void updateDimensions();
+	
 	
 }

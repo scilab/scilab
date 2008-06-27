@@ -142,6 +142,12 @@ public class ScilabRendererProperties implements RendererProperties {
 			// canvas tab is the only one in its window
 			// so resize window (tab and canvas will follow)
 			
+			Window parentWindow = parentTab.getParentWindow();
+			
+			// to be sure that window and children dimensions are up to date.
+			parentWindow.updateDimensions();
+
+			
 			Size currentSize = parentCanvas.getDims();
 			// compute the requested size modifications
 			int deltaX = width - currentSize.getWidth();
@@ -149,7 +155,6 @@ public class ScilabRendererProperties implements RendererProperties {
 			
 			
 			// apply them to the parent window
-			Window parentWindow = parentTab.getParentWindow();
 			Size windowSize = parentWindow.getDims();
 			windowSize.setWidth(windowSize.getWidth() + deltaX);
 			windowSize.setHeight(windowSize.getHeight() + deltaY);

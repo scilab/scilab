@@ -306,4 +306,14 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		return sciDockingListener.getNbDockedObjects();
 	}
 	
+	/**
+	 * Update the dimension of the window and its component.
+	 * Only useful when the window is not yet visible
+	 */
+	public void updateDimensions() {
+		if (!isVisible()) {
+			this.pack();
+		}
+	}
+	
 }

@@ -219,8 +219,9 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciInitIsEventHandlerEnable( pobj, sciGetIsEventHandlerEnable( pfiguremdl ) ) ;
   sciInitEventHandler( pobj, sciGetEventHandler( pfiguremdl ) ) ;
 
-  sciInitDimension(pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl)) ;
   sciInitWindowDim(pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl) ) ;
+  /* Set axes_size after to be sure to have correct values */
+  sciInitDimension(pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl)) ;
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
   sciInitScreenPosition( pobj, x[0], x[1] );
 
@@ -2792,8 +2793,11 @@ sciPointObj * createFullFigure(int * winNum)
 
   endFigureDataWriting(newFig);
 
+  
+
   /* show th enewly created window */
   showWindow(newFig);
+
 
   return newFig;
 }

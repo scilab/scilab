@@ -135,5 +135,11 @@ public interface SimpleWindow {
 	 * Close this window
 	 */
 	void close();
+	
+	/**
+	 * Update the dimension of the window and its component.
+	 * Only useful when the window is not yet visible
+	 */
+	void updateDimensions();
 
 }

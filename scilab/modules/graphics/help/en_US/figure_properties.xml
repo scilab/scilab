@@ -72,7 +72,8 @@
                 <para>Used to Specifies the size in pixel of the virtual graphics
             window. The size is the vector <literal>[width,height] </literal>. The
             virtual graphic window should be bigger than the part really
-            visible on the screen.</para>
+	    visible on the screen. This property could not be modified if the figure is docked
+            with other elements.</para>
               </listitem>
             </varlistentry>
             <varlistentry>

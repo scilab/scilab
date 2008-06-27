@@ -49,7 +49,7 @@ int set_axes_size_property( sciPointObj * pobj, int stackPointer, int valueType,
 
   if (status == SET_PROPERTY_ERROR)
   {
-    sciprint(_("'%s' property can not be modified if Figure is docked with other elements.\n"), "axes_size", "Figure") ;
+    sciprint(_("WARNING: '%s' property can not be modified if the %s is docked with other elements.\n"), "axes_size", "Figure") ;
     return SET_PROPERTY_ERROR ;
   }
 

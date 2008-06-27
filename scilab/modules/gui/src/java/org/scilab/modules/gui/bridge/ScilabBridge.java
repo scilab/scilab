@@ -273,6 +273,15 @@ public class ScilabBridge {
 		return ScilabWindowBridge.getNbDockedObjects(window);
 	}
 	
+	/**
+	 * Update the dimension of the window and its component.
+	 * Only useful when the window is not yet visible
+	 * @param window window to update
+	 */
+	public static void updateDimensions(Window window) {
+		ScilabWindowBridge.updateDimensions(window);
+	}
+	
 	/*****************/
 	/* ToolBar Bridge */
 	/*****************/

@@ -191,4 +191,13 @@ public class ScilabWindowBridge {
 		return window.getAsSimpleWindow().getNbDockedObjects();
 	}
 	
+	/**
+	 * Update the dimension of the window and its component.
+	 * Only useful when the window is not yet visible
+	 * @param window window to update
+	 */
+	public static void updateDimensions(Window window) {
+		window.getAsSimpleWindow().updateDimensions();
+	}
+	
 }
