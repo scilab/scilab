@@ -29,6 +29,7 @@ sub common_log {
 	chomp $message;
 	
 	print LOGFILE "[".time()."]${type}${message}\n";
+	print "[$type] $message \n";
 }
 
 # common_enter_stage:
@@ -78,6 +79,7 @@ sub common_exec {
 	if($pid == 0) {
 		open STDOUT, ">$stdout";
 		open STDERR, ">$stderr";
+		close STDIN;
 		exec $cmd;
 	}
 	else {
@@ -180,8 +182,8 @@ sub read_file_from_archive {
 #   get_description)
 sub read_description {
 	my $fd = shift;
-	my @required = qw(Toolbox Version Title Author Maintainer
-	                  Description License Category);
+	my @required = qw(Toolbox Version Title Author Maintainer License
+	                  Description ScilabVersion Category);
 	my @optional = qw(Date Depends URL Entity);
 	my (%infos, $key, $val);
 	my (%lines, %correct);
@@ -397,6 +399,125 @@ sub stage_check {
 	common_leave_stage("check");
 }
 
+# stage_unpack:
+#     Extract the archive
+sub stage_unpack {
+	common_enter_stage("unpack");
+	
+	if(is_zip()) {
+		common_exec("unzip -o ${TOOLBOXFILE}");
+	}
+	else {
+		common_exec("zcat ${TOOLBOXFILE} | tar -vx");
+	}
+	
+	common_leave_stage("unpack");
+}
+
+# stage_makeenv:
+#    Build up the environment
+sub stage_makeenv {
+	common_enter_stage("makeenv");
+	# TODO
+	common_leave_stage("makeenv");
+}
+
+# compare_versions:
+#    Returns -1 if version a < version b, 0 if equals, 1 else
+sub compare_versions {
+	my $versa = shift;
+	my $versb = shift;
+	my @va = split(/\./, $versa);
+	my @vb = split(/\./, $versb);
+	
+	if($#va < $#vb) {
+		return -compare_versions($versb, $versa);
+	}
+	
+	for(my $i = 0; $i < $#vb; ++$i) {
+		return  1 if $va[$i] > $vb[$i];
+		return -1 if $va[$i] < $vb[$i];
+	}
+	
+	return 1 if($#va > $#vb);
+	return 0;
+}
+
+# stage_tbdeps:
+#    Install toolbox dependencies
+sub stage_tbdeps {
+	my $fd;
+	my @depsarray;
+	my (%deps, %desc);
+	
+	my $SCILABX = "scilab -nwni -nb -e ";
+	
+	common_enter_stage("tbdeps");
+	
+	# We alreay made the check, reading description should be OK
+	open $fd, "$TOOLBOXNAME/DESCRIPTION";
+	%desc = read_description($fd);
+	close($fd);
+	
+	# Make a hash depname => depvers
+	@depsarray = split(/\s*,\s*/, $desc{"Depends"} || "");
+	foreach (@depsarray) {
+		if(/^(\S+?)\s*\([<>]=\s*([^)]+)\)$/) { # toolbox-name (version-comparator version)
+			$deps{$1} = $2;
+		}
+		else {
+			$deps{$_} = "*";
+		}
+	}
+	
+	common_log("Dependencies: " . join(",", map { "$_ $deps{$_}" } keys %deps));
+	
+	# Install dependencies
+	# fixme: we always install the last version, but some packages
+	#   needs some versions... at most. Need to deal with that.
+	close(common_exec("$SCILABX 'installToolbox(\"$_\"); quit;'"))
+		foreach(keys %deps);
+	
+	# Find toolboxes directory
+	$fd = common_exec("$SCILABX 'printf(\"path: %s\\n\", cd(toolboxDirectory())); quit;'");
+	
+	my $tbpath;
+	while(<$fd>) {
+		if(/^path: (.+)$/) {
+			$tbpath = $1;
+			last;
+		}
+	}
+	
+	if(!defined($tbpath)) {
+		common_die("Can't find toolboxes directory");
+	}
+	
+	common_log("Toolboxes directory: $tbpath\n");
+	
+	# Check if required toolboxes are installed
+	foreach my $dep (keys %deps) {
+		common_log("Checking $dep");
+		if(! -r "$tbpath/$dep/DESCRIPTION") {
+			common_die("Needed toolbox \"$dep\" is not installed");
+		}
+		
+		next if($deps{$dep} eq "*");
+		
+		open $fd, "$tbpath/$dep/DESCRIPTION";
+		my %desc2 = read_description($fd);
+		close $fd;
+		
+		# fixme: we only check wether neededVersion <= installedVersion
+		#   Others tests (=, <=) are still to be implemented
+		if(compare_versions($deps{$dep}, $desc2{"Version"}) > 1) {
+			common_die("We need \"$dep\" >= $deps{$dep}, but version $desc2{Version} installed");
+		}
+	}
+	
+	common_leave_stage("tbdeps");
+}
+
 # Init global vars, check arguments
 $TOOLBOXFILE = shift;
 if(!defined($TOOLBOXFILE)) {
@@ -415,5 +536,8 @@ common_log "Toolbox: $TOOLBOXNAME";
 common_log "Source file: $TOOLBOXFILE";
 
 stage_check;
+stage_unpack;
+stage_makeenv;
+stage_tbdeps;
 
 close LOGFILE;
