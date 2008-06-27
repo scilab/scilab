@@ -63,7 +63,7 @@ clf(num,&lt;opt_job_arg&gt;)</synopsis>
     and <literal>figure_size</literal> properties which can not be reset if the figure
     is docked with other elements.</para>
     <para><literal>clf(num)</literal> clear or reset the figure with
-    <literal>figure_id==num</literal>.</para><literal>clf(h)</literal> clear or reset the figure pointed to by
+	    <literal>figure_id==num</literal>.</para><para><literal>clf(h)</literal> clear or reset the figure pointed to by
     the handle <literal>h</literal>.</para>
     <para><literal>clf()</literal> clear or reset the current figure.</para>
   </refsection>
