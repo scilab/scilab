@@ -15,6 +15,7 @@
 #pragma comment(lib,"../../../bin/libxml2.lib")
 #pragma comment(lib,"../../../bin/hashtable.lib")
 #pragma comment(lib,"../../../bin/libintl.lib")
+#pragma comment(lib,"../../../bin/iconv.lib")
 /*--------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
