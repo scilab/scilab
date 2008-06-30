@@ -424,7 +424,6 @@ export PATH
 
 do_scilex()
 {
-    echo "$SCILABBIN" $*
     "$SCILABBIN" $*
 
 }
