@@ -1,7 +1,8 @@
-prefix=/usr/
-exec_prefix=${prefix}/bin/
-libdir=${exec_prefix}/lib/scilab/
-includedir=${prefix}/include/scilab/
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+bindir=@bindir@
+libdir=@libdir@/scilab
+includedir=@includedir@/scilab
 
 Name: libscilab
 Description: Scilab Library

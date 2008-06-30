@@ -1189,6 +1189,7 @@ modules/matio/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
+scilab.pc
 etc/modules.xml
 scilab-lib.properties
 ])
