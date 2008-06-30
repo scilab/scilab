@@ -4318,6 +4318,14 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Create a new ExportFileChooser
+	 * @return the created ExportFileChooser
+	 */
+	public static SimpleFileChooser createExportFileChooser(int figureID) {
+		return ScilabFileChooserBridge.createExportFileChooser(figureID);
+	}
+	
+	/**
 	 * Set the title of the file chooser
 	 * @param fileChooser the file chooser we want to set the title of
 	 * @param title the title to set
@@ -4384,7 +4392,15 @@ public class ScilabBridge {
 	 */
 	public static void setFileSelectionOnly(FileChooser fileChooser) {
 		ScilabFileChooserBridge.setFileSelectionOnly(fileChooser);
-	}
+	}	
+	
+	/**
+	 * We customize the file chooser for the graphic export 
+	 * by adding format selection
+	 */
+	public static void exportCustomFileChooser() {
+		ScilabFileChooserBridge.createFileChooser();
+	}	
 
 	/*********************/
 	/* MessageBox Bridge */

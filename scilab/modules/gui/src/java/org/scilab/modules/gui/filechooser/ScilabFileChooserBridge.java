@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.filechooser;
 
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabExportFileChooser;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 
 /**
@@ -33,6 +34,14 @@ public class ScilabFileChooserBridge {
 	 */
 	public static SimpleFileChooser createFileChooser() {
 		return new SwingScilabFileChooser();
+	}
+	
+	/**
+	 * Creates a new ExportFileChooser
+	 * @return the created ExportFileChooser
+	 */
+	public static SimpleFileChooser createExportFileChooser(int figureID) {
+		return new SwingScilabExportFileChooser(figureID);
 	}
 	
 	/**
@@ -103,5 +112,4 @@ public class ScilabFileChooserBridge {
 	public static void setFileSelectionOnly(FileChooser fileChooser) {
 		fileChooser.getAsSimpleFileChooser().setFileSelectionOnly();
 	}
-
 }

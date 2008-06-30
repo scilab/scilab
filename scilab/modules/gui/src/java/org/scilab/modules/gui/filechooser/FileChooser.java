@@ -70,4 +70,5 @@ public interface FileChooser extends UIElement {
 	 * Set the flag indicating that we want only select files
 	 */
 	void setFileSelectionOnly();
+
 }

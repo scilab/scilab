@@ -12,6 +12,9 @@
  
  package org.scilab.modules.graphic_export;
 
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabExportFileChooser;
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
+
 /**
  * Abstract Class allows to export screen-shots in format Bitmap (BMP, GIF, JPG, PNG and PPM)
  * @author Sylvestre Koumar
@@ -121,4 +124,5 @@ public abstract class ExportToFile {
 		}
 		return null;		
 	}
+
 }

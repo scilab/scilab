@@ -13,6 +13,8 @@
 package org.scilab.modules.gui.filechooser;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabExportFileChooser;
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -31,8 +33,12 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 	/**
 	 * Constructor
 	 */
-	protected ScilabFileChooser() {
-		component = ScilabBridge.createFileChooser();
+	protected ScilabFileChooser(boolean isExportFileChooser, int figureId) {
+		if (isExportFileChooser) {
+			component = ScilabBridge.createExportFileChooser(figureId);
+		} else {
+			component = ScilabBridge.createFileChooser();
+		}
 		component.setElementId(UIElementMapper.add(this));
 		
 		//setMenuBarId(UIElementMapper.getDefaultId());
@@ -43,8 +49,17 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 	 * @return the created file chooser
 	 */
 	public static FileChooser createFileChooser() {
-		return new ScilabFileChooser();
+		return new ScilabFileChooser(false, 0);
 	}
+	
+	/**
+	 * Creates a Scilab ExportFileChooser
+	 * @return the created export file chooser
+	 */
+	public static FileChooser createExportFileChooser(int figureId) {
+		return new ScilabFileChooser(true, figureId);
+	}
+	
 
 	/**
 	 * Gets this Bridge component object

@@ -74,5 +74,5 @@ public interface SimpleFileChooser {
 	 * Set the flag indicating that we want only select files
 	 */
 	void setFileSelectionOnly();
-
+	
 }

@@ -32,8 +32,10 @@
             type="0"/>
         </submenu>
         <separator/>
-		<submenu label="&amp;Bitmap export">
-			<submenu label="&amp;BMP"> 
+		<submenu label="&amp;Export to...">
+			<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.newExportFileChooser' type="3"/>
+			<!--<submenu label="&amp;BMP"> 
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback 
 				instruction='
 				%fileToWrite = xgetfile("*.bmp", getcwd(), gettext("Select a file name"));
@@ -44,6 +46,7 @@
 				type="0"/>
 			</submenu>
 			<submenu label="&amp;GIF"> 
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback 
 				instruction='
 				%fileToWrite = xgetfile("*.gif", getcwd(), gettext("Select a file name"));
@@ -54,6 +57,7 @@
 				type="0"/>
 			</submenu>
 			<submenu label="&amp;JPG"> 
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback 
 				instruction='
 				%fileToWrite = xgetfile("*.jpg", getcwd(), gettext("Select a file name"));
@@ -64,6 +68,7 @@
 				type="0"/>
 			</submenu>
 			<submenu label="P &amp;NG"> 
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback 
 				instruction='
 				%fileToWrite = xgetfile("*.png", getcwd(), gettext("Select a file name"));
@@ -74,6 +79,7 @@
 				type="0"/>
 			</submenu>
 			<submenu label="&amp;PPM"> 
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback 
 				instruction='
 				%fileToWrite = xgetfile("*.ppm", getcwd(), gettext("Select a file name"));
@@ -86,6 +92,7 @@
 		</submenu>
 		<submenu label="&amp;Vectorial export">
 			<submenu label="&amp;EMF"> 
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback 
 				instruction='
 				%fileToWrite = xgetfile("*.emf", getcwd(), gettext("Select a file name"));
@@ -96,6 +103,7 @@
 				type="0"/>
 			</submenu>
 			<submenu label="&amp;EPS"> 
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback 
 				instruction='
 				%fileToWrite = xgetfile("*.eps", getcwd(), gettext("Select a file name"));
@@ -106,6 +114,7 @@
 				type="0"/>
 			</submenu>
 			<submenu label="&amp;FIG"> 
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback 
 				instruction='
 				%fileToWrite = xgetfile("*.fig", getcwd(), gettext("Select a file name"));
@@ -116,6 +125,7 @@
 				type="0"/>
 			</submenu>
 			<submenu label="&amp;PDF"> 
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback 
 				instruction='
 				%fileToWrite = xgetfile("*.pdf", getcwd(), gettext("Select a file name"));
@@ -126,6 +136,7 @@
 				type="0"/>
 			</submenu>
 			<submenu label="&amp;SVG"> 
+				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback 
 				instruction='
 				%fileToWrite = xgetfile("*.svg", getcwd(), gettext("Select a file name"));
@@ -134,7 +145,7 @@
 				end
 				clear %fileToWrite isempty'
 				type="0"/>
-			</submenu>
+			</submenu>-->
 		</submenu>		
         <submenu label="&amp;Copy to clipboard"> 
             <callback instruction='clipboard([SCILAB_FIGURE_ID], "EMF");' type="0"/>
