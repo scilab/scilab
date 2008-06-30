@@ -420,6 +420,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\preparsecompletion_nw.c"
+				>
+			</File>
+			<File
 				RelativePath=".\windows\readline_nw.c"
 				>
 			</File>
@@ -490,6 +494,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\InitializeShell.h"
+				>
+			</File>
+			<File
+				RelativePath=".\preparsecompletion_nw.h"
 				>
 			</File>
 			<File

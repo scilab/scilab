@@ -30,11 +30,12 @@
 #include "HistoryManager.h"
 #include "scilabmode.h"
 #include "sigbas.h"
-#include "completion.h"
 #include "freeArrayOfString.h"
 #include "scilines.h"
 #include "strdup_windows.h"
 #include "charEncoding.h"
+#include "completion.h"
+#include "preparsecompletion_nw.h"
 /*--------------------------------------------------------------------------*/
 #define MAXBUF	512
 #define BACKSPACE 0x08		/* ^H */
@@ -669,27 +670,16 @@ static char msdos_getch (void)
 /*--------------------------------------------------------------------------*/
 static void doCompletion(const char *current_line,const char *prompt)
 {
+	const char *wordToFind = NULL;
 	char *backup_line = NULL;
-	char *wordToFind = NULL;
 	char **completionDictionary = NULL;
 	int sizeCompletionDictionary = 0;
-	char *pch = NULL;
 
-	pch = strrchr (cur_line,' ');
-
-	if (pch)
-	{
-		if ( (pch-cur_line) > 0 )
-		{
-			pch++;
-			wordToFind = pch;
-		}
-	}
-	else wordToFind = cur_line;
+	wordToFind = preparse_line_for_completion_nw(current_line);
 
 	if (wordToFind) 
 	{
-		completionDictionary = completion(wordToFind,&sizeCompletionDictionary);
+		completionDictionary = completion((char*)wordToFind,&sizeCompletionDictionary);
 		if (sizeCompletionDictionary)
 		{
 			if (sizeCompletionDictionary == 1)
