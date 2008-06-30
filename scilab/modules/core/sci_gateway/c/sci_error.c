@@ -36,12 +36,14 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
 	 {
 		switch ( GetType(1) )
 		{
+			/* error('My message') */
 			case sci_strings : 
 			{
 				int m = 0; int n = 0;
 				char **InputString_Parameter = NULL;
 				
 				GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m,&n,&InputString_Parameter);
+				/* check scalar */
 				if ( (m == 1) && (n == 1) )
 				{
 					errorCode = defaultErrorCode;
@@ -60,14 +62,17 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
 			}
 			break;
 
+			/* error(code error) */
 			case sci_matrix :
 			{
 				int m = 0, n = 0, l = 0;
 				/* check double compatibility scilab 4.x */
 				GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
 
+				/* check scalar */
 				if ( (m == 1) && (n == 1) ) 
 				{
+					/* store error */
 					errorCode = (int)(*stk(l));
 					strcpy(bufferErrorMessage,defaultErrorMessage);
 					C2F(iop).err = errorPosition;
@@ -91,6 +96,7 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
 	 }
 	 else /* Rhs == 2 */
 	 {
+		/* error('message',code error) */
 		if ( ( GetType(1) == sci_strings ) && ( GetType(2) == sci_matrix ) )
 		{
 			int m1 = 0; int n1 = 0;
@@ -99,11 +105,15 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
 			int m2 = 0, n2 = 0, l2 = 0;
 
 			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&InputString_Parameter1);
+
+			/* check scalar */
 			if ( (m1 == 1) && (n1 == 1) )
 			{
 				GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+				/* check scalar */
 				if ( (m2 == 1) && (n2 == 1) )
 				{
+					/* store error */
 					errorCode = (int)(*stk(l2));
 					strcpy(bufferErrorMessage,InputString_Parameter1[0]);
 					freeArrayOfString(InputString_Parameter1,m1*n1);
@@ -123,17 +133,21 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
+		/* error(code,pos) */
 		if ( ( GetType(1) == sci_matrix ) && ( GetType(2) == sci_matrix ) )
 		{
 			int m1 = 0, n1 = 0, l1 = 0;
 			int m2 = 0, n2 = 0, l2 = 0;
 
 			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+			/* check scalar */
 			if ( (m1 == 1) && (n1 == 1) )
 			{
 				GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+				/* check scalar */
 				if ( (m2 == 1) && (n2 == 1) )
 				{
+					/* store error */
 					errorCode = (int)(*stk(l1));
 					errorPosition = (int)(*stk(l2));
 
@@ -153,6 +167,7 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
+		/* error(code error,'message') */
 		if ( ( GetType(1) == sci_matrix ) && ( GetType(2) == sci_strings ) )
 		{
 			int m1 = 0, n1 = 0, l1 = 0;
@@ -161,11 +176,14 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
 			char **InputString_Parameter2 = NULL;
 
 			GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+			/* check scalar */
 			if ( (m1 == 1) && (n1 == 1) )
 			{
 				GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&InputString_Parameter2);
+				/* check scalar */
 				if ( (m2 == 1) && (n2 == 1) )
 				{
+					/* store error */
 					errorCode = (int)(*stk(l1));
 					Scierror(errorCode,InputString_Parameter2[0]);
 					freeArrayOfString(InputString_Parameter2,m2*n2);

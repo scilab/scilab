@@ -724,10 +724,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_error.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_exists.c"
 				>
 			</File>
@@ -1309,10 +1305,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_errclear.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_error.f"
 				>
 			</File>
 			<File
