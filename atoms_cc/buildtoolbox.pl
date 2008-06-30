@@ -510,7 +510,7 @@ sub stage_tbdeps {
 		
 		# fixme: we only check wether neededVersion <= installedVersion
 		#   Others tests (=, <=) are still to be implemented
-		if(compare_versions($deps{$dep}, $desc2{"Version"}) > 1) {
+		if(compare_versions($deps{$dep}, $desc2{"Version"}) == 1) {
 			common_die("We need \"$dep\" >= $deps{$dep}, but version $desc2{Version} installed");
 		}
 	}
