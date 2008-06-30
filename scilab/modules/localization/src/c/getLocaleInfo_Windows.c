@@ -42,6 +42,9 @@ char* getLocaleSystemInfo(void)
 			localeStr = (char*)MALLOC(sizeof(char)*(length_localeStr)+1);
 			if (localeStr)
 			{
+				#ifdef FORMAT_LOCALE
+					#undef FORMAT_LOCALE
+				#endif
 				#define FORMAT_LOCALE "%s_%s"
 				sprintf(localeStr,FORMAT_LOCALE,buffer_LOCALE_SISO639LANGNAME,buffer_LOCALE_SISO3166CTRYNAME);
 			}
@@ -84,6 +87,9 @@ char* getLocaleUserInfo(void)
 			localeStr = (char*)MALLOC(sizeof(char)*(length_localeStr)+1);
 			if (localeStr)
 			{
+				#ifdef FORMAT_LOCALE
+					#undef FORMAT_LOCALE
+				#endif
 				#define FORMAT_LOCALE "%s_%s.CP%s"
 				// in lang_contry.CPxxx format
 				sprintf(localeStr,FORMAT_LOCALE,

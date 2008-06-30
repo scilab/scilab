@@ -6,7 +6,7 @@
 	ProjectGUID="{566E524B-D327-4416-A865-9C83503FAB7B}"
 	RootNamespace="scicos_f2c"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -56,7 +56,6 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				ExecutionBucket="6"
-				AdditionalOptions="/fixed:no"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SCICOS_F2C_EXPORTS;FORDLL"
@@ -154,7 +153,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/fixed:no"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SCICOS_F2C_EXPORTS;FORDLL"
