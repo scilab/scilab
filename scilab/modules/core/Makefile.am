@@ -290,7 +290,6 @@ sci_gateway/fortran/sci_iserror.f \
 sci_gateway/fortran/sci_type.f \
 sci_gateway/fortran/sci_mode.f \
 sci_gateway/fortran/sci_debug.f \
-sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_isglobal.f
 
 libscicore_la_CFLAGS=  	-Iincludes/ \

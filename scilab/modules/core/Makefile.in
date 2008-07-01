@@ -208,7 +208,7 @@ am__objects_4 = sci_errclear.lo sci_funcprot.lo sci_global.lo \
 	sci_clear.lo sci_argn.lo sci_format.lo sci_comp.lo \
 	sci_setbpt.lo sci_predef.lo sci_typnam.lo sci_clearglobal.lo \
 	sci_delbpt.lo where.lo sci_iserror.lo sci_type.lo sci_mode.lo \
-	sci_debug.lo sci_error.lo sci_isglobal.lo
+	sci_debug.lo sci_isglobal.lo
 am_libscicore_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -713,7 +713,6 @@ sci_gateway/fortran/sci_iserror.f \
 sci_gateway/fortran/sci_type.f \
 sci_gateway/fortran/sci_mode.f \
 sci_gateway/fortran/sci_debug.f \
-sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_isglobal.f
 
 libscicore_la_CFLAGS = -Iincludes/ -Isrc/c/ \
@@ -2513,9 +2512,6 @@ sci_mode.lo: sci_gateway/fortran/sci_mode.f
 
 sci_debug.lo: sci_gateway/fortran/sci_debug.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_debug.lo `test -f 'sci_gateway/fortran/sci_debug.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_debug.f
-
-sci_error.lo: sci_gateway/fortran/sci_error.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_error.lo `test -f 'sci_gateway/fortran/sci_error.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_error.f
 
 sci_isglobal.lo: sci_gateway/fortran/sci_isglobal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_isglobal.lo `test -f 'sci_gateway/fortran/sci_isglobal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_isglobal.f
