@@ -103,7 +103,8 @@ am__objects_1 = libscishell_la-clc.lo libscishell_la-tohome.lo \
 	libscishell_la-GetCommandLine.lo libscishell_la-mainscic.lo \
 	libscishell_la-zzledt.lo libscishell_la-gotoxy_nw.lo \
 	libscishell_la-clrscr_nw.lo libscishell_la-InitializeShell.lo \
-	libscishell_la-TerminateShell.lo
+	libscishell_la-TerminateShell.lo \
+	libscishell_la-preparsecompletion_nw.lo
 am__objects_2 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
 	libscishell_la-sci_tohome.lo libscishell_la-sci_lines.lo \
 	libscishell_la-sci_prompt.lo \
@@ -334,7 +335,8 @@ src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
 src/c/InitializeShell.c \
-src/c/TerminateShell.c
+src/c/TerminateShell.c \
+src/c/preparsecompletion_nw.c
 
 
 # List of the gateway c files
@@ -543,6 +545,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gw_shell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-mainscic.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-more.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-preparsecompletion_nw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_iswaitingforinput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_lines.Plo@am__quote@
@@ -649,6 +652,13 @@ libscishell_la-TerminateShell.lo: src/c/TerminateShell.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateShell.c' object='libscishell_la-TerminateShell.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-TerminateShell.lo `test -f 'src/c/TerminateShell.c' || echo '$(srcdir)/'`src/c/TerminateShell.c
+
+libscishell_la-preparsecompletion_nw.lo: src/c/preparsecompletion_nw.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-preparsecompletion_nw.lo -MD -MP -MF $(DEPDIR)/libscishell_la-preparsecompletion_nw.Tpo -c -o libscishell_la-preparsecompletion_nw.lo `test -f 'src/c/preparsecompletion_nw.c' || echo '$(srcdir)/'`src/c/preparsecompletion_nw.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-preparsecompletion_nw.Tpo $(DEPDIR)/libscishell_la-preparsecompletion_nw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/preparsecompletion_nw.c' object='libscishell_la-preparsecompletion_nw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-preparsecompletion_nw.lo `test -f 'src/c/preparsecompletion_nw.c' || echo '$(srcdir)/'`src/c/preparsecompletion_nw.c
 
 libscishell_la-gw_shell.lo: sci_gateway/c/gw_shell.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-gw_shell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-gw_shell.Tpo -c -o libscishell_la-gw_shell.lo `test -f 'sci_gateway/c/gw_shell.c' || echo '$(srcdir)/'`sci_gateway/c/gw_shell.c

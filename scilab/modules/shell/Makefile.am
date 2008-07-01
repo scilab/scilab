@@ -16,7 +16,8 @@ src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
 src/c/InitializeShell.c \
-src/c/TerminateShell.c
+src/c/TerminateShell.c \
+src/c/preparsecompletion_nw.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \

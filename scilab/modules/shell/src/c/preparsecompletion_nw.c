@@ -22,6 +22,10 @@ const char *preparse_line_for_completion_nw(const char *current_line)
 	char *pch = NULL;
 	int i = 0;
 
+	/* remove some specials cases */
+	if (current_line == NULL) return NULL;
+	if ( strcmp(current_line,"") == 0 ) return NULL;
+
 	/* remove blanks beginning of line */
 	for (i = 0;i<(int)strlen(current_line);i++)
 	{
@@ -32,7 +36,11 @@ const char *preparse_line_for_completion_nw(const char *current_line)
 		}
 	}
 
-	pch = strrchr (linewithoutspaceatbegin,' ');
+	if (linewithoutspaceatbegin)
+	{
+		pch = strrchr (linewithoutspaceatbegin,' ');
+	}
+	else return NULL;
 
 	if (pch)
 	{

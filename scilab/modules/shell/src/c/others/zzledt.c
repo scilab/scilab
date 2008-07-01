@@ -25,7 +25,8 @@
 #include <curses.h>
 #include <term.h>
 
-
+#include "preparsecompletion_nw.h"
+#include "MALLOC.h"
 #include "completion.h"
 #include "localization.h"
 #include "scilabmode.h"
@@ -43,7 +44,7 @@
 #include "prompt.h"
 #include "completion.h"
 #include "x_VTPrsTbl.h"
-
+#include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/
 #ifdef aix
@@ -678,50 +679,83 @@ static void display_string(char *string)
  **********************************************************************/
 static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 {
-  char **completionResults = NULL;
-  char msg[WK_BUF_SIZE]="";
-  int sizecompletionResults = 0;
-#define MAX_LINE_SIZE 79 /* 80 - 1 the leading space */
+	char **completionResults = NULL;
+	const char *wordToFind = NULL;
+	char msg[WK_BUF_SIZE]="";
+	int sizecompletionResults = 0;
+	#define MAX_LINE_SIZE 79 /* 80 - 1 the leading space */
 
-  completionResults = completion(wk_buf, &sizecompletionResults);
+	wordToFind = preparse_line_for_completion_nw((char*)wk_buf);
 
-  if (sizecompletionResults==1){ /* Only one result. Display it */
-    if (strcmp(wk_buf,completionResults[0])!=0){ /* No the same as previously displayed */
-      CopyLineAtPrompt(wk_buf,completionResults[0],cursor,cursor_max);
-    }
-    FREE(completionResults[0]);
+	if (wordToFind)
+	{
+		completionResults = completion((char*)wordToFind, &sizecompletionResults);
+		if (sizecompletionResults==1)
+		{ 
+			/* Only one result. Display it */
+			if (strcmp((char*)wordToFind,completionResults[0])!=0)
+			{ 
+				/* No the same as previously displayed */
+				char *mergedline = NULL;
+				char *texttoadd = &completionResults[0][strlen(wordToFind)];
+				mergedline = (char*)MALLOC(sizeof(char)*(strlen(wk_buf)+strlen(texttoadd)));
+				sprintf(mergedline,"%s%s",wk_buf,texttoadd );
+				CopyLineAtPrompt(wk_buf,mergedline,cursor,cursor_max);
+				if (mergedline) {FREE(mergedline); mergedline = NULL;}
+			}
+			FREE(completionResults[0]);
+		}
+		else
+		{
+			int j=0;
+			int nbCharLine=0;
+			int newElementSize=0;
 
-  }else{
-    int j=0;
-    int nbCharLine=0;
-    int newElementSize=0;
-
-    display_string("\r\n");
-    /* More than one result. Display them */
-    for (j=0; j<sizecompletionResults; j++){
-
-      newElementSize=strlen(completionResults[j])+strlen(" ");
-      if ((nbCharLine + newElementSize) > MAX_LINE_SIZE){ /* New line or not ?*/
-	display_string(msg); /* Display the message itself */
-	display_string("\r\n"); /* �\r is to avoid align pb */
-	strcpy(msg,"");
-	nbCharLine=0;
-      }
-      nbCharLine+=newElementSize;
-      sprintf(msg,"%s %s", msg, completionResults[j]);
-
-    }
-    if (tmpPrompt!=NULL)
-      {
-        sprintf(msg,"%s\r\n%s%s",msg,tmpPrompt,wk_buf);
-        ClearTemporaryPrompt();
-      }
-    else
-      {
-        sprintf(msg,"%s\r\n%s%s",msg,Sci_Prompt,wk_buf);
-      }
-    display_string(msg);
-  }
+			display_string("\r\n");
+			
+			/* More than one result. Display them */
+			for (j=0; j<sizecompletionResults; j++)
+			{
+				newElementSize=strlen(completionResults[j])+strlen(" ");
+				if ((nbCharLine + newElementSize) > MAX_LINE_SIZE)
+				{
+					/* New line or not ?*/
+					display_string(msg); /* Display the message itself */
+					display_string("\r\n"); /* \r is to avoid align pb */
+					strcpy(msg,"");
+					nbCharLine=0;
+				}
+				nbCharLine+=newElementSize;
+				sprintf(msg,"%s %s", msg, completionResults[j]);
+			}
+			if (tmpPrompt!=NULL)
+			{
+				sprintf(msg,"%s\r\n%s%s",msg,tmpPrompt,wk_buf);
+				ClearTemporaryPrompt();
+			}
+			else
+			{
+				sprintf(msg,"%s\r\n%s%s",msg,Sci_Prompt,wk_buf);
+			}
+			display_string(msg);
+			
+			if (completionResults)
+			{
+				int lencompletionResults0 = 0;
+				lencompletionResults0 = (int) strlen(completionResults[0]);
+				if ( strncmp(completionResults[0],completionResults[1],lencompletionResults0) == 0 )
+				{
+					char *mergedline = NULL;
+					char *texttoadd = &completionResults[0][strlen(wordToFind)];
+					mergedline = (char*)MALLOC(sizeof(char)*(strlen(wk_buf)+strlen(texttoadd)));
+					sprintf(mergedline,"%s%s",wk_buf,texttoadd );
+					CopyLineAtPrompt(wk_buf,mergedline,cursor,cursor_max);
+					if (mergedline) {FREE(mergedline); mergedline = NULL;}
+				}
+				freeArrayOfString(completionResults,sizecompletionResults);
+			}
+		}
+	}
 }
 /***********************************************************************
  * backspace - move cursor n char to the left
