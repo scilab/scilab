@@ -1,4 +1,7 @@
-DOUBLE_C_SOURCES = src/c/matmult.c
+DOUBLE_C_SOURCES = 	src/c/matmult.c \
+			src/c/matldiv.c \
+			src/c/matrdiv.c \
+			src/c/matrix_division.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_double.c
 

@@ -94,7 +94,8 @@ libscidouble_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(am__append_1) $(am__append_2)
-am__objects_1 = libscidouble_la-matmult.lo
+am__objects_1 = libscidouble_la-matmult.lo libscidouble_la-matldiv.lo \
+	libscidouble_la-matrdiv.lo libscidouble_la-matrix_division.lo
 am__objects_2 = libscidouble_la-gw_double.lo
 am__objects_3 = vecldiv.lo vecmul.lo matxpow.lo vecimpl.lo matldiv.lo \
 	matsubst.lo vecrdiv.lo matchsgn.lo matrdiv.lo matrc.lo \
@@ -142,6 +143,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+BATIK_PACKAGE = @BATIK_PACKAGE@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
@@ -169,6 +171,7 @@ FFTW3_LIB = @FFTW3_LIB@
 FFTW_ENABLE = @FFTW_ENABLE@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
+FOP = @FOP@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
 GREP = @GREP@
@@ -234,6 +237,7 @@ PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
+SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SED = @SED@
@@ -315,7 +319,11 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-DOUBLE_C_SOURCES = src/c/matmult.c
+DOUBLE_C_SOURCES = src/c/matmult.c \
+			src/c/matldiv.c \
+			src/c/matrdiv.c \
+			src/c/matrix_division.c
+
 GATEWAY_C_SOURCES = sci_gateway/c/gw_double.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/vecldiv.f \
 sci_gateway/fortran/vecmul.f \
@@ -496,7 +504,10 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-gw_double.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-matldiv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-matmult.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-matrdiv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-matrix_division.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -525,6 +536,27 @@ libscidouble_la-matmult.lo: src/c/matmult.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matmult.c' object='libscidouble_la-matmult.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -c -o libscidouble_la-matmult.lo `test -f 'src/c/matmult.c' || echo '$(srcdir)/'`src/c/matmult.c
+
+libscidouble_la-matldiv.lo: src/c/matldiv.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -MT libscidouble_la-matldiv.lo -MD -MP -MF $(DEPDIR)/libscidouble_la-matldiv.Tpo -c -o libscidouble_la-matldiv.lo `test -f 'src/c/matldiv.c' || echo '$(srcdir)/'`src/c/matldiv.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscidouble_la-matldiv.Tpo $(DEPDIR)/libscidouble_la-matldiv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matldiv.c' object='libscidouble_la-matldiv.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -c -o libscidouble_la-matldiv.lo `test -f 'src/c/matldiv.c' || echo '$(srcdir)/'`src/c/matldiv.c
+
+libscidouble_la-matrdiv.lo: src/c/matrdiv.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -MT libscidouble_la-matrdiv.lo -MD -MP -MF $(DEPDIR)/libscidouble_la-matrdiv.Tpo -c -o libscidouble_la-matrdiv.lo `test -f 'src/c/matrdiv.c' || echo '$(srcdir)/'`src/c/matrdiv.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscidouble_la-matrdiv.Tpo $(DEPDIR)/libscidouble_la-matrdiv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrdiv.c' object='libscidouble_la-matrdiv.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -c -o libscidouble_la-matrdiv.lo `test -f 'src/c/matrdiv.c' || echo '$(srcdir)/'`src/c/matrdiv.c
+
+libscidouble_la-matrix_division.lo: src/c/matrix_division.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -MT libscidouble_la-matrix_division.lo -MD -MP -MF $(DEPDIR)/libscidouble_la-matrix_division.Tpo -c -o libscidouble_la-matrix_division.lo `test -f 'src/c/matrix_division.c' || echo '$(srcdir)/'`src/c/matrix_division.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscidouble_la-matrix_division.Tpo $(DEPDIR)/libscidouble_la-matrix_division.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_division.c' object='libscidouble_la-matrix_division.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -c -o libscidouble_la-matrix_division.lo `test -f 'src/c/matrix_division.c' || echo '$(srcdir)/'`src/c/matrix_division.c
 
 libscidouble_la-gw_double.lo: sci_gateway/c/gw_double.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -MT libscidouble_la-gw_double.lo -MD -MP -MF $(DEPDIR)/libscidouble_la-gw_double.Tpo -c -o libscidouble_la-gw_double.lo `test -f 'sci_gateway/c/gw_double.c' || echo '$(srcdir)/'`sci_gateway/c/gw_double.c
