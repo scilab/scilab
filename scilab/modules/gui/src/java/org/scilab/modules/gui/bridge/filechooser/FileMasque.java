@@ -7,9 +7,9 @@ import javax.swing.filechooser.FileFilter;
 
 /** Implementation pratique de FileFilter filtrant tout les
  * fichiers a l'exception de ceux dont les extentions sont connues.
- * Les extentions sont du type ".foo", typiquement utilisés sous
+ * Les extentions sont du type ".foo", typiquement utilises sous
  * Windows et Unix, mais pas sur Macinthosh. Dans ce cas, les extentions sont
- * ignorées.
+ * ignorees.
  * Example - cree un nouveau filtre filtrant tout les fichiers sauf
  * les gif et jpg, fichiers image:
  *
@@ -83,7 +83,7 @@ public class FileMasque extends FileFilter
 	 * Cree un filtre fichier a partir du tableau de String donne et de la description.
 	 * Example: new ExampleFileFilter(String {"gif", "jpg"}, "Gif and JPG Images");
 	 *
-	 * Noter que le "." avant l'extention n'est pas requis et sera ignoré.
+	 * Noter que le "." avant l'extention n'est pas requis et sera ignore.
 	 *
 	 * @see addExtension
 	 */
