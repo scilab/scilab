@@ -168,7 +168,6 @@ demos/bouncing_ball.dem.sce \
 demos/Cont.Disc-Observer.cosf \
 demos/cont_sys_disc_cont.dem.sce \
 demos/control_systems.dem.gateway.sce \
-demos/control_systems.gateway.sce \
 demos/Controller.cosf \
 demos/data_type.dem.sce \
 demos/demo_Datatype.cosf \
@@ -184,7 +183,6 @@ demos/Discrete-KalmanFilter.cosf \
 demos/discrete_controller.dem.sce \
 demos/discrete_kalman.dem.sce \
 demos/electrical_systems.dem.gateway.sce \
-demos/electrical_systems.gateway.sce \
 demos/fibo.cosf \
 demos/fibo.dem.sce \
 demos/Fibonacci.cosf \
@@ -213,9 +211,7 @@ demos/live.dem.gateway.sce \
 demos/Lorentz.cosf \
 demos/lorentz.dem.sce \
 demos/modelica_demos.dem.gateway.sce \
-demos/modelica_demos.gateway.sce \
 demos/old_demos.dem.gateway.sce \
-demos/old_demos.gateway.sce \
 demos/OldGainTest.cosf \
 demos/PENDULUM_ANIM.sci \
 demos/pendulum_anim5.cosf \
