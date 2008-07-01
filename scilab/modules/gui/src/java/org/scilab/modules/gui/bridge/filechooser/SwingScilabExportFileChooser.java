@@ -22,6 +22,8 @@ import javax.swing.border.TitledBorder;
 import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
+ * This is the son of the usual Scilab file chooser,
+ * it have been customized for the graphic export
  * @author Sylvestre Koumar
  *
  */
@@ -173,8 +175,8 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	public String getExtension(String fileName) {
 		if(fileName != null) {
 			int i = fileName.lastIndexOf('.');
-			if(i>0 && i<fileName.length()-1) {
-				return fileName.substring(i+1).toLowerCase();
+			if(i > 0 && i < fileName.length() - 1) {
+				return fileName.substring(i + 1).toLowerCase();
 			};
 		}
 		return null;

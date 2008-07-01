@@ -38,6 +38,7 @@ public class ScilabFileChooserBridge {
 	
 	/**
 	 * Creates a new ExportFileChooser
+	 * @param figureID id of the exported figure
 	 * @return the created ExportFileChooser
 	 */
 	public static SimpleFileChooser createExportFileChooser(int figureID) {

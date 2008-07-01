@@ -13,8 +13,6 @@
 package org.scilab.modules.gui.filechooser;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.bridge.filechooser.SwingScilabExportFileChooser;
-import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -32,6 +30,8 @@ public class ScilabFileChooser extends ScilabUIElement implements FileChooser {
 	
 	/**
 	 * Constructor
+	 * @param isExportFileChooser if is an graphic export file chooser
+	 * @param figureId id of the exported figure
 	 */
 	protected ScilabFileChooser(boolean isExportFileChooser, int figureId) {
 		if (isExportFileChooser) {

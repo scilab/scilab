@@ -28,6 +28,11 @@ public class ExportData {
 	
 	/**
 	 * Default constructor
+	 * @param figureId id of the exported figure
+	 * @param exportName name of the exported file
+	 * @param exportExtension extension of the exported file
+	 * @param exportProperties options of the export
+	 * 
 	 */
 	public ExportData(int figureId, String exportName, String exportExtension, Vector<String> exportProperties) {
 		this.exportName = exportName;

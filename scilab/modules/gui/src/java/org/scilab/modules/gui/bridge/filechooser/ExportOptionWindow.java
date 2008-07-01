@@ -31,7 +31,7 @@ import org.scilab.modules.action_binding.InterpreterManagement;
  * @author Sylvestre Koumar
  *
  */
-public class ExportOptionWindow extends JFrame implements ActionListener{
+public class ExportOptionWindow extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -45,7 +45,7 @@ public class ExportOptionWindow extends JFrame implements ActionListener{
 	
     /**
      * Default constructor
-     * @param exportData
+     * @param exportData information about the export
      */
 	public ExportOptionWindow(ExportData exportData) {
 		this.exportData = exportData;		
@@ -61,7 +61,6 @@ public class ExportOptionWindow extends JFrame implements ActionListener{
 		optionFrame = new JFrame("Option for " + exportData.getExportExtension().toUpperCase() + " format");
 		
 		//Center the frame
-		//java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		optionFrame.setLocationRelativeTo(optionFrame.getParent());	
 		
 		optionFrame.setResizable(false);
@@ -133,6 +132,9 @@ public class ExportOptionWindow extends JFrame implements ActionListener{
 			exportData.setExportProperties(properties);
 			optionFrame.dispose();
 			
+			
+			//now we manage only one option (portrait/landscape)
+			//later we will have to manage more options (Vector<String> properties)
 			String exportcmd = "xs2" + exportData.getExportExtension() + "(" + exportData.getFigureId() + ", '" + exportData.getExportName()
 			+ "', '" + exportData.getExportProperties().elementAt(0) + "');";
 			
