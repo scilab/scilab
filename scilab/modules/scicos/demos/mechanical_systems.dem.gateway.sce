@@ -5,8 +5,9 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-demopath = get_absolute_file_path("old_demos.dem.gateway.sce");
+demopath = get_absolute_file_path("mechanical_systems.dem.gateway.sce");
 
-subdemolist = ["Old Gain Block"                              , "old_gain_block.dem.sce"  ];
+subdemolist = ["Automotive Suspension"                    , "susp.dem.sce"              ; ..
+              ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
