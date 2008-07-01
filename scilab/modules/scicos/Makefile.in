@@ -732,7 +732,6 @@ JARMASK = *.jar
 @SCICOS_TRUE@demos/Cont.Disc-Observer.cosf \
 @SCICOS_TRUE@demos/cont_sys_disc_cont.dem.sce \
 @SCICOS_TRUE@demos/control_systems.dem.gateway.sce \
-@SCICOS_TRUE@demos/control_systems.gateway.sce \
 @SCICOS_TRUE@demos/Controller.cosf \
 @SCICOS_TRUE@demos/data_type.dem.sce \
 @SCICOS_TRUE@demos/demo_Datatype.cosf \
@@ -748,7 +747,6 @@ JARMASK = *.jar
 @SCICOS_TRUE@demos/discrete_controller.dem.sce \
 @SCICOS_TRUE@demos/discrete_kalman.dem.sce \
 @SCICOS_TRUE@demos/electrical_systems.dem.gateway.sce \
-@SCICOS_TRUE@demos/electrical_systems.gateway.sce \
 @SCICOS_TRUE@demos/fibo.cosf \
 @SCICOS_TRUE@demos/fibo.dem.sce \
 @SCICOS_TRUE@demos/Fibonacci.cosf \
@@ -777,9 +775,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@demos/Lorentz.cosf \
 @SCICOS_TRUE@demos/lorentz.dem.sce \
 @SCICOS_TRUE@demos/modelica_demos.dem.gateway.sce \
-@SCICOS_TRUE@demos/modelica_demos.gateway.sce \
 @SCICOS_TRUE@demos/old_demos.dem.gateway.sce \
-@SCICOS_TRUE@demos/old_demos.gateway.sce \
 @SCICOS_TRUE@demos/OldGainTest.cosf \
 @SCICOS_TRUE@demos/PENDULUM_ANIM.sci \
 @SCICOS_TRUE@demos/pendulum_anim5.cosf \
