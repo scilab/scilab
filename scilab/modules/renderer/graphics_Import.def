@@ -149,3 +149,9 @@ scalarMult2D
 isPointInTriangle
 sciInitMarkStyle
 sciGetLegendPlace
+sciInitIsFilled
+sciInitBackground
+sciSetLegendPos
+sciGetLegendPos
+sciGetxLocation
+sciGetyLocation

@@ -77,7 +77,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
   
 
   long hdltab[2];
-  int cmpt=0,styl[2];
+  int cmpt=0;
   sciPointObj *pptabofpointobj;
   sciPointObj  *psubwin;
   double drect[6];
