@@ -14,6 +14,21 @@
 #include "machine.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+/* bug 3161 (F2C)*/
+/* common need to be defined and exported from C */
+__declspec (dllexport) struct {
+    char namef[25], namej[25];
+} C2F(csolve);
+
+__declspec (dllexport) struct {
+    double t0, tf, dti, dtf, ermx;
+    integer iu[5], nuc, nuv, ilin, nti, ntf, ny, nea, itmx, nex, nob, ntob, 
+	    ntobi, nitu, ndtu;
+} C2F(icsez);
+
+#endif
+/*--------------------------------------------------------------------------*/
 int C2F(sci_fsolve)(char *fname,unsigned long fname_len)
 {
 	C2F(scisolv)(fname,fname_len);

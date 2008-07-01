@@ -24,6 +24,11 @@ __declspec (dllexport) struct {
 __declspec (dllexport) struct {
     integer nizs, nrzs, ndzs;
 } C2F(nird);
+
+__declspec (dllexport) struct {
+    double u1;
+    integer nc;
+} C2F(fprf2c);
 #endif
 /*--------------------------------------------------------------------------*/
 int C2F(sci_optim)(char *fname,unsigned long fname_len)
