@@ -4426,8 +4426,9 @@ char sciGetxLocation(sciPointObj * pObj)
     sciprint(_("Unable to compute x_location for this kind of object."));
     break;
   }
+  return NULL;
 }
-
+/*----------------------------------------------------------------------------------*/
 char sciGetyLocation(sciPointObj * pObj)
 {
   switch (sciGetEntityType(pObj))
@@ -4439,11 +4440,8 @@ char sciGetyLocation(sciPointObj * pObj)
     sciprint(_("Unable to compute x_location for this kind of object."));
     break;
   }
+  return NULL;
 }
-
-
-
-
 /*----------------------------------------------------------------------------------*/
 /**
  * Check wether an object is using nurbs for display or not

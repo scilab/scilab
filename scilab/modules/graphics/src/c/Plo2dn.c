@@ -37,6 +37,7 @@
 
 #include "MALLOC.h" /* MALLOC */
 #include "DrawingBridge.h"
+#include "scitokenize.h"
 #include "localization.h"
 
 /* @TODO : remove that stuff */
