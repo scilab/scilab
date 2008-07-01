@@ -1363,38 +1363,6 @@
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_optim.f"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_semidef.f"
@@ -1435,6 +1403,10 @@
 		</File>
 		<File
 			RelativePath="..\..\sci_gateway\optimization_gateway.xml"
+			>
+		</File>
+		<File
+			RelativePath=".\Optimization_Import.def"
 			>
 		</File>
 	</Files>
