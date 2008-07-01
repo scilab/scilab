@@ -17,20 +17,32 @@
 /*--------------------------------------------------------------------------*/
 const char *preparse_line_for_completion_nw(const char *current_line)
 {
+	const char *linewithoutspaceatbegin = NULL;
 	const char *wordToFind = NULL;
 	char *pch = NULL;
+	int i = 0;
 
-	pch = strrchr (current_line,' ');
+	/* remove blanks beginning of line */
+	for (i = 0;i<(int)strlen(current_line);i++)
+	{
+		if (current_line[i] != ' ')
+		{
+			linewithoutspaceatbegin = &current_line[i];
+			break;
+		}
+	}
+
+	pch = strrchr (linewithoutspaceatbegin,' ');
 
 	if (pch)
 	{
-		if ( (pch-current_line) > 0 )
+		if ( (pch-linewithoutspaceatbegin) > 0 )
 		{
 			pch++;
 			wordToFind = pch;
 		}
 	}
-	else wordToFind = current_line;
+	else wordToFind = linewithoutspaceatbegin;
 
 	return wordToFind;
 }

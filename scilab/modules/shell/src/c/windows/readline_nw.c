@@ -727,9 +727,13 @@ static void doCompletion(const char *current_line,const char *prompt)
 				}
 				fputs ("\n", stdout);
 				lenCurrentLine = 0;
-
 				redraw_line((char*)prompt);
 				strcpy(cur_line,backup_line);
+
+				if ( strncmp(completionDictionary[0],completionDictionary[1],strlen(completionDictionary[0])) == 0 )
+				{
+					strcat(cur_line,&completionDictionary[0][strlen(wordToFind)]);
+				}
 				fputs (cur_line, stdout);
 				cur_pos = (int)strlen(cur_line);
 				max_pos = (int)strlen(cur_line);
