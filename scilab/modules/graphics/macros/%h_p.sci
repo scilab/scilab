@@ -206,15 +206,18 @@ function %h_p(h)
         // =====================================================================
         
         case "Legend"
-            t=[t;
-            "parent: "+h.parent.type
-            "children: "+fmtchildren(h.children)
-            "visible = "+sci2exp(h.visible)
-            "text = "+sci2exp(h.text)
-            "font_style = "+string(h.font_style)
-            "font_size = "+string(h.font_size)
-            "fractional_font = " + sci2exp(h.fractional_font)
-	    "links = " +  fmtchildren(h.links) ]
+	  t=[t;
+	     "parent: "+h.parent.type
+	     "children: "+fmtchildren(h.children)
+	     "visible = "+sci2exp(h.visible)
+	     "text = "+sci2exp(h.text)
+	     "font_style = "+string(h.font_style)
+	     "font_size = "+string(h.font_size)
+	     "fractional_font = " + sci2exp(h.fractional_font)
+	     "links = " +  fmtchildren(h.links) 
+	     "legend_location = " + sci2exp(h.legend_location)
+	     "position = " + sci2exp(h.position)
+	      ]
         
         // Rectangle
         // =====================================================================

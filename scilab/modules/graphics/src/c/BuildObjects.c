@@ -936,8 +936,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
  * This function creates  Legend structure
  */
 sciPointObj *
-ConstructLegend (sciPointObj * pparentsubwin, char **text, int n, int nblegends, int *pstyle
-		 , sciPointObj **pptabofpointobj)
+ConstructLegend (sciPointObj * pparentsubwin, char **text, sciPointObj **pptabofpointobj, int nblegends) 
 {
   sciPointObj * pobj = (sciPointObj *) NULL;
   sciLegend   * ppLegend ;
@@ -1017,27 +1016,11 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, int n, int nblegends,
 	  return (sciPointObj *) NULL;
 	}
 
-      if ((ppLegend->pstyle = MALLOC(nblegends*sizeof(int))) != NULL)
+     
+      for (i=0; i < nblegends; i++)
 	{
-	  for (i=0; i < nblegends; i++)
-	    {
-	      ppLegend->pstyle[i] = pstyle[i];
-	      ppLegend->pptabofpointobj[i] = pptabofpointobj[i];
-	    }
+	  ppLegend->pptabofpointobj[i] = pptabofpointobj[i];
 	}
-      else
-	{		  
-	  sciprint(_("%s: No more memory.\n"),"ConstructLegend");
-	  FREE(ppLegend->pptabofpointobj);
-	  deleteMatrix( ppLegend->text.pStrings ) ;
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppLegend);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-
 
       ppLegend->text.fontcontext.textorientation = 0.0;
       ppLegend->pos.x = 0;

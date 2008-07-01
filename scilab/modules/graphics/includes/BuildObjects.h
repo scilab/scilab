@@ -60,8 +60,8 @@ sciPointObj * ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRo
 sciPointObj *ConstructTitle (sciPointObj * pparentfigure, char text[],
 				    int type); /* BUILD */
 
-sciPointObj *ConstructLegend (sciPointObj * pparentfigure, char *text[],
-				     int n, int nblegends, int *pstyle, sciPointObj **pptabofpointobj);  /* BUILD */
+sciPointObj *ConstructLegend (sciPointObj * pparentfigure, char *text[], sciPointObj **pptabofpointobj,
+				     int nblegends);  /* BUILD */
 
 sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
                                int closed, int n1,int plot, int *foreground, int *background,
@@ -74,6 +74,11 @@ sciPointObj *ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, doub
 sciPointObj *ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 				  double height, double width, double alphabegin, double alphaend, 
 				  int *foreground, int *background, BOOL isfilled, BOOL isline);
+
+sciPointObj *allocateRectangle (sciPointObj * pparentsubwin, double x, double y,
+					double height, double width, double horzcurvature,
+					double vertcurvature,  int *foreground, int *background,
+					int isfilled, int isline, int str, BOOL flagstring);
 
 sciPointObj *ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 					double height, double width, double horzcurvature,

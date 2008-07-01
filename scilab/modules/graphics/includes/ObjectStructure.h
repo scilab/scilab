@@ -566,7 +566,8 @@ typedef enum
     /** */
     SCI_LEGEND_IN_LOWER_RIGHT = 4,
     /** */
-
+    SCI_LEGEND_BY_COORDINATES = 5,
+    /** */
     SCI_LEGEND_OUT_UPPER_LEFT = -1,
     /** */
     SCI_LEGEND_OUT_UPPER_RIGHT = -2,

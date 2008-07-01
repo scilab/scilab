@@ -273,6 +273,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     if (with_leg) {
       char ** Str;
       int nleg;
+      sciPointObj * Leg;
       if (scitokenize(legend, &Str, &nleg)) {
 	FREE(pptabofpointobj);
 	FREE(hdltab);
@@ -287,13 +288,12 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 	sciprint(_("%s: Invalid legend.\n"),"plot2d");
 	return 0;
       }
-	
-      sciSetCurrentObj (ConstructLegend
-                        (sciGetCurrentSubWin(),
-			 Str,  1, *n1, style, pptabofpointobj)); 
-      /*     hdl=sciGetHandle(sciGetCurrentObj ());   
-      hdltab[cmpt]=hdl;
-      cmpt++;*/
+      Leg = ConstructLegend(sciGetCurrentSubWin(),Str,pptabofpointobj,*n1);
+      pLEGEND_FEATURE(Leg)->place = SCI_LEGEND_LOWER_CAPTION;
+      sciSetIsFilled (Leg, FALSE);
+      sciSetIsLine (Leg, FALSE);
+
+      sciSetCurrentObj (Leg); 
       for (jj = 0; jj < *n1; jj++) FREE(Str[jj]);
       FREE(Str);
       FREE(pptabofpointobj);

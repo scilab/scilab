@@ -144,6 +144,9 @@ sciPointObj *CheckClickedSubwin(integer x, integer y); /* GET */
 
 /* BOOL GetIsAxes(sciPointObj *psubwin); /\* GET *\/ */
 BOOL GetIsAxes2D(sciPointObj *psubwin); /* GET */
+char sciGetxLocation(sciPointObj * pObj);
+char sciGetyLocation(sciPointObj * pObj);
+
 
 int CheckForCompound (long *tabpointobj, int number); /* GET */
 

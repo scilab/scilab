@@ -187,6 +187,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
   sciDrawObj(sciGetCurrentObj ());
   DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
   /** Drawing the Legends **/
+  /*
   if ((int)strlen(strflag) >=1  && strflag[0] == '1')
   {
     n1=1; styl[0]=1;styl[1]=0;
@@ -196,10 +197,11 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
     
     
     sciDrawObj(sciGetCurrentObj ()); 
-    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+    DrawAxesIfRequired(sciGetCurrentObj ()); 
     hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 
     cmpt++;
   }
+  */
   sciSetCurrentObj(ConstructCompound (hdltab, cmpt));  /** construct Compound **/
 
    

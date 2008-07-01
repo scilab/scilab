@@ -28,23 +28,24 @@
 #include "freeArrayOfString.h"
 #include "GraphicSynchronizerInterface.h"
 #include "DrawObjects.h"
+extern sciLegendPlace string2LegendPlace(char * string);
 
 /*--------------------------------------------------------------------------*/
 int sci_Legend( char * fname, unsigned long fname_len )
 {
-  integer numrow,numcol,l1,n,m2,n2;
+  integer numrow,numcol,l1,l2,n,m2,n2;
   long handelsvalue = NULL ;
   int outindex,i;
-  int *pstyle;
   sciPointObj *pobj;
   sciPointObj **pptabofpointobj;
   sciPointObj * psubwin = NULL;
   sciPointObj * pFigure = NULL;
-
+  char def_location[]="in_upper_right";
+  sciLegendPlace location;
   sciEntityType type;
   char **Str = NULL;
 
-  CheckRhs(2,2);
+  CheckRhs(2,3);
   CheckLhs(0,1);
 
   
@@ -64,7 +65,18 @@ int sci_Legend( char * fname, unsigned long fname_len )
 
   GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&l1); 
   GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str);
-  
+  if (Rhs==3) {
+    GetRhsVar(3,STRING_DATATYPE,&m2,&n2,&l2);
+    location = string2LegendPlace(cstk(l2));
+    if ((int)location==0) {
+      Scierror(999,_("%s: Invalid input argument #%d: incorrect value.\n"),fname,3);
+      return 0;
+    }
+  }
+  else {
+    location = string2LegendPlace( def_location);
+  }
+
   pptabofpointobj = (sciPointObj **)MALLOC(n*sizeof(sciPointObj *));
   if (pptabofpointobj == NULL) {
     freeArrayOfString(Str,n);
@@ -103,8 +115,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
     pptabofpointobj[i]=pobj;
     
   }
-  sciSetCurrentObj ((sciPointObj *)ConstructLegend (psubwin, Str, 
-						    0, n, pstyle , pptabofpointobj));
+  sciSetCurrentObj ((sciPointObj *)ConstructLegend (psubwin, Str, pptabofpointobj, n));
   startFigureDataReading(pFigure);
   sciDrawObjIfRequired(sciGetCurrentObj ());
   endFigureDataReading(pFigure);
@@ -113,9 +124,61 @@ int sci_Legend( char * fname, unsigned long fname_len )
   FREE(pptabofpointobj);
   numrow = 1;
   numcol = 1;
-  CreateVar(3,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
+  CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
   hstk(outindex)[0] = sciGetHandle((sciPointObj *) sciGetCurrentObj());
-  LhsVar(1) = 3;
+  LhsVar(1) = Rhs+1;
   return 0;
 }
 /*--------------------------------------------------------------------------*/
+sciLegendPlace string2LegendPlace(char * string)
+{
+  sciLegendPlace place;
+  if ( strcmp(string, "in_upper_right" )==0 )
+    {
+      place = SCI_LEGEND_IN_UPPER_RIGHT;
+    }
+  else if ( strcmp(string, "in_upper_left" )==0 )
+    {
+      place = SCI_LEGEND_IN_UPPER_LEFT;
+    }
+  else if ( strcmp(string, "in_lower_right" )==0 )
+    {
+      place = SCI_LEGEND_IN_LOWER_RIGHT;
+    }
+  else if ( strcmp(string, "in_lower_left" )==0 )
+    {
+      place = SCI_LEGEND_IN_LOWER_LEFT;
+    }
+  else if ( strcmp(string, "out_upper_right" )==0 )
+    {
+      place = SCI_LEGEND_OUT_UPPER_RIGHT;
+    }
+  else if ( strcmp(string, "out_upper_left" )==0 )
+    {
+      place = SCI_LEGEND_OUT_UPPER_LEFT;
+    }
+  else if ( strcmp(string, "out_lower_right" )==0 )
+    {
+      place = SCI_LEGEND_OUT_LOWER_RIGHT;
+    }
+  else if ( strcmp(string, "out_lower_left" )==0 )
+    {
+      place = SCI_LEGEND_OUT_LOWER_LEFT;
+    }
+  else if ( strcmp(string, "upper_caption" )==0 )
+    {
+      place = SCI_LEGEND_UPPER_CAPTION;
+    }
+  else if ( strcmp(string, "lower_caption" )==0 )
+    {
+      place = SCI_LEGEND_LOWER_CAPTION;
+    }
+  else if ( strcmp(string, "by_coordinates" )==0 )
+    {
+      place = SCI_LEGEND_BY_COORDINATES;
+    }
+  else {
+    place = (sciLegendPlace) 0;
+  }
+  return place;
+}

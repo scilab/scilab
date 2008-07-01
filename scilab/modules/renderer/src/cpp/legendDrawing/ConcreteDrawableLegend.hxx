@@ -50,17 +50,20 @@ protected:
    * Create the polylines to use
    */
   void createLines(void);
+  /**
+   * Create the box
+   */
+  void createBox(void);
 
   /**
    * Set polylines properties
    */
   void setLinesParameters(void);
 
-
   /**
-   * Compute a matrix of strings from the "toto@titi@tata" one.
+   * Set legend bounding box properties
    */
-  void computeTextMatrix(char ** textMat);
+  void setBoxParameters(void);
 
   /**
    * Destroy the polylines
@@ -73,7 +76,12 @@ protected:
   void destroyText(void);
 
   /**
-   * Return the numbe rof legends
+   * Destroy box
+   */
+  void destroyBox(void);
+
+  /**
+   * Return the number of legends
    */
   int getNbLegend(void) { return pLEGEND_FEATURE(m_pDrawed)->nblegends;}
 
@@ -83,11 +91,12 @@ protected:
   void getTextPixelSize(double * width, double * height);
 
   /**
-   * Compute the rectangle in 3d in which the lines will be drawn
+   * Compute the rectangles in 3d in which the lines will be drawn and also the 3D bounding box rectangle
    */
-  void getLineBox(double upperLeftCorner[3], double lowerLeftCorner[3],
-                  double lowerRightCorner[3], double upperRightCorner[3]);
-
+  void getBoxes(char * opt, double upperLeftCorner[3], double lowerLeftCorner[3],
+		double lowerRightCorner[3], double upperRightCorner[3],
+		double upperBoxLeftCorner[3], double lowerBoxLeftCorner[3],
+		double lowerBoxRightCorner[3], double upperBoxRightCorner[3]);
   /**
    * Place lines just inside the line box
    */
@@ -100,12 +109,23 @@ protected:
   void placeText(const double upperLeftCorner[3], const double lowerLeftCorner[3],
                  const double lowerRightCorner[3], const double upperRightCorner[3]);
 
+ /**
+   * Place the legend bounding box
+   */
+  void placeBox(const double upperLeftCorner[3], const double lowerLeftCorner[3],
+                 const double lowerRightCorner[3], const double upperRightCorner[3]);
+
+
+
   /*-----------------------------------------------*/
   /** text object drawing the strings */
   sciPointObj * m_pNames;
 
   /** polylines used to draw the lines in front of names */
   sciPointObj ** m_aLines;
+  /*-----------------------------------------------*/
+  /** rectangle used to draw the box */
+  sciPointObj * m_aBox;
   /*-----------------------------------------------*/
 
 };

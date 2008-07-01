@@ -83,6 +83,10 @@ int set_legend_location_property( sciPointObj * pobj, int stackPointer, int valu
   {
     pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_LOWER_CAPTION;
   }
+  else if ( isStringParamEqual( stackPointer, "by_coordinates" ) )
+  {
+    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_BY_COORDINATES;
+  }
 
   else  
   {

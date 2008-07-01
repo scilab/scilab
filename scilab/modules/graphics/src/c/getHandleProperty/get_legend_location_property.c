@@ -65,6 +65,10 @@ int get_legend_location_property( sciPointObj * pobj )
   case SCI_LEGEND_LOWER_CAPTION: 
     return sciReturnString( "lower_caption" ) ;
     break;
+  case SCI_LEGEND_BY_COORDINATES:
+    return sciReturnString( "by_coordinates" ) ;
+    break;
+
   default : 
     sciprint(_("%s is not correctly defined.\n"), "legend_location") ;
     break;

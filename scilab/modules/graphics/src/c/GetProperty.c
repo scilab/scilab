@@ -4412,6 +4412,40 @@ void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6])
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * Get the x_position value
+ * @param bounds [xmin, xmax, ymin, ymax, zmin, zmax] bounds.
+ */
+char sciGetxLocation(sciPointObj * pObj)
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->axes.xdir;
+    break;
+  default:
+    sciprint(_("Unable to compute x_location for this kind of object."));
+    break;
+  }
+}
+
+char sciGetyLocation(sciPointObj * pObj)
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->axes.ydir;
+    break;
+  default:
+    sciprint(_("Unable to compute x_location for this kind of object."));
+    break;
+  }
+}
+
+
+
+
+/*----------------------------------------------------------------------------------*/
+/**
  * Check wether an object is using nurbs for display or not
  */
 BOOL sciGetUseNurbs(sciPointObj * pObj)
