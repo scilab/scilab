@@ -36,12 +36,6 @@ function ilib_gen_Make_unix(names,   ..
 	linkpath    = TMPDIR;
 	commandpath = SCI+"/modules/dynamic_link/src/scripts/";
 	
-	//  if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' then
-	if ldflags == '' & cflags == '' & fflags == '' & cc == '' then
-		// The normal configure in the standard path
-		generateConfigure(commandpath);
-	end
-	
 	// Copy files => linkpath
 	chdir(linkpath);
 	
@@ -50,18 +44,16 @@ function ilib_gen_Make_unix(names,   ..
 	end
 	
 	// List of the files mandatory to generate a lib with the detection of the env
-	mandatoryFiles = ["Makefile.orig", ..
+	mandatoryFiles = ["compilerDetection.sh", ..
 						"configure.ac", ..
 						"configure", ..
 						"Makefile.am", ..
 						"Makefile.in", ..
 						"config.sub", ..
 						"config.guess", ..
-						"config.status", ..
 						"depcomp", ..
 						"install-sh", ..
 						"ltmain.sh", ..
-						"libtool", ..
 						"missing", ..
 						"aclocal.m4"];
 	
@@ -109,17 +101,32 @@ function ilib_gen_Make_unix(names,   ..
 		end
 	end
 	
-	if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' then
-		// Rerun the configure, then remove the Makefile which is used
-		// to detect if the process has been launched or not
-		mdelete(linkpath+"/Makefile.orig")
-		// Copy this file because it is mandatory in the working dir
-		[status,msg]=copyfile(commandpath+"/compilerDetection.sh",linkpath);
+	[fd,ierr] = mopen(commandpath+"/Makefile.orig");
+	if ierr == 0 then
+		mclose(fd);
+	end
+	
+	if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' | ierr <> 0 then
+		// Makefile.orig doesn't exists or may be invalid regarding the flags
+		// run the ./configure with the flags
+		mdelete(linkpath+"/Makefile.orig");
+		generateConfigure(linkpath, ldflags, cflags, fflags, cc)
+	else
+		// Reuse existing Makefile.orig
+		[status,msg]=copyfile(commandpath+"/Makefile.orig",linkpath);
 		if (status <> 1)
 			error(msprintf(gettext("%s: An error occurred: %s\n"), "ilib_gen_Make",msg));
 		end
-		// Rerun the ./configure with the flags
-		generateConfigure(linkpath, ldflags, cflags, fflags, cc)
+		
+		// We just copied the configure script, so its modification time is "now". 
+		// But Makefile timestamp is also "now", since we just created it. Since
+		// Makefile depends on configure, "make" re-run the configure script, and
+		// hence rebuild Makefile from Makefile.in, overwriting the result of
+		// scicompile.sh. We want to avoid this, so we have to force Makefile's
+		// timestamp to one second later.
+		// (just try "touch configure Makefile; make" on any autoconf project)
+		sleep(1000);
+		unix_g("touch Makefile");
 	end
 	
 	// Alter the Makefile in order to compile the right files
