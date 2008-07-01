@@ -55,5 +55,5 @@ function e=f1(abc,m)
 endfunction
 
 [abc,v] = lsqrsolve([10;10;10],f1,size(X,1));
-abc
-norm(v)
+if norm(abc - [ 34.  ; 12.849045 ; 14.   ] ) > 0.1 then pause,end
+if norm(v) - 2.814D-13 > 0.1 then pause,end

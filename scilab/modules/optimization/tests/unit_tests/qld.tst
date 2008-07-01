@@ -23,7 +23,9 @@ p=[1;2;3;4;5;6]; Q=eye(6,6);
 C=[C1;C2] ; //
 b=[b1;b2] ;  //
 me=3;
-[x,lagr]=qld(Q,p,C,b,ci,cs,me)
+[x,lagr]=qld(Q,p,C,b,ci,cs,me);
+if size(lagr,'*') <> 17 then pause,end
+if size(x,'*') <> 6 then pause,end
 //Only linear constraints (1 to 4) are active (lagr(1:6)=0):
  
  

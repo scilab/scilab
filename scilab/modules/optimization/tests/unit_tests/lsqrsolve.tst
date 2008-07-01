@@ -18,7 +18,7 @@ if size(xsol) <> [2 1] then pause,end
 if size(v) <> [3 1] then pause,end
 
 function y=fj1(x,m),y=a;endfunction
-[xsol,v]=lsqrsolve([100;100],f1,3,fj1)
+[xsol,v]=lsqrsolve([100;100],f1,3,fj1);
 
 // Data fitting problem
 // 1 build the data

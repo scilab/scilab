@@ -79,11 +79,7 @@ Q= [1 -1; -1 2] ;
 p = [-2; -6];
 C = [1 1; -1 2; 2 1];
 b = [2; 2; 3];
-lb = [0.8;0] //zeros(2,1);
- lb  =
- 
-    0.8  
-    0.   
+lb = [0.8;0]; //zeros(2,1);
 me=0;
 x1=qpsolve(Q,p,C,b,lb,[],me);
 if or(x1-[0.8;1.2] >100*%eps) then bugmes();quit;end

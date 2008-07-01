@@ -31,7 +31,7 @@ ci = [0; 0];
 cs = [];
 me = 1;
 x0 = [0.5; 0.5];
-tol = 1e-8
+tol = 1e-8;
 
 [x_qld,lagr_qld,info] = qld(Q,p,C,b,ci,cs,me,tol);
 if norm(x_qld-[8;3]/11)>1d-10 then pause,end

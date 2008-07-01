@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 632 -->
 //
 // <-- Bugzilla URL -->
@@ -39,13 +45,5 @@ function e=f1(abc,m)
 	e = Y-(a*(X-b)+c*X.*X);
 endfunction
 [abc,v] = lsqrsolve([10;10;10],f1,size(X,1));
-abc
- abc  =
- 
-    34.        
-    12.849045  
-    14.        
-norm(v)
- ans  =
- 
-    2.814D-13  
+if norm(abc - [ 34.  ; 12.849045 ; 14.   ] ) > 0.1 then bugmes();quit;end
+if norm(v) - 2.814D-13 > 0.1 then bugmes();quit;end

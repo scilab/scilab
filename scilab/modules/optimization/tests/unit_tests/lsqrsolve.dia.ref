@@ -13,16 +13,7 @@ function y=f1(x,m),y=a*x+b;endfunction
 if size(xsol) <> [2 1] then bugmes();quit;end
 if size(v) <> [3 1] then bugmes();quit;end
 function y=fj1(x,m),y=a;endfunction
-[xsol,v]=lsqrsolve([100;100],f1,3,fj1)
- v  =
- 
-  - 0.4083770  
-    0.3926702  
-  - 0.0942408  
- xsol  =
- 
-    1.5026178  
-  - 1.7015707  
+[xsol,v]=lsqrsolve([100;100],f1,3,fj1);
 // Data fitting problem
 // 1 build the data
 a=34;b=12;c=14;

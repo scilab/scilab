@@ -22,32 +22,7 @@ p=[1;2;3;4;5;6]; Q=eye(6,6);
 C=[C1;C2] ; //
 b=[b1;b2] ;  //
 me=3;
-[x,lagr]=qld(Q,p,C,b,ci,cs,me)
- lagr  =
- 
-  - 1.5564027  
-  - 0.1698164  
-  - 0.7054782  
-    0.3091368  
-    0.         
-    0.         
-    0.         
-    0.         
-    0.         
-    0.         
-    0.         
-    0.         
-    0.         
-    0.         
-    0.         
-    0.         
-    0.         
- x  =
- 
-    1.7975426  
-  - 0.3381487  
-    0.1633880  
-  - 4.9884023  
-    0.6054943  
-  - 3.1155623  
+[x,lagr]=qld(Q,p,C,b,ci,cs,me);
+if size(lagr,'*') <> 17 then bugmes();quit;end
+if size(x,'*') <> 6 then bugmes();quit;end
 //Only linear constraints (1 to 4) are active (lagr(1:6)=0):
