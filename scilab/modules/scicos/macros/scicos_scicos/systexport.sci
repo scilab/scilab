@@ -31,7 +31,7 @@ function systexport(scs_m,exp_dir)
     if typeof(o)=='Block' then
       model=o.model
       if model.sim=='super' then
-	systexport(model.rpar,exp_dir) 
+        systexport(model.rpar,exp_dir) 
       end
     end
   end
