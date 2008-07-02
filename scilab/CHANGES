@@ -344,12 +344,12 @@ History manager:
 
 Consoles:
 =========
- - Based on a joint project Artenum - INRIA/Scilab called Jrosetta
+ - Based on a joint project Artenum ( http://www.artenum.com ) - INRIA/Scilab called Jrosetta
  - Completion
 	+ Functions
 	+ Variables
 	+ Paths
-
+ - Advanced completion also available in NW & NWNI modes
 
 Modules/toolboxes template:
 ===========================
