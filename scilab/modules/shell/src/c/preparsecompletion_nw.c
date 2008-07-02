@@ -17,41 +17,43 @@
 /*--------------------------------------------------------------------------*/
 const char *preparse_line_for_completion_nw(const char *current_line)
 {
-	const char *linewithoutspaceatbegin = NULL;
-	const char *wordToFind = NULL;
-	char *pch = NULL;
-	int i = 0;
-
 	/* remove some specials cases */
-	if (current_line == NULL) return NULL;
-	if ( strcmp(current_line,"") == 0 ) return NULL;
-
-	/* remove blanks beginning of line */
-	for (i = 0;i<(int)strlen(current_line);i++)
+	if (current_line)
 	{
-		if (current_line[i] != ' ')
+		char *pch = NULL;
+		const char *pchprev = NULL;
+		const char *stringstr = current_line;
+		char symbs[] = " +-*/\\([^,;={.&|\'])}:\"";
+		int i = 0;
+
+		if ( strcmp(current_line,"") == 0 ) return current_line;
+
+		/* Get string to use for completion */
+		for (i = 0;i < (int)strlen(symbs);i++)
 		{
-			linewithoutspaceatbegin = &current_line[i];
-			break;
+			pch = strrchr (stringstr,symbs[i]);
+			if (pch) 
+			{
+				stringstr = pch;
+				pchprev = pch;
+			}
 		}
-	}
 
-	if (linewithoutspaceatbegin)
-	{
-		pch = strrchr (linewithoutspaceatbegin,' ');
+		if (pch)
+		{
+			if ( (int)strlen(pch) > 1 ) pch++;
+			return pch;
+		}
+		else
+		{
+			if (pchprev)
+			{
+				if ( (int)strlen(pchprev) > 1 ) pchprev++;
+				return pchprev;
+			}
+			else return current_line;
+		}
 	}
 	else return NULL;
-
-	if (pch)
-	{
-		if ( (pch-linewithoutspaceatbegin) > 0 )
-		{
-			pch++;
-			wordToFind = pch;
-		}
-	}
-	else wordToFind = linewithoutspaceatbegin;
-
-	return wordToFind;
 }
 /*--------------------------------------------------------------------------*/
