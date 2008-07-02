@@ -52,11 +52,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	InitScriptType pathtype = SCILAB_SCRIPT;
 	char *path = NULL;
 	char *ScilabDirectory=NULL;
-
-
-
 	char *pFullCmdLine=NULL;
 	char *pFullCmdLineTmp=NULL;
+	HANDLE hMutexScilabID;
 
 
 	forbiddenToUseScilab();
@@ -86,6 +84,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		char *pPathCmdLine=NULL;
 		char PathCmdLineCopy[1024];
 		char StrWscilexToSearch[PATH_MAX];
+
+
 
 		sprintf(StrWscilexToSearch,"%s\" ",WSCILEX);
 
@@ -133,7 +133,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		}
 	}
 
-        // No more needed
+    // No more needed
 	//if (ShowMessageBoxInfo) StartupMessageBox();
 
 	for (i=1;i<my_argc;i++)
@@ -270,10 +270,16 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 #endif
 
 		CreateScilabConsole(sci_show_banner);
-	
 		HideScilex(); /* Cache la fenetre Console */
+	
+		/* http://www.vincenzo.net/isxkb/index.php?title=Application_considerations */
+		/* creates a named mutex used by Innosetup */
+		hMutexScilabID = CreateMutex (NULL, FALSE,SCI_VERSION_STRING );
 
 		sci_windows_main (&startupf, path,(InitScriptType)pathtype, &lpath,memory);
+
+		/* close named mutex */
+		CloseHandle(hMutexScilabID);
 
 		CloseScilabConsole();
 
