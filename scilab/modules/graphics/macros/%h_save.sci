@@ -513,6 +513,7 @@ function save_graphichandle(h,fd)
     save_text_vector(h.text,fd); // text
     mput(h.font_style,'c',fd) // font_style
     mput(h.font_size,'c',fd) // font_size
+    mput(h.font_color,'il',fd) // font_color
     mput(bool2s(h.fractional_font=='on'),'c',fd) // fractional_font
     //replace links by a path relative to the parent axes
     links=h.links;nlegends=size(links,'*');
@@ -522,7 +523,21 @@ function save_graphichandle(h,fd)
       mput(size(p,'*'),'il',fd)
       mput(p,'il',fd)
     end
-    
+    mput(length(h.legend_location),'c',fd);mput(ascii(h.legend_location),'c',fd); //legend_location
+    mput(h.position,'dl',fd); 
+    mput(bool2s(h.line_mode=='on'),'c',fd) // line_mode
+    mput(h.thickness,'sl',fd) // thickness
+    mput(h.foreground,'il',fd) // foreground
+    mput(bool2s(h.fill_mode=='on'),'c',fd) // fill_mode
+    mput(h.background,'il',fd) ; // background
+
+    mput(length(h.clip_state),'c',fd); // clip_state
+    mput(ascii(h.clip_state),'c',fd);
+    if h.clip_state=='on' then
+      mput(h.clip_box,'dl',fd) // clip_box
+    end
+    user_data=h.user_data;save(fd,user_data) // user_data
+ 
   case "Text"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd); // type
     mput(bool2s(h.visible=='on'),'c',fd) // visible

@@ -437,17 +437,30 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     global %LEG
     
     if %LEG<>[] then
-      labels=tokens(%LEG.text,'@')
       //get handles from paths
       links=get_links_from_path(a,%LEG.paths)
       if links<>[] then
-	L=Legend(links,labels)
-	L.visible=%LEG.visible
-	L.font_style=%LEG.font_style
-	L.font_size=%LEG.font_size
-	L.fractional_font=%LEG.fractional_font
+	L=captions(links,%LEG.text)
+	L.visible         = %LEG.visible
+	L.font_style      = %LEG.font_style
+	L.font_size       = %LEG.font_size
+	L.font_color      = %LEG.font_color
+	L.fractional_font = %LEG.fractional_font
+	L.mark_mode       = 'off';
+	L.legend_location = %LEG.legend_location 
+	L.position        = %LEG.position
+	L.line_mode       = %LEG.line_mode
+	L.thickness       = %LEG.thickness
+	L.foreground      = %LEG.foreground
+	L.fill_mode       = %LEG.fill_mode
+	L.background      = %LEG.background
+	L.clip_state      = %LEG.clip_state  
+	if %LEG.clip_state=='on' then
+	  L.clip_box      = %LEG.clip_box 
+	end
+	L.user_data       = %LEG.user_data
       else
-	 warning(msprintf(_("%s: Legend does fit with the current context. Skipped\n"),"load"));
+	 warning(msprintf(_("%s: Legend does not fit with the current context. Skipped\n"),"load"));
       end
     end
     clearglobal %LEG
@@ -1041,13 +1054,28 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       %LEG.text            = load_text_vector(fd); // text
       %LEG.font_style      = mget(1,'c',fd); // font_style
       %LEG.font_size       = mget(1,'c',fd); // font_size
+      %LEG.font_color      = mget(1,'il',fd); // font_size
       %LEG.fractional_font = toggle(mget(1,'c',fd)); // fractional_font
       nlegends             = mget(1,'c',fd);
       paths = list()
       for kl=1:nlegends
 	paths($+1)         = mget(mget(1,'il',fd),'il',fd);
       end
-      %LEG.paths=paths
+      %LEG.paths           = paths
+      %LEG.legend_location = ascii(mget(mget(1,'c',fd),'c',fd))
+      %LEG.position        = mget(2,'dl',fd)
+      %LEG.line_mode       = toggle(mget(1,'c',fd))
+      %LEG.thickness       = mget(1,'sl',fd)
+      %LEG.foreground      = mget(1,'il',fd)
+      %LEG.fill_mode       = toggle(mget(1,'c',fd))
+      %LEG.background      = mget(1,'il',fd)
+
+      %LEG.clip_state      = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state
+      if %LEG.clip_state=='on' then
+	%LEG.clip_box      = mget(4,'dl',fd); // clip_box
+      end
+      load(fd,"user_data") 
+      %LEG.user_data       = user_data;
     else
       visible         = toggle(mget(1,'c',fd)) // visible
       line_mode       = toggle(mget(1,'c',fd)) // line_mode
@@ -1150,7 +1178,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     set(h,"clip_state",clip_state); 
     load_user_data(fd) // user_data
-    
+    set(h,"user_data",user_data);
   case 'Axis'
     if is_higher_than([3 1 0 0]) then
      

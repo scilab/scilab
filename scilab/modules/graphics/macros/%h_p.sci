@@ -199,7 +199,7 @@ function %h_p(h)
                 "arc_drawing_method = " + sci2exp(h.arc_drawing_method)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
-                "user_data = "+fmtuser_data(u)
+                "user_data = "+fmtuser_data(h.user_data)
             ]
         
         // Legend
@@ -218,9 +218,14 @@ function %h_p(h)
 	     "links = " +  fmtchildren(h.links) 
 	     "legend_location = " + sci2exp(h.legend_location)
 	     "position = " + sci2exp(h.position)
+	     "line_mode = "+sci2exp(h.line_mode)
+	     "thickness = "+string(h.thickness)
+	     "foreground = "+string(h.foreground)
+	     "fill_mode = "+sci2exp(h.fill_mode)
+	     "background = "+string(h.background)
 	     "clip_state = "+sci2exp(h.clip_state)
 	     "clip_box = "+sci2exp(h.clip_box,0)
-	     "user_data = "+fmtuser_data(u)
+	     "user_data = "+fmtuser_data(h.user_data)
 	      ]
         
         // Rectangle
