@@ -278,9 +278,9 @@ sub check_tree {
 	
 	# Check that basic files are here
 	my @required = qw(DESCRIPTION DESCRIPTION-FUNCTIONS readme.txt license.txt
-	                  builder.sce loader.sce);
+	                  changelog.txt builder.sce);
 	push(@required, "etc/$TOOLBOXNAME.start");
-	push(@required, "etc/$TOOLBOXNAME.end");
+	push(@required, "etc/$TOOLBOXNAME.quit");
 	
 	foreach (@required) {
 		if(!defined($tree{$_})) {
@@ -314,8 +314,11 @@ sub check_tree {
 	
 	# Constraints: if $key exists, $constraints{$key} must exist
 	my %constraints = (
-		qr#help/.+\.xml$# => "help/buildhelp.sce",
-		qr#macros/.+\.sc[ie]$# => "macros/buildmacros.sce");
+		qr#^help/([a-z][a-z]_[A-Z][A-Z])/[^/]+\.xml$# => sub{ "help/$1/build_help.sce" },
+		qr#^help/([a-z][a-z]_[A-Z][A-Z])/build_help.sce$# => sub{ "help/$1/addchapter.sce" },
+		qr#^help/([a-z][a-z]_[A-Z][A-Z])/addchapter.sce$# => sub{ "help/builder_help.sce" },
+		qr#^sci_gateway/builder_gateway.sce$# => sub{ "sci_gateway/loader_gateway.sce" },
+		qr#^macros/.+\.sc[ie]$# => sub{ "macros/buildmacros.sce" });
 	
 	# Build constraints for allowed languages
 	my %languages = (
@@ -323,26 +326,28 @@ sub check_tree {
 		"fortran" => qr/f/);
 	
 	foreach (keys %languages) {
-		# if src/(lang) has source files, src/(lang)/buildsrc_(lang).sce must exist
-		$constraints{qr#^src/$_/.+\.$languages{$_}$#} = "src/$_/buildsrc_$_.sce";
+		# if src/(lang) has source files, src/(lang)/builder_(lang).sce must exist
+		$constraints{qr#^src/($_)/.+\.$languages{$_}$#} = sub{ "src/$1/builder_$1.sce" };
 		
-		# if sci_gateway/(lang) has C sources, sci_gateway/(lang)/buildgateway_(lang).sce
+		# if sci_gateway/(lang) has C sources, sci_gateway/(lang)/builder_gateway_(lang).sce
 		# must exist
-		$constraints{qr#^sci_gateway/$_/.+[ch]$#} = "sci_gateway/$_/buildgateway_$_.sce";
+		$constraints{qr#^sci_gateway/($_)/.+[ch]$#} = sub{ "sci_gateway/$1/builder_gateway_$1.sce" };
 		
-		# if src/(lang)/buildsrc_(lang).sce exist, src/buildsrc.sce must exist
-		$constraints{qr#^src/$_/buildsrc_$_.sce$#} = "src/buildsrc.sce";
+		# if src/(lang)/builder_(lang).sce exist, src/builder_src.sce must exist
+		$constraints{qr#^src/$_/builder_$_.sce$#} = sub{ "src/builder_src.sce" };
 		
-		# if sci_gateway/(lang)/buildgateway_(lang).sce exist, sci_gateway/buildgateway.sce must exist
-		$constraints{qr#^sci_gateway/$_/buildgateway_$_.sce$#} = "sci_gateway/buildgateway.sce";
+		# if sci_gateway/(lang)/builder_gateway_(lang).sce exist, sci_gateway/builder_gateway.sce must exist
+		$constraints{qr#^sci_gateway/$_/builder_gateway_$_.sce$#} = sub{ "sci_gateway/builder_gateway.sce" };
 	}
 	
 	# Check constraints
 	foreach my $constraint (keys %constraints) {
-		my $required = $constraints{$constraint};
-		my @found = grep { $_ =~ $constraint } keys %tree;
-		if(@found && !defined($tree{$required})) {
-			common_die "Invalid archive: \"$found[0]\" needs \"$required\", which isn't in the archive";
+		foreach my $file (keys %tree) {
+			if($file =~ $constraint) {
+				my $required = $constraints{$constraint}();
+				common_die "Invalid archive: \"$&\" needs \"$required\", which isn't in the archive"
+					unless(defined($tree{$required}));
+			}
 		}
 	}
 }
@@ -518,7 +523,50 @@ sub stage_tbdeps {
 	common_leave_stage("tbdeps");
 }
 
+# stage_sysdeps:
+#    Install system dependencies
+sub stage_sysdeps {
+	common_enter_stage("sysdeps");
+	# TODO
+	common_leave_stage("sysdeps");
+}
+
+# stage_build
+#     Run the build script
+sub stage_build {
+	common_enter_stage("build");
+	
+	# Generate ccbuilder.sce (see __DATA__ section)
+	open CCBUILDER, ">ccbuilder.sce";
+	print CCBUILDER while(<DATA>);
+	close CCBUILDER;
+	
+	# For logging purposes only
+	common_exec("cat ccbuilder.sce");
+	
+	my $fd = common_exec("cd $TOOLBOXNAME; scilab -nb -nwni -e 'exec(\"../ccbuilder.sce\");'");
+	
+	# Check result
+	my $done = 0;
+	
+	while(<$fd>) {
+		$done = 1 if(/^atoms_cc_builder:done$/);
+		if(/^atoms_cc_ilib_compile:\s*(.+?)\s*$/) {
+			common_die("Generated library \"$1\" is invalid") unless($1 && -x $1 && ! -d $1);
+		}
+	}
+	
+	# fixme: need to check if everything was OK in macros/help generation
+	
+	common_die("builder.sce script didn't terminate normally") unless($done);
+	common_leave_stage("build");
+}
+
 # Init global vars, check arguments
+open LOGFILE, ">build.log";
+
+$STAGE = "";
+
 $TOOLBOXFILE = shift;
 if(!defined($TOOLBOXFILE)) {
 	common_die "Toolbox source file required";
@@ -530,8 +578,6 @@ if(! -r $TOOLBOXFILE) {
 
 $TOOLBOXNAME = $1 if ($TOOLBOXFILE =~ /^([^.]+)/);
 
-open LOGFILE, ">build.log";
-
 common_log "Toolbox: $TOOLBOXNAME";
 common_log "Source file: $TOOLBOXFILE";
 
@@ -539,5 +585,23 @@ stage_check;
 stage_unpack;
 stage_makeenv;
 stage_tbdeps;
+stage_sysdeps;
+stage_build;
 
 close LOGFILE;
+
+# Overwrite some scilab functions to get its return value and extra infos
+__DATA__
+predef(0);
+funcprot(0);
+
+old_ilib_compile = ilib_compile;
+function libn = ilib_compile(lib_name,makename,files,ldflags,cflags,fflags)
+    libn = old_ilib_compile(lib_name,makename,files,ldflags,cflags,fflags);
+    mprintf("\natoms_cc_ilib_compile:%s/%s\n", pwd(), libn);
+endfunction
+
+exec("builder.sce");
+mprintf("\natoms_cc_builder:done\n");
+quit;
+
