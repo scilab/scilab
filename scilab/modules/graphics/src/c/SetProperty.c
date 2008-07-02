@@ -924,7 +924,36 @@ sciSetIsLine (sciPointObj * pobj, BOOL isline)
   }
   return sciInitIsLine( pobj, isline ) ;
 }
+/**sciInitPolylineStyle
+ * Sets Polyline Style (plot)
+ */
+int sciInitPolylineStyle( sciPointObj * pobj, int plot )
+{
+  if (sciGetEntityType(pobj) == SCI_POLYLINE)
+  {
+    pPOLYLINE_FEATURE(pobj)->plot = 4;
+    return 0;
+  }
 
+  printSetGetErrorMessage("polyline_style");
+  return -1;
+
+}
+/**sciInitArrowSize
+ * Sets Polyline arrow size (to be used with polyline_style=4)
+ */
+int sciInitArrowSize( sciPointObj * pobj, double size )
+{
+  if (sciGetEntityType(pobj) == SCI_POLYLINE)
+  {
+    pPOLYLINE_FEATURE(pobj)->arsize_factor = size;
+    return 0;
+  }
+
+  printSetGetErrorMessage("arrow_size");
+  return -1;
+
+}
 
 
 int sciInitFontSize( sciPointObj * pobj, double fontSize )
@@ -974,6 +1003,8 @@ int sciInitFontOrientation( sciPointObj * pobj, double textorientation )
   printSetGetErrorMessage("font_angle");
   return -1;
 }
+
+
 
 /**sciSetFontOrientation
  * Sets the font Orientation

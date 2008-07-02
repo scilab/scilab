@@ -680,6 +680,8 @@ sciGetIsFilled (sciPointObj * pobj)
   return FALSE;
 }
 
+
+
 /**sciGetFontContext
  * Returns the structure of the Font Context. Do not use this in the Consturctor Functions !
  * @param sciPointObj * pobj: the pointer to the entity

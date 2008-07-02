@@ -68,6 +68,9 @@ int sciSetIsMark (sciPointObj * pobj, BOOL ismark);  /* SET */
 int sciInitIsFilled(sciPointObj * pobj, BOOL isfilled);
 int sciSetIsFilled (sciPointObj * pobj, BOOL isfilled);  /* SET */
 
+int sciInitPolylineStyle( sciPointObj * pobj, int plot );
+int sciInitArrowSize( sciPointObj * pobj, double size );
+
 int sciInitMarkStyle(sciPointObj * pobj, int markstyle);
 int sciSetMarkStyle (sciPointObj * pobj, int markstyle); /* SET */
 

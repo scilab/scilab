@@ -189,13 +189,13 @@ namespace sciGraphics
     destroyLines();
     int nbLegends = pLEGEND_FEATURE(m_pDrawed)->nblegends;
     sciPointObj * parentSubwin = sciGetParentSubwin(m_pDrawed);
-    double defaultCoords[3] = {0.0, 0.0, 0.0};
+    double defaultCoords[4] = {0.0, 0.0, 0.0, 0.0};
 
     m_aLines = new sciPointObj *[nbLegends];
 
     for (int i = 0; i < nbLegends; i++)
       {
-	m_aLines[i] = allocatePolyline(parentSubwin, defaultCoords, defaultCoords, defaultCoords, 0, 3, 1,
+	m_aLines[i] = allocatePolyline(parentSubwin, defaultCoords, defaultCoords, defaultCoords, 0, 4, 1,
 				       NULL, NULL, NULL, NULL, NULL, FALSE, FALSE, FALSE, FALSE);
       }
 
@@ -231,7 +231,13 @@ namespace sciGraphics
 	sciInitMarkStyle(m_aLines[i],sciGetMarkStyle(legendedObject));
 
 	// same for lines
+	if (sciGetPolylineStyle(legendedObject)==4){ //arrowed polyline
+	  //sciInitPolylineStyle, sciInitArrowSize  to be written
+	  sciInitPolylineStyle(m_aLines[i],sciGetPolylineStyle(legendedObject));
+	  sciInitArrowSize(m_aLines[i],sciGetArrowSize(legendedObject));
+	}
 	sciInitForeground(m_aLines[i], sciGetForeground(legendedObject));
+	sciInitBackground(m_aLines[i], sciGetBackground(legendedObject));
 	sciInitLineWidth(m_aLines[i], sciGetLineWidth(legendedObject));
 	sciInitLineStyle(m_aLines[i], sciGetLineStyle(legendedObject));
 	sciInitIsLine(m_aLines[i], sciGetIsLine(legendedObject));
@@ -449,28 +455,55 @@ namespace sciGraphics
 					  const double lowerRightCorner[3], const double upperRightCorner[3])
   {
     int nblegends = getNbLegend();
-
     // interpolate between top to bottom
     for (int i = 0; i < nblegends; i++)
       {
-	// our polylines are composed of 3 data
+	sciPointObj * legendedObject = pLEGEND_FEATURE(m_pDrawed)->pptabofpointobj[i];
+	// our polylines are composed of at most four points
 	sciPolyline * curPoly = pPOLYLINE_FEATURE(m_aLines[i]);
 
 	// interpolate on left side
 	double interpolationFactor = (i + 0.5) / nblegends;
-	curPoly->pvx[0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * interpolationFactor;
-	curPoly->pvy[0] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * interpolationFactor;
-	curPoly->pvz[0] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * interpolationFactor;
 
-	// then on right side
-	curPoly->pvx[2] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * interpolationFactor;
-	curPoly->pvy[2] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * interpolationFactor;
-	curPoly->pvz[2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * interpolationFactor;
+	if ( (sciGetPolylineStyle(legendedObject)!= 5 ) &&  !sciGetIsFilled(legendedObject))  {
+	  curPoly->pvx[0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * interpolationFactor;
+	  curPoly->pvy[0] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * interpolationFactor;
+	  curPoly->pvz[0] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * interpolationFactor;
 
-	// middle of the two others
-	curPoly->pvx[1] = 0.5 * (curPoly->pvx[0] + curPoly->pvx[2]);
-	curPoly->pvy[1] = 0.5 * (curPoly->pvy[0] + curPoly->pvy[2]);
-	curPoly->pvz[1] = 0.5 * (curPoly->pvz[0] + curPoly->pvz[2]);
+	  // then on right side
+	  curPoly->pvx[2] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * interpolationFactor;
+	  curPoly->pvy[2] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * interpolationFactor;
+	  curPoly->pvz[2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * interpolationFactor;
+
+	  // middle of the two others
+	  curPoly->pvx[1] = 0.5 * (curPoly->pvx[0] + curPoly->pvx[2]);
+	  curPoly->pvy[1] = 0.5 * (curPoly->pvy[0] + curPoly->pvy[2]);
+	  curPoly->pvz[1] = 0.5 * (curPoly->pvz[0] + curPoly->pvz[2]);
+	  curPoly->n1 = 3; //restrict polyline length the  first three points
+	  curPoly->closed = 0;
+	  sciInitIsFilled(m_aLines[i],FALSE);
+	}
+	else {
+	  double shift=0.25/nblegends;
+	  curPoly->pvx[0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * (interpolationFactor+shift);
+	  curPoly->pvy[0] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * (interpolationFactor+shift);
+	  curPoly->pvz[0] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * (interpolationFactor+shift);
+	  
+	  curPoly->pvx[1] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * (interpolationFactor+shift);
+	  curPoly->pvy[1] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * (interpolationFactor+shift);
+	  curPoly->pvz[1] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * (interpolationFactor+shift);
+
+	  curPoly->pvx[2] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * (interpolationFactor-shift);
+	  curPoly->pvy[2] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * (interpolationFactor-shift);
+	  curPoly->pvz[2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * (interpolationFactor-shift);
+
+	  curPoly->pvx[3] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * (interpolationFactor-shift);
+	  curPoly->pvy[3] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * (interpolationFactor-shift);
+	  curPoly->pvz[3] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * (interpolationFactor-shift);
+	  curPoly->n1 = 4;//set polyline length to the max allocated size
+	  curPoly->closed = 1;
+	  sciInitIsFilled(m_aLines[i],TRUE);
+	}
       }
 
   }
