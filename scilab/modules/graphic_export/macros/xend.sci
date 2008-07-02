@@ -26,11 +26,20 @@ function xend()
   // for "Rec" and "X11" drivers thare actually nothing to do
   select %driverName,
     case "Pos" then
+      drawnow();
       xs2ps(curFigId, %exportFileName);
+      // delete figure used for export
+      delete(curFig);
     case "GIF" then
+      drawnow();
       xs2gif(curFigId, %exportFileName);
+      // delete figure used for export
+      delete(curFig);
     case "PPM" then
+      drawnow();
       xs2ppm(curFigId, %exportFileName);
+      // delete figure used for export
+      delete(curFig);
   end
 
   // export done reset exportFileName
