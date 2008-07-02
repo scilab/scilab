@@ -10,8 +10,8 @@ my ($TOOLBOXFILE, # Toolbox archive to compile
     $TOOLBOXNAME, # Name of the toolbox
     $STAGE); # Current stage
 
-# common_log:
-#    Print a log message. Seconf argument is the type of the
+# common_log(message, type):
+#    Print a log message. Second argument is the type of the
 #    message:
 #     " " for a normal message
 #     "!" for an error
@@ -32,7 +32,7 @@ sub common_log {
 	print "[$type] $message \n";
 }
 
-# common_enter_stage:
+# common_enter_stage(stage):
 #    Common stuff while starting a new stage
 sub common_enter_stage {
 	$STAGE = shift;
@@ -45,7 +45,7 @@ sub common_leave_stage {
 	common_log($STAGE, "<");
 }
 
-# common_die:
+# common_die(message):
 #    Called when a problem happens
 sub common_die {
 	my $message = shift;
@@ -57,7 +57,7 @@ sub common_die {
 	exit(1);
 }
 
-# common_exec:
+# common_exec(command):
 #    Execute given command, places its outputs to log files.
 #    Returns a file handle on STDOUT
 #    Die if return code is non-zero
@@ -85,9 +85,8 @@ sub common_exec {
 	else {
 		waitpid($pid, 0);
 		common_log("$?", "?");
-		if($? != 0) {
-			common_die("\"$cmd\" failed");
-		}
+		common_die("\"$cmd\" failed (non-zero exit code)") if($? != 0);
+		common_die("\"$cmd\" failed (non-empty error output)") if(-s $stderr);
 	}
 	
 	open my ($fd), $stdout;
@@ -150,21 +149,21 @@ sub get_tree {
 	}
 }
 
-# read_file_from_tgz:
+# read_file_from_tgz(filename):
 #    Extract given file from the .zip archive
 sub read_file_from_tgz {
 	my $filename = shift;
 	return common_exec("zcat ${TOOLBOXFILE} | tar -xO ${TOOLBOXNAME}/$filename");
 }
 
-# read_file_from_tgz:
+# read_file_from_tgz(filename):
 #    Extract given file from the .tar.gz archive
 sub read_file_from_zip {
 	my $filename = shift;
 	return common_exec("unzip -p ${TOOLBOXFILE} ${TOOLBOXNAME}/$filename");
 }
 
-# read_file_from_archive:
+# read_file_from_archive(filename):
 #   Extract given file from the archive
 sub read_file_from_archive {
 	if(is_zip()) {
@@ -175,7 +174,7 @@ sub read_file_from_archive {
 	}
 }
 
-# read_description:
+# read_description(*description):
 #   Check if DESCRIPTION file is correct, and parse it (return a hash
 #   field => value).
 #   First argument is a file descriptor for the DESCRIPTION file (see
@@ -230,7 +229,7 @@ sub read_description {
 	return %infos;
 }
 
-# read_description_functions:
+# read_description_functions(*description_functions):
 #   Parse DESCRIPTION-FUNCTIONS file (and check it, too). Like DESCRIPTION,
 #   first argument is a file descriptor. Returns a hash function name =>
 #   function description
@@ -257,7 +256,7 @@ sub read_description_functions {
 	return %funcs;
 }
 
-# check_tree:
+# check_tree(%tree):
 #   Given a source tree of a toolbox (see get_tree), check if it is correct
 #   (required files are present, files are at their right place, and so on...)
 sub check_tree {
@@ -401,7 +400,7 @@ sub stage_check {
 	common_log("Computed DESCRIPTION-FUNCTIONS:\n" .
 		join("\n", map { "$_: $funcs{$_}" } sort keys %funcs));
 	
-	common_leave_stage("check");
+	common_leave_stage();
 }
 
 # stage_unpack:
@@ -416,7 +415,7 @@ sub stage_unpack {
 		common_exec("zcat ${TOOLBOXFILE} | tar -vx");
 	}
 	
-	common_leave_stage("unpack");
+	common_leave_stage();
 }
 
 # stage_makeenv:
@@ -424,7 +423,7 @@ sub stage_unpack {
 sub stage_makeenv {
 	common_enter_stage("makeenv");
 	# TODO
-	common_leave_stage("makeenv");
+	common_leave_stage();
 }
 
 # compare_versions:
@@ -484,7 +483,7 @@ sub stage_tbdeps {
 		foreach(keys %deps);
 	
 	# Find toolboxes directory
-	$fd = common_exec("$SCILABX 'printf(\"path: %s\\n\", cd(toolboxDirectory())); quit;'");
+	$fd = common_exec("$SCILABX 'printf(\"path: %s\\n\", cd(atomsToolboxDirectory())); quit;'");
 	
 	my $tbpath;
 	while(<$fd>) {
@@ -520,7 +519,7 @@ sub stage_tbdeps {
 		}
 	}
 	
-	common_leave_stage("tbdeps");
+	common_leave_stage();
 }
 
 # stage_sysdeps:
@@ -528,25 +527,28 @@ sub stage_tbdeps {
 sub stage_sysdeps {
 	common_enter_stage("sysdeps");
 	# TODO
-	common_leave_stage("sysdeps");
+	common_leave_stage();
 }
 
-# stage_build
+# stage_build:
 #     Run the build script
 sub stage_build {
 	common_enter_stage("build");
 	
 	# Generate ccbuilder.sce (see __DATA__ section)
+	common_log("Generating ccbuilder.sce");
 	open CCBUILDER, ">ccbuilder.sce";
 	print CCBUILDER while(<DATA>);
 	close CCBUILDER;
 	
-	# For logging purposes only
-	common_exec("cat ccbuilder.sce");
+	common_exec("cat ccbuilder.sce"); # For logging purposes only
 	
+	# Run build script
+	common_log("Running ccbuilder.sce");
 	my $fd = common_exec("cd $TOOLBOXNAME; scilab -nb -nwni -e 'exec(\"../ccbuilder.sce\");'");
 	
 	# Check result
+	common_log("Checking build result");
 	my $done = 0;
 	
 	while(<$fd>) {
@@ -559,7 +561,38 @@ sub stage_build {
 	# fixme: need to check if everything was OK in macros/help generation
 	
 	common_die("builder.sce script didn't terminate normally") unless($done);
-	common_leave_stage("build");
+	common_leave_stage();
+}
+
+# stage_pack:
+#     Make the archive
+sub stage_pack {
+	common_enter_stage("pack");
+	
+	my @files = qw(readme.txt license.txt changelog.txt DESCRIPTION-FUNCTIONS
+		DESCRIPTION macros src help sci_gateway demos tests locales includes);
+	push(@files, "etc/$TOOLBOXNAME.start");
+	push(@files, "etc/$TOOLBOXNAME.quit");
+	my $files_str = join(" ", map { "$TOOLBOXNAME/$_" } @files);
+	
+	my $output = $TOOLBOXFILE;
+	$output =~ s/(\.zip|\.tar.gz)$//;
+	$output .= "-bin";
+	
+	common_log("Making binary .tar.gz archive ($output.tar.gz)");
+	common_exec("tar -czvf $output.tar.gz $files_str");
+	common_log("Making binary .zip archive ($output.zip)");
+	common_exec("zip -r $output.zip $files_str");
+	
+	common_leave_stage();
+}
+
+# stage_cleanenv:
+#     Clean up the environment
+sub stage_cleanenv {
+	common_enter_stage("cleanenv");
+	# TODO
+	common_leave_stage();
 }
 
 # Init global vars, check arguments
@@ -587,6 +620,8 @@ stage_makeenv;
 stage_tbdeps;
 stage_sysdeps;
 stage_build;
+stage_pack;
+stage_cleanenv;
 
 close LOGFILE;
 
