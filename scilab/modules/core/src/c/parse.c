@@ -153,6 +153,9 @@ int C2F(parse)(void)
   static int job, nlc, pts;
   static char tmp[80];
 
+  /* Used to manage space between prompts */
+  static int returnFromCallbackExec = FALSE;
+
   /* Retrieve the current Scilab Mode */
   /*  scilabMode sciMode=getScilabMode();*/
 
@@ -217,7 +220,17 @@ int C2F(parse)(void)
   } else {
     if (Lct[4] / 2 % 2 == 1) {
       i__2 = Lct[4] / 4;
-      C2F(prompt)(&i__2, &iesc);
+      /* Manage space between two prompts */
+      if (!returnFromCallbackExec)
+        {
+          /* Space added only if Scilab does not return form a callback execution */
+          C2F(prompt)(&i__2, &iesc);
+        }
+      else
+        {
+          /* Reset the flag indicating a callback has just been executed */
+          returnFromCallbackExec = FALSE;
+        }
       if (iesc == 1) {
 	/* interrupted line acquisition (mode=7) */
 	iret = 3;
@@ -1395,6 +1408,12 @@ int C2F(parse)(void)
   /*     *call* macro */
   goto L88;
  L97:
+  /* Rstk[Pt] == 706 indicates we return from a callback execution */
+  if (Rstk[Pt] == 706)
+    {
+      returnFromCallbackExec = TRUE;
+    }
+
   Top = Pstk[Pt] - 1;
   C2F(basbrk).interruptible = TRUE;
   iret = Ids[1 + Pt * nsiz];

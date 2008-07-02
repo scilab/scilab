@@ -299,7 +299,6 @@ char *TermReadAndProcess(void)
 #endif
   if(sendprompt)
     {
-      printf("\n");
       if(tmpPrompt!=NULL)
         {
           printf(tmpPrompt);

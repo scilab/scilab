@@ -176,16 +176,17 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		});	
 		
 		// Remove last line returned given by Scilab (carriage return)
-//		try {
-//			StyledDocument outputStyledDoc = this.getConfiguration().getOutputViewStyledDocument();			
-//			int lastEOL = outputStyledDoc.getText(0, outputStyledDoc.getLength()).lastIndexOf(StringConstants.NEW_LINE);
-//
-//			if (lastEOL > 1) { // To avoid a "javax.swing.text.BadLocationException: Invalid remove" exception
-//				outputStyledDoc.remove(lastEOL, outputStyledDoc.getLength() - lastEOL);
-//			}
-//		} catch (BadLocationException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			StyledDocument outputStyledDoc = this.getConfiguration().getOutputViewStyledDocument();			
+			int lastEOL = outputStyledDoc.getText(0, outputStyledDoc.getLength()).lastIndexOf(StringConstants.NEW_LINE);
+
+			// Condition added to avoid a "javax.swing.text.BadLocationException: Invalid remove" exception
+			if (lastEOL > 1 && (outputStyledDoc.getLength() - lastEOL) == 1) { 
+				outputStyledDoc.remove(lastEOL, outputStyledDoc.getLength() - lastEOL);
+			}
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
 		
 		updateScrollPosition();
 	}
