@@ -213,10 +213,14 @@ function %h_p(h)
 	     "text = "+sci2exp(h.text)
 	     "font_style = "+string(h.font_style)
 	     "font_size = "+string(h.font_size)
+	     "font_color = "+string(h.font_color)
 	     "fractional_font = " + sci2exp(h.fractional_font)
 	     "links = " +  fmtchildren(h.links) 
 	     "legend_location = " + sci2exp(h.legend_location)
 	     "position = " + sci2exp(h.position)
+	     "clip_state = "+sci2exp(h.clip_state)
+	     "clip_box = "+sci2exp(h.clip_box,0)
+	     "user_data = "+fmtuser_data(u)
 	      ]
         
         // Rectangle
