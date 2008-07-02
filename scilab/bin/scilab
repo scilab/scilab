@@ -656,7 +656,7 @@ if test "$rest" = "yes"; then
   fontname=
   for sciarg in $*
   do
-	echo $sciarg
+
     # If the previous argument needs an argument, assign it.
     if test -n "$prevarg"; then
       eval "$prevarg=\$sciarg"
