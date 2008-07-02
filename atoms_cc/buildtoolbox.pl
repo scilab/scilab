@@ -570,7 +570,7 @@ sub stage_pack {
 	common_enter_stage("pack");
 	
 	my @files = qw(readme.txt license.txt changelog.txt DESCRIPTION-FUNCTIONS
-		DESCRIPTION macros src help sci_gateway demos tests locales includes);
+		DESCRIPTION macros src help sci_gateway demos tests locales includes loader.sce);
 	push(@files, "etc/$TOOLBOXNAME.start");
 	push(@files, "etc/$TOOLBOXNAME.quit");
 	my $files_str = join(" ", map { "$TOOLBOXNAME/$_" } @files);
