@@ -31,9 +31,19 @@ function create_gif(TXT,path)
     [j,TXT]=create_palette(%f);
     path=%scicos_gif(1)
   end
-  load SCI/macros/scicos/lib;
+  if exists('scicos_scicoslib')==0 then
+    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
+  end
+
+  if exists('scicos_autolib')==0 then
+    load("SCI/modules/scicos/macros/scicos_auto/lib") ;
+  end
+
+  if exists('scicos_utilslib')==0 then
+    load("SCI/modules/scicos/macros/scicos_utils/lib") ;
+  end
+
   exec(loadpallibs,-1) 
-  
   a=gcf()
   rgb=[.3,.4,.5] ; // used for transparent
   options=default_options();
