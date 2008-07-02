@@ -30,7 +30,7 @@ function  [curDriver] = driver(driverName)
     %driverName = driverName;
     curDriver = driverName;
 
-    if (driverName != "Rec" | driverName != "X11") then
+    if (driverName <> "Rec" | driverName <> "X11") then
       // to avoid drawing when in export mode
       // However, drawlater should not create any graphic window
       // when called
