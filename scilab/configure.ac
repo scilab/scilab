@@ -407,7 +407,7 @@ if test "$CC" = "gcc"; then
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
-	;;		
+	;;
 	 ia64-*-linux-gnu )
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
 		IS_64_BITS_CPU=true
@@ -750,6 +750,15 @@ SCICOS_ENABLE=no
 if test "$with_scicos" != no -a "$with_gui" != no; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
+   save_LIBS="$LIBS"
+   AC_CHECK_LIB([rt], [clock_gettime],
+		      [LIBRT="-lrt"],
+        [AC_MSG_ERROR([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed and if the version is correct])]
+   )
+   LIBS="$save_LIBS"
+ AC_SUBST(LIBRT)
+
+
 #################
 ## ocaml which only called with using Scicos
 #################
@@ -761,7 +770,7 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
 fi
 AC_SUBST(SCICOS_ENABLE)
 
-AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)		
+AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)
 AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
 
 
@@ -804,7 +813,7 @@ AC_ARG_WITH(pvm,
 
 PVM_ENABLE=no
 if test "$with_pvm" = yes; then
-   AC_PVM()	
+   AC_PVM()
    PVM_ENABLE=yes
 fi
 AC_SUBST(PVM_ENABLE)
@@ -894,7 +903,7 @@ AM_CONDITIONAL(UMFPACK, test "$with_umfpack" = yes)
 #######################
 
 AC_PCRE()
-	  	 
+
  #############################################
 #################
 ## Tcl/Tk library
@@ -930,7 +939,7 @@ if test "$with_tk" != no; then
 
 ###########################
 ########## X11 checks
-########################### 	 
+###########################
 		## This check is mandatory since tk needs Xlib headers and libs
 		AC_PATH_XTRA
 		##
@@ -1220,7 +1229,7 @@ AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scr
 
 AC_OUTPUT
 
-# To distribution packager, you can uncomment this stuff is you want to 
+# To distribution packager, you can uncomment this stuff is you want to
 # disable the rpath issue
 # However, you will have to set all the LD_LIBRARY_PATH to .libs/ directory
 # since scilab is compiling macros and help into the source tree (ie before
@@ -1291,7 +1300,7 @@ if test $SCICOS_ENABLE = yes; then
    echo "OCAMLC ............. = $OCAMLC"
    echo "OCAMLOPT ........... = $OCAMLOPT"
    echo "OCAMLDEP ........... = $OCAMLDEP"
-else 
+else
    echo "Not using Scicos"
 fi
 fi
@@ -1419,7 +1428,7 @@ else
 echo "  JAVA disabled"
 fi
 
-echo "" 
+echo ""
 echo "TCL/TK configuration:"
 echo "  TK_INC_PATH ........ = $TK_INC_PATH"
 echo "  TCL_INC_PATH ....... = $TCL_INC_PATH"
@@ -1427,13 +1436,13 @@ echo "  TCLTK_LIBS ......... = $TCLTK_LIBS"
 echo "  TCL_SERIAL_VERSION . = $TCL_SERIAL_VERSION"
 echo "  TK_SERIAL_VERSION .. = $TK_SERIAL_VERSION"
 
-echo "" 
+echo ""
 echo "XML configuration:"
 echo "  XML_FLAGS .......... = $XML_FLAGS"
 echo "  XML_LIBS ........... = $XML_LIBS"
 echo "  XML_VERSION ........ = $XML_VERSION"
 
-echo "" 
+echo ""
 echo "PCRE configuration:"
 echo "  PCRE_CFLAGS ........ = $PCRE_CFLAGS"
 echo "  PCRE_LIBS .......... = $PCRE_LIBS"
@@ -1474,7 +1483,7 @@ if test "$SCI_SRCDIR_FULL" != "$SCI_BUILDDIR"; then
 echo "  VPATH build ......... = Activated"
 fi
 
-echo "" 
+echo ""
 echo "Platform informations:"
 echo "  host ........... = $host"
 echo "  host_cpu ....... = $host_cpu"
