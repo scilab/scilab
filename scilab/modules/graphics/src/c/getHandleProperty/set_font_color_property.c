@@ -40,6 +40,7 @@ int set_font_color_property( sciPointObj * pobj, int stackPointer, int valueType
 
   if (   sciGetEntityType(pobj) == SCI_SUBWIN
            || sciGetEntityType(pobj) == SCI_FIGURE
+           || sciGetEntityType(pobj) == SCI_LEGEND
            || sciGetEntityType(pobj) == SCI_AXES)
   {
     return sciSetFontForeground( pobj,value ) ;
