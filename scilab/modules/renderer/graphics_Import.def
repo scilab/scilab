@@ -155,3 +155,4 @@ sciSetLegendPos
 sciGetLegendPos
 sciGetxLocation
 sciGetyLocation
+sciInitFontBackground
