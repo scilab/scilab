@@ -255,7 +255,7 @@ static int cre_hmat(int pos, HyperMat *H)
 {
   /*  dans cette version, seuls les champs dimsize, size et it sont definis
    *  et on alloue alors la memoire des champs dims, R (et I si it=1) dans
-   *  la pile scilab (juste à la place occupee par la variable).
+   *  la pile scilab (juste ï¿½ la place occupee par la variable).
    */
   static char *Str[]= { "hm","dims","entries"}; int m1=1,n1=3;
   int mL=3,nL=1,lL, one=1, lr, lc, lar, lac;
@@ -394,7 +394,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
    *      nmax    : utilise pour les descriptions implicites, aussi ind_max ne
    *                doit pas lui etre superieur
    */
-      /* code based on SCI/routines/interf/indxg.f */
+      /* code based on SCI/modules/core/src/fortran/indxg.f */
 
   int m, n, l, li, one=1, trois=3, *ti,/* val,*/ il, k, i, j, ideb, ipas, ifin, *P;
   double *td, px[3], x;
@@ -984,7 +984,7 @@ int C2F(intihm)()
  *  le code se base sur  setref (SCI/system/createref.f)
  *  on met une variable speciale "en Top" (le nouveau
  *  Top = Top-Rhs+1) qui indique en fait que l'on a
- *  modifié "en place" la variable topk.
+ *  modifiï¿½ "en place" la variable topk.
  *  Les instructions  LhsVar(1) = 0; et Nbvars = 0;
  *  permettent a priori de sortir "convenablement"
  *  de putlhsvar.

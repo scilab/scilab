@@ -110,7 +110,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
       *   matrix of the same size as z, we set izcol to 2. This
       *   value is later transmitted to the C2F(fac3dg) routine,
       *   which has been modified to do the interpolated shading 
-      *    (see the file SCI/routines/graphics/Plo3d.c 
+      *    (see the file SCI/modules/graphics/src/c/Plo3d.c
       */
       if (   m3n*n3n == m3*n3 ) { izcol=2  ; }
       break ;

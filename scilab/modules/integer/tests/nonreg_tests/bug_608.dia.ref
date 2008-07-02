@@ -13,7 +13,7 @@
 //    This occur only if the form is
 //    "scalar op matrix" or "matrix op scalar", where op stands
 //    for <=,<,==,<>,>= or >
-//    The function is called by SCI/routines/int/i_logic.f
+//    The function is called by SCI/modules/integer/src/fortran/i_logic.f
 a = uint8(zeros(4,4));
 b = (a<=uint8(0))
  b  =

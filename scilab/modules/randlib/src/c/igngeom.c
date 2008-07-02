@@ -49,7 +49,7 @@
 #include "grand.h"
 
 /* the external functions used  here : */
-double F2C(logp1)(double *x);  /* celle-ci est ds SCI/routines/calelm/watan.f */
+double F2C(logp1)(double *x);  /* celle-ci est ds SCI/modules/elementary_functions/src/fortran/watan.f */
 double igngeom(double p)
 {
   static double p_save = 1.0, ln_1_m_p = 0.0;

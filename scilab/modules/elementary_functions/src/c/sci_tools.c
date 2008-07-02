@@ -47,7 +47,7 @@
      optimisation des MALLOC pour Windows ( A tester avec attention ) --> VirtualAlloc
 
      Revision 1.4  2005/07/01 07:08:08  cornet
-     replace malloc, free, calloc & realloc by MALLOC,FREE,CALLOC & REALLOC defined in SCI/routines/sci_mem_alloc.h
+     replace malloc, free, calloc & realloc by MALLOC,FREE,CALLOC & REALLOC defined in SCI/libs/MALLOC/includes/sci_mem_alloc.h
 
      Revision 1.3  2001/10/16 08:23:38  chanceli
      change in includes
