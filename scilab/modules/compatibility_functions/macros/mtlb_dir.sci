@@ -9,7 +9,7 @@
 
 function [L]=mtlb_dir(path)
 // Emulation function for dir() Matlab function
-// See SCI/macros/util/dir.sci for details
+// See SCI/modules/fileio/macros/dir.sci for details
 
 // opt=='disp' -> result not affected to a variable
 // opt=='var' -> result affected to a variable

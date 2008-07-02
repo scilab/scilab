@@ -26,7 +26,7 @@
 //    isequal(b,a)
 //
 //    I propose this modification of the macro %l_isequal in the file
-//    SCI/macros/percent/%l_isequal.sci :
+//    SCI/modules/overloading/macros/%l_isequal.sci :
 //
 //    1 - function r=%l_isequal(x1,varargin)
 //    2 -  narg=size(varargin)

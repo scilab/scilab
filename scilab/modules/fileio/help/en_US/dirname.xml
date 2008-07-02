@@ -64,9 +64,9 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
-files=dirname('SCI/macros/util/poo.sci')
-files=dirname('SCI/macros\util/poo.sci')
-files=dirname('SCI/macros\util/poo.sci.k')
+files=dirname('SCI/modules/fileio/macros/poo.sci')
+files=dirname('SCI/modules\fileio/macros/poo.sci')
+files=dirname('SCI/modules\fileio/macros/poo.sci.k')
  
   ]]></programlisting>
   </refsection>

@@ -63,11 +63,9 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-
-files=basename('SCI/macros/util/poo.sci')
-files=basename('SCI/macros\util/poo.sci')
-files=basename('SCI/macros\util/poo.sci.k')
- 
+files=basename('SCI/modules/fileio/macros/poo.sci')
+files=basename('SCI/modules\fileio/macros/poo.sci')
+files=basename('SCI/modules\fileio/macros/poo.sci.k')
   ]]></programlisting>
   </refsection>
   <refsection>

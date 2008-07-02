@@ -11,7 +11,6 @@ function r=mtlb_eval(%s1,%s2)
 // Emulation function for Matlab eval()
 
 [lhs,rhs]=argn()
-//if exists('m2scilib')==0 then load('SCI/macros/m2sci/lib'),end
 
 %prot=funcprot();
 funcprot(0)

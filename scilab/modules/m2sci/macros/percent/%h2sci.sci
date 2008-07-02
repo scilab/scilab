@@ -13,7 +13,7 @@ function [tree]=%h2sci(tree)
 // Input: tree = Matlab operation tree
 // Output: tree = Scilab equivalent for tree
 
-// Overloading functions in $SCI/macros/mtlb/:
+// Overloading functions in $SCI/modules/compatibility_functions/macros/:
 // - %b_h_s.sci
 // - %s_h_b.sci
 // These functions are not used to get the same output value as Matlab one with empty matrices

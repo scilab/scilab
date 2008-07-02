@@ -21,7 +21,7 @@
 
 function txt_xml=lecture_xml(nom)
   txt_xml=[];
-  vect=mgetl('SCI/macros/scicos_blocks/PDE/'+nom); //lecture du code xml
+  vect=mgetl('SCI/modules/scicos_blocks/macros/PDE/'+nom); //lecture du code xml
   for i=1:size(vect,1)
     txt_xml=txt_xml+vect(i)+'$';
   end

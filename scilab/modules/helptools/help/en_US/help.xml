@@ -50,7 +50,7 @@ help</synopsis>
       <literal>global  %browsehelp; %browsehelp=[]</literal> for changing of browser !). 
       As generally different browsers have differents calling sequences, if
       your favorite one is not in the list you may  have to adapt the <literal>browsehelp</literal> scilab 
-      which can be found in <literal>SCI/macros/util/browsehelp.sci</literal>.</para>
+	  which can be found in <literal>SCI/modules/helptools/macros/apropos.sci</literal>.</para>
     <para> See  <link linkend="man">man</link> for more explanation on how to write new help
       pages .</para>
   </refsection>

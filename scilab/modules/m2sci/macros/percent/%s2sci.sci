@@ -21,7 +21,7 @@ function [tree]=%s2sci(tree)
 //  - Matlab gives : [1]-[]=[]
 //  - Scilab gives : [1]-[]=[1]
 
-// Overloading functions in $SCI/macros/mtlb/:
+// Overloading functions in $SCI/modules/compatibility_functions/macros/:
 // - %b_s_s.sci
 // - %s_s_b.sci
 

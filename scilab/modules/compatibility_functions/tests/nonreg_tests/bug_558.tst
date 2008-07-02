@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 //    mtlb_save reports an unnecessary warning. This is due to
-//    line 57 of  SCI/macros/mtlb/mtlb_save.sci:
+//    line 57 of  SCI/modules/compatibility_functions/macros/mtlb_save.sci:
 //
 //      clear('rhs','lhs','kk','k','err','mtlb_thefile','or');
 //

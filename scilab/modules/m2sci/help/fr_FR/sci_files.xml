@@ -23,7 +23,7 @@
     <para>  
   Pour convertir les appels à des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appelï¿½e
   <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>. Toutes ces fonctions sont dï¿½finies dans des <literal>sci_files</literal>
-  dans le répertoire SCI/macros/m2sci/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
+  dans le répertoire SCI/modules/m2sci/macros/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
   ne permet pas encore de convertir les appels à toutes les fonctions Matlab.
   Cependant, un utilisateur Scilab peut ajouter des <literal>sci_files</literal> (pour des fonctions Matlab
   ou pour ses propres fonctions) en utilisant les conseils suivants.
@@ -216,7 +216,7 @@
     </itemizedlist>
     <para>
   Pour plus d'informations sur la fï¿½on d'ï¿½crire ces fichiers, consulter le répertoire
-  SCI/macros/m2sci/sci_files/ qui donne de nombreux exemples, des plus simples (e.g. sci_abs.sci)
+  SCI/modules/m2sci/macros/sci_files/ qui donne de nombreux exemples, des plus simples (e.g. sci_abs.sci)
   aux plus compliquï¿½s (e.g. sci_zeros.sci).
   </para>
   </refsection>

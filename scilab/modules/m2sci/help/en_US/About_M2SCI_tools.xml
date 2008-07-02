@@ -98,11 +98,11 @@
     <para>
   Operations are converted using a fonction named <literal>%&lt;opcode&gt;2sci</literal> with opcode
   the Scilab code for this operator. See help page for overloading to have these codes. All
-  these functions are already written and are in directory SCI/macros/m2sci/percent/.
+  these functions are already written and are in directory SCI/modules/m2sci/macros/percent/.
   </para>
     <para>
   Function calls are converted using a function called <literal>sci_&lt;Matlab_function_name&gt;</literal>.
-  Some of these functions have been written and are in directory SCI/macros/m2sci/sci_files/.
+  Some of these functions have been written and are in directory SCI/modules/m2sci/macros/sci_files/.
   We are working on increasing the set of Matlab functions converted. However, everybody can
   written such functions using help page sci_files.
   </para>

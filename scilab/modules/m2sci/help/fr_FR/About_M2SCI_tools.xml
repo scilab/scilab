@@ -98,11 +98,11 @@
     <para>
   Les opérations sont converties en utilisant une fonction appelï¿½e <literal>%&lt;codeop&gt;2sci</literal> avec codeop
   le code Scilab pour cette opérateur. Voir l'aide de overloading pour voir ces codes. Toutes
-  ces fonctions sont dï¿½jï¿½ écrites et sont dans le répertoire SCI/macros/m2sci/percent/.
+  ces fonctions sont dï¿½jï¿½ écrites et sont dans le répertoire SCI/modules/m2sci/macros/percent/.
   </para>
     <para>
   Les appels aux fonctions sont convertis en utilisant une fonction appelï¿½e <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>.
-  Bon nombre de ces fonctions ont été écrites et sont dans le répertoire SCI/macros/m2sci/sci_files/.
+  Bon nombre de ces fonctions ont été écrites et sont dans le répertoire SCI/modules/m2sci/macros/sci_files/.
   Nous travillons actuellemnt à l'augmentation du nombre de fonctions Matlab converties. Nï¿½anmoins, tout le monde peut
   ï¿½crire ces fonctions en utilisant la pages d'aide sci_files.
   </para>

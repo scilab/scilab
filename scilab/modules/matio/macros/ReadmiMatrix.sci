@@ -350,7 +350,7 @@ function value=Object2Inline(value)
   
   deff('ans=value('+strcat(stripblanks(value.args),',')+')',value.expr,'n')
   comp(value,1);code=macr2lst(value)
-  load SCI/macros/m2sci/lib
+  load SCI/modules/m2sci/macros/lib
   killed=[];quote='''';dquote="""";batch=%f
   [value,trad]=m2sci(code,'value',%f,%f)
   value($)='endfunction'

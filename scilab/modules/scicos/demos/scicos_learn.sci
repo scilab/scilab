@@ -2,7 +2,18 @@ function scicos_learn(fil)
 // Copyright INRIA
 funcprot(0);
 comm='//'
-load SCI/macros/scicos/lib
+
+if exists('scicos_scicoslib')==0 then
+  load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
+end
+
+if exists('scicos_autolib')==0 then
+  load("SCI/modules/scicos/macros/scicos_auto/lib") ;
+end
+
+if exists('scicos_utilslib')==0 then
+  load("SCI/modules/scicos/macros/scicos_utils/lib") ;
+end
 
 
 

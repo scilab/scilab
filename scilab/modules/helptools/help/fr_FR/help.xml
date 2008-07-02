@@ -51,7 +51,7 @@
       désiré. Attention, les differents browsers on des synatxes d'appel
       différentes. Aussi si vous souhaitez ajouter un nouveau browser à la
       liste vous devrez modifier la fonction Scilab <literal>browsehelp</literal>
-      dont le code source est dans  <literal>SCI/macros/util/browsehelp.sci</literal>.</para>
+	  dont le code source est dans  <literal>SCI/modules/helptools/macros/apropos.sci</literal>.</para>
     <para> Voir  <link linkend="man">man</link> pour apprendre à écrire de nouvelles pages d'aide.</para>
   </refsection>
   <refsection>

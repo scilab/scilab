@@ -99,9 +99,9 @@ function [y1,...,yn]=foo(x1,...,xm)
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-  getf('SCI/macros/xdess/plot.sci')
+  getf('SCI/modules/graphics/macros/plot.sci')
 
-  getf SCI/macros/xdess/plot.sci
+  getf SCI/modules/graphics/macros/plot.sci
   ]]></programlisting>
   </refsection>
   <refsection>

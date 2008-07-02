@@ -82,7 +82,7 @@ path=tk_getfile(file_mask,dir,"string"[,"multip"])</synopsis>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 tk_getfile()
-tk_getfile("*.sci","SCI/macros/xdess")
+tk_getfile("*.sci","SCI/modules/graphics/macros")
 tk_getfile(Title="Choose a file name")
 tk_getfile(Title="Choose many file names at once",multip="1")
 tk_getfile(multip="1")

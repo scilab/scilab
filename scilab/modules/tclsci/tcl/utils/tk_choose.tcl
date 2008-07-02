@@ -91,5 +91,5 @@ namespace eval tkChoose {
     wm resizable $t 0 0
     
     # The event loop occurs at the Scilab level 
-    # see SCI/macros/xdess/tk_choose.sci
+    # see SCI/modules/tclsci/macros/tk_choose.sci
 }
