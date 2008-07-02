@@ -43,12 +43,16 @@ List of missing/buggy features:
 
 - Scicos:
     * The basic features of the editor are fully functional and tested.
+    * Scicos code has been updated to the new event handling functions and code
+      (please see "Event Handling Functions" section in "CHANGES") 
     * The Scicos simulation engine is correcly working (interactive and
       "scicos_simulate()" batch mode)
-    * All the demos are now active (see "?"->"Demos") 
+    * All the demos are now active (see "?"->"Demos")
+    * Brand new "Scicos Demos" section inside the new "Scilab Demostration"
+    * ...
       BUT ...
-        * The TCL/TK functions are still "passive" (visualized but not working)
-        * some mouse event are not handled properly (windows closing, drag block from palette)
+        * The TCL/TK functions are still "passive" (visualized but not working, eg. "Palette Tree")
+        * "Export All" is not yet operative
 
 - Name of the functions in "Genetic Algorithms" and Simulated Annealing" modules may change in the stable version
 
