@@ -14,7 +14,7 @@
 // ====================================================================
 
 // save history file
-if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
+if (sciargs()<>'-nouserstartup') then
 		// save history file
     savehistory();
     // disable history manager

@@ -15,7 +15,7 @@
 //Load  functions librarie
 //load('SCI/modules/history_manager/macros/lib');
 
-if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
+if (sciargs()<>'-nouserstartup')  then
 		// enable history manager
 		historymanager('on');
 		// load history file
