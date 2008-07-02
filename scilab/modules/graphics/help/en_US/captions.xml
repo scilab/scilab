@@ -75,64 +75,63 @@
 
           <itemizedlist>
             <listitem>
-              <para><literal>"in_upper_right" </literal>: captions are drawn in the upper right corner of
-              the axes box.</para>
+              <para><literal>"in_upper_right" </literal>: captions are drawn
+              in the upper right corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"in_upper_left"</literal>: captions are drawn in the upper left corner of
-              the axes box.</para>
+              <para><literal>"in_upper_left"</literal>: captions are drawn in
+              the upper left corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"in_lower_right"</literal>: captions are drawn in the lower right corner of
-              the axes box.</para>
+              <para><literal>"in_lower_right"</literal>: captions are drawn in
+              the lower right corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"in_lower_left"</literal>: captions are drawn in the lower left corner of
-              the axes box.</para>
+              <para><literal>"in_lower_left"</literal>: captions are drawn in
+              the lower left corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"out_upper_right"</literal>: captions are drawn at the right of the upper right corner of
-              the axes box.</para>
+              <para><literal>"out_upper_right"</literal>: captions are drawn
+              at the right of the upper right corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"out_upper_left"</literal>: captions are drawn at the left of the upper left corner of
-              the axes box.</para>
+              <para><literal>"out_upper_left"</literal>: captions are drawn at
+              the left of the upper left corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"out_lower_right"</literal>: captions are drawn at the right of the lower right corner of
-              the axes box.</para>
+              <para><literal>"out_lower_right"</literal>: captions are drawn
+              at the right of the lower right corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"out_lower_left"</literal>: captions are drawn at the left of the lower left corner of
-              the axes box.</para>
+              <para><literal>"out_lower_left"</literal>: captions are drawn at
+              the left of the lower left corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"upper_caption"</literal>: captions are drawn above  the upper left corner of
-              the axes box.</para>
+              <para><literal>"upper_caption"</literal>: captions are drawn
+              above the upper left corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"lower_caption"</literal>: captions are
-              drawn below the lower left corner of the axes box. This
-              option correspond to the <literal>leg</literal> argument
-              of <link linkend="plot2d">plot2d</link></para>
+              <para><literal>"lower_caption"</literal>: captions are drawn
+              below the lower left corner of the axes box. This option
+              correspond to the <literal>leg</literal> argument of <link
+              linkend="plot2d">plot2d</link></para>
             </listitem>
 
             <listitem>
-              <para><literal>"by_coordinates"</literal>: the upper
-              left corner of the captions box is given by the
-              "position" field of the associated data structure. The
-              <literal>x</literal> and <literal>y</literal> positions
-              are given as fractions of the
-              <literal>axes_bounds</literal></para>
+              <para><literal>"by_coordinates"</literal>: the upper left corner
+              of the captions box is given by the "position" field of the
+              associated data structure. The <literal>x</literal> and
+              <literal>y</literal> positions are given as fractions of the
+              <literal>axes_bounds sizes.</literal></para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -148,13 +147,13 @@
     <literal>captions</literal> prepends labels by a recall of the
     corresponding polylines. The type and properties are recovered from the
     given handles:</para>
+
     <para>The <literal>captions</literal> function creates a <link
     linkend="Legend">legend_property</link> data structure.</para>
-    
 
-    <para>There is at most one <literal>Legend</literal>  associated with each
-    axes. If the caption function is recalled while a <literal>Legend</literal> still
-    exist the old one is replaced.</para>
+    <para>There is at most one <literal>Legend</literal> associated with each
+    axes. If the caption function is recalled while a
+    <literal>Legend</literal> still exist the old one is replaced.</para>
   </refsection>
 
   <refsection>
