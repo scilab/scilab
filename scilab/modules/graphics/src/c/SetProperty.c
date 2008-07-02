@@ -37,7 +37,7 @@
 #include <time.h>
 
 #ifdef _MSC_VER
-#include "strdup_windows.h"
+#include "strdup_Windows.h"
 #endif
 
 #include "SetProperty.h"
