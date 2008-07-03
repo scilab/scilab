@@ -28,18 +28,13 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,cha
 	}
 	else
 	{
-	#ifdef _DEBUG
-		char MsgError[1024];
-		wsprintf(MsgError,"REALLOC (1) Error File %s Line %d ",fichier,ligne);
-		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-	#endif
 		NewPointer = HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
 
 		if (NewPointer == NULL)
 		{
 			#ifdef _DEBUG
 			char MsgError[1024];
-			wsprintf(MsgError,"REALLOC (2) Error File %s Line %d ",fichier,ligne);
+			wsprintf(MsgError,"REALLOC (1) Error File %s Line %d ",fichier,ligne);
 			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 			#endif
 		}
