@@ -2,12 +2,12 @@ function recompilefunction(funname,kind,force)
   if ~exists("force","local") then force=%f; end
   if ~exists("kind","local") then kind="c"; end
   if ~exists(funname)
-     error("No variable named: "+funname)
+     error(msprintf(gettext("No variable named: %s"),funname))
   end
   clear fvar funtext tempfun
   execstr("fvar="+funname)
   if ~or(type(fvar)==[11 13]) then
-     error(msprintf(gettext("%s must be the name of a scilab function variable"), funname))
+     error(msprintf(gettext("%s must be the name of a scilab function variable."), funname))
   end
   if type(fvar)==11 & ~force then 
     oldkind="n"

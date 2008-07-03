@@ -20,8 +20,7 @@ else
     path=SCI+part(path,4:length(path))
   end
   if fileinfo(path)==[] then
-    warning(" there is no file named "+name+".sci in the library directory "..
-              +t(1))
+    warning(msprintf(gettext("%s: There is no file named %s.sci in the library directory %s.\n"),"get_function_path",name,t(1)))
     path=[]
   end
 end

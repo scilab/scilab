@@ -43,7 +43,7 @@ function getd(path,option)
 	end
   
   if lst==[] | lst== "" then
-    error(msprintf(gettext("I cannot find any sci files in %s"),path));
+    error(msprintf(gettext("%s: I cannot find any sci files in %s.\n"),"getd",path));
     return ;
   end
   
@@ -53,7 +53,7 @@ function getd(path,option)
   for k=1:size(lst,'*'); 
     if fileparts(lst(k),"extension")==".sci" then
       if execstr("exec(lst(k));","errcatch")<>0 then
-	warning(msprintf(gettext("Incorrect function in file %s"),lst(k)))
+		warning(msprintf(gettext("%s: Incorrect function in file %s.\n"),"getd",lst(k)))
       end
     end
   end

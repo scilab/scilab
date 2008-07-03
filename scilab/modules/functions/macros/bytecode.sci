@@ -26,6 +26,6 @@ function x=bytecode(f)
      x=mgeti(I(1)-(1+nsiz),'i',u);
      mclose(u)
   else
-    error('Invalid argument')
+    error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"bytecode",1))
   end
 endfunction

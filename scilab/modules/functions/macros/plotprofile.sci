@@ -42,7 +42,7 @@ function plotprofile(fun)
   end
   n=size(count,1)
   if n==0 then 
-    error(gettext("Perhaps the function(s) has not been loaded for profiling?"))
+    error(gettext("%s: Perhaps the function(s) has not been loaded for profiling?\n"),"plotprofile")
   end
   
   //xset("window",win)
@@ -102,7 +102,7 @@ function plotprofile(fun)
   end   
   addmenu(win,gettext("Exit"));
   str="execstr(Exit_"+string(win)+"(1))"
-  xinfo(gettext("click to get corresponding line, move with a-z"))
+  xinfo(gettext("Click to get corresponding line, move with a-z."))
 
   withpad=with_scipad()
   if withpad then

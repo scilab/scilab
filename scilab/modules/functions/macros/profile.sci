@@ -15,7 +15,7 @@ else
   lst=fun
 end
 if lst(5)(1)<>'25' then
-  error(gettext("The function has not been built for profiling"))
+  error(msprintf(gettext("%s: The function has not been built for profiling"),"profile"))
 end
 count=get_profile(lst,4)
 count=count(1:$-1,:)

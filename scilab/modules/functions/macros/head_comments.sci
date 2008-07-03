@@ -12,10 +12,10 @@ function head_comments(name,%paths)
 //displays the first comments of a function
   if exists('%paths')==0 then %paths='./',end
   name=stripblanks(name)
-  if exists(name)==0 then error('undefined function'),end
+  if exists(name)==0 then error(msprintf(gettext("%s: Undefined function.\n"),"head_comments")),end
   execstr('t=type('+name+')')
-  if t<>11&t<>13 then
-    error(gettext("Argument is not the name of a Scilab function"))
+  if t<>11 & t<>13 then
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"),"head_comments",1))
   end
   l=whereis(name)
   if l<>[] then
@@ -24,7 +24,7 @@ function head_comments(name,%paths)
   else
     files= listfiles(%paths+'*.sci')
     if files==[] then
-      error(msprintf(gettext("%s.sci file cannot be found with the given paths'),name))
+      error(msprintf(gettext("%s.sci file cannot be found with the given paths.\n"),name))
     end
     k=grep(files,name+'.sci')
     if k<>[] then
@@ -34,7 +34,7 @@ function head_comments(name,%paths)
     end
   end
   if path==[] then
-    error(msprintf(gettext("%s.sci file cannot be found with the given paths"),name))
+    error(msprintf(gettext("%s.sci file cannot be found with the given paths.\n"),name))
   end
   txt=mgetl(path);
   k=grep(txt,'function');
@@ -45,7 +45,7 @@ function head_comments(name,%paths)
   txt=txt(k(1)+1:$)
   K=grep(part(txt,1:2),'//')
   if K(1)<>1 then 
-     write(%io(2),gettext("No comment available"),'(a)')
+     write(%io(2),gettext("No comment available."),'(a)')
      return
   end
   k2=find(K(2:$)-K(1:$-1)<>1,1)
@@ -54,6 +54,6 @@ function head_comments(name,%paths)
   if sel<>[] then
     write(%io(2),[head;strsubst(txt(sel),'//','')],'(a)')
   else
-    write(%io(2),gettext("No comment available"),'(a)')
+    write(%io(2),gettext("No comment available."),'(a)')
   end
 endfunction

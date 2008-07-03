@@ -19,7 +19,7 @@ function vars=macrovar(macro)
 //           locals : local variables
 //!
 if type(macro)==11 then comp(macro),end
-if type(macro)<>13 then error(gettext("Argument to macrovars must be a macro!")),end
+if type(macro)<>13 then error(msprintf(gettext("%s: Wrong type for input argument #%d: Macro expected.\n"),"macrovar",1)),end
 lst=macr2lst(macro);
 out=lst(2)',if prod(size(out))==0 then out =[],end
 in=lst(3)'

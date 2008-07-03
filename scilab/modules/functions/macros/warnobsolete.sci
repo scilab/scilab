@@ -8,16 +8,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-//
-//  -*- Scilab -*-
-//
-// warnobsolete.sci
-// Made by  Bruno JOFRET <bruno.jofret@inria.fr>
-//
-// Started on  Thu Feb 14 10:33:50 2008 bruno
-// Last update Thu Feb 14 11:06:16 2008 bruno
-//
-
 // This function is to warn user that he's using a deprecated function
 
 function warnobsolete(newFunctionName, scilabRemovedVersion)

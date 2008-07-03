@@ -19,7 +19,7 @@ function ret=check_gateways(varargin)
 
   for i=1:1:szmodules(1)
     file_to_check=SCI+'/modules/'+modules(i)+'/sci_gateway/'+modules(i)+'_gateway.xml';
-    printf('checking : '+modules(i)+'\n');
+    printf(gettext("Checking: %s.\n"),modules(i))
     if (fileinfo(file_to_check)<>[]) then
       try
         if MSDOS then
@@ -29,10 +29,10 @@ function ret=check_gateways(varargin)
         end
       catch
         ret=%F;
-        printf('\n Please check : '+file_to_check+'\n\n');
+        mprintf(gettext("%s: Please check: %s\n"),"check_gateways",file_to_check);
       end
     else
-      printf('\n file doesn''t exist : '+file_to_check+'\n\n');
+      mprintf(gettext("%s: File %s doesn''t exist.\n"),"check_gateways",file_to_check);
     end
   end
   
