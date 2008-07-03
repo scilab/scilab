@@ -228,17 +228,18 @@ char **GetFunctionsList(int *sizeList)
 /*--------------------------------------------------------------------------*/  
 BOOL ExistFunction(char *name)
 {
-	BOOL bOK=FALSE;
 	int i=0;
 
-	for ( i = 0 ; i < (int)hashtableSize ; i++ ) if ( htable[i].used) 
-	{
-		if (strcmp(htable[i].entry.namefunction,name) == 0)
-		{
-			return TRUE;
-		}
+	for ( i = 0 ; i < (int)hashtableSize ; i++ ) {
+		if ( htable[i].used) 
+			{
+				if (strcmp(htable[i].entry.namefunction,name) == 0)
+					{
+						return TRUE;
+					}
+			}
 	}
 
-	return bOK;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/  

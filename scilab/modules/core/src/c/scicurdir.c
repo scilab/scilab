@@ -40,7 +40,7 @@ int C2F(scichdir)(char *path,int *err)
 
 	 if (isUNCpath(path))
 	 {
-	    if ( getWarningMode() ) sciprint(_("Can't go to directory %s .\n"), path); 
+	    if ( getWarningMode() ) sciprint(_("Can't go to directory %s.\n"), path); 
 		*err = 1;
 		return (0);
 	 }
@@ -51,7 +51,7 @@ int C2F(scichdir)(char *path,int *err)
 	if (SetCurrentDirectory(path) == 0)
 #endif
 	{
-		if ( getWarningMode() ) sciprint(_("Can't go to directory %s .\n"), path); 
+		if ( getWarningMode() ) sciprint(_("Can't go to directory %s.\n"), path); 
 	    *err=1;
 	} 
 	return 0;

@@ -17,6 +17,7 @@
 #include "SetScilabEnvironment.h"
 #include "SCIHOME.h"
 #include "inisci-c.h" /* SetSci */
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	extern void SciEnvForWindows(void);
@@ -34,7 +35,7 @@ void SetScilabEnvironment(void)
 #endif
 	if (!setSCIHOME())
 	{
-		fprintf(stderr,"Error : Impossible to define %s environment variable.\n","SCIHOME");
+		fprintf(stderr,_("Error: Impossible to define %s environment variable.\n"),"SCIHOME");
 	}
 }
 /*--------------------------------------------------------------------------*/

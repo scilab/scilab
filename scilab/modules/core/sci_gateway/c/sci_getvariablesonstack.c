@@ -51,13 +51,13 @@ int C2F(sci_getvariablesonstack)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong value for first input argument: '%s' or '%s' expected.\n"),fname,"global","locale");
+				Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname,1, "global","locale");
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
 			return 0;
 		}
 	}

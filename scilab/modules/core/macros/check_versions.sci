@@ -15,7 +15,7 @@ function ret=check_versions(varargin)
 
   for i=1:1:szmodules(1)
     file_to_check=SCI+'/modules/'+modules(i)+'/version.xml';
-    printf('checking : '+modules(i)+'\n');
+    mprintf(gettext("Checking: %s\n"),modules(i))
     if (fileinfo(file_to_check)<>[]) then
       try
         if MSDOS then
@@ -25,10 +25,10 @@ function ret=check_versions(varargin)
         end
       catch
         ret=%F;
-        printf('\n Please check : '+file_to_check+'\n\n');
+        mprintf(gettext("%s: Please check: %s.\n"),"check_versions",file_to_check);
       end
     else
-      printf('\n file doesn''t exist : '+file_to_check+'\n\n');
+	  mprintf(gettext("%s: File doesn''t exist: %s"),"check_versions",file_to_check);
     end
   end
   

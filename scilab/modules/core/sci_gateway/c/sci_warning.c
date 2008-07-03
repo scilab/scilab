@@ -97,7 +97,7 @@ int C2F(sci_warning)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"), fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname,1);
 		return 0;
 	}
 	LhsVar(1)=0;

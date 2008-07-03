@@ -60,7 +60,7 @@ void C2F(settmpdir)(void)
 #ifdef _MSC_VER 
 	  if (!GetTempPath(PATH_MAX,TmpDirDefault))
 	  {
-		  MessageBox(NULL,"Don''t find Windows temporary directory",_("Error"),MB_ICONERROR);
+		  MessageBox(NULL,_("Cannot find Windows temporary directory."),_("Error"),MB_ICONERROR);
 		  exit(1);
 	  }
 	  else

@@ -16,7 +16,7 @@ function [resultat,status] = perl(varargin)
     // Check that the first param is a file 
     [x,ierr]=fileinfo(varargin(1));
     if (x == []) then
-    	error(msprintf(gettext("%s: Unable to find Perl file: %s","perl",string(varargin(1)))));
+    	error(msprintf(gettext("%s: Unable to find Perl file: %s"),"perl",string(varargin(1))));
     else
       // Check that params are strings
       for i=1:1:rhs,

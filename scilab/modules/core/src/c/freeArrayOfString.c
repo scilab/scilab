@@ -31,11 +31,11 @@ BOOL freeArrayOfString(char **Str,int dim)
 		}
 		FREE(Str);
 		Str = NULL;
+		return bRet;
 	}
 	else
 	{
-		bRet = FALSE;
+		return FALSE;
 	}
-	return bRet;
 }
 /*---------------------------------------------------------------------------*/ 

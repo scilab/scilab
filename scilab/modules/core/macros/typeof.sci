@@ -9,7 +9,7 @@
 
 function [tf]=typeof(object)
 if exists("object","local")==0 then
-  error(msprintf(_("%s: Input argument #%s is undefined.\n"),"typeof", 1))
+  error(msprintf(_("%s: Wrong value for input argument #%d: Defined variable expected.\n"),"typeof", 1))
 end
 select type(object)
 case 1 then tf='constant';

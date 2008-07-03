@@ -237,7 +237,7 @@ static int getversion_one_rhs(void)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for first input argument: String expected.\n"), "getversion");
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), "getversion",1);
 		return 0;
 	}
 	return 0;
@@ -317,13 +317,13 @@ static int getversion_two_rhs(void)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong value for second input argument: '%s' expected.\n"),"getversion",VERSION_STRING);
+			Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),"getversion",2,VERSION_STRING);
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),"getversion");
+		Scierror(999,_("%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"),"getversion",1,2);
 		return 0;
 	}
 }

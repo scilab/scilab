@@ -18,7 +18,7 @@ if ~c_link('foof') then
   path = getcwd(); 
   chdir(TMPDIR); 
   mputl(txt,'foof.f');
-  ilib_for_link(['foof'],'foof.o',[],"f");
+  ilib_for_link(['foof'],'foof.f',[],"f");
   exec loader.sce 
   chdir(path) 
 end	

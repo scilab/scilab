@@ -125,7 +125,7 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(204,_("%s: Wrong value for first input argument: Scalar, '%s' or '%s' expected.\n"),fname,"min","max");
+				Scierror(204,_("%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"),fname,1, "min","max");
 				return 0;
 			}
 		}
@@ -214,13 +214,13 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
-					Scierror(204,_("%s: Wrong value for first input argument: Scalar, '%s' or '%s' expected.\n"),fname,"min", "max");
+					Scierror(204,_("%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"),fname,1, "min", "max");
 					return 0;
 				}
 			}
 			else
 			{
-				Scierror(204,_("%s: Wrong type for first input argument: Scalar, '%s' or '%s'.\n"),fname,"min","max");
+				Scierror(204,_("%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"),fname,1, "min","max");
 				return 0;
 			}
 		}

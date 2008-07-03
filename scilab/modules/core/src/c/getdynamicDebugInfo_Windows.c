@@ -46,7 +46,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Memory in use : %*ld %%"),
+			_("Memory in use: %*ld %%"),
 			WIDTH,
 			statex.dwMemoryLoad);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -56,7 +56,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Total Physical Memory (Kbytes) : %*I64d"),
+			_("Total Physical Memory (Kbytes): %*I64d"),
 			WIDTH,
 			statex.ullTotalPhys/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -66,7 +66,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Free Physical Memory (Kbytes) : %*I64d"),
+			_("Free Physical Memory (Kbytes): %*I64d"),
 			WIDTH,
 			statex.ullAvailPhys/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -76,7 +76,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Total Paging File (Kbytes) : %*I64d"),
+			_("Total Paging File (Kbytes): %*I64d"),
 			WIDTH,
 			statex.ullTotalPageFile/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -86,7 +86,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Free Paging File (Kbytes) : %*I64d"),
+			_("Free Paging File (Kbytes): %*I64d"),
 			WIDTH,
 			statex.ullAvailPageFile/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -96,7 +96,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Total Virtual Memory (Kbytes) : %*I64d"),
+			_("Total Virtual Memory (Kbytes): %*I64d"),
 			WIDTH,
 			statex.ullTotalVirtual/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -106,7 +106,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Free Virtual Memory (Kbytes) : %*I64d"),
+			_("Free Virtual Memory (Kbytes): %*I64d"),
 			WIDTH,
 			statex.ullAvailVirtual/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -116,7 +116,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Free Extended Memory (Kbytes) : %*I64d"),
+			_("Free Extended Memory (Kbytes): %*I64d"),
 			WIDTH,
 			statex.ullAvailExtendedVirtual/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -125,7 +125,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
 	if (str_info)
 	{
-		strcpy(str_info ,_("Operating System : "));
+		strcpy(str_info ,_("Operating System: "));
 		switch (GetWindowsVersion())
 		{
 		case OS_ERROR : default :
@@ -187,7 +187,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	{
 		SYSTEM_INFO siSysInfo;
 		GetSystemInfo(&siSysInfo); 
-		sprintf(str_info,_("Number of processors : %d"),  siSysInfo.dwNumberOfProcessors);
+		sprintf(str_info,_("Number of processors: %d"),  siSysInfo.dwNumberOfProcessors);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
@@ -195,7 +195,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
 	if (str_info)
 	{
-		sprintf(str_info,_("Video card : %s"),  GetRegKeyVideoCard());
+		sprintf(str_info,_("Video card: %s"),  GetRegKeyVideoCard());
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
@@ -207,7 +207,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(PATH_var) +1) );
-		sprintf(str_info,"%s : %s", PATH_var, fromGetenv);
+		sprintf(str_info,"%s: %s", PATH_var, fromGetenv);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 		
@@ -216,7 +216,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(COMSPEC_var) + 1) );
-		sprintf(str_info,"%s : %s", COMSPEC_var,fromGetenv);
+		sprintf(str_info,"%s: %s", COMSPEC_var,fromGetenv);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 	
@@ -234,7 +234,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TEMP_var) + 1) );
-		sprintf(str_info,"%s : %s", TEMP_var,fromGetenv);
+		sprintf(str_info,"%s: %s", TEMP_var,fromGetenv);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
@@ -243,7 +243,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(SCIHOME_var) + 1) );
-		sprintf(str_info,"%s : %s", SCIHOME_var,fromGetenv);
+		sprintf(str_info,"%s: %s", SCIHOME_var,fromGetenv);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
@@ -294,10 +294,10 @@ static char * GetScreenResolution(void)
 
 
 	Resolution = (char*)MALLOC( sizeof(char)*( strlen(_(RESOLUTION_SCREEN)) + 
-		                                       strlen(_("%s : %d x %d %d bits")) + 32));
+		                                       strlen(_("%s: %d x %d %d bits")) + 32));
 	if (Resolution)
 	{
-		sprintf(Resolution,_("%s : %d x %d %d bits"),_(RESOLUTION_SCREEN),ResX ,ResY,BitsByPixel);
+		sprintf(Resolution,_("%s: %d x %d %d bits"),_(RESOLUTION_SCREEN),ResX ,ResY,BitsByPixel);
 	}
 	
 	return Resolution;
@@ -323,7 +323,7 @@ static char ** appendStringDebugInfo(char **listInfo,int *sizeListInfo,char *str
 /*--------------------------------------------------------------------------*/
 static char * GetNumberMonitors(void)
 {
-	#define NBMONITORS "Number of Monitors : %d"
+	#define NBMONITORS "Number of Monitors: %d"
 	char *returnedStr = NULL;
 	int nbMonitors = GetSystemMetrics(SM_CMONITORS) ;
 

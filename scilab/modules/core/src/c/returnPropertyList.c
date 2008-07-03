@@ -65,7 +65,7 @@ int addRowVectorToReturnedList( returnedList * list, const double vector[], int 
   /* check we are not using all the allocated space for the list */
   if ( list->curElement >= list->nbElements )
   {
-    sciprint(_("list full.\n")) ;
+    sciprint(_("List full.\n")) ;
     return 1 ;
   }
 
@@ -82,7 +82,7 @@ int addColVectorToReturnedList( returnedList * list, const double vector[], int 
   /* check we are not using all the allocated space for the list */
   if ( list->curElement >= list->nbElements )
   {
-    sciprint(_("list full.\n")) ;
+    sciprint(_("List full.\n")) ;
     return 1 ;
   }
 
@@ -98,7 +98,7 @@ int addMatrixToReturnedList( returnedList * list, const double matrix[], int nbR
   /* check we are not using all the allocated space for the list */
   if ( list->curElement >= list->nbElements )
   {
-    sciprint(_("list full.\n")) ;
+    sciprint(_("List full.\n")) ;
     return 1 ;
   }
 
@@ -115,7 +115,7 @@ int addStringColVectorToReturnedList( returnedList * list, char * vector[], int 
   /* check we are not using all the allocated space for the list */
   if ( list->curElement >= list->nbElements )
   {
-    sciprint(_("list full.\n")) ;
+    sciprint(_("List full.\n")) ;
     return 1 ;
   }
 

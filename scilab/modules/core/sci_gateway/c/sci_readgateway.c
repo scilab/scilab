@@ -111,7 +111,7 @@ int C2F(sci_readgateway)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s : Impossible to read %s gateway.\n"),fname,moduleName);
+				Scierror(999,_("%s: Impossible to read %s gateway.\n"),fname,moduleName);
 			}
 		}
 		else
@@ -121,7 +121,7 @@ int C2F(sci_readgateway)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
 	}
 	return 0;
 }

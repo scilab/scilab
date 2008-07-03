@@ -75,7 +75,7 @@ int C2F(sci_newfun) (char *fname,unsigned long fname_len)
 				}
 				else
 				{
-					Scierror(999,_("%s: Invalid \"nameptr\" value.\n"),fname);
+					Scierror(999,_("%s: Invalid '%s' value.\n"),fname,"nameptr");
 					return 0;
 				}
 
@@ -90,13 +90,13 @@ int C2F(sci_newfun) (char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong value for second input argument: Must be > %d.\n"),fname,0);
+			Scierror(999,_("%s: Wrong value for input argument #%d: Must be %s.\n"),fname,2, "> 0");
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input arguments.\n"), fname);
+		Scierror(999,_("%s: Wrong type for input arguments #%d or #%d.\n"), fname,1, 2);
 		return 0;
 	}
 	return 0;

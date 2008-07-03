@@ -32,7 +32,7 @@ BOOL InitializeCore(void)
 
 	if ( create_hashtable_scilab_functions(MAXELEMENTFUNCTIONLIST) == 0 ) 
 	{
-		sciprint(_("Fatal Error : Can't create table for scilab functions.\n"));
+		sciprint(_("Fatal Error: Can't create table for scilab functions.\n"));
 		exit(1);
 	}
 

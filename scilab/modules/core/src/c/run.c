@@ -353,7 +353,7 @@ int C2F(run)()
       /* next two op code by a single store */
       /* skip extract op-code <5 3 1 1> */
       if (Istk[lc] != 5 || Istk[1 + lc] != 3) {
-	strcpy(C2F(cha1).buf,_("Unexpected opcode, please report"));
+	strcpy(C2F(cha1).buf,_("Unexpected opcode, please report into the Scilab bug tracker."));
 	SciError(9999);
 	return 0;
       }
@@ -361,7 +361,7 @@ int C2F(run)()
     }
     /* skip assignment op_code <29 43 ans 0> */
     if (Istk[lc] != 29) {
-      strcpy(C2F(cha1).buf,_("Unexpected opcode, please report"));
+      strcpy(C2F(cha1).buf,_("Unexpected opcode, please report into the Scilab bug tracker."));
       SciError(9999);
       return 0;
     }
@@ -512,7 +512,7 @@ int C2F(run)()
     goto L55;
   }
  L52:
-  strcpy(C2F(cha1).buf, _("Functions compiled with very old versions are no more handled"));
+  strcpy(C2F(cha1).buf, _("Functions compiled with very old versions are no more handled."));
   SciError(997);
   return 0;
 

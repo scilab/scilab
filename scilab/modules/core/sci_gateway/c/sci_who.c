@@ -104,7 +104,7 @@ int C2F(sci_who)(char *fname,unsigned long fname_len)
 				 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				 Scierror(999,_("%s: Wrong value for first input argument: '%s', '%s', '%s' or '%s' expected.\n"),fname, "local" , "get" , "global", "sorted");
+				 Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"),fname, 1, "local" , "get" , "global", "sorted");
 				 return 0;
 			 }
 		 }
@@ -113,7 +113,7 @@ int C2F(sci_who)(char *fname,unsigned long fname_len)
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 Scierror(999,_("%s: Wrong value for first input argument: '%s', '%s', '%s' or '%s'.\n"),fname, "local", "get", "global", "sorted");
+			 Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"),fname, 1, "local", "get", "global", "sorted");
 			 return 0;
 		 }
 	 }
@@ -136,7 +136,7 @@ int C2F(sci_who)(char *fname,unsigned long fname_len)
 				  FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 				  FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-				  Scierror(999,_("%s: Wrong value for second input argument: '%s' expected.\n"),fname,"sorted");
+				  Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname, 2, "sorted");
 				  return 0;
 			  }
 			  else
@@ -173,7 +173,7 @@ int C2F(sci_who)(char *fname,unsigned long fname_len)
 					FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 					FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-					Scierror(999,_("%s: Wrong value for first input argument: '%s', '%s' or '%s'.\n"),fname,"local","get","global");
+					Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"),fname,1,"local","get","global");
 					return 0;
 				 }
 			  }
@@ -183,7 +183,7 @@ int C2F(sci_who)(char *fname,unsigned long fname_len)
 			 FreeVariableStructArray(GlobalVariables,NbrVarsGlobal);
 			 FreeVariableStructArray(LocalVariables,NbrVarsLocal);
 
-			 Scierror(999,_("%s: Wrong value for first input argument: '%s', '%s', '%s' and second input argument must be '%s'.\n"),fname,"local","get","global","sorted");
+			 Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input argument #%d must be '%s'.\n"),fname,1, "local","get","global","sorted");
 			 return 0;
 		 }
 	 }

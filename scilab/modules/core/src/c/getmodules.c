@@ -98,7 +98,7 @@ static BOOL ReadModulesFile(void)
 	}
 	else
 	{
-		sciprint(_("Cannot load the module declaration file : %s.\n"),ModulesFilename);
+		sciprint(_("Cannot load the module declaration file: %s.\n"),ModulesFilename);
 		FREE(ModulesFilename);
 		ModulesFilename=NULL;
 		return FALSE;
@@ -116,7 +116,7 @@ static BOOL VerifyModule(char *ModuleName)
 	SciPath=getSCIpath();
 	if (SciPath==NULL)
 	{
-		sciprint(_("The SCI environment variable is not set\n"));
+		sciprint(_("The SCI environment variable is not set.\n"));
 		return FALSE;
 	}
 
@@ -160,7 +160,7 @@ static BOOL AppendModules(char *xmlfilename)
 
 			if (doc == NULL) 
 			{
-				printf(_("Error: could not parse file %s\n"), xmlfilename);
+				printf(_("Error: Could not parse file %s.\n"), xmlfilename);
 				if (encoding) {FREE(encoding);encoding=NULL;}
 				return bOK;
 			}
@@ -230,7 +230,7 @@ static BOOL AppendModules(char *xmlfilename)
 		}
 		else
 		{
-			printf(_("Error : Not a valid module file %s (encoding not 'utf-8') Encoding '%s' found\n"), xmlfilename, encoding);
+			printf(_("Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"), xmlfilename, "utf-8", encoding);
 		}
 		if (encoding) {FREE(encoding);encoding=NULL;}
 	}

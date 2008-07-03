@@ -87,7 +87,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
 
   if (stkdata[0] > 0) /* Not a reference to variable */
     {
-		Scierror(999,_("%s: Wrong input argument: Named variable expected.\n"),"macr2tree");
+		Scierror(999,_("%s: Wrong type for input argument #%d: Named variable expected.\n"),"macr2tree",1);
       return 0;
     }
   else
@@ -98,7 +98,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
   /* Verify good type for input: must be a compiled macro (type 13) */
   if(stkdata[0] != 13)
     {
-		Scierror(999,_("%s: Wrong type for input argument: Compiled macro expected.\n"),"macr2tree");
+		Scierror(999,_("%s: Wrong type for input argument #%d: Compiled macro expected.\n"),"macr2tree",1);
       return 0;
     }
 
@@ -110,7 +110,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
     }
   if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
     {
-		Scierror(999,_("%s: Out of code\n"),"macr2tree");
+		Scierror(999,_("%s: Out of code.\n"),"macr2tree");
       return 0;
     }
   (name[0])[nlgh]='\0';
@@ -238,7 +238,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
 	  cod_ind++;
 	  if(cod_ind>codelength+ilt+1)
 	  {
-		  Scierror(999,_("%s: Out of code\n"),"macr2tree");
+		  Scierror(999,_("%s: Out of code.\n"),"macr2tree");
 
 	      /* Free memory */
 	      FREE(name[0]);
@@ -253,7 +253,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
 	}
       if(TopSave!=Top-1)
 	  {
-		  Scierror(999,_("%s: Wrong Top value %d instead of %d\n"),"macr2tree",Top,TopSave+1);
+		  Scierror(999,_("%s: Wrong %s value %d instead of %d.\n"),"macr2tree","Top",Top,TopSave+1);
 
 
 	/* Free memory */
@@ -781,7 +781,7 @@ static int GetControlInstruction(int *data,int *index2,int *nblines)
 	{
 	  /* This part will not be written */
 	  /* No more used */
-	  Scierror(999,_("%s: old version of if and while not yet implemented.\n"),"GetControlInstruction");
+	  Scierror(999,_("%s: Old version of if and while not implemented.\n"),"GetControlInstruction");
 	  return 0;
 	}
       else
@@ -1165,7 +1165,7 @@ static int CreateOperationTList(int *data,int *index2)
 	}
     }
   if(operator_index2<0) {
-	  Scierror(999,_("%s: unknown operator %d.\n"),"CreateOperationTList",operator_num);
+	  Scierror(999,_("%s: Unknown operator %d.\n"),"CreateOperationTList",operator_num);
     return 0;
   }
 
@@ -1343,7 +1343,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
     }
   else /* Should never happen */
     {
-	  Scierror(999,_("%s: wrong fromwhat value %s\n"),"CreateEqualTList",fromwhat);
+	  Scierror(999,_("%s: Wrong fromwhat value %s.\n"),"CreateEqualTList",fromwhat);
       return 0;
     }
 
@@ -1704,7 +1704,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
     }
   else /* Should not happen */
     {
-	  Scierror(999,_("%s: Wrong fromwhat value %s\n"),"CreateEqualTList",fromwhat);
+	  Scierror(999,_("%s: Wrong fromwhat value %s.\n"),"CreateEqualTList",fromwhat);
       return 0;
     }
 

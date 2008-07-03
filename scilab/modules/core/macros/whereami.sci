@@ -17,13 +17,13 @@ txt=[]
 for k=2:nn
   if mac(k)=='exec' then
     txt=[txt;
-	msprintf(gettext("%s called at line %s of exec_file"),part(mac(k-1),1:lm), string(linn(k)))]
+	msprintf(gettext("%s called at line %s of %s"),part(mac(k-1),1:lm), string(linn(k)), "exec_file")]
   elseif mac(k)=='execstr' then
     txt=[txt;
-        	msprintf(gettext("%s called at line %s of execstr instruction."),part(mac(k-1),1:lm), string(linn(k)))]
+        	msprintf(gettext("%s called at line %s of %s instruction."),part(mac(k-1),1:lm), string(linn(k)),"execstr")]
   elseif mac(k)=='pause' then
      txt=[txt;
-        msprintf(gettext("%s called under pause"),part(mac(k-1),1:lm)) ]
+        msprintf(gettext("%s called under %s"),part(mac(k-1),1:lm),"pause") ]
   else
     txt=[txt;
         msprintf(gettext("%s called at line %s of macro %s"), part(mac(k-1),1:lm), string(linn(k)),mac(k))]

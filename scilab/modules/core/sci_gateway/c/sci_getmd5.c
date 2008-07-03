@@ -93,7 +93,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type of first input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type of input argument #%d: String expected.\n"),fname,1);
 		}
 	}
 	else /* Rhs == 2 */
@@ -136,12 +136,12 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong type for second input argument: String expected.\n"),fname);
+				Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,2);
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input arguments: Strings expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"),fname,1,2);
 		}
 	}
 	

@@ -21,9 +21,7 @@ int C2F(xscion) (int *i)
 /*--------------------------------------------------------------------------*/ 
 int getINXscilab(void)
 {
-
-	if ( getScilabMode() == SCILAB_STD ) return 1;
-	else return 0;
+	return getScilabMode() == SCILAB_STD;
 
 }
 /*--------------------------------------------------------------------------*/ 

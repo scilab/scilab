@@ -17,7 +17,7 @@ function [resultat,status] = powershell(varargin)
 	[lhs,rhs]=argn(0);
 	
 	if (~MSDOS) then
-	  resultat = [gettext("only for Microsoft Windows.")];
+	  resultat = [gettext("Only for Microsoft Windows.")];
 	  return;
 	end
 	
@@ -39,10 +39,10 @@ function [resultat,status] = powershell(varargin)
       end
       [resultat,status]=dos(Chainecmd);
     else
-      error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"),"powershell"));
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"powershell",1));
     end
   else
-    error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"),"powershell"));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"powershell",1));
   end
   
 endfunction

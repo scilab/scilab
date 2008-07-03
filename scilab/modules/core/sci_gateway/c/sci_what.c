@@ -85,7 +85,7 @@ static void DispInternalFunctions(void)
 	int i=0;
 
 	sciprint("\n");
-	sciprint(_("Internal Functions: \n"));
+	sciprint(_("Internal Functions:\n"));
 	sciprint("\n");
 	for (i=1;i<SizeLocalFunctionsTab-1;i++)
 	{
@@ -102,7 +102,7 @@ static void DispCommands(void)
 	char **commandwords = getcommandkeywords(&sizecommandwords);
 
 	sciprint("\n");
-	sciprint(_("Commands: \n"));
+	sciprint(_("Commands:\n"));
 	sciprint("\n");
 	for (i=1;i <sizecommandwords+1;i++)
 	{

@@ -27,7 +27,7 @@ int C2F(sci_getmodules) (char *fname,unsigned long fname_len)
 	Modules=getmodules();
 	if (!Modules)
 	{
-		Scierror(999,_("Warning : Problems with %s.\n"),fname);
+		Scierror(999,_("Warning: Problems with %s.\n"),fname);
 		return 0;
 	}
 
