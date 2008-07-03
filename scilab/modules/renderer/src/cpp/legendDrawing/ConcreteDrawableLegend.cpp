@@ -48,12 +48,12 @@ namespace sciGraphics
   /*---------------------------------------------------------------------------------*/
   void ConcreteDrawableLegend::drawLegend(void)
   {
+    createBox();
+    setBoxParameters();
     setTextParameters();
     createLines();
     setLinesParameters();
-    createBox();
-    setBoxParameters();
-
+ 
     double corner1[3];
     double corner2[3];
     double corner3[3];
@@ -232,7 +232,6 @@ namespace sciGraphics
 
 	// same for lines
 	if (sciGetPolylineStyle(legendedObject)==4){ //arrowed polyline
-	  //sciInitPolylineStyle, sciInitArrowSize  to be written
 	  sciInitPolylineStyle(m_aLines[i],sciGetPolylineStyle(legendedObject));
 	  sciInitArrowSize(m_aLines[i],sciGetArrowSize(legendedObject));
 	}
@@ -312,7 +311,7 @@ namespace sciGraphics
     // length in pixel of the lines
     double linePixelLength = axesWidth / 10.0;
     // offset used to separate lines and text as well as bounding box
-    double xOffset = linePixelLength/10.0;
+    double xOffset = linePixelLength/8.0;
     double yOffset = axesHeight/100.0;
 
     // the legend bounding box width
@@ -392,7 +391,7 @@ namespace sciGraphics
       { //The upper left corner of the legend position is given by its relative position with 
 	//respect to the upper left corner of the axes frame.
 	int size[2] ;
-	sciGetJavaWindowSize(sciGetParent(parentSubwin), size) ;//get canvas width and height
+	sciGetJavaFigureSize(sciGetParent(parentSubwin), size) ;//get canvas width and height
 	double *wrect=sciGetAxesBounds(parentSubwin);//get canvas portion used by current axes
 	double pos[2];
 	sciGetLegendPos (m_pDrawed,pos);
@@ -404,7 +403,7 @@ namespace sciGraphics
     if (sciGetLegendPlace(m_pDrawed) != SCI_LEGEND_BY_COORDINATES) {
       //set the computed position in Legend data structure
       int size[2] ;
-      sciGetJavaWindowSize(sciGetParent(parentSubwin), size) ;//get canvas width and height
+      sciGetJavaFigureSize(sciGetParent(parentSubwin), size) ;//get canvas width and height
       double *wrect=sciGetAxesBounds(parentSubwin);//get canvas portion used by current axes
       double pos[2];
       pos[0]=(pixBoxCorner1[0]/size[0]-wrect[0])/(wrect[2]-wrect[0]);
@@ -519,29 +518,24 @@ namespace sciGraphics
   void ConcreteDrawableLegend::placeBox(const double upperLeftCorner[3], const double lowerLeftCorner[3],
 					const double lowerRightCorner[3], const double upperRightCorner[3])
   {
-    // use the lowerLeftcorner, but move a little to the right
-    double xOffset = 0.0;//(lowerRightCorner[0] - lowerLeftCorner[0]) * 0.02;
-    double yOffset = 0.0;//(upperRightCorner[1] - lowerLeftCorner[1]) * 0.02;
-
     sciPolyline * curPoly = pPOLYLINE_FEATURE(m_aBox);
 
 
-    curPoly->pvx[0] = lowerLeftCorner[0] - xOffset;
-    curPoly->pvy[0] = lowerLeftCorner[1] + yOffset;
-    curPoly->pvz[0] = lowerLeftCorner[2]; 
+    curPoly->pvx[0] = lowerLeftCorner[0]; 
+    curPoly->pvy[0] = lowerLeftCorner[1]; 
+    curPoly->pvz[0] = lowerLeftCorner[2];
       
-    curPoly->pvx[1] = upperLeftCorner[0] - xOffset;
-    curPoly->pvy[1] = upperLeftCorner[1] - yOffset;
+    curPoly->pvx[1] = upperLeftCorner[0]; 
+    curPoly->pvy[1] = upperLeftCorner[1]; 
     curPoly->pvz[1] = upperLeftCorner[2];
 
 
-    curPoly->pvx[2] = upperRightCorner[0] + xOffset;
-    curPoly->pvy[2] = upperRightCorner[1] - yOffset;
+    curPoly->pvx[2] = upperRightCorner[0];
+    curPoly->pvy[2] = upperRightCorner[1];
     curPoly->pvz[2] = upperRightCorner[2];
 
-    curPoly->pvx[3] = lowerRightCorner[0] + xOffset;
-    curPoly->pvy[3] = lowerRightCorner[1] + yOffset;
+    curPoly->pvx[3] = lowerRightCorner[0];
+    curPoly->pvy[3] = lowerRightCorner[1];
     curPoly->pvz[3] = lowerRightCorner[2];
-
   }
 }
