@@ -216,7 +216,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver] = do_run(%cpr)
   //** scicos simulation
   //needreplay=%t
   tf=scs_m.props.tf;
-  setmenu(curwin,'stop')
+  setmenu(curwin,'Stop')
   //timer()
   needreplay=%t
 
@@ -290,7 +290,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver] = do_run(%cpr)
   end
   //xset('window',curwin)
   //disp(timer())
-  unsetmenu(curwin,'stop')
+  unsetmenu(curwin,'Stop')
 
   needreplay=resume(needreplay)
 endfunction
