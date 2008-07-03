@@ -14,7 +14,7 @@
 #define __DESTROY_UICONTROL_H__
 
 #include "ObjectStructure.h" /* sciPointObj */
-#include "MALLOC.h" /* MALLOC */
+
 
 /**
  * DestroyUicontrol

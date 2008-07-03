@@ -14,6 +14,8 @@
 extern "C"
 {
 #include "DestroyUimenu.h"
+#include "sci_mem_alloc.h" /* MALLOC */
+#include "DestroyObjects.h" /* sciStandardDestroyOperations */
 }
 
 /**

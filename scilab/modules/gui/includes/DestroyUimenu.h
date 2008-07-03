@@ -11,8 +11,7 @@
  */
 
 #include "ObjectStructure.h" /* sciPointObj */
-#include "MALLOC.h" /* MALLOC */
-#include "DestroyObjects.h" /* sciStandardDestroyOperations */
+
 
 /**
  * DestroyUimenu
