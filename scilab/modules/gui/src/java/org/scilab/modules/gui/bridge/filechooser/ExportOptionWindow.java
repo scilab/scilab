@@ -19,6 +19,7 @@ import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -59,7 +60,7 @@ public class ExportOptionWindow extends JFrame implements ActionListener {
 	 */
 	public void displayOptionWindow() {
 		optionFrame = new JFrame("Option for " + exportData.getExportExtension().toUpperCase() + " format");
-		
+		optionFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		//Center the frame
 		optionFrame.setLocationRelativeTo(optionFrame.getParent());	
 		

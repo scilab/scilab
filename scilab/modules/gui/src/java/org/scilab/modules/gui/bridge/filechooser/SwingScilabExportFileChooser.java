@@ -14,7 +14,9 @@ package org.scilab.modules.gui.bridge.filechooser;
 import java.io.File;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
@@ -86,9 +88,9 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	 * by adding format selection
 	 * @param figureId exported figure number
 	 */
-	public void exportCustomFileChooser(int figureId) {
-		
-		super.setDialogTitle("Export");
+	public void exportCustomFileChooser(int figureId) {		
+
+		super.setDialogTitle("Export");		
 		super.setApproveButtonText("Export");
 		final String fileName = "Untitled-export";
 		File exportFile = new File(fileName);
@@ -130,7 +132,10 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 		super.setAccessory(accessoryPanel);
 		
 		
-		int selection = super.showOpenDialog(getParent());
+		JFrame frame = new JFrame();	
+		frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+		int selection = super.showOpenDialog(frame);		
+		
 		if (selection == JFileChooser.APPROVE_OPTION) {		
 			javax.swing.filechooser.FileFilter ft = super.getFileFilter();
 			exportName = super.getSelectedFile().getAbsolutePath();

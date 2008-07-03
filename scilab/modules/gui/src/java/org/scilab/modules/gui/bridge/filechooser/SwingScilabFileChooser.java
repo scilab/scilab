@@ -40,7 +40,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	 */
 	public SwingScilabFileChooser() {
 		super();
-	}
+	}	
 
 	/**
 	 * Set the title of the file chooser
