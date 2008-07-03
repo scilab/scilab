@@ -173,7 +173,7 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
        chdir(TMPDIR);
 
        entry_names = blknam ;
-       file_names = files + ".o"  ;
+       file_names = files + ".c"  ;
        libs = libs ;
        flag = "c" ; //** "C" entry point / "C" source code  
        makename = "Makelib" ;

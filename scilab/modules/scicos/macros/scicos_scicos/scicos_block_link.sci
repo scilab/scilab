@@ -49,7 +49,7 @@ function ok = scicos_block_link(funam, txt, flag)
                               //** with the appropriate extension 
 
   entry_names = [funam]; 
-  file_names = funam + ".o"  ;
+  file_names = funam + "."+flag  ;
   libs  = ""  ; //** CBLOCKs does not support external libraries 
   //** flag is already defined  
   makename = "Makelib" ;
