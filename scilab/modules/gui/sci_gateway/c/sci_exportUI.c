@@ -16,7 +16,7 @@
 #include "HandleManagement.h"
 #include "GetProperty.h"
 #include "localization.h"
-#include "SciError.h"
+#include "Scierror.h"
 #include "exportUserInterface.hxx"
 
 /*--------------------------------------------------------------------------*/
