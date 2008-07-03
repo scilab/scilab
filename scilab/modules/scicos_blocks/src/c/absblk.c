@@ -30,7 +30,9 @@
  *     Scicos block simulator 
  *     A set of elementary blocks 
  *------------------------------------------------*/
-
+#ifdef Abs
+	#undef Abs
+#endif
 #define Abs(x) ( (x) > 0) ? (x) : -(x)
 
 /*------------------------------------------------

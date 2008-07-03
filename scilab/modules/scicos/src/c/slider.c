@@ -55,7 +55,7 @@ static void block_draw_rect_1(double r[],double percent)
 
 static void block_draw_rect_2(double r[],double percent)
 {
-  integer alumode,verbose=0,narg;
+  integer verbose=0;
   /* integer flag =0;  double ang=0.0;  char foo[24]; */
   static integer in=6;
   double x = r[0]+ r[2]*percent-2;
