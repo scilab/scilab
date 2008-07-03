@@ -144,7 +144,7 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 			}
 			else
 			{
-				pcre_error("GREP_NEW",answer);
+				pcre_error("grep",answer);
 			}
 			if (save) {FREE(save);save=NULL;}
 		}

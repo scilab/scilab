@@ -94,7 +94,7 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 		else
 		{
 			freeArrayOfString(Strings_Input3,m3n3);
-			Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"s","r");
+			Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname,3,"s","r");
 			return 0;
 		}
 	}
@@ -184,7 +184,7 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
-					pcre_error("GREP_NEW",w);
+					pcre_error(fname,w);
 					break;
 				}
 			}
