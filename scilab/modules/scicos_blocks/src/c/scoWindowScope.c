@@ -324,6 +324,14 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
     }
 }
 
+
+//** ------------------------------------------------------------------------------------------------
+//**
+//**
+//** ------------ The physical redraw of the scope is hidden here ----------------------------------- 
+//**
+//**
+ 
 void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 {
   int c__1 = 1;
@@ -334,13 +342,17 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
   scoGraphicalObject pLongDraw;
   scoGraphicalObject pShortDraw;
 
-  for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
+  double d_current_real_time ; //** the current real time as  double (52 bit) data structure
+  double last_update_time , delta_time, refresh_time;
+  int force_update ;     
+
+  for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++) //** for all the curves in the scope 
     {
       pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
       switch(sciGetEntityType(pShortDraw))
         {
         case SCI_POLYLINE:
-          NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
+          NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1; //** this is incremented by one at each iteration 
           break;
         case SCI_SEGS:
           NbrPtsShort = pSEGS_FEATURE(pShortDraw)->Nbr1;
@@ -349,32 +361,61 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
           sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
           break;
         }
+ 
+      //**-------------------------------------------------------------------------------------------------------
       /*If this scope needs a redraw*/
-      if (NbrPtsShort >= scoGetShortDrawSize(pScopeMemory,i))
+      //**  inc_var   >= buffer_size
+      //** if (NbrPtsShort >= scoGetShortDrawSize(pScopeMemory,i) ) //** if the buffer is full the scope need a redraw 
+   
+      //** current real time as double [second] 
+      d_current_real_time = scoGetRealTime();  
+
+      last_update_time = pScopeMemory->d_last_scope_update_time; //** recover the last update time 
+
+      delta_time = d_current_real_time - last_update_time ; 
+
+      refresh_time = 0.040 ; //** for a quick test
+      force_update = 0 ; //** false  
+
+      if (delta_time > refresh_time )
+        { 
+          printf("Delta Time Forced Update = %f ; buffer = %d \n", delta_time, NbrPtsShort); 
+          force_update = 1 ; 
+          pScopeMemory->d_last_scope_update_time = d_current_real_time ; //** update the ds for the next step 
+        }
+           
+
+      if (NbrPtsShort >= scoGetShortDrawSize(pScopeMemory,i) || force_update == 1) //** if the buffer is full the scope need a redraw 
         {
-          /*Block for Realloc*/
-          pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
-          switch(sciGetEntityType(pLongDraw))
-            {
-            case SCI_POLYLINE:
-              NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
-              break;
-            case SCI_SEGS:
-              NbrPtsLong = pSEGS_FEATURE(pLongDraw)->Nbr1;
-              break;
-            default:
-              sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
-              break;
-            }
-          if ((NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i)) >= scoGetLongDrawSize(pScopeMemory,i))
-            {
-              for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+
+           //** pScopeMemory->d_last_scope_update_time = scoGetRealTime(); //** update 
+           
+           /*Block for Realloc*/
+           pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
+           switch (sciGetEntityType(pLongDraw))
+                {
+                  case SCI_POLYLINE:
+                      NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
+                  break;
+                  
+                  case SCI_SEGS:
+                      NbrPtsLong = pSEGS_FEATURE(pLongDraw)->Nbr1;
+                  break;
+                
+                  default:
+                      sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                  break;
+                }
+
+           if ((NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i)) >= scoGetLongDrawSize(pScopeMemory,i))
+             {
+                for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
                 {
                   pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-                  scoReallocLongDraw(pLongDraw, NbrPtsLong, scoGetShortDrawSize(pScopeMemory,i),1000);
+                  scoReallocLongDraw(pLongDraw, NbrPtsLong, scoGetShortDrawSize(pScopeMemory,i),10000);
                 }
               //Dont forget this one - If in the futur LongDrawSize is a table we can put it in the scoReallocLongDraw() function
-              scoSetLongDrawSize(pScopeMemory,i,NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i)+1000);
+              scoSetLongDrawSize(pScopeMemory,i,NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i)+10000);
             }
           pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
           /*End od block for Realloc*/
@@ -487,6 +528,9 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                     }
                 }
             }
+
+          pScopeMemory->d_last_scope_update_time = scoGetRealTime(); //** update 
+
         }
     }
 }

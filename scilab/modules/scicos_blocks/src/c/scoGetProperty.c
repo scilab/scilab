@@ -27,6 +27,75 @@
 */
 
 #include "scoGetProperty.h"
+#include <stdlib.h>
+
+//** Added for real time functions 
+//**
+//** This function return back the system time in seconds with a resolution, on my Linux machine, of 
+//** one micro seconds. It is not important if the time is the "asbolute" Linux time, the uptime, or
+//** how many seconds after the last Bill Gates birthday, becase the use is strictly differential. 
+//** For our application, any resolution better than one milli second is accetable.
+//** Due to finite precision (53 bit, 16 decimal, this rapresentation fail the minimum require accuracy
+//** (one millisecond) after 317,097 years (enough, I suppose).
+//** 
+//** for the Windows version 
+//**
+
+//** -------------------- LINUX VERSION ------------------------------------------------------------------
+#ifndef _MSC_VER
+
+   #include <time.h>
+   #include <sched.h>
+
+   #define NSEC_PER_SEC    1000000000
+
+   //** BEWARE : this code is higly LINUX specific ! 
+
+   /* the struct timespec consists of nanoseconds
+    * and seconds. if the nanoseconds are getting
+    * bigger than 1000000000 (= 1 second) the
+    * variable containing seconds has to be
+    * incremented and the nanoseconds decremented
+    * by 1000000000.
+   */
+
+   double scoGetRealTime(void) 
+         {
+           struct timespec t_crt      ; //** the current real time as "timespec" (32+32 bit) data structure  
+           double d_current_real_time ; //** the current real time in seconds as double (52 bit resolution)  
+ 
+           clock_gettime(0, &t_crt); /* get current time */
+           d_current_real_time = (double) t_crt.tv_sec + (double)1.0E-9 * (double) t_crt.tv_nsec;
+           return d_current_real_time ; 
+
+         }
+
+#else
+//** -------------------- WINDOWS VERSION ------------------------------------------------------------------ 
+#include <windows.h>
+#include <winbase.h>
+
+double scoGetRealTime(void) 
+      {
+        ULARGE_INTEGER ctime;
+        FILETIME ftFileTime;
+        double d_current_real_time ; //** the current real time in seconds as double (52 bit resolution)
+        
+        GetSystemTimeAsFileTime(&ftFileTime);     /* Resolution 100 nsec = 0.1 us */
+        ctime.LowPart = ftFileTime.dwLowDateTime  ; 
+        ctime.HighPart = ftFileTime.dwHighDateTime;
+   
+        d_current_real_time = (double)(ctime.QuadPart) * (double) 0.1E-6 ;
+        return d_current_real_time ;
+
+      }
+
+#endif
+//** ------------------- Ends of the add ons for real time function ----------------------------------------
+
+
+
+//** -------- Ends of the add ons for real time function -------------
 
 scoLongInteger scoGetHandleScopeWindow(ScopeMemory * pScopeMemory)
 {

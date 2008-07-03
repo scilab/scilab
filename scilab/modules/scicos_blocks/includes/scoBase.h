@@ -136,6 +136,8 @@ typedef struct
 
   scoInteger activated;
 
+  double     d_last_scope_update_time ; 
+
 } ScopeMemory;
 
 /*External function of malloc/free - Don't forget to use these and not malloc or MALLOC*/

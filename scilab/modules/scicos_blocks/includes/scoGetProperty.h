@@ -32,6 +32,13 @@
 #include "scoBase.h"
 
 /**
+   \brief Get the internal time in seconds (micro or nano second max resolution)
+   \return double
+*/
+double scoGetRealTime(void);
+
+
+/**
    \brief Get the Handle of the Scope Window in the ScopeMemory
    \param pScopeMemory a pointer on a ScopeMemory
    \return hScopeWindow
