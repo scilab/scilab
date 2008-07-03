@@ -25,20 +25,18 @@
   <refnamediv>
     <refname>legend_properties</refname>
 
-    <refpurpose>description of the Legend entity properties. <emphasis
-    role="bold">Warning</emphasis>This object will be rebuild in the next
-    version.</refpurpose>
+    <refpurpose>description of the Legend entity properties.</refpurpose>
   </refnamediv>
 
   <refsection>
     <title>Description</title>
 
-    <para>The Legend entity is a leaf of the graphics entities
-    hierarchy. This entity defines the parameters for legends drawn
-    below <literal>plot2dx</literal> graphs or created by the <link
-    linkend="captions">captions</link> function. For selected line
-    plotted, the legend shows a sample of the line type, marker
-    symbol, and color.</para>
+    <para>The Legend entity is a leaf of the graphics entities hierarchy. This
+    entity defines the parameters for legends drawn below
+    <literal>plot2dx</literal> graphs or created by the <link
+    linkend="captions">captions</link> function. For selected line plotted,
+    the legend shows a sample of the line type, marker symbol, and
+    color.</para>
 
     <variablelist>
       <varlistentry>
@@ -141,72 +139,72 @@
       <varlistentry>
         <term>legend_location</term>
 
-	<listitem>
-          <para>A character string, specifies the location of the Legend.</para>
-	 
+        <listitem>
+          <para>A character string, specifies the location of the
+          Legend.</para>
+
           <itemizedlist>
             <listitem>
-              <para><literal>"in_upper_right" </literal>: captions are drawn in the upper right corner of
-              the axes box.</para>
+              <para><literal>"in_upper_right" </literal>: captions are drawn
+              in the upper right corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"in_upper_left"</literal>: captions are drawn in the upper left corner of
-              the axes box.</para>
+              <para><literal>"in_upper_left"</literal>: captions are drawn in
+              the upper left corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"in_lower_right"</literal>: captions are drawn in the lower right corner of
-              the axes box.</para>
+              <para><literal>"in_lower_right"</literal>: captions are drawn in
+              the lower right corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"in_lower_left"</literal>: captions are drawn in the lower left corner of
-              the axes box.</para>
+              <para><literal>"in_lower_left"</literal>: captions are drawn in
+              the lower left corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"out_upper_right"</literal>: captions are drawn at the right of the upper right corner of
-              the axes box.</para>
+              <para><literal>"out_upper_right"</literal>: captions are drawn
+              at the right of the upper right corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"out_upper_left"</literal>: captions are drawn at the left of the upper left corner of
-              the axes box.</para>
+              <para><literal>"out_upper_left"</literal>: captions are drawn at
+              the left of the upper left corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"out_lower_right"</literal>: captions are drawn at the right of the lower right corner of
-              the axes box.</para>
+              <para><literal>"out_lower_right"</literal>: captions are drawn
+              at the right of the lower right corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"out_lower_left"</literal>: captions are drawn at the left of the lower left corner of
-              the axes box.</para>
+              <para><literal>"out_lower_left"</literal>: captions are drawn at
+              the left of the lower left corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"upper_caption"</literal>: captions are drawn above  the upper left corner of
-              the axes box.</para>
+              <para><literal>"upper_caption"</literal>: captions are drawn
+              above the upper left corner of the axes box.</para>
             </listitem>
 
             <listitem>
-              <para><literal>"lower_caption"</literal>: captions are
-              drawn below the lower left corner of the axes box. This
-              option correspond to the <literal>leg</literal> argument
-              of <link linkend="plot2d">plot2d</link></para>
+              <para><literal>"lower_caption"</literal>: captions are drawn
+              below the lower left corner of the axes box. This option
+              correspond to the <literal>leg</literal> argument of <link
+              linkend="plot2d">plot2d</link></para>
             </listitem>
 
             <listitem>
-              <para><literal>"by_coordinates"</literal>: the upper
-              left corner of the captions box is given by the
-              "position" field of the associated data structure. The
-              <literal>x</literal> and <literal>y</literal> positions
-              are given as fractions of the
+              <para><literal>"by_coordinates"</literal>: the upper left corner
+              of the captions box is given by the "position" field of the
+              associated data structure. The <literal>x</literal> and
+              <literal>y</literal> positions are given as fractions of the
               <literal>axes_bounds</literal></para>
             </listitem>
           </itemizedlist>
-	</listitem>
+        </listitem>
       </varlistentry>
 
       <varlistentry>
@@ -270,46 +268,53 @@
           rectangle area.</para>
         </listitem>
       </varlistentry>
-            <varlistentry>
-              <term>clip_state: </term>
 
-              <listitem>
-                <para>This field contains the default <literal>clip_state</literal>
-            property value for all objects. Its value should be :</para>
-                <itemizedlist>
-                  <listitem>
-                    <para><literal>"off"</literal> this means that all objects created
-                after that are not clipped (default value).</para>
-                  </listitem>
-                  <listitem>
-                    <para><literal>"clipgrf"</literal> this means that all objects created
-                after that are clipped outside the Axes boundaries.</para>
-                  </listitem>
-                  <listitem>
-                    <para><literal>"on"</literal> this means that all objects created
-                after that are clipped outside the rectangle given by property
-                clip_box.</para>
-                  </listitem>
-                </itemizedlist>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>clip_box: </term>
+      <varlistentry>
+        <term>clip_state:</term>
 
-              <listitem>
-                <para>This field contains the default <literal>clip_box</literal> property
-            value for all objects. Its value should be an empty matrix if
-            clip_state is <literal>"off"</literal>. Other case the clipping is given
-            by the vector <literal>[x,y,w,h]</literal> (upper-left point width
-            height).</para>
-              </listitem>
-            </varlistentry>
-	    <varlistentry>
-        <term>user_data: </term>
+        <listitem>
+          <para>This field contains the default <literal>clip_state</literal>
+          property value for all objects. Its value should be :</para>
 
-	<listitem>
-	  <para>This field can be use to store any scilab variable in the text
-        data structure, and to retreive it.</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> this means that all objects
+              created after that are not clipped (default value).</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> this means that all objects
+              created after that are clipped outside the Axes
+              boundaries.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> this means that all objects
+              created after that are clipped outside the rectangle given by
+              property clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>This field contains the default <literal>clip_box</literal>
+          property value for all objects. Its value should be an empty matrix
+          if clip_state is <literal>"off"</literal>. Other case the clipping
+          is given by the vector <literal>[x,y,w,h]</literal> (upper-left
+          point width height).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>This field can be use to store any scilab variable in the text
+          data structure, and to retreive it.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -354,5 +359,7 @@ l.visible='off';
     <title>Authors</title>
 
     <para>Djalel ABDEMOUCHE</para>
+
+    <para></para>
   </refsection>
 </refentry>
