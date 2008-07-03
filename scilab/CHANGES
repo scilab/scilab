@@ -424,6 +424,8 @@ Dynamic/incremental link:
 	and compilation.
  - New functions:
   + getdynlibext - get the extension of dynamic libraries on your operating system.
+ - Function improved:
+  + ilib_for_link - now accept the actual filename (not only filename.o but also filename.c or filename.f)
 
 
 TCL/TK:
