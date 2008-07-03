@@ -87,14 +87,22 @@ function ilib_gen_Make_unix(names,   ..
 				// Or copy the file matching to what we were looking for (this stuff
 				// could lead to bug if you have fun.c fun.f or fun.cxx but it was 
 				// already the case before ...
+				
+				// Not that we don't want to copy working files
+				ignoredFileExtension=[".lo",".la",".lai"]
 				for f=filesMatching(:)'
+					if strindex(f,ignoredFileExtension) == [] then
+					  if (warningmode == 'on') then
+						mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",f);
+					  end
 					
-					if (warningmode == 'on') then
-						mprintf("   %s: Copy %s to TMPDIR\n","ilib_gen_Make",f);
+					  copyfile(f, linkpath);
+					  filelist = filelist + " " + f;
+					else
+					  if (warningmode == 'on') then
+						mprintf(gettext("   %s: File %s ignored.\n"),"ilib_gen_Make",f);
+					  end
 					end
-					
-					copyfile(f, linkpath);
-					filelist = filelist + " " + f;
 				end
 			end
 			chdir(linkpath);
