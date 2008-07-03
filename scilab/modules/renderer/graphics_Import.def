@@ -156,3 +156,5 @@ sciGetLegendPos
 sciGetxLocation
 sciGetyLocation
 sciInitFontBackground
+sciInitPolylineStyle
+sciInitArrowSize
