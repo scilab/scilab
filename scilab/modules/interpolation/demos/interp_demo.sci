@@ -43,7 +43,7 @@ function [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir, val, ebox, nx, ny, nz)
    select dir
      case "x=" then
        if val < ebox(1)  |  ebox(2) < val then
-	  error("bad slice choosen")
+	  error("Bad slice choosen")
        end
        dx = coef*(ebox(2)-ebox(1))
        y = linspace(ebox(3),ebox(4),ny)

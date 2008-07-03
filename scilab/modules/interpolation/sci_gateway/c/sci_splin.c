@@ -41,19 +41,19 @@ int intsplin(char *fname,unsigned long fname_len)
 
   if ( mx != my  ||  nx != ny  ||  (mx != 1  &&  nx != 1) )
     {
-      Scierror(999,_("%s: Wrong size for input arguments: Vector of same size expected.\n"), fname);
+      Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: Vector of same size expected.\n"), fname, 1, 2);
       return 0;
     }
   n = mx*nx;    /* number of interpolation points */
   if ( n < 2 )
     {
-		Scierror(999,_("%s: Wrong size for input argument #%d: Must be >= %d.\n"), fname,1,2);
+		Scierror(999,_("%s: Wrong size for input argument #%d: Must be %s.\n"), fname,1,">= 2");
       return 0;
     }
   x = stk(lx); y = stk(ly);
   if (! good_order(x, n))  /* verify strict increasing abscissae */
     {
-		Scierror(999,_("%s: elements of argument #%d not (strictly) increasing or +-inf detected\n"), fname,1);
+		Scierror(999,_("%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), fname,1);
 		return 0;
     }
 
@@ -63,7 +63,7 @@ int intsplin(char *fname,unsigned long fname_len)
       spline_type =  get_type(SplineTable, NB_SPLINE_TYPE, str_spline_type, ns);
       if ( spline_type == UNDEFINED )
 	{
-	  Scierror(999,_("%s: Wrong values for input argument #%d: Unknown 'spline' type.\n"),fname,3);
+	  Scierror(999,_("%s: Wrong values for input argument #%d: Unknown '%s' type.\n"),fname,3,"spline");
 	  return 0;
 	};
     }
@@ -74,13 +74,13 @@ int intsplin(char *fname,unsigned long fname_len)
     {
       if ( Rhs != 4 )
 	{
-	  Scierror(999,_("%s: for a clamped spline you must give the endpoint slopes.\n"),fname);
+	  Scierror(999,_("%s: For a clamped spline, you must give the endpoint slopes.\n"),fname);
 	  return 0;
 	}
       GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &mc, &nc, &lc);
       if ( mc*nc != 2 )
 	{
-		Scierror(999,_("%s: Wrong size for input argument #%d: endpoint slopes.\n"),fname,4);
+		Scierror(999,_("%s: Wrong size for input argument #%d: Endpoint slopes.\n"),fname,4);
 	  return 0;
 	}
       c = stk(lc);
@@ -94,7 +94,7 @@ int intsplin(char *fname,unsigned long fname_len)
   /*  verify y(1) = y(n) for periodic splines */
   if ( (spline_type == PERIODIC || spline_type == FAST_PERIODIC)  &&  y[0] != y[n-1] )
     {
-      Scierror(999,_("%s: Wrong value for periodic spline y(1): Must be equal to y(n).\n"),fname);
+      Scierror(999,_("%s: Wrong value for periodic spline %s: Must be equal to %s.\n"),fname,"y(1)","y(n)");
       return(0);
     };
 

@@ -52,7 +52,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
       GetRhsVar(i,MATRIX_OF_DOUBLE_DATATYPE, &mxpn, &nxpn, &lxpn);
       if ( mxp != mxpn || nxp != nxpn )
 	{
-	  Scierror(999,_("%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"),fname,1,i);
+	  Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"),fname,1,i);
 	  return 0;
 	}
       xp[i-1] = stk(lxpn);
@@ -90,7 +90,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
       GetRhsRealHMat(2*n+1,&U);
       if ( U.dimsize != n )
 	{
-	  Scierror(999,_("%s: U must be a real %d-dim hypermatrix.\n"), fname, n);
+	  Scierror(999,_("%s: %s must be a real %d-dim hypermatrix.\n"), fname, "U", n);
 	  return 0;
 	}
       for ( i = 0 ; i < n ; i++ )
@@ -111,7 +111,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
 	}
       if ( n == 2  &&  (my != dim[0]  || ny != dim[1]) )
 	{
-	  Scierror(999,_("%s: Size incompatibility between grid points and values in dim %d or %d.\n"), fname,1,2);
+	  Scierror(999,_("%s: Size incompatibility between grid points and values in dimension %d or %d.\n"), fname,1,2);
 	  return 0;
 	}
       val = stk(ly);
@@ -124,7 +124,7 @@ int intlinear_interpn(char *fname,unsigned long fname_len)
       outmode =  get_type(OutModeTable, NB_OUTMODE, str_outmode, ns);
       if ( outmode == UNDEFINED || outmode == LINEAR )
 	{
-	  Scierror(999,_("%s: Wrong values for input argument #%d: Unsupported 'outmode' type.\n"),fname,2*n + 2);
+	  Scierror(999,_("%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"),fname,2*n + 2,"outmode");
 	  return 0;
 	};
     }

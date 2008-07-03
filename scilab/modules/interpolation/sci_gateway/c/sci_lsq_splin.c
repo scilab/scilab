@@ -32,7 +32,7 @@ int intlsq_splin(char *fname,unsigned long fname_len)
   ndata = mxd*nxd;  /* number of data points */
   if ( ndata < 4  ||  mxd != myd  || nxd != nyd  ||  (mxd != 1  &&  nxd != 1) )
     {
-	  Scierror(999,_("%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n" ),fname,1,2);
+	  Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n" ),fname,1,2);
       return 0;
     }
 
@@ -41,7 +41,7 @@ int intlsq_splin(char *fname,unsigned long fname_len)
       GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &mwd, &nwd, &lwd);
       if ( mxd != mwd  ||  nxd != nwd )
 	{
-	  Scierror(999,_("%s: bad input for arg 3\n"), fname);
+	  Scierror(999,_("%s: Wrong size for input argument #%d.\n"), fname,3);
 	  return 0;
 	}
     }
@@ -49,13 +49,13 @@ int intlsq_splin(char *fname,unsigned long fname_len)
   n = mx*nx;
   if ( n < 2  ||  (mx != 1  &&  nx != 1) )
     {
-      Scierror(999,_("%s: bad input for x\n"), fname);
+      Scierror(999,_("%s: Wrong size for input argument #%d.\n"), fname, Rhs);
       return 0;
     }
 
   if (! good_order(stk(lx), n))   /* verify strict increasing abscissae */
     {
-      Scierror(999,_("%s: elements of argument %d not (strictly) increasing or +-inf detected.\n"), fname, Rhs);
+      Scierror(999,_("%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), fname, Rhs);
       return 0;
     }
 
@@ -74,11 +74,11 @@ int intlsq_splin(char *fname,unsigned long fname_len)
 
   if (ierr == -1)
     {
-      Scierror(999,_("%s: not enought points for the fit.\n"), fname);
+      Scierror(999,_("%s: Not enought points for the fit.\n"), fname);
       return 0;
     }
   else if (ierr == 1)
-    sciprint(_("%s warning: rank deficiency of the least square matrix.\n"), fname);
+    sciprint(_("%s: Warning: Rank deficiency of the least square matrix.\n"), fname);
 
   LhsVar(1) = Rhs+1;
   LhsVar(2) = Rhs+2;

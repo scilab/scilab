@@ -37,7 +37,7 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
   if ( mx != my  ||  nx != ny )
   {
-	Scierror(999,_("%s: Incompatible input arguments '#%d' and '#%d': Same sizes expected.\n"),fname,1,2);
+	Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"),fname,1,2);
 	return 0;
   }
 
@@ -57,7 +57,7 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
 			FREE(Str);
 			Str=NULL;
 		}
-	  Scierror(999,_("%s: Wrong type for input argument #%d: cshep2d tlist expected.\n"), fname,2);
+	  Scierror(999,_("%s: Wrong type for input argument #%d: %s tlist expected.\n"), fname,2,"cshep2d");
       return 0;
     }
   /* Free Str */

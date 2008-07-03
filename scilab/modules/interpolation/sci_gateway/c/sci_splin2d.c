@@ -49,7 +49,7 @@ int intsplin2d(char *fname,unsigned long fname_len)
 
   if ( mx != 1 || my != 1 || mz != nx || nz != ny || nx < 2 || ny < 2)
     {
-	  Scierror(999,_("%s: Wrong size for input arguments.\n"),fname);
+	  Scierror(999,_("%s: Wrong size for input arguments #%d, #%d or #%d.\n"),fname, 1, 2, 3);
       return 0;
     }
 
@@ -68,7 +68,7 @@ int intsplin2d(char *fname,unsigned long fname_len)
       spline_type = get_type(SplineTable, NB_SPLINE_TYPE, str_spline_type, ns);
       if ( spline_type == UNDEFINED || spline_type == CLAMPED )
 	{
-	  Scierror(999,_("%s: Wrong values for input argument #%d: Unsupported 'spline' type.\n"),fname,4);
+	  Scierror(999,_("%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"),fname,4,"spline");
 	  return 0;
 	};
     }
