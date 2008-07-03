@@ -95,9 +95,9 @@ public final class ScilabGraphicWindow extends ScilabWindow {
 	 */
 	private String getClosingWindowCommand(int figureIndex) {
 		return "if ( get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on' );"
-		+"execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'("+figureIndex+", -1, -1, -1000)');"
-		+"end;"			
-		+"delete(get_figure_handle(" + figureIndex + "));";
+		+ "execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)');"
+		+ "end;"			
+		+ "delete(get_figure_handle(" + figureIndex + "));";
 	}
 	
 }
