@@ -60,4 +60,5 @@
 <PRIMITIVE gatewayId="25" primitiveId="27" primitiveName="uigetcolor" />
 <PRIMITIVE gatewayId="25" primitiveId="28" primitiveName="getcallbackobject" />
 <PRIMITIVE gatewayId="25" primitiveId="29" primitiveName="printfigure" />
+<PRIMITIVE gatewayId="25" primitiveId="30" primitiveName="exportUI" />
 </GATEWAY>

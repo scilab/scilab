@@ -472,6 +472,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\exportUserInterface.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\FileChooser.cpp"
 				>
 			</File>
@@ -653,6 +657,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_delmenu.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_exportUI.c"
 				>
 			</File>
 			<File
@@ -1057,6 +1065,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\exportUserInterface.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\FileChooser.hxx"
 				>
 			</File>
@@ -1362,6 +1374,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\RadioButton.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_exportUI.h"
 				>
 			</File>
 			<File

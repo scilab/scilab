@@ -543,7 +543,11 @@
         </method>
 <!-- Main settings -->
 	<method name="saveMainWindowSettings" returnType="void" modifier="static">
-        </method>      
+        </method> 
+<!-- Export GUI-->
+	<method name="newExportFileChooser" returnType="int" modifier="static">
+        <parameter type="int" name="figureId"/>
+      </method>    
 <!-- Font Chooser -->
 	<method name="newFontChooser" returnType="int" modifier="static">
         </method>      

@@ -33,7 +33,7 @@
         </submenu>
         <separator/>
 		<submenu label="&amp;Export to...">
-			<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.newExportFileChooser' type="3"/>
+			<callback instruction='exportUI([SCILAB_FIGURE_ID])' type="0"/>
 			<!--<submenu label="&amp;BMP">
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback

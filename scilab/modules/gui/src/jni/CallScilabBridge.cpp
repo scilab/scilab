@@ -249,6 +249,7 @@ voidsetWaitBarIndeterminateModejintjbooleanID=NULL;
 voidlaunchHelpBrowserjobjectArrayjstringID=NULL; 
 voidsearchKeywordjobjectArrayjstringjstringjbooleanID=NULL; 
 voidsaveMainWindowSettingsID=NULL; 
+jintnewExportFileChooserjintID=NULL; 
 jintnewFontChooserID=NULL; 
 voidfontChooserDisplayAndWaitjintID=NULL; 
 voidsetFontChooserFontNamejintjstringID=NULL; 
@@ -452,6 +453,7 @@ voidsetWaitBarIndeterminateModejintjbooleanID=NULL;
 voidlaunchHelpBrowserjobjectArrayjstringID=NULL; 
 voidsearchKeywordjobjectArrayjstringjstringjbooleanID=NULL; 
 voidsaveMainWindowSettingsID=NULL; 
+jintnewExportFileChooserjintID=NULL; 
 jintnewFontChooserID=NULL; 
 voidfontChooserDisplayAndWaitjintID=NULL; 
 voidsetFontChooserFontNamejintjstringID=NULL; 
@@ -4312,6 +4314,29 @@ curEnv->ExceptionDescribe() ;
 }
 
                         
+}
+
+long CallScilabBridge::newExportFileChooser (JavaVM * jvm_, long figureId){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewExportFileChooserjintID = curEnv->GetStaticMethodID(cls, "newExportFileChooser", "(I)I" ) ;
+if (jintnewExportFileChooserjintID == NULL) {
+std::cerr << "Could not access to the method " << "newExportFileChooser" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jint res =  (jint) curEnv->CallIntMethod(cls, jintnewExportFileChooserjintID ,figureId);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return res;
+
 }
 
 long CallScilabBridge::newFontChooser (JavaVM * jvm_){

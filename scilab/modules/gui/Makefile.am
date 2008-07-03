@@ -107,7 +107,8 @@ src/cpp/SetUiobjectVisible.cpp \
 src/cpp/GetUiobjectVisible.cpp \
 src/cpp/UnitsConversion.cpp \
 src/cpp/GetScreenProperty.cpp \
-src/cpp/CallClipboard.cpp
+src/cpp/CallClipboard.cpp \
+src/cpp/exportUserInterface.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -146,7 +147,8 @@ sci_gateway/c/sci_helpbrowser.c \
 sci_gateway/c/sci_uigetfont.c \
 sci_gateway/c/sci_uigetcolor.c \
 sci_gateway/c/sci_getcallbackobject.c \
-sci_gateway/c/sci_printfigure.c
+sci_gateway/c/sci_printfigure.c \
+sci_gateway/c/sci_exportUI.c
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \
@@ -310,7 +312,9 @@ includes/DestroyUicontrol.h \
 includes/DestroyUimenu.h \
 includes/CallClipboard.h \
 includes/PrinterManagement.h \
-includes/Widget.h
+includes/Widget.h \
+includes/sci_exportUI.h \
+includes/exportUserInterface.hxx
 
 #### gui : demos files ####
 libscigui_la_demosdir=$(mydatadir)/demos/

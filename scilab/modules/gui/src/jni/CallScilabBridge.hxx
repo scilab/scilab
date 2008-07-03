@@ -200,6 +200,7 @@ jmethodID voidsetWaitBarIndeterminateModejintjbooleanID; // cache method id
 jmethodID voidlaunchHelpBrowserjobjectArrayjstringID; // cache method id
 jmethodID voidsearchKeywordjobjectArrayjstringjstringjbooleanID; // cache method id
 jmethodID voidsaveMainWindowSettingsID; // cache method id
+jmethodID jintnewExportFileChooserjintID; // cache method id
 jmethodID jintnewFontChooserID; // cache method id
 jmethodID voidfontChooserDisplayAndWaitjintID; // cache method id
 jmethodID voidsetFontChooserFontNamejintjstringID; // cache method id
@@ -565,6 +566,8 @@ static void launchHelpBrowser(JavaVM * jvm_, char ** helps, int helpsSize, char 
 static void searchKeyword(JavaVM * jvm_, char ** helps, int helpsSize, char * keyword, char * language, bool fullText);
 
 static void saveMainWindowSettings(JavaVM * jvm_);
+
+static long newExportFileChooser(JavaVM * jvm_, long figureId);
 
 static long newFontChooser(JavaVM * jvm_);
 

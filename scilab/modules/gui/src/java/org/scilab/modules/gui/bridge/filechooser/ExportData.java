@@ -38,7 +38,7 @@ public class ExportData {
 		this.exportName = exportName;
 		this.exportExtension = exportExtension;
 		this.exportProperties = exportProperties;
-		
+		this.figureId = figureId;
 	}
 	
 	/**
