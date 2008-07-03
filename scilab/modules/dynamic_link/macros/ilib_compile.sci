@@ -78,7 +78,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
 
     //** BEWARE : this function can cause errors if used with "old style" Makefile inside a Scilab 5
     //**          environment where the Makefile are created from a "./configure"  
-	  [msg,ierr, stderr] = unix_g(cmd) ; 
+	  [msg, ierr, stderr] = unix_g(cmd) ; 
 	  if ierr <> 0 then
 		mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
 	    mprintf(stderr);
@@ -87,6 +87,12 @@ function libn = ilib_compile(lib_name,makename,files, ..
 		chdir(oldPath); // Go back to the working dir
 	    return ;
 	  end
+	  if stderr <> "" then
+		msprintf(gettext("%s: Warning: No error code returned by the compilation but the error output is not empty:\n"),"ilib_compile");
+		mprintf(stderr);
+		return ;
+	  end
+
 	  // Copy the produce lib to the working path
 	  copyfile(".libs/" + lib_name, oldPath);
    
