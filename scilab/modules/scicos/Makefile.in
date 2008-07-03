@@ -377,6 +377,7 @@ JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
+LIBRT = @LIBRT@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
@@ -672,7 +673,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-@SCICOS_TRUE@	$(am__append_4)
+@SCICOS_TRUE@	@LIBRT@ $(am__append_4)
 
 #### scicos : Conf files ####
 @SCICOS_TRUE@libsciscicos_la_rootdir = $(mydatadir)
