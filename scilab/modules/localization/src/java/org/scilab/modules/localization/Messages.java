@@ -18,7 +18,6 @@ import java.util.Locale;
 
 public class Messages {
 
-    private static final String bundleName = "Messages_scilab"; 
     private static final String systemLocale = "LC_MESSAGES"; 
     private static final String defaultLocale = "en_US"; 
 	private static final String pathToTheClass = "org.scilab.modules.localization.Messages";
