@@ -732,7 +732,14 @@ static void doCompletion(const char *current_line,const char *prompt)
 
 				if ( strncmp(completionDictionary[0],completionDictionary[1],strlen(completionDictionary[0])) == 0 )
 				{
-					strcat(cur_line,&completionDictionary[0][strlen(wordToFind)]);
+					int lenwordToFind = (int)strlen(wordToFind);
+					int lencompletionDictionary0 = (int)strlen(completionDictionary[0]);
+
+					if (lencompletionDictionary0 > lenwordToFind)
+					{
+						strcat(cur_line,&completionDictionary[0][lenwordToFind]);
+					}
+					
 				}
 				fputs (cur_line, stdout);
 				cur_pos = (int)strlen(cur_line);
