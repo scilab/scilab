@@ -86,7 +86,7 @@ int sci_get(char *fname,unsigned long fname_len)
  
              if (m1*n1 != 1)
                 {
-                  Scierror(999, _("%s: Wrong type for property name: single string expected.\n"), "get");
+                  Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get",2);
                   return SET_PROPERTY_ERROR;
                 }
              
@@ -94,13 +94,13 @@ int sci_get(char *fname,unsigned long fname_len)
              
              if(status != SET_PROPERTY_SUCCEED) /* Return property */
                {
-                 Scierror(999, _("%s: could not read property '%s' for root object.\n"), "get", getStringMatrixFromStack((int)stkAdr)[0]);
+                 Scierror(999, _("%s: Could not read property '%s' for root object.\n"), "get", getStringMatrixFromStack((int)stkAdr)[0]);
                  return FALSE;
                }
             }
           else
             {
-              Scierror(999, _("%s: Wrong type for property name: single string expected.\n"), "get");
+              Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get",2);
               return FALSE;
             }
           LhsVar(1)=Rhs+1;

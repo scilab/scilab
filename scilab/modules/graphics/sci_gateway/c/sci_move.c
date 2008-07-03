@@ -49,7 +49,7 @@ int sci_move( char * fname, unsigned long fname_len )
     }
     else 
     {
-      Scierror(999,_("%s: Wrong third input argument: '%s' expected.\n"),fname,"alone"); 
+      Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname,3, "alone"); 
       return 0;
     }
   }
@@ -64,7 +64,7 @@ int sci_move( char * fname, unsigned long fname_len )
   nbDim = m2*n2;
   if (nbDim != 2&& nbDim !=3)
   { 
-    Scierror(999,_("%s: Wrong type for third input argument: vector [x y] or [x,y,z] expected.\n"),fname);
+    Scierror(999,_("%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"),fname, 3, "[x y]","[x,y,z]");
     return 0;
   }
   moveVector = getDoubleMatrixFromStack(l2);

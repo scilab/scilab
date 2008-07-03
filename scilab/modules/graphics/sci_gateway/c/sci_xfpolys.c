@@ -58,7 +58,7 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
 
       if ( m3 != 3 && m3 != 4 ) 
       {
-        Scierror(999,_("%s: interpolated shading only works for polygons of size 3 or 4\n"),fname);
+        Scierror(999,_("%s: Interpolated shading only works for polygons of size %d or %d\n"),fname, 3, 4);
         return 0;
       }
     } else

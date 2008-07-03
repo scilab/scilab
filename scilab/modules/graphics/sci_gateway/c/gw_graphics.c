@@ -89,13 +89,13 @@ static gw_generic_table Tab[]={
 	{sci_get,"get"},
 	{sci_set,"set"},
 	{sci_newaxes,"newaxes"},
-        {sci_relocate_handle,"relocate_handle"},
-        {sci_swap_handles,"swap_handles"},
+	{sci_relocate_handle,"relocate_handle"},
+	{sci_swap_handles,"swap_handles"},
 	{sci_help_gtk,"help_gtk"},
 	{sci_showalluimenushandles,"showalluimenushandles"},
-        {sci_rubberbox,"rubberbox"},
-        {sci_rotate_axes,"rotate_axes"},
-        {sci_is_handle_valid,"is_handle_valid"},
+	{sci_rubberbox,"rubberbox"},
+	{sci_rotate_axes,"rotate_axes"},
+	{sci_is_handle_valid,"is_handle_valid"},
 	{sci_Legend,"captions"}
 };
 
@@ -103,17 +103,17 @@ static gw_generic_table Tab[]={
 /* interface for the previous function Table */ 
 int gw_graphics(void)
 {  
-  Rhs = Max(0, Rhs);
-  if ( getScilabMode() != SCILAB_NWNI )
-  {
-	callFunctionFromGateway(Tab);
-	C2F(putlhsvar)();
-  }
-  else
-  {
-	Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode.\n"));
-  }
+	Rhs = Max(0, Rhs);
+	if ( getScilabMode() != SCILAB_NWNI )
+		{
+			callFunctionFromGateway(Tab);
+			C2F(putlhsvar)();
+		}
+	else
+		{
+			Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode.\n"));
+		}
 
-  return 0;
+	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

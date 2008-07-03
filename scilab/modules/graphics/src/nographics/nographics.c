@@ -17,10 +17,11 @@
 #include "WindowList.h"
 #include "machine.h"
 #include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int gw_graphics(void)
 {
-	Scierror(999,"Scilab Graphics module not installed.\n");
+	Scierror(999,_("Scilab Graphics module not installed.\n"));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

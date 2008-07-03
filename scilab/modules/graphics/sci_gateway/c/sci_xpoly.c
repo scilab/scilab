@@ -56,7 +56,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
       strcpy(C2F(cha1).buf,"xmarks"); 
       mark=0; /* NG */
     } else {
-      Scierror(999,_("%s: Wrong value for third input argument: '%s' or '%s' expected.\n"),fname,"lines","marks");
+      Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname,3, "lines","marks");
       return 0;
     } 
   }

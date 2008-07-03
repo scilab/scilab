@@ -277,7 +277,7 @@ static void look(ptr_level_f func, integer i, integer j, integer ib, integer jb,
   else
   {
     /* contour2di only computes level curves, not display them. */
-    sciprint(_("Contourdi, is only made to compute level curves and not display them.\n"));
+    sciprint(_("%s is only made to compute level curves and not display them.\n"),"Contourdi");
   }
 }
 

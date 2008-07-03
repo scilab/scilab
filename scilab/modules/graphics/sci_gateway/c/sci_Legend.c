@@ -58,7 +58,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
   }
   GetMatrixdims(2,&m2,&n2);
   if (m2*n2 != n) {
-    Scierror(999,_("%s: Input arguments %d and %d have incompatible dimensions.\n"),fname,1,2);
+    Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"),fname,1,2);
     return 0;
   }
 
@@ -69,7 +69,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
     GetRhsVar(3,STRING_DATATYPE,&m2,&n2,&l2);
     location = string2LegendPlace(cstk(l2));
     if ((int)location==0) {
-      Scierror(999,_("%s: Invalid input argument #%d: incorrect value.\n"),fname,3);
+      Scierror(999,_("%s: Wrong value for input argument #%d: Incorrect value.\n"),fname,3);
       return 0;
     }
   }
@@ -132,53 +132,51 @@ int sci_Legend( char * fname, unsigned long fname_len )
 /*--------------------------------------------------------------------------*/
 sciLegendPlace string2LegendPlace(char * string)
 {
-  sciLegendPlace place;
   if ( strcmp(string, "in_upper_right" )==0 )
     {
-      place = SCI_LEGEND_IN_UPPER_RIGHT;
+      return SCI_LEGEND_IN_UPPER_RIGHT;
     }
   else if ( strcmp(string, "in_upper_left" )==0 )
     {
-      place = SCI_LEGEND_IN_UPPER_LEFT;
+      return SCI_LEGEND_IN_UPPER_LEFT;
     }
   else if ( strcmp(string, "in_lower_right" )==0 )
     {
-      place = SCI_LEGEND_IN_LOWER_RIGHT;
+      return SCI_LEGEND_IN_LOWER_RIGHT;
     }
   else if ( strcmp(string, "in_lower_left" )==0 )
     {
-      place = SCI_LEGEND_IN_LOWER_LEFT;
+      return SCI_LEGEND_IN_LOWER_LEFT;
     }
   else if ( strcmp(string, "out_upper_right" )==0 )
     {
-      place = SCI_LEGEND_OUT_UPPER_RIGHT;
+      return SCI_LEGEND_OUT_UPPER_RIGHT;
     }
   else if ( strcmp(string, "out_upper_left" )==0 )
     {
-      place = SCI_LEGEND_OUT_UPPER_LEFT;
+      return SCI_LEGEND_OUT_UPPER_LEFT;
     }
   else if ( strcmp(string, "out_lower_right" )==0 )
     {
-      place = SCI_LEGEND_OUT_LOWER_RIGHT;
+      return SCI_LEGEND_OUT_LOWER_RIGHT;
     }
   else if ( strcmp(string, "out_lower_left" )==0 )
     {
-      place = SCI_LEGEND_OUT_LOWER_LEFT;
+      return SCI_LEGEND_OUT_LOWER_LEFT;
     }
   else if ( strcmp(string, "upper_caption" )==0 )
     {
-      place = SCI_LEGEND_UPPER_CAPTION;
+      return SCI_LEGEND_UPPER_CAPTION;
     }
   else if ( strcmp(string, "lower_caption" )==0 )
     {
-      place = SCI_LEGEND_LOWER_CAPTION;
+      return SCI_LEGEND_LOWER_CAPTION;
     }
   else if ( strcmp(string, "by_coordinates" )==0 )
     {
-      place = SCI_LEGEND_BY_COORDINATES;
+      return SCI_LEGEND_BY_COORDINATES;
     }
   else {
-    place = (sciLegendPlace) 0;
+    return (sciLegendPlace) 0;
   }
-  return place;
 }

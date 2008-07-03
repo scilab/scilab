@@ -42,7 +42,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
 
   if ( VarType(1) != sci_handles )
   {
-    Scierror(999,_("%s: Wrong type for first input argument: Only one text handle expected.\n"),fname);
+    Scierror(999,_("%s: Wrong type for input argument #%d: Only one text handle expected.\n"),fname, 1);
     return 0 ;
   }
 
@@ -51,7 +51,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
 
   if ( m * n != 1 )
   {
-	  Scierror(999,_("%s: Wrong type for first input argument: Only one text handle expected.\n"),fname);
+	  Scierror(999,_("%s: Wrong type for input argument #%d: Only one text handle expected.\n"),fname, 1);
     return 0 ;
   }
 
@@ -59,7 +59,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
 
   if ( pText == NULL )
   {
-    Scierror(999,_("%s : The handle is not valid.\n"),fname);
+    Scierror(999,_("%s: The handle is not valid.\n"),fname);
     return 0 ;
   }
 
@@ -69,7 +69,7 @@ int sci_StringBox( char * fname, unsigned long fname_len )
   }
   else if ( sciGetEntityType( pText ) != SCI_TEXT )
   {
-	  Scierror(999,_("%s: Wrong type for first input argument: Only one text handle expected.\n"),fname);
+	  Scierror(999,_("%s: Wrong type for input argument #%d: Only one text handle expected.\n"),fname, 1);
     return 0 ;
   }
 

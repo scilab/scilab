@@ -39,7 +39,7 @@ int LinearScaling2Colormap( sciPointObj * pobj )
 
 
   if(psurf->zcol == NULL){
-    sciprint(_("Color matrix is NULL ; can not build color scaled linearly into the current colormap"));
+    sciprint(_("Color matrix is NULL: Can not build color scaled linearly into the current colormap"));
     return SET_PROPERTY_ERROR ;
   }
 

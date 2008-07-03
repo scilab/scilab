@@ -39,7 +39,7 @@ int sci_showalluimenushandles( char *fname, unsigned long fname_len )
 
     if (sciGetEntityType (pParent) != SCI_FIGURE ) 
     {
-      Scierror(999,_("%s: Wrong type for input argument: Figure handle expected.\n"),fname);
+      Scierror(999,_("%s: Wrong type for input argument: '%s' handle expected.\n"),fname,"Figure");
       return 0;
     }
     else
@@ -49,7 +49,7 @@ int sci_showalluimenushandles( char *fname, unsigned long fname_len )
   }
   else
   {
-	  Scierror(999,_("%s: Wrong type for input argument: Figure handle expected.\n"),fname);
+	  Scierror(999,_("%s: Wrong type for input argument: '%s' handle expected.\n"),fname,"Figure");
   return 0;
   }
   LhsVar(1)=0;

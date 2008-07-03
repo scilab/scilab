@@ -121,8 +121,7 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   {
     if ( FirstOpt() <= Rhs)
     {
-      sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"),fname,3+iskip);
-      Error(999); 
+      Scierror(999,_("%s: Misplaced optional argument: #%d must be at position %d.\n"),fname,1, 3+iskip);
       return(0);
     }
 
@@ -140,9 +139,8 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   {
     if ( FirstOpt() < 3+iskip) 
     {
-      sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"),
-        fname,3+iskip);
-      Error(999); 
+      Scierror(999,_("%s: Misplaced optional argument: #%d must be at position %d.\n"),
+        fname,1, 3+iskip);
       return(0);
     }
 

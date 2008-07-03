@@ -49,7 +49,7 @@ int getInitialRectangle(double initRect[4])
     int nbDims = rectNbCol * rectNbRow;
     if (nbDims != 2 && nbDims != 4)
     {
-      sciprint(_("%s: Wrong size for input argument: Vector of size 2 or 4 expected.\n"), "rubberbox");
+      sciprint(_("%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"), "rubberbox", 1, 2, 4);
       return -1;
     }
 

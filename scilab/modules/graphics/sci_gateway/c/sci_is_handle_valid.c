@@ -44,7 +44,7 @@ int sci_is_handle_valid(char *fname,unsigned long fname_len)
   /* Get handles matrix */
   if (VarType(1) != sci_handles)
   {
-    sciprint(_("%s: Wrong type for first input argument: Matrix of handle expected.\n"), fname);
+    sciprint(_("%s: Wrong type for input argument #%d: Matrix of handle expected.\n"), fname,1);
     return 0;
   }
 

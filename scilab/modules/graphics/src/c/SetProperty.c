@@ -179,13 +179,13 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
 
   if ( n != 3 )
   {
-    Scierror(999, _("colormap : number of columns must be 3.\n"));
+    Scierror(999, _("%s: Number of columns must be %d.\n"),"colormap",3);
     return -1 ;
   }
 
   if ( SCI_FIGURE != sciGetEntityType(pobj) )
   {
-    Scierror(999, _("sciSetColormap Error: Object must be a SCI_FIGURE.\n"));
+    Scierror(999, _("%s: Object must be a %s.\n"),"sciSetColormap","SCI_FIGURE");
     return -1 ;
   }
 
@@ -633,7 +633,7 @@ sciInitLineWidth (sciPointObj * pobj, int linewidth)
 
   if (linewidth < 0)
     {
-      sciprint(_("Line width must be greater than 0.\n"));
+      sciprint(_("Line width must be greater than %d.\n"),0);
       return -1;
     }
   else
@@ -669,7 +669,7 @@ sciInitLineStyle (sciPointObj * pobj, int linestyle)
 
   if (linestyle < 0)
     {
-      sciprint(_("The line style must be greater than 0.\n"));
+      sciprint(_("The line style must be greater than %d.\n"),0);
       return -1;
     }
   else
@@ -791,7 +791,7 @@ int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
 {
   if (markstyle < 0)
   {
-    sciprint(_("The mark style must be greater or equal than 0.\n"));
+    sciprint(_("The mark style must be greater or equal than %d.\n"),0);
     return -1;
   }
   else
@@ -827,7 +827,7 @@ int sciInitMarkSize( sciPointObj * pobj, int marksize )
 {
   if (marksize < 0)
   {
-    sciprint(_("The mark size must be greater or equal than 0.\n"));
+    sciprint(_("The mark size must be greater or equal than %d.\n"),0);
     return -1;
   }
   else
@@ -863,7 +863,7 @@ int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
 {
   if (marksizeunit < 0)
   {
-    sciprint(_("The mark size unit must be greater than 0.\n"));
+    sciprint(_("The mark size unit must be greater than %d.\n"),0);
     return -1;
   }
   else
@@ -960,7 +960,7 @@ int sciInitFontSize( sciPointObj * pobj, double fontSize )
 {
   if (fontSize < 0)
   {
-    sciprint(_("The font size must be greater than 0.\n"));
+    sciprint(_("The font size must be greater than %d.\n"),0);
     return -1;
   }
   else
@@ -2729,7 +2729,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       int size = *numrow * *numcol ;
       if ( size != 5 && size != 4 )
       {
-        sciprint(_("Number of element must be 4 (5 if z coordinate).\n"));
+        sciprint(_("Number of element must be %d (%d if z coordinate).\n"),4,5);
         return -1;
       }
 
@@ -2757,7 +2757,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_ARC:
       if ((*numrow * *numcol != 7)&&(*numrow * *numcol != 6))
 	{
-	  sciprint(_("Number of elements must be 6 (7 if z coordinate )\n"));
+	  sciprint(_("Number of elements must be %d (%d if z coordinate )\n"),6,7);
 	  return -1;
 	}
 
@@ -2783,7 +2783,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_TEXT:
       if ((*numrow * *numcol != 2)&&(*numrow * *numcol != 3))
 	{
-	  sciprint(_("Number of elements must be 2 (3 if z coordinate)\n"));
+	  sciprint(_("Number of elements must be %d (%d if z coordinate)\n"),2,3);
 	  return -1;
 	}
       pTEXT_FEATURE (pthis)->x = tab[0];
@@ -2795,7 +2795,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_SEGS:
       if (pSEGS_FEATURE (pthis)->ptype <= 0) {
 	if ((*numcol != 3)&&(*numcol != 2)) {
-	  sciprint(_("Number of columns must be 2 (3 if if z coordinate)\n"));
+	  sciprint(_("Number of columns must be %d (%d if if z coordinate)\n"),2,3);
 	  return -1;
 	}
 	n1=pSEGS_FEATURE (pthis)->Nbr1;
@@ -3009,7 +3009,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	double *pvecx,*pvecy,*pfun;
 	int Nnode;
 	if (*numcol != 3) {
-	  sciprint(_("Number of columns must be 2."));
+	  sciprint(_("Number of columns must be %d.\n"),2);
 	  return -1;}
 
 	Nnode = *numrow;
@@ -3218,7 +3218,7 @@ int sciInitIsBoxed( sciPointObj * pobj, BOOL isboxed )
       return 0;
       break;
     case SCI_SUBWIN:
-      sciprint(_("sciSetIsBoxed: please use sciSetBoxType instead\n"));
+      sciprint(_("%s: please use %s instead.\n"),"sciSetIsBoxed","sciSetBoxType");
       if ( isboxed )
       {
         pSUBWIN_FEATURE(pobj)->axes.rect = BT_ON ;

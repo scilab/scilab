@@ -264,7 +264,7 @@ int sci_set(char *fname, unsigned long fname_len)
 			break;
 
 	  default:
-		  Scierror(999,_("%s: Wrong type for input argument: String or handle expected.\n"),fname);
+		  Scierror(999,_("%s: Wrong type for input argument #%d: String or handle expected.\n"),fname,1);
 		  return 0;
 		  break;
 	 }

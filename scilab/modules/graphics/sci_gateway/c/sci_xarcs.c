@@ -43,12 +43,12 @@ int sci_xarcs(char *fname,unsigned long fname_len)
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   if ( strcmp(fname,"xarcs") == 0) {
     if (m1 != 6) {
-      Scierror(999,_("%s: Wrong size for first input argument: %s expected.\n"),fname,"(6,n)");
+      Scierror(999,_("%s: Wrong size for input argument #%d: %s expected.\n"),fname,1,"(6,n)");
       return 0;
     }
   } else {
     if (m1 != 4) {
-      Scierror(999,_("%s: Wrong size for first input argument: %s expected.\n"),fname,"(4,n)");
+      Scierror(999,_("%s: Wrong size for input argument #%d: %s expected.\n"),fname,1,"(4,n)");
       return 0;
     }
   }
@@ -61,7 +61,7 @@ int sci_xarcs(char *fname,unsigned long fname_len)
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     CheckVector(2,m2,n2);
     if (m2 * n2 != n1) {
-      Scierror(999,_("%s: First and second arguments have incompatible length.\n"),fname);
+      Scierror(999,_("%s: Wrong size for arguments #%d and #%d.\n"),fname, 1, 2);
       return 0;
     }
   }

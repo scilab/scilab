@@ -69,8 +69,8 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 
   if ( get_optionals(fname,opts) == 0) return 0;
   if ( FirstOpt() < 4) {
-    sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"),
-      fname,4);
+    sciprint(_("%s: Misplaced optional argument: #%d must be at position %d.\n"),
+      fname,1, 4);
     Error(999); 
     return(0);
   }
@@ -93,8 +93,8 @@ int sci_plot3d( char * fname, unsigned long fname_len )
       GetRhsVar(3,LIST_DATATYPE,&m3l,&n3l,&l3l);
       if ( m3l != 2 ) 
       {
-        Scierror(999,_("%s: Wrong size for second input argument: List of size %d expected.\n"),
-          fname,2);
+        Scierror(999,_("%s: Wrong size for input argument #%d: List of size %d expected.\n"),
+          fname, 3, 2);
         return 0;
       }
       GetListRhsVar(3,1,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
@@ -102,7 +102,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
       zcol  = stk(l3n);
       if (m3n * n3n != n3 &&  m3n*n3n != m3*n3)
       {
-        Scierror(999,_("%s: Wrong size for third input argument: %d or %d expected.\n"),fname,n3,m3*n3);
+        Scierror(999,_("%s: Wrong size for input argument #%d: %d or %d expected.\n"),fname,3, n3,m3*n3);
         return 0;
       }
       /* 
@@ -129,21 +129,21 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 
   if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) {
     if (! (m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3)) {
-      Scierror(999,_("%s: The three first input arguments have incompatible length.\n"),fname);
+      Scierror(999,_("%s: Wrong value for input arguments #%d, #%d and #%d: Incompatible length.\n"),fname, 1, 2, 3);
       return 0;
     }
   } else {
     if (m2 * n2 != n3) {
-      Scierror(999,_("%s: Second and third input arguments have incompatible length.\n"),fname);
+      Scierror(999,_("%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"),fname, 2, 3);
       return 0;
     }
     if (m1 * n1 != m3) {
-      Scierror(999,_("%s: First and third input arguments have incompatible length.\n"),fname);
+      Scierror(999,_("%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"),fname, 1, 3);
       return 0;
     }
     if ( m1*n1 <= 1 || m2*n2 <= 1 ) 
     {
-      Scierror(999,_("%s: Wrong size for first and second input arguments: %s expected.\n"),fname,">= 2");
+		Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: %s expected.\n"),fname, 2, 3, ">= 2");
       return 0;
     }
   }

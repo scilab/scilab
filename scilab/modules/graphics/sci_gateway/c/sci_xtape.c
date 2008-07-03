@@ -25,7 +25,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_xtape( char *fname,unsigned long fname_len )
 {
-  Scierror(999,_("xtape routine was only available with old graphic mode.\n"));
+  Scierror(999,_("%s: This function was only available with old graphic mode.\n"), fname);
   return -1 ;
 }
 /*--------------------------------------------------------------------------*/

@@ -73,7 +73,7 @@ int sci_delete(char *fname,unsigned long fname_len)
     }
     else
     {
-      Scierror(999,_("%s: Wrong first input argument: '%s' expected.\n"),fname,"all");
+      Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname,1,"all");
       return 0;
     }
     break;
@@ -84,7 +84,7 @@ int sci_delete(char *fname,unsigned long fname_len)
       }
     else
       {
-        Scierror(999,_("%s: Wrong first input argument: 'all' or handle expected.\n"),fname,"all");
+        Scierror(999,_("%s: Wrong type for input argument #%d: '%s' or handle expected.\n"),fname,1,"all");
         return 0;
       }
     break;

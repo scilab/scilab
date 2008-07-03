@@ -46,7 +46,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
   if (Rhs <= 0)
   {
     int zero = 0;
-    sci_demo(fname,"x=(1:10)';plot2d(x,x);xtitle(['Titre';'Principal'],'x','y');",&zero);
+    sci_demo(fname,"x=(1:10)';plot2d(x,x);xtitle(['Title';'Main'],'x','y');",&zero);
     return 0;
   }
 
@@ -83,7 +83,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     if ( opts[0].m * opts[0].n != 1 )
     {       
       /* check size */
-      Scierror( 999, _("The boxed parameter must be a scalar"), fname ) ;
+      Scierror( 999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname ) ;
       return 1 ;
     } 
     nbLabels-- ; /* it is not a label text */

@@ -530,9 +530,8 @@ sciGetMarkBackground (sciPointObj * pobj)
     return -1;
   }
   
-  colorindex = sciGetGoodIndex(pobj, colorindex);
+  return sciGetGoodIndex(pobj, colorindex);
   
-  return colorindex;
 }
 
 

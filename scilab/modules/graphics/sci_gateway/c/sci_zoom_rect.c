@@ -56,11 +56,11 @@ BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
   {
     if (attribPos == 1)
     {
-      sciprint(_("%s: Wrong size for first input argument: Vector of size 4 expected.\n"), fname);
+      sciprint(_("%s: Wrong size for input argument #%d: Vector of size %d expected.\n"), fname, 1, 4);
     }
     else
     {
-      sciprint(_("%s: Wrong size for second input argument: Vector of size 4 expected.\n"), fname);
+      sciprint(_("%s: Wrong size for input argument #%d: Vector of size %d expected.\n"), fname, 2, 4);
     }
     return FALSE;
   }
@@ -93,7 +93,7 @@ sciPointObj * getZoomedObject(const char * fname)
   /* check that there is only a single Figre or subwin */
   if (nbRow * nbCol != 1)
   {
-    sciprint(_("%s: Wrong size for first input argument: Single handle expected.\n"), fname);
+    sciprint(_("%s: Wrong size for input argument #%d: Single handle expected.\n"), fname, 1);
     return NULL;
   }
 
@@ -101,7 +101,7 @@ sciPointObj * getZoomedObject(const char * fname)
 
   if (sciGetEntityType(res) != SCI_SUBWIN && sciGetEntityType(res) != SCI_FIGURE)
   {
-    sciprint(_("%s: Wrong type for first input argument: Figure or Axes handle expected.\n"), fname);
+    sciprint(_("%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"), fname, 1);
     return NULL;
   }
 
@@ -146,7 +146,7 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
         if (status == SET_PROPERTY_ERROR)
         {
           /* error on rectangle bounds */
-          sciprint(_("%s: Error on first input argument: specified bounds are not correct.\n"), fname);
+          sciprint(_("%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"), fname, 1);
           LhsVar(1)=0; 
           return 0;
         }
@@ -160,7 +160,7 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
     }
     else
     {
-      sciprint(_("%s: Wrong type for input arguments: handle or vector of double expected.\n"), fname);
+      sciprint(_("%s: Wrong type for input argument #%d: Handle or vector of double expected.\n"), fname, 1);
       LhsVar(1)=0; 
       return 0;
     }
@@ -174,7 +174,7 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
 
     if (GetType(1) != sci_handles || GetType(2) != sci_matrix)
     {
-      sciprint(_("%s: Wrong type for input arguments: handle or vector of double expected.\n"), fname);
+      sciprint(_("%s: Wrong type for input arguments: Handle or vector of double expected.\n"), fname);
       LhsVar(1)=0; 
       return 0;
     }
@@ -189,12 +189,10 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
     if (sciZoomRect(zoomedObject, rect) == SET_PROPERTY_ERROR)
     {
       /* error on rectangle bounds */
-      sciprint(_("%s: Error on first input argument: specified bounds are not correct.\n"), fname);
+      sciprint(_("%s: Error on input argument #%d: Specified bounds are not correct.\n"), fname, 1);
       LhsVar(1)=0; 
       return 0;
     }
-    
-
   }
 
   LhsVar(1)=0; 

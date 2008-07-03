@@ -84,14 +84,14 @@ int C2F(graphicsmodels) (void)
 
   if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
     {
-      strcpy(error_message,_("Default figure cannot be create"));
+      strcpy(error_message,_("Default figure cannot be create.\n"));
       return 0;
     }
   sciSetEntityType (pfiguremdl, SCI_FIGURE);
   if ((pfiguremdl->pfeatures = MALLOC ((sizeof (sciFigure)))) == NULL)
     {
       FREE(pfiguremdl);
-      strcpy(error_message,_("Default figure cannot be create"));
+      strcpy(error_message,_("Default figure cannot be create.\n"));
       return 0;
     }
 
@@ -99,7 +99,7 @@ int C2F(graphicsmodels) (void)
     {
       FREE(pfiguremdl->pfeatures);
       FREE(pfiguremdl);
-      strcpy(error_message,_("Default figure cannot be create"));
+      strcpy(error_message,_("Default figure cannot be create.\n"));
       return 0;
     }
   newhd1->pnext = (sciHandleTab *) NULL;
@@ -112,7 +112,7 @@ int C2F(graphicsmodels) (void)
       sciDelHandle (pfiguremdl);
       FREE(pfiguremdl->pfeatures);
       FREE(pfiguremdl);
-      strcpy(error_message,_("Default figure cannot be create"));
+      strcpy(error_message,_("Default figure cannot be create.\n"));
       return 0;
     }
 
@@ -127,7 +127,7 @@ int C2F(graphicsmodels) (void)
     sciDelHandle (pfiguremdl);
     FREE(pfiguremdl->pfeatures);
     FREE(pfiguremdl);
-    strcpy(error_message,_("Default figure cannot be create"));
+    strcpy(error_message,_("Default figure cannot be create.\n"));
     return 0;
   }
 
@@ -137,21 +137,21 @@ int C2F(graphicsmodels) (void)
 
   if ((paxesmdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
     {
-      strcpy(error_message,_("Default axes cannot be create"));
+      strcpy(error_message,_("Default axes cannot be create.\n"));
       return 0;
     }
   sciSetEntityType (paxesmdl, SCI_SUBWIN);
   if ((paxesmdl->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
     {
       FREE(paxesmdl);
-      strcpy(error_message,_("Default axes cannot be create"));
+      strcpy(error_message,_("Default axes cannot be create.\n"));
       return 0;
     }
   if ((newhd2 = MALLOC ((sizeof (sciHandleTab)))) == NULL)
     {
       FREE(paxesmdl->pfeatures);
       FREE(paxesmdl);
-      strcpy(error_message,_("Default axes cannot be create"));
+      strcpy(error_message,_("Default axes cannot be create.\n"));
       return 0;
     }
   newhd2->pnext = (sciHandleTab *) NULL;
@@ -164,7 +164,7 @@ int C2F(graphicsmodels) (void)
       sciDelHandle (paxesmdl);
       FREE(paxesmdl->pfeatures);
       FREE(paxesmdl);
-      strcpy(error_message,_("Default axes cannot be create"));
+      strcpy(error_message,_("Default axes cannot be create.\n"));
       return 0;
     }
 
@@ -180,7 +180,7 @@ int C2F(graphicsmodels) (void)
     sciDelHandle (paxesmdl);
     FREE(paxesmdl->pfeatures);
     FREE(paxesmdl);
-    strcpy(error_message,_("Default axes cannot be create"));
+    strcpy(error_message,_("Default axes cannot be create.\n"));
     return 0;
   }
 

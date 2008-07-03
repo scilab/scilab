@@ -58,8 +58,8 @@ int sci_grayplot( char *fname, unsigned long fname_len )
 
   if ( get_optionals(fname,opts) == 0) { return 0 ; }
   if ( FirstOpt() < 4) {
-    sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"),
-      fname,4);
+    sciprint(_("%s: Misplaced optional argument: #%d must be at position %d.\n"),
+      fname,1, 4);
     Error(999); 
     return(0);
   }
@@ -102,9 +102,6 @@ int sci_grayplot( char *fname, unsigned long fname_len )
       strfl[2] = (char)(*axes+48);
     }
   }
-
-
-
 
   Objgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, strf, rect, nax, flagNax);
 

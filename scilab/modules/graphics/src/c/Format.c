@@ -1148,7 +1148,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
     }
     break;
   default: 
-    sciprint(_("Sci_Axis: wrong type argument xy_type\n"));
+    sciprint(_("%s: Wrong type argument %s.\n"),"Sci_Axis","xy_type");
   }
   switch (pos ) 
   {
@@ -1244,10 +1244,10 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
 
     if(checkdim){
       if(nval != 3)
-        sciprint(_("Warning: tics_coord must be changed, xy_type is 'r' and tics_coord dimension is not 3\n"));
+        sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"),"tics_coord","xy_type","r","tics_coord",3);
 
       if(nval < 3){
-        sciprint(_("Error: tics_coord must be changed FIRST, xy_type is 'r' and tics_coord dimension < 3\n"));
+        sciprint(_("Error: %s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"),"tics_coord","xy_type","r","tics_coord",3);
         *vector = (double *) NULL;
         return -1;
       }
@@ -1274,10 +1274,10 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
 
     if(checkdim){
       if(nval != 4)
-        sciprint(_("Warning: tics_coord must be changed, xy_type is 'i' and tics_coord dimension is not 4\n"));
+        sciprint(_("Warning: %s must be changed, %s is '%S' and %s dimension is not %d.\n"),"tics_coord","xy_type","i","tics_coord",4);
 
       if(nval < 4){
-        sciprint(_("Error: tics_coord must be changed FIRST, xy_type is 'i' and tics_coord dimension < 4\n"));
+        sciprint(_("Error: %s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"),"tics_coord","xy_type","i","tics_coord",4);
         *vector = (double *) NULL;
         return -1;
       }
@@ -1333,7 +1333,7 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
   /* vector is allocated here */
   if( ComputeXIntervals( pobj, pAXES_FEATURE (pobj)->tics, &vector, &nbTics, 1 ) != 0 )
   {
-    Scierror(999,_("Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n"));
+    Scierror(999,_("Error: Bad size in %s: you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
     return 0;
   }
 

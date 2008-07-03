@@ -165,7 +165,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
       CreatePrettyGradsFromNax(psubwin,aaint);
     }
     else{
-      sciprint(_("Warning : Nax does not work with logarithmic scaling\n"));
+      sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
 	}
   }
 

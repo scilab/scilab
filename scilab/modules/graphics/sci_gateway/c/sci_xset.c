@@ -78,7 +78,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   /* Bloque la commande xset('window') sans numero de fenetre */
   if (Rhs == 1 && (strcmp(cstk(l1),"window") == 0) )
   {
-    sciprint(_("%s : xset(\"window\",window-number): window-number must be set\n"),fname);
+    sciprint(_("%s : '%s' must be set\n"),fname, "window-number");
     LhsVar(1)=0; return 0;
   }
 
@@ -155,11 +155,11 @@ int sci_xset( char *fname, unsigned long fname_len )
   {
     if (*stk(lr) == 1)
     {
-      sciprint(_("Old graphic mode is no longer available. Please refer to the set help page.\n"));
+      sciprint(_("%s: Old graphic mode is no longer available. Please refer to the set help page.\n"),"xset");
     }
     else
     {
-      Scierror(999,"%s: Value must be 1 or 0",fname);
+      Scierror(999,"%s: Wrong value for input argument: %d or %d expected.\n",fname,0, 1);
     }
   }/* NG end */
   else if( strcmp(cstk(l1),"default") == 0 )
@@ -192,7 +192,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   else if ( strcmp(cstk(l1),"window") == 0 || strcmp(cstk(l1),"figure") == 0 )
   {
     if (sciSwitchWindow(x[0]) != 0){
-      Scierror(999,_("%s: It was not possible to create the requested figure"),fname);
+      Scierror(999,_("%s: It was not possible to create the requested figure.\n"),fname);
     }
   }
   else
@@ -329,7 +329,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else
     {
-      sciprint(_("%s: Unrecognized input argument: \"%s\".\n"), fname, cstk(l1));
+      sciprint(_("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
     }
 
     if(strcmp(cstk(l1),"window") != 0 && strcmp(cstk(l1),"wshow") != 0)
@@ -367,7 +367,7 @@ int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
   }
   else 
   {
-    sciprint(_("xset(arg,<string>): Unrecognized arg: %s\n"),str);
+    sciprint(_("%s: Unrecognized input argument '%s'.\n"),"xset(arg,<string>)",str);
   }
   return 0;
 }

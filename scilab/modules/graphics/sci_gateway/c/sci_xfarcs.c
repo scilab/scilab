@@ -41,7 +41,7 @@ int sci_xfarcs( char * fname, unsigned long fname_len )
 
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   if (m1 != 6) {
-    Scierror(999,_("%s: Wrong size for first input argument: %s expected.\n"),fname,"(6,n)");
+    Scierror(999,_("%s: Wrong size for input argument #%d: %s expected.\n"),fname, 1, "(6,n)");
     return 0;
   }
 
@@ -49,7 +49,7 @@ int sci_xfarcs( char * fname, unsigned long fname_len )
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     CheckVector(2,m2,n2);
     if ( n1 != m2*n2) {
-      Scierror(999,_("%s: Input arguments have incompatible size.\n"),fname);
+      Scierror(999,_("%s: Wrong size for input arguments #%d and #%d.\n"),fname,1,2);
       return 0;
     }
   }

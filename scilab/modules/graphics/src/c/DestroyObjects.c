@@ -189,7 +189,7 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
       sciDestroyScreen(pthis) ;
       return 0 ;
     default:
-      sciprint (_("Entity with type %d cannot be destroyed\n"),sciGetEntityType (pthis));
+      sciprint (_("Entity with type %d cannot be destroyed.\n"),sciGetEntityType (pthis));
       return -1;
       break;
     }

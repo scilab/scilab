@@ -97,3 +97,4 @@ int sci_xchange( char * fname, unsigned long fname_len )
 /*--------------------------------------------------------------------------*/
 
 #undef VIEWING_RECT_SIZE
+

@@ -752,13 +752,13 @@ int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
   /* check compatibility of the objects with new parents */
   if ( !sciCanBeSonOf( firstObject, sciGetParent( secondObject ) ) )
   {
-    Scierror(999,_("First handle is not compatible with its new parent.\n")) ;
+    Scierror(999,_("Handle #%d is not compatible with its new parent.\n"),1) ;
     return -1 ;
   }
   
   if ( !sciCanBeSonOf( secondObject, sciGetParent( firstObject ) ) )
   {
-    Scierror(999,_("Second handle is not compatible with its new parent.\n")) ;
+    Scierror(999,_("Handle #%d is not compatible with its new parent.\n"),2) ;
     return -1 ;
   }
 
@@ -768,12 +768,12 @@ int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
   /* check if the sons are correct. This should always be true. */
   if ( firstSon == NULL )
   {
-    Scierror( 999,_("First object is not correctly placed in the hierarchy.\n")) ;
+    Scierror( 999,_("Object #%d is not correctly placed in the hierarchy.\n"),1) ;
     return -1 ;
   }
   if ( secondSon == NULL )
   {
-    Scierror( 999,_("Second object is not correctly placed in the hierarchy.\n")) ;
+    Scierror( 999,_("Object #%d is not correctly placed in the hierarchy.\n"),2) ;
     return -1 ;
   }
 
@@ -806,13 +806,13 @@ int swapHandles( unsigned long firstHdl, unsigned long secondHdl )
   
   if ( firstObject == NULL )
   {
-    Scierror( 999,_("First handle is not or no more valid.\n"));
+    Scierror( 999,_("Handle #%d is not or no more valid.\n"),1);
     return -1 ;
   }
 
   if ( secondObject == NULL )
   {
-     Scierror( 999,_("Second handle is not or no more valid.\n"));
+     Scierror( 999,_("Handle #%d is not or no more valid.\n"),2);
     return -1 ;
   }
 

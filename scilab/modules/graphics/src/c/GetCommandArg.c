@@ -43,7 +43,7 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
 	    GetRhsVar(pos,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
 	    if (m * n < n1)
       {
-	      Scierror(999,_("%s: Wrong size for input argument: %d < %d expected.\n"),fname,m*n,n1);
+	      Scierror(999,_("%s: Wrong size for input argument #%d: %d < %d expected.\n"),fname,pos, m*n,n1);
 	      return 0;
 	    }
 	    if ( n1 == 1 && m * n == 1 )
@@ -76,7 +76,7 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style )
     GetRhsVar(kopt,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &l);
     if (m * n < n1)
     {
-		Scierror(999,_("%s: Wrong size for input argument: %d < %d expected.\n"),fname,m*n,n1);
+		Scierror(999,_("%s: Wrong size for input argument #%d: %d < %d expected.\n"),fname,kopt,m*n,n1);
       return 0;
     }
     if (n1==1&&m*n==1)
@@ -117,7 +117,7 @@ int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
 			if (VarType(pos)) {
 				GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
 				if (m * n != 4) { 
-					Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,4); 
+					Scierror(999,"%s: Wrong size for input argument #%d: %d expected\n",fname,pos,4); 
 					return 0;
 				}
 				*rect = stk(l);
@@ -139,7 +139,7 @@ int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect )
 	else if ((kopt=FindOpt("rect",opts))) {/* named argument: rect=value */
 		GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
 		if (m * n != 4) { 
-			Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,4); 
+			Scierror(999,"%s: Wrong size for input argument #%d: %d expected\n",fname,kopt,4); 
 			return 0;
 		}
 		*rect = stk(l);
@@ -172,7 +172,7 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
 	    GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
 	    if ( m * n != 3 )
       { 
-		  Scierror(999,_("%s: Wrong size for input argument: String of %d characters expected.\n"),fname,3);
+		  Scierror(999,_("%s: Wrong size for input argument #%d: String of %d characters expected.\n"),fname,pos, 3);
 	      return 0;
 	    }
 	  *strf = cstk(l); 
@@ -189,7 +189,7 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
     GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
     if (m * n != 3)
     { 
-		Scierror(999,_("%s: Wrong size for input argument: String of %d characters expected.\n"),fname,3);
+		Scierror(999,_("%s: Wrong size for input argument #%d: String of %d characters expected.\n"),fname,kopt,3);
 		return 0;
     }
     *strf = cstk(l); 
@@ -338,7 +338,7 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
       if (VarType(pos)) {
         GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
 	if (m * n != 2) { 
-      Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,2);
+      Scierror(999,"%s: Wrong size for input argument #%d: %d expected\n",fname,pos,2);
 	  return 0;
 	}
 	*zminmax = stk(l); 
@@ -354,7 +354,7 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax )
   else if ((kopt=FindOpt("zminmax",opts))) {/* named argument: rect=value */
     GetRhsVar(kopt,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
     if (m * n != 2) { 
-      Scierror(999,"%s: Wrong size for input argument: %d expected\n",fname,2);
+      Scierror(999,"%s: Wrong size for input argument #%d: %d expected\n",fname,kopt,2);
       return 0;
     }
     *zminmax = stk(l); 
@@ -490,7 +490,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
 	    GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
 	    if ((m * n != 2)&&(m * n != 3))
       {
-		  Scierror(999,"%s: Wrong size for input argument: %d or %d expected\n",fname,2, 3);
+		  Scierror(999,"%s: Wrong size for input argument #%d: %d or %d expected\n",fname, pos, 2, 3);
 	      return 0;
 	    }
 	    if (m * n == 2)
@@ -530,7 +530,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags )
     GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
     if ((m * n != 2)&&(m * n != 3))
     {
-	  Scierror(999,"%s: Wrong size for input argument: %d or %d expected\n",fname,2, 3);
+	  Scierror(999,"%s: Wrong size for input argument #%d: %d or %d expected\n",fname, kopt, 2, 3);
       return 0;
     }
     if (m * n == 2)

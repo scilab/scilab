@@ -629,7 +629,7 @@ BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
       || ( logFlags[1] == 'l' && yMin <= 0.0 )
       || ( logFlags[2] == 'l' && zMin <= 0.0 ) )
   {
-    sciprint("Error: bounds on axis must be strictly positive to use logarithmic mode.\n" ) ;
+    sciprint("Error: Bounds on axis must be strictly positive to use logarithmic mode.\n" ) ;
     return FALSE ;
   }
 

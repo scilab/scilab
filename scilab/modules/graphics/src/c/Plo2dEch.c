@@ -806,7 +806,7 @@ int C2F(xechelle2d)(double x[], integer x1[], integer *  n1,char dir[],integer l
       for ( i=0 ; i < (*n1) ; i++) x[i]= exp10(XPi2R( x1[i]));
   }
   else 
-    sciprint(_("Wrong dir %s argument in echelle2d\n"),dir);
+    sciprint(_("%s: Wrong dir %s argument.\n"),"echelle2d",dir);
 
   return(0);
 }
@@ -831,7 +831,7 @@ int C2F(yechelle2d)(double y[], integer yy1[], integer * n2,char dir[], integer 
       for ( i=0 ; i < (*n2) ; i++)  y[i]= exp10(YPi2R( yy1[i]));
   }
   else 
-    sciprint(_("Wrong dir %s argument in echelle2d\n"),dir); 
+    sciprint(_("%s: Wrong dir %s argument.\n"),"echelle2d",dir); 
 
   return(0);
 }
@@ -896,7 +896,7 @@ void C2F(echelle2dl)( double    x[]  ,
 	}
     }
   else 
-    sciprint(_("Wrong dir %s argument in echelle2d\n"),dir);
+    sciprint(_("%s: Wrong dir %s argument.\n"),"echelle2d",dir);
 }
 
 /** meme chose mais pour transformer des ellipses **/
@@ -930,7 +930,7 @@ void C2F(ellipse2d)( double x[], integer x1[], integer * n, char * dir)
 	}
     }
   else 
-    sciprint(_("Wrong dir %s argument in echelle2d\n"),dir);
+    sciprint(_("%s: Wrong dir %s argument.\n"),"echelle2d",dir);
 }
 
 /** meme chose mais pour transformer des rectangles **/
@@ -994,7 +994,7 @@ void C2F(rect2d)( double x[], integer x1[], integer * n, char * dir)
 	}
     }
   else 
-    sciprint(_("Wrong dir %s argument in echelle2d\n"),dir);
+    sciprint(_("%s: Wrong dir %s argument.\n"),"echelle2d",dir);
 }
 
  

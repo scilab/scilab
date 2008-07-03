@@ -63,7 +63,7 @@ int sci_unzoom(char *fname,unsigned long fname_len)
       if (sciGetEntityType(zoomedObjects[i]) != SCI_SUBWIN && sciGetEntityType(zoomedObjects[i]) != SCI_FIGURE)
       {
         FREE(zoomedObjects);
-        sciprint(_("%s: Wrong type for input argument: vector of Axes and Figure handles expected.\n"),fname);
+        sciprint(_("%s: Wrong type for input argument: Vector of Axes and Figure handles expected.\n"),fname);
         LhsVar(1)=0; 
         return 0;
       }

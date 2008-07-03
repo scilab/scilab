@@ -92,7 +92,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   {
     if ( FirstOpt() <= Rhs )
     {
-	    sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"),fname,3+iskip);
+	    sciprint(_("%s: Misplaced optional argument: #%d must be at position %d.\n"),fname,1, 3+iskip);
 	    Error(999); 
 	    return(0);
     }
@@ -114,7 +114,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   {
     if ( FirstOpt() < 3+iskip)
     {
-      sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"), fname,3+iskip);
+      sciprint(_("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname,1, 3+iskip);
       Error(999); 
       return(0);
     }
@@ -183,9 +183,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
 
   if(n1 == -1 || n2 == -1 || m1 == -1 || m2 == -1)
   {
-	  sciprint(_("%s: Wrong input argument.\n"), fname); /* @TODO : detail error */
-    Error(999); 
-    return(0);
+	  Scierror(999, _("%s: Wrong size for input arguments #%d and #%d.\n"), fname, 1, 2); /* @TODO : detail error */
   }
 
   sciGetStyle( fname, 3+iskip, n1, opts, &style ) ;

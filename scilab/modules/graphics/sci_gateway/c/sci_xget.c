@@ -64,7 +64,7 @@ int sci_xget(char *fname,unsigned long fname_len)
 
   if ( !keyFound )
   {
-    sciprint(_("%s: Unrecognized input argument: \"%s\".\n"), fname, cstk(l1));
+    sciprint(_("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
     x2=0;
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&x2,&x2,&l3);
     LhsVar(1)=Rhs+1;
@@ -289,7 +289,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else
     {
-      sciprint(_("%s: Unrecognized input argument: \"%s\".\n"), fname, cstk(l1));
+      sciprint(_("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
     }
     if (x2 > 0) {
       CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);

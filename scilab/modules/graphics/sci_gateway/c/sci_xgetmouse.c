@@ -63,7 +63,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single double or Boolean vector expected.\n"), "xgetmouse");
+          Scierror(999, _("%s: Wrong type for input argument #%d: Single double or boolean vector expected.\n"), fname, 1);
           return FALSE;
         }
       break;
@@ -74,7 +74,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for first input argument: Single double expected.\n"), "xgetmouse");
+          Scierror(999, _("%s: Wrong type for input argument #%d: Single double expected.\n"), fname, 1);
           return FALSE;
         }
 
@@ -84,7 +84,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for second input argument: Boolean vector expected.\n"), "xgetmouse");
+          Scierror(999, _("%s: Wrong type for input argument #%d: Boolean vector expected.\n"), fname, 2);
           return FALSE;
         }
       break;
@@ -98,7 +98,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   // Display a warning if a flag has been given (obsolete use)
   if (displayWarning)
     {
-      sciprint(_("Using xgetmouse with a flag to avoid the event queue to be cleared is obsolete.\nThis functionnality will be permanently removed in Scilab 5.1.\n"));
+      sciprint(_("%s: Using xgetmouse with a flag to avoid the event queue to be cleared is obsolete.\nThis functionnality will be permanently removed in Scilab 5.1.\n"),fname);
     }
 
   // Call Java to get mouse information

@@ -46,7 +46,7 @@ int sci_xarrows(char *fname,unsigned long fname_len)
     GetRhsVar(4,MATRIX_OF_INTEGER_DATATYPE,&m4,&n4,&l4); CheckVector(4,m4,n4);
     if (m4 * n4 == 1) dstyle = *istk(l4);
     if (m4 * n4 != 1 && m2 * n2 / 2 != m4 * n4) {
-      Scierror(999,_("%s: Wrong size for fourth input argument: %d expected.\n"),fname,m2 * n2 / 2 );
+      Scierror(999,_("%s: Wrong size for input argument #%d: %d expected.\n"),fname, 4, m2 * n2 / 2 );
       return 0;
     }
   }

@@ -45,10 +45,11 @@ int sci_xsegs(char *fname,unsigned long fname_len)
 
   if (Rhs == 3)
   {
-    GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); CheckVector(3,m3,n3);
+    GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); 
+	CheckVector(3,m3,n3);
     if (m3 * n3 == 1) dstyle = *istk(l3 );
     if (m3 * n3 != 1 && m2 * n2 / 2 != m3 * n3) {
-      Scierror(999,_("%s: Wrong size: %d expected.\n"),fname, m2 * n2 / 2);
+      Scierror(999,_("%s: Wrong size for input argument #%d: %d expected.\n"),fname, 3, m2 * n2 / 2);
       return 0;
     }
   }

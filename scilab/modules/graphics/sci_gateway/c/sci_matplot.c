@@ -60,9 +60,8 @@ int sci_matplot(char *fname,unsigned long fname_len)
   if ( get_optionals(fname,opts) == 0 ) { return 0 ; }
   if ( FirstOpt() < 2)
   {
-    sciprint(_("%s: Misplaced optional argument, first must be at position %d.\n"),
-      fname,2);
-    Error(999); 
+    Scierror(999,_("%s: Misplaced optional argument: #%d must be at position %d.\n"),
+      fname,1,2);
     return(0);
   }
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
@@ -95,8 +94,6 @@ int sci_matplot(char *fname,unsigned long fname_len)
       strfl[2] = (char)(*axes+48);
     }
   }
-
-
 
   Objmatplot( stk(l1), &m1, &n1, strf, rect, nax, flagNax ) ;
 

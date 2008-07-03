@@ -103,7 +103,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
     }
     break;
   default :
-    Scierror(999,_("%s: Wrong number of input argument(s): %s or %s expected.\n"),fname, "1","4");
+    Scierror(999,_("%s: Wrong number of input argument(s): %d or %d expected.\n"),fname, 1,4);
     break ;
   }
 

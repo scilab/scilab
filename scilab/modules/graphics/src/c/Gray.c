@@ -132,7 +132,7 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
       CreatePrettyGradsFromNax(psubwin,aaint);
     }
     else{
-      sciprint(_("Warning : Nax does not work with logarithmic scaling\n"));}
+      sciprint(_("Warning: Nax does not work with logarithmic scaling\n"));}
   }
 
   if( bounds_changed || axes_properties_changed )
