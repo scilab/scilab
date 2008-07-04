@@ -2324,7 +2324,7 @@ endfunction
 function DestroyGlobals()
 global ged_current_figure
 
-if find(ged_current_figure==winsid()) then
+if ~isempty(winsid()) & ~isempty(find(ged_current_figure==winsid())) then
   xset('window',ged_current_figure)
 end 
 
