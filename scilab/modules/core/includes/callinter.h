@@ -44,7 +44,6 @@ c     .     back to gw_user
          else
             goto 89
          endif
-         iflagint=0
          goto 95
       endif
 c
@@ -78,7 +77,7 @@ c
       krec=k
 
 
-      call callinterf(k,iflagint)
+      call callinterf(k)
 C      if (k.eq.krec) krec=99999
       krec=-1
       if(fun.ge.0) then
