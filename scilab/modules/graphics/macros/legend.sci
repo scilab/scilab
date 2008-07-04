@@ -26,8 +26,8 @@ options_codes=[1;2;3;
   opt      = 1;
   with_box = %T;
 
-  
-  
+
+
   while type(varargin(k0))==9 then //a handle that could be an Axes, Agreg. or Polyline handle.
     tmpH=varargin(k0)
     if tmpH.type=='Axes' then
@@ -46,7 +46,8 @@ options_codes=[1;2;3;
   for k=k0:size(varargin)
     if type(varargin(k))<>10 then break,end
     vk=varargin(k)
-    leg=[leg;vk(:)]  end
+    leg=[leg;vk(:)]
+  end
   nleg=size(leg,'*')
 
   k0=k
@@ -54,7 +55,7 @@ options_codes=[1;2;3;
   if k0<=narg&type(varargin(k0))==4 then with_box=varargin(k0);k0=k0+1,end
 
   //upper left coordinates
-  if size(opt,'*')>1 then 
+  if size(opt,'*')>1 then
     bnds=get(gca(),'axes_bounds');
     as=get(gcf(),'axes_size');
     [x1,y1,rect]=xchange(opt(1),opt(2),'f2i')
@@ -64,10 +65,10 @@ options_codes=[1;2;3;
     opt=5
   elseif opt==5 then
     pos=[]
-  elseif opt<-6|opt>4 then 
+  elseif opt<-6|opt>4 then
     error('opt can take value in -6:4')
   end
- 
+
   kopt=find(options_codes==opt)
   if kopt==[] then error('invalid positionning option'),end
   drawlater()
@@ -75,7 +76,7 @@ options_codes=[1;2;3;
   if with_box then c.line_mode='on',else c.line_mode='off',end
   c.legend_location=options_names(kopt)
   if opt==5 then
-    if pos<>[] then  
+    if pos<>[] then
       c.position=pos;
     else
       drawnow()
