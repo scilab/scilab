@@ -44,12 +44,12 @@ function libn = ilib_compile(lib_name,makename,files, ..
     nf = size(files,'*');
     
     for i=1:nf 
-      write(%io(2),_("   compilation of ")+files1(i));
+      write(%io(2),_("   Compilation of ")+files1(i));
       unix_s(make_command+makename + ' '+ files(i)); 
     end
     
     // then the shared library 
-    write(%io(2),_("   building shared library (be patient)"));
+    write(%io(2),_("   Building shared library (be patient)"));
     unix_s(make_command + makename + ' '+ lib_name); 
    
   else
@@ -82,8 +82,10 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	  if ierr <> 0 then
 		mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
 	    mprintf(stderr);
+		mprintf("\n");
 		mprintf(gettext("%s: The command was:\n"),"ilib_compile");
 		mprintf(cmd);
+		mprintf("\n");
 		chdir(oldPath); // Go back to the working dir
 	    return ;
 	  end
