@@ -52,7 +52,9 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     if MSDOS then      
       //**---------------------------- //Win/Unix/Linux/Mac ------------------------------------------
       FlatName = fil;
-      modelicac = pathconvert(SCI+'/bin/modelicac.exe',%f,%t)     
+
+      modelicac = 'modelicac'; //** with automatic detection 
+
       if strindex(modelicac,' ')<>[] then modelicac='""'+modelicac+'""',end
       modelicac=modelicac+strcat(' -L ""'+mlibs+'""')
       instr=modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+' > '+TMPDIR+'/Wmodelicac.err'         
@@ -123,7 +125,9 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     else //==================Win/Unix/Linux/Mac....
 
       FlatName = fil;
-      modelicac = pathconvert(SCI+'/bin/modelicac',%f,%t)
+
+      modelicac = 'modelicac'; //** with automatic detection 
+
       modelicac = modelicac + strcat(' -L '+ mlibs); 
       instr = modelicac+' '+FlatName+' -o '+path+name+'.c '+JAC+' > '+TMPDIR+'/Lmodelicac.err;';          
       

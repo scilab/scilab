@@ -29,13 +29,9 @@ function genmoc(path,force,verbose)
     error('Scilab has not been built with Ocaml, Modelica compiler unavailable')
   end
   if MSDOS then
-    compilerpath=pathconvert(SCI+'/bin/modelicac.exe',%f,%t);
+    compilerpath = 'modelicac';
   else
-    compilerpath=pathconvert(SCI+'/bin/modelicac',%f,%t);
-    r = ( fileinfo(path) <> []);
-    if (r == []) then
-      compilerpath = pathconvert('/usr/bin/modelicac',%f,%t);
-    end
+    compilerpath = 'modelicac';
   end
 
   // with env subsitution 
