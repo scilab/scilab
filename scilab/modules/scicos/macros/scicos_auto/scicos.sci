@@ -275,8 +275,11 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     //** palette relatives to the local directory
     if execstr('load(''.scicos_pal'')','errcatch')==0 then
       //** if the load has been positive
-      scicos_pal = gunique(scicos_pal,scicos_paltmp); //** remove the duplicate item(s)
-    end                                               //** in the palette
+      scicos_pal = gunique(scicos_pal,scicos_paltmp); //** remove the duplicate item(s) in the palette
+      //** check is given palettes paths are still valid
+      scicos_pal = check_palettes_paths(scicos_pal)
+     
+    end                                               
 
     //** load - if present - the used defined local shortcut
     execstr('load(''.scicos_short'')','errcatch')  // keyboard shortcuts
@@ -938,3 +941,20 @@ endfunction
 
 //**---------------------------------------------------------------------------------------------------------------------
 
+function scicos_pal = check_palettes_paths(scicos_pal)
+  toremove=[]
+  for k=1:size(scicos_pal,1)
+    if fileinfo(scicos_pal(k,2))==[] then toremove=[toremove k],end
+  end
+  //remove invalid ones out of scicos_pal
+  if toremove<>[] then
+    rmpal=scicos_pal(toremove,:)
+    rmpal(:,1)=part(rmpal(:,1),1:max(length(rmpal(:,1))))
+    message(['Following palette(s) ignored (associated file(s) no more exist):';
+	     ' '
+	     rmpal(:,1)+':  '+rmpal(:,2)
+	     ' '
+	     ' To avoid this message, please update the ""'+pwd()+filesep()+'.scicos_pal"" file'])
+    scicos_pal(toremove,:)=[];
+  end
+endfunction
