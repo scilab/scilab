@@ -66,7 +66,12 @@ function [wa, ha] = do_export(scs_m, fname, titleflag)
     //** Graphics window -> 2
     //** [Cancel]        -> 0
 
-    if num == 1 then fname = savefile('*'); end
+    if num == 1 then //** Postscript
+      // Ask for filename
+      fname = xgetfile('*.EPS',title='Save Postcript file as...')
+      // Exit if user cancelled
+      if fname == "" then return; end
+    end
   end
 
   if num == 0 then return; end //** EXIT point

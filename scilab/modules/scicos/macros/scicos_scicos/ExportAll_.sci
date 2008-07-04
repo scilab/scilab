@@ -24,7 +24,7 @@ function ExportAll_()
   Cmenu = []
 
   // Select output directory
-  %exp_dir = tk_getdirectory()
+  %exp_dir = uigetdir()
 
   if ~isempty(%exp_dir) then
 
