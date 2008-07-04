@@ -50,7 +50,9 @@ function ilib_gen_Make_unix(names,   ..
 						"Makefile.am", ..
 						"Makefile.in", ..
 						"config.sub", ..
+					    "libtool", ..
 						"config.guess", ..
+					    "config.status", ..
 						"depcomp", ..
 						"install-sh", ..
 						"ltmain.sh", ..
@@ -143,12 +145,12 @@ function ilib_gen_Make_unix(names,   ..
 	end
 	
 	cmd=commandpath + "scicompile.sh " + libname + " " + filelist
-	
-	[msg,ierr] = unix_g(cmd);
+	[msg,ierr, stderr] = unix_g(cmd);
 	
 	if ierr <> 0 then
-		disp(msg);
-		return;
+	  mprintf(gettext("%s: Error while modifing the reference Makefile:\n"),"ilib_gen_Make")
+	  mprintf(msg+" "+stderr);
+	  return;
 	end
 	
 	chdir(originPath);
