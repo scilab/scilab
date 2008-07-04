@@ -57,12 +57,24 @@ sub common_die {
 	exit(1);
 }
 
-# common_exec(command):
+# common_exec(command, args...):
 #    Execute given command, places its outputs to log files.
 #    Returns a file handle on STDOUT
-#    Die if return code is non-zero
+#    Die if return code is non-zero or if standard error is non-empty.
 sub common_exec {
-	my $cmd = shift;
+	# pretty_arg:
+	#     Human-readable form of the arguments array
+	sub pretty_arg {
+		my $_ = shift;
+		if(/\s|["']/) {
+			s/"/\\"/g;
+			s/^/"/;
+			s/$/"/;
+		}
+		return $_;
+	}
+	
+	my $cmd = join(" ", map { pretty_arg $_ } @_);
 	my $commandnum = 1;
 	
 	# Find commandnum: log files are (stage)-1.out for first
@@ -75,23 +87,43 @@ sub common_exec {
 	
 	common_log("$cmd\nstdout=$stdout\nstderr=$stderr", "\$");
 	
-	my $pid = fork();
-	if($pid == 0) {
-		open STDOUT, ">$stdout";
-		open STDERR, ">$stderr";
-		close STDIN;
-		exec $cmd;
-	}
-	else {
-		waitpid($pid, 0);
-		common_log("$?", "?");
-		common_die("\"$cmd\" failed (non-zero exit code)") if($? != 0);
-		common_die("\"$cmd\" failed (non-empty error output)") if(-s $stderr);
-	}
+	# Save I/O, setup I/O for subprocess
+	open OLD_STDOUT, ">&STDOUT";
+	open OLD_STDERR, ">&STDERR";
+	open OLD_STDIN, "<&STDIN";
+	open STDOUT, ">$stdout";
+	open STDERR, ">$stderr";
+	close STDIN;
+	
+	# Exec suprocess
+	system { $_[0] } @_;
+	
+	# Restore I/O
+	open STDIN, "<&OLD_STDIN";
+	open STDOUT, ">&OLD_STDOUT";
+	open STDERR, ">&OLD_STDERR";
+	close OLD_STDOUT;
+	close OLD_STDERR;
+	close OLD_STDIN;
+	
+	common_log("$?", "?");
+	common_die("\"$cmd\" failed (non-zero exit code)") if($? != 0);
+	common_die("\"$cmd\" failed (non-empty error output)") if(-s $stderr);
 	
 	open my ($fd), $stdout;
 	
 	return $fd;
+}
+
+# scilab_exe:
+#     Get Scilab executable name (scilab on linux, scilex on Windows)
+sub scilab_exe {
+	if($^O =~ /mswin/i) {
+		return "scilex";
+	}
+	else {
+		return "scilab";
+	}
 }
 
 # is_zip:
@@ -105,7 +137,7 @@ sub is_zip {
 sub get_tree_from_tgz {
 	my %files;
 	
-	my $fd = common_exec("zcat ${TOOLBOXFILE} | tar -t");
+	my $fd = common_exec("tar", "-tf", $TOOLBOXFILE);
 	
 	while(<$fd>) {
 		chomp;
@@ -122,7 +154,7 @@ sub get_tree_from_zip {
 	my (%files, $line);
 	
 	# tail & head are here to skip header & footer
-	my $fd = common_exec("unzip -l ${TOOLBOXFILE}");
+	my $fd = common_exec("unzip", "-l", $TOOLBOXFILE);
 	
 	while(<$fd>) {
 		if(((/^\s*-+/)...(/^\s*-+/)) && !/^\s*-+/) { # Delete header & footer
@@ -153,14 +185,14 @@ sub get_tree {
 #    Extract given file from the .zip archive
 sub read_file_from_tgz {
 	my $filename = shift;
-	return common_exec("zcat ${TOOLBOXFILE} | tar -xO ${TOOLBOXNAME}/$filename");
+	return common_exec("tar", "-xOf", $TOOLBOXFILE, "$TOOLBOXNAME/$filename");
 }
 
 # read_file_from_tgz(filename):
 #    Extract given file from the .tar.gz archive
 sub read_file_from_zip {
 	my $filename = shift;
-	return common_exec("unzip -p ${TOOLBOXFILE} ${TOOLBOXNAME}/$filename");
+	return common_exec("unzip", "-p", $TOOLBOXFILE, "$TOOLBOXNAME/$filename");
 }
 
 # read_file_from_archive(filename):
@@ -409,10 +441,10 @@ sub stage_unpack {
 	common_enter_stage("unpack");
 	
 	if(is_zip()) {
-		common_exec("unzip -o ${TOOLBOXFILE}");
+		common_exec("unzip", "-o", $TOOLBOXFILE);
 	}
 	else {
-		common_exec("zcat ${TOOLBOXFILE} | tar -vx");
+		common_exec("tar", "-xvf", $TOOLBOXFILE);
 	}
 	
 	common_leave_stage();
@@ -454,7 +486,7 @@ sub stage_tbdeps {
 	my @depsarray;
 	my (%deps, %desc);
 	
-	my $SCILABX = "scilab -nwni -nb -e ";
+	my @SCILABX = (scilab_exe, "-nwni", "-nb", "-e");
 	
 	common_enter_stage("tbdeps");
 	
@@ -479,15 +511,15 @@ sub stage_tbdeps {
 	# Install dependencies
 	# fixme: we always install the last version, but some packages
 	#   needs some versions... at most. Need to deal with that.
-	close(common_exec("$SCILABX 'installToolbox(\"$_\"); quit;'"))
+	close(common_exec(@SCILABX, "installToolbox('$_'); quit;"))
 		foreach(keys %deps);
 	
 	# Find toolboxes directory
-	$fd = common_exec("$SCILABX 'printf(\"path: %s\\n\", cd(atomsToolboxDirectory())); quit;'");
+	$fd = common_exec(@SCILABX, "printf('path: %s\\n', cd(atomsToolboxDirectory())); quit;");
 	
 	my $tbpath;
 	while(<$fd>) {
-		if(/^path: (.+)$/) {
+		if(/^path: (.+?)\r?$/) {
 			$tbpath = $1;
 			last;
 		}
@@ -537,24 +569,26 @@ sub stage_build {
 	
 	# Generate ccbuilder.sce (see __DATA__ section)
 	common_log("Generating ccbuilder.sce");
+	my $ccbuilder;
+	$ccbuilder .= $_ while(<DATA>);
 	open CCBUILDER, ">ccbuilder.sce";
-	print CCBUILDER while(<DATA>);
+	print CCBUILDER $ccbuilder;
 	close CCBUILDER;
-	
-	common_exec("cat ccbuilder.sce"); # For logging purposes only
+	common_log("Generated ccbuilder.sce:\n$ccbuilder");
 	
 	# Run build script
 	common_log("Running ccbuilder.sce");
-	my $fd = common_exec("cd $TOOLBOXNAME; scilab -nb -nwni -e 'exec(\"../ccbuilder.sce\");'");
+	my $fd = common_exec(scilab_exe, "-nb", "-nwni", "-e",
+		"chdir('$TOOLBOXNAME'); exec('../ccbuilder.sce');");
 	
 	# Check result
 	common_log("Checking build result");
 	my $done = 0;
 	
 	while(<$fd>) {
-		$done = 1 if(/^atoms_cc_builder:done$/);
+		$done = 1 if(/^atoms_cc_builder:done\r?$/);
 		if(/^atoms_cc_ilib_compile:\s*(.+?)\s*$/) {
-			common_die("Generated library \"$1\" is invalid") unless($1 && -x $1 && ! -d $1);
+			common_die("Generated library \"$1\" is invalid") unless($1 && ! -d $1 && (-x $1 || $^O =~ /win/i));
 		}
 	}
 	
@@ -573,16 +607,15 @@ sub stage_pack {
 		DESCRIPTION macros src help sci_gateway demos tests locales includes loader.sce);
 	push(@files, "etc/$TOOLBOXNAME.start");
 	push(@files, "etc/$TOOLBOXNAME.quit");
-	my $files_str = join(" ", map { "$TOOLBOXNAME/$_" } @files);
 	
 	my $output = $TOOLBOXFILE;
 	$output =~ s/(\.zip|\.tar.gz)$//;
 	$output .= "-bin";
 	
 	common_log("Making binary .tar.gz archive ($output.tar.gz)");
-	common_exec("tar -czvf $output.tar.gz $files_str");
+	common_exec("tar", "-cvf", "$output.tar.gz", map { "$TOOLBOXNAME/$_" } @files);
 	common_log("Making binary .zip archive ($output.zip)");
-	common_exec("zip -r $output.zip $files_str");
+	common_exec("zip", "-r", "$output.zip", map { "$TOOLBOXNAME/$_" } @files);
 	
 	common_leave_stage();
 }
