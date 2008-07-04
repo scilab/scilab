@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="exportUI">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>exportUI</refname>
+    <refpurpose>Call the file export graphical interface</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>exportUI(figId)
+exportUI(fig)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>figId</term>
+        <listitem>
+          <para>integer, Id of the figure to export.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fig</term>
+        <listitem>
+          <para>Figure handle, handle of the figure to export.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>exportUI</literal> routine
+      call the graphical interface dedicated in exporting a graphic window into an image file.
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xs2jpg">xs2jpg</link>
+      </member>
+      <member>
+        <link linkend="xs2eps">xs2eps</link>
+      </member>
+      <member>
+        <link linkend="xs2png">xs2png</link>
+      </member>
+      <member>
+        <link linkend="xs2svg">xs2svg</link>
+      </member>
+      <member>
+        <link linkend="xs2pdf">xs2pdf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Jean-Baptiste Silvy</para>
+  </refsection>
+</refentry>
+
