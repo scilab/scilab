@@ -33,6 +33,7 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "CurrentObjectsManagement.h"
+#include "Scierror.h"
 
 /*------------------------------------------------------------------------*/
 int sci_plot2d( char * fname, unsigned long fname_len )

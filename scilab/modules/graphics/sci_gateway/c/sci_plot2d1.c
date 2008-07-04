@@ -29,7 +29,7 @@
 #include "sciprint.h"
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int sci_plot2d1_1 (char *fname,unsigned long fname_len)
 {
