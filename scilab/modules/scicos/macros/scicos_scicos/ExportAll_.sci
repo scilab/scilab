@@ -29,22 +29,12 @@ function ExportAll_()
   if ~isempty(%exp_dir) then
 
     systexport(scs_m, %exp_dir)
-    
+
     fname = fullfile(%exp_dir, 'navigator')
 
-    // SC5:  win_nag = scf()
-    if 0 then
-      driv = driver()
-      driver('Pos')
-      set_posfig_dim(400, 600)
-      xinit(fname)
-    else
-      win_nag = max(winsid()) + 1
-      scf(win_nag)
-    end
-    
-    win_nag = scf()
-
+    // Create a new window to host diagram and title, then get some useful handles
+    win_nag = scf(max(winsid()) + 1)
+    drawlater()
     gh_axes  = gca()
     gh_navig = gcf()
 
@@ -111,7 +101,7 @@ function ExportAll_()
       else
         path = lp(k-1)
       end
-      
+
       Path = list()
 
       for pk = path
@@ -134,23 +124,18 @@ function ExportAll_()
 
     drawnow()
 
-    if 0 then
-      xend()
-      set_posfig_dim(0,0)
-      driver(driv)
+    if MSDOS then
       fname = pathconvert(fname, %f, %t, 'w')
-    else
-      if MSDOS then
-        fname = pathconvert(fname, %f, %t, 'w')
-      end
-      // Capture in landscape mode
-      try
-        xs2eps(win_nag.figure_id, fname, 'landscape')
-      catch
-        disp(lasterror())
-      end
-      delete(win_nag)
     end
+
+    // Capture in landscape mode
+    try
+      xs2eps(win_nag.figure_id, fname, 'landscape')
+    catch
+      disp(lasterror())
+    end
+    delete(win_nag)
+
   end
 
 endfunction
