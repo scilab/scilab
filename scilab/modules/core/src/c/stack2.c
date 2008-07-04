@@ -51,6 +51,8 @@ static int C2F(mvfromto)(integer *itopl,integer *);
 
 static int rhs_opt_find(char *name,rhs_opts opts[]);
 static void rhs_opt_print_names(rhs_opts opts[]);
+extern int C2F(isbyref)(int * fun);
+
 
 /*------------------------------------------------*/
 void strcpy_tws(char *str1,char *str2, int len);
@@ -1868,7 +1870,8 @@ int C2F(callscifun)(char *string,unsigned long string_len)
 int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
 {
   integer cx26 = 26;
-  integer ix1, krec, ix, k, intop, il, ir, lw;
+  integer ix1, ix, k, intop,  ir, lw;
+  integer imode,ireftop;
 
   if ( intersci_push() == 0 )
     {
@@ -1876,7 +1879,7 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
       goto L9999;
     }
 
-  /*     macro execution */
+  /*     macro execution inside a builtin gateway*/
   intop = Top;
   Top = Top - Rhs + *number + *mrhs - 1;
   ++C2F(recu).pt;
@@ -1891,35 +1894,43 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
   Rhs = *mrhs;
   ++C2F(recu).niv;
   C2F(com).fun = 0;
-  Fin = *ptr;
+  C2F(com).fin = *ptr;
   C2F(recu).icall = 5;
-  krec = -1;
-
+  C2F(recu).krec = -1;
+  /* ************************** copied from callinter.h */
  L60:
   C2F(parse)();
+  /* parse has exited for a built-in evaluation */
+
   if (C2F(com).fun == 99) {
+    if( Err>0 ||C2F(errgst).err1>0) {
+      imode=abs(C2F(errgst).errct)/100000 % 8;
+      if (imode !=3) {
+	goto L97;
+      }
+    }
     C2F(com).fun = 0;
     goto L200;
   }
-  if (Err > 0)  goto L9999;
+  if (Err > 0)  goto L97;
+
   if (C2F(recu).rstk[C2F(recu).pt - 1] / 100 == 9) {
     ir = C2F(recu).rstk[C2F(recu).pt - 1] - 900;
+  
     if (ir == 1) {
-      /*     .     back to matsys */
+      /* back to matsys */
       k = 13;
     } else if (ir >= 2 && ir <= 9) {
-      /*     .     back to matio */
+      /* back to matio */
       k = 5;
-      /*<          elseif(ir.eq.10) then >*/
     } else if (ir == 10) {
-      /*     .     end of overloaded function */
+      /* end of overloaded function */
       goto L96;
-      /*<          elseif(ir.gt.40) then >*/
     } else if (ir > 40) {
-      /*     .     back to matus2 */
+      /* back to matus2 */
       k = 24;
     } else if (ir > 20) {
-      /*     .     back to matusr */
+      /* back to matusr */
       k = 14;
     } else {
       goto L89;
@@ -1929,40 +1940,42 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
 
  L89:
   if (Top < Rhs) {
-	  Scierror(22,_("%s: Recursion problems. Sorry ...\n"),"scifunction");
-    goto L9999;
+    Scierror(22,_("%s: Recursion problems. Sorry ...\n"),"scifunction");
+    goto L97;
   }
   if (Top - Rhs + Lhs + 1 >= Bot) {
     Scierror(18,_("%s: Too many names.\n"),"scifunction");
-    goto L9999;
+    goto L97;
   }
+  /*     ireftop used to reset top if an error occurs during 
+	 the function evaluation*/
+  ireftop=Top-Max(0,Rhs);
+
   goto L91;
  L90:
-  if (Err > 0) {
-    goto L9999;
-  }
-  if (Top - Lhs + 1 > 0) {
-    C2F(iset)(&Lhs, &cx0, &C2F(vstk).infstk[Top - Lhs], &cx1);
-  }
+  if (Err > 0) goto L97;
+  /**/
  L91:
   k = C2F(com).fun;
   C2F(com).fun = 0;
-  if (k == krec) {
+  if (k == C2F(recu).krec) {
     Scierror(22,_("%s: Recursion problems. Sorry ...\n"),"scifunction");
-    goto L9999;
+    goto L97;
   }
-  if (k == 0) {
-    goto L60;
-  }
-  if (k == 2) {
-    il = iadr( *Lstk(Top + 1 - Rhs));
-  }
+  C2F(recu).krec = -1;
+  if (k == 0) goto L60;
  L95:
-  if (! C2F(allowptr)(&k)) {
-    C2F(ref2val)();
-  }
+  if (! C2F(allowptr)(&k)) C2F(ref2val)();
+  C2F(recu).krec = k;
   C2F(callinterf)(&k);
+
+  C2F(recu).krec = -1;
   if (C2F(com).fun >= 0) {
+    if (Top - Lhs + 1 > 0) {
+      C2F(iset)(&Lhs, &cx0, &C2F(vstk).infstk[Top - Lhs], &cx1);
+    }
+    if(C2F(recu).paus > 0) goto L91;
+    if (C2F(errgst).err1 > 0) Top=ireftop;
     goto L90;
   }
   /*    called interface ask for a scilab function to perform the function (fun=-1)
@@ -1971,18 +1984,16 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
   C2F(ref2val)();
   C2F(com).fun = 0;
   C2F(funs)(&C2F(recu).ids[(C2F(recu).pt + 1)* nsiz - nsiz]);
-  if (Err > 0) {
-    goto L9999;
-  }
+  if (Err > 0) goto L97;
+
   if (C2F(com).fun > 0) {
+    if (C2F(isbyref)(&C2F(com).fun)==0) C2F(ref2val)();
     goto L91;
   }
   if (Fin == 0) {
-    integer cx4 = 4;
+    integer cx4 = 246;
     Error(cx4);
-    if (Err > 0) {
-      goto L9999;
-    }
+    if (Err > 0) goto L97;
     goto L90;
   }
   ++C2F(recu).pt;
@@ -1995,7 +2006,15 @@ int C2F(scifunction)(integer *number,integer *ptr,integer *mlhs,integer *mrhs)
  L96:
   --C2F(recu).pt;
   goto L90;
- L200:
+
+ L97: /* error handling */
+  if((C2F(recu).niv > 0) && (C2F(recu).paus > 0)) {
+    C2F(com).fun=0;
+    goto L60;
+  }
+  goto L9999;
+  /* ************************** end of copy*/
+  L200:
   Lhs = C2F(recu).ids[C2F(recu).pt * nsiz -nsiz ];
   Rhs = C2F(recu).ids[C2F(recu).pt * nsiz -(nsiz-1)];
   --C2F(recu).pt;
@@ -2102,8 +2121,9 @@ integer C2F(getopcode)(char *string,unsigned long string_len)
 
 int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,integer *mrhs)
 {
-  integer krec, srhs, slhs;
+  integer srhs, slhs;
   integer ix, k, intop, il, ir, lw, pt0;
+  integer imode,ireftop;
   intop = Top;
 
   if ( intersci_push() == 0 )
@@ -2117,84 +2137,83 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
   srhs = Rhs;
   Lhs = *mlhs;
   Rhs = *mrhs;
-  krec = -1;
+  C2F(recu).krec = -1;
   pt0 = C2F(recu).pt;
   goto L90;
-  /* ***************************** */
-  /*<  60   call  parse >*/
+  /* ***************************** copied from callinter.h  */
+
  L60:
   C2F(parse)();
   if (C2F(com).fun == 99) {
+    if( Err>0 ||C2F(errgst).err1>0) {
+      imode=abs(C2F(errgst).errct)/100000 % 8;
+      if (imode !=3) goto L97;
+    }
     C2F(com).fun = 0;
     goto L200;
   }
-  if (Err > 0) {
-    goto L9999;
-  }
+  if (Err > 0) goto L97;
+
   if (C2F(recu).rstk[C2F(recu).pt - 1] / 100 == 9) {
     ir = C2F(recu).rstk[C2F(recu).pt - 1] - 900;
     if (ir == 1) {
-      /*     .     back to matsys */
+      /* back to matsys */
       k = 13;
     } else if (ir >= 2 && ir <= 9) {
-      /*     .     back to matio */
+      /* back to matio */
       k = 5;
     } else if (ir == 10) {
-      /*     .     end of overloaded function */
+      /* end of overloaded function */
       goto L96;
     } else if (ir > 40) {
-      /*     .     back to matus2 */
+      /* back to matus2 */
       k = 24;
     } else if (ir > 20) {
-      /*     .     back to matusr */
+      /* back to matusr */
       k = 14;
     } else {
       goto L89;
     }
     goto L95;
   }
+
  L89:
   if (Top < Rhs) {
     Scierror(22,_("%s: Recursion problems. Sorry ...\n"),_("built in"));
-    goto L9999;
+    goto L97;
   }
   if (Top - Rhs + Lhs + 1 >= Bot) {
     Scierror(18,_("%s: Too many names.\n"),"");
-    goto L9999;
+    goto L97;
   }
+  /*     ireftop used to reset top if an error occurs during 
+	 the function evaluation*/
+  ireftop=Top-Max(0,Rhs);
+
   goto L91;
  L90:
-  if (Err > 0) {
-    goto L9999;
-  }
-  if (Top - Lhs + 1 > 0) {
-    C2F(iset)(&Rhs, &cx0, &C2F(vstk).infstk[Top - Lhs], &cx1);
-  }
+  if (Err > 0)  goto L97;
+  /**/
  L91:
   k = C2F(com).fun;
   C2F(com).fun = 0;
-  if (k == krec) {
+  if (k == C2F(recu).krec) {
     Scierror(22,_("%s: Recursion problems. Sorry ...\n"),_("built in"));
     goto L9999;
   }
-  if (k == 0) {
-    if (C2F(recu).pt > pt0) {
-      goto L60;
-    }
-    goto L200;
-  }
-  if (k == 2) {
-    il = iadr(*Lstk(Top + 1 - Rhs));
-  }
-  if (! C2F(allowptr)(&k)) {
-    C2F(ref2val)();
-  }
+  C2F(recu).krec = -1;
+  if (k == 0)  goto L60;
  L95:
+  if (! C2F(allowptr)(&k))  C2F(ref2val)();
+  C2F(recu).krec = k;
   C2F(callinterf)(&k);
-  if (C2F(recu).icall != 0) {
-    goto L60;
-  }
+  C2F(recu).krec = -1;
   if (C2F(com).fun >= 0) {
+    if (Top - Lhs + 1 > 0) {
+      C2F(iset)(&Lhs, &cx0, &C2F(vstk).infstk[Top - Lhs], &cx1);
+    }
+    if(C2F(recu).paus > 0) goto L91;
+    if (C2F(errgst).err1 > 0) Top=ireftop;
     goto L90;
   }
   /*    called interface ask for a sci function to perform the function (fun=-1)*/
@@ -2202,18 +2221,16 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
   C2F(ref2val)();
   C2F(com).fun = 0;
   C2F(funs)(&C2F(recu).ids[(C2F(recu).pt + 1)* nsiz - nsiz]);
-  if (Err > 0) {
-    goto L9999;
-  }
+  if (Err > 0)  goto L97;
   if (C2F(com).fun > 0) {
+    if (C2F(isbyref)(&C2F(com).fun)==0) C2F(ref2val)();
     goto L91;
   }
   if (Fin == 0) {
-    integer cx4 = 4;
+    integer cx4 = 246;
     Error(cx4);
-    if (Err > 0) {
-      goto L9999;
-    }
+    if (Err > 0) goto L97;
+    goto L90;
   }
   ++C2F(recu).pt;
   Fin = *Lstk(C2F(com).fin);
@@ -2225,7 +2242,13 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
  L96:
   --C2F(recu).pt;
   goto L90;
-  /* ************************** */
+
+ L97: /* error handling */
+  if((C2F(recu).niv > 0) && (C2F(recu).paus > 0)) {
+    C2F(com).fun=0;
+    goto L60;
+  }
+  /* ************************** end of copy */
  L200:
   Lhs = slhs;
   Rhs = srhs;
