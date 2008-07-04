@@ -127,24 +127,25 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_helpbrowser.c sci_gateway/c/sci_uigetfont.c \
 	sci_gateway/c/sci_uigetcolor.c \
 	sci_gateway/c/sci_getcallbackobject.c \
-	sci_gateway/c/sci_printfigure.c src/cpp/InitUIMenu.cpp \
-	src/jni/CallScilabBridge.cpp src/jni/Jxclick.cpp \
-	src/cpp/DestroyUimenu.cpp src/cpp/DestroyUicontrol.cpp \
-	src/cpp/DestroyJavaUicontrol.cpp src/cpp/DestroyWaitBar.cpp \
-	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
-	src/cpp/CallJxgetmouse.cpp src/cpp/CallColorChooser.cpp \
-	src/cpp/CallFileChooser.cpp src/cpp/CallFontChooser.cpp \
-	src/cpp/CallFigure.cpp src/cpp/CallMessageBox.cpp \
-	src/cpp/CallMainWindow.cpp src/cpp/CallWaitBar.cpp \
-	src/cpp/CallHelpBrowser.cpp src/cpp/PrinterManagement.cpp \
-	src/cpp/PushButton.cpp src/cpp/EditBox.cpp src/cpp/Label.cpp \
-	src/cpp/CheckBox.cpp src/cpp/RadioButton.cpp \
-	src/cpp/Slider.cpp src/cpp/PopupMenu.cpp \
-	src/cpp/ContextMenu.cpp src/cpp/ListBox.cpp src/cpp/Frame.cpp \
-	src/cpp/Toolbar.cpp src/cpp/Widget.cpp \
-	src/cpp/SetUimenuLabel.cpp src/cpp/GetUimenuLabel.cpp \
-	src/cpp/GetUicontrolStyle.cpp src/cpp/SetUicontrolString.cpp \
-	src/cpp/GetUicontrolString.cpp src/cpp/SetUicontrolParent.cpp \
+	sci_gateway/c/sci_printfigure.c sci_gateway/c/sci_exportUI.c \
+	src/cpp/InitUIMenu.cpp src/jni/CallScilabBridge.cpp \
+	src/jni/Jxclick.cpp src/cpp/DestroyUimenu.cpp \
+	src/cpp/DestroyUicontrol.cpp src/cpp/DestroyJavaUicontrol.cpp \
+	src/cpp/DestroyWaitBar.cpp src/cpp/CallJxclick.cpp \
+	src/jni/Jxgetmouse.cpp src/cpp/CallJxgetmouse.cpp \
+	src/cpp/CallColorChooser.cpp src/cpp/CallFileChooser.cpp \
+	src/cpp/CallFontChooser.cpp src/cpp/CallFigure.cpp \
+	src/cpp/CallMessageBox.cpp src/cpp/CallMainWindow.cpp \
+	src/cpp/CallWaitBar.cpp src/cpp/CallHelpBrowser.cpp \
+	src/cpp/PrinterManagement.cpp src/cpp/PushButton.cpp \
+	src/cpp/EditBox.cpp src/cpp/Label.cpp src/cpp/CheckBox.cpp \
+	src/cpp/RadioButton.cpp src/cpp/Slider.cpp \
+	src/cpp/PopupMenu.cpp src/cpp/ContextMenu.cpp \
+	src/cpp/ListBox.cpp src/cpp/Frame.cpp src/cpp/Toolbar.cpp \
+	src/cpp/Widget.cpp src/cpp/SetUimenuLabel.cpp \
+	src/cpp/GetUimenuLabel.cpp src/cpp/GetUicontrolStyle.cpp \
+	src/cpp/SetUicontrolString.cpp src/cpp/GetUicontrolString.cpp \
+	src/cpp/SetUicontrolParent.cpp \
 	src/cpp/SetUicontrolBackgroundColor.cpp \
 	src/cpp/GetUicontrolBackgroundColor.cpp \
 	src/cpp/SetUiobjectForegroundColor.cpp \
@@ -180,7 +181,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/GetUicontrolSliderStep.cpp \
 	src/cpp/SetUiobjectVisible.cpp src/cpp/GetUiobjectVisible.cpp \
 	src/cpp/UnitsConversion.cpp src/cpp/GetScreenProperty.cpp \
-	src/cpp/CallClipboard.cpp
+	src/cpp/CallClipboard.cpp src/cpp/exportUserInterface.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-setlookandfeel.lo \
@@ -226,7 +227,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-sci_uigetfont.lo \
 @GUI_TRUE@	libscigui_la-sci_uigetcolor.lo \
 @GUI_TRUE@	libscigui_la-sci_getcallbackobject.lo \
-@GUI_TRUE@	libscigui_la-sci_printfigure.lo
+@GUI_TRUE@	libscigui_la-sci_printfigure.lo \
+@GUI_TRUE@	libscigui_la-sci_exportUI.lo
 @GUI_TRUE@am__objects_3 = libscigui_la-InitUIMenu.lo \
 @GUI_TRUE@	libscigui_la-CallScilabBridge.lo \
 @GUI_TRUE@	libscigui_la-Jxclick.lo \
@@ -303,7 +305,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-GetUiobjectVisible.lo \
 @GUI_TRUE@	libscigui_la-UnitsConversion.lo \
 @GUI_TRUE@	libscigui_la-GetScreenProperty.lo \
-@GUI_TRUE@	libscigui_la-CallClipboard.lo
+@GUI_TRUE@	libscigui_la-CallClipboard.lo \
+@GUI_TRUE@	libscigui_la-exportUserInterface.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -408,6 +411,7 @@ JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
+LIBRT = @LIBRT@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
@@ -692,7 +696,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/GetUiobjectVisible.cpp \
 @GUI_TRUE@src/cpp/UnitsConversion.cpp \
 @GUI_TRUE@src/cpp/GetScreenProperty.cpp \
-@GUI_TRUE@src/cpp/CallClipboard.cpp
+@GUI_TRUE@src/cpp/CallClipboard.cpp \
+@GUI_TRUE@src/cpp/exportUserInterface.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/CallScilabBridge.giws.xml \
@@ -731,7 +736,8 @@ JARMASK = *.jar
 @GUI_TRUE@sci_gateway/c/sci_uigetfont.c \
 @GUI_TRUE@sci_gateway/c/sci_uigetcolor.c \
 @GUI_TRUE@sci_gateway/c/sci_getcallbackobject.c \
-@GUI_TRUE@sci_gateway/c/sci_printfigure.c
+@GUI_TRUE@sci_gateway/c/sci_printfigure.c \
+@GUI_TRUE@sci_gateway/c/sci_exportUI.c
 
 @GUI_FALSE@libscigui_la_CFLAGS = -Iincludes/ \
 @GUI_FALSE@			-I$(top_srcdir)/modules/output_stream/includes
@@ -884,7 +890,9 @@ includes/DestroyUicontrol.h \
 includes/DestroyUimenu.h \
 includes/CallClipboard.h \
 includes/PrinterManagement.h \
-includes/Widget.h
+includes/Widget.h \
+includes/sci_exportUI.h \
+includes/exportUserInterface.hxx
 
 
 #### gui : demos files ####
@@ -1075,6 +1083,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Widget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-buildMainWindowTitle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-exportUserInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getMainWindowTitle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getinstalledlookandfeels.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getlookandfeel.Plo@am__quote@
@@ -1083,6 +1092,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-nogui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_delmenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_exportUI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getcallbackobject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getlookandfeel.Plo@am__quote@
@@ -1462,6 +1472,13 @@ libscigui_la-sci_printfigure.lo: sci_gateway/c/sci_printfigure.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_printfigure.c' object='libscigui_la-sci_printfigure.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_printfigure.lo `test -f 'sci_gateway/c/sci_printfigure.c' || echo '$(srcdir)/'`sci_gateway/c/sci_printfigure.c
+
+libscigui_la-sci_exportUI.lo: sci_gateway/c/sci_exportUI.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_exportUI.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_exportUI.Tpo -c -o libscigui_la-sci_exportUI.lo `test -f 'sci_gateway/c/sci_exportUI.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exportUI.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_exportUI.Tpo $(DEPDIR)/libscigui_la-sci_exportUI.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_exportUI.c' object='libscigui_la-sci_exportUI.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_exportUI.lo `test -f 'sci_gateway/c/sci_exportUI.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exportUI.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -2057,6 +2074,13 @@ libscigui_la-CallClipboard.lo: src/cpp/CallClipboard.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallClipboard.cpp' object='libscigui_la-CallClipboard.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallClipboard.lo `test -f 'src/cpp/CallClipboard.cpp' || echo '$(srcdir)/'`src/cpp/CallClipboard.cpp
+
+libscigui_la-exportUserInterface.lo: src/cpp/exportUserInterface.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-exportUserInterface.lo -MD -MP -MF $(DEPDIR)/libscigui_la-exportUserInterface.Tpo -c -o libscigui_la-exportUserInterface.lo `test -f 'src/cpp/exportUserInterface.cpp' || echo '$(srcdir)/'`src/cpp/exportUserInterface.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-exportUserInterface.Tpo $(DEPDIR)/libscigui_la-exportUserInterface.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/exportUserInterface.cpp' object='libscigui_la-exportUserInterface.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-exportUserInterface.lo `test -f 'src/cpp/exportUserInterface.cpp' || echo '$(srcdir)/'`src/cpp/exportUserInterface.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
