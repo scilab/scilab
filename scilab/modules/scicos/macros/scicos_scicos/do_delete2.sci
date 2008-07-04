@@ -27,7 +27,7 @@ function [scs_m,DEL] = do_delete2(scs_m,K,gr)
 //** 11 Jan 2007 : 'Block' / 'Text' bug validation
 //** BEWARE: functions 'do_region2block' and 'do_select2block' call this function 
 //** that contains some completely un useful drawobj() operations inside 
-//** For the moment the drawobj() are not executed because this function ia called
+//** For the moment the drawobj() are not executed because this function is called
 //** with the options %f that disable the graphics update.
 //** In all the cases the the situation is restored by the final "Replot" operation.
 //

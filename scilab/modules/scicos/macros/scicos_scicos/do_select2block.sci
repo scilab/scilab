@@ -25,7 +25,7 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
 //** Alan, 15/10/7 : patch for rotated blocks
 //**  
 
-  scs_m_save = scs_m
+  scs_m_save = scs_m ;
   nc_save    = needcompile ; 
 
   keep = [] ; del = [] ;
@@ -65,7 +65,9 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
   
   
   prt = splitted_links(scs_m,keep,del) ; //** OK 
-  [reg,DEL]=do_delete2(scs_m,del,%f)   ; //** OK 
+  
+  [reg,DEL] = do_delete2(scs_m,del,%f)   ; //** OK 
+  
   rect = dig_bound(reg) ; 
   nin=0
   nout=0
@@ -207,10 +209,17 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
     reg.objs(nreg+2)=lk
     reg.objs(k1)=o1
   end
-  reg=do_purge(reg)
+  reg = do_purge(reg)
   
-  if lstsize(reg.objs)==0 then return, end
-  //superblock should not inherit the context nor the name
+  if lstsize(reg.objs)==0 then
+     return
+  end
+
+  
+  //** From this point you are in drawlater() mode
+  drawlater(); 
+
+  // superblock should not inherit the context nor the name
   reg.props.context=' ' 
   reg.props.title(1)='SuperBlock'
 
@@ -223,14 +232,15 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
   sup.model.rpar      = reg
   sup.model.blocktype = 'h'
   sup.model.dep_ut    = [%f %f]
+  
   // open the superblock in editor
   [ok,sup] = adjust_s_ports(sup)
 
   [scs_m,DEL] = do_delete2(scs_m,keep,%f) //** Quick speed improvement using %f (was %t)
   
-  drawobj(sup)
+  drawobj(sup); //** draw the super block icon 
   
-  scs_m.objs($+1)=sup
+  scs_m.objs($+1) = sup; 
   // connect it
   nn=lstsize(scs_m.objs)  //superblock number
   nnk=nn
@@ -379,15 +389,18 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
       end
     end
 
-    lk=scicos_link(xx=xl,yy=yl,ct=prt(k,4:5),from=from,to=to)
-    drawobj(lk)
+    lk = scicos_link(xx=xl,yy=yl,ct=prt(k,4:5),from=from,to=to)
+    
+    drawobj(lk); //** draw the link 
 
     scs_m.objs($+1)=lk
     scs_m.objs(k1)=o1
     nnk=nnk+1
   end
   
-  [scs_m_save,nc_save,enable_undo,edited,needcompile,..
-   needreplay]=resume(scs_m_save,nc_save,%t,%t,4,needreplay)
+  drawnow(); //** at the end of the operation the diagram is updated 
+
+  [scs_m_save,nc_save,enable_undo,edited,needcompile, needreplay] = resume(scs_m_save,nc_save,%t,%t,4,needreplay);
 
 endfunction
+

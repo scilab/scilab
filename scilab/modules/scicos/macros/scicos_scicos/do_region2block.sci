@@ -30,7 +30,7 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
 
   win = %win;
   xc = %pt(1); yc = %pt(2);
-  %pt=[] ;
+  %pt = [] ;
   
   scs_m_save = scs_m
   nc_save    = needcompile;
@@ -67,7 +67,8 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
   
   // open the superblock in editor
   [ok,sup] = adjust_s_ports(sup) //** looks OK because works on specific 'Block'
-  // detruire la region
+  
+  //** prepare the object that we need to destroy 
   del=[]
   
   for k=1:lstsize(scs_m.objs)
@@ -93,7 +94,9 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
   
   needreplay = replayifnecessary() ;
 
-  drawlater();
+  //** from here you are in drawlater mode () ; 
+  drawlater(); 
+
   [scs_m,DEL] = do_delete2(scs_m,del,%t) ; //** VERY dangerous here !
 
   // add super block
@@ -267,7 +270,8 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
     nnk=nnk+1
   end
   
-  [scs_m_save,nc_save,enable_undo,edited,needcompile,..
-   needreplay] = resume(scs_m_save,nc_save,%t,%t,4,needreplay)
+  drawnow(); //** at the end of the operation the diagram is updated 
+
+  [scs_m_save,nc_save,enable_undo,edited,needcompile,needreplay] = resume(scs_m_save,nc_save,%t,%t,4,needreplay)
 
 endfunction
