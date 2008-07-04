@@ -33,6 +33,6 @@ toolbar(curwin, "off"); //** by Vincent C. :)
 //** Add the Scicos specific menu 
 menuss    = menus        ;
 menuss(1) = menus(1)(2:$);
-menubar(curwin,menuss)   ; //** this function add the Scicos menus
+scicos_menubar(curwin,menuss)   ; //** this function add physically the Scicos menus
 
 endfunction
