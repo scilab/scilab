@@ -23,6 +23,11 @@ if MSDOS then
 	if (findmsvccompiler()<>'unknown') then
     configure_msvc();
     clear configure_msvc 
+    if (findmsifortcompiler()<>'unknown') then
+      configure_msifort();
+      clear configure_msifort
+    end
+    clear findmsifortcompiler
   else
     if ( findlcccompiler() ) then
       configure_lcc();

@@ -420,6 +420,7 @@ Dynamic/incremental link:
 =========================
  - Module renamed to dynamic link
  - Visual Studio 2008 support
+ - Intel Fortran 10 support on Windows
  - Under Linux/Unix, now based on basic autotools for the detection of compiler
 	and compilation.
  - New functions:

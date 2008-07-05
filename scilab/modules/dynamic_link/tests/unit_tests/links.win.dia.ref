@@ -14,8 +14,8 @@ ilib_for_link(routines,'externals.o',[],"f");
    Generate a loader file
    Generate a Makefile
    Running the Makefile
-   compilation of externals
-   building shared library (be patient)
+   Compilation of externals
+   Building shared library (be patient)
 // disable message
 warning_mode = warning('query');
 warning('off');

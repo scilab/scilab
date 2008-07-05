@@ -28,8 +28,8 @@ ilib_for_link('ext1c','fun1.o',[],"c")
    Generate a loader file
    Generate a Makefile
    Running the Makefile
-   compilation of fun1
-   building shared library (be patient)
+   Compilation of fun1
+   Building shared library (be patient)
  ans  =
  
  libext1c.dll   

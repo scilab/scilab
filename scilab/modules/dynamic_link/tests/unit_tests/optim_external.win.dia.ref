@@ -37,8 +37,8 @@ l=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
    Generate a loader file
    Generate a Makefile
    Running the Makefile
-   compilation of rosenc
-   building shared library (be patient)
+   Compilation of rosenc
+   Building shared library (be patient)
 // incremental linking
 link(l,'rosenc','c');
 Shared archive loaded.
@@ -83,8 +83,8 @@ l=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
    Generate a loader file
    Generate a Makefile
    Running the Makefile
-   compilation of rosenf
-   building shared library (be patient)
+   Compilation of rosenf
+   Building shared library (be patient)
 // incremental linking
 link(l,'rosenf','f');
 Shared archive loaded.

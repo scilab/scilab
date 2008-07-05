@@ -19,8 +19,8 @@ lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
    Generate a loader file
    Generate a Makefile
    Running the Makefile
-   compilation of mytest
-   building shared library (be patient)
+   Compilation of mytest
+   Building shared library (be patient)
 link(lp,'mytest','c');
 Shared archive loaded.
 Link done.

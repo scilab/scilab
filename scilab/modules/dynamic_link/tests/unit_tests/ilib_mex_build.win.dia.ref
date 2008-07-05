@@ -21,7 +21,7 @@ else
    Generate a loader file
    Generate a Makefile: Makelib
    Running the makefile
-   building shared library (be patient)
+   Building shared library (be patient)
 end
 Shared archive loaded.
 Link done.

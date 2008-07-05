@@ -35,8 +35,8 @@ ilib_for_link('fooc','fooc.o',[],"c");
    Generate a loader file
    Generate a Makefile
    Running the Makefile
-   compilation of fooc
-   building shared library (be patient)
+   Compilation of fooc
+   Building shared library (be patient)
 // display the loader.sce file which calls link
 mprintf('%s\n',mgetl('loader.sce'))
 // ------------------------------------------------------
