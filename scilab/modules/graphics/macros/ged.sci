@@ -7,7 +7,9 @@ function ged(k,win)
   end
 
   // Check number of arguments
-  if argn(2) <> 2 then
+  if argn(2) ==1 then
+    win=get(gcf(),'figure_id')
+  elseif argn(2)<>2 then
     error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "ged", 2));
   end
   
