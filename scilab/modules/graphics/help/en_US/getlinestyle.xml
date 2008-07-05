@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -10,24 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getlinestyle">
+<refentry version="5.0-subset Scilab" xml:id="getlinestyle" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>getlinestyle</refname>
-    <refpurpose>dialog to select
-  linestyle</refpurpose>
+
+    <refpurpose>dialog to select linestyle. <emphasis role="bold">Obsolete
+    function.</emphasis></refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>k=getlinestyle()</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>k</term>
+
         <listitem>
           <para>integer, selected linestyle or [] if the "Cancel" button has
           been clicked.</para>
@@ -35,27 +49,43 @@
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>getlinestyle</literal> opens a graphic window to select a line
-    style.</para>
+
+    <para>This function designed to work with the <link
+    linkend="xset">xset</link> function <emphasis role="bold">is also
+    obsolete</emphasis>. Use the property editor <link
+    linkend="ged">ged</link> instead.</para>
+
+    <para><literal>getlinestyle</literal> opens a graphic window to select a
+    line style.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
 x=0:0.1:10;
 plot2d(x,sin(x))
 e=gce(); // store the Compound containing the plot
 e.children(1).line_style = getlinestyle();
 
-]]></programlisting>
+</programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="getmark">getmark</link>
-      </member>
+      <member><link linkend="ged">ged</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link
+      linkend="polyline_properties">segs_properties</link></member>
+
+      <member><link linkend="segs_properties">segs_properties</link></member>
     </simplelist>
   </refsection>
 </refentry>
