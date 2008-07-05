@@ -38,7 +38,7 @@
     ensemble d'entités filles.</para>
     <para>Le principal intérêt du nouveau mode graphique réside dans sa capacité
     à   changer à   volonté les propriétés des objets graphiques a
-    priori et surtout a posteriori. Ce nouveua mode graphique est fourni avec
+    priori et surtout a posteriori. Ce nouveau mode graphique est fourni avec
     une suite de commandes graphiques de haut niveau (voir <link linkend="set">set</link>,
     <link linkend="get">get</link>) utliisées pour positionner les proriéts des objets
     telles que les données, les coordonnées, échelles, couleur etc... sans
