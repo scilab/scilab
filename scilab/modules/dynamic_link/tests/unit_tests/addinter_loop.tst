@@ -11,14 +11,16 @@
 
 //================================================
 // test addinter
-// Create 78 gateways with 2 functions by gateways
+// Create 77 gateways with 2 functions by gateways
 // loop_max depends of some system parameters :
 // * memory available
 // * O.S : example on Windows , we cannot open more
 // than 80 dlls simultanously with LoadLibrary
-// * numbers of files already openend
+// numbers of files already openend
+// scilab minimun 3 LoadLibrary (libscilab.dll,
+// jvm.dll,fftw.dll)
 //================================================
-loop_max = 78; // may be more on linux
+loop_max = 77; // may be more on linux
 //================================================
 ulink();
 curPath = getcwd();
