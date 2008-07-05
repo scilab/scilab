@@ -17,7 +17,7 @@
   <refnamediv>
     <refname>xset</refname>
     <refpurpose>set values of the graphics
-  context</refpurpose>
+  context. This function is obsolete.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -43,8 +43,12 @@ xset()</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Warning this function is obsolsolete. Use the Scilab graphic objetcs representation
-    instead</para>
+    <para>Warning this function is obsolete. Use the Scilab graphic objetcs representation
+    instead (see the
+    <link linkend="set">set</link> and <link linkend="get">get</link>
+    functions as well as the <link
+    linkend="graphics_entities">graphics_entities</link> help
+    page).</para>
     <para><literal>xset</literal> is used to set default values of the current window
     graphic context.</para>
     <para>When called no argument, a choice menu is created showing the current
@@ -288,18 +292,12 @@ xset()</synopsis>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member>
-        <link linkend="colormap">colormap</link>
-      </member>
-      <member>
-        <link linkend="xget">xget</link>
-      </member>
-      <member>
-        <link linkend="getcolor">getcolor</link>
-      </member>
-      <member>
-        <link linkend="getsymbol">getsymbol</link>
-      </member>
+      <member> <link linkend="xget">xget</link> </member>
+      <member> <link linkend="getcolor">getcolor</link></member>
+      <member> <link linkend="getsymbol">getsymbol</link></member>
+      <member><link linkend="ged">ged</link></member>
+      <member><link linkend="set">set</link></member>
+      <member><link linkend="graphics_entities">graphics_entities</link></member>
     </simplelist>
   </refsection>
   <refsection>
