@@ -13,10 +13,10 @@ function tklib=gettklib()
 	if MSDOS then 
 		tklib='tk'+string(tcltkver(1))+string(tcltkver(2))+getdynlibext();
 	else
-		// In the binary version libtk8.4.so has been copied in
+		// In the binary version libtk8.X.so has been copied in
 		// the SCI/bin directory and scilab script add SCI/bin
 		// to the LD_LIBRARY_PATH (or SHLIB_PATH).
-		// So, If libtk8.4.so (or .sl) exists in SCI/bin ... it's ok
+		// So, If libtk8.X.so (or .sl) exists in SCI/bin ... it's ok
 		libname='libtk'+string(tcltkver(1))+'.'+string(tcltkver(2));
 		if fileinfo('SCI/bin/'+libname+getdynlibext()) <> [] then
 			tklib=libname+getdynlibext();
@@ -38,7 +38,7 @@ function tklib=gettklib()
 			if (ierr== 0) then
 				tklib=libname+getdynlibext()+'.0';
 			else
-				mprintf(gettext('Warning: Error loading ')+libname+getdynlibext()+' :""'+lasterror()+'""')
+				warning(msprintf(gettext("Error %s while loading library %s"),lasterror(),libname+getdynlibext()));
 			end
 		end
 		clear libname;
