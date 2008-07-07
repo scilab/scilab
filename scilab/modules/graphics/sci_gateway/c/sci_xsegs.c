@@ -68,7 +68,7 @@ int sci_xsegs(char *fname,unsigned long fname_len)
   }
   else
   { /* Rhs < 3 => no color specified, use current color (taken from axes parent) */
-    int col = sciGetForeground(psubwin);
+    int col = sciGetForegroundToDisplay(psubwin);
     style = &col;
     flag= 0 ;
   }
