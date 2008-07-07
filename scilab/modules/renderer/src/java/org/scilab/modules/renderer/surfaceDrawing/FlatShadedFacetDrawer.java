@@ -77,17 +77,6 @@ public class FlatShadedFacetDrawer extends FacetDrawerGL {
 		// if the color is 0, it means that the facet should not be drawn
 		if (colors[0] <= 0) { return; }
 		
-		for (int i = 0; i < vertices.length; i++) {
-			if (Double.isInfinite(vertices[i].getX())
-				|| Double.isNaN(vertices[i].getX())
-				|| Double.isInfinite(vertices[i].getY())
-				|| Double.isNaN(vertices[i].getY())
-				|| Double.isInfinite(vertices[i].getZ())
-				|| Double.isNaN(vertices[i].getZ())) {
-				return;
-			}
-		}
-		
 		double[] frontColor = getColorMap().getColor(getColorMap().convertScilabToColorMapIndex(colors[0]));
 		
 		if (vertices.length == TRIANGLE_NB_EDGE) {
