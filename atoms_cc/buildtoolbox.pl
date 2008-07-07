@@ -10,6 +10,11 @@ my ($TOOLBOXFILE, # Toolbox archive to compile
     $TOOLBOXNAME, # Name of the toolbox
     $STAGE); # Current stage
 
+# Save standard I/O for common_exec
+open OLD_STDOUT, ">&STDOUT";
+open OLD_STDERR, ">&STDERR";
+open OLD_STDIN, "<&STDIN";
+
 # common_log(message, type):
 #    Print a log message. Second argument is the type of the
 #    message:
@@ -57,9 +62,12 @@ sub common_die {
 	exit(1);
 }
 
-# common_exec(command, args...):
-#    Execute given command, places its outputs to log files.
-#    Returns a file handle on STDOUT
+# common_exec(command, args..., [opts]):
+#    Execute given command, places its outputs to log files. If last argument
+#    is a reference to a hash, it's considered as options for the function.
+#    Right now, only one option is available, "stderr_to_stdout", which do the
+#    same as 2>&1 in shell.
+#    Returns a file handle on STDOUT.
 #    Die if return code is non-zero or if standard error is non-empty.
 sub common_exec {
 	# pretty_arg:
@@ -74,6 +82,10 @@ sub common_exec {
 		return $_;
 	}
 	
+	my $refopts = pop if ref($_[-1]) eq "HASH";
+	my %opts;
+	   %opts = %$refopts if defined($refopts);
+	
 	my $cmd = join(" ", map { pretty_arg $_ } @_);
 	my $commandnum = 1;
 	
@@ -87,12 +99,15 @@ sub common_exec {
 	
 	common_log("$cmd\nstdout=$stdout\nstderr=$stderr", "\$");
 	
-	# Save I/O, setup I/O for subprocess
-	open OLD_STDOUT, ">&STDOUT";
-	open OLD_STDERR, ">&STDERR";
-	open OLD_STDIN, "<&STDIN";
+	# Setup I/O for subprocess
 	open STDOUT, ">$stdout";
 	open STDERR, ">$stderr";
+	
+	if(defined($opts{"stderr_to_stdout"})) {
+		close STDERR;
+		open STDERR, ">&STDOUT";
+	}
+	
 	close STDIN;
 	
 	# Exec suprocess
@@ -102,10 +117,7 @@ sub common_exec {
 	open STDIN, "<&OLD_STDIN";
 	open STDOUT, ">&OLD_STDOUT";
 	open STDERR, ">&OLD_STDERR";
-	close OLD_STDOUT;
-	close OLD_STDERR;
-	close OLD_STDIN;
-	
+
 	common_log("$?", "?");
 	common_die("\"$cmd\" failed (non-zero exit code)") if($? != 0);
 	common_die("\"$cmd\" failed (non-empty error output)") if(-s $stderr);
@@ -115,15 +127,16 @@ sub common_exec {
 	return $fd;
 }
 
-# scilab_exe:
-#     Get Scilab executable name (scilab on linux, scilex on Windows)
-sub scilab_exe {
-	if($^O =~ /mswin/i) {
-		return "scilex";
-	}
-	else {
-		return "scilab";
-	}
+# common_exec_scilab(script):
+#     Execute scilab script
+sub common_exec_scilab {
+	my $script = shift;
+	$script = "try; $script; catch; write(%io(2), lasterror()); end; quit;";
+	
+	my $scilab = "scilex" if($^O =~ /mswin/i);
+	   $scilab = "scilab" unless(defined($scilab));
+	
+	return common_exec($scilab, "-nwni", "-nb", "-e", $script);
 }
 
 # is_zip:
@@ -444,7 +457,8 @@ sub stage_unpack {
 		common_exec("unzip", "-o", $TOOLBOXFILE);
 	}
 	else {
-		common_exec("tar", "-xvf", $TOOLBOXFILE);
+		common_exec("tar", "-xvf", $TOOLBOXFILE,
+			{'stderr_to_stdout' => 1});
 	}
 	
 	common_leave_stage();
@@ -486,8 +500,6 @@ sub stage_tbdeps {
 	my @depsarray;
 	my (%deps, %desc);
 	
-	my @SCILABX = (scilab_exe, "-nwni", "-nb", "-e");
-	
 	common_enter_stage("tbdeps");
 	
 	# We alreay made the check, reading description should be OK
@@ -511,11 +523,10 @@ sub stage_tbdeps {
 	# Install dependencies
 	# fixme: we always install the last version, but some packages
 	#   needs some versions... at most. Need to deal with that.
-	close(common_exec(@SCILABX, "installToolbox('$_'); quit;"))
-		foreach(keys %deps);
+	close(common_exec_scilab("installToolbox('$_')")) foreach(keys %deps);
 	
 	# Find toolboxes directory
-	$fd = common_exec(@SCILABX, "printf('path: %s\\n', cd(atomsToolboxDirectory())); quit;");
+	$fd = common_exec_scilab("printf('path: %s\\n', cd(atomsToolboxDirectory()))");
 	
 	my $tbpath;
 	while(<$fd>) {
@@ -578,8 +589,7 @@ sub stage_build {
 	
 	# Run build script
 	common_log("Running ccbuilder.sce");
-	my $fd = common_exec(scilab_exe, "-nb", "-nwni", "-e",
-		"chdir('$TOOLBOXNAME'); exec('../ccbuilder.sce');");
+	my $fd = common_exec_scilab("chdir('$TOOLBOXNAME'); exec('../ccbuilder.sce')");
 	
 	# Check result
 	common_log("Checking build result");
@@ -613,7 +623,8 @@ sub stage_pack {
 	$output .= "-bin";
 	
 	common_log("Making binary .tar.gz archive ($output.tar.gz)");
-	common_exec("tar", "-cvf", "$output.tar.gz", map { "$TOOLBOXNAME/$_" } @files);
+	common_exec("tar", "-cvf", "$output.tar.gz", (map { "$TOOLBOXNAME/$_" } @files),
+		{"stderr_to_stdout" => 1});
 	common_log("Making binary .zip archive ($output.zip)");
 	common_exec("zip", "-r", "$output.zip", map { "$TOOLBOXNAME/$_" } @files);
 	
@@ -657,6 +668,9 @@ stage_pack;
 stage_cleanenv;
 
 close LOGFILE;
+close OLD_STDERR;
+close OLD_STDOUT;
+close OLD_STDIN;
 
 # Overwrite some scilab functions to get its return value and extra infos
 __DATA__
@@ -671,5 +685,4 @@ endfunction
 
 exec("builder.sce");
 mprintf("\natoms_cc_builder:done\n");
-quit;
 
