@@ -330,6 +330,15 @@ public class Vector3D {
 	}
 	
 	/**
+	 * @return true is all the coordinates of the vector are finites
+	 */
+	public boolean isFinite() {
+		return !(Double.isInfinite(xCoord) || Double.isNaN(xCoord)
+				 || Double.isInfinite(yCoord) || Double.isNaN(yCoord)
+				 || Double.isInfinite(zCoord) || Double.isNaN(zCoord));
+	}
+	
+	/**
 	 * Test if this vector equals another
 	 * use with caution since it deals with double
 	 * @param v2 other vector to test

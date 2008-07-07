@@ -118,10 +118,12 @@ public class SurfaceFacetDrawerGL extends AutoDrawableObjectGL {
 			
 			// find position and color
 			Vector3D[] curFacetPos = decomposer.next();
-			int[] curColors = decomposer.getCurFacetColors();
 			
-			// draw facet
-			drawer.drawFacet(gl, curFacetPos, curColors);
+			// draw facet, if possible
+			if (curFacetPos != null) {
+				int[] curColors = decomposer.getCurFacetColors();
+				drawer.drawFacet(gl, curFacetPos, curColors);
+			}
 		}
 		
 		drawer.endDrawing(gl);

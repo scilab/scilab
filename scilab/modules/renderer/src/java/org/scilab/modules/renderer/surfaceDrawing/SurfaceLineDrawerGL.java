@@ -82,14 +82,18 @@ public class SurfaceLineDrawerGL extends LineDrawerGL {
 			Vector3D[] curFacetPos = decomposer.next();
 			
 			// draw the lines composing the facet
-			for (int i = 0; i < nbVertices - 1; i++) {
-				gl.glVertex3d(curFacetPos[i].getX(), curFacetPos[i].getY(), curFacetPos[i].getZ());
-				gl.glVertex3d(curFacetPos[i + 1].getX(), curFacetPos[i + 1].getY(), curFacetPos[i + 1].getZ());
-			}
+			if (curFacetPos != null) {
+				for (int i = 0; i < nbVertices - 1; i++) {
+					gl.glVertex3d(curFacetPos[i].getX(), curFacetPos[i].getY(), curFacetPos[i].getZ());
+					gl.glVertex3d(curFacetPos[i + 1].getX(), curFacetPos[i + 1].getY(), curFacetPos[i + 1].getZ());
+				}
 			
-			// last line
-			gl.glVertex3d(curFacetPos[nbVertices - 1].getX(), curFacetPos[nbVertices - 1].getY(), curFacetPos[nbVertices - 1].getZ());
-			gl.glVertex3d(curFacetPos[0].getX(), curFacetPos[0].getY(), curFacetPos[0].getZ());
+				// last line
+				gl.glVertex3d(curFacetPos[nbVertices - 1].getX(),
+							  curFacetPos[nbVertices - 1].getY(),
+							  curFacetPos[nbVertices - 1].getZ());
+				gl.glVertex3d(curFacetPos[0].getX(), curFacetPos[0].getY(), curFacetPos[0].getZ());
+			}
 			
 		}
 		

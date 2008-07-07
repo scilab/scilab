@@ -84,7 +84,12 @@ public class Plot3dDecomposer extends SurfaceDecomposer {
 			curXindex = 0;
 			curYindex++;
 		}
-		return getCurrentFacetPosition();
+		Vector3D[] res = getCurrentFacetPosition();
+		if (isFacetDisplayable(res)) {
+			return res;
+		} else {
+			return null;
+		}
 	}
 	
 	/**
@@ -92,6 +97,8 @@ public class Plot3dDecomposer extends SurfaceDecomposer {
 	 */
 	private Vector3D[] getCurrentFacetPosition() {
 		// number of vertices is 4
+		
+		
 		Vector3D[] res = new Vector3D[getNbVertices()];
 		res[0] = new Vector3D(getXcoord(curXindex), getYcoord(curYindex), getZvalue(curXindex, curYindex));
 		res[1] = new Vector3D(getXcoord(curXindex), getYcoord(curYindex + 1), getZvalue(curXindex, curYindex + 1));

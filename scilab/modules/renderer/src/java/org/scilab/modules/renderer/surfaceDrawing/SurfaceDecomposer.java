@@ -14,6 +14,8 @@
 
 package org.scilab.modules.renderer.surfaceDrawing;
 
+import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+
 /**
  * Class used to get the list of facet to draw for a surface object
  * @author Jean-Baptiste Silvy
@@ -144,6 +146,19 @@ public abstract class SurfaceDecomposer implements FacetDecomposer, ColoredFacet
 		}
 		return minMax;
 		
+	}
+	
+	/**
+	 * @param facet coordinates of the fect vertices
+	 * @return true if the facet is displayable, false otherwise
+	 */
+	protected boolean isFacetDisplayable(Vector3D[] facet) {
+		for (int i = 0; i < facet.length; i++) {
+			if (!facet[i].isFinite()) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	/**

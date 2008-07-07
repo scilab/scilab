@@ -74,7 +74,13 @@ public class Fac3dDecomposer extends SurfaceDecomposer {
 	public Vector3D[] next() {
 		// go to next facet
 		curFacet++;
-		return getCurrentFacetPosition();
+		
+		Vector3D[] res = getCurrentFacetPosition();
+		if (isFacetDisplayable(res)) {
+			return res;
+		} else {
+			return null;
+		}
 	}
 	
 	/**
