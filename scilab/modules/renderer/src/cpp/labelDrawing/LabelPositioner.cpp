@@ -91,8 +91,8 @@ void LabelPositioner::getTextDirections(double widthVect[3], double heightVect[3
                                               &(corners[i][0]), &(corners[i][1]), &(corners[i][2]));
   }
 
-  vectSubstract3D(corners[3], corners[1], widthVect);
-  vectSubstract3D(corners[0], corners[1], heightVect);
+  vectSubstract3D(corners[3], corners[0], widthVect);
+  vectSubstract3D(corners[1], corners[0], heightVect);
 }
 /*------------------------------------------------------------------------------------------*/
 void LabelPositioner::getLabelDisplacement(double ticksDirection[3], double displacement[3])
@@ -130,7 +130,7 @@ void LabelPositioner::getLabelDisplacement(double ticksDirection[3], double disp
     displacement[1] = -textHeight[1] / 2.0;
     displacement[2] = -textHeight[2] / 2.0;*/
     localDisplacement[0] = 0.0;
-    localDisplacement[1] = -0.5;
+    localDisplacement[1] = 0.5;
     localDisplacement[2] = 0.0;
   }
   else if (ticksDirPix[0] < -Abs(ticksDirPix[1]))
@@ -141,17 +141,18 @@ void LabelPositioner::getLabelDisplacement(double ticksDirection[3], double disp
     displacement[2] = -textHeight[2] / 2.0;
     vectSubstract3D(displacement, textWidth, displacement);*/
     localDisplacement[0] = -1.0;
-    localDisplacement[1] = -0.5;
+    localDisplacement[1] = 0.5;
     localDisplacement[2] = 0.0;
   }
   else if (ticksDirPix[1] > Abs(ticksDirPix[0])) {
-    // top
+    // bottom
     /*displacement[0] = -textWidth[0] / 2.0;
     displacement[1] = -textWidth[1] / 2.0;
     displacement[2] = -textWidth[2] / 2.0;*/
     localDisplacement[0] = -0.5;
-    localDisplacement[1] = 0.0;
+    localDisplacement[1] = 1.0;
     localDisplacement[2] = 0.0;
+    
   }
   else
   {
@@ -161,8 +162,9 @@ void LabelPositioner::getLabelDisplacement(double ticksDirection[3], double disp
     displacement[2] = -textWidth[2] / 2.0;
     vectSubstract3D(displacement, textHeight, displacement);*/
     localDisplacement[0] = -0.5;
-    localDisplacement[1] = -1.0;
+    localDisplacement[1] = 0.0;
     localDisplacement[2] = 0.0;
+    
   }
 
   //rotate2D(localDisplacement, origin, -textAngle, localDisplacement);

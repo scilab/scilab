@@ -52,7 +52,7 @@ double YLabelPositioner::getAutoOrientation(void)
   else
   {
     // vertical
-    return M_PI / 2.0;
+    return 3.0 * M_PI / 2.0;
   }
 }
 /*------------------------------------------------------------------------------------------*/
