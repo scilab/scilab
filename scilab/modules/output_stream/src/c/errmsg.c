@@ -1380,7 +1380,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 247:
 		{
-			/* no message  */
+			displayAndStoreError(_("Wrong value for argument %d: the lu handle is no more valid.\n"),Err);
 		}
 		break;
 		case 248:
