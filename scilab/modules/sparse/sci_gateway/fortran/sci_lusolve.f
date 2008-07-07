@@ -9,8 +9,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine intlusolve(id)
       include 'stack.h'
-      double precision abstol,reltol,hand
-      integer id(nsiz),top0
+      double precision abstol,reltol
+      integer id(nsiz),top0,hand
       integer iadr, sadr
       logical fact
 
@@ -105,14 +105,19 @@ c     b is full
          endif
 c        
          do 40 j=0,n2-1
-            call lusolve1(hand,stk(l2+j*m2),stk(lw3+j*m2))
+            call lusolve1(hand,stk(l2+j*m2),stk(lw3+j*m2),ierr)
             if(it2.eq.1) then
-               call lusolve1(hand,stk(l2i+j*m2),stk(lw3i+j*m2))
+               call lusolve1(hand,stk(l2i+j*m2),stk(lw3i+j*m2),ierr)
+            endif
+            if (ierr.ne.0) then
+               err=1
+               call error(247)
+               return
             endif
             if (err .gt. 0) return
  40      continue
 
-         if(.not.fact) call ludel1(hand)
+         if(.not.fact) call ludel1(hand,ierr)
 c     
          top=top-rhs
          lw0=lw

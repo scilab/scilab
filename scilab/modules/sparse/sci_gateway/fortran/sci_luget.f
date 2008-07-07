@@ -8,8 +8,7 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intluget(id)
       include 'stack.h'
-      double precision ptr
-      integer id(nsiz),top0
+      integer id(nsiz),top0,ptr
       integer iadr, sadr
 c
       iadr(l)=l+l-1
@@ -41,7 +40,12 @@ c
       it1=istk(il1+3)
       l1 = sadr(il1+4)
       ptr=stk(l1)
-      call lusiz1(ptr,nl,nu)
+      call lusiz1(ptr,nl,nu,ierr)
+      if (ierr.ne.0) then
+         err=1
+         call error(247)
+         return
+      endif
       ilp=il1
       lp=sadr(ilp+5+m+m)
       lw=lp+m*(it1+1)
@@ -95,8 +99,12 @@ c
       istk(ilq+4)=n
 c     
       call luget1(ptr,istk(ilp+5),stk(lp),istk(ill+5),stk(ll),
-     $     istk(ilu+5),stk(lu),istk(ilq+5),stk(lq))
-      
+     $     istk(ilu+5),stk(lu),istk(ilq+5),stk(lq),ierr)
+      if (ierr.ne.0) then
+         err=1
+         call error(247)
+         return
+      endif
       return
       end
 c			======================================

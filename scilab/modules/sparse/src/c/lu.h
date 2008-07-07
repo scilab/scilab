@@ -21,17 +21,23 @@
 #include "cerro.h"
 #include "machine.h"
 #include "localization.h"
+#include "MALLOC.h"
+
+int addluptr (char *ptr); /* */
+int getluptr (int sel, char **ptr);
+int removeluptr (int sel);
+void resetluptr (void); /* to be used to free the lu pointer table */
 
 void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
-		  long *fmat, double *eps, double *releps, int *nrank, int *ierr);
+		  int *fmatindex, double *eps, double *releps, int *nrank, int *ierr);
 
-void C2F(lusolve1)(long *fmat, double *b, double *x);
+void C2F(lusolve1)(int *fmatindex, double *b, double *x, int *ierr);
 
-void C2F(ludel1)(long *fmat);
+void C2F(ludel1)(int *fmatindex, int *ierr);
 
-void C2F(lusiz1)(long* fmat, int* lsize, int* usize);
+void C2F(lusiz1)(int *fmatindex, int* lsize, int* usize, int *ierr);
 
-void C2F(luget1)(long *fmat, int *indP, double *P,
+void C2F(luget1)(int *fmatindex, int *indP, double *P,
 		 int *indl, double *l, int *indu, double *u,
-		 int *indQ, double *Q);
+		 int *indQ, double *Q, int *ierr);
 #endif /* !__LU_H__ */

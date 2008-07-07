@@ -8,7 +8,7 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intludel(id)
       include 'stack.h'
-      integer id(nsiz),top0
+      integer id(nsiz),top0,hand
       integer iadr, sadr
 
       iadr(l)=l+l-1
@@ -37,8 +37,14 @@ c
          return
       endif
       l1 = sadr(il1+4)
+      hand=stk(l1)
+      call ludel1(hand,ierr)
+      if (ierr.ne.0) then
+         err=1
+         call error(247)
+         return
+      endif
 
-      call ludel1(stk(l1))
       if (err .gt. 0) return
 c     
       top=top-rhs

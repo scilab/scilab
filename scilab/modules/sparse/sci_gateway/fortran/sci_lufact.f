@@ -10,7 +10,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intlufact(id)
       include 'stack.h'
       double precision abstol,reltol
-      integer id(nsiz),top0,tops,rhss
+      integer id(nsiz),top0,tops,rhss,fmatindex
       integer iadr, sadr
 c
       iadr(l)=l+l-1
@@ -82,17 +82,10 @@ c
          return
       endif
 
-      lw5=lw
-      lw=lw+1
-      err=lw-lstk(bot)
-      if (err .gt. 0) then
-         call error(17)
-         return
-      endif
-c     
+     
       mx=max(m,n)
       call lufact1(stk(l),istk(il1+5),istk(il1+5+m),mx,nel,
-     $     stk(lw5),abstol,reltol,nrank,ierr)
+     $     fmatindex,abstol,reltol,nrank,ierr)
       if(ierr.gt.0) then
          buf='not enough memory'
          call error(9999)
@@ -110,7 +103,7 @@ c
       istk(il+2)=n
       istk(il+3)=it
       l=sadr(il+4)
-      stk(l)=stk(lw5)
+      stk(l)=fmatindex
       lstk(top+1)=l+1
 c     
       if(lhs .eq.2) then

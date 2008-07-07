@@ -12,6 +12,7 @@
  * the pointer transmitted to f_ is an istk(il1) it can in fact contain
  * something as long as a double
  * Copyright ENPC (Chancelier)
+ 
  */
 
 
@@ -60,17 +61,22 @@ static void spGetNumRank(char* eMatrix, int *n)
 }
 
 void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
-		  long *fmat, double *eps, double *releps, int *nrank, int *ierr)
+		  int *fmatindex, double *eps, double *releps, int *nrank, int *ierr)
 {
   int error,i,i0,i1,k,j;
+  char *fmat;
   spREAL *pelement;
   *ierr = 0;
-  *fmat = (long)spCreate(*n,0,&error);
+  fmat = spCreate(*n,0,&error);
   if (error != spOKAY) {
     *ierr = 1;
     return;
   }
-
+  *fmatindex=addluptr (fmat);
+  if ( *fmatindex == -1) {
+    *ierr = 1;
+    return;
+  }
 
   i0=0;
   i1=i0;
@@ -83,7 +89,9 @@ void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
       i0=i0+1;
     }
     j=col[k];
-    pelement = spGetElement((char*) *fmat,i,j);
+   
+    pelement = spGetElement(fmat,i,j);
+ 
     if (pelement == 0) {
       *ierr=2;
       return;
@@ -92,10 +100,13 @@ void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
 
   }
   /* Fix the AbsThresold with scilex %eps */
-  spFixThresold((char*) *fmat,*eps,*releps);
+  spFixThresold(fmat,*eps,*releps);
+
   /* spPrint((char *) *fmat,1,1,1); */
-  error = spFactor((char*) *fmat);
-  spGetNumRank((char *) *fmat,nrank);
+  error = spFactor(fmat);
+
+  spGetNumRank(fmat,nrank);
+
   switch (error) {
   case spZERO_DIAG:
     cerro(_("zero_diag: A zero was encountered on the diagonal the matrix "));
@@ -110,6 +121,7 @@ void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
     *ierr=-2; /* matrix is singular at precision level */
     break;
   }
+
 }
 
 /*
@@ -118,9 +130,15 @@ void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
  *   b,v
  *      two arrays of size n the matrix size
  */
-void C2F(lusolve1)(long *fmat, double *b, double *x)
+void C2F(lusolve1)(int *fmatindex, double *b, double *x, int *ierr)
 {
-  spSolve((char*) *fmat,(spREAL*)b,(spREAL*)x);
+  char *fmat;
+  if (getluptr((int)*fmatindex, &fmat)==-1){
+    *ierr=1;
+    return;
+  }
+  *ierr = 0;
+  spSolve(fmat,(spREAL*)b,(spREAL*)x);
 }
 
 /*
@@ -128,9 +146,17 @@ void C2F(lusolve1)(long *fmat, double *b, double *x)
  *   *fmat : a pointer to the sparse matrix factored by lufact
  */
 
-void C2F(ludel1)(long *fmat)
+void C2F(ludel1)(int *fmatindex, int *ierr)
 {
-  spDestroy((char*) *fmat);
+  char *fmat;
+  if (getluptr((int)*fmatindex, &fmat)==-1){
+    *ierr=1;
+    return;
+  }
+  *ierr = 0;
+  removeluptr ((int)*fmatindex);
+  spDestroy(fmat);
+ 
 }
 
 /*
@@ -286,11 +312,17 @@ static void spLuget(char *eMatrix, int *indP, double *P, int* indl,
 
 
 
-void C2F(luget1)(long *fmat, int *indP, double *P,
+void C2F(luget1)(int *fmatindex, int *indP, double *P,
 		 int *indl, double *l, int *indu, double *u,
-		 int *indQ, double *Q)
+		 int *indQ, double *Q, int *ierr)
 {
-  spLuget((char *) *fmat,indP,P,indl,l,indu,u,indQ,Q);
+  char *fmat;
+  if (getluptr((int)*fmatindex, &fmat)==-1){
+    *ierr=1;
+    return;
+  }
+  *ierr = 0;
+  spLuget(fmat,indP,P,indl,l,indu,u,indQ,Q);
 }
 
 
@@ -323,7 +355,87 @@ static void spLusiz(char *eMatrix, int *lsize,int *usize)
     };
 }
 
-void C2F(lusiz1)(long* fmat, int* lsize, int* usize)
+void C2F(lusiz1)(int* fmatindex, int* lsize, int* usize, int *ierr)
 {
-  spLusiz((char *) *fmat,lsize,usize);
+  char *fmat;
+  if (getluptr((int)*fmatindex, &fmat)==-1){
+    *ierr = 1;
+    return;
+  }  
+  *ierr = 0;
+  spLusiz(fmat,lsize,usize);
+}
+
+char **sci_luptr_table = NULL;
+int sci_luptr_table_size = 0;/* allocated size for pointer table*/
+int sci_luptr_index = 0;/* max index used (one based)*/
+
+
+/**addluptr
+ * This function adds a pointer on a sparse lu factorization to Scilab internal table
+ */
+int addluptr (char *ptr)
+{
+  int i,sel;
+  int rsize=10;
+  if (sci_luptr_table_size==0) { /* first call alloacte a small array of pointers*/
+    sci_luptr_table = (char **)MALLOC(rsize*sizeof(char *));
+    if (sci_luptr_table==NULL) return -1;
+    sci_luptr_table_size += 10;
+  }
+  /* look for a free cell in sci_luptr_table*/
+  sel = -1;
+  for (i=0; i<sci_luptr_index; i++) {
+    if ( sci_luptr_table[i]==NULL) {
+      sel = i;
+      break;
+    }
+  }
+  if (sel == -1) {
+    if (sci_luptr_index < sci_luptr_table_size) {
+      sel=sci_luptr_index++;
+    }
+    else {
+      sci_luptr_table=(char **)REALLOC(sci_luptr_table,(sci_luptr_table_size+rsize)*sizeof(char *));
+      if (sci_luptr_table==NULL) return -1;
+      sci_luptr_table_size += 10;
+      sel=sci_luptr_index++;
+    }
+  }
+  sci_luptr_table[sel] = ptr;
+  return sel+1;
+}
+/**getluptr 
+ * this function returns a pointer on a sparse lu factorization 
+ * given its index (one based) in the table
+ */
+int getluptr(int sel, char **ptr)
+{
+  if (sel > sci_luptr_index || sel < 1) return -1;
+  if (sci_luptr_table[sel-1]==NULL) return -1;
+  *ptr=sci_luptr_table[sel-1];
+  return 0;
+}
+
+/**removeluptr 
+ * This function removes a pointer on a sparse lu factorization 
+ * out of  Scilab internal table given its index in the table
+ */
+int removeluptr (int sel)
+{
+  if (sel > sci_luptr_index || sel < 1) return -1;
+  sci_luptr_table[sel-1]=NULL;
+  if (sel == sci_luptr_index) sci_luptr_index--;
+  return 0;
+}
+
+/**resetluptr 
+ * This function reinitialize the Scilab sparse lu pointer table
+ */
+void resetluptr()
+{
+  FREE(sci_luptr_table);
+  **sci_luptr_table = NULL;
+  sci_luptr_table_size = 0;/* allocated size for pointer table*/
+  sci_luptr_index = 0;/* max index used (one based)*/
 }
