@@ -276,19 +276,18 @@ static int sci_strcat_two_rhs(char *fname)
 				}
 				else
 				{
-					int i = 0;
-					for (i = 0; i < Number_Inputs_One; i++)
+					if (Number_Inputs_One == 1)
 					{
-						if (Input_String_One[i])
+						length_output = (int)strlen(Input_String_One[0]);
+					}
+					else
+					{
+						int lengthInput_String_Two = (int)strlen(Input_String_Two[0]);
+						length_output = sumlengthstring(1) + (int)(Number_Inputs_One)*lengthInput_String_Two;
+						/* remove last character , default case not ''*/
+						if (lengthInput_String_Two > 0)
 						{
-							if (i < (Number_Inputs_One - 1)) 
-								{
-									length_output += (int)strlen(Input_String_One[i])+(int)strlen(Input_String_Two[0]);
-								} 
-							else 
-								{
-									length_output += (int)strlen(Input_String_One[i]);
-								}
+							length_output -=  1;
 						}
 					}
 				}
@@ -300,25 +299,24 @@ static int sci_strcat_two_rhs(char *fname)
 				int outIndex = 0 ;
 				char *Output_String = NULL;
 				int i = 0;
+				int Number_Inputs_OneLessOne = Number_Inputs_One - 1;
 
 				m1 = length_output;
 				n1 = 1;
 
 				CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
 				Output_String = cstk(outIndex);
-				for (i = 0; i < Number_Inputs_One; i++)
+
+				/* strcpy + strcat faster than sprintf */
+				strcpy(Output_String,Input_String_One[0]);
+				( 0 < Number_Inputs_OneLessOne )? strcat(Output_String,Input_String_Two[0]):0;
+
+				for (i = 1; i < Number_Inputs_One; i++)
 				{
-					if ( i == 0)
-					{
-						strcpy(Output_String,Input_String_One[i]);
-						if (i < (Number_Inputs_One - 1)) strcat(Output_String,Input_String_Two[0]);
-					}
-					else
-					{
-						strcat(Output_String,Input_String_One[i]);
-						if (i<Number_Inputs_One - 1) strcat(Output_String,Input_String_Two[0]);
-					}
+					strcat(Output_String,Input_String_One[i]);
+					( i < Number_Inputs_OneLessOne )? strcat(Output_String,Input_String_Two[0]):0;
 				}
+
 				LhsVar(1) = Rhs+1;
 				C2F(putlhsvar)();
 				freeArrayOfString(Input_String_One,Row_One*Col_One);
