@@ -428,6 +428,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\partfunction.c"
+				>
+			</File>
+			<File
 				RelativePath=".\pcre_error.c"
 				>
 			</File>
@@ -634,6 +638,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\men_Sutils.h"
+				>
+			</File>
+			<File
+				RelativePath=".\partfunction.h"
 				>
 			</File>
 			<File

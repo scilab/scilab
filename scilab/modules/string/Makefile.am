@@ -9,6 +9,7 @@ src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \
 src/c/strcatfunction.c \
+src/c/partfunction.c \
 src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \
 src/c/cvstr.c \
@@ -23,8 +24,6 @@ src/c/stringsstrrev.c \
 src/c/stringsCompare.c \
 src/c/isalphanum.c \
 src/c/kmp.c
-#src/c/strsplit.c \
-#src/c/CreateEmptystr.c
 
 STRING_FORTRAN_SOURCES =src/fortran/strdsp.f
 
