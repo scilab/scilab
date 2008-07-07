@@ -45,3 +45,6 @@ NEW_TXT_A = strcat(txt);
 NEW_TXT = strcat(NEW_TXT_A,'END OF FILE');
 if ( length(NEW_TXT) <>length(NEW_TXT_A) ) then pause,end
 //===============================
+if strcat(['abc','abd','aa','bxe'],'| , |')<>'abc| , |abd| , |aa| , |bxe' then pause,end
+if length(strcat(['abc','abd','aa','bxe'],'| , |')) <> 26 then pause,end
+//===============================

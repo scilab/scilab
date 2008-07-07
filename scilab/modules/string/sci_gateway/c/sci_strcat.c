@@ -283,12 +283,7 @@ static int sci_strcat_two_rhs(char *fname)
 					else
 					{
 						int lengthInput_String_Two = (int)strlen(Input_String_Two[0]);
-						length_output = sumlengthstring(1) + (int)(Number_Inputs_One)*lengthInput_String_Two;
-						/* remove last character , default case not ''*/
-						if (lengthInput_String_Two > 0)
-						{
-							length_output -=  1;
-						}
+						length_output = sumlengthstring(1) + (int)(Number_Inputs_One)*lengthInput_String_Two - lengthInput_String_Two;
 					}
 				}
 			}
