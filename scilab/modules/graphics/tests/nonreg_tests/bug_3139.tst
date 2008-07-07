@@ -21,20 +21,5 @@ a.log_flags = 'lnn';
 a.grid      = [12,-1];
 
 // check that all the grid line are drawn
-// check that the label is in the window
-rect = stringbox(a.title);
 
-// convert it to pixel coordinates
-for i = 1:4
-  [pixPos(i,1), pixPos(i,2)] = xchange(rect(1,i),rect(2,i), "f2i");
-end
-
-// get canvas size
-fig = gcf();
-axesSize = fig.axes_size;
-
-for i = 1:4
-  if (pixPos(i,1) < 0 | pixPos(i,1) > axesSize(1)) then pause; end
-  if (pixPos(i,2) < 0 | pixPos(i,2) > axesSize(2)) then pause; end
-end
 
