@@ -510,8 +510,8 @@ sub stage_tbdeps {
 	# Make a hash depname => depvers
 	@depsarray = split(/\s*,\s*/, $desc{"Depends"} || "");
 	foreach (@depsarray) {
-		if(/^(\S+?)\s*\([<>]=\s*([^)]+)\)$/) { # toolbox-name (version-comparator version)
-			$deps{$1} = $2;
+		if(/^(\S+?)\s*\(([<>]?=)\s*([^)]+)\)$/) { # toolbox-name (version-comparator version)
+			$deps{$1} = "$2$3";
 		}
 		else {
 			$deps{$_} = "*";
@@ -521,9 +521,7 @@ sub stage_tbdeps {
 	common_log("Dependencies: " . join(",", map { "$_ $deps{$_}" } keys %deps));
 	
 	# Install dependencies
-	# fixme: we always install the last version, but some packages
-	#   needs some versions... at most. Need to deal with that.
-	close(common_exec_scilab("installToolbox('$_')")) foreach(keys %deps);
+	close(common_exec_scilab("installToolbox('$_',1,'$deps{$_}')")) foreach(keys %deps);
 	
 	# Find toolboxes directory
 	$fd = common_exec_scilab("printf('path: %s\\n', cd(atomsToolboxDirectory()))");
@@ -555,10 +553,19 @@ sub stage_tbdeps {
 		my %desc2 = read_description($fd);
 		close $fd;
 		
-		# fixme: we only check wether neededVersion <= installedVersion
-		#   Others tests (=, <=) are still to be implemented
-		if(compare_versions($deps{$dep}, $desc2{"Version"}) == 1) {
-			common_die("We need \"$dep\" >= $deps{$dep}, but version $desc2{Version} installed");
+		$deps{$dep} =~ /^([<>]?=)(.+)$/;
+		
+		# You can see this as "installed_version - required_version"
+		my $cmp = compare_versions($desc2{"Version"}, $2);
+		
+		if($1 eq ">=" && $cmp == -1) { # <=> !($cmp >= 0) <=> !(installed >= required)
+			common_die("We need \"$2\" >= $1, but version $desc2{Version} installed");
+		}
+		elsif($1 eq "=" && $cmp != 0) {
+			common_die("We need \"$2\" == $1, but version $desc2{Version} installed");
+		}
+		elsif($cmp == 1) {  # <=> !($cmp <= 0) <=> !(installed <= required)
+			common_die("We need \"$2\" <= $1, but version $desc2{Version} installed");
 		}
 	}
 	
