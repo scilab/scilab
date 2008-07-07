@@ -36,31 +36,31 @@ void YAxisPositioner::getGridEdges(double startBound1[3], double startBound2[3],
 
   // stating points
   startBound1[0] = xCoordinate;
-  startBound1[1] = m_dXmin;
+  startBound1[1] = m_dYmin;
   startBound1[2] = zCoordinate;
 
   startBound2[0] = xCoordinate;
-  startBound2[1] = m_dXmax;
+  startBound2[1] = m_dYmax;
   startBound2[2] = zCoordinate;
 
   // middle points, invert Y bounds
   xCoordinate = findOtherXBound(xCoordinate);
   middleBound1[0] = xCoordinate;
-  middleBound1[1] = m_dXmin;
+  middleBound1[1] = m_dYmin;
   middleBound1[2] = zCoordinate;
 
   middleBound2[0] = xCoordinate;
-  middleBound2[1] = m_dXmax;
+  middleBound2[1] = m_dYmax;
   middleBound2[2] = zCoordinate;
 
   // end points, invert Z bounds
   zCoordinate = findOtherZBound(zCoordinate);
   endBound1[0] = xCoordinate;
-  endBound1[1] = m_dXmin;
+  endBound1[1] = m_dYmin;
   endBound1[2] = zCoordinate;
 
   endBound2[0] = xCoordinate;
-  endBound2[1] = m_dXmax;
+  endBound2[1] = m_dYmax;
   endBound2[2] = zCoordinate;
 }
 /*------------------------------------------------------------------------------------------*/

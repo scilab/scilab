@@ -126,9 +126,6 @@ void LabelPositioner::getLabelDisplacement(double ticksDirection[3], double disp
   if (ticksDirPix[0] > Abs(ticksDirPix[1]))
   {
     // right
-    /*displacement[0] = -textHeight[0] / 2.0;
-    displacement[1] = -textHeight[1] / 2.0;
-    displacement[2] = -textHeight[2] / 2.0;*/
     localDisplacement[0] = 0.0;
     localDisplacement[1] = 0.5;
     localDisplacement[2] = 0.0;
@@ -136,19 +133,12 @@ void LabelPositioner::getLabelDisplacement(double ticksDirection[3], double disp
   else if (ticksDirPix[0] < -Abs(ticksDirPix[1]))
   {
     // left
-    /*displacement[0] = -textHeight[0] / 2.0;
-    displacement[1] = -textHeight[1] / 2.0;
-    displacement[2] = -textHeight[2] / 2.0;
-    vectSubstract3D(displacement, textWidth, displacement);*/
     localDisplacement[0] = -1.0;
     localDisplacement[1] = 0.5;
     localDisplacement[2] = 0.0;
   }
   else if (ticksDirPix[1] > Abs(ticksDirPix[0])) {
     // bottom
-    /*displacement[0] = -textWidth[0] / 2.0;
-    displacement[1] = -textWidth[1] / 2.0;
-    displacement[2] = -textWidth[2] / 2.0;*/
     localDisplacement[0] = -0.5;
     localDisplacement[1] = 1.0;
     localDisplacement[2] = 0.0;
@@ -156,11 +146,7 @@ void LabelPositioner::getLabelDisplacement(double ticksDirection[3], double disp
   }
   else
   {
-    // bottom
-    /*displacement[0] = -textWidth[0] / 2.0;
-    displacement[1] = -textWidth[1] / 2.0;
-    displacement[2] = -textWidth[2] / 2.0;
-    vectSubstract3D(displacement, textHeight, displacement);*/
+    // top
     localDisplacement[0] = -0.5;
     localDisplacement[1] = 0.0;
     localDisplacement[2] = 0.0;
