@@ -1,4 +1,19 @@
  
+-->clear
+ 
+-->lines(28,72)
+ 
+-->lines(0)
+ 
+ 
+-->// Go to folder containing the diagram to test
+ 
+-->cd('C:\Program Files\scilab-SE-trunk-25748\modules\scicos\tests\nonreg_tests')
+ ans  =
+ 
+ C:\Program Files\scilab-SE-trunk-25748\modules\scicos\tests\nonreg_tes 
+      ts                                                                
+ 
  
 -->// Load some helper functions (findIOblocks, renameIO, setW2Fformat, ...)
  
@@ -7,7 +22,7 @@
  
 -->// Load and launch simulation, displaying some debug data in the mean time
  
--->load('C:\Program Files\scilab-SE-trunk-25252\modules\scicos\tests\nonreg_tests\inputfile.cos')
+-->load('C:\Program Files\scilab-SE-trunk-25748\modules\scicos\tests\nonreg_tests\inputfile.cos')
  
  
 -->// Rename output file to match variant name
@@ -17259,7 +17274,7 @@
  
     0.         
     0.         
-    1.030-316  
+    1.017-316  
     0.         
     0.         
     0.         
@@ -18198,7 +18213,7 @@
  
     0.         
     0.         
-    1.030-316  
+    1.017-316  
     0.         
     0.         
     0.         
@@ -19077,6 +19092,6 @@
     0.  
  
  
--->// Stop logging output
+-->// Quit background Scilab session
  
--->diary(0)
+-->exit

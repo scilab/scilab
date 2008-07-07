@@ -1,4 +1,18 @@
  
+-->clear
+ 
+-->lines(28,72)
+ 
+-->lines(0)
+ 
+ 
+-->// Go to folder containing the diagram to test
+ 
+-->cd('/home/vaylet/dev/scilab-5.0/modules/scicos/tests/nonreg_tests')
+ ans  =
+ 
+ /home/vaylet/dev/scilab-5.0/modules/scicos/tests/nonreg_tests   
+ 
  
 -->// Load some helper functions (findIOblocks, renameIO, setW2Fformat, ...)
  
@@ -6034,6 +6048,6 @@
     0.  
  
  
--->// Stop logging output
+-->// Quit background Scilab session
  
--->diary(0)
+-->exit
