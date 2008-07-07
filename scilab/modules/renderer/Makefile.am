@@ -168,7 +168,6 @@ src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
 src/jni/GraphicSynchronizerJava.cpp \
 src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp \
 src/cpp/subwinDrawing/AutoLogTicksComputer.cpp \
-src/cpp/subwinDrawing/YTicksDrawerJoGL.cpp \
 src/cpp/subwinDrawing/GridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/GridDrawer.cpp \
