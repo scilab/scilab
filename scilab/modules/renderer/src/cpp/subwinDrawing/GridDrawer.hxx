@@ -32,8 +32,11 @@ public:
   /**
    * Draw the grid for one axis
    */
-  void draw(const double ticksPositions[], int nbTicks,
-            const double subticksPositions[], int nbSubticks);
+  void draw(const double firstAxisStart[3], const double firstAxisEnd[3],
+            const double secondAxisStart[3], const double secondAxisEnd[3],
+            const double thirdAxisStart[3], const double thirdAxisEnd[3],
+            const double relativeTicksPositions[], int nbTicks,
+            const double relativeSubticksPositions[], int nbSubticks);
 
   /**
    * Set whether the logarithmic mode is on or of.
@@ -46,7 +49,15 @@ protected:
   /**
    * Draw the grid
    */
-  virtual void drawGrid(const double gridPositions[], int nbPositions) = 0;
+  virtual void drawGrid(const double firstAxisStart[3], const double firstAxisEnd[3],
+                        const double secondAxisStart[3], const double secondAxisEnd[3],
+                        const double thirdAxisStart[3], const double thirdAxisEnd[3],
+                        const double relativeTicksPositions[], int nbTicks) = 0;
+
+  /**
+   * Retrieve the style of the grid to draw
+   */
+  virtual int getGridStyle(void) = 0;
   /*----------------------------------------------------------------------*/
   /** To know if we need to draw subticks or not */
   bool m_bIsLogModeOn;

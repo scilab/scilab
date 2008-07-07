@@ -29,10 +29,11 @@ public:
   virtual ~YGridDrawerJoGL(void);
 
 protected:
+
   /**
-  * Specify initialize drawing in setting all useful parameters.
-  */
-  virtual void initializeDrawing(void);
+   * Retrieve the style of the grid to draw
+   */
+  virtual int getGridStyle(void);
 };
 
 }

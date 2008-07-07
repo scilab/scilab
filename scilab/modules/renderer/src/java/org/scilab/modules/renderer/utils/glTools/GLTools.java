@@ -34,6 +34,10 @@ public final class GLTools {
 	 * 0 is front clip plane and 1 back clip plane.
 	 */
 	public static final double MIN_PIXEL_Z = 0.0;
+	
+	/** Index to use fro drawing grid dash mode */
+	public static final int GRID_DASH_INDEX = 3;
+	
 	/** Disctane max */
 	public static final double MAX_PIXEL_Z = -1.0;
 	

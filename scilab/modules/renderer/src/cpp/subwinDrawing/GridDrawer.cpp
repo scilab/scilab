@@ -27,8 +27,11 @@ GridDrawer::~GridDrawer(void)
 
 }
 /*------------------------------------------------------------------------------------------*/
-void GridDrawer::draw(const double ticksPositions[], int nbTicks,
-                      const double subticksPositions[], int nbSubticks)
+void GridDrawer::draw(const double firstAxisStart[3], const double firstAxisEnd[3],
+                      const double secondAxisStart[3], const double secondAxisEnd[3],
+                      const double thirdAxisStart[3], const double thirdAxisEnd[3],
+                      const double relativeTicksPositions[], int nbTicks,
+                      const double relativeSubticksPositions[], int nbSubticks)
 {
   
 
@@ -40,18 +43,24 @@ void GridDrawer::draw(const double ticksPositions[], int nbTicks,
     double * gridAbscissas = new double[nbTicks + nbSubticks];
     for (int i = 0; i < nbTicks; i++)
     {
-      gridAbscissas[i] = ticksPositions[i];
+      gridAbscissas[i] = relativeTicksPositions[i];
     }
     for (int i = 0; i < nbSubticks; i++)
     {
-      gridAbscissas[i + nbTicks] = subticksPositions[i];
+      gridAbscissas[i + nbTicks] = relativeSubticksPositions[i];
     }
-    drawGrid(subticksPositions, nbSubticks);
+    drawGrid(firstAxisStart, firstAxisEnd,
+             secondAxisStart, secondAxisEnd,
+             thirdAxisStart, thirdAxisEnd,
+             gridAbscissas, nbTicks + nbSubticks);
     delete[] gridAbscissas;
   }
   else
   {
-    drawGrid(ticksPositions, nbTicks);
+    drawGrid(firstAxisStart, firstAxisEnd,
+             secondAxisStart, secondAxisEnd,
+             thirdAxisStart, thirdAxisEnd,
+             relativeTicksPositions, nbTicks);
   }
 
 }

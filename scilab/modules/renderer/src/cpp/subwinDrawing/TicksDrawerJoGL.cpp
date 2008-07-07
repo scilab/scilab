@@ -12,6 +12,7 @@
  */
 
 #include "TicksDrawerJoGL.hxx"
+#include "TicksDrawerJavaMapper.hxx"
 
 extern "C"
 {
@@ -23,31 +24,45 @@ namespace sciGraphics
 
 /*------------------------------------------------------------------------------------------*/
 TicksDrawerJoGL::TicksDrawerJoGL(DrawableObject * drawer)
-  : TicksDrawer(drawer), DrawableObjectJoGL(drawer)
+  : TicksDrawerBridge(), DrawableObjectJoGL(drawer)
 {
-
+  setJavaMapper(new TicksDrawerJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
 TicksDrawerJoGL::~TicksDrawerJoGL(void)
 {
-
+  
 }
 /*------------------------------------------------------------------------------------------*/
-double TicksDrawerJoGL::drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
-                                  int nbTicks, double subticksPositions[], int nbSubtics)
+double TicksDrawerJoGL::drawTicks(double relativeTicksPositions[],
+                                  char * ticksLabels[],
+                                  char * labelsExponents[],
+                                  int nbTicks,
+                                  double relativeSubticksPositions[],
+                                  int nbSubtics,
+                                  double axisSegmentStart[3],
+                                  double axisSegmentEnd[3],
+                                  double ticksDirection[3])
 {
   if (labelsExponents == NULL)
   {
-    return getTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels, nbTicks,
-                                                 subticksPositions, nbSubtics);
+    return getTicksDrawerJavaMapper()->drawTicks(relativeTicksPositions, ticksLabels, nbTicks,
+                                                 relativeSubticksPositions, nbSubtics,
+                                                 axisSegmentStart, axisSegmentEnd, ticksDirection);
   }
   else
   {
-    return getTicksDrawerJavaMapper()->drawTicks(ticksPositions, ticksLabels,
+    return getTicksDrawerJavaMapper()->drawTicks(relativeTicksPositions, ticksLabels,
                                                  labelsExponents, nbTicks,
-                                                 subticksPositions, nbSubtics);
+                                                 relativeSubticksPositions, nbSubtics,
+                                                 axisSegmentStart, axisSegmentEnd, ticksDirection);
   }
   
+}
+/*------------------------------------------------------------------------------------------*/
+double TicksDrawerJoGL::showTicks(void)
+{
+  return getTicksDrawerJavaMapper()->showTicks();
 }
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawerJoGL::initializeDrawing(void)
@@ -58,11 +73,6 @@ void TicksDrawerJoGL::initializeDrawing(void)
   // also set axis drawing parameters
   sciPointObj * pObj = getDrawer()->getDrawedObject();
 
-  // set axes bounds
-  double bounds[6];
-  sciGetRealDataBounds(sciGetParentSubwin(pObj), bounds);
-  getTicksDrawerJavaMapper()->setAxesBounds(bounds[0], bounds[1], bounds[2],
-                                            bounds[3], bounds[4], bounds[5]);
   // set other parameters
   getTicksDrawerJavaMapper()->setAxisParamerters(sciGetLineStyle(pObj),
                                                  (float) sciGetLineWidth(pObj),
@@ -72,49 +82,13 @@ void TicksDrawerJoGL::initializeDrawing(void)
                                                  sciGetFontContext(pObj)->foregroundcolor,
                                                  sciGetIsUsingFractionalMetrics(pObj) == TRUE);
 
-  if (m_pGridDrawer != NULL)
-  {
-    m_pGridDrawer->initializeDrawing();
-  }
+  
 }
 /*------------------------------------------------------------------------------------------*/
-void TicksDrawerJoGL::endDrawing(void)
+void TicksDrawerJoGL::setNeedTicksDecimation(bool needDecimation)
 {
-  DrawableObjectJoGL::endDrawing();
-  if (m_pGridDrawer != NULL)
-  {
-    m_pGridDrawer->endDrawing();
-  }
-}
-/*------------------------------------------------------------------------------------------*/
-void TicksDrawerJoGL::initializeShowing(void)
-{
-  DrawableObjectJoGL::initializeDrawing();
-  if (m_pGridDrawer != NULL)
-  {
-    m_pGridDrawer->initializeShowing();
-  }
-}
-/*------------------------------------------------------------------------------------------*/
-void TicksDrawerJoGL::endShowing(void)
-{
-  DrawableObjectJoGL::endDrawing();
-  if (m_pGridDrawer != NULL)
-  {
-    m_pGridDrawer->endShowing();
-  }
-}
-/*------------------------------------------------------------------------------------------*/
-double TicksDrawerJoGL::showTicks(void)
-{
-  initializeShowing();
-  double res = getTicksDrawerJavaMapper()->showTicks();
-  if(m_pGridDrawer != NULL)
-  {
-    m_pGridDrawer->show();
-  }
-  endShowing();
-  return res;
+  // specify if we need to check wether ticks are concealing or not.
+  getTicksDrawerJavaMapper()->setNeedTicksDecimation(needDecimation);
 }
 /*------------------------------------------------------------------------------------------*/
 TicksDrawerJavaMapper * TicksDrawerJoGL::getTicksDrawerJavaMapper(void)

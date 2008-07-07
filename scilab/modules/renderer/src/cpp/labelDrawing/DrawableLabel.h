@@ -30,17 +30,12 @@ public:
 
   virtual ~DrawableLabel(void);
 
+  void setLabelPositioner(LabelPositioner * positioner);
+
   /**
    * Set the distance to use between the axis and label
    */
   void setDistanceToAxis(double dist);
-
-  /**
-   * Return the real type of implementation object
-   * Here it is just getting a pointer on the object used to place label
-   * The label is drawn is drawn using its text object
-   */
-  LabelPositioner * getLabelPositioner( void ) ;
 
 protected:
 
@@ -60,17 +55,19 @@ protected:
   /**
    * Automatically set label position and orientation
    */
-  void setLabelLocation(void);
+  bool setLabelLocation(void);
 
   /**
    * Automatically set label position
    */
-  void setLabelPosition(void);
+  bool setLabelPosition(void);
 
   /**
    * Automatically set label orientation
    */
   void setLabelOrientation(void);
+  /*------------------------------------------------------------------*/
+  LabelPositioner * m_pPositioner;
   /*------------------------------------------------------------------*/
 
 

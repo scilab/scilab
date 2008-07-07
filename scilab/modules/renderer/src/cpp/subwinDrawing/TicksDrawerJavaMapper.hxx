@@ -15,6 +15,7 @@
 #define _TICKS_DRAWER_JAVA_MAPPER_HXX_
 
 #include "../DrawableObjectJavaMapper.hxx"
+#include "TicksDrawerGL.hxx"
 
 
 namespace sciGraphics
@@ -27,28 +28,47 @@ class TicksDrawerJavaMapper : public virtual DrawableObjectJavaMapper
 {
 public:
 
-  TicksDrawerJavaMapper(void) : DrawableObjectJavaMapper() {}
+  TicksDrawerJavaMapper(void);
 
-  virtual ~TicksDrawerJavaMapper(void) {}
+  virtual ~TicksDrawerJavaMapper(void);
 
+  /*----------------------------------------------------------------------*/
+  // Inherited from DrawableObjectJavaMapper
+  virtual void display(void);
+
+  virtual void initializeDrawing(int figureIndex);
+  virtual void endDrawing(void);
+
+  virtual void show(int figureIndex);
+
+  virtual void destroy(int figureIndex);
+
+  virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for TicksDrawer
   virtual double drawTicks(const double ticksPositions[], char * ticksLabels[],
-                           int nbTicks, const double subticksPositions[], int nbSubticks) = 0;
+                           int nbTicks, const double subticksPositions[], int nbSubticks,
+                           double axisSegmentStart[3], double axisSegmentEnd[3], double ticksDirection[3]);
 
   virtual double drawTicks(const double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
-                         int nbTicks, const double subticksPositions[], int nbSubticks) = 0;
+                           int nbTicks, const double subticksPositions[], int nbSubticks,
+                           double axisSegmentStart[3], double axisSegmentEnd[3], double ticksDirection[3]);
 
-  virtual double showTicks(void) = 0;
-
-  virtual void setAxesBounds(double xMin, double xMax,
-                             double yMin, double yMax,
-                             double zMin, double zMax) = 0;
+  virtual double showTicks(void);
 
   virtual void setAxisParamerters(int lineStyle, float lineWidth, int lineColor,
                                   int fontType, double fontSize, int fontColor,
-                                  bool useFractionalMetrics) = 0;
+                                  bool useFractionalMetrics);
+
+  virtual void setAxisLineDrawing(bool drawAxisLine);
+
+  virtual void setNeedTicksDecimation(bool needTicksDecimation);
   /*----------------------------------------------------------------------*/
+
+  /**
+   * Giws generated wrapper
+   */
+  org_scilab_modules_renderer_subwinDrawing::TicksDrawerGL * m_pJavaObject;
 
 protected:
 

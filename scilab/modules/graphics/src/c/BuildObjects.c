@@ -2515,8 +2515,11 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
     sciSetIsClipping(ppLabel->text, -1) ;
 
     /* Use centered mode */
-    sciInitCenterPos(ppLabel->text, TRUE);
+    sciInitCenterPos(ppLabel->text, FALSE);
     sciInitAutoSize(ppLabel->text, TRUE);
+
+    /* 1.0 for logarithmic mode */
+    sciInitTextPos(pobj, 1.0, 1.0, 1.0);
 
     sciInitIsFilled(pobj,FALSE); /* by default a simple text is display (if existing) */
 

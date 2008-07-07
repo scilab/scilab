@@ -149,6 +149,7 @@ scalarMult2D
 isPointInTriangle
 sciInitMarkStyle
 sciGetLegendPlace
+normalize3D
 sciInitIsFilled
 sciInitBackground
 sciSetLegendPos
@@ -158,3 +159,4 @@ sciGetyLocation
 sciInitFontBackground
 sciInitPolylineStyle
 sciInitArrowSize
+rotate2D

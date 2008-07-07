@@ -43,7 +43,7 @@ void ConcreteDrawableAxes::drawAxes(void)
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableAxes::showAxes(void)
 {
-  m_pTicksDrawer->showTicks();
+  m_pTicksDrawer->show();
 }
 /*---------------------------------------------------------------------------------*/
 

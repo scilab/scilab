@@ -299,6 +299,45 @@ void ConcreteDrawableSubwin::getZTicksPos(double ticksPositions[], char ** ticks
   }
 }
 /*------------------------------------------------------------------------------------------*/
+bool ConcreteDrawableSubwin::getXAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3])
+{
+  if (m_pXTicksDrawer != NULL)
+  {
+    m_pXTicksDrawer->getAxisPosition(axisStart, axisEnd, ticksDirection);
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+bool ConcreteDrawableSubwin::getYAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3])
+{
+  if (m_pYTicksDrawer != NULL)
+  {
+    m_pYTicksDrawer->getAxisPosition(axisStart, axisEnd, ticksDirection);
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+/*------------------------------------------------------------------------------------------*/
+bool ConcreteDrawableSubwin::getZAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3])
+{
+  if (m_pZTicksDrawer != NULL)
+  {
+    m_pZTicksDrawer->getAxisPosition(axisStart, axisEnd, ticksDirection);
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+/*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::drawBox(void)
 {
   // If axes is not displayed m_pAxesbox is not drawn.
@@ -348,15 +387,15 @@ void ConcreteDrawableSubwin::showTicks(void)
   double distToZaxis = 0.0;
   if (m_pXTicksDrawer != NULL)
   {
-    distToXaxis = m_pXTicksDrawer->showTicks();
+    distToXaxis = m_pXTicksDrawer->show();
   }
   if (m_pYTicksDrawer != NULL)
   {
-    distToYaxis = m_pYTicksDrawer->showTicks();
+    distToYaxis = m_pYTicksDrawer->show();
   }
   if (m_pZTicksDrawer != NULL)
   {
-    distToZaxis = m_pZTicksDrawer->showTicks();
+    distToZaxis = m_pZTicksDrawer->show();
   }
 
   /* for title there is no displayable ticks */

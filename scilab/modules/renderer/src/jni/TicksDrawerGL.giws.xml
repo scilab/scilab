@@ -1,0 +1,57 @@
+<package name="org.scilab.modules.renderer.subwinDrawing">
+  <object name="TicksDrawerGL">
+    <method name="display" returnType="void">
+    </method>
+    <method name="initializeDrawing" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="endDrawing" returnType="void">
+    </method>
+    <method name="show" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="destroy" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="setFigureIndex" returnType="void">
+      <param type="int" name="figureIndex" />
+    </method>
+    <method name="drawTicks" returnType="double">
+      <param type="double[]" name="axisSegmentStart" />
+      <param type="double[]" name="axisSegmentEnd" />
+      <param type="double[]" name="ticksDir" />
+      <param type="double[]" name="relativeTicksPos" />
+      <param type="double[]" name="relativeSubticksPos" />
+      <param type="String[]" name="ticksLabels" />
+    </method>
+    <method name="drawTicks" returnType="double">
+      <param type="double[]" name="axisSegmentStart" />
+      <param type="double[]" name="axisSegmentEnd" />
+      <param type="double[]" name="ticksDir" />
+      <param type="double[]" name="relativeTicksPos" />
+      <param type="double[]" name="relativeSubticksPos" />
+      <param type="String[]" name="ticksLabels" />
+      <param type="String[]" name="labelsExponents" />
+    </method>
+    <method name="setAxisParameters" returnType="void">
+      <param type="int" name="lineStyle" />
+      <param type="float" name="lineWidth" />
+      <param type="int" name="lineColor" />
+      <param type="int" name="fontType" />
+      <param type="double" name="fontSize" />
+      <param type="int" name="fontColor" />
+      <param type="boolean" name="useFractionalMetrics" />
+    </method>
+    <method name="showTicks" returnType="double">
+    </method>
+    <method name="drawTicks" returnType="double">
+    </method>
+    <method name="setAxisLineDrawing" returnType="void">
+      <param type="boolean" name="drawAxisLine" />
+    </method>
+    <method name="setNeedTicksDecimation" returnType="void">
+      <param type="boolean" name="needTicksDecimation" />
+    </method>
+  </object>
+</package>
+

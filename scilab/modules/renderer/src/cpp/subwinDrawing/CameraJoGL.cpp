@@ -135,8 +135,13 @@ void CameraJoGL::getPixelCoordinates(const double userCoords[3], double pixCoord
   m_pDrawer->pointScale(userCoords[0], userCoords[1], userCoords[2],
                         &(finalUserCoord[0]), &(finalUserCoord[1]), (&finalUserCoord[2]));
 
+  getPixelCoordinatesRaw(finalUserCoord, pixCoords);
+}
+/*--------------------------------------------------------------------------*/
+void CameraJoGL::getPixelCoordinatesRaw(const double userCoords[3], double pixCoords[3])
+{
   // project point on the screen
-  project(m_aProjMatrix3D, m_aViewPort, finalUserCoord, pixCoords);
+  project(m_aProjMatrix3D, m_aViewPort, userCoords, pixCoords);
 
   // in OpenGL, pixel coordinates are taken from the bottom left point
   // of the window, however, in Scilab it is from the top left
@@ -174,15 +179,21 @@ void CameraJoGL::get2dViewPixelCoordinates(const double userCoord[3], double pix
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::getSceneCoordinates(const double pixCoords[3], double userCoords[3])
 {
+  
+  getSceneCoordinatesRaw(pixCoords, userCoords);
+
+  // convert user coordinates to log scale if needed
+  m_pDrawer->inversePointScale(userCoords[0], userCoords[1], userCoords[2],
+                              &(userCoords[0]), &(userCoords[1]), &(userCoords[2]));
+}
+/*--------------------------------------------------------------------------*/
+void CameraJoGL::getSceneCoordinatesRaw(const double pixCoords[3], double userCoords[3])
+{
   // in OpenGL, pixel coordinates are taken from the bottom left point
   // of the window, however, in Scilab it is from the top left
   // so we have to invert Y coordinate
   double pixCoords3D[3] = {pixCoords[0], m_aViewPort[3] - pixCoords[1], pixCoords[2]};
   unProject(m_aUnprojMatrix3D, m_aViewPort, pixCoords3D, userCoords);
-
-  // convert user coordinates to log scale if needed
-  m_pDrawer->inversePointScale(userCoords[0], userCoords[1], userCoords[2],
-                              &(userCoords[0]), &(userCoords[1]), &(userCoords[2]));
 }
 /*--------------------------------------------------------------------------*/
 void CameraJoGL::get2dViewCoordinates(const int pixCoords[2], double userCoord2D[2])

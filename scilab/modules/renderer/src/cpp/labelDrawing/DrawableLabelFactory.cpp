@@ -14,10 +14,10 @@
 
 #include "DrawableLabelFactory.h"
 #include "DrawableLabel.h"
-#include "XLabelPositionerJoGL.hxx"
-#include "YLabelPositionerJoGL.hxx"
-#include "ZLabelPositionerJoGL.hxx"
-#include "TitlePositionerJoGL.hxx"
+#include "XLabelPositioner.hxx"
+#include "YLabelPositioner.hxx"
+#include "ZLabelPositioner.hxx"
+#include "TitlePositioner.hxx"
 
 extern "C"
 {
@@ -42,31 +42,27 @@ void DrawableLabelFactory::update( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableLabelFactory::setPositionner(DrawableLabel * label)
 {
-  if (label->getLabelPositioner() != NULL)
-  {
-    delete label->getLabelPositioner();
-  }
 
   switch (pLABEL_FEATURE(m_pDrawed)->ptype)
   {
   case 1:
     // title
-    label->setDrawableImp(new TitlePositionerJoGL(label));
+    label->setLabelPositioner(new TitlePositioner(label));
     break;
   case 2:
     // x label
-    label->setDrawableImp(new XLabelPositionerJoGL(label));
+    label->setLabelPositioner(new XLabelPositioner(label));
     break;
   case 3:
     // y label
-    label->setDrawableImp(new YLabelPositionerJoGL(label));
+    label->setLabelPositioner(new YLabelPositioner(label));
     break;
   case 4:
     // z label
-    label->setDrawableImp(new ZLabelPositionerJoGL(label));
+    label->setLabelPositioner(new ZLabelPositioner(label));
     break;
   default:
-    label->setDrawableImp(NULL);
+    label->setLabelPositioner(NULL);
     break;
   }
 

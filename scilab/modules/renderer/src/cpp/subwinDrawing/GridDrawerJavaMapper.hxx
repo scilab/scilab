@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2007-2008 - INRIA - Jean-Baptiste Silvy 
  * desc : Class containing java methods needed by GridDrawerJoGL
  * 
  * This file must be used under the terms of the CeCILL.
@@ -15,6 +15,7 @@
 #define _GRID_DRAWER_JAVA_MAPPER_HXX_
 
 #include "../DrawableObjectJavaMapper.hxx"
+#include "GridDrawerGL.hxx"
 
 
 namespace sciGraphics
@@ -27,23 +28,39 @@ class GridDrawerJavaMapper : public virtual DrawableObjectJavaMapper
 {
 public:
 
-  GridDrawerJavaMapper(void) : DrawableObjectJavaMapper() {}
+  GridDrawerJavaMapper(void);
 
-  virtual ~GridDrawerJavaMapper(void) {}
+  virtual ~GridDrawerJavaMapper(void);
 
   /*----------------------------------------------------------------------*/
-  // specific for TicksDrawer
-  virtual void drawGrid(const double gridPositions[], int nbPositions) = 0;
+  // Inherited from DrawableObjectJavaMapper
+  virtual void display(void);
 
-  virtual void setGridParameters(int gridColor, float gridThickness) = 0;
+  virtual void initializeDrawing(int figureIndex);
+  virtual void endDrawing(void);
 
-  virtual void setAxesBounds(double xMin, double xMax,
-                             double yMin, double yMax,
-                             double zMin, double zMax) = 0;
+  virtual void show(int figureIndex);
+
+  virtual void destroy(int figureIndex);
+
+  virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
+  // specific for GridDrawer
+  virtual void drawGrid(const double firstAxisStart[3], const double firstAxisEnd[3],
+                        const double secondAxisStart[3], const double secondAxisEnd[3],
+                        const double thirdAxisStart[3], const double thirdAxisEnd[3],
+                        const double relativeTicksPositions[], int nbTicks);
+
+  virtual void setGridParameters(int gridColor, float gridThickness);
+  /*----------------------------------------------------------------------*/
+
 
 protected:
 
+  /**
+   * Giws generated wrapper
+   */
+  org_scilab_modules_renderer_subwinDrawing::GridDrawerGL * m_pJavaObject;
 
 };
 

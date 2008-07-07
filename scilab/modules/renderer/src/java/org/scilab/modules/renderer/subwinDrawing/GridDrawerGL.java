@@ -16,6 +16,7 @@ package org.scilab.modules.renderer.subwinDrawing;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.DrawableObjectGL;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
@@ -23,7 +24,7 @@ import org.scilab.modules.renderer.utils.glTools.GLTools;
  * Parent class for drawing grid
  * @author Jean-Baptiste Silvy
  */
-public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
+public class GridDrawerGL extends DrawableObjectGL {
 
 	private int gridColor;
 	private float gridThickness;
@@ -116,7 +117,7 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 	 */
 	public void drawGrid(double[] gridPositions) {
 		this.gridPositions = gridPositions;
-		drawGrid();
+		//drawGrid();
 	}
 	
 	/**
@@ -139,13 +140,68 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 	}
 	
 	/**
+	 * Draw the grid
+	 * @param firstAxisStart position of an end of the first axis the grid is drawn on
+	 * @param firstAxisEnd position of an end of the first axis the grid is drawn on
+	 * @param secondAxisStart position of an end of the second axis the grid is drawn on
+	 * @param secondAxisEnd position of an end of the first axis the grid is drawn on
+	 * @param thirdAxisStart position of an end of the first axis the grid is drawn on
+	 * @param thirdAxisEnd position of an end of the first axis the grid is drawn on
+	 * @param relativeTicksPositions relative position of grid, between the axis bounds
+	 */
+	public void drawGrid(double[] firstAxisStart, double[] firstAxisEnd,
+						 double[] secondAxisStart, double[] secondAxisEnd,
+						 double[] thirdAxisStart, double[] thirdAxisEnd,
+						 double[] relativeTicksPositions) {
+		
+		// reallocate grid points
+		int nbTicks = relativeTicksPositions.length;
+		startingPoints = new Vector3D[nbTicks];
+		middlePoints = new Vector3D[nbTicks];
+		endPoints = new Vector3D[nbTicks];
+		
+		// comite axis directions
+		Vector3D firstAxisDir = new Vector3D(firstAxisEnd[0] - firstAxisStart[0],
+										     firstAxisEnd[1] - firstAxisStart[1],
+										     firstAxisEnd[2] - firstAxisStart[2]);
+		
+		Vector3D secondAxisDir = new Vector3D(secondAxisEnd[0] - secondAxisStart[0],
+											  secondAxisEnd[1] - secondAxisStart[1],
+											  secondAxisEnd[2] - secondAxisStart[2]);
+		
+		Vector3D thirdAxisDir = new Vector3D(thirdAxisEnd[0] - thirdAxisStart[0],
+											 thirdAxisEnd[1] - thirdAxisStart[1],
+											 thirdAxisEnd[2] - thirdAxisStart[2]);
+		
+		Vector3D firstAxisStartV = new Vector3D(firstAxisStart);
+		Vector3D secondAxisStartV = new Vector3D(secondAxisStart);
+		Vector3D thirdAxisStartV = new Vector3D(thirdAxisStart);
+		
+		for (int i = 0; i < nbTicks; i++) {
+			if (relativeTicksPositions[i] >= 0.0 && relativeTicksPositions[i] <= 1.0) {
+				startingPoints[i] = firstAxisStartV.add(firstAxisDir.scalarMult(relativeTicksPositions[i]));
+				middlePoints[i] = secondAxisStartV.add(secondAxisDir.scalarMult(relativeTicksPositions[i]));
+				endPoints[i] = thirdAxisStartV.add(thirdAxisDir.scalarMult(relativeTicksPositions[i]));
+			} else {
+				startingPoints[i] = null;
+				middlePoints[i] = null;
+				endPoints[i] = null;
+			}
+		}
+		
+		// draw the grid using precomputed data
+		showGrid();
+		
+	}
+	
+	/**
 	 * Draw the grid using precomputed data
 	 */
 	public void showGrid() {
 		GL gl = getGL();
 		
 		// use dash to draw grid
-		GLTools.beginDashMode(gl, 2, getGridThickness());
+		GLTools.beginDashMode(gl, GLTools.GRID_DASH_INDEX, getGridThickness());
 		
 		double[] color = getGridColor();
 		gl.glColor3d(color[0], color[1], color[2]);
@@ -174,12 +230,5 @@ public abstract class GridDrawerGL extends BoxTrimmingObjectGL {
 		
 		GLTools.endDashMode(gl);
 	}
-	
-	
-	
-	/**
-	 * Draw the grid with already set positions
-	 */
-	public abstract void drawGrid();
 
 }

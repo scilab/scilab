@@ -15,13 +15,13 @@
 #define _TICKS_DRAWER_JOGL_HXX_
 
 #include "../DrawableObjectJoGL.h"
-#include "TicksDrawer.hxx"
+#include "TicksDrawerBridge.hxx"
 #include "TicksDrawerJavaMapper.hxx"
 
 namespace sciGraphics
 {
 
-class TicksDrawerJoGL : public TicksDrawer, public DrawableObjectJoGL
+class TicksDrawerJoGL : public TicksDrawerBridge, public DrawableObjectJoGL
 {
 public:
 
@@ -32,11 +32,23 @@ public:
 protected:
 
   /**
-   * Draw the ticks on the right axis.
-   * @return distance from the ticks to axis in pixels
+   * Redefined show since we can not use display lists.
    */
-  virtual double drawTicks(double ticksPositions[], char * ticksLabels[], char * labelsExponents[],
-                           int nbTicks, double subticksPositions[], int nbSubtics);
+  virtual double showTicks(void);
+
+  /**
+   * Draw the ticks on the right axis on computed positions.
+   * @return distance from ticks to the axis in pixels
+   */
+  virtual double drawTicks(double relativeTicksPositions[],
+                           char * ticksLabels[],
+                           char * labelsExponents[],
+                           int nbTicks,
+                           double relativeSubticksPositions[],
+                           int nbSubtics,
+                           double axisSegmentStart[3],
+                           double axisSegmentEnd[3],
+                           double ticksDirection[3]);
 
   /**
    * Specify initialize drawing in setting all useful parameters.
@@ -44,24 +56,10 @@ protected:
   virtual void initializeDrawing(void);
 
   /**
-   * Specify end drawing in setting all useful parameters.
+   * To know if we need to check that ticks are concealing each others or
+   * not.
    */
-  virtual void endDrawing(void);
-
-  /**
-   * Same as initialize drawing but doesn't set constant parameters
-   */
-  virtual void initializeShowing(void);
-
-  /**
-   * Same as end drawing but doesn't set constant parameters
-   */
-  virtual void endShowing(void);
-
-  /**
-   * Redefined show since we can not use display lists.
-   */
-  virtual double showTicks(void);
+  virtual void setNeedTicksDecimation(bool needDecimation);
 
   /**
    * Get the object performing mapping with Java class.

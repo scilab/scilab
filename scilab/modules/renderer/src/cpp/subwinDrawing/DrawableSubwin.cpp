@@ -99,14 +99,14 @@ DrawableObject::EDisplayStatus DrawableSubwin::draw( void )
     return UNCHANGED;
   }
 
- //drawAxesBox();
+  drawAxesBox();
 
-  drawBox();
+  //drawBox();
 
   displayChildren() ;
 
   // draw ticks after otherwise there are some transparency issues
-  drawTicks();
+  //drawTicks();
 
   // needed
   m_pCamera->replaceCamera();
@@ -133,13 +133,13 @@ DrawableObject::EDisplayStatus DrawableSubwin::show( void )
     return UNCHANGED;
   }
 
-  //showAxesBox();
-  showBox();
+  showAxesBox();
+  //showBox();
 
   displayChildren() ;
 
   // draw ticks after otherwise there are some transparency issues
-  showTicks();
+  //showTicks();
 
   // needed
   m_pCamera->replaceCamera();
@@ -165,13 +165,13 @@ DrawableObject::EDisplayStatus DrawableSubwin::redraw(void)
     return UNCHANGED;
   }
 
-  //drawAxesBox();
-  drawBox();
+  drawAxesBox();
+  //drawBox();
 
   displayChildren() ;
 
   // draw ticks after otherwise there are some transparency issues
-  drawTicks();
+  //drawTicks();
 
   // needed
   m_pCamera->replaceCamera();

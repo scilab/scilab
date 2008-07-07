@@ -21,18 +21,18 @@ namespace sciGraphics
 
 class DrawableLabel;
 
-class LabelPositioner : public virtual DrawableObjectBridge
+class LabelPositioner
 {
 public:
 
-  LabelPositioner(void);
+  LabelPositioner(DrawableLabel * label);
 
   virtual ~LabelPositioner(void);
 
   /**
    * Set position of the label.
    */
-  void setLabelPosition(void);
+  bool setLabelPosition(void);
 
   /**
    * Set font angle for labels.
@@ -48,9 +48,24 @@ protected:
 
   /*----------------------------------------------------------------------*/
   /**
+   * Get the height and width vector of the label
+   */
+  void getTextDirections(double widthVect[3], double heightVect[3]);
+
+  /**
+   * Compute the displacement we need to apply according to the text size
+   */
+  void getLabelDisplacement(double ticksDirection[3], double displacement[3]);
+
+  /**
    * Compute the automatic position of the label
    */
-  virtual void getAutoPosition(double pos[3]) = 0;
+  virtual bool getAutoPosition(double pos[3]);
+
+  /**
+   * Get bounds of the axis to draw and direction of ticks
+   */
+  virtual bool getAxisPosition(double axisStart[3], double axisEnd[3], double ticksDir[3]) = 0;
 
   /**
    * Compute the automatic font angle of the label.
@@ -58,6 +73,8 @@ protected:
   virtual double getAutoOrientation(void) = 0;
   /*----------------------------------------------------------------------*/
   double m_dDistanceToAxis;
+
+  DrawableLabel * m_pLabel;
   /*----------------------------------------------------------------------*/
 };
 

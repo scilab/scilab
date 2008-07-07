@@ -20,22 +20,26 @@ namespace sciGraphics
 DrawableLabel::DrawableLabel( sciPointObj * pObj )
   : DrawableObject(pObj)
 {
-  
+  m_pPositioner = NULL;
 }
 /*---------------------------------------------------------------------------------*/
 DrawableLabel::~DrawableLabel(void)
 {
-
+  setLabelPositioner(NULL);
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableLabel::setLabelPositioner(LabelPositioner * positioner)
+{
+  if (m_pPositioner != NULL)
+  {
+    delete m_pPositioner;
+  }
+  m_pPositioner = positioner;
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableLabel::setDistanceToAxis(double dist)
 {
-  getLabelPositioner()->setDistanceToAxis(dist);
-}
-/*---------------------------------------------------------------------------------*/
-LabelPositioner * DrawableLabel::getLabelPositioner( void )
-{
-  return dynamic_cast<LabelPositioner *>(m_pImp);
+  m_pPositioner->setDistanceToAxis(dist);
 }
 /*---------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableLabel::draw( void )
@@ -45,12 +49,14 @@ DrawableObject::EDisplayStatus DrawableLabel::draw( void )
   {
     return UNCHANGED;
   }
-  // place label
-  setLabelLocation();
-
-  // draw the enclosed text
-  drawnText->hasChanged();
-  drawnText->display();
+  // place label if possible
+  if (setLabelLocation())
+  {
+    // draw the enclosed text
+    drawnText->hasChanged();
+    drawnText->display();
+    return FAILURE;
+  }
   return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
@@ -61,32 +67,36 @@ DrawableObject::EDisplayStatus DrawableLabel::show( void )
   {
     return UNCHANGED;
   }
-  // place label
-  setLabelLocation();
 
-  // draw the enclosed text
-  drawnText->hasChanged();
-  drawnText->display();
+  // place label if possible
+  if (setLabelLocation())
+  {
+    // draw the enclosed text
+    drawnText->hasChanged();
+    drawnText->display();
+    return FAILURE;
+  }
+  
   return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableLabel::setLabelLocation(void)
+bool DrawableLabel::setLabelLocation(void)
 {
   // set orientation before to get the most information when
   // positioning the label
   setLabelOrientation();
 
-  setLabelPosition();
+  return setLabelPosition();
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableLabel::setLabelPosition(void)
+bool DrawableLabel::setLabelPosition(void)
 {
-  getLabelPositioner()->setLabelPosition();
+  return m_pPositioner->setLabelPosition();
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableLabel::setLabelOrientation(void)
 {
-  getLabelPositioner()->setLabelOrientation();
+  m_pPositioner->setLabelOrientation();
 }
 /*---------------------------------------------------------------------------------*/
 

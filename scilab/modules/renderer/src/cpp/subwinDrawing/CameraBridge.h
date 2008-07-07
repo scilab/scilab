@@ -75,9 +75,21 @@ public:
   virtual void getPixelCoordinates(const double userCoords[3], double pixCoords[3]) = 0;
 
   /**
+   * Convert user coordinates to pixel coordinates including depth value.
+   * Does not take pixel coordinates into account.
+   */
+  virtual void getPixelCoordinatesRaw(const double userCoords[3], double pixCoords[3]) = 0;
+
+  /**
    * Unproject a 3 position in pixels into the standard scene coordinates
    */
   virtual void getSceneCoordinates(const double pixCoords[3], double userCoords[3]) = 0;
+
+  /**
+   * Unproject a 3 position in pixels into the standard scene coordinates
+   * Does not take logarithmic sclae into account.
+   */
+  virtual void getSceneCoordinatesRaw(const double pixCoords[3], double userCoords[3]) = 0;
 
   /**
    * Convert user coordinates to pixel coordinated using the 2d view.

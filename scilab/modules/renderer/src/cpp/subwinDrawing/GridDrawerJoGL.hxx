@@ -34,7 +34,10 @@ protected:
   /**
    * Draw the grid
    */
-  void drawGrid(const double gridPositions[], int nbPositions);
+  virtual void drawGrid(const double firstAxisStart[3], const double firstAxisEnd[3],
+                        const double secondAxisStart[3], const double secondAxisEnd[3],
+                        const double thirdAxisStart[3], const double thirdAxisEnd[3],
+                        const double relativeTicksPositions[], int nbTicks);
 
   /**
    * Specify initialize drawing in setting all useful parameters.

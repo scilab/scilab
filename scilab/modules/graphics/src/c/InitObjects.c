@@ -413,7 +413,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontSize = 1.0;
       (sciGetFontContext(pobj))->textorientation = 0.0;
       (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-      (sciGetFontContext(pobj))->useFractionalMetrics = TRUE;
+      (sciGetFontContext(pobj))->useFractionalMetrics = FALSE;
 
       if (
         ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,

@@ -29,10 +29,11 @@ public:
   virtual ~XGridDrawerJoGL(void);
 
 protected:
+
   /**
-   * Specify initialize drawing in setting all useful parameters.
+   * Retrieve the style of the grid to draw
    */
-  virtual void initializeDrawing(void);
+  virtual int getGridStyle(void);
 };
 
 }

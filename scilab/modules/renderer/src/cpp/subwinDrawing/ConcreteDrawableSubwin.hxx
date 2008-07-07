@@ -122,6 +122,21 @@ public:
    */
   void getZTicksPos(double ticksPositions[], char ** ticksLabels);
 
+  /**
+   * Compute bounds of X axis and direction of ticks
+   */
+  virtual bool getXAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3]);
+
+  /**
+   * Compute bounds of Y axis and direction of ticks
+   */
+  virtual bool getYAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3]);
+
+  /**
+   * Compute bounds of Z axis and direction of ticks
+   */
+  virtual bool getZAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3]);
+
 
 protected:
 

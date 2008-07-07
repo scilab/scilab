@@ -25,7 +25,7 @@ namespace sciGraphics
 GridDrawerJoGL::GridDrawerJoGL(DrawableSubwin * subwin)
 : GridDrawer(subwin), DrawableObjectJoGL(subwin)
 {
-
+  setJavaMapper(new GridDrawerJavaMapper());
 }
 /*------------------------------------------------------------------------------------------*/
 GridDrawerJoGL::~GridDrawerJoGL(void)
@@ -33,9 +33,15 @@ GridDrawerJoGL::~GridDrawerJoGL(void)
 
 }
 /*------------------------------------------------------------------------------------------*/
-void GridDrawerJoGL::drawGrid(const double gridPositions[], int nbPositions)
+void GridDrawerJoGL::drawGrid(const double firstAxisStart[3], const double firstAxisEnd[3],
+                              const double secondAxisStart[3], const double secondAxisEnd[3],
+                              const double thirdAxisStart[3], const double thirdAxisEnd[3],
+                              const double relativeTicksPositions[], int nbTicks)
 {
-  getGridDrawerJavaMapper()->drawGrid(gridPositions, nbPositions);
+  getGridDrawerJavaMapper()->drawGrid(firstAxisStart, firstAxisEnd,
+                                      secondAxisStart, secondAxisEnd,
+                                      thirdAxisStart, thirdAxisEnd,
+                                      relativeTicksPositions, nbTicks);
 }
 /*------------------------------------------------------------------------------------------*/
 void GridDrawerJoGL::initializeDrawing(void)
@@ -44,10 +50,9 @@ void GridDrawerJoGL::initializeDrawing(void)
 
   sciPointObj * pSubwin = getDrawer()->getDrawedObject();
 
-  double bounds[6];
-  sciGetRealDataBounds(pSubwin, bounds);
-  getGridDrawerJavaMapper()->setAxesBounds(bounds[0], bounds[1], bounds[2],
-                                           bounds[3], bounds[4], bounds[5]);
+  // set line color and width
+  getGridDrawerJavaMapper()->setGridParameters(getGridStyle(), (float)sciGetLineWidth(pSubwin));
+
 }
 /*------------------------------------------------------------------------------------------*/
 void GridDrawerJoGL::endDrawing(void)
