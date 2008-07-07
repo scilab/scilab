@@ -33,11 +33,26 @@ function ilib_gen_Make_unix(names,   ..
 	warningmode = warning('query');
 	
 	originPath  = pwd();
-	linkpath    = TMPDIR;
+	linkBuildDir    = TMPDIR;
 	commandpath = SCI+"/modules/dynamic_link/src/scripts/";
+	[fd,ierr] = mopen(commandpath+"/write.test","w+");
+
+	if (ierr<>0) then
+	  writePerm=%F
+	else
+	  writePerm=%T
+	  mclose(fd)
+	  mdelete(commandpath+"/write.test");
+	end
 	
-	// Copy files => linkpath
-	chdir(linkpath);
+	if (writePerm == %T & fileinfo(commandpath+"/Makefile.orig") == []) then
+	  // We have write permission on the scilab tree, then generate the stuff into the directory in order to avoid the configure each time.
+	  generateConfigure(commandpath)
+	end
+	
+	
+	// Copy files => linkBuildDir
+	chdir(linkBuildDir);
 	
 	if (warningmode == 'on') then
 		mprintf(gettext("   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"),"ilib_gen_Make");
@@ -61,10 +76,13 @@ function ilib_gen_Make_unix(names,   ..
 	
 	// Copy files to the working tmpdir
 	for x = mandatoryFiles(:)' ;
-		[status,msg]=copyfile(commandpath+"/"+x,linkpath);
+	  fullPath=commandpath+"/"+x;
+	  if (fileinfo(fullPath)<>[]) then
+		[status,msg]=copyfile(fullPath,linkBuildDir);
 		if (status <> 1)
-			error(msprintf(gettext("%s: An error occurred: %s\n"), "ilib_gen_Make",msg));
+		  error(msprintf(gettext("%s: An error occurred: %s\n"), "ilib_gen_Make",msg));
 		end
+	  end
 	end
 	
 	filelist = "";
@@ -83,7 +101,7 @@ function ilib_gen_Make_unix(names,   ..
 				if (warningmode == 'on') then
 					mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",x);
 				end
-				copyfile(x, linkpath);
+				copyfile(x, linkBuildDir);
 				filelist = filelist + " " + x ;
 			else
 				// Or copy the file matching to what we were looking for (this stuff
@@ -98,7 +116,7 @@ function ilib_gen_Make_unix(names,   ..
 						mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",f);
 					  end
 					
-					  copyfile(f, linkpath);
+					  copyfile(f, linkBuildDir);
 					  filelist = filelist + " " + f;
 					else
 					  if (warningmode == 'on') then
@@ -107,23 +125,18 @@ function ilib_gen_Make_unix(names,   ..
 					end
 				end
 			end
-			chdir(linkpath);
+			chdir(linkBuildDir);
 		end
 	end
 	
-	[fd,ierr] = mopen(commandpath+"/Makefile.orig");
-	if ierr == 0 then
-		mclose(fd);
-	end
-	
-	if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' | ierr <> 0 then
+	if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' | fileinfo(commandpath+"/Makefile.orig") == [] then
 		// Makefile.orig doesn't exists or may be invalid regarding the flags
 		// run the ./configure with the flags
-		mdelete(linkpath+"/Makefile.orig");
-		generateConfigure(linkpath, ldflags, cflags, fflags, cc)
+		mdelete(linkBuildDir+"/Makefile.orig");
+		generateConfigure(linkBuildDir, ldflags, cflags, fflags, cc)
 	else
-		// Reuse existing Makefile.orig
-		[status,msg]=copyfile(commandpath+"/Makefile.orig",linkpath);
+		// Reuse existing Makefile.orig because compilation flags are all empty 
+		[status,msg]=copyfile(commandpath+"/Makefile.orig",linkBuildDir);
 		if (status <> 1)
 			error(msprintf(gettext("%s: An error occurred: %s\n"), "ilib_gen_Make",msg));
 		end
@@ -173,10 +186,10 @@ function generateConfigure(workingPath, ..
 	cmd=gencompilationflags_unix(ldflags, cflags, fflags, cc)
 	cmd=workingPath+"/compilerDetection.sh "+cmd
 	
-	[msg,ierr] = unix_g(cmd);
+	[msg,ierr,stderr] = unix_g(cmd);
 	
 	if ierr <> 0 then
-		disp(msg);
+		mprintf(msg+" "+stderr);
 		return %F;
 	end
 	
