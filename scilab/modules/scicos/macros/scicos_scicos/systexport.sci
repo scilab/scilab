@@ -19,20 +19,18 @@
 // See the file ../license.txt
 //
 
-function systexport(scs_m,exp_dir)
-  if getenv('WIN32','NO')=='OK' then
-    do_export(scs_m,exp_dir+'\'+scs_m.props.title(1))
-  else
-    do_export(scs_m,exp_dir+'/'+scs_m.props.title(1))
-  end
+function systexport(scs_m, exp_dir, exp_format)
 
-  for k=1:lstsize(scs_m.objs)
-    o=scs_m.objs(k)
-    if typeof(o)=='Block' then
-      model=o.model
-      if model.sim=='super' then
-        systexport(model.rpar,exp_dir) 
+  do_export(scs_m, fullfile(exp_dir, scs_m.props.title(1)), 0, exp_format)
+
+  for k = 1:lstsize(scs_m.objs)
+    o = scs_m.objs(k)
+    if typeof(o) == 'Block' then
+      model = o.model
+      if model.sim == 'super' then
+        systexport(model.rpar, exp_dir, exp_format)
       end
     end
   end
+
 endfunction

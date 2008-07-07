@@ -19,18 +19,24 @@
 // See the file ../license.txt
 //
 
-function [wa, ha] = do_export(scs_m, fname, titleflag)
+function [wa, ha] = do_export(scs_m, fname, titleflag, exp_format)
 //** default call inside Export_.sci
 //**
-//**  do_export(scs_m) ;
+//**   do_export(scs_m);
 //**
-//**  rhs :=  1
-// titleflag:0 or 1 (place or not place title in eps file)
-// used only with fname
+//** => rhs = 1
+//
+// other input arguments used only with fname:
+//  - titleflag:  0 or 1 (place or not place title in eps file)
+//  - exp_format: export format ('EPS', 'PNG', ...)
 
   [lhs, rhs] = argn(0) //** verify the presence of the arguments
 
-  if rhs < 3 then //** "titleflag" not specified
+  if rhs < 4 then //** "exp_format" not specified => default is 'eps'
+    exp_format = 'eps'
+  end
+  
+  if rhs < 3 then //** "titleflag" not specified => default is '0'
     titleflag = 0
   end
   
@@ -55,35 +61,49 @@ function [wa, ha] = do_export(scs_m, fname, titleflag)
   num = 1 //** the default is Postscript file output
 
   //**------------------------------------------------------------------
-  if rhs == 1 then //** default "scs_m only" case, no filename has been
+  if rhs == 1 then //** default "scs_m only" case, no filename has been given
 
     num = x_choose( ..
-     ['Postscript file'; ..
+     ['File'; ..
 		  'Graphics window'], ..
-      'How do you want to export?')
+      'Choose your export type:')
 
-    //** Postscript file -> 1
+    //** File            -> 1
     //** Graphics window -> 2
     //** [Cancel]        -> 0
 
-    if num == 1 then //** Postscript
+    if num == 0 then return; end //** EXIT point
+
+    if num == 1 then //** Export to file
+      // Ask for format
+      available_formats = [ "EPS" ; "PNG" ]
+      exp_format = x_choose(available_formats, "Choose export format:")
+      if ~exp_format then
+        // User cancelled
+        return
+      end
+      // Convert chosen format to lower case for building export command
+      // Ex: user chose "PNG" -> %exp_format = 'png' -> use 'xs2png' to export
+      exp_format = convstr(available_formats(exp_format), 'l')
+      
       // Ask for filename
-      fname = xgetfile('*.EPS',title='Save Postcript file as...')
+      format_mask = '*.' + exp_format // for example: '*.png' or '*.eps'
+      dialog_title = 'Save ' + exp_format + ' file as...'
+      fname = xgetfile(format_mask, title = dialog_title)
+      
       // Exit if user cancelled
       if fname == "" then return; end
     end
   end
 
-  if num == 0 then return; end //** EXIT point
-
-  //** In both other cases (Postscript or graphics window), create a new window
+  // In both export cases (file or graphics window), create a new window
   // to host diagram + title then get some useful handles
   gh_winc = scf(max(winsid()) + 1) 
   drawlater()
   winc = gh_winc.figure_id
   gh_axes = gh_winc.children
 
-  if num == 1 then //** Postscript file
+  if num == 1 then //** Export to file
 
     if ~MSDOS then // remove blanks
       fname = stripblanks(fname)
@@ -140,18 +160,34 @@ function [wa, ha] = do_export(scs_m, fname, titleflag)
 
   //** --------------------- Output ------------------------------------------
 
-  //** In both cases, (Postscript output or graphical window only), draw title and replot diagram
-
-  scf(gh_winc) //** put the focus in the graphics window
-  %draw_title()
+  // In both cases (file output or graphical window), draw title and replot diagram
+  
+  scf(gh_winc) //** Give focus to the graphics window
+  //** Put the title in the ouput window/file
+  if titleflag then
+    width  = (rect(3) - rect(1))/6
+    height = (rect(4) - rect(2))/12
+    xstringb( ..
+      rect(1) + width, ..
+      rect(4) - height*(1 + %scicos_ud_margin), ..
+      scs_m.props.title(1), ..
+      width, ..
+      height, ..
+      'fill')
+  end
   drawobjs(scs_m, gcf())
   drawnow()
 
-  if num == 1 then //** Postscript: export to EPS
+  if num == 1 then //** Export to file
 
-		// Capture to EPS and delete figure
+		// Capture to specified format (default = 'eps') and delete figure
 		try
-    	xs2eps(winc, fname, 'landscape')
+      if exp_format == 'eps'
+        cmd = 'xs2' + exp_format + '(winc, fname, ''landscape'')'
+      else
+        cmd = 'xs2' + exp_format + '(winc, fname)'
+      end
+      execstr(cmd)
       delete(gh_winc)
 		catch
 			disp(lasterror)
@@ -161,13 +197,3 @@ function [wa, ha] = do_export(scs_m, fname, titleflag)
 
 endfunction
 
-////////////////////////////////////////////////////////////////////////////////
-
-function %draw_title()
-  //** Put the title in the ouput window/file
-  if ~(rhs==3 & titleflag==0) then
-    width  = (rect(3)-rect(1))/3;
-    height = (rect(4)-rect(2))/6;
-    xstringb(rect(1)+width,rect(4)-height*(1+%scicos_ud_margin),scs_m.props.title(1),width,height,'fill')
-  end
-endfunction
