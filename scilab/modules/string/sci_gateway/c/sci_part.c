@@ -28,8 +28,6 @@
 #include "freeArrayOfString.h"
 #include "partfunction.h"
 /*--------------------------------------------------------------------------*/
-char **partfunction(char** stringInput,int m,int n,int *vectInput,int row);
-/*--------------------------------------------------------------------------*/
 int C2F(sci_part)(char *fname,unsigned long fname_len)
 {
 	int i = 0;
