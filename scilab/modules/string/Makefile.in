@@ -100,6 +100,7 @@ am__objects_1 = libscistring_la-code2str.lo \
 	libscistring_la-stripblanks.lo libscistring_la-convstr.lo \
 	libscistring_la-men_Sutils.lo libscistring_la-tokens.lo \
 	libscistring_la-strcatfunction.lo \
+	libscistring_la-partfunction.lo \
 	libscistring_la-InitializeString.lo \
 	libscistring_la-setScilabCharactersCodes.lo \
 	libscistring_la-cvstr.lo libscistring_la-getfastcode.lo \
@@ -229,6 +230,7 @@ JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
+LIBRT = @LIBRT@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
@@ -358,6 +360,7 @@ src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \
 src/c/strcatfunction.c \
+src/c/partfunction.c \
 src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \
 src/c/cvstr.c \
@@ -373,8 +376,6 @@ src/c/stringsCompare.c \
 src/c/isalphanum.c \
 src/c/kmp.c
 
-#src/c/strsplit.c \
-#src/c/CreateEmptystr.c
 STRING_FORTRAN_SOURCES = src/fortran/strdsp.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_ascii.c \
@@ -587,6 +588,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-isletter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-kmp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-men_Sutils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-partfunction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-pcre_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-pcre_private.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_ascii.Plo@am__quote@
@@ -690,6 +692,13 @@ libscistring_la-strcatfunction.lo: src/c/strcatfunction.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/strcatfunction.c' object='libscistring_la-strcatfunction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-strcatfunction.lo `test -f 'src/c/strcatfunction.c' || echo '$(srcdir)/'`src/c/strcatfunction.c
+
+libscistring_la-partfunction.lo: src/c/partfunction.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-partfunction.lo -MD -MP -MF $(DEPDIR)/libscistring_la-partfunction.Tpo -c -o libscistring_la-partfunction.lo `test -f 'src/c/partfunction.c' || echo '$(srcdir)/'`src/c/partfunction.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-partfunction.Tpo $(DEPDIR)/libscistring_la-partfunction.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/partfunction.c' object='libscistring_la-partfunction.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-partfunction.lo `test -f 'src/c/partfunction.c' || echo '$(srcdir)/'`src/c/partfunction.c
 
 libscistring_la-InitializeString.lo: src/c/InitializeString.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-InitializeString.lo -MD -MP -MF $(DEPDIR)/libscistring_la-InitializeString.Tpo -c -o libscistring_la-InitializeString.lo `test -f 'src/c/InitializeString.c' || echo '$(srcdir)/'`src/c/InitializeString.c

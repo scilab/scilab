@@ -15,7 +15,7 @@
 #include <string.h>
 #include "MALLOC.h"
 #include "partfunction.h"
-#include "freeArrayOfstring.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define BLANK_CHAR ' '
 /*--------------------------------------------------------------------------*/
