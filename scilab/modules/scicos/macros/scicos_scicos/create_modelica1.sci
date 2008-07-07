@@ -123,13 +123,19 @@ function [txt,rpar,ipar]=create_modelica1( blklst,cmat,name)
     end
     Bnumbers=[Bnumbers k];
     Bnames=[Bnames,'B'+string(k)];
+
+    //** disp(k);pause;
+
     if P==[] then
-      models=[models;'  '+mo.model+' '+tab+'B'+string(k)+';'];
+      models=[models;'  ' + mo.model + ' ' + tab + 'B' + string(k) + ';']; //** 
     else
-      models=[models;'  '+mo.model+' '+tab+'B'+string(k)+'('+strcat(P,', ')+');'];
+      //** This was the line source of all the problems (Allan) 
+      models=[models;'  ' + mo.model + ' ' + tab + 'B' + string(k) + '(' + strcat(P,', ') + ');' ]; //**
     end
     //rajouter les ports
   end
+
+
   ipar=cumsum([1;ipar(:)])
   
   //links
@@ -140,7 +146,7 @@ function [txt,rpar,ipar]=create_modelica1( blklst,cmat,name)
       nb=nb+1
       Bnumbers=[Bnumbers nb];
       Bnames=[Bnames,'B'+string(nb)];
-      models=[models;'  InPutPort'+' '+tab+'B'+string(nb)+';'];
+      models=[models;'  InPutPort'+' '+tab+'B'+string(nb)+';']; //**
       n1='B'+string(nb)
     elseif from(3)==1 then
       p1=blklst(from(1)).equations.inputs(from(2))
@@ -154,7 +160,7 @@ function [txt,rpar,ipar]=create_modelica1( blklst,cmat,name)
       nb=nb+1
       Bnumbers=[Bnumbers nb];
       Bnames=[Bnames,'B'+string(nb)];
-      models=[models;'  OutPutPort'+' '+tab+'B'+string(nb)+';'];
+      models=[models;'  OutPutPort'+' '+tab+'B'+string(nb)+';']; //**
       n1='B'+string(nb)
     elseif to(3)==1 then
       p2=blklst(to(1)).equations.inputs(to(2))
@@ -186,6 +192,9 @@ function [txt,rpar,ipar]=create_modelica1( blklst,cmat,name)
        'equation'
        eqns
        'end '+name+';']
+
+  pause
+
 endfunction
 
   
