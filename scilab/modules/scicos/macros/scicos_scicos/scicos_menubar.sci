@@ -1,7 +1,7 @@
 function scicos_menubar(win,menus)
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2008 - INRIA - Simone Mannori
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
