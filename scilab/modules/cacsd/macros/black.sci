@@ -184,7 +184,7 @@ function black(varargin)
   e=gce();e.foreground=2;e.line_style=3;
   if comments<>[] then
     c=[];for k=1:mn,c=[c E(k).children(1)];end
-    legend([c e],[comments;'2.3Db'])
+    legend([c e]',[comments(:);'2.3Db'])
   end
   drawnow()
 endfunction
