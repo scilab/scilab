@@ -93,7 +93,7 @@ sl=syslin('c',a,b,c);
 // csim
 xbasc(xget("window"));
 plot2d(t',csim(u,t,sl)')
-plot2d(t',csim('ech',t,sl)',-2,"001")
+plot2d(t',csim('step',t,sl)',-2,"001")
 //exact discretization
 sld=dscr(sl,tech);
 plot2d(t',flts(ones(t),sld)',-3,"001")
