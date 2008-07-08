@@ -279,6 +279,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 	FREE(pptabofpointobj);
 	FREE(hdltab);
 	sciprint(_("%s: No more memory.\n"),"plot2d");
+        endFigureDataWriting(curFigure);
 	return 0;
       }
       if (nleg != *n1) {
@@ -287,6 +288,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 	for (jj = 0; jj < *n1; jj++) FREE(Str[jj]);
 	FREE(Str);
 	sciprint(_("%s: Invalid legend.\n"),"plot2d");
+        endFigureDataWriting(curFigure);
 	return 0;
       }
       Leg = ConstructLegend(sciGetCurrentSubWin(),Str,pptabofpointobj,*n1);
