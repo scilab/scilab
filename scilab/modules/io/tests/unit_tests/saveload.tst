@@ -8,7 +8,7 @@
 funcprot(0);
 
 global filename;
-filename = TMPDIR+'mysave';
+filename = TMPDIR+"/saveloadtst_mysave";
 
 deff('r=Check(a,b,c,d)',[
 '[lhs,rhs]=argn(),r=%t'

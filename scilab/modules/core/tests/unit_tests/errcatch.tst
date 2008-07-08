@@ -85,7 +85,7 @@ ierr=exec(foo,'errcatch');
 if ierr<>4 then pause,end
 
 //=====================================================
-path=TMPDIR+'/test.sce';
+path=TMPDIR+'/errcatchtst.sce';
 clear a;
 txt='a=1';
 mputl(txt,path);
@@ -296,8 +296,8 @@ ierr=execstr(['a=1';'[a]=foo()'],'errcatch')
 if a<>1|ierr<>42 then pause,end
 
 
-path=TMPDIR+'/test.sce';
-path2=TMPDIR+'/test2.sce';
+path=TMPDIR+'/errcatchtst.sce';
+path2=TMPDIR+'/errcatchtst2.sce';
 
 clear a x;
 txt=['a=1';
@@ -406,7 +406,7 @@ if a<>5 then pause,end
 if or(file()<>of) then pause,end
 
 
-path=TMPDIR+'/test.sce';
+path=TMPDIR+'/errcatchtst.sce';
 clear a x ierr foo iii1;
 txt=['a=1;';
      'if %t then';

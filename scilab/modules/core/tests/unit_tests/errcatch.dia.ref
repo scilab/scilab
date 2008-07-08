@@ -142,7 +142,7 @@ if ierr<>4 then bugmes();quit;end
  
 //=====================================================
  
-path=TMPDIR+'/test.sce';
+path=TMPDIR+'/errcatchtst.sce';
  
 clear a;
  
@@ -596,9 +596,9 @@ if a<>1|ierr<>42 then bugmes();quit;end
  
  
  
-path=TMPDIR+'/test.sce';
+path=TMPDIR+'/errcatchtst.sce';
  
-path2=TMPDIR+'/test2.sce';
+path2=TMPDIR+'/errcatchtst2.sce';
  
  
 clear a x;
@@ -951,7 +951,7 @@ if or(file()<>of) then bugmes();quit;end
  
  
  
-path=TMPDIR+'/test.sce';
+path=TMPDIR+'/errcatchtst.sce';
  
 clear a x ierr foo iii1;
  
