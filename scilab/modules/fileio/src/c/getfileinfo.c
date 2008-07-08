@@ -17,6 +17,7 @@
 /*--------------------------------------------------------------------------*/
 void C2F(getfileinfo)(integer *fd, FILE *fa, integer *swap2, integer *type, integer *mode, char *filename, integer *lf, integer *ierr)
 {
+	char *filenamefromfd = NULL;
 	if (*fd<0 || *fd>=GetMaximumFileOpenedInScilab() ) 
 	{
 		*ierr=1;
@@ -32,7 +33,10 @@ void C2F(getfileinfo)(integer *fd, FILE *fa, integer *swap2, integer *type, inte
 	*swap2 = GetSwapStatus(*fd);
 	*type = GetFileTypeOpenedInScilab(*fd);
 	*mode = GetFileModeOpenedInScilab(*fd);
-	strcpy(filename,GetFileNameOpenedInScilab(*fd));
+	filenamefromfd = GetFileNameOpenedInScilab(*fd);
+	if (filenamefromfd) strcpy(filename,GetFileNameOpenedInScilab(*fd));
+	else strcpy(filename,"");
+
 	*lf=(int)strlen(filename);
 	*ierr=0;
 }

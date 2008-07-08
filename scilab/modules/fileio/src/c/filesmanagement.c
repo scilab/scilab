@@ -108,7 +108,8 @@ void SetFileTypeOpenedInScilab(int Id,int Type)
 /*--------------------------------------------------------------------------*/
 char* GetFileNameOpenedInScilab(int Id)
 {
-	return ScilabFileList[Id].ftname;
+	if (GetFileOpenedInScilab(Id) != NULL) return ScilabFileList[Id].ftname;
+	return NULL;
 }
 /*--------------------------------------------------------------------------*/
 BOOL SetFileNameOpenedInScilab(int Id,char *name)

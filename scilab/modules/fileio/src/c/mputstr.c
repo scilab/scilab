@@ -24,7 +24,15 @@ void C2F(mputstr) (int *fd, char *str, double *res, int *ierr)
 	fa = GetFileOpenedInScilab(*fd);
 	if (!fa) 
 	{
-		sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mputstr",GetFileNameOpenedInScilab(*fd));
+		char *filename = GetFileNameOpenedInScilab(*fd);
+		if (filename)
+		{
+			sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mputstr",filename);
+		}
+		else
+		{
+			sciprint(_("%s: Error while opening, reading or writing.\n"),"mputstr");
+		}
 		*ierr=1;
 	}
 	else 

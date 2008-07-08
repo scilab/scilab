@@ -40,7 +40,16 @@ void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err)
 	*err=0;
 	if ( fa == (FILE *) 0 ) 
 	{
-		sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mseek",GetFileNameOpenedInScilab(*fd));
+		char *filename = GetFileNameOpenedInScilab(*fd);
+		if (filename)
+		{
+			sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mseek",filename);
+		}
+		else
+		{
+			sciprint(_("%s: Error while opening, reading or writing.\n"),"mseek");
+		}
+		
 		*err=1;
 		return;
 	}

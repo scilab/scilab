@@ -23,7 +23,16 @@ void C2F(mtell) (integer *fd, double *offset, integer *err)
 	FILE *fa= GetFileOpenedInScilab(*fd);
 	if ( fa == (FILE *) 0 ) 
 	{
-		sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mtell",GetFileNameOpenedInScilab(*fd));
+		char *filename = GetFileNameOpenedInScilab(*fd);
+		if (filename)
+		{
+			sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mtell",filename);
+		}
+		else
+		{
+			sciprint(_("%s: Error while opening, reading or writing.\n"),"mtell");
+		}
+		
 		*err=1;
 		return;
 	}
