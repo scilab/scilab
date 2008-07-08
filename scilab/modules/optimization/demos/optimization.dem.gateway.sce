@@ -8,7 +8,6 @@
 
 demopath = get_absolute_file_path("optimization.dem.gateway.sce");
 
-subdemolist = ["Multiflow problem"             , "multiflow/multiflow.dem.sce"   ; ..
-               "Non linear data fitting"       , "datafit/datafit.dem.sce"       ]
+subdemolist = ["Non linear data fitting"       , "datafit/datafit.dem.sce"       ]
 
 subdemolist(:,2) = demopath + subdemolist(:,2)
