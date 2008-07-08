@@ -379,7 +379,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 
       if (delta_time > refresh_time )
         { 
-          printf("Delta Time Forced Update = %f ; buffer = %d \n", delta_time, NbrPtsShort); 
+          //** printf("Delta Time Forced Update = %f ; buffer = %d \n", delta_time, NbrPtsShort); 
           force_update = 1 ; 
           pScopeMemory->d_last_scope_update_time = d_current_real_time ; //** update the ds for the next step 
         }
