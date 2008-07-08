@@ -157,8 +157,7 @@ function []=metro(demopath)
       g=load_graph(demopath+'paris.graph');
       gg=load_graph(demopath+'paris2.graph');
       win=show_graph(gg,'rep');
-      
-      la1=g.nodes.graphics.name;lp1=g.nodes.graphics.nodetype;ls1=g.nodes.graphics.x;
+      la1=g.nodes.graphics.name;lp1=g.nodes.graphics.type;ls1=g.nodes.graphics.x;
       NodeN=lp1(Lnode(Depart)+1)-lp1(Lnode(Depart))+1;
       duration=g.edges.data.length;tail=g.edges.tail;
       i=1;
