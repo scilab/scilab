@@ -124,7 +124,7 @@ function [txt,rpar,ipar]=create_modelica1( blklst,cmat,name)
     Bnumbers=[Bnumbers k];
     Bnames=[Bnames,'B'+string(k)];
 
-    //** disp(k);pause;
+    
 
     if P==[] then
       models=[models;'  ' + mo.model + ' ' + tab + 'B' + string(k) + ';']; //** 
@@ -193,7 +193,7 @@ function [txt,rpar,ipar]=create_modelica1( blklst,cmat,name)
        eqns
        'end '+name+';']
 
-  pause
+  
 
 endfunction
 
