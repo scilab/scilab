@@ -19,7 +19,6 @@
 #include "../../../libs/libst/misc.h"
 #include "machine.h"
 #include "localization.h"
-#include "warningmode.h"
 /*--------------------------------------------------------------------------*/
 extern struct soundstream ftf; /* defined in mget.c */
 extern int swap; /* defined in mget.c */
@@ -72,10 +71,7 @@ void C2F(mputnc) (integer *fd, void * res, integer *n1, char *type, integer *ier
   n=*n1;
   *ierr=0;
   if ((fa = GetFileOpenedInScilab(*fd)) ==NULL) {
-	  if ( getWarningMode() )
-	  {
-		sciprint(_("%s: No input file associated to logical unit %d.\n"),"mput",*fd);
-	  }
+    sciprint(_("%s: No input file associated to logical unit %d.\n"),"mput",*fd);
     *ierr=3;
     return;
   }
@@ -148,7 +144,7 @@ data **/
       swap = (islittleendian()==1) ? 0 : 1;	\
       MPUT(Type); break;			\
     default:					\
-      if ( getWarningMode() ) sciprint(_("%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"),"mput",4,type," ","b","l"); \
+      sciprint(_("%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"),"mput",4,type," ","b","l"); \
       *ierr=1;return;				\
     }
 /*--------------------------------------------------------------------------*/
@@ -186,34 +182,31 @@ void mput2 (FILE *fa, integer swap2, double *res, integer n, char *type, integer
 /*--------------------------------------------------------------------------*/
 void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 {
-	int nc = 0,swap2 = 0;
-	FILE *fa = NULL;
-	*ierr = 0;
-	if ((nc = (int)strlen(type)) == 0) 
+  int nc,swap2;
+  FILE *fa;
+  *ierr=0;
+  if ((nc = (int)strlen(type)) == 0) 
     {
-		if ( getWarningMode() ) sciprint(_("%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"),"mput",4,type);
-		*ierr = 2;
-		return;
-	}
-
-	if ((fa = GetFileOpenedInScilab(*fd)) !=NULL)
-    {
-		swap2 = GetSwapStatus(*fd);
-		mput2(fa,swap2,res,*n,type,ierr);
-		if (*ierr > 0) if ( getWarningMode() ) sciprint(_("%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"),"mput",4,type);
+      sciprint(_("%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"),"mput",4,type);
+      *ierr=2;
+      return;
     }
-	else 
-	{
-		char *filename = GetFileNameOpenedInScilab(*fd);
-		if (filename)
-		{
-			if ( getWarningMode() ) sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mput",filename);
-		}
-		else
-		{
-			if ( getWarningMode() ) sciprint(_("%s: Error while opening, reading or writing.\n"),"mput");
-		}
-		*ierr=3;
+  if ( *fd == -1  &&  GetFileOpenedInScilab(*fd) ==NULL )
+{
+ sciprint(_("%s: No File opened in Scilab.\n") , "mput" ) ;
+ *ierr = 3 ;
+ return ;
+}
+  if ((fa = GetFileOpenedInScilab(*fd)) !=NULL)
+    {
+      swap2 = GetSwapStatus(*fd);
+      mput2(fa,swap2,res,*n,type,ierr);
+      if (*ierr > 0) sciprint(_("%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"),"mput",4,type);
+    }
+  else 
+    {
+      sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mput",GetFileNameOpenedInScilab(*fd));
+      *ierr=3;
     }
 }
 /*--------------------------------------------------------------------------*/
