@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3184
 //
 // <-- Short Description -->
-// Missing checks when setting data property of fac3d objects.
+// Misaligned ticks labels in colorbar.
  
 colorbar(-200,100)
 
