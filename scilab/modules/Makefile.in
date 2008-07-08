@@ -148,7 +148,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
-BATIK_PACKAGE = @BATIK_PACKAGE@
+BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
@@ -194,6 +194,7 @@ JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
+JEUCLID_CORE = @JEUCLID_CORE@
 JHALL = @JHALL@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
@@ -242,6 +243,7 @@ PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
+RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
@@ -391,7 +393,8 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/matio/libscimatio.la
+	$(top_builddir)/modules/matio/libscimatio.la \
+	$(top_builddir)/modules/helptools/libscihelptools.la
 
 
 # Core modules

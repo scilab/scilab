@@ -407,7 +407,7 @@ if test "$CC" = "gcc"; then
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
-	;;
+	;;		
 	 ia64-*-linux-gnu )
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO"
 		IS_64_BITS_CPU=true
@@ -541,7 +541,7 @@ if test "$with_javasci" != no -o "$with_gui" != no; then
 				AC_SUBST(FLEXDOCK)
 
 				# JOGL
-				AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 1.1.1-pre 20071112])
+				AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 1.1.1])
 				JOGL=$PACKAGE_JAR_FILE
 				AC_SUBST(JOGL)
 
@@ -752,12 +752,11 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
 
    save_LIBS="$LIBS"
    AC_CHECK_LIB([rt], [clock_gettime],
-		      [LIBRT="-lrt"],
-        [AC_MSG_ERROR([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed and if the version is correct])]
+		      [RT_LIB="-lrt"],
+        [AC_MSG_ERROR([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
    )
    LIBS="$save_LIBS"
- AC_SUBST(LIBRT)
-
+   AC_SUBST(RT_LIB)
 
 #################
 ## ocaml which only called with using Scicos
@@ -770,7 +769,7 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
 fi
 AC_SUBST(SCICOS_ENABLE)
 
-AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)
+AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)		
 AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
 
 
@@ -813,7 +812,7 @@ AC_ARG_WITH(pvm,
 
 PVM_ENABLE=no
 if test "$with_pvm" = yes; then
-   AC_PVM()
+   AC_PVM()	
    PVM_ENABLE=yes
 fi
 AC_SUBST(PVM_ENABLE)
@@ -903,7 +902,7 @@ AM_CONDITIONAL(UMFPACK, test "$with_umfpack" = yes)
 #######################
 
 AC_PCRE()
-
+	  	 
  #############################################
 #################
 ## Tcl/Tk library
@@ -939,7 +938,7 @@ if test "$with_tk" != no; then
 
 ###########################
 ########## X11 checks
-###########################
+########################### 	 
 		## This check is mandatory since tk needs Xlib headers and libs
 		AC_PATH_XTRA
 		##
@@ -1019,8 +1018,8 @@ if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
 
 	# xml.apache.org SVG Library
 	AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library])
-	BATIK_PACKAGE=$PACKAGE_JAR_FILE
-	AC_SUBST(BATIK_PACKAGE)
+	BATIK=$PACKAGE_JAR_FILE
+	AC_SUBST(BATIK)
 
 	# Saxon XSLT Processor
 	AC_JAVA_CHECK_PACKAGE([saxon],[com.icl.saxon.Loader],[Saxon XSLT Processor])
@@ -1032,9 +1031,14 @@ if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
 	FOP=$PACKAGE_JAR_FILE
 	AC_SUBST(FOP)
 
+	# MathML rendering solution
+	AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.MathBase],[MathML rendering solution])
+	JEUCLID_CORE=$PACKAGE_JAR_FILE
+	AC_SUBST(JEUCLID_CORE)
+
 
 fi #build help
-
+ 
 AC_ARG_WITH(install-help-xml,
 		AC_HELP_STRING([--with-install-help-xml],[make install will install XML files]),
 		[with_install_help_xml=$withval],
@@ -1201,6 +1205,7 @@ Makefile
 scilab.pc
 etc/modules.xml
 scilab-lib.properties
+scilab-lib-doc.properties
 ])
 
 # Detection of the module for the future version of Scilab 6
@@ -1229,7 +1234,7 @@ AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scr
 
 AC_OUTPUT
 
-# To distribution packager, you can uncomment this stuff is you want to
+# To distribution packager, you can uncomment this stuff is you want to 
 # disable the rpath issue
 # However, you will have to set all the LD_LIBRARY_PATH to .libs/ directory
 # since scilab is compiling macros and help into the source tree (ie before
@@ -1300,7 +1305,7 @@ if test $SCICOS_ENABLE = yes; then
    echo "OCAMLC ............. = $OCAMLC"
    echo "OCAMLOPT ........... = $OCAMLOPT"
    echo "OCAMLDEP ........... = $OCAMLDEP"
-else
+else 
    echo "Not using Scicos"
 fi
 fi
@@ -1428,7 +1433,7 @@ else
 echo "  JAVA disabled"
 fi
 
-echo ""
+echo "" 
 echo "TCL/TK configuration:"
 echo "  TK_INC_PATH ........ = $TK_INC_PATH"
 echo "  TCL_INC_PATH ....... = $TCL_INC_PATH"
@@ -1436,13 +1441,13 @@ echo "  TCLTK_LIBS ......... = $TCLTK_LIBS"
 echo "  TCL_SERIAL_VERSION . = $TCL_SERIAL_VERSION"
 echo "  TK_SERIAL_VERSION .. = $TK_SERIAL_VERSION"
 
-echo ""
+echo "" 
 echo "XML configuration:"
 echo "  XML_FLAGS .......... = $XML_FLAGS"
 echo "  XML_LIBS ........... = $XML_LIBS"
 echo "  XML_VERSION ........ = $XML_VERSION"
 
-echo ""
+echo "" 
 echo "PCRE configuration:"
 echo "  PCRE_CFLAGS ........ = $PCRE_CFLAGS"
 echo "  PCRE_LIBS .......... = $PCRE_LIBS"
@@ -1483,7 +1488,7 @@ if test "$SCI_SRCDIR_FULL" != "$SCI_BUILDDIR"; then
 echo "  VPATH build ......... = Activated"
 fi
 
-echo ""
+echo "" 
 echo "Platform informations:"
 echo "  host ........... = $host"
 echo "  host_cpu ....... = $host_cpu"

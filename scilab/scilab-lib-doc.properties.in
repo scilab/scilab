@@ -1,0 +1,14 @@
+; Definition of lib for documentation build used in Scilab 
+
+
+batik.jar=@BATIK@
+
+saxon.jar=@SAXON@
+
+fop.jar=@FOP@
+
+jeuclid-core.jar=@JEUCLID_CORE@
+
+
+library.helptools.dir=${modules.dir}/helptools/${build.jar.dir}/
+library.helptools.name=org.scilab.modules.helptools.jar
