@@ -135,7 +135,7 @@ void cscope(scicos_block * block,int flag)
           //** current real time as double [second] 
           d_current_real_time = scoGetRealTime();
           pScopeMemory->d_last_scope_update_time = d_current_real_time ; //** update the ds for the next step
-          printf("Init:Start! \n\n"); //** DEBUG ONLY ! 
+          //** printf("Init:Start! \n\n"); //** DEBUG ONLY ! 
 
 	break;
       }
