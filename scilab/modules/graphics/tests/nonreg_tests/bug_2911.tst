@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2911
 //
 // <-- Short Description -->
-// In scilab5 the grids can only be displaied if the axes_visible property is set to "on"
+// In scilab5 the grids can only be displayed if the axes_visible property is set to "on"
  
 
 plot2d()

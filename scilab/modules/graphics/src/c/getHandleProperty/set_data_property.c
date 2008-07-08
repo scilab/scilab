@@ -179,6 +179,8 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   double * pvecz = NULL ;
   int dimvectx = 0 ;
   int dimvecty = 0 ;
+
+  // number of specified colors
   int nc = 0 ;
 
   /* no copy now we just perfrom tests on the matrices */
@@ -224,13 +226,18 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     getCurrentDoubleMatrixFromList( tlist, &m3n, &n3n ) ;
     if ( m3n * n3n == m3 * n3 )
     {
-      /* the color is a matrix */
+      /* the color is a matrix, with same size as Z */
       psurf->izcol = 2 ; 
+    }
+    else if (m3n * n3n == n3 && (m3n == 1 || n3n == 1))
+    {
+      /* a vector with as many colors as facets */
+      psurf->izcol = 1 ;
     }
     else
     {
-      /* a vector */
-      psurf->izcol = 1 ;
+      sciprint( _("Wrong size for %s element: A %d-by-%d matrix or a vector of size %d expected.\n"), "color", m3, n3, n3);
+      return SET_PROPERTY_ERROR ;
     }
   }
   else
