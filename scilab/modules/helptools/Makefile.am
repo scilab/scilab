@@ -1,7 +1,20 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
+### INRIA - Scilab 2008
 ##########
+
+#GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c \
+#	sci_gateway/c/sci_buildDoc.c  
+
+#pkglib_LTLIBRARIES = libscihelptools.la
+
+#libscihelptools_la_CFLAGS=  	-Iincludes/ \
+#				-I$(top_builddir)/modules/output_stream/includes/
+
+
+#libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
+#libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES)
 
 #### Target ######
 modulename=helptools
