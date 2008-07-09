@@ -206,7 +206,9 @@ function ilib_link_gen_Make_msvc(names, ..
     if (files <> []) then
       OBJS = '';
       for x = files(:)'
-        OBJS = OBJS + ' ' + strsubst(x,'.o','.obj');
+        [ptmp,ftmp,fext] = fileparts(x);
+        OBJ = ptmp + ftmp + '.obj';
+        OBJS = OBJS + ' ' + OBJ;
       end
       MAKEFILE_VC = strsubst(MAKEFILE_VC,"__OBJS__",OBJS);
     else
@@ -216,7 +218,9 @@ function ilib_link_gen_Make_msvc(names, ..
     if (libs <> []) then
       LIBS = '';
       for x = libs(:)'
-        LIBS = LIBS + ' ' + sprintf("%s.lib",x);
+        if x <> '' then
+          LIBS = LIBS + ' ' + sprintf("%s.lib",x);
+        end
       end
       MAKEFILE_VC = strsubst(MAKEFILE_VC,"__OTHERSLIBS__",LIBS);
     else
@@ -295,8 +299,8 @@ function ilib_link_gen_Make_lcc(names, ..
   if (flag =='c') then
   	mfprintf(fd,"OBJSC =");
   	for x = files(:)' ;
-  		x = strsubst(x,".obj","");
-   		x = strsubst(x,".o","");
+  	  [ptmp,ftmp,fext] = fileparts(x);
+  		x = ptmp + ftmp;
    		mfprintf(fd," %s$(O)",x);
    	end
   
@@ -305,8 +309,8 @@ function ilib_link_gen_Make_lcc(names, ..
   	mfprintf(fd,"OBJSC =\n");
   	mfprintf(fd,"\nOBJSF=");
   	for x = files(:)' ;
-  		x = strsubst(x,".obj","");
-   		x = strsubst(x,".o","");
+      [ptmp,ftmp,fext] = fileparts(x);
+  		x = ptmp + ftmp;
    		mfprintf(fd," %s$(O)",x);
    	end
   end
@@ -325,9 +329,9 @@ function ilib_link_gen_Make_lcc(names, ..
   mfprintf(fd,"	$(DUMPEXTS) -o ""$(LIBRARY).def"" ""$*"" $(OBJS)\n");
   mfprintf(fd,"	$(LINKER) $(LINKER_FLAGS) $(OBJS) $(OTHERLIBS) $(SCIIMPLIB) $(EXTRA_LDFLAGS) $*.def -o $(LIBRARY).dll\n\n");
  
-  for x = files(:)' ;
-  	x = strsubst(x,".obj","");
-   	x = strsubst(x,".o","");
+  for x = files(:)' 
+    [ptmp,ftmp,fext] = fileparts(x);
+    x = ptmp + ftmp;
   	mfprintf(fd,"%s$(O):\n",x);
   	if (flag =='c') then
   		mfprintf(fd,"	$(CC) $(CFLAGS) $*.c\n\n");

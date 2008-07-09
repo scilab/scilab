@@ -17,7 +17,7 @@ function bOK = detectmsifort64tools()
    IFORTPATH = '';
    ifortcomp = findmsifortcompiler();
    if ifortcomp <> 'unknown' then
-     select compiler,
+     select ifortcomp,
      
        case  'ifort10' then          
          IFORTPATH = getenv('IFORT_COMPILER10','');
@@ -33,7 +33,7 @@ function bOK = detectmsifort64tools()
      end
    end
    
-   IFORTSPATHEMT64 = IFORTPATH + filesep + 'emt64';
+   IFORTSPATHEMT64 = IFORTPATH + 'em64t';
    
    if isdir(IFORTSPATHEMT64) then
      bOK = %T;
