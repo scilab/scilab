@@ -359,42 +359,20 @@ public class DrawableFigureGL extends ObjectGL {
 	 */
   	@Override
 	public void destroy(int parentFigureIndex) {
-  		setRenderingRequested(false);
   		getRendererProperties().disableCanvas();
+  		setRenderingRequested(false);
   		// destroy all the objects stored in the destroy list
 		destroyedObjects = null;
   		FigureMapper.removeMapping(figureId);
+  	
   		
-
-  		// then destroy canvas
-  		// call it on an other thread to avoid deadlocks
-  		Thread destroyThread = new Thread(new Runnable() {
-  			public void run() {
-  				
-  				if (Threading.isOpenGLThread()) {
-  		  			getRenderingTarget().getContext().destroy();
-  		  		} else {
-  		  			Threading.invokeOnOpenGLThread(new Runnable() {
-  		  				public void run() {
-  		  					getRenderingTarget().getContext().destroy();
-  		  				}
-  		  			});
-  		  		}
-
-  				if (SwingUtilities.isEventDispatchThread()) {
-  					getRendererProperties().closeCanvas();
-  				} else {
-  					SwingUtilities.invokeLater(new Runnable() {
-  						public void run() {
-  							getRendererProperties().closeCanvas();
-  						}
-  					});
-  				}
-
-  			}
-  		});
-
-  		destroyThread.start();
+  		
+  		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				getRendererProperties().closeCanvas();
+			}
+		});
+  		
 	}
 	
 	
