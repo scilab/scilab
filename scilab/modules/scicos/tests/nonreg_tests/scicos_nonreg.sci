@@ -211,9 +211,8 @@ function status = launch_nonreg(baseDir, testName)
     baseName = testName + '.unix'
   end
   outFilename    = fullfile(baseDir, baseName + '.out') // foo.win.out, foo.unix.out
-  diaryFilename  = fullfile(baseDir, baseName + '.log') // foo.win.log, foo.unix.log
-  resFilename    = fullfile(baseDir, baseName + '.res') // foo.res.res, foo.unix.res
-  errFilename    = fullfile(baseDir, baseName + '.err') // foo.err.err, foo.unix.err
+  logFilename    = fullfile(baseDir, baseName + '.log') // foo.win.log, foo.unix.log
+  errFilename    = fullfile(baseDir, baseName + '.err') // foo.win.err, foo.unix.err
 
   
   select currentScilabFamily
@@ -221,8 +220,7 @@ function status = launch_nonreg(baseDir, testName)
     case '4' then
     // Add additional suffix to generate reference files
       outFilename    = outFilename   + '.ref' // foo.win.out.ref, foo.unix.out.ref
-      diaryFilename  = diaryFilename + '.ref' // foo.win.log.ref, foo.unix.log.ref
-      resFilename    = resFilename   + '.ref' // foo.win.res.ref, foo.unix.res.ref
+      logFilename    = logFilename   + '.ref' // foo.win.log.ref, foo.unix.log.ref
       errFilename    = errFilename   + '.ref' // foo.win.err.ref, foo.unix.err.ref
       
     case '5' then
@@ -240,8 +238,7 @@ function status = launch_nonreg(baseDir, testName)
   // After the simulation, a test on the existence of these files can ensure that simulation went all right
   mdelete(testFilename)
   mdelete(outFilename)
-  mdelete(diaryFilename)
-  mdelete(resFilename)
+  mdelete(logFilename)
   mdelete(errFilename)
   
   // Define format used in 'Write to File' blocks to log output (Fortran syntax)
@@ -256,9 +253,6 @@ function status = launch_nonreg(baseDir, testName)
           '';
           '// Go to folder containing the diagram to test';
           'cd(''' + baseDir + ''')';
-          '';
-          '// Start logging output';
-          'diary(''' + diaryFilename + ''')';
           '';
           '// Load some helper functions (findIOblocks, renameIO, setW2Fformat, ...)';
           'getd(''./utils'')';
@@ -294,9 +288,6 @@ function status = launch_nonreg(baseDir, testName)
           '';
           'disp(Info)';
           '';
-          '// Stop logging output';
-          'diary(0)';
-          '';
           '// Quit background Scilab session';
           'exit'];
   mputl(txt, get_filename(testFilename))
@@ -310,9 +301,9 @@ function status = launch_nonreg(baseDir, testName)
 	end
   // Launch previous script inside a NW Scilab and redirect both standard and error output to files
   if MSDOS then
-		cmd = '(""' + SCI_BIN + '\bin\scilex.exe"" -nw -nb -args -nouserstartup -f ""' + testFilename + '"" > ""' + resFilename + '"") 2> ""' + errFilename + '""'
+		cmd = '(""' + SCI_BIN + '\bin\scilex.exe"" -nw -nb -args -nouserstartup -f ""' + testFilename + '"" > ""' + logFilename + '"") 2> ""' + errFilename + '""'
 	else
-		cmd = '(''' + SCI_BIN + '/bin/scilab'' -nw -nb -args -nouserstartup -f ''' + testFilename + ''' > ''' + resFilename + ''') 2> ''' + errFilename + ''''
+		cmd = '(''' + SCI_BIN + '/bin/scilab'' -nw -nb -args -nouserstartup -f ''' + testFilename + ''' > ''' + logFilename + ''') 2> ''' + errFilename + ''''
 	end
 	// mputl(cmd, fullfile(baseDir, testName + '.cmd')) // Log the command for debug purpose
   host(cmd)
