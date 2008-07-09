@@ -1,0 +1,1380 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2008-01-29 16:53+0100\n"
+"PO-Revision-Date: 2008-04-27 01:03+0000\n"
+"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-05-30 14:44+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"Revision-Date: 2008-01-30 11:26+0100\n"
+
+# File: macros/perl.sci, line: 12
+#, c-format
+msgid "%s: Unable to find Perl file: %s"
+msgstr "%s:無法找到 Perl 程序檔: %s"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+msgstr "%s: 輸入參數 #%d 型態錯誤: 應為字串.\n"
+
+#
+# File: macros/perl.sci, line: 32
+#, c-format
+msgid "%s: No perl command specified."
+msgstr "%s: perl 指令未給定(specified)."
+
+#
+# File: macros/perl.sci, line: 40
+#, c-format
+msgid "%s: Unable to find Perl in ''%s''"
+msgstr "%s: 無法在 ''%s'' 中找到 Perl"
+
+#
+# File: macros/perl.sci, line: 56
+#, c-format
+msgid "%s: Unable to find Perl.\n"
+msgstr "%s: 無法找到 Perl.\n"
+
+#
+# File: macros/perl.sci, line: 61
+#, c-format
+msgid "%s: System error: Command executed: %s"
+msgstr "%s: 系統錯誤: 執行指令為: %s"
+
+#
+# File: macros/perl.sci, line: 65
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 預期最少為 %d 個.\n"
+
+#
+# File: macros/toolboxes.sci, line: 42
+msgid " is already compiled.\n"
+msgstr " 已經編譯完成.\n"
+
+#
+# File: macros/toolboxes.sci, line: 49
+# File: macros/toolboxes.sci, line: 50
+msgid "toolboxes"
+msgstr "工具箱(toolboxes)"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 第一參數輸入錯誤: 應為純量, '%s' 或 '%s'.\n"
+
+#
+# File: macros/powershell.sci, line: 7
+msgid "Error(s) : see help powershell'';''verify your script without scilab."
+msgstr "錯誤 : 請參考 powershell'';''不使用 Scilab 方式檢查你的程序檔."
+
+#
+# File: macros/powershell.sci, line: 13
+msgid "only for Microsoft Windows."
+msgstr "只適用於 Microsoft Windows."
+
+#
+# File: macros/powershell.sci, line: 20
+msgid "Powershell not found."
+msgstr "找不到 Powershell."
+
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr "%s: 輸入參數型態錯誤 : 應為字串.\n"
+
+#
+# File: macros/sethomedirectory.sci, line: 11
+msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
+msgstr "已淘汰: 啟動 Scilab 前先定義 SCIHOME 及 HOME 環境參數."
+
+#
+# File: macros/who_user.sci, line: 36
+msgid "User variables are:"
+msgstr "使用者自訂變數"
+
+#
+# File: macros/who_user.sci, line: 40
+#, c-format
+msgid "Using %s elements ouf of %s"
+msgstr "由 %s 個之中使用其中的 %s 個元素"
+
+#
+# File: macros/add_demo.sci, line: 4
+# File: sci_gateway/c/sci_getmd5.c, line: 56
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: 檔案 %s 不存在.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong second input argument: Path to a scilab script file expected.\n"
+msgstr "%s: 第二輸入參數錯誤: 應為 scilab 執行程序之路徑.\n"
+
+#
+# File: macros/whereami.sci, line: 12
+#, c-format
+msgid "%s called at line %s of exec_file"
+msgstr "%s 在 exec_file 檔案的第  %s 行被呼叫"
+
+#
+# File: macros/whereami.sci, line: 15
+#, c-format
+msgid "%s called at line %s of execstr instruction."
+msgstr "%s 在 execstr 指令的第  %s 行被呼叫"
+
+#
+# File: macros/whereami.sci, line: 18
+#, c-format
+msgid "%s called under pause"
+msgstr "暫停 (pause) 時呼叫 %s"
+
+#
+# File: macros/whereami.sci, line: 21
+#, c-format
+msgid "%s called at line %s of macro %s"
+msgstr "%s 第  %s 行(在巨集指令 %s 內)被呼叫"
+
+#
+# File: src/c/tmpdir.c, line: 53
+# File: src/c/tmpdir.c, line: 74
+# File: src/c/CallScilab.c, line: 42
+msgid "Error"
+msgstr "錯誤"
+
+#
+# File: src/c/tmpdir.c, line: 73
+#, c-format
+msgid "Impossible to create : %s"
+msgstr "無法產生 : %s"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 至 %d 個輸入參數.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 至 %d 之數值.\n"
+
+#
+# File: src/c/stack2.c, line: 317
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr "%s: 選擇性參數 name=val 必須列在最後.\n"
+
+#
+# File: src/c/stack2.c, line: 332
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr "%s: 無法辨識的選擇性參數 %s.\n"
+
+#
+# File: src/c/stack2.c, line: 374
+msgid "Optional argument list is empty.\n"
+msgstr "選擇性參數清單為空\n"
+
+#
+# File: src/c/stack2.c, line: 377
+msgid "Optional arguments list: \n"
+msgstr "選擇性參數清單. \n"
+
+#
+# File: src/c/stack2.c, line: 383
+#, c-format
+msgid "and %s.\n"
+msgstr "及 %s.\n"
+
+#
+# File: src/c/stack2.c, line: 402
+# File: src/c/stack2.c, line: 439
+# File: src/c/stack2.c, line: 555
+# File: src/c/stack2.c, line: 601
+# File: src/c/stack2.c, line: 634
+# File: src/c/stack2.c, line: 718
+# File: src/c/stack2.c, line: 1116
+# File: src/c/stack2.c, line: 1145
+# File: src/c/stack2.c, line: 1170
+# File: src/c/stack2.c, line: 1215
+# File: src/c/stack2.c, line: 1417
+# File: src/c/stack2.c, line: 1514
+# File: src/c/stack2.c, line: 1635
+# File: src/c/stack2.c, line: 2735
+# File: src/c/stack2.c, line: 3037
+#, c-format
+msgid "%s: bad call to %s! (1rst argument).\n"
+msgstr "%s: 錯誤的呼叫 %s! (第一參數).\n"
+
+#
+# File: src/c/stack2.c, line: 433
+# File: src/c/stack2.c, line: 549
+# File: src/c/stack2.c, line: 595
+# File: src/c/stack2.c, line: 628
+# File: src/c/stack2.c, line: 711
+# File: src/c/stack2.c, line: 777
+# File: src/c/stack2.c, line: 881
+# File: src/c/stack2.c, line: 951
+# File: src/c/stack2.c, line: 1056
+# File: src/c/stack2.c, line: 1110
+# File: src/c/stack2.c, line: 1139
+# File: src/c/stack2.c, line: 1223
+# File: src/c/stack2.c, line: 1421
+# File: src/c/stack2.c, line: 1518
+# File: src/c/stack2.c, line: 1639
+# File: src/c/stack2.c, line: 3031
+#, c-format
+msgid ""
+"%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
+msgstr "%s: (%s) 堆疊 (stacj) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
+
+#
+# File: src/c/stack2.c, line: 860
+# File: src/c/stack2.c, line: 920
+# File: src/c/stack2.c, line: 1025
+# File: src/c/stack2.c, line: 1091
+# File: src/c/stack2.c, line: 1663
+#, c-format
+msgid "%s: (%s) bad third argument!\n"
+msgstr "%s: (%s) 第三參數有誤!\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Mmatrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument: Complex expected.\n"
+msgstr "%s: 參數型態錯誤: 應為複數.\n"
+
+#
+# File: src/c/stack2.c, line: 1462
+#, c-format
+msgid "%s: bad call to %s!\n"
+msgstr "%s: 錯誤的呼叫 %s!.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為串列 (list).\n"
+
+#
+# File: src/c/stack2.c, line: 1558
+#, c-format
+msgid "%s: argument %d > (%d) should be a complex matrix.\n"
+msgstr "%s: 參數 %d > (%d) 應該為一複數矩陣.\n"
+
+#
+# File: src/c/stack2.c, line: 1614
+#, c-format
+msgid "%s: bad call to %s (third argument %c).\n"
+msgstr "%s: 錯誤的呼叫 %s! (第三參數  %c).\n"
+
+#
+# File: src/c/stack2.c, line: 1731
+# File: src/c/stack2.c, line: 1779
+#, c-format
+msgid "%s: (%s) bad second argument!\n"
+msgstr "%s: (%s)第二參數錯誤!\n"
+
+#
+# File: src/c/stack2.c, line: 1753
+#, c-format
+msgid ""
+"%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
+msgstr ""
+"%s: createcvarfromptr: 堆疊 (stack) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
+
+#
+# File: src/c/stack2.c, line: 1868
+# File: src/c/stack2.c, line: 2104
+# File: src/c/intmacr2tree.c, line: 98
+# File: src/c/intmacr2tree.c, line: 153
+# File: src/c/intmacr2tree.c, line: 321
+# File: src/c/intmacr2tree.c, line: 326
+# File: src/c/intmacr2tree.c, line: 408
+# File: src/c/intmacr2tree.c, line: 413
+# File: src/c/intmacr2tree.c, line: 544
+# File: src/c/intmacr2tree.c, line: 551
+# File: src/c/intmacr2tree.c, line: 554
+# File: src/c/intmacr2tree.c, line: 674
+# File: src/c/intmacr2tree.c, line: 679
+# File: src/c/intmacr2tree.c, line: 983
+# File: src/c/intmacr2tree.c, line: 988
+# File: src/c/intmacr2tree.c, line: 993
+# File: src/c/intmacr2tree.c, line: 1021
+# File: src/c/intmacr2tree.c, line: 1026
+# File: src/c/intmacr2tree.c, line: 1049
+# File: src/c/intmacr2tree.c, line: 1127
+# File: src/c/intmacr2tree.c, line: 1132
+# File: src/c/intmacr2tree.c, line: 1259
+# File: src/c/intmacr2tree.c, line: 1264
+# File: src/c/intmacr2tree.c, line: 1425
+# File: src/c/intmacr2tree.c, line: 1430
+# File: src/c/intmacr2tree.c, line: 1437
+# File: src/c/intmacr2tree.c, line: 1442
+# File: src/c/intmacr2tree.c, line: 1471
+# File: src/c/intmacr2tree.c, line: 1476
+# File: src/c/intmacr2tree.c, line: 1486
+# File: src/c/intmacr2tree.c, line: 1491
+# File: src/c/intmacr2tree.c, line: 1501
+# File: src/c/intmacr2tree.c, line: 1506
+# File: src/c/intmacr2tree.c, line: 1600
+# File: src/c/intmacr2tree.c, line: 1605
+# File: src/c/intmacr2tree.c, line: 1643
+# File: src/c/intmacr2tree.c, line: 1648
+# File: src/c/intmacr2tree.c, line: 1676
+# File: src/c/intmacr2tree.c, line: 1681
+# File: src/c/intmacr2tree.c, line: 1743
+# File: src/c/stack1.c, line: 2236
+# File: src/c/stack1.c, line: 2318
+# File: src/c/stack1.c, line: 2349
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體不夠.\n"
+
+#
+# File: src/c/stack2.c, line: 1925
+# File: src/c/stack2.c, line: 1944
+# File: src/c/stack2.c, line: 2151
+# File: src/c/stack2.c, line: 2170
+#, c-format
+msgid "%s: Recursion problems. Sorry ...\n"
+msgstr "%s: 程式產生遞迴問題 (Recursion problems). 對不起 ...\n"
+
+#
+# File: src/c/stack2.c, line: 1929
+# File: src/c/stack2.c, line: 2155
+# File: src/c/stack1.c, line: 232
+# File: src/c/stack1.c, line: 511
+# File: src/c/stack1.c, line: 682
+# File: src/c/stack1.c, line: 702
+# File: src/c/stack1.c, line: 880
+# File: src/c/stack1.c, line: 1277
+# File: src/c/stack1.c, line: 1303
+# File: src/c/stack1.c, line: 1327
+# File: src/c/stack1.c, line: 1356
+# File: src/c/stack1.c, line: 1381
+# File: src/c/stack1.c, line: 1541
+# File: src/c/stack1.c, line: 1618
+# File: src/c/stack1.c, line: 1771
+# File: src/c/stack1.c, line: 1920
+# File: src/c/stack1.c, line: 2076
+# File: src/c/stack1.c, line: 2143
+# File: src/c/stack1.c, line: 2172
+# File: src/c/stack1.c, line: 2267
+# File: src/c/stack1.c, line: 2558
+# File: src/c/stack1.c, line: 2684
+# File: src/c/stack1.c, line: 3025
+# File: src/c/stack1.c, line: 3114
+#, c-format
+msgid "%s: Too many names.\n"
+msgstr "%s: 太多名稱.\n"
+
+#
+# File: src/c/stack2.c, line: 2041
+#, c-format
+msgid "%s: %s is not a Scilab function.\n"
+msgstr "%s: %s 不是 Scilab 函數.\n"
+
+#
+# File: src/c/stack2.c, line: 2151
+# File: src/c/stack2.c, line: 2170
+msgid "built in"
+msgstr "內建"
+
+#
+# File: src/c/stack2.c, line: 2321
+# File: src/c/stack2.c, line: 2331
+msgid "Invalid time domain.\n"
+msgstr "不正確的時間域.\n"
+
+#
+# File: src/c/stack2.c, line: 2337
+msgid "Invalid system.\n"
+msgstr "不正確之系統.\n"
+
+#
+# File: src/c/stack2.c, line: 2347
+msgid "A non square matrix!\n"
+msgstr "非方陣之矩陣!\n"
+
+#
+# File: src/c/stack2.c, line: 2351
+# File: src/c/stack2.c, line: 2355
+# File: src/c/stack2.c, line: 2359
+# File: src/c/stack2.c, line: 2363
+#, c-format
+msgid "Invalid %c,%c matrices.\n"
+msgstr "%c 不正確 ,%c 為矩陣 (matrices).\n"
+
+#
+# File: src/c/stack2.c, line: 2379
+#, c-format
+msgid "%s: internal error, info=%d.\n"
+msgstr "%s: 內部錯誤 , info=%d.\n"
+
+#
+# File: src/c/stack2.c, line: 2535
+#, c-format
+msgid "%s: intersiz is too small.\n"
+msgstr "%s: intersiz 數值太小.\n"
+
+#
+# File: src/c/stack2.c, line: 2821
+#, c-format
+msgid "%s argument"
+msgstr "%s 參數"
+
+#
+# File: src/c/stack2.c, line: 2823
+#, c-format
+msgid "argument number %d"
+msgstr "%d 號參數"
+
+#
+# File: src/c/stack2.c, line: 2833
+#, c-format
+msgid "%s and %s arguments"
+msgstr "%s 及 %s 參數"
+
+#
+# File: src/c/stack2.c, line: 2835
+# File: src/c/stack2.c, line: 2840
+#, c-format
+msgid "%s argument and argument %d"
+msgstr "參數 %s 及參數 %d"
+
+#
+# File: src/c/stack2.c, line: 2842
+#, c-format
+msgid "arguments %d and %d"
+msgstr "參數 %d 及參數 %d"
+
+#
+# File: src/c/stack2.c, line: 2904
+msgid "should be square"
+msgstr "須為方陣"
+
+#
+# File: src/c/stack2.c, line: 2909
+msgid "should be a vector"
+msgstr "須為向量"
+
+#
+# File: src/c/stack2.c, line: 2914
+msgid "should be a row vector"
+msgstr "須為行向量"
+
+#
+# File: src/c/stack2.c, line: 2919
+msgid "should be a column vector"
+msgstr "須為列向量"
+
+#
+# File: src/c/stack2.c, line: 2924
+msgid "should be a scalar"
+msgstr "須為純量"
+
+#
+# File: src/c/stack2.c, line: 2931
+#, c-format
+msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
+msgstr "%s: %s 之維度 (%d,%d) 錯誤, 應為 (%d,%d).\n"
+
+#
+# File: src/c/stack2.c, line: 2941
+#, c-format
+msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
+msgstr "%s: %s 錯誤之 %s 維度 (%d), 應為 (%d).\n"
+
+#
+# File: src/c/stack2.c, line: 2941
+# File: src/c/stack2.c, line: 3014
+msgid "first"
+msgstr "第一"
+
+#
+# File: src/c/stack2.c, line: 2941
+# File: src/c/stack2.c, line: 3014
+msgid "second"
+msgstr "第二"
+
+#
+# File: src/c/stack2.c, line: 2951
+#, c-format
+msgid "%s: %s has wrong length %d, expecting (%d).\n"
+msgstr "%s: %s 長度 (length) %d 錯誤, 應為 (%d).\n"
+
+#
+# File: src/c/stack2.c, line: 2960
+#, c-format
+msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
+msgstr "%s: %s 維度不匹配 (%dx%d) # (%dx%d)\n"
+
+#
+# File: src/c/stack2.c, line: 2968
+#, c-format
+msgid "%s: %s have incompatible dimensions.\n"
+msgstr "%s: %s 維度不匹配.\n"
+
+#
+# File: src/c/stack2.c, line: 2979
+#, c-format
+msgid "%s: %s should be a list with %d-element being %s.\n"
+msgstr "%s: %s 應為一串列 (list) 其中第 %d-元素為 %s.\n"
+
+#
+# File: src/c/stack2.c, line: 2987
+msgid "square"
+msgstr "方陣"
+
+#
+# File: src/c/stack2.c, line: 2992
+msgid "a vector"
+msgstr "一向量"
+
+#
+# File: src/c/stack2.c, line: 2997
+msgid "a row vector"
+msgstr "一行向量"
+
+#
+# File: src/c/stack2.c, line: 3002
+msgid "a column vector"
+msgstr "一列向量"
+
+#
+# File: src/c/stack2.c, line: 3007
+msgid "a scalar"
+msgstr "一純量"
+
+#
+# File: src/c/stack2.c, line: 3014
+#, c-format
+msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
+msgstr "%s: 參數 %d(%d) 之 %s 維度 (%d) 錯誤, 應為 (%d).\n"
+
+#
+# File: src/c/stack2.c, line: 3117
+#, c-format
+msgid "GetDataFromName: variable %s not found.\n"
+msgstr "GetDataFromName: 變數  %s 找不到.\n"
+
+#
+# File: src/c/stack2.c, line: 3169
+#, c-format
+msgid "%s: Variable %s not found.\n"
+msgstr "%s: 變數 %s 找不到.\n"
+
+#
+# File: src/c/run.c, line: 342
+# File: src/c/run.c, line: 350
+msgid "Unexpected opcode, please report"
+msgstr "未預期中 opcode , 請回報給開發者"
+
+#
+# File: src/c/run.c, line: 495
+msgid "Functions compiled with very old versions are no more handled"
+msgstr "以過舊版本編譯之函數已不再處理"
+
+#
+# File: src/c/callinterf.c, line: 133
+msgid "SIGSTP: aborting current computation\n"
+msgstr "SIGSTP: 中斷目前計算\n"
+
+#
+# File: src/c/callinterf.c, line: 155
+msgid "Trying to stop scilab in the middle of an interface.\n"
+msgstr "企圖在介面連結過程中結束 scilab.\n"
+
+#
+# File: src/c/callinterf.c, line: 156
+msgid "Do you really want to abort computation (y or n ?) \n"
+msgstr "你確定要結束計算 (y 或 n ?) \n"
+
+#
+# File: src/c/LoadFunctionsTab.c, line: 97
+# File: src/c/loadversion.c, line: 62
+# File: src/c/getmodules.c, line: 151
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr "錯誤: 無法剖析 (parse) 檔案 %s\n"
+
+#
+# File: src/c/LoadFunctionsTab.c, line: 153
+#, c-format
+msgid ""
+"Error : Not a valid gateway file %s (should start with <GATEWAY> and contain "
+"<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
+msgstr ""
+"錯誤 : 不是一有效之 gateway 檔 %s (應以 <GATEWAY> 開頭並包含 <PRIMITIVE gatewayId='' "
+"primitiveId='' primitiveName=''>)\n"
+
+#
+# File: src/c/LoadFunctionsTab.c, line: 167
+#, c-format
+msgid ""
+"Error : Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr "錯誤 : 不是一有效之 gateway 檔 %s (不是 'utf-8' 編碼) 找到 '%s' 編碼\n"
+
+#
+# File: src/c/stack3.c, line: 73
+# File: src/c/stack3.c, line: 122
+# File: src/c/stack3.c, line: 261
+# File: src/c/stack3.c, line: 318
+# File: src/c/stack3.c, line: 417
+# File: src/c/stack3.c, line: 469
+# File: src/c/stack3.c, line: 515
+# File: src/c/stack3.c, line: 545
+# File: src/c/stack3.c, line: 582
+# File: src/c/stack3.c, line: 652
+# File: src/c/stack3.c, line: 698
+#, c-format
+msgid "Undefined variable %s.\n"
+msgstr "未定義參數 %s.\n"
+
+#
+# File: src/c/stack3.c, line: 271
+#, c-format
+msgid "%s: argument must be a string.\n"
+msgstr "%s: 參數須為一字串.\n"
+
+#
+# File: src/c/returnPropertyList.c, line: 22
+msgid "Error returning tlist, memory full.\n"
+msgstr "傳回 tlist 時錯誤, 記憶體耗盡.\n"
+
+#
+# File: src/c/returnPropertyList.c, line: 44
+msgid "tlist not completely filled.\n"
+msgstr "tlist 未完全填滿.\n"
+
+#
+# File: src/c/returnPropertyList.c, line: 59
+# File: src/c/returnPropertyList.c, line: 76
+# File: src/c/returnPropertyList.c, line: 92
+# File: src/c/returnPropertyList.c, line: 109
+msgid "list full.\n"
+msgstr "list 已滿.\n"
+
+#
+# File: src/c/prompt.c, line: 26
+msgid ""
+"Type 'resume' or 'abort' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"輸入 'resume' 或 'abort' 以返回標準狀態.\n"
+"\n"
+
+#, c-format
+msgid "%s: Wrong input argument: Named variable expected.\n"
+msgstr "%s: 輸入參數錯誤: 應為已命名之變數.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Compiled macro expected.\n"
+msgstr "%s: 輸入參數型態錯誤 : 應為編譯後之巨集.\n"
+
+#
+# File: src/c/intmacr2tree.c, line: 103
+# File: src/c/intmacr2tree.c, line: 231
+#, c-format
+msgid "%s: Out of code\n"
+msgstr "%s: 超過編碼範圍\n"
+
+#
+# File: src/c/intmacr2tree.c, line: 179
+# File: src/c/stack1.c, line: 268
+# File: src/c/stack1.c, line: 533
+# File: src/c/stack1.c, line: 722
+# File: src/c/stack1.c, line: 904
+# File: src/c/stack1.c, line: 1391
+# File: src/c/stack1.c, line: 1436
+# File: src/c/stack1.c, line: 1494
+# File: src/c/stack1.c, line: 1586
+# File: src/c/stack1.c, line: 1711
+# File: src/c/stack1.c, line: 1790
+# File: src/c/stack1.c, line: 2101
+# File: src/c/stack1.c, line: 2178
+# File: src/c/stack1.c, line: 2287
+# File: src/c/stack1.c, line: 2569
+# File: src/c/stack1.c, line: 2689
+# File: src/c/stack1.c, line: 3031
+# File: src/c/stack1.c, line: 3056
+#, c-format
+msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
+msgstr "%s: 堆疊大小超過限制 (使用 stacksize 函數增加堆疊大小).\n"
+
+#
+# File: src/c/intmacr2tree.c, line: 246
+#, c-format
+msgid "%s: Wrong Top value %d instead of %d\n"
+msgstr "%s: 最高數值為 %d 而非 %d\n"
+
+#
+# File: src/c/intmacr2tree.c, line: 585
+#, c-format
+msgid "%s: Unknown code %d at index2 %d.\n"
+msgstr "%s: 不認識之碼 (code) %d , 位於index2 %d.\n"
+
+#
+# File: src/c/intmacr2tree.c, line: 774
+#, c-format
+msgid "%s: old version of if and while not yet implemented.\n"
+msgstr "%s: 舊版之 if 及 while 目前尚未實作.\n"
+
+#
+# File: src/c/intmacr2tree.c, line: 1082
+#, c-format
+msgid "%s: Wrong type value.\n"
+msgstr "%s: 型態值錯誤.\n"
+
+#
+# File: src/c/intmacr2tree.c, line: 1158
+#, c-format
+msgid "%s: unknown operator %d.\n"
+msgstr "%s: 未定義運算子 %d.\n"
+
+#
+# File: src/c/intmacr2tree.c, line: 1336
+#, c-format
+msgid "%s: wrong fromwhat value %s\n"
+msgstr "%s: 錯誤之 fromwhat 數值 %s\n"
+
+#
+# File: src/c/intmacr2tree.c, line: 1697
+#, c-format
+msgid "%s: Wrong fromwhat value %s\n"
+msgstr "%s: 錯誤之 fromwhat 數值 %s\n"
+
+#
+# File: src/c/intmacr2tree.c, line: 1981
+#, c-format
+msgid "%s: wrong code %d.\n"
+msgstr "%s: 錯誤碼 code %d.\n"
+
+#
+# File: src/c/inisci-c.c, line: 110
+# File: src/c/inisci-c.c, line: 112
+#, c-format
+msgid "SCI environment variable not defined.\n"
+msgstr "SCI 環境參數未定義.\n"
+
+#
+# File: src/c/inisci-c.c, line: 150
+# File: src/c/inisci-c.c, line: 153
+#, c-format
+msgid "SCIHOME not defined.\n"
+msgstr "SCIHOME 未定義.\n"
+
+#
+# File: src/c/inisci-c.c, line: 150
+# File: src/c/inisci-c.c, line: 178
+msgid "Warning"
+msgstr "警告"
+
+#
+# File: src/c/inisci-c.c, line: 178
+# File: src/c/inisci-c.c, line: 180
+#, c-format
+msgid "TMPDIR not defined.\n"
+msgstr "TMPDIR 未定義.\n"
+
+#
+# File: src/c/loadversion.c, line: 118
+#, c-format
+msgid ""
+"Error : Not a valid version file %s (should start with <MODULE_VERSION> and "
+"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+msgstr ""
+"錯誤 : 版本檔格式不正確 %s (應以 <MODULE_VERSION> 起頭並 包含 <VERSION major='' minor='' "
+"maintenance='' revision='' string=''>)\n"
+
+#
+# File: src/c/loadversion.c, line: 132
+#, c-format
+msgid ""
+"Error : Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr "錯誤 : 版本檔格式不正確 %s (非 'utf-8' 編碼) 設定之 '%s' 編碼\n"
+
+#
+# File: src/c/version.c, line: 17
+# File: src/c/version.c, line: 29
+#, c-format
+msgid "Scilab version \"%d.%d.%d.%d\"\n"
+msgstr "Scilab 版本 \"%d.%d.%d.%d\"\n"
+
+#
+# File: src/c/version.c, line: 25
+#, c-format
+msgid ""
+"Scilab version \"%d.%d.%d.%d\"\n"
+"%s\n"
+msgstr ""
+"Scilab 版本 \"%d.%d.%d.%d\"\n"
+"%s\n"
+
+#
+# File: src/c/version.c, line: 26
+msgid "Scilab Version Info."
+msgstr "Scilab 版本 資訊."
+
+#
+# File: src/c/stack1.c, line: 81
+#, c-format
+msgid "%s: argument %d should be a list of size at least %d.\n"
+msgstr "%s: 參數 %d 須為大小至少為 %d 之串列 (list).\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為實數矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr "%s: 參數 %d 大小 (size) 錯誤: 應為 (%d,%d) .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
+"expected.\n"
+msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為實數或複數矩陣\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為實數或複數矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
+msgstr "%s: 參數 %d 型態錯誤 : 應為最小個數為 %d 之串列 (List).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為  Int 矩陣.\n"
+
+#
+# File: src/c/stack1.c, line: 569
+# File: src/c/stack1.c, line: 763
+# File: src/c/stack1.c, line: 1029
+# File: src/c/stack1.c, line: 1098
+# File: src/c/stack1.c, line: 1160
+# File: src/c/stack1.c, line: 2370
+# File: src/c/stack1.c, line: 2427
+# File: src/c/stack1.c, line: 2483
+# File: src/c/stack1.c, line: 2519
+# File: src/c/stack1.c, line: 3144
+#, c-format
+msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgstr "%s: 參數 %d 大小 (size) 錯誤: 預期最小為 %d .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為  Boolean 矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為 Boolean 矩陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為 稀疏矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為稀疏矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
+msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgstr "%s: 參數 %d 型態錯誤 : 應為向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s: 參數 %d 型態錯誤 : 應為實數向量.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr "%s: 參數 %d 大小 (size) 錯誤: 應為 %d .\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
+msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為純量.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
+msgstr "%s: 參數 %d 型態錯誤 : 應為純量, '%s' 或 '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Matrix of strings "
+"expected.\n"
+msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為矩陣或字串.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr "%s: 參數 %d 型態錯誤 : 應為矩陣或字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
+msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為 Row vector expected.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為多項式矩陣 (Polynomial matrix).\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d : Polygon expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為多邊形.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為整數矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Row vector expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為行向量.\n"
+
+#
+# File: src/c/stack1.c, line: 2435
+#, c-format
+msgid "%s: argument %d >(%d) should be a column vector.\n"
+msgstr "%s: 參數 %d >(%d) 應該為一列向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Column vector expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為列向量.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
+msgstr "%s: 參數 %d 型態錯誤 (List 元素: %d): 應為 Boxed 指標 (pointer).\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為 Boxed 指標 (pointer).\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為矩陣.\n"
+
+#
+# File: src/c/stack1.c, line: 2938
+#, c-format
+msgid "%s: entry point %s not found in predefined tables or link table.\n"
+msgstr "%s: 進入點(entry point) %s 不在事先已定義之表或連結表內.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d: Function or string (external function) "
+"expected.\n"
+msgstr "%s: 參數 %d 型態錯誤 : 應為函數字串 (外部函數)\n"
+
+#
+# File: src/c/stack1.c, line: 2958
+#, c-format
+msgid "%s: Incompatible sizes.\n"
+msgstr "%s: 大小不匹配.\n"
+
+#
+# File: src/c/stack1.c, line: 2979
+#, c-format
+msgid "%s: Optional argument %d not given and default value %s not found.\n"
+msgstr "%s: 選擇性參數 %d 未設及內定值 (default value) %s 找不到.\n"
+
+#
+# File: src/c/stack1.c, line: 3007
+#, c-format
+msgid "%f: No more space to store string arguments.\n"
+msgstr "%f: 儲存字串參數的空間已用完.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Matrix of handle "
+"expected.\n"
+msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為 handle 之矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為 handle 之矩陣.\n"
+
+#
+# File: src/c/scicurdir.c, line: 34
+#, c-format
+msgid "Can't go to directory %s .\n"
+msgstr "無法進入目錄 %s 內.\n"
+
+#
+# File: src/c/scicurdir.c, line: 49
+msgid "Can't get current directory.\n"
+msgstr "無法進入目前目錄內.\n"
+
+#
+# File: src/c/getmodules.c, line: 72
+msgid "The SCI environment variable is not set.\n"
+msgstr "SCI 環境參數未設.\n"
+
+#
+# File: src/c/getmodules.c, line: 89
+#, c-format
+msgid "Cannot load the module declaration file : %s.\n"
+msgstr "無法載入模組宣告檔 (module declaration file) : %s.\n"
+
+#
+# File: src/c/getmodules.c, line: 107
+msgid "The SCI environment variable is not set\n"
+msgstr "SCI 環境參數未設\n"
+
+#
+# File: src/c/getmodules.c, line: 202
+#, c-format
+msgid "%s module not found.\n"
+msgstr "%s 模組找不到.\n"
+
+#
+# File: src/c/getmodules.c, line: 213
+#, c-format
+msgid ""
+"Error : Not a valid module file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr "錯誤 : 不有效的模組檔 %s (不是 'utf-8' 編碼) 找到 '%s' 編碼\n"
+
+#
+# File: src/c/banier.c, line: 16
+msgid "        ___________________________________________        "
+msgstr "        ___________________________________________        "
+
+#
+# File: src/c/banier.c, line: 28
+msgid "                 Copyright (c) 1989-2008                   \n"
+msgstr "                 版權 (c) 1989-2008                   \n"
+
+#
+# File: src/c/banier.c, line: 29
+msgid "              Consortium Scilab (INRIA, ENPC)              \n"
+msgstr "              Consortium Scilab (INRIA, ENPC)              \n"
+
+#
+# File: src/c/banier.c, line: 33
+msgid "!!! WARNING !!!\n"
+msgstr "!!! 警告 !!!\n"
+
+#
+# File: src/c/banier.c, line: 34
+msgid ""
+"This software is being provided \"as is\", without any express or\n"
+"implied warranty.\n"
+msgstr "本軟體以無擔保 (\"as is\") 方式提供，並無任何明示或隱含之保證表示.\n"
+
+#
+# File: src/c/banier.c, line: 35
+msgid ""
+"This is a development and not at all a final or stable version of Scilab "
+"5.0\n"
+"that will be released in the future. A lot of features are missing and "
+"buggy.\n"
+msgstr ""
+"這是 Scilab 5.0 發展中之版本並非最終發佈之穩定版.\n"
+"還缺少許多預定開發之功能及一些程式尚未及修正之錯誤.\n"
+
+#
+# File: src/c/banier.c, line: 36
+msgid ""
+"In no event will the authors be held liable for any damages arising from,\n"
+"out of or in connection with the software or the use or other dealings\n"
+"in the software.\n"
+msgstr "在任何狀態下，作者群不為因直接或間接使用本軟體所造成的損失負責.\n"
+
+#
+# File: src/c/banier.c, line: 40
+msgid ""
+"Warning: the operational team of the Scilab Consortium\n"
+"doesn't provide and doesn't support the port of Scilab to MacOS.\n"
+msgstr ""
+"警告: Scilab 協會之工作團隊未提供也不支援\n"
+"將 Scilab 移植至 MacOS.\n"
+
+#
+# File: src/c/banier.c, line: 45
+msgid ""
+"Warning: the operational team of the Scilab Consortium\n"
+"doesn't provide and doesn't support this version of Scilab built with\n"
+msgstr ""
+"警告: Scilab 協會之工作團隊未提供也不支援\n"
+"這一版 Scilab, 編譯方式 :\n"
+
+#
+# File: src/c/InitializeCore.c, line: 28
+msgid "Fatal Error : Can't create table for scilab functions.\n"
+msgstr "嚴重錯誤 : 無法產生  Scilab 所需的函數表.\n"
+
+#
+# File: src/c/scimem.c, line: 34
+# File: src/c/scimem.c, line: 61
+msgid "No space to allocate Scilab stack.\n"
+msgstr "無法再配置空間給  Scilab 堆疊 (stack).\n"
+
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 90
+# File: sci_gateway/c/sci_gstacksize.c, line: 93
+#, c-format
+msgid ""
+"%s: Cannot alloc more memory.\n"
+"Try gstacksize('max').\n"
+msgstr ""
+"%s: 無法配置記憶體.\n"
+"試試 gstacksize('max') 指令.\n"
+
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 105
+# File: sci_gateway/c/sci_stacksize.c, line: 111
+# File: sci_gateway/c/sci_gstacksize.c, line: 108
+#, c-format
+msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
+msgstr "%s: 超出數值限制. 未在 [%lu,%lu] 之內.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: Scalar, '%s' or '%s' expected.\n"
+msgstr "%s: 第一參數輸入錯誤: 應為純量, '%s' 或 '%s'.\n"
+
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 204
+#, c-format
+msgid "%s: Wrong type for first input argument: Scalar, '%s' or '%s'.\n"
+msgstr "%s: 第一輸入參數型態錯誤: 應為純量, '%s' 或 '%s'.\n"
+
+#
+# File: sci_gateway/c/sci_where.c, line: 17
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: 輸入參數數目錯誤.\n"
+
+#
+# File: sci_gateway/c/sci_libraryinfo.c, line: 81
+#, c-format
+msgid "%s: Invalid library %s.\n"
+msgstr "%s: 無效之程式庫 %s.\n"
+
+#, c-format
+msgid "%s: Wrong type of first input argument: String expected.\n"
+msgstr "%s: 第一輸入參數型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "%s: 第一參數輸入錯誤: 應為 '%s', '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for first input argument: '%s', '%s', '%s' or '%s'.\n"
+msgstr "%s: 第一參數輸入錯誤: 應為 '%s', '%s', '%s' 或 '%s'.\n"
+
+#
+# File: sci_gateway/c/sci_who.c, line: 128
+# File: sci_gateway/c/sci_getversion.c, line: 318
+#, c-format
+msgid "%s: Wrong value for second input argument: '%s' expected.\n"
+msgstr "%s: 第二輸入參數數值錯誤: 應為 '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for first input argument: '%s', '%s' or '%s'.\n"
+msgstr "%s: 第一參數輸入錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: '%s', '%s', '%s' and second input "
+"argument must be '%s'.\n"
+msgstr "%s: 第一參數輸入錯誤: 應為 '%s', '%s', '%s' 且第二參數為 '%s'.\n"
+
+#
+# File: sci_gateway/c/sci_who.c, line: 226
+#, c-format
+msgid " using %10d elements out of  %10d.\n"
+msgstr " 使用 %10d 元素 (由  %10d 中選出).\n"
+
+#
+# File: sci_gateway/c/sci_who.c, line: 227
+#, c-format
+msgid " and   %10d variables out of %10d.\n"
+msgstr " 及   %10d 變數 (從 %10d 中選出).\n"
+
+#
+# File: sci_gateway/c/sci_who.c, line: 303
+msgid "Your variables are:"
+msgstr "你的變數為:"
+
+#
+# File: sci_gateway/c/sci_who.c, line: 310
+msgid "Your global variables are:"
+msgstr "你的全域變數為:"
+
+#
+# File: sci_gateway/c/sci_newfun.c, line: 51
+#, c-format
+msgid "%s: function-name is incorrect.\n"
+msgstr "%s: 函數名稱不正確.\n"
+
+#
+# File: sci_gateway/c/sci_newfun.c, line: 57
+#, c-format
+msgid "%s: Wrong value for second input argument: Must be > %d.\n"
+msgstr "%s: 第二輸入參數數值錯誤: 應 > %d.\n"
+
+#
+# File: sci_gateway/c/sci_newfun.c, line: 63
+#, c-format
+msgid "%s: Wrong type for input arguments.\n"
+msgstr "%s: 輸入參數型態錯誤.\n"
+
+#
+# File: sci_gateway/c/sci_warning.c, line: 67
+#, c-format
+msgid "WARNING : %s"
+msgstr "警告 : %s"
+
+#
+# File: sci_gateway/c/sci_warning.c, line: 74
+# File: sci_gateway/c/sci_clearfun.c, line: 59
+# File: sci_gateway/c/sci_getversion.c, line: 236
+#, c-format
+msgid "%s: Wrong type for first input argument: String expected.\n"
+msgstr "%s: 第一輸入參數型態錯誤: 應為字串.\n"
+
+#
+# File: sci_gateway/c/sci_gstacksize.c, line: 115
+# File: sci_gateway/c/sci_gstacksize.c, line: 202
+#, c-format
+msgid ""
+"%s: Wrong type for first input argument: Scalar, '%s' or '%s' expected.\n"
+msgstr "%s: 第一輸入參數型態錯誤: 應為純量, '%s' 或 '%s'.\n"
+
+#
+# File: sci_gateway/c/sci_gstacksize.c, line: 209
+#, c-format
+msgid "%s: Wrong type for first argument: Scalar, '%s' or '%s' expected.\n"
+msgstr "%s: 第一參數型態錯誤: 應為純量, '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for second input argument: String expected.\n"
+msgstr "%s: 第二輸入參數型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
+
+#
+# File: sci_gateway/c/sci_chdir.c, line: 52
+#, c-format
+msgid "%s: Wrong input argument.\n"
+msgstr "%s: 輸入參數型態錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong value for first input argument: '%s' or '%s' expected.\n"
+msgstr "%s: 第一參數輸入錯誤: 應為 '%s' 或 '%s'.\n"
+
+#
+# File: sci_gateway/c/sci_what.c, line: 77
+msgid "Internal Functions: \n"
+msgstr "內部函數: \n"
+
+#
+# File: sci_gateway/c/sci_what.c, line: 94
+msgid "Commands: \n"
+msgstr "指令: \n"
+
+#
+# File: sci_gateway/c/sci_getmodules.c, line: 23
+#, c-format
+msgid "Warning : Problems with %s.\n"
+msgstr "警告 : 與 %s 有關之問題.\n"
+
+#
+# File: sci_gateway/c/sci_getcwd.c, line: 28
+#, c-format
+msgid "%s: An error occurred.\n"
+msgstr "%s: 產生錯誤.\n"
+
+#
+# File: sci_gateway/c/sci_getversion.c, line: 218
+#, c-format
+msgid "%s: Wrong file VERSION %s.\n"
+msgstr "%s: 檔案版本錯誤 %s.\n"
+
+#
+# File: sci_gateway/c/sci_getversion.c, line: 224
+# File: sci_gateway/c/sci_getversion.c, line: 312
+#, c-format
+msgid "%s: Wrong module name %s.\n"
+msgstr "%s: 模組名稱 %s 錯誤.\n"
+
+#
+# File: sci_gateway/c/sci_getversion.c, line: 306
+#, c-format
+msgid "%s: Wrong file VERSION in %s.\n"
+msgstr "%s: %s 中之檔案版本錯誤 .\n"
+
+#
+# File: includes/stack-c.h, line: 318
+#, c-format
+msgid " results may be inaccurate. rcond = %s1\n"
+msgstr " 結果可能不正確. rcond = %s1\n"
+
+#
+# File: etc/scilab.start, line: 35
+msgid "Startup execution:"
+msgstr "執行啟動"
+
+#
+# File: etc/scilab.start, line: 42
+msgid "  loading initial environment"
+msgstr "  載入初始環境"
+
+#
+# File: etc/scilab.start, line: 151
+msgid "File"
+msgstr "檔案"
+
+#
+# File: etc/scilab.start, line: 152
+msgid "Edit"
+msgstr "EditCore"
+
+#
+# File: etc/scilab.start, line: 153
+msgid "Preferences"
+msgstr "喜好"
+
+#
+# File: etc/scilab.start, line: 154
+msgid "Control"
+msgstr "控制"
+
+#
+# File: etc/scilab.start, line: 155
+msgid "Applications"
+msgstr "應用程式"
+
+#
+# File: etc/scilab.start, line: 156
+msgid "?"
+msgstr "?"
