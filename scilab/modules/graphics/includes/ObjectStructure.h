@@ -578,7 +578,7 @@ typedef enum
     /** */
     SCI_LEGEND_UPPER_CAPTION = -5,
    /** */
-    SCI_LEGEND_LOWER_CAPTION = -6,
+    SCI_LEGEND_LOWER_CAPTION = -6
   }  /** */
 sciLegendPlace;
 
