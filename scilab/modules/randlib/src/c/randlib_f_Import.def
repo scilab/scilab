@@ -5,26 +5,17 @@ EXPORTS
 ; --------------------------------------- 
 ; randlib_f
 ; --------------------------------------- 
-	genbet_
-	genchi_
-	genexp_
-	genf_
-	gengam_
-	genmn_
-	genmul_
-	gennch_
-	gennf_
-	gennor_
-	genprm_
-	genunf_
-	ignbin_
-	ignnbn_
-	ignpoi_
-	lennob_
-	phrtsd_
-	sdot_
-	setgmn_
-	sexpo_
-	sgamma_
-	snorm_
-	spofa_
+genexp_
+genchi_
+gennf_
+gennch_
+genmn_
+setgmn_
+ignnbn_
+genprm_
+gennor_
+gengam_
+genmul_
+genf_
+phrtsd_
+snorm_

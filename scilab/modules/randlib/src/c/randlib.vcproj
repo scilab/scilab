@@ -6,7 +6,7 @@
 	ProjectGUID="{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}"
 	RootNamespace="randlib"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -388,11 +388,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\genbet.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_randlib.c"
 				>
 			</File>
 			<File
+				RelativePath=".\ignbin.c"
+				>
+			</File>
+			<File
 				RelativePath=".\igngeom.c"
+				>
+			</File>
+			<File
+				RelativePath=".\ignpoi.c"
 				>
 			</File>
 			<File
@@ -405,6 +417,14 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_grand.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sexpo.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sgamma.c"
 				>
 			</File>
 			<File

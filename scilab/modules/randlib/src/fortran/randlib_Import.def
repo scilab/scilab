@@ -2,38 +2,9 @@ LIBRARY    randlib.dll
 
 
 EXPORTS
-	clcg2
-	set_state_clcg2
-	get_state_clcg2
-	comp_aw_and_avw
-	init_clcg4
-	verif_seeds_clcg4
-	display_info_clcg4
-	set_seed_clcg4
-	get_state_clcg4
-	init_generator_clcg4
-	advance_state_clcg4
-	set_initial_seed_clcg4
-	clcg4
-	advance_state_swb
-	set_state_fsultra_simple
-	set_state_fsultra
-	get_state_fsultra
-	fsultra
-	gw_randlib_
-	igngeom
-	kiss
-	set_state_kiss
-	get_state_kiss
-	randmt
-	set_state_mt_simple
-	set_state_mt
-	get_state_mt
-	clcg4_with_gen
-	ranf_
-	ignlgi
-	ignuin_
-	RandI
-	urandc
-	set_state_urand
-	get_state_urand
+  sgamma_
+  sexpo_
+  ignuin_
+  ignbin_
+  ignpoi_
+  ranf_
