@@ -775,6 +775,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@demos/live.dem.gateway.sce \
 @SCICOS_TRUE@demos/Lorentz.cosf \
 @SCICOS_TRUE@demos/lorentz.dem.sce \
+@SCICOS_TRUE@demos/mechanical_systems.dem.gateway.sce \
 @SCICOS_TRUE@demos/modelica_demos.dem.gateway.sce \
 @SCICOS_TRUE@demos/old_demos.dem.gateway.sce \
 @SCICOS_TRUE@demos/OldGainTest.cosf \
@@ -799,7 +800,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@demos/System-Observer.cosf \
 @SCICOS_TRUE@demos/Table_Lookup.cosf \
 @SCICOS_TRUE@demos/table_lookup.dem.sce \
-@SCICOS_TRUE@demos/Temp.cosf \
+@SCICOS_TRUE@demos/Temperature_Controller.cosf \
 @SCICOS_TRUE@demos/temp_controller.dem.sce \
 @SCICOS_TRUE@demos/Thermique_bloc.cosf \
 @SCICOS_TRUE@demos/Threshold_ZeroCrossing.cosf \
