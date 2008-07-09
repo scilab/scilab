@@ -13,7 +13,6 @@
 <!-- =================== -->
 
 <classpaths>
-<path value="$SCILAB/bin"/>
 <path value="$SCILAB/thirdparty/"/>
 <path value="$SCILAB/thirdparty/jogl.jar"/>
 <path value="$SCILAB/thirdparty/gluegen-rt.jar"/>
