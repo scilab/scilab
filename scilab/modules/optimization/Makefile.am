@@ -179,10 +179,6 @@ demos/icse/navet.sce \
 demos/icse/README \
 demos/icse/sero.mes \
 demos/icse/seros.sce \
-demos/multiflow/demo_multiflow.sci \
-demos/multiflow/demo_multiflow_fr.htm \
-demos/multiflow/ex3.graph \
-demos/multiflow/multiflow.dem.sce \
 demos/optimization.dem.gateway.sce
 
 include $(top_srcdir)/Makefile.incl.am
