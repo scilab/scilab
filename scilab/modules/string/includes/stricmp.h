@@ -20,8 +20,10 @@
 
 #if _MSC_VER
 	#define stricmp _stricmp 
+	#define strnicmp _strnicmp 
  #else
     #define stricmp strcasecmp
+    #define strnicmp strncasecmp
 #endif
 
 #endif /* __STRICMP_H__ */
