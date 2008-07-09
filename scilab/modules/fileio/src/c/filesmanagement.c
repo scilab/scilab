@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -32,7 +32,7 @@ typedef struct {
 	int ftmode; /* mode for each file */
 	int fttype; /* type (Fortran,C) for each file must be zero initialized */
 	char *ftname; /* name for each file */
-	
+
 } scilabfile;
 /*--------------------------------------------------------------------------*/
 static scilabfile *ScilabFileList = NULL;
@@ -42,15 +42,14 @@ static int CurrentMaxFiles=DEFAULT_MAX_FILES;
 FILE *GetFileOpenedInScilab(int Id)
 {
 	int fd1=0;
-	FILE *returnedFILE = NULL;
 
 	fd1 = (Id != -1) ?  Min(Max(Id,0),GetMaximumFileOpenedInScilab()-1) : CurFile ;
 
-	if ( fd1 != -1 ) 
+	if ( fd1 != -1 )
 	{
-		returnedFILE = ScilabFileList[fd1].ftformat;
+		return  ScilabFileList[fd1].ftformat;
 	}
-	return returnedFILE;
+	return NULL;
 }
 /*--------------------------------------------------------------------------*/
 int GetCurrentFileId(void)
@@ -133,7 +132,7 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 		if( _fullpath( fullpath, name, PATH_MAX*4 ) != NULL )
 		{
 			ptrName = strdup(fullpath);
-			if (ptrName) 
+			if (ptrName)
 			{
 				bOK=TRUE;
 			}
@@ -141,7 +140,7 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 		else
 		{
 			ptrName = strdup(name);
-			if (ptrName) 
+			if (ptrName)
 			{
 				bOK=TRUE;
 			}
@@ -199,7 +198,7 @@ BOOL ExtendScilabFilesList(int NewSize)
 	{
 		if (NewSize > CurrentMaxFiles)
 		{
-			
+
 			scilabfile *ScilabFileListTmp=NULL;
 			ScilabFileListTmp=(scilabfile *)REALLOC(ScilabFileList,NewSize*sizeof(scilabfile));
 			if (ScilabFileListTmp)
@@ -234,7 +233,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 			/* if we are a problem */
 			strcpy(fullpath,filename);
 		}
-		
+
 		for (i=0;i<CurrentMaxFiles;i++)
 		{
 			if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
