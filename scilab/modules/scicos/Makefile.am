@@ -234,7 +234,7 @@ demos/standard.dem.gateway.sce \
 demos/System-Observer.cosf \
 demos/Table_Lookup.cosf \
 demos/table_lookup.dem.sce \
-demos/Temp.cosf \
+demos/Temperature_Controller.cosf \
 demos/temp_controller.dem.sce \
 demos/Thermique_bloc.cosf \
 demos/Threshold_ZeroCrossing.cosf \
