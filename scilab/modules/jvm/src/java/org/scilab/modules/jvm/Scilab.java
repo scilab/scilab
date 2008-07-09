@@ -29,6 +29,7 @@ import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Main Class for Scilab
@@ -121,7 +122,7 @@ public class Scilab {
 			try {
 				/* CONSOLE */
 				/* Create a tab to put console into */
-				consoleTab = ScilabTab.createTab("Console");
+				consoleTab = ScilabTab.createTab(Messages.gettext("Console"));
 				/* Exit Scilab when the console is closed */
 				consoleTab.setCallback(CallBack.createCallback("exit();", CallBack.SCILAB_INSTRUCTION));
 
