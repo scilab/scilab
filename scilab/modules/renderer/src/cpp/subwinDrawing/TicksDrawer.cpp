@@ -70,6 +70,10 @@ void TicksDrawer::setAxisPositioner(AxisPositioner * positioner)
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawer::setTicksDrawer(TicksDrawerBridge * drawer)
 {
+  if (m_pTicksDrawer != NULL)
+  {
+    delete m_pTicksDrawer;
+  }
   m_pTicksDrawer = drawer;
 }
 /*------------------------------------------------------------------------------------------*/
