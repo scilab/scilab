@@ -38,6 +38,6 @@ int convertAsciiCodeToScilabCode(unsigned char scilab_char);
 * @param[in] scilab_code
 * @return ascii_code [0 255]
 */
-char convertScilabCodeToAsciiCode(int scilab_code);
+unsigned char convertScilabCodeToAsciiCode(int scilab_code);
 
 #endif /* __GETFASTCODE_H__ */

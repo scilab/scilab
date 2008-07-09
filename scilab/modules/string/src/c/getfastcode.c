@@ -63,21 +63,21 @@ int convertAsciiCodeToScilabCode(unsigned char scilab_char)
 		}
 }
 /*--------------------------------------------------------------------------*/
-char convertScilabCodeToAsciiCode(int scilab_code)
+unsigned char convertScilabCodeToAsciiCode(int scilab_code)
 {
 #define eol 99
 #define EXCLAMATION_CHAR '!'
 
 	if (scilab_code == eol) 
 		{
-			return EXCLAMATION_CHAR;
+			return (unsigned char)EXCLAMATION_CHAR;
 		}
 	else {
 		if (Abs(scilab_code) > csiz) 
 			{
 				if (scilab_code > eol) 
 					{
-						return (char)(scilab_code - (eol + 1));
+						return (unsigned char)(scilab_code - (eol + 1));
 					}
 				else 
 					{
@@ -88,11 +88,11 @@ char convertScilabCodeToAsciiCode(int scilab_code)
 			{
 				if (scilab_code < 0) 
 					{
-						return C2F(cha1).alfb[Abs(scilab_code)];
+						return (unsigned char)C2F(cha1).alfb[Abs(scilab_code)];
 					}
 				else 
 					{
-						return C2F(cha1).alfa[scilab_code];
+						return(unsigned char) C2F(cha1).alfa[scilab_code];
 					}
 			}
 	}
