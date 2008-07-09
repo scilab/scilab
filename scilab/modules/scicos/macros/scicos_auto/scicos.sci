@@ -763,11 +763,11 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	  //** execstr('exec('+%cor_item_exec(%koko,2)+',1)')
 
           //** Used for standard DEBUG ONLY -->
-          //** disp(%cor_item_exec(%koko,2)); //** disp the current exec 
-          //** execstr('exec('+%cor_item_exec(%koko,2)+',-1)'); //** nothing is printed 
+          disp(%cor_item_exec(%koko,2)); //** disp the current exec 
+          execstr('exec('+%cor_item_exec(%koko,2)+',-1)'); //** nothing is printed 
 	  
           //** RELEASE --> Please reactivate the error catcher before final release 
-	  execstr('ierr=exec('+%cor_item_exec(%koko,2)+',''errcatch'',-1)')
+//	  execstr('ierr=exec('+%cor_item_exec(%koko,2)+',''errcatch'',-1)')
 
 	  if ierr > 0 then
 	    Cmenu = "Replot"
