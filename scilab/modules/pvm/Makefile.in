@@ -1489,13 +1489,18 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		    fi \
 @PVM_TRUE@		  done; \
 @PVM_TRUE@	  fi; \
-@PVM_TRUE@	done
+@PVM_TRUE@	done 
 # Install the macros
 @PVM_TRUE@	@echo "-- Install macros (if any) --"; \
 @PVM_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_TRUE@		if test -d $(srcdir)/$$dir/; then \
-@PVM_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@PVM_TRUE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
+@PVM_TRUE@			for specialExt in $(MACROSSPECIALEXT); do \
+@PVM_TRUE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@PVM_TRUE@			done; \
+@PVM_TRUE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@PVM_TRUE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @PVM_TRUE@		  done; \
@@ -1659,13 +1664,18 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@		    fi \
 @PVM_FALSE@		  done; \
 @PVM_FALSE@	  fi; \
-@PVM_FALSE@	done
+@PVM_FALSE@	done 
 # Install the macros
 @PVM_FALSE@	@echo "-- Install macros (if any) --"; \
 @PVM_FALSE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_FALSE@		if test -d $(srcdir)/$$dir/; then \
-@PVM_FALSE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@PVM_FALSE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
+@PVM_FALSE@			for specialExt in $(MACROSSPECIALEXT); do \
+@PVM_FALSE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@PVM_FALSE@			done; \
+@PVM_FALSE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@PVM_FALSE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @PVM_FALSE@		  done; \
