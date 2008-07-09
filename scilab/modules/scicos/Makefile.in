@@ -324,7 +324,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
-BATIK_PACKAGE = @BATIK_PACKAGE@
+BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
@@ -370,6 +370,7 @@ JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
+JEUCLID_CORE = @JEUCLID_CORE@
 JHALL = @JHALL@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
@@ -377,7 +378,6 @@ JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
-LIBRT = @LIBRT@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
@@ -419,6 +419,7 @@ PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
+RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
@@ -505,7 +506,7 @@ top_srcdir = @top_srcdir@
 #### Target ######
 modulename = scicos
 DISABLE_HELP_CLEAN = yes
-libsciscicos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciscicos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -673,7 +674,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-@SCICOS_TRUE@	@LIBRT@ $(am__append_4)
+@SCICOS_TRUE@	$(am__append_4)
 
 #### scicos : Conf files ####
 @SCICOS_TRUE@libsciscicos_la_rootdir = $(mydatadir)

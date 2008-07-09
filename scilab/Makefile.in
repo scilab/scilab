@@ -49,14 +49,15 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) $(am__EXEEXT_1)
 @GENERATE_LOCALIZATION_FILES_TRUE@am__append_2 = localization
 subdir = .
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(srcdir)/scilab-lib.properties.in \
-	$(srcdir)/scilab.pc.in $(top_srcdir)/configure \
-	$(top_srcdir)/etc/modules.xml.in \
+	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
+	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
+	$(top_srcdir)/configure $(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	COPYING config/compile config/config.guess config/config.rpath \
-	config/config.sub config/depcomp config/install-sh \
-	config/ltmain.sh config/missing
+	ABOUT-NLS COPYING config.guess config.sub config/compile \
+	config/config.guess config/config.rpath config/config.sub \
+	config/depcomp config/install-sh config/ltmain.sh \
+	config/missing depcomp install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
@@ -76,7 +77,8 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
-	scilab.pc etc/modules.xml scilab-lib.properties
+	scilab.pc etc/modules.xml scilab-lib.properties \
+	scilab-lib-doc.properties
 @ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(profilingdir)" \
@@ -160,7 +162,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
-BATIK_PACKAGE = @BATIK_PACKAGE@
+BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
@@ -206,6 +208,7 @@ JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
+JEUCLID_CORE = @JEUCLID_CORE@
 JHALL = @JHALL@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
@@ -254,6 +257,7 @@ PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
+RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
@@ -438,6 +442,8 @@ scilab.pc: $(top_builddir)/config.status $(srcdir)/scilab.pc.in
 etc/modules.xml: $(top_builddir)/config.status $(top_srcdir)/etc/modules.xml.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 scilab-lib.properties: $(top_builddir)/config.status $(srcdir)/scilab-lib.properties.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+scilab-lib-doc.properties: $(top_builddir)/config.status $(srcdir)/scilab-lib-doc.properties.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
