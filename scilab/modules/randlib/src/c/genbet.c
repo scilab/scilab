@@ -51,9 +51,13 @@ static int qsame;
     //    Scierror(999, "RANLIB Error: AA or BB <= 0 in GENBET - Abort!");
 //  JJV added small minimum for small log problem in calc of W
 //  in Rand.c
+#ifndef _MSC_VER
+// warning C4102: 'S10' : unreferenced label
 S10:
+#endif
     olda = *aa;
     oldb = *bb;
+
 S20:
     if(!(Min(*aa,*bb) > 1.0)) goto S100;
 /*
@@ -81,11 +85,15 @@ S40:
 //    if(!(v > expmax)) goto S50;
 //    w = infnty;
 //    goto S60;
+#ifndef _MSC_VER
+// warning C4102: 'S50' : unreferenced label
 S50:
+#endif
     w= exp(v);
     if(w > (infnty/a)) goto S55;
     w *= a;
     goto S60;
+
 S55:
     w = infnty;
 S60:
