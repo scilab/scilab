@@ -6,7 +6,7 @@
 	ProjectGUID="{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
 	RootNamespace="randlib_f2c"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -401,10 +401,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\genbet.c"
-				>
-			</File>
-			<File
 				RelativePath=".\genchi.c"
 				>
 			</File>
@@ -449,15 +445,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ignbin.c"
-				>
-			</File>
-			<File
 				RelativePath=".\ignnbn.c"
-				>
-			</File>
-			<File
-				RelativePath=".\ignpoi.c"
 				>
 			</File>
 			<File
@@ -474,14 +462,6 @@
 			</File>
 			<File
 				RelativePath=".\setgmn.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sexpo.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sgamma.c"
 				>
 			</File>
 			<File
@@ -508,10 +488,6 @@
 		<Filter
 			Name="Fortran files"
 			>
-			<File
-				RelativePath=".\genbet.f"
-				>
-			</File>
 			<File
 				RelativePath=".\genchi.f"
 				>
@@ -557,15 +533,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ignbin.f"
-				>
-			</File>
-			<File
 				RelativePath=".\ignnbn.f"
-				>
-			</File>
-			<File
-				RelativePath=".\ignpoi.f"
 				>
 			</File>
 			<File
@@ -582,14 +550,6 @@
 			</File>
 			<File
 				RelativePath=".\setgmn.f"
-				>
-			</File>
-			<File
-				RelativePath=".\sexpo.f"
-				>
-			</File>
-			<File
-				RelativePath=".\sgamma.f"
 				>
 			</File>
 			<File
