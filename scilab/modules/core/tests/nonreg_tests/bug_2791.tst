@@ -13,6 +13,6 @@
 // <-- Short Description -->
 // funptr miscomplains about a wrong argument
 
-execstr("funptr(1);","errcatch"),
-
-if lasterror() <> gettext(msprintf("funptr: Wrong type for first input argument: String expected.\n")) then pause, end
+ierr = execstr("funptr(1);","errcatch");
+if ierr <> 999 then pause,end
+if lasterror() <> gettext(msprintf("funptr: Wrong type for input argument #1: String expected.\n")) then pause, end
