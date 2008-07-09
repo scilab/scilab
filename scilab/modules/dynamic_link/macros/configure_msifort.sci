@@ -74,10 +74,9 @@ endfunction
   if MSDOS then
     ifortcompiler = findmsifortcompiler();
     if ifortcompiler <> 'unknown' then
-    
       if_path = getIFpath(ifortcompiler);
       
-      if win64() & detectmsifort64tools then
+      if win64() & detectmsifort64tools() then
         set_commons_msifort(if_path,'EM64T');
       else
         set_commons_msifort(if_path,'IA32');
