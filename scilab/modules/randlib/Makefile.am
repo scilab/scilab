@@ -9,32 +9,37 @@ src/c/igngeom.c \
 src/c/kiss.c \
 src/c/urand.c \
 src/c/clcg2.c \
-src/c/clcg4.c
+src/c/clcg4.c \
+src/c/sexpo.c \
+src/c/ignbin.c \
+src/c/ignpoi.c \
+src/c/sgamma.c \
+src/c/genbet.c 
 
 RANDLIB_FORTRAN_SOURCES = \
 src/fortran/gennf.f \
 src/fortran/genchi.f \
 src/fortran/setgmn.f \
 src/fortran/gengam.f \
-src/fortran/sexpo.f \
 src/fortran/snorm.f \
 src/fortran/gennch.f \
 src/fortran/genmn.f \
-src/fortran/genbet.f \
 src/fortran/phrtsd.f \
-src/fortran/sgamma.f \
-src/fortran/ignbin.f \
 src/fortran/spofa.f \
 src/fortran/sdot.f \
 src/fortran/ignnbn.f \
 src/fortran/lennob.f \
 src/fortran/genf.f \
 src/fortran/genunf.f \
-src/fortran/ignpoi.f \
 src/fortran/genexp.f \
 src/fortran/genmul.f \
 src/fortran/genprm.f \
 src/fortran/gennor.f
+#src/fortran/genbet.f
+#src/fortran/sexpo.f 
+#src/fortran/ignbin.f
+#src/fortran/ignpoi.f
+#src/fortran/sgamma.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_randlib.c \
 sci_gateway/c/sci_grand.c
