@@ -1392,6 +1392,14 @@ public class ScilabBridge {
 		ScilabCanvasBridge.stopRotationRecording(canvas);
 	}
 	
+	/**
+	  * Disable the canvas befor closing
+	  * @param canvas canvas to close
+	  */
+	public static void close(Canvas canvas) {
+		ScilabCanvasBridge.close(canvas);
+	}
+	
 	/*****************/
 	/* MenuBar Bridge */
 	/*****************/

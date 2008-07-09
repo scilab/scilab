@@ -199,4 +199,9 @@ public interface RendererProperties {
 	 */
 	void showWindow();
 	
+	/**
+	 * Disable canvas
+	 */
+	void disableCanvas();
+	
 }

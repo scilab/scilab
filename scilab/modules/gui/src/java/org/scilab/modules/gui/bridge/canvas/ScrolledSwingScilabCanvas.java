@@ -326,4 +326,11 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	public void stopRotationRecording() {
 		getCanvas().stopRotationRecording();
 	}
+	
+	/**
+	 * Disable the canvas befor closing
+	 */
+	public void close() {
+		getCanvas().close();
+	}
 }

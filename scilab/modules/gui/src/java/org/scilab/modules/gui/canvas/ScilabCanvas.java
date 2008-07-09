@@ -265,4 +265,11 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 		ScilabBridge.stopRotationRecording(this);
 	}
 	
+	/**
+	  * Disable the canvas befor closing
+	  */
+	public void close() {
+		ScilabBridge.close(this);
+	}
+	
 }

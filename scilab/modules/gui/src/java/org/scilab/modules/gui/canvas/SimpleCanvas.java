@@ -162,4 +162,9 @@ public interface SimpleCanvas {
 	  * Ansynchrnous stop of rotation tracking.
 	  */
 	 void stopRotationRecording();
+	 
+	 /**
+	  * Disable the canvas befor closing
+	  */
+	void close();
 }

@@ -343,5 +343,12 @@ public class ScilabRendererProperties implements RendererProperties {
 	public void showWindow() {
 		parentTab.getParentWindow().raise();
 	}
+	
+	/**
+	 * Disable canvas
+	 */
+	public void disableCanvas() {
+		parentCanvas.close();
+	}
 
 }

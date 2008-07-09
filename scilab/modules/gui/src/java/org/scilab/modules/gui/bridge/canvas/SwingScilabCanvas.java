@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.canvas.SimpleCanvas;
@@ -48,6 +49,8 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	 */
 	private int figureIndex;
 	
+	private GLEventListener renderer;
+	
 	private AxesRotationTracker rotationTracker;
 	
 	/**
@@ -62,7 +65,8 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 		super(cap);
 		// TODO to remove, just for testing
 		this.setLayout(null);
-		this.addGLEventListener(new SciRenderer(figureIndex));
+		renderer = new SciRenderer(figureIndex);
+		this.addGLEventListener(renderer);
 		this.figureIndex = figureIndex;
 		
 		// Focusable in order to catch KeyEvents...
@@ -248,5 +252,15 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public void stopRotationRecording() {
 		rotationTracker.cancelRecording();
 	}
+	
+	/**
+	 * Disable the canvas befor closing
+	 */
+	public void close() {
+		// remove the event listener
+		// so we won't have useless redraw
+		removeGLEventListener(renderer);
+	}
+	
 
 }

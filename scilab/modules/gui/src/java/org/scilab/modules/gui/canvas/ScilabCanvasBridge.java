@@ -248,4 +248,12 @@ public class ScilabCanvasBridge {
 	public static void stopRotationRecording(Canvas canvas) {
 		canvas.getAsSimpleCanvas().stopRotationRecording();
 	}
+	
+	/**
+	  * Disable the canvas befor closing
+	  * @param canvas canvas to close
+	  */
+	public static void close(Canvas canvas) {
+		canvas.getAsSimpleCanvas().close();
+	}
 }

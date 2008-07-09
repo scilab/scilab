@@ -155,7 +155,7 @@ public class DrawableFigureGL extends ObjectGL {
 	 * @param figureId new figure Id
 	 */
 	public void setFigureIndex(int figureId) {
-		// a chack will be performed to see if the figure is alredy here
+		// a chack will be performed to see if the figure is alraedy here
 		FigureMapper.addMapping(figureId, this);
 		this.figureId = figureId;
 	}
@@ -360,8 +360,10 @@ public class DrawableFigureGL extends ObjectGL {
   	@Override
 	public void destroy(int parentFigureIndex) {
   		setRenderingRequested(false);
+  		getRendererProperties().disableCanvas();
+  		// destroy all the objects stored in the destroy list
+		destroyedObjects = null;
   		FigureMapper.removeMapping(figureId);
- 
   		
 
   		// then destroy canvas
