@@ -792,7 +792,7 @@ target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 pkglib_LTLIBRARIES = libsciscicos_blocks.la
-libsciscicos_blocks_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciscicos_blocks_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(RT_LIB) 
 
 #### Target ######
 modulename = scicos_blocks
@@ -1266,7 +1266,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@SCICOS_TRUE@	@LIBRT@ $(am__append_4) $(am__append_5)
+@SCICOS_TRUE@	$(am__append_4) $(am__append_5)
 
 #### scicos_blocks : Conf files ####
 @SCICOS_TRUE@libsciscicos_blocks_la_rootdir = $(mydatadir)
