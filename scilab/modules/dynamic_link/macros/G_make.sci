@@ -22,14 +22,18 @@ function [res]=G_make(files,objects_or_dll)
       return;
     end 
     
+    OBJ = '';
+    [ptmp,ftmp,fext] = fileparts(objects_or_dll);
+    OBJ = ptmp + ftmp;
+    
     if with_lcc() == %T then
-      host('make -f Makefile.lcc '+objects_or_dll);
+      host('make -f Makefile.lcc '+OBJ);
     else
       // scilab uses Visual Studio C++ 
-      host('nmake /Y /nologo /f Makefile.mak '+objects_or_dll);
+      host('nmake /Y /nologo /f Makefile.mak '+OBJ);
     end
     
-    res=[objects_or_dll];
+    res=[OBJ];
     
   else // LINUX
   

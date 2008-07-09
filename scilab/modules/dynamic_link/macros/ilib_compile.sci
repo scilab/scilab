@@ -113,7 +113,7 @@ endfunction
 function [make_command,lib_name_make,lib_name,path,makename,files] = ilib_compile_get_names(lib_name,makename,files) 
 
   files = strsubst(strsubst(files,'.obj','') ,'.o',''); //compatibility
-  
+    
   k = strindex(makename,['/','\']);
   
   if k~=[] then
@@ -127,27 +127,28 @@ function [make_command,lib_name_make,lib_name,path,makename,files] = ilib_compil
   lib_name_make = lib_name;
   
   if MSDOS then // WINDOWS
-  
+    FILES = [];
+    for x = files(:)' 
+      [ptmp,ftmp,fext] = fileparts(x);
+      FILES = [FILES,ptmp+ftmp];
+    end
+    
     // Visual Studio C++ 
     if ( findmsvccompiler() <> 'unknown' ) then 
       makename = makename + '.mak' ; 
       make_command = 'nmake /Y /nologo /f '
-      
-      if files<>[] then 
-	      files = files + '.obj' ;
-      end
     else
       // LCC-WIN32
       if findlcccompiler() then
         makename = makename + '.lcc' ; 
         make_command = 'make -f ';
-      
-        if files<>[] then 
-          files = files + '.obj' ;
-        end
       else
       // TO DO : Add another compiler here
       end
+      
+    end
+    if FILES<>[] then 
+      files = FILES + '.obj' ;
     end
   else // LINUX
   
