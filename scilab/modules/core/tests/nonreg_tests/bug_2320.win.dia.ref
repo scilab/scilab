@@ -9,5 +9,7 @@
 // UNC Path not managed
 if MSDOS then
 	if chdir('\\Machine\folder') == %t                       then bugmes();quit;end
+Can't go to directory \\Machine\folder.
 	if execstr("cd(''\\Machine\folder'')","errcatch") <> 998 then bugmes();quit;end
 end
+// =============================================================================
