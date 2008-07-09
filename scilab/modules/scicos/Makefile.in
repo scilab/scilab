@@ -723,7 +723,6 @@ JARMASK = *.jar
 
 
 #### scicos : demos files ####
-#### Custom Scicos Demos for Scilab 5.0 ALPHA #########
 @SCICOS_TRUE@libsciscicos_la_demosdir = $(mydatadir)
 @SCICOS_TRUE@nobase_libsciscicos_la_demos_DATA = demos/anim_pen.sci \
 @SCICOS_TRUE@demos/basic_controller.dem.sce \
@@ -818,7 +817,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@demos/tut6.dem.sce \
 @SCICOS_TRUE@demos/zero_crossing.dem.sce
 
-@SCICOS_TRUE@libsciscicos_la_demosCodeGendir = $(mydatadir)/demos/CodeGen/
+@SCICOS_TRUE@libsciscicos_la_demosCodeGendir = $(mydatadir)
 @SCICOS_TRUE@nobase_libsciscicos_la_demosCodeGen_DATA = demos/CodeGen/controller.cosf \
 @SCICOS_TRUE@demos/CodeGen/data \
 @SCICOS_TRUE@demos/CodeGen/fibo.cosf \
@@ -826,7 +825,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@demos/CodeGen/Therm.cosf \
 @SCICOS_TRUE@demos/CodeGen/Therm_standalone.c
 
-@SCICOS_TRUE@libsciscicos_la_demosElectricaldir = $(mydatadir)/demos/Electrical/
+@SCICOS_TRUE@libsciscicos_la_demosElectricaldir = $(mydatadir)
 @SCICOS_TRUE@nobase_libsciscicos_la_demosElectrical_DATA = demos/Electrical/AND_Gate.cosf \
 @SCICOS_TRUE@demos/Electrical/boost_conv.dem.sce \
 @SCICOS_TRUE@demos/Electrical/Boost_Converter.cosf \
@@ -850,7 +849,7 @@ JARMASK = *.jar
 @SCICOS_TRUE@demos/Electrical/Transformer.cosf \
 @SCICOS_TRUE@demos/Electrical/transformer.dem.sce
 
-@SCICOS_TRUE@libsciscicos_la_demosModelicaBlocksdir = $(mydatadir)/demos/ModelicaBlocks/
+@SCICOS_TRUE@libsciscicos_la_demosModelicaBlocksdir = $(mydatadir)
 @SCICOS_TRUE@nobase_libsciscicos_la_demosModelicaBlocks_DATA = demos/ModelicaBlocks/Ball_Platform.cosf \
 @SCICOS_TRUE@demos/ModelicaBlocks/BouncingBall_Modelica.cosf \
 @SCICOS_TRUE@demos/ModelicaBlocks/Chaos_Modelica.cosf \
