@@ -1,7 +1,8 @@
 
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Cong WU
+ * Copyright (C) INRIA 2007 - Cong WU
+ * Copyright (C) DIGITEO 2008 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,52 +36,79 @@
 #include "freeArrayOfString.h"
 /*----------------------------------------------------------------------------*/
 /* get length */
-static int lengthStrings(char *fname);
-static int lengthMatrix(void);
-static int lengthList(void);
-static int lengthMlist(void);
-static int lengthTlist(void);
+static int lengthStrings(int RhsPosition);
 static int lengthOthers(char *fname);
+static int lengthfunction(int RhsPosition,char *VariableType);
+static int lengthPoly(int RhsPosition);
 /*----------------------------------------------------------------------------*/
 int C2F(sci_length)(char *fname,unsigned long fname_len)
 {
-  CheckRhs(1,1);
-  CheckLhs(1,1);
+	int lenghtValue = 0;
+	int m_out = 1, n_out = 1, l_out = 0;
 
-  switch ( GetType(1)) 
-  {
-	case sci_strings : 
-		lengthStrings(fname);
-	break;
+	CheckRhs(1,1);
+	CheckLhs(1,1);
 
-	case sci_matrix :
-		lengthMatrix();
-	break;
+	switch ( GetType(1) ) 
+	{
+		case sci_poly :
+			lenghtValue = lengthPoly(1);
+		break;
 
-	case sci_list:
-		lengthList();
-    break;
+		case sci_strings :
+			/* to optimize output, we write directly on stack */
+			return lengthStrings(1);
+		break;
 
-	
-	case sci_tlist:
-		lengthTlist();
-	break;
+		case sci_matrix :
+			lenghtValue = lengthfunction(1,MATRIX_OF_DOUBLE_DATATYPE);
+		break;
 
-	case sci_mlist:
-		lengthMlist();
-	break;
+		case sci_boolean :
+			lenghtValue = lengthfunction(1,MATRIX_OF_BOOLEAN_DATATYPE);
+		break;
 
-	default :
-	   lengthOthers(fname);
-	break;
-  }
+		case sci_sparse :
+			lenghtValue = lengthfunction(1,SPARSE_MATRIX_DATATYPE);
+		break;
 
-  return 0;
+		case sci_ints :
+			lenghtValue = lengthfunction(1,MATRIX_OF_INTEGER_DATATYPE);
+		break;
+
+		case sci_handles :
+			lenghtValue = lengthfunction(1,GRAPHICAL_HANDLE_DATATYPE);
+		break;
+
+		case sci_list :
+			lenghtValue = lengthfunction(1,LIST_DATATYPE);
+		break;
+
+		case sci_tlist :
+			lenghtValue = lengthfunction(1,TYPED_LIST_DATATYPE);
+		break;
+
+		case sci_mlist :
+			lenghtValue = lengthfunction(1,MATRIX_ORIENTED_TYPED_LIST_DATATYPE);
+		break;
+
+		case sci_lufact_pointer :
+			lenghtValue = lengthfunction(1,SCILAB_POINTER_DATATYPE);
+		default :
+			return lengthOthers(fname);
+		break;
+	}
+
+	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &m_out,&n_out, &l_out);
+	stk(l_out)[0] = (double)(lenghtValue);
+	LhsVar(1) = Rhs+1 ;
+	C2F(putlhsvar)();
+
+	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int lengthStrings(char *fname)
+static int lengthStrings(int RhsPosition)
 {
-	#define RHSPOS 1
 	int m = 0, n = 0; /* matrix size */
 	int mn = 0; /* m*n */
 
@@ -90,7 +118,7 @@ static int lengthStrings(char *fname)
 	int outIndex = 0 ;
 	int x = 0;
 	
-	int lw = RHSPOS + Top - Rhs;
+	int lw = RhsPosition + Top - Rhs;
 	
 	l1 = *Lstk(lw);
 	il = iadr(l1);
@@ -105,10 +133,9 @@ static int lengthStrings(char *fname)
 	ilrd = il + 4;
 	
 	/* readjust stack before to call createvar */
-	/* @TODO rewrite this without using intersci */
-	C2F(intersci).ntypes[RHSPOS - 1] = '$';
-	C2F(intersci).iwhere[RHSPOS - 1] = l1;
-	C2F(intersci).lad[RHSPOS - 1] = l1;
+	C2F(intersci).ntypes[RhsPosition - 1] = '$';
+	C2F(intersci).iwhere[RhsPosition - 1] = l1;
+	C2F(intersci).lad[RhsPosition - 1] = l1;
 
 	/* Create Variable on stack */
 	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &m,&n, &outIndex );
@@ -162,47 +189,6 @@ static int lengthStrings(char *fname)
 	//return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int lengthMatrix(void)
-{
-	int Row_Num = 0, Col_Num = 0;
-	int Row_Out = 0, Col_Out = 0;
-	int StackPos = 0;
-
-	/*input matrix is a  matrix of double */
-	GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&Row_Num,&Col_Num,&StackPos);
-
-	StackPos = 0;
-	Row_Out = 1;
-	Col_Out = 1;
-
-	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Out,&Col_Out, &StackPos );
-	stk(StackPos)[0] = (double)(Row_Num*Col_Num);
-	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
-	
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
-static int lengthList(void)
-{
-	int Row_Num = 0,Col_Num = 0;
-	int Row_Out = 0, Col_Out = 0;
-	int StackPos = 0; 
-
-	GetRhsVar(1,LIST_DATATYPE,&Row_Num,&Col_Num,&StackPos);
-
-	StackPos = 0;
-	Row_Out = 1;
-	Col_Out = 1;
-
-	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Out,&Col_Out, &StackPos );
-	stk(StackPos)[0] = (double)(Row_Num*Col_Num);
-	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
-
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
 static int lengthOthers(char *fname)
 {
 	/* unknow type */
@@ -210,43 +196,47 @@ static int lengthOthers(char *fname)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int lengthMlist(void)
+static int lengthfunction(int RhsPosition,char *VariableType)
 {
+	int m = 0, n = 0, l = 0;
+	int mn = 0;
 
-	int Row_Num = 0,Col_Num = 0;
-	int Row_Out = 0, Col_Out = 0;
-	int StackPos = 0; 
+	GetRhsVar(RhsPosition,VariableType,&m,&n,&l);
+	mn = m * n;
 
-	GetRhsVar(1,MATRIX_ORIENTED_TYPED_LIST_DATATYPE,&Row_Num,&Col_Num,&StackPos);
-
-	StackPos = 0;
-	Row_Out = 1;
-	Col_Out = 1;
-
-	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Out,&Col_Out, &StackPos );
-	stk(StackPos)[0] = (double)(Row_Num*Col_Num);
-	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
-	return 0;
+	return mn;
 }
 /*--------------------------------------------------------------------------*/
-static int lengthTlist(void)
+static int lengthPoly(int RhsPosition)
 {
+      int m = 0, n = 0; /* matrix size */
+      int mn = 0; /* m*n */
 
-	int Row_Num = 0,Col_Num = 0;
-	int Row_Out = 0, Col_Out = 0;
-	int StackPos = 0; 
+      int il = 0; int ilrd = 0;
+      int l1 = 0;
 
-	GetRhsVar(1, TYPED_LIST_DATATYPE,&Row_Num,&Col_Num,&StackPos);
+      int outIndex = 0 ;
+      int x = 0;
+      
+      int lw = RhsPosition + Top - Rhs;
+      
+      l1 = *Lstk(lw);
+      il = iadr(l1);
 
-	StackPos = 0;
-	Row_Out = 1;
-	Col_Out = 1;
+      if (*istk(il ) < 0) il = iadr(*istk(il + 1));
 
-	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Out,&Col_Out, &StackPos );
-	stk(StackPos)[0] = (double)(Row_Num*Col_Num);
-	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
-	return 0;
+      /* get dimensions */
+      m = getNumberOfLines(il); /* row */
+      n = getNumberOfColumns(il); /* col */
+      mn = m * n ;
+      
+      ilrd = il + 4;
+      
+      /* readjust stack before to call createvar */
+      C2F(intersci).ntypes[RhsPosition - 1] = '$';
+      C2F(intersci).iwhere[RhsPosition - 1] = l1;
+      C2F(intersci).lad[RhsPosition - 1] = l1;
+
+      return mn;
 }
 /*--------------------------------------------------------------------------*/
