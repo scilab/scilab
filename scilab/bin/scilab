@@ -687,19 +687,19 @@ if test "$rest" = "yes"; then
   done
 
   if test -n "$DEBUG"; then
-	  start_debug
+	  start_debug "$@"
   else
   if test -n "$DEBUG_KDBG"; then
-	  start_debug_kdbg
+	  start_debug_kdbg "$@"
   else
 	if test -n "$PROFILING"; then
-		start_profiling
+		start_profiling "$@"
 	else
 		if test -n "$PROFILING_VISU"; then
-			start_profiling_visu
+			start_profiling_visu "$@"
 		else
 			if test -n "$ELECTRIC_FENCE"; then
-				start_electric_fence
+				start_electric_fence "$@"
 			else
 				do_scilex "$@"
 			fi # not electric fense
