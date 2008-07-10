@@ -73,17 +73,6 @@ if poly([],'s')<>p then pause,end
 if poly(a,nam)<>p then pause,end
 if poly([],nam)<>p then pause,end
 
-//roots
-p=-6+11*%s-6*%s^2+%s^3;
-if norm(coeff(poly(roots(p),'s','r')-p))>400*%eps then pause,end
-if norm(coeff(poly(roots(p+0),'s','r')-p))>400*%eps then pause,end
-p=-6-%i*6+(11+%i*5)*%s+(-6-%i)*%s^2+%s^3;
-if norm(coeff(poly(roots(p),'s','r')-p))>400*%eps then pause,end
-if norm(coeff(poly(roots(p+0),'s','r')-p))>400*%eps then pause,end
-p=1;v=[];
-if or(roots(p)<>v) then pause,end
-if or(roots(p+0)<>v) then pause,end
-
 //degree
 v=[1 2 3];d=[0 0 0];
 if or(degree(v)<>d) then pause,end
