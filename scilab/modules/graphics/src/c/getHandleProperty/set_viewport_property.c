@@ -23,6 +23,7 @@
 #include "GetProperty.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*------------------------------------------------------------------------*/
 int set_viewport_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
