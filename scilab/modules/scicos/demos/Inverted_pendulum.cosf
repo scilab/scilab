@@ -1,8 +1,8 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[-553.17528,446.64958,-95.157575,586.45371,1600,1091,56,66,1488,1091,62,40,..
-            1.6575211],..
+            wpar=[-707.40681,621.91844,-197.80747,703.07093,1328,900,194,153,940,728,248,113,..
+            1.0256656],..
             Title=["Inverted_pendulum","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
             tf=30,..
@@ -443,7 +443,7 @@ scs_m.objs(15)=scicos_block(..
                         "-1.5";
                         "1.5";
                         "30";
-                        "20";
+                        "1000";
                         "0";
                         "Inverted Pendulum"],..
                         pin=17,..
@@ -480,7 +480,7 @@ scs_m.objs(15)=scicos_block(..
                         dstate=[],..
                         odstate=list(),..
                         rpar=[0;-1.5;1.5;30],..
-                        ipar=[-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400],..
+                        ipar=[-1;1;1000;1;3;5;7;9;11;13;15;-1;-1;600;400],..
                         opar=list(),..
                         blocktype="c",..
                         firing=[],..
@@ -531,7 +531,7 @@ scs_m.objs(16)=scicos_block(..
                         equations=list()),..
                doc=list())
 scs_m.objs(17)=scicos_link(..
-                 xx=[176.0385;195.77432;195.77432],..
+                 xx=[176.0385;195.77432;195.77431],..
                  yy=[41.40371;41.40371;24.814296],..
                  id="drawlink",..
                  thick=[0,0],..
@@ -872,7 +872,7 @@ scs_m.objs(31)=mlist(["Text","graphics","model","void","gui"],..
                mlist(..
                ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
                "peout","gr_i","id","in_implicit","out_implicit"],..
-               [-44.943109,485.15381],[250.62473;17.541499],%t,0,..
+               [-50.949097,479.14795],[250.62473;17.541499],%t,0,..
                ["Inverted-Pendulum Control System";"2";"4"],[],[],[],[],[],"",[],..
                []),..
                mlist(..
@@ -3328,32 +3328,36 @@ scs_m.objs(144)=scicos_link(..
                   from=[142,2,0],..
                   to=[141,1,1])
 scs_m.objs(145)=scicos_block(..
-                gui="AFFICH_m",..
+                gui="CSCOPE",..
                 graphics=scicos_graphics(..
                          orig=[49.425043,201.02681],..
-                         sz=[40;30],..
+                         sz=[40,40],..
                          flip=%t,..
                          theta=0,..
-                         exprs=["[1,1]";"1";"1";"1";"7";"2";"0"],..
+                         exprs=["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"0";"2000";"30";"20";"0";""],..
                          pin=146,..
                          pout=[],..
                          pein=155,..
                          peout=[],..
                          gr_i=list(..
-                         ["fnt=xget(''font'')";
-                         "xset(''font'',ipar(1),ipar(2))";
-                         "str='' ''+part(''0'',ones(1,ipar(5)-ipar(6)-2))+''.''+part(''0'',ones(1,ipar(6)))";
-                         "str(1:model.in*model.in2)=str";
-                         "str=matrix(str,model.in,model.in2)";
-                         "rr=xstringl(orig(1),orig(2),str)";
-                         "xstring(orig(1)+max(0,(sz(1)-rr(3))/2),orig(2)+max(0,(sz(2)-rr(4))/2),str)";
-                         "xset(''font'',fnt(1),fnt(2))"],8),..
+                         ["thick=xget(''thickness'');xset(''thickness'',2);";
+                         "xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);";
+                         "xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;";
+                         "orig(1)+(1-1/4)*sz(1),orig(1)+sz(1)/5];";
+                         "yy=[orig(2)+sz(2)/5,orig(2)+sz(2)/5;";
+                         "orig(2)+sz(2)/5,orig(2)+(1-1/3)*sz(2)];";
+                         "xarrows(xx,yy);";
+                         "t=(0:0.3:2*%pi)'';";
+                         "xx=orig(1)+(1/5+3*t/(10*%pi))*sz(1);";
+                         "yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
+                         "xpoly(xx,yy,''lines'');";
+                         "xset(''thickness'',thick)"],8),..
                          id="",..
                          in_implicit="E",..
                          out_implicit=[]),..
                 model=scicos_model(..
-                         sim="affich2",..
-                         in=1,..
+                         sim=list("cscope",4),..
+                         in=-1,..
                          in2=1,..
                          intyp=1,..
                          out=[],..
@@ -3362,10 +3366,10 @@ scs_m.objs(145)=scicos_block(..
                          evtin=1,..
                          evtout=[],..
                          state=[],..
-                         dstate=[-1;0;0;1;1;0],..
+                         dstate=[],..
                          odstate=list(),..
-                         rpar=[],..
-                         ipar=[1;1;1;1000;7;2;1],..
+                         rpar=[0;0;2000;30],..
+                         ipar=[-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400],..
                          opar=list(),..
                          blocktype="c",..
                          firing=[],..
@@ -3377,7 +3381,7 @@ scs_m.objs(145)=scicos_block(..
                 doc=list())
 scs_m.objs(146)=scicos_link(..
                   xx=[12.816386;40.853614;40.853614],..
-                  yy=[228.38318;228.38318;216.02681],..
+                  yy=[228.38318;228.38318;221.02681],..
                   id="drawlink",..
                   thick=[0,0],..
                   ct=[1,1],..
@@ -3583,7 +3587,7 @@ scs_m.objs(154)=scicos_block(..
                 doc=list())
 scs_m.objs(155)=scicos_link(..
                   xx=[68.945532;69.425043],..
-                  yy=[253.28128;236.7411],..
+                  yy=[253.28128;246.7411],..
                   id="drawlink",..
                   thick=[0,0],..
                   ct=[5,-1],..
@@ -3631,7 +3635,7 @@ scs_m.objs(156)=scicos_block(..
                 doc=list())
 scs_m.objs(157)=scicos_link(..
                   xx=[224.0125;224.34574],..
-                  yy=[64.305299;50.528581],..
+                  yy=[64.305299;50.528582],..
                   id="drawlink",..
                   thick=[0,0],..
                   ct=[5,-1],..

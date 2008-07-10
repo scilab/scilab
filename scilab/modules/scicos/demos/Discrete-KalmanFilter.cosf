@@ -1,8 +1,8 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[600,450,0,0,600,450],..
-            Title=["Discrete-KalmanFilter","/home/fady/scilab_BUILD_4_scicos/demos/scicos/"],..
+            wpar=[-35.701216,661.18564,112.21202,478.06119,950,502,66,0,818,502,200,200,1.4],..
+            Title=["Discrete-KalmanFilter","/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/"],..
             tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
             tf=15,..
             context=["A=[0 1 0;0 1 1;-.1 -.3 -.5] ";
@@ -3290,7 +3290,7 @@ scs_m.objs(3)=scicos_block(..
 scs_m.objs(4)=scicos_block(..
               gui="SUMMATION",..
               graphics=scicos_graphics(..
-                       orig=[398.62225,227.15598],..
+                       orig=[419.90325,230.7999],..
                        sz=[20;30],..
                        flip=%t,..
                        theta=0,..
@@ -3345,11 +3345,11 @@ scs_m.objs(4)=scicos_block(..
 scs_m.objs(5)=scicos_block(..
               gui="CSCOPE",..
               graphics=scicos_graphics(..
-                       orig=[460.23056,222.09357],..
+                       orig=[481.51156,225.73749],..
                        sz=[40,40],..
                        flip=%t,..
                        theta=0,..
-                       exprs=["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"-5";"5";"15";"10";"0";""],..
+                       exprs=["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"-5";"5";"15";"1000";"0";""],..
                        pin=11,..
                        pout=[],..
                        pein=28,..
@@ -3384,7 +3384,7 @@ scs_m.objs(5)=scicos_block(..
                        dstate=[],..
                        odstate=list(),..
                        rpar=[0;-5;5;15],..
-                       ipar=[-1;1;10;1;3;5;7;9;11;13;15;-1;-1;600;400],..
+                       ipar=[-1;1;1000;1;3;5;7;9;11;13;15;-1;-1;600;400],..
                        opar=list(),..
                        blocktype="c",..
                        firing=[],..
@@ -3398,7 +3398,7 @@ scs_m.objs(6)=mlist(["Text","graphics","model","void","gui"],..
               mlist(..
               ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
               "peout","gr_i","id","in_implicit","out_implicit"],..
-              [429.16057,250.91178],[16.874844,4.4033482],%t,0,["error";"2";"2"],..
+              [450.44157,254.5557],[16.874844,4.4033482],%t,0,["error";"2";"2"],..
               [],[],[],[],[],"",[],[]),..
               mlist(..
               ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
@@ -3434,7 +3434,7 @@ scs_m.objs(9)=mlist(["Text","graphics","model","void","gui"],..
               mlist(..
               ["graphics","orig","sz","flip","theta","exprs","pin","pout","pein",..
               "peout","gr_i","id","in_implicit","out_implicit"],..
-              [294.773,246.09716],[73.369238,5.8344343],%t,0,..
+              [294.03917,312.41643],[73.369238,5.8344343],%t,0,..
               ["Discrete Kalman Filter";"5";"2"],[],[],[],[],[],"",[],[]),..
               mlist(..
               ["model","sim","in","in2","intyp","out","out2","outtyp","evtin",..
@@ -3455,24 +3455,24 @@ scs_m.objs(10)=mlist(["Text","graphics","model","void","gui"],..
                [],1,[],[],[],[],"System",[5;2],"c",[],[%f,%f],"",0,0,list())," ",..
                "TEXT_f")
 scs_m.objs(11)=scicos_link(..
-                 xx=[427.19368;451.65913],..
-                 yy=[242.15598;242.09357],..
+                 xx=[448.47468;472.94014],..
+                 yy=[245.7999;245.73749],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[1,1],..
                  from=[4,1,0],..
                  to=[5,1,1])
 scs_m.objs(12)=scicos_link(..
-                 xx=[370.18426;390.05082;390.05082],..
-                 yy=[276.36697;276.36697;247.15598],..
+                 xx=[370.18426;390.05082;411.33182],..
+                 yy=[276.36697;276.36697;250.7999],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[1,1],..
                  from=[3,1,0],..
                  to=[4,1,1])
 scs_m.objs(13)=scicos_link(..
-                 xx=[241.63143;390.05082;390.05082],..
-                 yy=[226.12842;226.12842;237.15598],..
+                 xx=[241.63143;390.05082;411.33182],..
+                 yy=[226.12842;226.12842;240.7999],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[1,1],..
@@ -3762,7 +3762,7 @@ scs_m.objs(26)=scicos_link(..
 scs_m.objs(27)=scicos_block(..
                gui="SampleCLK",..
                graphics=scicos_graphics(..
-                        orig=[449.81909,286.83196],..
+                        orig=[471.10009,290.47588],..
                         sz=[60,40],..
                         flip=%t,..
                         theta=0,..
@@ -3800,8 +3800,8 @@ scs_m.objs(27)=scicos_block(..
                         equations=list()),..
                doc=list())
 scs_m.objs(28)=scicos_link(..
-                 xx=[479.81909;480.23056],..
-                 yy=[286.83196;267.80786],..
+                 xx=[501.10009;501.51156],..
+                 yy=[290.47588;271.45177],..
                  id="drawlink",..
                  thick=[0,0],..
                  ct=[5,-1],..
