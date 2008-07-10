@@ -209,6 +209,7 @@ demos/live.dat \
 demos/live.dem.gateway.sce \
 demos/Lorentz.cosf \
 demos/lorentz.dem.sce \
+demos/mechanical_systems.dem.gateway.sce \
 demos/modelica_demos.dem.gateway.sce \
 demos/old_demos.dem.gateway.sce \
 demos/OldGainTest.cosf \
