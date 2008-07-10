@@ -484,6 +484,9 @@ macros/Sinks \
 macros/Sources \
 macros/Threshold
 
+MACROSSPECIALEXT=*.mo \
+*.moc
+
 TESTS_DIREXT= tests/unit_tests/Linear
 
 

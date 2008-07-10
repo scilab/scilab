@@ -1501,13 +1501,18 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@		    fi \
 @TCLTK_TRUE@		  done; \
 @TCLTK_TRUE@	  fi; \
-@TCLTK_TRUE@	done
+@TCLTK_TRUE@	done 
 # Install the macros
 @TCLTK_TRUE@	@echo "-- Install macros (if any) --"; \
 @TCLTK_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @TCLTK_TRUE@		if test -d $(srcdir)/$$dir/; then \
-@TCLTK_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@TCLTK_TRUE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
+@TCLTK_TRUE@			for specialExt in $(MACROSSPECIALEXT); do \
+@TCLTK_TRUE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@TCLTK_TRUE@			done; \
+@TCLTK_TRUE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@TCLTK_TRUE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @TCLTK_TRUE@		  done; \

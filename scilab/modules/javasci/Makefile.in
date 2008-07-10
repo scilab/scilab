@@ -1056,13 +1056,18 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@		    fi \
 @JAVASCI_TRUE@		  done; \
 @JAVASCI_TRUE@	  fi; \
-@JAVASCI_TRUE@	done
+@JAVASCI_TRUE@	done 
 # Install the macros
 @JAVASCI_TRUE@	@echo "-- Install macros (if any) --"; \
 @JAVASCI_TRUE@	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 @JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @JAVASCI_TRUE@		if test -d $(srcdir)/$$dir/; then \
-@JAVASCI_TRUE@		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib 2>/dev/null`; do \
+@JAVASCI_TRUE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
+@JAVASCI_TRUE@			for specialExt in $(MACROSSPECIALEXT); do \
+@JAVASCI_TRUE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@JAVASCI_TRUE@			done; \
+@JAVASCI_TRUE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@JAVASCI_TRUE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @JAVASCI_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 @JAVASCI_TRUE@		  done; \
