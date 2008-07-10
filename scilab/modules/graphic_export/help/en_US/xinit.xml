@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,19 +17,20 @@
   </info>
   <refnamediv>
     <refname>xinit</refname>
-    <refpurpose> initialisation of a graphics driver</refpurpose>
+    <refpurpose>Initialization of a graphics driver</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>xinit([driver-name])</synopsis>
+    <synopsis>xinit(FileName)</synopsis>
+    <synopsis>xinit()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>driver-name</term>
+        <term>FileName</term>
         <listitem>
-          <para>string.</para>
+          <para>string: name of the export file.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,19 +38,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Initialisation of the given driver.</para>
-    <para>
-    For X Window
-    <literal>driver-name</literal> can be a string which gives the name of a display
-    and a new graphics window is created. If the argument is omitted 
-    the value of the environment variable DISPLAY is used if it exists or 
-    the value "unix:0.0" is used.</para>
-    <para>
-    For the Postscript, Xfig or Gif driver, <literal>driver-name</literal> is a name of 
+    For the Postscript, Xfig, Gif or PPM driver, <literal>FileName</literal> must be specified. It is the name of 
     the file where all the graphics operations are recorded.</para>
-    <para>Note that in Postscript case the generated file is not a complete
-      postscript file. It should be converted using the BEpsf or Blatexpr shell
-      programs (see printing)</para>
+    <para>For screen drivers (X11 or Rec), <literal>xinit</literal> should be called without any argument and
+	  opens an empty graphic window.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -66,15 +59,20 @@ driver("X11")
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="xbasimp">xbasimp</link>
+        <link linkend="driver">driver</link>
       </member>
       <member>
         <link linkend="xend">xend</link>
+      </member>
+      <member>
+        <link linkend="scf">scf</link>
       </member>
     </simplelist>
   </refsection>
   <refsection>
     <title>Authors</title>
     <para>J.Ph.C.  </para>
+    <para>Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>
+

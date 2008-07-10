@@ -12,20 +12,30 @@ function  xinit(fileName)
 
   global %exportFileName;
 
-  if (argn(2) > 1) then
-    // incorrect number of arguments
-    error(39);
-    return
-  end
+  rhs = argn(2);
 
+  global %driverName;
+  if (%driverName == "Rec" | %driverName == "X11" | %driverName == "" | %driverName == []) then
+    // screen display, should be xinit without argument
+    if (rhs <> 0) then
+      error(msprintf(gettext("%s: Wrong number of input arguments: Function has no input argument with ''Rec'' or ''X11'' drivers.\n"), "xinit"));
+    end
+    scf();
+  else
+    // file driver
+    if (rhs <> 1) then
+      error(msprintf(gettext("%s: Wrong number of input arguments: A string expected with ''GIF'', ''PPM'', ''POS'' or ''Fig'' drivers.\n"), "xinit"));
+    end
 
-  if (type(fileName) <> 10) then
-    // wrong type for driverName
-    error(55, 1);
-    return;
-  end
+    if (type(fileName) <> 10) then
+      // wrong type for driverName
+      error(msprintf(gettext("%s: Wrong type for input arguments #%d: A string expected with ''GIF'', ''PPM'', ''POS'' or ''Fig'' drivers.\n"), "xinit",1));
+      return;
+    end
+  
+    %exportFileName = fileName;
     
-  %exportFileName = fileName;
+  end
 
 endfunction
 

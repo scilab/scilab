@@ -23,7 +23,7 @@ function  [curDriver] = driver(driverName)
     end
     
     if (~checkDriverName(driverName)) then
-      error(gettext("driver: wrong value for first input argument: must be ""Rec"", ""X11"", ""Pos"", ""PPM"" or ""GIF""."));
+      error(gettext("driver: wrong value for first input argument: must be ""Rec"", ""X11"", ""Pos"", ""PPM"", ""GIF"" or ""Fig""."));
      return;
     end
     
@@ -53,7 +53,8 @@ check =   driverName == "Rec"..
         | driverName == "X11"..
         | driverName == "Pos"..
         | driverName == "GIF"..
-        | driverName == "PPM";
+        | driverName == "PPM"..
+        | driverName == "Fig";
 
 endfunction
 

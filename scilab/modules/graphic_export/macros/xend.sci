@@ -40,6 +40,11 @@ function xend()
       xs2ppm(curFigId, %exportFileName);
       // delete figure used for export
       delete(curFig);
+    case "Fig" then
+      drawnow();
+      xs2fig(curFigId, %exportFileName);
+      // delete figure used for export
+      delete(curFig);
   end
 
   // export done reset exportFileName
