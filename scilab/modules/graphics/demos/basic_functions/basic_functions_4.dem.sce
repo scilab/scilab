@@ -26,7 +26,7 @@ plot3d();
 x_message(["[IV] General functions"]);
 
 // Demo IV.1
-expr=["xinit(display);";
+expr=["scf()"
 "plot2d()";
 "a=gca(); t=a.title;"
 "t.text=""window proporties""; t.font_size=3;"];
