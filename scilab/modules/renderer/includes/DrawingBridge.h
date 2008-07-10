@@ -48,6 +48,12 @@ extern "C" {
   void sciDrawSingleObj( sciPointObj * pObj ) ;
 
   /**
+   * Draw only a set of graphic handles.
+   * @param pObjs an array of objects lying within the same figure
+   */
+  void sciDrawSetOfObj(sciPointObj * pObjs[], int nbObjs ) ;
+
+  /**
    * Redraw an object and all its children.
    * To be called on a figure to redraw a whole window
    */

@@ -287,9 +287,9 @@ int sci_set(char *fname, unsigned long fname_len)
                      && parentFigure != NULL && parentFigure != getFigureModel())
                  {
                    /* try to protect figure if possible */
-                   /*startFigureDataWriting(parentFigure);*/
+                   startFigureDataWriting(parentFigure);
                    setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3);
-                   /*endFigureDataWriting(parentFigure);*/
+                   endFigureDataWriting(parentFigure);
                  }
                  else
                  {

@@ -23,6 +23,8 @@ extern "C"
 namespace sciGraphics
 {
 
+using namespace std;
+
 /*---------------------------------------------------------------------------------*/
 DrawableSubwin::DrawableSubwin(sciPointObj * pObj) : DrawableObject(pObj)
 {
@@ -54,11 +56,12 @@ void DrawableSubwin::hasChanged( void )
   parentSubwinChanged();
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableSubwin::displaySingleObj(sciPointObj * pObj)
+void DrawableSubwin::displaySingleObjs(std::list<sciPointObj *>& singleObjs)
 {
 
-  if (sciGetEntityType(pObj) == SCI_SUBWIN)
+  if (containsSubwin(singleObjs))
   {
+    // there is the subwindow inside, just draw it
     if (m_bNeedRedraw)
     {
       draw();
@@ -71,11 +74,11 @@ void DrawableSubwin::displaySingleObj(sciPointObj * pObj)
   // it is a child
   else if (m_bNeedRedraw)
   {
-    drawSingleObj(pObj);
+    drawSingleObjs(singleObjs);
   }
   else
   {
-    showSingleObj(pObj);
+    showSingleObjs(singleObjs);
   }
 }
 /*---------------------------------------------------------------------------------*/
@@ -192,7 +195,7 @@ void DrawableSubwin::showAxesBox(void)
   showTicks();
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableSubwin::drawSingleObj(sciPointObj * pObj)
+void DrawableSubwin::drawSingleObjs(std::list<sciPointObj *>& singleObjs)
 {
 
   initializeDrawing() ;
@@ -214,7 +217,8 @@ void DrawableSubwin::drawSingleObj(sciPointObj * pObj)
 
   // camera has been set
   // display only the children
-  getHandleDrawer(pObj)->display();
+  //getHandleDrawer(pObj)->display();
+  printSingleObjs(singleObjs);
 
   // needed
   m_pCamera->replaceCamera();
@@ -222,7 +226,7 @@ void DrawableSubwin::drawSingleObj(sciPointObj * pObj)
   endDrawing();
 }
 /*------------------------------------------------------------------------------------------*/
-void DrawableSubwin::showSingleObj(sciPointObj * pObj)
+void DrawableSubwin::showSingleObjs(std::list<sciPointObj *>& singleObjs)
 {
   initializeDrawing() ;
 
@@ -243,12 +247,35 @@ void DrawableSubwin::showSingleObj(sciPointObj * pObj)
 
   // camera has been set
   // display only the children
-  getHandleDrawer(pObj)->display();
+  //getHandleDrawer(pObj)->display();
+  printSingleObjs(singleObjs);
 
   // needed
   m_pCamera->replaceCamera();
 
   endDrawing();
+}
+/*---------------------------------------------------------------------------------*/
+bool DrawableSubwin::containsSubwin(std::list<sciPointObj *>& pObjs)
+{
+  list<sciPointObj *>::iterator it = pObjs.begin();
+  for (; it != pObjs.end(); it++)
+  {
+    if (sciGetEntityType(*it) == SCI_SUBWIN)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableSubwin::printSingleObjs(std::list<sciPointObj *>& pObjs)
+{
+  list<sciPointObj *>::iterator it = pObjs.begin();
+  for (; it != pObjs.end(); it++)
+  {
+    getHandleDrawer(*it)->display();
+  }
 }
 /*---------------------------------------------------------------------------------*/
 DrawableSubwinBridge * DrawableSubwin::getSubwinImp( void )

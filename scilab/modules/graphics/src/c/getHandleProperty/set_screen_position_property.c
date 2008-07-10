@@ -24,11 +24,13 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*------------------------------------------------------------------------*/
 int set_screen_position_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * values = getDoubleMatrixFromStack( stackPointer ) ;
+  int status;
  
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -42,6 +44,11 @@ int set_screen_position_property( sciPointObj * pobj, int stackPointer, int valu
     return SET_PROPERTY_ERROR ;
   }
 
-  return sciSetScreenPosition( pobj, (int)values[0], (int)values[1]);
+  /* disable protection since this function will call Java */
+  endFigureDataWriting(pobj);
+  status = sciSetScreenPosition( pobj, (int)values[0], (int)values[1]);
+  startFigureDataWriting(pobj);
+
+  return status;
 }
 /*------------------------------------------------------------------------*/

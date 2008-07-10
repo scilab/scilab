@@ -14,6 +14,7 @@
 #ifndef _DRAWABLE_SUBWIN_H_
 #define _DRAWABLE_SUBWIN_H_
 
+#include <list>
 
 #include "../DrawableObject.h"
 #include "Camera.h"
@@ -51,7 +52,7 @@ public:
    * Display the subwin by just setting the camera
    * and its children pObj
    */
-  void displaySingleObj(sciPointObj * pObj);
+  void displaySingleObjs(std::list<sciPointObj *>& singleObjs);
 
   /**
    * Compute real data bounds from the user ones.
@@ -166,13 +167,23 @@ protected:
    * draw the subwin by just setting the camera
    * and its children pObj
    */
-  virtual void drawSingleObj(sciPointObj * pObj);
+  virtual void drawSingleObjs(std::list<sciPointObj *>& singleObjs);
 
   /**
    * show the subwin by just setting the camera
    * and its children pObj
    */
-  virtual void showSingleObj(sciPointObj * pObj);
+  virtual void showSingleObjs(std::list<sciPointObj *>& singleObjs);
+
+  /**
+   * Find wether a list of objects contains a subwindow
+   */
+  bool containsSubwin(std::list<sciPointObj *>& pObjs);
+
+  /**
+   * Call display on the single objs
+   */
+  void printSingleObjs(std::list<sciPointObj *>& pObjs);
 
   /**
    * Return the real type of implementation object

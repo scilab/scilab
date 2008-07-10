@@ -14,6 +14,8 @@
 #ifndef _BASIC_ALGOS_HXX_
 #define _BASIC_ALGOS_HXX_
 
+#include <list>
+
 class BasicAlgos
 {
 public:
@@ -32,6 +34,26 @@ public:
    * delete an array of strings
    */
   static void destroyStringArray(char * src[], int nbElement) ;
+
+  /**
+   * Find an object inside a list.
+   * @param searchedList, list in which the value is searched
+   * @param value searched value
+   * @return ture if the value is find, false otherwise
+   */
+  template <typename T>
+  static bool listContains(std::list<T>& searchedList, T& value)
+  {
+    std::list<T>::iterator it = searchedList.begin();
+    for (; it != searchedList.end(); it++)
+    {
+      if (*it == value)
+      {
+        return true;
+      }
+    }
+    return false;
+  }
 
 };
 

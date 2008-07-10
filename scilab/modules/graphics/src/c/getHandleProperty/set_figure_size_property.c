@@ -26,12 +26,13 @@
 #include "GetProperty.h"
 #include "InitObjects.h"
 #include "SetPropertyStatus.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*------------------------------------------------------------------------*/
 int set_figure_size_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * values = getDoubleMatrixFromStack( stackPointer ) ;
-
+  int status;
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     sciprint(_("%s undefined for this object.\n"), "figure_size") ;
@@ -50,6 +51,11 @@ int set_figure_size_property( sciPointObj * pobj, int stackPointer, int valueTyp
     return SET_PROPERTY_ERROR ;
   }
 
-  return sciSetWindowDim( pobj, (int)values[0], (int)values[1] ) ;
+  /* disable protection since this function will call Java */
+  endFigureDataWriting(pobj);
+  status = sciSetWindowDim( pobj, (int)values[0], (int)values[1] ) ;
+  startFigureDataWriting(pobj);
+
+  return status;
 }
 /*------------------------------------------------------------------------*/

@@ -24,16 +24,22 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*------------------------------------------------------------------------*/
 int set_figure_name_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  int status;
   if ( !isParameterStringMatrix( valueType ) )
   {
     sciprint(_("Incompatible type for property %s.\n"),"figure_name") ;
     return SET_PROPERTY_ERROR ;
   }
+  /* disable protection since this function will call Java */
+  endFigureDataWriting(pobj);
+  status = sciSetName( pobj, getStringFromStack( stackPointer ), nbCol * nbRow ) ;
+  startFigureDataWriting(pobj);
 
-  return sciSetName( pobj, getStringFromStack( stackPointer ), nbCol * nbRow ) ;
+  return status;
 }
 /*------------------------------------------------------------------------*/

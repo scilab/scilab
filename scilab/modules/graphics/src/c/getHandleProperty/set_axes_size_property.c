@@ -26,6 +26,7 @@
 #include "localization.h"
 #include "InitObjects.h"
 #include "SetPropertyStatus.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*------------------------------------------------------------------------*/
 int set_axes_size_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
@@ -45,7 +46,10 @@ int set_axes_size_property( sciPointObj * pobj, int stackPointer, int valueType,
     return SET_PROPERTY_ERROR ;
   }
 
+  /* disable protection since this function will call Java */
+  endFigureDataWriting(pobj);
   status = sciSetDimension(pobj, (int) newWindowSize[0], (int) newWindowSize[1] ) ;
+  startFigureDataWriting(pobj);
 
   if (status == SET_PROPERTY_ERROR)
   {

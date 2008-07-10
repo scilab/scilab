@@ -11,9 +11,13 @@
  *
  */
 
+#include <list>
+
 #include "DrawingBridge.h"
 #include "getHandleDrawer.h"
 #include "DrawableObjectFactory.h"
+#include "GraphicSynchronizerInterface.h"
+#include "BasicAlgos.hxx"
 
 extern "C"
 {
@@ -21,7 +25,12 @@ extern "C"
 }
 
 using namespace sciGraphics ;
+using namespace std ;
 
+/*---------------------------------------------------------------------------------*/
+static list<sciPointObj *> getParentFigureList(sciPointObj * pObjs[], int nbObjs);
+static list<sciPointObj *> getChildrenOfFigure(sciPointObj * parentFigure,
+                                        sciPointObj * pObjs[], int nbObjs);
 /*---------------------------------------------------------------------------------*/
 void createDrawer( sciPointObj * pObj )
 {
@@ -51,16 +60,38 @@ void sciDrawObj( sciPointObj * pObj )
 void sciMoveObj(sciPointObj * pObj, const double translation[3])
 {
   /* Specify that the object has moved */
-  getHandleDrawer(pObj)->move(translation);
+  forceMove(pObj, translation[0], translation[1], translation[2]);
   /* redisplay everything, including this handle */
   getHandleDrawer( sciGetParentFigure( pObj ) )->display() ;
 }
 /*---------------------------------------------------------------------------------*/
 void sciDrawSingleObj( sciPointObj * pObj )
 {
-  /* force a redraw of the object */
-  getHandleDrawer(pObj)->hasChanged();
-  getFigureDrawer(sciGetParentFigure(pObj))->drawSingleObj(pObj);
+ sciDrawSetOfObj(&pObj, 1); 
+}
+/*---------------------------------------------------------------------------------*/
+void sciDrawSetOfObj(sciPointObj * pObjs[], int nbObjs )
+{
+  /* force redraw of the objects */
+  for (int i = 0; i < nbObjs; i++)
+  {
+    forceRedraw(pObjs[i]);
+  }
+
+  // compute list of figure which have children to draw
+  list<sciPointObj *> parentFigures = getParentFigureList(pObjs, nbObjs);
+
+  list<sciPointObj *>::iterator it = parentFigures.begin();
+  for (; it != parentFigures.end(); it++)
+  {
+    sciPointObj * curFigure = *it;
+    // get all the children of this figure we need to draw
+    list<sciPointObj *> childrens = getChildrenOfFigure(curFigure, pObjs, nbObjs);
+
+    // then draw them
+    getFigureDrawer(curFigure)->drawSingleObjs(childrens);
+  }
+  
 }
 /*---------------------------------------------------------------------------------*/
 void displayChildren( sciPointObj * pObj )
@@ -71,7 +102,7 @@ void displayChildren( sciPointObj * pObj )
 void redrawHierarchy( sciPointObj * pObj )
 {
   /* Update everything */
-  getHandleDrawer(pObj)->familyHasChanged();
+  forceHierarchyRedraw(pObj);
 
   /* redisplay everything, including this handle */
   getHandleDrawer( sciGetParentFigure( pObj ) )->display() ;
@@ -79,12 +110,18 @@ void redrawHierarchy( sciPointObj * pObj )
 /*---------------------------------------------------------------------------------*/
 void forceHierarchyRedraw( sciPointObj * pObj )
 {
+  sciPointObj * parentFigure = sciGetParentFigure(pObj);
+  startFigureDataWriting(parentFigure);
   getHandleDrawer(pObj)->familyHasChanged();
+  endFigureDataWriting(parentFigure);
 }
 /*---------------------------------------------------------------------------------*/
 void forceRedraw(sciPointObj * pObj)
 {
+  sciPointObj * parentFigure = sciGetParentFigure(pObj);
+  startFigureDataWriting(parentFigure);
   getHandleDrawer(pObj)->hasChanged();
+  endFigureDataWriting(parentFigure);
 }
 /*---------------------------------------------------------------------------------*/
 void forceMove(sciPointObj * pObj, double tx, double ty, double tz)
@@ -93,7 +130,38 @@ void forceMove(sciPointObj * pObj, double tx, double ty, double tz)
   displacement[0] = tx;
   displacement[1] = ty;
   displacement[2] = tz;
+  sciPointObj * parentFigure = sciGetParentFigure(pObj);
+  startFigureDataWriting(parentFigure);
   getHandleDrawer(pObj)->move(displacement);
+  endFigureDataWriting(parentFigure);
 }
 /*---------------------------------------------------------------------------------*/
-
+static list<sciPointObj *> getParentFigureList(sciPointObj * pObjs[], int nbObjs)
+{
+  list<sciPointObj *> res;
+  for (int i = 0; i < nbObjs; i++)
+  {
+    sciPointObj * parentFigure = sciGetParentFigure(pObjs[i]);
+    if (!BasicAlgos::listContains(res, parentFigure))
+    {
+      res.push_back(parentFigure);
+    }
+  }
+  return res;
+}
+/*---------------------------------------------------------------------------------*/
+static list<sciPointObj *> getChildrenOfFigure(sciPointObj * parentFigure,
+                                        sciPointObj * pObjs[], int nbObjs)
+{
+  // compute the list of children of the current figure
+  list<sciPointObj *> res;
+  for (int i = 0; i < nbObjs; i++)
+  {
+    if (sciGetParentFigure(pObjs[i]) == parentFigure)
+    {
+      res.push_back(pObjs[i]);
+    }
+  }
+  return res;
+}
+/*---------------------------------------------------------------------------------*/

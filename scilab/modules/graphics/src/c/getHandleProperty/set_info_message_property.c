@@ -24,16 +24,23 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "GraphicSynchronizerInterface.h"
 
 /*------------------------------------------------------------------------*/
 int set_info_message_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  int status;
   if ( !isParameterStringMatrix( valueType ) )
   {
     sciprint(_("Incompatible type for property %s.\n"),"info_message") ;
     return SET_PROPERTY_ERROR ;
   }
 
-  return sciSetInfoMessage( pobj, getStringFromStack( stackPointer ) ) ;
+  /* disable protection since this function will call Java */
+  endFigureDataWriting(pobj);
+  status = sciSetInfoMessage( pobj, getStringFromStack( stackPointer ) ) ;
+  startFigureDataWriting(pobj);
+
+  return status;
 }
 /*------------------------------------------------------------------------*/

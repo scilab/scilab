@@ -14,6 +14,7 @@
 #ifndef _CONCRETE_DRAWABLE_FIGURE_H_
 #define _CONCRETE_DRAWABLE_FIGURE_H_
 
+#include <list>
 
 #include "DrawableFigure.h"
 
@@ -27,12 +28,12 @@ public:
 
   ConcreteDrawableFigure( sciPointObj * pObj );
 
-  ~ConcreteDrawableFigure(void);
+  virtual ~ConcreteDrawableFigure(void);
 
   /**
-   * Like display but to display only a single object
+   * Like display but to display only a set of objects
    */
-  virtual void drawSingleObj(sciPointObj * pObj);
+  virtual void drawSingleObjs(std::list<sciPointObj *>& singleObjects);
 
 protected:
 
@@ -53,8 +54,21 @@ protected:
    */
   virtual void displaySingleObject(void);
   /*------------------------------------------------------------------------*/
-  sciPointObj * m_pSingleObject;
+  std::list<sciPointObj *> m_oSingleObjects;
   /*------------------------------------------------------------------------*/
+
+private:
+
+  /**
+   * Get he list of all the parent subwin of objects inside pObjs
+   */
+  std::list<sciPointObj *> ConcreteDrawableFigure::getParentSubwinList(std::list<sciPointObj *> pObjs);
+
+  /**
+   * Get all the objects within pObjs whose parent subwin is parentSubwin
+   */
+  std::list<sciPointObj *> ConcreteDrawableFigure::getChildrenOfSubwin(sciPointObj * parentSubwin,
+                                                                       std::list<sciPointObj *> pObjs);
 
 
 

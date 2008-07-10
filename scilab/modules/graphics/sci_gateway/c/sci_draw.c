@@ -27,35 +27,53 @@
 #include "DrawingBridge.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int sci_draw( char * fname, unsigned long fname_len )
 { 
-  unsigned long hdl;
-  sciPointObj *pobj;
-  integer m,n,l,lw;
 
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
 
   if (Rhs == 0)
   {
-    pobj = sciGetCurrentObj() ;
+    sciDrawSingleObj(sciGetCurrentObj()) ;
   }
   else
   {
-    GetRhsVar( 1,GRAPHICAL_HANDLE_DATATYPE, &m, &n, &l ); 
-    if (m!=1||n!=1)
+    // Rhs = 1
+    sciPointObj ** drawnObjects = NULL;
+    int nbObjects = 0;
+    int nbRow;
+    int nbCol;
+    int stackPointer;
+    int i;
+
+    GetRhsVar( 1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer ); 
+
+    nbObjects = nbRow * nbCol;
+
+    /* allocate array of objects */
+    drawnObjects = MALLOC(nbObjects * sizeof(sciPointObj *));
+
+    /* fill it */
+    for (i = 0; i < nbObjects; i++)
     {
-      lw = 1 + Top - Rhs ;
-      C2F(overload)(&lw,"draw",4);
-      return 0;
+      /* Convert handle to sciPointObj */
+      unsigned long hdl = (unsigned long) hstk(stackPointer)[i];
+      drawnObjects[i] = sciGetPointerFromHandle(hdl);
+
+      if (drawnObjects[i] == NULL) {
+        FREE(drawnObjects);
+        Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
+        LhsVar(1) = 0;
+        return 0;
+      }
     }
-    hdl = (unsigned long)*hstk(l);            /* Puts the value of the Handle to hdl */ 
-    pobj = sciGetPointerFromHandle(hdl);   
-  }
-  if (pobj != NULL )
-  {
-    sciDrawSingleObj(pobj);
+      
+    sciDrawSetOfObj(drawnObjects, nbObjects);
+
+    FREE(drawnObjects);
   }
 
   LhsVar(1) = 0;

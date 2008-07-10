@@ -15,6 +15,8 @@
 #ifndef _DRAWABLE_FIGURE_H_
 #define _DRAWABLE_FIGURE_H_
 
+#include <list>
+
 #include "../DrawableObject.h"
 #include "DrawableFigureBridge.h"
 #include "GraphicSynchronization/GraphicSynchronizer.h"
@@ -49,9 +51,9 @@ public:
   void redrawSubwins( void );
 
   /**
-   * Like display but to display only a single object
+   * Like display but to display only a set of objects
    */
-  virtual void drawSingleObj(sciPointObj * pObj) = 0;
+  virtual void drawSingleObjs(std::list<sciPointObj *>& singleObjects) = 0;
 
   /*-----------------------------------------------------------------------------*/
   /* Set/Get properties */
