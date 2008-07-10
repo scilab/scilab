@@ -20,8 +20,7 @@ t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
 plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
 e=gce();
 f=e.data;
-TL = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,6*rand(f.z)); // random color
-matrix
+TL = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,6*rand(f.z)); // random color matrix
 h=gce(); //get handle on current entity (here the surface)
 f=gcf();//get the handle of the parent figure   
 f.color_map=hotcolormap(512);

@@ -17,7 +17,7 @@
 // within the axes
 
 // create a contour
-contour(1:5,1:10,rand(5.10),5)
+contour(1:5,1:10,ones(5,10),5)
 
 // check that the contour fits well in the axes, that there is no gap
 // between axes and the contour lines.

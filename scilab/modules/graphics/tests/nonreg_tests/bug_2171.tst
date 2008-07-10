@@ -17,7 +17,7 @@
 
 xset("colormap",graycolormap(256))
 load(SCI + "/modules/graphics/tests/nonreg_tests/bug_1981.dat");
-Matplot(Lenna,axesflag=0,frameflag=4)
+Matplot(Lenna,axesflag=0,frameflag=4);
 
 fig = gcf();
 // check exported file

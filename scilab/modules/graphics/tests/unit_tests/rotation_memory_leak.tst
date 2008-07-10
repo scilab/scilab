@@ -9,7 +9,7 @@
 
 // non regression bug for graphic memory leak
 
-plot3d;
+plot3d();
 a = gca();
 
 beginFreeMemory = getmemory();
@@ -22,7 +22,7 @@ end;
 endFreeMemory = getmemory();
 
 // not much should have been allocated.
-memoryIncrease = beginFreeMemory - endFreeMemory
+memoryIncrease = beginFreeMemory - endFreeMemory;
 
 // let say that the rotation should not use more than 10 Meg
 if (memoryIncrease > 10000) then pause; end

@@ -15,12 +15,8 @@
 // <-- Short Description -->
 //    winsid ne marche pas.
 
-set figure_style old;
-xset('window',1000);
-set figure_style old;
-xset('window',0);
-set figure_style new;
-
+scf(1000);
+scf(0);
 A = winsid();
-
-if or(A <> [0,1000]) then pause,end
+if or(A <> [1000,0]) then pause,end
+xdel(winsid());

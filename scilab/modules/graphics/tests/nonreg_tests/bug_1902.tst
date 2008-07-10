@@ -36,7 +36,7 @@ clf();
 xstring(0,0,['toto','titi';"tatapjp","iiih"]) ;
 
 e             = gce();
-box12         = stringbox(e)
+box12         = stringbox(e);
 a             = gca();
 a.data_bounds = [-2,-2;7,7] ;
 box22         = stringbox(e);
@@ -50,3 +50,4 @@ if (  norm( box11 - box12 ) >= 0.1 ..
     | norm( box21 - box22 ) >= 0.1 ..
     | norm( box31 - box32 ) >= 0.1 ..
     | norm( box41 - box42 ) >= 0.1 )  then pause,end
+xdel(winsid());

@@ -15,11 +15,6 @@
 // merged with a surface.
 //
 plot3d()
-
-Demo of plot3d()
-========================================
-x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
-
 xsegs([0;0],[0;0]);
 e=gce();
 e.data(:,3)=[0;4];
@@ -36,7 +31,7 @@ line_mode = "on"
 line_style = 0
 thickness = 1
 arrow_size = 4
-segs_color = 33
+segs_color = -1
 mark_mode = "off"
 mark_style = 0
 mark_size_unit = "tabulated"

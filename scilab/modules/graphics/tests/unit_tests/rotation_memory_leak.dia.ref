@@ -6,12 +6,7 @@
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
 // non regression bug for graphic memory leak
-plot3d;
-
-Demo of plot3d()
-========================================
-x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
-
+plot3d();
 a = gca();
 beginFreeMemory = getmemory();
 // rotate for a long time and find if there are memory leaks
@@ -20,11 +15,6 @@ for i = 1:3600,
 end;
 endFreeMemory = getmemory();
 // not much should have been allocated.
-memoryIncrease = beginFreeMemory - endFreeMemory
- memoryIncrease  =
- 
-    100760.  
+memoryIncrease = beginFreeMemory - endFreeMemory;
 // let say that the rotation should not use more than 10 Meg
 if (memoryIncrease > 10000) then pause; end
-Type 'resume' or 'abort' to return to standard level prompt.
-

@@ -29,7 +29,7 @@ if (pos <> initPos) then pause; end;
 // also
 pos = initPos;
 
-f=gcf()
+f=gcf();
 for k=1:10,
   f.figure_position=pos;
   pos = f.figure_position;

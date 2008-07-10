@@ -42,4 +42,5 @@ ha2               = hr2.parent; // get the axes
 newAngles           = [60,200] ;
 ha1.rotation_angles = newAngles ;
 // check if both axes are turned
-if ( (ha1.rotation_angles <> newAngles) | (ha2.rotation_angles <> newAngles) )then bugmes();quit;end
+if ( (ha1.rotation_angles <> newAngles) | (ha2.rotation_angles <> newAngles) ) then bugmes();quit;end
+xdel(winsid());

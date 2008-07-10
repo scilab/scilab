@@ -24,11 +24,6 @@ if ( e.type <> "Polyline" )  then bugmes();quit;end
 if ( size(e.data) <> [0,0] ) then bugmes();quit;end
 // check if scilab don't crash
 plot3d ;
-
-Demo of plot3d()
-========================================
-x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
-
 e.data = rand(100,2) ;
 Incorrect argument, must be a Tlist!
 e.data = [] ;

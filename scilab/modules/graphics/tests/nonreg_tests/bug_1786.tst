@@ -34,5 +34,5 @@ if hlt.auto_position <> "on" then pause,end
 hlt.font_angle = 180;
 if hlt.auto_rotation <> "off" then pause,end
 
-hlt.position = [0.5,0.5];;
-if hlt.auto_position == "off" then pause,end
+hlt.position = [0.5,0.5];
+if hlt.auto_position == "on" then pause,end

@@ -57,6 +57,6 @@ end
 // user complained that it use to use 20Mb of memory
 endFreeMemory = getmemory();
 
-// give 2 meg
-if ((initFreeMemory - endFreeMemory) > 2048) then pause; end
+// give 4 meg
+if ((initFreeMemory - endFreeMemory) > 4096) then pause; end
 

@@ -1,0 +1,17 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2008 - INRIA - Jean-Baptiste Silvy
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// <-- Non-regression test for bug 3184 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3184
+//
+// <-- Short Description -->
+// Misaligned ticks labels in colorbar.
+colorbar(-200,100)
+// Now expand the window to see ticks along the color bar
+// Labels should be in front of them.

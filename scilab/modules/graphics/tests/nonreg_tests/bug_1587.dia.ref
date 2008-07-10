@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- TEST WITH GRAPHIC -->
 // <-- Non-regression test for bug 1587 -->
 //
@@ -10,30 +16,17 @@
 //    modified is not the entered one. The selected figure colormap is also changed
 //    with the entered colormap. Moreover, Scilab often crash some time after this bug
 //    occures.
-// Copyright INRIA
-// Scilab Project - Jean-Baptiste Silvy
-// Copyright INRIA 2006
-// Date : 18 Juillet 2006
 // test the modification on a figure which is not current
 f1 = gcf() ;
 plot3d ;
-
-Demo of plot3d()
-========================================
-t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
-
 f2 = scf() ;
 hc = jetcolormap(21) ;
 f2.color_map = hc ;
 plot3d ;
-
-Demo of plot3d()
-========================================
-t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
-
 // change the colormap of the first window
 jc = jetcolormap(45) ;
 f.color_map = jc ;
 // check that the colormaps are well copied
 if abs( max( f.color_map - jc ) ) > 1e-8 then bugmes();quit;end
-if abs( max( f2.color_map - hc ) ) > 1e-8 then bugmes();quit;end
+if abs( max(f2.color_map)-max(hc) ) > 1e-8 then bugmes();quit;end
+xdel(winsid());

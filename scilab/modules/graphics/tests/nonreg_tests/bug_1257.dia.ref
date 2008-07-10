@@ -18,18 +18,8 @@ f = gcf();
 f.rotation_style = "multiple";
 subplot(1,2,1)
    plot3d()
-
-Demo of plot3d()
-========================================
-x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
-
 subplot(1,2,2)
    plot3d()
-
-Demo of plot3d()
-========================================
-x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
-
 // rotate one axes
 axes1 = f.children(1);
 axes2 = f.children(2);

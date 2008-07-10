@@ -16,18 +16,8 @@ subplot(211);
   t=1:10;plot2d(t,t.^2),
   subplot(223);
   plot3d();
-
-Demo of plot3d()
-========================================
-x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
-
   subplot(224);
   plot2d();
-
-Demo of plot2d()
-========================================
-x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2], axesflag=1);
-
   xfrect(1,0,3,1);
   a=get("current_axes")
  a  =
@@ -50,16 +40,16 @@ z_label: "Label"
 auto_ticks = ["on","on","on"]
 x_ticks.locations = [0;1;2;3;4;5;6;7]
 y_ticks.locations = [-2;-1.5;-1;-0.5;0;0.5;1;1.5;2]
-z_ticks.locations = [-1;0;1]
+z_ticks.locations = []
 x_ticks.labels = ["0";"1";"2";"3";"4";"5";"6";"7"]
 y_ticks.labels = ["-2.0";"-1.5";"-1.0";"-0.5";"0.0";"0.5";"1.0";"1.5";"2.0"]
-z_ticks.labels = ["-1";"0";"1"]
+z_ticks.labels = []
 box = "on"
 sub_ticks = [2,1]
 font_style = 6
 font_size = 1
 font_color = -1
-fractional_font = "on"
+fractional_font = "off"
  
 isoview = "off"
 cube_scaling = "off"

@@ -1,0 +1,22 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+//
+// <-- Non-regression test for bug 3132 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3132
+//
+// <-- Short Description -->
+// Wrong colors with plot3d1 with holes. If some value are set to infinity,
+// plot3d1 produces a black surface, unlik eScilab 4.
+t     = linspace(-%pi,%pi,40);
+z     = sin(t)'*cos(t);
+z1    = find(abs(z) > 0.5);
+z(z1) = %inf*z1; // set a part to infinity
+plot3d1(t,t,z);
+// plot should be colored

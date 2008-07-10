@@ -47,4 +47,5 @@ newAngles           = [60,200] ;
 ha1.rotation_angles = newAngles ;
 
 // check if both axes are turned
-if ( (ha1.rotation_angles <> newAngles) | (ha2.rotation_angles <> newAngles) )then pause,end
+if ( (ha1.rotation_angles <> newAngles) | (ha2.rotation_angles <> newAngles) ) then pause,end
+xdel(winsid());

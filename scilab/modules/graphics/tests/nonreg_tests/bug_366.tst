@@ -15,7 +15,9 @@
 // <-- Short Description -->
 // The error message of plot2d is sort of understandable
 
-// should complain about strf (normally a strig of length 3).
-plot2d(0,0,0,'0');
+// should complain about strf (normally a string of length 3).
+ierr = execstr('plot2d(0,0,0,''0'')','errcatch');
+if ierr <> 999 then pause,end
+if lasterror() <> 'plot2d: Wrong size for input argument #4: String of 3 characters expected.' then pause,end
 
 

@@ -16,7 +16,7 @@
 // If figure_size property is modified more than one time, next changes have no effect on the figure.
 
 my_handle = scf();
-my_handle.figure_size = [400,400]   // OK
-my_handle.figure_size = [400,600]   // used to failed
+my_handle.figure_size = [400,400] ;  // OK
+my_handle.figure_size = [400,600];   // used to failed
 if (my_handle.figure_size <> [400, 600]) then pause; end;
 

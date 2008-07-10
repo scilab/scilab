@@ -24,20 +24,10 @@ if ( a2.children(1).type <> "Rectangle" ) then bugmes();quit;end
 // third test : swap two objects from different figure
 xdel( winsid() ) ;
 plot3d ;
-
-Demo of plot3d()
-========================================
-x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
-
 a1 = gca() ;
 e1 = gce() ;
 scf() ;
 plot2d ;
-
-Demo of plot2d()
-========================================
-x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2], axesflag=1);
-
 e2 = gce() ;
 a2 = gca() ;
 swap_handles( e1, e2 ) ;
@@ -46,20 +36,10 @@ if ( e2.parent <> a1 ) then bugmes();quit;end
 // fourth test : swap two handles from two different figures
 xdel( winsid() ) ;
 plot3d ;
-
-Demo of plot3d()
-========================================
-x = %pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);plot3d(x, x, z, 70, 70);e=gce();e.color_flag = 1;
-
 f1 = gcf() ;
 a1 = gca() ;
 scf() ;
 plot2d ;
-
-Demo of plot2d()
-========================================
-x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2], axesflag=1);
-
 f2 = gcf() ;
 a2 = gca() ;
 swap_handles( a1, a2 ) ;

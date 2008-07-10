@@ -44,4 +44,4 @@ ha.rotation_angles = [0,0];
 reference = [ 1, 0.6, -0.3 ; 0.7, 0.45, -0.4 ] ;
 
 // check that the segment z coordinates are modified
-if hs10.data <> referenceif then pause,end
+if hs10.data <> reference then pause,end

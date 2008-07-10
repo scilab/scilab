@@ -23,8 +23,7 @@ h=scf(0);
 delete(h);
 
 // a call to h should not open a window
-h
-is_handle_valid(h);
+if is_handle_valid(h)<>%f then pause,end;
 
 // no window should have been created
 if (winsid() <> []) then pause; end

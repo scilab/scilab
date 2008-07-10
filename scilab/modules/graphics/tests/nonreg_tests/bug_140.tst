@@ -20,4 +20,4 @@ sys=syslin("d",zaehler./nenner);
 execstr("plzr(sys);", "errcatch");
 
 [msg, num, x, y] = lasterror();
-if (msg<>gettext("The given transfer fuction is not proper.")) | (num<>10000) then pause; end
+if (msg<>gettext("plzr: The given transfer fuction is not proper.")) | (num<>10000) then pause; end

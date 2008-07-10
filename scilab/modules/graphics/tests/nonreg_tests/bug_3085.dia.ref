@@ -13,56 +13,6 @@
 // <-- Short Description -->
 // If figure_size property is modified more than one time, next changes have no effect on the figure.
 my_handle = scf();
-my_handle.figure_size = [400,400]   // OK
- my_handle  =
- 
-Handle of type "Figure" with properties:
-========================================
-children: "Axes"
-figure_style = "new"
-figure_position = [200,200]
-figure_size = [400,400]
-axes_size = [388,267]
-auto_resize = "on"
-viewport = [0,0]
-figure_name = "Graphic window number %d"
-figure_id = 0
-info_message = ""
-color_map= matrix 32x3
-pixmap = "off"
-pixel_drawing_mode = "copy"
-immediate_drawing = "on"
-background =  -2
-visible = "on"
-rotation_style = "unary"
-event_handler = ""
-event_handler_enable = "off"
-user_data = []
-tag = ""
-my_handle.figure_size = [400,600]   // used to failed
- my_handle  =
- 
-Handle of type "Figure" with properties:
-========================================
-children: "Axes"
-figure_style = "new"
-figure_position = [200,200]
-figure_size = [400,600]
-axes_size = [388,467]
-auto_resize = "on"
-viewport = [0,0]
-figure_name = "Graphic window number %d"
-figure_id = 0
-info_message = ""
-color_map= matrix 32x3
-pixmap = "off"
-pixel_drawing_mode = "copy"
-immediate_drawing = "on"
-background =  -2
-visible = "on"
-rotation_style = "unary"
-event_handler = ""
-event_handler_enable = "off"
-user_data = []
-tag = ""
+my_handle.figure_size = [400,400] ;  // OK
+my_handle.figure_size = [400,600];   // used to failed
 if (my_handle.figure_size <> [400, 600]) then pause; end;

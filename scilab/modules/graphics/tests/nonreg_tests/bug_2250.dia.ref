@@ -14,11 +14,6 @@
 //   I can not save or load user_data of a figure to or from a file
 f = scf(11);
 plot2d();
-
-Demo of plot2d()
-========================================
-x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2], axesflag=1);
-
 backgroundvariable = 5;
 f.background = backgroundvariable;
 userdatavariable = ["my user_data - entry will not be saved, - but i.e. the backgroundvariable will be saved."];

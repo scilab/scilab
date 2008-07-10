@@ -42,5 +42,5 @@
 x = -25:0.1:25;
 y = x.^2;
 plot2d(x,y);
-if execstr("for k=1:20,xclear();xtape(""replay"",0),xpause(1d5),end","errcatch","n") <>0 then pause,end
+if execstr("for k=1:20,xclear(),xpause(1d5),end","errcatch","n") <>0 then pause,end
 xdel();
