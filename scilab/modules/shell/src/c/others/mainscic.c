@@ -43,8 +43,6 @@ void mainscic(int argc, char **argv)
   char * initial_script = NULL;
   InitScriptType initial_script_type = SCILAB_SCRIPT;
 
-  char  *display = NULL;
-
   __InitSignal(&LaunchScilab);
   __InitLock(&LaunchScilabLock);
 
@@ -83,7 +81,7 @@ fpsetmask(0);
       else if ( strcmp(argv[i],"-display") == 0 || strcmp(argv[i],"-d") == 0)
       {
 		  char dpy[128];
-		  sprintf(dpy,"DISPLAY=%s",display);
+		  sprintf(dpy,"DISPLAY=%s",argv[++i]);
 		  putenv(dpy);
       }
       else if ( strcmp(argv[i],"-nb") == 0)  { sci_show_banner = 0; }
