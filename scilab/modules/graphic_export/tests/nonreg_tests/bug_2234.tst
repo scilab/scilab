@@ -20,8 +20,8 @@
 plot2d;
 // minimize window
 fig = gcf();
-xs2gif(fig.figure_id, "test.gif");
-xs2bmp(fig.figure_id, "test.bmp");
+xs2gif(fig.figure_id, TMPDIR+"/test.gif");
+xs2bmp(fig.figure_id, TMPDIR+"/test.bmp");
 
 // check the two generated files.
 

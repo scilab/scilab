@@ -31,7 +31,7 @@ SCIFILECONTENTSREF=["";
 		"ieee(1);";
 		"";
 		"b = 1;";
-		"if bool2s(b==0)|bool2s(b(2)>0) then";
+		"if b==0 | b(2)>0 then";
 		"  a = 1;";
 		"else a = 0;";
 		"end;"]

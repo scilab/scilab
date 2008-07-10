@@ -25,7 +25,7 @@ xsetech(arect=[.01,.01,.01,.01]);
 plot2d(x,y,frameflag=8,axesflag=1);
 
 fig = gcf();
-xs2eps(fig.figure_id, "toto.eps");
+xs2eps(fig.figure_id, TMPDIR+"/toto.eps");
 
 // check that toto.eps does not display ticks label
 
