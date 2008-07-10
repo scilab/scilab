@@ -4126,5 +4126,6 @@ y3ref=[
 y3=erfcx(x3);
 e3=norm((y3ref-y3)./abs(y3ref),1);
 
-if or([e1 e2 e3]>1d-13) then pause,end
+
+if or([e1 e2 e3]>1d-12) then pause,end
 
