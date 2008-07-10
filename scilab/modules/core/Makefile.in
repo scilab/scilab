@@ -2954,13 +2954,18 @@ install-data-local:
 # Install the tests
 	@echo "-- Install tests (if any) --"; \
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		if test -d $(srcdir)/$$dir/; then \
-		  for file in `ls -1 $(srcdir)/$$dir/* 2>/dev/null`; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s#^$(srcdir)/$$dir##" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgmacrosdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgmacrosdir)/`dirname $$dir/$$file`" ; \
+		    fi \
 		  done; \
-		fi; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-- Install macros (if any) --"; \
