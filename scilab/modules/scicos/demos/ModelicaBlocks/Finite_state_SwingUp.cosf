@@ -1,10 +1,10 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[41.562657,720.21274,381.80152,789.7833,850,511,124,32,590,500,1594,73,1.2873407],..
+            wpar=[41.562658,720.21274,355.99883,819.43798,850,583,94,0,721,583,431,261,1.2873407],..
             Title=["Finite_state_SwingUp",..
-            "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/"],..
-            tol=[0.000001;1.000D-07;1.000D-10;100001;0;100;0],..
+            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/ModelicaBlocks/"],..
+            tol=[0.000001;1.000E-07;1.000E-10;100001;0;100;0],..
             tf=30,..
             context=["n=0.25;";"g=9.8;";"w=1;";"um=n*g;";"k=100;";"Theta=%pi/6;"],..
             void1=[],..
@@ -18,7 +18,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[600,450,0,0,600,450],..
               Title="Untitled",..
-              tol=[0.0001,0.000001,1.000D-10,100001,0,0],..
+              tol=[0.0001,0.000001,1.000E-10,100001,0,0],..
               tf=100000,..
               context=[],..
               void1=[],..
@@ -236,7 +236,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[-15.236275,608.35085,254.434,770.9548,850,704,0,44,859,709,1579,96,1.4010133],..
               Title=["SuperBlock","/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/"],..
-              tol=[0.000001;1.000D-07;1.000D-10;100001;0;100;0],..
+              tol=[0.000001;1.000E-07;1.000E-10;100001;0;100;0],..
               tf=30,..
               context=" ",..
               void1=[],..
@@ -1298,7 +1298,7 @@ scs_m.objs(3)=scicos_block(..
                        "0.0 -2*%pi ";
                        "4.02 2*%pi";
                        "30 30";
-                       "20";
+                       "2000";
                        "0";
                        ""],..
                        pin=[8;27],..
@@ -1323,7 +1323,7 @@ scs_m.objs(3)=scicos_block(..
                        dstate=[],..
                        odstate=list(),..
                        rpar=[0;30;30;0;4.02;-6.2831853;6.2831853],..
-                       ipar=[1;2;20;-1;-1;-1;-1;1;2;-2;2;5;0],..
+                       ipar=[1;2;2000;-1;-1;-1;-1;1;2;-2;2;5;0],..
                        opar=list(),..
                        blocktype="c",..
                        firing=[],..
@@ -1339,7 +1339,7 @@ scs_m_1=scicos_diagram(..
               wpar=[41.910832,845.15201,319.93058,827.33012,1062,671,133,0,737,500,1732,234,..
               1.3586541],..
               Title=["SuperBlock","/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/"],..
-              tol=[0.000001;1.000D-07;1.000D-10;100001;0;100;0],..
+              tol=[0.000001;1.000E-07;1.000E-10;100001;0;100;0],..
               tf=30,..
               context=" ",..
               void1=[],..
@@ -2549,7 +2549,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[-95.308118,705.20256,186.06719,693.46673,1238,785,181,25,859,709,2014,277,1.4],..
               Title=["SuperBlock","/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/"],..
-              tol=[0.000001;1.000D-07;1.000D-10;100001;0;100;0],..
+              tol=[0.000001;1.000E-07;1.000E-10;100001;0;100;0],..
               tf=30,..
               context=" ",..
               void1=[],..
@@ -3601,7 +3601,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[-95.308118,705.20256,186.06719,693.46673,1238,785,181,25,859,709,2005,282,1.4],..
               Title=["SuperBlock","/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/"],..
-              tol=[0.000001;1.000D-07;1.000D-10;100001;0;100;0],..
+              tol=[0.000001;1.000E-07;1.000E-10;100001;0;100;0],..
               tf=30,..
               context=" ",..
               void1=[],..

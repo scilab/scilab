@@ -1,10 +1,10 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[16.586126,662.49502,-5.7369478,430.43787,880,594,92,56,617,500,380,80,1.4],..
+            wpar=[16.586126,662.49502,22.774884,423.89417,880,546,77,84,725,505,238,367,1.4],..
             Title=["Colpitts_Oscillator",..
-            "/home/najafi/SCILAB/BUID412/BUILD_412/scilab/demos/scicos/Electrical/"],..
-            tol=[0.0001;0.000001;1.000D-15;1.000D-12;0;100;0],..
+            "/home/simone/SVN/Scilab5/scilab/modules/scicos/demos/Electrical/"],..
+            tol=[0.0001;0.000001;1.000E-15;1.000E-12;0;100;0],..
             tf=0.0000009,..
             context=" ",..
             void1=[],..
@@ -106,7 +106,7 @@ scs_m.objs(2)=scicos_block(..
                        state=[],..
                        dstate=[],..
                        odstate=list(),..
-                       rpar=1.000D-07,..
+                       rpar=1.000E-07,..
                        ipar=[],..
                        opar=list(),..
                        blocktype="c",..
@@ -116,7 +116,7 @@ scs_m.objs(2)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"Capacitor","p","n",..
-                       list(["C","v"],list(1.000D-07,0),[0,1]),list([],list()))),..
+                       list(["C","v"],list(1.000E-07,0),[0,1]),list([],list()))),..
               doc=list())
 scs_m.objs(3)=scicos_block(..
               gui="Resistor",..
@@ -265,8 +265,8 @@ scs_m.objs(5)=scicos_block(..
                        state=[],..
                        dstate=[],..
                        odstate=list(),..
-                       rpar=[50;0.1;0;0.02;1.200D-10;5.000D-09;1.000D-12;4.000D-13;5.000D-13;0.8;0.4;0.8;
-                       0.333;1.000D-15;1.000D-15;0.02585;40],..
+                       rpar=[50;0.1;0;0.02;1.200E-10;5.000E-09;1.000E-12;4.000E-13;5.000E-13;0.8;0.4;0.8;
+                       0.333;1.000E-15;1.000E-15;0.02585;40],..
                        ipar=[],..
                        opar=list(),..
                        blocktype="c",..
@@ -294,8 +294,8 @@ scs_m.objs(5)=scicos_block(..
                        "Gbe";
                        "Vt";
                        "EMinMax"],..
-                       [50;0.1;0;0.02;1.200D-10;5.000D-09;1.000D-12;4.000D-13;5.000D-13;0.8;0.4;0.8;
-                       0.333;1.000D-15;1.000D-15;0.02585;40],[0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0]))),..
+                       [50;0.1;0;0.02;1.200E-10;5.000E-09;1.000E-12;4.000E-13;5.000E-13;0.8;0.4;0.8;
+                       0.333;1.000E-15;1.000E-15;0.02585;40],[0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0]))),..
               doc=list())
 scs_m.objs(6)=scicos_block(..
               gui="Inductor",..
@@ -336,7 +336,7 @@ scs_m.objs(6)=scicos_block(..
                        state=[],..
                        dstate=[],..
                        odstate=list(),..
-                       rpar=1.000D-07,..
+                       rpar=1.000E-07,..
                        ipar=[],..
                        opar=list(),..
                        blocktype="c",..
@@ -346,7 +346,7 @@ scs_m.objs(6)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"Inductor","p","n",..
-                       list("L",list(1.000D-07)),list([],list()))),..
+                       list("L",list(1.000E-07)),list([],list()))),..
               doc=list())
 scs_m.objs(7)=scicos_block(..
               gui="Resistor",..
@@ -439,7 +439,7 @@ scs_m.objs(8)=scicos_block(..
                        state=[],..
                        dstate=[],..
                        odstate=list(),..
-                       rpar=1.000D-10,..
+                       rpar=1.000E-10,..
                        ipar=[],..
                        opar=list(),..
                        blocktype="c",..
@@ -449,7 +449,7 @@ scs_m.objs(8)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"Capacitor","p","n",..
-                       list(["C","v"],list(1.000D-10,0),[0,1]),list([],list()))),..
+                       list(["C","v"],list(1.000E-10,0),[0,1]),list([],list()))),..
               doc=list())
 scs_m.objs(9)=scicos_block(..
               gui="Capacitor",..
@@ -496,7 +496,7 @@ scs_m.objs(9)=scicos_block(..
                        state=[],..
                        dstate=[],..
                        odstate=list(),..
-                       rpar=1.000D-10,..
+                       rpar=1.000E-10,..
                        ipar=[],..
                        opar=list(),..
                        blocktype="c",..
@@ -506,7 +506,7 @@ scs_m.objs(9)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=tlist(["modelica","model","inputs","outputs","parameters"],"Capacitor","p","n",..
-                       list(["C","v"],list(1.000D-10,0),[0,1]),list([],list()))),..
+                       list(["C","v"],list(1.000E-10,0),[0,1]),list([],list()))),..
               doc=list())
 scs_m.objs(10)=scicos_block(..
                gui="Ground",..
@@ -1095,7 +1095,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[600,450,0,0,600,450],..
               Title="Untitled",..
-              tol=[0.0001,0.000001,1.000D-10,100001,0,0],..
+              tol=[0.0001,0.000001,1.000E-10,100001,0,0],..
               tf=100000,..
               context=[],..
               void1=[],..
@@ -1176,7 +1176,7 @@ scs_m_1.objs(2)=scicos_block(..
                          state=[],..
                          dstate=[],..
                          odstate=list(),..
-                         rpar=[1.000D-11;0],..
+                         rpar=[1.000E-11;0],..
                          ipar=[],..
                          opar=list(),..
                          blocktype="d",..
@@ -1388,7 +1388,7 @@ scs_m.objs(44)=scicos_block(..
                         "-1 -1";
                         "11 11";
                         "0.9e-6 300e-9";
-                        "5";
+                        "1000";
                         "0";
                         ""],..
                         pin=[50;51],..
@@ -1413,7 +1413,7 @@ scs_m.objs(44)=scicos_block(..
                         dstate=[],..
                         odstate=list(),..
                         rpar=[0;0.0000009;0.0000003;-1;11;-1;11],..
-                        ipar=[-1;2;5;-1;-1;-1;-1;1;1;2;5;0],..
+                        ipar=[-1;2;1000;-1;-1;-1;-1;1;1;2;5;0],..
                         opar=list(),..
                         blocktype="c",..
                         firing=[],..
