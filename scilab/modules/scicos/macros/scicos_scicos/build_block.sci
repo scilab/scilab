@@ -68,10 +68,13 @@ function [model,ok] = build_block(o)
 	mputl(tt,funam);
       end
       compilerpath=pathconvert(SCI+'/bin/',%f,%t);
+      
       if MSDOS then
-	compilerpath=compilerpath+'modelicac.exe';
+	//** compilerpath=compilerpath+'modelicac.exe';
+        compilerpath = 'modelicac'; //** with automatic detection
       else
-	compilerpath=compilerpath+'modelicac';
+	//** compilerpath=compilerpath+'modelicac';
+        compilerpath = 'modelicac'; //** with automatic detection
       end
 
       if execstr('unix_s(compilerpath+'' -c ''+funam+'' -o ''+tarpath+nameF+''.moc'')','errcatch')<>0 then

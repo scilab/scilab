@@ -21,6 +21,7 @@
 
 function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
 //
+
  [dirF,nameF,extF]=fileparts(funam);
 
  //the new head
@@ -56,6 +57,7 @@ function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
     [txt]=x_dialog(['Function definition in Modelica';
          'Here is a skeleton of the functions which you should edit'],textmp);
    end
+
    if txt<>[] then // not a  Cancel button
      tt=txt
      tarpath=pathconvert(TMPDIR+'/Modelica/',%f,%t);
@@ -66,15 +68,19 @@ function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
      elseif fileinfo(funam)==[] then
        mputl(tt,funam);
      end
-     compilerpath=pathconvert(SCI+'/bin/',%f,%t);
+     
+     //** compilerpath=pathconvert(SCI+'/bin/',%f,%t);
+
      if MSDOS then
-       compilerpath=compilerpath+'modelicac.exe';
+       //** compilerpath=compilerpath+'modelicac.exe';
+       compilerpath = 'modelicac'; //** with automatic detection
      else
-       compilerpath=compilerpath+'modelicac';
+       //** compilerpath=compilerpath+'modelicac';
+       compilerpath = 'modelicac'; //** with automatic detection
+     
      end
 
-     if execstr('unix_s(compilerpath+'' -c ''+..
-                 funam+'' -o ''+tarpath+nameF+''.moc'')','errcatch')<>0 then
+     if execstr('unix_s(compilerpath+'' -c '' + funam+'' -o ''+tarpath+nameF+''.moc'')','errcatch')<>0 then
        x_message(["An error has occured during the compilation";
                   "of the modelica block. Please check."])
        textmp=txt;
