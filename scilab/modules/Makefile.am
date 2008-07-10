@@ -155,6 +155,8 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/matio/libscimatio.la
+
+# \
 #	$(top_builddir)/modules/helptools/libscihelptools.la
 
 

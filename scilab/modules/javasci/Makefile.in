@@ -1046,7 +1046,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @JAVASCI_TRUE@	  if test -d $(srcdir)/$$dir/; then \
 @JAVASCI_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@JAVASCI_TRUE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s#^$(srcdir)/$$dir##" 2>/dev/null`; do \
+@JAVASCI_TRUE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 @JAVASCI_TRUE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
 @JAVASCI_TRUE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 @JAVASCI_TRUE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \

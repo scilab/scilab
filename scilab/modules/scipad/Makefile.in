@@ -974,7 +974,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_TRUE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @TCLTK_TRUE@	  if test -d $(srcdir)/$$dir/; then \
 @TCLTK_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@TCLTK_TRUE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s#^$(srcdir)/$$dir##" 2>/dev/null`; do \
+@TCLTK_TRUE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 @TCLTK_TRUE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
 @TCLTK_TRUE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 @TCLTK_TRUE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1149,7 +1149,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_FALSE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @TCLTK_FALSE@	  if test -d $(srcdir)/$$dir/; then \
 @TCLTK_FALSE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@TCLTK_FALSE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s#^$(srcdir)/$$dir##" 2>/dev/null`; do \
+@TCLTK_FALSE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 @TCLTK_FALSE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
 @TCLTK_FALSE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 @TCLTK_FALSE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \

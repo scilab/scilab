@@ -1478,7 +1478,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s#^$(srcdir)/$$dir##" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
