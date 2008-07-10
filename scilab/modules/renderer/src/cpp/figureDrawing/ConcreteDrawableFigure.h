@@ -62,13 +62,13 @@ private:
   /**
    * Get he list of all the parent subwin of objects inside pObjs
    */
-  std::list<sciPointObj *> ConcreteDrawableFigure::getParentSubwinList(std::list<sciPointObj *> pObjs);
+  std::list<sciPointObj *> getParentSubwinList(std::list<sciPointObj *> pObjs);
 
   /**
    * Get all the objects within pObjs whose parent subwin is parentSubwin
    */
-  std::list<sciPointObj *> ConcreteDrawableFigure::getChildrenOfSubwin(sciPointObj * parentSubwin,
-                                                                       std::list<sciPointObj *> pObjs);
+  std::list<sciPointObj *> getChildrenOfSubwin(sciPointObj * parentSubwin,
+                                               std::list<sciPointObj *> pObjs);
 
 
 

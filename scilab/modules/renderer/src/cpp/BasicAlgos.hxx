@@ -44,7 +44,7 @@ public:
   template <typename T>
   static bool listContains(std::list<T>& searchedList, T& value)
   {
-    std::list<T>::iterator it = searchedList.begin();
+    typename std::list<T>::iterator it = searchedList.begin();
     for (; it != searchedList.end(); it++)
     {
       if (*it == value)
