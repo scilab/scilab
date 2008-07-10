@@ -3,8 +3,8 @@
 ### INRIA - Scilab 2008
 ##########
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c \
-	sci_gateway/c/sci_buildDoc.c  
+GATEWAY_C_SOURCES = 	#sci_gateway/c/sci_buildDoc.c  #\
+			#sci_gateway/c/gw_helptools.c
 
 pkglib_LTLIBRARIES = libscihelptools.la
 
