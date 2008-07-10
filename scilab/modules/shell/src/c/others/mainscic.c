@@ -80,7 +80,7 @@ fpsetmask(0);
       {
       	setScilabMode(SCILAB_NWNI);
       }
-      else if ( strcmp(argv[i],"-display") == 0)
+      else if ( strcmp(argv[i],"-display") == 0 || strcmp(argv[i],"-d") == 0)
       {
 		  char dpy[128];
 		  sprintf(dpy,"DISPLAY=%s",display);

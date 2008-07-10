@@ -1,7 +1,10 @@
 #!/bin/sh
 
 # Copyright INRIA
-# Updated : Sylvestre Ledru 2006/2007
+# Updated : Sylvestre Ledru 2006/2007/2008
+# Updated : Simon Lipp 2008  - clean up (get rid of unnecessary sci_args)
+#                            - accept arguments with spaces, e.g.
+#                               -e "disp(1); disp(2)" (fix bug #2606)
 
 #############################################################################
 #                                                                           #
@@ -54,38 +57,38 @@ fi
 
 
 start_electric_fence() {
-	echo "Running Scilab with Electric Fence : "  LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" $sci_args
-	LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" $sci_args
+	echo "Running Scilab with Electric Fence : "  LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" "$@"
+	LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" "$@"
 }
 
 start_debug() {
 	  if test -n "$DEVENV"; then
-		  echo "Running debug of Scilab [gdb]  : " $SCI/libtool --mode=execute gdb --args $SCILABBIN $sci_args
-		  "$SCI"/libtool --mode=execute gdb --args "$SCILABBIN" $sci_args
+		  echo "Running debug of Scilab [gdb]  : " "$SCI"/libtool --mode=execute gdb --args "$SCILABBIN" "$@"
+		  "$SCI"/libtool --mode=execute gdb --args "$SCILABBIN" "$@"
 	  else
-		  echo "Running debug of Scilab [gdb]  : " gdb --args "$SCILABBIN" $sci_args
-		  gdb --args $SCILABBIN $sci_args
+		  echo "Running debug of Scilab [gdb]  : " gdb --args "$SCILABBIN" "$@"
+		  gdb --args "$SCILABBIN" "$@"
 	  fi
 }
 
 start_debug_kdbg() {
 	  if test -n "$DEVENV"; then
-		  echo "Running debug of Scilab [kdbg]  : " $SCI/libtool --mode=execute kdbg $SCILABBIN $sci_args
-		  "$SCI"/libtool --mode=execute kdbg "$SCILABBIN" $sci_args
+		  echo "Running debug of Scilab [kdbg]  : " "$SCI"/libtool --mode=execute kdbg "$SCILABBIN" "$@"
+		  "$SCI"/libtool --mode=execute kdbg "$SCILABBIN" "$@"
 	  else
-		  echo "Running debug of Scilab [kdbg]  : " kdbg "$SCILABBIN" $sci_args
-		  kdbg $SCILABBIN $sci_args
+		  echo "Running debug of Scilab [kdbg]  : " kdbg "$SCILABBIN" "$@"
+		  kdbg "$SCILABBIN" "$@"
 	  fi
 }
 
 start_profiling() {
 	VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=6 --demangle=no --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all --suppressions=$SCI/tools/profiling/valgrind.supp"
 	  if test -n "$DEVENV"; then
-		  echo "Running profiling of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
-		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
+		  echo "Running profiling of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
+		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
 	  else
-		  echo "Running profiling of Scilab  : " valgrind $VALGRIND_OPTIONS "$SCILABBIN" $sci_args
-		  valgrind $VALGRIND_OPTIONS $SCILABBIN $sci_args
+		  echo "Running profiling of Scilab  : " valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
+		  valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
 	  fi
 
 }
@@ -94,11 +97,11 @@ start_profiling_visu() {
 	VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --trace-jump=yes --dump-line=yes --separate-threads=yes"
 #--dump-instr=yes 
 	if test -n "$DEVENV"; then
-		echo "Running profiling visualization of Scilab  : " $SCI/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
-		"$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
+		echo "Running profiling visualization of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
+		"$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
 	else
-		echo "Running profiling visualization of Scilab  : " valgrind $VALGRIND_VISU_OPTIONS $SCILABBIN $sci_args
-		valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" $sci_args
+		echo "Running profiling visualization of Scilab  : " valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
+		valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
 	  fi
 }
 
@@ -424,7 +427,7 @@ export PATH
 
 do_scilex()
 {
-    "$SCILABBIN" $*
+    "$SCILABBIN" "$@"
 
 }
 
@@ -639,8 +642,6 @@ esac
 
 # really calling Scilab with arguments
 
-sci_args=
-
 if test "$rest" = "yes"; then
 
   debug=
@@ -648,35 +649,22 @@ if test "$rest" = "yes"; then
   profiling=
   profiling_visu=
   electric_fence=
-  now=
-  display=
-  start_file=
   prevarg=
-  language=
-  fontname=
-  for sciarg in $*
+  for sciarg in "$@"
   do
 
-    # If the previous argument needs an argument, assign it.
+    # If the previous argument needs an argument, skip current one.
     if test -n "$prevarg"; then
-      eval "$prevarg=\$sciarg"
       prevarg=
       continue
     fi
 
     case $sciarg in
-      -nogui)
-	  sci_args="$sci_args -nogui"
-          ;;
-      -version)
-	  sci_args="$sci_args -version"
-          ;;
-      -ns)
-	  sci_args="$sci_args -ns"
-          ;;
-      -nb)
-	  sci_args="$sci_args -nb"
-          ;;
+      -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
+	      ;;
+      -display|-f|-l|-e|-d|-args|-mem)
+	      prevarg=1
+	      ;;
       -debug)
           DEBUG="-debug"
           ;;
@@ -692,67 +680,12 @@ if test "$rest" = "yes"; then
       -electric-fence)
           ELECTRIC_FENCE="-electric-fence"
           ;;
-      -nw)
-          now="-nw"
-	  sci_args="$sci_args -nw"
-          ;;
-      --texmacs)
-          now="-nwni"
-          sci_args="$sci_args -nwni --texmacs"
-          ;;
-      -nwni)
-          now="-nwni"
-		  sci_args="$sci_args -nwni"
-          ;;
-      -display|-d)
-          prevarg="display"
-          ;;
-       -f)
-          prevarg="start_file"
-          ;;
-       -l)
-          prevarg="language"
-          ;;
-       -e)
-          prevarg="start_exp"
-          ;;
-       -args)
-           prevarg="arguments"
-          ;;
-       -mem)
-           prevarg="mem"
-          ;;
-		-nouserstartup)
-			;;
       *)
           do_help
           ;;
     esac
   done
 
-  if test -n "$display"; then
-    sci_args="$sci_args -display $display"
-  fi
-
-  if test -n "$start_file"; then
-    sci_args="$sci_args -f $start_file"
-  fi
-
-  if test -n "$start_exp"; then
-	  echo "'$start_exp'"
-    sci_args="$sci_args -e $start_exp"
-  fi
-
-  if test -n "$language"; then
-    sci_args="$sci_args -l $language"
-  fi
-
-  if test -n "$arguments"; then
-    sci_args="$sci_args $arguments"
-  fi
-  if test -n "$mem"; then
-    sci_args="$sci_args -mem $mem"
-  fi
   if test -n "$DEBUG"; then
 	  start_debug
   else
@@ -768,11 +701,7 @@ if test "$rest" = "yes"; then
 			if test -n "$ELECTRIC_FENCE"; then
 				start_electric_fence
 			else
-				if test -n "$now"; then
-					do_scilex $sci_args
-				else
-					do_scilex $sci_args
-				fi # now
+				do_scilex "$@"
 			fi # not electric fense
 		fi # not profiling visu
 	fi # not profiling
