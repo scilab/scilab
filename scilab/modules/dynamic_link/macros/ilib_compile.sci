@@ -65,7 +65,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	end
 
 	// System version (ie: /usr/include/scilab/)	
-	if isdir("/usr/includes/scilab/") then
+	if isdir("/usr/include/scilab/") then
 	  cflags="-I/usr/include/scilab/core/ -I/usr/include/scilab/mexlib/ "+cflags
 	end
 	
