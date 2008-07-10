@@ -59,7 +59,12 @@ function ok = scicos_block_link(funam, txt, flag)
   //** BEWARE:
   //**     1 - Remember to use WSCI for the Windows version
   //**     2 - This setting OVERRIDE the original one 
+  // source tree
   cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include 
+  if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
+    // Binary version	
+	cflags = "-I"+SCI+"/../../include/scilab/scicos_blocks/"; //** look for standard Scicos include 
+  end
   fflags = ""; //** no Fortran 
   cc = ""; //** default "C" compiler 
   
