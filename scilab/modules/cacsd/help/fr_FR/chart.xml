@@ -53,14 +53,14 @@ chart(gain,phase [,flags])</synopsis>
             <varlistentry>
               <term>cm  </term>
               <listitem>
-                <para>numéro de couleur (voir plot2d) pour les courbes de gain
+                <para>numéro de couleur  pour les courbes de gain
 </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>cphi  </term>
               <listitem>
-                <para>numéro de couleur (voir plot2d) pour les courbes de phase
+                <para>numéro de couleur  pour les courbes de phase
 </para>
               </listitem>
             </varlistentry>
@@ -71,18 +71,19 @@ chart(gain,phase [,flags])</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>
-    Dessine un diagramme de Nichols
-  </para>
-    <para>
-    Les valeurs par défaut pour <literal>gain</literal> et <literal>phase</literal> sont respectivement :
-  </para>
+
+    <para>Dessine un diagramme de Nichols: c'est à dire les contours
+    iso-gain et iso-phase contour de y/(1+y) dans le plan phase/gain.</para>
+
+    <para> <literal>chart</literal> peut être utilisé avec
+     <link linkend="black">black</link> </para> 
+
+    <para> Les valeurs par défaut pour <literal>gain</literal> et
+    <literal>phase</literal> sont respectivement : </para>
     <para>
       <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
     </para>
-    <para>
-      <literal>[-(1:10) , -(20:10:160)]</literal>
-    </para>
+    <para> <literal>[-(1:10) , -(20:10:160)]</literal></para>
   </refsection>
   <refsection>
     <title>Exemples</title>

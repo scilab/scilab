@@ -59,13 +59,13 @@ chart(gain,phase [,flags])</synopsis>
             <varlistentry>
               <term>cm</term>
               <listitem>
-                <para>color number (see plot2d) for gain curves</para>
+                <para>color index for gain curves</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>cphi</term>
               <listitem>
-                <para> color number (see plot2d) for phase curves</para>
+                <para> color index for phase curves</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -75,16 +75,16 @@ chart(gain,phase [,flags])</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>
-    plot the Nichols'chart.</para>
-    <para>
-    The default values for <literal>gain</literal> and <literal>phase</literal> are respectively :</para>
+    <para> plot the Nichols'chart: iso-gain and iso-phase contour of
+    y/(1+y) in phase/gain plane</para>
+    <para><literal>chart</literal> may be used in cunjunction with
+    <link linkend="black">black</link>. </para>
+    <para>The default values for <literal>gain</literal> and
+    <literal>phase</literal> are respectively :</para>
     <para>
       <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
     </para>
-    <para>
-      <literal>[-(1:10) , -(20:10:160)]</literal>
-    </para>
+    <para><literal>[-(1:10) , -(20:10:160)]</literal></para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -102,5 +102,16 @@ set(gca(),'data_bounds',[-180 -30;180 30]) //enlarge the frame
 chart(list(1,0));
  
   ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="nyquist">nyquist</link>
+      </member>
+      <member>
+        <link linkend="black">black</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>
