@@ -126,8 +126,8 @@ AC_DEFUN([AC_PVM_INCLUDE], [
 AC_DEFUN([AC_PVM_LIBRARY], [
 USER_PVMLIBDIR=$1
   AC_MSG_CHECKING([for PVM3 library])
-dirs="$USER_PVMLIBDIR /lib /usr/lib /usr/lib/pvm3 /shlib /shlib/pvm3 /usr/shlib /usr/shlib/pvm3 /usr/local/lib /usr/local/lib/pvm3 /usr/local/shlib /usr/local/pvm3 /usr/pvm3 /usr/local/pvm3/lib /sw/lib/ ."
-libexts="so so.1.0 sl dylib"
+dirs="$USER_PVMLIBDIR /lib /usr/lib /usr/lib/pvm3 /shlib /shlib/pvm3 /usr/shlib /usr/shlib/pvm3 /usr/local/lib /usr/local/lib/pvm3 /usr/local/shlib /usr/local/pvm3 /usr/pvm3 /usr/local/pvm3/lib /sw/lib/ /usr/share/pvm3 ."
+libexts="so so.1.0 sl dylib .a"
 libnames="pvm pvm3"
 
 for EXT_LIB_PVM in $libexts; do
@@ -147,7 +147,7 @@ for EXT_LIB_PVM in $libexts; do
 
 		        AC_CHECK_LIB([$NAME_LIB_PVM], pvm_spawn,
 		        [
-	    		    LDFLAGS="-lpvm3 $LDFLAGS"
+	    		    LDFLAGS="-lpvm3 -lgpvm3 $LDFLAGS"
 			        AC_CHECK_LIB(pvm3, pvm_barrier,
     		    		[PVMLIBS="-lpvm3"; PVM_LIB_OK=1],
 		        		[
