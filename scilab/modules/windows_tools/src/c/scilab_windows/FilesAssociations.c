@@ -226,15 +226,11 @@ static void ReplaceSlash(char *pathout,char *pathin)
 /*--------------------------------------------------------------------------*/
 static BOOL isGoodExtension(char *chainefichier,char *ext)
 {
-	BOOL retour = FALSE;
-	char *ExtensionFilename = NULL;
-
-	ExtensionFilename = PathFindExtension(chainefichier);
-
-	/* Comparaison avec l'extension */
-	if ( _stricmp(ExtensionFilename,ext) == 0 ) retour=TRUE;
-
-	if (ExtensionFilename) {FREE(ExtensionFilename);ExtensionFilename=NULL;}
-	return retour;
+	char *ExtensionFilename = PathFindExtension(chainefichier);
+	if (ExtensionFilename)
+	{
+		if ( _stricmp(ExtensionFilename,ext) == 0 ) return TRUE;
+	}
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
