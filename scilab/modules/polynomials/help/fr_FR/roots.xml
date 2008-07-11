@@ -29,7 +29,7 @@
     <title>Description</title>
     <para><literal>x=roots(p)</literal> renvoie dans le vecteur complexe <literal>x</literal> les
       racines du polynôme <literal>p</literal>. Pour les polynŽômes à coéfficients
-      réels et de degré &lt;=100, l'algorithme rapide RPOLY est utilisé. Dans
+      réels et de degré &lt;=100, l'algorithme rapide RPOLY (fondé sur la méthode de Jenkins-Traub) est utilisé. Dans
       les autres cas les racines sont calculées comme valeurs propres de la
       matrice compagnion du polynŽôme. Pour forcer ce dernier algorithme dans
       tous les cas utilisez <literal>x=roots(p,'e')</literal>.  
