@@ -28,15 +28,5 @@ public final class GetMemoryInformations {
 		
 	}
 	
-	/**
-	 * Get the amount of memory java can allocate.
-	 * @return Available memory size in byte.
-	 */
-	public static long getAvailableJavaMemory() {
-		Runtime runtime = Runtime.getRuntime();
-		long possibleAllocation = runtime.maxMemory() - runtime.totalMemory();
-		long freeHeapSpace = runtime.freeMemory();
-		return possibleAllocation + freeHeapSpace;
-
-	}
+	
 }

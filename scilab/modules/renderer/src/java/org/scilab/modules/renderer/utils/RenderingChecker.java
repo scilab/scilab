@@ -15,8 +15,6 @@
 
 package org.scilab.modules.renderer.utils;
 
-import org.scilab.modules.jvm.GetMemoryInformations;
-
 /**
  * Class containg checking function wich test wether we will be able to
  * perform some operations
@@ -37,11 +35,11 @@ public final class RenderingChecker {
 	 * @return true if the creation is OK, false otherwise
 	 */
 	public static boolean isAbleToCreateWindow() {
-		if (GetMemoryInformations.getAvailableJavaMemory() < CREATING_WINDOW_NEEDED_MEMORY) {
+		if (getAvailableJavaMemory() < CREATING_WINDOW_NEEDED_MEMORY) {
 			// try to reduce memory usage by calling the gc
 			System.gc();
 			// check again
-			if (GetMemoryInformations.getAvailableJavaMemory() < CREATING_WINDOW_NEEDED_MEMORY) {
+			if (getAvailableJavaMemory() < CREATING_WINDOW_NEEDED_MEMORY) {
 				// still not enough memory
 				return false;
 			}
@@ -49,6 +47,18 @@ public final class RenderingChecker {
 		
 		// ok!!
 		return true;
+	}
+	
+	/**
+	 * Get the amount of memory java can allocate.
+	 * @return Available memory size in byte.
+	 */
+	public static long getAvailableJavaMemory() {
+		Runtime runtime = Runtime.getRuntime();
+		long possibleAllocation = runtime.maxMemory() - runtime.totalMemory();
+		long freeHeapSpace = runtime.freeMemory();
+		return possibleAllocation + freeHeapSpace;
+
 	}
 	
 }
