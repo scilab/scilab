@@ -41,6 +41,7 @@
 #include "DrawingBridge.h"
 #include "dynamic_menus.h" /* StoreCommand */
 #include "Axes.h"
+#include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
@@ -473,7 +474,8 @@ int C2F(Nsetscale2d)( double    WRect[4],
    */ 
   /* char flag[] = "tfffff";*/ /* flag to specify which arguments have changed*/
   /* 14/03/2002*/
-  sciPointObj *masousfen;
+  sciPointObj * masousfen = NULL;
+  sciPointObj * currentFigure = sciGetCurrentFigure();
 	
   char flag[7];
   strcpy(flag,"tfffff");  
@@ -482,9 +484,10 @@ int C2F(Nsetscale2d)( double    WRect[4],
   if ( WRect != NULL) 
     {
       /* Ajout djalel */
-    
-      if (( masousfen = sciIsExistingSubWin (WRect)) != (sciPointObj *)NULL)
+      startFigureDataWriting(currentFigure);
+      if (( masousfen = sciIsExistingSubWin (WRect)) != (sciPointObj *)NULL) {
         sciSetSelectedSubWin(masousfen);
+      }
       else if ((masousfen = ConstructSubWin (sciGetCurrentFigure())) != NULL)
       {
         /* F.Leray Adding here 26.03.04*/
@@ -495,6 +498,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
         pSUBWIN_FEATURE (masousfen)->WRect[2]   = WRect[2];
         pSUBWIN_FEATURE (masousfen)->WRect[3]   = WRect[3];
       }
+      endFigureDataWriting(currentFigure);
       
       /* a subwindow is specified */
       flag[1]='t';
@@ -517,25 +521,40 @@ int C2F(Nsetscale2d)( double    WRect[4],
 	    }
 	}
     }
-  else WRect = Cscale.subwin_rect; 
+  else
+  {
+    WRect = Cscale.subwin_rect; 
+  }
+
   if (FRect != NULL)
   {
-    masousfen=sciGetCurrentSubWin();
-    pSUBWIN_FEATURE (masousfen)->SRect[0]   = FRect[0];
-    pSUBWIN_FEATURE (masousfen)->SRect[2]   = FRect[1];
-    pSUBWIN_FEATURE (masousfen)->SRect[1]   = FRect[2];
-    pSUBWIN_FEATURE (masousfen)->SRect[3]   = FRect[3];
+    startFigureDataWriting(currentFigure);
+    masousfen = sciGetCurrentSubWin();
+    pSUBWIN_FEATURE (masousfen)->SRect[0] = FRect[0];
+    pSUBWIN_FEATURE (masousfen)->SRect[2] = FRect[1];
+    pSUBWIN_FEATURE (masousfen)->SRect[1] = FRect[2];
+    pSUBWIN_FEATURE (masousfen)->SRect[3] = FRect[3];
+    endFigureDataWriting(currentFigure);
   }
-  if ( FRect != NULL) flag[2]='t'; else FRect = Cscale.frect;
 
+  if ( FRect != NULL)
+  {
+    flag[2]='t';
+  }
+  else
+  {
+    FRect = Cscale.frect;
+  }
 
   if (ARect != NULL)
   {
+    startFigureDataWriting(currentFigure);
     masousfen=sciGetCurrentSubWin();
-    pSUBWIN_FEATURE (masousfen)->ARect[0]   = ARect[0];
-    pSUBWIN_FEATURE (masousfen)->ARect[1]   = ARect[1];
-    pSUBWIN_FEATURE (masousfen)->ARect[2]   = ARect[2];
-    pSUBWIN_FEATURE (masousfen)->ARect[3]   = ARect[3];
+    pSUBWIN_FEATURE (masousfen)->ARect[0] = ARect[0];
+    pSUBWIN_FEATURE (masousfen)->ARect[1] = ARect[1];
+    pSUBWIN_FEATURE (masousfen)->ARect[2] = ARect[2];
+    pSUBWIN_FEATURE (masousfen)->ARect[3] = ARect[3];
+    endFigureDataWriting(currentFigure);
   }
 
   if ( ARect != NULL) flag[5]='t'; else ARect = Cscale.axis;
@@ -563,7 +582,14 @@ int C2F(Nsetscale2d)( double    WRect[4],
 	  FRect[3]=log10(FRect[3]);
 	}
     }
-  set_scale(flag,WRect,FRect,NULL,logscale,ARect);  
+  set_scale(flag,WRect,FRect,NULL,logscale,ARect); 
+
+  if (masousfen != NULL)
+  {
+    // subwindow has changed, redraw it
+    sciDrawObj(masousfen);
+  }
+
   return(0);
 }
 
