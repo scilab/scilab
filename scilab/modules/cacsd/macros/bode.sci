@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
+// Copyright (C) INRIA Serge Steer
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -13,54 +13,57 @@ function []=bode(varargin)
   else
     comments=[];
   end
+  fname="bode";//for error messages
   fmax=[]
   if or(typeof(varargin(1))==['state-space' 'rational']) then 
     //sys,fmin,fmax [,pas] or sys,frq
-    if rhs==1 then
+    refdim=1 //for error message
+    if rhs==1 then //sys
       [frq,repf]=repfreq(varargin(1),1d-3,1d3)
     elseif rhs==2 then //sys,frq
       if size(varargin(2),2)<2 then
-	error(msprintf(_("%s : Invalid argument #%d. It must be a row vector with length > %d"),..
-		     "bode",1,1))
+	error(msprintf(_("%s: Wrong size for input argument #%d: A 1-by-n array expected with n>%d.\n"),..
+		       fname,1,1))
       end
       [frq,repf]=repfreq(varargin(1:rhs))
     elseif or(rhs==(3:4)) then //sys,fmin,fmax [,pas]
       [frq,repf]=repfreq(varargin(1:rhs))
     else
-      error(msprintf(_("%s : Invalid call: sys,fmin,fmax [,pas] [,com]'),"bode"))
+      error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,1,5))
     end
     [phi,d]=phasemag(repf)
     if rhs>=3 then fmax=varargin(3),end
   elseif  type(varargin(1))==1 then 
     //frq,db,phi [,comments] or frq, repf [,comments]
+    refdim=2
     select rhs
     case 2 then //frq,repf
       frq=varargin(1);
       if size(frq,2)<2 then
 	error(msprintf(_("%s : Invalid argument #%d. It must be a row vector with length > %d"),..
-		     "bode",1,1))
+		       fname,1,1))
       end
       if size(frq,2)<>size(varargin(2),2) then
-	error(msprintf(_("%s : Incompatible dimensions of arguments #%d and #%d."),..
-			 "bode",1,2))
+	error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+			 fname,1,2))
       end
       [phi,d]=phasemag(varargin(2))
     case 3 then  //frq,db,phi
       [frq,d,phi]=varargin(1:rhs)
       if size(frq,2)<>size(d,2) then
-	error(msprintf(_("%s : Incompatible dimensions of arguments #%d and #%d."),..
-			 "bode",1,2))
+	error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+			 fname,1,2))
       end
       if size(frq,2)<>size(phi,2) then
-	error(msprintf(_("%s : Incompatible dimensions of arguments #%d and #%d."),..
-			 "bode",1,3))
+	error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+			 fname,1,3))
       end
     else 
-      error(msprintf(_("%s : Invalid call: frq, db,phi [,com] or frq,repf [,com]'),"bode"))
+       error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,2,4))
     end
   else
-    error(msprintf(_("%s : Invalid argument #%d. It must be a linear"+..
-		     " dynamical system (syslin) or a real array"),"bode",1))
+    error(msprintf(_("%s: Wrong type for input argument #%d:  Linear state space, transfer function "+.. 
+		     " or row vector of floats expected.\n"),fname,1))
   end;
    frq=frq';d=d',phi=phi'
   [n,mn]=size(d)
@@ -69,7 +72,8 @@ function []=bode(varargin)
     hx=0.48
   else
     if size(comments,'*')<>mn then
-      error(msprintf(_("%s : Invalid dimension for argument #%d"),"bode",rhs+1))
+      error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same number of elements expected.\n"),...
+		     fname,refdim,rhs+1))
     end
     hx=0.43
   end;
@@ -95,7 +99,7 @@ function []=bode(varargin)
       xpoly(max(frq)*[1;1],axes.y_ticks.locations([1 $]));e=gce();
       e.foreground=5;
   end
-  xtitle('Magnitude ',' Hz','db');
+  xtitle("",_("Frequency (Hz)"),_("Magnitude (Db)"));
 
   //phase
   axes=newaxes();
@@ -113,6 +117,7 @@ function []=bode(varargin)
       xpoly(max(frq)*[1;1],axes.y_ticks.locations([1 $]));e=gce();
       e.foreground=5;
   end
+  xtitle("",_("Frequency (Hz)"),_("Phase (°)"));
   // create legend
   if comments<>[] then
     axes=newaxes()

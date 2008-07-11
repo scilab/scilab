@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
+// Copyright (C) INRIA, Serge Steer
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -15,24 +15,28 @@ function nyquist(varargin)
   else
     comments=[];
   end
+  fname="nyquist";//for error messages
+  fmax=[];  
   if or(typeof(varargin(1))==['state-space' 'rational']) then 
     //sys,fmin,fmax [,pas] or sys,frq
+    refdim=1 //for error message
     sltyp=varargin(1).dt
     if rhs==1 then
       [frq,repf,splitf]=repfreq(varargin(1),1d-3,1d3)
     elseif rhs==2 then //sys,frq
       if size(varargin(2),2)<2 then
-	error(msprintf(_("%s : Invalid argument #%d. It must be a row vector with length > %d"),..
-		     "nyquist",1,1))
+	error(msprintf(_("%s: Wrong size for input argument #%d: A 1-by-n array expected with n>%d.\n"),..
+		       fname,1,1))
       end
       [frq,repf]=repfreq(varargin(1:rhs))
     elseif or(rhs==(3:4)) then //sys,fmin,fmax [,pas]
       [frq,repf,splitf]=repfreq(varargin(1:rhs))
     else
-      error(msprintf(_("%s : Invalid call: sys,fmin,fmax [,pas] [,com]'),"nyquist"))
+      error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,1,5))
     end
   elseif  type(varargin(1))==1 then 
     //frq,db,phi [,comments] or frq, repf [,comments]
+    refdim=2
     sltyp='x';splitf=[];splitf=1
     select rhs
     case 2 then //frq,repf
@@ -40,32 +44,32 @@ function nyquist(varargin)
       repf=varargin(2)
       if size(frq,2)<2 then
 	error(msprintf(_("%s : Invalid argument #%d. It must be a row vector with length > %d"),..
-		     "nyquist",1,1))
+		       fname,1,1))
       end
       if size(frq,2)<>size(varargin(2),2) then
-	error(msprintf(_("%s : Incompatible dimensions of arguments #%d and #%d."),..
-			 "nyquist",1,2))
+	error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+			 fname,1,2))
       end
  
     case 3 then  //frq,db,phi
       frq=varargin(1);
       if size(frq,2)<>size(varargin(2),2) then
-	error(msprintf(_("%s : Incompatible dimensions of arguments #%d and #%d."),..
-			 "nyquist",1,2))
+	error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+			 fname,1,2))
       end
       if size(frq,2)<>size(varargin(3),2) then
-	error(msprintf(_("%s : Incompatible dimensions of arguments #%d and #%d."),..
-			 "nyquist",1,3))
+	error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
+			 fname,1,3))
       end
       repf=exp(log(10)*varargin(2)/20 + %pi*%i/180*varargin(3));
       
     else 
-      error(msprintf(_("%s : Invalid call: frq, db,phi [,com] or frq,repf [,com]'),"nyquist"))
+       error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,2,4))
     end
   else
-    error(msprintf(_("%s : Invalid argument #%d. It must be a linear"+..
-		     " dynamical system (syslin) or a real array"),"nyquist",1))
-  end;
+    error(msprintf(_("%s: Wrong type for input argument #%d:  Linear state space, transfer function "+.. 
+		     " or row vector of floats expected.\n"),fname,1))
+ end;
   if size(frq,1)==1 then
     ilf=0
   else
@@ -74,7 +78,8 @@ function nyquist(varargin)
   
   [mn,n]=size(repf)
   if and(size(comments,'*')<>[0 mn]) then
-    error(msprintf(_("%s : Invalid dimension for argument #%d"),"nyquist",rhs+1))
+    error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same number of elements expected.\n"),...
+		   fname,refdim,rhs+1))
   end
   //
 
@@ -182,11 +187,11 @@ function nyquist(varargin)
   end
 
   if sltyp=='c' then
-    xtitle('Nyquist plot ','Re(h(2i*pi*f))','Im(h(2i*pi*f))');
+    xtitle(_("Nyquist plot"),'Re(h(2i*pi*f))','Im(h(2i*pi*f))');
   elseif sltyp=='x' then 
-    xtitle('Nyquist plot ','Re','Im');
+    xtitle(_("Nyquist plot"),'Re','Im');
   else   
-    xtitle('Nyquist plot ',['Re(h(exp(2i*pi*f*dt)))'],'Im(h(exp(2i*pi*f*dt)))');
+    xtitle(_("Nyquist plot"),'Re(h(exp(2i*pi*f*dt)))','Im(h(exp(2i*pi*f*dt)))');
   end
   drawnow()
     //reset format   

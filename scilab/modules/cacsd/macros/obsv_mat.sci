@@ -9,20 +9,24 @@
 
 function o=obsv_mat(a,c)
 
-[lhs,rhs]=argn(0)
-select type(a)
- case 1  then
-    if rhs==1 then error(msprintf(gettext("%s: Wrong number of input arguments: %d expected"),"obsv_mat",2)),end
+  [lhs,rhs]=argn(0)
+  select typeof(a)
+  case 'constant'  then
+    if rhs==1 then 
+      error(msprintf(gettext("%s: Wrong number of input arguments: %d expected"),"obsv_mat",2)),
+    end
     [m,n]=size(a)
     if m<>n then error(20,1),end
     [mb,nb]=size(c);if nb<>n then error(60),end
-  case 16 then
-    flag=a(1)
-    if flag(1)<>'lss' then error(91,1),end
+  case 'state-space' then
     [a,c]=a([2,4])
     [n,n]=size(a)
-else error(msprintf(gettext("%s: Wrong type of input arguments: %s,%s pair or syslin list.\n"),"obsv_mat","a","c"))
-
-end;
-o=c;for k=1:n-1, o=[c;o*a],end
+  else 
+    if rhs==1 then
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"obsv_mat",1))
+    else
+      error(msprintf(gettext("%s: Wrong type of input argument #%d: matrix of floating point numbers expected.\n"),"obsv_mat",1))
+    end
+  end;
+  o=c;for k=1:n-1, o=[c;o*a],end
 endfunction

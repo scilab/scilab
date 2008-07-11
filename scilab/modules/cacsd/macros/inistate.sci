@@ -52,7 +52,7 @@ if mtlb_isa(A,'lti') then
   // Special call     x0 = inistate(sys,y,u,tol,printw); 
   // 
   if A.dt=='c' then
-    error(msprintf(gettext("%s: The system %s must be a discrete-time system.\n"),"inistate","SYS"));
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Discrete time system expected.\n"),"inistate",1))
   end
   if ni<2 then
     error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"inistate",2));

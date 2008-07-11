@@ -15,39 +15,45 @@ function [nh]=h2norm(g,tol)
 //     2           |
 //                 /-00
 
-if type(g)==1,if norm(g)==0,nh=0,return,end,end,
-[lhs,rhs]=argn(0),
-if rhs==1 then tol=1000*%eps,end;
-g1=g(1);
-if g1(1)=='lss' then
-  if norm(g(5))>0 then error(msprintf(gettext("%s: Non zero D.\n"),"h2norm")),end;
-  sp=spec(g(2)),
-  if maxi(real(sp))>=-tol then
-     error(msprintf(gettext("%s: Unstable system.\n"),"h2norm"))
-  end,
-  w=obs_gram(g(2),g(4),'c'),
-  nh=abs(sqrt(sum(diag(g(3)'*w*g(3))))),return,
-else,
-  num=g(2),den=g(3),
-  s=poly(0,varn(den)),
-  [t1,t2]=size(num),
-  for i=1:t1,
-    for j=1:t2,
-      n=num(i,j),d=den(i,j),
-      if coeff(n)==0 then 
-	nh(i,j)=0,
-      else
-	if degree(n)>=degree(d) then
-	  error(msprintf(gettext("%s: Improper system.\n"),"h2norm"))
-	end
-	pol=roots(d),
-	if maxi(real(pol))>-tol then
-	error(msprintf(gettext("%s: Unstable system.\n"),"h2norm")),end,
-	nt=horner(n,-s),dt=horner(d,-s),
-	nh(i,j)=residu(n*nt,d,dt),
-      end,
+  if type(g)==1,if norm(g)==0,nh=0,return,end,end,
+  [lhs,rhs]=argn(0),
+  if rhs==1 then tol=1000*%eps,end;
+  g1=g(1);
+  select typeof(g)
+  case 'state-space' then
+    if norm(g(5))>0 then 
+      error(msprintf(gettext("%s: Wrong values for input argument #%d: Proper system expected.\n"),"h2norm",1)),
+    end;
+    sp=spec(g(2)),
+    if maxi(real(sp))>=-tol then
+      error(msprintf(gettext("%s: Wrong values for input argument #%d: Stable system expected.\n"),"h2norm",1)),
+    end,
+    w=obs_gram(g(2),g(4),'c'),
+    nh=abs(sqrt(sum(diag(g(3)'*w*g(3))))),return,
+  case 'rational' then
+    num=g(2),den=g(3),
+    s=poly(0,varn(den)),
+    [t1,t2]=size(num),
+    for i=1:t1,
+      for j=1:t2,
+	n=num(i,j),d=den(i,j),
+	if coeff(n)==0 then 
+	  nh(i,j)=0,
+	else
+	  if degree(n)>=degree(d) then
+	    error(msprintf(gettext("%s: Wrong values for input argument #%d: Proper system expected.\n"),"h2norm",1)),
+	  end
+	  pol=roots(d),
+	  if maxi(real(pol))>-tol then
+	     error(msprintf(gettext("%s: Wrong values for input argument #%d: Stable system expected.\n"),"h2norm",1)),
+	  end,
+	  nt=horner(n,-s),dt=horner(d,-s),
+	  nh(i,j)=residu(n*nt,d,dt),
+	end,
+      end
     end
+    nh=sqrt(sum(nh)),return,
+  else
+    error(97,1)
   end
-  nh=sqrt(sum(nh)),return,
-end
 endfunction

@@ -44,7 +44,8 @@ function [arc,resid]=armax1(r,s,q,y,u,b0f)
   u=matrix(u,1,-1);y=matrix(y,1,-1); //make u and y row vectors
   [n1,n2]=size(y)
   if size(y,'*')<>size(u,'*') then
-    error(msprintf(gettext("%s: Wrong type for input arguments: %s and %s must have same size.\n"),"armax1","u","y"));
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same numbers of elements expected.\n"),..
+		   "armax1",4,5));
   end 
   //
   t0=maxi(maxi(r,s+1),1)+1;

@@ -189,7 +189,9 @@ case 'on'
   b21=b21d1(1:nstate-nv,:);d1=b21d1(nstate-nv+1:nstate-nv+nout,:);
   a21=a21c1(1:nstate-nv,:);c1=a21c1(nstate-nv+1:nstate-nv+nout,:);
 
-  if rk>=nout then error('ssrand: you must choose rk<nout!');end
+  if rk>=nout then 
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: you must choose rk<nout.\n"),"ssrand",4))
+  end
 //  if rk>=nout then j=-b21*pinv(d1);a22=-j*c2;end
   [pp,qq]=size(a21);a21(p1+1:pp,1:nv)=0*a21(p1+1:pp,1:nv);
   b21(p1+1:pp,:)=0*b21(p1+1:pp,:);

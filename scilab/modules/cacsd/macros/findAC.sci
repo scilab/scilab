@@ -57,7 +57,7 @@ if tol==[] then tol = 0;end
 if nin<5 then meth = 1;end
 if meth==[] then meth = 1;end
 if nin<4 then
-  error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"findAC",4));
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"findAC",4,7));
 end
 // 
 // Compute system matrices A and C.

@@ -13,19 +13,30 @@ function c=cont_mat(a,b)
 //                 2       n
 //i.e. c=[b, ab, ab,...; ab ]  
 //!
-[lhs,rhs]=argn(0)
-select type(a)
- case 1  then
-    if rhs==1 then error(msprintf(gettext("%s: Wrong number of input arguments: %d expected"),"cont_mat",2)),end
+  [lhs,rhs]=argn(0)
+  select typeof(a)
+  case 'constant'  then
+    if rhs==1 then 
+      error(msprintf(gettext("%s: Wrong number of input arguments: %d expected"),"cont_mat",2)),
+    end
     [m,n]=size(a)
     if m<>n then error(20,1),end
-    [mb,nb]=size(b);if mb<>n then error(60),end
+    [mb,nb]=size(b);
+    if mb<>n then error(60),end
 
- case 16 then
-    if a(1)<>'lss' then error(91,1),end
+  case 'state-space' then
+    if rhs==2 then 
+      error(msprintf(gettext("%s: Wrong number of input arguments: %d expected"),"cont_mat",1)),
+    end
     [a,b]=a([2,3])
     [n,n]=size(a)  
- else error(msprintf(gettext("%s: Wrong type of input arguments: %s,%s pair or syslin list.\n"),"cont_mat","a","b"))
-end;
-c=b;for k=1:n-1, c=[b,a*c],end
+  else 
+    if rhs==1 then
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"cont_mat",1))
+    else
+      error(msprintf(gettext("%s: Wrong type of input argument #%d: matrix of floating point numbers expected.\n"),"cont_mat",1))
+    end
+
+  end;
+  c=b;for k=1:n-1, c=[b,a*c],end
 endfunction

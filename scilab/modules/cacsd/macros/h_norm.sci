@@ -24,11 +24,15 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
 //  Adapted from 
 //  N.A. Bruinsma   T.U.Delft/Philips Research Eindhoven, see also
 //  Systems & Control Letters, vol. 14 pp. 287-293.
-  Sl1=Sl(1);
-  [lhs,rhs]=argn(0);
+  
+  sltyp=typeof(Sl)
+  if and(sltyp<>['rational','state-space']) then
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"h_norm",1))
+  end
+  if sltyp=='rational' then Sl=tf2ss(Sl);end
+
   eps=1.d-8;
-  flag='ss';if Sl1(1)=='r' then Sl=tf2ss(Sl);end
-  if Sl(7)=='d' then hinfnorm=dhnorm(Sl);frequency=[];return;end
+  if Sl.dt=='d'|type(sl.dt)==1 then hinfnorm=dhnorm(Sl);frequency=[];return;end
   [a,b,c,d]=Sl(2:5);
   eiga=spec(a);
   if maxi(real(eiga)) >= -1e-12 then 
@@ -96,7 +100,10 @@ function gama=dhnorm(Sl,tol,gamamax)
   n=0;
   while %T
     gama=(gamamin+gamamax)/2;n=n+1;
-    if n>1000 then warning(msprintf(gettext("%s: More than %d iterations.\n"),"dhnorm",1000));return;end
+    if n>1000 then 
+      warning(msprintf(gettext("%s: More than %d iterations.\n"),"dhnorm" ,1000));
+      return;
+    end
     if dhtest(Sl,gama) then
       gamamax=gama; else gamamin=gama
     end

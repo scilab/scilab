@@ -10,33 +10,39 @@
 
 function [f,r]=dscr(a,dt,m)
 
-[lhs,rhs]=argn(0);lst=0
-if type(dt)<>1 then
-  error(msprintf(gettext("%s: Wrong type for input argument #%d: A positive real expected.\n"),"dscr",2))
-end
-if size(dt,'*')<>1|~isreal(dt)|dt<=0 then
-  error(msprintf(gettext("%s: Wrong type for input argument #%d: A positive real expected.\n"),"dscr",2))
-end
+  [lhs,rhs]=argn(0);
+  if type(dt)<>1 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"),"dscr",2))
+  end
+  if size(dt,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n"),"dscr",2))
+  end
+  if ~isreal(dt) then
+    error(msprintf(gettext("%s: Input argument #%d must be real.\n"),"dscr",2))
+  end
 
-flag=a(1);
-select flag(1)
-case 'r' then
-  a=tf2ss(a);
-  [a,b,c,d,x0,dom]=a(2:7);
-case 'lss' then
-  [a,b,c,d,x0,dom]=a(2:7)
-else 
-  error(97,1),
-end;
-if dom<>'c' then 
-  warning(msprintf(gettext("%s: Time domain not defined: Assumed continuous.\n."),"dscr")),
-end
-[n1,m1]=size(b),
-s=expm([a,b;0*ones(m1,n1+m1)]*dt),
-f=s(1:n1,1:n1);g=s(1:n1,n1+1:n1+m1);
-if rhs==3 then
-  s=expm([-a,m;0*a a']*dt),
-  r=f*s(1:n1,n1+1:n1+n1),
-end;
-f=syslin(dt,f,g,c,d,x0)
+  if dt<=0 then
+    error(msprintf(gettext("%s: Input argument #%d must be strictly positive.\n"),"dscr",2))
+  end
+
+  select typeof(a)
+  case 'rational' then
+    a=tf2ss(a);
+    [a,b,c,d,x0,dom]=a(2:7);
+  case 'state-space' then
+    [a,b,c,d,x0,dom]=a(2:7)
+  else 
+    error(97,1),
+  end;
+  if dom<>'c' then 
+    warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"dscr",1))
+  end
+  [n1,m1]=size(b),
+  s=expm([a,b;0*ones(m1,n1+m1)]*dt),
+  f=s(1:n1,1:n1);g=s(1:n1,n1+1:n1+m1);
+  if rhs==3 then
+    s=expm([-a,m;0*a a']*dt),
+    r=f*s(1:n1,n1+1:n1+n1),
+  end;
+  f=syslin(dt,f,g,c,d,x0)
 endfunction

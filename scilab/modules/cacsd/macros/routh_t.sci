@@ -1,5 +1,5 @@
 function r=routh_t(h,k)
-// Copyright INRIA
+// Copyright INRIA - Serge Steer
 //r=routh_t(h,k) computes routh table of denominator of the
 //system described by transfer matrix SISO continue h with the
 //feedback by the gain k
@@ -11,27 +11,33 @@ function r=routh_t(h,k)
 [lhs,rhs]=argn(0);
 h1=h(1);
 if rhs==2 then
-  if type(h)<>16 then
-    error('first argument must be rational')
-  end;
-  if h1(1)<>'r' then
-    error('first argument must be rational')
-  end;
+  if typeof(h)<>'rational' then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Rational array expected.\n"),"routh_t",1));
+  end
   [n,d]=h(2:3)
+  if size(n,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"routh_t",1))
+  end
   nd=maxi([degree(d) degree(n)])+1;
   cod=coeff(d,0:nd-1);//coeff du denominateur
   con=coeff(n,0:nd-1);//coeff du numerateur
   cobf=cod+k*con //coeff de la boucle fermee
 else
-  if type(h)>2 then error('argument must be polynomial'),end
+  if type(h)>2 then 
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Polynomial array expected.\n"),"routh_t",1));
+  end
+  if size(h,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A polynomial expected.\n"),"routh_t",1))
+  end
+
   nd=degree(h)+1;
   cobf=coeff(h,0:nd-1)
 end;
 //
 r1=cobf(nd:-2:1);
 r2=cobf(nd-1:-2:1);
-ncol=length(r1);
-if length(r2)<>ncol then r2=[r2,0],end
+ncol=size(r1,'*');
+if size(r2,'*')<>ncol then r2=[r2,0],end
 r=[r1;r2]
 
 if ncol<2 then r=[],return,end;

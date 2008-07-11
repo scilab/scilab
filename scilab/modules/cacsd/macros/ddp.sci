@@ -47,45 +47,50 @@ function [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,Alfa,Beta)
 // Stability (resp. pole placement) requires stabilizability 
 // (resp. controllability) of (A,B2).
 //
-[LHS,RHS]=argn(0);
-if RHS==5 then Beta=-1;end
-if RHS==4 then Beta=-1;Alfa=-1;end
-if RHS==3 then Beta=-1;Alfa=-1;flag='st';end
-if RHS==2 then Beta=-1;Alfa=-1;flag='st';D1=zeros(size(Sys('C'),1),size(B1,2));
-end
-if size(B1,1) ~= size(Sys('A'),1) then error(msprintf(gettext("%s: Wrong size for input arguments: %s and %s are not compatible.\n"),"ddp","B1","A"));end
-if size(D1,2) ~= size(B1,2) then error(msprintf(gettext("%s: Wrong size for input arguments: %s and %s are not compatible.\n"),"ddp","D1","B1"));end
-Sys1=Sys(zeroed,:);
-not_zeroed=1:size(Sys,1);not_zeroed(zeroed)=[];
-[X,dims,F,U,k,Z]=abinv(Sys1,Alfa,Beta,flag);nv=dims(3);
-Sys_new=ss2ss(Sys,X);Fnew=F*X;
-B1new=X'*B1;B2new=Sys_new('B');
-D11=D1(zeroed,:);D12=Sys1('D');
-B21=B1new(nv+1:$,:);B22=B2new(nv+1:$,:);
-// G s.t. B21+B22*G=0        D11+D12*G=0
-G=lowlev();
+  [LHS,RHS]=argn(0);
+  if RHS==5 then Beta=-1;end
+  if RHS==4 then Beta=-1;Alfa=-1;end
+  if RHS==3 then Beta=-1;Alfa=-1;flag='st';end
+  if RHS==2 then Beta=-1;Alfa=-1;flag='st';D1=zeros(size(Sys('C'),1),size(B1,2));
+  end
+  if size(B1,1) ~= size(Sys('A'),1) then
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"),"ddp",1,3))
+  end
+  if size(D1,2) ~= size(B1,2) then 
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"),"ddp",3,4))
+  end
+  Sys1=Sys(zeroed,:);
+  not_zeroed=1:size(Sys,1);not_zeroed(zeroed)=[];
+  [X,dims,F,U,k,Z]=abinv(Sys1,Alfa,Beta,flag);nv=dims(3);
+  Sys_new=ss2ss(Sys,X);Fnew=F*X;
+  B1new=X'*B1;B2new=Sys_new('B');
+  D11=D1(zeroed,:);D12=Sys1('D');
+  B21=B1new(nv+1:$,:);B22=B2new(nv+1:$,:);
+  // G s.t. B21+B22*G=0        D11+D12*G=0
+  G=lowlev();
 
-[Anew,Bnew,Cnew,Dnew]=abcd(Sys_new);
-Anew=Anew+B2new*Fnew;Cnew=Cnew+Dnew*Fnew;
-B1new=B1new+B2new*G;
-A11=Anew(1:nv,1:nv);C21=Cnew(not_zeroed,1:nv);
-B11=B1new(1:nv,:);D21=D1(not_zeroed,:);
-D22=Sys('D');D22=D22(not_zeroed,:);D21=D21+D22*G;
-Closed=syslin(Sys('dt'),A11,B11,C21,D21);
+  [Anew,Bnew,Cnew,Dnew]=abcd(Sys_new);
+  Anew=Anew+B2new*Fnew;Cnew=Cnew+Dnew*Fnew;
+  B1new=B1new+B2new*G;
+  A11=Anew(1:nv,1:nv);C21=Cnew(not_zeroed,1:nv);
+  B11=B1new(1:nv,:);D21=D1(not_zeroed,:);
+  D22=Sys('D');D22=D22(not_zeroed,:);D21=D21+D22*G;
+  Closed=syslin(Sys('dt'),A11,B11,C21,D21);
 
 
 endfunction
+
 function G=lowlev()
-ww=[B21 B22;D11 D12];
-[xx,dd]=colcomp(ww);
-K=kernel(ww);
-rowG=size(B22,2);colG=size(B1,2);
-if size(K,2) > colG then K=K(:,1:colG);end
-Kup=K(1:size(K,2),:);
-if rcond(Kup) <= 1.d-10 then 
-	warning(msprintf(gettext("%s: Bad conditioning.\n"),"ddp"));
-	K1=K*pinv(Kup);G=K1(size(K,2)+1:$,:);return
-end
-K1=K*inv(Kup);   //test conditioning here!
-G=K1(size(K,2)+1:$,:);
+  ww=[B21 B22;D11 D12];
+  [xx,dd]=colcomp(ww);
+  K=kernel(ww);
+  rowG=size(B22,2);colG=size(B1,2);
+  if size(K,2) > colG then K=K(:,1:colG);end
+  Kup=K(1:size(K,2),:);
+  if rcond(Kup) <= 1.d-10 then 
+    warning(msprintf(gettext("%s: Bad conditioning.\n"),"ddp"));
+    K1=K*pinv(Kup);G=K1(size(K,2)+1:$,:);return
+  end
+  K1=K*inv(Kup);   //test conditioning here!
+  G=K1(size(K,2)+1:$,:);
 endfunction

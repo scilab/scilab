@@ -58,7 +58,7 @@ x0=[];B=[];D=[];V=[];rcnd=[];
 ni = nargin;
 nout = nargout;
 if ni<4 then
-  error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"findx0BD",4));
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"findx0BD",4,8));
 end
 if nout<1 then
   error(msprintf(gettext("%s: Wrong number of output arguments: At least %d expected.\n"),"findx0BD",1));

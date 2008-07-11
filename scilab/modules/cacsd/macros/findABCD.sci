@@ -106,7 +106,7 @@ function [sys,K,Q,Ry,S,rcnd]=findABCD(s,n,l,R,meth,nsmpl,tol,printw)
       error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"),"findABCD",1,6));
     end
   else
-	error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"),"findABCD",1,6));
+    error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"),"findABCD",1,6));
   end
   // 
   sys = syslin(1,A,B,C,D);

@@ -22,85 +22,122 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
 //
 // Copyright Enpc
 
-[lhs,rhs]=argn(0)
-// switch to ar representation 
-if type(x1)<>15&type(x1)<>16 then 
-   if rhs < 5, error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"narsimul",5));
-	return;end;
-   ar=armac(x1,x2,x3,size(x1,'r'),size(x5,'r'),x4);
-   if rhs==5,z=narsimul(ar,x5);return;end
-   if rhs==6,z=narsimul(ar,x5,x6);return;end
-   if rhs==7,z=narsimul(ar,x5,x6,x7);return;end;
-   if rhs==8,z=narsimul(ar,x5,x6,x7,x8);return;end;
-end
-// Here the call is always arsimul(ar,....)
-a=x1('a');b=x1('b');d=x1('d');sig=x1('sig');
-u=x2;
-[mmu,Nu]=size(u);
-if mmu<>x1('nu') then 
-    error(msprintf(gettext("%s: Number of rows of %s are incompatible with %s object.\n"),"arsimul","u",'arma"));
-  return;
-end;
-// dimensions 
-   [al,ac]=size(a);adeg=int(ac/al);
-   [dl,dc]=size(d);ddeg=int(dc/dl);
-   [bl,bc]=size(b);[mmu,Nu]=size(u);bdeg=int(bc/mmu);
-// quelques tests a faire : bl=al=dl,
-// <i>deg*<i>l=<i>c, pour i=a,b,d
-//
-// On genere d'abord y(k) solution de : A(z^-1)y(k)=B^(z-1)u(k)
-s=poly(0,'s');
-// Build polynomial matrix A(s)
-mata= a*((s.^[adeg-1:-1:0]).*.eye(al,al))';
-// Build polynomial matrix B(s)
-matb= b*((s.^[bdeg-1:-1:0]).*.eye(mmu,mmu))';
-// 
-num=matb*s**(adeg-1)
-den=mata*s**(bdeg-1);
-// Using past values 
-// yp doit etre de taille (al,(adeg-1))
-// up doit etre de taille (al,(bdeg-1))
-// ep doit etre de taille (al,(adeg-1))
-//
-if rhs <=5,
-   up=0*ones(mmu,(bdeg-1));
-else
-   if size(up)<>[mmu,(bdeg-1)],
-    error(msprintf(gettext("%s: %s must be of dimension (%s, %s).\n"),"narsimul","up=[u(0),u(-1),..,]",string(mmu),string(bdeg-1)));
-    return;end
-end
-if rhs <=6,
-   yp=0*ones(al,(adeg-1));
-else
-  if size(yp)<>[al,(adeg-1)]
-    error(msprintf(gettext("%s: %s must be of dimension (%s, %s).\n"),"narsimul","yp=[y(0),y(-1),..,]",string(al),string(adeg-1)));
-    return;end
-end
-if rhs <=7,
-   ep=0*ones(al,(ddeg-1));
-else
-  if size(ep)<>[al,(ddeg-1)]
-    error(msprintf(gettext("%s: %s must be of dimension (%s, %s).\n"),"narsimul","ep=[e(0),e(-1),..,]",string(al),string(ddeg-1)));
-    return;end
-end;
-// 
-degnum=maxi(degree(den));
-yp=[0*ones(al,degnum+1-adeg),yp(:,(adeg-1):-1:1)];
-up=[0*ones(mmu,degnum+1-bdeg),up(:,(bdeg-1):-1:1)];
-y=rtitr(num,den,u,up,yp);
-// truncate the solution to only keep y_1,..y_Nu 
-// (if b0=0 rtitr computes y_{Nu+1})
-y=y(:,1:Nu);
-// Generate bru such that A(z^-1)bru= D(z^-1) sig*e(t)
-// Build polynomial matrix D(s)
-matd= d*((s.^[ddeg-1:-1:0]).*.eye(al,al))';
-num=matd*s**(adeg-1)
-den=mata*s**(ddeg-1);
-degnum=maxi(degree(den));
-ep=[0*ones(al,degnum+1-ddeg),ep(:,(ddeg-1):-1:1)];
-// Normal noise 
-br=sig*rand(al,Nu,'normal')
-bru=rtitr(num,den,br,ep,0*ones(ep));
-// z(k) = y(k) + bru(k)
-z=y+bru(:,1:Nu);
+  [lhs,rhs]=argn(0)
+  // switch to ar representation 
+  if type(x1)==1 then 
+    if rhs < 5 then
+      error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"narsimul",5,8));
+    end;
+    ar=armac(x1,x2,x3,size(x1,'r'),size(x5,'r'),x4);
+    select rhs
+    case 5 then
+      z=narsimul(ar,x5);
+    case 6 then
+      z=narsimul(ar,x5,x6);
+    case 7 then 
+      z=narsimul(ar,x5,x6,x7);
+    case 8 then
+      z=narsimul(ar,x5,x6,x7,x8);
+    end
+  elseif typeof(x1)== 'ar' then  // Here the call is always arsimul(ar,....)
+    if rhs < 2|rhs>5 then
+      error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"narsimul",2,5));
+    end;
+
+    a=x1('a');b=x1('b');d=x1('d');sig=x1('sig');
+    u=x2;
+    [mmu,Nu]=size(u);
+    if mmu<>x1('nu') then 
+      error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
+			     "Number of rows of #%d are incompatible with #%d argument.\n"),..
+		     "narsimul",1,2,2,1));
+    end;
+    // dimensions 
+    [al,ac]=size(a);adeg=int(ac/al);
+    [dl,dc]=size(d);ddeg=int(dc/dl);
+    [bl,bc]=size(b);[mmu,Nu]=size(u);bdeg=int(bc/mmu);
+    // quelques tests a faire : bl=al=dl,
+    // <i>deg*<i>l=<i>c, pour i=a,b,d
+    //
+    // On genere d'abord y(k) solution de : A(z^-1)y(k)=B^(z-1)u(k)
+    s=poly(0,'s');
+    // Build polynomial matrix A(s)
+    mata= a*((s.^[adeg-1:-1:0]).*.eye(al,al))';
+    // Build polynomial matrix B(s)
+    matb= b*((s.^[bdeg-1:-1:0]).*.eye(mmu,mmu))';
+    // 
+    num=matb*s**(adeg-1)
+    den=mata*s**(bdeg-1);
+    // Using past values 
+    // yp doit etre de taille (al,(adeg-1))
+    // up doit etre de taille (al,(bdeg-1))
+    // ep doit etre de taille (al,(adeg-1))
+    //
+    if rhs <=3 then
+      up=0*ones(mmu,(bdeg-1));
+    else
+      up=x3
+      if size(up,1)<>mmu then
+	error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"),"narsimul",2,3))
+      end
+      if size(up,2)<>bdeg-1,
+	error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
+			       "Number of columns of #%d are incompatible with #%d argument.\n"),..
+		       "narsimul",1,3,3,1));
+      end
+    end
+    if rhs <=4 then
+      yp=0*ones(al,(adeg-1));
+    else
+      yp=x4
+      if size(yp,1)<>al then
+	error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
+			       "Number of rows of #%d are incompatible with #%d argument.\n"),..
+		       "narsimul",1,4,4,1));
+      end
+      if size(yp,2)<>(adeg-1)  then
+	error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
+			       "Number of columns of #%d are incompatible with #%d argument.\n"),..
+		       "narsimul",1,4,4,1));
+      end
+    end
+    if rhs <=5,
+      ep=0*ones(al,(ddeg-1));
+    else
+      ep=x5
+       if size(ep,1)<>al then
+	error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
+			       "Number of rows of #%d are incompatible with #%d argument.\n"),..
+		       "narsimul",1,5,5,1));
+      end
+      if size(ep,2)<>(adeg-1)  then
+	error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
+			       "Number of columns of #%d are incompatible with #%d argument.\n"),..
+		       "narsimul",1,5,5,1));
+      end
+ 
+    end;
+    // 
+    degnum=maxi(degree(den));
+    yp=[0*ones(al,degnum+1-adeg),yp(:,(adeg-1):-1:1)];
+    up=[0*ones(mmu,degnum+1-bdeg),up(:,(bdeg-1):-1:1)];
+    y=rtitr(num,den,u,up,yp);
+    // truncate the solution to only keep y_1,..y_Nu 
+    // (if b0=0 rtitr computes y_{Nu+1})
+    y=y(:,1:Nu);
+    // Generate bru such that A(z^-1)bru= D(z^-1) sig*e(t)
+    // Build polynomial matrix D(s)
+    matd= d*((s.^[ddeg-1:-1:0]).*.eye(al,al))';
+    num=matd*s**(adeg-1)
+    den=mata*s**(ddeg-1);
+    degnum=maxi(degree(den));
+    ep=[0*ones(al,degnum+1-ddeg),ep(:,(ddeg-1):-1:1)];
+    // Normal noise 
+    br=sig*rand(al,Nu,'normal')
+    bru=rtitr(num,den,br,ep,0*ones(ep));
+    // z(k) = y(k) + bru(k)
+    z=y+bru(:,1:Nu);
+  else
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: %s data structure expected.\n"),"narsimul",1,"arma"));
+  end;
 endfunction

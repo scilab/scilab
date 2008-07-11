@@ -33,7 +33,7 @@ function [h,num,den]=ss2tf(sl,rmax)
     return
   end
   flag=sl(1);
-  if (type(sl)<>16)|flag(1)<>'lss' then
+  if typeof(sl)<>'state-space' then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: State-space form expected.\n"),"ss2tf",1));
   end
   if sl(3)==[] then h=sl(5);num=sl(5);den=eye(sl(5));return;end

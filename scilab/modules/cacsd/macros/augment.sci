@@ -44,8 +44,8 @@ case 'o'
   select long
   case 3 then
     // 'SRT'
-    if SRT<>"SRT" then error(msprintf(gettext("%s: Wrong value for input argument: ''%s'' expected.\n"), 'augment','SRT'),9999);
-      return
+    if SRT<>"SRT" then 
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expected.\n"), 'augment',2,'SRT'),9999);
     end
     if ssSRT==0 then
       W1=[Iy,Oyu,Oyy;
@@ -116,7 +116,8 @@ case 'o'
       end
       return  
     end 
-    error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'' or ''%s'' expected.\n"),'augment','SR','ST','RT'),9999);
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
+		   'augment',2, '''SR'',''ST'',''RT'''),9999);
   case 1 then
     if SRT=='S' then
       if ssSRT==0 then
@@ -177,8 +178,8 @@ case 'i'
   select long
   case 3 then
     // 'SRT'
-    if SRT<>"SRT" then error(msprintf(gettext("%s: Wrong value for input argument: ''%s'' expected.\n"),'augment','SRT'),9999);
-      return;
+    if SRT<>"SRT" then 
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expected.\n"), 'augment',2,'SRT'),9999);
     end;
     if ssSRT==0 then
       W1=[Iu,-Iu;
@@ -245,7 +246,10 @@ case 'i'
       end
       return  
     end 
-    error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'' or ''%s'' expected.\n"),'augment','SR','ST','RT'),9999);
+    
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
+		   'augment',2, '''SR'',''ST'',''RT'''),9999);
+
   case 1 then
     if SRT=='S' then
       if ssSRT==0 then

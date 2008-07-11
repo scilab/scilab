@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 
+// Copyright (C) INRIA - Serge Steer
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -17,9 +17,14 @@ function [y,R]=kpure(sl,eps)
     sl=ss2tf(sl)
     if size(sl.num,'*') > 1 then error(95,1),end
   else
-    error(gettext(msprintf("%s: Wrong type for argument #%d: Linear dynamic system expected.\n"),"kpure",1))
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"kpure",1))
   end
-  if sl.dt<>'c' then error(msprintf(gettext("%s: System must be continuous.\n"),"kpure")),end
+  if sl.dt<>'c' then 
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Continuous time system expected.\n"),"kpure",1))
+  end
+  if size(sl.D,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"kpure",1))
+  end
 
   //build the Routh table of the given system
   r=routh_t(sl,poly(0,'k')),

@@ -9,20 +9,26 @@
 
 function [nk,W]=hankelsv(sl,tol)
 //!
-
-sl1=sl(1);
-if sl1(1)<>'lss' then error(msprintf(gettext("%s: State-space only.\n"),"hankelsv")),end
-if sl(7)=='d' then error(msprintf(gettext("%s: Continuous-time only.\n'),"hankelsv")),end
-sl(7)='c'
-//
-[lhs,rhs]=argn(0),
-if rhs==1 then tol=1000*%eps,end,
-lf=spec(sl(2)),
-if mini(abs(lf))<=tol then
-     error(msprintf(gettext("%s: Imaginary axis poles.\n"),"hankelsv")),
-end
-if maxi(real(lf)) > tol then warning(msprintf(gettext("%s: Unstable.\n"),"hankelsv")),end,
-[sla,sls,d]=dtsi(sl);
-lc=ctr_gram(sls),lo=obs_gram(sls),W=lc*lo;
-nk=sort(real(spec(W)));
+  if typeof(sl)<>'state-space' then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: State-space linear system expected.\n"),"hankelsv",1)),
+  end
+  if sl.dt==[] then
+    warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"hankelsv",1));
+    sl.dt='c'
+  elseif sl.dt<>'c' then 
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Continuous-time linear system expected.\n'),"hankelsv",1)),
+  end
+  //
+  [lhs,rhs]=argn(0),
+  if rhs==1 then tol=1000*%eps,end,
+  lf=spec(sl(2)),
+  if mini(abs(lf))<=tol then
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Pure imaginary  poles unexpected.\n"),"hankelsv",1)),
+  end
+  if maxi(real(lf)) > tol then 
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Stable system expected.\n"),"hankelsv",1)),
+  end,
+  [sla,sls,d]=dtsi(sl);
+  lc=ctr_gram(sls),lo=obs_gram(sls),W=lc*lo;
+  nk=sort(real(spec(W)));
 endfunction

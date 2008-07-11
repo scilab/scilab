@@ -79,7 +79,7 @@ if rhs<=4,b0f=0;end
  [nzl,nzc]=size(zz);
  k=rank(zz);
 if k<>nzl then
-  warning(msprintf(gettext("%s: %s is numerically singular.\n"),"armax","z.z''"));
+  warning(msprintf(gettext("%s: %s is numerically singular.\n"),"armax","z*z''"));
 end;
  pv=pinv(zz);
  coef=(pv*zy)';

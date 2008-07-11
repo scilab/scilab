@@ -42,50 +42,55 @@ function [Obs,U,m]=observer(Sys,flag,alfa)
 // Transfer u-->[u;u]-->w=[u;y=Sys*u]-->Obs*w  i.e. u-->output of Obs
 // this transfer must equal Sys2, the u-->z transfer  (H2=eye).
 
-[nx,nx]=size(Sys(2));
-td=Sys(7);x0=Sys(6);
-[LHS,RHS]=argn(0);
-if RHS<>2 then [m1,m2,U,sl2]=dt_ility(Sys);end
-if RHS==1 then
-  flag='st';alfa=-ones(1,nx);
-end
-if RHS==2 then 
-  //poles are not given-->set to -ones
-  alfa=-ones(1,nx);
-  [A,B,C,D]=abcd(Sys);  //
-  J=flag;
-//  F=A+J*C;G=[B+J*D,-J]; //
-   Obs=syslin(td,A+J*C,[B+J*D,-J],eye(A));U=[];m=[];return;  //Ao
-end
-if RHS==3 then
-  if size(alfa,'*')==1 then alfa=alfa*ones(1,nx);end
-end
-select flag
-case 'pp'
-m=m2;
-no=nx-m;
-alfa=alfa(1:no);
-[A,B,C,D]=abcd(sl2);
-Ao=A(m+1:nx,m+1:nx);
-Bo=B(m+1:nx,:);
-Co=C(:,m+1:nx);
-Do=D;
-  J=-ppol(Ao',Co',alfa);J=J';
-  F=Ao+J*Co;G=[Bo+J*Do,-J];
-  Obs=syslin(td,F,G,eye(Ao));
-  return;
-case 'st'
-m=m1;
-no=nx-m;
-alfa=alfa(1:no);
-[A,B,C,D]=abcd(sl2);
-Ao=A(m+1:nx,m+1:nx);
-Bo=B(m+1:nx,:);
-Co=C(:,m+1:nx);
-Do=D;
-  J=stabil(Ao',Co',alfa);J=J';
-  F=Ao+J*Co;G=[Bo+J*Do,-J];
-  Obs=syslin(td,F,G,eye(Ao));
-  return;
-end
+  [LHS,RHS]=argn(0);
+  if typeof(Sys)<>'state-space' then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space expected.\n"),"observer",1))
+  end
+
+  [nx,nx]=size(Sys.A);
+  td=Sys.dt;x0=Sys.X0;
+
+  if RHS<>2 then [m1,m2,U,sl2]=dt_ility(Sys);end
+  if RHS==1 then
+    flag='st';alfa=-ones(1,nx);
+  end
+  if RHS==2 then 
+    //poles are not given-->set to -ones
+    alfa=-ones(1,nx);
+    [A,B,C,D]=abcd(Sys);  //
+    J=flag;
+    //  F=A+J*C;G=[B+J*D,-J]; //
+    Obs=syslin(td,A+J*C,[B+J*D,-J],eye(A));U=[];m=[];return;  //Ao
+  end
+  if RHS==3 then
+    if size(alfa,'*')==1 then alfa=alfa*ones(1,nx);end
+  end
+  select flag
+  case 'pp'
+    m=m2;
+    no=nx-m;
+    alfa=alfa(1:no);
+    [A,B,C,D]=abcd(sl2);
+    Ao=A(m+1:nx,m+1:nx);
+    Bo=B(m+1:nx,:);
+    Co=C(:,m+1:nx);
+    Do=D;
+    J=-ppol(Ao',Co',alfa);J=J';
+    F=Ao+J*Co;G=[Bo+J*Do,-J];
+    Obs=syslin(td,F,G,eye(Ao));
+    return;
+  case 'st'
+    m=m1;
+    no=nx-m;
+    alfa=alfa(1:no);
+    [A,B,C,D]=abcd(sl2);
+    Ao=A(m+1:nx,m+1:nx);
+    Bo=B(m+1:nx,:);
+    Co=C(:,m+1:nx);
+    Do=D;
+    J=stabil(Ao',Co',alfa);J=J';
+    F=Ao+J*Co;G=[Bo+J*Do,-J];
+    Obs=syslin(td,F,G,eye(Ao));
+    return;
+  end
 endfunction

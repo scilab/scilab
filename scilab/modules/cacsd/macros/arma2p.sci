@@ -11,7 +11,10 @@
 function [A,B,D]=arma2p(ar) 
 // Build three polynomial matrices 
 // from an ar representation 
-if ar(1)<>'ar' then error(msprintf(gettext("%s: This is not an ARMAX.\n"),"arma2p"));return;end;
+if ar(1)<>'ar' then 
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: %s data structure expected.\n"),..
+		 "arma2p",1,"armax"));
+end;
 A=inv_coeff(ar(2));
 if ar(3)<>[] then 
 	[mb,nb]=size(ar(3));

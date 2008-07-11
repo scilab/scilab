@@ -29,7 +29,7 @@ function [n,m,xt,yt]=copfac(g,polf,polc,tol)
     g=tf2ss(g)
   case "state-space" then
   else
-    error(msprintf(gettext("%s: Wrong type for argument #%d: Linear dynamic system expected.\n"),"copfac",1))
+    error(msprintf(_("%s: Wrong type for input argument #%d: %s data structure expected.\n"),"copfac",1,"syslin"));
   end
   [r,p,t]=size(g);
   [a,b,c,d]=g(2:5),
@@ -46,7 +46,7 @@ function [n,m,xt,yt]=copfac(g,polf,polc,tol)
     w1=u1(:,n1+1:t),a1=w1'*a*w1,
     no=norm(a1),
     if maxi(real(spec(a1)))>no*tol then
-      error(msprintf(gettext("%s: System is not stabilizable.\n"),"copfac")),
+      error(msprintf(gettext("%s: Wrong values for input argument #%d: Stabilizable system expected.\n"),"copfac",1)),
     end,
   end,
   //------------------
@@ -54,7 +54,7 @@ function [n,m,xt,yt]=copfac(g,polf,polc,tol)
     w2=u2(:,n2+1:t),a2=w2'*a*w2,
     no=norm(a2),
     if maxi(real(spec(a2)))>no*tol then
-      error(msprintf(gettext("%s: System is not detectable.\n'),"copfac")),
+      error(msprintf(gettext("%s: Wrong values for input argument #%d: Detectable system expected.\n"),"copfac",1)),
     end,
   end,
   //-----------------------------

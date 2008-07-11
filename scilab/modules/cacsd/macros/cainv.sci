@@ -51,48 +51,53 @@ function [X,dims,J,Y,k,Z]=cainv(Sl,Alfa,Beta,flag)
 // [Xp(1:dimSg,:);C]*W = [0 | *] one has
 // H*W = [0 | *]  (with at least as many columns as above).
 
-[LHS,RHS]=argn(0);
-if RHS==1 then Alfa=-1;Beta=-1;flag='ge';end
-if RHS==2 then Beta=Alfa;flag='ge';end
-if RHS==3 then flag='ge';end
-if RHS==4 then 
-if type(flag)~=10 then error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"cainv",4));end
-end
-[X,ddims,F,U,k,Z]=abinv(Sl',Beta,Alfa,flag);
-[nx,nx]=size(X);
-select flag
-case 'ge'
-nr=ddims(1);nvg=ddims(2);nv=ddims(3);noc=ddims(4);nos=ddims(5);
-nd1=nx-nos;nu1=nx-noc;dimS=nx-nv;dimSg=nx-nvg;dimN=nx-nr;
-n6=1+ddims(5):nx;
-n5=1+ddims(4):ddims(5);
-n4=1+ddims(3):ddims(4);
-n3=1+ddims(2):ddims(3);
-n2=1+ddims(1):ddims(2);
-n1=1:ddims(1);
-//nr=1:nr;nzs=nr+1:nr+nvg;nzi=nvg+1:nv;
-X=[X(:,n6),X(:,n5),X(:,n4),X(:,n3),X(:,n2),X(:,n1)];
-J=F';Z=Z';Y=U';Y=[Y(k+1:$,:);Y(1:k,:)];
-dims=[nd1,nu1,dimS,dimSg,dimN];
-return;
-case 'st'
-dims=nx-ddims;dims=dims($:-1:1);
-n5=1+ddims(4):nx;
-n4=1+ddims(3):ddims(4);
-n3=1+ddims(2):ddims(3);
-n2=1+ddims(1):ddims(2);
-n1=1:ddims(1);
-X=[X(:,n5),X(:,n4),X(:,n3),X(:,n2),X(:,n1)];
-J=F';Z=Z';Y=U';Y=[Y(k+1:$,:);Y(1:k,:)];
-return;
-case 'pp'
-dims=nx-ddims;dims=dims($:-1:1);
-n4=1+ddims(3):nx;
-n3=1+ddims(2):ddims(3);
-n2=1+ddims(1):ddims(2);
-n1=1:ddims(1);
-X=[X(:,n4),X(:,n3),X(:,n2),X(:,n1)];
-J=F';Z=Z';Y=U';Y=[Y(k+1:$,:);Y(1:k,:)];
-return;
-end
+  [LHS,RHS]=argn(0);
+  if RHS==1 then Alfa=-1;Beta=-1;flag='ge';end
+  if RHS==2 then Beta=Alfa;flag='ge';end
+  if RHS==3 then flag='ge';end
+  if RHS==4 then 
+    if type(flag)~=10 then 
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"cainv",4));
+    end
+    if size(flag,'*')<>1 then
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"cainv",4));
+    end
+  end
+  [X,ddims,F,U,k,Z]=abinv(Sl',Beta,Alfa,flag);
+  [nx,nx]=size(X);
+  select flag
+  case 'ge'
+    nr=ddims(1);nvg=ddims(2);nv=ddims(3);noc=ddims(4);nos=ddims(5);
+    nd1=nx-nos;nu1=nx-noc;dimS=nx-nv;dimSg=nx-nvg;dimN=nx-nr;
+    n6=1+ddims(5):nx;
+    n5=1+ddims(4):ddims(5);
+    n4=1+ddims(3):ddims(4);
+    n3=1+ddims(2):ddims(3);
+    n2=1+ddims(1):ddims(2);
+    n1=1:ddims(1);
+    //nr=1:nr;nzs=nr+1:nr+nvg;nzi=nvg+1:nv;
+    X=[X(:,n6),X(:,n5),X(:,n4),X(:,n3),X(:,n2),X(:,n1)];
+    J=F';Z=Z';Y=U';Y=[Y(k+1:$,:);Y(1:k,:)];
+    dims=[nd1,nu1,dimS,dimSg,dimN];
+    return;
+  case 'st'
+    dims=nx-ddims;dims=dims($:-1:1);
+    n5=1+ddims(4):nx;
+    n4=1+ddims(3):ddims(4);
+    n3=1+ddims(2):ddims(3);
+    n2=1+ddims(1):ddims(2);
+    n1=1:ddims(1);
+    X=[X(:,n5),X(:,n4),X(:,n3),X(:,n2),X(:,n1)];
+    J=F';Z=Z';Y=U';Y=[Y(k+1:$,:);Y(1:k,:)];
+    return;
+  case 'pp'
+    dims=nx-ddims;dims=dims($:-1:1);
+    n4=1+ddims(3):nx;
+    n3=1+ddims(2):ddims(3);
+    n2=1+ddims(1):ddims(2);
+    n1=1:ddims(1);
+    X=[X(:,n4),X(:,n3),X(:,n2),X(:,n1)];
+    J=F';Z=Z';Y=U';Y=[Y(k+1:$,:);Y(1:k,:)];
+    return;
+  end
 endfunction

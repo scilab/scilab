@@ -19,21 +19,23 @@ function [s1]=cls2dls(s,t,fp)
 // fp prevarping frequency in hertz
 //!
 
-[lhs,rhs]=argn(0)
-
-if type(s)<>16 then error(91,1),end
-flag=s(1); 
-if flag(1)<>'lss' then error(91,1),end
-if s(7)==[] then warning(msprintf(gettext("%s: s is assumed continuous time.\n"),"cls2dls"));s(7)='c';end
-if s(7)<>'c'|s(7)=='d' then
-  warning(msprintf(gettext("%s: Needs a continuous system as input.\n"),"cls2dls"))
-end
-fs=1/t 
-if rhs==3 then fp=2*%pi*fp;fs=fp/tan(fp/fs/2)/2,end //prewarping
- 
-a=2*fs*eye()-s(2)
-ad=a\(2*fs*eye()+s(2))
-b=(ad+eye())/a*s(3);
-d=s(5)+s(4)/a*s(3)
-s1=syslin('d',ad,b,s(4),d,s(6))
+  [lhs,rhs]=argn(0)
+  if typeof(s)<>'state-space'
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space expected.\n"),"cls2dls",1))
+  end
+  if s.dt==[] then 
+    warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"cls2dls",1));
+    s.dt='c';
+  end
+  if s.dt<>'c' then
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Continuous time system expected.\n"),"cls2dls",1))
+  end
+  fs=1/t 
+  if rhs==3 then fp=2*%pi*fp;fs=fp/tan(fp/fs/2)/2,end //prewarping
+  
+  a=2*fs*eye()-s(2)
+  ad=a\(2*fs*eye()+s(2))
+  b=(ad+eye())/a*s(3);
+  d=s(5)+s(4)/a*s(3)
+  s1=syslin('d',ad,b,s(4),d,s(6))
 endfunction
