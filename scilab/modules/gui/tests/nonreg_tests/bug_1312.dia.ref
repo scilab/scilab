@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- TEST WITH GRAPHIC -->
 //
 // <-- Non-regression test for bug 1312 -->
@@ -13,20 +12,14 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=1312
 //
 // <-- Short Description -->
-//    
-
+//
 // <-- TEST WITH GRAPHIC -->
-
 sx=170;
 sy=450;
 hc=10:30:sy;
-
 close(1);
-
 figure(1,"position",[10 10 sx sy],..
     "backgroundcolor",rand(1,3));
-
-
 h1=uicontrol(1,"backgroundcolor",rand(1,3),..
     "callback","disp(""push-button"")",..
     "fontangle","normal","fontsize",15,..
@@ -41,7 +34,6 @@ h1=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Units","pixels",..
     "Userdata","a1",..
     "Value",12);
-
 h2=uicontrol(1,"backgroundcolor",rand(1,3),..
     "callback","disp(""Radio-button"")",..
     "fontangle","oblique","fontsize",15,..
@@ -56,7 +48,6 @@ h2=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Units","points",..
     "Userdata","a2",..
     "Value",12);
-
 h3=uicontrol(1,"backgroundcolor",rand(1,3),..
     "callback","disp(""Check-Box"")",..
     "fontangle","oblique","fontsize",15,..
@@ -85,7 +76,6 @@ h4=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Units","pixels",..
     "Userdata","a4",..
     "Value",12);
-
 h5=uicontrol(1,"backgroundcolor",rand(1,3),..
     "callback","disp(""Text"")",..
     "fontangle","oblique","fontsize",15,..
@@ -100,7 +90,6 @@ h5=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Units","pixels",..
     "Userdata","a5",..
     "Value",12);
-
 h6=uicontrol(1,"backgroundcolor",rand(1,3),..
     "callback","disp(""Slider"")",..
     "fontangle","oblique","fontsize",15,..
@@ -115,7 +104,6 @@ h6=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Units","pixels",..
     "Userdata","a6",..
     "Value",7);
-
 h7=uicontrol(1,"backgroundcolor",rand(1,3),..
     "callback","disp(""Frame"")",..
     "fontangle","normal","fontsize",15,..
@@ -130,7 +118,6 @@ h7=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Units","pixels",..
     "Userdata","a7",..
     "Value",12);
-
 h8=uicontrol(1,"backgroundcolor",rand(1,3),..
     "String","H1|hH2|Hhh3|hH",..
     "Style", "popupmenu",..
@@ -146,7 +133,6 @@ h8=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Units","pixels",..
     "Userdata","a9",..
     "Value",1);
-
 h9=uicontrol(1,"backgroundcolor",rand(1,3),..
     "callback","disp(""List-box"")",..
     "fontangle","normal","fontsize",15,..
@@ -161,5 +147,4 @@ h9=uicontrol(1,"backgroundcolor",rand(1,3),..
     "Units","pixels",..
     "Userdata","a8",..
     "Value",[1 2 3 4]);
-
 delete(scf(1));

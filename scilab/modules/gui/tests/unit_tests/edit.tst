@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- INTERACTIVE TEST -->
+
 // Unitary tests for Scilab Java edits
 
 // Exec tests common to all uicontrols

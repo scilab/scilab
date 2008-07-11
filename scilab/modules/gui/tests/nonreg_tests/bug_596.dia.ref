@@ -20,13 +20,12 @@ f = figure(1)
 Handle of type "Figure" with properties:
 ========================================
 children: "Axes"
-figure_style = "new"
 figure_position = [200,200]
-figure_size = [610,461]
-axes_size = [606,344]
+figure_size = [628,592]
+axes_size = [610,460]
 auto_resize = "on"
 viewport = [0,0]
-figure_name = "Scilab Graphic"
+figure_name = "Graphic window number %d"
 figure_id = 1
 info_message = ""
 color_map= matrix 33x3
@@ -39,6 +38,7 @@ rotation_style = "unary"
 event_handler = ""
 event_handler_enable = "off"
 user_data = []
+tag = ""
 uicontrol(f,"style","pushbutton","position",[10 10 150 20],..
           "string","Close figure","callback","close(f)");
 uicontrol(f,"style","pushbutton",..

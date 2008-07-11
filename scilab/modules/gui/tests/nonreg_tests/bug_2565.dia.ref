@@ -25,28 +25,29 @@ Handle of type "uicontrol" with properties:
 Parent: Figure
 Children: []
 BackgroundColor = [0.8,0.8,0.8]
+Enable = "on"
 FontAngle = normal
 FontName = helvetica
-FontSize = 12
-FontUnits = points
+FontSize = 9.3333333
+FontUnits = pixels
 FontWeight = normal
 ForegroundColor = [0,0,0]
 HorizontalAlignment = center
 ListboxTop = []
 Max = 1
 Min = 0
-Position = [10,173,150,150]
+Position = [10,10,150,150]
 Relief = flat
 SliderStep = [0.01,0.1]
-String = \Q\q
+String = "\Q\q"
 Style = listbox
-Units = points
+Units = pixels
 Value = []
 VerticalAlignment = middle
 Visible = "on"
 Callback = 
 CallbackType = -1
-Userdata = 
+Userdata = []
 Tag = 
 if get(h,"string") <> "\Q\q" then
   pause;

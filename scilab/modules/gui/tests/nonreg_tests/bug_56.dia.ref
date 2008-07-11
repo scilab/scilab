@@ -6,12 +6,16 @@
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
 //
-// <-- Non-regression test for bug 3031 -->
+// <-- Non-regression test for bug 56 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3031
+// http://bugzilla.scilab.org/show_bug.cgi?id=56
 //
 // <-- Short Description -->
-//   uicontrol property names could be abbreviated in scilab 4.1.2, need to be extended in scilab 5
-figure();
-if execstr("uicontrol(""posi"",[10 10 100 100])", "errcatch")<>0 then pause; end
+//    findobj does not seem to work, if the
+// value contains upper-case letters: e.g. the following does
+// not give the result 1 as desired
+f = figure(1);
+h = uicontrol("tag","F");
+if isempty(findobj("tag","F")) then pause; end
+if findobj("tag","F")<>h then pause; end

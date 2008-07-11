@@ -23,28 +23,29 @@ Handle of type "uicontrol" with properties:
 Parent: Figure
 Children: []
 BackgroundColor = [0.8,0.8,0.8]
+Enable = "on"
 FontAngle = normal
 FontName = helvetica
-FontSize = 12
-FontUnits = points
+FontSize = 9.3333333
+FontUnits = pixels
 FontWeight = normal
 ForegroundColor = [0,0,0]
 HorizontalAlignment = center
 ListboxTop = []
 Max = 1
 Min = 0
-Position = [20,304,80,20]
+Position = [20,20,80,20]
 Relief = sunken
 SliderStep = [0.01,0.1]
-String = 
+String = ""
 Style = edit
-Units = points
+Units = pixels
 Value = []
 VerticalAlignment = middle
 Visible = "on"
 Callback = 
 CallbackType = -1
-Userdata = 
+Userdata = []
 Tag = 
 // Now type something in the entry box
 if execstr("get(h,""string"")", "errcatch")<>0 then pause; end
