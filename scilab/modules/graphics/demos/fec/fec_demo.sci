@@ -123,7 +123,7 @@ function []=emc2C(i,j,FN,rect)
 	resu=resu(:,i);
 	file('close',unit);
 	if rhs<=3;rect=[mini(noeul(:,2)),mini(noeul(:,3)),maxi(noeul(:,2)),maxi(noeul(:,3))];end
-	fec(noeul(:,2),noeul(:,3),trianl,resu,"131"," ",rect);
+	fec(noeul(:,2),noeul(:,3),trianl,resu,"031"," ",rect);
 	file("close",unit);
 	
 endfunction 

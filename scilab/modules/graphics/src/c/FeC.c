@@ -171,7 +171,8 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 
   if(bounds_changed || axes_properties_changed )
   {
-    sciDrawObj(sciGetCurrentFigure());
+    forceRedraw(psubwin);
+    //sciDrawObj(sciGetCurrentFigure());
   }
   /*      EraseAndOrRedraw(psubwin);  /\*  inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
 

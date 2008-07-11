@@ -31,6 +31,8 @@ drawnow();
 //xclick();
 x_message('click to continue');
 
+//delete(curFig);
+//curFig = scf();
 clf(curFig,"reset");
 drawlater();
 emc2C(1,6,path+'MESH.VAL');
