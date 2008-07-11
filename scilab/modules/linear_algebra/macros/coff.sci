@@ -17,6 +17,7 @@ function [n,d]=coff(m,var)
 //!
 //
   if type(m)<>1 then error(53,1),end
+  if m==[] then n=[];d=1;end
   [lhs,rhs]=argn(0);if rhs==1 then var='s',end
   d=clean(poly(m,var)); // denominator
   [n1,n1]=size(m);
