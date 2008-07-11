@@ -26,9 +26,9 @@ rayon=lambda./(lambda.*lambda-ones(lambda))
 centre=-lambda.*rayon
 rayon=abs(rayon)
 rect=[mini(centre-rayon),mini(-rayon),maxi(centre+rayon),maxi(rayon)];
-// 
-plot2d(0,0,1,"000"," ");
-//xtitle(titre,'R','I');
+//
+drawlater()
+ax=gca();
 llrect=xstringl(0,0,'1')
 hx=llrect(3);
 //
@@ -46,9 +46,9 @@ for i=1:prod(size(gain))
   end;
   n=prod(size(w))
   rf=centre(i)*ones(w)+rayon(i)*exp(%i*w);
-  rf=rf';
-  plot2d(real(rf),imag(rf),[3],"000")
-  plot2d(real(rf),-imag(rf),[3],"000")
+  xpoly([real(rf) real(rf($:-1:1))],[imag(rf)  -imag(rf($:-1:1))])
+  e=gce();e.foreground=3;e.clip_state='clipgrf'
 //  xstring(xx,xy,g)
+drawnow();
 end;
 endfunction
