@@ -325,7 +325,7 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
 	src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
 	src/jni/TicksDrawerGL.cpp src/jni/GridDrawerGL.cpp \
-	sci_gateway/c/gw_renderer.c
+	src/jni/RenderingChecker.cpp sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -569,7 +569,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-TicksDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-GridDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-TicksDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-GridDrawerGL.lo
+@GUI_TRUE@	libscirenderer_la-GridDrawerGL.lo \
+@GUI_TRUE@	libscirenderer_la-RenderingChecker.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -1043,7 +1044,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
 @GUI_TRUE@src/jni/TicksDrawerGL.cpp \
-@GUI_TRUE@src/jni/GridDrawerGL.cpp
+@GUI_TRUE@src/jni/GridDrawerGL.cpp \
+@GUI_TRUE@src/jni/RenderingChecker.cpp
 
 
 # List of the gateway c files
@@ -1114,7 +1116,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/SurfaceLineDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/SurfaceMarkDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/TicksDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/GridDrawerGL.giws.xml
+@GUI_TRUE@src/jni/GridDrawerGL.giws.xml \
+@GUI_TRUE@src/jni/RenderingChecker.giws.xml
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -1475,6 +1478,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RenderingChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RightYAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerGL.Plo@am__quote@
@@ -3291,6 +3295,13 @@ libscirenderer_la-GridDrawerGL.lo: src/jni/GridDrawerGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GridDrawerGL.cpp' object='libscirenderer_la-GridDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GridDrawerGL.lo `test -f 'src/jni/GridDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/GridDrawerGL.cpp
+
+libscirenderer_la-RenderingChecker.lo: src/jni/RenderingChecker.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RenderingChecker.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RenderingChecker.Tpo -c -o libscirenderer_la-RenderingChecker.lo `test -f 'src/jni/RenderingChecker.cpp' || echo '$(srcdir)/'`src/jni/RenderingChecker.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-RenderingChecker.Tpo $(DEPDIR)/libscirenderer_la-RenderingChecker.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/RenderingChecker.cpp' object='libscirenderer_la-RenderingChecker.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RenderingChecker.lo `test -f 'src/jni/RenderingChecker.cpp' || echo '$(srcdir)/'`src/jni/RenderingChecker.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
