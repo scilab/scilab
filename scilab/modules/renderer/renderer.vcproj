@@ -468,6 +468,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\jni\RenderingChecker.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\jni\ScilabGraphicWindow.cpp"
 					>
 				</File>
@@ -2091,6 +2095,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\figureDrawing\FigureScilabCall.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\jni\RenderingChecker.hxx"
 					>
 				</File>
 				<File

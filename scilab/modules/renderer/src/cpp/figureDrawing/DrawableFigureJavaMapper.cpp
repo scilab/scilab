@@ -13,6 +13,7 @@
  */
 
 #include "DrawableFigureJavaMapper.hxx"
+#include "RenderingChecker.hxx"
 
 extern "C"
 {
@@ -247,6 +248,11 @@ void DrawableFigureJavaMapper::stopRotationRecording(void)
 void DrawableFigureJavaMapper::showWindow(void)
 {
   m_pJavaObject->showWindow();
+}
+/*---------------------------------------------------------------------------------*/
+bool DrawableFigureJavaMapper::isAbleToCreateFigure(void)
+{
+  return org_scilab_modules_renderer_utils::RenderingChecker::isAbleToCreateWindow(getScilabJavaVM());
 }
 /*---------------------------------------------------------------------------------*/
 }

@@ -169,6 +169,11 @@ public:
   virtual void showWindow(void);
 
   /**
+   * Check wether we the environemebnt allows us to create a new window.
+   */
+  static bool isAbleToCreateFigure(void);
+
+  /**
    * Return the drawn object
    */
   DrawableFigure * getFigureDrawer( void ) ;

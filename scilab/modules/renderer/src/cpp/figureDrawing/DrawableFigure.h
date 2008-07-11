@@ -178,6 +178,11 @@ public:
    */
   void showWindow(void);
 
+  /**
+   * Check wether we the environemebnt allows us to create a new window.
+   */
+  static bool isAbleToCreateFigure(void);
+
   /*-----------------------------------------------------------------------------*/
    /**
     * Get the synchronization object that protect this figure.

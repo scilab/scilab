@@ -51,6 +51,7 @@
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 #include "Interaction.h"
+#include "GetJavaProperty.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"
@@ -2741,6 +2742,7 @@ void SciWin(void)
 /*----------------------------------------------------------------------------*/
 /**
  * Create a new figure with already a subwindow inside and show it.
+ * When creating a new figure this mehod mut be called
  * @param winNum if not NULL a pointer to the figure number otherwise
  *               a default figure number is chosen.
  * @return a pointer on the created figure or NULL if the creation could
@@ -2750,6 +2752,12 @@ sciPointObj * createFullFigure(int * winNum)
 {
   sciPointObj * newFig = NULL;
   sciPointObj * newSubwin = NULL;
+
+  /* Check that environement is OK for creating a window */
+  if (!sciGetIsAbleToCreateWindow())
+  {
+    return NULL;
+  }
 
 
   /* Create figure */
@@ -2788,3 +2796,4 @@ sciPointObj * createFullFigure(int * winNum)
   return newFig;
 }
 /*----------------------------------------------------------------------------*/
+

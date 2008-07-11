@@ -280,6 +280,8 @@ void sciGetYTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabe
 int sciGetNbZTicks(sciPointObj * pSubwin);
 void sciGetZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
 
+BOOL sciGetIsAbleToCreateWindow(void);
+
 void printSetGetErrorMessage(const char * propertyName);
 
 #endif /* __SCI_GET_PROPERTY__ */

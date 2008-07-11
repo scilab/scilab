@@ -158,3 +158,15 @@ void sciGetJavaZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticks
   BasicAlgos::destroyStringArray(javaLabels, nbTicks);
 }
 /*---------------------------------------------------------------------------------*/
+BOOL sciGetJavaIsAbleToCreateWindow(void)
+{
+  if (DrawableFigure::isAbleToCreateFigure())
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+/*---------------------------------------------------------------------------------*/

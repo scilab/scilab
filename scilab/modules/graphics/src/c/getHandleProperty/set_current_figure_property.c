@@ -32,24 +32,31 @@ int set_current_figure_property( sciPointObj * pobj, int stackPointer, int value
   int figNum = -1 ;
   int res = -1 ;
 
-  startGraphicDataReading();
+  if (nbRow * nbCol != 1)
+  {
+    sciprint(_("Wrong size for input argument #%d: A real or a 'Figure' handle expected.\n"), 1) ;
+    return -1 ;
+  }
+  
   if ( isParameterHandle( valueType ) )
   {
+
     sciPointObj * curFig = sciGetPointerFromHandle( getHandleFromStack( stackPointer ) ) ;
     
     if ( curFig == NULL )
     {
-      sciprint("Object is not valid.\n") ;
-      endGraphicDataReading();
+      sciprint(_("'%s' handle does not or no longer exists.\n"),"Figure");
       return -1 ;
     }
+
     if ( sciGetEntityType( curFig ) != SCI_FIGURE )
     {
-      sciprint("Object is not a handle on a figure.\n");
-      endGraphicDataReading();
+      sciprint(_("Wrong type for input argument #%d: A real or a 'Figure' handle expected.\n"), 1) ;
       return -1;
     }
+    startGraphicDataReading();
     figNum = sciGetNum( curFig ) ;
+    endGraphicDataReading();
   }
   else if ( isParameterDoubleMatrix( valueType ) )
   {
@@ -57,17 +64,15 @@ int set_current_figure_property( sciPointObj * pobj, int stackPointer, int value
   }
   else
   {
-    sciprint("Bad argument to determine the current figure: should be a window number or a handle (available under new graphics mode only).\n") ;
-    endGraphicDataReading();
+    sciprint(_("Wrong type for input argument #%d: A real or a 'Figure' handle expected.\n"), 1) ;
     return -1 ;
   }
-  endGraphicDataReading();
 
   /* select the figure num */
   res = sciSetUsedWindow( figNum ) ;
   if ( res < 0 )
   {
-    sciprint("It was not possible to create the requested figure.\n");
+    sciprint(_("Unable to create requested figure: No more memory.\n"));
   }
   return res ;
 

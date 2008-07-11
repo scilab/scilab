@@ -87,6 +87,8 @@ public:
   virtual void stopRotationRecording(void);
   virtual void showWindow(void);
 
+  static bool isAbleToCreateFigure(void);
+
   /*----------------------------------------------------------------------*/
 
 protected:

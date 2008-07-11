@@ -192,4 +192,9 @@ void DrawableFigureJoGL::showWindow(void)
   getFigureJavaMapper()->showWindow();
 }
 /*---------------------------------------------------------------------------------*/
+bool DrawableFigureJoGL::isAbleToCreateFigure(void)
+{
+  return DrawableFigureJavaMapper::isAbleToCreateFigure();
+}
+/*---------------------------------------------------------------------------------*/
 }

@@ -80,7 +80,10 @@ int sci_show_window( char *fname,unsigned long fname_len )
       if (shownFigure == NULL)
       {
         /* No window with this number, create one */
-        sciSetUsedWindow(winNum);
+        if(sciSetUsedWindow(winNum) < 0)
+        {
+          sciprint(_("%s: Unable to create requested figure: No more memory.\n"), fname);
+        }
         shownFigure = sciGetCurrentFigure();
       }
     }

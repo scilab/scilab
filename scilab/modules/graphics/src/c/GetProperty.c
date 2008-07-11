@@ -4526,6 +4526,16 @@ void sciGetZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabe
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * Get the labels and positions of ticks along Z axis.
+ * String composing ticksLabels are allocated with C++ new.
+ */
+BOOL sciGetIsAbleToCreateWindow(void)
+{
+  return sciGetJavaIsAbleToCreateWindow();
+}
+/*----------------------------------------------------------------------------------*/
+
+/**
  * Print the message "This object has no xxx property." in Scilab.
  */
 void printSetGetErrorMessage(const char * propertyName)

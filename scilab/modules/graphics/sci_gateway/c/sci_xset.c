@@ -192,7 +192,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   else if ( strcmp(cstk(l1),"window") == 0 || strcmp(cstk(l1),"figure") == 0 )
   {
     if (sciSwitchWindow(x[0]) != 0){
-      Scierror(999,_("%s: It was not possible to create the requested figure.\n"),fname);
+      Scierror(999,_("%s: Unable to create requested figure: No more memory.\n"), fname);
     }
   }
   else

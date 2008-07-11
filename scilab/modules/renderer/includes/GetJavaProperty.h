@@ -128,6 +128,11 @@ int sciGetJavaNbZTicks(sciPointObj * pSubwin);
  */
 void sciGetJavaZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
 
+/**
+ * Check wether it is possible to create a graphic window or not
+ */
+BOOL sciGetJavaIsAbleToCreateWindow(void);
+
 
 #ifdef __cplusplus
 }

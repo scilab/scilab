@@ -17,6 +17,9 @@
 #include "../subwinDrawing/DrawableSubwin.h"
 #include "../getHandleDrawer.h"
 
+// here for static methods
+#include "DrawableFigureJoGL.h"
+
 //#include <time.h>
 //#include <sched.h>
 //#include <iostream>
@@ -275,6 +278,11 @@ void DrawableFigure::stopRotationRecording(void)
 void DrawableFigure::showWindow(void)
 {
   return getFigureImp()->showWindow();
+}
+/*---------------------------------------------------------------------------------*/
+bool DrawableFigure::isAbleToCreateFigure(void)
+{
+  return DrawableFigureJoGL::isAbleToCreateFigure();
 }
 /*---------------------------------------------------------------------------------*/
 }
