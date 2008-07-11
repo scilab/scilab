@@ -11,15 +11,11 @@ function slc=contrss(a,tol)
 
   [lhs,rhs]=argn(0)
   //
-  flag=a(1);
-  if flag(1)<>'lss' then
-    error(91,1),
-  end;
-  if rhs==1 then tol=sqrt(%eps);end
-  if rhs>2 then 
-    error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"contrss",1,2))
-  end;
+  if typeof(a)<>'state-space' then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: State-space form expected.\n"),"contrss",1));
+  end
 
+  if rhs==1 then tol=sqrt(%eps);end
   [a,b,c,d,x0,dom]=a(2:7)
   //
   [nc,u]=contr(a,b,tol*norm([a,b],1))
