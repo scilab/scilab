@@ -60,7 +60,7 @@
       <varlistentry>
         <term>Ac</term>
         <listitem>
-          <para>block Hessenberg matrix <literal>Ac=U'*A*V</literal></para>
+          <para>block Hessenberg matrix <literal>Ac=U'*A*U</literal></para>
         </listitem>
       </varlistentry>
       <varlistentry>
