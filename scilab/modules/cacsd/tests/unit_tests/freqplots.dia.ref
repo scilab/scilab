@@ -5,7 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
-
 plots=['bode','black','nyquist','gainplot'];
 s=poly(0,'s');
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
@@ -14,7 +13,6 @@ hd=dscr(h,0.01);
 hd1=dscr(h1,0.01);
 [frq,repf]=repfreq([h;h1],0.01,100);
 [phi,db]=phasemag(repf);
-
 Args=list(..
 	  list(h),..
 	  list(h,0.01,100),..
@@ -38,13 +36,16 @@ Args=list(..
 	  list(frq,db,phi),..
 	  list(frq,db,phi,['h';'h1']),..
 	  list([frq;frq],db,phi,['h';'h1']));
-
-warning('off');	  
+warning('off');	
 for p=plots
   mprintf("-------- %s ---------------\n",p)
   for args=Args
-    clf()   
-    if execstr(p+'(args(:))','errcatch')<>0 then pause,end
+    clf()
+    if execstr(p+'(args(:))','errcatch')<>0 then bugmes();quit;end
   end
 end
-warning('on');	  
+-------- bode ---------------
+-------- black ---------------
+-------- nyquist ---------------
+-------- gainplot ---------------
+warning('on');	

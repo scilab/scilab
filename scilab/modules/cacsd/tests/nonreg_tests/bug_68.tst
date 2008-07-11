@@ -19,7 +19,7 @@ A=[-113.63636,-2840909.1,113.63636,2840909.1,0,0;
    347.22222,8680555.6,-366.66667,-11111111,19.444444,2430555.6;
    0,0,1,0,0,0;
    0,0,50,6250000,-50,-6250000;
-   0,0,0,0,1,0]
+   0,0,0,0,1,0];
 
 System =syslin('c',A,[1;0;0;0;0;0],[0 0 0 1 0 0]);
 
@@ -32,8 +32,8 @@ ClosedZeros1=trzeros(closed1);
 Hrond2=System*PID;closed2=(1/.(Hrond2));
 ClosedZeros2=trzeros(closed2);
 
-C1=gsort([real(ClosedZeros1) imag(ClosedZeros1)],'lr')
-C2=gsort([real(ClosedZeros2) imag(ClosedZeros2)],'lr')
+C1=gsort([real(ClosedZeros1) imag(ClosedZeros1)],'lr');
+C2=gsort([real(ClosedZeros2) imag(ClosedZeros2)],'lr');
 
 if norm(C1-C2)>1d-5 then pause,end
 
