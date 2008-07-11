@@ -6,6 +6,12 @@ c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+c
+c From NETLIB : TOMS/493
+c Based on Jenkins-Traub algorithm :
+c http://en.wikipedia.org/wiki/Jenkins-Traub_method
+c
       subroutine rpoly(op, degree, zeror, zeroi, fail)
 c!purpose
 c finds the zeros of a real polynomial
