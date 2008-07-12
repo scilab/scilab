@@ -130,6 +130,7 @@ set Shift_Tab {"ISO_Left_Tab" "Shift-Tab"}
 set Shift_F1  {"XF86_Switch_VT_1" "Shift-F1"}
 set Shift_F3  {"XF86_Switch_VT_3" "Shift-F3"}
 set Shift_F8  {"XF86_Switch_VT_8" "Shift-F8"}
+set Shift_F9  {"XF86_Switch_VT_9" "Shift-F9"}
 set Shift_F11  {"XF86_Switch_VT_11" "Shift-F11" "Shift-SunF36"}
 set Shift_F12  {"XF86_Switch_VT_12" "Shift-F12" "Shift-SunF37"}
 

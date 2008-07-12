@@ -323,7 +323,11 @@ proc updatefont {{fontsource "newfont"}} {
         if {!$saved_showcallstackarea} {
             $watch.f.f1.f1r.showcallstackarea invoke
         }
+    }
 
+    # If the breakpoints properties window was open, refresh it
+    if {[istoplevelopen bptsgui]} {
+        showbptgui_bp
     }
 
     showinfo [concat [mc "Font size"] $textfontsize ]

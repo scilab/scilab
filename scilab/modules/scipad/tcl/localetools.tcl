@@ -142,3 +142,13 @@ global lang msgsdir
 # pretend too much... Same for the title of unsaved buffers named 
 # UntitledN.sce, and ditto for the call stack area text
 }
+
+proc listlocalize {inlist} {
+# return a list which elements are the localized versions of $inlist
+# in the current locale
+    set outlist [list ]
+    foreach elt $inlist {
+        lappend outlist [mc $elt]
+    }
+    return $outlist
+}

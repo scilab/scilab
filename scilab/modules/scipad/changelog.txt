@@ -1,7 +1,27 @@
+Francois VOGEL, 12/07/08
+ * CONDITIONAL BREAKPOINTS
+ * Breakpoints can be enabled and disabled, and have an associated conditional
+   expression that is evaluated when the breakpoint location is reached. An
+   enabled breakpoint is hit only if its expression is true
+ * Added a quick toggle for watching the conditional expression as a generic
+   expression, with sync maintained between the watch window and the
+   breakpoints window
+ * The conditional expression of a breakpoint can be tested against a boolean
+   true or against a change of its own value
+ * The hit count is monitored and displayed in the breakpoints gui, and can be
+   reset to zero through a pushbutton dedicated to each breakpoint
+ * Added the "break if" condition on the hit count
+ * The full conditional breakpoints feature is implemented and seems to work
+   OK, with expressions, expression types, expression watching, hit counts,
+   and break conditions on the hit count
+ * The breakpoints gui remembers its geometry across openings
+ * version --> 6.148
+
 Francois VOGEL, 19/06/08
  * Fixed missing update of peer titles when saving a textarea: a peer <1>
    could be in a non modified state while another peer <2> could still
    display "... <2> (modified)"
+ * changelog file upside down
  * version --> 6.147
 
 Francois VOGEL, 16/06/08

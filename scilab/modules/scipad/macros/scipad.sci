@@ -65,7 +65,7 @@ function scipad(varargin)
             TCL_EvalStr("load {'+gettklib()+'} Tk scipad")
             TCL_EvalStr("wm withdraw .","scipad")
             TCL_EvalStr("scipad alias ScilabEval ScilabEval")
-            TCL_EvalStr("set sciprompt 0", "scipad")   ; // TODO: FIX THIS! SCILAB TEAM WORK IN PROGRESS...
+            TCL_EvalStr("set sciprompt 0", "scipad")   ; // <TODO>: FIX THIS! SCILAB TEAM WORK IN PROGRESS...
         end
         if exists("SCIHOME") then
             if MSDOS then

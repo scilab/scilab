@@ -65,13 +65,15 @@
 # Aside of these:
 # ---------------
 #   Breakpoints are set and managed using tags in the text widget that
-#   displays the current buffer.
-#   They are sent or removed in Scilab using setbpt and delbpt.
+#   displays the current buffer. An array also stores the breakpoints properties.
+#   Breakpoints are sent or removed in Scilab using setbpt and delbpt.
+#   See also head comments in db_bptsmanagement.tcl for furter details.
 #
 #######################################################################
 
 source [file join $sourcedir db_states.tcl]
 source [file join $sourcedir db_bptsmanagement.tcl]
+source [file join $sourcedir db_bptsgui.tcl]
 source [file join $sourcedir db_actbptmanagement.tcl]
 source [file join $sourcedir db_debugsession.tcl]
 source [file join $sourcedir db_configureexec.tcl]

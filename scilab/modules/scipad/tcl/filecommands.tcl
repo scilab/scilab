@@ -262,15 +262,18 @@ proc byebye {textarea} {
     global listoftextarea listoffile
     global pad FirstBufferNameInWindowsMenu pwframe
 
+    # properly removing breakpoints in Scipad is mandatory here
+    # otherwise the bptsprops entries are not unset - see details
+    # in proc deletebreakpoint
+    # if in a debug session, this will also remove the breakpoints
+    # from Scilab
+    removebpt_scipad $textarea
+
+    removefuns_bp $textarea
+
     if { [llength $listoftextarea] > 1 } {
 
         # check on Scilab busy needed to remove breakpoints
-
-        if {![isscilabbusy]} {
-            removescilabbuffer_bp "with_output" $textarea
-        }
-
-        removefuns_bp $textarea
 
         focustextarea $textarea
 

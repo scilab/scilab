@@ -28,6 +28,7 @@ tcl/completion.tcl \
 tcl/cutcopypaste.tcl \
 tcl/db_actbptmanagement.tcl \
 tcl/db_argsmanagement.tcl \
+tcl/db_bptsgui.tcl \
 tcl/db_bptsmanagement.tcl \
 tcl/db_configureexec.tcl \
 tcl/db_debugsession.tcl \
@@ -55,6 +56,7 @@ tcl/scilabexec.tcl \
 tcl/scipad.tcl \
 tcl/scipaddebug1.tcl \
 tcl/scipaddebug2.tcl \
+tcl/scrollableframe.tcl \
 tcl/textarea.tcl \
 tcl/tkdndtools.tcl \
 tcl/tooltips.tcl \
@@ -110,7 +112,10 @@ tcl/icons/prompt_ready_48x24.gif \
 tcl/icons/removeallbp.gif \
 tcl/icons/setbp.gif \
 tcl/icons/stepstep.gif \
-tcl/icons/scipad-editor.gif
+tcl/icons/scipad-editor.gif \
+tcl/icons/editbp.gif \
+tcl/icons/questionbp.gif \
+tcl/icons/questionbpbig.gif
 
 include $(top_srcdir)/Makefile.incl.am
 

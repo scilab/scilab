@@ -52,7 +52,7 @@ function [svar,tysi,editable] = FormatStringsForWatch(var)
   else
 
     tysi = LocalizeForScipad("Type:") + " " + typeof(var) 
-    
+
     if and(tvar<>[1 2 4 5 6 7 8 9 10 11 13 14 15 16 17 128 129 130]) then
       // unsupported cases
       warning(LocalizeForScipad(" what you try to watch is of type ")...

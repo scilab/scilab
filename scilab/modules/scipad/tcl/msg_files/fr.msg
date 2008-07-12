@@ -24,7 +24,7 @@
 # See the file scipad/license.txt
 #
 # Scipad texts in French by Francois Vogel
-# in sync at least with v6.143
+# in sync at least with v6.148
 
 
 # commons
@@ -41,6 +41,8 @@
 ::msgcat::mcset fr "&Close" "&Fermer"
 ::msgcat::mcset fr "Error " "Erreur "
 ::msgcat::mcset fr "The file" "Le fichier"
+::msgcat::mcset fr "Function" "Fonction"
+::msgcat::mcset fr "Line" "Ligne"
 
 
 # buffernavigation.tcl
@@ -86,8 +88,46 @@
     ::msgcat::mcset fr "is special and cannot be watched." "est spéciale et ne peut pas être espionnée."
 
 
+# db_bptsgui.tcl
+::msgcat::mcset fr "Breakpoints properties" "Propriétés des points d'arrêt"
+::msgcat::mcset fr "Enabled" "Activé"
+::msgcat::mcset fr "Expression" "Expression"
+::msgcat::mcset fr "Hit if" "Accédé si"
+::msgcat::mcset fr istrue "est vraie"
+::msgcat::mcset fr haschanged "a changé"
+::msgcat::mcset fr "Watched" "Espionné"
+::msgcat::mcset fr "Hit count" "Nb d'accès"
+::msgcat::mcset fr "Break if" "Stoppe si"
+::msgcat::mcset fr "Threshold" "Seuil"
+::msgcat::mcset fr always "toujours"
+::msgcat::mcset fr equalto "est égal à"
+::msgcat::mcset fr multipleof "est un multiple de"
+::msgcat::mcset fr greaterthan "est supérieur à"
+::msgcat::mcset fr lessthan "est inférieur à"
+::msgcat::mcset fr "Reset hit" "RàZ accès"
+::msgcat::mcset fr "Breakpoints vocabulary" "Vocabulaire des points d'arrêt"
+::msgcat::mcset fr "A breakpoint is identified by its location, i.e. its position (a line number) in a function." \
+                   "Un point d'arrêt est identifié par sa position, i.e. son numéro de ligne au sein d'une fonction."
+::msgcat::mcset fr "When the execution process encounters an enabled breakpoint, then this breakpoint is said to be reached." \
+                   "Lorsque l'exécution du code rencontre un point d'arrêt activé, alors ce point d'arrêt est dit atteint."
+::msgcat::mcset fr "When the breakpoint is reached and its associated conditional expression is true (or changed),\
+                    then the breakpoint is said to be hit." \
+                   "Lorsqu'un point d'arrêt est atteint et que son expression conditionnelle est vraie (ou modifiée),\
+                    alors le point d'arrêt est dit accédé."
+::msgcat::mcset fr "The hit count is the number of times the breakpoint has been hit." \
+                   "Le nombre d'accès est le nombre de fois que le point d'arrêt a été accédé."
+::msgcat::mcset fr "Execution will stop at a breakpoint if the hit count satisfies the selectable break condition." \
+                   "L'exécution s'arrêtera sur un point d'arrêt si le nombre d'accès à ce point d'arrêt satisfait la condition d'arrêt."
+
+
 # db_bptsmanagement.tcl
 ::msgcat::mcset fr "No breakpoint here!" "Pas de point d'arrêt ici !"
+::msgcat::mcset fr "Delete all breakpoints" "Supprimer tous les points d'arrêt"
+::msgcat::mcset fr "Are you sure you want to delete all the existing breakpoints?" \
+                   "Etes-vous sûr de vouloir supprimer tous les points d'arrêt ?"
+::msgcat::mcset fr "All breakpoints deleted" "Points d'arrêt supprimés"
+::msgcat::mcset fr "No action taken" "Aucun changement effectué"
+::msgcat::mcset fr "No breakpoint!" "Aucun point d'arrêt !"
 
 
 # db_configureexec.tcl
@@ -454,7 +494,7 @@
 # infomessages.tcl
 ::msgcat::mcset fr "Line:" "Ligne:"
     ::msgcat::mcset fr "Column:" "Colonne:"
-::msgcat::mcset fr "Line" "Ligne"
+#::msgcat::mcset fr "Line" "Ligne" ; # now common
     ::msgcat::mcset fr "in" "de"
 ::msgcat::mcset fr "Logical line:" "Ligne logique:"
 ::msgcat::mcset fr " \[ReadOnly\]" " \[LectureSeule\]"
@@ -526,6 +566,7 @@
 
     # menues.tcl - Debug menu
     ::msgcat::mcset fr "&Insert/Remove breakpoint" "&Insérer/Supprimer un point d'arrêt"
+    ::msgcat::mcset fr "&Edit breakpoints" "&Editer les points d'arrêt"
     ::msgcat::mcset fr "Remove &all breakpoints" "Supprimer &tous les points d'arrêt"
     ::msgcat::mcset fr "&Configure execution..." "Con&figurer l'exécution..."
     ::msgcat::mcset fr "Go to next b&reakpoint" "Aller jusq&u'au prochain point d'arrêt"
@@ -699,7 +740,7 @@
     ::msgcat::mcset fr ", and there are" ", et il y a"
     ::msgcat::mcset fr "continued lines, i.e. we are at line" "lignes multiples, i.e. nous sommes à la ligne"
     ::msgcat::mcset fr "of" "de"
-::msgcat::mcset fr "Function" "Fonction"
+#::msgcat::mcset fr "Function" "Fonction" ; # now global
     ::msgcat::mcset fr "line" "ligne"
 ::msgcat::mcset fr "The cursor is not currently inside a function body." "Le curseur ne se trouve pas à l'intérieur d'une fonction."
 ::msgcat::mcset fr "Which function?" "Quelle fonction ?"

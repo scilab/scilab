@@ -63,11 +63,14 @@ proc showwatch_bp {} {
     frame $watch.f.f1 ;# -bg pink
 
     frame $watch.f.f1.f1l ;# -bg red
+    set buttonEditBpt $watch.f.f1.f1l.editBpt
+    button $buttonEditBpt -command "showbptgui_bp" -image [lindex $db_butimages 2] \
+           -relief flat -overrelief raised
     set buttonConfigure $watch.f.f1.f1l.configure
-    button $buttonConfigure -command "configurefoo_bp" -image [lindex $db_butimages 4] \
+    button $buttonConfigure -command "configurefoo_bp" -image [lindex $db_butimages 5] \
            -relief flat -overrelief raised
     set buttonToNextBpt $watch.f.f1.f1l.toNextBpt
-    button $buttonToNextBpt -command "tonextbreakpoint_bp" -image [lindex $db_butimages 6] \
+    button $buttonToNextBpt -command "tonextbreakpoint_bp" -image [lindex $db_butimages 7] \
            -relief flat -overrelief raised
     set buttonStepInto $watch.f.f1.f1l.stepInto
     button $buttonStepInto -command "stepbystepinto_bp" -image [lindex $db_stepbutimages 1] \
@@ -79,22 +82,22 @@ proc showwatch_bp {} {
     button $buttonStepOut -command "stepbystepout_bp" -image [lindex $db_stepbutimages 3] \
            -relief flat -overrelief raised
     set buttonRunToReturn $watch.f.f1.f1l.runToReturn
-    button $buttonRunToReturn -command "runtoreturnpoint_bp" -image [lindex $db_butimages 8] \
+    button $buttonRunToReturn -command "runtoreturnpoint_bp" -image [lindex $db_butimages 9] \
            -relief flat -overrelief raised
     set buttonRunToCursor $watch.f.f1.f1l.runToCursor
-    button $buttonRunToCursor -command "runtocursor_bp" -image [lindex $db_butimages 9] \
+    button $buttonRunToCursor -command "runtocursor_bp" -image [lindex $db_butimages 10] \
            -relief flat -overrelief raised
     set buttonGoOnIgnor $watch.f.f1.f1l.goOnIgnor
-    button $buttonGoOnIgnor -command "goonwo_bp" -image [lindex $db_butimages 10] \
+    button $buttonGoOnIgnor -command "goonwo_bp" -image [lindex $db_butimages 11] \
            -relief flat -overrelief raised
     set buttonBreakDebug $watch.f.f1.f1l.breakDebug
-    button $buttonBreakDebug -command "break_bp" -image [lindex $db_butimages 14] \
+    button $buttonBreakDebug -command "break_bp" -image [lindex $db_butimages 15] \
            -relief flat -overrelief raised
     set buttonCancelDebug $watch.f.f1.f1l.cancelDebug
-    button $buttonCancelDebug -command "canceldebug_bp" -image [lindex $db_butimages 15] \
+    button $buttonCancelDebug -command "canceldebug_bp" -image [lindex $db_butimages 16] \
            -relief flat -overrelief raised
-    pack $buttonConfigure $buttonToNextBpt $buttonStepInto \
-         $buttonStepOver $buttonStepOut \
+    pack $buttonEditBpt $buttonConfigure $buttonToNextBpt \
+         $buttonStepInto $buttonStepOver $buttonStepOut \
          $buttonRunToReturn $buttonRunToCursor \
          $buttonGoOnIgnor \
          $buttonBreakDebug $buttonCancelDebug \
@@ -158,13 +161,19 @@ proc showwatch_bp {} {
     pack $watch.f.f1 -anchor w -expand 0 -fill both
     pack $watch.f.f1.f1fr -anchor w -expand 1 -fill both
 
-    set watchwinicons [list "sep" "" "" "sep" $buttonConfigure "sep" $buttonToNextBpt \
-                            "" $buttonRunToReturn $buttonRunToCursor $buttonGoOnIgnor \
-                            "sep" "" "sep"\
+    set watchwinicons [list "sep" "" $buttonEditBpt "" "sep" $buttonConfigure "sep" \
+                            $buttonToNextBpt "" $buttonRunToReturn $buttonRunToCursor \
+                            $buttonGoOnIgnor "sep" "" "sep"\
                             $buttonBreakDebug $buttonCancelDebug ]
     set watchwinstepicons [list "sep" $buttonStepInto $buttonStepOver $buttonStepOut]
 
     setdbmenuentriesstates_bp
+    bind $buttonEditBpt     <Enter> {update_bubble_watch enter \
+        $MenuEntryId($pad.filemenu.debug.[mcra "&Edit breakpoints"]) \
+        [winfo pointerxy $watch]}
+    bind $buttonEditBpt     <Leave> {update_bubble_watch leave \
+        $MenuEntryId($pad.filemenu.debug.[mcra "&Edit breakpoints"]) \
+        [winfo pointerxy $watch]}
     bind $buttonConfigure   <Enter> {update_bubble_watch enter \
         $MenuEntryId($pad.filemenu.debug.[mcra "&Configure execution..."]) \
         [winfo pointerxy $watch]}

@@ -86,6 +86,7 @@ if { [info exists pad] } {
     source [file join $sourcedir fonts.tcl]
     source [file join $sourcedir tooltips.tcl]
     source [file join $sourcedir progressbar.tcl]
+    source [file join $sourcedir scrollableframe.tcl]
 
     # now all the pure main level code
     source [file join $sourcedir defaults.tcl]

@@ -221,7 +221,7 @@ set colorizeuserfuns "yes"
 setdefaultfonts
 
 #############
-# Other non-prefeferences initial settings
+# Other non-preferences initial settings
 
 if { ![info exists lang] } { set lang "eng" }
 
@@ -315,6 +315,10 @@ if { [catch {package require tkdnd}] == 0 } {
 } else {
     set TkDnDloaded "false"
 }
+
+
+# scrolledframe (this is used in the breakpoints properties dialog)
+namespace import ::scrolledframe::scrolledframe
 
 # End of additional packages
 #############
@@ -474,6 +478,10 @@ append sresRE                 {(} $saslRE {(return)|(resume)} $sasrRE {)}
 append sresRE             {)}
 
 ###
+
+# Strictly positive integer number, with no leading zero, or zero itself,
+# reporting
+set strictlypositiveintegerREpat {\A((0)|([1-9][0-9]*))\Z}
 
 # Floating point number, reporting version and non-reporting version
 set floatingpointnumberREpat_rep {((\.\d+)|(\m\d+(\.\d*)?))([deDE][+\-]?\d{1,3})?\M}

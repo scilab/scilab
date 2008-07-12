@@ -882,7 +882,7 @@ proc switchcolorizefile {} {
 
 proc schememenus {textarea} {
     global pad listoffile
-    global Shift_F8 Shift_F11 Shift_F12
+    global Shift_F8 Shift_F9 Shift_F11 Shift_F12
     global watch watchwinicons watchwinstepicons
     global MenuEntryId
     set dm $pad.filemenu.debug
@@ -917,6 +917,7 @@ proc schememenus {textarea} {
             }
         }
         # remove debugger bindings
+        pbind all $Shift_F9 {}
         bind all <F9> {}
         bind all <Control-F9> {}
         bind all <F10> {}
@@ -933,6 +934,7 @@ proc schememenus {textarea} {
         if {[istoplevelopen watch]} {
             set wi $watchwinicons
             set wis $watchwinstepicons
+            [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state disabled
             [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
             [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
             [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled

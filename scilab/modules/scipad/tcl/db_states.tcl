@@ -91,7 +91,7 @@ proc getdbstate {} {
 
 proc setdbmenuentriesstates_bp {} {
     global pad watch watchwinicons watchwinstepicons
-    global Shift_F8 Shift_F11 Shift_F12
+    global Shift_F8 Shift_F9 Shift_F11 Shift_F12
     global MenuEntryId
     global bug2384_fixed
 
@@ -103,8 +103,10 @@ proc setdbmenuentriesstates_bp {} {
     if {[getdbstate] == "NoDebug"} {
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
         bind all <F9> {insertremove_bp}
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Edit breakpoints"]) -state normal
+        bind all <Control-F9> {showbptgui_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
-        bind all <Control-F9> {removeall_bp}
+        pbind all $Shift_F9 {removeallbpt_scipad_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state normal
         bind all <F10> {configurefoo_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state disabled
@@ -135,8 +137,10 @@ proc setdbmenuentriesstates_bp {} {
     } elseif {[getdbstate] == "ReadyForDebug"} {
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
         bind all <F9> {insertremove_bp}
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Edit breakpoints"]) -state normal
+        bind all <Control-F9> {showbptgui_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
-        bind all <Control-F9> {removeall_bp}
+        pbind all $Shift_F9 {removeallbpt_scipad_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state normal
         bind all <F10> {configurefoo_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state normal
@@ -167,8 +171,10 @@ proc setdbmenuentriesstates_bp {} {
     } elseif {[getdbstate] == "DebugInProgress"} {
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
         bind all <F9> {insertremove_bp}
+        $dm entryconfigure $MenuEntryId($dm.[mcra "&Edit breakpoints"]) -state normal
+        bind all <Control-F9> {showbptgui_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
-        bind all <Control-F9> {removeall_bp}
+        pbind all $Shift_F9 {removeallbpt_scipad_bp}
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state disabled
         bind all <F10> {}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state normal
@@ -209,6 +215,7 @@ proc setdbmenuentriesstates_bp {} {
         set wi $watchwinicons
         set wis $watchwinstepicons
         if {[getdbstate] == "NoDebug"} {
+            [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state normal
             [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
             [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
             [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
@@ -220,6 +227,7 @@ proc setdbmenuentriesstates_bp {} {
             [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
             [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
         } elseif {[getdbstate] == "ReadyForDebug"} {
+            [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state normal
             [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
             [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
             [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
@@ -231,6 +239,7 @@ proc setdbmenuentriesstates_bp {} {
             [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
             [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
         } elseif {[getdbstate] == "DebugInProgress"} {
+            [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state normal
             [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
             [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
             [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
@@ -341,12 +350,16 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
 # if it is not, set in Scilab the breakpoints set by the user (useful for
 # step by step mode, where all breakpoints were removed just before the call
 # to checkendofdebug_bp), check that step over did not enter an ancillary
-# (fix it if it happened), and skip no code lines
+# (fix it if it happened), check breakpoints condition expressions,
+# update the hit count, decide if the debug should stop and skip no code lines
+#
+# warning: highly polished guru code here! don't change if you don't perfectly
+#          know what you're doing...!
 
     global setbptonreallybreakpointedlinescmd
     global prevdbpauselevel initprevdbpauselevel
 
-    set removecomm [duplicatechars [removescilab_bp "no_output"] "\""]
+    set removecomm [duplicatechars [removeallbpt_scilab "no_output"] "\""]
     regsub -all {\"\"} $removecomm "\\\"\"" removecomm
     regsub -all {\?} $removecomm "\\\?" removecomm
     regsub -all {\$} $removecomm "\\\$" removecomm
@@ -437,7 +450,7 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
 #        desired behavior is thus not obtained for these tests
 #        Note however that this syntax is available in the BUILD_412 environment
 #
-    set stoppedonarealbpt "TCL_EvalStr(\"lsearch \[getreallybptedlines \" + db_m(3) + \"\] \" + string(db_l(3)-1) + \"\",\"scipad\") <> string(-1)"
+    set stoppedonarealbpt "TCL_EvalStr(\"lsearch -sorted -increasing -integer -exact \[getfunlinesfrombptsprops \" + db_m(3) + \"\] \" + string(db_l(3)) + \"\",\"scipad\") <> string(-1)"
     set breakwashit "TCL_EvalStr(\"isbreakhit_bp\",\"scipad\") == \"true\""
     set stoppedinsamefun "TCL_EvalStr(\"hasstoppedinthesamefun\",\"scipad\") == \"true\""
     switch -- $stepmode {
@@ -481,6 +494,102 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
         "runtoret" { set didntwentout "%f" }
     }
 
+    # breakpoints have an associated expression that is evaluated when the
+    # breakpoint location is reached.
+    # A breakpoint is hit only if the expression is true (or has changed,
+    # depending on what the user selected)
+    # the hit condition is in Scilab language and is checked here
+    # then the hit count is updated and is compared to the hit condition
+    # in order to decide whether the debug should stop at the reached
+    # position or not
+    # Note: in "nostep" mode, the break command must be tested to set $muststop
+    # to true when the user has hit Break because in this case Scilab doesn't stop
+    # on a real breakpoint as it would be expected when $stepmode is "nostep"
+#
+# <TODO> Warning! The syntax below is NOT compatible with the BUILD4 environment
+#        since it makes use of the result from TCL_EvalStr, which is not available
+#        in BUILD4. An error will be thrown "undefined index" or something alike
+#        Note however that this syntax is available in the BUILD_412 environment
+#
+    switch -- $stepmode {
+        "nostep"   {
+                    # the syntax below would create a too long ScilabEval command
+                    # (bug 2654, tagged as RESOLVED LATER, now REOPENED after complaining...)
+                    #set ID "\" + TCL_EvalStr(\"where2bptID \" + db_m(3) + \" \" + string(db_l(3)) ,\"scipad\") + \""
+                    # thus we must to go through a Scilab variable instead (drawback: possible name collision in Scilab)
+# <TODO> replace the hardcoded 3 for the pause level in the instruction below
+                    set getbptIDcommand "db_BPTID=TCL_EvalStr(\"where2bptID \" + db_m(3) + \" \" + string(db_l(3)) ,\"scipad\");"
+                    set isbreakpointenabled       "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",enable)\",\"scipad\") == \"true\""
+                    set isconditiontypeistrue     "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",conditiontype)\",\"scipad\") == \"istrue\""
+                    set isconditiontypehaschanged "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",conditiontype)\",\"scipad\") == \"haschanged\""
+                    set prevconditionvalue        "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",curexpvalue)\",\"scipad\")"
+                    set rawhitcondition "evstr(TCL_GetVar(\"\"bptsprops(\"+db_BPTID+\",expression)\"\",\"\"scipad\"\"))"
+                    set evalerrorproofedhitcondition "\[db_condexprresult,db_evstrierr\]=evstr(\"$rawhitcondition\"); \
+                                                      if db_evstrierr<>0 then db_condexprresult=emptystr();lasterror(%t);end; \
+                                                      db_condexprresult=FormatStringsForWatch(db_condexprresult);"
+
+                    set isbpthit "($isbreakpointenabled & ( ($isconditiontypeistrue & db_condexprresult==FormatStringsForWatch(%t)) | \
+                                                            ($isconditiontypehaschanged & db_condexprresult<>$prevconditionvalue) \
+                                                          ) \
+                                  )"
+                    set inchitcount "TCL_EvalStr(\"incr bptsprops(\"+db_BPTID+\",hitcount)\",\"scipad\");"
+
+                    # note that it's really the *current* hit count here,
+                    # i.e. the hit count after execution of $inchitcount
+                    # in the huge ScilabEval below
+                    set currenthitcount      "evstr(TCL_GetVar(\"bptsprops(\"+db_BPTID+\",hitcount)\",\"scipad\"))"
+                    set hitcountthreshold    "evstr(TCL_GetVar(\"bptsprops(\"+db_BPTID+\",hitcountthreshold)\",\"scipad\"))"
+                    set isbreakifalways      "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",hitcountcondition)\",\"scipad\") == \"always\""
+                    set isbreakifequalto     "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",hitcountcondition)\",\"scipad\") == \"equalto\""
+                    set isbreakifmultipleof  "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",hitcountcondition)\",\"scipad\") == \"multipleof\""
+                    set isbreakifgreaterthan "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",hitcountcondition)\",\"scipad\") == \"greaterthan\""
+                    set isbreakiflessthan    "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",hitcountcondition)\",\"scipad\") == \"lessthan\""
+
+                    set muststop "($breakwashit) | ($isbpthit & ($isbreakifalways | \
+                                                                 ( $isbreakifequalto & ($currenthitcount == $hitcountthreshold) ) | \
+                                                                 ( $isbreakifmultipleof & (modulo($currenthitcount,$hitcountthreshold) == 0) ) | \
+                                                                 ( $isbreakifgreaterthan & ($currenthitcount > $hitcountthreshold) ) | \
+                                                                 ( $isbreakiflessthan & ($currenthitcount < $hitcountthreshold) ) \
+                                                                ) \
+                                                       )"
+                   }
+        "into"     {
+                    set evalerrorproofedhitcondition ""
+                    set isbpthit "%f"
+                    set inchitcount ""
+                    set getbptIDcommand ""
+                    set muststop "%t"
+                   }
+        "over"     {
+                    set evalerrorproofedhitcondition ""
+                    set isbpthit "%f"
+                    set inchitcount ""
+                    set getbptIDcommand ""
+                    set muststop "%t"
+                   }
+        "out"      {
+                    set evalerrorproofedhitcondition ""
+                    set isbpthit "%f"
+                    set inchitcount ""
+                    set getbptIDcommand ""
+                    set muststop "%t"
+                   }
+        "runtocur" {
+                    set evalerrorproofedhitcondition ""
+                    set isbpthit "%f"
+                    set inchitcount ""
+                    set getbptIDcommand ""
+                    set muststop "%t"
+                   }
+        "runtoret" {
+                    set evalerrorproofedhitcondition ""
+                    set isbpthit "%f"
+                    set inchitcount ""
+                    set getbptIDcommand ""
+                    set muststop "%t"
+                   }
+    }
+
     # now create the full command to be ScilabEval-ed at the end
     # of each debug command
     # note: all this is highly polished and should only be changed after
@@ -499,27 +608,41 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     set comm7      "TCL_EvalStr(\"updatewatchvars;unsetdebuggerbusycursor\",\"scipad\");"
     set comm8      "TCL_SetVar(\"prevdbpauselevel\",$initprevdbpauselevel,\"scipad\");"
     set comm9  "else"
-    set commc1     "if $steppedininsteadofover then"
-    set commc2         "TCL_EvalStr(\"ScilabEval_lt TCL_EvalStr(\"\"closecurifopenedbyuabpt\"\",\"\"scipad\"\") seq\",\"scipad\");"
-    set commc3         "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"set afilewasopenedbyuabpt false\"\",\"\"scipad\"\")} seq\",\"scipad\");"
-    set commc4         "TCL_EvalStr(\"stepbystepout_bp 0 0\",\"scipad\");"
-    set commc5     "elseif $didntwentout then"
-    set commc6         "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"set afilewasopenedbyuabpt false\"\",\"\"scipad\"\")} seq\",\"scipad\");"
-    set commc7         "TCL_EvalStr(\"stepbystepout_bp 0 0\",\"scipad\");"
-    set commc8     "else"
-    set commc9         "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"set afilewasopenedbyuabpt false\"\",\"\"scipad\"\")} seq\",\"scipad\");"
-    set commc10        "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
-    set commc11        "TCL_SetVar(\"prevdbpauselevel\",size(db_l,1),\"scipad\");"
-    set commc12    "end;"
+    set comma1     "if $steppedininsteadofover then"
+    set comma2         "TCL_EvalStr(\"ScilabEval_lt TCL_EvalStr(\"\"closecurifopenedbyuabpt\"\",\"\"scipad\"\") seq\",\"scipad\");"
+    set comma3         "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"set afilewasopenedbyuabpt false\"\",\"\"scipad\"\")} seq\",\"scipad\");"
+    set comma4         "TCL_EvalStr(\"stepbystepout_bp 0 0\",\"scipad\");"
+    set commb1     "elseif $didntwentout then"
+    set commb2         "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"set afilewasopenedbyuabpt false\"\",\"\"scipad\"\")} seq\",\"scipad\");"
+    set commb3         "TCL_EvalStr(\"stepbystepout_bp 0 0\",\"scipad\");"
+    set commc1     "else"
+    set commd1         "$getbptIDcommand;"
+    set commd2         "$evalerrorproofedhitcondition;"
+    set commd3         "TCL_EvalStr(\"saveallconditionsvalues\",\"scipad\");"
+    set commd4         "if ($isbpthit) then $inchitcount;end;"
+    set commd5         "if ~($muststop) then"
+    set commd6             "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"set afilewasopenedbyuabpt false\"\",\"\"scipad\"\")} seq\",\"scipad\");"
+    set commd7             "TCL_EvalStr(\"resume_bp 0\",\"scipad\");"
+    set commd8         "else"
+    set commd9            "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"set afilewasopenedbyuabpt false\"\",\"\"scipad\"\")} seq\",\"scipad\");"
+    set commda            "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
+    set commdb            "TCL_SetVar(\"prevdbpauselevel\",size(db_l,1),\"scipad\");"
+    set commdc         "end;"
+    set commc2     "end;"
     set comm10     "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\" \"\"seq\"\" \",\"scipad\");"
     set comm11     "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"resetbreakhit_bp\"\",\"\"scipad\"\")} seq\",\"scipad\");"
     set comm12 "end;"
 #    set comm12 "end;TCL_EvalStr(\"hidewrappercode\",\"scipad\");"
 
-    set commc [concat $commc1 $commc2 $commc3 $commc4 $commc5 $commc6 \
-                      $commc7 $commc8 $commc9 $commc10 $commc11 $commc12]
+    set comma [concat $comma1 $comma2 $comma3 $comma4]
+    set commb [concat $commb1 $commb2 $commb3]
+    set commd [concat $commd1 $commd2 $commd3 $commd4 $commd5 $commd6 \
+                      $commd7 $commd8 $commd9 $commda $commdb $commdc]
+    set commc [concat $commc1 $commd $commc2]
+
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 \
-                         $comm8 $comm9 $commc $comm10 $comm11 $comm12]
+                         $comm8 $comm9 $comma $commb $commc \
+                         $comm10 $comm11 $comm12]
 
     # do it!
     ScilabEval_lt "$fullcomm" "seq"

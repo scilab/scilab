@@ -46,26 +46,16 @@ proc execfile_bp {{stepmode "nostep"}} {
     global setbptonreallybreakpointedlinescmd
     global tmpdir
     global previousstopfun
+    global bptsprops
 
     if {[isscilabbusy 5]} {return}
     showinfo $waitmessage
 
     # create the setbpt command
     set setbpcomm ""
-    foreach textarea [filteroutpeers $listoftextarea] {
-        set tagranges [$textarea tag ranges breakpoint]
-        foreach {tstart tstop} $tagranges {
-            set infun [whichfun [$textarea index $tstart] $textarea]
-            if {$infun != {} } {
-                set funname [lindex $infun 0]
-                set lineinfun [expr {[lindex $infun 1] - 1}]
-                set setbpcomm [concat $setbpcomm "setbpt(\"$funname\",$lineinfun);"]
-            } else {
-                # <TODO> .sce case if some day the parser uses pseudocode noops
-                # with the wrapper implementation, breakpoints are always
-                # inside a function at the time of exec
-            }
-        }
+    foreach ID [getusedIDsfrombptprops] {
+        set setbptlinenum [expr {$bptsprops($ID,funline) - 1}]
+        set setbpcomm [concat $setbpcomm "setbpt(\"$bptsprops($ID,funname)\",$setbptlinenum);"]
     }
 
     # exec any non level zero code, i.e. everything that is in a function
@@ -150,6 +140,10 @@ proc execfile_bp {{stepmode "nostep"}} {
         set previousstopfun ""
         set setbptonreallybreakpointedlinescmd $setbpcomm
         setdbstate "DebugInProgress"
+        # get the initial value of all breakpoints conditions
+        saveallconditionsvalues
+        # reset all hit counts
+        resetallhitcounts
         # no need to call removeautovars at this point, Scilab is always at
         # the main level, thus there is no local variables to remove
         set commnvars [createsetinscishellcomm $watchvars]
@@ -923,7 +917,7 @@ proc goonwo_bp {} {
     showinfo $waitmessage
     if {$funnameargs != ""} {
         removeallactive_bp
-        removescilab_bp "with_output"
+        removeallbpt_scilab "with_output"
         resume_bp
     } else {
         # <TODO> .sce case if some day the parser uses pseudocode noops
@@ -1013,7 +1007,7 @@ proc canceldebug_bp {} {
             removeautovars
             removeallactive_bp
             ScilabEval_lt "abort" "seq"
-            removescilab_bp "with_output"
+            removeallbpt_scilab "with_output"
             getwatchvarfromshell
             getcallstackfromshell
             evalgenericexpinshell

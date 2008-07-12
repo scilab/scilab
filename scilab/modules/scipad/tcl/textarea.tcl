@@ -104,14 +104,14 @@ proc TextStyles { t } {
     $t tag configure rem2 -foreground $REMCOLOR
     $t tag configure xmltag -foreground $XMLCOLOR
     $t tag configure number -foreground $NUMCOLOR
-    $t tag configure breakpoint -background $BREAKPOINTCOLOR
+    tagconfigurebreakpointbackground_textarea $t
     $t tag configure activebreakpoint -background $BREAKPOINTCOLOR
     $t tag configure activebreakpoint -font $actbptextFont \
         -relief raised -borderwidth 2
     $t tag configure foundtext -background $FOUNDTEXTCOLOR
     $t tag configure replacedtext -background $REPLACEDTEXTCOLOR
     $t tag configure fakeselection -background $FAKESELCOLOR
-    $t tag raise activebreakpoint breakpoint
+    taglowerbreakpoint $t activebreakpoint
     $t tag raise sel activebreakpoint
 
     if {$linenumbersmargins != "hide" && [isdisplayed $t]} {

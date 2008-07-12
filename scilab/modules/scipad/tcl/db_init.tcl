@@ -55,6 +55,10 @@ set prevdbpauselevel $initprevdbpauselevel
 set afilewasopenedbyuabpt false             ;# see proc checkendofdebug_bp
 set displayruntoreturnwarning true
 set breakcommandtriggered false
+array set bptsprops {}
+unset -nocomplain bptsgui    :# needed to reset initial state of the bptsgui as seen by proc showbptgui_bp when Scipad is closed and reopened
+set bptconditiontypes [list istrue haschanged]  ; # intentionally not localized, see proc updatebptspropscondtype
+set bpthitconditions  [list always equalto multipleof greaterthan lessthan]  ; # intentionally not localized, see proc updatebptspropshitconds
 
 # list of functions names that cannot be debugged
 # because they are debugger ancillaries
@@ -105,6 +109,7 @@ set waitmessage [mc "Please wait..."]
 set newsizex 32
 set newsizey 32
 image create photo butsetbptimage_o      -file [file join $iconsdir setbp.gif]
+image create photo buteditbptimage_o     -file [file join $iconsdir editbp.gif]
 image create photo butremoveallimage_o   -file [file join $iconsdir removeallbp.gif]
 image create photo butconfigureimage_o   -file [file join $iconsdir arrowframe.gif]
 image create photo butnextimage_o        -file [file join $iconsdir arrowin.gif]
@@ -123,6 +128,7 @@ set orig_h [image height butconfigureimage_o]
 set subsamplex [expr {$orig_w / $newsizex}]
 set subsampley [expr {$orig_h / $newsizey}]
 image create photo butsetbptimage
+image create photo buteditbptimage
 image create photo butremoveallimage
 image create photo butconfigureimage
 image create photo butnextimage
@@ -137,6 +143,7 @@ image create photo butwatchimage
 image create photo butbreakimage
 image create photo butcancelimage
 butsetbptimage      copy butsetbptimage_o      -subsample $subsamplex $subsampley
+buteditbptimage     copy buteditbptimage_o     -subsample $subsamplex $subsampley
 butremoveallimage   copy butremoveallimage_o   -subsample $subsamplex $subsampley
 butconfigureimage   copy butconfigureimage_o   -subsample $subsamplex $subsampley
 butnextimage        copy butnextimage_o        -subsample $subsamplex $subsampley
@@ -150,14 +157,15 @@ butgoonignorimage   copy butgoonignorimage_o   -subsample $subsamplex $subsample
 butwatchimage       copy butwatchimage_o       -subsample $subsamplex $subsampley
 butbreakimage       copy butbreakimage_o       -subsample $subsamplex $subsampley
 butcancelimage      copy butcancelimage_o      -subsample $subsamplex $subsampley
-set db_butimages [list "sep" butsetbptimage butremoveallimage "sep" butconfigureimage \
-                       "sep" butnextimage butstepimage \
+set db_butimages [list "sep" butsetbptimage buteditbptimage butremoveallimage "sep" \
+                       butconfigureimage "sep" butnextimage butstepimage \
                        butruntoreturnimage butruntocursorimage \
                        butgoonignorimage "sep" butwatchimage "sep" butbreakimage \
                        butcancelimage]
 set db_stepbutimages [list "sep" butstepenterimage butstepoverimage butstepexitimage]
 # Divide size again by 2 for display in the debug menu
 image create photo menubutsetbptimage
+image create photo menubuteditbptimage
 image create photo menubutremoveallimage
 image create photo menubutconfigureimage
 image create photo menubutnextimage
@@ -174,6 +182,7 @@ image create photo menubutcancelimage
 set subsamplex [expr {$orig_w / ($newsizex / 2)}]
 set subsampley [expr {$orig_h / ($newsizey / 2)}]
 menubutsetbptimage      copy butsetbptimage_o      -subsample $subsamplex $subsampley
+menubuteditbptimage     copy buteditbptimage_o     -subsample $subsamplex $subsampley
 menubutremoveallimage   copy butremoveallimage_o   -subsample $subsamplex $subsampley
 menubutconfigureimage   copy butconfigureimage_o   -subsample $subsamplex $subsampley
 menubutnextimage        copy butnextimage_o        -subsample $subsamplex $subsampley

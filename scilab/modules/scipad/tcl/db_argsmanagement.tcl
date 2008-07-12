@@ -395,6 +395,8 @@ proc Removearg_bp {leftwin {rightwin "norightwin"}} {
             set funvars($funname) [lreplace $funvars($funname) \
                                             $selecteditem $selecteditem]
         }
+        # uncheck the "watched" checkbox for all the conditional breakpoints concerned
+        unwatchallcondbptexpr [$leftwin get $selecteditem]
         # thanks to the -listvariable argument used for the generic expressions listbox,
         # $watchgenexps is updated automatically by Tcl when deleting in the listbox
         $leftwin delete $selecteditem

@@ -145,8 +145,11 @@ proc createmenues {} {
     eval "$pad.filemenu.debug add command [me "&Insert/Remove breakpoint"] \
                -command \"insertremove_bp\" -accelerator F9\
                -image menubutsetbptimage -compound left "
+    eval "$pad.filemenu.debug add command [me "&Edit breakpoints"] \
+               -command \"showbptgui_bp\" -accelerator Ctrl+F9\
+               -image menubuteditbptimage -compound left "
     eval "$pad.filemenu.debug add command [me "Remove &all breakpoints"] \
-               -command \"removeall_bp\" -accelerator Ctrl+F9\
+               -command \"removeallbpt_scipad_bp\" -accelerator Shift+F9\
                -image menubutremoveallimage -compound left "
     $pad.filemenu.debug add separator
     eval "$pad.filemenu.debug add command [me "&Configure execution..."] \

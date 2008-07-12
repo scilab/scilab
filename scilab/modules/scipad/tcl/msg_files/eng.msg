@@ -23,12 +23,22 @@
 #
 # See the file scipad/license.txt
 #
-# in sync at least with v6.124
+# in sync at least with v6.148
 # English is the original language of Scipad
 # Scipad Tcl/Tk source should use english texts
 # for instance [mc "your text in english here"]
 # Translations are provided in other msg files
 # except for "expanded" text, like preference variables description
+
+
+# db_bptsgui.tcl
+::msgcat::mcset eng istrue "is true"
+::msgcat::mcset eng haschanged "has changed"
+::msgcat::mcset eng always "always"
+::msgcat::mcset eng equalto "is equal to"
+::msgcat::mcset eng multipleof "is a multiple of"
+::msgcat::mcset eng greaterthan "is greater than"
+::msgcat::mcset eng lessthan "is lower than"
 
 
 #helps.tcl

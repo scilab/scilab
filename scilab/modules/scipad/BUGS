@@ -3,6 +3,12 @@ SCIPAD BUGS AND WISHES LIST
 
 Bugs:
 -----
+-bug 2789, of course (debugger broken by the new Scilab-Tcl interface)
+ A few references:
+ http://bugzilla.scilab.org/show_bug.cgi?id=2789
+ http://wiki.scilab.org/Tcl_Thread
+ http://wiki.scilab.org/Scipad_debugger_inner_beauties
+
 -issues related with non colorizing single quoted text:
   . code lines such as mprintf("%s",'this is a function') break the line
     number counting in functions if not properly colorized as textquoted.
@@ -115,6 +121,12 @@ endfunction
  case provided here:
  http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/ea6b6dc9bce5f0e6
 
+-<TODO> In scipad.xml:
+    . Add explanations about debugging Scipad ancillaries
+    . Document the "Break" and "Run to return" debugger commands
+    . Document conditional breakpoints
+    . Change references to Tcl/Tk 8.4 to 8.x
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -182,7 +194,7 @@ Old bugs/whishes which have been hacked but could have been done better:
    because of the need to redraw the border, and this creates a visual flash
    of the window. I couldn't avoid it, and thus I just dropped this wish
  --in case this wish comes up again, investigate whether TIP 125 (Converting
-   between Frame and Toplevel Windows) could be of any use yo dock/undock
+   between Frame and Toplevel Windows) could be of any use to dock/undock
    the watch window (well, this feature is already working well, but if the
    watch could hide/display its parts without a complete redrawing, then
    TIP 125 could be useful). TIP 125 is implemented in Tk8.5b2 (27/10/07)
@@ -215,8 +227,6 @@ Debugger wishes:
 -Add an "Evaluate now!" button in the generic expressions area. Warning: then
  a roundtrip to Scilab must be done before evaluating, or let the roundtrip be
  mandatory when modifying any watch variable
-
--Conditional breakpoints
 
 -Scipad defines and uses, mostly for the debugger, some variables in order to
  send values to Scipad. All these variables currently start with the prefix 
@@ -285,6 +295,24 @@ Debugger wishes:
  invokes the configured function with no lhs
 
 -new debug command: Continue out of loop
+
+-increment the breakpoint hit count for any debugger move, not only in nostep
+ mode. Currently the hit count is not incremented when the debugger stops on
+ a breakpointed line, unless this line has been hit using F11. E.g. in step
+ by step mode, passing over a breakpoint doesn't increment the hit count.
+ The problem is that bptsprops($ID,hitcount) doesn't exist at any debug stop,
+ it only exists for stops corresponding to a breakpoint that was set
+ previously by the user
+
+-add a condition type (perhaps, but then document it also): isinerror
+
+-breakpoints GUI: right-click (or another way?) to remove a breakpoint from
+ the breakpoints GUI.
+ But then, adding breakpoints should perhaps also be possible from the GUI?
+
+-breakpoints GUI: change the areas containing the name of the breakpointed
+ function and the line number into editable spinboxes allowing the user to
+ modify the breakpoint position from the GUI
 
 
 Other wishes:
