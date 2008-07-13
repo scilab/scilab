@@ -340,6 +340,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/cutcopypaste.tcl \
 @TCLTK_TRUE@tcl/db_actbptmanagement.tcl \
 @TCLTK_TRUE@tcl/db_argsmanagement.tcl \
+@TCLTK_TRUE@tcl/db_bptsgui.tcl \
 @TCLTK_TRUE@tcl/db_bptsmanagement.tcl \
 @TCLTK_TRUE@tcl/db_configureexec.tcl \
 @TCLTK_TRUE@tcl/db_debugsession.tcl \
@@ -367,6 +368,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/scipad.tcl \
 @TCLTK_TRUE@tcl/scipaddebug1.tcl \
 @TCLTK_TRUE@tcl/scipaddebug2.tcl \
+@TCLTK_TRUE@tcl/scrollableframe.tcl \
 @TCLTK_TRUE@tcl/textarea.tcl \
 @TCLTK_TRUE@tcl/tkdndtools.tcl \
 @TCLTK_TRUE@tcl/tooltips.tcl \
@@ -423,7 +425,10 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/icons/removeallbp.gif \
 @TCLTK_TRUE@tcl/icons/setbp.gif \
 @TCLTK_TRUE@tcl/icons/stepstep.gif \
-@TCLTK_TRUE@tcl/icons/scipad-editor.gif
+@TCLTK_TRUE@tcl/icons/scipad-editor.gif \
+@TCLTK_TRUE@tcl/icons/editbp.gif \
+@TCLTK_TRUE@tcl/icons/questionbp.gif \
+@TCLTK_TRUE@tcl/icons/questionbpbig.gif
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
