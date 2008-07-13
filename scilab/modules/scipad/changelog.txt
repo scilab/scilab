@@ -1,3 +1,9 @@
+Francois VOGEL, 13/07/08
+ * More efficient implementation of lreverse and sreverse
+ * Tcl85 and Tk85 variables definition moved back to scipaddebug1.tcl
+   since they are used for sreverse definition and also for the log file
+ * version --> 6.149
+
 Francois VOGEL, 12/07/08
  * CONDITIONAL BREAKPOINTS
  * Breakpoints can be enabled and disabled, and have an associated conditional

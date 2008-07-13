@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 #!/bin/sh
 # the next line restarts using wish \
 exec `which wish` "$0" "$@"
@@ -61,6 +62,8 @@ if { [info exists pad] } {
     source [file join $sourcedir scipaddebug1.tcl]
 
     # now all the proc source files
+    # note: in special circumstances there may be a few main level
+    # code in these files
     source [file join $sourcedir popupmenus.tcl]
     source [file join $sourcedir scilabexec.tcl]
     source [file join $sourcedir whichfun.tcl]
@@ -77,7 +80,7 @@ if { [info exists pad] } {
     source [file join $sourcedir helps.tcl]
     source [file join $sourcedir textarea.tcl]
     source [file join $sourcedir infomessages.tcl]
-    source [file join $sourcedir undoredo.tcl]
+    source [file join $sourcedir undoredo.tcl]  ;  # note: contains main level code
     source [file join $sourcedir debugger.tcl] 
     source [file join $sourcedir localetools.tcl] 
     source [file join $sourcedir tkdndtools.tcl] 

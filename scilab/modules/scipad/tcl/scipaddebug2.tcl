@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 #################################
 #    Debug settings - Part 2    #
 #################################
@@ -50,7 +51,7 @@ if {$debuglog} {
     schememenus setdbmenuentriesstates_bp getdbstate pbind \
     Button1BindTextArea IsBufferEditable changedmodified \
     gettextareacur settextareacur countcontlines reshape_bp \
-    undoredo sreverse listreverse commonPrefix \
+    undoredo sreverse lreverse commonPrefix \
     iscontinuedline getstartofcontline getendofcontline \
     colorize remalltags tagcontline \
     colorizestringsandcomments_sd colorizestringsandcomments \

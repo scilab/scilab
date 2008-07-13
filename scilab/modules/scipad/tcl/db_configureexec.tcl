@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc configurefoo_bp {} {
     global pad conf watch
     global listboxinput listboxinputval listboxscrolly spin buttonAddc
@@ -815,7 +816,7 @@ proc checkforduplicateorunterminatedfuns {} {
             foreach dupind $duppos {
                 append dupfunfilesstr [lindex $listoffunnames [expr {$dupind + 1}] ]
             }
-            foreach dupind [listreverse $duppos] {
+            foreach dupind [lreverse $duppos] {
                 set listoffunnames [lreplace $listoffunnames $dupind [expr {$dupind + 1}]]
             }
         }

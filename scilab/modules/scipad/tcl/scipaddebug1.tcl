@@ -23,9 +23,38 @@
 #
 # See the file scipad/license.txt
 #
+
 #################################
 #    Debug settings - Part 1    #
 #################################
+
+
+#############
+# Detect Tcl and Tk versions and set global flags to true if versions are >= 8.5
+#
+# This is used to improve Scipad when used with recent Tcl/Tk without
+# preventing its use with older ladies
+# ex of 8.5 use: a. -strictlimits option in find/replace
+#                b. -stretch always option for panedwindows
+#                c. proc timestamp uses clock milliseconds
+#                d. peer text widgets are used when splitting
+#                e. Tk bug 1169429 (relative to cursor blinking) is fixed, workaround hack removed
+#                f. -topmost option of toplevels used also on Linux
+#                g. string reverse (TIP #272) is used during undo/redo, improving performance drastically
+#                h. the replace cursor is a nice looking block cursor
+if { [package vcompare $tcl_version 8.5] >= 0 } {
+    set Tcl85 1
+} else {
+    set Tcl85 0
+}
+if { [package vcompare $tk_version 8.5] >= 0 } {
+    set Tk85 1
+} else {
+    set Tk85 0
+}
+
+# End of Tcl/Tk versions detection
+#############
 
 
 #############

@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 ###########################################################################
 # Undo/Redo procs using the text widget embedded mechanism (Tk 8.4 and above)
 # The modified flag is automatically handled
@@ -159,19 +160,29 @@ proc commonPrefix {a b} {
     set res
 }
 
-proc sreverse s {
 # Reverse a string, e.g. "abc" becomes "cba"
 # This is an ancillary for undo/redo
-# Source: http://wiki.tcl.tk/44 - Additional string functions
-# TIP #272 (String and List Reversal Operations) is however be part of
-# Tcl8.5, and is used if available because it's performing at a
-# tremendously better performance level- TIP #272 is in "Final" state,
-# meaning that the corresponding implementation has been included in
-# the core (this was done 9 Nov. 06)
-    global Tcl85
-    if {$Tcl85} {
+# The sreverse procedure is implemented differently depending on whether
+# Tcl 8.5 or 8.4 is running in the background
+# This has some advantages over checking $Tcl85 inside sreverse everytime it
+# is called:
+#   First it does the 8.5 check only once, when the code is sourced
+#   Second if 8.5 becomes commonplace, the 8.4 implementation becomes just a
+#   piece of dead code
+if {$Tcl85} {
+    # TIP #272 (String and List Reversal Operations) is part of
+    # Tcl 8.5, and is used if available because it's performing at a
+    # tremendously better performance level - TIP #272 is in "Final" state,
+    # meaning that the corresponding implementation has been included in
+    # the core (this was done 9 Nov. 06)
+    # Tcl8.5 implementation
+    proc sreverse s {
         return [string reverse $s]
-    } else {
+    }
+} else {
+    # Tcl 8.4 implementation
+    # Source: http://wiki.tcl.tk/44 - Additional string functions
+    proc sreverse s {
         set l [string length $s]
         set res ""
         while {$l} {append res [string index $s [incr l -1]]}
@@ -179,21 +190,26 @@ proc sreverse s {
     }
 }
 
-proc listreverse l {
-# Reverse a list, e.g. {a b c} becomes {c b a}
-# Source: http://wiki.tcl.tk/43 - Additional list functions
-# TIP #272 (String and List Reversal Operations) is however be part of
-# Tcl8.5, and is used if available because it's performing at a
-# tremendously better performance level- TIP #272 is in "Final" state,
-# meaning that the corresponding implementation has been included in
-# the core (this was done 9 Nov. 06)
-    global Tcl85
-    if {$Tcl85} {
-        return [lreverse $l]
-    } else {
+# The lreverse procedure is implemented only if it doesn't exist
+#   First it does the 8.5 check (i.e. [info commands lreverse] eq {})
+#   only once, when the code is sourced
+#   Second if 8.5 becomes commonplace, this is just a piece of dead code
+if {[info commands lreverse] eq {} } {
+    # TIP #272 (String and List Reversal Operations) is part of
+    # Tcl 8.5, and is used if available because it's performing at a
+    # tremendously better performance level - TIP #272 is in "Final" state,
+    # meaning that the corresponding implementation has been included in
+    # the core (this was done 9 Nov. 06)
+    proc lreverse l {
+        # Reverse a list, e.g. {a b c} becomes {c b a}
+        # Tcl 8.4 implementation
+        # Source: http://wiki.tcl.tk/43 - Additional list functions
         set res {}
         set i [llength $l]
         while {$i} {lappend res [lindex $l [incr i -1]]}
         set res
     }
+} else {
+    # Nothing to do: this is Tcl 8.5 case, which includes a native
+    # lreverse command
 }
