@@ -395,8 +395,8 @@ namespace sciGraphics
 	double *wrect=sciGetAxesBounds(parentSubwin);//get canvas portion used by current axes
 	double pos[2];
 	sciGetLegendPos (m_pDrawed,pos);
-	pixBoxCorner1[0] = (wrect[0]+ pos[0]*(wrect[2]-wrect[0]))*size[0] ;
-	pixBoxCorner1[1] = (wrect[1]+ pos[1]*(wrect[3]-wrect[1]))*size[1] ;
+	pixBoxCorner1[0] = (wrect[0]+ pos[0]*(wrect[2]))*size[0] ;
+	pixBoxCorner1[1] = (wrect[1]+ pos[1]*(wrect[3]))*size[1] ;
 	break;
       }
     }
@@ -406,8 +406,8 @@ namespace sciGraphics
       sciGetJavaFigureSize(sciGetParent(parentSubwin), size) ;//get canvas width and height
       double *wrect=sciGetAxesBounds(parentSubwin);//get canvas portion used by current axes
       double pos[2];
-      pos[0]=(pixBoxCorner1[0]/size[0]-wrect[0])/(wrect[2]-wrect[0]);
-      pos[1]=(pixBoxCorner1[1]/size[1]-wrect[1])/(wrect[3]-wrect[1]);
+      pos[0]=(pixBoxCorner1[0]/size[0]-wrect[0])/(wrect[2]);
+      pos[1]=(pixBoxCorner1[1]/size[1]-wrect[1])/(wrect[3]);
       sciSetLegendPos (m_pDrawed,pos);
  
     }
