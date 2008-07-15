@@ -11,7 +11,7 @@ AC_DEFUN([AC_PVM], [
 
    AC_MSG_CHECKING([for PVM])
     if test "x$PVM_ROOT" == "x"; then
-		echo "PVM_ROOT PVM_LIB PVMARCH not set"
+		echo "PVM_ROOT not set"
 	fi
 	
 	# check for a PVM provided by the distrubtion in the PATH
@@ -126,66 +126,48 @@ AC_DEFUN([AC_PVM_INCLUDE], [
 AC_DEFUN([AC_PVM_LIBRARY], [
 USER_PVMLIBDIR=$1
   AC_MSG_CHECKING([for PVM3 library])
-dirs="$USER_PVMLIBDIR /lib /usr/lib /usr/lib/pvm3 /shlib /shlib/pvm3 /usr/shlib /usr/shlib/pvm3 /usr/local/lib /usr/local/lib/pvm3 /usr/local/shlib /usr/local/pvm3 /usr/pvm3 /usr/local/pvm3/lib /sw/lib/ /usr/share/pvm3 /usr/share/pvm3 ."
+dirs="$USER_PVMLIBDIR /lib /usr/lib /usr/lib/pvm3 /shlib /shlib/pvm3 /usr/shlib /usr/shlib/pvm3 /usr/local/lib /usr/local/lib/pvm3 /usr/local/shlib /usr/local/pvm3 /usr/pvm3 /usr/local/pvm3/lib /sw/lib/ /usr/share/pvm3 ."
 libexts="so so.1.0 sl dylib a"
 libnames="pvm pvm3"
 
 for EXT_LIB_PVM in $libexts; do
 	for PATH_LIB_PVM in $dirs; do
 		for NAME_LIB_PVM in $libnames; do
-			m="$PATH_LIB_PVM/lib/$PVMARCH/lib$NAME_LIB_PVM.$EXT_LIB_PVM"
+			m="$PATH_LIB_PVM/lib$NAME_LIB_PVM.$EXT_LIB_PVM"
 			if test -r $m; then
-				AC_MSG_RESULT([found $m using -L$PATH_LIB_PVM/lib/$PVMARCH -l$NAME_LIB_PVM])
+				AC_MSG_RESULT([found $m using -L$PATH_LIB_PVM -l$NAME_LIB_PVM])
 
 				saved_cflags="$CFLAGS"
 				saved_ldflags="$LDFLAGS"
 				saved_cppflags="$CPPFLAGS"
 				CFLAGS="$CFLAGS $PVM_INC_PATH"
 				CPPFLAGS="$CPPFLAGS $PVM_INC_PATH"
-				LDFLAGS="$LDFLAGS -L$PATH_LIB_PVM/lib/$PVMARCH"
-				
-		                AC_CHECK_LIB([$NAME_LIB_PVM], pvm_spawn,[LDFLAGS="$LDFLAGS -l$NAME_LIB_PVM"; PVM_LIB_OK=1; PVMLIBS="-l$NAME_LIB_PVM"],PVM_LIB_OK=0)
+				LDFLAGS="$LDFLAGS -L$PATH_LIB_PVM"
+
+
+		        AC_CHECK_LIB([$NAME_LIB_PVM], pvm_spawn,
+		        [
+	    		    LDFLAGS="-lpvm3 -lgpvm3 $LDFLAGS"
+			        AC_CHECK_LIB(pvm3, pvm_barrier,
+    		    		[PVMLIBS="-lpvm3"; PVM_LIB_OK=1],
+		        		[
+        				AC_CHECK_LIB(gpvm3, pvm_barrier,
+			        		[PVMLIBS="-lgpvm3 -lpvm3"; 
+							PVM_LIB_OK=1])
+		        		])
+        		])
+
+
+
+				AC_CHECK_LIB([$NAME_LIB_PVM], pvm_spawn, PVM_LIB_OK=1,PVM_LIB_OK=0)
 
 				CFLAGS="$saved_cflags"
 				CPPFLAGS="$saved_cppflags"
 				LDFLAGS="$saved_ldflags"
 
 				if test $PVM_LIB_OK = 1; then 
-					PVM_LIB=" -L$PATH_LIB_PVM/lib/$PVMARCH $PVMLIBS"
-				   	break 3;
-				fi
-			fi
-		done
-	done
-done
-if test -z "$PVM_LIB"; then
-	AC_MSG_ERROR([check for PVM library failed])
-fi
-
-libnames="gpvm gpvm3"
-for EXT_LIB_PVM in $libexts; do
-	for PATH_LIB_PVM in $dirs; do
-		for NAME_LIB_GPVM in $libnames; do
-			m="$PATH_LIB_PVM/lib/$PVMARCH/lib$NAME_LIB_GPVM.$EXT_LIB_PVM"
-			if test -r $m; then
-				AC_MSG_RESULT([found $m using -L$PATH_LIB_PVM/lib/$PVMARCH -l$NAME_LIB_GPVM])
-
-				saved_cflags="$CFLAGS"
-				saved_ldflags="$LDFLAGS"
-				saved_cppflags="$CPPFLAGS"
-				CFLAGS="$CFLAGS $PVM_INC_PATH"
-				CPPFLAGS="$CPPFLAGS $PVM_INC_PATH"
-				LDFLAGS="$LDFLAGS -L$PATH_LIB_PVM/lib/$PVMARCH"
-				
-		                AC_CHECK_LIB([$NAME_LIB_GPVM $PVM_LIB], pvm_barrier,[LDFLAGS="$LDFLAGS -l$NAME_LIB_GPVM $PVM_LIB"; GPVM_LIB_OK=1; GPVMLIBS="-l$NAME_LIB_GPVM"],GPVM_LIB_OK=0)
-
-				CFLAGS="$saved_cflags"
-				CPPFLAGS="$saved_cppflags"
-				LDFLAGS="$saved_ldflags"
-
-				if test $GPVM_LIB_OK = 1; then 
-					PVM_LIB="$PVM_LIB -L$PATH_LIB_PVM/lib/$PVMARCH $GPVMLIBS"
-				   	break 3;
+					PVM_LIB=" -L$PATH_LIB_PVM $PVMLIBS"
+					break 3;
 				fi
 			fi
 		done

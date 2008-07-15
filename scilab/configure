@@ -16957,8 +16957,8 @@ fi
 USER_PVMLIBDIR=$USER_PVMLIBDIR
   { echo "$as_me:$LINENO: checking for PVM3 library" >&5
 echo $ECHO_N "checking for PVM3 library... $ECHO_C" >&6; }
-dirs="$USER_PVMLIBDIR /lib /usr/lib /usr/lib/pvm3 /shlib /shlib/pvm3 /usr/shlib /usr/shlib/pvm3 /usr/local/lib /usr/local/lib/pvm3 /usr/local/shlib /usr/local/pvm3 /usr/pvm3 /usr/local/pvm3/lib /sw/lib/ ."
-libexts="so so.1.0 sl dylib"
+dirs="$USER_PVMLIBDIR /lib /usr/lib /usr/lib/pvm3 /shlib /shlib/pvm3 /usr/shlib /usr/shlib/pvm3 /usr/local/lib /usr/local/lib/pvm3 /usr/local/shlib /usr/local/pvm3 /usr/pvm3 /usr/local/pvm3/lib /sw/lib/ /usr/share/pvm3 ."
+libexts="so so.1.0 sl dylib a"
 libnames="pvm pvm3"
 
 for EXT_LIB_PVM in $libexts; do
@@ -17042,7 +17042,7 @@ ac_res=`eval echo '${'$as_ac_Lib'}'`
 echo "${ECHO_T}$ac_res" >&6; }
 if test `eval echo '${'$as_ac_Lib'}'` = yes; then
 
-	    		    LDFLAGS="-lpvm3 $LDFLAGS"
+	    		    LDFLAGS="-lpvm3 -lgpvm3 $LDFLAGS"
 			        { echo "$as_me:$LINENO: checking for pvm_barrier in -lpvm3" >&5
 echo $ECHO_N "checking for pvm_barrier in -lpvm3... $ECHO_C" >&6; }
 if test "${ac_cv_lib_pvm3_pvm_barrier+set}" = set; then
