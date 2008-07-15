@@ -5,6 +5,14 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- INTERACTIVE TEST -->
+
+
+// This test requires maple
+// to create a dynamic library with maple
+// maple exemples.mpl examples.out
+
+
 // example 1
 x=1
 
