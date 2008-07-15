@@ -363,6 +363,11 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	global launch_mode;
 	global check_error_output;
 	
+	// Specific parameters for each tests
+	this_check_error_output = %T;
+	this_use_try_catch      = %T;
+	
+	
 	// Some definitions
 	fullPath=SCI+"/modules/"+module+"/tests/"+test_type+"/"+test
 	tstfile     = pathconvert(fullPath+".tst",%f,%f);
@@ -404,7 +409,9 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	// Get the tst file
 	txt = mgetl(tstfile);
 	
-	// Check if it's an interactive test
+	
+	// Specific parameters
+	
 	if grep(txt,"<-- INTERACTIVE TEST -->") <> [] then
 		status_msg = "skipped : interactive test";
 		status_id  = 10;
@@ -417,37 +424,67 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		return;
 	end
 	
+	if grep(txt,"<-- NO TRY CATCH -->") <> [] then
+		this_use_try_catch = %F;
+	end
+	
+	if grep(txt,"<-- NO CHECK ERROR OUTPUT -->") <> [] then
+		this_check_error_output = %F;
+	end
+	
 	// Do some modification in tst file
 	txt = strsubst(txt,'pause,end' ,'bugmes();quit;end');
 	txt = strsubst(txt,'pause, end','bugmes();quit;end');
 	txt = strsubst(txt,'-->','@#>'); //to avoid suppression of input --> with prompts
 	txt = strsubst(txt,'halt();','');
 	
-	head = [	"// <-- HEADER START -->";
-				"mode(3);" ;
-				"clear;" ;
-				"lines(28,72);";
-				"lines(0);" ;
-				"deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;
-				"predef(''all'');" ;
-				"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);" ;
-				"try";
-				"diary(''"+tmp_diafile+"'');";
-				"write(%io(2),tmpdirToPrint);";
-				"// <-- HEADER END -->"];
-				
-	tail = [	"// <-- FOOTER START -->";
-				"catch";
-				"	errmsg = ""<--""+""Error on the test script file""+""-->""";
-				"	printf(""%s"",errmsg)";
-				"end";
-				"diary(0);";
-				"exit;";
-				"// <-- FOOTER END -->"]
+	
+	if this_use_try_catch then
+		head = [	"// <-- HEADER START -->";
+					"mode(3);" ;
+					"clear;" ;
+					"lines(28,72);";
+					"lines(0);" ;
+					"deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;
+					"predef(''all'');" ;
+					"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);" ;
+					"try";
+					"diary(''"+tmp_diafile+"'');";
+					"write(%io(2),tmpdirToPrint);";
+					"// <-- HEADER END -->"];
+					
+		tail = [	"// <-- FOOTER START -->";
+					"catch";
+					"	errmsg = ""<--""+""Error on the test script file""+""-->""";
+					"	printf(""%s"",errmsg)";
+					"end";
+					"diary(0);";
+					"exit;";
+					"// <-- FOOTER END -->"]
+	else
+		head = [	"// <-- HEADER START -->";
+					"mode(3);" ;
+					"clear;" ;
+					"lines(28,72);";
+					"lines(0);" ;
+					"deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;
+					"predef(''all'');" ;
+					"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);" ;
+					"diary(''"+tmp_diafile+"'');";
+					"write(%io(2),tmpdirToPrint);";
+					"// <-- HEADER END -->"];
+					
+		tail = [	"// <-- FOOTER START -->";
+					"diary(0);";
+					"exit;";
+					"// <-- FOOTER END -->"]
+	end
+	
 	
 	txt = [head;
 		txt;
 		tail];
+	
 	
 	// and save it in a temporary file
 	mputl(txt,tmp_tstfile);
@@ -471,7 +508,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	host(test_cmd);
 	
 	// First Check : error output
-	if check_error_output then
+	if check_error_output & this_check_error_output then
 		tmp_errfile_info = fileinfo(tmp_errfile);
 		
 		if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
@@ -490,7 +527,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	execstr(dia(tmpdir1_line));
 	
 	//Check for execution errors
-	if grep(dia,"<--Error on the test script file-->")<>[] then
+	if this_use_try_catch & grep(dia,"<--Error on the test script file-->")<>[] then
 		status_msg = "failed  : premature end of the test script";
 		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
 		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
@@ -502,11 +539,10 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	dia = remove_headers(dia);
 	
 	//Check for execution errors
-	
 	dia_tmp                     = dia;
 	dia_tmp(grep(dia_tmp,"//")) = [];  // remove commented lines
 	
-	if grep(dia_tmp,"!--error")<>[] then
+	if this_use_try_catch & grep(dia_tmp,"!--error")<>[] then
 		status_msg     = "failed  : the string (!--error) has been detected";
 		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
 		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
