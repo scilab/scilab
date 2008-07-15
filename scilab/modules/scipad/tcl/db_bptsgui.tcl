@@ -221,10 +221,6 @@ proc showbptgui_bp {} {
     grid columnconfigure $scrollf.scrolled 8 -weight $hthcolweight
     grid columnconfigure $scrollf.scrolled 9 -weight $rhccolweight
 
-    update ; # so that winfo height does not return 0
-    set onelineheight [winfo height $bptsguibptlist.flabels.fun]
-    $scrollf configure -height [expr {$onelineheight * $defaultnbdisplayedlines}]
-
     pack $scrollf -expand 1 -fill both
     pack $scrolly -expand 1 -fill y -padx 2
 
@@ -264,6 +260,12 @@ proc showbptgui_bp {} {
     }
 
     wm deiconify $bptsgui
+
+    # this *must* be after wm deiconify, otherwise [winfo height ...] still
+    # returns 1 on Linux
+    update ; # so that winfo height does not return 0
+    set onelineheight [winfo height $bptsguibptlist.flabels.fun]
+    $scrollf configure -height [expr {$onelineheight * $defaultnbdisplayedlines}]
 
     unset -- currentlyopeningbptsgui
 }

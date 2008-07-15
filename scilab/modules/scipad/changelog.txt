@@ -1,3 +1,14 @@
+Francois VOGEL, 15/07/08
+ * Fixed the initial height of the breakpoints gui on Linux to be 4 lines
+ * Fixed bug 3269 (non-scilab file can become temporarily debuggable after
+   changing localization)
+ * In scipad.xml:
+    . Added explanations about debugging Scipad ancillaries
+    . Documented the "Break" and "Run to return" debugger commands
+    . Documented conditional breakpoints
+    . Changed references of Tcl/Tk 8.4 into 8.x
+ * version --> 6.150
+
 Francois VOGEL, 13/07/08
  * More efficient implementation of lreverse and sreverse
  * Tcl85 and Tk85 variables definition moved back to scipaddebug1.tcl

@@ -121,12 +121,6 @@ endfunction
  case provided here:
  http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/ea6b6dc9bce5f0e6
 
--<TODO> In scipad.xml:
-    . Add explanations about debugging Scipad ancillaries
-    . Document the "Break" and "Run to return" debugger commands
-    . Document conditional breakpoints
-    . Change references to Tcl/Tk 8.4 to 8.x
-
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -203,8 +197,8 @@ Old bugs/whishes which have been hacked but could have been done better:
 -during debug, string variables which contain data which does not make sense as
  text in the current locale, are shown as mangled in the watch variable area.
  This can happen for example when watching a chinese string in a latin locale.
- The behavior is intrinsic in tcl, and after all undersandable as such. While we
- don't make any effort to circumvent tcl interpretation of illogically coded
+ The behavior is intrinsic in tcl, and after all understandable as such. While
+ we don't make any effort to circumvent tcl interpretation of illogically coded
  strings, the fact could have side effects on the original variables if debug
  exits abnormally.
  Snippet to demonstrate the intrinsic problem:

@@ -137,7 +137,7 @@ global lang msgsdir
             # displays its string content
         }
     }
-    keyposn [gettextareacur]
+    focustextarea [gettextareacur]
 # labels in opened non-modal dialogs are not updated, but let's not 
 # pretend too much... Same for the title of unsaved buffers named 
 # UntitledN.sce, and ditto for the call stack area text

@@ -517,7 +517,14 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
                     # (bug 2654, tagged as RESOLVED LATER, now REOPENED after complaining...)
                     #set ID "\" + TCL_EvalStr(\"where2bptID \" + db_m(3) + \" \" + string(db_l(3)) ,\"scipad\") + \""
                     # thus we must to go through a Scilab variable instead (drawback: possible name collision in Scilab)
-# <TODO> replace the hardcoded 3 for the pause level in the instruction below
+                    # Note that the hardcoded 3 is always the good index where to look for the function name and line
+                    # number coresponding to the current stop. The structure of the where() output indeed is:
+                    #   !execstr         !
+                    #   !pause           !
+                    #   !currentfun      !    // function where Scilab is at the current stop --> always 3rd value
+                    #   !calllevelfun    !    // function calling the function where Scilab is at the current stop
+                    #   !<uppper levels> !
+                    #   !execstr         !
                     set getbptIDcommand "db_BPTID=TCL_EvalStr(\"where2bptID \" + db_m(3) + \" \" + string(db_l(3)) ,\"scipad\");"
                     set isbreakpointenabled       "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",enable)\",\"scipad\") == \"true\""
                     set isconditiontypeistrue     "TCL_GetVar(\"bptsprops(\"+db_BPTID+\",conditiontype)\",\"scipad\") == \"istrue\""
