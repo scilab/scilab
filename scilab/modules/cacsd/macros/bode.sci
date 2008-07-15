@@ -113,6 +113,8 @@ function []=bode(varargin)
   else
     xpolys(frq,phi,1:mn)
   end
+  ephi=gce()
+
   if fmax<>[]&max(frq)<fmax then
       xpoly(max(frq)*[1;1],axes.y_ticks.locations([1 $]));e=gce();
       e.foreground=5;
@@ -120,21 +122,7 @@ function []=bode(varargin)
   xtitle("",_("Frequency (Hz)"),_("Phase (°)"));
   // create legend
   if comments<>[] then
-    axes=newaxes()
-    axes.axes_bounds=[wrect(1)+0,wrect(2)+wrect(4)*2*hx,wrect(3)*1.0,wrect(4)*0.1];
-    axes.data_bounds=[0 0; 1 1];
-    y0=0.7;dy=-1/2
-    x0=0;dx=1/2
-    count=0
-    for k=1:mn
-      xsegs([x0;x0+0.08],[y0;y0],k),e1=gce()
-      rect=xstringl(x0+0.1,y0,comments(k))
-      xstring(x0+0.1,y0-rect(4)/3,comments(k)),e2=gce()
-      glue([e2 e1])
-      count=count+1
-      y0=y0+dy
-      if count==3 then x0=x0+dx;y0=0.7,end
-    end
+    captions(ephi.children,comments,'lower_caption')
   end
   drawnow()
   // return to the previous scale
