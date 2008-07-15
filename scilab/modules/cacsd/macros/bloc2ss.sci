@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 
-// 
+// Copyright (C) INRIA -
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -12,7 +12,7 @@ function [sl,name]=bloc2ss(syst)
 //
 
 [lhs,rhs]=argn(0)
- 
+
 if type(syst)<>15 then
   error(msprintf(gettext("%s: Wrong type for input argument #%d: A list expected.\n"),"bloc2ss",1))
 end;
@@ -27,7 +27,7 @@ for l=2:nsyst
  sys=syst(l)
  typ=part(sys(1),1)
  if typ<>'l' then
-   if typ=='b' then 
+   if typ=='b' then
      //recursion pour traiter les description bloc imbriquees
      sys=list('transfert',bloc2ss(sys))
      syst(l)=sys
@@ -37,7 +37,7 @@ for l=2:nsyst
    tr1=transfert(1);
    if tr1(1)=='r' then transfert=tf2ss(transfert);end
    syst(l)=list('transfert',transfert)
-   
+
    if type(transfert)==16 then
       d=transfert(7)
       if d<>[] then
@@ -52,10 +52,10 @@ for l=2:nsyst
              error(msprintf(gettext("%s: Multi rate discrete system not implemented.\n"),"bloc2ss"))
           end
         end
-      end 
+      end
     end
  end;
-end; 
+end;
 [lboites,lliens,lentrees,lsorties]=blocdext(syst)
 nio=[prod(size(lentrees)),prod(size(lsorties))]
 //
@@ -113,7 +113,7 @@ for numero=lliens
   fil=syst(numero)
 
   nnum=size(fil)-3
-  if nnum<=0 then 
+  if nnum<=0 then
 	error(msprintf(gettext("%s: Incorrect link: %s"),"bloc2ss",string(numero)))
   end
   debut=fil(3)
@@ -121,7 +121,7 @@ for numero=lliens
   pdebut=debut(2:prod(size(debut))) // ports origines
   if pdebut==[] then // dimension implicite
      fin=fil(4);pfin=fin(2:prod(size(fin)))
-     if pfin<>[] then 
+     if pfin<>[] then
       //meme dimension que le port d'entree du premier bloc connecte
        pdebut=1:prod(size(pfin))
      else
@@ -138,7 +138,7 @@ for numero=lliens
    bdebut=corresp(bdebut)
    ll0=1
   else // le lien  correspond a une entree
-    if nnum>1 then, //l'entree attaque plusieurs blocs,on rajoute un gain 
+    if nnum>1 then, //l'entree attaque plusieurs blocs,on rajoute un gain
       np=prod(size(pdebut))
       d(mo+np,mi+np)=eye(np,np)
       if ms>0 then b(ms,mi+np)=0;c(mo+np,ms)=0;end
@@ -226,16 +226,16 @@ for k=2:nsyst
   end;
   end,end
 end;
-if lsorties==[] then 
+if lsorties==[] then
   error(msprintf(gettext("%s: Internal error: Wrong number of output arguments.\n"),"bloc2ss")),
 end
-if lentrees==[] 
-then error(msprintf(gettext("%s: Internal error: Wrong number of input arguments.\n"),"bloc2ss")),
+if lentrees==[] then
+  error(msprintf(gettext("%s: Internal error: Wrong number of input arguments.\n"),"bloc2ss")),
 end
-if mini(lsorties)==0 then 
+if mini(lsorties)==0 then
   error(msprintf(gettext("%s: Internal error: Undefined output.\n"),"bloc2ss")),
 end
-if mini(lentrees)==0 then 
+if mini(lentrees)==0 then
   error(msprintf(gettext("%s: Internal error: Undefined input.\n"),"bloc2ss")),
 end
 endfunction
