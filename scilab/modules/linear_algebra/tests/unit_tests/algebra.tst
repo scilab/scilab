@@ -238,7 +238,6 @@ if Err(L*U-Ac) >200*%eps then pause,end
 [L,U,E]=lu(Ac);
 if Err(L*U-E*Ac) >200*%eps then pause,end
 
-
 //large dimension
 //---------------
 //Square
@@ -1831,6 +1830,7 @@ if Ab<>[]|X<>[] then pause,end
 // MATRIX
 //Small dimension
 //---------------
+warning('off')
 //Real Case
 A=testmat3(10000,5);
 [Ab,X]=balanc(A);
@@ -1884,7 +1884,7 @@ A=testmat3(10000+0.001*%i,20);B=testmat3(1000+100*%i,20);
 [Ab,Bb,X,Y]=balanc(A,B);
 if Err(Bb-inv(X)*B*Y)>1000*%eps then pause,end 
 if Err(Ab-inv(X)*A*Y)>1000*%eps then pause,end 
-
+warning('on')
 //==========================================================================
 //==============================   bdiag      ============================== 
 //==========================================================================

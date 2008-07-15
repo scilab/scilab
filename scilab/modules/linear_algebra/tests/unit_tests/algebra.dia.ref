@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 function r=Err(x),r=norm(x,1),endfunction
 rand('normal')
 //==========================================================================
@@ -1109,7 +1115,7 @@ if rk<>30 then bugmes();quit;end
 function c=cond(A)
   if A==[] then c=1,else S=svd(A);c=S($)/S(1),end
 endfunction
-Warning : redefining function: cond                    
+Warning : redefining function: cond                    . Use funcprot(0) to avoid this message
 
 //==========================================================================
 //==============================     hess     ==============================
@@ -1382,7 +1388,7 @@ if Err(x*A*A'-b*A')>1000*%eps then bugmes();quit;end
 //==============================    \         ==============================
 //==========================================================================
 function x=ldiv(A,B),x=A\B,endfunction
-Warning : redefining function: ldiv                    
+Warning : redefining function: ldiv                    . Use funcprot(0) to avoid this message
 
 //scalar division
 //-----Square matrix-----
@@ -1524,37 +1530,30 @@ if Ab<>[]|X<>[] then bugmes();quit;end
 // MATRIX
 //Small dimension
 //---------------
+warning('off')
 //Real Case
 A=testmat3(10000,5);
 [Ab,X]=balanc(A);
 if Err(diag(diag(X))-X)>200*%eps then bugmes();quit;end
 if Err(Ab-inv(X)*A*X)>200*%eps then bugmes();quit;end
-Warning :
-matrix is close to singular or badly scaled. rcond =    8.8818D-16
 
 //Complex Case
 A=testmat3(10000+0.01*%i,5);
 [Ab,X]=balanc(A);
 if Err(diag(diag(X))-X)>200*%eps then bugmes();quit;end
 if Err(Ab-inv(X)*A*X)>200*%eps then bugmes();quit;end
-Warning :
-matrix is close to singular or badly scaled. rcond =    8.8818D-16
 
 //LArge dimension
 A=testmat3(10000,30);
 [Ab,X]=balanc(A);
 if Err(diag(diag(X))-X)>200*%eps then bugmes();quit;end
 if Err(Ab-inv(X)*A*X)>1000*%eps then bugmes();quit;end
-Warning :
-matrix is close to singular or badly scaled. rcond =    1.6313D-55
 
 //Complex Case
 A=testmat3(10000+0.01*%i,30);
 [Ab,X]=balanc(A);
 if Err(diag(diag(X))-X)>200*%eps then bugmes();quit;end
 if Err(Ab-inv(X)*A*X)>1000*%eps then bugmes();quit;end
-Warning :
-matrix is close to singular or badly scaled. rcond =    1.6313D-55
 
 // PENCILS
 //Small dimension
@@ -1581,6 +1580,7 @@ A=testmat3(10000+0.001*%i,20);B=testmat3(1000+100*%i,20);
 [Ab,Bb,X,Y]=balanc(A,B);
 if Err(Bb-inv(X)*B*Y)>1000*%eps then bugmes();quit;end
 if Err(Ab-inv(X)*A*Y)>1000*%eps then bugmes();quit;end
+warning('on')
 //==========================================================================
 //==============================   bdiag      ==============================
 //==========================================================================

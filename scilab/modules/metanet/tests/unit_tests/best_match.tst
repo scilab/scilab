@@ -30,7 +30,7 @@ sp1=sparse([[1:n]' match'],ones(1,size(match,2))',[n,n]);
 show_arcs(v');
 //
 // WITH A LARGER GRAPH
-g=load_graph(SCI+"/modules/metanet/tests/unit_tests/mesh1000");
+g=load_graph(SCI+"/modules/metanet/tests/unit_tests/mesh1000.graph");
 g('directed')=0;
 ta=g('tail');he=g('head');n=node_number(g);
 show_graph(g,'new',1/2,[1000,400]);

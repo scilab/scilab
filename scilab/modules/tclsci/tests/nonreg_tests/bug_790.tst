@@ -15,6 +15,6 @@
 //    Scilab crashes when you enter findobj().
 //    I know that it is not usefull but, the bug exists.
 
-if execstr('findobj() == []','errcatch') <> 77 then pause,end
-if execstr('findobj(''test'') == []','errcatch') <> 77 then pause,end
+if execstr('findobj() == []','errcatch') <> 4 then pause,end
+if execstr('findobj(''test'') == []','errcatch') <> 0 then pause,end
 if execstr('findobj(''Param1'',''Param2'') == []','errcatch') <> 0 then pause,end

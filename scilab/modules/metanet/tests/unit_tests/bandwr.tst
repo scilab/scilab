@@ -40,8 +40,8 @@ g1=make_graph('foo',0,n,ij(:,1)',ij(:,2)');
 g1('node_x')=g('node_x');g1('node_y')=g('node_y');
 // GRAPH
 //show_graph(g1,'rep');
-[lp,la,ls] = adj_lists(1,n,g1('tail'),g1('head'));
-[iperm,mrepi,prof,ierr]=bandwr(lp,ls,n,0);
+[lp,la,l_s] = adj_lists(1,n,g1('tail'),g1('head'));
+[iperm,mrepi,prof,ierr]=bandwr(lp,l_s,n,0);
 g2=g;g2('node_name')=string(iperm);
 show_graph(g2,'new');
  

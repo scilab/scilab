@@ -4,26 +4,23 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- Non-regression test for bug 614 -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=614
 //
 // <-- Short Description -->
-//    mxGetDimensions() from mex.h and mexlib.c do not work 
-//    properly. The reason is that it returns a pointer to int 
-//    like Matlab, but in fact, the dimensions in scilab are in 
+//    mxGetDimensions() from mex.h and mexlib.c do not work
+//    properly. The reason is that it returns a pointer to int
+//    like Matlab, but in fact, the dimensions in scilab are in
 //    double format.
 //
 //    Also occur in other OS's.
-
 my_current_directory = pwd();
 cd(TMPDIR);
 cd('..');
 TMP_directory = pwd();
 mputl('ilib_mex_build(''libmex'',[''mexf16'',''mexfunction16'',''cmex''],[],[],''Makelib'','''','''','''')','builder.sce');
-
 mputl([
 '#include ""mex.h""'
 'void mexFunction(nlhs, plhs, nrhs, prhs)'
@@ -34,15 +31,11 @@ mputl([
 '  sciprint(""%d %d %d\n"",dims[0],dims[1],dims[2]);'
 '}'
 ],'mexfunction16.c');
-
-exec('builder.sce');
-exec('loader.sce');
-
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile: Makelib
+   Running the makefile
+   Building shared library (be patient)
+Shared archive loaded.
+Link done.
 diary('bug614.dia')
-mexf16(rand(2,3,2))
-diary(0)
-
-dia = mgetl('bug614.dia');
-cd(my_current_directory);
-
-if find(dia == "2 3 2") == [] then pause,end

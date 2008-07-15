@@ -15,4 +15,7 @@
 //    and it uses the whole CPU resource.
 
 x = rand(5,5,100)+%i;
-execstr('mtlb_save SCI/modules/compatibility_functions/nonreg_tests/bug_649.mat x','errcatch');
+warning('off');
+ierr = execstr('mtlb_save SCI/modules/compatibility_functions/nonreg_tests/bug_649.mat x','errcatch');
+warning('on');
+if ierr <> 10000 then pause,end;

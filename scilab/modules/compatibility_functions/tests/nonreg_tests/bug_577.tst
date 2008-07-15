@@ -19,6 +19,9 @@
 my_mat_file = TMPDIR+"/bug_577.mat";
 
 x=rand(5,5,100)+%i;
-execstr("mtlb_save(my_mat_file,""x"")","errcatch")
+warning('off');
+ierr = execstr("mtlb_save(my_mat_file,""x"")","errcatch");
+warning('on');
 
+if ierr <> 10000 then pause,end
 if lasterror()<>gettext("Attempt to write an unsupported data type to an ASCII file.") then pause; end

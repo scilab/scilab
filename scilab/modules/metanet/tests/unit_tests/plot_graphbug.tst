@@ -5,7 +5,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+// <-- INTERACTIVE TEST -->
 // <-- TEST WITH GRAPHIC -->
 
 // unit tests for plot_graphbug function
