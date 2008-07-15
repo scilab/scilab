@@ -4,7 +4,7 @@
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
 #  Copyright (C) 2004-2008 - Francois Vogel
 #
-#  Localization files ( in tcl/msg_files/) are copyright of the 
+#  Localization files ( in tcl/msg_files/) are copyright of the
 #  individual authors, listed in the header of each file
 #
 # This program is free software; you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 # See the file scipad/license.txt
 #
 # Scipad texts in Italian by Enrico Segre
-# in sync at least with v6.135
+# in sync at least with v6.149
 
 
 # commons
@@ -41,6 +41,8 @@
 ::msgcat::mcset it "&Close" "&Chiudi"
 ::msgcat::mcset it "Error " "Errore "
 ::msgcat::mcset it "The file" "Il file"
+::msgcat::mcset it "Function" "Funzione"
+::msgcat::mcset it "Line" "Linea"
 
 
 # buffernavigation.tcl
@@ -95,8 +97,61 @@
                    "è di un tipo che non può essere osservato."
 
 
+# db_bptsgui.tcl
+::msgcat::mcset it "Breakpoints properties"\
+                   "Proprietà dei punti d'arresto"
+::msgcat::mcset it "Enabled" "Abilita"
+::msgcat::mcset it "Expression" "Espressione"
+::msgcat::mcset it "Hit if" "Marca se"
+::msgcat::mcset it "istrue" "è vero"
+::msgcat::mcset it "haschanged" "cambiato"
+::msgcat::mcset it "Watched" "Osservato"
+::msgcat::mcset it "Hit count" "n° accessi"
+::msgcat::mcset it "Break if" "Arresta se"
+::msgcat::mcset it "Threshold" "Soglia"
+::msgcat::mcset it "always" "sempre"
+::msgcat::mcset it "equalto" "è uguale a"
+::msgcat::mcset it "multipleof" "è un multiplo di"
+::msgcat::mcset it "greaterthan" "è più grande di"
+::msgcat::mcset it "lessthan" "è più piccolo di"
+::msgcat::mcset it "Reset hit" "azzera accessi"
+::msgcat::mcset it "Breakpoints vocabulary"\
+                   "Vocabolario dei punti d'arresto"
+::msgcat::mcset it "A breakpoint is identified by its location, i.e. its\
+                    position (a line number) in a function."\
+                   "Un punto d'arresto è identificato dalla sua posizione,\
+                    cioè dal suo numero di linea nel corpo della funzione."
+::msgcat::mcset it "When the execution process encounters an enabled\
+                    breakpoint, then this breakpoint is said to be\
+                    reached."\
+                   "Quando l'esecuzione del programma incontra un punto d'arresto\
+                    attivo, si dice che il punto d'arresto è stato raggiunto."
+::msgcat::mcset it "When the breakpoint is reached and its associated\
+                    conditional expression is true (or changed), then the\
+                    breakpoint is said to be hit."\
+                   "Quando un punto d'arresto è raggiunto e l'espressione\
+                    condizionale associata è vera (o cambia),\
+                    allora il punto d'arresto si dice \"acceduto\"."
+::msgcat::mcset it "The hit count is the number of times the breakpoint has\
+                    been hit."\
+                   "Il numero di accessi è il numero di volte che\
+                    questo avviene."
+::msgcat::mcset it "Execution will stop at a breakpoint if the hit count\
+                    satisfies the selectable break condition."\
+                   "L'esecuzione si fermerà ad un punto d'arresto\
+                    se il numero di accessi soddisfa la condizione prescelta."
+
+
 # db_bptsmanagement.tcl
 ::msgcat::mcset it "No breakpoint here!" "Non si può mettere un arresto qui!"
+::msgcat::mcset it "Delete all breakpoints"\
+                   "Cancella tutti i punti d'arresto"
+::msgcat::mcset it "Are you sure you want to delete all the existing\
+                    breakpoints?"\
+                   "Sicuro di voler cancellare tutti i punti d'arresto_"
+::msgcat::mcset it "All breakpoints deleted" "Tutti gli arresti eliminati"
+::msgcat::mcset it "No action taken" "Nessun cambiamento effettuato"
+::msgcat::mcset it "No breakpoint!" "Nessun punto d'arresto!"
 
 
 # db_configureexec.tcl
@@ -145,6 +200,10 @@
                     cannot be debugged in Scipad."\
                    "Il file attuale contiene funzioni usate da Scipad, che\
                     non possono essere debuggate all'interno di Scipad."
+::msgcat::mcset it "Reserved function names are:\n"\
+                   "I nomi di funzione riservati sono:\n"
+::msgcat::mcset it "See help scipad for further details."\
+                   "Consultare l'aiuto di SciPad per maggiori dettagli."
 ::msgcat::mcset it "This file contains main level code.\nDebug as a single\
                     .sce file?"\
                    "Questo file contiene codice a livello principale.\
@@ -167,8 +226,8 @@
                     terminate function "\
                    "Attenzione!\n E' stata trovata una funzione non\
                     terminata dalla parola chiave \"endfunction\" in uno dei\
-                    files correntemente aperti. Questa sintassi è obsoleta.\n\n\
-                    Terminare la funzione "
+                    files correntemente aperti. Questa sintassi è\
+                    obsoleta.\n\n Terminare la funzione "
 ::msgcat::mcset it " and try again." " con \"endfunction\" e riprovare."
 ::msgcat::mcset it "Note: This message might also be triggered by a string\n \
                     quoted with single quotes and containing the word\
@@ -542,16 +601,16 @@
                     Pettersen 2005; \n   polacco, Bartosz Kosiorek 2005; \n  \
                     svedese, Gunnar Lindholm 2005; \n   tedesco, Dirk Reusch\
                     2005; \n   spagnolo, Juan Nicolás Quesada 2006;\n  \
-                    cinese,  Yung-Jang Lee 2007;\n   danese, Kim B.\
-                    Hansen, 2007."
-::msgcat::mcset it Scipad_is_released_under_GPL\
-                    "SciPad è rilasciato sotto la licenza GPL"
+                    cinese,  Yung-Jang Lee 2007;\n   danese, Kim B. Hansen,\
+                    2007."
+::msgcat::mcset it "Scipad_is_released_under_GPL"\
+                   "SciPad è rilasciato sotto la licenza GPL"
 
 
 # infomessages.tcl
 ::msgcat::mcset it "Line:" "Linea:"
 ::msgcat::mcset it "Column:" "Colonna:"
-::msgcat::mcset it "Line" "Linea"
+#::msgcat::mcset fr "Line" "Ligne" ; # now common
 ::msgcat::mcset it "in" "di"
 ::msgcat::mcset it "Logical line:" "Linea logica:"
 ::msgcat::mcset it " \[ReadOnly\]" " \[SolaLettura\]"
@@ -624,6 +683,7 @@
 
 # menues.tcl - Debug menu
 ::msgcat::mcset it "&Insert/Remove breakpoint" "&Inserisci/rimuovi un arresto"
+::msgcat::mcset it "&Edit breakpoints" "&Modifica condizioni d'arresto"
 ::msgcat::mcset it "Remove &all breakpoints" "Rimuovi &tutti gli arresti"
 ::msgcat::mcset it "&Configure execution..." "&Configura l'esecuzione..."
 ::msgcat::mcset it "Go to next b&reakpoint" "&Vai fino al prossimo arresto"
@@ -654,11 +714,13 @@
 ::msgcat::mcset it "Ask for &big files" "&Chiedere per files grandi"
 ::msgcat::mcset it "&Never" "&Mai"
 ::msgcat::mcset it "Colorize \'&strings\'" "Colora &\'stringhe\'"
+::msgcat::mcset it "Colorize &user functions"\
+                   "Colora funzioni &utente"
+::msgcat::mcset it "Show c&ontinued lines" "Colora linee &incomplete"
 ::msgcat::mcset it "Line n&umbers" "N&umeri di linea"
 ::msgcat::mcset it "&Hide" "&Nascosti"
 ::msgcat::mcset it "&Left aligned" "Allineati a &sinistra"
 ::msgcat::mcset it "&Right aligned" "Allineati a &destra"
-::msgcat::mcset it "Show c&ontinued lines" "Colora linee &incomplete"
 ::msgcat::mcset it "Word &wrap" "&Ritorno a capo visuale"
 ::msgcat::mcset it "&Double-click behavior" "Doppio clic &seleziona come"
 ::msgcat::mcset it "&Linux" "&Linux"
@@ -777,9 +839,9 @@
                    "ATTENZIONE : Un comando non ha potuto essere passato a\
                     Scilab ed è stato ignorato perché troppo lungo. Ne\
                     può risultare un comportamento imprevedibile.\n\n Se si\
-                    �� nel corso di una sessione di debug, provare a ridurre\
-                    le variabili osservate. \n\n Il comando in questione\
-                    è:\n\n-->"
+                    è nel corso di una sessione di debug, provare a\
+                    ridurre le variabili osservate. \n\n Il comando in\
+                    questione è:\n\n-->"
 ::msgcat::mcset it "(end of command skipped)" "(resto del comando omesso)"
 ::msgcat::mcset it "Scilab working" "Scilab occupato"
 ::msgcat::mcset it "Scilab is working, please wait for the prompt to execute\
@@ -827,7 +889,7 @@
 ::msgcat::mcset it "continued lines, i.e. we are at line"\
                    "linee continuate, cioè siamo alla linea"
 ::msgcat::mcset it "of" "di"
-::msgcat::mcset it "Function" "Funzione"
+#::msgcat::mcset fr "Function" "Fonction" ; # now global
 ::msgcat::mcset it "line" "linea"
 ::msgcat::mcset it "The cursor is not currently inside a function body."\
                    "Il cursore non si trova dentro il corpo di una funzione"
