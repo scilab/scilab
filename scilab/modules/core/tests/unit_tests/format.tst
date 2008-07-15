@@ -1,11 +1,25 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2008 - INRIA
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-fptr_cos = funptr("cos");
-newfun("cosAlias",fptr_cos);
-if cos(2*%pi) <> cosAlias(2*%pi)                then bugmes();quit;end
-if clearfun("cosAlias") <> %T                   then bugmes();quit;end
-if execstr("cosAlias(2*%pi)","errcatch") ==  0  then bugmes();quit;end
+
+//format
+
+fmt=format();
+format('v')
+sqrt(3)
+format(10)
+sqrt(3)
+format(12,'v')
+sqrt(3)
+format('v',15)
+sqrt(3)
+format('e')
+sqrt(3)
+format(10)
+sqrt(3)
+f=format();
+if or(f<>[0 10]) then pause,end
+format(10,'v');

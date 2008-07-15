@@ -5,9 +5,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-fptr_cos = funptr('cos');
-newfun('cosAlias',fptr_cos);
+fptr_cos = funptr("cos");
+newfun("cosAlias",fptr_cos);
 
-if cos(2*%pi) <> cosAlias(2*%pi) then pause,end
-if clearfun('cosAlias') <> %T  then pause,end
-if execstr('cosAlias(2*%pi)','errcatch') <> 4   then pause,end
+if cos(2*%pi) <> cosAlias(2*%pi)                then pause,end
+if clearfun("cosAlias") <> %T                   then pause,end
+if execstr("cosAlias(2*%pi)","errcatch") ==  0  then pause,end
