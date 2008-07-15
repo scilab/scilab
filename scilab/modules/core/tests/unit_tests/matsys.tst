@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- INTERACTIVE TEST -->
+// <-- NO TRY CATCH -->
 
 // test of matsys functions
 

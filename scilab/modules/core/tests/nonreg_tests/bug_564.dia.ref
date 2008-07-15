@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 564 -->
 //
 // <-- Bugzilla URL -->
@@ -26,10 +32,6 @@
 //          Cmenu='Open/Set'
 // ...
 // Non-regression test file for bug 564
-// Copyright INRIA
- // Modified by Pierre MARECHAL
-// Copyright INRIA
-// Date : 23 Mar 2005
 function foo()
 	if ok then
 		disp(1);
@@ -45,5 +47,28 @@ function foo()
 		break
 	end
 endfunction
-ok=%t;
-diary(TMPDIR+"/bug564.txt");
+ok = %T;
+foo();
+ 
+    1.  
+ 
+    2.  
+ 
+    3.  
+ 
+    4.  
+ 
+ Replot   
+ 
+    1.  
+ 
+    2.  
+ needcompile  =
+ 
+    4.  
+ 
+    3.  
+ 
+    4.  
+ 
+ Replot   
