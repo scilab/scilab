@@ -20,6 +20,7 @@ GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_fort.f
 
 libscidynamic_link_la_CFLAGS = \
 -I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/fileio/includes \
 -I$(top_srcdir)/libs/dynamiclibrary/includes \
 -Isrc/c/ \
 -Iincludes/
