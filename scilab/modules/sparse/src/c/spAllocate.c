@@ -66,6 +66,7 @@
 #include "spDefs.h"
 #include "spmalloc.h"
 #include "spAllocate.h"
+#include "MALLOC.h"
 
 static int InitializeElementBlocks( MatrixPtr  Matrix, int InitialNumberOfElements, int NumberOfFillinsExpected );
 
@@ -654,7 +655,7 @@ register  AllocationListPtr  ListPtr, NextListPtr;
       /* BUGUED : SPFREE( ListPtr->AllocatedPtr) */
       LocPtr=ListPtr->AllocatedPtr;
       ListPtr->AllocatedPtr= NULL;
-      if ( LocPtr != NULL) free(LocPtr);
+      if ( LocPtr != NULL) FREE(LocPtr);
       ListPtr = NextListPtr;
     }
     return;
