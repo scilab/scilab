@@ -238,6 +238,7 @@ int	iRightDivisionOfRealMatrix(
 	int iSize2	= _iRows2 * _iCols2;
 	int iIndex	= 0;
 	char cNorm	= 0;
+	int iExit	= 0;
 
 	/*temporary variables*/
 	int iWorkMin	= 0;
@@ -259,6 +260,15 @@ int	iRightDivisionOfRealMatrix(
 	int *pJpvt	= NULL;
 	int *pIwork	= NULL;
 
+	iWorkMin	= Max(4 * _iCols1, Max(Min(_iRows1, _iCols1) + 3 * _iRows1 + 1, 2 * Min(_iRows1, _iCols1) + _iRows2));
+	iWork		= Maxvol(11,"d");
+
+	if(iWork <= iWorkMin)
+	{//Not enough space in stack 
+		Err = iWork - iWorkMin;
+		return 17;//Error
+	}
+
 	/* Array allocations*/
 	pAf			= (double*)malloc(sizeof(double) * _iRows1 * _iCols1);
 	pAt			= (double*)malloc(sizeof(double) * _iRows1 * _iCols1);
@@ -269,14 +279,6 @@ int	iRightDivisionOfRealMatrix(
 	pJpvt		= (int*)malloc(sizeof(int) * _iRows1);
 	pIwork		= (int*)malloc(sizeof(int) * _iCols1);
 
-	iWorkMin	= Max(4 * _iCols1, Max(Min(_iRows1, _iCols1) + 3 * _iRows1 + 1, 2 * Min(_iRows1, _iCols1) + _iRows2));
-	iWork		= Maxvol(11,"d");
-
-	if(iWork <= iWorkMin)
-	{//Not enough space in stack 
-		Err = iWork - iWorkMin;
-		return 17;//Error
-	}
 
 	//C'est du grand nawak ca, on reserve toute la stack ! Oo
 
@@ -304,44 +306,52 @@ int	iRightDivisionOfRealMatrix(
 				cNorm	= 'N';
 				C2F(dgetrs)(&cNorm, &_iCols1, &_iRows2, pAf, &_iCols1, pIpiv, pBt, &_iCols1, &iInfo);
 				vTransposeRealMatrix(pBt, _iCols1, _iRows2, _pdblRealOut);
-				return 0;
+				iExit = 1;
 			}
 		}
-		//how to extract that ? Oo
-		sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
-		Msgs(5,1);
-	}
 
-	dblRcond = dsqrts(dblEps);
-	cNorm = 'F';
-	iMax = Max(_iRows1, _iCols1);
-	memset(pJpvt, 0x00, sizeof(int) * _iRows1);
-	C2F(dgelsy1)(&_iCols1, &_iRows1, &_iRows2, pAt, &_iCols1, pBt, &iMax,
-		pJpvt, &dblRcond, &pRank[0], pDwork, &iWork, &iInfo);
-
-	if(iInfo != 0)
-		return 0;
-
-	if( _iRows1 != _iCols1 && pRank[0] < Min(_iRows1, _iCols1))
-		//how to extract that ? Oo
-		Msgs(9, pRank[0]);
-
-//	TransposeRealMatrix(pBt, _iRows1, _iRows2, _pdblRealOut, Max(_iRows1,_iCols1), _iRows2);
-
-	//Mega caca de la mort qui tue des ours a mains nues 
-	//mais je ne sais pas comment le rendre "beau" :(
-	{
-		int i,j,ij,ji;
-		for(j = 0 ; j < _iRows1 ; j++)
+		if(iExit == 0)
 		{
-			for(i = 0 ; i < _iRows2 ; i++)
-			{
-				ij = i + j * _iRows2;
-				ji = j + i * Max(_iRows1, _iCols1);
-				_pdblRealOut[ij]	= pBt[ji];
-			}
+			//how to extract that ? Oo
+			sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
+			Msgs(5,1);
 		}
 	}
+
+	if(iExit == 0)
+	{
+		dblRcond = dsqrts(dblEps);
+		cNorm = 'F';
+		iMax = Max(_iRows1, _iCols1);
+		memset(pJpvt, 0x00, sizeof(int) * _iRows1);
+		C2F(dgelsy1)(&_iCols1, &_iRows1, &_iRows2, pAt, &_iCols1, pBt, &iMax,
+			pJpvt, &dblRcond, &pRank[0], pDwork, &iWork, &iInfo);
+
+		if(iInfo == 0)
+		{
+			if( _iRows1 != _iCols1 && pRank[0] < Min(_iRows1, _iCols1))
+				//how to extract that ? Oo
+				Msgs(9, pRank[0]);
+
+		//	TransposeRealMatrix(pBt, _iRows1, _iRows2, _pdblRealOut, Max(_iRows1,_iCols1), _iRows2);
+
+			//Mega caca de la mort qui tue des ours a mains nues 
+			//mais je ne sais pas comment le rendre "beau" :(
+			{
+				int i,j,ij,ji;
+				for(j = 0 ; j < _iRows1 ; j++)
+				{
+					for(i = 0 ; i < _iRows2 ; i++)
+					{
+						ij = i + j * _iRows2;
+						ji = j + i * Max(_iRows1, _iCols1);
+						_pdblRealOut[ij]	= pBt[ji];
+					}//for(i = 0 ; i < _iRows2 ; i++)
+				}//for(j = 0 ; j < _iRows1 ; j++)
+			}//bloc esthetique
+		}//if(iInfo == 0)
+	}//if(bExit == 0)
+
 	free(pAf);
 	free(pAt);
 	free(pBt);
@@ -349,6 +359,7 @@ int	iRightDivisionOfRealMatrix(
 	free(pIpiv);
 	free(pJpvt);
 	free(pIwork);
+	free(pDwork);
 	return 0;
 }
 
@@ -362,6 +373,7 @@ int	iRightDivisionOfComplexMatrix(
 	int iSize2	= _iRows2 * _iCols2;
 	int iIndex	= 0;
 	char cNorm	= 0;
+	int iExit	= 0;
 
 	/*temporary variables*/
 	int iWorkMin	= 0;
@@ -386,6 +398,15 @@ int	iRightDivisionOfComplexMatrix(
 	int *pJpvt	= NULL;
 	double *pRwork	= NULL;
 
+	iWorkMin	= Max(2*_iCols1, Min(_iRows1, _iCols1) + Max(2 * Min(_iRows1, _iCols1), Max(_iRows1 + 1, Min(_iRows1, _iCols1) + _iRows2)));
+	iWork		= Maxvol(11,"z");
+
+	if(iWork <= iWorkMin)
+	{//Not enough space in stack 
+		Err = iWork - iWorkMin;
+		return 17;//Error
+	}
+
 	/* Array allocations*/
 	poVar1		= oGetDoubleComplexFromPointer(_pdblReal1,		_pdblImg1,		_iRows1 * _iCols1);
 	poVar2		= oGetDoubleComplexFromPointer(_pdblReal2,		_pdblImg2,		_iRows2 * _iCols2);
@@ -399,15 +420,6 @@ int	iRightDivisionOfComplexMatrix(
 	pIpiv		= (int*)malloc(sizeof(int) * _iCols1);
 	pJpvt		= (int*)malloc(sizeof(int) * _iRows1);
 	pRwork		= (double*)malloc(sizeof(double) * 2 * _iRows1);
-
-	iWorkMin	= Max(2*_iCols1, Min(_iRows1, _iCols1) + Max(2 * Min(_iRows1, _iCols1), Max(_iRows1 + 1, Min(_iRows1, _iCols1) + _iRows2)));
-	iWork		= Maxvol(11,"z");
-
-	if(iWork <= iWorkMin)
-	{//Not enough space in stack 
-		Err = iWork - iWorkMin;
-		return 17;//Error
-	}
 
 	//C'est du grand nawak ca, on reserve toute la stack ! Oo
 
@@ -436,54 +448,67 @@ int	iRightDivisionOfComplexMatrix(
 				C2F(zgetrs)(&cNorm, &_iCols1, &_iRows2, poAf, &_iCols1, pIpiv, poBt, &_iCols1, &iInfo);
 				vTransposeDoubleComplexMatrix(poBt, _iCols1, _iRows2, poOut);
 				vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
-				return 0;
+				iExit = 1;
 			}
 		}
-		//how to extract that ? Oo
-		sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
-		Msgs(5,1);
-	}
 
-	dblRcond = dsqrts(dblEps);
-	cNorm = 'F';
-	iMax = Max(_iRows1, _iCols1);
-	memset(pJpvt, 0x00, sizeof(int) * _iRows1);
-	C2F(zgelsy1)(&_iCols1, &_iRows1, &_iRows2, poAt, &_iCols1, poBt, &iMax,
-		pJpvt, &dblRcond, &pRank[0], poDwork, &iWork, pRwork, &iInfo);
-
-	if(iInfo != 0)
-		return 0;
-
-	if( _iRows1 != _iCols1 && pRank[0] < Min(_iRows1, _iCols1))
-		//how to extract that ? Oo
-		Msgs(9, pRank[0]);
-
-//	TransposeRealMatrix(pBt, _iRows1, _iRows2, _pdblRealOut, Max(_iRows1,_iCols1), _iRows2);
-
-	//Mega caca de la mort qui tue des ours a mains nues 
-	//mais je ne sais pas comment le rendre "beau" :(
-	{
-		int i,j,ij,ji;
-		for(j = 0 ; j < _iRows1 ; j++)
+		if(iExit == 0)
 		{
-			for(i = 0 ; i < _iRows2 ; i++)
-			{
-				ij = i + j * _iRows2;
-				ji = j + i * Max(_iRows1, _iCols1);
-				_pdblRealOut[ij]	= poBt[ji].r;
-				//Conjugate
-				_pdblImgOut[ij]		= -poBt[ji].i;
-			}
+			//how to extract that ? Oo
+			sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
+			Msgs(5,1);
 		}
 	}
-	vFreeDoubleComplexFromPointer(poAf);
-	vFreeDoubleComplexFromPointer(poAt);
-	vFreeDoubleComplexFromPointer(poBt);
-	vFreeDoubleComplexFromPointer(poDwork);
 
+	if(iExit == 0)
+	{
+		dblRcond = dsqrts(dblEps);
+		cNorm = 'F';
+		iMax = Max(_iRows1, _iCols1);
+		memset(pJpvt, 0x00, sizeof(int) * _iRows1);
+		C2F(zgelsy1)(&_iCols1, &_iRows1, &_iRows2, poAt, &_iCols1, poBt, &iMax,
+			pJpvt, &dblRcond, &pRank[0], poDwork, &iWork, pRwork, &iInfo);
+
+		if(iInfo == 0)
+		{
+			if( _iRows1 != _iCols1 && pRank[0] < Min(_iRows1, _iCols1))
+				//how to extract that ? Oo
+				Msgs(9, pRank[0]);
+
+		//	TransposeRealMatrix(pBt, _iRows1, _iRows2, _pdblRealOut, Max(_iRows1,_iCols1), _iRows2);
+
+			//Mega caca de la mort qui tue des ours a mains nues 
+			//mais je ne sais pas comment le rendre "beau" :(
+			{
+				int i,j,ij,ji;
+				for(j = 0 ; j < _iRows1 ; j++)
+				{
+					for(i = 0 ; i < _iRows2 ; i++)
+					{
+						ij = i + j * _iRows2;
+						ji = j + i * Max(_iRows1, _iCols1);
+						_pdblRealOut[ij]	= poBt[ji].r;
+						//Conjugate
+						_pdblImgOut[ij]		= -poBt[ji].i;
+					}//for(i = 0 ; i < _iRows2 ; i++)
+				}//for(j = 0 ; j < _iRows1 ; j++)
+			}//bloc esthetique
+		}//if(iInfo == 0)
+	}//if(iExit == 0)
+
+
+	vFreeDoubleComplexFromPointer(poVar1);
+	vFreeDoubleComplexFromPointer(poVar2);
+	vFreeDoubleComplexFromPointer(poOut);
+
+	free(poAf);
+	free(poAt);
+	free(poBt);
 	free(pRank);
 	free(pIpiv);
 	free(pJpvt);
+	free(pRwork);
+	free(poDwork);
 	return 0;
 }
 
@@ -497,6 +522,7 @@ int	iLeftDivisionOfRealMatrix(
 	int iSize2	= _iRows2 * _iCols2;
 	int iIndex	= 0;
 	char cNorm	= 0;
+	int iExit	= 0;
 
 	/*temporary variables*/
 	int iWorkMin	= 0;
@@ -517,6 +543,15 @@ int	iLeftDivisionOfRealMatrix(
 	int *pJpvt	= NULL;
 	int *pIwork	= NULL;
 
+	iWorkMin	= Max(4 * _iCols1, Max(Min(_iRows1, _iCols1) + 3 * _iRows1 + 1, 2 * Min(_iRows1, _iCols1) + _iCols2));
+	iWork		= Maxvol(10,"d");
+
+	if(iWork <= iWorkMin)
+	{//Not enough space in stack 
+		Err = iWork - iWorkMin;
+		return 17;//Error
+	}
+
 	/* Array allocations*/
 	pAf			= (double*)malloc(sizeof(double) * _iRows1 * _iCols1);
 	pXb			= (double*)malloc(sizeof(double) * Max(_iRows1,_iCols1) * _iCols1);
@@ -526,14 +561,6 @@ int	iLeftDivisionOfRealMatrix(
 	pJpvt		= (int*)malloc(sizeof(int) * _iCols1);
 	pIwork		= (int*)malloc(sizeof(int) * _iCols1);
 	
-	iWorkMin	= Max(4 * _iCols1, Max(Min(_iRows1, _iCols1) + 3 * _iRows1 + 1, 2 * Min(_iRows1, _iCols1) + _iCols2));
-	iWork		= Maxvol(10,"d");
-
-	if(iWork <= iWorkMin)
-	{//Not enough space in stack 
-		Err = iWork - iWorkMin;
-		return 17;//Error
-	}
 
 	//C'est du grand nawak ca, on reserve toute la stack ! Oo
 
@@ -557,31 +584,37 @@ int	iLeftDivisionOfRealMatrix(
 				C2F(dgetrs)(&cNorm, &_iCols1, &_iCols2, pAf, &_iCols1, pIpiv, _pdblReal2, &_iCols1, &iInfo);
 				cNorm	= 'F';
 				C2F(dlacpy)(&cNorm, &_iCols1, &_iCols2, _pdblReal2, &_iCols1, _pdblRealOut, &_iCols1);
-				return 0;
+				iExit = 1;
 			}
 		}
-		//how to extract that ? Oo
-		sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
-		Msgs(5,1);
+		if(iExit == 0)
+		{
+			//how to extract that ? Oo
+			sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
+			Msgs(5,1);
+		}
 	}
 
-	dblRcond = dsqrts(dblEps);
-	cNorm = 'F';
-	iMax = Max(_iRows1, _iCols1);
-	C2F(dlacpy)(&cNorm, &_iRows1, &_iCols2, _pdblReal2, &_iRows1, pXb, &iMax);
-	memset(pJpvt, 0x00, sizeof(int) * _iCols1);
-	C2F(dgelsy1)(	&_iRows1, &_iCols1, &_iCols2, _pdblReal1, &_iRows1, pXb, &iMax,
-					pJpvt, &dblRcond, &pRank[0], pDwork, &iWork, &iInfo);
+	if(iExit == 0)
+	{
+		dblRcond = dsqrts(dblEps);
+		cNorm = 'F';
+		iMax = Max(_iRows1, _iCols1);
+		C2F(dlacpy)(&cNorm, &_iRows1, &_iCols2, _pdblReal2, &_iRows1, pXb, &iMax);
+		memset(pJpvt, 0x00, sizeof(int) * _iCols1);
+		C2F(dgelsy1)(	&_iRows1, &_iCols1, &_iCols2, _pdblReal1, &_iRows1, pXb, &iMax,
+						pJpvt, &dblRcond, &pRank[0], pDwork, &iWork, &iInfo);
 
-	if(iInfo != 0)
-		return 0;
+		if(iInfo == 0)
+		{
+			if( _iRows1 != _iCols1 && pRank[0] < Min(_iRows1, _iCols1))
+				//how to extract that ? Oo
+				Msgs(9, pRank[0]);
 
-	if( _iRows1 != _iCols1 && pRank[0] < Min(_iRows1, _iCols1))
-		//how to extract that ? Oo
-		Msgs(9, pRank[0]);
-
-	cNorm = 'F';
-	C2F(dlacpy)(&cNorm, &_iCols1, &_iCols2, pXb, &iMax, _pdblRealOut, &_iCols1);
+			cNorm = 'F';
+			C2F(dlacpy)(&cNorm, &_iCols1, &_iCols2, pXb, &iMax, _pdblRealOut, &_iCols1);
+		}
+	}
 
 	free(pAf);
 	free(pXb);
@@ -589,6 +622,7 @@ int	iLeftDivisionOfRealMatrix(
 	free(pIpiv);
 	free(pJpvt);
 	free(pIwork);
+	free(pDwork);
 	return 0;
 }
 
@@ -603,6 +637,7 @@ int	iLeftDivisionOfComplexMatrix(
 	int iSize2	= _iRows2 * _iCols2;
 	int iIndex	= 0;
 	char cNorm	= 0;
+	int iExit	= 0;
 
 	/*temporary variables*/
 	int iWorkMin	= 0;
@@ -627,8 +662,16 @@ int	iLeftDivisionOfComplexMatrix(
 	int *pIpiv				= NULL;
 	int *pJpvt				= NULL;
 
+	iWorkMin	= Max(2*_iCols1, Min(_iRows1, _iCols1) + Max(2 * Min(_iRows1, _iCols1), Max(_iCols1, Min(_iRows1, _iCols1) + _iCols2)));
+	iWork		= Maxvol(10,"z");
+
+	if(iWork <= iWorkMin)
+	{//Not enough space in stack 
+		Err = 2 * (iWork - iWorkMin);
+		return 17;//Error
+	}
+
 	/* Array allocations*/
-	
 	poVar1		= oGetDoubleComplexFromPointer(_pdblReal1,	_pdblImg1,		_iRows1 * _iCols1);
 	poVar2		= oGetDoubleComplexFromPointer(_pdblReal2,	_pdblImg2,		_iRows2 * _iCols2);
 	poOut		= oGetDoubleComplexFromPointer(_pdblRealOut, _pdblImgOut,	_iRowsOut * _iColsOut);
@@ -641,14 +684,6 @@ int	iLeftDivisionOfComplexMatrix(
 	pJpvt		= (int*)malloc(sizeof(int) * _iCols1);
 	pRwork		= (double*)malloc(sizeof(double) * _iCols1*2);
 
-	iWorkMin	= Max(2*_iCols1, Min(_iRows1, _iCols1) + Max(2 * Min(_iRows1, _iCols1), Max(_iCols1, Min(_iRows1, _iCols1) + _iCols2)));
-	iWork		= Maxvol(10,"z");
-
-	if(iWork <= iWorkMin)
-	{//Not enough space in stack 
-		Err = 2 * (iWork - iWorkMin);
-		return 17;//Error
-	}
 
 	//C'est du grand nawak ca, on reserve toute la stack ! Oo
 
@@ -674,7 +709,7 @@ int	iLeftDivisionOfComplexMatrix(
 				cNorm	= 'F';
 				C2F(zlacpy)(&cNorm, &_iCols1, &_iCols2, pXb, &_iCols1, poOut, &_iCols1);
 				vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
-				return 0;
+				iExit = 1;
 			}
 			else
 			{
@@ -685,33 +720,40 @@ int	iLeftDivisionOfComplexMatrix(
 		}
 	}
 
-	dblRcond = dsqrts(dblEps);
-	cNorm = 'F';
-	iMax = Max(_iRows1, _iCols1);
-	C2F(zlacpy)(&cNorm, &_iRows1, &_iCols2, poVar2, &_iRows1, pXb, &iMax);
-	memset(pJpvt, 0x00, sizeof(int) * _iCols1);
-	C2F(zgelsy1)(	&_iRows1, &_iCols1, &_iCols2, poVar1, &_iRows1, pXb, &iMax,
-		pJpvt, &dblRcond, &pRank[0], pDwork, &iWork, pRwork, &iInfo);
+	if(iExit == 0)
+	{
+		dblRcond = dsqrts(dblEps);
+		cNorm = 'F';
+		iMax = Max(_iRows1, _iCols1);
+		C2F(zlacpy)(&cNorm, &_iRows1, &_iCols2, poVar2, &_iRows1, pXb, &iMax);
+		memset(pJpvt, 0x00, sizeof(int) * _iCols1);
+		C2F(zgelsy1)(	&_iRows1, &_iCols1, &_iCols2, poVar1, &_iRows1, pXb, &iMax,
+			pJpvt, &dblRcond, &pRank[0], pDwork, &iWork, pRwork, &iInfo);
 
-	if(iInfo != 0)
-		return 0;
+		if(iInfo == 0)
+		{
+			if( _iRows1 != _iCols1 && pRank[0] < Min(_iRows1, _iCols1))
+				//how to extract that ? Oo
+				Msgs(9, pRank[0]);
 
-	if( _iRows1 != _iCols1 && pRank[0] < Min(_iRows1, _iCols1))
-		//how to extract that ? Oo
-		Msgs(9, pRank[0]);
+			cNorm = 'F';
+			C2F(zlacpy)(&cNorm, &_iCols1, &_iCols2, pXb, &iMax, poOut, &_iCols1);
+			vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
+		}
+	}
 
-	cNorm = 'F';
-	C2F(zlacpy)(&cNorm, &_iCols1, &_iCols2, pXb, &iMax, poOut, &_iCols1);
 
-	vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
+	vFreeDoubleComplexFromPointer(poVar1);
+	vFreeDoubleComplexFromPointer(poVar2);
+	vFreeDoubleComplexFromPointer(poOut);
 
-	vFreeDoubleComplexFromPointer(pAf);
-	vFreeDoubleComplexFromPointer(pXb);
-	vFreeDoubleComplexFromPointer(pDwork);
+	free(pAf);
+	free(pXb);
 	free(pRank);
 	free(pIpiv);
 	free(pJpvt);
 	free(pRwork);
+	free(pDwork);
 	return 0;
 }
 
