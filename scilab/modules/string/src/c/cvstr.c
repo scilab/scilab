@@ -50,10 +50,12 @@ int C2F(codetoascii)(integer *n,integer * line,char * str, unsigned long str_len
 /*--------------------------------------------------------------------------*/
 int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,unsigned long  str_len)
 {
-	int nn = *n;
+	int nn = 0;
+
 	if (*flagx == 1) 
 	{
 		integer j = 0;
+		nn = *n; 
 		while (nn--)
 		{
 			unsigned char current_char = str[j];
@@ -63,7 +65,7 @@ int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,unsig
 	} 
 	else 
 	{
-		while (nn--)
+		for (nn = *n - 1 ; nn >= 0; --nn) 
 		{
 			unsigned char current_char = str[nn];
 			line[nn] = convertAsciiCodeToScilabCode(current_char);
