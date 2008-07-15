@@ -20,7 +20,9 @@
 #include "dynamic_link.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "FileExist.h"
 #include "dl_genErrorMessage.h"
+#include "freeArrayOfString.h"
 /*-----------------------------------------------------------------------------------*/
 static int linkNoRhs(void);
 static int linkOneRhsShow(void);
@@ -73,11 +75,30 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 
 				if ( (m1 == 1) && (n1 == 1) )
 				{
-					SharedLibraryName =(char*)MALLOC(sizeof(char)*(strlen(strings[0])+1));
-					strcpy(SharedLibraryName,strings[0]);
+					if ( FileExist(strings[0])  )
+					{
+						SharedLibraryName =(char*)MALLOC(sizeof(char)*(strlen(strings[0])+1));
+						strcpy(SharedLibraryName,strings[0]);
+						freeArrayOfString(strings,m1*n1);
+					}
+					else
+					{
+						if ( (Rhs == 1) && (strcmp(strings[0],"show")==0) )
+						{
+							freeArrayOfString(strings,m1*n1);
+							return linkOneRhsShow();
+						}
+						else
+						{
+							Scierror(999,_("%s: The file %s does not exist.\n"),fname,strings[0]);
+							freeArrayOfString(strings,m1*n1);
+							return 0;
+						}
+					}
 				}
 				else
 				{
+					freeArrayOfString(strings,m1*n1);
 					Scierror(999,_("%s : Wrong type for input argument #%d: %s\n"),fname,1,_("Unique dynamic library name expected."));
 					return 0;
 				}
@@ -106,6 +127,7 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
+					freeArrayOfString(subname,m2*n2);
 					Scierror(999,_("%s: Wrong type for input argument. Strings vector expected.\n"),fname);
 					return 0;
 				}
@@ -142,18 +164,18 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 		else fflag = FALSE;
 
 		returnedID = scilabLink(idsharedlibrary,SharedLibraryName,subname,sizesubname,fflag,&ierr);
-		if (ierr==0)
-			{
-				int n,l;
-				n=1;
-				CreateVar(Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &n, &n,&l);
-				*istk(l) = (int)returnedID;
-				LhsVar(1)=Rhs+1;
-				C2F(putlhsvar)();
-			}else{
-				dl_genErrorMessage(fname, ierr, SharedLibraryName);
-			}
-
+		if (ierr == 0)
+		{
+			int n = 1 ,l = 0;
+			CreateVar(Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &n, &n,&l);
+			*istk(l) = (int)returnedID;
+			LhsVar(1)=Rhs+1;
+			C2F(putlhsvar)();
+		}
+		else
+		{
+			dl_genErrorMessage(fname, ierr, SharedLibraryName);
+		}
 
 		if (SharedLibraryName) { FREE(SharedLibraryName); SharedLibraryName=NULL;}
 	}
