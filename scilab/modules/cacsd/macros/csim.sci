@@ -59,7 +59,8 @@ function [y,x]=csim(u,dt,sl,x0,tol)
   end
   [ma,mb]=size(b);
   //
-  imp=0;text='if t==0 then y=0, else y=1,end'
+  imp=0;step=0
+  text='if t==0 then y=0, else y=1,end'
   //
   select type(u)
   case 10 then //input given by its type (step or impuls)
@@ -72,7 +73,11 @@ function [y,x]=csim(u,dt,sl,x0,tol)
 	d=0*d;
       end;
     elseif part(u,1)=='s' then
-      //step response
+      step=1
+      if norm(d,1)<>0 then
+	warning(msprintf(gettext("%s: Direct feedthrough set to zero.\n"),"csim"));
+	d=0*d;
+      end;
     else
       error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"csim",1,"""step"",""impuls"""))
     end;
@@ -95,7 +100,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
   end;
   //
   if rhs==3 then x0=sl(6),end
-  if imp==1 then x0=0*x0,end
+  if imp==1|step==1 then x0=0*x0,end
   nt=size(dt,'*');x=0*ones(ma,nt)
 
   [a,v]=balanc(a);
@@ -155,6 +160,6 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     end;
     k=k+n
   end;
-  if imp==0 then y=c*x+d*ut,else y=c*x,end
+  if imp==0&step==0 then y=c*x+d*ut,else y=c*x,end
   if lhs==2 then x=v1*v2*x,end
 endfunction
