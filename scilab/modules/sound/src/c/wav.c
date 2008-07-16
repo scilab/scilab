@@ -43,7 +43,7 @@ typedef struct wavstuff
   int	second_header; /* non-zero on second header write */
 } *wav_t;
 /*--------------------------------------------------------------------------*/ 
-static char *wav_format_str(unsigned int wFormatTag); 
+static const char *wav_format_str(unsigned int wFormatTag); 
 
 /*
  * Do anything required before you start reading samples.
@@ -55,11 +55,12 @@ static char *wav_format_str(unsigned int wFormatTag);
 /*--------------------------------------------------------------------------*/ 
 void wavstartread(ft_t ft, WavInfo *Wi, int flag)
 {
-  wav_t	wav = (wav_t) ft->priv;
   char	magic[4];
-  unsigned len;  
+  unsigned len = 0;   
+  wav_t	wav = (wav_t) ft->priv;
   int	littlendian = 1;
-  char	*endptr;
+  char	*endptr = NULL;
+  const char *formatstr = NULL;
   
   /* wave file characteristics */
   endptr = (char *) &littlendian;
@@ -260,15 +261,18 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
   Wi->data_length = len;
   wav->samples = Wi->data_length/ft->info.size; /* total samples */
   
+  formatstr = wav_format_str(Wi->wFormatTag);
+
   if ( flag == 1 ) 
     {
+	  formatstr = wav_format_str(Wi->wFormatTag);
       sciprint(_("Reading Wave file: %s format, %d channel%s, %d samp/sec\n"),
-	       wav_format_str(Wi->wFormatTag), Wi->wChannels,
+	       (char*)formatstr, Wi->wChannels,
 	       Wi->wChannels == 1 ? "" : "s", Wi->wSamplesPerSecond);
       sciprint(_("        %d byte/sec, %d block align, %d bits/samp, %u data bytes\n"),
 	       Wi->wAvgBytesPerSec, Wi->wBlockAlign,Wi->wBitsPerSample, Wi->data_length);
     }
-  Wi->wav_format = wav_format_str(Wi->wFormatTag);
+  Wi->wav_format = (char*)formatstr;
 }
 /*--------------------------------------------------------------------------*/ 
 /*
@@ -418,13 +422,15 @@ void wavwritehdr(ft_t ft)
   fputs("data", ft->fp);
   wllong(ft, data_length);	/* data chunk size: FIXUP(40) */
   
+  
   if (!wav->second_header) 
-    {
-      sciprint(_("Writing Wave file: %s format, %d channel%s, %d samp/sec\n"),
-	       wav_format_str(wFormatTag), wChannels,
-	       wChannels == 1 ? "" : "s", wSamplesPerSecond);
-      sciprint(_("        %d byte/sec, %d block align, %d bits/samp\n"),
-	       wAvgBytesPerSec, wBlockAlign, wBitsPerSample);
+	{
+		const char *formatstr = wav_format_str(wFormatTag);
+		sciprint(_("Writing Wave file: %s format, %d channel%s, %d samp/sec\n"),
+			(char*)formatstr, wChannels,
+			wChannels == 1 ? "" : "s", wSamplesPerSecond);
+		sciprint(_("        %d byte/sec, %d block align, %d bits/samp\n"),
+			wAvgBytesPerSec, wBlockAlign, wBitsPerSample);
     } 
   else
     sciprint(_("Finished writing Wave file, %u data bytes\n"),data_length);
@@ -456,35 +462,35 @@ void wavstopwrite(ft_t ft)
 /*
  * Return a string corresponding to the wave format type.
  */
-static char *
-wav_format_str(unsigned int wFormatTag)
+/* format must not be localized. */
+static const char *wav_format_str(unsigned int wFormatTag)
 {
-  switch (wFormatTag)
-    {
-    case WAVE_FORMAT_UNKNOWN:
-      return _("Microsoft Official Unknown");
-    case WAVE_FORMAT_PCM_SCI:
-      return _("Microsoft PCM");
-    case WAVE_FORMAT_ADPCM:
-      return _("Microsoft ADPCM");
-    case WAVE_FORMAT_ALAW:
-      return _("Microsoft A-law");
-    case WAVE_FORMAT_MULAW:
-      return _("Microsoft U-law");
-    case WAVE_FORMAT_OKI_ADPCM:
-      return _("OKI ADPCM format.");
-    case WAVE_FORMAT_DIGISTD:
-      return _("Digistd format.");
-    case WAVE_FORMAT_DIGIFIX:
-      return _("Digifix format.");
-    case IBM_FORMAT_MULAW:
-      return _("IBM U-law format.");
-    case IBM_FORMAT_ALAW:
-      return _("IBM A-law");
-    case IBM_FORMAT_ADPCM:
-      return _("IBM ADPCM");
-    default:
-      return _("Unknown");
+	switch (wFormatTag)
+	{
+		case WAVE_FORMAT_UNKNOWN:
+			return "Microsoft Official Unknown";
+		case WAVE_FORMAT_PCM_SCI:
+			return "Microsoft PCM";
+		case WAVE_FORMAT_ADPCM:
+			return "Microsoft ADPCM";
+		case WAVE_FORMAT_ALAW:
+			return "Microsoft A-law";
+		case WAVE_FORMAT_MULAW:
+			return "Microsoft U-law";
+		case WAVE_FORMAT_OKI_ADPCM:
+			return "OKI ADPCM format.";
+		case WAVE_FORMAT_DIGISTD:
+			return "Digistd format.";
+		case WAVE_FORMAT_DIGIFIX:
+			return "Digifix format.";
+		case IBM_FORMAT_MULAW:
+			return "IBM U-law format.";
+		case IBM_FORMAT_ALAW:
+			return "IBM A-law";
+		case IBM_FORMAT_ADPCM:
+			return "IBM ADPCM";
+		default:
+			return "Unknown";
     }
 }
 /*--------------------------------------------------------------------------*/ 
