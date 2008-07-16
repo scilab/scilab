@@ -104,7 +104,7 @@
 ::msgcat::mcset it "Expression" "Espressione"
 ::msgcat::mcset it "Hit if" "Marca se"
 ::msgcat::mcset it "istrue" "è vero"
-::msgcat::mcset it "haschanged" "cambiato"
+::msgcat::mcset it "haschanged" "cambia"
 ::msgcat::mcset it "Watched" "Osservato"
 ::msgcat::mcset it "Hit count" "n° accessi"
 ::msgcat::mcset it "Break if" "Arresta se"
@@ -125,7 +125,7 @@
                     breakpoint, then this breakpoint is said to be\
                     reached."\
                    "Quando l'esecuzione del programma incontra un punto d'arresto\
-                    attivo, si dice che il punto d'arresto è stato raggiunto."
+                    abilitato, si dice che il punto d'arresto è stato raggiunto."
 ::msgcat::mcset it "When the breakpoint is reached and its associated\
                     conditional expression is true (or changed), then the\
                     breakpoint is said to be hit."\
