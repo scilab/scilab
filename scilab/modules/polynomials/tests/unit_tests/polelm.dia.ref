@@ -1,4 +1,9 @@
-// Copyright INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 //poly (coeff)
 v=[1 2 3];nam='s';job='c';p=1+2*%s+3*%s^2;
 if poly(v,'s','c')<>p then bugmes();quit;end
@@ -62,16 +67,6 @@ if poly(a,'s')<>p then bugmes();quit;end
 if poly([],'s')<>p then bugmes();quit;end
 if poly(a,nam)<>p then bugmes();quit;end
 if poly([],nam)<>p then bugmes();quit;end
-//roots
-p=-6+11*%s-6*%s^2+%s^3;
-if norm(coeff(poly(roots(p),'s','r')-p))>400*%eps then bugmes();quit;end
-if norm(coeff(poly(roots(p+0),'s','r')-p))>400*%eps then bugmes();quit;end
-p=-6-%i*6+(11+%i*5)*%s+(-6-%i)*%s^2+%s^3;
-if norm(coeff(poly(roots(p),'s','r')-p))>400*%eps then bugmes();quit;end
-if norm(coeff(poly(roots(p+0),'s','r')-p))>400*%eps then bugmes();quit;end
-p=1;v=[];
-if or(roots(p)<>v) then bugmes();quit;end
-if or(roots(p+0)<>v) then bugmes();quit;end
 //degree
 v=[1 2 3];d=[0 0 0];
 if or(degree(v)<>d) then bugmes();quit;end
