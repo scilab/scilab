@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,95 +10,122 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="calfrq">
+<refentry version="5.0-subset Scilab" xml:id="calfrq" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>calfrq</refname>
-    <refpurpose> frequency response discretization</refpurpose>
+
+    <refpurpose>frequency response discretization</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[frq,split]=calfrq(h,[fmin,fmax])</synopsis>
+
+    <synopsis>[frq,bnds,split]=calfrq(h,fmin,fmax)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>h</term>
+
         <listitem>
-          <para>SISO linear system (<literal>syslin</literal> list)</para>
+          <para>Linear system in state space or transfer representation
+          (<literal>see <link linkend="syslin">syslin</link></literal>)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>fmin,fmax</term>
+
         <listitem>
-          <para>real scalars (min and max frequencies)</para>
+          <para>real scalars (min and max frequencies in Hz)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>frq</term>
+
         <listitem>
-          <para>row vector (discretization of interval)</para>
+          <para>row vector (discretization of the frequency interval)</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>bnds</term>
+
+        <listitem>
+          <para>vector <literal>[Rmin Rmax Imin Imax]</literal> where
+          <literal>Rmin</literal> and <literal>Rmax</literal> are the lower
+          and upper bounds of the frequency response real part,
+          <literal>Imin</literal> and <literal>Imax</literal> are the lower
+          and upper bounds of the frequency response imaginary part,</para>
+        </listitem>
+      </varlistentry>
+
       <varlistentry>
         <term>split</term>
+
         <listitem>
           <para>vector of frq splitting points indexes</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    frequency response discretization ; <literal>frq</literal> is the discretization of  
-    <literal>[fmin,fmax]</literal> 
-    such that the peaks in the frequency response are well represented.</para>
-    <para>
-    Default values for <literal>fmin</literal> and <literal>fmax</literal> are
-    <literal>1.d-3</literal>, <literal>1.d+3</literal> if <literal>h</literal> is continuous-time
-    or <literal>1.d-3</literal>, <literal>1/(2*h('dt'))</literal> if <literal>h</literal> is discrete-time.</para>
-    <para>
-    Singularities are located between <literal>frq(split(k))</literal> and <literal>frq(split(k)+1)</literal>
-    for <literal>k&gt;1</literal>.</para>
+
+    <para>frequency response discretization; <literal>frq</literal> is the
+    discretization of <literal>[fmin,fmax]</literal> such that the peaks in
+    the frequency response are well represented.</para>
+
+    <para>Singularities are located between <literal>frq(split(k)-1)</literal>
+    and <literal>frq(split(k))</literal> for <literal>k&gt;1</literal>.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
 
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225)) 
-[f1,spl]=calfrq(h1,0.01,1000);
+[f1,bnds,spl]=calfrq(h1,0.01,1000);
 rf=repfreq(h1,f1);
 plot2d(real(rf)',imag(rf)')
  
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="bode">bode</link>
-      </member>
-      <member>
-        <link linkend="black">black</link>
-      </member>
-      <member>
-        <link linkend="nyquist">nyquist</link>
-      </member>
-      <member>
-        <link linkend="freq">freq</link>
-      </member>
-      <member>
-        <link linkend="repfreq">repfreq</link>
-      </member>
-      <member>
-        <link linkend="logspace">logspace</link>
-      </member>
+      <member><link linkend="bode">bode</link></member>
+
+      <member><link linkend="black">black</link></member>
+
+      <member><link linkend="nyquist">nyquist</link></member>
+
+      <member><link linkend="freq">freq</link></member>
+
+      <member><link linkend="repfreq">repfreq</link></member>
+
+      <member><link linkend="logspace">logspace</link></member>
     </simplelist>
   </refsection>
 </refentry>

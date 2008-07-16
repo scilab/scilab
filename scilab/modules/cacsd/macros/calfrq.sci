@@ -14,7 +14,7 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
   eps=1.d-14   //minimum absolute lower frequency
   k=0.001;     // Minimum relative prediction error in the nyquist plan 
   epss=0.002   // minimum frequency distance with a singularity
-  nptmax=5000 //maximum number of discretisation points
+  nptmax=5000  //maximum number of discretisation points
   tol=0.01     // Tolerance for testing pure imaginary numbers 
 
   // Check inputs
@@ -22,14 +22,11 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
   if and(typeof(h)<>['state-space' 'rational'])
    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"calfrq",1))
   end
-  flag=h(1);
-  if flag(1)=='lss' then
+  if typeof(h)=='state-space' then
     h=ss2tf(h)
   end
+  
   [m,n]=size(h.num)
-  if  n<>1 then  
-    error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input system expected.\n"),"calfrq",1))
-  end
   dom=h('dt')
   select dom
   case 'd' then 
