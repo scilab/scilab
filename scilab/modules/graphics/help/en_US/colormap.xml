@@ -34,7 +34,7 @@
     Each color in the colormap has an id you have to use to specify color
     in most plot functions. To see the ids, use function <link linkend="getcolor">getcolor</link>.</para>
     <para>
-    The functions <link linkend="hot_colormap">hot_colormap</link>, <link linkend="jetcolormap">jetcolormap</link> and  <link linkend="graycolormap">graycolormap</link> 
+    The functions <link linkend="hotcolormap">hotcolormap</link>, <link linkend="jetcolormap">jetcolormap</link> and  <link linkend="graycolormap">graycolormap</link> 
     provide colormaps with continuous variation of the colors.</para>
     <para>
     You can get the default colormap by <literal>cmap=get(sdf(),"color_map")</literal>.</para>
@@ -73,7 +73,7 @@ f.color_map=get(sdf(),"color_map");
         <link linkend="graycolormap">graycolormap</link>
       </member>
       <member>
-        <link linkend="hot_colormap">hot_colormap</link>
+        <link linkend="hotcolormap">hotcolormap</link>
       </member>
       <member>
         <link linkend="hsvcolormap">hsvcolormap</link>

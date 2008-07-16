@@ -74,7 +74,7 @@ f.color_map = hotcolormap(32);
         <link linkend="graycolormap">graycolormap</link>
       </member>
       <member>
-        <link linkend="hot_colormap">hot_colormap</link>
+        <link linkend="hotcolormap">hotcolormap</link>
       </member>
       <member>
         <link linkend="hsvcolormap">hsvcolormap</link>
