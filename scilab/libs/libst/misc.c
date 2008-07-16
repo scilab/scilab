@@ -14,6 +14,7 @@
 #include "../../modules/core/includes/machine.h" /* HAVE_STRERROR */
 #include "misc.h"
 /*-----------------------------------------------------------------------------------*/
+#ifndef _MSC_VER
 char *sizes[] = {
   "NONSENSE!",
   "bytes",
@@ -32,7 +33,7 @@ char *styles[] = {
   "u-law",
   "a-law"
 };
-
+#endif
 char readerr[] = "Premature EOF while reading sample file.";
 char writerr[] = "Error writing sample file.  You are probably out of disk space.";
 /*-----------------------------------------------------------------------------------*/

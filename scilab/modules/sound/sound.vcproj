@@ -6,7 +6,7 @@
 	ProjectGUID="{03773159-155A-48E0-9B26-119D0BF35B2B}"
 	RootNamespace="sound"
 	Keyword="Win32Proj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -378,6 +378,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\gw_sound.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\libs\libst\misc.c"
 				>
 			</File>
 			<File

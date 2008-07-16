@@ -15,7 +15,11 @@
 #define unix
 #endif
 
+#ifdef _MSC_VER
+#define IMPORT
+#else
 #define IMPORT  extern
+#endif
 #define EXPORT 
 
 /*
