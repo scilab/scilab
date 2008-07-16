@@ -430,8 +430,9 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       prot = funcprot();
       funcprot(0);
 
-      //** OBSOLETE: plese use the new "uigetcolor" at the place  
-      getcolor = tk_getcolor; //** Tk    "        "
+      //** Replace old TK_GETCOLOR with UIGETCOLOR
+      //** XGETCOLOR is a wrapper around UIGETCOLOR that mimics behavior of TK_GETCOLOR
+      getcolor = xgetcolor; // tk_getcolor;
 
       //** --------- Popup OS dependent definition -----------------
       getfile  = xgetfile; //** using Java most of these aliases 
