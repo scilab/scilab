@@ -65,7 +65,13 @@ int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,unsig
 	} 
 	else 
 	{
-		for (nn = *n - 1 ; nn >= 0; --nn) 
+		int l = 0;
+
+		/* check *n value */
+		if ( (int)strlen(str) > *n ) l = strlen(str);
+		else l = *n;
+
+		for (nn = l - 1 ; nn >= 0; --nn) 
 		{
 			unsigned char current_char = str[nn];
 			line[nn] = convertAsciiCodeToScilabCode(current_char);
