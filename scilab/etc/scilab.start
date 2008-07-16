@@ -68,7 +68,7 @@ if larg<>[] & larg<=size(args,"*") then
   L=args(larg+1);
   setlanguage(L);
 end
-clear larg args
+clear larg args L
 
 // loads modules ======================================================
 
