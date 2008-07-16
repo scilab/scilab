@@ -54,8 +54,9 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		// Trop de paramêtres
 		// ---------------------------------------------------------------------
 		
-		if rhs > 5 then
-			error(39);
+		if rhs > 5 | rhs < 1 then
+			err_msg = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"xmltoformat",1,5);
+			error(1001);
 		end
 		
 		// Cas par défaut : construction de l'aide en ligne de Scilab
