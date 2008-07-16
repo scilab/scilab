@@ -33,17 +33,17 @@ function idxColor = xgetcolor(titleString, idxColor)
   end
   //  - Type:
   if typeof(titleString) ~= 'string'
-    error(sprintf(gettext("%s: Wrong type for first input argument: String expected.\n"), "xgetcolor"));
+    error(sprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xgetcolor", 1));
   end
   if typeof(idxColor) ~= 'constant'
-    error(sprintf(gettext("%s: Wrong type for second input argument: Integer expected.\n"), "xgetcolor"));
+    error(sprintf(gettext("%s: Wrong type for input argument #%d: Integer expected.\n"), "xgetcolor", 2));
   end
   //  - Size:
   if size(titleString,'*') ~= 1
-    error(sprintf(gettext("%s: Wrong size for first input argument: Single string expected.\n"), "xgetcolor"));
+    error(sprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"), "xgetcolor", 1));
   end
   if size(idxColor,'*') ~= 1
-    error(sprintf(gettext("%s: Wrong size for second input argument: Single integer expected.\n"), "xgetcolor"));
+    error(sprintf(gettext("%s: Wrong size for input argument #%d: Single integer expected.\n"), "xgetcolor", 2));
   end
   
 
