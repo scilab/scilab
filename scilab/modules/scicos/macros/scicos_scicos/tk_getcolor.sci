@@ -19,6 +19,15 @@
 // See the file ../license.txt
 //
 
+//** How does it work?
+// Create a TCL/TK dialog to display a grid containing all colors from current colormap
+//  - Colormap is obtained with either get(gcf(),"color_map") or xget('colormap')
+//  - Colors are expressed using values ranging from 0 to 1 for each RGB component
+//  - Components are converted from 0..1 to 0..255 for what seems to be display
+// purposes only
+//  - Output argument (Color) is the index of the clicked cell, i.e the index of
+// the chosen color in the colormap
+
 function Color=tk_getcolor(title1,Color)
 
   title1=sci2tcl(title1)
@@ -34,7 +43,7 @@ txt=  'proc createmxn {frame r g b taille ind} {global maxrow n;set n"+...
       " $dx ];if ($c!=$ind) { button '"$frame.$i$j'" -padx 6 -pady 3"+...
       " -bg $bg  -borderwidth 4 -activebackground $bg -relief sunken -command [list titi $i $j]} else {button '"$frame.$i$j'"  -padx 6 -pady 3 -bg $bg -borderwidth 4 -activebackground $bg -relief raised -command [list titi $i $j]};grid '"$frame.$i$j'" -row $i -column $j -sticky news;bind '"$frame.$i$j'" <Enter> [list '"$frame.$i$j'" configure -relief raised];bind '"$frame.$i$j'" <Leave> [list '"$frame.$i$j'" configure -relief sunken];incr {c}};	grid columnconfigure $frame $i -weight 1;grid rowconfigure $frame $j -weight 1}};proc titi {g h} {global maxrow n;set x {$h + $n*$g +1};set x [expr $x];ScilabEval Color=''$x'';destroy .toto};'
   
-col=get(gcf(),"color_map")  //xget('colormap')
+col=get(gcf(),"color_map")  //** SC5: xget('colormap')
 ta=size(col,1);
   maxrow=ceil(sqrt(ta))
   maxcol=ceil(ta/maxrow)
@@ -58,6 +67,4 @@ ta=size(col,1);
   TCL_EvalStr(txt)
   Color=evstr(Color)
 endfunction
-
-
 

@@ -46,7 +46,8 @@ function [scs_m] = do_color(%win, %pt, scs_m)
   //
   //**-----------------------------------------------------
   
-  coul = getcolor('Choose a color',1);
+  coul = getcolor('Choose a color',1); //** coul is the index of the chosen
+                                       //** color in current figure's colormap
   
   //**----------------------------------------------------------
   //** the code below is modified according the new graphics API
@@ -107,8 +108,8 @@ function [scs_m] = do_color(%win, %pt, scs_m)
       if coln<>[] then
 	
 	if coln<>coli then
-	  o.graphics.gr_i(2) = coln ; //** update the object propriety 
-	  scs_m.objs(K) = o ;     //** update the diagram 
+	  o.graphics.gr_i(2) = coln ;   //** update the object propriety 
+	  scs_m.objs(K) = o ;           //** update the diagram 
           update_gr(gh_obj_K,o) ; //** update the graphics data structure 
 	end
       
@@ -124,3 +125,4 @@ function [scs_m] = do_color(%win, %pt, scs_m)
   //** show_pixmap() ; //** not useful on Scilab 5
 
 endfunction
+
