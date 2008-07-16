@@ -506,7 +506,7 @@ int InitFigureModel( void )
     return -1 ;
   }
   strncpy (pFIGURE_FEATURE (pfiguremdl)->name, _("Graphic window number %d"), strlen(_("Graphic window number %d"))*sizeof(char) + 4);
-  pFIGURE_FEATURE (pfiguremdl)->namelen = Min (strlen(_("Graphic window number %d"))*sizeof(char) + 4, 24);
+  pFIGURE_FEATURE (pfiguremdl)->namelen = Min ((int)strlen(_("Graphic window number %d"))*sizeof(char) + 4, 24);
   pFIGURE_FEATURE (pfiguremdl)->number          = 0   ;
 
   /* Set figure model attributes */
