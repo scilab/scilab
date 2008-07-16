@@ -57,16 +57,19 @@ function libn = ilib_compile(lib_name,makename,files, ..
     // Source tree version
 	if isdir(SCI+"/modules/core/includes/") then
 	  cflags="-I"+SCI+"/modules/core/includes/ -I"+SCI+"/modules/mexlib/includes/ "+cflags
+	  fflags="-I"+SCI+"/modules/core/includes/"+fflags
 	end
 
 	// Binary version
 	if isdir(SCI+"/../../include/scilab/core/") then
 	  cflags="-I"+SCI+"/../../include/scilab/core/ -I"+SCI+"/../../include/scilab/mexlib/ "+cflags
+	  fflags="-I"+SCI+"/../../include/core/includes/"+fflags
 	end
 
 	// System version (ie: /usr/include/scilab/)	
 	if isdir("/usr/include/scilab/") then
 	  cflags="-I/usr/include/scilab/core/ -I/usr/include/scilab/mexlib/ "+cflags
+	  fflags="-I/usr/include/scilab/core/"+fflags
 	end
 	
       oldPath = pwd();
