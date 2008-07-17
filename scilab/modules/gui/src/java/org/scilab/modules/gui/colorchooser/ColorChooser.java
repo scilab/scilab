@@ -29,6 +29,12 @@ public interface ColorChooser extends UIElement {
 	SimpleColorChooser getAsSimpleColorChooser();
 	
 	/** 
+	 * Set the title of the ColorChooser 
+	 * @param title the title to set
+	 */
+	void setTitle(String title);
+
+	/** 
 	 * Retrieve the selected color, or null 
 	 * @return the selected color
 	 */

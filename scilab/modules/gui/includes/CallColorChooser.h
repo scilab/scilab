@@ -22,6 +22,14 @@
 int createColorChooser(void);
 
 /**
+ * Set the title of a ColorChooser
+ *
+ * @param colorChooserID the ID of the Java Color Chooser
+ * @param title the title
+ */
+void setColorChooserTitle(int colorChooserID, char *title);
+
+/**
  * Set the default color for a Color Chooser
  *
  * @param colorChooserID the ID of the Java Color Chooser

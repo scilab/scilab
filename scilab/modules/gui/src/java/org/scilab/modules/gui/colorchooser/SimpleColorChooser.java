@@ -34,6 +34,12 @@ public interface SimpleColorChooser {
 	int getElementId();
 	
 	/** 
+	 * Set the title of the ColorChooser 
+	 * @param title the title to set
+	 */
+	void setTitle(String title);
+
+	/** 
 	 * Retrieve the selected Color, or null 
 	 * @return the selected Color
 	 */

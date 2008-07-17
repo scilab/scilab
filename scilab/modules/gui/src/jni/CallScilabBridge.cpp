@@ -264,6 +264,7 @@ jintnewColorChooserID=NULL;
 voidcolorChooserDisplayAndWaitjintID=NULL; 
 voidsetColorChooserDefaultColorjintjintArrayID=NULL; 
 jintArraygetColorChooserSelectedColorjintID=NULL; 
+voidsetColorChooserTitlejintjstringID=NULL; 
 voidsetWidgetVisiblejintjbooleanID=NULL; 
 voidsetFrameVisiblejintjbooleanID=NULL; 
 jbooleanisWidgetVisiblejintID=NULL; 
@@ -468,6 +469,7 @@ jintnewColorChooserID=NULL;
 voidcolorChooserDisplayAndWaitjintID=NULL; 
 voidsetColorChooserDefaultColorjintjintArrayID=NULL; 
 jintArraygetColorChooserSelectedColorjintID=NULL; 
+voidsetColorChooserTitlejintjstringID=NULL; 
 voidsetWidgetVisiblejintjbooleanID=NULL; 
 voidsetFrameVisiblejintjbooleanID=NULL; 
 jbooleanisWidgetVisiblejintID=NULL; 
@@ -4674,6 +4676,29 @@ curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
 return myArray;
 
+}
+
+void CallScilabBridge::setColorChooserTitle (JavaVM * jvm_, long objID, char * title){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetColorChooserTitlejintjstringID = curEnv->GetStaticMethodID(cls, "setColorChooserTitle", "(ILjava/lang/String;)V" ) ;
+if (voidsetColorChooserTitlejintjstringID == NULL) {
+std::cerr << "Could not access to the method " << "setColorChooserTitle" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring title_ = curEnv->NewStringUTF( title );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetColorChooserTitlejintjstringID ,objID, title_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 void CallScilabBridge::setWidgetVisible (JavaVM * jvm_, long objID, bool status){

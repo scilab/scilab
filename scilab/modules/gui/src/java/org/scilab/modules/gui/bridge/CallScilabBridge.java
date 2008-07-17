@@ -2362,6 +2362,15 @@ public class CallScilabBridge {
 	/************************/
 	
 	/**
+	 * Set the title of a ColorChooser
+	 * @param id the id of the ColorChooser
+	 * @param title the title
+	 */
+	public static void setColorChooserTitle(int id, String title) {
+		((ColorChooser) UIElementMapper.getCorrespondingUIElement(id)).setTitle(title);
+	}
+
+	/**
 	 * Set the default Color for a ColorChooser
 	 * @param id the id of the ColorChooser
 	 * @param rgb the default color

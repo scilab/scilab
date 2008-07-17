@@ -215,6 +215,7 @@ jmethodID jintnewColorChooserID; // cache method id
 jmethodID voidcolorChooserDisplayAndWaitjintID; // cache method id
 jmethodID voidsetColorChooserDefaultColorjintjintArrayID; // cache method id
 jmethodID jintArraygetColorChooserSelectedColorjintID; // cache method id
+jmethodID voidsetColorChooserTitlejintjstringID; // cache method id
 jmethodID voidsetWidgetVisiblejintjbooleanID; // cache method id
 jmethodID voidsetFrameVisiblejintjbooleanID; // cache method id
 jmethodID jbooleanisWidgetVisiblejintID; // cache method id
@@ -596,6 +597,8 @@ static void colorChooserDisplayAndWait(JavaVM * jvm_, long objID);
 static void setColorChooserDefaultColor(JavaVM * jvm_, long objID, long * rgb, int rgbSize);
 
 static long * getColorChooserSelectedColor(JavaVM * jvm_, long objID);
+
+static void setColorChooserTitle(JavaVM * jvm_, long objID, char * title);
 
 static void setWidgetVisible(JavaVM * jvm_, long objID, bool status);
 

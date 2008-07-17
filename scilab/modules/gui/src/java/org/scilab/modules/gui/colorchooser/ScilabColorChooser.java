@@ -63,6 +63,14 @@ public class ScilabColorChooser extends ScilabUIElement implements ColorChooser 
 	}
 
 	/** 
+	 * Set the title of the ColorChooser 
+	 * @param title the title to set
+	 */
+	public void setTitle(String title) {
+		ScilabBridge.setTitle(this, title);
+	}
+
+	/** 
 	 * Retrieve the selected Color, or null 
 	 * @return the selected Color
 	 */

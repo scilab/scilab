@@ -11,17 +11,23 @@
     <title>Calling Sequence</title>
     <synopsis>
 uigetcolor()
-RGB = uigetcolor()
-RGB = uigetcolor(defaultRGB)
-RGB = uigetcolor(defaultRed, defaultGreen, defaultBlue)
-[R, G, B] = uigetcolor()
-[R, G, B] = uigetcolor(defaultRGB)
-[R, G, B] = uigetcolor(defaultRed, defaultGreen, defaultBlue)
+RGB = uigetcolor([title])
+RGB = uigetcolor([title,] defaultRGB)
+RGB = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
+[R, G, B] = uigetcolor([title])
+[R, G, B] = uigetcolor([title,] defaultRGB)
+[R, G, B] = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
+      <varlistentry>
+        <term>title</term>
+        <listitem>
+          <para>String: Optional argument, the title to display in the dialog. Default value is "Color Chooser".</para>
+        </listitem>
+      </varlistentry>
       <varlistentry>
         <term>defaultRGB</term>
         <listitem>
@@ -83,6 +89,7 @@ RGB = uigetcolor(defaultRed, defaultGreen, defaultBlue)
 uigetcolor()
 [R, G, B] = uigetcolor([255 128 0])
 RBG = uigetcolor(0, 128, 255)
+RBG = uigetcolor("My color chooser", 0, 128, 255)
  
   ]]></programlisting>
   </refsection>

@@ -595,6 +595,10 @@
 	<method name="getColorChooserSelectedColor" returnType="int[]" modifier="static">
           <parameter type="int" name="objID"/>
         </method>      
+	<method name="setColorChooserTitle" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+          <parameter type="String" name="title"/>
+        </method>      
 <!-- Widget visible -->
 	<method name="setWidgetVisible" returnType="void" modifier="static">
           <parameter type="int" name="objID"/>

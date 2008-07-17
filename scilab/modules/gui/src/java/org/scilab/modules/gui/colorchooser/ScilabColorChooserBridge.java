@@ -48,6 +48,15 @@ public class ScilabColorChooserBridge {
 	}
 
 	/** 
+	 * Set the title of the ColorChooser 
+	 * @param colorChooser the ColorChooser
+	 * @param title the title to set
+	 */
+	public static void setTitle(ColorChooser colorChooser, String title) {
+		colorChooser.getAsSimpleColorChooser().setTitle(title);
+	}
+
+	/** 
 	 * Set the default color 
 	 * @param colorChooser the ColorChooser
 	 * @param color the default color

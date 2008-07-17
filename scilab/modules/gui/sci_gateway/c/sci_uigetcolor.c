@@ -20,46 +20,27 @@
 int sci_uigetcolor(char *fname,unsigned long fname_len)
 {
   int colorChooserID = 0;
+  int firstColorIndex = 0;
 
   int nbRow = 0, nbCol = 0;
 
   int redAdr = 0;
   int greenAdr = 0;
   int blueAdr = 0;
+  int titleAdr = 0;
 
   double *selectedRGB = NULL;
 
-  if ((Rhs!=0) && (Rhs!=1) && (Rhs!=3)) /* Bad use */
-    {
-          Scierror(999, _("%s: Wrong number of input arguments: %d, %d or %d expected.\n"), fname, 0, 1, 3);
-          return FALSE;
-    }
+  CheckRhs(0, 4);
 
   if ((Lhs!=1) && (Lhs!=3)) /* Bad use */
     {
-          Scierror(999, _("%s: Wrong number of output arguments: %d or %d expected.\n"), fname, 1, 3);
-          return FALSE;
+      Scierror(999, _("%s: Wrong number of output arguments: %d or %d expected.\n"), fname, 1, 3);
+      return FALSE;
     }
-
-  /* Default red value */
-  if (Rhs > 1)
-    {
-      if (VarType(1) == sci_matrix)
-        {
-          GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
-          if (nbRow*nbCol != 1)
-            {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
-              return FALSE;
-            }
-        }
-      else
-        {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 1);
-          return FALSE;
-        }
-    }
-  else if (Rhs==1) /* Rhs==1 then redAdr contains RBG values */
+  
+  /* Rhs==1: title or [R, G, B] given */
+  if (Rhs==1)
     {
       if (VarType(1) == sci_matrix)
         {
@@ -70,51 +51,146 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
               return FALSE;
             }
         }
+      else if (VarType(1) == sci_strings)
+        {
+          GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
+          if (nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+              return FALSE;
+            }
+        }
       else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: Real row vector expected.\n"), fname, 1);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A real or a string expected.\n"), fname, 1);
           return FALSE;
         }
     }
 
-  /* Default green value */
-  if (Rhs == 3) {
-    if (VarType(2) == sci_matrix)
-      {
-        GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &greenAdr);
-        if (nbRow*nbCol != 1)
-          {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 2);
-            return FALSE;
-          }
-      }
-    else
-      {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 2);
-        return FALSE;
-      }
-  }
+  /* Title and [R, G, B] given */
+  if (Rhs==2)
+    {
+      /* Title */
+      if (VarType(1) == sci_strings)
+        {
+          GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
+          if (nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+              return FALSE;
+            }
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+          return FALSE;
+        }
 
-  /* Default blue value */
-  if (Rhs == 3) {
-    if (VarType(3) == sci_matrix)
-      {
-        GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &blueAdr);
-        if (nbRow*nbCol != 1)
-          {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 3);
-            return FALSE;
-          }
-      }
-    else
-      {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 3);
-        return FALSE;
-      }
-  }
+      /* [R, G, B] */
+      if (VarType(2) == sci_matrix)
+        {
+          GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
+          if (nbRow*nbCol != 3)
+            {
+              Scierror(999, _("%s: Wrong size for input argument #%d: %d x %d real row vector expected.\n"), fname, 2, 1, 3);
+              return FALSE;
+            }
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for input argument #%d: %d x %d real row vector expected.\n"), fname, 2, 1, 3);
+          return FALSE;
+        }
+    }
 
+  /* No title given but colors given with separate values */
+  if (Rhs==3)
+    {
+      firstColorIndex = 1;
+    }
+
+  /* Title and colors given with separate values */
+  if (Rhs==4)
+    {
+      firstColorIndex = 2;
+      
+      /* Title */
+      if (VarType(1) == sci_strings)
+        {
+          GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
+          if (nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+              return FALSE;
+            }
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for input argument #%d: A real or a string expected.\n"), fname, 1);
+          return FALSE;
+        }
+    }
+
+  /* R, G, B given */
+  if (Rhs>=3)
+    {
+      /* Default red value */
+      if (VarType(firstColorIndex) == sci_matrix)
+        {
+          GetRhsVar(firstColorIndex, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
+          if (nbRow*nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex);
+              return FALSE;
+            }
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex);
+          return FALSE;
+        }
+      
+      /* Default green value */
+      if (VarType(firstColorIndex + 1) == sci_matrix)
+        {
+          GetRhsVar(firstColorIndex + 1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &greenAdr);
+          if (nbRow*nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
+              return FALSE;
+            }
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
+          return FALSE;
+        }
+      
+      /* Default blue value */
+      if (VarType(firstColorIndex + 2) == sci_matrix)
+        {
+          GetRhsVar(firstColorIndex + 2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &blueAdr);
+          if (nbRow*nbCol != 1)
+            {
+              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
+              return FALSE;
+            }
+        }
+      else
+        {
+          Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
+          return FALSE;
+        }
+    }
+  
   /* Create the Java Object */
   colorChooserID = createColorChooser();
+
+  /* Title */
+  if (titleAdr != 0)
+    {
+      setColorChooserTitle(colorChooserID, cstk(titleAdr));
+    }
 
   /* Default red value */
   if (redAdr != 0)

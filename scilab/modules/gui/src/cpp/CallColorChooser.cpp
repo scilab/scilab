@@ -19,6 +19,11 @@ int createColorChooser()
   return CallScilabBridge::newColorChooser(getScilabJavaVM());
 }
 
+void setColorChooserTitle(int colorChooserID, char *title)
+{
+  CallScilabBridge::setColorChooserTitle(getScilabJavaVM(), colorChooserID, title);
+}
+
 void setColorChooserDefaultRGB(int colorChooserID, double *RGB)
 {
   long int *RGBint = new long int[3];
