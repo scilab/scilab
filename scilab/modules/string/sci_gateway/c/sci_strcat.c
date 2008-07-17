@@ -124,7 +124,7 @@ static int sci_strcat_three_rhs(char *fname)
 			break;
 		case COL: 
 			/* return a column matrix */ 
-			if ( (Output_String = MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
+			if ( (Output_String = (char**)MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
 			{
 				Scierror(999,_("%s: No more memory.\n"),fname);
 				return 0;
@@ -137,7 +137,15 @@ static int sci_strcat_three_rhs(char *fname)
 				for ( j = 0 ; j < Col_One ; j++ ) nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
 				nchars += (Col_One-1)*(int)strlen(Input_String_Two); 
 
-				Output_String[i] = strdup(Input_String_One[i]);
+				Output_String[i]=(char*)MALLOC((nchars+1)*sizeof(char));
+				if ( Output_String[i] == NULL) 
+				{
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					return 0;
+				} 
+				/* fill the string */
+				strcpy(Output_String[i],Input_String_One[i]);
+
 				if ( Output_String[i] == NULL) 
 				{
 					Scierror(999,_("%s: No more memory.\n"),fname);
@@ -147,18 +155,16 @@ static int sci_strcat_three_rhs(char *fname)
 				for ( j = 1 ; j < Col_One ; j++ ) 
 				{
 					strcat(Output_String[i],Input_String_Two); 
-					strcat(Output_String[i],"\0");
-					
 					strcat(Output_String[i],Input_String_One[i+ Row_One*j]);
-					
 				}
 				
 			}
 			
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_One, &un, Output_String);
 			freeArrayOfString(Input_String_One,mn);
-			LhsVar(1) = Rhs+1  ;
 			freeArrayOfString(Output_String,Row_One+1);
+			LhsVar(1) = Rhs+1  ;
+			
 			break;
 		case ROW: 
 			/* return a row matrix */ 
