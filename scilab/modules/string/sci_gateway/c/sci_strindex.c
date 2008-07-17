@@ -184,7 +184,11 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
-					pcre_error(fname,w);
+					if (w != NO_MATCH)
+					{
+						pcre_error(fname,w);
+						return 0;
+					}
 					break;
 				}
 			}

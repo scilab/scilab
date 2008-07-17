@@ -29,6 +29,9 @@
 #include "pcre_private.h"
 #include "pcre_error.h"
 #include "Scierror.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*------------------------------------------------------------------------*/
 #define CHAR_S 's'
 #define CHAR_R 'r'
@@ -39,9 +42,6 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 	char typ = CHAR_S;
      char **Str = NULL;
 	char **Str2 = NULL;
-	char *pointer=NULL;
-	char *save=NULL;
-
 	int i = 0; /* loop indice */
 
     int mn = 0; /* dimension parameter 1 m*n */
@@ -60,10 +60,9 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 	int nbValues = 0;
 	int nbValues_end=0;
     int nbposition = 0;
-	int start_point=0;
-	char **match=NULL;
 
-	/* Are you sure for Lhs and Rhs */
+	char **match = NULL;
+
     CheckRhs(1,3);
     CheckLhs(1,3);
 
@@ -115,48 +114,60 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 		position = (int *)MALLOC( sizeof(int) * ( strlen(Str[0]) ) );
 	}
 	if (Rhs == 2 )
+	{
+		int x = 0;
+		int answer = 0;
+		int start_point = 0;
+		int Output_Start = 0;
+		int Output_End = 0;
+
+        for (x = 0; x < mn2; ++x)
         {
-			int x = 0;
-			int answer = 0;
-
-			int Output_Start = 0;
-			int Output_End = 0;
-
-            for (x = 0; x < mn2; ++x)
-            {
-				save = (char *)MALLOC( sizeof(char) * ( strlen(Str2[x]) +1) );
-                pointer=Str[0];
-				start_point=0;
+			char *save = strdup(Str2[x]);
+			if (save)
+			{
+				char *pointer = Str[0];
+				start_point = 0;
+				strcpy(save,Str2[x]);
 				do
 				{
-					strcpy(save,Str2[x]);
 					answer = pcre_private(pointer,save,&Output_Start,&Output_End);
-					if ( answer == 0)
+					if ( answer == 0 )
 					{
-						if (Output_Start!=Output_End || Output_Start==0)
+						if (Output_Start != Output_End || Output_Start==0)
 						{
 							/*adding the answer into the outputmatrix*/
-							values[nbValues++]=Output_Start+start_point+1;
+							values[nbValues++] = Output_Start + start_point + 1;
 						}
 						else
 						{
-							values[nbValues++]=Output_Start+start_point;
+							values[nbValues++] = Output_Start + start_point;
 						}
-						values_end[nbValues_end++]=Output_End+start_point;
+						values_end[nbValues_end++] = Output_End + start_point;
 						/*The number according to the str2 matrix*/
-						position[nbposition++]=x+1;
-	                    pointer=pointer+Output_End;
-						start_point=start_point+Output_End;
+						position[nbposition++] = x + 1;
+						pointer = pointer + Output_End;
+						start_point = start_point + Output_End;
 					}
 					else
 					{
-						pcre_error(fname,answer);
+						if (answer != NO_MATCH)
+						{
+							pcre_error(fname,answer);
+							return 0;
+						}
 					}
 				}
 				while( (answer == 0) && (Output_Start != Output_End) );
 				if (save) {FREE(save);save=NULL;}
-            }
+			}
+			else
+			{
+				Scierror(999, _("%s: No more memory.\n"),fname);
+				return 0;
+			}
 		}
+	}
 
     if (Rhs >= 3)
     {
@@ -170,7 +181,6 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
 
 		if (typ== STR_ONCE)
 		{
-
 			int x = 0;
 			int answer = 0;
 
@@ -198,7 +208,11 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
                 }
 				else
 				{
-					pcre_error(fname,answer);
+					if (answer != NO_MATCH)
+					{
+						pcre_error(fname,answer);
+						return 0;
+					}
 				}
             }
 

@@ -159,7 +159,7 @@ static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 {
 	int x = 0,y = 0;
 
-        results->values = (int *)MALLOC(sizeof(int)*(mn_one*mn_two+1));
+    results->values = (int *)MALLOC(sizeof(int)*(mn_one*mn_two+1));
 	results->positions = (int *)MALLOC(sizeof(int)*(mn_one*mn_two+1));
 
 	for (y = 0; y < mn_one; ++y)

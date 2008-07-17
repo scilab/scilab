@@ -24,5 +24,3 @@ b = b + "r";
 ierr=execstr("regexp(b, r)","errcatch");
 if ierr <> 999 then pause,end
 
-r="/^b.*b.*b.*b.*b/";
-if regexp(b, r) <> 1 then pause,end
