@@ -14,6 +14,6 @@ function D=%egraphic_i_egraphic(i,d,D)
   if or(FD<>Fd) then 
     error('Incompatible edge graphic fields')
   end
-  FD(FD=='profiles'|FD=='defaults'|FD=='display')=[];
+  FD(FD=='profiles'|FD=='defaults'|FD=='display'|FD=='displaymode')=[];
   for f=FD(2:$), D(f)(:,i)=d(f); end
 endfunction
