@@ -32,6 +32,6 @@
 
 #include "machine.h"
 
-void C2F(concom)(int *icomp, int *n, int *ncomp, int *nsize, int **ns);
+void C2F(concom)(int *icomp, int *n, int *ncomp, int **ns, int *nsize);
 
 #endif /* ! __CONNEX_H__ */
