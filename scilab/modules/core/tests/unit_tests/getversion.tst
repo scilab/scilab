@@ -38,7 +38,7 @@ if type(A) <> 1          then pause, end
 if or( size(A) <> [1 4]) then pause, end
 
 // Test 2.4
-A = getversion("scilab","string_info")
+A = getversion("scilab","string_info");
 if type(A) <> 10 then pause, end
 
 // Test 2.5

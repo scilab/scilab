@@ -29,10 +29,7 @@ A = getversion("scilab");
 if type(A) <> 1          then bugmes();quit;end
 if or( size(A) <> [1 4]) then bugmes();quit;end
 // Test 2.4
-A = getversion("scilab","string_info")
- A  =
- 
- scilab-trunk-SVN   
+A = getversion("scilab","string_info");
 if type(A) <> 10 then bugmes();quit;end
 // Test 2.5
 module_list = getmodules();
