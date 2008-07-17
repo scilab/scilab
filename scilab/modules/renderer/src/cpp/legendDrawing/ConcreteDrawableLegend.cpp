@@ -87,8 +87,43 @@ namespace sciGraphics
 
   }
   /*---------------------------------------------------------------------------------*/
+  int ConcreteDrawableLegend::updateLegend(void)
+  {
+   //check if all legended objects still exist and update Legend object if necessary
+    int i1 = 0;
+    StringMatrix * Text=pLEGEND_FEATURE(m_pDrawed)->text.pStrings ;
+    
+    int nblegends = getNbLegend();
+    for (int i = 0; i < nblegends; i++) {
+      sciPointObj * legendedObject = sciGetPointerFromHandle(pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i]);
+      if (legendedObject != NULL) {
+	if (i != i1) {
+	  pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i1]= pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i];
+	  Text->data[i1]=Text->data[i];
+	}
+	i1++;
+      }
+      
+    }
+    //at least one legended object has been destroyed, update Legend object and recreate display
+    if (i1 < nblegends) {
+      destroyText();
+      destroyLines();
+      destroyBox();
+      Text->nbRow=i1;
+      pLEGEND_FEATURE(m_pDrawed)->nblegends=i1;
+      drawLegend();
+      return 1;
+    }
+    return 0;
+  }
+  /*---------------------------------------------------------------------------------*/
+
   void ConcreteDrawableLegend::showLegend(void)
   {
+    //check if all legended objects still exist and update Legend object if necessary
+    if (updateLegend()) return;
+
     // just do that in order to be able to retrieve bounding box
     sciSetTextPos(m_pNames, 1.0, 1.0, 1.0);
     // line parameters may have changed
@@ -220,8 +255,7 @@ namespace sciGraphics
     for (int i = 0; i < nbLegends; i++)
       {
 	// current object we want to set the legend
-	sciPointObj * legendedObject = ppLegend->pptabofpointobj[i];
-
+	sciPointObj * legendedObject = sciGetPointerFromHandle(ppLegend->tabofhandles[i]);
 	// set same mark parameters as the polyline
 	sciInitMarkSize(m_aLines[i], sciGetMarkSize(legendedObject));
 	sciInitMarkSizeUnit(m_aLines[i], sciGetMarkSizeUnit(legendedObject));
@@ -453,11 +487,14 @@ namespace sciGraphics
   void ConcreteDrawableLegend::placeLines(const double upperLeftCorner[3], const double lowerLeftCorner[3],
 					  const double lowerRightCorner[3], const double upperRightCorner[3])
   {
+   
     int nblegends = getNbLegend();
+  
     // interpolate between top to bottom
     for (int i = 0; i < nblegends; i++)
       {
-	sciPointObj * legendedObject = pLEGEND_FEATURE(m_pDrawed)->pptabofpointobj[i];
+	sciPointObj * legendedObject = sciGetPointerFromHandle(pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i]);
+	
 	// our polylines are composed of at most four points
 	sciPolyline * curPoly = pPOLYLINE_FEATURE(m_aLines[i]);
 

@@ -437,7 +437,7 @@ int
 DestroyLegend (sciPointObj * pthis)
 {
   sciLegend * ppLegend = pLEGEND_FEATURE (pthis) ;
-  FREE ( ppLegend->pptabofpointobj );
+  FREE ( ppLegend->tabofhandles );
   deleteMatrix( ppLegend->text.pStrings ) ;
 
   FREE ((sciGetFontContext(pthis))->pfontname);

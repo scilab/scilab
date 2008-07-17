@@ -194,7 +194,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
     n1=1; styl[0]=1;styl[1]=0;
     sciSetCurrentObj (ConstructLegend
                       (sciGetCurrentSubWin(),
-                       legend,  (int)strlen(legend), n1, styl, &pptabofpointobj)); 
+                       legend,  (int)strlen(legend), n1, styl, &(hdltab[cmpt])); 
     
     
     sciDrawObj(sciGetCurrentObj ()); 

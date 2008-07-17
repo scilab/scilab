@@ -40,7 +40,7 @@ int get_links_property( sciPointObj * pobj )
     return -1 ;
   }
   for (i=0; i<nblegends; i++) {
-    handles[i]=sciGetHandle( pLEGEND_FEATURE(pobj)->pptabofpointobj[i]);
+    handles[i]=pLEGEND_FEATURE(pobj)->tabofhandles[i];
   }
   status = sciReturnRowHandleVector(handles, nblegends);
  

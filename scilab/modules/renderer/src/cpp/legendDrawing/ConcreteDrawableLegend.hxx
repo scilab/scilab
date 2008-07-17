@@ -37,6 +37,10 @@ protected:
   virtual void drawLegend(void);
 
   /**
+   * Update the legend entity
+   */
+  virtual int updateLegend(void);
+  /**
    * Show the legend entity
    */
   virtual void showLegend(void);

@@ -104,7 +104,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 {
   int closeflag = 0;
   int jj = 0;
-  sciPointObj **pptabofpointobj = NULL ;
+  long long *tabofhandles = NULL ;
   sciPointObj  *psubwin = NULL ;
   sciPointObj * curFigure = NULL;
   long hdl;
@@ -228,8 +228,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 		  return 0;
     }
     if (with_leg) {
-      /* pptabofpointobj allocated for legends */
-      if ((pptabofpointobj = MALLOC((*n1)*sizeof(sciPointObj*))) == NULL) {
+      /* tabofhandles allocated for legends */
+      if ((tabofhandles = MALLOC((*n1)*sizeof(long long))) == NULL) {
         sciprint(_("%s: No more memory.\n"),"plot2d");
         FREE(hdltab);
         return 0;
@@ -257,10 +257,11 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       }
       pobj = sciGetCurrentObj();
       
-      if (with_leg) pptabofpointobj[jj] = pobj;
       /*sciDrawObjIfRequired(pobj);*/
       
       hdl=sciGetHandle(pobj);
+      if (with_leg) tabofhandles[jj] = hdl;
+
       hdltab[cmpt]=hdl;
       cmpt++;
     }
@@ -276,14 +277,14 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       int nleg;
       sciPointObj * Leg;
       if (scitokenize(legend, &Str, &nleg)) {
-	FREE(pptabofpointobj);
+	FREE(tabofhandles);
 	FREE(hdltab);
 	sciprint(_("%s: No more memory.\n"),"plot2d");
         endFigureDataWriting(curFigure);
 	return 0;
       }
       if (nleg != *n1) {
-	FREE(pptabofpointobj);
+	FREE(tabofhandles);
 	FREE(hdltab);
 	for (jj = 0; jj < *n1; jj++) FREE(Str[jj]);
 	FREE(Str);
@@ -291,7 +292,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
         endFigureDataWriting(curFigure);
 	return 0;
       }
-      Leg = ConstructLegend(sciGetCurrentSubWin(),Str,pptabofpointobj,*n1);
+      Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,*n1);
       pLEGEND_FEATURE(Leg)->place = SCI_LEGEND_LOWER_CAPTION;
       sciSetIsFilled (Leg, FALSE);
       sciSetIsLine (Leg, FALSE);
@@ -299,7 +300,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       sciSetCurrentObj (Leg); 
       for (jj = 0; jj < *n1; jj++) FREE(Str[jj]);
       FREE(Str);
-      FREE(pptabofpointobj);
+      FREE(tabofhandles);
     }
 
     /*---- construct Compound ----*/

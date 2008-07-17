@@ -60,7 +60,7 @@ sciPointObj * ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRo
 sciPointObj *ConstructTitle (sciPointObj * pparentfigure, char text[],
 				    int type); /* BUILD */
 
-sciPointObj *ConstructLegend (sciPointObj * pparentfigure, char *text[], sciPointObj **pptabofpointobj,
+sciPointObj *ConstructLegend (sciPointObj * pparentfigure, char *text[], long long tabofhandles[],
 				     int nblegends);  /* BUILD */
 
 sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,

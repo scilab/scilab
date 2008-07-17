@@ -44,7 +44,7 @@ int set_links_property( sciPointObj * pobj, int stackPointer, int valueType, int
 
   sciGetPointerFromHandle( getHandleFromStack( stackPointer ) ) ;
   for (i=0; i<nblegends; i++) {
-    pLEGEND_FEATURE(pobj)->pptabofpointobj[i]=sciGetPointerFromHandle(getHandleFromStack( stackPointer+i ) ) ;
+    pLEGEND_FEATURE(pobj)->tabofhandles[i]=getHandleFromStack( stackPointer+i );
   }
   return SET_PROPERTY_SUCCEED ;
 }

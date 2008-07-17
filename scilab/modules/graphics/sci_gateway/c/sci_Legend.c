@@ -37,7 +37,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
   long handelsvalue = NULL ;
   int outindex,i;
   sciPointObj *pobj;
-  sciPointObj **pptabofpointobj;
+  long long *tabofhandles;
   sciPointObj * psubwin = NULL;
   sciPointObj * pFigure = NULL;
   char def_location[]="in_upper_right";
@@ -77,8 +77,8 @@ int sci_Legend( char * fname, unsigned long fname_len )
     location = string2LegendPlace( def_location);
   }
 
-  pptabofpointobj = (sciPointObj **)MALLOC(n*sizeof(sciPointObj *));
-  if (pptabofpointobj == NULL) {
+  tabofhandles = (long long *)MALLOC(n*sizeof(long long));
+  if (tabofhandles == NULL) {
     freeArrayOfString(Str,n);
     Scierror(999,_("%s: No more memory.\n"),fname);
     return 0;
@@ -101,27 +101,27 @@ int sci_Legend( char * fname, unsigned long fname_len )
     pobj = sciGetPointerFromHandle(handelsvalue);
     if (pobj == NULL) {
       freeArrayOfString(Str,n);
-      FREE(pptabofpointobj);
-      Scierror(999,_("%s: No more memory.\n"),fname);
+      FREE(tabofhandles);
+      Scierror(999,_("%s: The handle is no more valid.\n"),fname);
       return 0;
     }
     type=sciGetEntityType(pobj);
     if (type != SCI_POLYLINE) {
       freeArrayOfString(Str,n);
-      FREE(pptabofpointobj);
+      FREE(tabofhandles);
       Scierror(999,_("%s: The %d th handle is not a polyline handle.\n"),fname,i+1);
       return 0;
     }
-    pptabofpointobj[i]=pobj;
+    tabofhandles[i]=handelsvalue;
     
   }
-  sciSetCurrentObj ((sciPointObj *)ConstructLegend (psubwin, Str, pptabofpointobj, n));
+  sciSetCurrentObj ((sciPointObj *)ConstructLegend (psubwin, Str, tabofhandles, n));
   startFigureDataReading(pFigure);
   sciDrawObjIfRequired(sciGetCurrentObj ());
   endFigureDataReading(pFigure);
 
   freeArrayOfString(Str,n);
-  FREE(pptabofpointobj);
+  FREE(tabofhandles);
   numrow = 1;
   numcol = 1;
   CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);

@@ -937,7 +937,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
  * This function creates  Legend structure
  */
 sciPointObj *
-ConstructLegend (sciPointObj * pparentsubwin, char **text, sciPointObj **pptabofpointobj, int nblegends)
+ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandles[], int nblegends)
 {
   sciPointObj * pobj = (sciPointObj *) NULL;
   sciLegend   * ppLegend ;
@@ -1005,8 +1005,8 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, sciPointObj **pptabof
       /* on copie le texte du titre dans le champs specifique de l'objet */
       ppLegend->nblegends = nblegends;
 
-      if ((ppLegend->pptabofpointobj =
-	   MALLOC(nblegends*sizeof(sciPointObj*))) == NULL)
+      if ((ppLegend->tabofhandles =
+	   MALLOC(nblegends*sizeof(long long))) == NULL)
 	{
 	  sciprint(_("%s: No more memory.\n"),"ConstructLegend");
 	  deleteMatrix( ppLegend->text.pStrings ) ;
@@ -1020,7 +1020,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, sciPointObj **pptabof
 
       for (i=0; i < nblegends; i++)
 	{
-	  ppLegend->pptabofpointobj[i] = pptabofpointobj[i];
+	  ppLegend->tabofhandles[i] = tabofhandles[i];
 	}
 
       ppLegend->text.fontcontext.textorientation = 0.0;
@@ -1047,7 +1047,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, sciPointObj **pptabof
       if (sciInitFontContext (pobj) == -1)
 	{
 	  sciprint(_("Problem with sciInitFontContext\n"));
-	  FREE(ppLegend->pptabofpointobj);
+	  FREE(ppLegend->tabofhandles);
 	  deleteMatrix( ppLegend->text.pStrings ) ;
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);

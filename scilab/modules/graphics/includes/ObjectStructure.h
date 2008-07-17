@@ -610,7 +610,7 @@ typedef struct
   /* the subwindow dimension is get by asking relation     */
   sciLegendPlace place;
   /** pointer on the labelled objects */
-  sciPointObj **pptabofpointobj;
+  long long *tabofhandles;
   /** specifies if this object is visble             */
   BOOL visible; 
   int isclip;
