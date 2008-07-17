@@ -690,17 +690,17 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 	{
 		completionResults = completion((char*)wordToFind, &sizecompletionResults);
 		if (sizecompletionResults==1)
-		{ 
+		{
 			/* Only one result. Display it */
 			if (strcmp((char*)wordToFind,completionResults[0])!=0)
-			{ 
+			{
 				/* No the same as previously displayed */
-				char *mergedline = NULL;
+				//char *mergedline = NULL;
 				char *texttoadd = &completionResults[0][strlen(wordToFind)];
-				mergedline = (char*)MALLOC(sizeof(char)*(strlen(wk_buf)+strlen(texttoadd)));
-				sprintf(mergedline,"%s%s",wk_buf,texttoadd );
-				CopyLineAtPrompt(wk_buf,mergedline,cursor,cursor_max);
-				if (mergedline) {FREE(mergedline); mergedline = NULL;}
+				//mergedline = (char*)MALLOC(sizeof(char)*(strlen(wk_buf)+strlen(texttoadd)));
+				//sprintf(mergedline,"%s%s",wk_buf,texttoadd );
+				CopyLineAtPrompt(wk_buf,strcat(wk_buf, texttoadd),cursor,cursor_max);
+				//if (mergedline) {FREE(mergedline); mergedline = NULL;}
 			}
 			FREE(completionResults[0]);
 		}
@@ -711,7 +711,7 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 			int newElementSize=0;
 
 			display_string("\r\n");
-			
+
 			/* More than one result. Display them */
 			for (j=0; j<sizecompletionResults; j++)
 			{
@@ -737,19 +737,19 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 				sprintf(msg,"%s\r\n%s%s",msg,Sci_Prompt,wk_buf);
 			}
 			display_string(msg);
-			
+
 			if (completionResults)
 			{
 				int lencompletionResults0 = 0;
 				lencompletionResults0 = (int) strlen(completionResults[0]);
 				if ( strncmp(completionResults[0],completionResults[1],lencompletionResults0) == 0 )
 				{
-					char *mergedline = NULL;
+				  //char *mergedline = NULL;
 					char *texttoadd = &completionResults[0][strlen(wordToFind)];
-					mergedline = (char*)MALLOC(sizeof(char)*(strlen(wk_buf)+strlen(texttoadd)));
-					sprintf(mergedline,"%s%s",wk_buf,texttoadd );
-					CopyLineAtPrompt(wk_buf,mergedline,cursor,cursor_max);
-					if (mergedline) {FREE(mergedline); mergedline = NULL;}
+					//mergedline = (char*)MALLOC(sizeof(char)*(strlen(wk_buf)+strlen(texttoadd)));
+					//sprintf(mergedline,"%s%s",wk_buf,texttoadd );
+					CopyLineAtPrompt(wk_buf,strcat(wk_buf,texttoadd),cursor,cursor_max);
+					//if (mergedline) {FREE(mergedline); mergedline = NULL;}
 				}
 				freeArrayOfString(completionResults,sizecompletionResults);
 			}
@@ -884,11 +884,13 @@ static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max)
 {
   if(line)
     {
-
+      //** Copy line to current command buffer, usefull in completion case.
       strcpy (wk_buf,line);
       backspace(*cursor);/* backspace to beginning of line */
       display_string(wk_buf);/* copy to screen */
+
       *cursor = strlen(wk_buf);/* cursor set at end of line */
+
       /* erase extra characters left over if any */
       erase_nchar(Max(0, (*cursor_max - *cursor)));
       *cursor_max = *cursor;
