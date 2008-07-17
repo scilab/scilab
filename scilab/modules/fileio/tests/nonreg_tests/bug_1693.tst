@@ -16,7 +16,7 @@
 
 // ================== Test 1 ==================
 
-cd \
+cd('\');
 
 if MSDOS 
 	if pwd() <> 'C:\' then pause,end
