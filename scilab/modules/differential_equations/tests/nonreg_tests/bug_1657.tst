@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- Non-regression test for bug 2396 -->
+// <-- Non-regression test for bug 1657 -->
 // NOT FIXED
 //
 // <-- Bugzilla URL -->
@@ -25,9 +25,15 @@ function fz=alpha_rhs(t,z)
 endfunction
 
 function fy=Alpha(t,y)
-  fy= 2*ode(1,0,t,alpha_rhs) // should be 2*exp(-t)
+  y0=1.
+  t0=0.
+  fy= 2*ode(y0,t0,t,alpha_rhs) // should be 2*exp(-t)
 endfunction
-
-Y= ode(1,0,2,Alpha);
-if (abs(Y-2*exp(-2))>%eps) then pause,end
+// The solution is -2*exp(-t)+3
+y0=1.
+t0=0.
+t1=2.
+Ycomputed= ode(y0,t0,t1,Alpha);
+Yexpected=-2*exp(-2)+3 // Approximately   2.729329433526774
+if (abs(Ycomputed-Yexpected)>%eps) then pause,end
 
