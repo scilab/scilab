@@ -81,7 +81,7 @@
       <member><link linkend="getf">getf</link></member>
 
       <member><link linkend="function">function</link></member>
-     <member><link linkend="add_profile">add_profile</link></member>
+     <member><link linkend="add_profiling">add_profiling</link></member>
       <member><link linkend="profile">profile</link></member>
     </simplelist>
   </refsection>

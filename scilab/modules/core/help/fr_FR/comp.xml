@@ -67,7 +67,7 @@
       </member>
       <member>
         <link linkend="function">function</link>
-        <link linkend="add_profile">add_profile</link>
+        <link linkend="add_profiling">add_profiling</link>
         <link linkend="profile">profile</link>
       </member>
     </simplelist>
