@@ -44,6 +44,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 	hinstLib = LoadLibrary(TEXT(SCILAB_LIBRARY)); 	
 	if (hinstLib != NULL) 
 	{ 
+		UINT LastErrorMode = 0;
 		MYPROC2 Windows_Main = NULL; 
 
 		/* launch main */
@@ -51,7 +52,25 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 		if (NULL != Windows_Main) 
 		{
 			fRunTimeLinkSuccess = TRUE;
+
+			#ifndef _DEBUG
+			/* catch system errors msgbox (release mode only) */
+			/* http://msdn.microsoft.com/en-us/library/ms680621(VS.85).aspx */
+			LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
+			_try
+			{
+			#endif
+
+			/* launch main */
 			(Windows_Main)(hInstance,hPrevInstance,szCmdLine, iCmdShow);
+		
+			#ifndef _DEBUG
+			}
+			_except (EXCEPTION_EXECUTE_HANDLER)
+			{	
+			}
+			#endif
+
 		}
 		fFreeResult = FreeLibrary(hinstLib); 
 	} 

@@ -92,10 +92,27 @@ int main (int argc, char **argv)
 
 		/* launch main */
 		Console_Main = (MYPROC2) GetProcAddress(hinstLib,MAIN_FUNCTION); 
+
 		if (NULL != Console_Main) 
 		{
 			fRunTimeLinkSuccess = TRUE;
+
+			#ifndef _DEBUG
+			/* catch system errors msgbox (release mode only) */
+			/* http://msdn.microsoft.com/en-us/library/ms680621(VS.85).aspx */
+			LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
+			_try
+			{
+			#endif
+
 			(Console_Main)(argcbis,argvbis);
+
+			#ifndef _DEBUG
+			}
+			_except (EXCEPTION_EXECUTE_HANDLER)
+			{	
+			}
+			#endif
 		}
 		fFreeResult = FreeLibrary(hinstLib); 
 	} 
