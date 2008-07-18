@@ -65,6 +65,7 @@ char *StripGraph(char *name)
   return name;
 }
 
+#ifndef _MSC_VER
 char *my_basename (char *name)
 {
   char *base;
@@ -72,7 +73,25 @@ char *my_basename (char *name)
   base = strrchr (name, '/');
   return base ? base + 1 : name;
 }
+#else
+char * my_basename(char *name)
+{
+	char *base = NULL;
 
+	if(name == NULL) return NULL;
+
+	base = strrchr(name, '\\');
+	if (base == NULL) strrchr(name, '/');
+
+	if(base) return base + 1;
+
+	if(isalpha(name[0] & 0xFF) && (name[1] == ':')) return (char *)(name + 2);
+	return name;
+}
+#endif
+
+
+#ifndef _MSC_VER
 char* my_dirname (char *path)
 {
   char *newpath;
@@ -99,3 +118,25 @@ char* my_dirname (char *path)
   newpath[length] = 0;
   return newpath;
 }
+#else
+char *my_dirname(char *path)
+{
+    static char buf[PATH_MAX + 1];
+	char *newpath = NULL;
+    size_t pathlen = strlen(path);
+    int i;
+
+    if (pathlen >= sizeof(buf)) return NULL;
+
+    strcpy(buf, path);
+    for (i = pathlen; i >= 0; --i) {
+        if (buf[i] == '/' || buf[i] == '\\') {
+            buf[i] = '\0';
+            break;
+        }
+    }
+	newpath = (char *)MALLOC ( ((int)strlen(buf) + 1) * sizeof(char) );
+	strcpy(newpath,buf);
+    return newpath;
+}
+#endif
