@@ -32,7 +32,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>isglobal(x)</literal> renvoie %T (vrai) si x a été déclarée en temps que variable globale et %F (faux) sinon.
+    <para><literal>isglobal(x)</literal> renvoie %T (vrai) si x a été déclarée en tant que variable globale et %F (faux) sinon.
   </para>
   </refsection>
   <refsection>
