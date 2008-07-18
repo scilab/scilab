@@ -26,16 +26,18 @@ typedef enum { DYN_GW_NO_ERROR = 0,
 
 /**
 * load and call a scilab gateway
+* @param[in] name of the Scilab module
 * @param[in] name of dynamic library
 * @param[in] gateway name
 * @param[in, out] handle on dynamic library
 * @param[in, out] pointer on gateway function
 * @return error code (DYN_GW_NO_ERROR if it is ok)
 */
-dynamic_gateway_error_code callDynamicGateway(char *dynLibName,
-						char *gw_name,
-						DynLibHandle *hlib,
-						PROC_GATEWAY *ptrGateway);
+dynamic_gateway_error_code callDynamicGateway(char *moduleName,
+											  char *dynLibName,
+											  char *gw_name,
+											  DynLibHandle *hlib,
+											  PROC_GATEWAY *ptrGateway);
 
 /**
 * Build name of dynamic library based on module name

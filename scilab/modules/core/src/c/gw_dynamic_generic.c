@@ -31,7 +31,7 @@ int gw_dynamic_generic(char *moduleName,
 		*gatewayName = buildGatewayName(moduleName);
 	}
 
-	err = callDynamicGateway(*dynlibName,
+	err = callDynamicGateway(moduleName,*dynlibName,
 							*gatewayName,
 							hModuleLib,
 							ptrGatewayFunction);

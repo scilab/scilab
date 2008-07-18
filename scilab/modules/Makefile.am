@@ -113,7 +113,6 @@ endif
 
 ALL_LIBS=	$(top_builddir)/modules/fileio/libscifileio.la \
 $(top_builddir)/modules/mexlib/libmex.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -132,14 +131,9 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/io/libsciio.la \
 	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/localization/libscilocalization.la \
-	$(top_builddir)/modules/metanet/libscimetanet.la \
-	$(top_builddir)/modules/optimization/libscioptimization.la \
 	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-	$(top_builddir)/modules/randlib/libscirandlib.la \
-	$(top_builddir)/modules/symbolic/libscisymbolic.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/special_functions/libscispecial_functions.la \
-	$(top_builddir)/modules/sound/libscisound.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
@@ -150,15 +144,22 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/matio/libscimatio.la
+	$(top_builddir)/modules/sound/libscisound.la
 
-# \
+# These libs are loaded dynamical by Scilab
+#	$(top_builddir)/modules/matio/libscimatio.la
+#	$(top_builddir)/modules/randlib/libscirandlib.la 
+#	$(top_builddir)/modules/optimization/libscioptimization.la 
+#	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
+#	$(top_builddir)/modules/symbolic/libscisymbolic.la 
+#	$(top_builddir)/modules/metanet/libscimetanet.la 
+#	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la 
+
+# Dev in progress
 #	$(top_builddir)/modules/helptools/libscihelptools.la
-
 
 # Core modules
 libscilab_la_LIBADD = $(ALL_LIBS)

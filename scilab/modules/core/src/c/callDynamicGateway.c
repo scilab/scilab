@@ -12,21 +12,52 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "machine.h"
 #include "callDynamicGateway.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "setgetSCIpath.h"
 /*--------------------------------------------------------------------------*/
-dynamic_gateway_error_code callDynamicGateway(char *dynLibName,
-						char *gw_name,
-						DynLibHandle *hlib,
-						PROC_GATEWAY *ptrGateway)
+dynamic_gateway_error_code callDynamicGateway(char *moduleName,
+											  char *dynLibName,
+											  char *gw_name,
+											  DynLibHandle *hlib,
+											  PROC_GATEWAY *ptrGateway)
 {
 	if (*hlib == NULL)
 	{
-		*hlib = LoadDynLibrary(dynLibName);
-		if (*hlib == NULL) return DYN_GW_LOAD_LIBRARY_ERROR;
+		/* Under Linux/Unix, load thanks to dlopen */
+		*hlib = LoadDynLibrary(dynLibName); 
+#ifdef _MSC_VER
+		if (*hlib == NULL) {
+			return DYN_GW_LOAD_LIBRARY_ERROR;
+		}
+#else
+		if (*hlib == NULL) {
+			/* Haven't been able to find the lib with dlopen... 
+			 * This can happen for two reasons:
+			 * - the lib must be dynamically linked
+			 * - Some silly issues under Suse (see bug #2875)
+			 * Note that we are handling only the "source tree build"
+			 * because libraries are split (they are in the same directory 
+			 * in the binary)
+			 */
+			char *SciPath = getSCIpath();
+			#define PATHTOMODULE "/modules/"
+			#define LT_OBJDIR "/.libs/"
+			
+			/* Build the full path to the library */
+			char *pathToLib=(char*) MALLOC((strlen(SciPath)+strlen(PATHTOMODULE)+strlen(moduleName)+strlen(LT_OBJDIR)+strlen(dynLibName)+1)*sizeof(char));
+			sprintf(pathToLib,"%s%s%s%s%s",SciPath,PATHTOMODULE,moduleName,LT_OBJDIR,dynLibName);
+
+			*hlib = LoadDynLibrary(pathToLib);
+			if (*hlib == NULL) {
+				return DYN_GW_LOAD_LIBRARY_ERROR;
+			}
+#endif
+		}
 	}
 
 	if (*ptrGateway == NULL)
