@@ -37,20 +37,15 @@ import com.sun.opengl.util.Screenshot;
 
 public class GLHybrid extends JPanel implements GLAutoDrawable {
 
-
-    private final static int WIDTH_OFFSET = 20;
-    private final static int HEIGHT_OFFSET = 40;
-
     private final static boolean VERBOSE = true;
     private final static boolean TIMED = false;
     
     private boolean needReDump = true;
 
-    private JFrame frame;
-    private JPanel panel;
-
-    private GLCanvas canvas;
+    private final GLCanvas canvas;
     private BufferedImage dump;
+    private final int screenWidth;
+    private final int screenHeight;
     private long tic = 0;
     private long tac = 0;
     private long lastGetGLTime = System.currentTimeMillis();
@@ -86,21 +81,12 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 
 	canvas = new GLCanvas(capabilities, chooser, shareWith, device);
 
-	//frame = new JFrame();
-	//panel = new JPanel();
-	//panel.add(canvas);
-	//frame.add(panel);
-	//frame.setVisible(false);
-
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	screenWidth = screenSize.width;
+	screenHeight = screenSize.height;
 	canvas.setSize(screenSize.width, screenSize.height);
 	canvas.setLocation(0, 0);
-	canvas.setVisible(false);
-	//panel.setSize(screenSize.width, screenSize.height);
-	//panel.setLocation(0, 0);
-	//frame.setSize(screenSize.width + WIDTH_OFFSET, screenSize.height + HEIGHT_OFFSET);
-	//frame.setLocation(0, - HEIGHT_OFFSET / 2);
-	//frame.pack();
+	canvas.setVisible(true);
 
 	//Animator animator = new Animator(canvas);
 	//animator.setRunAsFastAsPossible(true);
@@ -167,7 +153,7 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 	
 	/** DRAWIMAGE */
 	tic = System.currentTimeMillis();
-	g.drawImage(dump, 0, 0, getWidth(), getHeight(), this);
+	g.drawImage(dump, 0, 0, screenWidth, screenHeight, this);
 	tac = System.currentTimeMillis();
 	time("g.drawImage...", tic, tac);
     }
@@ -268,13 +254,16 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
     public void setSize(int width, int height) {
 	super.setSize(width, height);
 	call("setSize(int width, int height)");
-	canvas.setSize(width, height);
+	//canvas.setSize(width, height);
     }
 
     public void setSize(Dimension dim) {
 	super.setSize(dim);
 	call("setSize(Dimension dim)");
-	canvas.setSize(dim);
+	//canvas.setSize(dim);
+	//canvas.paint(canvas.getGraphics());
+	//canvas.repaint();
+	//canvas.display();
     }
 
 }
