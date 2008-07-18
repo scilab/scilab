@@ -19,7 +19,6 @@ import java.awt.GraphicsDevice;
 import java.awt.Panel;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.util.Timer;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
@@ -29,26 +28,26 @@ import javax.media.opengl.GLCapabilitiesChooser;
 import javax.media.opengl.GLContext;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.sun.opengl.util.Animator;
 import com.sun.opengl.util.Screenshot;
 
 
-public class GLHybrid extends JLabel implements GLAutoDrawable {
+public class GLHybrid extends JPanel implements GLAutoDrawable {
 
 
     private final static int WIDTH_OFFSET = 20;
     private final static int HEIGHT_OFFSET = 40;
 
-    private final static boolean VERBOSE = false;
+    private final static boolean VERBOSE = true;
     private final static boolean TIMED = false;
     
     private boolean needReDump = true;
 
-    private Frame frame;
-    private Panel panel;
+    private JFrame frame;
+    private JPanel panel;
 
     private GLCanvas canvas;
     private BufferedImage dump;
@@ -87,20 +86,21 @@ public class GLHybrid extends JLabel implements GLAutoDrawable {
 
 	canvas = new GLCanvas(capabilities, chooser, shareWith, device);
 
-	frame = new Frame();
-	panel = new Panel();
-	panel.add(canvas);
-	frame.add(panel);
-	frame.setVisible(false);
+	//frame = new JFrame();
+	//panel = new JPanel();
+	//panel.add(canvas);
+	//frame.add(panel);
+	//frame.setVisible(false);
 
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	canvas.setSize(screenSize.width, screenSize.height);
 	canvas.setLocation(0, 0);
-	panel.setSize(screenSize.width, screenSize.height);
-	panel.setLocation(0, 0);
-	frame.setSize(screenSize.width + WIDTH_OFFSET, screenSize.height + HEIGHT_OFFSET);
-	frame.setLocation(0, - HEIGHT_OFFSET / 2);
-	frame.pack();
+	canvas.setVisible(false);
+	//panel.setSize(screenSize.width, screenSize.height);
+	//panel.setLocation(0, 0);
+	//frame.setSize(screenSize.width + WIDTH_OFFSET, screenSize.height + HEIGHT_OFFSET);
+	//frame.setLocation(0, - HEIGHT_OFFSET / 2);
+	//frame.pack();
 
 	//Animator animator = new Animator(canvas);
 	//animator.setRunAsFastAsPossible(true);
