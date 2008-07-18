@@ -2122,7 +2122,7 @@ integer C2F(getopcode)(char *string,unsigned long string_len)
 int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,integer *mrhs)
 {
   integer srhs, slhs;
-  integer ix, k, intop, il, ir, lw, pt0;
+  integer ix, k, intop, ir, lw, pt0;
   integer imode,ireftop;
   intop = Top;
 
