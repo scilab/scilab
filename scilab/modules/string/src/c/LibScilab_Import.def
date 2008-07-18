@@ -3,26 +3,23 @@
 
 EXPORTS
 ;core
-cha1_
-com_
-iop_
-putlhsvar_
-overload_
-vstk_
-createvarfromptr_
-createvar_
-stack_
-getrhsvar_
-vartype_
-checklhs_
-checkrhs_
-intersci_
-intstrcat_
-check_length
-callFunctionFromGateway
-gettype_
-freeArrayOfString
-getWarningMode
-
-; elementary_functions
-icopy_
+ cha1_
+ callFunctionFromGateway
+ freeArrayOfString
+ gettype_
+ com_
+ vstk_
+ checklhs_
+ checkrhs_
+ iop_
+ stack_
+ putlhsvar_
+ intersci_
+ getWarningMode
+ createvar_
+ getrhsvar_
+ vartype_
+ createvarfromptr_
+ overload_
+ ; elementary_functions
+ icopy_
