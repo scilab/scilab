@@ -73,11 +73,11 @@ start_debug() {
 
 start_debug_kdbg() {
 	  if test -n "$DEVENV"; then
-		  echo "Running debug of Scilab [kdbg]  : " "$SCI"/libtool --mode=execute kdbg "$SCILABBIN" "$@"
-		  "$SCI"/libtool --mode=execute kdbg "$SCILABBIN" "$@"
+		  echo "Running debug of Scilab [kdbg]  : " "$SCI"/libtool --mode=execute kdbg "$SCILABBIN"
+		  "$SCI"/libtool --mode=execute kdbg "$SCILABBIN"
 	  else
-		  echo "Running debug of Scilab [kdbg]  : " kdbg "$SCILABBIN" "$@"
-		  kdbg "$SCILABBIN" "$@"
+		  echo "Running debug of Scilab [kdbg]  : " kdbg "$SCILABBIN"
+		  kdbg "$SCILABBIN"
 	  fi
 }
 
