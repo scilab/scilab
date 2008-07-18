@@ -1113,8 +1113,8 @@ clean-localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGCAT) -o $$POFILE $$FILES; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics --locale $$LOCALE -r org.scilab.modules.localization.Messages --java2 -d $(top_builddir)/modules/localization/build/classes/ $$POFILE; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		(cd $(top_srcdir)/modules/localization/; $(ANT) jar); \
-@GENERATE_LOCALIZATION_FILES_TRUE@	done
+@GENERATE_LOCALIZATION_FILES_TRUE@	done; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	(cd $(top_srcdir)/modules/localization/; $(ANT) jar);
 
 install-data-local:
 	@$(mkinstalldirs) $(DESTDIR)$(localedir); \

@@ -168,8 +168,8 @@ localization:
 		$(MSGCAT) -o $$POFILE $$FILES; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics --locale $$LOCALE -r org.scilab.modules.localization.Messages --java2 -d $(top_builddir)/modules/localization/build/classes/ $$POFILE; \
-		(cd $(top_srcdir)/modules/localization/; $(ANT) jar); \
-	done
+	done; \
+	(cd $(top_srcdir)/modules/localization/; $(ANT) jar);
 endif
 
 install-data-local:
