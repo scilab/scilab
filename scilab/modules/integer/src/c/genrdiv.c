@@ -14,9 +14,9 @@
 #include "genrdiv.h"
 
 #define RDIV(Type) {\
-Type *A;\
-Type *B;\
-Type *R;\
+Type *A = 0;\
+Type *B = 0;\
+Type *R = 0;\
     A=(Type *)a;\
     --A;\
     B=(Type *)b;\
@@ -50,8 +50,8 @@ Type *R;\
 
 int C2F(genrdiv)(integer *typ,int *a, integer *ia, int *b, integer *ib, int *r, integer *ir, integer *n, integer *ierr)
 {
-  integer i1;
-  static integer k, jb, ja, jr;
+  integer i1 = 0;
+  static integer k = 0, jb = 0, ja = 0, jr = 0;
 
   i1 = *n;
   switch (*typ) {

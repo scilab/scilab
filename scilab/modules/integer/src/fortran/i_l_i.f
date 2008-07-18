@@ -13,6 +13,7 @@ c     left division
       integer is1
       external memused
       integer memused
+      integer iadr,sadr
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1

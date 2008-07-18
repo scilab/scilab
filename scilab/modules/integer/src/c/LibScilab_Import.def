@@ -1,0 +1,11 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+
+; core
+stack_
+vstk_
+callFunctionFromGateway
+;
+blktit_

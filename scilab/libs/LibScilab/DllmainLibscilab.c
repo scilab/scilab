@@ -35,7 +35,6 @@
 #pragma comment(lib,"../../bin/linear_algebra_f.lib")
 #pragma comment(lib,"../../bin/sparse_f.lib")
 #pragma comment(lib,"../../bin/symbolic_f.lib")
-#pragma comment(lib,"../../bin/integer_f.lib")
 #pragma comment(lib,"../../bin/slicot_f.lib")
 #pragma comment(lib,"../../bin/slatec_f.lib")
 #pragma comment(lib,"../../bin/string_f.lib")

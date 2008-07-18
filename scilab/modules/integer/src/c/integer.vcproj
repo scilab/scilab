@@ -4,6 +4,8 @@
 	Version="9,00"
 	Name="integer"
 	ProjectGUID="{C7865CAA-EC7C-41EB-8324-2B81C384CA20}"
+	RootNamespace="integer"
+	Keyword="Win32Proj"
 	TargetFrameworkVersion="0"
 	>
 	<Platforms>
@@ -21,9 +23,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -44,39 +44,47 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes"
-				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;_DEBUG;_WINDOWS;_USRDLL;INTEGER_EXPORTS"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integertmp.def &gt;nul&#x0D;&#x0A;copy ..\integer_header.def+integertmp.def  ..\integer.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/integer.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="LibScilab.lib integer_f.lib"
+				OutputFile="../../../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="integer.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -88,17 +96,17 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integer.def &gt;nul&#x0D;&#x0A;copy integer.def ..\..\..\..\..\libs\integer.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -120,39 +128,47 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes"
-				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;_DEBUG;_WINDOWS;_USRDLL;INTEGER_EXPORTS"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integertmp.def &gt;nul&#x0D;&#x0A;copy ..\integer_header.def+integertmp.def  ..\integer.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/integer.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
+				AdditionalDependencies="LibScilab.lib integer_f.lib"
+				OutputFile="../../../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="integer.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -164,18 +180,19 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integer.def &gt;nul&#x0D;&#x0A;copy integer.def ..\..\..\..\..\libs\integer.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -194,43 +211,52 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes"
-				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;NDEBUG;_WINDOWS;_USRDLL;INTEGER_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
-				CompileAs="0"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integertmp.def &gt;nul&#x0D;&#x0A;copy ..\integer_header.def+integertmp.def  ..\integer.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/integer.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib integer_f.lib"
+				OutputFile="../../../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="integer.def"
+				GenerateDebugInformation="false"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="0"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -242,18 +268,19 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integer.def &gt;nul&#x0D;&#x0A;copy integer.def ..\..\..\..\..\libs\integer.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -273,43 +300,52 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes"
-				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;NDEBUG;_WINDOWS;_USRDLL;INTEGER_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
-				CompileAs="0"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integertmp.def &gt;nul&#x0D;&#x0A;copy ..\integer_header.def+integertmp.def  ..\integer.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/integer.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib integer_f.lib"
+				OutputFile="../../../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="integer.def"
+				GenerateDebugInformation="false"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="0"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -321,8 +357,10 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integer.def &gt;nul&#x0D;&#x0A;copy integer.def ..\..\..\..\..\libs\integer.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -335,6 +373,10 @@
 			>
 			<File
 				RelativePath=".\db2int.c"
+				>
+			</File>
+			<File
+				RelativePath=".\DllmainInteger.c"
 				>
 			</File>
 			<File
@@ -519,10 +561,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\def.h"
-				>
-			</File>
-			<File
 				RelativePath=".\genabs.h"
 				>
 			</File>
@@ -683,15 +721,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\gw_integer.h"
-				>
-			</File>
-			<File
 				RelativePath=".\i_nextj.h"
-				>
-			</File>
-			<File
-				RelativePath=".\tpconv.h"
 				>
 			</File>
 		</Filter>
@@ -706,6 +736,22 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
+			<File
+				RelativePath=".\integer_header.def"
+				>
+			</File>
+			<Filter
+				Name="Imports"
+				>
+				<File
+					RelativePath=".\integer_f_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\LibScilab_Import.def"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<File
 			RelativePath="..\..\integer.iss"
