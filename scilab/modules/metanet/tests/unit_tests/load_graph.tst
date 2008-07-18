@@ -13,5 +13,5 @@
 
 g=load_graph(SCI+"/modules/metanet/tests/unit_tests/mesh100.graph");
 show_graph(g);
-g=load_graph(SCI+'/demos/metanet/colored');
+g=load_graph(SCI+'/modules/metanet/demos/colored.graph');
 show_graph(g,'new');

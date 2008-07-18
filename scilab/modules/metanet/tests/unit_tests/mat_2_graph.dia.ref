@@ -5,12 +5,16 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- TEST WITH GRAPHIC -->
-
-// unit tests for graph_2_mat function
+// unit tests for mat_2_graph function
 // =============================================================================
-
 g=load_graph(SCI+'/modules/metanet/demos/colored.graph');
-a=graph_2_mat(g)
-a=graph_2_mat(g,'node-node')
+show_graph(g);
+a=graph_2_mat(g);
+g1=mat_2_graph(a,1);
+g1('node_x')=g('node_x'); g1('node_y')=g('node_y');
+show_graph(g1,'new');
+a=graph_2_mat(g,'node-node');
+g1=mat_2_graph(a,1,'node-node');
+g1('node_x')=g('node_x'); g1('node_y')=g('node_y');
+show_graph(g1,'new');
