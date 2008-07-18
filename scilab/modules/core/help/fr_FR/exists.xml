@@ -44,7 +44,7 @@
     courante et <literal>0</literal> sinon.</para>
     <para><literal>exists(name,'nolocal')</literal> renvoie <literal>1</literal> si la
     variable nommée <literal>name</literal> existe dans l'environnement appelant (y
-    compris le niveau global) de la fonction courante et <literal>0</literal>
+    compris le niveau du shell Scilab) de la fonction courante et <literal>0</literal>
     sinon.</para>
     <para>Attention: la fonction <literal>exists</literal> ne teste
     pas si une variable existe dans l'espace de nom <link

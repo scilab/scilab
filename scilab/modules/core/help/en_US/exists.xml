@@ -64,7 +64,7 @@
 
     <para><literal>exists(name,'nolocal')</literal> returns
     <literal>1</literal> if the variable named <literal>name</literal> exists
-    in any level of the calling environment of the current function and
+    in any level of the calling environment (including the Scilab shell main level) of the current function and
     <literal>0</literal> otherwise.</para>
 
     <para>Warning: the exists function does not check if a variable exists in
