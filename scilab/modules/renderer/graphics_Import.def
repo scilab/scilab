@@ -160,3 +160,4 @@ sciInitFontBackground
 sciInitPolylineStyle
 sciInitArrowSize
 rotate2D
+sciGetPointerFromHandle
