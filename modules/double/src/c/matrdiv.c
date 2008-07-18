@@ -163,7 +163,7 @@ int matrdiv()
 			}
 			else
 			{/* A real, B complex : complexify A */
-				iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows2, iRows1, &pReturnReal, &pReturnImg);
+				iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows1, iRows2, &pReturnReal, &pReturnImg);
 				iRet = iRightDivisionOfComplexMatrix(
 					pReal1, pImg1, iRows1, iCols1, 
 					pReal2, pImg2, iRows2, iCols2, 

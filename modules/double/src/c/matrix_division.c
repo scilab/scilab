@@ -398,7 +398,7 @@ int	iRightDivisionOfComplexMatrix(
 	int *pJpvt	= NULL;
 	double *pRwork	= NULL;
 
-	iWorkMin	= Max(2*_iCols1, Min(_iRows1, _iCols1) + Max(2 * Min(_iRows1, _iCols1), Max(_iRows1 + 1, Min(_iRows1, _iCols1) + _iRows2)));
+	iWorkMin	= Max(2*_iCols2, Min(_iRows2, _iCols2) + Max(2 * Min(_iRows2, _iCols2), Max(_iRows2 + 1, Min(_iRows2, _iCols2) + _iRows1)));
 	iWork		= Maxvol(11,"z");
 
 	if(iWork <= iWorkMin)
@@ -412,41 +412,41 @@ int	iRightDivisionOfComplexMatrix(
 	poVar2		= oGetDoubleComplexFromPointer(_pdblReal2,		_pdblImg2,		_iRows2 * _iCols2);
 	poOut		= oGetDoubleComplexFromPointer(_pdblRealOut,	_pdblImgOut,	_iRowsOut * _iColsOut);
 	
-	poAf		= (doublecomplex*)malloc(sizeof(doublecomplex) * _iRows1 * _iCols1);
+	poAf		= (doublecomplex*)malloc(sizeof(doublecomplex) * _iRows2 * _iCols2);
 	poAt		= (doublecomplex*)malloc(sizeof(doublecomplex) * _iRows2 * _iCols2);
-	poBt		= (doublecomplex*)malloc(sizeof(doublecomplex) * Max(_iRows1, _iCols1) * _iRows2);
+	poBt		= (doublecomplex*)malloc(sizeof(doublecomplex) * Max(_iRows2, _iCols2) * _iRows1);
 
 	pRank		= (int*)malloc(sizeof(int));
-	pIpiv		= (int*)malloc(sizeof(int) * _iCols1);
-	pJpvt		= (int*)malloc(sizeof(int) * _iRows1);
-	pRwork		= (double*)malloc(sizeof(double) * 2 * _iRows1);
+	pIpiv		= (int*)malloc(sizeof(int) * _iCols2);
+	pJpvt		= (int*)malloc(sizeof(int) * _iRows2);
+	pRwork		= (double*)malloc(sizeof(double) * 2 * _iRows2);
 
 	//C'est du grand nawak ca, on reserve toute la stack ! Oo
 
 	cNorm		= '1';
 	poDwork		= (doublecomplex*)malloc(sizeof(doublecomplex) * iWorkMin);
 	dblEps		= F2C(dlamch)("eps",1L);
-	dblAnorm	= C2F(dlange)(&cNorm, &_iRows1, &_iCols1, poVar1, &_iRows1, poDwork);
+	dblAnorm	= C2F(dlange)(&cNorm, &_iRows2, &_iCols2, poVar2, &_iRows2, poDwork);
 
 	//tranpose A and B
 
-	vTransposeDoubleComplexMatrix(poVar1, _iRows2, _iCols2, poBt);
-	vTransposeDoubleComplexMatrix(poVar2, _iRows1, _iCols2, poAt);
+	vTransposeDoubleComplexMatrix(poVar2, _iRows2, _iCols2, poAt);
+	vTransposeDoubleComplexMatrix(poVar1, _iRows1, _iCols2, poBt);
 
-	if(_iRows1 == _iCols1)
+	if(_iRows2 == _iCols2)
 	{
 		cNorm		= 'F';
-		C2F(zlacpy)(&cNorm, &_iCols1, &_iCols1, poAt, &_iCols1, poAf, &_iCols1);
-		C2F(zgetrf)(&_iCols1, &_iCols1, poAf, &_iCols1, pIpiv, &iInfo);
+		C2F(zlacpy)(&cNorm, &_iCols2, &_iCols2, poAt, &_iCols2, poAf, &_iCols2);
+		C2F(zgetrf)(&_iCols2, &_iCols2, poAf, &_iCols2, pIpiv, &iInfo);
 		if(iInfo == 0)
 		{
 			cNorm = '1';
-			C2F(zgecon)(&cNorm, &_iCols1, poAf, &_iCols1, &dblAnorm, &dblRcond, poDwork, pRwork, &iInfo);
+			C2F(zgecon)(&cNorm, &_iCols2, poAf, &_iCols2, &dblAnorm, &dblRcond, poDwork, pRwork, &iInfo);
 			if(dblRcond > dsqrts(dblEps))
 			{
 				cNorm	= 'N';
-				C2F(zgetrs)(&cNorm, &_iCols1, &_iRows2, poAf, &_iCols1, pIpiv, poBt, &_iCols1, &iInfo);
-				vTransposeDoubleComplexMatrix(poBt, _iCols1, _iRows2, poOut);
+				C2F(zgetrs)(&cNorm, &_iCols2, &_iRows1, poAf, &_iCols2, pIpiv, poBt, &_iCols2, &iInfo);
+				vTransposeDoubleComplexMatrix(poBt, _iCols2, _iRows2, poOut);
 				vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
 				iExit = 1;
 			}
@@ -464,14 +464,14 @@ int	iRightDivisionOfComplexMatrix(
 	{
 		dblRcond = dsqrts(dblEps);
 		cNorm = 'F';
-		iMax = Max(_iRows1, _iCols1);
-		memset(pJpvt, 0x00, sizeof(int) * _iRows1);
-		C2F(zgelsy1)(&_iCols1, &_iRows1, &_iRows2, poAt, &_iCols1, poBt, &iMax,
+		iMax = Max(_iRows2, _iCols2);
+		memset(pJpvt, 0x00, sizeof(int) * _iRows2);
+		C2F(zgelsy1)(&_iCols2, &_iRows2, &_iRows1, poAt, &_iCols2, poBt, &iMax,
 			pJpvt, &dblRcond, &pRank[0], poDwork, &iWork, pRwork, &iInfo);
 
 		if(iInfo == 0)
 		{
-			if( _iRows1 != _iCols1 && pRank[0] < Min(_iRows1, _iCols1))
+			if( _iRows2 != _iCols2 && pRank[0] < Min(_iRows2, _iCols2))
 				//how to extract that ? Oo
 				Msgs(9, pRank[0]);
 
@@ -481,12 +481,12 @@ int	iRightDivisionOfComplexMatrix(
 			//mais je ne sais pas comment le rendre "beau" :(
 			{
 				int i,j,ij,ji;
-				for(j = 0 ; j < _iRows1 ; j++)
+				for(j = 0 ; j < _iRows2 ; j++)
 				{
-					for(i = 0 ; i < _iRows2 ; i++)
+					for(i = 0 ; i < _iRows1 ; i++)
 					{
-						ij = i + j * _iRows2;
-						ji = j + i * Max(_iRows1, _iCols1);
+						ij = i + j * _iRows1;
+						ji = j + i * Max(_iRows2, _iCols2);
 						_pdblRealOut[ij]	= poBt[ji].r;
 						//Conjugate
 						_pdblImgOut[ij]		= -poBt[ji].i;
@@ -869,9 +869,10 @@ void vTransposeRealMatrix(double *_pdblRealIn, int _iRowsIn, int _iColsIn, doubl
 	int iIndex = 0;
 	for(iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
 	{
-		int iNewCoord	= iIndex % _iColsIn * _iRowsIn + (iIndex / _iColsIn);
-
+/*		int iNewCoord	= iIndex % _iColsIn * _iRowsIn + (iIndex / _iColsIn);
 		_pdblRealOut[iIndex]	= _pdblRealIn[iNewCoord];
+*/		int iNewCoord	= iIndex % _iRowsIn * _iColsIn + (iIndex / _iRowsIn);
+		_pdblRealOut[iNewCoord]	= _pdblRealIn[iIndex];
 	}
 }
 
@@ -893,8 +894,8 @@ void vTransposeDoubleComplexMatrix(doublecomplex *_poIn, int _iRowsIn, int _iCol
 	int iIndex = 0;
 	for(iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
 	{
-		int iNewCoord	= iIndex % _iColsIn * _iRowsIn + (iIndex / _iColsIn);
-
+		//int iNewCoord	= iIndex % _iColsIn * _iRowsIn + (iIndex / _iColsIn);
+		int iNewCoord	= iIndex % _iRowsIn * _iColsIn + (iIndex / _iRowsIn);
 		_poOut[iNewCoord].r	= _poIn[iIndex].r;
 		//Conjugate
 		_poOut[iNewCoord].i	= -_poIn[iIndex].i;
