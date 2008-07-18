@@ -260,7 +260,7 @@ int	iRightDivisionOfRealMatrix(
 	int *pJpvt	= NULL;
 	int *pIwork	= NULL;
 
-	iWorkMin	= Max(4 * _iCols1, Max(Min(_iRows1, _iCols1) + 3 * _iRows1 + 1, 2 * Min(_iRows1, _iCols1) + _iRows2));
+	iWorkMin	= Max(4 * _iCols2, Max(Min(_iRows2, _iCols2) + 3 * _iRows2 + 1, 2 * Min(_iRows2, _iCols2) + _iRows1));
 	iWork		= Maxvol(11,"d");
 
 	if(iWork <= iWorkMin)
@@ -270,14 +270,14 @@ int	iRightDivisionOfRealMatrix(
 	}
 
 	/* Array allocations*/
-	pAf			= (double*)malloc(sizeof(double) * _iRows1 * _iCols1);
-	pAt			= (double*)malloc(sizeof(double) * _iRows1 * _iCols1);
-	pBt			= (double*)malloc(sizeof(double) * Max(_iRows1,_iCols1) * _iRows2);
+	pAf			= (double*)malloc(sizeof(double) * _iCols2 * _iRows2);
+	pAt			= (double*)malloc(sizeof(double) * _iCols2 * _iRows2);
+	pBt			= (double*)malloc(sizeof(double) * Max(_iRows2,_iCols2) * _iRows1);
 
 	pRank		= (int*)malloc(sizeof(int));
-	pIpiv		= (int*)malloc(sizeof(int) * _iCols1);
-	pJpvt		= (int*)malloc(sizeof(int) * _iRows1);
-	pIwork		= (int*)malloc(sizeof(int) * _iCols1);
+	pIpiv		= (int*)malloc(sizeof(int) * _iCols2);
+	pJpvt		= (int*)malloc(sizeof(int) * _iRows2);
+	pIwork		= (int*)malloc(sizeof(int) * _iCols2);
 
 
 	//C'est du grand nawak ca, on reserve toute la stack ! Oo
@@ -285,27 +285,27 @@ int	iRightDivisionOfRealMatrix(
 	cNorm		= '1';
 	pDwork		= (double*)malloc(sizeof(double) * iWork);
 	dblEps		= F2C(dlamch)("eps",1L);
-	dblAnorm	= C2F(dlange)(&cNorm, &_iRows1, &_iCols1, _pdblReal1, &_iRows1, pDwork);
+	dblAnorm	= C2F(dlange)(&cNorm, &_iRows2, &_iCols2, _pdblReal2, &_iRows2, pDwork);
 
 	//tranpose A and B
 
-	vTransposeRealMatrix(_pdblReal1, _iRows1, _iCols1, pBt);
 	vTransposeRealMatrix(_pdblReal2, _iRows2, _iCols2, pAt);
+	vTransposeRealMatrix(_pdblReal1, _iRows1, _iCols2, pBt);
 
-	if(_iRows1 == _iCols1)
+	if(_iRows2 == _iCols2)
 	{
 		cNorm		= 'F';
-		C2F(dlacpy)(&cNorm, &_iCols1, &_iCols1, pAt, &_iCols1, pAf, &_iCols1);
-		C2F(dgetrf)(&_iCols1, &_iCols1, pAf, &_iCols1, pIpiv, &iInfo);
+		C2F(dlacpy)(&cNorm, &_iCols2, &_iCols2, pAt, &_iCols2, pAf, &_iCols2);
+		C2F(dgetrf)(&_iCols2, &_iCols2, pAf, &_iCols2, pIpiv, &iInfo);
 		if(iInfo == 0)
 		{
 			cNorm = '1';
-			C2F(dgecon)(&cNorm, &_iCols1, pAf, &_iCols1, &dblAnorm, &dblRcond, pDwork, pIwork, &iInfo);
+			C2F(dgecon)(&cNorm, &_iCols2, pAf, &_iCols2, &dblAnorm, &dblRcond, pDwork, pIwork, &iInfo);
 			if(dblRcond > dsqrts(dblEps))
 			{
 				cNorm	= 'N';
-				C2F(dgetrs)(&cNorm, &_iCols1, &_iRows2, pAf, &_iCols1, pIpiv, pBt, &_iCols1, &iInfo);
-				vTransposeRealMatrix(pBt, _iCols1, _iRows2, _pdblRealOut);
+				C2F(dgetrs)(&cNorm, &_iCols2, &_iRows1, pAf, &_iCols2, pIpiv, pBt, &_iCols2, &iInfo);
+				vTransposeRealMatrix(pBt, _iCols2, _iRows1, _pdblRealOut);
 				iExit = 1;
 			}
 		}
@@ -322,14 +322,14 @@ int	iRightDivisionOfRealMatrix(
 	{
 		dblRcond = dsqrts(dblEps);
 		cNorm = 'F';
-		iMax = Max(_iRows1, _iCols1);
-		memset(pJpvt, 0x00, sizeof(int) * _iRows1);
-		C2F(dgelsy1)(&_iCols1, &_iRows1, &_iRows2, pAt, &_iCols1, pBt, &iMax,
+		iMax = Max(_iRows2, _iCols2);
+		memset(pJpvt, 0x00, sizeof(int) * _iRows2);
+		C2F(dgelsy1)(&_iCols2, &_iRows2, &_iRows1, pAt, &_iCols2, pBt, &iMax,
 			pJpvt, &dblRcond, &pRank[0], pDwork, &iWork, &iInfo);
 
 		if(iInfo == 0)
 		{
-			if( _iRows1 != _iCols1 && pRank[0] < Min(_iRows1, _iCols1))
+			if( _iRows2 != _iCols2 && pRank[0] < Min(_iRows2, _iCols2))
 				//how to extract that ? Oo
 				Msgs(9, pRank[0]);
 
@@ -339,12 +339,12 @@ int	iRightDivisionOfRealMatrix(
 			//mais je ne sais pas comment le rendre "beau" :(
 			{
 				int i,j,ij,ji;
-				for(j = 0 ; j < _iRows1 ; j++)
+				for(j = 0 ; j < _iRows2 ; j++)
 				{
-					for(i = 0 ; i < _iRows2 ; i++)
+					for(i = 0 ; i < _iRows1 ; i++)
 					{
-						ij = i + j * _iRows2;
-						ji = j + i * Max(_iRows1, _iCols1);
+						ij = i + j * _iRows1;
+						ji = j + i * Max(_iRows2, _iCols2);
 						_pdblRealOut[ij]	= pBt[ji];
 					}//for(i = 0 ; i < _iRows2 ; i++)
 				}//for(j = 0 ; j < _iRows1 ; j++)
@@ -430,8 +430,8 @@ int	iRightDivisionOfComplexMatrix(
 
 	//tranpose A and B
 
-	vTransposeDoubleComplexMatrix(poVar1, _iRows1, _iCols1, poBt);
-	vTransposeDoubleComplexMatrix(poVar2, _iRows2, _iCols2, poAt);
+	vTransposeDoubleComplexMatrix(poVar1, _iRows2, _iCols2, poBt);
+	vTransposeDoubleComplexMatrix(poVar2, _iRows1, _iCols2, poAt);
 
 	if(_iRows1 == _iCols1)
 	{
@@ -869,9 +869,9 @@ void vTransposeRealMatrix(double *_pdblRealIn, int _iRowsIn, int _iColsIn, doubl
 	int iIndex = 0;
 	for(iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
 	{
-		int iNewCoord	= iIndex % _iRowsIn * _iColsIn + ( iIndex / _iRowsIn);
+		int iNewCoord	= iIndex % _iColsIn * _iRowsIn + (iIndex / _iColsIn);
 
-		_pdblRealOut[iNewCoord]	= _pdblRealIn[iIndex];
+		_pdblRealOut[iIndex]	= _pdblRealIn[iNewCoord];
 	}
 }
 
@@ -880,7 +880,7 @@ void vTransposeComplexMatrix(double *_pdblRealIn, double *_pdblImgIn, int _iRows
 	int iIndex = 0;
 	for(iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
 	{
-		int iNewCoord	= iIndex % _iRowsIn * _iColsIn + ( iIndex / _iRowsIn);
+		int iNewCoord	= iIndex % _iColsIn * _iRowsIn + (iIndex / _iColsIn);
 
 		_pdblRealOut[iNewCoord]	= _pdblRealIn[iIndex];
 		//Conjugate
@@ -893,7 +893,7 @@ void vTransposeDoubleComplexMatrix(doublecomplex *_poIn, int _iRowsIn, int _iCol
 	int iIndex = 0;
 	for(iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
 	{
-		int iNewCoord	= iIndex % _iRowsIn * _iColsIn + ( iIndex / _iRowsIn);
+		int iNewCoord	= iIndex % _iColsIn * _iRowsIn + (iIndex / _iColsIn);
 
 		_poOut[iNewCoord].r	= _poIn[iIndex].r;
 		//Conjugate

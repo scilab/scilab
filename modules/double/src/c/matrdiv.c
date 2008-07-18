@@ -147,7 +147,7 @@ int matrdiv()
 
 			if(iComplex1 == 0 && iComplex2 == 0)
 			{// A and B are both real
-				iAllocMatrixOfDouble(Rhs + 1, iRows2, iRows1, &pReturnReal);
+				iAllocMatrixOfDouble(Rhs + 1, iRows1, iRows2, &pReturnReal);
 				iRet = iRightDivisionOfRealMatrix(pReal1, iRows1, iCols1, pReal2, iRows2, iCols2, pReturnReal, iRows2, iRows1);
 
 				if(iRet != 0)
