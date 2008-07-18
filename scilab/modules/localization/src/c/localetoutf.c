@@ -60,6 +60,7 @@ void openLocaleToUTFConverter(char *sysLocale,char *lang)
 	}else{      /*in "lang_contry" format*/
 		strcpy (encoding,"utf-8"); /*default to UTF8*/
 		if(stricmp("zh_TW",lang) ==0) strcpy(encoding,"BIG5");  /*not utf8*/
+		if(stricmp("ru_RU",lang) ==0) strcpy(encoding,"ISO-8859-5");  /*not utf8*/
 	}
   
 	unicodeSubset=TRUE;/* default */
