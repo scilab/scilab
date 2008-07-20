@@ -38,6 +38,7 @@ void localeToUTF(char** buffer)
 	if(unicodeSubset) return; /*no need to conver for unicode subset encoding*/
 	if (iconv (localeToUTFConvert, &inPtr,&inbytesleft, &outPtr, &outbytesleft)==(size_t)(-1)){
 		fprintf(stderr, "Error during call to iconv: %s\n", strerror(errno));
+		fprintf(stderr, "String Input: %s\n", inPtr);
 		return;
 	}
 	*outPtr='\0';
@@ -70,14 +71,14 @@ void openLocaleToUTFConverter(char *sysLocale,char *lang)
 	if ( stricmp("CP1252", encoding) !=0 ) 
 		unicodeSubset=FALSE;
 #else
-	/*Under other OS, only not */
+	/*Under other OS, cnovert for encoding not in utf-8 format*/
 	if ( stricmp("utf-8", encoding) !=0 && stricmp("utf8", encoding)!=0 && stricmp("", encoding) !=0 )
 		unicodeSubset=FALSE;
 #endif
 
 	/* if not utf-8 encoding and multi-byte language ..*/
 	if ( ! unicodeSubset){ /* need locale to utf convert */
-		if(localeToUTFConvert==(iconv_t)-1) 
+		if(localeToUTFConvert !=(iconv_t)-1)      /*if already open*/ 
 			iconv_close(localeToUTFConvert); /* close iconv server */
 		localeToUTFConvert = iconv_open("UTF-8",encoding);     /* open iconv server :from locale to UTF8 */
 		if (localeToUTFConvert==(iconv_t) -1){
