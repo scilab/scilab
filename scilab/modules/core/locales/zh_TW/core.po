@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-05-30 14:44+0000\n"
+"X-Launchpad-Export-Date: 2008-07-12 14:20+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-01-30 11:26+0100\n"
 
@@ -1083,7 +1083,7 @@ msgstr "!!! 警告 !!!\n"
 msgid ""
 "This software is being provided \"as is\", without any express or\n"
 "implied warranty.\n"
-msgstr "本軟體以無擔保 (\"as is\") 方式提供，並無任何明示或隱含之保證表示.\n"
+msgstr "本軟體以無擔保 (\"as is\") 方式提供，並無任何明示或隱含任何形式之保證.\n"
 
 #
 # File: src/c/banier.c, line: 35
@@ -1093,8 +1093,8 @@ msgid ""
 "that will be released in the future. A lot of features are missing and "
 "buggy.\n"
 msgstr ""
-"這是 Scilab 5.0 發展中之版本並非最終發佈之穩定版.\n"
-"還缺少許多預定開發之功能及一些程式尚未及修正之錯誤.\n"
+"此版本為 Scilab 5.0 發展中之版本, 並不是最終發行之穩定版.\n"
+"目前還缺少許多預定開發之功能, 部份功能尚有未及修正之錯誤.\n"
 
 #
 # File: src/c/banier.c, line: 36
@@ -1102,7 +1102,7 @@ msgid ""
 "In no event will the authors be held liable for any damages arising from,\n"
 "out of or in connection with the software or the use or other dealings\n"
 "in the software.\n"
-msgstr "在任何狀態下，作者群不為因直接或間接使用本軟體所造成的損失負責.\n"
+msgstr "在任何狀態下，Scilab 作者群不為因直接或間接使用本軟體所造成的損失負責.\n"
 
 #
 # File: src/c/banier.c, line: 40
@@ -1357,7 +1357,7 @@ msgstr "檔案"
 #
 # File: etc/scilab.start, line: 152
 msgid "Edit"
-msgstr "EditCore"
+msgstr "檔案"
 
 #
 # File: etc/scilab.start, line: 153
