@@ -136,7 +136,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
 		while((ent = readdir(dir)) != NULL)
 		{
 			char *filename = NULL;
-			if (ent->d_name[0] == '.') continue ;
+			if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) continue ;
 
 			filename = MALLOC(strlen(refcstrRootDirectory) + 1 + strlen(ent->d_name) + 1 + 1) ;
 			sprintf(filename,"%s/%s",refcstrRootDirectory,ent->d_name);
