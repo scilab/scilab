@@ -35,8 +35,9 @@ void localeToUTF(char** buffer)
 	size_t outbytesleft=MAXPRINTF;
 	char *inPtr =*buffer;
 	char *outPtr= UTF_buf;
-	if(unicodeSubset) return; /*no need to conver for unicode subset encoding*/
-	if (iconv (localeToUTFConvert, &inPtr,&inbytesleft, &outPtr, &outbytesleft)==(size_t)(-1)){
+	if(unicodeSubset) return; /*no need to convert for unicode subset encoding*/
+	if (iconv (localeToUTFConvert, (const char**)&inPtr,&inbytesleft, &outPtr, &outbytesleft)==(size_t)(-1))
+	{
 		fprintf(stderr, "Error during call to iconv: %s\n", strerror(errno));
 		fprintf(stderr, "String Input: %s\n", inPtr);
 		return;
