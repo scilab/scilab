@@ -45,12 +45,12 @@ end
 clear verbose
 
 // Default Obsolete Warning policy  ===================================
-global %modalWarning
+global %modalWarning;
 // False -> 	Scilab will only display a Warning message in the console
 // 		if warnings are enabled [warning('on'/'off')].
 // True ->	Scilab will show a blocking popup.
-%modalWarning = %F
-
+%modalWarning = %F;
+clear %modalWarning;
 
 // Create some configuration variables ================================
 PWD = getcwd()

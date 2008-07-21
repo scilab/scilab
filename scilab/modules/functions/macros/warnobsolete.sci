@@ -20,6 +20,7 @@ function warnobsolete(newFunctionName, scilabRemovedVersion)
   else
     warnUser = warning
   end
+  clear %modalWarning
 
   //Retrieve Calling function
   [lineCall, stackCall]=where()
