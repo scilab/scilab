@@ -430,9 +430,11 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       prot = funcprot();
       funcprot(0);
 
-      //** Replace old TK_GETCOLOR with UIGETCOLOR
-      //** XGETCOLOR is a wrapper around UIGETCOLOR that mimics behavior of TK_GETCOLOR
-      getcolor = xgetcolor; // tk_getcolor;
+      // DO NOT OVERLOAD GETCOLOR AND KEEP THE ONE DEFINED IN SCILAB
+      // GETCOLOR is 100% compatible with TK_GETCOLOR and looks much better
+      // //** Replace old TK_GETCOLOR with UIGETCOLOR
+      // //** XGETCOLOR is a wrapper around UIGETCOLOR that mimics behavior of TK_GETCOLOR
+      // getcolor = xgetcolor; // tk_getcolor;
 
       //** --------- Popup OS dependent definition -----------------
       getfile  = xgetfile; //** using Java most of these aliases 
@@ -959,3 +961,4 @@ function scicos_pal = check_palettes_paths(scicos_pal)
     scicos_pal(toremove,:)=[];
   end
 endfunction
+

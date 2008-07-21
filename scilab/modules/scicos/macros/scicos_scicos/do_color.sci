@@ -19,105 +19,103 @@
 // See the file ../license.txt
 //
 
-function [scs_m] = do_color(%win, %pt, scs_m)
+function scs_m = do_color(%win, %pt, scs_m)
 //
-// do_block - edit a block icon
+// do_color - edit a block / link color
 //
   
-  if %win<>curwin then
-     return ; //** Exit point  
+  if %win <> curwin then
+     return ; //** exit point  
   end 
   
-  if Select==[] then
+  if isempty(Select) then
     
      xc = %pt(1); yc = %pt(2);
     
-     KK = getobj(scs_m,[xc;yc]);
+     KK = getobj(scs_m, [xc;yc]);
      
-     if KK==[] then
-         return ; //** Exit point -> No object found 
+     if isempty(KK) then
+       return ; //** exit point (no object found) 
      end 
   
   else
     
-  KK = Select(:,1)'; //** take all the object selected 
+    KK = Select(:,1)'; //** take all selected objects 
 
   end
-  //
+
   //**-----------------------------------------------------
   
-  coul = getcolor('Choose a color',1); //** coul is the index of the chosen
-                                       //** color in current figure's colormap
-  
+  //** pick a color
+  coul = getcolor('Choose a color', 1); //** coul is the index of the chosen
+                                        //** color in current figure's colormap
+   
   //**----------------------------------------------------------
   //** the code below is modified according the new graphics API
   gh_curwin = scf(%win);
-  gh_axes = gca(); 
+  gh_axes   = gca(); 
+
   //** at this point I need to build the [scs_m] <-> [gh_window] datastructure 
   //** I need an equivalent index for the graphics 
   
-  o_size = size (gh_axes.children ) ; //** the size:number of all the object 
+  o_size = size(gh_axes.children); //** the size: number of all the object 
   
   //** "k" is the object index in the data structure "scs_m"
   //** compute the equivalent "gh_k" for the graphics datastructure 
   //** gh_k = o_size(1) - k + 1 ; //** semi empirical equation :)
-  //** Alan Layec has do this in the function get_gri();
+  //** Alan Layec has done this in the function get_gri();
   //** gh_blk = gh_curwin.children.children(gh_k);
   
-  for K = KK //** for all the selected object(s)
-    o = scs_m.objs(K) ; //** the scs_m object  
-    gh_obj_K = get_gri(K, o_size(1)); //** compute the index in the graphics DS 
+  for K = KK                                  //** for all the selected object(s)
+    o           = scs_m.objs(K);              //** the scs_m object  
+    gh_obj_K    = get_gri(K, o_size(1));      //** compute the index in the graphics DS 
     gh_compound = gh_axes.children(gh_obj_K); //** get the compound handle 
     
     //** ------------------ Link --------------------------
-    if typeof(o)=="Link" then
-      [nam,pos,ct] = (o.id,o.thick,o.ct) ;
+    if typeof(o) == "Link" then
+      [nam,pos,ct] = (o.id,o.thick,o.ct);
       c = coul ;
       
-      if c<>[] then
-	connected = connected_links(scs_m,K);
-	for kc = connected
-	  o = scs_m.objs(kc) ;
-	  ct = o.ct          ; //** <---- Haio :(
-	  
-	  if ct(1)<>c then
-	    o.ct(1) = c ;
-	    gh_compound.children.foreground = c ;
-	    scs_m.objs(kc) = o ;
-	  end
-	
-	end
-      
+      if ~isempty(c) then
+        connected = connected_links(scs_m,K);
+        for kc = connected
+          o = scs_m.objs(kc) ;
+          ct = o.ct          ; //** <---- Haio :(
+          
+          if ct(1) <> c then
+            o.ct(1) = c ;
+            gh_compound.children.foreground = c ;
+            scs_m.objs(kc) = o ;
+          end
+        end
       end
     
     //** ------------------  Block -------------------------  
-    elseif typeof(o)=="Block" then
+    elseif typeof(o) == "Block" then
       
       if type(o.graphics.gr_i)==10 then,
-	o.graphics.gr_i = list(o.graphics.gr_i,[]),
+        o.graphics.gr_i = list(o.graphics.gr_i,[]),
       end
       
-      if o.graphics.gr_i(2)==[] then
-	coli = 0 ; 
+      if isempty(o.graphics.gr_i(2)) then
+        coli = 0; 
       else
-	coli = o.graphics.gr_i(2);
+        coli = o.graphics.gr_i(2);
       end
       
-      coln = coul ;
+      coln = coul;
       
-      if coln<>[] then
-	
-	if coln<>coli then
-	  o.graphics.gr_i(2) = coln ;   //** update the object propriety 
-	  scs_m.objs(K) = o ;           //** update the diagram 
-          update_gr(gh_obj_K,o) ; //** update the graphics data structure 
-	end
-      
+      if ~isempty(coln) then
+        if coln <> coli then
+          o.graphics.gr_i(2) = coln ;   //** update the object propriety 
+          scs_m.objs(K) = o ;           //** update the diagram 
+          update_gr(gh_obj_K,o) ;       //** update the graphics data structure 
+        end
       end
     
     //** ----------------- Text ---------------------------  
-    elseif  typeof(o)=="Text" then
-      //** not implemented
+    elseif  typeof(o) == "Text" then
+      //** not implemented yet
     end
   end
 
