@@ -71,7 +71,7 @@ void openLocaleToUTFConverter(char *sysLocale,char *lang)
 	if ( stricmp("CP1252", encoding) !=0 ) 
 		unicodeSubset=FALSE;
 #else
-	/*Under other OS, cnovert for encoding not in utf-8 format*/
+	/* Under other OS, convert for encoding not in utf-8 format*/
 	if ( stricmp("utf-8", encoding) !=0 && stricmp("utf8", encoding)!=0 && stricmp("", encoding) !=0 )
 		unicodeSubset=FALSE;
 #endif
