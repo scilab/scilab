@@ -54,7 +54,7 @@ function [x,y,typ]=FROM(job,arg1,arg2)
                        1/2   1/4    0  ;
                         0     0     0  ]'*sz(2)
 
-       = 0 //++ used by xstringb to set up text position
+      x1 = 0 //++ used by xstringb to set up text position
 
     else //++ flipped orientation
 
@@ -70,7 +70,7 @@ function [x,y,typ]=FROM(job,arg1,arg2)
                         0     0     0  ;
                         0    1/4   1/2 ]'*sz(2)
 
-       = 1/4 //++ used by xstringb to set up text position
+      x1 = 1/4 //++ used by xstringb to set up text position
     end
     xpolys(xx,yy) //++ contour
     xfpoly(xx(1,:),yy(1,:)) //++ fill
@@ -79,7 +79,7 @@ function [x,y,typ]=FROM(job,arg1,arg2)
       gh_e.fill_mode = "on"
       gh_e.background = coli
     end
-    xstringb(orig(1)+*sz(1),orig(2),tg,(1-)*sz(1),sz(2));
+    xstringb(orig(1)+x1*sz(1),orig(2),tg,(1-x1)*sz(1),sz(2));
 
     
     //++ Draw input and output ports
