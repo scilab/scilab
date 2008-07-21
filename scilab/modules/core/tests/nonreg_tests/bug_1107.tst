@@ -16,13 +16,14 @@
 //    the bug was due to a misinterpretation of syntax like (x=2) in
 //    factor. It was treated as a named argument of a function instead of a
 //    factor equivalent to (x==2)
-
+warning('off');
 x=5;
 if (x = 4) then
 	x=6;
 end
 
-ok=x==5
+ok=x==5;
 
-if (execstr('x=5;z=2*(x=4)',"errcatch","n")<>0) | (z<>0) then pause,end
-if (execstr('x=5;z=2*(x-1=4)',"errcatch","n")<>0) | (z<>2) then pause,end
+if (execstr('x=5;z=2*(x=4);',"errcatch","n")<>0) | (z<>0) then pause,end
+if (execstr('x=5;z=2*(x-1=4);',"errcatch","n")<>0) | (z<>2) then pause,end
+warning('on');
