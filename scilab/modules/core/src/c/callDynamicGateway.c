@@ -31,11 +31,13 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 		/* Under Linux/Unix, load thanks to dlopen */
 		*hlib = LoadDynLibrary(dynLibName); 
 #ifdef _MSC_VER
-		if (*hlib == NULL) {
+		if (*hlib == NULL) 
+		{
 			return DYN_GW_LOAD_LIBRARY_ERROR;
 		}
 #else
-		if (*hlib == NULL) {
+		if (*hlib == NULL) 
+		{
 			/* Haven't been able to find the lib with dlopen... 
 			 * This can happen for two reasons:
 			 * - the lib must be dynamically linked
@@ -53,11 +55,12 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 			sprintf(pathToLib,"%s%s%s%s%s",SciPath,PATHTOMODULE,moduleName,LT_OBJDIR,dynLibName);
 
 			*hlib = LoadDynLibrary(pathToLib);
-			if (*hlib == NULL) {
+			if (*hlib == NULL) 
+			{
 				return DYN_GW_LOAD_LIBRARY_ERROR;
 			}
-#endif
 		}
+#endif
 	}
 
 	if (*ptrGateway == NULL)
