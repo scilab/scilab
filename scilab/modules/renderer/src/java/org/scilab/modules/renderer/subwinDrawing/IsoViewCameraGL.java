@@ -77,11 +77,6 @@ public class IsoViewCameraGL extends CameraGL {
 		viewPortWidth = viewPort[2];
 		viewPortHeight = viewPort[2 + 1];
 		
-		// get minimum value between the two to set a close to 1 viewPort
-		double minDim = Math.min(viewPortWidth, viewPortHeight);
-		viewPortWidth /= minDim;
-		viewPortHeight /= minDim;
-		
 		// set projection
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		gl.glLoadIdentity();

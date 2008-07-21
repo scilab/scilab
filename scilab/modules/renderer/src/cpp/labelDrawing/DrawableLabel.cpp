@@ -55,9 +55,9 @@ DrawableObject::EDisplayStatus DrawableLabel::draw( void )
     // draw the enclosed text
     drawnText->hasChanged();
     drawnText->display();
-    return FAILURE;
+    return SUCCESS;
   }
-  return SUCCESS;
+  return FAILURE;
 }
 /*---------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableLabel::show( void )
@@ -74,10 +74,10 @@ DrawableObject::EDisplayStatus DrawableLabel::show( void )
     // draw the enclosed text
     drawnText->hasChanged();
     drawnText->display();
-    return FAILURE;
+    return SUCCESS;
   }
   
-  return SUCCESS;
+  return FAILURE;
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableLabel::setLabelLocation(void)

@@ -251,10 +251,23 @@ public abstract class CameraGL extends ObjectGL {
 		// rotate around the center of the box axes
 		gl.glTranslated(rotationCenter.getX(),  rotationCenter.getY(),  rotationCenter.getZ());
 		
+		
+		// compute width and height of the viewing area
+		double viewWidth = viewPortScale.getX() * getViewPortWidth();
+		double viewHeight = viewPortScale.getY() * getViewPortHeight();
+		double ratio = viewWidth / viewHeight;
+		
 		// reduction need to be performed on the center of the screen
-		gl.glScaled(1.0 / (normalizeScale.getX() * getViewPortWidth()),
-					1.0 / (normalizeScale.getY() * getViewPortHeight()),
-					1.0 / normalizeScale.getZ());
+		// use ration to take normalisation into account
+		if (ratio < 1.0) {
+			gl.glScaled(1.0 / (normalizeScale.getX() * ratio),
+						1.0 / (normalizeScale.getY()),
+						1.0 / normalizeScale.getZ());
+		} else {
+			gl.glScaled(1.0 / (normalizeScale.getX()),
+						1.0 / (normalizeScale.getY() / ratio),
+						1.0 / normalizeScale.getZ());
+		}
 	}
 	
 	/**

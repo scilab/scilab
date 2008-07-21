@@ -358,4 +358,19 @@ public class Vector3D {
 		return (int) xCoord + (int) yCoord + (int) zCoord;
 	}
 	
+	/**
+	 * @return greatest coordinate of the vector
+	 */
+	public double getMaxCoordinate() {
+		return Math.max(xCoord, Math.max(yCoord, zCoord));
+	}
+	
+	/**
+	 * @return lowest coordinate of the vector
+	 */
+	public double getMinCoordinate() {
+		return Math.min(xCoord, Math.min(yCoord, zCoord));
+	}
+	
+	
 }
