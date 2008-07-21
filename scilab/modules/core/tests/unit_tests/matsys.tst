@@ -52,9 +52,9 @@ errcatch()
 // lasterror
 errcatch(4,'continue','nomessage')
 unknown
-if stripblanks(lasterror(%f))<>"Undefined variable : unknown" then pause,end
+if stripblanks(lasterror(%f))<>"Undefined variable: unknown" then pause,end
 [m,n]=lasterror();
-if stripblanks(m)<>"Undefined variable : unknown" then pause,end
+if stripblanks(m)<>"Undefined variable: unknown" then pause,end
 if n<>4 then pause,end
 if lasterror()<>[] then pause,end
 [m,n]=lasterror();
