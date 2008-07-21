@@ -208,14 +208,14 @@ public class SciOutputView extends JTextPane implements OutputView {
 		}
 		
 		/* Special case for Scilab when clc or tohome have been used */
-		String[] lines = buff.split(
-				StringConstants.NEW_LINE);
-		
-		numberOfLines = numberOfLines + lines.length;
+		String[] lines = buff.split(StringConstants.NEW_LINE);
+
+		numberOfLines += lines.length;
+
 		while (numberOfLines > maxNumberOfLines) {
 			try {
 				getStyledDocument().remove(0, 
-						getStyledDocument().getText(0, getStyledDocument().getLength()).indexOf(StringConstants.NEW_LINE, 1));
+						getStyledDocument().getText(0, getStyledDocument().getLength()).indexOf(StringConstants.NEW_LINE, 0));
 				numberOfLines--;
 			} catch (BadLocationException e) {
 				e.printStackTrace();
