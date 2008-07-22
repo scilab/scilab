@@ -261,8 +261,8 @@ Localization:
 =============
  - All the standard, warning and error messages have been rewritted to uniform output and also to provide more feedbacks to the user.
  - Scilab is coming with the included french localization (basic GUI for the beta version)
- - Russian localization (add author)
- - Traditionnal chinese localization (add author) 
+ - Russian localization (by Vorona Aleksey)
+ - Traditionnal chinese localization (by Yung-Jang Lee)
  - New functions:
 	+ gettext(string) / _(string) - get text translated into the current locale
 	                                and domain
