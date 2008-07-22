@@ -44,8 +44,19 @@ public class IsoViewCameraGL extends CameraGL {
 		double[] screenExtent = getBoxScreenExtent(gl);
 		// apply same factor to preserve isoview.
 		double[] marginSize = getMarginSize();
-		double minScale = Math.min(marginSize[0] / screenExtent[0], Math.min(marginSize[1] / screenExtent[1], 1.0));
-		gl.glScaled(minScale, minScale, minScale);
+		
+		if (is2DCamera()) {
+			// don't take Z coordinate into account
+			// otherwise it create issues when zooming, ie the X and Y axis become smaller
+			// and smaller in order to conserve isoview between the 3 axes (Z axis does not change)
+			double minScale = Math.min(marginSize[0] / screenExtent[0], (marginSize[1] / screenExtent[1]));
+			gl.glScaled(minScale, minScale, 1.0);
+		} else {
+			double minScale = Math.min(marginSize[0] / screenExtent[0], Math.min(marginSize[1] / screenExtent[1], 1.0));
+			gl.glScaled(minScale, minScale, minScale);
+		}
+		
+		
 	}
 
 	/**

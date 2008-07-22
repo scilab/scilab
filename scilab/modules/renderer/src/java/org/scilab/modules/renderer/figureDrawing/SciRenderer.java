@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2007-2008 - INRIA - Jean-Baptiste Silvy
  * desc : GLEventListener used to retrieve informations from the
  * canvas
  * 
@@ -14,6 +14,7 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
+import javax.media.opengl.DebugGL;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GL;
@@ -57,7 +58,6 @@ public class SciRenderer
 		// nothing to render
 		return;
 	}
-	
 	GL gl = gLDrawable.getGL();
 	
 	if (!curFigure.getRenderingRequested()) {
@@ -74,7 +74,12 @@ public class SciRenderer
 			curFigure.getRubberBox().drawInContext();
 		} else {
 			// draw the hierarchy
+			
+			// to enable anti_aliasing
+			//gl.glEnable(GL.GL_MULTISAMPLE);
+			
 			FigureScilabCall.displayFigure(renderedFigure);
+			//gl.glDisable(GL.GL_MULTISAMPLE);
 		}
 	}
 	
@@ -154,12 +159,16 @@ public class SciRenderer
 	  if (curFigure == null) {
 		  return;
 	  }
+	  // if autoresize mode is off we don't actually need to do something
+	  // the reshape is not effective
+	  if (curFigure.getAutoResizeMode()) {
+		  // Axes ticks may change with new shape so redraw all subwins
+		  FigureScilabCall.redrawSubwins(renderedFigure);
 	  
-	  // Axes ticks may change with new shape so redraw all subwins
-	  FigureScilabCall.redrawSubwins(renderedFigure);
+		  // we need to redraw the figure so request one
 	  
-	  // we need to redraw the figure so request one
-	  curFigure.setRenderingRequested(true);
+		  curFigure.setRenderingRequested(true);
+	  }
 	  
 	  if (curFigure.isRubberBoxModeOn()) {
 		// in rubber box mode we don't automatically redraw the figure

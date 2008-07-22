@@ -454,6 +454,13 @@ public abstract class CameraGL extends ObjectGL {
 		getCoordinateTransformation().update(gl);
 	}
 	
+	/**
+	 * @return true if we are in 2D mode, false otherwise
+	 */
+	protected boolean is2DCamera() {
+		return (alpha == DEFAULT_ALPHA) && (theta == DEFAULT_THETA);
+	}
+	
 	
 	
 	
