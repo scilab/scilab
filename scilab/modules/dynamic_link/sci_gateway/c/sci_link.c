@@ -20,7 +20,6 @@
 #include "dynamic_link.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "FileExist.h"
 #include "dl_genErrorMessage.h"
 #include "freeArrayOfString.h"
 /*-----------------------------------------------------------------------------------*/
@@ -75,30 +74,11 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 
 				if ( (m1 == 1) && (n1 == 1) )
 				{
-					if ( FileExist(strings[0])  )
-					{
-						SharedLibraryName =(char*)MALLOC(sizeof(char)*(strlen(strings[0])+1));
-						strcpy(SharedLibraryName,strings[0]);
-						freeArrayOfString(strings,m1*n1);
-					}
-					else
-					{
-						if ( (Rhs == 1) && (strcmp(strings[0],"show")==0) )
-						{
-							freeArrayOfString(strings,m1*n1);
-							return linkOneRhsShow();
-						}
-						else
-						{
-							Scierror(999,_("%s: The file %s does not exist.\n"),fname,strings[0]);
-							freeArrayOfString(strings,m1*n1);
-							return 0;
-						}
-					}
+					SharedLibraryName =(char*)MALLOC(sizeof(char)*(strlen(strings[0])+1));
+					strcpy(SharedLibraryName,strings[0]);
 				}
 				else
 				{
-					freeArrayOfString(strings,m1*n1);
 					Scierror(999,_("%s : Wrong type for input argument #%d: %s\n"),fname,1,_("Unique dynamic library name expected."));
 					return 0;
 				}

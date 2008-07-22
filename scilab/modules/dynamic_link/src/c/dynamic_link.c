@@ -25,6 +25,10 @@
 #include "addinter.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "FileExist.h"
+#ifdef _MSC_VER
+#include "getenvc.h"
+#endif
 /*---------------------------------------------------------------------------*/
 static void Underscores(int isfor, char *ename, char *ename1);
 static int SearchFandS(char *op, int ilib);
@@ -93,8 +97,19 @@ int scilabLink(int idsharedlibrary,
 	{
 		if ( getWarningMode() ) 
 		{
+			#ifdef _MSC_VER
+			{
+				char *pathSearch = searchEnv(filename,"PATH");
+				if (pathSearch)
+				{
+					sciprint(_("%s: The file %s does not exist.\n" ),"link",filename);
+					FREE(pathSearch);
+				}
+			}
+			#else
 			sciprint(_("Link failed for dynamic library '%s'.\n"),filename);
 			sciprint(_("An error occurred: %s\n"),GetLastDynLibError());
+			#endif
 		}
 		*ierr = -1;
 		return IdSharedLib;
