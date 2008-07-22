@@ -9,6 +9,7 @@
 
 
 function tklib=gettklib()
+tklib = [];
   tcltkver=TCL_GetVersion('numbers');
 	if MSDOS then 
 		tklib='tk'+string(tcltkver(1))+string(tcltkver(2))+getdynlibext();
