@@ -167,7 +167,7 @@ int matrdiv()
 				iRet = iRightDivisionOfComplexMatrix(
 					pReal1, pImg1, iRows1, iCols1, 
 					pReal2, pImg2, iRows2, iCols2, 
-					pReturnReal, pReturnImg, iRows2, iRows1);
+					pReturnReal, pReturnImg, iRows1, iRows2);
 
 				if(iRet != 0)
 				{

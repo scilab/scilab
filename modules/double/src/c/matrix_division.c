@@ -369,9 +369,8 @@ int	iRightDivisionOfComplexMatrix(
 			double *_pdblReal2,		double *_pdblImg2,		int _iRows2,	int _iCols2,
 			double *_pdblRealOut,	double *_pdblImgOut,	int _iRowsOut,	int _iColsOut)
 {
-	int iSize1	= _iRows1 * _iCols1;
-	int iSize2	= _iRows2 * _iCols2;
-	int iIndex	= 0;
+	int iIndex1	= 0;
+	int iIndex2	= 0;
 	char cNorm	= 0;
 	int iExit	= 0;
 
@@ -407,6 +406,7 @@ int	iRightDivisionOfComplexMatrix(
 		return 17;//Error
 	}
 
+	iWork = iWorkMin;
 	/* Array allocations*/
 	poVar1		= oGetDoubleComplexFromPointer(_pdblReal1,		_pdblImg1,		_iRows1 * _iCols1);
 	poVar2		= oGetDoubleComplexFromPointer(_pdblReal2,		_pdblImg2,		_iRows2 * _iCols2);
@@ -415,23 +415,36 @@ int	iRightDivisionOfComplexMatrix(
 	poAf		= (doublecomplex*)malloc(sizeof(doublecomplex) * _iRows2 * _iCols2);
 	poAt		= (doublecomplex*)malloc(sizeof(doublecomplex) * _iRows2 * _iCols2);
 	poBt		= (doublecomplex*)malloc(sizeof(doublecomplex) * Max(_iRows2, _iCols2) * _iRows1);
+	poDwork		= (doublecomplex*)malloc(sizeof(doublecomplex) * iWork);
 
 	pRank		= (int*)malloc(sizeof(int));
 	pIpiv		= (int*)malloc(sizeof(int) * _iCols2);
 	pJpvt		= (int*)malloc(sizeof(int) * _iRows2);
 	pRwork		= (double*)malloc(sizeof(double) * 2 * _iRows2);
-
-	//C'est du grand nawak ca, on reserve toute la stack ! Oo
-
-	cNorm		= '1';
-	poDwork		= (doublecomplex*)malloc(sizeof(doublecomplex) * iWorkMin);
+	
 	dblEps		= F2C(dlamch)("eps",1L);
-	dblAnorm	= C2F(dlange)(&cNorm, &_iRows2, &_iCols2, poVar2, &_iRows2, poDwork);
+	cNorm		= '1';
+	dblAnorm	= C2F(zlange)(&cNorm, &_iRows2, &_iCols2, poVar2, &_iRows2, poDwork);
 
 	//tranpose A and B
 
 	vTransposeDoubleComplexMatrix(poVar2, _iRows2, _iCols2, poAt);
-	vTransposeDoubleComplexMatrix(poVar1, _iRows1, _iCols2, poBt);
+
+	{
+		int i,j,ij,ji;
+		for(j = 0 ; j < _iRows1 ; j++)
+		{
+			for(i = 0 ; i < _iCols2 ; i++)
+			{
+				ij = i + j * Max(_iRows2, _iCols2);
+				ji = j + i * _iRows1;
+				poBt[ij].r	= poVar1[ji].r;
+				//Conjugate
+				poBt[ij].i	= -poVar1[ji].i;
+			}//for(j = 0 ; j < _iRows1 ; j++)
+		}//for(i = 0 ; i < _iCols2 ; i++)
+	}//bloc esthetique
+
 
 	if(_iRows2 == _iCols2)
 	{
@@ -467,7 +480,7 @@ int	iRightDivisionOfComplexMatrix(
 		iMax = Max(_iRows2, _iCols2);
 		memset(pJpvt, 0x00, sizeof(int) * _iRows2);
 		C2F(zgelsy1)(&_iCols2, &_iRows2, &_iRows1, poAt, &_iCols2, poBt, &iMax,
-			pJpvt, &dblRcond, &pRank[0], poDwork, &iWork, pRwork, &iInfo);
+			pJpvt, &dblRcond, pRank, poDwork, &iWork, pRwork, &iInfo);
 
 		if(iInfo == 0)
 		{
