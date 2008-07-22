@@ -10,127 +10,175 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="semidef">
+<refentry version="5.0-subset Scilab" xml:id="semidef" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>semidef</refname>
-    <refpurpose> semidefinite programming</refpurpose>
+
+    <refpurpose>semidefinite programming</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[x,Z,ul,info]=semidef(x0,Z0,F,blck_szs,c,options)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>x0</term>
+
         <listitem>
-          <para>m x 1 real column vector (must be strictly primal feasible, see below)</para>
+          <para>m x 1 real column vector (must be strictly primal feasible,
+          see below)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>Z0</term>
+
         <listitem>
-          <para>L x 1 real vector (compressed form of a strictly feasible dual matrix, see below)</para>
+          <para>L x 1 real vector (compressed form of a strictly feasible dual
+          matrix, see below)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>F</term>
+
         <listitem>
           <para>L x (m+1) real matrix</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>blck_szs</term>
+
         <listitem>
-          <para> p x 2 integer matrix (sizes of the blocks) defining the dimensions  of the (square) diagonal blocks <literal>size(Fi(j)=blck_szs(j) j=1,...,m+1</literal>.</para>
+          <para>p x 2 integer matrix (sizes of the blocks) defining the
+          dimensions of the (square) diagonal blocks
+          <literal>size(Fi(j)=blck_szs(j) j=1,...,m+1</literal>.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>c</term>
+
         <listitem>
           <para>m x 1 real vector</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>options</term>
+
         <listitem>
-          <para>row vector with five entries <literal>[nu,abstol,reltol,0,maxiters]</literal></para>
+          <para>row vector with five entries
+          <literal>[nu,abstol,reltol,0,maxiters]</literal></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>ul</term>
+
         <listitem>
           <para>row vector with two entries</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
+
     <para><literal>[x,Z,ul,info]=semidef(x0,Z0,F,blck_szs,c,options)</literal>
     solves semidefinite program:</para>
-    <programlisting><![CDATA[
+
+    <programlisting>
 
 
     minimize    c'*x
-    subject to  F_0 + x_1*F_1 + ... + x_m*F_m  >= 0
+    subject to  F_0 + x_1*F_1 + ... + x_m*F_m  &gt;= 0
 
  and its dual
  
     maximize    -Tr F_0 Z
     subject to  Tr F_i Z = c_i, i=1,...,m
-                Z >= 0
+                Z &gt;= 0
 
    
-    ]]></programlisting>
-    <para>
-    exploiting block structure in the matrices <literal>F_i</literal>.</para>
-    <para>
-    It interfaces L. Vandenberghe and S. Boyd sp.c program.</para>
-    <para>
-    The <literal>Fi's</literal> matrices are stored columnwise in <literal>F</literal> in
-    compressed format: if <literal>F_i^j</literal>, i=0,..,m, j=1,...,L denote the jth 
-    (symmetric) diagonal block of <literal>F_i</literal>, then</para>
-    <programlisting><![CDATA[
+    </programlisting>
+
+    <para>exploiting block structure in the matrices
+    <literal>F_i</literal>.</para>
+
+    <para>It interfaces L. Vandenberghe and S. Boyd sp.c program.</para>
+
+    <para>The <literal>Fi's</literal> matrices are stored columnwise in
+    <literal>F</literal> in compressed format: if <literal>F_i^j</literal>,
+    i=0,..,m, j=1,...,L denote the jth (symmetric) diagonal block of
+    <literal>F_i</literal>, then</para>
+
+    <programlisting>
 
     [ pack(F_0^1)  pack(F_1^1) ...  pack(F_m^1) ]
     [ pack(F_0^2)  pack(F_1^2) ...  pack(F_m^2) ]
 F=  [   ...       ...          ...              ]
     [ pack(F_0^L)  pack(F_1^L) ...  pack(F_m^L) ]
    
-    ]]></programlisting>
-    <para>
-    where <literal>pack(M)</literal>, for symmetric <literal>M</literal>, is the vector 
+    </programlisting>
+
+    <para>where <literal>pack(M)</literal>, for symmetric
+    <literal>M</literal>, is the vector
     <literal>[M(1,1);M(1,2);...;M(1,n);M(2,2);M(2,3);...;M(2,n);...;M(n,n)]</literal>
-    (obtained by scanning columnwise the lower triangular part of <literal>M</literal>).</para>
-    <para><literal>blck_szs</literal> gives the size of block <literal>j</literal>, ie, 
+    (obtained by scanning columnwise the lower triangular part of
+    <literal>M</literal>).</para>
+
+    <para><literal>blck_szs</literal> gives the size of block
+    <literal>j</literal>, ie,
     <literal>size(F_i^j)=blck_szs(j)</literal>.</para>
-    <para>
-    Z is a block diagonal matrix with L blocks <literal>Z^0, ..., Z^{L-1}</literal>.
-    <literal>Z^j</literal> has size <literal>blck_szs[j] times blck_szs[j]</literal>.
-    Every block is stored using packed storage of the lower triangular part.</para>
-    <para>
-    The 2 vector <literal>ul</literal> contains the primal objective value <literal>c'*x</literal>
-    and the dual objective value <literal>-Tr F_0*Z</literal>.</para>
-    <para>
-    The entries of <literal>options</literal> are respectively:
-    <literal>nu</literal> = a real parameter which ntrols the rate of convergence.
-    <literal>abstol</literal> =   absolute tolerance.
-    <literal>reltol</literal> =  relative tolerance (has a special meaning when negative).
-    <literal>tv</literal>  target value, only referenced if <literal>reltol &lt; 0</literal>.
-    <literal>iters</literal> =  on entry: maximum number of iterations &gt;= 0, on exit: 
-    the number of iterations taken.</para>
-    <para><literal>info</literal>  returns 1 if maxiters exceeded,  2 if absolute accuracy
-    is reached, 3 if relative accuracy is reached, 4 if target value is
-    reached, 5 if target value is  not achievable;  negative values 
-    indicate errors.</para>
-    <para>
-    Convergence criterion:</para>
-    <programlisting><![CDATA[
+
+    <para>Z is a block diagonal matrix with L blocks <literal>Z^0, ...,
+    Z^{L-1}</literal>. <literal>Z^j</literal> has size <literal>blck_szs[j]
+    times blck_szs[j]</literal>. Every block is stored using packed storage of
+    the lower triangular part.</para>
+
+    <para>The 2 vector <literal>ul</literal> contains the primal objective
+    value <literal>c'*x</literal> and the dual objective value <literal>-Tr
+    F_0*Z</literal>.</para>
+
+    <para>The entries of <literal>options</literal> are respectively:
+    <literal>nu</literal> = a real parameter which ntrols the rate of
+    convergence. <literal>abstol</literal> = absolute tolerance.
+    <literal>reltol</literal> = relative tolerance (has a special meaning when
+    negative). <literal>tv</literal> target value, only referenced if
+    <literal>reltol &lt; 0</literal>. <literal>iters</literal> = on entry:
+    maximum number of iterations &gt;= 0, on exit: the number of iterations
+    taken. Notice that the absolute tolerance cannot be lower than 1.d-8, that
+    is, the absolute tolerance used in the algorithm is the maximum of the
+    user-defined tolerance and the constant tolerance 1.d-8.</para>
+
+    <para><literal>info</literal> returns 1 if maxiters exceeded, 2 if
+    absolute accuracy is reached, 3 if relative accuracy is reached, 4 if
+    target value is reached, 5 if target value is not achievable; negative
+    values indicate errors.</para>
+
+    <para>Convergence criterion:</para>
+
+    <programlisting>
 
  (1) maxiters is exceeded
  (2) duality gap is less than abstol
@@ -142,11 +190,13 @@ F=  [   ...       ...          ...              ]
      primal objective is less than tv or dual objective is greater
      than tv
    
-    ]]></programlisting>
+    </programlisting>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
 
 F0=[2,1,0,0;
     1,2,0,0;
@@ -178,6 +228,19 @@ spec(F0+F1*x(1)+F2*x(2))
 trace(F1*Z)-c(1)
 trace(F2*Z)-c(2)
  
-  ]]></programlisting>
+  </programlisting>
+  </refsection>
+  <refsection>
+    <title>References</title>
+    <para>
+    L. Vandenberghe and S. Boyd, " Semidefinite Programming," Informations Systems Laboratory, Stanford University, 1994. 
+    </para>
+    <para>
+    Ju. E. Nesterov and M. J. Todd, "Self-Scaled Cones and Interior-Point Methods in Nonlinear Programming," Working Paper, CORE, Catholic University of Louvain, Louvain-la-Neuve, Belgium, April 1994.
+    </para>
+    <para>
+    SP: Software for Semidefinite Programming, 
+    http://www.ee.ucla.edu/~vandenbe/sp.html
+    </para>
   </refsection>
 </refentry>
