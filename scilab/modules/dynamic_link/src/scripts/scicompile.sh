@@ -22,12 +22,12 @@ SOURCES_TEMP=$*
 for file in $SOURCES_TEMP; do
 	CFILE=`echo $file|sed -e 's|\.o|\.c|'`
 	FFILE=`echo $file|sed -e 's|\.o|\.f|'`
-	if test ! -s $file -a -s $CFILE -a -s $FFILE; then 
+	if [ ! -s $file -a -s $CFILE -a -s $FFILE ]; then 
 		echo "Error: Cannot find $file"
 		exit -3
 	fi
 	# It is an include file, do not build it!
-	if test ! `echo $file|grep -E "(\.h$|\.hh$|\.hxx$|\.H$)"`; then
+	if [ ! `echo $file|grep -E "(\.h$|\.hh$|\.hxx$|\.H$)"` ]; then
 		SOURCES="$SOURCES $file"
 	fi
 done
