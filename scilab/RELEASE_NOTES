@@ -1,7 +1,7 @@
-                      Scilab 5.0 Beta Release_Notes
+                      Scilab 5.0 RC1 Release_Notes
                       ==============================
 
-Please note that Scilab 5.0 Beta version still contains some well known bug,
+Please note that Scilab 5.0 RC version still contains some well known bug,
 messing features and may have some slow behaviours.
 It is a testing only version, it should only be used to test what will be
 Scilab 5 family and not at all in production environment.
@@ -12,7 +12,7 @@ List of missing/buggy features:
 
 
 - Uicontrols ascendant incompatibilities:
-    * Figure size has to be increased beacause of the automatic insertion of
+    * Figure size has to be increased because of the automatic insertion of
       a menubar and the height of the docking bar.
     * Popup uicontrols width has to be increased because of the little triangle
       used to select a new value.
@@ -24,6 +24,7 @@ List of missing/buggy features:
       computer / graphic card / graphic card driver combination.
       Errors often appear on ATI and Intel cards under Linux and also with 
       old Nvidia drivers.
+      A solution should be added in Scilab RC2
     * The Symbol font is not compatible with the one used in Scilab 4.
 
 - It is strongly recommended to update graphic cards drivers to the latest revision:
@@ -49,26 +50,31 @@ List of missing/buggy features:
         * The TCL/TK functions are still "passive" (visualized but not working, eg. "Palette Tree")
         * "Export All" is not yet operative
 
-- Name of the functions in "Genetic Algorithms" and Simulated Annealing" modules may change in the stable version
-
-
 - Scipad debugger is not yet fully functional.
 
+- Some TCL/Scilab synchronisation issues have been reported.
 
 - Printing can crash under Linux plateforms with recent versions of Cups.
 
-
 - Scilab localization system is implemented, however Scilab is not yet translated into French except menu labels.
-
 
 - Dynamic/incremental link bugs on unusual archs/compiler or with modified flags and still have issues with the binary version of Scilab
 
+- make install won't install the documentation.
 
-- Some license issues have not been fixed.
+- make install won't install the localization.
 
+- A bug altering the function pow on small numbers caused by the JVM 
+still needs some attention: 
+http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6727254
 
-- 64 bits and MacOS X versions have some critical bugs.
+- The build process of the documentation is going to be changed.
 
+- A customization of the Java Virtual Machine (JVM) is going to be introduced between the RC1 & RC2.
+
+- Linux 64 bits version has some critical bugs.
+
+- MacOS X version is not planned for Scilab 5.0 (probably 5.1)
 
 - Some Linux distributions with SELinux enabled may prevent Scilab from running
   under the default security context. Newer Linux distributions have enabled new 
