@@ -59,15 +59,25 @@ char **getClasspath(int *sizeClasspathArray)
 
 						jelement = (jstring)(*currentENV)->GetObjectArrayElement(currentENV, jStrings, i);
 						str = (*currentENV)->GetStringUTFChars(currentENV,jelement, 0);
-						string = (char*)MALLOC(sizeof(char)*(strlen(str)+1));
-
-						#if _MSC_VER
-						if (strlen(str) > 1) strcpy(string,&str[1]);
-						#else
-						if (strlen(str) > 5) strcpy(string,&str[5]);
-						#endif
-						else strcpy(string,str);
-						ClasspathArray[i]=string;
+						if (str)
+						{
+							string = (char*)MALLOC(sizeof(char)*(strlen(str)+1));
+							if (string)
+							{
+								#if _MSC_VER
+								if (strlen(str) > 1) 
+								{
+									if (str[0] == '/') strcpy(string,&str[1]);
+									else strcpy(string,str);
+								}
+								else 
+								#endif
+								{
+									strcpy(string,str);
+								}
+							}
+						}
+						ClasspathArray[i] = string;
 						(*currentENV)->ReleaseStringUTFChars(currentENV, jelement, str);
 					}
 				}
