@@ -261,6 +261,8 @@ Localization:
 =============
  - All the standard, warning and error messages have been rewritted to uniform output and also to provide more feedbacks to the user.
  - Scilab is coming with the included french localization (basic GUI for the beta version)
+ - Russian localization (add author)
+ - Traditionnal chinese localization (add author) 
  - New functions:
 	+ gettext(string) / _(string) - get text translated into the current locale
 	                                and domain
@@ -396,9 +398,10 @@ GNU/Linux - Unix:
 =================
  - New configure (based on autoconf)
  - New compilation process (based on automake and libtool)
- - Dynamic libraries
+ - Switched to dynamic libraries
  - Advanced numerical libraries can be used (Atlas, MKL...)
  - Use librairies when available on the system
+ - Build by default with gfortran
  - Versioned libraries
  - Easier profiling (memory and call graph)
  - Better startup script
