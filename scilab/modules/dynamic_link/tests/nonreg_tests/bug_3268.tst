@@ -12,4 +12,4 @@
 // link try to load a non existing file
 
 ierr = execstr('link(''NOEXISTLIBNAME'',''foo'')','errcatch');
-if ierr <> 999 then pause,end
+if ierr <> 236 then pause,end

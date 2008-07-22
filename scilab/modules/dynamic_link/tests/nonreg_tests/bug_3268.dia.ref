@@ -10,4 +10,4 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3268
 // link try to load a non existing file
 ierr = execstr('link(''NOEXISTLIBNAME'',''foo'')','errcatch');
-if ierr <> 999 then bugmes();quit;end
+if ierr <> 236 then bugmes();quit;end
