@@ -797,6 +797,8 @@ JARMASK = *.jar
 @SCICOS_TRUE@demos/simple_thermostat.dem.sce \
 @SCICOS_TRUE@demos/sound.cosf \
 @SCICOS_TRUE@demos/standard.dem.gateway.sce \
+@SCICOS_TRUE@demos/susp.cosf \
+@SCICOS_TRUE@demos/susp.dem.sce \
 @SCICOS_TRUE@demos/System-Observer.cosf \
 @SCICOS_TRUE@demos/Table_Lookup.cosf \
 @SCICOS_TRUE@demos/table_lookup.dem.sce \

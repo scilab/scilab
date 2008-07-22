@@ -231,6 +231,8 @@ demos/Simple_Thermostat.cosf \
 demos/simple_thermostat.dem.sce \
 demos/sound.cosf \
 demos/standard.dem.gateway.sce \
+demos/susp.cosf \
+demos/susp.dem.sce \
 demos/System-Observer.cosf \
 demos/Table_Lookup.cosf \
 demos/table_lookup.dem.sce \
