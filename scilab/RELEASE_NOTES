@@ -19,17 +19,12 @@ List of missing/buggy features:
 
 - Graphics know bugs
     * Graphic rendering is slower in a large graphic window than in a small one.
-    * Legend and labels might be misplaced.
     * Text object space management.
     * Rendering is slow or not functional on some
       computer / graphic card / graphic card driver combination.
       Errors often appear on ATI and Intel cards under Linux and also with 
       old Nvidia drivers.
-    * Sgrayplot display might be corrupted.
     * The Symbol font is not compatible with the one used in Scilab 4.
-    * It is strongly recommended to update graphic cards drivers after 
-      Windows XP Service Pack 3 update (http://bugzilla.scilab.org/show_bug.cgi?id=3138)
-
 
 - It is strongly recommended to update graphic cards drivers to the latest revision:
     * For ATI cards: http://ati.amd.com/support/driver.html
@@ -73,9 +68,6 @@ List of missing/buggy features:
 
 
 - 64 bits and MacOS X versions have some critical bugs.
-
-
-- EMF export is not available for this beta version
 
 
 - Some Linux distributions with SELinux enabled may prevent Scilab from running

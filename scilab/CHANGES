@@ -50,6 +50,7 @@ Graphic file export:
 ====================
   - xs2jpeg, xs2png, xs2svg, xs2pdf functions added to export graphics under JPEG, PNG, SVG and PDF formats.     	
   - Option color in xs2eps and xs2ps has been removed.
+  - Export GUI has been rewritten to match the new Java Swing style.
 
 
 Signal processing:
