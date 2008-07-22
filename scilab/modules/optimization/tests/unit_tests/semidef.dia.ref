@@ -11,13 +11,7 @@ F0=[2,1,0,0;
 F1=[1,2,0,0;
     2,1,0,0;
     0,0,1,3;
-    0,0,3,1]
- F1  =
- 
-    1.    2.    0.    0.  
-    2.    1.    0.    0.  
-    0.    0.    1.    3.  
-    0.    0.    3.    1.  
+    0,0,3,1];
 F2=[2,2,0,0;
     2,2,0,0;
     0,0,3,4;
@@ -32,23 +26,32 @@ Z01=Z0(1:2,1:2);Z02=Z0(3:4,3:4);
 FF=[[F01(:);F02(:)],[F11(:);F12(:)],[F21(:);F22(:)]];
 ZZ0=[[Z01(:);Z02(:)]];
 c=[trace(F1*Z0);trace(F2*Z0)];
-options=[10,1.d-10,1.d-10,0,50];
+abstol=1.d-8;
+reltol=1.d-10;
+options=[10,abstol,reltol,0,50];
 [x,Z,ul,info]=semidef(x0,pack(ZZ0),pack(FF),blck_szs,c,options);
 
     primal obj.  dual obj.  dual. gap 
-    0.00e+000   -6.00e+001  6.00e+001
-   -4.40e+001   -5.09e+001  6.84e+000
-   -4.44e+001   -4.50e+001  6.73e-001
-   -4.44e+001   -4.45e+001  5.11e-002
-   -4.44e+001   -4.44e+001  2.46e-003
-   -4.44e+001   -4.44e+001  3.15e-004
-   -4.44e+001   -4.44e+001  1.54e-005
-   -4.44e+001   -4.44e+001  1.80e-006
-   -4.44e+001   -4.44e+001  1.86e-007
-   -4.44e+001   -4.44e+001  2.04e-008
-   -4.44e+001   -4.44e+001  1.09e-009
-w=vec2list(unpack(Z,blck_szs),[blck_szs;blck_szs]);Z=sysdiag(w(1),w(2));
-if c'*x+trace(F0*Z) < %eps then bugmes();quit;end
-spec(F0+F1*x(1)+F2*x(2));
-if trace(F1*Z)-c(1) < %eps then bugmes();quit;end
-if trace(F2*Z)-c(2) < %eps then bugmes();quit;end
+     0.00e+00    -6.00e+01   6.00e+01
+    -4.40e+01    -5.09e+01   6.84e+00
+    -4.44e+01    -4.50e+01   6.73e-01
+    -4.44e+01    -4.45e+01   5.11e-02
+    -4.44e+01    -4.44e+01   2.46e-03
+    -4.44e+01    -4.44e+01   3.15e-04
+    -4.44e+01    -4.44e+01   1.54e-05
+    -4.44e+01    -4.44e+01   1.80e-06
+    -4.44e+01    -4.44e+01   1.86e-07
+    -4.44e+01    -4.44e+01   2.00e-08
+    -4.44e+01    -4.44e+01   2.57e-09
+w=vec2list(unpack(Z,blck_szs),[blck_szs;blck_szs]);
+Z=sysdiag(w(1),w(2));
+// Check that info states that absolute convergence occured
+if info(1)<>2 then bugmes();quit;end
+// Check that ul contains the expected values
+expectedUl1=c'*x;
+if abs(expectedUl1-ul(1))>100*%eps then bugmes();quit;end
+expectedUl2=-trace(F0*Z);
+if abs(expectedUl2-ul(2))>100*%eps then bugmes();quit;end
+// Check Slater's condition, which states that the duality gap is zero at optimum.
+dualitygap = ul(1)-ul(2);
+if dualitygap > abstol then bugmes();quit;end

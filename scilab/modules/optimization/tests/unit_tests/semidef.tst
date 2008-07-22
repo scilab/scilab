@@ -12,7 +12,7 @@ F0=[2,1,0,0;
 F1=[1,2,0,0;
     2,1,0,0;
     0,0,1,3;
-    0,0,3,1]
+    0,0,3,1];
 F2=[2,2,0,0;
     2,2,0,0;
     0,0,3,4;
@@ -27,11 +27,21 @@ Z01=Z0(1:2,1:2);Z02=Z0(3:4,3:4);
 FF=[[F01(:);F02(:)],[F11(:);F12(:)],[F21(:);F22(:)]];
 ZZ0=[[Z01(:);Z02(:)]];
 c=[trace(F1*Z0);trace(F2*Z0)];
-options=[10,1.d-10,1.d-10,0,50];
+abstol=1.d-8;
+reltol=1.d-10;
+options=[10,abstol,reltol,0,50];
 [x,Z,ul,info]=semidef(x0,pack(ZZ0),pack(FF),blck_szs,c,options);
-w=vec2list(unpack(Z,blck_szs),[blck_szs;blck_szs]);Z=sysdiag(w(1),w(2));
-if c'*x+trace(F0*Z) < %eps then pause,end
-spec(F0+F1*x(1)+F2*x(2));
-if trace(F1*Z)-c(1) < %eps then pause,end
-if trace(F2*Z)-c(2) < %eps then pause,end
- 
+w=vec2list(unpack(Z,blck_szs),[blck_szs;blck_szs]);
+Z=sysdiag(w(1),w(2));
+// Check that info states that absolute convergence occured
+if info(1)<>2 then pause,end
+// Check that ul contains the expected values
+expectedUl1=c'*x;
+if abs(expectedUl1-ul(1))>100*%eps then pause,end
+expectedUl2=-trace(F0*Z);
+if abs(expectedUl2-ul(2))>100*%eps then pause,end
+// Check Slater's condition, which states that the duality gap is zero at optimum.
+dualitygap = ul(1)-ul(2);
+if dualitygap > abstol then pause,end
+
+
