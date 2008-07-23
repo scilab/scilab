@@ -695,12 +695,8 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 			if (strcmp((char*)wordToFind,completionResults[0])!=0)
 			{
 				/* No the same as previously displayed */
-				//char *mergedline = NULL;
 				char *texttoadd = &completionResults[0][strlen(wordToFind)];
-				//mergedline = (char*)MALLOC(sizeof(char)*(strlen(wk_buf)+strlen(texttoadd)));
-				//sprintf(mergedline,"%s%s",wk_buf,texttoadd );
 				CopyLineAtPrompt(wk_buf,strcat(wk_buf, texttoadd),cursor,cursor_max);
-				//if (mergedline) {FREE(mergedline); mergedline = NULL;}
 			}
 			FREE(completionResults[0]);
 		}
@@ -744,12 +740,8 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 				lencompletionResults0 = (int) strlen(completionResults[0]);
 				if ( strncmp(completionResults[0],completionResults[1],lencompletionResults0) == 0 )
 				{
-				  //char *mergedline = NULL;
 					char *texttoadd = &completionResults[0][strlen(wordToFind)];
-					//mergedline = (char*)MALLOC(sizeof(char)*(strlen(wk_buf)+strlen(texttoadd)));
-					//sprintf(mergedline,"%s%s",wk_buf,texttoadd );
 					CopyLineAtPrompt(wk_buf,strcat(wk_buf,texttoadd),cursor,cursor_max);
-					//if (mergedline) {FREE(mergedline); mergedline = NULL;}
 				}
 				freeArrayOfString(completionResults,sizecompletionResults);
 			}
