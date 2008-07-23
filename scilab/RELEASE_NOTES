@@ -41,14 +41,12 @@ List of missing/buggy features:
     * The basic features of the editor are fully functional and tested.
     * Scicos code has been updated to the new event handling functions and code
       (please see "Event Handling Functions" section in "CHANGES") 
-    * The Scicos simulation engine is correcly working (interactive and
+    * The Scicos simulation engine is correctly working (interactive as well as
       "scicos_simulate()" batch mode)
-    * All the demos are now active (see "?"->"Demos")
-    * Brand new "Scicos Demos" section inside the new "Scilab Demostration"
-    * ...
-      BUT ...
-        * The TCL/TK functions are still "passive" (visualized but not working, eg. "Palette Tree")
-        * "Export All" is not yet operative
+    * Demos are available through Scilab "?"->"Scilab Demonstrations" menu item
+      ("Scicos" section) as well as Scicos "?"->"Demos" menu item
+    * TCL/TK features are still inactive (eg. "Palette Tree")
+    * "Export" and "Export All" features are now fully functional
 
 - Scipad debugger is not yet fully functional.
 
@@ -56,17 +54,18 @@ List of missing/buggy features:
 
 - Printing can crash under Linux plateforms with recent versions of Cups.
 
-- Scilab localization system is implemented, however Scilab is not yet translated into French except menu labels.
+- Scilab localization system is implemented, however Scilab is not yet translated
+  into French except menu labels.
 
-- Dynamic/incremental link bugs on unusual archs/compiler or with modified flags and still have issues with the binary version of Scilab
+- Dynamic/incremental link bugs on unusual archs/compiler or with modified flags
+  and still have issues with the binary version of Scilab
 
 - make install won't install the documentation.
 
 - make install won't install the localization.
 
-- A bug altering the function pow on small numbers caused by the JVM 
-still needs some attention: 
-http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6727254
+- A bug altering the function pow on small numbers caused by the JVM still needs
+  some attention: http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6727254
 
 - The build process of the documentation is going to be changed.
 
