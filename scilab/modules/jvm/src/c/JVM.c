@@ -119,11 +119,6 @@ BOOL startJVM(char *SCI_PATH)
 			sprintf(jvm_options_filename,JVM_OPTIONS_FILENAME_FORMAT,SCI_PATH);
 
 			jvm_options = getJvmOptions(SCI_PATH,jvm_options_filename,&nOptions);
-			if (jvm_options_filename)
-			{
-				FREE(jvm_options_filename);
-				jvm_options_filename = NULL;
-			}
 
 			if ( (jvm_options == NULL) || (nOptions == 0) )
 			{
