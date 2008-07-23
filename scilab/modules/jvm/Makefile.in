@@ -104,7 +104,7 @@ am__libscijvm_la_SOURCES_DIST = src/nojvm/nojvm.c \
 	src/c/loadClasspath.c src/c/createMainScilabObject.c \
 	src/c/JVM_commons.c src/c/catchIfJavaException.c \
 	src/c/loadLibrarypath.c src/c/getLibrarypath.c \
-	src/c/addToLibrarypath.c \
+	src/c/addToLibrarypath.c src/c/getJvmOptions.c \
 	sci_gateway/c/sci_system_getproperty.c \
 	sci_gateway/c/sci_system_setproperty.c \
 	sci_gateway/c/sci_with_embedded_jre.c \
@@ -124,7 +124,8 @@ am__libscijvm_la_SOURCES_DIST = src/nojvm/nojvm.c \
 @GUI_TRUE@	libscijvm_la-catchIfJavaException.lo \
 @GUI_TRUE@	libscijvm_la-loadLibrarypath.lo \
 @GUI_TRUE@	libscijvm_la-getLibrarypath.lo \
-@GUI_TRUE@	libscijvm_la-addToLibrarypath.lo
+@GUI_TRUE@	libscijvm_la-addToLibrarypath.lo \
+@GUI_TRUE@	libscijvm_la-getJvmOptions.lo
 @GUI_TRUE@am__objects_2 = libscijvm_la-sci_system_getproperty.lo \
 @GUI_TRUE@	libscijvm_la-sci_system_setproperty.lo \
 @GUI_TRUE@	libscijvm_la-sci_with_embedded_jre.lo \
@@ -354,7 +355,9 @@ libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-Isrc/c \
 			$(XML_FLAGS) \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/
 
 pkglib_LTLIBRARIES = libscijvm.la
 libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
@@ -367,7 +370,7 @@ libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
-libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
+libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start etc/jvm_options.xml
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -407,7 +410,8 @@ includes/getScilabObject.h
 @GUI_TRUE@src/c/catchIfJavaException.c \
 @GUI_TRUE@src/c/loadLibrarypath.c \
 @GUI_TRUE@src/c/getLibrarypath.c \
-@GUI_TRUE@src/c/addToLibrarypath.c
+@GUI_TRUE@src/c/addToLibrarypath.c \
+@GUI_TRUE@src/c/getJvmOptions.c
 
 @GUI_TRUE@USEANT = 1
 libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -551,6 +555,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-catchIfJavaException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-createMainScilabObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-getClasspath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-getJvmOptions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-getLibrarypath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-gw_jvm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-loadClasspath.Plo@am__quote@
@@ -696,6 +701,13 @@ libscijvm_la-addToLibrarypath.lo: src/c/addToLibrarypath.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/addToLibrarypath.c' object='libscijvm_la-addToLibrarypath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-addToLibrarypath.lo `test -f 'src/c/addToLibrarypath.c' || echo '$(srcdir)/'`src/c/addToLibrarypath.c
+
+libscijvm_la-getJvmOptions.lo: src/c/getJvmOptions.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-getJvmOptions.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-getJvmOptions.Tpo -c -o libscijvm_la-getJvmOptions.lo `test -f 'src/c/getJvmOptions.c' || echo '$(srcdir)/'`src/c/getJvmOptions.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-getJvmOptions.Tpo $(DEPDIR)/libscijvm_la-getJvmOptions.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getJvmOptions.c' object='libscijvm_la-getJvmOptions.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-getJvmOptions.lo `test -f 'src/c/getJvmOptions.c' || echo '$(srcdir)/'`src/c/getJvmOptions.c
 
 libscijvm_la-sci_system_getproperty.lo: sci_gateway/c/sci_system_getproperty.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-sci_system_getproperty.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-sci_system_getproperty.Tpo -c -o libscijvm_la-sci_system_getproperty.lo `test -f 'sci_gateway/c/sci_system_getproperty.c' || echo '$(srcdir)/'`sci_gateway/c/sci_system_getproperty.c
