@@ -44,6 +44,45 @@ public class UnitaryCubeGL {
 	protected UnitaryCubeGL() { }
 	
 	/**
+	 * Compute an axis aligned box whith specified bounds
+	 * @param xMin min coordinate along X axis
+	 * @param xMax max coordinate along X axis
+	 * @param yMin min coordinate along Y axis
+	 * @param yMax max coordinate along Y axis
+	 * @param zMin min coordinate along Z axis
+	 * @param zMax max coordinate along z axis
+	 * @return Array of size 8 containing the vertices of the box
+	 */
+	public static Vector3D[] createCube(double xMin, double xMax,
+			                            double yMin, double yMax,
+			                            double zMin, double zMax) {
+		Vector3D[] res = new Vector3D[CUBE_NB_VERTICES];
+		for (int i = 0; i < CUBE_NB_VERTICES; i++) {
+			res[i] = new Vector3D();
+			
+			// 0 => xMin, 1 => xMax
+			if (CUBE_DEFAULT_VERTICES[i].getX() == 0.0) {
+				res[i].setX(xMin);
+			} else {
+				res[i].setX(xMax);
+			}
+			
+			if (CUBE_DEFAULT_VERTICES[i].getY() == 0.0) {
+				res[i].setY(yMin);
+			} else {
+				res[i].setY(yMax);
+			}
+			
+			if (CUBE_DEFAULT_VERTICES[i].getZ() == 0.0) {
+				res[i].setZ(zMin);
+			} else {
+				res[i].setZ(zMax);
+			}
+		}
+		return res;
+	}
+	
+	/**
 	 * Get the extent along x axis and y axis on the z = 0 plane.
 	 * @param gl current GL pipeline.
 	 * @return array of size 2 containing width and height.

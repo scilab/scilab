@@ -123,6 +123,7 @@ jdoubleArraygetUnprojectMatrixID=NULL;
 jdoubleArrayget2dViewProjectionMatrixID=NULL; 
 jdoubleArrayget2dViewUnprojectMatrixID=NULL; 
 jdoubleArraygetViewPortID=NULL; 
+voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 
 
 }
@@ -169,6 +170,7 @@ jdoubleArraygetUnprojectMatrixID=NULL;
 jdoubleArrayget2dViewProjectionMatrixID=NULL; 
 jdoubleArrayget2dViewUnprojectMatrixID=NULL; 
 jdoubleArraygetViewPortID=NULL; 
+voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID=NULL; 
 
 
 }
@@ -708,6 +710,25 @@ curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
 
 return myArray;
 
+}
+
+void IsometricCameraGL::setAxesBounds (double xMin, double xMax, double yMin, double yMax, double zMin, double zMax){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID==NULL) { /* Use the cache Luke */ voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID = curEnv->GetMethodID(this->instanceClass, "setAxesBounds", "(DDDDDD)V" ) ;
+if (voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID == NULL) {
+std::cerr << "Could not access to the method " << "setAxesBounds" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidsetAxesBoundsjdoublejdoublejdoublejdoublejdoublejdoubleID ,xMin, xMax, yMin, yMax, zMin, zMax);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
 }
 
 }

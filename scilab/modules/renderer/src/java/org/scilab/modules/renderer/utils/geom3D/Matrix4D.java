@@ -22,10 +22,12 @@ package org.scilab.modules.renderer.utils.geom3D;
  */
 public class Matrix4D {
 
-	private static final String COMMA = ", ";
+	/** Number of row or column of a matrix */
+	public static final int MATRIX_SIZE = 4;
+	/** Number of elements in a matrix */
+	public static final int MATRIX_NB_ELEMENTS = MATRIX_SIZE * MATRIX_SIZE;
 	
-	private static final int MATRIX_SIZE = 4;
-	private static final int MATRIX_NB_ELEMENTS = MATRIX_SIZE * MATRIX_SIZE;
+	private static final String COMMA = ", ";
 	
 	private double[][] values = new double[MATRIX_SIZE][MATRIX_SIZE];
 	

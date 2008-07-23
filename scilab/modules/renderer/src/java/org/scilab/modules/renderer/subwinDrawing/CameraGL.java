@@ -29,7 +29,7 @@ import javax.media.opengl.GL;
 public abstract class CameraGL extends ObjectGL {
 
 	/** Distance of the far clipping plane, should be greater than 1.0 and not to high */
-	public static final double FAR_PLANE_DISTANCE = 10.0;
+	private static final double DEPTH_RANGE_INCREASE = 5.0;
 	
 	/** Default rotation angles, 2D view */
 	private static final double DEFAULT_ALPHA = 0.0;
@@ -50,6 +50,14 @@ public abstract class CameraGL extends ObjectGL {
 	/** center of the axes box */
 	private Vector3D rotationCenter = new Vector3D();
 	
+	/** Bounds of the axes box */
+	private double xMin;
+	private double xMax;
+	private double yMin;
+	private double yMax;
+	private double zMin;
+	private double zMax;
+	
 	/** Keep back camera parameters in oder to switch back to 2D mode if needed */
 	private double alpha;
 	private double theta;
@@ -69,6 +77,9 @@ public abstract class CameraGL extends ObjectGL {
 	private Matrix4D unprojectMatrix;
 	private Matrix4D projectionMatrix2D;
 	private Matrix4D unprojectMatrix2D;
+	
+	private double viewPortWidth;
+	private double viewPortHeight;
 	
 	/**
 	 * Default constructor
@@ -122,6 +133,7 @@ public abstract class CameraGL extends ObjectGL {
 		//GL gl = getGL();
 		//CoordinateTransformation.getTransformation(gl).update(gl);
 	}
+
 	
 	/**
 	 * Set the viewPort of the object.
@@ -129,15 +141,49 @@ public abstract class CameraGL extends ObjectGL {
 	protected abstract void setViewPort();
 	
 	/**
-	 * @return view port width.
+	 * Specify the size of teh OpenGL viewport to use
+	 * @param width width of the viewport in pixel
+	 * @param height heigh tof the viewPport in pixels
 	 */
-	protected abstract double getViewPortWidth();
+	protected void setViewPortSize(double width, double height) {
+		this.viewPortWidth = width;
+		this.viewPortHeight = height;
+	}
 	
 	/**
-	 * @return view port height.
+	 * @return width of the viewport
 	 */
-	protected abstract double getViewPortHeight();
+	protected double getViewportWidth() {
+		return viewPortWidth;
+	}
 	
+	/**
+	 * @return height of the viewport
+	 */
+	protected double getViewportHeight() {
+		return viewPortWidth;
+	}
+	
+	
+	/**
+	 * Set the bounds of the axes
+	 * @param xMin a
+	 * @param xMax a
+	 * @param yMin a
+	 * @param yMax a
+	 * @param zMin a
+	 * @param zMax a
+	 */
+	public void setAxesBounds(double xMin, double xMax,
+							  double yMin, double yMax,
+							  double zMin, double zMax) {
+		this.xMin = xMin;
+		this.xMax = xMax;
+		this.yMin = yMin;
+		this.yMax = yMax;
+		this.zMin = zMin;
+		this.zMax = zMax;
+	}
 	
 	/**
 	 * Set the parameters for positionning viewing area (specified by axes margins)
@@ -160,10 +206,14 @@ public abstract class CameraGL extends ObjectGL {
 		
 		setViewPort();
 		
+		// set the projection matrix with default depth range
+		// the real one will be computed after
+		setProjectionMatrix(-1.0, 1.0);
+		
 	    gl.glMatrixMode(GL.GL_MODELVIEW);
 	    gl.glLoadIdentity();
 
-	    gl.glScaled(getViewPortWidth(), getViewPortHeight(), 1.0);
+	    gl.glScaled(getViewportWidth(), getViewportHeight(), 1.0);
 		gl.glTranslated(viewPortTranslation.getX(), viewPortTranslation.getY(), viewPortTranslation.getZ());
 		gl.glScaled(viewPortScale.getX(), viewPortScale.getY(), viewPortScale.getZ());
 		
@@ -176,7 +226,13 @@ public abstract class CameraGL extends ObjectGL {
 	 * Compute width and height of the margins in pixels.
 	 */
 	protected void computeMarginsSize() {
-          marginSize = UnitaryCubeGL.getCubeScreenExtent(getGL(), getCoordinateTransformation());
+		// get width ad height of the viewPort
+		double[] viewPortSize = getViewPortSize();
+		
+        //marginSize = UnitaryCubeGL.getCubeScreenExtent(getGL(), getCoordinateTransformation());
+		marginSize = new double[2];
+		marginSize[0] = viewPortSize[0] * viewPortScale.getX();
+		marginSize[1] = viewPortSize[1] * viewPortScale.getY();
 	}
 	
 	/**
@@ -253,8 +309,8 @@ public abstract class CameraGL extends ObjectGL {
 		
 		
 		// compute width and height of the viewing area
-		double viewWidth = viewPortScale.getX() * getViewPortWidth();
-		double viewHeight = viewPortScale.getY() * getViewPortHeight();
+		double viewWidth = viewPortScale.getX() * getViewportWidth();
+		double viewHeight = viewPortScale.getY() * getViewportHeight();
 		double ratio = viewWidth / viewHeight;
 		
 		// reduction need to be performed on the center of the screen
@@ -348,22 +404,26 @@ public abstract class CameraGL extends ObjectGL {
 		computeFittingScale();
 		
 		
+		
 		gl.glPushMatrix();
 		rotateAxesBox();
 		revertAxes();
 		
+		// Update depth range (modify projection matrix)
+		updateDepthRange();
+		
 		
 		// compute the matrix for project and unproject.
 		CoordinateTransformation transform = getCoordinateTransformation();
-		transform.update(gl);
 		
-		// update coordinate chnage matrices
-		this.projectionMatrix = new Matrix4D(transform.getProjectionMatrix());
-		this.unprojectMatrix  = new Matrix4D(transform.getUnprojectMatrix());
+		// update coordinate change matrices
 		switchTo2DCoordinates();
-		this.projectionMatrix2D = new Matrix4D(transform.getProjectionMatrix());
+		this.projectionMatrix2D = new Matrix4D(transform.getCompleteProjectionMatrix());
 		this.unprojectMatrix2D = new Matrix4D(transform.getUnprojectMatrix());
 		backTo3DCoordinates();
+		this.projectionMatrix = new Matrix4D(transform.getCompleteProjectionMatrix());
+		this.unprojectMatrix  = new Matrix4D(transform.getUnprojectMatrix());
+		
 		
 	}
 	
@@ -461,7 +521,95 @@ public abstract class CameraGL extends ObjectGL {
 		return (alpha == DEFAULT_ALPHA) && (theta == DEFAULT_THETA);
 	}
 	
+	/**
+	 * After setting the modelview matrix we can compute the depth range used by the
+	 * axes box. We will then use it as our actual depth range.
+	 */
+	protected void updateDepthRange() {
+		// first compute the depth range used by the axes box.
+		double[] depthRange =  getAxesBoxDepthRange();
+		
+		// then increase it a little (to allow display ouside the box)
+		double depthRangeMiddle = (depthRange[0] +  depthRange[1]) / 2.0;
+		double depthRangeLength = (depthRange[1] - depthRange[0]) / 2.0;
+		depthRange[0] = depthRangeMiddle - depthRangeLength * DEPTH_RANGE_INCREASE;
+		depthRange[1] = depthRangeMiddle + depthRangeLength * DEPTH_RANGE_INCREASE;
+		
+		// reset the projection matrix by just modifying zNear and zFar
+		GL gl = getGL();
+		gl.glMatrixMode(GL.GL_PROJECTION);
+		gl.glLoadIdentity();
+		
+		// apperently we need to use the opposite of depth range
+		gl.glOrtho(0.0, getViewportWidth(), 0.0, getViewportHeight(), -depthRange[1], -depthRange[0]);
+		
+		gl.glMatrixMode(GL.GL_MODELVIEW);
+	}
 	
+	
+	/**
+	 * Compute the depth range used by the axes box in eye coordinates (model view).
+	 * @return array of size 2 with zNear and zFar.
+	 */
+	protected double[] getAxesBoxDepthRange() {
+		
+		// get modelView matrix
+		double[] oglModelViewMatrix = new double[Matrix4D.MATRIX_NB_ELEMENTS];
+		getGL().glGetDoublev(GL.GL_MODELVIEW_MATRIX, oglModelViewMatrix, 0);
+		Matrix4D modelMat = new Matrix4D(oglModelViewMatrix);
+		
+		// compute 8 vertices of axes box
+		Vector3D[] axesBox = UnitaryCubeGL.createCube(xMin, xMax, yMin, yMax, zMin, zMax);
+		
+		return getAxesBoxDepthRange(axesBox, modelMat);
+	}
+	
+	/**
+	 * Compite depth range used by a set of vertex
+	 * @param axesBoxVertices vertices to test
+	 * @param modelViewMatrix modelview matrix to use for projection in eye coordinates
+	 * @return array of size 2 with zNear and zFar.
+	 */
+	private double[] getAxesBoxDepthRange(Vector3D[] axesBoxVertices,
+										  Matrix4D modelViewMatrix) {
+		Vector3D eyePos = modelViewMatrix.mult(axesBoxVertices[0]);
+		double[] res = {eyePos.getZ(), eyePos.getZ()};
+		// get minimum and maximum depth
+		for (int i = 1; i < axesBoxVertices.length; i++) {
+			eyePos = modelViewMatrix.mult(axesBoxVertices[i]);
+			
+			if (eyePos.getZ() < res[0]) {
+				res[0] = eyePos.getZ();
+			} else if (eyePos.getZ() > res[1]) {
+				res[1] = eyePos.getZ();
+			}
+			
+		}
+		return res;
+	}
+	
+	/**
+	 * Set the projection matrix using the computed viewport and the specified depth range
+	 * @param zNear depth of near clipping plane
+	 * @param zFar depth of far clipping plane
+	 */
+	protected void setProjectionMatrix(double zNear, double zFar) {
+		GL gl = getGL();
+		gl.glMatrixMode(GL.GL_PROJECTION);
+		gl.glLoadIdentity();
+		gl.glOrtho(0.0, viewPortWidth, 0.0, viewPortHeight, zNear, zFar);
+		
+		// beck to default mode
+		gl.glMatrixMode(GL.GL_MODELVIEW);
+	}
+	
+	/**
+	 * @return array of size 2 containing the viewport size.
+	 */
+	protected double[] getViewPortSize() {
+		double[] res = {getParentFigureGL().getCanvasWidth(), getParentFigureGL().getCanvasHeight()};
+		return res;
+	}
 	
 	
 }

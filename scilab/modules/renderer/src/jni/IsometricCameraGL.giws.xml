@@ -73,5 +73,13 @@
     </method>
     <method name="getViewPort" returnType="double[]">
     </method>
+    <method name="setAxesBounds" returnType="void">
+      <param type="double" name="xMin" />
+      <param type="double" name="xMax" />
+      <param type="double" name="yMin" />
+      <param type="double" name="yMax" />
+      <param type="double" name="zMin" />
+      <param type="double" name="zMax" />
+    </method>
   </object>
 </package>

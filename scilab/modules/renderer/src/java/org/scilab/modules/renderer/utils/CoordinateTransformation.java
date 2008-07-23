@@ -33,7 +33,10 @@ public class CoordinateTransformation {
 	/** Size of the view port */
 	public static final int VIEW_PORT_SIZE = 4;
 	
-	private Matrix4D projectMatrix;
+	private Matrix4D projectionMatrix;
+	private Matrix4D modelViewMatrix;
+	
+	private Matrix4D completeProjectMatrix;
 	private Matrix4D unprojectMatrix;
 	private double[] viewPort;
 	
@@ -44,8 +47,10 @@ public class CoordinateTransformation {
 	 * default constructor
 	 */
 	public CoordinateTransformation() {
-		projectMatrix = null;
+		completeProjectMatrix = null;
 		unprojectMatrix = null;
+		projectionMatrix = new Matrix4D();
+		modelViewMatrix = new Matrix4D();
 		viewPort = new double[VIEW_PORT_SIZE];
 		additionalTranslation = null;
 		additionalTranslationPix = null;
@@ -54,8 +59,15 @@ public class CoordinateTransformation {
 	/**
 	 * @return current projection matrix
 	 */
-	public Matrix4D getProjectionMatrix() {
-		return projectMatrix;
+	public Matrix4D getCompleteProjectionMatrix() {
+		return completeProjectMatrix;
+	}
+	
+	/**
+	 * @return current model view matrix
+	 */
+	public Matrix4D getModelViewMatrix() {
+		return modelViewMatrix;
 	}
 	
 	/**
@@ -122,11 +134,12 @@ public class CoordinateTransformation {
 		
 		// projection (without viewport is done by v' = P.M.v
 		// where v' is the canvas coordinates and v scene coordinates
-		projectMatrix = new Matrix4D(oglProjectionMatrix);
-		projectMatrix = projectMatrix.mult(new Matrix4D(oglModelViewMatrix));
+		projectionMatrix.setFromOpenGLRepresentation(oglProjectionMatrix);
+		modelViewMatrix.setFromOpenGLRepresentation(oglModelViewMatrix);
+		completeProjectMatrix = projectionMatrix.mult(modelViewMatrix);
 		
 		// unproject is done by v = (P.M)^-1.v'
-		unprojectMatrix = projectMatrix.getInverse();
+		unprojectMatrix = completeProjectMatrix.getInverse();
 	}
 	
 	/**
@@ -148,7 +161,7 @@ public class CoordinateTransformation {
 	 * @return pixel coordinate of the point.
 	 */
 	public Vector3D project(GL gl, Vector3D pos) {
-		Vector3D canvasCoord = projectMatrix.mult(pos);
+		Vector3D canvasCoord = completeProjectMatrix.mult(pos);
 		canvasCoord.setX(viewPort[0] + viewPort[2] * (canvasCoord.getX() + 1.0) / 2.0);
 		canvasCoord.setY(viewPort[1] + viewPort[VIEW_PORT_SIZE - 1] * (canvasCoord.getY() + 1.0) / 2.0);
 		canvasCoord.setZ((canvasCoord.getZ() + 1.0) / 2.0);
@@ -221,7 +234,7 @@ public class CoordinateTransformation {
 	 * @return direction in the canvas coordinate system.
 	 */
 	public Vector3D getCanvasCoordinates3D(GL gl, Vector3D dir) {
-		return projectMatrix.mult3D(dir);
+		return completeProjectMatrix.mult3D(dir);
 	}
 	
 	/**
@@ -239,7 +252,7 @@ public class CoordinateTransformation {
 	 */
 	@Override
 	public String toString() {
-		return projectMatrix.toString();
+		return completeProjectMatrix.toString();
 	}
 	
 }

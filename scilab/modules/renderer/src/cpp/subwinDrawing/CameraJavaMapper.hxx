@@ -56,6 +56,9 @@ public:
   virtual void get2dViewProjectionMatrix(double mat[4][4]) = 0;
   virtual void get2dViewUnprojectMatrix(double mat[4][4]) = 0;
   virtual void getViewPort(double viewPort[4]) = 0;
+  virtual void setAxesBounds(double xMin, double xMax,
+	         	     double yMin, double yMax,
+			     double zMin, double zMax) = 0;
   /*----------------------------------------------------------------------*/
   void convertMatrixFormat(const double src[16], double dest[4][4]) {
     for (int i = 0; i < 4; i++) {

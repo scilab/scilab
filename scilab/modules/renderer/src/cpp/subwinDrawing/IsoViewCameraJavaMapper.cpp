@@ -164,4 +164,11 @@ void IsoViewCameraJavaMapper::getViewPort(double viewPort[4])
   delete[] javaViewPort;
 }
 /*--------------------------------------------------------------------------*/
+void IsoViewCameraJavaMapper::setAxesBounds(double xMin, double xMax,
+				            double yMin, double yMax,
+				            double zMin, double zMax)
+{
+  m_pJavaObject->setAxesBounds(xMin, xMax, yMin, yMax, zMin, zMax);
+}
+/*--------------------------------------------------------------------------*/
 }

@@ -17,16 +17,14 @@ package org.scilab.modules.renderer.subwinDrawing;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+
 /**
  * Class containing the driver dependant routines position the
  * camera with an isoview scale
  * @author Jean-Baptiste Silvy
  */
 public class IsoViewCameraGL extends CameraGL {
-
-	
-	private double viewPortHeight;
-	private double viewPortWidth;
 
 	/**
 	 * Default constructor.
@@ -60,40 +58,14 @@ public class IsoViewCameraGL extends CameraGL {
 	}
 
 	/**
-	 * @return view port height.
-	 */
-	@Override
-	protected double getViewPortHeight() {
-		return viewPortHeight;
-	}
-
-	/**
-	 * @return view port width.
-	 */
-	@Override
-	protected double getViewPortWidth() {
-		return viewPortWidth;
-	}
-
-	/**
 	 * Set the viewPort of the object.
 	 */
 	@Override
 	protected void setViewPort() {
-		double[] viewPort = {0.0, 0.0, 0.0, 0.0};
+		double[] viewPortSize = getViewPortSize();
 		
-		GL gl = getGL();
-		// get width ad height of the viewPort
-		gl.glGetDoublev(GL.GL_VIEWPORT, viewPort, 0);
-		viewPortWidth = viewPort[2];
-		viewPortHeight = viewPort[2 + 1];
 		
-		// set projection
-		gl.glMatrixMode(GL.GL_PROJECTION);
-		gl.glLoadIdentity();
-	    // for perspective view, we need to use glFrustum, not glOrtho
-		gl.glOrtho(0.0, viewPortWidth, 0.0, viewPortHeight, -FAR_PLANE_DISTANCE, FAR_PLANE_DISTANCE);
-
+		setViewPortSize(viewPortSize[0], viewPortSize[1]);
 	}
 
 }
