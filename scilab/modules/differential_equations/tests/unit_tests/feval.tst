@@ -24,3 +24,26 @@ for j=1:5
   res1=[res1, (1:10)'+%i*j*ones(10,1)];
 end
 if res<>res1 then pause,end
+
+
+// An other example from :
+// http://numerics.tinabargs.com/2008/07/scilab-functions-as-input-for-other-scilab-functions/
+// Thanks to Ma. Cristina R. Bargo for the authorization to include this test 
+// into Scilab
+function y = plop(x)
+  y = 2*x - 1;
+endfunction
+
+function y = plip(x)
+  y = x^2 - 5*x + 2;
+endfunction
+
+
+function y = fcninput(fcnname, x)
+// fcnname is the name of the function to be evaluated at x
+  y = feval(x,fcnname)
+endfunction
+
+fcninput(plip,1:10)
+
+fcninput(plop,1:10)
