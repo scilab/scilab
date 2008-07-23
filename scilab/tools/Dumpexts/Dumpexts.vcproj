@@ -5,7 +5,7 @@
 	Name="Dumpexts"
 	ProjectGUID="{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}"
 	RootNamespace="Dumpexts"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -491,6 +491,10 @@
 			>
 			<File
 				RelativePath="..\..\modules\scicos_blocks\includes\blocks.h.vc"
+				>
+			</File>
+			<File
+				RelativePath="..\..\modules\jvm\etc\jvm_options.xml.vc"
 				>
 			</File>
 			<File
