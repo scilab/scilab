@@ -20,17 +20,26 @@
 function [P]=dpnd()
 //dpnd() scheme of experiment
 //!
-  set figure_style new
-  clf();a=gca();a.isoview='on';
-  f = gcf() ; f.figure_size = [640,480];
+  clf();
+  a=gca();
+  a.isoview='on';
+  f = gcf() ;
+  f.axes_size = [640,480];
   a.data_bounds=[0 0;100 100];
   a.margins(3:4)=[0 0.2];
   drawlater()
-  xg=40;y1=25;lb=40;hc=10;lc=20;teta=.25;r=2.5;
+  xg=40;
+  y1=25;
+  lb=40;
+  hc=10;
+  lc=20;
+  teta=.25;
+  r=2.5;
   P=build_pendulum([xg,y1],[lc,hc,lb,teta,r])
  
   //the floor
-  xarrows([10 90],[y1-5 y1-5],2); xstring(90,y1,'x')
+  xarrows([10 90],[y1-5 y1-5],0);
+  xstring(90,y1,'x')
   
   // the force
   yg=y1+hc/2, 
@@ -46,7 +55,7 @@ function [P]=dpnd()
   xstring(xg+lb*sin(teta)/2,y2+lb*cos(teta),'a',0,0);
   e=gce();e.font_size=3;
   
-  //the diff�rential equations
+  //the differential equations
   xstring(5,-9,['a'''' = (-sin(a)*cos(a)*(m/(m+M))*a''^2 + 2/(mb*l)*(sin(a)*m*g - qm*cos(a)*u))/d'
 		'x'''' =  (u+m*(l/2)*(sin(a)a''^2-cos(a)*a''''))/(m+M);'
 		'm: weight of the pendulum'
@@ -82,7 +91,6 @@ endfunction
 function P=set_pendulum(P,x,theta)
   p=P.user_data
   xg=p(1);lb=p(2);
-  drawlater()
   //translation
   e=P.children(1);e.data(1)=e.data(1)+x-xg;
   e=P.children(2).children;e.data(1)=e.data(1)+x-xg;
@@ -92,7 +100,6 @@ function P=set_pendulum(P,x,theta)
    //change the pendulum angle
   e.data(2,:)=e.data(1,:)+[lb*sin(theta) lb*cos(theta)];
   P.user_data(1)=x
-  drawnow()
   //show_pixmap()
 endfunction
 
@@ -111,6 +118,7 @@ function draw1()
   a1.axes_visible='on';
   a1.x_label.text='time';
   a1.y_label.text='position';
+  disp(a1.background);
   p1=xpoly(1,y(1,1));p1=gce();
 
   a2=newaxes();sca(a2);
@@ -135,10 +143,12 @@ function draw1()
   drawnow()
 
   for k=1:size(y,2)
+    drawlater();
     xx=100*y(1,k);tt=100*y(2,k);
     p1.data=[p1.data;k,y(1,k)];
     p2.data=[p2.data;k,y(2,k)];
     P=set_pendulum(P,xx,tt);
+    drawnow();
   end
   //f.pixmap='off'
 endfunction
@@ -187,11 +197,13 @@ function draw2()
   //show_pixmap();
 
   for k=1:n
+    drawlater();
     xx=x(k);tt=theta(k);
     p1.data=[p1.data;t1(k),c(k)];
     p2.data=[p2.data;t1(k),theta(k)];
     p3.data=[p3.data;t1(k),thetaE(k)];
     P=set_pendulum(P,xx,tt);
+    drawnow();
   end
   //f.pixmap='off'
   
