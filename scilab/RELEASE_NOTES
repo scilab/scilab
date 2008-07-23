@@ -1,8 +1,8 @@
-                      Scilab 5.0 RC1 Release_Notes
+                      Scilab 5.0 beta Release_Notes
                       ==============================
 
-Please note that Scilab 5.0 RC version still contains some well known bug,
-messing features and may have some slow behaviours.
+Please note that Scilab 5.0 beta version still contains some well known bug,
+missing features and may have some slow behaviours.
 It is a testing only version, it should only be used to test what will be
 Scilab 5 family and not at all in production environment.
 The period between the beta and the stable versions will mainly be used to
@@ -18,16 +18,18 @@ List of missing/buggy features:
       used to select a new value.
 
 - Graphics know bugs
-    * Graphic rendering is slower in a large graphic window than in a small one.
+    * Graphic rendering is slower in a large graphic window than in a small 
+      one.
     * Text object space management.
     * Rendering is slow or not functional on some
       computer / graphic card / graphic card driver combination.
       Errors often appear on ATI and Intel cards under Linux and also with 
       old Nvidia drivers.
-      A solution should be added in Scilab RC2
+      A solution should be added in Scilab RC1
     * The Symbol font is not compatible with the one used in Scilab 4.
 
-- It is strongly recommended to update graphic cards drivers to the latest revision:
+- It is strongly recommended to update graphic cards drivers to the latest 
+	revision:
     * For ATI cards: http://ati.amd.com/support/driver.html
     * For Intel cards: http://www.intel.com/support/graphics/
     * For Matrox cards: http://www.matrox.com/mga/support/drivers/certified/home.cfm
@@ -54,11 +56,11 @@ List of missing/buggy features:
 
 - Printing can crash under Linux plateforms with recent versions of Cups.
 
-- Scilab localization system is implemented, however Scilab is not yet translated
-  into French except menu labels.
+- Scilab localization system is implemented, however not all the strings have
+  been added to the translation engine and therefore not translated.
 
-- Dynamic/incremental link bugs on unusual archs/compiler or with modified flags
-  and still have issues with the binary version of Scilab
+- Dynamic/incremental link bugs on unusual archs/compiler or with modified 
+  flags and still have issues with the binary version of Scilab
 
 - make install won't install the documentation.
 
@@ -69,18 +71,19 @@ List of missing/buggy features:
 
 - The build process of the documentation is going to be changed.
 
-- A customization of the Java Virtual Machine (JVM) is going to be introduced between the RC1 & RC2.
+- A customization of the Java Virtual Machine (JVM) is going to be introduced 
+  between the beta 4 & RC1
 
 - Linux 64 bits version has some critical bugs.
 
 - MacOS X version is not planned for Scilab 5.0 (probably 5.1)
 
 - Some Linux distributions with SELinux enabled may prevent Scilab from running
-  under the default security context. Newer Linux distributions have enabled new 
-  kernel security extensions from the SELinux project at the NSA. These  extensions
-  allow finer-grained control over system security. However, SELinux also changes
-  some default system behaviors, such as shared library loading, that can be
-  problematic to third party programs.
+  under the default security context. Newer Linux distributions have enabled 
+  new kernel security extensions from the SELinux project at the NSA. These
+  extensions allow finer-grained control over system security. However, 
+  SELinux also changes some default system behaviors, such as shared library 
+  loading, that can be problematic to third party programs.
 
   If you receive the error message:
   "cannot restore segment prot after reloc: Permission denied"
