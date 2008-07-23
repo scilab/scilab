@@ -14,6 +14,6 @@
 //    The product 0.0 * %inf provides the incorrect value 0.0, 
 //    but the product %inf * 0.0 provides the correct value %nan.
 
-if ~isnan(0.0*%inf) then pause;end
+if ~isnan(0.0*%inf) then pause,end
 
-if ~isnan(%inf*0.0) then pause;end
+if ~isnan(%inf*0.0) then pause,end
