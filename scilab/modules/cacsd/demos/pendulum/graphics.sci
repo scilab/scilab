@@ -21,13 +21,13 @@ function [P]=dpnd()
 //dpnd() scheme of experiment
 //!
   clf();
+  drawlater()
   a=gca();
   a.isoview='on';
   f = gcf() ;
   f.axes_size = [640,480];
   a.data_bounds=[0 0;100 100];
   a.margins(3:4)=[0 0.2];
-  drawlater()
   xg=40;
   y1=25;
   lb=40;
@@ -92,6 +92,7 @@ function P=set_pendulum(P,x,theta)
   p=P.user_data
   xg=p(1);lb=p(2);
   //translation
+  drawlater();
   e=P.children(1);e.data(1)=e.data(1)+x-xg;
   e=P.children(2).children;e.data(1)=e.data(1)+x-xg;
   e=P.children(3).children;e.data(1)=e.data(1)+x-xg;
@@ -100,6 +101,7 @@ function P=set_pendulum(P,x,theta)
    //change the pendulum angle
   e.data(2,:)=e.data(1,:)+[lb*sin(theta) lb*cos(theta)];
   P.user_data(1)=x
+  drawnow();
   //show_pixmap()
 endfunction
 
@@ -147,8 +149,8 @@ function draw1()
     xx=100*y(1,k);tt=100*y(2,k);
     p1.data=[p1.data;k,y(1,k)];
     p2.data=[p2.data;k,y(2,k)];
+    // contains draw now
     P=set_pendulum(P,xx,tt);
-    drawnow();
   end
   //f.pixmap='off'
 endfunction
@@ -202,8 +204,8 @@ function draw2()
     p1.data=[p1.data;t1(k),c(k)];
     p2.data=[p2.data;t1(k),theta(k)];
     p3.data=[p3.data;t1(k),thetaE(k)];
+    // contains draw now
     P=set_pendulum(P,xx,tt);
-    drawnow();
   end
   //f.pixmap='off'
   
