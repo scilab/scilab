@@ -699,8 +699,8 @@ int InitAxesModel()
 
   ppaxesmdl->tight_limits = FALSE;
 
-  /* By default arcs use nurbs */
-  sciInitUseNurbs(paxesmdl, TRUE);
+  /* By default arcs don't use nurbs since it is faster */
+  sciInitUseNurbs(paxesmdl, FALSE);
 
   paxesmdl->pObservers = NULL ;
   paxesmdl->pDrawer = NULL ;
