@@ -160,7 +160,7 @@ Input/Output functions (files):
 	+ filesep             - returns directory separator for current platform
 	+ pathsep             - returns path separator for current platform
 	+ maxfiles            - sets the limit for the number of files a scilab is allowed to have open simultaneously.
-	+ findfiles           - Finding all files with a given filespec
+	+ findfiles           - Finds all files with a given filespec
 
  - Profile changed:
 	+ ls under Linux/Unix has lost his second input argument (unix/linux command line option). It is now based on listfiles. ls in Scilab 5 will always return one file per line (2 per lines before)
@@ -389,7 +389,7 @@ Scilab modes:
 		(loads the Java Virtual Machine)
 	+ NWNI (No window No interactive) mode
 		Run in command line but no help, TCL or rendering
-		(do not load the Java Virtual Machine)
+		(does not load the Java Virtual Machine)
 	+ API mode
 		Scilab as API/computing engine
 
@@ -508,7 +508,7 @@ Known incompatibilty
   - the xgetmouse flag option has been removed 
 
   - For licence reasons, The quapro and linpro functions are no more
-    available in the Scilab distribution, but as an external free
+    available in the Scilab distribution, but as an external free (as beer)
     toolbox.
 
                      Main Changes Scilab 3.0 -> 4.0
