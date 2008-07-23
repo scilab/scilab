@@ -20,6 +20,8 @@
 
 // call ode within the rhs-function to a different ode call
 
+// <-- NOT FIXED -->
+
 function fz=alpha_rhs(t,z)
   fz= -z; // exp(-t)
 endfunction
