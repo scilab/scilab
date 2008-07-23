@@ -40,7 +40,7 @@ BOOL InitializeJVM(void)
 #ifdef _MSC_VER
 		MessageBox(NULL,_("\nScilab cannot open JVM library.\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-		printf(_("\nScilab cannot open JVM library.\n"));
+		fprintf(stderr,_("\nScilab cannot open JVM library.\n"));
 #endif
 	}
 	else
@@ -53,7 +53,7 @@ BOOL InitializeJVM(void)
 #ifdef _MSC_VER
 			MessageBox(NULL,_("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
 #else
-			printf(_("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
+			fprintf(stderr,_("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
 #endif
 		}
 		else

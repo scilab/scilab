@@ -27,7 +27,7 @@ libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
-libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
+libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start etc/jvm_options.xml
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -69,7 +69,8 @@ src/c/JVM_commons.c \
 src/c/catchIfJavaException.c \
 src/c/loadLibrarypath.c \
 src/c/getLibrarypath.c \
-src/c/addToLibrarypath.c
+src/c/addToLibrarypath.c \
+src/c/getJvmOptions.c
 
 USEANT=1
 

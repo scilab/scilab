@@ -47,7 +47,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
 
 			if (doc == NULL) 
 			{
-				printf(_("Error: could not parse file %s\n"), xmlfilename);
+				fprintf(stderr,_("Error: could not parse file %s\n"), xmlfilename);
 				if (encoding) {FREE(encoding);encoding=NULL;}
 				return bOK;
 			}
@@ -110,7 +110,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
 			}
 			else
 			{
-				printf(_("Wrong format for %s.\n"), xmlfilename);
+				fprintf(stderr,_("Wrong format for %s.\n"), xmlfilename);
 			}
 
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
@@ -123,7 +123,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
 		}
 		else
 		{
-			printf(_("Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"), xmlfilename, encoding);
+			fprintf(stderr,_("Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"), xmlfilename, encoding);
 		}
 		if (encoding) {FREE(encoding);encoding=NULL;}
 	}
