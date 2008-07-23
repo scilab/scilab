@@ -599,9 +599,13 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		if MSDOS then
 			strsubst(dia,strsubst(TMPDIR ,"\","/"),"TMPDIR");
 			strsubst(dia,strsubst(TMPDIR1,"\","/"),"TMPDIR");
+			dia = strsubst(dia,strsubst(getshortpathname(TMPDIR) ,"\","/"),"TMPDIR");
+			dia = strsubst(dia,strsubst(getshortpathname(TMPDIR1),"\","/"),"TMPDIR");
+			dia = strsubst(dia,getshortpathname(TMPDIR) ,"TMPDIR");
+			dia = strsubst(dia,getshortpathname(TMPDIR1),"TMPDIR");
 		end
 		
-		dia = strsubst(dia,SCI,'SCI');
+		dia = strsubst(dia,SCI,"SCI");
 		
 		//suppress the prompts
 		dia = strsubst(dia,'-->','');
