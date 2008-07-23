@@ -17,7 +17,6 @@ package org.scilab.modules.renderer.subwinDrawing;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
  * Class containing the driver dependant routines position the

@@ -161,7 +161,7 @@ public abstract class CameraGL extends ObjectGL {
 	 * @return height of the viewport
 	 */
 	protected double getViewportHeight() {
-		return viewPortWidth;
+		return viewPortHeight;
 	}
 	
 	
