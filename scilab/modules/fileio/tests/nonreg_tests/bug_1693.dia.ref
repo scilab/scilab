@@ -13,10 +13,7 @@
 //    cd \ throws an error
 // ...
 // ================== Test 1 ==================
-cd \
- ans  =
- 
- /   
+cd('\');
 if MSDOS
 	if pwd() <> 'C:\' then bugmes();quit;end
 else
