@@ -10,79 +10,105 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="roots">
+<refentry version="5.0-subset Scilab" xml:id="roots" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-07-11 10:31:18 +0200 (ven., 11 juil. 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>roots</refname>
-    <refpurpose> roots of polynomials</refpurpose>
+
+    <refpurpose>roots of polynomials</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[x]=roots(p)
 [x]=roots(p,'e')</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>p</term>
+
         <listitem>
-          <para>polynomial with real or complex coefficients  or vector of the
-	    polynomial coefficients in decreasing degree order (Matlab
-	    compatibility).</para>
+          <para>polynomial with real or complex coefficients or vector of the
+          polynomial coefficients in decreasing degree order (Matlab
+          compatibility).</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>x=roots(p)</literal> returns in the complex vector <literal>x</literal> the roots of the
-    polynomial <literal>p</literal>. For real polynomials of degree &lt;=100 the fast
-      RPOLY algorithm (based on Jenkins-Traub method) is used. In the other cases the roots are computed as the
-      eigenvalues of the associated companion matrix. Use
-      <literal>x=roots(p,'e')</literal> to force this algorithm in any cases.</para>
+
+    <para><literal>x=roots(p)</literal> returns in the complex vector
+    <literal>x</literal> the roots of the polynomial <literal>p</literal>. For
+    real polynomials of degree &lt;=100 the fast RPOLY algorithm (based on
+    Jenkins-Traub method) is used. In the other cases the roots are computed
+    as the eigenvalues of the associated companion matrix. Use
+    <literal>x=roots(p,'e')</literal> to force this algorithm in any
+    cases.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
 
 p=poly([0,10,1+%i,1-%i],'x');
 roots(p)
 A=rand(3,3);roots(poly(A,'x'))    // Evals by characteristic polynomial
 spec(A)
  
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="poly">poly</link>
-      </member>
-      <member>
-        <link linkend="spec">spec</link>
-      </member>
-      <member>
-        <link linkend="companion">companion</link>
-      </member>
+      <member><link linkend="poly">poly</link></member>
+
+      <member><link linkend="spec">spec</link></member>
+
+      <member><link linkend="companion">companion</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <simplelist type="vert">
       <member>Serge Steer (INRIA)</member>
     </simplelist>
   </refsection>
+
   <refsection>
-    <title>Bibliography</title>
-    <para>The RPOLY algorithm is described in ACM TOMS 1 (1975) 178-189</para>
+    <title>References</title>
+
+    <para>The RPOLY algorithm is described in "Algorithm 493: Zeros of a Real
+    Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189</para>
   </refsection>
+
   <refsection>
     <title>Used Functions</title>
-    <para>The rpoly.f source codes can be found in the directory routines/control
-      of a Scilab source distribution. The
-      eigenvalue computation is perfomed using DGEEV and ZGEEV LAPACK codes. </para>
+
+    <para>The rpoly.f source codes can be found in the directory
+    routines/control of a Scilab source distribution. In the case where the
+    companion matrix is used, the eigenvalue computation is perfomed using
+    DGEEV and ZGEEV LAPACK codes.</para>
   </refsection>
 </refentry>
