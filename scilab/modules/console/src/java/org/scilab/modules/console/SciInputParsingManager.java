@@ -102,7 +102,7 @@ public class SciInputParsingManager implements InputParsingManager {
 
 		/* Code to emulate Scilab Parser */
 		char[] symbs = {'+', '-', '*', '/', '\\', '(', '[', ' ', '^', ',', ';', '=', '{',
-				'.', '&', '|', '\'', ']', ')', '}', ':'};
+				'.', '&', '|', '\'', ']', ')', '}', ':', '"'};
 		int index = -1;
 
 		for (int i = 0; i < symbs.length; i++) {
