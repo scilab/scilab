@@ -66,7 +66,7 @@ int sci_TCL_EvalFile(char *fname,unsigned long l)
 		  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
 		  return 0;
 		}
-	      RET=sendTclFileToSlave(cstk(l2), cstk(l1));
+	      RET=sendTclFileToSlave(cstk(l1), cstk(l2));
 	    }
 	  else
 	    {
@@ -86,7 +86,7 @@ int sci_TCL_EvalFile(char *fname,unsigned long l)
 	    }
 	  else
 	    {
-	      Scierror(999,_("%s, at line %i of file %s\n	%s.\n"),fname,TCLinterpreter->errorLine,cstk(l1),TCLinterpreter->result,(char *)trace);
+	      Scierror(999,_("%s, at line %i of file %s\n	%s.\n"),fname,TCLinterpreter->errorLine,cstk(l1),(char *)trace);
 	      return 0;
 	    }
 	}
