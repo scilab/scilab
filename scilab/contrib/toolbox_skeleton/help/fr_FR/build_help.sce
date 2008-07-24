@@ -3,20 +3,10 @@
 // Allan CORNET
 // ====================================================================
 
-help_dir = get_absolute_file_path('build_help.sce');
+help_lang_dir = get_absolute_file_path('build_help.sce');
 
-xmltojar(help_dir,'Toolbox Skeleton');
+build_help(TOOLBOX_TITLE, help_lang_dir);
+build_help_loader(TOOLBOX_TITLE, help_lang_dir);
 
-// ====================================================================
-clear xmltojar;
-clear need_to_be_build;
-clear dl_df_lang_xml_files;
-clear complete_with_df_lang;
-clear gener_hh;
-clear gener_contents;
-clear gener_links;
-clear gener_index;
-clear gener_whatis;
-
-clear help_dir;
-// ====================================================================
+clear build_help build_loader;
+clear help_lang_dir;
