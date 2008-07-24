@@ -50,6 +50,7 @@ void closeGraphicModule( void )
 {
   if ( !isGraphicModuleLoaded ) { return ; }
 
+  startGraphicDataWriting();
   /* destroy hashtables */
   destroyScilabGetHashTable() ;
   destroyScilabSetHashTable() ;
@@ -62,6 +63,7 @@ void closeGraphicModule( void )
 
   /* deleteTemporary points points in peri***.c */
   deletePoints() ;
+  endGraphicDataWriting();
 
   /* Delete synchronization data */
   destroyGraphicSynchronizer();

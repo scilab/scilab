@@ -15,9 +15,10 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
+import java.lang.reflect.InvocationTargetException;
+
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
-import javax.media.opengl.Threading;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.renderer.ObjectGL;
@@ -354,7 +355,7 @@ public class DrawableFigureGL extends ObjectGL {
   	}
   	
   	/**
-	 * Called when the object is destroyed from C code
+	 * Called when the object is destroyed from C code.
 	 * @param parentFigureIndex index of parent figure
 	 */
   	@Override
@@ -365,13 +366,18 @@ public class DrawableFigureGL extends ObjectGL {
 		destroyedObjects = null;
   		FigureMapper.removeMapping(figureId);
   	
-  		
-  		
-  		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				getRendererProperties().closeCanvas();
-			}
-		});
+  		// blocking call. So graphic synchrnonization must be desactivated here.
+  		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					getRendererProperties().closeCanvas();
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
   		
 	}
 	

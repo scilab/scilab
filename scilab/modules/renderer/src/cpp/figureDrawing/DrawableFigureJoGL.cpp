@@ -15,6 +15,8 @@
 #include "DrawableFigure.h"
 #include "DrawableFigureBridge.h"
 #include "DrawableFigureJoGL.h"
+#include "GraphicSynchronizerInterface.h"
+
 extern "C"
 {
 #include "GetProperty.h"
@@ -55,7 +57,10 @@ void DrawableFigureJoGL::openRenderingCanvas( int figureIndex )
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::closeRenderingCanvas( void )
 {
+  // disable synchrnonization here to avoid deadlocks
+  endGraphicDataWriting();
   destroy() ;
+  startGraphicDataWriting();
   if ( m_pJavaWindow != NULL )
   {
     delete m_pJavaWindow;

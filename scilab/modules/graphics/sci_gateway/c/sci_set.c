@@ -284,7 +284,7 @@ int sci_set(char *fname, unsigned long fname_len)
                  parentFigure = sciGetParentFigure(pobj);
 
                  if (   sciGetEntityType(pobj) != SCI_UIMENU && sciGetEntityType(pobj) != SCI_UICONTROL
-                     && parentFigure != NULL && parentFigure != getFigureModel())
+                     && parentFigure != NULL)
                  {
                    /* try to protect figure if possible */
                    startFigureDataWriting(parentFigure);
