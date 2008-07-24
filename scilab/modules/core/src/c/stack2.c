@@ -2139,6 +2139,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
   Rhs = *mrhs;
   C2F(recu).krec = -1;
   pt0 = C2F(recu).pt;
+  ++C2F(recu).niv;
   goto L90;
   /* ***************************** copied from callinter.h  */
 
@@ -2252,6 +2253,7 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
  L200:
   Lhs = slhs;
   Rhs = srhs;
+  --C2F(recu).niv;
   Top = intop;
   intersci_pop();
   for (ix = 0 ; ix < *mlhs ; ++ix) {
@@ -2260,6 +2262,8 @@ int C2F(scibuiltin)(integer *number,integer *ifun,integer *ifin,integer *mlhs,in
   }
   return TRUE;
  L9999:
+  Top = intop;
+  --C2F(recu).niv;
   intersci_pop();
   return FALSE;
 }
