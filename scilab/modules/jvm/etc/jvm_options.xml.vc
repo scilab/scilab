@@ -22,6 +22,9 @@ $SCILAB : scilab path (SCI in Scilab)
 <!-- ENABLE Just In Time java compiler -->
 <jvm_option string_option="-Djava.compiler=JIT"/>
 
+<!-- Set Java Heap space to 256mb -->
+<jvm_option string_option="-Xmx256m"/>
+
 <!-- DISABLE Just In Time java compiler -->
 <!--
 <jvm_option string_option="-Djava.compiler=NONE"/>
