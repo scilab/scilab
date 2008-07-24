@@ -650,7 +650,7 @@ proc sciGUIEditVarChangeMatrixSize { winId } {
     pack $w.row.msg $w.column.msg -side left -padx 4 -expand 0 -fill x -pady 2
     pack $w.row.nwid $w.column.nwid -side right -padx 4 -expand 0 -fill x -pady 2
    
-    button $w.apply -text "OK" -command "sciGUIEditVarSetMatrixSize $winId $winId2"
+    button $w.apply -text "OK" -command "sciGUIEditVarSetMatrixSize $winId $winId2 $ni $nj"
     pack $w.apply -side bottom -pady 2
     
     pack $w.row $w.column -side top -fill x -pady 2
@@ -662,19 +662,32 @@ proc sciGUIEditVarChangeMatrixSize { winId } {
 # Parameters  : winId
 # Description : modify the matrix size
 # ----------------------------------------------------------------------------
-proc sciGUIEditVarSetMatrixSize { winId winId2 } {
+proc sciGUIEditVarSetMatrixSize { winId winId2 oldNbRow oldNbCol} {
     global sciGUITable
     sciGUIDestroy $winId2
-    
+
     set newNbRow $sciGUITable(win,$winId,data,ni)
     set newNbCol $sciGUITable(win,$winId,data,nj)
-    set sciGUITable(win,$winId,data,ni) $newNbRow
-    set sciGUITable(win,$winId,data,nj) $newNbCol
 
-    ScilabEval "$sciGUITable(win,$winId,data,name)=resize_matrix($sciGUITable(win,$winId,data,name),$newNbRow,$newNbCol,'$sciGUITable(win,$winId,data,type)');" "sync" "seq"
+    ScilabEval "$sciGUITable(win,$winId,data,name)=resize_matrix($sciGUITable(win,$winId,data,name),$newNbRow,$newNbCol,'$sciGUITable(win,$winId,data,type)');" "seq"
 
-    ScilabEval "editvar_set_values( $sciGUITable(win,$winId,data,name), '$winId' );" "sync" "seq"
-
+    # Increase number of rows in table if needed
+    if { $oldNbRow < $newNbRow } {
+        for { set i [expr $oldNbRow+1] } { $i<=$newNbRow } { incr i } {
+            for { set j 0 } { $j<=$newNbCol } { incr j } {
+                set sciGUITable(win,$winId,data,$i,$j) "0"
+            }
+        }
+    }
+    # Increase number of cols in table if needed
+    if { $oldNbCol < $newNbCol } {
+        for { set j [expr $oldNbCol+1] } { $j<=$newNbCol } { incr j } {
+            for { set i 0 } { $i<=$newNbRow } { incr i } {
+                set sciGUITable(win,$winId,data,$i,$j) "0"
+            }
+        }
+    }
+    
     set w "[sciGUIName $winId].editor"
     destroy $w.editzone
     destroy $w.jaxes
