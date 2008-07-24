@@ -283,7 +283,7 @@ int sendTclCommandToSlave(char* command, char* slave)
 
 /*
 ** Get Tcl Command Return Value
-** Porpagate return value of Tcl Interpreter
+** Propagate return value of Tcl Interpreter
 ** caught in thread.
 */
 int getTclCommandReturn(void)
@@ -299,7 +299,7 @@ int getTclCommandReturn(void)
 
 /*
 ** Get Tcl Command Result
-** Porpagate return message of Tcl Interpreter
+** Propagate return message of Tcl Interpreter
 ** caught in thread.
 ** This can be an error or a string value.
 */
