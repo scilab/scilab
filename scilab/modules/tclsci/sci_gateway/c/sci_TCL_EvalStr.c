@@ -88,16 +88,38 @@ int sci_TCL_EvalStr(char *fname,unsigned long l)
 
 	  if (tclInterpReturnValue == TCL_ERROR)
 	    {
-	      const char *trace = Tcl_GetVar(getTclInterp(), "errorInfo", TCL_GLOBAL_ONLY);
+	      const char *trace = NULL;
+             
+              /* Read the error trace in the slave or in the main interpreter */
+              if (tclSlave != NULL)
+                {
+                  trace = Tcl_GetVar(Tcl_GetSlave(getTclInterp(),tclSlave), "errorInfo", TCL_GLOBAL_ONLY);
+                } 
+              else
+                {
+                  trace = Tcl_GetVar(getTclInterp(), "errorInfo", TCL_GLOBAL_ONLY);
+                }
 	      releaseTclInterp();
 	      freeArrayOfString(Str,m1*n1);
-	      if(Err>0)
+	      
+              /* Display the error message */
+              if(Err>0) /* Scilab error */
 		{
 		  Scierror(999,"%s, ScilabEval error at line %i\n	%s.\n",fname,i+1,(char *)trace);
 		}
-	      else
+	      else /* TCL error */
 		{
-		  Scierror(999,"%s, %s at line %i\n	%s\n",fname,getTclInterp()->result,i+1,(char *)trace);
+                  const char *result = NULL;
+                  
+                  if (tclSlave != NULL) /* In the slave */
+                    {
+                      result = Tcl_GetStringResult(Tcl_GetSlave(getTclInterp(),tclSlave));
+                    }
+                  else /* In the main interpreter */
+                    {
+                      result = Tcl_GetStringResult(getTclInterp());
+                    }
+                  Scierror(999,"%s, %s at line %i\n	%s\n", fname, (char *)result, i+1, (char *)trace);
 		  releaseTclInterp();
 		}
 	      return 0;
