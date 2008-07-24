@@ -13,7 +13,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2458
 //
 // <-- Short Description -->
-// angled thickness 1 lines are transiently dash-dotted (X problem?)
+//Under linux Suse 10.2, with build4, official build of 4.1.1
+// and 4.1 there is a memory leak relative to show_pixmap()
 
 nbComputation = 20000
 // force full allocation of free
@@ -22,7 +23,7 @@ free(nbComputation) = 0;
 f=gcf();f.pixmap='on';
 plot2d()
 free=getmemory();
-for k=1:nbComputation, show_pixmap(),free=[free,getmemory()];end 
+for k=1:nbComputation, show_pixmap(),free(k) = getmemory();end 
 
 // compute used memory during compuations
 usedMemory = free(1) - free(nbComputation);
