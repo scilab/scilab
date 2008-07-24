@@ -15,6 +15,7 @@ package org.scilab.modules.gui.bridge.filechooser;
 import java.io.File;
 import java.util.StringTokenizer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
@@ -101,6 +102,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	 */
 	public void displayAndWait() {
 		JFrame parentFrame = new JFrame();
+		parentFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		int returnValue = this.showOpenDialog(parentFrame);
 		if (returnValue == APPROVE_OPTION) {
 			if (this.isMultiSelectionEnabled()) {
