@@ -17,17 +17,20 @@
 // Numerical problem with lmisolver
 // Text of the scilab error message
 // Z0 does not satisfy equality conditions for dual feasibility.
-//  !--error   230 
+//  !--error   230
 // semidef fails
-// at line     238 of function lmisolver                called by :  
-// [XLISTF,OPT]=lmisolver(list(eye(A)),fct)                    
+// at line     238 of function lmisolver                called by :
+// [XLISTF,OPT]=lmisolver(list(eye(A)),fct)
+
+// <-- NOT FIXED -->
 
 A=[1 -24 0 -240;1 -12 -60 -120;0 1 0 0;0 0 1 0];
+
 function [LME,LMI,OBJ]=fct(XLIST)
-T=XLIST(1);
-LME=T-T';
-LMI=-A*T-T*A'-eye();
-OBJ=[];
+	T=XLIST(1);
+	LME=T-T';
+	LMI=-A*T-T*A'-eye();
+	OBJ=[];
 endfunction
 
 [XLISTF,OPT]=lmisolver(list(eye(A)),fct);
