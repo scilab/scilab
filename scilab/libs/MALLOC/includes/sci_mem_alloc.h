@@ -42,7 +42,7 @@
  * @param line Which line is calling the function (used debug)
  * @return <ReturnValue>
  */
- void * MyReAlloc(void * lpAddress,int dwSize,char *file,int line);
+ void * MyReAlloc(void * lpAddress,int dwSize,const char *file,int line);
  
  /**
  * Allocate the memory
@@ -53,7 +53,7 @@
  * @param line Which line is calling the function (used debug) 
  * @return <ReturnValue>
  */
- void * MyAlloc(unsigned int dwSize,char *file,int line);
+ void * MyAlloc(unsigned int dwSize,const char *file,int line);
  
    /**
  * 
@@ -65,7 +65,7 @@
  * @param line Which line is calling the function (used debug) 
  * @return <ReturnValue>
  */
- void * MyCalloc(unsigned  int x, unsigned int y, char *file,int line);
+ void * MyCalloc(unsigned  int x, unsigned int y, const char *file,int line);
  
   /**
  * Free the memory
@@ -76,7 +76,7 @@
  * @param line Which line is calling the function (used debug) 
  * @return <ReturnValue>
  */
- void MyFree(void *lpAddress,char *file,int line);
+ void MyFree(void *lpAddress,const char *file,int line);
 
 #define MALLOC(x) MyAlloc((unsigned)x,__FILE__,__LINE__)
 #define FREE(x) if (x  != NULL) free((char *) x);

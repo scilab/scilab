@@ -6,7 +6,7 @@
 /* Allan CORNET */
 /* INRIA 2005 */
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,int dwSize,const char *fichier,int ligne)
 {
   void * NewPointer=NULL;
  
@@ -22,7 +22,7 @@ IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,int dwSize,char *fich
   return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,char *file,int line)
+IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,const char *file,int line)
 {
   void * NewPointer=NULL;
 
@@ -51,7 +51,7 @@ IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,char *file,int line)
 }
 
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, char *file,int line)
+IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, const char *file,int line)
 {
   void * NewPointer=NULL;
 
@@ -79,7 +79,7 @@ IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, char *f
 
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void MyFree(void *x, char *file,int line)
+IMPORT_EXPORT_MALLOC_DLL void MyFree(void *x, const char *file,int line)
 {
 	free((void*)x);
 }
