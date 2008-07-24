@@ -507,6 +507,11 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   psurf->n1 = n1;
   psurf->n2 = n2;
   psurf->n3 = n3;
+
+  /* Update nx, ny a,d nz */
+  psurf->nx = m1 * n1;
+  psurf->ny = m2 * n2;
+  psurf->nz = m3 * n3;
   psurf->m3n = m3n; /* If m3n and n3n are 0, then it means that no color matrix/vector was in input*/
   psurf->n3n = n3n;
 
