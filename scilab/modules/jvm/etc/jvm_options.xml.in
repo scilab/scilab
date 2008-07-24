@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE jvm_options SYSTEM "../modules/jvm/xml/jvm-options.dtd">
+<!-- =================== -->
+<!--
+ Options JVM
+ @author Allan CORNET
+ ===================
+ Don't touch if you do not know what you are doing
+ http://blogs.sun.com/watt/resource/jvm-options-list.html
+ http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp
+ http://java.sun.com/javase/technologies/hotspot/exactoptions.jsp
+ -->
+<!-- =================== -->
+<!--
+$PATH_SEPARATOR : path separator ';' (windows) ':' linux
+$SCILAB : scilab path (SCI in Scilab)
+-->
+<jvm_options>
+<jvm_option string_option="-Djava.library.path="/>
+<jvm_option string_option="-Djava.class.path=$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+
+<!-- ENABLE Just In Time java compiler -->
+<jvm_option string_option="-Djava.compiler=JIT"/>
+
+<!-- DISABLE Just In Time java compiler -->
+<!--
+<jvm_option string_option="-Djava.compiler=NONE"/>
+-->
+
+<!-- comments -->
+<!--
+<jvm_option string_option="-verbose:jni"/>
+<jvm_option string_option="-Xcheck:jni"/>
+-->
+<!-- comments -->
+</jvm_options>
