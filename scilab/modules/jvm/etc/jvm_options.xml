@@ -16,9 +16,16 @@ $PATH_SEPARATOR : path separator ';' (windows) ':' linux
 $SCILAB : scilab path (SCI in Scilab)
 -->
 <jvm_options>
-<jvm_option string_option="-Djava.library.path=$SCILAB/java/jre$PATH_SEPARATOR$SCILAB/bin"/>
-<jvm_option string_option="-Djava.class.path=.$PATH_SEPARATOR$SCILAB/bin$PATH_SEPARATOR$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+<jvm_option string_option="-Djava.library.path="/>
+<jvm_option string_option="-Djava.class.path=$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+
+<!-- ENABLE Just In Time java compiler -->
 <jvm_option string_option="-Djava.compiler=JIT"/>
+
+<!-- DISABLE Just In Time java compiler -->
+<!--
+<jvm_option string_option="-Djava.compiler=NONE"/>
+-->
 
 <!-- comments -->
 <!--
@@ -27,4 +34,3 @@ $SCILAB : scilab path (SCI in Scilab)
 -->
 <!-- comments -->
 </jvm_options>
-

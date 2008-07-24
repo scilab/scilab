@@ -1146,6 +1146,7 @@ modules/shell/Makefile
 modules/completion/Makefile
 modules/history_manager/Makefile
 modules/jvm/Makefile
+modules/jvm/etc/jvm_options.xml
 modules/sound/Makefile
 modules/statistics/Makefile
 modules/mexlib/Makefile
