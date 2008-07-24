@@ -24,6 +24,7 @@ extern void sci_clear_and_exit(int n);
 extern void sci_usr1_signal(int n);
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
+#define snprintf _snprintf
 #endif
 /*--------------------------------------------------------------------------*/
 static int no_startup_flag=0;
@@ -34,7 +35,7 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
 {
   static int initialization=-1;
   int ierr=0;
-  char *startup=(char*)MALLOC(sizeof(char)*PATH_MAX+1);
+  char *startup=(char*)MALLOC(sizeof(char)*(PATH_MAX+1));
   Set_no_startup_flag(no_startup_flag_l);
 
   /* create temp directory */
@@ -81,16 +82,16 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
 	  switch ( initial_script_type )
 	    {
 	    case SCILAB_SCRIPT :
-	      sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(STARTUP_ID),initial_script);
+	      snprintf(startup,PATH_MAX,"%s;exec('%s',-1)",get_sci_data_strings(STARTUP_ID),initial_script);
 	      break;
 	    case SCILAB_CODE :
-	      sprintf(startup,"%s;%s;",get_sci_data_strings(STARTUP_ID),initial_script);
+	      snprintf(startup,PATH_MAX,"%s;%s;",get_sci_data_strings(STARTUP_ID),initial_script);
 	      break;
 	    }
 	}
       else
 	{
-	  sprintf(startup,"%s;",get_sci_data_strings(STARTUP_ID));
+	  snprintf(startup,PATH_MAX,"%s;",get_sci_data_strings(STARTUP_ID));
 	}
     }
   else
@@ -101,15 +102,17 @@ void realmain(int no_startup_flag_l, char *initial_script, InitScriptType initia
 	  switch ( initial_script_type )
 	    {
 	    case SCILAB_SCRIPT :
-	      sprintf(startup,"exec('%s',-1)",initial_script);
+	      snprintf(startup,PATH_MAX,"exec('%s',-1)",initial_script);
 	      break;
 	    case SCILAB_CODE :
-	      sprintf(startup,"%s;",initial_script);
+	      snprintf(startup,PATH_MAX,"%s;",initial_script);
 	      break;
 	    }
 	}
       else sprintf(startup," ");
     }
+  
+  startup[PATH_MAX] = '\0'; /* force string to be null-terminated on overflow */
 
   /* initialize scilab interp  */
   C2F(inisci)(&initialization, &memory, &ierr);
