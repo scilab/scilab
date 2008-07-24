@@ -511,7 +511,7 @@ proc GEDsciGUIEditVar { {winId -1 } } {
     button $w.buttons.quit -text "Refresh !"  -command "CloseEditorSaveData $winId2"
     label $w.buttons.msg1 -text "Please wait: loading data... " -bg LightGray -fg blue
     label $w.buttons.msg2 -text "" -bg LightGray -fg blue
-    pack $w.buttons.quit $w.buttons.resize $w.buttons.msg1 $w.buttons.msg2 -side left -padx 4 -expand 1 -fill x -pady 2
+    pack $w.buttons.quit $w.buttons.msg1 $w.buttons.msg2 -side left -padx 4 -expand 1 -fill x -pady 2
     
     pack $w.buttons -side top -expand 0 -fill x
     pack $w.editor -side top -expand 1 -fill both
