@@ -16,9 +16,11 @@ package org.scilab.modules.gui.bridge.window;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
@@ -122,14 +124,26 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * Deiconify the window and put it in front of other window
 	 */
 	public void raise() {
-		// force visibility
-		this.setVisible(true);
+		// blocking call. So graphic synchronization must be desactivated here.
+  		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					// force visibility
+					setVisible(true);
+					
+					// deiconify the window if needed
+					setState(NORMAL);
+					
+					// put it in front of others
+					toFront();
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
 		
-		// deiconify the window if needed
-		this.setState(NORMAL);
-		
-		// put it in front of others
-		this.toFront();
 	}
 
 	/**
