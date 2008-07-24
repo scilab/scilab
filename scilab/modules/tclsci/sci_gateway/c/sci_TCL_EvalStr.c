@@ -105,6 +105,11 @@ int sci_TCL_EvalStr(char *fname,unsigned long l)
               /* Display the error message */
               if(Err>0) /* Scilab error */
 		{
+          /* Note: there a ScilabEval here in the error message because it should only
+             trigger for commands such as  TCL_EvalStr("ScilabEval scilab==nsp sync")  
+             i.e. when the string passed to TCL_EvalStr will run something in the
+             Scilab parser (thus ScilabEval), and this "something" triggers a Scilab
+             error                                                                   */
 		  Scierror(999,"%s, ScilabEval error at line %i\n	%s.\n",fname,i+1,(char *)trace);
 		}
 	      else /* TCL error */
