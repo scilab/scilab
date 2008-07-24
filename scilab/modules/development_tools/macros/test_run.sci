@@ -367,6 +367,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	this_check_error_output = %T;
 	this_check_ref          = %T;
 	this_use_try_catch      = %T;
+	this_use_graphics       = %F;
 	
 	
 	// Some definitions
@@ -425,10 +426,13 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		return;
 	end
 	
-	if (grep(txt,"<-- TEST WITH GRAPHIC -->") <> []) & (launch_mode=="-nwni") then
-		status_msg = "skipped : test with graphic";
-		status_id  = 11;
-		return;
+	if grep(txt,"<-- TEST WITH GRAPHIC -->") <> [] then
+		this_use_graphics = %T;
+		if launch_mode=="-nwni" then
+			status_msg = "skipped : test with graphic";
+			status_id  = 11;
+			return;
+		end
 	end
 	
 	if grep(txt,"<-- NO TRY CATCH -->") <> [] then
@@ -451,52 +455,54 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	txt = strsubst(txt,'halt();','');
 	
 	
+	// Test header
+	
+	head = [                                                                    ...
+		"// <-- HEADER START -->";                                              ...
+		"mode(3);" ;                                                            ...
+		"lines(0);" ;                                                           ...
+		"deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;      ...
+		"predef(''all'');" ;                                                    ...
+		"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"            ...
+	]
+	
 	if this_use_try_catch then
-		head = [	"// <-- HEADER START -->";
-					"mode(3);" ;
-					"clear;" ;
-					"lines(28,72);";
-					"lines(0);" ;
-					"deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;
-					"predef(''all'');" ;
-					"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);" ;
-					"try";
-					"diary(''"+tmp_diafile+"'');";
-					"write(%io(2),tmpdirToPrint);";
-					"// <-- HEADER END -->"];
-					
-		tail = [	"// <-- FOOTER START -->";
-					"catch";
-					"	errmsg = ""<--""+""Error on the test script file""+""-->""";
-					"	printf(""%s"",errmsg)";
-					"end";
-					"diary(0);";
-					"exit;";
-					"// <-- FOOTER END -->"]
-	else
-		head = [	"// <-- HEADER START -->";
-					"mode(3);" ;
-					"clear;" ;
-					"lines(28,72);";
-					"lines(0);" ;
-					"deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;
-					"predef(''all'');" ;
-					"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);" ;
-					"diary(''"+tmp_diafile+"'');";
-					"write(%io(2),tmpdirToPrint);";
-					"// <-- HEADER END -->"];
-					
-		tail = [	"// <-- FOOTER START -->";
-					"diary(0);";
-					"exit;";
-					"// <-- FOOTER END -->"]
+		head = [ head ; "try" ];
 	end
 	
+	head = [                                                                    ...
+		head ;                                                                  ...
+		"diary(''"+tmp_diafile+"'');";                                          ...
+		"write(%io(2),tmpdirToPrint);";                                         ...
+		"// <-- HEADER END -->"                                                 ...
+	];
+	
+	// Test footer
+	
+	tail = [ "// <-- FOOTER START -->" ];
+	
+	if this_use_try_catch then
+		tail = [ tail;                                                          ...
+			"catch";                                                            ...
+			"   errmsg = ""<--""+""Error on the test script file""+""-->""";    ...
+			"   printf(""%s"",errmsg)";                                         ...
+			"end";                                                              ...
+			];
+	end
+	
+	tail = [ tail; "diary(0);" ];
+	
+	if this_use_graphics then
+		tail = [ tail; "xdel(winsid());" ];
+	end
+	
+	tail = [ tail; "exit;" ; "// <-- FOOTER END -->" ];
+	
+	// Assembly
 	
 	txt = [head;
 		txt;
 		tail];
-	
 	
 	// and save it in a temporary file
 	mputl(txt,tmp_tstfile);
