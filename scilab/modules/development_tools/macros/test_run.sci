@@ -365,6 +365,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	// Specific parameters for each tests
 	this_check_error_output = %T;
+	this_check_ref          = %T;
 	this_use_try_catch      = %T;
 	
 	
@@ -418,6 +419,12 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		return;
 	end
 	
+	if grep(txt,"<-- NOT FIXED -->") <> [] then
+		status_msg = "skipped : not yet fixed";
+		status_id  = 10;
+		return;
+	end
+	
 	if (grep(txt,"<-- TEST WITH GRAPHIC -->") <> []) & (launch_mode=="-nwni") then
 		status_msg = "skipped : test with graphic";
 		status_id  = 11;
@@ -431,6 +438,11 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	if grep(txt,"<-- NO CHECK ERROR OUTPUT -->") <> [] then
 		this_check_error_output = %F;
 	end
+	
+	if grep(txt,"<-- NO CHECK REF -->") <> [] then
+		this_check_ref = %F;
+	end
+	
 	
 	// Do some modification in tst file
 	txt = strsubst(txt,'pause,end' ,'bugmes();quit;end');
@@ -585,7 +597,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	// Comparaison ref <--> dia
 	
-	if check_ref | create_ref then
+	if ( check_ref & this_check_ref ) | create_ref then
 		
 		//  Do some modification in  dia file
 		dia(grep(dia,"exec("))                     = [];
