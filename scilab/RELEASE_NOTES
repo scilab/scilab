@@ -17,7 +17,7 @@ List of missing/buggy features:
     * Popup uicontrols width has to be increased because of the little triangle
       used to select a new value.
 
-- Graphics know bugs
+- Graphics:
     * Graphic rendering is slower in a large graphic window than in a small 
       one.
     * Text object space management.
@@ -27,6 +27,8 @@ List of missing/buggy features:
       old Nvidia drivers.
       A solution should be added in Scilab RC1
     * The Symbol font is not compatible with the one used in Scilab 4.
+    * By default arcs and circles are now approximated using a constant number of lines.
+      To switch to real arcs, set their arc_drawing_methiod property to "nurbs".
 
 - It is strongly recommended to update graphic cards drivers to the latest 
 	revision:
