@@ -16,37 +16,60 @@
 #include "GraphicSynchronizerFactory.h"
 #include "getHandleDrawer.h"
 
+extern "C"
+{
+#include "InitObjects.h"
+}
+
 using namespace sciGraphics;
 
 /*---------------------------------------------------------------------------------*/
 void startFigureDataWriting(sciPointObj * pFigure)
 {
-  getFigureDrawer(pFigure)->getSynchronizer()->startWriting();
+  if (!isFigureModel(pFigure))
+  {
+    getFigureDrawer(pFigure)->getSynchronizer()->startWriting();
+  }
 }
 /*---------------------------------------------------------------------------------*/
 void endFigureDataWriting(sciPointObj * pFigure)
 {
-  getFigureDrawer(pFigure)->getSynchronizer()->endWritting();
+  if (!isFigureModel(pFigure))
+  {
+    getFigureDrawer(pFigure)->getSynchronizer()->endWritting();
+  }
 }
 /*---------------------------------------------------------------------------------*/
 void startFigureDataReading(sciPointObj * pFigure)
 {
-  getFigureDrawer(pFigure)->getSynchronizer()->startReading();
+  if (!isFigureModel(pFigure))
+  {
+    getFigureDrawer(pFigure)->getSynchronizer()->startReading();
+  }
 }
 /*---------------------------------------------------------------------------------*/
 void endFigureDataReading(sciPointObj * pFigure)
 {
-  getFigureDrawer(pFigure)->getSynchronizer()->endReading();
+  if (!isFigureModel(pFigure))
+  {
+    getFigureDrawer(pFigure)->getSynchronizer()->endReading();
+  }
 }
 /*---------------------------------------------------------------------------------*/
 void startFigureDataDisplaying(sciPointObj * pFigure)
 {
-  getFigureDrawer(pFigure)->getSynchronizer()->startDisplaying();
+  if (!isFigureModel(pFigure))
+  {
+    getFigureDrawer(pFigure)->getSynchronizer()->startDisplaying();
+  }
 }
 /*---------------------------------------------------------------------------------*/
 void endFigureDataDisplaying(sciPointObj * pFigure)
 {
-  getFigureDrawer(pFigure)->getSynchronizer()->endDisplaying();
+  if (!isFigureModel(pFigure))
+  {
+    getFigureDrawer(pFigure)->getSynchronizer()->endDisplaying();
+  }
 }
 /*---------------------------------------------------------------------------------*/
 void startGraphicDataWriting( void )

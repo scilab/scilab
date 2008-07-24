@@ -161,3 +161,4 @@ sciInitPolylineStyle
 sciInitArrowSize
 rotate2D
 sciGetPointerFromHandle
+isFigureModel
