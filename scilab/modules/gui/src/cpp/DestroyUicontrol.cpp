@@ -16,7 +16,7 @@ extern "C"
 #include "DestroyJavaUiobject.h"
 #include "DestroyUicontrol.h"
 #include "DestroyObjects.h"
-#include "sci_mem_alloc.h" /* MALLOC */
+#include "MALLOC.h" /* MALLOC */
 }
 /**
  * DestroyUicontrol

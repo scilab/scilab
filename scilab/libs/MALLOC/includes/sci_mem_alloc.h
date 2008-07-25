@@ -6,7 +6,7 @@
 #undef Top
 
 #ifdef _MSC_VER
-#include <stdlib.h>
+#error This file should not be used on windows
 #else
 #include <stddef.h> /* for size_t */
 #endif
