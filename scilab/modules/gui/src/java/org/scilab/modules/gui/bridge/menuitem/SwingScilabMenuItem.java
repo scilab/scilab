@@ -207,7 +207,9 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 * Destroy the MenuItem
 	 */
 	public void destroy() {
-		getParent().remove(this);
+		Container parent = getParent();
+		parent.remove(this);
+		parent.repaint();
 	}
 	
 	/**
