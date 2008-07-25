@@ -20,10 +20,8 @@ Source: contrib\{#TOOLBOX_SKELETON}\etc\toolbox_skeleton.quit; DestDir: {app}\co
 Source: contrib\{#TOOLBOX_SKELETON}\etc\toolbox_skeleton.start; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\etc; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\help\builder_help.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\help; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\help\dtd\help.dtd; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\help\dtd; Components: {#COMPN_TOOLBOX_SKELETON}
-Source: contrib\{#TOOLBOX_SKELETON}\help\en_US\addchapter.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\help\en_US; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\help\en_US\build_help.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\help\en_US; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\help\en_US\*.xml; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\help\en_US; Components: {#COMPN_TOOLBOX_SKELETON}
-Source: contrib\{#TOOLBOX_SKELETON}\help\fr_FR\addchapter.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\help\fr_FR; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\help\fr_FR\build_help.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\help\fr_FR; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\help\fr_FR\*.xml; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\help\fr_FR; Components: {#COMPN_TOOLBOX_SKELETON}
 ;
