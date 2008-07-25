@@ -17,12 +17,12 @@
 
 
 subplot(211);
-  t=1:10;plot2d(t,t.^2),
-  subplot(223);
-  plot3d();
-  subplot(224);
-  plot2d();
-  xfrect(1,0,3,1);
-  a=get("current_axes")
+t=1:10;plot2d(t,t.^2);
+subplot(223);
+plot3d();
+subplot(224);
+plot2d();
+xfrect(1,0,3,1);
+a=get("current_axes");
  
 

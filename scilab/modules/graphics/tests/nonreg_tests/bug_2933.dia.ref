@@ -13,72 +13,10 @@
 // <-- Short Description -->
 // The black rectangle can disappear when you resize graphics window
 subplot(211);
-  t=1:10;plot2d(t,t.^2),
-  subplot(223);
-  plot3d();
-  subplot(224);
-  plot2d();
-  xfrect(1,0,3,1);
-  a=get("current_axes")
- a  =
- 
-Handle of type "Axes" with properties:
-======================================
-parent: Figure
-children: ["Rectangle";"Compound"]
- 
-visible = "on"
-axes_visible = ["on","on","on"]
-axes_reverse = ["off","off","off"]
-grid = [-1,-1]
-x_location = "bottom"
-y_location = "left"
-title: "Label"
-x_label: "Label"
-y_label: "Label"
-z_label: "Label"
-auto_ticks = ["on","on","on"]
-x_ticks.locations = [0;1;2;3;4;5;6;7]
-y_ticks.locations = [-2;-1.5;-1;-0.5;0;0.5;1;1.5;2]
-z_ticks.locations = []
-x_ticks.labels = ["0";"1";"2";"3";"4";"5";"6";"7"]
-y_ticks.labels = ["-2.0";"-1.5";"-1.0";"-0.5";"0.0";"0.5";"1.0";"1.5";"2.0"]
-z_ticks.labels = []
-box = "on"
-sub_ticks = [2,1]
-font_style = 6
-font_size = 1
-font_color = -1
-fractional_font = "off"
- 
-isoview = "off"
-cube_scaling = "off"
-view = "2d"
-rotation_angles = [0,270]
-log_flags = "nnn"
-tight_limits = "on"
-data_bounds = [0,-2;6.2831853,2]
-zoom_box = []
-margins = [0.125,0.125,0.125,0.125]
-axes_bounds = [0.5,0.5,0.5,0.5]
- 
-auto_clear = "off"
-auto_scale = "on"
- 
-hidden_axis_color = 4
-hiddencolor = 4
-line_mode = "on"
-line_style = 0
-thickness = 1
-mark_mode = "off"
-mark_style = 0
-mark_size_unit = "tabulated"
-mark_size = 0
-mark_foreground = -1
-mark_background = -2
-foreground = -1
-background = -2
-arc_drawing_method = "nurbs"
-clip_state = "clipgrf"
-clip_box = []
-user_data = []
+t=1:10;plot2d(t,t.^2);
+subplot(223);
+plot3d();
+subplot(224);
+plot2d();
+xfrect(1,0,3,1);
+a=get("current_axes");
