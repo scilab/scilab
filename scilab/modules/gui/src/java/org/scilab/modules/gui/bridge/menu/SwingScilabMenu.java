@@ -13,6 +13,7 @@
 
 package org.scilab.modules.gui.bridge.menu;
 
+import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -259,7 +260,9 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 * @see org.scilab.modules.gui.menuitem.SimpleMenuItem#destroy()
 	 */
 	public void destroy() {
-		getParent().remove(this);
+		Container parent = getParent();
+		parent.remove(this);
+		parent.repaint();
 	}
 
 	/**

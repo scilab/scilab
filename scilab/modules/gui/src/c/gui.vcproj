@@ -448,7 +448,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\DestroyJavaUicontrol.cpp"
+				RelativePath="..\cpp\DestroyJavaUiobject.cpp"
 				>
 			</File>
 			<File
@@ -1037,11 +1037,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\DestroyJavaUicontrol.h"
+				RelativePath="..\..\includes\DestroyJavaUiobject.h"
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\DestroyJavaUicontrol.hxx"
+				RelativePath="..\cpp\DestroyJavaUiobject.hxx"
 				>
 			</File>
 			<File

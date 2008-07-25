@@ -13,6 +13,7 @@
 
 extern "C"
 {
+#include "DestroyJavaUiobject.h"
 #include "DestroyUicontrol.h"
 #include "DestroyObjects.h"
 #include "sci_mem_alloc.h" /* MALLOC */
@@ -25,6 +26,9 @@ extern "C"
  */
 int  DestroyUicontrol (sciPointObj * pthis)
 {
+  /* Destroy Java object */
+  DestroyJavaUiobject(pthis);
+
   if  (pUICONTROL_FEATURE (pthis)->backgroundcolor != NULL)
     {
       FREE (pUICONTROL_FEATURE (pthis)->backgroundcolor);

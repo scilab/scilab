@@ -12,7 +12,6 @@
  */
 
 #include "SetUicontrolParent.hxx"
-#include "DestroyJavaUicontrol.hxx"
 #include "SetUicontrolPosition.hxx"
 
 using namespace org_scilab_modules_gui_bridge;

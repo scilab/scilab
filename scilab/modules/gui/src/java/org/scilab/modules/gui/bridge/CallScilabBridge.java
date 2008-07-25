@@ -524,6 +524,7 @@ public class CallScilabBridge {
 	 */
 	public static void destroyWidget(int id) {
 		((Widget) UIElementMapper.getCorrespondingUIElement(id)).destroy();
+		UIElementMapper.removeMapping(id);
 	}
 
 	/**
@@ -532,6 +533,7 @@ public class CallScilabBridge {
 	 */
 	public static void destroyFrame(int id) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).destroy();
+		UIElementMapper.removeMapping(id);
 	}
 
 	/****************************/

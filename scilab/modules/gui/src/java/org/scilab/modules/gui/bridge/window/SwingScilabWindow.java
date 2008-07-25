@@ -42,6 +42,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciDockingListener;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.SimpleWindow;
 
 /**
@@ -230,6 +231,15 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 */
 	public void removeTab(Tab tab) {
 		DockingManager.close((SwingScilabTab) tab.getAsSimpleTab());
+		if (getDockingPort().getDockables().isEmpty()) {
+			if (toolBar != null) {
+				UIElementMapper.removeMapping(toolBar.getElementId());
+			}
+			if (menuBar != null) {
+				UIElementMapper.removeMapping(menuBar.getElementId());
+			}
+			UIElementMapper.removeMapping(this.elementId);
+		}
 	}
 	
 	

@@ -11,11 +11,11 @@
  *
  */
 
-#include "DestroyJavaUicontrol.hxx"
+#include "DestroyJavaUiobject.hxx"
 
 using namespace org_scilab_modules_gui_bridge;
 
-void DestroyJavaUicontrol(sciPointObj * sciObj)
+void DestroyJavaUiobject(sciPointObj * sciObj)
 {
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
@@ -29,6 +29,11 @@ void DestroyJavaUicontrol(sciPointObj * sciObj)
           CallScilabBridge::destroyWidget(getScilabJavaVM(),
                                          pUICONTROL_FEATURE(sciObj)->hashMapIndex);
         }
+    }
+  else if (sciGetEntityType( sciObj ) == SCI_UIMENU)
+    {
+          CallScilabBridge::destroyWidget(getScilabJavaVM(),
+                                         pUIMENU_FEATURE(sciObj)->hashMapIndex);
     }
   else
     {

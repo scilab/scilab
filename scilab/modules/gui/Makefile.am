@@ -31,7 +31,7 @@ src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
 src/cpp/DestroyUimenu.cpp \
 src/cpp/DestroyUicontrol.cpp \
-src/cpp/DestroyJavaUicontrol.cpp \
+src/cpp/DestroyJavaUiobject.cpp \
 src/cpp/DestroyWaitBar.cpp \
 src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
@@ -241,7 +241,7 @@ includes/CallJxgetmouse.h \
 includes/CallMessageBox.h \
 includes/CheckBox.h \
 includes/ContextMenu.h \
-includes/DestroyJavaUicontrol.h \
+includes/DestroyJavaUiobject.h \
 includes/EditBox.h \
 includes/Frame.h \
 includes/GetScreenProperty.h \

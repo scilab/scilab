@@ -130,7 +130,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_printfigure.c sci_gateway/c/sci_exportUI.c \
 	src/cpp/InitUIMenu.cpp src/jni/CallScilabBridge.cpp \
 	src/jni/Jxclick.cpp src/cpp/DestroyUimenu.cpp \
-	src/cpp/DestroyUicontrol.cpp src/cpp/DestroyJavaUicontrol.cpp \
+	src/cpp/DestroyUicontrol.cpp src/cpp/DestroyJavaUiobject.cpp \
 	src/cpp/DestroyWaitBar.cpp src/cpp/CallJxclick.cpp \
 	src/jni/Jxgetmouse.cpp src/cpp/CallJxgetmouse.cpp \
 	src/cpp/CallColorChooser.cpp src/cpp/CallFileChooser.cpp \
@@ -234,7 +234,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-Jxclick.lo \
 @GUI_TRUE@	libscigui_la-DestroyUimenu.lo \
 @GUI_TRUE@	libscigui_la-DestroyUicontrol.lo \
-@GUI_TRUE@	libscigui_la-DestroyJavaUicontrol.lo \
+@GUI_TRUE@	libscigui_la-DestroyJavaUiobject.lo \
 @GUI_TRUE@	libscigui_la-DestroyWaitBar.lo \
 @GUI_TRUE@	libscigui_la-CallJxclick.lo \
 @GUI_TRUE@	libscigui_la-Jxgetmouse.lo \
@@ -621,7 +621,7 @@ JARMASK = *.jar
 @GUI_TRUE@src/jni/Jxclick.cpp \
 @GUI_TRUE@src/cpp/DestroyUimenu.cpp \
 @GUI_TRUE@src/cpp/DestroyUicontrol.cpp \
-@GUI_TRUE@src/cpp/DestroyJavaUicontrol.cpp \
+@GUI_TRUE@src/cpp/DestroyJavaUiobject.cpp \
 @GUI_TRUE@src/cpp/DestroyWaitBar.cpp \
 @GUI_TRUE@src/cpp/CallJxclick.cpp \
 @GUI_TRUE@src/jni/Jxgetmouse.cpp \
@@ -820,7 +820,7 @@ includes/CallJxgetmouse.h \
 includes/CallMessageBox.h \
 includes/CheckBox.h \
 includes/ContextMenu.h \
-includes/DestroyJavaUicontrol.h \
+includes/DestroyJavaUiobject.h \
 includes/EditBox.h \
 includes/Frame.h \
 includes/GetScreenProperty.h \
@@ -1009,7 +1009,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUIContextMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUIControl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CreateUimenu.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyJavaUicontrol.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyJavaUiobject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyUicontrol.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyUimenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-DestroyWaitBar.Plo@am__quote@
@@ -1537,12 +1537,12 @@ libscigui_la-DestroyUicontrol.lo: src/cpp/DestroyUicontrol.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-DestroyUicontrol.lo `test -f 'src/cpp/DestroyUicontrol.cpp' || echo '$(srcdir)/'`src/cpp/DestroyUicontrol.cpp
 
-libscigui_la-DestroyJavaUicontrol.lo: src/cpp/DestroyJavaUicontrol.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-DestroyJavaUicontrol.lo -MD -MP -MF $(DEPDIR)/libscigui_la-DestroyJavaUicontrol.Tpo -c -o libscigui_la-DestroyJavaUicontrol.lo `test -f 'src/cpp/DestroyJavaUicontrol.cpp' || echo '$(srcdir)/'`src/cpp/DestroyJavaUicontrol.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-DestroyJavaUicontrol.Tpo $(DEPDIR)/libscigui_la-DestroyJavaUicontrol.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DestroyJavaUicontrol.cpp' object='libscigui_la-DestroyJavaUicontrol.lo' libtool=yes @AMDEPBACKSLASH@
+libscigui_la-DestroyJavaUiobject.lo: src/cpp/DestroyJavaUiobject.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-DestroyJavaUiobject.lo -MD -MP -MF $(DEPDIR)/libscigui_la-DestroyJavaUiobject.Tpo -c -o libscigui_la-DestroyJavaUiobject.lo `test -f 'src/cpp/DestroyJavaUiobject.cpp' || echo '$(srcdir)/'`src/cpp/DestroyJavaUiobject.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-DestroyJavaUiobject.Tpo $(DEPDIR)/libscigui_la-DestroyJavaUiobject.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DestroyJavaUiobject.cpp' object='libscigui_la-DestroyJavaUiobject.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-DestroyJavaUicontrol.lo `test -f 'src/cpp/DestroyJavaUicontrol.cpp' || echo '$(srcdir)/'`src/cpp/DestroyJavaUicontrol.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-DestroyJavaUiobject.lo `test -f 'src/cpp/DestroyJavaUiobject.cpp' || echo '$(srcdir)/'`src/cpp/DestroyJavaUiobject.cpp
 
 libscigui_la-DestroyWaitBar.lo: src/cpp/DestroyWaitBar.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-DestroyWaitBar.lo -MD -MP -MF $(DEPDIR)/libscigui_la-DestroyWaitBar.Tpo -c -o libscigui_la-DestroyWaitBar.lo `test -f 'src/cpp/DestroyWaitBar.cpp' || echo '$(srcdir)/'`src/cpp/DestroyWaitBar.cpp
