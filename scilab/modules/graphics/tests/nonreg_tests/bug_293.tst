@@ -15,6 +15,6 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-x = zeros(1,20000)
-plot(rand(x))
+x = zeros(1,20000);
+plot(rand(x));
 
