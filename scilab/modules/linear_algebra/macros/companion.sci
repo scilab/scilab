@@ -41,7 +41,6 @@ function A = companion(p)
       B=-c(2)/c(1);
     else
       // Caution : ".'", NOT "'"
-      //c=c(:)';
       c=c(:).';
       B=diag(ones(1,n-2),-1);
       B(1,:) = -c(2:n)/c(1);
