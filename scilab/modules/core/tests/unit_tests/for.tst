@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+// <-- NOT FIXED -->
 //
 // for.tst --
 //   Test "for" for several data types : integer, string, vector, matrix, 
@@ -42,7 +42,7 @@ for i=values
 end
 expected="this+is+my+string"
 if computed<>expected then pause,end
-// Loop over a vector of real values
+// Loop over a row vector of real values
 computed=0.
 values=[1. 2. 3. 4. 5.]
 for x=values
@@ -75,5 +75,23 @@ for p=myvector
   computed=computed+p
 end
 expected=5.+7*%i+9*%s
+if computed<>expected then pause,end
+// Loop over a column vector of real values
+// Note : there is only one loop here
+computed=[0;0;0;0;0]
+values=[1.;2.;3.;4.;5.]
+for x=values
+  computed=computed+x
+end
+expected=[1.;2.;3.;4.;5.]
+if computed<>expected then pause,end
+// Loop over a matrix of real values
+// Note : the loop is over the columns
+computed=[0;0]
+values=[1. 2.;3. 4.]
+for x=values
+  computed=computed+x
+end
+expected=[3.;7.]
 if computed<>expected then pause,end
 
