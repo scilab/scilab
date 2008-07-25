@@ -8,13 +8,16 @@ lines(0);
 try   
  getversion('scilab');
 catch  
- error('Scilab 5.0 or more is required.');  
+ error(gettext('Scilab 5.0 or more is required.'));  
 end;  
 // ====================================================================
-
+if ~with_module('development_tools') then
+  error(msprintf(gettext('%s module not installed."),'development_tools'));
+end
+// ====================================================================
 TOOLBOX_NAME = 'toolbox_skeleton';
 TOOLBOX_TITLE = 'Toolbox Skeleton';
-
+// ====================================================================
 toolbox_dir = get_absolute_file_path('builder.sce');
 
 builder_macros(toolbox_dir);
@@ -26,3 +29,4 @@ build_loader(TOOLBOX_NAME, toolbox_dir);
 clear builder_macros builder_src builder_gateway builder_help build_loader;
 clear toolbox_dir;
 clear TOOLBOX_NAME TOOLBOX_TITLE;
+// ====================================================================
