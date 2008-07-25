@@ -6,12 +6,10 @@
 /* Allan CORNET */
 /* INRIA 2005 */
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,int dwSize,const char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,size_t dwSize,const char *fichier,int ligne)
 {
-  void * NewPointer=NULL;
+  void * NewPointer=realloc(lpAddress,dwSize);
  
-  NewPointer = realloc(lpAddress,dwSize);
-  
   if(NewPointer == NULL)
     {
 	#ifndef NDEBUG
@@ -22,14 +20,12 @@ IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,int dwSize,const char
   return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,const char *file,int line)
+IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(size_t dwSize,const char *file,int line)
 {
-  void * NewPointer=NULL;
+  void * NewPointer=malloc(dwSize);
 
   if (dwSize>0)
     {
-      NewPointer = malloc(dwSize);
-      
       if (NewPointer == NULL)
 		{
 		#ifndef NDEBUG
@@ -40,7 +36,6 @@ IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,const char *file,int
     }
   else
     { 
-		NewPointer = malloc(dwSize);
 		#ifndef NDEBUG
 			printf("MALLOC incorrect Size Error File %s Line %d \n",file,line);
 			fflush(NULL);
@@ -51,14 +46,12 @@ IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,const char *file,int
 }
 
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, const char *file,int line)
+IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(size_t x, size_t y, const char *file,int line)
 {
-  void * NewPointer=NULL;
+  void * NewPointer=calloc(x,y);
 
   if ((x)*(y)>0)
     {
-		NewPointer = calloc(x,y);
-      
 		if (NewPointer == NULL)
 		{
 		#ifndef NDEBUG
@@ -69,7 +62,6 @@ IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, const c
     }
   else
     {
-		NewPointer = calloc(x,y);
 		#ifndef NDEBUG
 			printf("CALLOC incorrect size Error File %s Line %d \n",file,line);
 			fflush(NULL);
@@ -81,6 +73,7 @@ IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, const c
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_MALLOC_DLL void MyFree(void *x, const char *file,int line)
 {
-	free((void*)x);
+    if(x != NULL)
+	    free(x);
 }
 /*-----------------------------------------------------------------------------------*/

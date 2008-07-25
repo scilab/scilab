@@ -26,36 +26,22 @@ use or performance of this software.
 #define MINBLK (2*sizeof(struct mem) + 16)
 #define F _malloc_free_
 #define SBGULP 8192
-#include "string.h"	/* for memcpy */
-
-#ifdef KR_headers
-#define Char char
-#define Unsigned unsigned
-#define Int /*int*/
-#else
-#define Char void
-#define Unsigned size_t
-#define Int int
-#endif
+#include <string.h>	/* for memcpy */
+#include <stddef.h>	/* for size_t */
 
 typedef struct mem {
 	struct mem *next;
-	Unsigned len;
+	size_t len;
 	} mem;
 
 mem *F;
 
- Char *
-#ifdef KR_headers
-malloc(size)
-	register Unsigned size;
-#else
-malloc(register Unsigned size)
-#endif
+ void *
+malloc(register size_t size)
 {
 	register mem *p, *q, *r, *s;
 	unsigned register k, m;
-	extern Char *sbrk(Int);
+	extern void *sbrk(int);
 	char *top, *top1;
 
 	size = (size+7) & ~7;
@@ -79,7 +65,7 @@ malloc(register Unsigned size)
 			s->next = q->next;
 		}
 	else {
-		top = (Char *)(((long)sbrk(0) + 7) & ~7);
+		top = (void *)(((long)sbrk(0) + 7) & ~7);
 		if (F && (char *)(F+1) + F->len == top) {
 			q = F;
 			F = F->next;
@@ -87,7 +73,7 @@ malloc(register Unsigned size)
 		else
 			q = (mem *) top;
 		top1 = (char *)(q+1) + size;
-		if (sbrk((int)(top1-top+SBGULP)) == (Char *) -1)
+		if (sbrk((int)(top1-top+SBGULP)) == (void *) -1)
 			return 0;
 		r = (mem *)top1;
 		r->len = SBGULP - sizeof(mem);
@@ -95,16 +81,11 @@ malloc(register Unsigned size)
 		F = r;
 		q->len = size;
 		}
-	return (Char *) (q+1);
+	return (void *) (q+1);
 	}
 
  void
-#ifdef KR_headers
-free(f)
-	Char *f;
-#else
-free(Char *f)
-#endif
+free(void *f)
 {
 	mem *p, *q, *r;
 	char *pn, *qn;
@@ -113,12 +94,12 @@ free(Char *f)
 	q = (mem *) ((char *)f - sizeof(mem));
 	qn = (char *)f + q->len;
 	for (p = F, r = (mem *) &F; ; r = p, p = p->next) {
-		if (qn == (Char *) p) {
+		if (qn == (void *) p) {
 			q->len += p->len + sizeof(mem);
 			p = p->next;
 			}
 		pn = p ? ((char *) (p+1)) + p->len : 0;
-		if (pn == (Char *) q) {
+		if (pn == (void *) q) {
 			p->len += sizeof(mem) + q->len;
 			q->len = 0;
 			q->next = p;
@@ -133,18 +114,12 @@ free(Char *f)
 		}
 	}
 
- Char *
-#ifdef KR_headers
-realloc(f, size)
-	Char *f;
-	Unsigned size;
-#else
-realloc(Char *f, Unsigned size)
-#endif
+ void *
+realloc(void *f, size_t size)
 {
 	mem *p;
-	Char *q, *f1;
-	Unsigned s1;
+	void *q, *f1;
+	size_t s1;
 
 	if (!f) return malloc(size);
 	p = (mem *) ((char *)f - sizeof(mem));
@@ -153,7 +128,7 @@ realloc(Char *f, Unsigned size)
 	if (s1 > size)
 		s1 = size + 7 & ~7;
 	if (!p->len) {
-		f1 = (Char *)(p->next + 1);
+		f1 = (void *)(p->next + 1);
 		memcpy(f1, f, s1);
 		f = f1;
 		}
