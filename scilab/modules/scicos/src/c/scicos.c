@@ -107,7 +107,7 @@ typedef struct {
 	      if ( ng>0 ) FREE(zcros);
 
 #define freeallx \
-              if (*neq>0 && (Jacobian_Flag>0))  FREE(data->rwork)\
+              if (*neq>0 && (Jacobian_Flag>0))  FREE(data->rwork);\
 	      if ( ng>0 ) FREE(data->gwork);\
               if (*neq>0) N_VDestroy_Serial(data->ewt);\
               if (*neq>0) FREE(data);\
