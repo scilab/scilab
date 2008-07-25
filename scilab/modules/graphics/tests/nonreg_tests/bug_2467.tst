@@ -19,7 +19,7 @@
 plot(1:10)
 a             = gca();
 a.log_flags   = 'lnn';
-path          = TMPDIR+'/bug2467.scg'
+path          = TMPDIR+'/bug2467.scg';
 xsave(path);
 clf();
 

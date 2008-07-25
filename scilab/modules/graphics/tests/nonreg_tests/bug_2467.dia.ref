@@ -16,10 +16,7 @@
 plot(1:10)
 a             = gca();
 a.log_flags   = 'lnn';
-path          = TMPDIR+'/bug2467.scg'
- path  =
- 
- TMPDIR/bug2467.scg   
+path          = TMPDIR+'/bug2467.scg';
 xsave(path);
 clf();
 if execstr("xload(path)",'errcatch')<>0 then bugmes();quit;end
