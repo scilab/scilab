@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // Simple wrapper around ilib_for_link
-function build_src(names, files, flag, src_path, libs, ldflags, cflags, ..
+function tbx_build_src(names, files, flag, src_path, libs, ldflags, cflags, ..
                    fflags, cc, libname, loadername, makename)
 	oldpath = pwd();
 	

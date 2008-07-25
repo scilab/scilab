@@ -7,12 +7,12 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Run the toolbox_path+"/sci_gateway/builder_gateway.sce" script if it exists
+// Run the toolbox_path+"/src/builder_src.sce" script if it exists
 // See devtools_run_builder
-function builder_gateway(toolbox_path)
+function tbx_builder_src(toolbox_path)
 	if ~haveacompiler() then
 	  error(gettext('This toolbox requires a compiler to build.'));
 	end
-	mprintf(gettext('Building gateway...\n'));
-	devtools_run_builder(toolbox_path, 'sci_gateway', 'builder_gateway.sce');
+	mprintf(gettext('Building sources...\n'));
+	devtools_run_builder(toolbox_path, 'src', 'builder_src.sce');
 endfunction

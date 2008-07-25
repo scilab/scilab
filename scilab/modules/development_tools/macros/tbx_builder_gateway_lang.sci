@@ -7,11 +7,19 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Simple wrapper around xmltojar
-function build_help(toolbox_name, help_lang_path)
-	if(~exists(help_lang_path, 'local'))
-		help_lang_path = pwd();
+// Run the gateway_path_path+"/sci_gateway/"+lang+"builder_gateway_"+lang+".sce" script if it exists
+// See devtools_run_builder
+function tbx_builder_gateway_lang(lang, gateway_path)
+	oldpath = pwd();
+	
+	if(exists('gateway_path', 'local')) then
+		chdir(gateway_path);
 	end
 	
-	xmltojar(help_lang_path, toolbox_name);
+	if(isdir(lang)) then
+		chdir(lang);
+		exec('builder_gateway_' + lang + '.sce', -1);
+	end
+	
+	chdir(oldpath);
 endfunction

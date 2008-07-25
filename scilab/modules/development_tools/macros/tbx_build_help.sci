@@ -7,19 +7,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Run the src_path+"/src/"+lang+"builder_"+lang+".sce" script if it exists
-// See devtools_run_builder
-function builder_src_lang(lang, src_path)
-	oldpath = pwd();
-	
-	if(exists('src_path', 'local')) then
-		chdir(src_path);
+// Simple wrapper around xmltojar
+function tbx_build_help(toolbox_name, help_lang_path)
+	if(~exists(help_lang_path, 'local'))
+		help_lang_path = pwd();
 	end
 	
-	if(isdir(lang)) then
-		chdir(lang);
-		exec('builder_' + lang + '.sce');
-	end
-	
-	chdir(oldpath);
+	xmltojar(help_lang_path, toolbox_name);
 endfunction

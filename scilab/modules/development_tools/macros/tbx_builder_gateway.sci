@@ -7,7 +7,12 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Simple wrapper around genlib
-function build_macros(toolbox_name, macros_path)
-	genlib(toolbox_name + 'lib', macros_path, %f, %t);
+// Run the toolbox_path+"/sci_gateway/builder_gateway.sce" script if it exists
+// See devtools_run_builder
+function tbx_builder_gateway(toolbox_path)
+	if ~haveacompiler() then
+	  error(gettext('This toolbox requires a compiler to build.'));
+	end
+	mprintf(gettext('Building gateway...\n'));
+	devtools_run_builder(toolbox_path, 'sci_gateway', 'builder_gateway.sce');
 endfunction

@@ -9,7 +9,7 @@
 
 // Run the help_path+"/"+lang+"/build_help.sce" script if it exists
 // See devtools_run_builder
-function builder_help_lang(lang, help_path)
+function tbx_builder_help_lang(lang, help_path)
 	oldpath = pwd();
 	
 	if(exists('help_path', 'local')) then

@@ -7,9 +7,19 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Run the toolbox_path+"/macros/buildmacros.sce" script if it exists
+// Run the src_path+"/src/"+lang+"builder_"+lang+".sce" script if it exists
 // See devtools_run_builder
-function builder_macros(toolbox_path)
-	mprintf(gettext('Building macros...\n'));
-	devtools_run_builder(toolbox_path, 'macros', 'buildmacros.sce');
+function tbx_builder_src_lang(lang, src_path)
+	oldpath = pwd();
+	
+	if(exists('src_path', 'local')) then
+		chdir(src_path);
+	end
+	
+	if(isdir(lang)) then
+		chdir(lang);
+		exec('builder_' + lang + '.sce');
+	end
+	
+	chdir(oldpath);
 endfunction

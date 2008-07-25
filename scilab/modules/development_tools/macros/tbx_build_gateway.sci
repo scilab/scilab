@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // Simple wrapper around ilib_build
-function build_gateway(libname, names, files, gateway_path, libs, ldflags, ..
+function tbx_build_gateway(libname, names, files, gateway_path, libs, ldflags, ..
                        cflags, fflags, cc, makename, ismex)
 	oldpath = pwd();
 	

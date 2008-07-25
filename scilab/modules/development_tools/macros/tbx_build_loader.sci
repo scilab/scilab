@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // Generate a loader.sce script for the toolbox
-function build_loader(toolbox_name, toolbox_path)
+function tbx_build_loader(toolbox_name, toolbox_path)
 	oldpath = pwd();
 	
 	if(exists('toolbox_path', 'local')) then

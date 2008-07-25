@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // Generate a loader file for the help
-function build_help_loader(toolbox_title, help_lang_path)
+function tbx_build_help_loader(toolbox_title, help_lang_path)
 	oldpath = pwd();
 	
 	if(exists('help_lang_path', 'local')) then

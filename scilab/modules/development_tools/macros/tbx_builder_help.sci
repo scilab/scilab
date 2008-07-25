@@ -7,12 +7,10 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Run the toolbox_path+"/src/builder_src.sce" script if it exists
+// Run the toolbox_path+"/help/builder_help.sce" script if it exists
 // See devtools_run_builder
-function builder_src(toolbox_path)
-	if ~haveacompiler() then
-	  error(gettext('This toolbox requires a compiler to build.'));
-	end
-	mprintf(gettext('Building sources...\n'));
-	devtools_run_builder(toolbox_path, 'src', 'builder_src.sce');
+function tbx_builder_help(toolbox_path)
+	mprintf(gettext('Building help...\n'));
+	mprintf(gettext('Please notice that you need JDK in your path to build the help.\n'));
+	devtools_run_builder(toolbox_path, 'help', 'builder_help.sce');
 endfunction
