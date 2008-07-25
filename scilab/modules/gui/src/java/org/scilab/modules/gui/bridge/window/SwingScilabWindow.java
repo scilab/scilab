@@ -239,6 +239,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 				UIElementMapper.removeMapping(menuBar.getElementId());
 			}
 			UIElementMapper.removeMapping(this.elementId);
+			this.dispose();
 		}
 	}
 	
