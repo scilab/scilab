@@ -22,7 +22,7 @@ my_fig = gcf();
 my_fig.info_message = infoMessage;
 
 my_axis = gca();
-my_axis.rotation_angles
+if my_axis.rotation_angles <> [70 70] then pause,end;
 // should not change info message
 my_axe.rotation_angles = [70, 70];
 
