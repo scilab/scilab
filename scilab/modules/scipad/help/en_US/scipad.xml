@@ -465,10 +465,10 @@ scipad f1 f2 ...</synopsis>
           the Scilab language is not available in Scipad, then the English
           fallback is used. Later, the localization in effect can be selected
           with the menu Options/Locale and is remembered across sessions.
-          Currently, the supported languages are: "da_DK" (Danish), "de_DE"
-          (German), "en_US" (English), "es_ES" (Spanish), "fr_FR" (French),
-          "it_IT" (Italian), "no" (Norwegian), "pl" (Polish), "se" (Swedish),
-          "zh_CN" (Chinese-simplified), "zh_TW" (Chinese-Taiwan).</para>
+          Currently, the supported languages are: "da_dk" (Danish), "de_de"
+          (German), "en_us" (English), "es_es" (Spanish), "fr_fr" (French),
+          "it_it" (Italian), "no" (Norwegian), "pl" (Polish), "se" (Swedish),
+          "zh_cn" (Chinese-simplified), "zh_tw" (Chinese-Taiwan).</para>
 
           <para>Further languages can be added by creating the proper
           translation file and putting it in
