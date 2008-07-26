@@ -74,18 +74,18 @@ tcl/bindings/mac-pc.tcl
 
 libsciscipad_la_msgfilesdir = $(mydatadir)/tcl/msg_files
 libsciscipad_la_msgfiles_DATA = tcl/msg_files/AddingTranslations.txt \
-tcl/msg_files/da.msg \
-tcl/msg_files/de.msg \
-tcl/msg_files/eng.msg \
-tcl/msg_files/es.msg \
-tcl/msg_files/fr.msg \
-tcl/msg_files/it.msg \
+tcl/msg_files/da_DK.msg \
+tcl/msg_files/de_DE.msg \
+tcl/msg_files/en_US.msg \
+tcl/msg_files/es_ES.msg \
+tcl/msg_files/fr_FR.msg \
+tcl/msg_files/it_IT.msg \
 tcl/msg_files/localenames.tcl \
 tcl/msg_files/no.msg \
 tcl/msg_files/pl.msg \
 tcl/msg_files/se.msg \
-tcl/msg_files/zh_cn.msg \
-tcl/msg_files/zh_tw.msg
+tcl/msg_files/zh_CN.msg \
+tcl/msg_files/zh_TW.msg
 
 ### scipad : icons ###
 libsciscipad_la_iconsdir = $(mydatadir)/tcl/icons

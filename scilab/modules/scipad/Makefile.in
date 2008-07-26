@@ -386,18 +386,18 @@ top_srcdir = @top_srcdir@
 ### scipad : localization ###
 @TCLTK_TRUE@libsciscipad_la_msgfilesdir = $(mydatadir)/tcl/msg_files
 @TCLTK_TRUE@libsciscipad_la_msgfiles_DATA = tcl/msg_files/AddingTranslations.txt \
-@TCLTK_TRUE@tcl/msg_files/da.msg \
-@TCLTK_TRUE@tcl/msg_files/de.msg \
-@TCLTK_TRUE@tcl/msg_files/eng.msg \
-@TCLTK_TRUE@tcl/msg_files/es.msg \
-@TCLTK_TRUE@tcl/msg_files/fr.msg \
-@TCLTK_TRUE@tcl/msg_files/it.msg \
+@TCLTK_TRUE@tcl/msg_files/da_DK.msg \
+@TCLTK_TRUE@tcl/msg_files/de_DE.msg \
+@TCLTK_TRUE@tcl/msg_files/en_US.msg \
+@TCLTK_TRUE@tcl/msg_files/es_ES.msg \
+@TCLTK_TRUE@tcl/msg_files/fr_FR.msg \
+@TCLTK_TRUE@tcl/msg_files/it_IT.msg \
 @TCLTK_TRUE@tcl/msg_files/localenames.tcl \
 @TCLTK_TRUE@tcl/msg_files/no.msg \
 @TCLTK_TRUE@tcl/msg_files/pl.msg \
 @TCLTK_TRUE@tcl/msg_files/se.msg \
-@TCLTK_TRUE@tcl/msg_files/zh_cn.msg \
-@TCLTK_TRUE@tcl/msg_files/zh_tw.msg
+@TCLTK_TRUE@tcl/msg_files/zh_CN.msg \
+@TCLTK_TRUE@tcl/msg_files/zh_TW.msg
 
 
 ### scipad : icons ###
