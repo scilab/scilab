@@ -23,20 +23,21 @@
 #
 # See the file scipad/license.txt
 #
+
 # locale names (common)
 # note that to avoid encoding issues, all unicode characters which are beyond 
 # the basic ASCII encoding are safely expressed in \u form 
 # (see http://wiki.tcl.tk/656)
 # If I would have used UTF-8, extended characters would be read correctly
 # only if the LANG environment supported UTF8.
-::msgcat::mcset $lang "da locale (da)" "Dansk (da)"
-::msgcat::mcset $lang "de locale (de)" "Deutsch (de)"
-::msgcat::mcset $lang "fr locale (fr)" "Fran\u00E7ais (fr)"
-::msgcat::mcset $lang "eng locale (eng)" "English (eng)"
-::msgcat::mcset $lang "es locale (es)" "Espa\u00F1ol (es)"
-::msgcat::mcset $lang "it locale (it)" "Italiano (it)"
-::msgcat::mcset $lang "no locale (no)" "Norsk (no)"
-::msgcat::mcset $lang "pl locale (pl)" "Polski (pl)"
-::msgcat::mcset $lang "se locale (se)" "Svenska (se)"
-::msgcat::mcset $lang "zh_tw locale (zh_tw)" "\u4E2D\u6587\u7E41\u9AD4 (zh_tw)"
-::msgcat::mcset $lang "zh_cn locale (zh_cn)" "\u4e2d\u6587\u7b80\u4f53 (zh_cn)"
+::msgcat::mcset $lang "da_DK locale" "Dansk (da_DK)"
+::msgcat::mcset $lang "de_DE locale" "Deutsch (de_DE)"
+::msgcat::mcset $lang "fr_FR locale" "Fran\u00E7ais (fr_FR)"
+::msgcat::mcset $lang "en_US locale" "English (en_US)"
+::msgcat::mcset $lang "es_ES locale" "Espa\u00F1ol (es_ES)"
+::msgcat::mcset $lang "it_IT locale" "Italiano (it_IT)"
+::msgcat::mcset $lang "no locale" "Norsk (no)"
+::msgcat::mcset $lang "pl locale" "Polski (pl)"
+::msgcat::mcset $lang "se locale" "Svenska (se)"
+::msgcat::mcset $lang "zh_TW locale" "\u4E2D\u6587\u7E41\u9AD4 (zh_TW)"
+::msgcat::mcset $lang "zh_CN locale" "\u4e2d\u6587\u7b80\u4f53 (zh_CN)"

@@ -30,6 +30,7 @@ Bugs:
  Control_L plus parenleft - this one however blinks through the parenleft
  binding, but others such as braceleft do never trigger and gives
  Control_L plus quoteright - depends on keyboard, platform and whatnot...
+ See also bug 1542
 
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
@@ -113,7 +114,8 @@ endfunction
 -now that bug 2161 is fixed and the behavior of exists(..,option) is clarified
  perhaps ext_exists.sci should check whether the variable exists in the
  global environment, since (from help exists): "the exists function does not
- check if a variable exists in the global namespace"
+ check if a variable exists in the global namespace" -- well, first let's
+ wait for clarifications about help macrovar (see bug 2161 comment #5)
 
 -when background tasks are not allowed, typing quickly enough will produce
  shuffled output: output characters are not in the order they were typed.
@@ -446,6 +448,7 @@ http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/eea78c744811e2c
 -remove the scilab4/scilab5 environment detection once scilab5 is stabilized
  and if it doesn't ease backporting to scilab-gtk. Code to remove can be
  found by highlighting differences between versions 6.117 and 6.118 of Scipad.
+ Well, not sure this should be done after all. Why would we prevent backports?
 
 -improvements in the font chooser (proposal to be refined):
  1. For each (text- and menu-) font, add a new area similar to the already

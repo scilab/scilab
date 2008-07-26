@@ -88,8 +88,11 @@ if {[catch {ScilabEval ";" "sync" "seq"}] != 0} {
 
     # Define ScilabEval to a void function, if it is unknown. This is
     # useful in order to run scipad outside of scilab (e.g. to debug it)
-    proc ScilabEval args { 
-        showinfo [mc "NOT CONNECTED TO SCILAB"]
+    proc ScilabEval args {
+        # catched because may be called before the main window is ready
+        # to display the message, or before the localization procs such
+        # as mc are sourced
+        catch {showinfo [mc "NOT CONNECTED TO SCILAB"]}
         puts $args
     }
     set sciprompt 0

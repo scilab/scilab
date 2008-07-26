@@ -27,8 +27,8 @@
 set winTitle "SciPad"
 
 #############
-# Flags to trim Scipad to the host environment (Scilab version,
-# host computer OS, underlying Tcl/Tk version...)
+# Flags to trim Scipad to the host environment
+# (host computer OS, underlying Tcl/Tk version...)
 
 
 # On Vista (osVersion is 6.0) there is bug 2672 which happens with the 8.4
@@ -61,10 +61,37 @@ if {$tcl_platform(platform) == "unix" && $Tk85} {
 }
 
 
-# End of flags to trim Scipad to the host environment (Scilab version,
-# host computer OS, underlying Tcl/Tk version...)
+# End of flags to trim Scipad to the host environment
+# (host computer OS, underlying Tcl/Tk version...)
 #############
 
+
+#############
+# Scilab version detection
+# Scilab 5 or Scilab 4?
+# Set flags value here, it will be useful throughout the rest of the code!
+# The test is on whereis(scipad)=="utillib"|"scipadlib"
+
+if {$standaloneScipad} {
+    # no possible test, since launching Scipad outside of Scilab is used
+    # for debugging it, it is safe to fool Scipad by telling it Scilab 5
+    # environment is around
+    set Scilab5 true
+    set Scilab4 false
+} else {
+    set comm1 "if (whereis(scipad)==\"utillib\") then "
+    set comm2 "  TCL_SetVar(\"Scilab5\",\"false\",\"scipad\");"
+    set comm3 "  TCL_SetVar(\"Scilab4\",\"true\",\"scipad\");"
+    set comm4 "else"
+    set comm5 "  TCL_SetVar(\"Scilab5\",\"true\",\"scipad\");"
+    set comm6 "  TCL_SetVar(\"Scilab4\",\"false\",\"scipad\");"
+    set comm7 "end"
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7]
+    ScilabEval_lt $fullcomm "sync" "seq"
+}
+
+# End of Scilab version detection
+#############
 
 
 #############
@@ -196,7 +223,39 @@ setdefaultfonts
 #############
 # Other non-preferences initial settings
 
-if { ![info exists lang] } { set lang "eng" }
+# Select the Scilab locale when starting Scipad for the first time
+# The test ![info exists lang] should always be true
+# The lang variable is set to the getlanguage() result from Scilab
+# If a preferences file exists, the value of the pref file will overwrite this
+# because the pref file is sourced later
+# This way the code portion below is really useful only when Scipad is started
+# for the very first time from a fresh Scilab installation
+# Precautions are taken (try;end) against Scilab versions not havng a clue about
+# getlanguage() so that this code can be used with no change in Scilab 4.x
+# backports
+if {![info exists lang]} {
+
+    # try to use the same locale as Scilab
+    ScilabEval_lt "try;TCL_SetVar(\"lang\",getlanguage(),\"scipad\");end" "sync" "seq"
+
+    if {![info exists lang]} {
+        # Select a fallback in case setting the locale through getlanguage() failed
+        setdefaultScipadlangvar
+    } else {
+        # Select a fallback when the Scilab language is not available in Scilab
+        # In fact the english locale must be set explicitely as a fallback here
+        # this is because later the locale is set by ::msgcat::mclocale "$lang"
+        # and when ::msgcat::mc will try to translate the string using this unknown
+        # locale it will trigger ::msgcat::mcunknown which will return the label.
+        # Since this label is the english string, we could be happy with this, but
+        # it is not *always* the case, sometimes the label is not the english string
+        if {[lsearch [getavailablelocales] $lang] == -1} {
+            setdefaultScipadlangvar
+        } else {
+            # success: Scilab's locale is available in Scipad and will be used
+        }
+    }
+}
 
 set Scheme scilab
 set ColorizeIt true
@@ -218,6 +277,7 @@ array unset pwframe
 
 #############
 # source the user preferences file if any
+# this must happen after the locale selection from Scilab's getlanguage() above
 set preffilename $env(SCIHOME)/.SciPadPreferences.tcl
 catch {source $preffilename}
 #############

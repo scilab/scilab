@@ -152,3 +152,25 @@ proc listlocalize {inlist} {
     }
     return $outlist
 }
+
+proc getavailablelocales {} {
+# return a list of available Scipad locales
+# this is achieved by scanning the names of the message files
+    global msgsdir
+    set loclist [list ]
+    set msgFiles [lsort [globtails $msgsdir *.msg]]
+    foreach m $msgFiles {
+        lappend loclist [file rootname $m]
+    }
+    return $loclist
+}
+
+proc setdefaultScipadlangvar {} {
+# set default lang variable
+    global Scilab5 lang
+    if {$Scilab5} {
+        set lang "en_US"
+    } else {
+        set lang "eng"
+    }
+}

@@ -7,8 +7,7 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate: 2008-04-10 11:51:15 +0200 (jeu., 10 avr. 2008)
-    $</pubdate>
+    <pubdate>$LastChangedDate$</pubdate>
   </info>
 
   <refnamediv>
@@ -460,13 +459,15 @@ scipad f1 f2 ...</synopsis>
           <para></para>
 
           <para>Scipad menues and messages can be translated to several
-          languages. By default they appear in English, but other languages
-          are being added. The localization in effect can be selected with the
-          menu Options/Locale, and is remembered across sessions. Currently,
-          the supported languages are: "da" (Danish), "de" (German) ,"eng"
-          (English), "es" (Spanish), "fr" (French), "it" (Italian), "no"
-          (Norwegian), "pl" (Polish), "se" (Swedish), "zh_cn"
-          (Chinese-simplified), "zh_tw" (Chinese-Taiwan).</para>
+          languages. The very first time Scipad is launched from a new Scilab
+          installation, the language used by Scipad is the Scilab language. If
+          the Scilab language is not available in Scipad, then the English
+          fallback is used. Later, the localization in effect can be selected
+          with the menu Options/Localen and is remembered across sessions.
+          Currently, the supported languages are: "da_DK" (Danish), "de_DE"
+          (German) ,"en_US" (English), "es_ES" (Spanish), "fr_FR" (French),
+          "it_IT" (Italian), "no" (Norwegian), "pl" (Polish), "se" (Swedish),
+          "zh_CN" (Chinese-simplified), "zh_TW" (Chinese-Taiwan).</para>
 
           <para>Further languages can be added by creating the proper
           translation file and putting it in

@@ -46,6 +46,7 @@ proc setScipadVersionString {} {
     set comm9 "TCL_EvalStr(\"modifiedtitle [gettextareacur]\",\"scipad\");"
     # <TODO> SCI_VERSION_REVISION is not used until some automatic way to
     #        fill in this field at commit exists
+    #        Well, there is one:  svn:keywords  with  $Revision$
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9]
     # Warning: "sync" "seq" would have been the natural options to use,
     #          but see proc loadwords for some explanations about why
