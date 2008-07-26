@@ -236,5 +236,5 @@ We hope that these instructions are clear enough. If not, please do not
 hesitate to ask us.
 
 Enrico Segre <enrico.segre@weizmann.ac.il>
-Fran�ois Vogel <fvogelnew1@free.fr>
+Francois Vogel <fvogelnew1@free.fr>
 
