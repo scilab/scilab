@@ -1,4 +1,10 @@
 Francois VOGEL, 26/07/08
+ * All language names (and therefore message file names) are in lowercase
+   because this is needed on Linux since ::msgcat::mclocale stores the locale
+   in lowercase
+ * version --> 6.152
+
+Francois VOGEL, 26/07/08
  * The very first time Scipad is launched (i.e. when there is no existing
    preferences file), Scipad language is the Scilab language. If the Scilab
    language is not available in Scipad, the fallback is en_US

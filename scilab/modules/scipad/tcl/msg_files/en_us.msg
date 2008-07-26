@@ -33,17 +33,17 @@
 
 
 # db_bptsgui.tcl
-::msgcat::mcset en_US istrue "is true"
-::msgcat::mcset en_US haschanged "has changed"
-::msgcat::mcset en_US always "always"
-::msgcat::mcset en_US equalto "is equal to"
-::msgcat::mcset en_US multipleof "is a multiple of"
-::msgcat::mcset en_US greaterthan "is greater than"
-::msgcat::mcset en_US lessthan "is lower than"
+::msgcat::mcset en_us istrue "is true"
+::msgcat::mcset en_us haschanged "has changed"
+::msgcat::mcset en_us always "always"
+::msgcat::mcset en_us equalto "is equal to"
+::msgcat::mcset en_us multipleof "is a multiple of"
+::msgcat::mcset en_us greaterthan "is greater than"
+::msgcat::mcset en_us lessthan "is lower than"
 
 
 #helps.tcl
-::msgcat::mcset en_US aboutme_message \
+::msgcat::mcset en_us aboutme_message \
                     "\n Originated by Joseph Acosta, joeja@mindspring.com.\n\
                     Modified by Scilab Consortium.\n\
                     Revised by Enrico Segre 2003-2006.\n\
@@ -56,20 +56,20 @@
                     Spanish translation by Juan Nicolás Quesada 2006.\n\
                     Chinese translation by Yung-Jang Lee 2007.\n\
                     Danish translation by Kim B. Hansen 2007."
-::msgcat::mcset en_US Scipad_is_released_under_GPL "SciPad is released under GPL"
+::msgcat::mcset en_us Scipad_is_released_under_GPL "SciPad is released under GPL"
 
 # popupmenus.tcl
-::msgcat::mcset en_US "AddWatch" "Add %s as watch"
-::msgcat::mcset en_US "AddGenExp" "Add %s as generic expression"
+::msgcat::mcset en_us "AddWatch" "Add %s as watch"
+::msgcat::mcset en_us "AddGenExp" "Add %s as generic expression"
 
 
 # scilabexec.tcl
-::msgcat::mcset en_US impossibleScilabEval_message \
+::msgcat::mcset en_us impossibleScilabEval_message \
                     "WARNING: A command could not be passed to Scilab and has been ignored.\n\n \
                     Most probably you don't have write access to Scilab's TMPDIR. \
                     Unpredictable results may occur.\n\n \
                     The offending command was:\n\n-->"
-::msgcat::mcset en_US impossibleScilabEval_message2 \
+::msgcat::mcset en_us impossibleScilabEval_message2 \
                     "WARNING: A command could not be passed to Scilab and has been ignored \
                     because it is too long.\n\n \
                     Unpredictable results may occur.\n\n \
@@ -78,27 +78,27 @@
 
 
 #preference variables description
-::msgcat::mcset en_US "BGCOLOR" "Edit area background"
-::msgcat::mcset en_US "BGLNMARGCOLOR" "Line numbers background"
-::msgcat::mcset en_US "FGCOLOR" "Plain text"
-::msgcat::mcset en_US "FGLNMARGCOLOR" "Line numbers foreground"
-::msgcat::mcset en_US "CURCOLOR" "Cursor"
-::msgcat::mcset en_US "PARCOLOR" "Parentheses ()"
-::msgcat::mcset en_US "BRAKCOLOR" "Brackets \\\[\\\]"
-::msgcat::mcset en_US "BRACCOLOR" "Braces {}"
-::msgcat::mcset en_US "PUNCOLOR"  "Punctuation"
-::msgcat::mcset en_US "INTFCOLOR" "Internal functions"
-::msgcat::mcset en_US "COMMCOLOR" "Commands"
-::msgcat::mcset en_US "SCICCOLOR" "Scicos functions"
-::msgcat::mcset en_US "OPCOLOR"   "Operators"
-::msgcat::mcset en_US "QTXTCOLOR"  "String text"
-::msgcat::mcset en_US "REMCOLOR" "Comments"
-::msgcat::mcset en_US "XMLCOLOR" "XML tags"
-::msgcat::mcset en_US "NUMCOLOR" "Numbers"
-::msgcat::mcset en_US "SELCOLOR" "Selection"
-::msgcat::mcset en_US "BREAKPOINTCOLOR" "Breakpoint background"
-::msgcat::mcset en_US "LFUNCOLOR" "Library functions"
-::msgcat::mcset en_US "PDEFCOLOR" "Predefined variables"
-::msgcat::mcset en_US "FOUNDTEXTCOLOR" "Matched text"
-::msgcat::mcset en_US "CONTLINECOLOR" "Continued line"
-::msgcat::mcset en_US "USERFUNCOLOR" "User defined functions"
+::msgcat::mcset en_us "BGCOLOR" "Edit area background"
+::msgcat::mcset en_us "BGLNMARGCOLOR" "Line numbers background"
+::msgcat::mcset en_us "FGCOLOR" "Plain text"
+::msgcat::mcset en_us "FGLNMARGCOLOR" "Line numbers foreground"
+::msgcat::mcset en_us "CURCOLOR" "Cursor"
+::msgcat::mcset en_us "PARCOLOR" "Parentheses ()"
+::msgcat::mcset en_us "BRAKCOLOR" "Brackets \\\[\\\]"
+::msgcat::mcset en_us "BRACCOLOR" "Braces {}"
+::msgcat::mcset en_us "PUNCOLOR"  "Punctuation"
+::msgcat::mcset en_us "INTFCOLOR" "Internal functions"
+::msgcat::mcset en_us "COMMCOLOR" "Commands"
+::msgcat::mcset en_us "SCICCOLOR" "Scicos functions"
+::msgcat::mcset en_us "OPCOLOR"   "Operators"
+::msgcat::mcset en_us "QTXTCOLOR"  "String text"
+::msgcat::mcset en_us "REMCOLOR" "Comments"
+::msgcat::mcset en_us "XMLCOLOR" "XML tags"
+::msgcat::mcset en_us "NUMCOLOR" "Numbers"
+::msgcat::mcset en_us "SELCOLOR" "Selection"
+::msgcat::mcset en_us "BREAKPOINTCOLOR" "Breakpoint background"
+::msgcat::mcset en_us "LFUNCOLOR" "Library functions"
+::msgcat::mcset en_us "PDEFCOLOR" "Predefined variables"
+::msgcat::mcset en_us "FOUNDTEXTCOLOR" "Matched text"
+::msgcat::mcset en_us "CONTLINECOLOR" "Continued line"
+::msgcat::mcset en_us "USERFUNCOLOR" "User defined functions"

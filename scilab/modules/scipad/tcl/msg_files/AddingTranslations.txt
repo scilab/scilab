@@ -20,9 +20,10 @@ that the latter will be very few, of the order of a few strings a month.
 THE MESSAGE FILE CONTENT
 ------------------------
 
-The message file has to be called xx.msg (or xx_YY.msg), where xx (or xx_YY)
+The message file has to be called xx.msg (or xx_yy.msg), where xx (or xx_yy)
 stands for the i18n code of the language you're using (see e.g.
-http://www.i18nguy.com/unicode/language-identifiers.html).
+http://www.i18nguy.com/unicode/language-identifiers.html). Note that the
+file name MUST be completely lowercase.
 
 The file itself is written in Tcl. You're not expected to know Tcl at all,
 just to respect the format adopted, easily understood from the 
@@ -36,7 +37,7 @@ The file itself is composed of:
 
 -a sequence of lines of the form 
   ::msgcat::mcset xx "A_STRING" "TRANSLATED_STRING"
-(xx may in fact be xx_YY, depending on the language)
+(xx may in fact be xx_yy, depending on the language)
 
 -some interspersed comments (a # marks the rest of a line as a comment),
  dividing loosely the sequence in sections
@@ -61,9 +62,9 @@ EDITING THE MESSAGE FILE
 ------------------------
 
 First of all, choose one of the existing files 
-SCI/modules/scipad/tcl/msg_files/*.msg as a template. The files fr_FR.msg and
-it_IT.msg are the best candidates, as they are most frequently updated.
-The file en_US.msg is NOT a good starting point, because it contains only
+SCI/modules/scipad/tcl/msg_files/*.msg as a template. The files fr_fr.msg and
+it_it.msg are the best candidates, as they are most frequently updated.
+The file en_us.msg is NOT a good starting point, because it contains only
 very few strings [for most strings, the english text itself is used as 
 identifier in the strings database, and doesn't need to be resolved further].
 Such files are found in the trunk SVN version of scilab and in recent unstable 
@@ -74,14 +75,14 @@ and http://www.scilab.org/download/index_download.php?page=SVN.html)
 If you have difficulties in getting them, let us know, we can forward 
 by email.
 
-Save this file under the new name uu.msg (or uu_VV.msg), where uu (or uu_VV)
-is the i18n code of the language you're using. Change all the codes xx or xx_YY
-following ::msgcat::mcset into the uu or uu_VV you have chosen. This can be
+Save this file under the new name uu.msg (or uu_vv.msg), where uu (or uu_vv)
+is the i18n code of the language you're using. Change all the codes xx or xx_yy
+following ::msgcat::mcset into the uu or uu_vv you have chosen. This can be
 done easily by a Replace all operation in your favourite text editor.
 
 In the *.msg file, "A_STRING" is usually a plain readable english text string,
 only sometimes it is an abbreviation. The full english string can then 
-be looked up in the file en_US.msg. You're essentially asked to type in the
+be looked up in the file en_us.msg. You're essentially asked to type in the
 proper "TRANSLATED_STRING" for each case, replacing that of the original file.
 
 Please respect the existing order in the file, as this will be very
@@ -235,5 +236,5 @@ We hope that these instructions are clear enough. If not, please do not
 hesitate to ask us.
 
 Enrico Segre <enrico.segre@weizmann.ac.il>
-François Vogel <fvogelnew1@free.fr>
+Franï¿½ois Vogel <fvogelnew1@free.fr>
 

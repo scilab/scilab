@@ -236,7 +236,7 @@ setdefaultfonts
 if {![info exists lang]} {
 
     # try to use the same locale as Scilab
-    ScilabEval_lt "try;TCL_SetVar(\"lang\",getlanguage(),\"scipad\");end" "sync" "seq"
+    ScilabEval_lt "try;TCL_SetVar(\"lang\",convstr(getlanguage(),\"l\"),\"scipad\");end" "sync" "seq"
 
     if {![info exists lang]} {
         # Select a fallback in case setting the locale through getlanguage() failed

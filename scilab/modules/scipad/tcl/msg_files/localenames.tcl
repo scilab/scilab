@@ -30,14 +30,14 @@
 # (see http://wiki.tcl.tk/656)
 # If I would have used UTF-8, extended characters would be read correctly
 # only if the LANG environment supported UTF8.
-::msgcat::mcset $lang "da_DK locale" "Dansk (da_DK)"
-::msgcat::mcset $lang "de_DE locale" "Deutsch (de_DE)"
-::msgcat::mcset $lang "fr_FR locale" "Fran\u00E7ais (fr_FR)"
-::msgcat::mcset $lang "en_US locale" "English (en_US)"
-::msgcat::mcset $lang "es_ES locale" "Espa\u00F1ol (es_ES)"
-::msgcat::mcset $lang "it_IT locale" "Italiano (it_IT)"
+::msgcat::mcset $lang "da_dk locale" "Dansk (da_dk)"
+::msgcat::mcset $lang "de_de locale" "Deutsch (de_de)"
+::msgcat::mcset $lang "fr_fr locale" "Fran\u00E7ais (fr_fr)"
+::msgcat::mcset $lang "en_us locale" "English (en_us)"
+::msgcat::mcset $lang "es_es locale" "Espa\u00F1ol (es_es)"
+::msgcat::mcset $lang "it_it locale" "Italiano (it_it)"
 ::msgcat::mcset $lang "no locale" "Norsk (no)"
 ::msgcat::mcset $lang "pl locale" "Polski (pl)"
 ::msgcat::mcset $lang "se locale" "Svenska (se)"
-::msgcat::mcset $lang "zh_TW locale" "\u4E2D\u6587\u7E41\u9AD4 (zh_TW)"
-::msgcat::mcset $lang "zh_CN locale" "\u4e2d\u6587\u7b80\u4f53 (zh_CN)"
+::msgcat::mcset $lang "zh_tw locale" "\u4E2D\u6587\u7E41\u9AD4 (zh_tw)"
+::msgcat::mcset $lang "zh_cn locale" "\u4e2d\u6587\u7b80\u4f53 (zh_cn)"
