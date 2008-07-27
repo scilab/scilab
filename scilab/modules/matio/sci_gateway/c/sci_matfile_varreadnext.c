@@ -68,19 +68,25 @@ int sci_matfile_varreadnext(char *fname,unsigned long fname_len)
       /* Return empty name */
       nbRow = 0; nbCol = 0;
       CreateVar(Rhs+1, STRING_DATATYPE, &nbRow, &nbCol, &varnameAdr);
-
-      /* Return empty value */
-      nbRow = 0; nbCol = 0;
-      CreateVar(Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &valueAdr);
-      
-      /* Return error flag instead of variable class */
-      nbRow = 1; nbCol = 1;
-      CreateVar(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &classAdr);
-      *stk(classAdr) = NO_MORE_VARIABLES;
-      
       LhsVar(1) = Rhs + 1;
-      LhsVar(2) = Rhs + 2;
-      LhsVar(3) = Rhs + 3;
+
+      if (Lhs >= 2)
+        {
+          /* Return empty value */
+          nbRow = 0; nbCol = 0;
+          CreateVar(Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &valueAdr);
+          LhsVar(2) = Rhs + 2;
+        }
+      
+      if (Lhs == 3)
+        {
+          /* Return error flag instead of variable class */
+          nbRow = 1; nbCol = 1;
+          CreateVar(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &classAdr);
+          *stk(classAdr) = NO_MORE_VARIABLES;
+          LhsVar(3) = Rhs + 3;
+        }
+
       PutLhsVar();
 
       return TRUE;
@@ -91,24 +97,30 @@ int sci_matfile_varreadnext(char *fname,unsigned long fname_len)
   nbRow = (int)strlen(varname);
   nbCol = 1;
   CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &nbRow, &nbCol, &varname);
+  LhsVar(1) = Rhs + 1;
 
   returnedClass = matvar->class_type;
 
-  /* Return the values */
-  if (!CreateMatlabVariable(Rhs + 2, matvar)) /* Could not Create Variable */
+  if (Lhs >= 2)
     {
-      sciprint("Do not know how to read a variable of class %d.\n", matvar->class_type);
-      returnedClass = UNKNOWN_VARIABLE_TYPE;
+      /* Return the values */
+      if (!CreateMatlabVariable(Rhs + 2, matvar)) /* Could not Create Variable */
+        {
+          sciprint("Do not know how to read a variable of class %d.\n", matvar->class_type);
+          returnedClass = UNKNOWN_VARIABLE_TYPE;
+        }
+      LhsVar(2) = Rhs + 2;
     }
 
-  /* Create class return value */
-  nbRow = 1; nbCol = 1;
-  CreateVar(Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &classAdr);
-  *stk(classAdr) = returnedClass;
+  if (Lhs == 3)
+    {
+      /* Create class return value */
+      nbRow = 1; nbCol = 1;
+      CreateVar(Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &classAdr);
+      *stk(classAdr) = returnedClass;
+      LhsVar(3) = Rhs + 3;
+    }
 
-  LhsVar(1) = Rhs + 1;
-  LhsVar(2) = Rhs + 2;
-  LhsVar(3) = Rhs + 3;
   PutLhsVar();
 
   Mat_VarFree(matvar);

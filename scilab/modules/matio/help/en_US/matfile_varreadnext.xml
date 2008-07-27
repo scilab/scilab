@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[name, value, vartype] = matfile_varreadnext(fd)</synopsis>
+    <synopsis>[name[, value[, vartype]]] = matfile_varreadnext(fd)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
