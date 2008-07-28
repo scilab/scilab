@@ -12,12 +12,14 @@
 package org.scilab.modules.helptools;
 
 import com.sun.java.help.search.Indexer; /* jhall (Java Help) */
+
+import org.scilab.modules.localization.Messages;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.FileInputStream;
 import java.util.zip.ZipEntry;
-
 import java.util.jar.JarOutputStream;
 
 
@@ -38,18 +40,22 @@ public class BuildJavaHelp {
 		JarOutputStream jarFile = null;
 		FileOutputStream fileOutputStream = null;
 		final int compressionLevel = 5;
-		try {
-			fileOutputStream = new FileOutputStream(outputDirectory + "/../" + baseName + ".jar");
-		} catch (java.io.IOException e) {
-		}
-		try {
-			jarFile = new JarOutputStream(fileOutputStream);
-		} catch (java.io.FileNotFoundException e) {
-		} catch (java.io.IOException e) {
+		String fileName=outputDirectory + "/../../../jar/" + baseName + ".jar";
 
+		try {
+
+			fileOutputStream = new FileOutputStream(fileName);
+			jarFile = new JarOutputStream(fileOutputStream);
+
+		} catch (java.io.FileNotFoundException e) {
+			System.err.println("buildDoc: Could not find/access to " +fileName +" ( "+e.getLocalizedMessage() +" )");
+		} catch (java.io.IOException e) {
+			System.err.println("buildDoc: Could not find/access to " +fileName +" ( "+e.getLocalizedMessage() +" )");
 		}
+
 		jarFile.setLevel(compressionLevel);
 
+		/* Defines the filter to know what we want to ship in the jar */
 		FilenameFilter filter = new FilenameFilter() {
 				public boolean accept(File dir, String name) {
 					return name.endsWith(".html") || name.endsWith(".xml") || name.endsWith(".jhm") || name.endsWith(".hs");
@@ -60,30 +66,32 @@ public class BuildJavaHelp {
 		File []allFiles = currentDir.listFiles(filter);
 		for (int i = 0; i < allFiles.length; i++) {			
 			try {
-			FileInputStream fileInputStream = null;
-			fileInputStream = new FileInputStream(allFiles[i]);
+				FileInputStream fileInputStream = new FileInputStream(allFiles[i]);
  
-			int length = (int) allFiles[i].length();
-			byte[] buffer = new byte[length];
+				int length = (int) allFiles[i].length();
+				byte[] buffer = new byte[length];
 
-			try {
-				fileInputStream.read(buffer, 0, length);
-			} catch (java.io.IOException e) {
-			}
+				try {
+					fileInputStream.read(buffer, 0, length);
+				} catch (java.io.IOException e) {
+					System.err.println("buildDoc: Could not find/access to " +allFiles[i] +" ( "+e.getLocalizedMessage() +" )");
+				}
  
-			ZipEntry zipEntry = new ZipEntry(baseName + "/" + allFiles[i].getName());
-			jarFile.putNextEntry(zipEntry);
+				ZipEntry zipEntry = new ZipEntry(baseName + "/" + allFiles[i].getName());
+				jarFile.putNextEntry(zipEntry);
 
-			jarFile.write(buffer, 0, length);
+				jarFile.write(buffer, 0, length);
  
-			fileInputStream.close();
+				fileInputStream.close();
 			} catch (java.io.IOException e) {
+				System.err.println("buildDoc: An error occurs while building the JavaHelp ( "+e.getLocalizedMessage() +" )");
 			}
 
 		}
 		try {
 			jarFile.close();
 		} catch (java.io.IOException e) {
+			System.err.println("buildDoc: An error occurs while closing the JavaHelp ( "+e.getLocalizedMessage() +" )");
 		}
 		return true;
 	}
@@ -96,16 +104,15 @@ public class BuildJavaHelp {
      * @return The result of the process
 	 */
 	public static boolean buildJavaHelp(String outputDirectory, String language) {
-		System.out.println("Building in " + outputDirectory);
-
 		Indexer indexer = new Indexer();
+
 		try {
 			String[] args = new String[] {
 				outputDirectory
 			};
 			indexer.compile(args);
 		} catch (Exception e) {
-			System.err.println("Error building search index: " + e.toString());
+			System.err.println("buildDoc: Error building search index: " + e.getLocalizedMessage());
 			return false;
 		}
 
