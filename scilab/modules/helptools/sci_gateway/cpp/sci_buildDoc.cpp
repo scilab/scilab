@@ -109,9 +109,6 @@ int sci_buildDoc(char *fname,unsigned long l)
 	}
 	else
 	{
-		FREE(masterXML);
-		FREE(outputDirectory);
-		FREE(styleSheet);
 		Scierror(999,_("%s: Could find or create the working directory %s.\n"),fname, outputDirectory);
 		return 0;
 	}
