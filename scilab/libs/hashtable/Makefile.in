@@ -57,7 +57,7 @@ host_triplet = @host@
 DIST_COMMON = $(libscihashtable_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_1 = java
 @SWIG_TRUE@am__append_2 = swig
 @GIWS_TRUE@am__append_3 = giws
 subdir = libs/hashtable
@@ -337,7 +337,7 @@ SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
-# Install HTML files into the right target
+# Install documentation files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
@@ -348,19 +348,8 @@ pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 
-# What is the mask of the help output
-DOCMASK = *.htm
-
-# Which directories we have to install
-DOCIMGDIRS = help/images
-# What is the mask of the help images
-DOCIMGMASK = *
-
 # What is the mask of the help source
 DOCMASKXML = *.xml
-
-# Chapter file
-HELP_CHAPTERFILE = addchapter.sce
 
 ########### INSTALL DATA ###################
 # Install macros
@@ -694,21 +683,21 @@ check-local: $(top_builddir)/scilab-bin
 	COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@java:
+@NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@		$(ANT); \
-@GUI_TRUE@	fi
+@NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@		$(ANT); \
+@NEED_JAVA_TRUE@	fi
 
-@GUI_TRUE@clean-java:
+@NEED_JAVA_TRUE@clean-java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@		$(ANT) clean; \
-@GUI_TRUE@	fi
+@NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@		$(ANT) clean; \
+@NEED_JAVA_TRUE@	fi;
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -745,8 +734,8 @@ macros:
 clean-macros:
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
+		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
 
 all-local: $(TARGETS_ALL)
@@ -760,39 +749,6 @@ all-local: $(TARGETS_ALL)
 	fi )
 
 install-html-local:
-	@echo "-- Install of htm help files --"; \
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-	for dir in $(DOCDIRS) ; do \
-		if test -d $$dir; then \
-			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-				done ; \
-			fi; \
-			if ls -lLd $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
-				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
-					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-				done ; \
-			fi; \
-		fi; \
-	done
-	@echo "-- Install of images help files --"; \
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-	for dir in $(DOCIMGDIRS) ; do \
-	 if test -d $$dir; then \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
-		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-		  done ; \
-		fi; \
-	 fi; \
-	done
-
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@echo "-- Install of XML sources of help files --"; \
 @INSTALL_HELP_XML_TRUE@	for dir in $(DOCDIRS) ; do \
@@ -851,15 +807,8 @@ install-data-local:
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@clean-local: clean-java clean-macros
-@GUI_FALSE@clean-local: clean-macros
-# Removes documentation (*.htm generated from .xml) 
-	@for dir in $(DOCDIRS) ; do \
-		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
-			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
-			rm -f $(srcdir)/$$dir/$(DOCMASK); \
-		fi; \
-	done
+@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
+@NEED_JAVA_FALSE@clean-local: clean-macros
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

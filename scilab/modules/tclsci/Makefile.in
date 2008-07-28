@@ -58,7 +58,7 @@ host_triplet = @host@
 DIST_COMMON = $(am__libscitclsci_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@@TCLTK_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@@TCLTK_TRUE@am__append_1 = java
 @SWIG_TRUE@@TCLTK_TRUE@am__append_2 = swig
 @GIWS_TRUE@@TCLTK_TRUE@am__append_3 = giws
 subdir = modules/tclsci
@@ -670,7 +670,7 @@ top_srcdir = @top_srcdir@
 
 ########### INSTALL DOCUMENTATION ###################
 
-# Install HTML files into the right target
+# Install documentation files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
@@ -681,19 +681,8 @@ top_srcdir = @top_srcdir@
 # Which directories we have to install
 @TCLTK_TRUE@DOCDIRS = help/fr_FR help/en_US
 
-# What is the mask of the help output
-@TCLTK_TRUE@DOCMASK = *.htm
-
-# Which directories we have to install
-@TCLTK_TRUE@DOCIMGDIRS = help/images
-# What is the mask of the help images
-@TCLTK_TRUE@DOCIMGMASK = *
-
 # What is the mask of the help source
 @TCLTK_TRUE@DOCMASKXML = *.xml
-
-# Chapter file
-@TCLTK_TRUE@HELP_CHAPTERFILE = addchapter.sce
 
 ########### INSTALL DATA ###################
 # Install macros
@@ -1375,21 +1364,21 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	COMMAND="test_run('$(modulename)');quit";\
 @TCLTK_TRUE@	export LANG=C;\
 @TCLTK_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@@TCLTK_TRUE@java:
+@NEED_JAVA_TRUE@@TCLTK_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@@TCLTK_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@TCLTK_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@@TCLTK_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@@TCLTK_TRUE@		$(ANT); \
-@GUI_TRUE@@TCLTK_TRUE@	fi
+@NEED_JAVA_TRUE@@TCLTK_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@@TCLTK_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@@TCLTK_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@@TCLTK_TRUE@		$(ANT); \
+@NEED_JAVA_TRUE@@TCLTK_TRUE@	fi
 
-@GUI_TRUE@@TCLTK_TRUE@clean-java:
+@NEED_JAVA_TRUE@@TCLTK_TRUE@clean-java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@@TCLTK_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@TCLTK_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@@TCLTK_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@@TCLTK_TRUE@		$(ANT) clean; \
-@GUI_TRUE@@TCLTK_TRUE@	fi
+@NEED_JAVA_TRUE@@TCLTK_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@@TCLTK_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@@TCLTK_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@@TCLTK_TRUE@		$(ANT) clean; \
+@NEED_JAVA_TRUE@@TCLTK_TRUE@	fi;
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -1426,8 +1415,8 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@clean-macros:
 # Removes macros (*.bin generated from .sci)
 @TCLTK_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-@TCLTK_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-@TCLTK_TRUE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+@TCLTK_TRUE@		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
+@TCLTK_TRUE@		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 @TCLTK_TRUE@	done
 
 @TCLTK_TRUE@all-local: $(TARGETS_ALL)
@@ -1441,39 +1430,6 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @TCLTK_TRUE@	fi )
 
 @TCLTK_TRUE@install-html-local:
-@TCLTK_TRUE@	@echo "-- Install of htm help files --"; \
-@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-@TCLTK_TRUE@	for dir in $(DOCDIRS) ; do \
-@TCLTK_TRUE@		if test -d $$dir; then \
-@TCLTK_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@TCLTK_TRUE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-@TCLTK_TRUE@				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-@TCLTK_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@TCLTK_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@TCLTK_TRUE@				done ; \
-@TCLTK_TRUE@			fi; \
-@TCLTK_TRUE@			if ls -lLd $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
-@TCLTK_TRUE@				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
-@TCLTK_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@TCLTK_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@TCLTK_TRUE@				done ; \
-@TCLTK_TRUE@			fi; \
-@TCLTK_TRUE@		fi; \
-@TCLTK_TRUE@	done
-@TCLTK_TRUE@	@echo "-- Install of images help files --"; \
-@TCLTK_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-@TCLTK_TRUE@	for dir in $(DOCIMGDIRS) ; do \
-@TCLTK_TRUE@	 if test -d $$dir; then \
-@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@TCLTK_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
-@TCLTK_TRUE@		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
-@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@TCLTK_TRUE@		  done ; \
-@TCLTK_TRUE@		fi; \
-@TCLTK_TRUE@	 fi; \
-@TCLTK_TRUE@	done
-
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	@echo "-- Install of XML sources of help files --"; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	for dir in $(DOCDIRS) ; do \
@@ -1532,15 +1488,8 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@@TCLTK_TRUE@clean-local: clean-java clean-macros
-@GUI_FALSE@@TCLTK_TRUE@clean-local: clean-macros
-# Removes documentation (*.htm generated from .xml) 
-@TCLTK_TRUE@	@for dir in $(DOCDIRS) ; do \
-@TCLTK_TRUE@		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
-@TCLTK_TRUE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
-@TCLTK_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
-@TCLTK_TRUE@		fi; \
-@TCLTK_TRUE@	done
+@NEED_JAVA_TRUE@@TCLTK_TRUE@clean-local: clean-java clean-macros
+@NEED_JAVA_FALSE@@TCLTK_TRUE@clean-local: clean-macros
 
 @TCLTK_TRUE@.PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

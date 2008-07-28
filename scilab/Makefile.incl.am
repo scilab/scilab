@@ -34,7 +34,7 @@ check-local: $(top_builddir)/scilab-bin
 #######################################################################
 
 TARGETS_ALL=
-if GUI
+if NEED_JAVA
 TARGETS_ALL+=java
 java:
 # Some configurations needs to export JAVA_HOME in the current env
@@ -50,7 +50,7 @@ clean-java:
 	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
 	if test -f build.xml -a $$USEANT -eq 1; then \
 		$(ANT) clean; \
-	fi
+	fi;
 endif
 
 if SWIG
@@ -104,8 +104,8 @@ macros:
 clean-macros:
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
+		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
 
 
@@ -126,7 +126,7 @@ SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
-# Install HTML files into the right target
+# Install documentation files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
@@ -137,54 +137,10 @@ pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 
-# What is the mask of the help output
-DOCMASK = *.htm
-
-# Which directories we have to install
-DOCIMGDIRS = help/images
-# What is the mask of the help images
-DOCIMGMASK = *
-
 # What is the mask of the help source
 DOCMASKXML = *.xml
 
-# Chapter file
-HELP_CHAPTERFILE = addchapter.sce
-
 install-html-local:
-	@echo "-- Install of htm help files --"; \
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-	for dir in $(DOCDIRS) ; do \
-		if test -d $$dir; then \
-			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-				done ; \
-			fi; \
-			if ls -lLd $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
-				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
-					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-				done ; \
-			fi; \
-		fi; \
-	done
-	@echo "-- Install of images help files --"; \
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-	for dir in $(DOCIMGDIRS) ; do \
-	 if test -d $$dir; then \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
-		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-		  done ; \
-		fi; \
-	 fi; \
-	done
-
 if INSTALL_HELP_XML
 # If the user wants the help sources to be installed
 	@echo "-- Install of XML sources of help files --"; \
@@ -264,17 +220,11 @@ install-data-local:
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-if GUI
+if NEED_JAVA
 clean-local: clean-java clean-macros
 else
 clean-local: clean-macros
 endif
-# Removes documentation (*.htm generated from .xml) 
-	@for dir in $(DOCDIRS) ; do \
-		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
-			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
-			rm -f $(srcdir)/$$dir/$(DOCMASK); \
-		fi; \
-	done
+
 
 .PHONY: macros java swig giws

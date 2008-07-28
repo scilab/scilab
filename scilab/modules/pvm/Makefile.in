@@ -74,10 +74,10 @@ host_triplet = @host@
 DIST_COMMON = $(am__libscipvm_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@@PVM_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@@PVM_TRUE@am__append_1 = java
 @PVM_TRUE@@SWIG_TRUE@am__append_2 = swig
 @GIWS_TRUE@@PVM_TRUE@am__append_3 = giws
-@GUI_TRUE@@PVM_FALSE@am__append_4 = java
+@NEED_JAVA_TRUE@@PVM_FALSE@am__append_4 = java
 @PVM_FALSE@@SWIG_TRUE@am__append_5 = swig
 @GIWS_TRUE@@PVM_FALSE@am__append_6 = giws
 subdir = modules/pvm
@@ -529,7 +529,7 @@ top_srcdir = @top_srcdir@
 
 ########### INSTALL DOCUMENTATION ###################
 
-# Install HTML files into the right target
+# Install documentation files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
@@ -539,7 +539,7 @@ top_srcdir = @top_srcdir@
 
 ########### INSTALL DOCUMENTATION ###################
 
-# Install HTML files into the right target
+# Install documentation files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
@@ -553,33 +553,11 @@ top_srcdir = @top_srcdir@
 # Which directories we have to install
 @PVM_TRUE@DOCDIRS = help/fr_FR help/en_US
 
-# What is the mask of the help output
-@PVM_FALSE@DOCMASK = *.htm
-
-# What is the mask of the help output
-@PVM_TRUE@DOCMASK = *.htm
-
-# Which directories we have to install
-@PVM_FALSE@DOCIMGDIRS = help/images
-
-# Which directories we have to install
-@PVM_TRUE@DOCIMGDIRS = help/images
-# What is the mask of the help images
-@PVM_FALSE@DOCIMGMASK = *
-# What is the mask of the help images
-@PVM_TRUE@DOCIMGMASK = *
-
 # What is the mask of the help source
 @PVM_FALSE@DOCMASKXML = *.xml
 
 # What is the mask of the help source
 @PVM_TRUE@DOCMASKXML = *.xml
-
-# Chapter file
-@PVM_FALSE@HELP_CHAPTERFILE = addchapter.sce
-
-# Chapter file
-@PVM_TRUE@HELP_CHAPTERFILE = addchapter.sce
 
 ########### INSTALL DATA ###################
 # Install macros
@@ -1363,21 +1341,21 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	COMMAND="test_run('$(modulename)');quit";\
 @PVM_TRUE@	export LANG=C;\
 @PVM_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@@PVM_TRUE@java:
+@NEED_JAVA_TRUE@@PVM_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@@PVM_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@PVM_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@@PVM_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@@PVM_TRUE@		$(ANT); \
-@GUI_TRUE@@PVM_TRUE@	fi
+@NEED_JAVA_TRUE@@PVM_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@@PVM_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@@PVM_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@@PVM_TRUE@		$(ANT); \
+@NEED_JAVA_TRUE@@PVM_TRUE@	fi
 
-@GUI_TRUE@@PVM_TRUE@clean-java:
+@NEED_JAVA_TRUE@@PVM_TRUE@clean-java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@@PVM_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@PVM_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@@PVM_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@@PVM_TRUE@		$(ANT) clean; \
-@GUI_TRUE@@PVM_TRUE@	fi
+@NEED_JAVA_TRUE@@PVM_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@@PVM_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@@PVM_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@@PVM_TRUE@		$(ANT) clean; \
+@NEED_JAVA_TRUE@@PVM_TRUE@	fi;
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -1414,8 +1392,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@clean-macros:
 # Removes macros (*.bin generated from .sci)
 @PVM_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-@PVM_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-@PVM_TRUE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+@PVM_TRUE@		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
+@PVM_TRUE@		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 @PVM_TRUE@	done
 
 @PVM_TRUE@all-local: $(TARGETS_ALL)
@@ -1429,39 +1407,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	fi )
 
 @PVM_TRUE@install-html-local:
-@PVM_TRUE@	@echo "-- Install of htm help files --"; \
-@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-@PVM_TRUE@	for dir in $(DOCDIRS) ; do \
-@PVM_TRUE@		if test -d $$dir; then \
-@PVM_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@PVM_TRUE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-@PVM_TRUE@				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-@PVM_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@PVM_TRUE@				done ; \
-@PVM_TRUE@			fi; \
-@PVM_TRUE@			if ls -lLd $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
-@PVM_TRUE@				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
-@PVM_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@PVM_TRUE@				done ; \
-@PVM_TRUE@			fi; \
-@PVM_TRUE@		fi; \
-@PVM_TRUE@	done
-@PVM_TRUE@	@echo "-- Install of images help files --"; \
-@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-@PVM_TRUE@	for dir in $(DOCIMGDIRS) ; do \
-@PVM_TRUE@	 if test -d $$dir; then \
-@PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
-@PVM_TRUE@		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
-@PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@PVM_TRUE@		  done ; \
-@PVM_TRUE@		fi; \
-@PVM_TRUE@	 fi; \
-@PVM_TRUE@	done
-
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	@echo "-- Install of XML sources of help files --"; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	for dir in $(DOCDIRS) ; do \
@@ -1520,15 +1465,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@@PVM_TRUE@clean-local: clean-java clean-macros
-@GUI_FALSE@@PVM_TRUE@clean-local: clean-macros
-# Removes documentation (*.htm generated from .xml) 
-@PVM_TRUE@	@for dir in $(DOCDIRS) ; do \
-@PVM_TRUE@		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
-@PVM_TRUE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
-@PVM_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
-@PVM_TRUE@		fi; \
-@PVM_TRUE@	done
+@NEED_JAVA_TRUE@@PVM_TRUE@clean-local: clean-java clean-macros
+@NEED_JAVA_FALSE@@PVM_TRUE@clean-local: clean-macros
 
 @PVM_TRUE@.PHONY: macros java swig giws
 
@@ -1540,21 +1478,21 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	COMMAND="test_run('$(modulename)');quit";\
 @PVM_FALSE@	export LANG=C;\
 @PVM_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@@PVM_FALSE@java:
+@NEED_JAVA_TRUE@@PVM_FALSE@java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@@PVM_FALSE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@PVM_FALSE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@@PVM_FALSE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@@PVM_FALSE@		$(ANT); \
-@GUI_TRUE@@PVM_FALSE@	fi
+@NEED_JAVA_TRUE@@PVM_FALSE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@@PVM_FALSE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@@PVM_FALSE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@@PVM_FALSE@		$(ANT); \
+@NEED_JAVA_TRUE@@PVM_FALSE@	fi
 
-@GUI_TRUE@@PVM_FALSE@clean-java:
+@NEED_JAVA_TRUE@@PVM_FALSE@clean-java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@@PVM_FALSE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@PVM_FALSE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@@PVM_FALSE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@@PVM_FALSE@		$(ANT) clean; \
-@GUI_TRUE@@PVM_FALSE@	fi
+@NEED_JAVA_TRUE@@PVM_FALSE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@@PVM_FALSE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@@PVM_FALSE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@@PVM_FALSE@		$(ANT) clean; \
+@NEED_JAVA_TRUE@@PVM_FALSE@	fi;
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -1591,8 +1529,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@clean-macros:
 # Removes macros (*.bin generated from .sci)
 @PVM_FALSE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-@PVM_FALSE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-@PVM_FALSE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+@PVM_FALSE@		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
+@PVM_FALSE@		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 @PVM_FALSE@	done
 
 @PVM_FALSE@all-local: $(TARGETS_ALL)
@@ -1606,39 +1544,6 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	fi )
 
 @PVM_FALSE@install-html-local:
-@PVM_FALSE@	@echo "-- Install of htm help files --"; \
-@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-@PVM_FALSE@	for dir in $(DOCDIRS) ; do \
-@PVM_FALSE@		if test -d $$dir; then \
-@PVM_FALSE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@PVM_FALSE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-@PVM_FALSE@				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-@PVM_FALSE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_FALSE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@PVM_FALSE@				done ; \
-@PVM_FALSE@			fi; \
-@PVM_FALSE@			if ls -lLd $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
-@PVM_FALSE@				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
-@PVM_FALSE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_FALSE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@PVM_FALSE@				done ; \
-@PVM_FALSE@			fi; \
-@PVM_FALSE@		fi; \
-@PVM_FALSE@	done
-@PVM_FALSE@	@echo "-- Install of images help files --"; \
-@PVM_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-@PVM_FALSE@	for dir in $(DOCIMGDIRS) ; do \
-@PVM_FALSE@	 if test -d $$dir; then \
-@PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@PVM_FALSE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
-@PVM_FALSE@		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
-@PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@PVM_FALSE@		  done ; \
-@PVM_FALSE@		fi; \
-@PVM_FALSE@	 fi; \
-@PVM_FALSE@	done
-
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	@echo "-- Install of XML sources of help files --"; \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	for dir in $(DOCDIRS) ; do \
@@ -1697,15 +1602,8 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@@PVM_FALSE@clean-local: clean-java clean-macros
-@GUI_FALSE@@PVM_FALSE@clean-local: clean-macros
-# Removes documentation (*.htm generated from .xml) 
-@PVM_FALSE@	@for dir in $(DOCDIRS) ; do \
-@PVM_FALSE@		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
-@PVM_FALSE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
-@PVM_FALSE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
-@PVM_FALSE@		fi; \
-@PVM_FALSE@	done
+@NEED_JAVA_TRUE@@PVM_FALSE@clean-local: clean-java clean-macros
+@NEED_JAVA_FALSE@@PVM_FALSE@clean-local: clean-macros
 
 @PVM_FALSE@.PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

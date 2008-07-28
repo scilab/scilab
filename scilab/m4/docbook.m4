@@ -11,9 +11,9 @@ DOCBOOK_OK=no
 DOCBOOK_ROOT=
 
 AC_ARG_WITH(docbook,
-		AC_HELP_STRING([--with-umfpack-library=DIR],[Set the path to the UMFPACK libraries]),
-		[with_umfpack_library=$withval],
-		[with_umfpack_library='yes']
+		AC_HELP_STRING([--with-docbook=DIR],[Set the path to the docbook package]),
+		[with_docbook=$withval],
+		[with_docbook='yes']
 		)
 
 	for dir in /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/; do

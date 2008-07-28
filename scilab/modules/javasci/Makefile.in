@@ -62,7 +62,7 @@ host_triplet = @host@
 DIST_COMMON = $(am__libjavasci_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@@JAVASCI_TRUE@am__append_1 = java
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@am__append_1 = java
 @JAVASCI_TRUE@@SWIG_TRUE@am__append_2 = swig
 @GIWS_TRUE@@JAVASCI_TRUE@am__append_3 = giws
 subdir = modules/javasci
@@ -438,7 +438,7 @@ modulename = javasci
 
 ########### INSTALL DOCUMENTATION ###################
 
-# Install HTML files into the right target
+# Install documentation files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
@@ -449,19 +449,8 @@ modulename = javasci
 # Which directories we have to install
 @JAVASCI_TRUE@DOCDIRS = help/fr_FR help/en_US
 
-# What is the mask of the help output
-@JAVASCI_TRUE@DOCMASK = *.htm
-
-# Which directories we have to install
-@JAVASCI_TRUE@DOCIMGDIRS = help/images
-# What is the mask of the help images
-@JAVASCI_TRUE@DOCIMGMASK = *
-
 # What is the mask of the help source
 @JAVASCI_TRUE@DOCMASKXML = *.xml
-
-# Chapter file
-@JAVASCI_TRUE@HELP_CHAPTERFILE = addchapter.sce
 
 ########### INSTALL DATA ###################
 # Install macros
@@ -930,21 +919,21 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	COMMAND="test_run('$(modulename)');quit";\
 @JAVASCI_TRUE@	export LANG=C;\
 @JAVASCI_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@@JAVASCI_TRUE@java:
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@@JAVASCI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@JAVASCI_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@@JAVASCI_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@@JAVASCI_TRUE@		$(ANT); \
-@GUI_TRUE@@JAVASCI_TRUE@	fi
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@		$(ANT); \
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@	fi
 
-@GUI_TRUE@@JAVASCI_TRUE@clean-java:
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@clean-java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@@JAVASCI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@JAVASCI_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@@JAVASCI_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@@JAVASCI_TRUE@		$(ANT) clean; \
-@GUI_TRUE@@JAVASCI_TRUE@	fi
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@		$(ANT) clean; \
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@	fi;
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -981,8 +970,8 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@clean-macros:
 # Removes macros (*.bin generated from .sci)
 @JAVASCI_TRUE@	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-@JAVASCI_TRUE@		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-@JAVASCI_TRUE@		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+@JAVASCI_TRUE@		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
+@JAVASCI_TRUE@		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 @JAVASCI_TRUE@	done
 
 @JAVASCI_TRUE@all-local: $(TARGETS_ALL)
@@ -996,39 +985,6 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	fi )
 
 @JAVASCI_TRUE@install-html-local:
-@JAVASCI_TRUE@	@echo "-- Install of htm help files --"; \
-@JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-@JAVASCI_TRUE@	for dir in $(DOCDIRS) ; do \
-@JAVASCI_TRUE@		if test -d $$dir; then \
-@JAVASCI_TRUE@			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@JAVASCI_TRUE@			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-@JAVASCI_TRUE@				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-@JAVASCI_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@JAVASCI_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@JAVASCI_TRUE@				done ; \
-@JAVASCI_TRUE@			fi; \
-@JAVASCI_TRUE@			if ls -lLd $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
-@JAVASCI_TRUE@				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
-@JAVASCI_TRUE@					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@JAVASCI_TRUE@					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@JAVASCI_TRUE@				done ; \
-@JAVASCI_TRUE@			fi; \
-@JAVASCI_TRUE@		fi; \
-@JAVASCI_TRUE@	done
-@JAVASCI_TRUE@	@echo "-- Install of images help files --"; \
-@JAVASCI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-@JAVASCI_TRUE@	for dir in $(DOCIMGDIRS) ; do \
-@JAVASCI_TRUE@	 if test -d $$dir; then \
-@JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@JAVASCI_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
-@JAVASCI_TRUE@		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
-@JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-@JAVASCI_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-@JAVASCI_TRUE@		  done ; \
-@JAVASCI_TRUE@		fi; \
-@JAVASCI_TRUE@	 fi; \
-@JAVASCI_TRUE@	done
-
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	@echo "-- Install of XML sources of help files --"; \
 @INSTALL_HELP_XML_TRUE@@JAVASCI_TRUE@	for dir in $(DOCDIRS) ; do \
@@ -1087,15 +1043,8 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@@JAVASCI_TRUE@clean-local: clean-java clean-macros
-@GUI_FALSE@@JAVASCI_TRUE@clean-local: clean-macros
-# Removes documentation (*.htm generated from .xml) 
-@JAVASCI_TRUE@	@for dir in $(DOCDIRS) ; do \
-@JAVASCI_TRUE@		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
-@JAVASCI_TRUE@			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
-@JAVASCI_TRUE@			rm -f $(srcdir)/$$dir/$(DOCMASK); \
-@JAVASCI_TRUE@		fi; \
-@JAVASCI_TRUE@	done
+@JAVASCI_TRUE@@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
+@JAVASCI_TRUE@@NEED_JAVA_FALSE@clean-local: clean-macros
 
 @JAVASCI_TRUE@.PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

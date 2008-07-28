@@ -56,7 +56,7 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_1 = java
 @SWIG_TRUE@am__append_2 = swig
 @GIWS_TRUE@am__append_3 = giws
 subdir = modules/helptools
@@ -1081,21 +1081,21 @@ check-local: $(top_builddir)/scilab-bin
 	COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@java:
+@NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@		$(ANT); \
-@GUI_TRUE@	fi
+@NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@		$(ANT); \
+@NEED_JAVA_TRUE@	fi
 
-@GUI_TRUE@clean-java:
+@NEED_JAVA_TRUE@clean-java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
-@GUI_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
-@GUI_TRUE@		$(ANT) clean; \
-@GUI_TRUE@	fi
+@NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@		$(ANT) clean; \
+@NEED_JAVA_TRUE@	fi;
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -1132,8 +1132,8 @@ macros:
 clean-macros:
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
+		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
 
 all-local: $(TARGETS_ALL)
@@ -1205,15 +1205,8 @@ install-data-local:
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@clean-local: clean-java clean-macros
-@GUI_FALSE@clean-local: clean-macros
-# Removes documentation (*.htm generated from .xml) 
-	@for dir in $(DOCDIRS) ; do \
-		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
-			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
-			rm -f $(srcdir)/$$dir/$(DOCMASK); \
-		fi; \
-	done
+@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
+@NEED_JAVA_FALSE@clean-local: clean-macros
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
