@@ -25,10 +25,10 @@ shell \
 completion \
 localization \
 console \
+graphic_export \
 gui \
 jvm \
 graphics \
-graphic_export \
 optimization \
 symbolic \
 randlib \

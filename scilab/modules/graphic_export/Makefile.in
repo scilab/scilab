@@ -95,10 +95,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @GUI_TRUE@libscigraphic_export_la_DEPENDENCIES =  \
-@GUI_TRUE@	$(top_builddir)/modules/jvm/libscijvm.la \
 @GUI_TRUE@	$(top_builddir)/modules/core/libscicore.la \
-@GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@GUI_TRUE@	$(top_builddir)/modules/graphics/libscigraphics.la
+@GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscigraphic_export_la_SOURCES_DIST =  \
 	src/nographic_export/nographic_export.c src/c/xs2file.c \
 	src/jni/GL2PSConstant_wrap.c src/jni/GL2PSWrapping_wrap.c \
@@ -411,7 +409,7 @@ top_srcdir = @top_srcdir@
 
 # All the sources needed by libscigraphic_export.la
 @GUI_TRUE@libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
-@GUI_TRUE@libscigraphic_export_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/graphics/libscigraphics.la
+@GUI_TRUE@libscigraphic_export_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 @GUI_TRUE@GIWS_WRAPPERS = src/jni/FileExporter.giws.xml \
 @GUI_TRUE@src/jni/GL2PSToJOGL.giws.xml \
 @GUI_TRUE@src/jni/JOGLConstant.giws.xml

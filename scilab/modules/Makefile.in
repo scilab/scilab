@@ -129,7 +129,7 @@ CTAGS = ctags
 DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	elementary_functions string dynamic_link history_manager \
 	fileio spreadsheet tclsci renderer shell completion \
-	localization console gui jvm graphics graphic_export \
+	localization console graphic_export gui jvm graphics \
 	optimization symbolic randlib statistics special_functions \
 	interpolation linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double pvm io \
@@ -332,7 +332,7 @@ top_srcdir = @top_srcdir@
 SUBDIRS = core output_stream action_binding arnoldi \
 	elementary_functions string dynamic_link history_manager \
 	fileio spreadsheet tclsci renderer shell completion \
-	localization console gui jvm graphics graphic_export \
+	localization console graphic_export gui jvm graphics \
 	optimization symbolic randlib statistics special_functions \
 	interpolation linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double pvm io \
