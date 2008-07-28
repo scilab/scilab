@@ -31,12 +31,12 @@ int  DestroyUicontrol (sciPointObj * pthis)
 
   if  (pUICONTROL_FEATURE (pthis)->backgroundcolor != NULL)
     {
-      FREE (pUICONTROL_FEATURE (pthis)->backgroundcolor);
+      delete[] (pUICONTROL_FEATURE (pthis)->backgroundcolor);
     }
 
   if (pUICONTROL_FEATURE (pthis)->foregroundcolor != NULL)
     {
-      FREE (pUICONTROL_FEATURE (pthis)->foregroundcolor);
+      delete[] (pUICONTROL_FEATURE (pthis)->foregroundcolor);
     }
 
   if (pUICONTROL_FEATURE (pthis)->callback != NULL)
@@ -46,22 +46,22 @@ int  DestroyUicontrol (sciPointObj * pthis)
 
   if (pUICONTROL_FEATURE (pthis)->tag != NULL)
     {
-      FREE (pUICONTROL_FEATURE (pthis)->tag);
+      delete[] (pUICONTROL_FEATURE (pthis)->tag);
     }
 
   if (pUICONTROL_FEATURE (pthis)->value != NULL)
     {
-      FREE (pUICONTROL_FEATURE (pthis)->value);
+      delete[] (pUICONTROL_FEATURE (pthis)->value);
     }
 
   if (pUICONTROL_FEATURE (pthis)->listboxTop != NULL)
     {
-      FREE (pUICONTROL_FEATURE (pthis)->listboxTop);
+      delete[] (pUICONTROL_FEATURE (pthis)->listboxTop);
     }
 
   if (pUICONTROL_FEATURE (pthis)->sliderStep != NULL)
     {
-      FREE (pUICONTROL_FEATURE (pthis)->sliderStep);
+      delete[] (pUICONTROL_FEATURE (pthis)->sliderStep);
     }
 
   return sciStandardDestroyOperations(pthis) ;

@@ -32,7 +32,7 @@ int DestroyUimenu (sciPointObj * pthis)
 
   if (pUIMENU_FEATURE (pthis)->foregroundcolor != NULL)
     {
-      FREE (pUIMENU_FEATURE (pthis)->foregroundcolor);
+      delete[] (pUIMENU_FEATURE (pthis)->foregroundcolor);
     }
 
   if (pUIMENU_FEATURE (pthis)->callback != NULL)
@@ -42,7 +42,7 @@ int DestroyUimenu (sciPointObj * pthis)
 
   if (pUIMENU_FEATURE (pthis)->tag != NULL)
     {
-      FREE (pUIMENU_FEATURE (pthis)->tag);
+      delete[] (pUIMENU_FEATURE (pthis)->tag);
     }
 
   if (pUIMENU_FEATURE (pthis)->user_data != NULL)
