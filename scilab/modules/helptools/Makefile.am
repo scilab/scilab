@@ -23,6 +23,8 @@ libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES)
 
+libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
+
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
 
 #### Target ######
