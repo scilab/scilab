@@ -933,14 +933,16 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @GUI_TRUE@@JAVASCI_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @GUI_TRUE@@JAVASCI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@JAVASCI_TRUE@	if test -f build.xml -a $(USEANT) -eq 1; then \
+@GUI_TRUE@@JAVASCI_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@GUI_TRUE@@JAVASCI_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @GUI_TRUE@@JAVASCI_TRUE@		$(ANT); \
 @GUI_TRUE@@JAVASCI_TRUE@	fi
 
 @GUI_TRUE@@JAVASCI_TRUE@clean-java:
 # Some configurations needs to export JAVA_HOME in the current env
 @GUI_TRUE@@JAVASCI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@JAVASCI_TRUE@	if test -f build.xml -a $(USEANT) -eq 1; then \
+@GUI_TRUE@@JAVASCI_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@GUI_TRUE@@JAVASCI_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
 @GUI_TRUE@@JAVASCI_TRUE@		$(ANT) clean; \
 @GUI_TRUE@@JAVASCI_TRUE@	fi
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
