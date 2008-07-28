@@ -12,7 +12,7 @@
  *
  -->
  
-<project name="renderer" default="compile">
+<project name="renderer" default="jar">
   <import file="../../build.incl.xml"/>
 
   <property name="library.name" value="${library.renderer.name}" />
@@ -21,13 +21,4 @@
 	Build the renderer Scilab module
   </description>
 
-<!-- 
-  <target name="compile" description="build sources" depends="init,checkstyle-scilab">
--->
-  <target name="jar" description="Build the jar file" depends="compile">
-	<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
-	  <manifest>
-	  </manifest>
-	</jar>
-  </target>
 </project>

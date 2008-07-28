@@ -33,17 +33,10 @@
 	<property name="modules.dir"                 value="${base.dir}/modules" />
 	
 	<property file="${base.dir}/scilab-lib.properties"/>
+
+	<property file="${base.dir}/scilab-lib-doc.properties"/>
 	
-	<!-- Loading of the thirdparty libraries
-	We could specify one by one library that we are using -->
-	<!--  <path id="classpath">
-		<fileset dir="${thirdparty.dir}" includes="**/*.jar"/>
-	</path>
-		<classpath id="compile.classpath"
-			path="${oro.jar}:${xalan.jar}"
-		/>
-	-->
-	
+
 	<path id="checkstyle.classpath">
 		<pathelement location="${checkstyle.jar}"/>
 	</path>
@@ -76,8 +69,17 @@
 		
 		<pathelement location="${jhall.jar}"/>
 
+	<!-- Only usefull for the documentation -->	
+		<pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
+		<pathelement location="${batik.jar}"/>
+
+		<pathelement location="${saxon.jar}"/>
+
+		<pathelement location="${fop.jar}"/>
+
+		<pathelement location="${jeuclid-core.jar}"/>
 	</path>
-	
+
 	<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
 	
 	<!-- Checkstyle process -->
@@ -146,7 +148,7 @@
 			source="5"
 			/>
 	</target>
-	
+
 	<!-- Create the jar -->
 	<target name="jar" description="Build the jar file" depends="compile">
 	

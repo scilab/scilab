@@ -12,7 +12,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<project name="console" default="compile">
+<project name="console" default="jar">
   <import file="../../build.incl.xml"/>
 
   <property name="library.name" value="${library.console.name}" />
@@ -21,13 +21,4 @@
 	Build the console Scilab module
   </description>
 
-<!--
-  <target name="compile" description="build sources" depends="init,checkstyle-scilab">
--->
-  <target name="jar" description="Build the jar file" depends="compile">
-	<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
-	  <manifest>
-	  </manifest>
-	</jar>
-  </target>
 </project>

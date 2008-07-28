@@ -12,7 +12,7 @@
  *
  -->
 
-<project name="graphic_export" default="compile">
+<project name="graphic_export" default="jar">
   <import file="../../build.incl.xml"/>
 
   <property name="library.name" value="${library.graphic_export.name}" />
@@ -21,13 +21,4 @@
 	Build the graphic export Scilab module
   </description>
 
-<!-- 
-  <target name="compile" description="build sources" depends="init,checkstyle-scilab">
--->
-  <target name="jar" description="Build the jar file" depends="compile">
-	<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
-	  <manifest>
-	  </manifest>
-	</jar>
-  </target>
 </project>

@@ -13,7 +13,7 @@
  *
  -->
 
-<project name="action_binding" default="compile">
+<project name="action_binding" default="jar">
   <import file="../../build.incl.xml"/>
 
   <property name="library.name" value="${library.action_binding.name}" />
@@ -22,14 +22,5 @@
 	Build the action_binding Scilab module
   </description>
 
-<!-- 
-  <target name="compile" description="build sources" depends="init,checkstyle-scilab">
--->
-  <target name="jar" description="Build the jar file" depends="compile">
-	<jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
-	  <manifest>
-	  </manifest>
-	</jar>
-  </target>
 </project>
 
