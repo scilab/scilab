@@ -996,7 +996,8 @@ if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
 	HELP_ENABLE=yes
 
 fi #build help
- 
+AM_CONDITIONAL(BUILD_HELP, test "$enable_build_help" = "yes")
+
 AC_ARG_WITH(install-help-xml,
 		AC_HELP_STRING([--with-install-help-xml],[make install will install XML files]),
 		[with_install_help_xml=$withval],
