@@ -105,6 +105,19 @@ start_profiling_visu() {
 	  fi
 }
 
+find_docbook_path() {
+	if test -z "$DOCBOOK_ROOT"; then
+		for dir in /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/;	do
+			if test -d "$dir"; then
+				export DOCBOOK_ROOT=$dir
+			fi
+		done
+	fi
+	if test $SCIVERBOSE -ne 0; then
+		echo "DOCBOOK : $DOCBOOK_ROOT"
+	fi
+}
+
 
 SCILABBIN="scilab-bin"
 
@@ -424,6 +437,8 @@ if test $SCIVERBOSE -ne 0; then
 fi
 export LD_LIBRARY_PATH
 export PATH
+
+find_docbook_path
 
 do_scilex()
 {
