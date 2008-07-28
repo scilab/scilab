@@ -13,7 +13,8 @@ pkglib_LTLIBRARIES = libscihelptools.la
 
 libscihelptools_la_CFLAGS=  	-Iincludes/ 
 
-libscihelptools_la_CPPFLAGS= -Isrc/jni/ \
+libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
+				-Isrc/jni/ \
 				-Iincludes/ \
 				-I$(top_srcdir)/modules/jvm/includes \
 				-I$(top_builddir)/modules/output_stream/includes/
