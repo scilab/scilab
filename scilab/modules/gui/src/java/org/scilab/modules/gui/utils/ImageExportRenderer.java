@@ -67,13 +67,13 @@ public class ImageExportRenderer implements GLEventListener {
 		GL gl = canvas.getGL();
 		
 		// use the lastly modified buffer
-		gl.glReadBuffer(GL.GL_FRONT);
+		canvas.getContext().makeCurrent();
 		
 		// Copy buffer into exported image
 		exportedImage = Screenshot.readToBufferedImage(canvas.getWidth(), canvas.getHeight());
 		
 		// back to default value
-		gl.glReadBuffer(GL.GL_BACK);
+		canvas.getContext().release();
 		
 	}
 	
