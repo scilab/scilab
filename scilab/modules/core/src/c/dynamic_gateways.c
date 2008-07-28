@@ -16,6 +16,22 @@
 #include "gw_dynamic_generic.h"
 /*--------------------------------------------------------------------------*/
 /* optimization module */
+#define HELPTOOLS_MODULE_NAME "helptools"
+static DynLibHandle hHelptoolsLib = NULL;
+static PROC_GATEWAY ptr_gw_helptools = NULL;
+static char* dynlibname_helptools = NULL;
+static char* gatewayname_helptools = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_helptools(void)
+{
+	return gw_dynamic_generic(HELPTOOLS_MODULE_NAME,
+		&dynlibname_helptools,
+		&gatewayname_helptools,
+		&hHelptoolsLib,
+		&ptr_gw_helptools);
+}
+/*--------------------------------------------------------------------------*/
+/* optimization module */
 #define OPTIMIZATION_MODULE_NAME "optimization"
 static DynLibHandle hOptimizationLib = NULL;
 static PROC_GATEWAY ptr_gw_optimization = NULL;

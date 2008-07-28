@@ -13,6 +13,14 @@
 #define __DYNAMIC_GATEWAYS_H__
 
 /**
+* helptools gateway
+* helptools is loaded dynamically at runtime
+* load gw_helptools in SCI/modules/helptools/sci_gateway/gw_helptools.c
+*/
+int gw_dynamic_helptools(void);
+
+
+/**
 * optimization gateway
 * optimization is loaded dynamically at runtime
 * load gw_optimization in SCI/modules/optimization/sci_gateway/gw_optimization.c

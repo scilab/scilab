@@ -95,6 +95,7 @@
 /* 58 */						#include "dynamic_gateways.h" /* UMFPACK */
 
 /* 59 */						#include "dynamic_gateways.h" /* matio */
+/* 60 */						#include "dynamic_gateways.h" /* helptools */
 
 /*-------------------------------------
  * long jump to stop interface computation
