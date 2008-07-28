@@ -40,6 +40,6 @@ Source: modules\{#MATIO}\sci_gateway\matio_gateway.xml; DestDir: {app}\modules\{
 ;
 ;Source: modules\{#MATIO}\demos\*.*; DestDir: {app}\modules\{#MATIO}\demos; Flags: recursesubdirs; Components: {#COMPN_MATIO}
 ;
-;Source: modules\{#MATIO}\tests\*.*; DestDir: {app}\modules\{#MATIO}\tests; Flags: recursesubdirs; Components: {#COMPN_MATIO} and {#COMPN_TESTS}
+Source: modules\{#MATIO}\tests\*.*; DestDir: {app}\modules\{#MATIO}\tests; Flags: recursesubdirs; Components: {#COMPN_MATIO} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
