@@ -29,7 +29,7 @@ scilab_bin_CFLAGS 		=
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la
 
-if GUI
+if NEED_JAVA
 	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
 #	$(X_EXTRA_LIBS) -lXt -lX11 -lSM -lGLU
 #else
@@ -172,6 +172,14 @@ localization:
 	(cd $(top_srcdir)/modules/localization/; $(ANT) jar);
 endif
 
+# Misc variable for the documentation installation
+
+# How help files look like.
+DOCMASK=scilab_*_help.jar
+
+# Path to builded files
+PATHTOHELPFILES = modules/helptools/jar/
+
 install-data-local:
 	@$(mkinstalldirs) $(DESTDIR)$(localedir); \
 	echo $(mkinstalldirs) $(DESTDIR)$(localedir); \
@@ -182,6 +190,20 @@ install-data-local:
 		echo $(INSTALL_DATA) locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
 		$(INSTALL_DATA) locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
 	done
+
+################ INSTALL DOCUMENTATION #################
+# Starting from Scilab 5, documentation file are provided by Docbook
+# In the Scilab application we are generating a JavaHelp file.
+if BUILD_HELP
+	@$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
+	echo $(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
+	if ls -lLd $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) >/dev/null 2>&1; then \
+		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK); do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES)" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES) ; \
+		done; \
+	fi
+endif
 
 # Pkgconfig directory
 pkgconfigdir = $(libdir)/pkgconfig

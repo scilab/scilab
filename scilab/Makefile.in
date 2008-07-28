@@ -377,6 +377,14 @@ $(top_srcdir)/etc/toolboxes.xml
 profilingdir = $(pkgdatadir)/tools/profiling/
 profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
+# Misc variable for the documentation installation
+
+# How help files look like.
+DOCMASK = scilab_*_help.jar
+
+# Path to builded files
+PATHTOHELPFILES = modules/helptools/jar/
+
 # Pkgconfig directory
 pkgconfigdir = $(libdir)/pkgconfig
 
@@ -1023,7 +1031,7 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	uninstall-rootDATA
 
 
-@GUI_TRUE@	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
+@NEED_JAVA_TRUE@	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
 
 all-local: $(TARGETS_ALL)
 
@@ -1129,6 +1137,18 @@ install-data-local:
 		echo $(INSTALL_DATA) locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
 		$(INSTALL_DATA) locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
 	done
+
+################ INSTALL DOCUMENTATION #################
+# Starting from Scilab 5, documentation file are provided by Docbook
+# In the Scilab application we are generating a JavaHelp file.
+@BUILD_HELP_TRUE@	@$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
+@BUILD_HELP_TRUE@	echo $(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
+@BUILD_HELP_TRUE@	if ls -lLd $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) >/dev/null 2>&1; then \
+@BUILD_HELP_TRUE@		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK); do \
+@BUILD_HELP_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES)" ; \
+@BUILD_HELP_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES) ; \
+@BUILD_HELP_TRUE@		done; \
+@BUILD_HELP_TRUE@	fi
 
 .PHONY: macros localization doc
 
