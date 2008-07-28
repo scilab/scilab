@@ -761,7 +761,11 @@ JARMASK = *.jar
 @GUI_TRUE@	$(JAVA_JNI_INCLUDE) \
 @GUI_TRUE@	-I$(top_srcdir)/modules/jvm/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/string/includes/
-@GUI_TRUE@libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ \
+@GUI_TRUE@libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+@GUI_TRUE@			-Iincludes/ \
+@GUI_TRUE@			-Isrc/cpp/ \
+@GUI_TRUE@			-Isrc/c/ \
+@GUI_TRUE@			-Isrc/jni/ \
 @GUI_TRUE@	 		-I$(top_srcdir)/modules/jvm/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/src/jni/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/includes/ \
@@ -2411,14 +2415,14 @@ check-local: $(top_builddir)/scilab-bin
 @GUI_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@	if test -f build.xml; then \
+@GUI_TRUE@	if test -f build.xml -a $(USEANT) -eq 1; then \
 @GUI_TRUE@		$(ANT); \
 @GUI_TRUE@	fi
 
 @GUI_TRUE@clean-java:
 # Some configurations needs to export JAVA_HOME in the current env
 @GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@	if test -f build.xml; then \
+@GUI_TRUE@	if test -f build.xml -a $(USEANT) -eq 1; then \
 @GUI_TRUE@		$(ANT) clean; \
 @GUI_TRUE@	fi
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 

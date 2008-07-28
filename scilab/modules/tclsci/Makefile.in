@@ -1378,14 +1378,14 @@ uninstall-am: uninstall-libscitclsci_la_demossciGUIDATA \
 @GUI_TRUE@@TCLTK_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @GUI_TRUE@@TCLTK_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@TCLTK_TRUE@	if test -f build.xml; then \
+@GUI_TRUE@@TCLTK_TRUE@	if test -f build.xml -a $(USEANT) -eq 1; then \
 @GUI_TRUE@@TCLTK_TRUE@		$(ANT); \
 @GUI_TRUE@@TCLTK_TRUE@	fi
 
 @GUI_TRUE@@TCLTK_TRUE@clean-java:
 # Some configurations needs to export JAVA_HOME in the current env
 @GUI_TRUE@@TCLTK_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@@TCLTK_TRUE@	if test -f build.xml; then \
+@GUI_TRUE@@TCLTK_TRUE@	if test -f build.xml -a $(USEANT) -eq 1; then \
 @GUI_TRUE@@TCLTK_TRUE@		$(ANT) clean; \
 @GUI_TRUE@@TCLTK_TRUE@	fi
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 

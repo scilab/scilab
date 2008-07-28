@@ -169,9 +169,15 @@ libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/cpp/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/
 
-libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/string/includes/
+libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) \
+			-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/string/includes/
 
-libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/cpp/ -Isrc/c/ -Isrc/jni/ \
+libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+			-Iincludes/ \
+			-Isrc/cpp/ \
+			-Isrc/c/ \
+			-Isrc/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
