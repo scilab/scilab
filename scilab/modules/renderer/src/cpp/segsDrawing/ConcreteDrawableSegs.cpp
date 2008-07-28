@@ -14,6 +14,12 @@
 
 #include "ConcreteDrawableSegs.hxx"
 
+extern "C"
+{
+#include "sciprint.h"
+#include "localization.h"
+}
+
 namespace sciGraphics
 {
 
@@ -86,26 +92,66 @@ void ConcreteDrawableSegs::getBoundingBox(double bounds[6])
   m_pDecomposer->getBoundingBox(bounds);
 }
 /*---------------------------------------------------------------------------------*/
-void ConcreteDrawableSegs::drawSegs(void)
+DrawableObject::EDisplayStatus ConcreteDrawableSegs::drawSegs(void)
 {
   int nbSegs = getNbSegment();
-  double * xStarts = new double[nbSegs];
-  double * xEnds   = new double[nbSegs];
-  double * yStarts = new double[nbSegs];
-  double * yEnds   = new double[nbSegs];
-  double * zStarts = new double[nbSegs];
-  double * zEnds   = new double[nbSegs];
+  double * xStarts = NULL;
+  double * xEnds   = NULL;
+  double * yStarts = NULL;
+  double * yEnds   = NULL;
+  double * zStarts = NULL;
+  double * zEnds   = NULL;
   int * colors = NULL;
 
+  try
+  {
+    // allocation
+    xStarts = new double[nbSegs];
+    xEnds   = new double[nbSegs];
+    yStarts = new double[nbSegs];
+    yEnds   = new double[nbSegs];
+    zStarts = new double[nbSegs];
+    zEnds   = new double[nbSegs];
+    if (isColored())
+    {
+      colors  = new int[nbSegs];
+    }
+  }
+  catch (std::exception e)
+  {
+    // allocation failed
+    sciprint(_("%s: No more memory.\n"),"ConcreteDrawableSegs::drawSegs");
+    if(xStarts != NULL) { delete[] xStarts; }
+    if(xEnds != NULL)   { delete[] xEnds; }
+    if(yStarts != NULL) { delete[] yStarts; }
+    if(yEnds != NULL)   { delete[] yEnds; }
+    if(zStarts != NULL) { delete[] zStarts; }
+    if(zEnds != NULL)   { delete[] zEnds; }
+    if(colors != NULL)  { delete[] colors; }
+    return FAILURE;
+  }
+
+  /* Compute position of each arrow */
   getSegsPos(xStarts, xEnds, yStarts, yEnds, zStarts, zEnds);
 
   if (isColored())
   {
-    colors  = new int[nbSegs];
+    /* get color of each arrow */
     getSegsColors(colors);
   }
 
-  drawSegs(xStarts, xEnds, yStarts, yEnds, zStarts, zEnds, colors, nbSegs);
+  EDisplayStatus status = SUCCESS;
+
+  try
+  {
+    drawSegs(xStarts, xEnds, yStarts, yEnds, zStarts, zEnds, colors, nbSegs);
+  }
+  catch (std::exception e)
+  {
+    // some allocation failed
+    sciprint(_("%s: No more memory.\n"),"ConcreteDrawableSegs::drawSegs");
+    status = FAILURE;
+  }
 
   delete[] xStarts;
   delete[] xEnds;
@@ -118,7 +164,7 @@ void ConcreteDrawableSegs::drawSegs(void)
     delete[] colors;
   }
   
-
+  return status;
 
 }
 /*---------------------------------------------------------------------------------*/

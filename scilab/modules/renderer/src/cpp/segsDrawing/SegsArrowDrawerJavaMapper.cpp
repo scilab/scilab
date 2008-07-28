@@ -85,7 +85,17 @@ void SegsArrowDrawerJavaMapper::drawSegs(const double startXCoords[], const doub
                                          const double startZCoords[], const double endZCoords[],
                                          const int colors[], int nbSegments)
 {
-  long * javaColors = new long[nbSegments];
+  long * javaColors = NULL;
+  try
+  {
+    javaColors = new long[nbSegments];
+  }
+  catch (std::exception e)
+  {
+    // propagate exception
+    throw;
+  }
+
   for (int i = 0; i < nbSegments; i++)
   {
     javaColors[i] = colors[i];

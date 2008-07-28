@@ -174,9 +174,18 @@ int get_data_property( sciPointObj * pobj )
     /* Warning the following function allocate data */
     double * data = sciGetPoint( pobj, &nbRow, &nbCol ) ;
 
-    status = sciReturnMatrix( data, nbRow, nbCol ) ;
-
-    FREE( data ) ;
+    if (data == NULL)
+    {
+      // data allocation failed
+      sciprint(_("%s: No more memory.\n"),"get_data_property");
+      sciReturnEmptyMatrix();
+      status = -1;
+    }
+    else
+    {
+      status = sciReturnMatrix( data, nbRow, nbCol ) ;
+      FREE( data ) ;
+    }
 
     return status ;
   }

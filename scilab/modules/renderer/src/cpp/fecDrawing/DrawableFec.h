@@ -44,7 +44,7 @@ protected:
   /**
    * Actually draw the fec objets
    */
-  virtual void drawFec(void) = 0;
+  virtual EDisplayStatus drawFec(void) = 0;
 
   /**
    * Actually show fec object

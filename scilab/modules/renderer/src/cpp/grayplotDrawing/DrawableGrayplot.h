@@ -47,7 +47,7 @@ protected:
   /**
    * Actually draw the object
    */
-  virtual void drawGrayplot(void) = 0;
+  virtual EDisplayStatus drawGrayplot(void) = 0;
 
   /**
    * show the object

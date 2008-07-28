@@ -44,7 +44,7 @@ void FecFacetDrawerJoGL::drawFec(const double xCoords[], const double yCoords[],
   getFacetDrawerJavaMapper()->setFacetParameters(ppFec->zminmax[0], ppFec->zminmax[1],
                                                  ppFec->colminmax[0], ppFec->colminmax[1],
                                                  ppFec->colout[0], ppFec->colout[1]);
-
+  
   getFacetDrawerJavaMapper()->drawFec(xCoords, yCoords, values, nbNodes,
                                       firstPoints, secondPoints, thirdPoints, nbTriangles);
   endDrawing();

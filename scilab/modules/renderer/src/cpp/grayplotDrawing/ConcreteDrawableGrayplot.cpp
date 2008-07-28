@@ -11,7 +11,15 @@
  *
  */
 
+#include <exception>
+
 #include "ConcreteDrawableGrayplot.hxx"
+
+extern "C"
+{
+#include "sciprint.h"
+#include "localization.h"
+}
 
 namespace sciGraphics
 {
@@ -36,7 +44,7 @@ void ConcreteDrawableGrayplot::setDeccompositionStrategy(GrayplotDecompositionSt
   m_pDecomposer = strategy;
 }
 /*---------------------------------------------------------------------------------*/
-void ConcreteDrawableGrayplot::drawGrayplot(void)
+DrawableObject::EDisplayStatus ConcreteDrawableGrayplot::drawGrayplot(void)
 {
   int nbRow = m_pDecomposer->getNbRow();
   int nbCol = m_pDecomposer->getNbCol();
@@ -44,21 +52,49 @@ void ConcreteDrawableGrayplot::drawGrayplot(void)
   
   // beware here the column are for X
   // row on Y
-  double * xGrid = new double[nbCol];
-  double * yGrid = new double[nbRow];
-  int * colors = new int[nbColors];
+  double * xGrid = NULL;
+  double * yGrid = NULL;
+  int * colors = NULL;
+
+  try
+  {
+    xGrid = new double[nbCol];
+    yGrid = new double[nbRow];
+    colors = new int[nbColors];
+  }
+  catch (std::exception e)
+  {
+    // allocation failed
+    sciprint(_("%s: No more memory.\n"), "ConcreteDrawableGrayplot::drawGrayplot");
+    if(xGrid != NULL) { delete[] xGrid; }
+    if(yGrid != NULL) { delete[] yGrid; }
+    if(colors != NULL) { delete[] colors; }
+    return FAILURE;
+  }
 
   // compute the grid and the colors to display
   m_pDecomposer->decomposeGrayplot(xGrid, yGrid, colors);
 
+  EDisplayStatus status = SUCCESS;
+
   // draw the grid on the screen
-  getGrayplotImp()->drawGrayplot(xGrid, nbCol, yGrid, nbRow,
-                                 m_pDecomposer->getZCoordinate(),
-                                 colors, nbColors);
+  try {
+    getGrayplotImp()->drawGrayplot(xGrid, nbCol, yGrid, nbRow,
+                                   m_pDecomposer->getZCoordinate(),
+                                   colors, nbColors);
+  }
+  catch (std::exception e)
+  {
+    // some allocation failed
+    sciprint(_("%s: No more memory.\n"), "ConcreteDrawableGrayplot::drawGrayplot");
+    status = FAILURE;
+  }
 
   delete[] xGrid;
   delete[] yGrid;
   delete[] colors;
+
+  return status;
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableGrayplot::showGrayplot(void)

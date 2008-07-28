@@ -78,8 +78,10 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 
   long hdltab[2];
   int cmpt=0;
-  sciPointObj *pptabofpointobj;
-  sciPointObj  *psubwin;
+  sciPointObj * pptabofpointobj;
+  sciPointObj * psubwin;
+  sciPointObj * pFec;
+  sciPointObj * parentCompound;
   double drect[6];
 
   BOOL bounds_changed = FALSE;
@@ -166,7 +168,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
     }
     else{
       sciprint(_("Warning: Nax does not work with logarithmic scaling.\n"));
-	}
+    }
   }
 
   if(bounds_changed || axes_properties_changed )
@@ -174,19 +176,26 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
     forceRedraw(psubwin);
     //sciDrawObj(sciGetCurrentFigure());
   }
-  /*      EraseAndOrRedraw(psubwin);  /\*  inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
+  
+  /* Construct the object */
+  pFec = ConstructFec(psubwin,x,y,triangles,func,
+                      *Nnode,*Ntr,zminmax,colminmax,colout, with_mesh); 
 
-  sciSetCurrentObj (ConstructFec 
-    ((sciPointObj *)
-    sciGetCurrentSubWin(),
-    x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax,colout, with_mesh)); 
+  if (pFec == NULL)
+  {
+    // error in allocation
+    sciprint(_("%s: No more memory.\n"), "fec");
+    return -1;
+  }
+
+  /* Set fec as current */
+  sciSetCurrentObj(pFec);
 
   /* retrieve the created object : fec */
-  pptabofpointobj = sciGetCurrentObj();
-  hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
+  pptabofpointobj = pFec;
+  hdltab[cmpt] = sciGetHandle(pptabofpointobj);   
   cmpt++;   
-  sciDrawObj(sciGetCurrentObj ());
-  DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+  
   /** Drawing the Legends **/
   /*
   if ((int)strlen(strflag) >=1  && strflag[0] == '1')
@@ -203,8 +212,11 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
     cmpt++;
   }
   */
-  sciSetCurrentObj(ConstructCompound (hdltab, cmpt));  /** construct Compound **/
+  parentCompound = ConstructCompound (hdltab, cmpt);
+  sciSetCurrentObj(parentCompound);  /** construct Compound **/
 
+  /* draw every one */
+  sciDrawObj(parentCompound);
    
   return(0);
    

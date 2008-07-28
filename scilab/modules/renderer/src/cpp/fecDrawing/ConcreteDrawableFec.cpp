@@ -16,6 +16,8 @@
 extern "C"
 {
 #include "GetProperty.h"
+#include "sciprint.h"
+#include "localization.h"
 }
 
 namespace sciGraphics
@@ -51,28 +53,61 @@ void ConcreteDrawableFec::removeDrawingStrategies(void)
   m_oDrawingStrategies.clear();
 }
 /*---------------------------------------------------------------------------------*/
-void ConcreteDrawableFec::drawFec(void)
+DrawableObject::EDisplayStatus ConcreteDrawableFec::drawFec(void)
 {
 
   int nbNodes = getNbNodes();
-  double * xCoords = new double[nbNodes];
-  double * yCoords = new double[nbNodes];
-
   int nbTriangles = getNbTriangles();
-  int * firstPoints  = new int[nbTriangles];
-  int * secondPoints = new int[nbTriangles];
-  int * thirdPoints  = new int[nbTriangles];
+
+  double * xCoords = NULL;
+  double * yCoords = NULL;
+  int * firstPoints  = NULL;
+  int * secondPoints = NULL;
+  int * thirdPoints  = NULL;
+
+  try
+  {
+    xCoords = new double[nbNodes];
+    yCoords = new double[nbNodes];
+    firstPoints  = new int[nbTriangles];
+    secondPoints = new int[nbTriangles];
+    thirdPoints  = new int[nbTriangles];
+  }
+  catch (std::exception e)
+  {
+    // allocation failed
+    sciprint(_("%s: No more memory.\n"), "ConcreteDrawableFec::drawFec");
+    if(xCoords != NULL) { delete[] xCoords; }
+    if(yCoords != NULL) { delete[] yCoords; }
+    if(firstPoints != NULL) { delete[] firstPoints; }
+    if(secondPoints != NULL) { delete[] secondPoints; }
+    if(thirdPoints != NULL) { delete[] thirdPoints; }
+    return FAILURE;
+  }
 
   decomposeFec(xCoords, yCoords, firstPoints, secondPoints, thirdPoints);
 
-  drawFec(xCoords, yCoords, pFEC_FEATURE(m_pDrawed)->pfun, nbNodes,
-          firstPoints, secondPoints, thirdPoints, nbTriangles);
+  EDisplayStatus status = SUCCESS;
+
+  try
+  {
+    drawFec(xCoords, yCoords, pFEC_FEATURE(m_pDrawed)->pfun, nbNodes,
+            firstPoints, secondPoints, thirdPoints, nbTriangles);
+  }
+  catch (std::exception e)
+  {
+    // allocation failed
+    sciprint(_("%s: No more memory.\n"), "ConcreteDrawableFec::drawFec");
+    status = FAILURE;
+  }
 
   delete[] xCoords;
   delete[] yCoords;
   delete[] firstPoints;
   delete[] secondPoints;
   delete[] thirdPoints;
+
+  return status;
 
 }
 /*---------------------------------------------------------------------------------*/

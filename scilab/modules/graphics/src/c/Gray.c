@@ -166,11 +166,11 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 {
   double xx[2],yy[2];
   static integer nn1=1,nn2=2;
-  sciPointObj  *psubwin = NULL;
+  sciPointObj * psubwin = NULL;
+  sciPointObj * pGrayplot = NULL;
   double drect[6];
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
-  BOOL isRedrawn ;
   
   xx[0]=0.5;xx[1]= *n2+0.5;
   yy[0]=0.5;yy[1]= *n1+0.5;
@@ -178,7 +178,7 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
   /* Adding F.Leray 22.04.04 */
   psubwin = sciGetCurrentSubWin();
 
-  isRedrawn = checkRedrawing() ;
+  checkRedrawing() ;
 
   /* Force psubwin->is3d to FALSE: we are in 2D mode */
   if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
@@ -247,32 +247,34 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
       CreatePrettyGradsFromNax(psubwin,aaint);
     }
     else{
-      sciprint(_("Warning : Nax does not work with logarithmic scaling\n"));}
+      sciprint(_("Warning : Nax does not work with logarithmic scaling\n"));
+    }
   }
 
 
 
   if( bounds_changed || axes_properties_changed )
   {
-    sciDrawObj(sciGetCurrentFigure());
+    /* subwin has been modified by the above code */
+    forceRedraw(psubwin);
   }
 
-  sciSetCurrentObj (ConstructGrayplot 
-    ((sciPointObj *)
-    sciGetCurrentSubWin(),
-    NULL,NULL,z,*n1 + 1,*n2 + 1,1));
+  /* Construct the grayplot object */
+  pGrayplot = ConstructGrayplot(psubwin,NULL,NULL,z,*n1 + 1,*n2 + 1,1);
+
+  if (pGrayplot == NULL)
+  {
+    // allocation error
+    sciprint(_("%s: No more memory.\n"), "grayplot");
+    return -1;
+  }
+
+  sciSetCurrentObj(pGrayplot);
   /* if the auto_clear is on we must redraw everything */
-  if ( isRedrawn )
-  {
-    sciDrawObj( sciGetCurrentFigure() ) ;
-  }
-  else
-  {
-    sciDrawObj(sciGetCurrentObj ());
-    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
-  }
 
-  return (0);
+  sciDrawObj(pGrayplot);
+
+  return 0;
 }
   
  

@@ -60,12 +60,15 @@ void PolylineFillDrawerJoGL::drawPolyline( void )
   double * zCoords    = NULL;
 
   nbVertices = m_pDrawed->getDrawnVerticesLength();
-  xCoords = new double[nbVertices];
-  yCoords = new double[nbVertices];
-  zCoords = new double[nbVertices];
-
-  if (xCoords == NULL || yCoords == NULL || zCoords == NULL)
+  try
   {
+    xCoords = new double[nbVertices];
+    yCoords = new double[nbVertices];
+    zCoords = new double[nbVertices];
+  }
+  catch (std::exception e)
+  {
+    // allocation failed
     sciprint(_("%s: No more memory.\n"),"PolylineFillDrawerJoGL::drawPolyline");
     if(xCoords != NULL) { delete[] xCoords; }
     if(yCoords != NULL) { delete[] yCoords; }
@@ -73,6 +76,7 @@ void PolylineFillDrawerJoGL::drawPolyline( void )
     endDrawing();
     return;
   }
+  
 
   m_pDrawed->getDrawnVertices(xCoords, yCoords, zCoords);
 

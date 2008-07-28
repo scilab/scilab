@@ -26,10 +26,10 @@ DrawableObject::EDisplayStatus DrawableSegs::draw( void )
   initializeDrawing();
   clip();
   reinitMove();
-  drawSegs();
+  EDisplayStatus status = drawSegs();
   unClip();
   endDrawing();
-  return SUCCESS;
+  return status;
 }
 /*---------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableSegs::show( void )

@@ -72,17 +72,20 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   BarDecomposition decomposer(m_pDrawed);
 
   nbVertices = decomposer.getDrawnVerticesLength();
-  xCoords = new double[nbVertices];
-  yCoords = new double[nbVertices];
-  zCoords = new double[nbVertices];
-  bottom  = new double[nbVertices];
-  top     = new double[nbVertices];
-  left    = new double[nbVertices];
-  right   = new double[nbVertices]; 
 
-  if (   xCoords == NULL || yCoords == NULL || zCoords == NULL
-      || bottom == NULL || top == NULL || left == NULL || right == NULL)
+  try
   {
+    xCoords = new double[nbVertices];
+    yCoords = new double[nbVertices];
+    zCoords = new double[nbVertices];
+    bottom  = new double[nbVertices];
+    top     = new double[nbVertices];
+    left    = new double[nbVertices];
+    right   = new double[nbVertices]; 
+  }
+  catch (std::exception e)
+  {
+    // allocation failed
     sciprint(_("%s: No more memory.\n"),"PolylineBarDrawerJoGL::drawPolyline");
     if (xCoords != NULL) { delete[] xCoords; }
     if (yCoords != NULL) { delete[] yCoords; }

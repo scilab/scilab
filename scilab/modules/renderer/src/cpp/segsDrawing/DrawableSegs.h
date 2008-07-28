@@ -78,7 +78,7 @@ protected:
   /**
    * Actually draw the segs
    */
-  virtual void drawSegs(void) = 0;
+  virtual EDisplayStatus drawSegs(void) = 0;
 
   /**
    * Show the segs

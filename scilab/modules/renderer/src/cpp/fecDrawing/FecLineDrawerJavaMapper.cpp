@@ -77,6 +77,24 @@ void FecLineDrawerJavaMapper::drawFec(const double xCoords[], const double yCoor
   long * javaFirstPoints = new long[nbTriangles];
   long * javaSecondPoints = new long[nbTriangles];
   long * javaThirdPoints = new long[nbTriangles];
+
+  try
+  {
+    javaFirstPoints = new long[nbTriangles];
+    javaSecondPoints = new long[nbTriangles];
+    javaThirdPoints = new long[nbTriangles];
+  }
+  catch (std::exception e)
+  {
+    // allocation failed
+    if (javaFirstPoints != NULL) { delete[] javaFirstPoints; }
+    if (javaSecondPoints != NULL) { delete[] javaSecondPoints; }
+    if( javaThirdPoints != NULL) { delete[] javaThirdPoints; }
+    // propagate exception
+    throw;
+  }
+
+
   for (int i = 0; i < nbTriangles; i++)
   {
     javaFirstPoints[i] = firstPoints[i];

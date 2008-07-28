@@ -27,10 +27,10 @@ DrawableObject::EDisplayStatus DrawableGrayplot::draw( void )
   initializeDrawing();
   clip();
   reinitMove();
-  drawGrayplot();
+  EDisplayStatus status = drawGrayplot();
   unClip();
   endDrawing();
-  return SUCCESS;
+  return status;
 }
 /*---------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableGrayplot::show( void )

@@ -72,7 +72,7 @@ protected:
   /**
    * Actually draw the segs
    */
-  virtual void drawSegs(void);
+  virtual EDisplayStatus drawSegs(void);
 
   /**
    * Draw the segs from computed positions and colors

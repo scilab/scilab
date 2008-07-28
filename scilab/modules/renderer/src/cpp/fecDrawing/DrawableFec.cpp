@@ -26,10 +26,10 @@ DrawableObject::EDisplayStatus DrawableFec::draw( void )
   initializeDrawing();
   clip();
   reinitMove();
-  drawFec();
+  EDisplayStatus status = drawFec();
   unClip();
   endDrawing();
-  return SUCCESS;
+  return status;
 }
 /*---------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableFec::show( void )

@@ -48,13 +48,17 @@ void PolylineInterpColorDrawerJoGL::drawPolyline( void )
   int    * colors     = NULL;
 
   nbVertices = m_pDrawed->getDrawnVerticesLength();
-  xCoords = new double[nbVertices];
-  yCoords = new double[nbVertices];
-  zCoords = new double[nbVertices];
-  colors  = new int[nbVertices];
 
-  if (xCoords == NULL || yCoords == NULL || zCoords == NULL)
+  try
   {
+    xCoords = new double[nbVertices];
+    yCoords = new double[nbVertices];
+    zCoords = new double[nbVertices];
+    colors  = new int[nbVertices];;
+  }
+  catch (std::exception e)
+  {
+    // allocation failed
     sciprint(_("Unable to render polyline, memory full.\n"));
     if (xCoords != NULL) { delete[] xCoords; }
     if (yCoords != NULL) { delete[] yCoords; }

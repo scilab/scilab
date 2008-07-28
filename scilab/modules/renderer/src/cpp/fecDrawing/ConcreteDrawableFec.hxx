@@ -47,7 +47,7 @@ protected:
   /**
    * Actually draw the fec objets
    */
-  virtual void drawFec(void);
+  virtual EDisplayStatus drawFec(void);
 
   /**
    * Draw fec object from precomputed data

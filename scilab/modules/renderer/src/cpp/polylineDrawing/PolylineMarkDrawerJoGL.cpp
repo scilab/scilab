@@ -67,19 +67,22 @@ void PolylineMarkDrawerJoGL::drawPolyline( void )
   {
     nbVertices = m_pDrawed->getDrawnVerticesLength();
   }
-  
-  xCoords = new double[nbVertices];
-  yCoords = new double[nbVertices];
-  zCoords = new double[nbVertices];
 
-  if (xCoords == NULL || yCoords == NULL || zCoords == NULL)
+  try
   {
-	  sciprint(_("%s: No more memory.\n"),"PolylineMarkDrawerJoGL::drawPolyline");
-	  if(xCoords != NULL) { delete[] xCoords; }
-	  if(yCoords != NULL) { delete[] yCoords; }
-	  if(zCoords != NULL) { delete[] zCoords; }
-	  endDrawing();
-	  return;
+    xCoords = new double[nbVertices];
+    yCoords = new double[nbVertices];
+    zCoords = new double[nbVertices];
+  }
+  catch (std::exception e)
+  {
+    // allocation failed
+    sciprint(_("%s: No more memory.\n"),"PolylineMarkDrawerJoGL::drawPolyline");
+    if(xCoords != NULL) { delete[] xCoords; }
+    if(yCoords != NULL) { delete[] yCoords; }
+    if(zCoords != NULL) { delete[] zCoords; }
+    endDrawing();
+    return;
   }
 
   if (sciGetPolylineStyle(pObj) == 3)

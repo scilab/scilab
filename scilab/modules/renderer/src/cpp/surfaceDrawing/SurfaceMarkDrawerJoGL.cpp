@@ -18,6 +18,8 @@ extern "C"
 #include "GetProperty.h"
 #include "math_graphics.h"
 #include "BasicAlgos.h"
+#include "sciprint.h"
+#include "localization.h"
 }
 
 namespace sciGraphics
@@ -39,6 +41,8 @@ void SurfaceMarkDrawerJoGL::drawSurface( void )
   sciPointObj * pSurface = m_pDrawer->getDrawedObject();
   sciSurface * ppSurface = pSURFACE_FEATURE(pSurface);
 
+  initializeDrawing();
+
   int nbVertexPerFacet = 0;
   if (ppSurface->typeof3d == SCI_PLOT3D)
   {
@@ -53,9 +57,28 @@ void SurfaceMarkDrawerJoGL::drawSurface( void )
   int sizeXCoord = ppSurface->nx;
   int sizeYCoord = ppSurface->ny;
   int sizeZCoord = ppSurface->nz;
-  double * xCoords = new double[sizeXCoord];
-  double * yCoords = new double[sizeYCoord];
-  double * zCoords = new double[sizeZCoord];
+  double * xCoords = NULL; 
+  double * yCoords = NULL;
+  double * zCoords = NULL;
+
+  try
+  {
+    xCoords = new double[sizeXCoord];
+    yCoords = new double[sizeYCoord];
+    zCoords = new double[sizeZCoord];
+  }
+  catch (std::exception e)
+  {
+    // allocation failed
+    sciprint(_("%s: No more memory.\n"),"SurfaceMarkDrawerJoGL::drawSurface");
+    if(xCoords != NULL) { delete[] xCoords; }
+    if(yCoords != NULL) { delete[] yCoords; }
+    if(zCoords != NULL) { delete[] zCoords; }
+    endDrawing();
+    return;
+  }
+
+
   doubleArrayCopy(xCoords, ppSurface->pvecx, sizeXCoord);
   doubleArrayCopy(yCoords, ppSurface->pvecy, sizeYCoord);
   doubleArrayCopy(zCoords, ppSurface->pvecz, sizeZCoord);
@@ -64,7 +87,6 @@ void SurfaceMarkDrawerJoGL::drawSurface( void )
   m_pDrawed->pointScale(NULL, yCoords, NULL, sizeYCoord);
   m_pDrawed->pointScale(NULL, NULL, zCoords, sizeZCoord);
 
-  initializeDrawing();
   getMarkDrawerJavaMapper()->setSurfaceType(ppSurface->typeof3d);
   getMarkDrawerJavaMapper()->setMarkParameters(sciGetGraphicContext(pSurface)->markbackground,
                                                sciGetGraphicContext(pSurface)->markforeground,

@@ -241,29 +241,42 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       sciPointObj * pobj = NULL;
       if (style[jj] > 0) { 
 	BOOL isline = TRUE;
-	if (ptype==3) isline=FALSE;
-	sciSetCurrentObj (ConstructPolyline
-			  (sciGetCurrentSubWin(),&(x[jj*(*n2)]),
-			   &(y[jj*(*n2)]),PD0,closeflag,*n2,ptype,
-			   &style[jj],NULL,NULL,NULL,NULL, 
-			   isline,FALSE,FALSE,FALSE));
+	if (ptype==3)
+        {
+          isline=FALSE;
+        }
+	pobj = ConstructPolyline(sciGetCurrentSubWin(),&(x[jj*(*n2)]),
+	         	         &(y[jj*(*n2)]),PD0,closeflag,*n2,ptype,
+			         &style[jj],NULL,NULL,NULL,NULL, 
+			         isline,FALSE,FALSE,FALSE);
       }
       else {
 	int minusstyle = -style[jj];
-	sciSetCurrentObj (ConstructPolyline
-			  (sciGetCurrentSubWin(),&(x[jj*(*n2)]),
-			   &(y[jj*(*n2)]),PD0,closeflag,*n2,ptype,
-			   NULL,NULL,&minusstyle,NULL,NULL,FALSE,FALSE,TRUE,FALSE));
+	pobj = ConstructPolyline(sciGetCurrentSubWin(),&(x[jj*(*n2)]),
+			         &(y[jj*(*n2)]),PD0,closeflag,*n2,ptype,
+			         NULL,NULL,&minusstyle,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
       }
-      pobj = sciGetCurrentObj();
+      if (pobj == NULL)
+      {
+        // skip
+        sciprint(_("%s: No more memory.\n"), "plot2d");
+      }
+      else
+      {
+        
+        sciSetCurrentObj(pobj);
       
-      /*sciDrawObjIfRequired(pobj);*/
-      
-      hdl=sciGetHandle(pobj);
-      if (with_leg) tabofhandles[jj] = hdl;
+        /*sciDrawObjIfRequired(pobj);*/
+        hdl=sciGetHandle(pobj);
+        if (with_leg)
+        {
+          tabofhandles[cmpt] = hdl;
+        }
 
-      hdltab[cmpt]=hdl;
-      cmpt++;
+        hdltab[cmpt]=hdl;
+        cmpt++;
+      }
+      
     }
     endFigureDataWriting(curFigure);
     /*DrawAxesIfRequired(sciGetCurrentObj ());*/ /* force axes redrawing once is sufficient (F.Leray 10.01.05) */
@@ -283,28 +296,34 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
         endFigureDataWriting(curFigure);
 	return 0;
       }
-      if (nleg != *n1) {
+
+      if (nleg != cmpt) {
 	FREE(tabofhandles);
 	FREE(hdltab);
-	for (jj = 0; jj < *n1; jj++) FREE(Str[jj]);
+        for (jj = 0; jj < *n1; jj++) { FREE(Str[jj]) };
 	FREE(Str);
 	sciprint(_("%s: Invalid legend.\n"),"plot2d");
-        endFigureDataWriting(curFigure);
-	return 0;
       }
-      Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,*n1);
-      pLEGEND_FEATURE(Leg)->place = SCI_LEGEND_LOWER_CAPTION;
-      sciSetIsFilled (Leg, FALSE);
-      sciSetIsLine (Leg, FALSE);
+      Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,cmpt);
+      if (Leg != NULL)
+      {
+        pLEGEND_FEATURE(Leg)->place = SCI_LEGEND_LOWER_CAPTION;
+        sciSetIsFilled (Leg, FALSE);
+        sciSetIsLine (Leg, FALSE);
+        sciSetCurrentObj (Leg); 
+      }
 
-      sciSetCurrentObj (Leg); 
-      for (jj = 0; jj < *n1; jj++) FREE(Str[jj]);
+      
+      for (jj = 0; jj < *n1; jj++) { FREE(Str[jj]); }
       FREE(Str);
       FREE(tabofhandles);
     }
 
     /*---- construct Compound ----*/
-    sciSetCurrentObj(ConstructCompound (hdltab, cmpt)); 
+    if (cmpt > 0)
+    {
+      sciSetCurrentObj(ConstructCompound (hdltab, cmpt));
+    }
     FREE(hdltab);
     endFigureDataWriting(curFigure);
     
