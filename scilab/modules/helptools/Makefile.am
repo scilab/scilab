@@ -119,7 +119,7 @@ libscihelptools_la_doc_html_resources_DATA = doc/html/resources/addonprefs.png
 
 include $(top_srcdir)/Makefile.incl.am
 
-if ! BUILD_HELP
+if BUILD_HELP
 
 USEANT=1
 
