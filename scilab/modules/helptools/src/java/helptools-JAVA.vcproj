@@ -109,6 +109,14 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\org\scilab\modules\helptools\BuildDocObject.java"
+				>
+			</File>
+			<File
+				RelativePath=".\org\scilab\modules\helptools\BuildJavaHelp.java"
+				>
+			</File>
+			<File
 				RelativePath=".\org\scilab\modules\helptools\CopyConvert.java"
 				>
 			</File>
