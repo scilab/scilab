@@ -504,6 +504,7 @@ TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
 JARDIR = jar/
 # JAR files
 JARMASK = *.jar
+@BUILD_HELP_FALSE@USEANT = 1
 all: all-am
 
 .SUFFIXES:
