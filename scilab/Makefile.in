@@ -54,11 +54,10 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	$(top_srcdir)/modules/jvm/etc/jvm_options.xml.in ABOUT-NLS \
-	COPYING config.guess config.sub config/compile \
-	config/config.guess config/config.rpath config/config.sub \
-	config/depcomp config/install-sh config/ltmain.sh \
-	config/missing depcomp install-sh missing
+	$(top_srcdir)/modules/jvm/etc/jvm_options.xml.in COPYING \
+	config/compile config/config.guess config/config.rpath \
+	config/config.sub config/depcomp config/install-sh \
+	config/ltmain.sh config/missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
@@ -79,7 +78,7 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
-	modules/jvm/etc/jvm_options.xml scilab.pc etc/modules.xml \
+	scilab.pc etc/modules.xml modules/jvm/etc/jvm_options.xml \
 	scilab-lib.properties scilab-lib-doc.properties
 @ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
@@ -446,11 +445,11 @@ distclean-hdr:
 	-rm -f modules/core/includes/machine.h modules/core/includes/stamp-h1
 modules/helptools/macros/xmlfiletohtml.sci: $(top_builddir)/config.status $(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-modules/jvm/etc/jvm_options.xml: $(top_builddir)/config.status $(top_srcdir)/modules/jvm/etc/jvm_options.xml.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
 scilab.pc: $(top_builddir)/config.status $(srcdir)/scilab.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 etc/modules.xml: $(top_builddir)/config.status $(top_srcdir)/etc/modules.xml.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+modules/jvm/etc/jvm_options.xml: $(top_builddir)/config.status $(top_srcdir)/modules/jvm/etc/jvm_options.xml.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 scilab-lib.properties: $(top_builddir)/config.status $(srcdir)/scilab-lib.properties.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
