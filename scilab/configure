@@ -979,12 +979,11 @@ MATIO_CFLAGS
 MATIO_ENABLE
 MATIO_TRUE
 MATIO_FALSE
-WITH
-MANGENERATOR
 BATIK
 SAXON
 FOP
 JEUCLID_CORE
+DOCBOOK_ROOT
 INSTALL_HELP_XML_TRUE
 INSTALL_HELP_XML_FALSE
 SED
@@ -1676,8 +1675,6 @@ Optional Packages:
                           Set the path to the MATIO headers
   --with-matio-library=DIR
                           Set the path to the MATIO libraries
-  --with-sablotron        Generates man pages using sablotron
-  --with-xsltproc         Generates man pages using xsltproc
   --with-install-help-xml make install will install XML files
   --with-gnu-ld           assume the C compiler uses GNU ld [default=no]
   --with-pic              try to use only PIC/non-PIC objects [default=use
@@ -9868,7 +9865,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 9871 "configure"
+// #line 9868 "configure"
 
 
 public class conftest {
@@ -9918,7 +9915,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 9921 "configure"
+// #line 9918 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -9966,7 +9963,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 9969 "configure"
+// #line 9966 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -9993,7 +9990,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 9996 "configure"
+// #line 9993 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -11248,7 +11245,7 @@ echo $ECHO_N "checking flexdock... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11251 "configure"
+// #line 11248 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11316,7 +11313,7 @@ echo $ECHO_N "checking jogl... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11319 "configure"
+// #line 11316 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -11384,7 +11381,7 @@ echo $ECHO_N "checking jhall... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11387 "configure"
+// #line 11384 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -11452,7 +11449,7 @@ echo $ECHO_N "checking gluegen-rt... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11455 "configure"
+// #line 11452 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -11520,7 +11517,7 @@ echo $ECHO_N "checking jrosetta-API... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11523 "configure"
+// #line 11520 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -11588,7 +11585,7 @@ echo $ECHO_N "checking jrosetta-engine... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11591 "configure"
+// #line 11588 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -11656,7 +11653,7 @@ echo $ECHO_N "checking commons-logging... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11659 "configure"
+// #line 11656 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -23241,7 +23238,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 23244 "configure"
+#line 23241 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -23625,7 +23622,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 23628 "configure"
+#line 23625 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -24615,184 +24612,28 @@ if test "${enable_build_help+set}" = set; then
   enableval=$enable_build_help;
 fi
 
-
+HELP_ENABLE=no
 if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
 
 
-# Check whether --with-sablotron was given.
-if test "${with_sablotron+set}" = set; then
-  withval=$with_sablotron; with_sablotron=$withval
+DOCBOOK_OK=no
+DOCBOOK_ROOT=
+
+
+# Check whether --with-docbook was given.
+if test "${with_docbook+set}" = set; then
+  withval=$with_docbook; with_umfpack_library=$withval
 else
-  with_sablotron=''
+  with_umfpack_library='yes'
 
 fi
 
 
-
-# Check whether --with-xsltproc was given.
-if test "${with_xsltproc+set}" = set; then
-  withval=$with_xsltproc; with_xsltproc=$withval
-else
-  with_xsltproc=''
-
-fi
-
-
-	if test "x$with_xsltproc" != 'x' -a "x$with_sablotron" != 'x'; then
-		{ { echo "$as_me:$LINENO: error: Conflicting options : you specified two XSLT processor (sablotron & xsltproc)" >&5
-echo "$as_me: error: Conflicting options : you specified two XSLT processor (sablotron & xsltproc)" >&2;}
-   { (exit 1); exit 1; }; }
-	fi
-
-
-	with=$with_sablotron
-	progname=Sablotron
-	prog=sabcmd
-
-	if test "x$with" != 'x' -a "x$with" != "xyes"; then
-      { echo "$as_me:$LINENO: checking $progname" >&5
-echo $ECHO_N "checking $progname... $ECHO_C" >&6; }
-   MANBIN="$with/bin/$prog"
-        if test -x "$MANBIN"; then
-                { echo "$as_me:$LINENO: result: $MANBIN" >&5
-echo "${ECHO_T}$MANBIN" >&6; }
-        else
-			                   { { echo "$as_me:$LINENO: error: Unable to find $PROGNAME. Please check the path you provided" >&5
-echo "$as_me: error: Unable to find $PROGNAME. Please check the path you provided" >&2;}
-   { (exit 1); exit 1; }; }
-		fi
-else
-    { echo "$as_me:$LINENO: checking $progname" >&5
-echo $ECHO_N "checking $progname... $ECHO_C" >&6; }
-	# Extract the first word of "$prog", so it can be a program name with args.
-set dummy $prog; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_WITH+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$WITH"; then
-  ac_cv_prog_WITH="$WITH" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_WITH="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_WITH" && ac_cv_prog_WITH="no"
-fi
-fi
-WITH=$ac_cv_prog_WITH
-if test -n "$WITH"; then
-  { echo "$as_me:$LINENO: result: $WITH" >&5
-echo "${ECHO_T}$WITH" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-	if test "x$WITH" = "xyes"; then
-		MANGENERATOR=$prog
-	else
-	if test "x$with" != "x"; then
-				{ { echo "$as_me:$LINENO: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&5
-echo "$as_me: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&2;}
-   { (exit 1); exit 1; }; }
-	fi
-fi
-
-fi
-unset ac_cv_prog_WITH # Void the caching of WITH
-unset WITH
-
-
-	if test "x$MANGENERATOR" = 'x' -o "x$with_xsltproc" != 'x'; then
-
-	with=$with_xsltproc
-	progname=xsltproc
-	prog=xsltproc
-
-	if test "x$with" != 'x' -a "x$with" != "xyes"; then
-      { echo "$as_me:$LINENO: checking $progname" >&5
-echo $ECHO_N "checking $progname... $ECHO_C" >&6; }
-   MANBIN="$with/bin/$prog"
-        if test -x "$MANBIN"; then
-                { echo "$as_me:$LINENO: result: $MANBIN" >&5
-echo "${ECHO_T}$MANBIN" >&6; }
-        else
-			                   { { echo "$as_me:$LINENO: error: Unable to find $PROGNAME. Please check the path you provided" >&5
-echo "$as_me: error: Unable to find $PROGNAME. Please check the path you provided" >&2;}
-   { (exit 1); exit 1; }; }
-		fi
-else
-    { echo "$as_me:$LINENO: checking $progname" >&5
-echo $ECHO_N "checking $progname... $ECHO_C" >&6; }
-	# Extract the first word of "$prog", so it can be a program name with args.
-set dummy $prog; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_WITH+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$WITH"; then
-  ac_cv_prog_WITH="$WITH" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_WITH="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_WITH" && ac_cv_prog_WITH="no"
-fi
-fi
-WITH=$ac_cv_prog_WITH
-if test -n "$WITH"; then
-  { echo "$as_me:$LINENO: result: $WITH" >&5
-echo "${ECHO_T}$WITH" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-	if test "x$WITH" = "xyes"; then
-		MANGENERATOR=$prog
-	else
-	if test "x$with" != "x"; then
-				{ { echo "$as_me:$LINENO: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&5
-echo "$as_me: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&2;}
-   { (exit 1); exit 1; }; }
-	fi
-fi
-
-fi
-unset ac_cv_prog_WITH # Void the caching of WITH
-unset WITH
-
-
-	fi
-
+	for dir in /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/; do
+		if test -d "$dir"; then
+			DOCBOOK_ROOT=$dir
+        fi
+	done
 
 	# xml.apache.org SVG Library
 
@@ -24813,7 +24654,7 @@ echo $ECHO_N "checking batik... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 24816 "configure"
+// #line 24657 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -24881,7 +24722,7 @@ echo $ECHO_N "checking saxon... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 24884 "configure"
+// #line 24725 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -24949,7 +24790,7 @@ echo $ECHO_N "checking fop... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 24952 "configure"
+// #line 24793 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -25017,7 +24858,7 @@ echo $ECHO_N "checking jeuclid-core... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25020 "configure"
+// #line 24861 "configure"
 import net.sourceforge.jeuclid.MathBase;
 
 public class conftest {
@@ -25066,6 +24907,10 @@ echo "$as_me: error: Could not find or use the Java package/jar jeuclid-core use
 	JEUCLID_CORE=$PACKAGE_JAR_FILE
 
 
+
+
+
+	HELP_ENABLE=yes
 
 fi #build help
 
@@ -25643,7 +25488,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 25646 "configure"' > conftest.$ac_ext
+  echo '#line 25491 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -27513,11 +27358,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:27516: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:27361: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:27520: \$? = $ac_status" >&5
+   echo "$as_me:27365: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -27803,11 +27648,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:27806: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:27651: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:27810: \$? = $ac_status" >&5
+   echo "$as_me:27655: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -27907,11 +27752,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:27910: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:27755: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:27914: \$? = $ac_status" >&5
+   echo "$as_me:27759: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -30356,7 +30201,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 30359 "configure"
+#line 30204 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -30456,7 +30301,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 30459 "configure"
+#line 30304 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -32877,11 +32722,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:32880: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32725: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:32884: \$? = $ac_status" >&5
+   echo "$as_me:32729: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -32981,11 +32826,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:32984: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32829: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:32988: \$? = $ac_status" >&5
+   echo "$as_me:32833: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -34579,11 +34424,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34582: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34427: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:34586: \$? = $ac_status" >&5
+   echo "$as_me:34431: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -34683,11 +34528,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34686: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34531: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:34690: \$? = $ac_status" >&5
+   echo "$as_me:34535: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -36907,11 +36752,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:36910: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36755: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:36914: \$? = $ac_status" >&5
+   echo "$as_me:36759: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -37197,11 +37042,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:37200: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:37045: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:37204: \$? = $ac_status" >&5
+   echo "$as_me:37049: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -37301,11 +37146,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:37304: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:37149: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:37308: \$? = $ac_status" >&5
+   echo "$as_me:37153: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -41457,12 +41302,11 @@ MATIO_CFLAGS!$MATIO_CFLAGS$ac_delim
 MATIO_ENABLE!$MATIO_ENABLE$ac_delim
 MATIO_TRUE!$MATIO_TRUE$ac_delim
 MATIO_FALSE!$MATIO_FALSE$ac_delim
-WITH!$WITH$ac_delim
-MANGENERATOR!$MANGENERATOR$ac_delim
 BATIK!$BATIK$ac_delim
 SAXON!$SAXON$ac_delim
 FOP!$FOP$ac_delim
 JEUCLID_CORE!$JEUCLID_CORE$ac_delim
+DOCBOOK_ROOT!$DOCBOOK_ROOT$ac_delim
 INSTALL_HELP_XML_TRUE!$INSTALL_HELP_XML_TRUE$ac_delim
 INSTALL_HELP_XML_FALSE!$INSTALL_HELP_XML_FALSE$ac_delim
 SED!$SED$ac_delim
@@ -41478,7 +41322,7 @@ ENABLE_STATIC_FALSE!$ENABLE_STATIC_FALSE$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 35; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 34; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
@@ -42197,12 +42041,6 @@ else
    echo "Not using UMFPACK"
 fi
 
-echo ""
-echo "Documentation processor:"
-echo "Sablotron processor (--with-sablotron) ........... = $with_sablotron"
-echo "Xsltproc processor (--with-xsltproc) ............. = $with_xsltproc"
-
-
 
 echo ""
 echo "BLAS/LAPACK/ATLAS Configuration:"
@@ -42253,9 +42091,12 @@ else
 fi
 
 echo ""
-if test ! -z "$MANGENERATOR"; then
-   echo "XSL Processor Configuration:"
-   echo "XSL Processor ...... = $MANGENERATOR"
+if test ! -z "$HELP_ENABLE"; then
+   echo "Docbook XSL path ....... = $DOCBOOK_ROOT"
+   echo "Batik (SVG) ............ = $BATIK"
+   echo "Saxon XSLT ............. = $SAXON"
+   echo "FOP (XML => PDF) ....... = $FOP"
+   echo "Jeuclid (MathML) ....... = $JEUCLID_CORE"
 else
    echo "No documentation generated"
 fi
