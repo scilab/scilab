@@ -45,6 +45,9 @@ int sci_buildDoc(char *fname,unsigned long l)
 
 	char * currentLanguage=getlanguage();
 
+	CheckRhs(0,2);
+	CheckLhs(1,1);
+
 	strcpy(styleSheet,SciPath);
 	strcat(styleSheet,PATHTOCSS);
 
@@ -55,10 +58,9 @@ int sci_buildDoc(char *fname,unsigned long l)
 	outputDirectory=(char*)MALLOC((strlen(SciPath)+strlen(outputDirectoryTMP)+1)*sizeof(char)); 
 	strcpy(outputDirectory, SciPath);
 	strcat(outputDirectory, outputDirectoryTMP);
-	free(outputDirectoryTMP);
+	FREE(outputDirectoryTMP);
 
-	CheckRhs(0,2);
-	CheckLhs(1,1);
+	
 
 	if (Rhs < 1) {
 		exportFormat=(char*)MALLOC((strlen(DEFAULTEXPORT)+1)*sizeof(char));
@@ -74,21 +76,24 @@ int sci_buildDoc(char *fname,unsigned long l)
 	}
 
 
-	if (Rhs < 2) {
-
+	if (Rhs < 2) 
+	{
 		/* Update the path with the localization */
 		masterXMLTMP=(char*) MALLOC ((strlen(PATHTOMASTERXML)-strlen("%s")+strlen(currentLanguage)+1)*sizeof(char));
 		sprintf(masterXMLTMP, PATHTOMASTERXML, currentLanguage);
 		masterXML=(char*)MALLOC((strlen(SciPath)+strlen(masterXMLTMP)+1)*sizeof(char));
 		strcpy(masterXML,SciPath);
 		strcat(masterXML,masterXMLTMP);
-		free(masterXMLTMP);
-	} else {
+		FREE(masterXMLTMP);
+	}
+	else 
+	{
 		if (GetType(2) != sci_strings)
-			{
-				Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
-				// Wrong type string
-			}
+		{
+			// Wrong type string
+			Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+			return 0;
+		}
 
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		masterXML=cstk(l2);
@@ -96,20 +101,23 @@ int sci_buildDoc(char *fname,unsigned long l)
 
 
 	org_scilab_modules_helptools::BuildDocObject *doc = new org_scilab_modules_helptools::BuildDocObject(getScilabJavaVM());
-	if (doc->setOutputDirectory(outputDirectory)) {
+	if (doc->setOutputDirectory(outputDirectory)) 
+	{
 		doc->setWorkingLanguage(currentLanguage);
 		doc->setExportFormat(exportFormat);
 		doc->process(masterXML, styleSheet);
-	}else{
-		free(masterXML);
-		free(outputDirectory);
-		free(styleSheet);
-		Scierror(999,_("%s: Could find or create the working directory %s.\n"),fname, outputDirectory);
-
 	}
-	free(masterXML);
-	free(outputDirectory);
-	free(styleSheet);
+	else
+	{
+		FREE(masterXML);
+		FREE(outputDirectory);
+		FREE(styleSheet);
+		Scierror(999,_("%s: Could find or create the working directory %s.\n"),fname, outputDirectory);
+		return 0;
+	}
+	FREE(masterXML);
+	FREE(outputDirectory);
+	FREE(styleSheet);
 
 	LhsVar(1)=Rhs+1;
 	C2F(putlhsvar)();
