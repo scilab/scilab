@@ -300,7 +300,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       if (nleg != cmpt) {
 	FREE(tabofhandles);
 	FREE(hdltab);
-        for (jj = 0; jj < *n1; jj++) { FREE(Str[jj]) };
+        for (jj = 0; jj < *n1; jj++) { FREE(Str[jj]); }
 	FREE(Str);
 	sciprint(_("%s: Invalid legend.\n"),"plot2d");
       }
