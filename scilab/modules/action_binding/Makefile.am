@@ -9,6 +9,9 @@
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 if GUI
+
+USEANT=1
+
 # List of the c files
 ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c \
 src/c/dynamic_menus.c
