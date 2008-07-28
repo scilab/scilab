@@ -22,8 +22,10 @@
 
 function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
 
+  //++ Check that modelica compiler is available
+  //++ Otherwise, give some feedback and quit
   if ~with_modelica_compiler() then
-    message("Modelica compiler unavailable");
+    x_message(sprintf(gettext("%s: Fatal error: Modelica compiler (MODELICAC) is unavailable."), "compile_modelica"));
     ok   = %f
     name = ''
     nx = 0; nin = 0; nout = 0; ng = 0 ; nm = 0; nz = 0;
@@ -37,10 +39,6 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
   name = basename(fil)
   path = strsubst(stripblanks(fil), name + '.mo', '')
 
-  // do not update C code if needcompile == 0
-  // this allows C code modifications for debugging purposes
-  updateC = needcompile <> 0 | fileinfo(path + name + '.c') == []
-
   JacobianEnabled = %t
   if JacobianEnabled then
     JAC = ' -jac ';
@@ -48,157 +46,115 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     JAC = ' ';
   end
 
+  // do not update C code if needcompile == 0
+  // this allows C code modifications for debugging purposes
+  updateC = needcompile <> 0 | fileinfo(path + name + '.c') == []
+
   if updateC then
 
-    if MSDOS then //** ----- Windows -------------------------------------------
+    //++ Define some platform-dependent variables and filenames
+    if MSDOS
+      modelicac      = 'modelicac.exe'
+      translator_bin = 'translator.exe'
+      modelicac_err  = 'Wmodelicac.err'
+      translator_err = 'Wtranslator.err'
+      unix_err       = 'Wunix.err'
+    else
+      modelicac      = 'modelicac'
+      translator_bin = 'translator'
+      modelicac_err  = 'Lmodelicac.err'
+      translator_err = 'Ltranslator.err'
+      unix_err       = 'Lunix.err'
+    end
 
-      FlatName = fil;
+    FlatName = fil;
 
-      modelicac = 'modelicac'; //** thanks to automatic detection
+    if MSDOS then
+      //++ Enclose paths with double quotes when they contain spaces
       if strindex(modelicac, ' ') <> [] then
         modelicac = '""' + modelicac + '""'
       end
       modelicac = modelicac + strcat(' -L ""' + mlibs + '""')
-      instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + '/Wmodelicac.err'
+    else
+      modelicac = modelicac + strcat(' -L '+ mlibs)
+    end
+    
+    instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + filesep() + modelicac_err
+    disp(instr) //++ DEBUG
+    if MSDOS
+      //++ Put the instructions in a batch file
       mputl(instr, path + 'genc.bat')
       instr = path + 'genc.bat'
+    end
+    
+    pause //++ DEBUG
 
-      if fileinfo(SCI + '/bin/translator') <> [] then
-        OUTM = unix(instr) <> 0; // in order to mask the message in the Scilab windows
-      else
-        OUTM = execstr('unix_s(instr);', 'errcatch') <> 0
-      end
+    if fileinfo(SCI + '/bin/translator') <> [] then
+      OUTM = unix(instr) <> 0; // in order to mask the message in the Scilab windows
+    else
+      OUTM = execstr('unix_s(instr);', 'errcatch') <> 0
+    end
 
-      if OUTM then // If_modelicac_fails_then_use_Translator
-        MSG1 = mgetl(TMPDIR + '/Wmodelicac.err');
-        if fileinfo(SCI + '/bin/translator.exe') <> [] then // if_translator_exists
-          translator = pathconvert(SCI + '/bin/translator.exe', %f, %t)
-          ext = '\*.mo';
-          molibs = [];
-          for k = 1:size(mlibs,'*')
-            molibs = [molibs ; listfiles(mlibs(k) + ext)];
+    if OUTM then // if_modelicac_fails_then_use_translator
+      MSG1 = mgetl(TMPDIR + filesep() + modelicac_err);
+      if fileinfo(fullfile(SCI, 'bin', translator_bin)) <> [] then // if_translator_exists
+        translator = pathconvert(SCI + filesep() + 'bin' + filesep() + translator_bin, %f, %t)
+        ext = filesep() + '*.mo';
+        molibs = [];
+        for k = 1:size(mlibs,'*')
+          molibs = [molibs ; listfiles(mlibs(k) + ext)];
+        end
+        txt = [];
+        for k = 1:size(molibs, '*')
+          [pathx, fnamex, extensionx] = fileparts(molibs(k));
+          if (fnamex <> 'MYMOPACKAGE') then
+            txt=[txt ; mgetl(molibs(k))];
           end
-          txt = [];
-          for k = 1:size(molibs, '*')
-            [pathx, fnamex, extensionx] = fileparts(molibs(k));
-            if (fnamex <> 'MYMOPACKAGE') then
-              txt=[txt ; mgetl(molibs(k))];
-            end
-          end
-          mputl(txt, TMPDIR + '/MYMOPACKAGE.mo');
-          // all Modelica files found in "modelica_libs" directories are
-          // merged into the temporary file  "MYMOPACKAGE.mo". This is done
-          // because in Windows the length of the command line is limited.
-          FlatName   = path + name + '_flattened.mo';
-          translator = translator + strcat(' -lib '+ TMPDIR + '/MYMOPACKAGE.mo');
-          //translator = translator + strcat(' -lib ' + molibs);
-          instr = translator + ' -lib ' + fil + ' -o ' + FlatName + " -command ""' + name + ' x;"" > ' + TMPDIR + '/Wtranslator.err';
+        end
+        mputl(txt, TMPDIR + '/MYMOPACKAGE.mo');
+        // all Modelica files found in "modelica_libs" directories are
+        // merged into the temporary file  "MYMOPACKAGE.mo". This is done
+        // because in Windows the length of the command line is limited.
+        FlatName   = path + name + '_flattened.mo';
+        translator = translator + strcat(' -lib '+ TMPDIR + '/MYMOPACKAGE.mo');
+        //translator = translator + strcat(' -lib ' + molibs);
+        instr = translator + ' -lib ' + fil + ' -o ' + FlatName + " -command ""' + name + ' x;"" > ' + TMPDIR + filesep() + translator_err
+        if MSDOS
           mputl(instr, path + 'gent.bat')
           instr = path + 'gent.bat'
-          if execstr('unix_s(instr)', 'errcatch') <> 0 then
-            MSG2 = mgetl(TMPDIR + '/Ltranslator.err');
-            x_message(['-------Modelica compiler error:-------'; ..
-                       MSG1; ..
-                       '-------Modelica translator error:-------';
-                       MSG2; ..
-                       'Please read the error message in the Scilab window']);
-            ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
-          end
-          instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + '/Wunix.err'
-          if execstr('unix_s(instr)', 'errcatch') <> 0 then
-            MSG3 = mgetl(TMPDIR + '/Wunix.err');
-            x_message(['-------Modelica compiler error (without the translator):-------'; ..
-                       MSG1; ..
-                       '-------Modelica compiler error (with the translator):-------'; ..
-                       MSG3; ..
-                       'Please read the error message in the Scilab window']);
-            ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
-          else
-            mprintf('   Flat modelica code generated at ' + FlatName + '\n')
-          end
-        else // if_translator_exists
+        end
+        if execstr('unix_s(instr)', 'errcatch') <> 0 then
+          MSG2 = mgetl(TMPDIR + filesep() + translator_err);
+          x_message(['-------Modelica compiler error:-------'; ..
+                     MSG1; ..
+                     '-------Modelica translator error:-------'; ..
+                     MSG2; ..
+                     'Please read the error message in the Scilab window']);
+          ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
+        end
+        instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + filesep() + unix_err
+        if execstr('unix_s(instr)', 'errcatch') <> 0 then
+          MSG3 = mgetl(TMPDIR + filesep() + unix_err);
           x_message(['-------Modelica compiler error (without the translator):-------'; ..
                      MSG1; ..
-                     'Please read the error message in the Scilab window';
-                     ' '; ..
-                     'Please install the Modelica translator (available at www.scicos.org) in ""SCI\bin"" and try again']);
+                     '-------Modelica compiler error (with the translator):-------'; ..
+                     MSG3; ..
+                     'Please read the error message in the Scilab window']);
           ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
-        end // if_translator_exists
-      end // end of If_modelicac_fails_then_use_Translator
-      mprintf('   C code generated at ' + path + name + '.c\n')
+        else
+          mprintf('   Flat modelica code generated at ' + FlatName + '\n')
+        end
+      else // if_translator_exists
+        x_message(['-------Modelica compiler error (without the translator):-------'; ..
+                   MSG1; ..
+                   'Please read the error message in the Scilab window';
+                   ' '; ..
+                   'Please install the Modelica translator (available at www.scicos.org) in ""SCI' + filesep() + 'bin"" and try again']);
+        ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
+      end // if_translator_exists
+    end // if_modelicac_fails_then_use_translator
 
-    else //** ---- Unix / Linux / Mac ------------------------------------------
-
-      FlatName = fil;
-
-      modelicac = 'modelicac'; //** thanks to automatic detection
-      modelicac = modelicac + strcat(' -L '+ mlibs);
-      instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + '/Lmodelicac.err;';
-
-      if fileinfo(SCI + '/bin/translator') <> [] then
-        OUTM = unix(instr) <> 0; // in order to mask the message in the Scilab windows
-      else
-        OUTM = execstr('unix_s(instr);', 'errcatch') <> 0
-      end
-
-      if OUTM then // If_modelicac_fails_then_use_Translator
-        MSG1 = mgetl(TMPDIR + '/Lmodelicac.err');
-        if fileinfo(SCI + '/bin/translator') <> [] then // if_translator_exists
-          translator = pathconvert(SCI + '/bin/translator', %f, %t)
-          ext = '/*.mo';
-          molibs = [];
-          for k = 1:size(mlibs,'*')
-            molibs = [molibs ; listfiles(mlibs(k) + ext)];
-          end
-          txt = [];
-          for k = 1:size(molibs,'*')
-            [pathx, fnamex, extensionx] = fileparts(molibs(k));
-            if (fnamex <> 'MYMOPACKAGE') then
-              txt = [txt ; mgetl(molibs(k))];
-            end
-          end
-          mputl(txt, TMPDIR + '/MYMOPACKAGE.mo');
-          // all Modelica files found in "modelica_libs" directories are
-          // merged into the  temporary file  "MYMOPACKAGE.mo". This is done
-          // because in Windows the length of the command line is limited.
-          FlatName = path + name + '_flattened.mo';
-          translator = translator + strcat(' -lib ' + TMPDIR + '/MYMOPACKAGE.mo');
-          //translator = translator + strcat(' -lib ' + molibs);
-          instr = translator + ' -lib ' + fil + ' -o ' + FlatName + " -command ""' + name + ' x;"" > ' + TMPDIR + '/Ltranslator.err';
-
-
-          if execstr('unix_s(instr)', 'errcatch') <> 0 then
-            MSG2 = mgetl(TMPDIR + '/Ltranslator.err');
-            x_message(['-------Modelica compiler error:-------'; ..
-                       MSG1; ..
-                       '-------Modelica translator error:-------'; ..
-                       MSG2; ..
-                       'Please read the error message in the Scilab window']);
-            ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
-          end
-          instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + '/Lunix.err';
-          if execstr('unix_s(instr)', 'errcatch') <> 0 then
-            MSG3 = mgetl(TMPDIR + '/Lunix.err');
-            x_message(['-------Modelica compiler error (without the translator):-------'; ..
-                       MSG1; ..
-                       '-------Modelica compiler error (with the translator):-------'; ..
-                       MSG3; ..
-                       'Please read the error message in the Scilab window']);
-            ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
-          else
-            mprintf('   Flat modelica code generated at ' + FlatName + '\n')
-          end
-        else // if_translator_exists
-          x_message(['-------Modelica compiler error (without the translator):-------'; ..
-                     MSG1; ..
-                     'Please read the error message in the Scilab window';
-                     ' '; ..
-                     'Please install the Modelica translator (available at www.scicos.org)  in ""SCI/bin"" and try again']);
-          ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
-        end // if_translator_exists
-      end // end of If_modelicac_fails_then_use_Translator
-      mprintf('   C code generated at ' + path + name + '.c\n')
-    end // if MSDOS
+    mprintf('   C code generated at ' + path + name + '.c\n')
   end
 
   Cfile = path + name + '.c'

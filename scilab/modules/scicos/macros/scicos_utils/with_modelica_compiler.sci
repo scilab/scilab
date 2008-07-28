@@ -21,20 +21,22 @@
 //
 
 function r = with_modelica_compiler()
-  // check if modelica_compiler exists
-  if MSDOS then
-    compilername = 'modelicac.exe';
-  else
-    compilername = 'modelicac';
-  end
+  // check if modelica compiler exists in current $PATH
+
+  compilername = 'modelicac'
+
+  // try to launch 'modelicac' with an '--help' switch and test result:
+  //  - ierr == 0 means that command completed successfully
+  //  - ierr != 0 means an error occurred (most likely file was not found)
   try
-    [rep,ierr,err] = unix_g(compilername+' --help');
-    if (ierr == 0) then 
-      r = %t;
+    [rep,ierr,err] = unix_g(compilername + ' --help')
+    if (ierr == 0) then
+      r = %t
     else
-      r = %f;
+      r = %f
     end
   catch
-    r = %f;
+    r = %f
   end
 endfunction
+
