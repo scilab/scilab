@@ -1106,7 +1106,6 @@ modules/shell/Makefile
 modules/completion/Makefile
 modules/history_manager/Makefile
 modules/jvm/Makefile
-modules/jvm/etc/jvm_options.xml
 modules/sound/Makefile
 modules/statistics/Makefile
 modules/mexlib/Makefile
@@ -1165,6 +1164,7 @@ libs/Makefile
 Makefile
 scilab.pc
 etc/modules.xml
+modules/jvm/etc/jvm_options.xml
 scilab-lib.properties
 scilab-lib-doc.properties
 ])
