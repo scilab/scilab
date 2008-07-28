@@ -123,7 +123,7 @@ public class BuildDocObject extends StyleSheet {
 		args.add("html.stylesheet=" + styleSheet);
 		args.addAll(specificArgs);
 		
-		//		doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
+		doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
 		this.postProcess();
 	}
 	
