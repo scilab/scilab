@@ -35,7 +35,6 @@ Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\builder_gateway_c.sce; DestDir
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\sci_csum.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\c; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\fortran\builder_gateway_fortran.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\fortran; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\fortran\sci_fsum.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\fortran; Components: {#COMPN_TOOLBOX_SKELETON}
-Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\loader_gateway.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\src\builder_src.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\src\c\builder_c.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\c; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\src\c\csum.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\c; Components: {#COMPN_TOOLBOX_SKELETON}
