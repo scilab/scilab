@@ -122,7 +122,6 @@ public class BuildDocObject extends StyleSheet {
 		args.add("base.dir=" + this.outputDirectory);
 		args.add("html.stylesheet=" + styleSheet);
 		args.addAll(specificArgs);
-		System.out.println("plop: " + args);
 		
 		doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
 		this.postProcess();
