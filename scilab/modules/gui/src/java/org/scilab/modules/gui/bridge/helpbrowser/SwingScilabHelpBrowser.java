@@ -25,6 +25,7 @@ import javax.help.DefaultHelpModel;
 import javax.help.HelpSet;
 import javax.help.HelpSetException;
 import javax.help.JHelp;
+import javax.help.JHelpIndexNavigator;
 import javax.help.JHelpSearchNavigator;
 import javax.help.JHelpTOCNavigator;
 import javax.help.plaf.basic.BasicSearchNavigatorUI;
@@ -146,6 +147,11 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 			}
 			this.getModel().getHelpSet().add(helpSet);
         }
+	    
+	    /** Disable Index navigator beacause no index in Scilab help files */
+	    Enumeration navigators = getHelpNavigators();
+	    navigators.nextElement(); /* TOC */
+	    removeHelpNavigator((JHelpIndexNavigator) navigators.nextElement());
 	    
 		/* Reinit status bar and cursor */
 		if (ScilabConsole.getConsole().getInfoBar() != null) {
