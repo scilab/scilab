@@ -272,7 +272,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		end
 		
 		if ~or(need_to_be_build_tab) then
-			printf(_("\tHTML files are up-to-date\n"));
+			printf(_("\tHTML files are up-to-date.\n"));
 			return;
 		end
         
@@ -294,7 +294,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 					if  language_system_m(k) then
 						default_language_path = pathconvert(dirs_m(k)+"/../"+default_language_m(k),%f,%f);
 						if displaydone == 0 then
-							printf(_("\nCopying missing files copied from\n"));
+							printf(_("\nCopying missing help files copied from the default language\n"));
 							displaydone = 1;
 						end
 						printf(_("\t%s\n"),strsubst(default_language_path,SCI_long,"SCI"));
@@ -332,14 +332,15 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 			master_doc = SCI+"/modules/helptools/master_"+getlanguage()+"_help.xml";
 			
 			if or(need_to_be_build_tab_m) then
-				printf(_("\nBuilding the scilab manual master document\n"));
+				printf(_("\nBuilding the Scilab manual master document for %s.\n"),getlanguage());
 				create_MD(dirs_m,titles_m,master_doc);
+				
 			end
 			
 			if or(need_to_be_build_tab_c) then
 				for k=1:size(dirs_c,"*")
 					if need_to_be_build_tab_c(k) then
-						printf(_("\nBuilding the master document : %s\n"),titles_c(k));
+						printf(_("\nBuilding the master document: %s\n"),titles_c(k));
 						create_MD(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml");
 					end
 				end
@@ -352,7 +353,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 				if need_to_be_build_tab(k) then
 					if nb_dir > 1 then
 						if displaydone == 0 then
-							printf(_("\nBuilding the master document\n"));
+							printf(_("\nBuilding the master document for %s.\n"),getlanguage());
 							displaydone = 1;
 						end
 						printf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
@@ -372,41 +373,9 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 		script_tool = "";
 		
 		if all_scilab_help then
-			
-			select output_format
-				
-				case "javaHelp"
-					output_file = pathconvert(SCI+"/modules/helptools/jar/scilab_"+getlanguage()+"_help.jar",%f,%f);
-					log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.jar.log",%f,%f);
-					script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2jh",%f,%f);
-				
-				case "chm"
-					output_file = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.chm",%f,%f);
-					log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.chm.log",%f,%f);
-					script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2chm",%f,%f);
-				
-				case "pdf"
-					output_file = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.pdf",%f,%f);
-					log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.pdf.log",%f,%f);
-					script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2pdf",%f,%f);
-				
-				case "ps"
-					output_file = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.ps",%f,%f);
-					log_file    = pathconvert(SCI+"/modules/helptools/scilab_"+getlanguage()+"_help.ps.log",%f,%f);
-					script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2pdf",%f,%f);
-			end
-			
-			if MSDOS then
-				script_tool = script_tool+".bat";
-			end
-			
-			log_str     = "";
-			
-			if or(need_to_be_build_tab_m) then
-				printf(_("\nBuilding the scilab manual file ["+output_format+"]\n"));
-				log_str = unix_g(script_tool+" "+master_doc+" "+output_file+" 2>&1");
-				mputl(log_str,log_file);
-			end
+
+		  printf(_("\nBuilding the scilab manual file ["+output_format+"]\n"));
+		  buildDoc(output_format)
 		
 		else
 		
@@ -416,43 +385,14 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 					
 					if nb_dir > 1 then
 						if displaydone == 0 then
-							printf(_("\nBuilding the manual file ["+output_format+"]   (Please wait building ... this can take up to 10 minutes)\n"));
+							printf(_("\nBuilding the manual file [%s]. (Please wait building ... this can take up to 10 minutes)\n"),output_format);
 							displaydone = 1;
 						end
 						printf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 					else
-						printf(_("\nBuilding the manual file ["+output_format+"] in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
+						printf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
 					end
-					
-					select output_format
-						
-						case "javaHelp"
-							output_file = pathconvert(dirs(k)+"/"+getlanguage()+"_help.jar",%f,%f);
-							log_file    = pathconvert(dirs(k)+"/"+getlanguage()+"_help.jar.log",%f,%f);
-							script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2jh",%f,%f);
-						
-						case "chm"
-							output_file = pathconvert(dirs(k)+"/"+getlanguage()+"_help.chm",%f,%f);
-							log_file    = pathconvert(dirs(k)+"/"+getlanguage()+"_help.chm.log",%f,%f);
-							script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2chm",%f,%f);
-						
-						case "pdf"
-							output_file = pathconvert(dirs(k)+"/"+getlanguage()+"_help.pdf",%f,%f);
-							log_file    = pathconvert(dirs(k)+"/"+getlanguage()+"_help.pdf.log",%f,%f);
-							script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2pdf",%f,%f);
-						
-						case "ps"
-							output_file = pathconvert(dirs(k)+"/"+getlanguage()+"_help.ps",%f,%f);
-							log_file    = pathconvert(dirs(k)+"/"+getlanguage()+"_help.ps.log",%f,%f);
-							script_tool = pathconvert(SCI+"/modules/helptools/bin/sci2pdf",%f,%f);
-					end
-					
-					if MSDOS then
-						script_tool = script_tool+".bat";
-					end
-					
-					log_str = unix_g(script_tool+" "+dirs(k)+"/master_help.xml "+output_file+" 2>&1");
-					mputl(log_str,log_file);
+					buildDoc(output_format, dirs(k)+"/master_help.xml")
 					
 				end
 			end
@@ -689,7 +629,8 @@ function result = need_to_be_build(directory,directory_language,default_language
 	//--------------------------------------------------------------------------
 	
 	[lhs,rhs]=argn(0);
-	
+	result = %T; // At the moment, we do need to rebuild all ... 
+	return;	
 	// S'il n'y a pas de fichiers XML dans le répertoire ni dans son homologue,
 	// Le répertoire n'a pas besoin d'être construit.
 	// Cela est une sécurité pour éviter de detruire les whatis des versions binaires
@@ -774,7 +715,6 @@ function create_MD(dirs,titles,output_filename)
 	master_document = ["<?xml version=""1.0"" encoding=""ISO-8859-1""?>"; ..
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
-	
 	xml_files          = listfiles(dirs+"/*.xml");
 	master_document    = [master_document; ..
 		"<!ENTITY "+basename(xml_files)+" SYSTEM """+xml_files+""">"];
@@ -805,9 +745,7 @@ function create_MD(dirs,titles,output_filename)
 		"<!--Begin Reference-->"];
 	
 	for k=1:size(dirs,"*");
-		
 		xml_files = gsort(basename(listfiles(dirs(k)+"/*.xml")),"lr","i");
-		
 		master_document    = [ master_document; ..
 			"<reference xml:id=''"+title2category(titles(k))+"''>"; ..
 			"<title>"+text2html(titles(k))+"</title>"; ..

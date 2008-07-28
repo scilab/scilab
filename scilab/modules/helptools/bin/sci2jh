@@ -127,6 +127,15 @@ if [ $? -eq 0 ]; then
             "$docbookXslDir/javahelp/javahelp.xsl" "$flatXMLFile"
 
 else
+echo   java -Xmx512m -cp "$libDir/saxon.jar:$libDir/docbook-xsl-saxon.jar" \
+        com.icl.saxon.StyleSheet \
+        "$flatXMLFile" \
+        "$docbookXslDir/javahelp/javahelp.xsl" \
+        base.dir="$helpsetDir/" \
+        html.stylesheet=javahelp.css \
+        use.extensions=1 \
+        graphicsize.extension=0 \
+        "generate.toc= "
 
     java -Xmx512m -cp "$libDir/saxon.jar:$libDir/docbook-xsl-saxon.jar" \
         com.icl.saxon.StyleSheet \

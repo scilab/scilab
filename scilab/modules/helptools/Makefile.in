@@ -19,18 +19,6 @@
 ### INRIA - Scilab 2008
 ##########
 
-#GATEWAY_C_SOURCES = 	#sci_gateway/c/sci_buildDoc.c  #\
-#			#sci_gateway/c/gw_helptools.c
-
-#pkglib_LTLIBRARIES = libscihelptools.la
-
-#libscihelptools_la_CFLAGS=  	-Iincludes/ \
-#				-I$(top_builddir)/modules/output_stream/includes/
-
-#libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-
-#libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES)
-
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
@@ -46,6 +34,7 @@
 ### Makefile included stuff
 ### Target, variable, suffixes which are supposed to be usefull in every makefile.am
 ##########
+
 
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
@@ -72,76 +61,76 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 @GIWS_TRUE@am__append_3 = giws
 subdir = modules/helptools
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/matio.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
 	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
-SOURCES =
-DIST_SOURCES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libscihelptools_la_bindir)" \
+am__installdirs = "$(DESTDIR)$(pkglibdir)" \
+	"$(DESTDIR)$(libscihelptools_la_bindir)" \
 	"$(DESTDIR)$(libscihelptools_la_cssdir)" \
 	"$(DESTDIR)$(libscihelptools_la_docdir)" \
 	"$(DESTDIR)$(libscihelptools_la_doc_htmldir)" \
 	"$(DESTDIR)$(libscihelptools_la_doc_html_imagesdir)" \
 	"$(DESTDIR)$(libscihelptools_la_doc_html_images_calloutsdir)" \
 	"$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsldir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_commondir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_docsrcdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_eclipsedir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_extensionsdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_fodir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_highlightingdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmldir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmlhelpdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_imagesdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_images_calloutsdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_javahelpdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_libdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_manpagesdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_paramsdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_profilingdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_roundtripdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_browserdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_fodir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphicsdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_activedir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_inactivedir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_tocdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmldir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmlhelpdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynotedir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynote_xsltsldir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_svgdir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_xhtmldir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_templatedir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_bindir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_makedir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_websitedir)" \
-	"$(DESTDIR)$(libscihelptools_la_docbook_xsl_xhtmldir)" \
 	"$(DESTDIR)$(libscihelptools_la_etcdir)" \
 	"$(DESTDIR)$(libscihelptools_la_rootdir)" \
 	"$(DESTDIR)$(libscihelptools_la_schemadir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" \
 	"$(DESTDIR)$(libscihelptools_la_xsl_fodir)"
+pkglibLTLIBRARIES_INSTALL = $(INSTALL)
+LTLIBRARIES = $(pkglib_LTLIBRARIES)
+libscihelptools_la_LIBADD =
+am__objects_1 = libscihelptools_la-sci_buildDoc.lo \
+	libscihelptools_la-gw_helptools.lo
+am__objects_2 = libscihelptools_la-BuildDocObject.lo
+am_libscihelptools_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+libscihelptools_la_OBJECTS = $(am_libscihelptools_la_OBJECTS)
+libscihelptools_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(libscihelptools_la_LDFLAGS) $(LDFLAGS) -o $@
+DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
+depcomp = $(SHELL) $(top_srcdir)/config/depcomp
+am__depfiles_maybe = depfiles
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+SOURCES = $(libscihelptools_la_SOURCES)
+DIST_SOURCES = $(libscihelptools_la_SOURCES)
 libscihelptools_la_binDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_cssDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_docDATA_INSTALL = $(INSTALL_DATA)
@@ -149,40 +138,6 @@ libscihelptools_la_doc_htmlDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_doc_html_imagesDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_doc_html_images_calloutsDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_doc_html_resourcesDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xslDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_commonDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_docsrcDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_eclipseDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_extensionsDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_foDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_highlightingDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_htmlDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_htmlhelpDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_imagesDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_images_calloutsDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_javahelpDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_libDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_manpagesDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_paramsDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_profilingDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_roundtripDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_browserDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_foDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_graphicsDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_graphics_activeDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_graphics_inactiveDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_graphics_tocDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_htmlDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_htmlhelpDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_keynoteDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_keynote_xsltslDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_svgDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_slides_xhtmlDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_templateDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_tools_binDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_tools_makeDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_websiteDATA_INSTALL = $(INSTALL_DATA)
-libscihelptools_la_docbook_xsl_xhtmlDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscihelptools_la_schemaDATA_INSTALL = $(INSTALL_DATA)
@@ -194,44 +149,12 @@ DATA = $(libscihelptools_la_bin_DATA) $(libscihelptools_la_css_DATA) \
 	$(libscihelptools_la_doc_html_images_DATA) \
 	$(libscihelptools_la_doc_html_images_callouts_DATA) \
 	$(libscihelptools_la_doc_html_resources_DATA) \
-	$(libscihelptools_la_docbook_xsl_DATA) \
-	$(libscihelptools_la_docbook_xsl_common_DATA) \
-	$(libscihelptools_la_docbook_xsl_docsrc_DATA) \
-	$(libscihelptools_la_docbook_xsl_eclipse_DATA) \
-	$(libscihelptools_la_docbook_xsl_extensions_DATA) \
-	$(libscihelptools_la_docbook_xsl_fo_DATA) \
-	$(libscihelptools_la_docbook_xsl_highlighting_DATA) \
-	$(libscihelptools_la_docbook_xsl_html_DATA) \
-	$(libscihelptools_la_docbook_xsl_htmlhelp_DATA) \
-	$(libscihelptools_la_docbook_xsl_images_DATA) \
-	$(libscihelptools_la_docbook_xsl_images_callouts_DATA) \
-	$(libscihelptools_la_docbook_xsl_javahelp_DATA) \
-	$(libscihelptools_la_docbook_xsl_lib_DATA) \
-	$(libscihelptools_la_docbook_xsl_manpages_DATA) \
-	$(libscihelptools_la_docbook_xsl_params_DATA) \
-	$(libscihelptools_la_docbook_xsl_profiling_DATA) \
-	$(libscihelptools_la_docbook_xsl_roundtrip_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_browser_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_fo_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_graphics_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_graphics_active_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_graphics_inactive_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_graphics_toc_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_html_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_htmlhelp_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_keynote_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_keynote_xsltsl_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_svg_DATA) \
-	$(libscihelptools_la_docbook_xsl_slides_xhtml_DATA) \
-	$(libscihelptools_la_docbook_xsl_template_DATA) \
-	$(libscihelptools_la_docbook_xsl_tools_bin_DATA) \
-	$(libscihelptools_la_docbook_xsl_tools_make_DATA) \
-	$(libscihelptools_la_docbook_xsl_website_DATA) \
-	$(libscihelptools_la_docbook_xsl_xhtml_DATA) \
 	$(libscihelptools_la_etc_DATA) $(libscihelptools_la_root_DATA) \
 	$(libscihelptools_la_schema_DATA) \
 	$(libscihelptools_la_xsl_convert_DATA) \
 	$(libscihelptools_la_xsl_fo_DATA)
+ETAGS = etags
+CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -257,6 +180,7 @@ CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 ECHO = @ECHO@
 ECHO_C = @ECHO_C@
@@ -302,7 +226,6 @@ LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
-MANGENERATOR = @MANGENERATOR@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIB = @MATIO_LIB@
@@ -356,7 +279,6 @@ TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 VERSION = @VERSION@
-WITH = @WITH@
 WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
@@ -420,6 +342,21 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp
+#	src/cpp/buildDoc.cpp
+GATEWAY_C_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
+			sci_gateway/c/gw_helptools.c
+
+pkglib_LTLIBRARIES = libscihelptools.la
+libscihelptools_la_CFLAGS = -Iincludes/ 
+libscihelptools_la_CPPFLAGS = -Isrc/jni/ \
+				-Iincludes/ \
+				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_builddir)/modules/output_stream/includes/
+
+libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscihelptools_la_SOURCES = $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES)
+GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
 
 #### Target ######
 modulename = helptools
@@ -506,1325 +443,6 @@ doc/html/images/callouts/9.png
 libscihelptools_la_doc_html_resourcesdir = $(mydatadir)/doc/html/resources
 libscihelptools_la_doc_html_resources_DATA = doc/html/resources/addonprefs.png
 
-#### helptools : docbook_xsl files ####
-libscihelptools_la_docbook_xsldir = $(mydatadir)docbook_xsl
-libscihelptools_la_docbook_xsl_DATA = docbook_xsl/AUTHORS \
-docbook_xsl/BUGS \
-docbook_xsl/catalog.xml \
-docbook_xsl/COPYING \
-docbook_xsl/INSTALL \
-docbook_xsl/install.sh \
-docbook_xsl/NEWS \
-docbook_xsl/NEWS.html \
-docbook_xsl/NEWS.xml \
-docbook_xsl/README \
-docbook_xsl/RELEASE-NOTES.html \
-docbook_xsl/RELEASE-NOTES.pdf \
-docbook_xsl/RELEASE-NOTES.txt \
-docbook_xsl/RELEASE-NOTES.xml \
-docbook_xsl/TODO \
-docbook_xsl/VERSION
-
-libscihelptools_la_docbook_xsl_commondir = $(mydatadir)/docbook_xsl/common
-libscihelptools_la_docbook_xsl_common_DATA = \
-docbook_xsl/common/addns.xsl \
-docbook_xsl/common/af.xml \
-docbook_xsl/common/am.xml \
-docbook_xsl/common/ar.xml \
-docbook_xsl/common/autoidx-kimber.xsl \
-docbook_xsl/common/autoidx-kosek.xsl \
-docbook_xsl/common/az.xml \
-docbook_xsl/common/bg.xml \
-docbook_xsl/common/bn.xml \
-docbook_xsl/common/bs.xml \
-docbook_xsl/common/ca.xml \
-docbook_xsl/common/charmap.xml \
-docbook_xsl/common/charmap.xsl \
-docbook_xsl/common/common.xml \
-docbook_xsl/common/common.xsl \
-docbook_xsl/common/cs.xml \
-docbook_xsl/common/cy.xml \
-docbook_xsl/common/da.xml \
-docbook_xsl/common/de.xml \
-docbook_xsl/common/el.xml \
-docbook_xsl/common/en.xml \
-docbook_xsl/common/entities.ent \
-docbook_xsl/common/eo.xml \
-docbook_xsl/common/es.xml \
-docbook_xsl/common/et.xml \
-docbook_xsl/common/eu.xml \
-docbook_xsl/common/fa.xml \
-docbook_xsl/common/fi.xml \
-docbook_xsl/common/fr.xml \
-docbook_xsl/common/ga.xml \
-docbook_xsl/common/gentext.xsl \
-docbook_xsl/common/gu.xml \
-docbook_xsl/common/he.xml \
-docbook_xsl/common/hi.xml \
-docbook_xsl/common/hr.xml \
-docbook_xsl/common/hu.xml \
-docbook_xsl/common/id.xml \
-docbook_xsl/common/insertfile.xsl \
-docbook_xsl/common/it.xml \
-docbook_xsl/common/ja.xml \
-docbook_xsl/common/kn.xml \
-docbook_xsl/common/ko.xml \
-docbook_xsl/common/l10n.dtd \
-docbook_xsl/common/l10n.xml \
-docbook_xsl/common/l10n.xsl \
-docbook_xsl/common/la.xml \
-docbook_xsl/common/labels.xsl \
-docbook_xsl/common/lt.xml \
-docbook_xsl/common/lv.xml \
-docbook_xsl/common/mn.xml \
-docbook_xsl/common/nl.xml \
-docbook_xsl/common/nn.xml \
-docbook_xsl/common/no.xml \
-docbook_xsl/common/olink.xsl \
-docbook_xsl/common/or.xml \
-docbook_xsl/common/pa.xml \
-docbook_xsl/common/pi.xml \
-docbook_xsl/common/pi.xsl \
-docbook_xsl/common/pl.xml \
-docbook_xsl/common/pt.xml \
-docbook_xsl/common/pt_br.xml \
-docbook_xsl/common/refentry.xml \
-docbook_xsl/common/refentry.xsl \
-docbook_xsl/common/ro.xml \
-docbook_xsl/common/ru.xml \
-docbook_xsl/common/sk.xml \
-docbook_xsl/common/sl.xml \
-docbook_xsl/common/sq.xml \
-docbook_xsl/common/sr.xml \
-docbook_xsl/common/sr_Latn.xml \
-docbook_xsl/common/subtitles.xsl \
-docbook_xsl/common/sv.xml \
-docbook_xsl/common/ta.xml \
-docbook_xsl/common/table.xsl \
-docbook_xsl/common/targetdatabase.dtd \
-docbook_xsl/common/targets.xsl \
-docbook_xsl/common/th.xml \
-docbook_xsl/common/titles.xsl \
-docbook_xsl/common/tl.xml \
-docbook_xsl/common/tr.xml \
-docbook_xsl/common/uk.xml \
-docbook_xsl/common/utility.xml \
-docbook_xsl/common/utility.xsl \
-docbook_xsl/common/vi.xml \
-docbook_xsl/common/xh.xml \
-docbook_xsl/common/zh_cn.xml \
-docbook_xsl/common/zh_tw.xml
-
-libscihelptools_la_docbook_xsl_docsrcdir = $(mydatadir)/docbook_xsl/docsrc
-libscihelptools_la_docbook_xsl_docsrc_DATA = \
-docbook_xsl/docsrc/authors.xml \
-docbook_xsl/docsrc/copyright.xml \
-docbook_xsl/docsrc/license.xml \
-docbook_xsl/docsrc/page.png \
-docbook_xsl/docsrc/reference.css \
-docbook_xsl/docsrc/reference.xml \
-docbook_xsl/docsrc/reference.xml.included \
-docbook_xsl/docsrc/warranty.xml
-
-libscihelptools_la_docbook_xsl_eclipsedir = $(mydatadir)/docbook_xsl/eclipse
-libscihelptools_la_docbook_xsl_eclipse_DATA = \
-docbook_xsl/eclipse/eclipse.xsl \
-docbook_xsl/eclipse/profile-eclipse.xsl
-
-libscihelptools_la_docbook_xsl_extensionsdir = $(mydatadir)/docbook_xsl/extensions
-libscihelptools_la_docbook_xsl_extensions_DATA = \
-docbook_xsl/extensions/saxon65.jar \
-docbook_xsl/extensions/xalan27.jar
-
-libscihelptools_la_docbook_xsl_fodir = $(mydatadir)/docbook_xsl/fo
-libscihelptools_la_docbook_xsl_fo_DATA = \
-docbook_xsl/fo/admon.xsl \
-docbook_xsl/fo/annotations.xsl \
-docbook_xsl/fo/autoidx-kimber.xsl \
-docbook_xsl/fo/autoidx-kosek.xsl \
-docbook_xsl/fo/autoidx-ng.xsl \
-docbook_xsl/fo/autoidx.xsl \
-docbook_xsl/fo/autotoc.xsl \
-docbook_xsl/fo/axf.xsl \
-docbook_xsl/fo/biblio-iso690.xsl \
-docbook_xsl/fo/biblio.xsl \
-docbook_xsl/fo/block.xsl \
-docbook_xsl/fo/callout.xsl \
-docbook_xsl/fo/component.xsl \
-docbook_xsl/fo/division.xsl \
-docbook_xsl/fo/docbook.xsl \
-docbook_xsl/fo/ebnf.xsl \
-docbook_xsl/fo/fo-rtf.xsl \
-docbook_xsl/fo/fo.xsl \
-docbook_xsl/fo/footnote.xsl \
-docbook_xsl/fo/fop.xsl \
-docbook_xsl/fo/fop1.xsl \
-docbook_xsl/fo/formal.xsl \
-docbook_xsl/fo/glossary.xsl \
-docbook_xsl/fo/graphics.xsl \
-docbook_xsl/fo/highlight.xsl \
-docbook_xsl/fo/htmltbl.xsl \
-docbook_xsl/fo/index.xsl \
-docbook_xsl/fo/info.xsl \
-docbook_xsl/fo/inline.xsl \
-docbook_xsl/fo/keywords.xsl \
-docbook_xsl/fo/lists.xsl \
-docbook_xsl/fo/math.xsl \
-docbook_xsl/fo/pagesetup.xsl \
-docbook_xsl/fo/param.xml \
-docbook_xsl/fo/param.xsl \
-docbook_xsl/fo/param.xsl.ORI \
-docbook_xsl/fo/passivetex.xsl \
-docbook_xsl/fo/pdf2index \
-docbook_xsl/fo/pi.xml \
-docbook_xsl/fo/pi.xsl \
-docbook_xsl/fo/profile-docbook.xsl \
-docbook_xsl/fo/ptc.xsl \
-docbook_xsl/fo/qandaset.xsl \
-docbook_xsl/fo/refentry.xsl \
-docbook_xsl/fo/sections.xsl \
-docbook_xsl/fo/spaces.xsl \
-docbook_xsl/fo/synop.xsl \
-docbook_xsl/fo/table.xml \
-docbook_xsl/fo/table.xsl \
-docbook_xsl/fo/task.xsl \
-docbook_xsl/fo/titlepage.templates.xml \
-docbook_xsl/fo/titlepage.templates.xsl \
-docbook_xsl/fo/titlepage.xsl \
-docbook_xsl/fo/toc.xsl \
-docbook_xsl/fo/verbatim.xsl \
-docbook_xsl/fo/xep.xsl \
-docbook_xsl/fo/xref.xsl
-
-libscihelptools_la_docbook_xsl_highlightingdir = $(mydatadir)/docbook_xsl/highlighting
-libscihelptools_la_docbook_xsl_highlighting_DATA = \
-docbook_xsl/highlighting/c-hl.xml \
-docbook_xsl/highlighting/common.xsl \
-docbook_xsl/highlighting/delphi-hl.xml \
-docbook_xsl/highlighting/ini-hl.xml \
-docbook_xsl/highlighting/java-hl.xml \
-docbook_xsl/highlighting/m2-hl.xml \
-docbook_xsl/highlighting/myxml-hl.xml \
-docbook_xsl/highlighting/php-hl.xml \
-docbook_xsl/highlighting/xslthl-config.xml
-
-libscihelptools_la_docbook_xsl_htmldir = $(mydatadir)/docbook_xsl/html
-libscihelptools_la_docbook_xsl_html_DATA = \
-docbook_xsl/html/admon.xsl \
-docbook_xsl/html/annotations.xsl \
-docbook_xsl/html/autoidx-kimber.xsl \
-docbook_xsl/html/autoidx-kosek.xsl \
-docbook_xsl/html/autoidx-ng.xsl \
-docbook_xsl/html/autoidx.xsl \
-docbook_xsl/html/autotoc.xsl \
-docbook_xsl/html/biblio-iso690.xsl \
-docbook_xsl/html/biblio.xsl \
-docbook_xsl/html/block.xsl \
-docbook_xsl/html/callout.xsl \
-docbook_xsl/html/changebars.xsl \
-docbook_xsl/html/chunk-code.xsl \
-docbook_xsl/html/chunk-common.xsl \
-docbook_xsl/html/chunk.xsl \
-docbook_xsl/html/chunker.xsl \
-docbook_xsl/html/chunkfast.xsl \
-docbook_xsl/html/chunktoc.xsl \
-docbook_xsl/html/component.xsl \
-docbook_xsl/html/division.xsl \
-docbook_xsl/html/docbook.xsl \
-docbook_xsl/html/ebnf.xsl \
-docbook_xsl/html/footnote.xsl \
-docbook_xsl/html/formal.xsl \
-docbook_xsl/html/glossary.xsl \
-docbook_xsl/html/graphics.xsl \
-docbook_xsl/html/highlight.xsl \
-docbook_xsl/html/html-rtf.xsl \
-docbook_xsl/html/html.xsl \
-docbook_xsl/html/htmltbl.xsl \
-docbook_xsl/html/index.xsl \
-docbook_xsl/html/info.xsl \
-docbook_xsl/html/inline.xsl \
-docbook_xsl/html/keywords.xsl \
-docbook_xsl/html/lists.xsl \
-docbook_xsl/html/maketoc.xsl \
-docbook_xsl/html/manifest.xsl \
-docbook_xsl/html/math.xsl \
-docbook_xsl/html/oldchunker.xsl \
-docbook_xsl/html/onechunk.xsl \
-docbook_xsl/html/param.xml \
-docbook_xsl/html/param.xsl \
-docbook_xsl/html/param.xsl.ORI \
-docbook_xsl/html/pi.xml \
-docbook_xsl/html/pi.xsl \
-docbook_xsl/html/profile-chunk-code.xsl \
-docbook_xsl/html/profile-chunk.xsl \
-docbook_xsl/html/profile-docbook.xsl \
-docbook_xsl/html/profile-onechunk.xsl \
-docbook_xsl/html/qandaset.xsl \
-docbook_xsl/html/refentry.xsl \
-docbook_xsl/html/sections.xsl \
-docbook_xsl/html/synop.xsl \
-docbook_xsl/html/table.xsl \
-docbook_xsl/html/task.xsl \
-docbook_xsl/html/titlepage.templates.xml \
-docbook_xsl/html/titlepage.templates.xsl \
-docbook_xsl/html/titlepage.xsl \
-docbook_xsl/html/toc.xsl \
-docbook_xsl/html/verbatim.xsl \
-docbook_xsl/html/xref.xsl
-
-libscihelptools_la_docbook_xsl_htmlhelpdir = $(mydatadir)/docbook_xsl/htmlhelp
-libscihelptools_la_docbook_xsl_htmlhelp_DATA = \
-docbook_xsl/htmlhelp/htmlhelp-common.xsl \
-docbook_xsl/htmlhelp/htmlhelp.xsl \
-docbook_xsl/htmlhelp/profile-htmlhelp-common.xsl \
-docbook_xsl/htmlhelp/profile-htmlhelp.xsl
-
-libscihelptools_la_docbook_xsl_imagesdir = $(mydatadir)/docbook_xsl/images
-libscihelptools_la_docbook_xsl_images_DATA = \
-docbook_xsl/images/annot-close.png \
-docbook_xsl/images/annot-open.png \
-docbook_xsl/images/blank.png \
-docbook_xsl/images/caution.gif \
-docbook_xsl/images/caution.png \
-docbook_xsl/images/caution.svg \
-docbook_xsl/images/caution.tif \
-docbook_xsl/images/draft.png \
-docbook_xsl/images/home.gif \
-docbook_xsl/images/home.png \
-docbook_xsl/images/home.svg \
-docbook_xsl/images/important.gif \
-docbook_xsl/images/important.png \
-docbook_xsl/images/important.svg \
-docbook_xsl/images/important.tif \
-docbook_xsl/images/next.gif \
-docbook_xsl/images/next.png \
-docbook_xsl/images/next.svg \
-docbook_xsl/images/note.gif \
-docbook_xsl/images/note.png \
-docbook_xsl/images/note.svg \
-docbook_xsl/images/note.tif \
-docbook_xsl/images/prev.gif \
-docbook_xsl/images/prev.png \
-docbook_xsl/images/prev.svg \
-docbook_xsl/images/tip.gif \
-docbook_xsl/images/tip.png \
-docbook_xsl/images/tip.svg \
-docbook_xsl/images/tip.tif \
-docbook_xsl/images/toc-blank.png \
-docbook_xsl/images/toc-minus.png \
-docbook_xsl/images/toc-plus.png \
-docbook_xsl/images/up.gif \
-docbook_xsl/images/up.png \
-docbook_xsl/images/up.svg \
-docbook_xsl/images/warning.gif \
-docbook_xsl/images/warning.png \
-docbook_xsl/images/warning.svg \
-docbook_xsl/images/warning.tif
-
-libscihelptools_la_docbook_xsl_images_calloutsdir = $(mydatadir)/docbook_xsl/images/callouts
-libscihelptools_la_docbook_xsl_images_callouts_DATA = \
-docbook_xsl/images/callouts/1.gif \
-docbook_xsl/images/callouts/1.png \
-docbook_xsl/images/callouts/1.svg \
-docbook_xsl/images/callouts/10.gif \
-docbook_xsl/images/callouts/10.png \
-docbook_xsl/images/callouts/10.svg \
-docbook_xsl/images/callouts/11.gif \
-docbook_xsl/images/callouts/11.png \
-docbook_xsl/images/callouts/11.svg \
-docbook_xsl/images/callouts/12.gif \
-docbook_xsl/images/callouts/12.png \
-docbook_xsl/images/callouts/12.svg \
-docbook_xsl/images/callouts/13.gif \
-docbook_xsl/images/callouts/13.png \
-docbook_xsl/images/callouts/13.svg \
-docbook_xsl/images/callouts/14.gif \
-docbook_xsl/images/callouts/14.png \
-docbook_xsl/images/callouts/14.svg \
-docbook_xsl/images/callouts/15.gif \
-docbook_xsl/images/callouts/15.png \
-docbook_xsl/images/callouts/15.svg \
-docbook_xsl/images/callouts/16.svg \
-docbook_xsl/images/callouts/17.svg \
-docbook_xsl/images/callouts/18.svg \
-docbook_xsl/images/callouts/19.svg \
-docbook_xsl/images/callouts/2.gif \
-docbook_xsl/images/callouts/2.png \
-docbook_xsl/images/callouts/2.svg \
-docbook_xsl/images/callouts/20.svg \
-docbook_xsl/images/callouts/21.svg \
-docbook_xsl/images/callouts/22.svg \
-docbook_xsl/images/callouts/23.svg \
-docbook_xsl/images/callouts/24.svg \
-docbook_xsl/images/callouts/25.svg \
-docbook_xsl/images/callouts/26.svg \
-docbook_xsl/images/callouts/27.svg \
-docbook_xsl/images/callouts/28.svg \
-docbook_xsl/images/callouts/29.svg \
-docbook_xsl/images/callouts/3.gif \
-docbook_xsl/images/callouts/3.png \
-docbook_xsl/images/callouts/3.svg \
-docbook_xsl/images/callouts/30.svg \
-docbook_xsl/images/callouts/4.gif \
-docbook_xsl/images/callouts/4.png \
-docbook_xsl/images/callouts/4.svg \
-docbook_xsl/images/callouts/5.gif \
-docbook_xsl/images/callouts/5.png \
-docbook_xsl/images/callouts/5.svg \
-docbook_xsl/images/callouts/6.gif \
-docbook_xsl/images/callouts/6.png \
-docbook_xsl/images/callouts/6.svg \
-docbook_xsl/images/callouts/7.gif \
-docbook_xsl/images/callouts/7.png \
-docbook_xsl/images/callouts/7.svg \
-docbook_xsl/images/callouts/8.gif \
-docbook_xsl/images/callouts/8.png \
-docbook_xsl/images/callouts/8.svg \
-docbook_xsl/images/callouts/9.gif \
-docbook_xsl/images/callouts/9.png \
-docbook_xsl/images/callouts/9.svg
-
-libscihelptools_la_docbook_xsl_javahelpdir = $(mydatadir)/docbook_xsl/javahelp
-libscihelptools_la_docbook_xsl_javahelp_DATA = \
-docbook_xsl/javahelp/javahelp.xsl \
-docbook_xsl/javahelp/profile-javahelp.xsl
-
-libscihelptools_la_docbook_xsl_libdir = $(mydatadir)/docbook_xsl/lib
-libscihelptools_la_docbook_xsl_lib_DATA = \
-docbook_xsl/lib/lib.xsl
-
-libscihelptools_la_docbook_xsl_manpagesdir = $(mydatadir)/docbook_xsl/manpages
-libscihelptools_la_docbook_xsl_manpages_DATA = \
-docbook_xsl/manpages/block.xsl \
-docbook_xsl/manpages/ChangeLog.20020917 \
-docbook_xsl/manpages/charmap.groff.xsl \
-docbook_xsl/manpages/docbook.xsl \
-docbook_xsl/manpages/endnotes.xsl \
-docbook_xsl/manpages/html-synop.xsl \
-docbook_xsl/manpages/info.xsl \
-docbook_xsl/manpages/inline.xsl \
-docbook_xsl/manpages/lists.xsl \
-docbook_xsl/manpages/other.xsl \
-docbook_xsl/manpages/param.xml \
-docbook_xsl/manpages/param.xsl \
-docbook_xsl/manpages/profile-docbook.xsl \
-docbook_xsl/manpages/refentry.xsl \
-docbook_xsl/manpages/synop.xsl \
-docbook_xsl/manpages/table.xsl \
-docbook_xsl/manpages/utility.xsl
-
-libscihelptools_la_docbook_xsl_paramsdir = $(mydatadir)/docbook_xsl/params
-libscihelptools_la_docbook_xsl_params_DATA = \
-docbook_xsl/params/abstract.notitle.enabled.xml \
-docbook_xsl/params/abstract.properties.xml \
-docbook_xsl/params/abstract.title.properties.xml \
-docbook_xsl/params/active.toc.xml \
-docbook_xsl/params/admon.graphics.extension.xml \
-docbook_xsl/params/admon.graphics.path.xml \
-docbook_xsl/params/admon.graphics.xml \
-docbook_xsl/params/admon.style.xml \
-docbook_xsl/params/admon.textlabel.xml \
-docbook_xsl/params/admonition.properties.xml \
-docbook_xsl/params/admonition.title.properties.xml \
-docbook_xsl/params/alignment.xml \
-docbook_xsl/params/annotate.toc.xml \
-docbook_xsl/params/annotation.css.xml \
-docbook_xsl/params/annotation.graphic.close.xml \
-docbook_xsl/params/annotation.graphic.open.xml \
-docbook_xsl/params/annotation.js.xml \
-docbook_xsl/params/annotation.support.xml \
-docbook_xsl/params/appendix.autolabel.xml \
-docbook_xsl/params/arbortext.extensions.xml \
-docbook_xsl/params/article.appendix.title.properties.xml \
-docbook_xsl/params/author.othername.in.middle.xml \
-docbook_xsl/params/autolayout-file.xml \
-docbook_xsl/params/autotoc.label.in.hyperlink.xml \
-docbook_xsl/params/autotoc.label.separator.xml \
-docbook_xsl/params/axf.extensions.xml \
-docbook_xsl/params/banner.before.navigation.xml \
-docbook_xsl/params/base.dir.xml \
-docbook_xsl/params/biblioentry.item.separator.xml \
-docbook_xsl/params/biblioentry.properties.xml \
-docbook_xsl/params/bibliography.collection.xml \
-docbook_xsl/params/bibliography.numbered.xml \
-docbook_xsl/params/bibliography.style.xml \
-docbook_xsl/params/blockquote.properties.xml \
-docbook_xsl/params/blurb.on.titlepage.enabled.xml \
-docbook_xsl/params/body.attributes.xml \
-docbook_xsl/params/body.bg.color.xml \
-docbook_xsl/params/body.end.indent.xml \
-docbook_xsl/params/body.font.family.xml \
-docbook_xsl/params/body.font.master.xml \
-docbook_xsl/params/body.font.size.xml \
-docbook_xsl/params/body.margin.bottom.xml \
-docbook_xsl/params/body.margin.top.xml \
-docbook_xsl/params/body.start.indent.xml \
-docbook_xsl/params/bridgehead.in.toc.xml \
-docbook_xsl/params/bullet.image.xml \
-docbook_xsl/params/callout.defaultcolumn.xml \
-docbook_xsl/params/callout.graphics.extension.xml \
-docbook_xsl/params/callout.graphics.number.limit.xml \
-docbook_xsl/params/callout.graphics.path.xml \
-docbook_xsl/params/callout.graphics.xml \
-docbook_xsl/params/callout.icon.size.xml \
-docbook_xsl/params/callout.list.table.xml \
-docbook_xsl/params/callout.unicode.font.xml \
-docbook_xsl/params/callout.unicode.number.limit.xml \
-docbook_xsl/params/callout.unicode.start.character.xml \
-docbook_xsl/params/callout.unicode.xml \
-docbook_xsl/params/callouts.extension.xml \
-docbook_xsl/params/chapter.autolabel.xml \
-docbook_xsl/params/chunk.append.xml \
-docbook_xsl/params/chunk.first.sections.xml \
-docbook_xsl/params/chunk.quietly.xml \
-docbook_xsl/params/chunk.section.depth.xml \
-docbook_xsl/params/chunk.sections.xml \
-docbook_xsl/params/chunk.separate.lots.xml \
-docbook_xsl/params/chunk.toc.xml \
-docbook_xsl/params/chunk.tocs.and.lots.has.title.xml \
-docbook_xsl/params/chunk.tocs.and.lots.xml \
-docbook_xsl/params/chunker.output.cdata-section-elements.xml \
-docbook_xsl/params/chunker.output.doctype-public.xml \
-docbook_xsl/params/chunker.output.doctype-system.xml \
-docbook_xsl/params/chunker.output.encoding.xml \
-docbook_xsl/params/chunker.output.indent.xml \
-docbook_xsl/params/chunker.output.media-type.xml \
-docbook_xsl/params/chunker.output.method.xml \
-docbook_xsl/params/chunker.output.omit-xml-declaration.xml \
-docbook_xsl/params/chunker.output.standalone.xml \
-docbook_xsl/params/citerefentry.link.xml \
-docbook_xsl/params/collect.xref.targets.xml \
-docbook_xsl/params/column.count.back.xml \
-docbook_xsl/params/column.count.body.xml \
-docbook_xsl/params/column.count.front.xml \
-docbook_xsl/params/column.count.index.xml \
-docbook_xsl/params/column.count.lot.xml \
-docbook_xsl/params/column.count.titlepage.xml \
-docbook_xsl/params/column.gap.back.xml \
-docbook_xsl/params/column.gap.body.xml \
-docbook_xsl/params/column.gap.front.xml \
-docbook_xsl/params/column.gap.index.xml \
-docbook_xsl/params/column.gap.lot.xml \
-docbook_xsl/params/column.gap.titlepage.xml \
-docbook_xsl/params/compact.list.item.spacing.xml \
-docbook_xsl/params/component.label.includes.part.label.xml \
-docbook_xsl/params/component.title.properties.xml \
-docbook_xsl/params/component.titlepage.properties.xml \
-docbook_xsl/params/contrib.inline.enabled.xml \
-docbook_xsl/params/crop.mark.bleed.xml \
-docbook_xsl/params/crop.mark.offset.xml \
-docbook_xsl/params/crop.mark.width.xml \
-docbook_xsl/params/crop.marks.xml \
-docbook_xsl/params/css.decoration.xml \
-docbook_xsl/params/css.stylesheet.dir.xml \
-docbook_xsl/params/css.stylesheet.xml \
-docbook_xsl/params/current.docid.xml \
-docbook_xsl/params/currentpage.marker.xml \
-docbook_xsl/params/default.float.class.xml \
-docbook_xsl/params/default.image.width.xml \
-docbook_xsl/params/default.table.frame.xml \
-docbook_xsl/params/default.table.width.xml \
-docbook_xsl/params/default.units.xml \
-docbook_xsl/params/dingbat.font.family.xml \
-docbook_xsl/params/double.sided.xml \
-docbook_xsl/params/draft.mode.xml \
-docbook_xsl/params/draft.watermark.image.xml \
-docbook_xsl/params/dry-run.xml \
-docbook_xsl/params/dynamic.toc.xml \
-docbook_xsl/params/ebnf.assignment.xml \
-docbook_xsl/params/ebnf.statement.terminator.xml \
-docbook_xsl/params/ebnf.table.bgcolor.xml \
-docbook_xsl/params/ebnf.table.border.xml \
-docbook_xsl/params/eclipse.autolabel.xml \
-docbook_xsl/params/eclipse.plugin.id.xml \
-docbook_xsl/params/eclipse.plugin.name.xml \
-docbook_xsl/params/eclipse.plugin.provider.xml \
-docbook_xsl/params/editedby.enabled.xml \
-docbook_xsl/params/email.delimiters.enabled.xml \
-docbook_xsl/params/emphasis.propagates.style.xml \
-docbook_xsl/params/entry.propagates.style.xml \
-docbook_xsl/params/equation.properties.xml \
-docbook_xsl/params/example.properties.xml \
-docbook_xsl/params/feedback.href.xml \
-docbook_xsl/params/feedback.link.text.xml \
-docbook_xsl/params/feedback.with.ids.xml \
-docbook_xsl/params/figure.properties.xml \
-docbook_xsl/params/filename-prefix.xml \
-docbook_xsl/params/firstterm.only.link.xml \
-docbook_xsl/params/foil.properties.xml \
-docbook_xsl/params/foil.subtitle.properties.xml \
-docbook_xsl/params/foil.title.master.xml \
-docbook_xsl/params/foil.title.size.xml \
-docbook_xsl/params/foilgroup.properties.xml \
-docbook_xsl/params/foilgroup.toc.xml \
-docbook_xsl/params/footer.column.widths.xml \
-docbook_xsl/params/footer.content.properties.xml \
-docbook_xsl/params/footer.hr.xml \
-docbook_xsl/params/footer.rule.xml \
-docbook_xsl/params/footer.table.height.xml \
-docbook_xsl/params/footer.table.properties.xml \
-docbook_xsl/params/footers.on.blank.pages.xml \
-docbook_xsl/params/footnote.font.size.xml \
-docbook_xsl/params/footnote.mark.properties.xml \
-docbook_xsl/params/footnote.number.format.xml \
-docbook_xsl/params/footnote.number.symbols.xml \
-docbook_xsl/params/footnote.properties.xml \
-docbook_xsl/params/footnote.sep.leader.properties.xml \
-docbook_xsl/params/fop.extensions.xml \
-docbook_xsl/params/fop1.extensions.xml \
-docbook_xsl/params/formal.object.properties.xml \
-docbook_xsl/params/formal.procedures.xml \
-docbook_xsl/params/formal.title.placement.xml \
-docbook_xsl/params/formal.title.properties.xml \
-docbook_xsl/params/funcsynopsis.decoration.xml \
-docbook_xsl/params/funcsynopsis.style.xml \
-docbook_xsl/params/funcsynopsis.tabular.threshold.xml \
-docbook_xsl/params/function.parens.xml \
-docbook_xsl/params/generate.id.attributes.xml \
-docbook_xsl/params/generate.index.xml \
-docbook_xsl/params/generate.legalnotice.link.xml \
-docbook_xsl/params/generate.manifest.xml \
-docbook_xsl/params/generate.meta.abstract.xml \
-docbook_xsl/params/generate.revhistory.link.xml \
-docbook_xsl/params/generate.section.toc.level.xml \
-docbook_xsl/params/generate.toc.xml \
-docbook_xsl/params/glossary.as.blocks.xml \
-docbook_xsl/params/glossary.collection.xml \
-docbook_xsl/params/glossary.sort.xml \
-docbook_xsl/params/glossentry.show.acronym.xml \
-docbook_xsl/params/glosslist.as.blocks.xml \
-docbook_xsl/params/glossterm.auto.link.xml \
-docbook_xsl/params/glossterm.separation.xml \
-docbook_xsl/params/glossterm.width.xml \
-docbook_xsl/params/graphic.default.extension.xml \
-docbook_xsl/params/graphical.admonition.properties.xml \
-docbook_xsl/params/graphics.dir.xml \
-docbook_xsl/params/graphicsize.extension.xml \
-docbook_xsl/params/graphicsize.use.img.src.path.xml \
-docbook_xsl/params/header.column.widths.xml \
-docbook_xsl/params/header.content.properties.xml \
-docbook_xsl/params/header.hr.xml \
-docbook_xsl/params/header.rule.xml \
-docbook_xsl/params/header.table.height.xml \
-docbook_xsl/params/header.table.properties.xml \
-docbook_xsl/params/headers.on.blank.pages.xml \
-docbook_xsl/params/hidetoc.image.xml \
-docbook_xsl/params/highlight.default.language.xml \
-docbook_xsl/params/highlight.source.xml \
-docbook_xsl/params/home.image.xml \
-docbook_xsl/params/html.append.xml \
-docbook_xsl/params/html.base.xml \
-docbook_xsl/params/html.cellpadding.xml \
-docbook_xsl/params/html.cellspacing.xml \
-docbook_xsl/params/html.cleanup.xml \
-docbook_xsl/params/html.ext.xml \
-docbook_xsl/params/html.extra.head.links.xml \
-docbook_xsl/params/html.head.legalnotice.link.multiple.xml \
-docbook_xsl/params/html.head.legalnotice.link.types.xml \
-docbook_xsl/params/html.longdesc.link.xml \
-docbook_xsl/params/html.longdesc.xml \
-docbook_xsl/params/html.stylesheet.type.xml \
-docbook_xsl/params/html.stylesheet.xml \
-docbook_xsl/params/htmlhelp.alias.file.xml \
-docbook_xsl/params/htmlhelp.autolabel.xml \
-docbook_xsl/params/htmlhelp.button.back.xml \
-docbook_xsl/params/htmlhelp.button.forward.xml \
-docbook_xsl/params/htmlhelp.button.hideshow.xml \
-docbook_xsl/params/htmlhelp.button.home.url.xml \
-docbook_xsl/params/htmlhelp.button.home.xml \
-docbook_xsl/params/htmlhelp.button.jump1.title.xml \
-docbook_xsl/params/htmlhelp.button.jump1.url.xml \
-docbook_xsl/params/htmlhelp.button.jump1.xml \
-docbook_xsl/params/htmlhelp.button.jump2.title.xml \
-docbook_xsl/params/htmlhelp.button.jump2.url.xml \
-docbook_xsl/params/htmlhelp.button.jump2.xml \
-docbook_xsl/params/htmlhelp.button.locate.xml \
-docbook_xsl/params/htmlhelp.button.next.xml \
-docbook_xsl/params/htmlhelp.button.options.xml \
-docbook_xsl/params/htmlhelp.button.prev.xml \
-docbook_xsl/params/htmlhelp.button.print.xml \
-docbook_xsl/params/htmlhelp.button.refresh.xml \
-docbook_xsl/params/htmlhelp.button.stop.xml \
-docbook_xsl/params/htmlhelp.button.zoom.xml \
-docbook_xsl/params/htmlhelp.chm.xml \
-docbook_xsl/params/htmlhelp.default.topic.xml \
-docbook_xsl/params/htmlhelp.display.progress.xml \
-docbook_xsl/params/htmlhelp.encoding.xml \
-docbook_xsl/params/htmlhelp.enhanced.decompilation.xml \
-docbook_xsl/params/htmlhelp.enumerate.images.xml \
-docbook_xsl/params/htmlhelp.force.map.and.alias.xml \
-docbook_xsl/params/htmlhelp.hhc.binary.xml \
-docbook_xsl/params/htmlhelp.hhc.folders.instead.books.xml \
-docbook_xsl/params/htmlhelp.hhc.section.depth.xml \
-docbook_xsl/params/htmlhelp.hhc.show.root.xml \
-docbook_xsl/params/htmlhelp.hhc.width.xml \
-docbook_xsl/params/htmlhelp.hhc.xml \
-docbook_xsl/params/htmlhelp.hhk.xml \
-docbook_xsl/params/htmlhelp.hhp.tail.xml \
-docbook_xsl/params/htmlhelp.hhp.window.xml \
-docbook_xsl/params/htmlhelp.hhp.windows.xml \
-docbook_xsl/params/htmlhelp.hhp.xml \
-docbook_xsl/params/htmlhelp.map.file.xml \
-docbook_xsl/params/htmlhelp.only.xml \
-docbook_xsl/params/htmlhelp.remember.window.position.xml \
-docbook_xsl/params/htmlhelp.show.advanced.search.xml \
-docbook_xsl/params/htmlhelp.show.favorities.xml \
-docbook_xsl/params/htmlhelp.show.menu.xml \
-docbook_xsl/params/htmlhelp.show.toolbar.text.xml \
-docbook_xsl/params/htmlhelp.title.xml \
-docbook_xsl/params/htmlhelp.use.hhk.xml \
-docbook_xsl/params/htmlhelp.window.geometry.xml \
-docbook_xsl/params/hyphenate.verbatim.characters.xml \
-docbook_xsl/params/hyphenate.verbatim.xml \
-docbook_xsl/params/hyphenate.xml \
-docbook_xsl/params/id.warnings.xml \
-docbook_xsl/params/ignore.image.scaling.xml \
-docbook_xsl/params/img.src.path.xml \
-docbook_xsl/params/index.div.title.properties.xml \
-docbook_xsl/params/index.entry.properties.xml \
-docbook_xsl/params/index.method.xml \
-docbook_xsl/params/index.number.separator.xml \
-docbook_xsl/params/index.on.role.xml \
-docbook_xsl/params/index.on.type.xml \
-docbook_xsl/params/index.page.number.properties.xml \
-docbook_xsl/params/index.prefer.titleabbrev.xml \
-docbook_xsl/params/index.preferred.page.properties.xml \
-docbook_xsl/params/index.range.separator.xml \
-docbook_xsl/params/index.term.separator.xml \
-docbook_xsl/params/informal.object.properties.xml \
-docbook_xsl/params/informalequation.properties.xml \
-docbook_xsl/params/informalexample.properties.xml \
-docbook_xsl/params/informalfigure.properties.xml \
-docbook_xsl/params/informaltable.properties.xml \
-docbook_xsl/params/inherit.keywords.xml \
-docbook_xsl/params/insert.link.page.number.xml \
-docbook_xsl/params/insert.olink.page.number.xml \
-docbook_xsl/params/insert.olink.pdf.frag.xml \
-docbook_xsl/params/insert.xref.page.number.xml \
-docbook_xsl/params/itemizedlist.label.properties.xml \
-docbook_xsl/params/itemizedlist.label.width.xml \
-docbook_xsl/params/itemizedlist.properties.xml \
-docbook_xsl/params/javahelp.encoding.xml \
-docbook_xsl/params/keep.relative.image.uris.xml \
-docbook_xsl/params/keyboard.nav.xml \
-docbook_xsl/params/l10n.gentext.default.language.xml \
-docbook_xsl/params/l10n.gentext.language.xml \
-docbook_xsl/params/l10n.gentext.use.xref.language.xml \
-docbook_xsl/params/l10n.lang.value.rfc.compliant.xml \
-docbook_xsl/params/label.from.part.xml \
-docbook_xsl/params/line-height.xml \
-docbook_xsl/params/linenumbering.everyNth.xml \
-docbook_xsl/params/linenumbering.extension.xml \
-docbook_xsl/params/linenumbering.separator.xml \
-docbook_xsl/params/linenumbering.width.xml \
-docbook_xsl/params/link.mailto.url.xml \
-docbook_xsl/params/list.block.properties.xml \
-docbook_xsl/params/list.block.spacing.xml \
-docbook_xsl/params/list.item.spacing.xml \
-docbook_xsl/params/make.graphic.viewport.xml \
-docbook_xsl/params/make.index.markup.xml \
-docbook_xsl/params/make.single.year.ranges.xml \
-docbook_xsl/params/make.valid.html.xml \
-docbook_xsl/params/make.year.ranges.xml \
-docbook_xsl/params/man.authors.section.enabled.xml \
-docbook_xsl/params/man.break.after.slash.xml \
-docbook_xsl/params/man.charmap.enabled.xml \
-docbook_xsl/params/man.charmap.subset.profile.xml \
-docbook_xsl/params/man.charmap.uri.xml \
-docbook_xsl/params/man.charmap.use.subset.xml \
-docbook_xsl/params/man.copyright.section.enabled.xml \
-docbook_xsl/params/man.endnotes.are.numbered.xml \
-docbook_xsl/params/man.endnotes.list.enabled.xml \
-docbook_xsl/params/man.endnotes.list.heading.xml \
-docbook_xsl/params/man.font.funcprototype.xml \
-docbook_xsl/params/man.font.funcsynopsisinfo.xml \
-docbook_xsl/params/man.font.table.headings.xml \
-docbook_xsl/params/man.font.table.title.xml \
-docbook_xsl/params/man.hyphenate.computer.inlines.xml \
-docbook_xsl/params/man.hyphenate.filenames.xml \
-docbook_xsl/params/man.hyphenate.urls.xml \
-docbook_xsl/params/man.hyphenate.xml \
-docbook_xsl/params/man.indent.blurbs.xml \
-docbook_xsl/params/man.indent.lists.xml \
-docbook_xsl/params/man.indent.refsect.xml \
-docbook_xsl/params/man.indent.verbatims.xml \
-docbook_xsl/params/man.indent.width.xml \
-docbook_xsl/params/man.justify.xml \
-docbook_xsl/params/man.links.are.underlined.xml \
-docbook_xsl/params/man.output.base.dir.xml \
-docbook_xsl/params/man.output.encoding.xml \
-docbook_xsl/params/man.output.in.separate.dir.xml \
-docbook_xsl/params/man.output.lang.in.name.enabled.xml \
-docbook_xsl/params/man.output.manifest.enabled.xml \
-docbook_xsl/params/man.output.manifest.filename.xml \
-docbook_xsl/params/man.output.quietly.xml \
-docbook_xsl/params/man.output.subdirs.enabled.xml \
-docbook_xsl/params/man.segtitle.suppress.xml \
-docbook_xsl/params/man.string.subst.map.local.post.xml \
-docbook_xsl/params/man.string.subst.map.local.pre.xml \
-docbook_xsl/params/man.string.subst.map.xml \
-docbook_xsl/params/man.subheading.divider.enabled.xml \
-docbook_xsl/params/man.subheading.divider.xml \
-docbook_xsl/params/man.table.footnotes.divider.xml \
-docbook_xsl/params/man.th.extra1.suppress.xml \
-docbook_xsl/params/man.th.extra2.max.length.xml \
-docbook_xsl/params/man.th.extra2.suppress.xml \
-docbook_xsl/params/man.th.extra3.max.length.xml \
-docbook_xsl/params/man.th.extra3.suppress.xml \
-docbook_xsl/params/man.th.title.max.length.xml \
-docbook_xsl/params/manifest.in.base.dir.xml \
-docbook_xsl/params/manifest.xml \
-docbook_xsl/params/manual.toc.xml \
-docbook_xsl/params/margin.note.float.type.xml \
-docbook_xsl/params/margin.note.properties.xml \
-docbook_xsl/params/margin.note.title.properties.xml \
-docbook_xsl/params/margin.note.width.xml \
-docbook_xsl/params/marker.section.level.xml \
-docbook_xsl/params/menuchoice.menu.separator.xml \
-docbook_xsl/params/menuchoice.separator.xml \
-docbook_xsl/params/minus.image.xml \
-docbook_xsl/params/monospace.font.family.xml \
-docbook_xsl/params/monospace.properties.xml \
-docbook_xsl/params/monospace.verbatim.properties.xml \
-docbook_xsl/params/multiframe.bottom.bgcolor.xml \
-docbook_xsl/params/multiframe.navigation.height.xml \
-docbook_xsl/params/multiframe.top.bgcolor.xml \
-docbook_xsl/params/multiframe.xml \
-docbook_xsl/params/nav.separator.xml \
-docbook_xsl/params/nav.table.summary.xml \
-docbook_xsl/params/navbgcolor.xml \
-docbook_xsl/params/navbodywidth.xml \
-docbook_xsl/params/navig.graphics.extension.xml \
-docbook_xsl/params/navig.graphics.path.xml \
-docbook_xsl/params/navig.graphics.xml \
-docbook_xsl/params/navig.showtitles.xml \
-docbook_xsl/params/navtocwidth.xml \
-docbook_xsl/params/next.image.xml \
-docbook_xsl/params/no.home.image.xml \
-docbook_xsl/params/no.next.image.xml \
-docbook_xsl/params/no.prev.image.xml \
-docbook_xsl/params/no.toc.image.xml \
-docbook_xsl/params/no.up.image.xml \
-docbook_xsl/params/nominal.image.depth.xml \
-docbook_xsl/params/nominal.image.width.xml \
-docbook_xsl/params/nominal.table.width.xml \
-docbook_xsl/params/nongraphical.admonition.properties.xml \
-docbook_xsl/params/normal.para.spacing.xml \
-docbook_xsl/params/olink.base.uri.xml \
-docbook_xsl/params/olink.debug.xml \
-docbook_xsl/params/olink.doctitle.xml \
-docbook_xsl/params/olink.fragid.xml \
-docbook_xsl/params/olink.lang.fallback.sequence.xml \
-docbook_xsl/params/olink.outline.ext.xml \
-docbook_xsl/params/olink.properties.xml \
-docbook_xsl/params/olink.pubid.xml \
-docbook_xsl/params/olink.resolver.xml \
-docbook_xsl/params/olink.sysid.xml \
-docbook_xsl/params/orderedlist.label.properties.xml \
-docbook_xsl/params/orderedlist.label.width.xml \
-docbook_xsl/params/orderedlist.properties.xml \
-docbook_xsl/params/othercredit.like.author.enabled.xml \
-docbook_xsl/params/output-root.xml \
-docbook_xsl/params/output.indent.xml \
-docbook_xsl/params/overlay.js.xml \
-docbook_xsl/params/overlay.logo.xml \
-docbook_xsl/params/overlay.xml \
-docbook_xsl/params/page.height.portrait.xml \
-docbook_xsl/params/page.height.xml \
-docbook_xsl/params/page.margin.bottom.xml \
-docbook_xsl/params/page.margin.inner.xml \
-docbook_xsl/params/page.margin.outer.xml \
-docbook_xsl/params/page.margin.top.xml \
-docbook_xsl/params/page.orientation.xml \
-docbook_xsl/params/page.width.portrait.xml \
-docbook_xsl/params/page.width.xml \
-docbook_xsl/params/pages.template.xml \
-docbook_xsl/params/paper.type.xml \
-docbook_xsl/params/para.propagates.style.xml \
-docbook_xsl/params/part.autolabel.xml \
-docbook_xsl/params/passivetex.extensions.xml \
-docbook_xsl/params/pgwide.properties.xml \
-docbook_xsl/params/phrase.propagates.style.xml \
-docbook_xsl/params/pixels.per.inch.xml \
-docbook_xsl/params/plus.image.xml \
-docbook_xsl/params/points.per.em.xml \
-docbook_xsl/params/preface.autolabel.xml \
-docbook_xsl/params/prefer.internal.olink.xml \
-docbook_xsl/params/preferred.mediaobject.role.xml \
-docbook_xsl/params/prev.image.xml \
-docbook_xsl/params/procedure.properties.xml \
-docbook_xsl/params/process.empty.source.toc.xml \
-docbook_xsl/params/process.source.toc.xml \
-docbook_xsl/params/profile.arch.xml \
-docbook_xsl/params/profile.attribute.xml \
-docbook_xsl/params/profile.audience.xml \
-docbook_xsl/params/profile.condition.xml \
-docbook_xsl/params/profile.conformance.xml \
-docbook_xsl/params/profile.lang.xml \
-docbook_xsl/params/profile.os.xml \
-docbook_xsl/params/profile.revision.xml \
-docbook_xsl/params/profile.revisionflag.xml \
-docbook_xsl/params/profile.role.xml \
-docbook_xsl/params/profile.security.xml \
-docbook_xsl/params/profile.separator.xml \
-docbook_xsl/params/profile.status.xml \
-docbook_xsl/params/profile.userlevel.xml \
-docbook_xsl/params/profile.value.xml \
-docbook_xsl/params/profile.vendor.xml \
-docbook_xsl/params/profile.wordsize.xml \
-docbook_xsl/params/punct.honorific.xml \
-docbook_xsl/params/qanda.defaultlabel.xml \
-docbook_xsl/params/qanda.in.toc.xml \
-docbook_xsl/params/qanda.inherit.numeration.xml \
-docbook_xsl/params/qanda.nested.in.toc.xml \
-docbook_xsl/params/qanda.title.level1.properties.xml \
-docbook_xsl/params/qanda.title.level2.properties.xml \
-docbook_xsl/params/qanda.title.level3.properties.xml \
-docbook_xsl/params/qanda.title.level4.properties.xml \
-docbook_xsl/params/qanda.title.level5.properties.xml \
-docbook_xsl/params/qanda.title.level6.properties.xml \
-docbook_xsl/params/qanda.title.properties.xml \
-docbook_xsl/params/qandadiv.autolabel.xml \
-docbook_xsl/params/rebuild-all.xml \
-docbook_xsl/params/refclass.suppress.xml \
-docbook_xsl/params/refentry.date.profile.enabled.xml \
-docbook_xsl/params/refentry.date.profile.xml \
-docbook_xsl/params/refentry.generate.name.xml \
-docbook_xsl/params/refentry.generate.title.xml \
-docbook_xsl/params/refentry.manual.fallback.profile.xml \
-docbook_xsl/params/refentry.manual.profile.enabled.xml \
-docbook_xsl/params/refentry.manual.profile.xml \
-docbook_xsl/params/refentry.meta.get.quietly.xml \
-docbook_xsl/params/refentry.pagebreak.xml \
-docbook_xsl/params/refentry.separator.xml \
-docbook_xsl/params/refentry.source.fallback.profile.xml \
-docbook_xsl/params/refentry.source.name.profile.enabled.xml \
-docbook_xsl/params/refentry.source.name.profile.xml \
-docbook_xsl/params/refentry.source.name.suppress.xml \
-docbook_xsl/params/refentry.title.properties.xml \
-docbook_xsl/params/refentry.version.profile.enabled.xml \
-docbook_xsl/params/refentry.version.profile.xml \
-docbook_xsl/params/refentry.version.suppress.xml \
-docbook_xsl/params/refentry.xref.manvolnum.xml \
-docbook_xsl/params/reference.autolabel.xml \
-docbook_xsl/params/region.after.extent.xml \
-docbook_xsl/params/region.before.extent.xml \
-docbook_xsl/params/revhistory.table.cell.properties.xml \
-docbook_xsl/params/revhistory.table.properties.xml \
-docbook_xsl/params/revhistory.title.properties.xml \
-docbook_xsl/params/root.filename.xml \
-docbook_xsl/params/root.properties.xml \
-docbook_xsl/params/rootid.xml \
-docbook_xsl/params/runinhead.default.title.end.punct.xml \
-docbook_xsl/params/runinhead.title.end.punct.xml \
-docbook_xsl/params/running.foot.properties.xml \
-docbook_xsl/params/sans.font.family.xml \
-docbook_xsl/params/saxon.callouts.xml \
-docbook_xsl/params/saxon.character.representation.xml \
-docbook_xsl/params/saxon.linenumbering.xml \
-docbook_xsl/params/saxon.tablecolumns.xml \
-docbook_xsl/params/script.dir.xml \
-docbook_xsl/params/section.autolabel.max.depth.xml \
-docbook_xsl/params/section.autolabel.xml \
-docbook_xsl/params/section.container.element.xml \
-docbook_xsl/params/section.label.includes.component.label.xml \
-docbook_xsl/params/section.level1.properties.xml \
-docbook_xsl/params/section.level2.properties.xml \
-docbook_xsl/params/section.level3.properties.xml \
-docbook_xsl/params/section.level4.properties.xml \
-docbook_xsl/params/section.level5.properties.xml \
-docbook_xsl/params/section.level6.properties.xml \
-docbook_xsl/params/section.properties.xml \
-docbook_xsl/params/section.title.level1.properties.xml \
-docbook_xsl/params/section.title.level2.properties.xml \
-docbook_xsl/params/section.title.level3.properties.xml \
-docbook_xsl/params/section.title.level4.properties.xml \
-docbook_xsl/params/section.title.level5.properties.xml \
-docbook_xsl/params/section.title.level6.properties.xml \
-docbook_xsl/params/section.title.properties.xml \
-docbook_xsl/params/segmentedlist.as.table.xml \
-docbook_xsl/params/sequential.links.xml \
-docbook_xsl/params/shade.verbatim.style.xml \
-docbook_xsl/params/shade.verbatim.xml \
-docbook_xsl/params/show.comments.xml \
-docbook_xsl/params/show.foil.number.xml \
-docbook_xsl/params/show.revisionflag.xml \
-docbook_xsl/params/showtoc.image.xml \
-docbook_xsl/params/side.float.properties.xml \
-docbook_xsl/params/sidebar.float.type.xml \
-docbook_xsl/params/sidebar.float.width.xml \
-docbook_xsl/params/sidebar.properties.xml \
-docbook_xsl/params/sidebar.title.properties.xml \
-docbook_xsl/params/simplesect.in.toc.xml \
-docbook_xsl/params/slide.font.family.xml \
-docbook_xsl/params/slide.title.font.family.xml \
-docbook_xsl/params/slides.js.xml \
-docbook_xsl/params/slides.properties.xml \
-docbook_xsl/params/spacing.paras.xml \
-docbook_xsl/params/speakernote.properties.xml \
-docbook_xsl/params/subscript.properties.xml \
-docbook_xsl/params/superscript.properties.xml \
-docbook_xsl/params/suppress.footer.navigation.xml \
-docbook_xsl/params/suppress.header.navigation.xml \
-docbook_xsl/params/suppress.homepage.title.xml \
-docbook_xsl/params/suppress.navigation.xml \
-docbook_xsl/params/symbol.font.family.xml \
-docbook_xsl/params/table.borders.with.css.xml \
-docbook_xsl/params/table.cell.border.color.xml \
-docbook_xsl/params/table.cell.border.style.xml \
-docbook_xsl/params/table.cell.border.thickness.xml \
-docbook_xsl/params/table.cell.padding.xml \
-docbook_xsl/params/table.entry.padding.xml \
-docbook_xsl/params/table.footnote.number.format.xml \
-docbook_xsl/params/table.footnote.number.symbols.xml \
-docbook_xsl/params/table.footnote.properties.xml \
-docbook_xsl/params/table.frame.border.color.xml \
-docbook_xsl/params/table.frame.border.style.xml \
-docbook_xsl/params/table.frame.border.thickness.xml \
-docbook_xsl/params/table.properties.xml \
-docbook_xsl/params/table.spacer.image.xml \
-docbook_xsl/params/table.table.properties.xml \
-docbook_xsl/params/tablecolumns.extension.xml \
-docbook_xsl/params/target.database.document.xml \
-docbook_xsl/params/targets.filename.xml \
-docbook_xsl/params/template.xml \
-docbook_xsl/params/tex.math.delims.xml \
-docbook_xsl/params/tex.math.file.xml \
-docbook_xsl/params/tex.math.in.alt.xml \
-docbook_xsl/params/text.home.xml \
-docbook_xsl/params/text.next.xml \
-docbook_xsl/params/text.prev.xml \
-docbook_xsl/params/text.toc.xml \
-docbook_xsl/params/text.up.xml \
-docbook_xsl/params/textbgcolor.xml \
-docbook_xsl/params/textdata.default.encoding.xml \
-docbook_xsl/params/textinsert.extension.xml \
-docbook_xsl/params/title.font.family.xml \
-docbook_xsl/params/title.margin.left.xml \
-docbook_xsl/params/titlefoil.html.xml \
-docbook_xsl/params/toc.bg.color.xml \
-docbook_xsl/params/toc.blank.graphic.xml \
-docbook_xsl/params/toc.blank.image.xml \
-docbook_xsl/params/toc.blank.text.xml \
-docbook_xsl/params/toc.hide.show.xml \
-docbook_xsl/params/toc.html.xml \
-docbook_xsl/params/toc.image.xml \
-docbook_xsl/params/toc.indent.width.xml \
-docbook_xsl/params/toc.line.properties.xml \
-docbook_xsl/params/toc.list.type.xml \
-docbook_xsl/params/toc.margin.properties.xml \
-docbook_xsl/params/toc.max.depth.xml \
-docbook_xsl/params/toc.pointer.graphic.xml \
-docbook_xsl/params/toc.pointer.image.xml \
-docbook_xsl/params/toc.pointer.text.xml \
-docbook_xsl/params/toc.row.height.xml \
-docbook_xsl/params/toc.section.depth.xml \
-docbook_xsl/params/toc.spacer.graphic.xml \
-docbook_xsl/params/toc.spacer.image.xml \
-docbook_xsl/params/toc.spacer.text.xml \
-docbook_xsl/params/toc.width.xml \
-docbook_xsl/params/ua.js.xml \
-docbook_xsl/params/ulink.footnotes.xml \
-docbook_xsl/params/ulink.hyphenate.chars.xml \
-docbook_xsl/params/ulink.hyphenate.xml \
-docbook_xsl/params/ulink.show.xml \
-docbook_xsl/params/ulink.target.xml \
-docbook_xsl/params/up.image.xml \
-docbook_xsl/params/use.embed.for.svg.xml \
-docbook_xsl/params/use.extensions.xml \
-docbook_xsl/params/use.id.as.filename.xml \
-docbook_xsl/params/use.id.function.xml \
-docbook_xsl/params/use.local.olink.style.xml \
-docbook_xsl/params/use.role.as.xrefstyle.xml \
-docbook_xsl/params/use.role.for.mediaobject.xml \
-docbook_xsl/params/use.svg.xml \
-docbook_xsl/params/variablelist.as.blocks.xml \
-docbook_xsl/params/variablelist.as.table.xml \
-docbook_xsl/params/variablelist.max.termlength.xml \
-docbook_xsl/params/variablelist.term.break.after.xml \
-docbook_xsl/params/variablelist.term.separator.xml \
-docbook_xsl/params/verbatim.properties.xml \
-docbook_xsl/params/wordml.template.xml \
-docbook_xsl/params/xbCollapsibleLists.js.xml \
-docbook_xsl/params/xbDOM.js.xml \
-docbook_xsl/params/xbLibrary.js.xml \
-docbook_xsl/params/xbStyle.js.xml \
-docbook_xsl/params/xep.extensions.xml \
-docbook_xsl/params/xep.index.item.properties.xml \
-docbook_xsl/params/xref.label-page.separator.xml \
-docbook_xsl/params/xref.label-title.separator.xml \
-docbook_xsl/params/xref.properties.xml \
-docbook_xsl/params/xref.title-page.separator.xml \
-docbook_xsl/params/xref.with.number.and.title.xml
-
-libscihelptools_la_docbook_xsl_profilingdir = $(mydatadir)/docbook_xsl/profiling
-libscihelptools_la_docbook_xsl_profiling_DATA = \
-docbook_xsl/profiling/profile-mode.xsl \
-docbook_xsl/profiling/profile.xsl \
-docbook_xsl/profiling/strip-attributes.xsl \
-docbook_xsl/profiling/xsl2profile.xsl
-
-libscihelptools_la_docbook_xsl_roundtripdir = $(mydatadir)/docbook_xsl/roundtrip
-libscihelptools_la_docbook_xsl_roundtrip_DATA = \
-docbook_xsl/roundtrip/blocks-spec.xml \
-docbook_xsl/roundtrip/blocks2dbk.dtd \
-docbook_xsl/roundtrip/blocks2dbk.xsl \
-docbook_xsl/roundtrip/dbk2ooo.xsl \
-docbook_xsl/roundtrip/dbk2pages.xsl \
-docbook_xsl/roundtrip/dbk2wordml.xsl \
-docbook_xsl/roundtrip/dbk2wp.xsl \
-docbook_xsl/roundtrip/docbook-pages.xsl \
-docbook_xsl/roundtrip/docbook.xsl \
-docbook_xsl/roundtrip/normalise2sections.xsl \
-docbook_xsl/roundtrip/pages-normalise.xsl \
-docbook_xsl/roundtrip/pages2normalise.xsl \
-docbook_xsl/roundtrip/param.xml \
-docbook_xsl/roundtrip/param.xsl \
-docbook_xsl/roundtrip/sections-spec.xml \
-docbook_xsl/roundtrip/sections2blocks.xsl \
-docbook_xsl/roundtrip/specifications.xml \
-docbook_xsl/roundtrip/supported.xml \
-docbook_xsl/roundtrip/template-pages.xml \
-docbook_xsl/roundtrip/template.dot \
-docbook_xsl/roundtrip/template.xml \
-docbook_xsl/roundtrip/wordml-blocks.xsl \
-docbook_xsl/roundtrip/wordml-final.xsl \
-docbook_xsl/roundtrip/wordml-normalise.xsl \
-docbook_xsl/roundtrip/wordml-sections.xsl \
-docbook_xsl/roundtrip/wordml.xsl \
-docbook_xsl/roundtrip/wordml2normalise.xsl
-
-libscihelptools_la_docbook_xsl_slides_browserdir = $(mydatadir)/docbook_xsl/slides/browser
-libscihelptools_la_docbook_xsl_slides_browser_DATA = \
-docbook_xsl/slides/browser/CTOCWidget.js \
-docbook_xsl/slides/browser/overlay.js \
-docbook_xsl/slides/browser/slides-default.css \
-docbook_xsl/slides/browser/slides-frames.css \
-docbook_xsl/slides/browser/slides-plain.css \
-docbook_xsl/slides/browser/slides-table.css \
-docbook_xsl/slides/browser/slides-w3c.css \
-docbook_xsl/slides/browser/slides.css \
-docbook_xsl/slides/browser/slides.js \
-docbook_xsl/slides/browser/ua.js \
-docbook_xsl/slides/browser/xbCollapsibleLists.js \
-docbook_xsl/slides/browser/xbDebug.js \
-docbook_xsl/slides/browser/xbDOM.js \
-docbook_xsl/slides/browser/xbLibrary.js \
-docbook_xsl/slides/browser/xbStyle-css.js \
-docbook_xsl/slides/browser/xbStyle-nn4.js \
-docbook_xsl/slides/browser/xbStyle-not-supported.js \
-docbook_xsl/slides/browser/xbStyle.js
-
-libscihelptools_la_docbook_xsl_slides_fodir = $(mydatadir)/docbook_xsl/slides/fo
-libscihelptools_la_docbook_xsl_slides_fo_DATA = \
-docbook_xsl/slides/fo/param.xml \
-docbook_xsl/slides/fo/param.xsl \
-docbook_xsl/slides/fo/plain-titlepage.xml \
-docbook_xsl/slides/fo/plain-titlepage.xsl \
-docbook_xsl/slides/fo/plain.xsl
-
-libscihelptools_la_docbook_xsl_slides_graphicsdir = $(mydatadir)/docbook_xsl/slides/graphics
-libscihelptools_la_docbook_xsl_slides_graphics_DATA = \
-docbook_xsl/slides/graphics/arrow.gif \
-docbook_xsl/slides/graphics/blank.gif \
-docbook_xsl/slides/graphics/blank.png \
-docbook_xsl/slides/graphics/hidetoc.gif \
-docbook_xsl/slides/graphics/plus.gif \
-docbook_xsl/slides/graphics/pointer.png \
-docbook_xsl/slides/graphics/showtoc.gif
-
-libscihelptools_la_docbook_xsl_slides_graphics_activedir = $(mydatadir)/docbook_xsl/slides/graphics/active
-libscihelptools_la_docbook_xsl_slides_graphics_active_DATA = \
-docbook_xsl/slides/graphics/active/arr-next.png \
-docbook_xsl/slides/graphics/active/arr-prev.png \
-docbook_xsl/slides/graphics/active/but-fforward.png \
-docbook_xsl/slides/graphics/active/but-info.png \
-docbook_xsl/slides/graphics/active/but-next.png \
-docbook_xsl/slides/graphics/active/but-prev.png \
-docbook_xsl/slides/graphics/active/but-rewind.png \
-docbook_xsl/slides/graphics/active/nav-home.png \
-docbook_xsl/slides/graphics/active/nav-next.png \
-docbook_xsl/slides/graphics/active/nav-prev.png \
-docbook_xsl/slides/graphics/active/nav-toc.png \
-docbook_xsl/slides/graphics/active/nav-up.png \
-docbook_xsl/slides/graphics/active/w3c-next.png \
-docbook_xsl/slides/graphics/active/w3c-prev.png \
-docbook_xsl/slides/graphics/active/w3c-toc.png
-
-libscihelptools_la_docbook_xsl_slides_graphics_inactivedir = $(mydatadir)/docbook_xsl/slides/graphics/inactive
-libscihelptools_la_docbook_xsl_slides_graphics_inactive_DATA = \
-docbook_xsl/slides/graphics/inactive/but-fforward.png \
-docbook_xsl/slides/graphics/inactive/but-info.png \
-docbook_xsl/slides/graphics/inactive/but-next.png \
-docbook_xsl/slides/graphics/inactive/but-prev.png \
-docbook_xsl/slides/graphics/inactive/but-rewind.png \
-docbook_xsl/slides/graphics/inactive/nav-home.png \
-docbook_xsl/slides/graphics/inactive/nav-next.png \
-docbook_xsl/slides/graphics/inactive/nav-prev.png \
-docbook_xsl/slides/graphics/inactive/nav-toc.png \
-docbook_xsl/slides/graphics/inactive/nav-up.png \
-docbook_xsl/slides/graphics/inactive/w3c-next.png \
-docbook_xsl/slides/graphics/inactive/w3c-prev.png \
-docbook_xsl/slides/graphics/inactive/w3c-toc.png
-
-libscihelptools_la_docbook_xsl_slides_graphics_tocdir = $(mydatadir)/docbook_xsl/slides/graphics/toc
-libscihelptools_la_docbook_xsl_slides_graphics_toc_DATA = \
-docbook_xsl/slides/graphics/toc/bullet.png \
-docbook_xsl/slides/graphics/toc/closed.png \
-docbook_xsl/slides/graphics/toc/open.png
-
-libscihelptools_la_docbook_xsl_slides_htmldir = $(mydatadir)/docbook_xsl/slides/html
-libscihelptools_la_docbook_xsl_slides_html_DATA = \
-docbook_xsl/slides/html/css.xsl \
-docbook_xsl/slides/html/default.xsl \
-docbook_xsl/slides/html/flat.xsl \
-docbook_xsl/slides/html/frames.xsl \
-docbook_xsl/slides/html/graphics.xsl \
-docbook_xsl/slides/html/jscript.xsl \
-docbook_xsl/slides/html/param.xml \
-docbook_xsl/slides/html/param.xsl \
-docbook_xsl/slides/html/plain.xsl \
-docbook_xsl/slides/html/slides-common.xsl \
-docbook_xsl/slides/html/tables.xsl \
-docbook_xsl/slides/html/vslides.xsl \
-docbook_xsl/slides/html/w3c.xsl
-
-libscihelptools_la_docbook_xsl_slides_htmlhelpdir = $(mydatadir)/docbook_xsl/slides/htmlhelp
-libscihelptools_la_docbook_xsl_slides_htmlhelp_DATA = \
-docbook_xsl/slides/htmlhelp/htmlhelp.xsl
-
-libscihelptools_la_docbook_xsl_slides_keynotedir = $(mydatadir)/docbook_xsl/slides/keynote
-libscihelptools_la_docbook_xsl_slides_keynote_DATA = \
-docbook_xsl/slides/keynote/default.xsl
-
-libscihelptools_la_docbook_xsl_slides_keynote_xsltsldir = $(mydatadir)/docbook_xsl/slides/keynote/xsltsl
-libscihelptools_la_docbook_xsl_slides_keynote_xsltsl_DATA = \
-docbook_xsl/slides/keynote/xsltsl/cmp.xsl \
-docbook_xsl/slides/keynote/xsltsl/date-time.xsl \
-docbook_xsl/slides/keynote/xsltsl/example.xsl \
-docbook_xsl/slides/keynote/xsltsl/markup.xsl \
-docbook_xsl/slides/keynote/xsltsl/math.xsl \
-docbook_xsl/slides/keynote/xsltsl/node.xsl \
-docbook_xsl/slides/keynote/xsltsl/stdlib.xsl \
-docbook_xsl/slides/keynote/xsltsl/string.xsl \
-docbook_xsl/slides/keynote/xsltsl/svg.xsl \
-docbook_xsl/slides/keynote/xsltsl/uri.xsl
-
-libscihelptools_la_docbook_xsl_slides_svgdir = $(mydatadir)/docbook_xsl/slides/svg
-libscihelptools_la_docbook_xsl_slides_svg_DATA = \
-docbook_xsl/slides/svg/default.xsl
-
-libscihelptools_la_docbook_xsl_slides_xhtmldir = $(mydatadir)/docbook_xsl/slides/xhtml
-libscihelptools_la_docbook_xsl_slides_xhtml_DATA = \
-docbook_xsl/slides/xhtml/css.xsl \
-docbook_xsl/slides/xhtml/default.xsl \
-docbook_xsl/slides/xhtml/flat.xsl \
-docbook_xsl/slides/xhtml/frames.xsl \
-docbook_xsl/slides/xhtml/graphics.xsl \
-docbook_xsl/slides/xhtml/jscript.xsl \
-docbook_xsl/slides/xhtml/param.xsl \
-docbook_xsl/slides/xhtml/plain.xsl \
-docbook_xsl/slides/xhtml/slides-common.xsl \
-docbook_xsl/slides/xhtml/tables.xsl \
-docbook_xsl/slides/xhtml/vslides.xsl \
-docbook_xsl/slides/xhtml/w3c.xsl
-
-libscihelptools_la_docbook_xsl_templatedir = $(mydatadir)/docbook_xsl/template
-libscihelptools_la_docbook_xsl_template_DATA = \
-docbook_xsl/template/titlepage.xml \
-docbook_xsl/template/titlepage.xsl
-
-libscihelptools_la_docbook_xsl_tools_bindir = $(mydatadir)/docbook_xsl/tools/bin
-libscihelptools_la_docbook_xsl_tools_bin_DATA = \
-docbook_xsl/tools/bin/docbook-xsl-update
-
-libscihelptools_la_docbook_xsl_tools_makedir = $(mydatadir)/docbook_xsl/tools/make
-libscihelptools_la_docbook_xsl_tools_make_DATA = \
-docbook_xsl/tools/make/Makefile.combine \
-docbook_xsl/tools/make/Makefile.DocBook \
-docbook_xsl/tools/make/Makefile.docParam
-
-libscihelptools_la_docbook_xsl_websitedir = $(mydatadir)/docbook_xsl/website
-libscihelptools_la_docbook_xsl_website_DATA = \
-docbook_xsl/website/autolayout.xsl \
-docbook_xsl/website/chunk-common.xsl \
-docbook_xsl/website/chunk-tabular.xsl \
-docbook_xsl/website/chunk-website.xsl \
-docbook_xsl/website/head.xsl \
-docbook_xsl/website/makefile-dep.xsl \
-docbook_xsl/website/olink.xsl \
-docbook_xsl/website/param.xml \
-docbook_xsl/website/param.xsl \
-docbook_xsl/website/rss.xsl \
-docbook_xsl/website/tabular.xsl \
-docbook_xsl/website/toc-tabular.xsl \
-docbook_xsl/website/toc.xsl \
-docbook_xsl/website/website-common.xsl \
-docbook_xsl/website/website-targets.xsl \
-docbook_xsl/website/website.xsl \
-docbook_xsl/website/xbel.xsl
-
-libscihelptools_la_docbook_xsl_xhtmldir = $(mydatadir)/docbook_xsl/xhtml
-libscihelptools_la_docbook_xsl_xhtml_DATA = \
-docbook_xsl/xhtml/admon.xsl \
-docbook_xsl/xhtml/annotations.xsl \
-docbook_xsl/xhtml/autoidx-kimber.xsl \
-docbook_xsl/xhtml/autoidx-kosek.xsl \
-docbook_xsl/xhtml/autoidx-ng.xsl \
-docbook_xsl/xhtml/autoidx.xsl \
-docbook_xsl/xhtml/autotoc.xsl \
-docbook_xsl/xhtml/biblio-iso690.xsl \
-docbook_xsl/xhtml/biblio.xsl \
-docbook_xsl/xhtml/block.xsl \
-docbook_xsl/xhtml/callout.xsl \
-docbook_xsl/xhtml/changebars.xsl \
-docbook_xsl/xhtml/chunk-code.xsl \
-docbook_xsl/xhtml/chunk-common.xsl \
-docbook_xsl/xhtml/chunk.xsl \
-docbook_xsl/xhtml/chunker.xsl \
-docbook_xsl/xhtml/chunkfast.xsl \
-docbook_xsl/xhtml/chunktoc.xsl \
-docbook_xsl/xhtml/component.xsl \
-docbook_xsl/xhtml/division.xsl \
-docbook_xsl/xhtml/docbook.xsl \
-docbook_xsl/xhtml/ebnf.xsl \
-docbook_xsl/xhtml/footnote.xsl \
-docbook_xsl/xhtml/formal.xsl \
-docbook_xsl/xhtml/glossary.xsl \
-docbook_xsl/xhtml/graphics.xsl \
-docbook_xsl/xhtml/highlight.xsl \
-docbook_xsl/xhtml/html-rtf.xsl \
-docbook_xsl/xhtml/html.xsl \
-docbook_xsl/xhtml/htmltbl.xsl \
-docbook_xsl/xhtml/index.xsl \
-docbook_xsl/xhtml/info.xsl \
-docbook_xsl/xhtml/inline.xsl \
-docbook_xsl/xhtml/keywords.xsl \
-docbook_xsl/xhtml/lists.xsl \
-docbook_xsl/xhtml/maketoc.xsl \
-docbook_xsl/xhtml/manifest.xsl \
-docbook_xsl/xhtml/math.xsl \
-docbook_xsl/xhtml/oldchunker.xsl \
-docbook_xsl/xhtml/onechunk.xsl \
-docbook_xsl/xhtml/param.xsl \
-docbook_xsl/xhtml/pi.xsl \
-docbook_xsl/xhtml/profile-chunk-code.xsl \
-docbook_xsl/xhtml/profile-chunk.xsl \
-docbook_xsl/xhtml/profile-docbook.xsl \
-docbook_xsl/xhtml/profile-onechunk.xsl \
-docbook_xsl/xhtml/qandaset.xsl \
-docbook_xsl/xhtml/refentry.xsl \
-docbook_xsl/xhtml/sections.xsl \
-docbook_xsl/xhtml/synop.xsl \
-docbook_xsl/xhtml/table.xsl \
-docbook_xsl/xhtml/task.xsl \
-docbook_xsl/xhtml/titlepage.templates.xsl \
-docbook_xsl/xhtml/titlepage.xsl \
-docbook_xsl/xhtml/toc.xsl \
-docbook_xsl/xhtml/verbatim.xsl \
-docbook_xsl/xhtml/xref.xsl
-
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -1888,7 +506,7 @@ JARMASK = *.jar
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin
+.SUFFIXES: .sci .bin .c .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1918,6 +536,108 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
+	@$(NORMAL_INSTALL)
+	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    f=$(am__strip_dir) \
+	    echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(pkglibdir)/$$f'"; \
+	    $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(pkglibdir)/$$f"; \
+	  else :; fi; \
+	done
+
+uninstall-pkglibLTLIBRARIES:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  p=$(am__strip_dir) \
+	  echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f '$(DESTDIR)$(pkglibdir)/$$p'"; \
+	  $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f "$(DESTDIR)$(pkglibdir)/$$p"; \
+	done
+
+clean-pkglibLTLIBRARIES:
+	-test -z "$(pkglib_LTLIBRARIES)" || rm -f $(pkglib_LTLIBRARIES)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
+libscihelptools.la: $(libscihelptools_la_OBJECTS) $(libscihelptools_la_DEPENDENCIES) 
+	$(libscihelptools_la_LINK) -rpath $(pkglibdir) $(libscihelptools_la_OBJECTS) $(libscihelptools_la_LIBADD) $(LIBS)
+
+mostlyclean-compile:
+	-rm -f *.$(OBJEXT)
+
+distclean-compile:
+	-rm -f *.tab.c
+
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-BuildDocObject.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-gw_helptools.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-sci_buildDoc.Plo@am__quote@
+
+.c.o:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c $<
+
+.c.obj:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+
+.c.lo:
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscihelptools_la-gw_helptools.lo: sci_gateway/c/gw_helptools.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(libscihelptools_la_CFLAGS) $(CFLAGS) -MT libscihelptools_la-gw_helptools.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-gw_helptools.Tpo -c -o libscihelptools_la-gw_helptools.lo `test -f 'sci_gateway/c/gw_helptools.c' || echo '$(srcdir)/'`sci_gateway/c/gw_helptools.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscihelptools_la-gw_helptools.Tpo $(DEPDIR)/libscihelptools_la-gw_helptools.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_helptools.c' object='libscihelptools_la-gw_helptools.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(libscihelptools_la_CFLAGS) $(CFLAGS) -c -o libscihelptools_la-gw_helptools.lo `test -f 'sci_gateway/c/gw_helptools.c' || echo '$(srcdir)/'`sci_gateway/c/gw_helptools.c
+
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+libscihelptools_la-sci_buildDoc.lo: sci_gateway/cpp/sci_buildDoc.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_la-sci_buildDoc.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-sci_buildDoc.Tpo -c -o libscihelptools_la-sci_buildDoc.lo `test -f 'sci_gateway/cpp/sci_buildDoc.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDoc.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscihelptools_la-sci_buildDoc.Tpo $(DEPDIR)/libscihelptools_la-sci_buildDoc.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_buildDoc.cpp' object='libscihelptools_la-sci_buildDoc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_la-sci_buildDoc.lo `test -f 'sci_gateway/cpp/sci_buildDoc.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDoc.cpp
+
+libscihelptools_la-BuildDocObject.lo: src/jni/BuildDocObject.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_la-BuildDocObject.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-BuildDocObject.Tpo -c -o libscihelptools_la-BuildDocObject.lo `test -f 'src/jni/BuildDocObject.cpp' || echo '$(srcdir)/'`src/jni/BuildDocObject.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscihelptools_la-BuildDocObject.Tpo $(DEPDIR)/libscihelptools_la-BuildDocObject.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/BuildDocObject.cpp' object='libscihelptools_la-BuildDocObject.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_la-BuildDocObject.lo `test -f 'src/jni/BuildDocObject.cpp' || echo '$(srcdir)/'`src/jni/BuildDocObject.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -2043,584 +763,6 @@ uninstall-libscihelptools_la_doc_html_resourcesDATA:
 	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)/$$f"; \
 	done
-install-libscihelptools_la_docbook_xslDATA: $(libscihelptools_la_docbook_xsl_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsldir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsldir)"
-	@list='$(libscihelptools_la_docbook_xsl_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xslDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsldir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xslDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsldir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xslDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsldir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsldir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_commonDATA: $(libscihelptools_la_docbook_xsl_common_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_commondir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_commondir)"
-	@list='$(libscihelptools_la_docbook_xsl_common_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_commonDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_commondir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_commonDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_commondir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_commonDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_common_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_commondir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_commondir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_docsrcDATA: $(libscihelptools_la_docbook_xsl_docsrc_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_docsrcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_docsrcdir)"
-	@list='$(libscihelptools_la_docbook_xsl_docsrc_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_docsrcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_docsrcdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_docsrcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_docsrcdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_docsrcDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_docsrc_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_docsrcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_docsrcdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_eclipseDATA: $(libscihelptools_la_docbook_xsl_eclipse_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_eclipsedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_eclipsedir)"
-	@list='$(libscihelptools_la_docbook_xsl_eclipse_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_eclipseDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_eclipsedir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_eclipseDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_eclipsedir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_eclipseDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_eclipse_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_eclipsedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_eclipsedir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_extensionsDATA: $(libscihelptools_la_docbook_xsl_extensions_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_extensionsdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_extensionsdir)"
-	@list='$(libscihelptools_la_docbook_xsl_extensions_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_extensionsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_extensionsdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_extensionsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_extensionsdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_extensionsDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_extensions_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_extensionsdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_extensionsdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_foDATA: $(libscihelptools_la_docbook_xsl_fo_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_fodir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_fodir)"
-	@list='$(libscihelptools_la_docbook_xsl_fo_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_foDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_fodir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_foDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_fodir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_foDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_fo_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_fodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_fodir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_highlightingDATA: $(libscihelptools_la_docbook_xsl_highlighting_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_highlightingdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_highlightingdir)"
-	@list='$(libscihelptools_la_docbook_xsl_highlighting_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_highlightingDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_highlightingdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_highlightingDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_highlightingdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_highlightingDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_highlighting_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_highlightingdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_highlightingdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_htmlDATA: $(libscihelptools_la_docbook_xsl_html_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_htmldir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmldir)"
-	@list='$(libscihelptools_la_docbook_xsl_html_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_htmlDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmldir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_htmlDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmldir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_htmlDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_html_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmldir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmldir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_htmlhelpDATA: $(libscihelptools_la_docbook_xsl_htmlhelp_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_htmlhelpdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmlhelpdir)"
-	@list='$(libscihelptools_la_docbook_xsl_htmlhelp_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_htmlhelpDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmlhelpdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_htmlhelpDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmlhelpdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_htmlhelpDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_htmlhelp_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmlhelpdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmlhelpdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_imagesDATA: $(libscihelptools_la_docbook_xsl_images_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_imagesdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_imagesdir)"
-	@list='$(libscihelptools_la_docbook_xsl_images_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_imagesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_imagesdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_imagesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_imagesdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_imagesDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_images_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_imagesdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_imagesdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_images_calloutsDATA: $(libscihelptools_la_docbook_xsl_images_callouts_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_images_calloutsdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_images_calloutsdir)"
-	@list='$(libscihelptools_la_docbook_xsl_images_callouts_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_images_calloutsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_images_calloutsdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_images_calloutsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_images_calloutsdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_images_calloutsDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_images_callouts_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_images_calloutsdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_images_calloutsdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_javahelpDATA: $(libscihelptools_la_docbook_xsl_javahelp_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_javahelpdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_javahelpdir)"
-	@list='$(libscihelptools_la_docbook_xsl_javahelp_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_javahelpDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_javahelpdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_javahelpDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_javahelpdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_javahelpDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_javahelp_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_javahelpdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_javahelpdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_libDATA: $(libscihelptools_la_docbook_xsl_lib_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_libdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_libdir)"
-	@list='$(libscihelptools_la_docbook_xsl_lib_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_libDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_libdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_libDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_libdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_libDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_lib_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_libdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_libdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_manpagesDATA: $(libscihelptools_la_docbook_xsl_manpages_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_manpagesdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_manpagesdir)"
-	@list='$(libscihelptools_la_docbook_xsl_manpages_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_manpagesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_manpagesdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_manpagesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_manpagesdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_manpagesDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_manpages_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_manpagesdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_manpagesdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_paramsDATA: $(libscihelptools_la_docbook_xsl_params_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_paramsdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_paramsdir)"
-	@list='$(libscihelptools_la_docbook_xsl_params_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_paramsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_paramsdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_paramsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_paramsdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_paramsDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_params_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_paramsdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_paramsdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_profilingDATA: $(libscihelptools_la_docbook_xsl_profiling_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_profilingdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_profilingdir)"
-	@list='$(libscihelptools_la_docbook_xsl_profiling_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_profilingDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_profilingdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_profilingDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_profilingdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_profilingDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_profiling_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_profilingdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_profilingdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_roundtripDATA: $(libscihelptools_la_docbook_xsl_roundtrip_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_roundtripdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_roundtripdir)"
-	@list='$(libscihelptools_la_docbook_xsl_roundtrip_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_roundtripDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_roundtripdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_roundtripDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_roundtripdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_roundtripDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_roundtrip_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_roundtripdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_roundtripdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_browserDATA: $(libscihelptools_la_docbook_xsl_slides_browser_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_browserdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_browserdir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_browser_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_browserDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_browserdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_browserDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_browserdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_browserDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_browser_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_browserdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_browserdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_foDATA: $(libscihelptools_la_docbook_xsl_slides_fo_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_fodir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_fodir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_fo_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_foDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_fodir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_foDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_fodir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_foDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_fo_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_fodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_fodir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_graphicsDATA: $(libscihelptools_la_docbook_xsl_slides_graphics_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_graphicsdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphicsdir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_graphics_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_graphicsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphicsdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_graphicsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphicsdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_graphicsDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_graphics_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphicsdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphicsdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_graphics_activeDATA: $(libscihelptools_la_docbook_xsl_slides_graphics_active_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_graphics_activedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_activedir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_graphics_active_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_graphics_activeDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_activedir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_graphics_activeDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_activedir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_graphics_activeDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_graphics_active_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_activedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_activedir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_graphics_inactiveDATA: $(libscihelptools_la_docbook_xsl_slides_graphics_inactive_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_graphics_inactivedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_inactivedir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_graphics_inactive_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_graphics_inactiveDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_inactivedir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_graphics_inactiveDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_inactivedir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_graphics_inactiveDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_graphics_inactive_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_inactivedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_inactivedir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_graphics_tocDATA: $(libscihelptools_la_docbook_xsl_slides_graphics_toc_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_graphics_tocdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_tocdir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_graphics_toc_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_graphics_tocDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_tocdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_graphics_tocDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_tocdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_graphics_tocDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_graphics_toc_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_tocdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_tocdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_htmlDATA: $(libscihelptools_la_docbook_xsl_slides_html_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_htmldir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmldir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_html_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_htmlDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmldir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_htmlDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmldir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_htmlDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_html_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmldir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmldir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_htmlhelpDATA: $(libscihelptools_la_docbook_xsl_slides_htmlhelp_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_htmlhelpdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmlhelpdir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_htmlhelp_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_htmlhelpDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmlhelpdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_htmlhelpDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmlhelpdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_htmlhelpDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_htmlhelp_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmlhelpdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmlhelpdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_keynoteDATA: $(libscihelptools_la_docbook_xsl_slides_keynote_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_keynotedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynotedir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_keynote_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_keynoteDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynotedir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_keynoteDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynotedir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_keynoteDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_keynote_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynotedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynotedir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_keynote_xsltslDATA: $(libscihelptools_la_docbook_xsl_slides_keynote_xsltsl_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_keynote_xsltsldir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynote_xsltsldir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_keynote_xsltsl_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_keynote_xsltslDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynote_xsltsldir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_keynote_xsltslDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynote_xsltsldir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_keynote_xsltslDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_keynote_xsltsl_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynote_xsltsldir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynote_xsltsldir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_svgDATA: $(libscihelptools_la_docbook_xsl_slides_svg_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_svgdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_svgdir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_svg_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_svgDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_svgdir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_svgDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_svgdir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_svgDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_svg_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_svgdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_svgdir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_slides_xhtmlDATA: $(libscihelptools_la_docbook_xsl_slides_xhtml_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_slides_xhtmldir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_xhtmldir)"
-	@list='$(libscihelptools_la_docbook_xsl_slides_xhtml_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_slides_xhtmlDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_xhtmldir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_slides_xhtmlDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_xhtmldir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_slides_xhtmlDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_slides_xhtml_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_xhtmldir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_xhtmldir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_templateDATA: $(libscihelptools_la_docbook_xsl_template_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_templatedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_templatedir)"
-	@list='$(libscihelptools_la_docbook_xsl_template_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_templateDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_templatedir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_templateDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_templatedir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_templateDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_template_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_templatedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_templatedir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_tools_binDATA: $(libscihelptools_la_docbook_xsl_tools_bin_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_tools_bindir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_bindir)"
-	@list='$(libscihelptools_la_docbook_xsl_tools_bin_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_tools_binDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_bindir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_tools_binDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_bindir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_tools_binDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_tools_bin_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_bindir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_bindir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_tools_makeDATA: $(libscihelptools_la_docbook_xsl_tools_make_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_tools_makedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_makedir)"
-	@list='$(libscihelptools_la_docbook_xsl_tools_make_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_tools_makeDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_makedir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_tools_makeDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_makedir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_tools_makeDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_tools_make_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_makedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_makedir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_websiteDATA: $(libscihelptools_la_docbook_xsl_website_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_websitedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_websitedir)"
-	@list='$(libscihelptools_la_docbook_xsl_website_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_websiteDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_websitedir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_websiteDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_websitedir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_websiteDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_website_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_websitedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_websitedir)/$$f"; \
-	done
-install-libscihelptools_la_docbook_xsl_xhtmlDATA: $(libscihelptools_la_docbook_xsl_xhtml_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihelptools_la_docbook_xsl_xhtmldir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_docbook_xsl_xhtmldir)"
-	@list='$(libscihelptools_la_docbook_xsl_xhtml_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscihelptools_la_docbook_xsl_xhtmlDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscihelptools_la_docbook_xsl_xhtmldir)/$$f'"; \
-	  $(libscihelptools_la_docbook_xsl_xhtmlDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_xhtmldir)/$$f"; \
-	done
-
-uninstall-libscihelptools_la_docbook_xsl_xhtmlDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihelptools_la_docbook_xsl_xhtml_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_docbook_xsl_xhtmldir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscihelptools_la_docbook_xsl_xhtmldir)/$$f"; \
-	done
 install-libscihelptools_la_etcDATA: $(libscihelptools_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscihelptools_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_etcdir)"
@@ -2706,12 +848,53 @@ uninstall-libscihelptools_la_xsl_foDATA:
 	  echo " rm -f '$(DESTDIR)$(libscihelptools_la_xsl_fodir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscihelptools_la_xsl_fodir)/$$f"; \
 	done
+
+ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonemtpy = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	mkid -fID $$unique
 tags: TAGS
-TAGS:
 
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonempty = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	if test -z "$(ETAGS_ARGS)$$tags$$unique"; then :; else \
+	  test -n "$$unique" || unique=$$empty_fix; \
+	  $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
+	    $$tags $$unique; \
+	fi
 ctags: CTAGS
-CTAGS:
+CTAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	tags=; \
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonempty = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	test -z "$(CTAGS_ARGS)$$tags$$unique" \
+	  || $(CTAGS) $(CTAGSFLAGS) $(AM_CTAGSFLAGS) $(CTAGS_ARGS) \
+	     $$tags $$unique
 
+GTAGS:
+	here=`$(am__cd) $(top_builddir) && pwd` \
+	  && cd $(top_srcdir) \
+	  && gtags -i $(GTAGS_ARGS) $$here
+
+distclean-tags:
+	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
@@ -2742,9 +925,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_cssdir)" "$(DESTDIR)$(libscihelptools_la_docdir)" "$(DESTDIR)$(libscihelptools_la_doc_htmldir)" "$(DESTDIR)$(libscihelptools_la_doc_html_imagesdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_images_calloutsdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsldir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_commondir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_docsrcdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_eclipsedir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_extensionsdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_fodir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_highlightingdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmldir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_htmlhelpdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_imagesdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_images_calloutsdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_javahelpdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_libdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_manpagesdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_paramsdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_profilingdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_roundtripdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_browserdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_fodir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphicsdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_activedir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_inactivedir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_graphics_tocdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmldir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_htmlhelpdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynotedir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_keynote_xsltsldir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_svgdir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_slides_xhtmldir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_templatedir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_bindir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_tools_makedir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_websitedir)" "$(DESTDIR)$(libscihelptools_la_docbook_xsl_xhtmldir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_cssdir)" "$(DESTDIR)$(libscihelptools_la_docdir)" "$(DESTDIR)$(libscihelptools_la_doc_htmldir)" "$(DESTDIR)$(libscihelptools_la_doc_html_imagesdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_images_calloutsdir)" "$(DESTDIR)$(libscihelptools_la_doc_html_resourcesdir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2773,11 +956,14 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-local mostlyclean-am
+clean-am: clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic
+distclean-am: clean-am distclean-compile distclean-generic \
+	distclean-tags
 
 dvi: dvi-am
 
@@ -2796,40 +982,6 @@ install-data-am: install-data-local install-libscihelptools_la_binDATA \
 	install-libscihelptools_la_doc_html_imagesDATA \
 	install-libscihelptools_la_doc_html_images_calloutsDATA \
 	install-libscihelptools_la_doc_html_resourcesDATA \
-	install-libscihelptools_la_docbook_xslDATA \
-	install-libscihelptools_la_docbook_xsl_commonDATA \
-	install-libscihelptools_la_docbook_xsl_docsrcDATA \
-	install-libscihelptools_la_docbook_xsl_eclipseDATA \
-	install-libscihelptools_la_docbook_xsl_extensionsDATA \
-	install-libscihelptools_la_docbook_xsl_foDATA \
-	install-libscihelptools_la_docbook_xsl_highlightingDATA \
-	install-libscihelptools_la_docbook_xsl_htmlDATA \
-	install-libscihelptools_la_docbook_xsl_htmlhelpDATA \
-	install-libscihelptools_la_docbook_xsl_imagesDATA \
-	install-libscihelptools_la_docbook_xsl_images_calloutsDATA \
-	install-libscihelptools_la_docbook_xsl_javahelpDATA \
-	install-libscihelptools_la_docbook_xsl_libDATA \
-	install-libscihelptools_la_docbook_xsl_manpagesDATA \
-	install-libscihelptools_la_docbook_xsl_paramsDATA \
-	install-libscihelptools_la_docbook_xsl_profilingDATA \
-	install-libscihelptools_la_docbook_xsl_roundtripDATA \
-	install-libscihelptools_la_docbook_xsl_slides_browserDATA \
-	install-libscihelptools_la_docbook_xsl_slides_foDATA \
-	install-libscihelptools_la_docbook_xsl_slides_graphicsDATA \
-	install-libscihelptools_la_docbook_xsl_slides_graphics_activeDATA \
-	install-libscihelptools_la_docbook_xsl_slides_graphics_inactiveDATA \
-	install-libscihelptools_la_docbook_xsl_slides_graphics_tocDATA \
-	install-libscihelptools_la_docbook_xsl_slides_htmlDATA \
-	install-libscihelptools_la_docbook_xsl_slides_htmlhelpDATA \
-	install-libscihelptools_la_docbook_xsl_slides_keynoteDATA \
-	install-libscihelptools_la_docbook_xsl_slides_keynote_xsltslDATA \
-	install-libscihelptools_la_docbook_xsl_slides_svgDATA \
-	install-libscihelptools_la_docbook_xsl_slides_xhtmlDATA \
-	install-libscihelptools_la_docbook_xsl_templateDATA \
-	install-libscihelptools_la_docbook_xsl_tools_binDATA \
-	install-libscihelptools_la_docbook_xsl_tools_makeDATA \
-	install-libscihelptools_la_docbook_xsl_websiteDATA \
-	install-libscihelptools_la_docbook_xsl_xhtmlDATA \
 	install-libscihelptools_la_etcDATA \
 	install-libscihelptools_la_rootDATA \
 	install-libscihelptools_la_schemaDATA \
@@ -2838,7 +990,7 @@ install-data-am: install-data-local install-libscihelptools_la_binDATA \
 
 install-dvi: install-dvi-am
 
-install-exec-am:
+install-exec-am: install-pkglibLTLIBRARIES
 
 install-html: install-html-am
 
@@ -2855,12 +1007,14 @@ install-ps: install-ps-am
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-generic mostlyclean-libtool
+mostlyclean-am: mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool
 
 pdf: pdf-am
 
@@ -2877,151 +1031,53 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_doc_html_imagesDATA \
 	uninstall-libscihelptools_la_doc_html_images_calloutsDATA \
 	uninstall-libscihelptools_la_doc_html_resourcesDATA \
-	uninstall-libscihelptools_la_docbook_xslDATA \
-	uninstall-libscihelptools_la_docbook_xsl_commonDATA \
-	uninstall-libscihelptools_la_docbook_xsl_docsrcDATA \
-	uninstall-libscihelptools_la_docbook_xsl_eclipseDATA \
-	uninstall-libscihelptools_la_docbook_xsl_extensionsDATA \
-	uninstall-libscihelptools_la_docbook_xsl_foDATA \
-	uninstall-libscihelptools_la_docbook_xsl_highlightingDATA \
-	uninstall-libscihelptools_la_docbook_xsl_htmlDATA \
-	uninstall-libscihelptools_la_docbook_xsl_htmlhelpDATA \
-	uninstall-libscihelptools_la_docbook_xsl_imagesDATA \
-	uninstall-libscihelptools_la_docbook_xsl_images_calloutsDATA \
-	uninstall-libscihelptools_la_docbook_xsl_javahelpDATA \
-	uninstall-libscihelptools_la_docbook_xsl_libDATA \
-	uninstall-libscihelptools_la_docbook_xsl_manpagesDATA \
-	uninstall-libscihelptools_la_docbook_xsl_paramsDATA \
-	uninstall-libscihelptools_la_docbook_xsl_profilingDATA \
-	uninstall-libscihelptools_la_docbook_xsl_roundtripDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_browserDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_foDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_graphicsDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_graphics_activeDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_graphics_inactiveDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_graphics_tocDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_htmlDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_htmlhelpDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_keynoteDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_keynote_xsltslDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_svgDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_xhtmlDATA \
-	uninstall-libscihelptools_la_docbook_xsl_templateDATA \
-	uninstall-libscihelptools_la_docbook_xsl_tools_binDATA \
-	uninstall-libscihelptools_la_docbook_xsl_tools_makeDATA \
-	uninstall-libscihelptools_la_docbook_xsl_websiteDATA \
-	uninstall-libscihelptools_la_docbook_xsl_xhtmlDATA \
 	uninstall-libscihelptools_la_etcDATA \
 	uninstall-libscihelptools_la_rootDATA \
 	uninstall-libscihelptools_la_schemaDATA \
 	uninstall-libscihelptools_la_xsl_convertDATA \
-	uninstall-libscihelptools_la_xsl_foDATA
+	uninstall-libscihelptools_la_xsl_foDATA \
+	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am all-local check check-am check-local clean \
-	clean-generic clean-libtool clean-local distclean \
-	distclean-generic distclean-libtool distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscihelptools_la_binDATA \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
+	clean clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscihelptools_la_binDATA \
 	install-libscihelptools_la_cssDATA \
 	install-libscihelptools_la_docDATA \
 	install-libscihelptools_la_doc_htmlDATA \
 	install-libscihelptools_la_doc_html_imagesDATA \
 	install-libscihelptools_la_doc_html_images_calloutsDATA \
 	install-libscihelptools_la_doc_html_resourcesDATA \
-	install-libscihelptools_la_docbook_xslDATA \
-	install-libscihelptools_la_docbook_xsl_commonDATA \
-	install-libscihelptools_la_docbook_xsl_docsrcDATA \
-	install-libscihelptools_la_docbook_xsl_eclipseDATA \
-	install-libscihelptools_la_docbook_xsl_extensionsDATA \
-	install-libscihelptools_la_docbook_xsl_foDATA \
-	install-libscihelptools_la_docbook_xsl_highlightingDATA \
-	install-libscihelptools_la_docbook_xsl_htmlDATA \
-	install-libscihelptools_la_docbook_xsl_htmlhelpDATA \
-	install-libscihelptools_la_docbook_xsl_imagesDATA \
-	install-libscihelptools_la_docbook_xsl_images_calloutsDATA \
-	install-libscihelptools_la_docbook_xsl_javahelpDATA \
-	install-libscihelptools_la_docbook_xsl_libDATA \
-	install-libscihelptools_la_docbook_xsl_manpagesDATA \
-	install-libscihelptools_la_docbook_xsl_paramsDATA \
-	install-libscihelptools_la_docbook_xsl_profilingDATA \
-	install-libscihelptools_la_docbook_xsl_roundtripDATA \
-	install-libscihelptools_la_docbook_xsl_slides_browserDATA \
-	install-libscihelptools_la_docbook_xsl_slides_foDATA \
-	install-libscihelptools_la_docbook_xsl_slides_graphicsDATA \
-	install-libscihelptools_la_docbook_xsl_slides_graphics_activeDATA \
-	install-libscihelptools_la_docbook_xsl_slides_graphics_inactiveDATA \
-	install-libscihelptools_la_docbook_xsl_slides_graphics_tocDATA \
-	install-libscihelptools_la_docbook_xsl_slides_htmlDATA \
-	install-libscihelptools_la_docbook_xsl_slides_htmlhelpDATA \
-	install-libscihelptools_la_docbook_xsl_slides_keynoteDATA \
-	install-libscihelptools_la_docbook_xsl_slides_keynote_xsltslDATA \
-	install-libscihelptools_la_docbook_xsl_slides_svgDATA \
-	install-libscihelptools_la_docbook_xsl_slides_xhtmlDATA \
-	install-libscihelptools_la_docbook_xsl_templateDATA \
-	install-libscihelptools_la_docbook_xsl_tools_binDATA \
-	install-libscihelptools_la_docbook_xsl_tools_makeDATA \
-	install-libscihelptools_la_docbook_xsl_websiteDATA \
-	install-libscihelptools_la_docbook_xsl_xhtmlDATA \
 	install-libscihelptools_la_etcDATA \
 	install-libscihelptools_la_rootDATA \
 	install-libscihelptools_la_schemaDATA \
 	install-libscihelptools_la_xsl_convertDATA \
 	install-libscihelptools_la_xsl_foDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libscihelptools_la_binDATA \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_cssDATA \
 	uninstall-libscihelptools_la_docDATA \
 	uninstall-libscihelptools_la_doc_htmlDATA \
 	uninstall-libscihelptools_la_doc_html_imagesDATA \
 	uninstall-libscihelptools_la_doc_html_images_calloutsDATA \
 	uninstall-libscihelptools_la_doc_html_resourcesDATA \
-	uninstall-libscihelptools_la_docbook_xslDATA \
-	uninstall-libscihelptools_la_docbook_xsl_commonDATA \
-	uninstall-libscihelptools_la_docbook_xsl_docsrcDATA \
-	uninstall-libscihelptools_la_docbook_xsl_eclipseDATA \
-	uninstall-libscihelptools_la_docbook_xsl_extensionsDATA \
-	uninstall-libscihelptools_la_docbook_xsl_foDATA \
-	uninstall-libscihelptools_la_docbook_xsl_highlightingDATA \
-	uninstall-libscihelptools_la_docbook_xsl_htmlDATA \
-	uninstall-libscihelptools_la_docbook_xsl_htmlhelpDATA \
-	uninstall-libscihelptools_la_docbook_xsl_imagesDATA \
-	uninstall-libscihelptools_la_docbook_xsl_images_calloutsDATA \
-	uninstall-libscihelptools_la_docbook_xsl_javahelpDATA \
-	uninstall-libscihelptools_la_docbook_xsl_libDATA \
-	uninstall-libscihelptools_la_docbook_xsl_manpagesDATA \
-	uninstall-libscihelptools_la_docbook_xsl_paramsDATA \
-	uninstall-libscihelptools_la_docbook_xsl_profilingDATA \
-	uninstall-libscihelptools_la_docbook_xsl_roundtripDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_browserDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_foDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_graphicsDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_graphics_activeDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_graphics_inactiveDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_graphics_tocDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_htmlDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_htmlhelpDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_keynoteDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_keynote_xsltslDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_svgDATA \
-	uninstall-libscihelptools_la_docbook_xsl_slides_xhtmlDATA \
-	uninstall-libscihelptools_la_docbook_xsl_templateDATA \
-	uninstall-libscihelptools_la_docbook_xsl_tools_binDATA \
-	uninstall-libscihelptools_la_docbook_xsl_tools_makeDATA \
-	uninstall-libscihelptools_la_docbook_xsl_websiteDATA \
-	uninstall-libscihelptools_la_docbook_xsl_xhtmlDATA \
 	uninstall-libscihelptools_la_etcDATA \
 	uninstall-libscihelptools_la_rootDATA \
 	uninstall-libscihelptools_la_schemaDATA \
 	uninstall-libscihelptools_la_xsl_convertDATA \
-	uninstall-libscihelptools_la_xsl_foDATA
+	uninstall-libscihelptools_la_xsl_foDATA \
+	uninstall-pkglibLTLIBRARIES
 
 
 # This target enables tests for Scilab
@@ -3036,7 +1092,7 @@ check-local: $(top_builddir)/scilab-bin
 # Some configurations needs to export JAVA_HOME in the current env
 @GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
 @GUI_TRUE@	if test -f build.xml; then \
-@GUI_TRUE@		$(ANT) jar; \
+@GUI_TRUE@		$(ANT); \
 @GUI_TRUE@	fi
 
 @GUI_TRUE@clean-java:
