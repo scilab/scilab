@@ -80,15 +80,12 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     end
     
     instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + filesep() + modelicac_err
-    disp(instr) //++ DEBUG
     if MSDOS
       //++ Put the instructions in a batch file
       mputl(instr, path + 'genc.bat')
       instr = path + 'genc.bat'
     end
     
-    pause //++ DEBUG
-
     if fileinfo(SCI + '/bin/translator') <> [] then
       OUTM = unix(instr) <> 0; // in order to mask the message in the Scilab windows
     else
