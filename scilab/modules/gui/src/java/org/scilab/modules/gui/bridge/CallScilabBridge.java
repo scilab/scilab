@@ -33,6 +33,7 @@ import javax.print.DocPrintJob;
 import javax.print.PrintException;
 import javax.print.SimpleDoc;
 import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttribute;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.text.BadLocationException;
@@ -2231,10 +2232,16 @@ public class CallScilabBridge {
 		if (printerJob.printDialog(scilabPageFormat)) {
 			try {
 				/** Export image to PostScript */
-				FileExporter.fileExport(figureID, 
-						tmpPrinterFile,
-						ExportRenderer.EPS_EXPORT, 1 - printerJob.getPageFormat(scilabPageFormat).getOrientation());
-
+				if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
+					FileExporter.fileExport(figureID, 
+							tmpPrinterFile,
+							ExportRenderer.EPS_EXPORT, 0);
+				} else {
+					FileExporter.fileExport(figureID, 
+							tmpPrinterFile,
+							ExportRenderer.EPS_EXPORT, 1);
+				}
+				
 				/** Read file */
 				FileInputStream psStream = null; 
 				try { 
