@@ -34,7 +34,7 @@ int SetUiobjectTag(sciPointObj* sciObj, int stackPointer, int valueType, int nbR
       // Free old tag is exists
       if(pUIMENU_FEATURE(sciObj)->tag != NULL)
         {
-          delete (pUIMENU_FEATURE(sciObj)->tag);
+          delete[] (pUIMENU_FEATURE(sciObj)->tag);
         }
       // Set the new tag
       pUIMENU_FEATURE(sciObj)->tag = new char[strlen(getStringFromStack(stackPointer)) + 1];
@@ -49,7 +49,7 @@ int SetUiobjectTag(sciPointObj* sciObj, int stackPointer, int valueType, int nbR
       // Free old tag is exists
       if(pUICONTROL_FEATURE(sciObj)->tag != NULL)
         {
-          delete (pUICONTROL_FEATURE(sciObj)->tag);
+          delete[] (pUICONTROL_FEATURE(sciObj)->tag);
         }
       // Set the new tag
       pUICONTROL_FEATURE(sciObj)->tag = new char[strlen(getStringFromStack(stackPointer)) + 1];
@@ -64,7 +64,7 @@ int SetUiobjectTag(sciPointObj* sciObj, int stackPointer, int valueType, int nbR
       // Free old tag is exists
       if(pFIGURE_FEATURE(sciObj)->tag != NULL)
         {
-          delete (pFIGURE_FEATURE(sciObj)->tag);
+          delete[] (pFIGURE_FEATURE(sciObj)->tag);
         }
       // Set the new tag
       pFIGURE_FEATURE(sciObj)->tag = new char[strlen(getStringFromStack(stackPointer)) + 1];
