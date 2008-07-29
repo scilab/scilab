@@ -353,6 +353,10 @@
 				RelativePath=".\matrix_division.c"
 				>
 			</File>
+			<File
+				RelativePath=".\matrix_multiplication.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

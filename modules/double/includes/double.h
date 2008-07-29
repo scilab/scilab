@@ -36,8 +36,11 @@ extern C2F(zlacpy)();
 extern C2F(zgetrf)();
 extern C2F(zgecon)();
 extern C2F(zgetrs)();
+extern C2F(zgelsy)();
 extern C2F(zgelsy1)();
 
+extern int C2F(zscal)();
+extern int C2F(dscal)();
 
 /*Tools to convert memory matrix storage from C to Z and Z to C*/
 doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
@@ -123,5 +126,45 @@ int iRightDivisionComplexMatrixByComplexMatrix(
 			double *_pdblReal1,		double *_pdblImg1,		int _iInc1, 
 			double *_pdblReal2,		double *_pdblImg2,		int _iInc2, 
 			double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
+
+int iMultiComplexMatrixByComplexMatrix(
+		double *_pdblReal1,		double *_pdblImg1, int _iRows1, int _iCols1,
+		double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
+		double *_pdblRealOut,	double *_pdblImgOut);
+
+int iMultiRealMatrixByRealMatrix(
+		double *_pdblReal1,	int _iRows1, int _iCols1,
+		double *_pdblReal2,	int _iRows2, int _iCols2,
+		double *_pdblRealOut);
+
+int iMultiRealMatrixByComplexMatrix(
+		double *_pdblReal1,		int _iRows1, int _iCols1,
+		double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
+		double *_pdblRealOut,	double *_pdblImgOut);
+
+int iMultiComplexMatrixByRealMatrix(
+		double *_pdblReal1,		double *_pdblImg1,	int _iRows1, int _iCols1,
+		double *_pdblReal2,							int _iRows2, int _iCols2,
+		double *_pdblRealOut,	double *_pdblImgOut);
+
+int iMultiRealScalarByRealMatrix(
+		double _dblReal1,
+		double *_pdblReal2,	int _iRows2, int _iCols2,
+		double *_pdblRealOut);
+
+int iMultiRealScalarByComplexMatrix(
+		double _dblReal1,
+		double *_pdblReal2,	double *_pdblImg2, int _iRows2, int _iCols2,
+		double *_pdblRealOut, double *_pdblImgOut);
+
+int iMultiComplexScalarByRealMatrix(
+		double _dblReal1,		double _dblImg1,
+		double *_pdblReal2,		int _iRows2, int _iCols2,
+		double *_pdblRealOut,	double *_pdblImgOut);
+
+int iMultiComplexScalarByComplexMatrix(
+		double _dblReal1,		double _dblImg1,
+		double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
+		double *_pdblRealOut,	double *_pdblImgOut);
 
 #endif //__DOUBLE_H__

@@ -12,12 +12,15 @@
 
 #include "double.h"
 
+		
 int matmult()
 {
 	int iRows1 = 0, iRows2 = 0, iCols1 = 0, iCols2 = 0;
 	int iReal1 = 0, iReal2 = 0, iImg1 = 0, iImg2 = 0;
 	int iSize1 = 0, iSize2 = 0;
 	int iGlobalComplex = 0;
+	int iOne	= 1;
+
 
 	double *pReal1 = NULL, *pReal2 = NULL, *pImg1 = NULL, *pImg2 = NULL;
 	int iComplex1 = 0, iComplex2 = 0;
@@ -81,21 +84,31 @@ int matmult()
 
 		if(iComplex1 == 0 && iComplex2 == 0)
 		{//Matrix and scalar are real
-			ddscals(pReal2, iSize2, pReal1[0], pReturnReal);
+			iMultiRealScalarByRealMatrix(
+				pReal1[0], 
+				pReal2, iRows2, iCols2,
+				pReturnReal);
 		}
 		else if(iComplex1 == 0 && iComplex2 == 1)
 		{//Matrix is complex and scalar is real
-			ddscals(pReal2, iSize2, pReal1[0], pReturnReal);
-			ddscals(pImg2,	iSize2, pReal1[0], pReturnImg);
+			iMultiRealScalarByComplexMatrix(
+				pReal1[0],
+				pReal2, pImg2, iRows2, iCols2,
+				pReturnReal, pReturnImg);
 		}
 		else if(iComplex1 == 1 && iComplex2 == 0)
 		{//Matrix is real and scalar are complex
-			ddscals(pReal2, iSize2, pReal1[0]	, pReturnReal);
-			ddscals(pReal2,	iSize2, pImg1[0]	, pReturnImg);
+			iMultiComplexScalarByRealMatrix(
+				pReal1[0], pImg1[0],
+				pReal2, iRows2, iCols2,
+				pReturnReal, pReturnImg);
 		}
 		else if(iComplex1 == 1 && iComplex2 == 1)
 		{//Matrix and scalar are complex
-			zwscals(pReal2, pImg2, iSize2, pReal1[0], pImg1[0], pReturnReal, pReturnImg, 1);
+			iMultiComplexScalarByComplexMatrix(
+				pReal1[0], pImg1[0],
+				pReal2, pImg2, iRows2, iCols2,
+				pReturnReal, pReturnImg);
 		}
 	}
 	else if (iSize2 == 1)
@@ -109,21 +122,31 @@ int matmult()
 		iAllocComplexMatrixOfDouble(Rhs + 1, iGlobalComplex, iRows1, iCols1, &pReturnReal, &pReturnImg);
 		if(iComplex1 == 0 && iComplex2 == 0)
 		{//Matrix and scalar are real
-			ddscals(pReal1, iSize1, pReal2[0], pReturnReal);
+			iMultiRealScalarByRealMatrix(
+				pReal2[0], 
+				pReal1, iRows1, iCols1,
+				pReturnReal);
 		}
 		else if(iComplex1 == 0 && iComplex2 == 1)
 		{//Matrix is real and scalar is complex
-			ddscals(pReal1, iSize1, pReal2[0], pReturnReal);
-			ddscals(pReal1,	iSize1, pImg2[0], pReturnImg);
+			iMultiComplexScalarByRealMatrix(
+				pReal2[0], pImg2[0],
+				pReal1, iRows1, iCols1,
+				pReturnReal, pReturnImg);
 		}
 		else if(iComplex1 == 1 && iComplex2 == 0)
 		{//Matrix is complex and scalar is real
-			ddscals(pReal1, iSize1, pReal2[0]	, pReturnReal);
-			ddscals(pImg1,	iSize1, pReal2[0]	, pReturnImg);
+			iMultiRealScalarByComplexMatrix(
+				pReal2[0],
+				pReal1, pImg1, iRows1, iCols1,
+				pReturnReal, pReturnImg);
 		}
 		else if(iComplex1 == 1 && iComplex2 == 1)
 		{//Matrix and scalar are complex
-			zwscals(pReal1, pImg1, iSize1, pReal2[0], pImg2[0], pReturnReal, pReturnImg, 1);
+			iMultiComplexScalarByComplexMatrix(
+				pReal2[0], pImg2[0],
+				pReal1, pImg1, iRows1, iCols1,
+				pReturnReal, pReturnImg);
 		}
 	}
 	else
