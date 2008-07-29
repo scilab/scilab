@@ -1,10 +1,14 @@
 package org.scilab.modules.helptools;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import com.icl.saxon.StyleSheet; /* saxon */
 
+/**
+ * This classes intends to wrap Saxon features in a easy-to-use class.
+ */
 public class BuildDocObject extends StyleSheet {
 	private String outputDirectory;
 	private String format;
@@ -87,7 +91,7 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add("toc.section.depth=3");
 			specificArgs.add("section.autolabel=1");
 		}
-		if (format.equalsIgnoreCase("JH")||format.equalsIgnoreCase("javaHelp")) {
+		if (format.equalsIgnoreCase("JH") || format.equalsIgnoreCase("javaHelp")) {
 			// JavaHelp
 			specificArgs.add("use.extensions=1");
 			specificArgs.add("graphicsize.extension=0");
@@ -102,7 +106,7 @@ public class BuildDocObject extends StyleSheet {
      *
      */
 	private void postProcess() {
-		if (this.format.equalsIgnoreCase("JH")||format.equalsIgnoreCase("javaHelp")) {
+		if (this.format.equalsIgnoreCase("JH") || format.equalsIgnoreCase("javaHelp")) {
 			BuildJavaHelp.buildJavaHelp(this.outputDirectory, this.language);
 		}
 	}
@@ -111,12 +115,28 @@ public class BuildDocObject extends StyleSheet {
      * Launch the whole Saxon process 
      *
      * @param sourceDoc Path to the XML master document
-     * @param styleDoc  
-     * @param outputDirectory   
-     * @param styleSheet	
+     * @param styleSheet Path to the CSS stylesheet
+	 * @throws FileNotFoundException Raises an exception if no file/dir found
 	 */
-	public void process(String sourceDoc, String styleSheet) {
+	public void process(String sourceDoc, String styleSheet) throws FileNotFoundException {
 		ArrayList<String> args = new ArrayList<String>();
+
+		if (!new File(sourceDoc).isFile()) {
+			throw new FileNotFoundException("Could not find master document: " + sourceDoc);
+		}
+
+		if (!new File(styleSheet).isFile()) {
+			throw new FileNotFoundException("Could not find CSS stylesheet: " + styleSheet);
+		}
+
+		if (!new File(this.styleDoc).isFile()) {
+			throw new FileNotFoundException("Could not find the style document: " + this.styleDoc);
+		}
+
+		if (!new File(this.outputDirectory).isDirectory()) {
+			throw new FileNotFoundException("Could not find directory: " + this.outputDirectory);
+		}
+
 		args.add(sourceDoc);
 		args.add(this.styleDoc);
 		args.add("base.dir=" + this.outputDirectory);
@@ -137,6 +157,10 @@ public class BuildDocObject extends StyleSheet {
 		d.setOutputDirectory("/tmp/");
 		d.setExportFormat("JH");
 		d.setDocbookPath("/usr/share/xml/docbook/stylesheet/nwalsh/");
-		d.process("/home/sylvestre/dev/scilab5/modules/helptools/master_en_US_help.xml", "/home/sylvestre/dev/scilab5/modules/helptools/css/javahelp.css");
+		try {
+			d.process("/home/sylvestre/dev/scilab5/modules/helptools/master_en_US_help.xml", "/home/sylvestre/dev/scilab5/modules/helptools/css/javahelp.css");
+		} catch (FileNotFoundException e) {
+			System.err.println("Exception catched: " + e.getMessage());
+		}
 	}
 }

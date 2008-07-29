@@ -13,8 +13,6 @@ package org.scilab.modules.helptools;
 
 import com.sun.java.help.search.Indexer; /* jhall (Java Help) */
 
-import org.scilab.modules.localization.Messages;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
@@ -40,7 +38,7 @@ public class BuildJavaHelp {
 		JarOutputStream jarFile = null;
 		FileOutputStream fileOutputStream = null;
 		final int compressionLevel = 5;
-		String fileName=outputDirectory + "/../../../jar/" + baseName + ".jar";
+		String fileName = outputDirectory + "/../../../jar/" + baseName + ".jar";
 
 		try {
 
@@ -48,9 +46,9 @@ public class BuildJavaHelp {
 			jarFile = new JarOutputStream(fileOutputStream);
 
 		} catch (java.io.FileNotFoundException e) {
-			System.err.println("buildDoc: Could not find/access to " +fileName +" ( "+e.getLocalizedMessage() +" )");
+			System.err.println("buildDoc: Could not find/access to " + fileName + " ( " + e.getLocalizedMessage() + " )");
 		} catch (java.io.IOException e) {
-			System.err.println("buildDoc: Could not find/access to " +fileName +" ( "+e.getLocalizedMessage() +" )");
+			System.err.println("buildDoc: Could not find/access to " + fileName + " ( " + e.getLocalizedMessage() + " )");
 		}
 
 		jarFile.setLevel(compressionLevel);
@@ -74,7 +72,7 @@ public class BuildJavaHelp {
 				try {
 					fileInputStream.read(buffer, 0, length);
 				} catch (java.io.IOException e) {
-					System.err.println("buildDoc: Could not find/access to " +allFiles[i] +" ( "+e.getLocalizedMessage() +" )");
+					System.err.println("buildDoc: Could not find/access to " + allFiles[i] + " ( " + e.getLocalizedMessage() + " )");
 				}
  
 				ZipEntry zipEntry = new ZipEntry(baseName + "/" + allFiles[i].getName());
@@ -84,14 +82,14 @@ public class BuildJavaHelp {
  
 				fileInputStream.close();
 			} catch (java.io.IOException e) {
-				System.err.println("buildDoc: An error occurs while building the JavaHelp ( "+e.getLocalizedMessage() +" )");
+				System.err.println("buildDoc: An error occurs while building the JavaHelp ( " + e.getLocalizedMessage() + " )");
 			}
 
 		}
 		try {
 			jarFile.close();
 		} catch (java.io.IOException e) {
-			System.err.println("buildDoc: An error occurs while closing the JavaHelp ( "+e.getLocalizedMessage() +" )");
+			System.err.println("buildDoc: An error occurs while closing the JavaHelp ( " + e.getLocalizedMessage() + " )");
 		}
 		return true;
 	}
