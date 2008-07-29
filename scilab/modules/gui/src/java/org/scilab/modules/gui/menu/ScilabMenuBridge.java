@@ -66,7 +66,7 @@ public class ScilabMenuBridge {
 					menu.getAsSimpleMenu().setMnemonic(newText.charAt(charIndex + 1));
 					
 					// Have to remove the & used to set a Mnemonic
-					String firstPart = newText.substring(0, Math.max(charIndex - 1, 0)); // Before &
+					String firstPart = newText.substring(0, Math.max(charIndex, 0)); // Before &
 					String secondPart = newText.substring(Math.min(charIndex + 1, newText.length()), newText.length()); // After &
 					label = firstPart + secondPart; 
 					break;
