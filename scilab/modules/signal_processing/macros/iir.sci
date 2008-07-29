@@ -37,11 +37,11 @@ function hz=iir(n,ftype,fdesign,frq,delta)
 //select analog filter design for low-pass filter with fc=.25
 
 if maxi(abs(frq))>0.5 then 
-  error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be less than 0.5\n"),'iir',4));
+  error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be less than %s\n"),'iir',4,"0.5"));
 end
 
 if delta(1)<0|delta(2)>1 then 
-  error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be [%d %d].\n"),'iir',5,0,1));
+   error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"),'iir',5,"0","1"));
 end
 
 [hs,pc,zc,gc]=analpf(n,fdesign,delta,2);

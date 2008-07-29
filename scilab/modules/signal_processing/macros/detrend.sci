@@ -30,14 +30,13 @@ function [y] = detrend(x, flag, bp)
    end
    
    if type(x)~=1 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"),'detrend',1));
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'detrend',1));
    end
    if type(flag)~=10 then
-     error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),'detrend',2));
-      error("detrend: flag must be a string")
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'detrend',2));
    end
    if ~(type(bp)==1 & isreal(bp)) then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"),'detrend',3));
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'detrend',3));
    end
    
    [mx,nx] = size(x)
@@ -80,7 +79,8 @@ function [y] = detrend(x, flag, bp)
       // piecewise linear func off the signal
       y = x - A*(A\x)
    else
-      error(msprintf(gettext("%s: An error occurred: %s\n"),'detrend',gettext('Unknown flag specifier.')));
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n" ,..
+			     'detrend',2,'''constant'',''c'',''linear'',''l''')));
    end
 
    if x_is_vector then

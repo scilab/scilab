@@ -8,7 +8,7 @@ function xh=hilb(n,wtype,par)
 // wtype :window type ('re','tr','hn','hm','kr','ch')
 //       :     default wtype='re'
 // par   :window parameter for wtype='kr' or 'ch'
-//       :     default par=<0 0>
+//       :     default par=[0 0]
 //       :see the macro window for more help
 // xh    :Hilbert transform
 //
@@ -27,10 +27,17 @@ function xh=hilb(n,wtype,par)
    if rhs==1 then,
       wtype='re';
       par=[0 0];
-   else if rhs==2 then,
+   elseif rhs==2 then,
       par=[0 0];
    end,
-   end,
+      
+   if type(n)<>1|size(n,'*')<>1 then
+     error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n","hilb",1)));
+   end
+   if and(wtype<>['re','tr','hn','hm','kr','ch']) then
+     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n" ,"hilb",2,'''re'',''tr'',''hn'',''hm'',''kr'',''ch''')));
+   
+   end
    no2=int(n/2)
    if no2==n/2 then,
      xh0=[]

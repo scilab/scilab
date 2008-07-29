@@ -30,42 +30,31 @@ function an=remezb(nc,fg,ds,wt)
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //get frequency grid size
- 
-   ngrid=maxi(size(fg));
- 
-//check for errors in input
- 
-   f0=fg(1);
-   f1=fg(ngrid);
-   if f0<0 then
-     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"),'remezb',2,0,0.5));
-   end,
-   if f0>.5 then
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"),'remezb',2,0,0.5));
-   end,
-   if f1<0 then
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"),'remezb',2,0,0.5));
-   end,
-   if f1>.5 then
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"),'remezb',2,0,0.5));
-   end,
-   dsize=maxi(size(ds));
-   wsize=maxi(size(wt));
-   if dsize<>ngrid then
-     error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),'remezb',2,3));
-   end,
-   if wsize<>ngrid then
-      error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),'remezb',2,4));
-   end,
- 
-//set up the initial guess for the extremal frequencies
- 
-   iext=round(1:ngrid/nc:ngrid);
-   iext(nc+1)=ngrid;
-   iext(nc+2)=ngrid;
- 
-//call remez.f
- 
-   an=remez(iext,ds,fg,wt);
-   an=an(1:nc)
+  
+  ngrid=maxi(size(fg));
+  
+  //check for errors in input
+  
+  if min(fg)<0|max(fg)>0.5 then
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"),'remezb',2,"0","0.5"));
+  end,
+  dsize=maxi(size(ds));
+  wsize=maxi(size(wt));
+  if dsize<>ngrid then
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),'remezb',2,3));
+  end,
+  if wsize<>ngrid then
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),'remezb',2,4));
+  end,
+  
+  //set up the initial guess for the extremal frequencies
+  
+  iext=round(1:ngrid/nc:ngrid);
+  iext(nc+1)=ngrid;
+  iext(nc+2)=ngrid;
+  
+  //call remez.f
+  
+  an=remez(iext,ds,fg,wt);
+  an=an(1:nc)
 endfunction

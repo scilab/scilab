@@ -16,15 +16,11 @@ function [y]=%asn(x,m)
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-m=real(m);
+  m=real(m);
 
-if m<0 then 
-error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),'%%asn',2,0,1));
-end
+  if m<0|m>1 then 
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"),'%%asn',2,"0","1"));
+  end
 
-if m>1 then 
-error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),'%%asn',2,0,1));
-end
-
-y=delip(x,sqrt(m));
+  y=delip(x,sqrt(m));
 endfunction

@@ -20,56 +20,82 @@ function [npl,nzr,ngn]=bilt(pl,zr,gn,num,den)
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-n=coeff(num);
-   d=coeff(den);
-   order=maxi(size(n))-1;
-   ms=maxi(size(pl));ns=maxi(size(zr));
+  if type(pl)<>1 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n") ,"bilt",1))
+  end
+  if type(zr)<>1 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n") ,"bilt",2))
+  end
+  if type(gn)<>1 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n") ,"bilt",3))
+  end
+   if size(gn,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n") ,"bilt",3))
+  end
+  if and(type(num)<>[1 2]) then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Polynomial array expected.\n") ,"bilt",4))
+  end
+  if size(num,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A polynomial expected.\n") ,"bilt",4))
+  end
 
-   if order==1 then
-      n0=n(1);n1=n(2);
-      if prod(size(d))==1 then d=[d,0];end
-      d0=d(1);d1=d(2);
-      if zr == [] then      
-         ngn=1/prod(n1*ones(pl)-d1*pl);
-      else
-         ngn=prod(n1*ones(zr)-d1*zr)/prod(n1*ones(pl)-d1*pl);
-      end
-      if ms<>ns then ngn=real(gn*d1**(ms-ns)*ngn);else ngn=real(gn*ngn);end
-      nzr=-(n0*ones(zr)-d0*zr)./(n1*ones(zr)-d1*zr);
-      npl=-(n0*ones(pl)-d0*pl)./(n1*ones(pl)-d1*pl);
-      if ms>ns then
-         nzr=[nzr';-(d0/d1)*ones(ms-ns,1)];
-      elseif ms<ns then
-         npl=[npl';-(d0/d1)*ones(ms-ns,1)];
-      end
-   elseif order==2 then
-      n0=n(1);n1=n(2);n2=n(3);
-      d0=d(1);d1=d(2);d2=d(3);
-      a=n2*ones(zr)-d2*zr;
-      b=n1*ones(zr)-d1*zr;
-      c=n0*ones(zr)-d0*zr;
-      gz=a;
-      z1=-b./(2*a)+sqrt((b./(2*a))**2-c./a);
-      z2=-b./(2*a)-sqrt((b./(2*a))**2-c./a);
-      a=n2*ones(pl)-d2*pl;
-      b=n1*ones(pl)-d1*pl;
-      c=n0*ones(pl)-d0*pl;
-      gp=a;
-      p1=-b./(2*a)+sqrt((b./(2*a))**2-c./a);
-      p2=-b./(2*a)-sqrt((b./(2*a))**2-c./a);
-      gw=d2;
-      w1=-d1./(2*d2)+sqrt((d1./(2*d2))**2-d0./d2);
-      w2=-d1./(2*d2)-sqrt((d1./(2*d2))**2-d0./d2);
-      ngn=gn*prod(gz)/prod(gp);
-      nzr=[z1,z2];
-      npl=[p1,p2];
-      if ms>ns then
-         nzr=[nzr';-(d0/d1)*ones(ms-ns,1)];
-      elseif ms<ns then
-         npl=[npl';-(d0/d1)*ones(ms-ns,1)];
-      end
-      ngn=real(ngn*(gw**(ms-ns)));
-   else
-     error(msprintf(gettext("%s: An error occurred: %s\n"),'bilt',gettext('Wrong order transform.')));
-   end
+  if and(type(den)<>[1 2]) then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Polynomial array expected.\n") ,"bilt",5))
+  end
+  if size(den,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A polynomial expected.\n") ,"bilt",5))
+  end
+
+  n=coeff(num);
+  d=coeff(den);
+  order=maxi(size(n))-1;
+  ms=maxi(size(pl));ns=maxi(size(zr));
+
+  if order==1 then
+    n0=n(1);n1=n(2);
+    if prod(size(d))==1 then d=[d,0];end
+    d0=d(1);d1=d(2);
+    if zr == [] then      
+      ngn=1/prod(n1*ones(pl)-d1*pl);
+    else
+      ngn=prod(n1*ones(zr)-d1*zr)/prod(n1*ones(pl)-d1*pl);
+    end
+    if ms<>ns then ngn=real(gn*d1**(ms-ns)*ngn);else ngn=real(gn*ngn);end
+    nzr=-(n0*ones(zr)-d0*zr)./(n1*ones(zr)-d1*zr);
+    npl=-(n0*ones(pl)-d0*pl)./(n1*ones(pl)-d1*pl);
+    if ms>ns then
+      nzr=[nzr';-(d0/d1)*ones(ms-ns,1)];
+    elseif ms<ns then
+      npl=[npl';-(d0/d1)*ones(ms-ns,1)];
+    end
+  elseif order==2 then
+    n0=n(1);n1=n(2);n2=n(3);
+    d0=d(1);d1=d(2);d2=d(3);
+    a=n2*ones(zr)-d2*zr;
+    b=n1*ones(zr)-d1*zr;
+    c=n0*ones(zr)-d0*zr;
+    gz=a;
+    z1=-b./(2*a)+sqrt((b./(2*a))**2-c./a);
+    z2=-b./(2*a)-sqrt((b./(2*a))**2-c./a);
+    a=n2*ones(pl)-d2*pl;
+    b=n1*ones(pl)-d1*pl;
+    c=n0*ones(pl)-d0*pl;
+    gp=a;
+    p1=-b./(2*a)+sqrt((b./(2*a))**2-c./a);
+    p2=-b./(2*a)-sqrt((b./(2*a))**2-c./a);
+    gw=d2;
+    w1=-d1./(2*d2)+sqrt((d1./(2*d2))**2-d0./d2);
+    w2=-d1./(2*d2)-sqrt((d1./(2*d2))**2-d0./d2);
+    ngn=gn*prod(gz)/prod(gp);
+    nzr=[z1,z2];
+    npl=[p1,p2];
+    if ms>ns then
+      nzr=[nzr';-(d0/d1)*ones(ms-ns,1)];
+    elseif ms<ns then
+      npl=[npl';-(d0/d1)*ones(ms-ns,1)];
+    end
+    ngn=real(ngn*(gw**(ms-ns)));
+  else
+   error(msprintf(gettext("%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"),"bilt",4,"1,2"))
+  end
 endfunction
