@@ -29,7 +29,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
     {
       if(nbCol != 1) /* More than one string */
         {
-          sciprint(_("Wrong size for '%s' property: 1 x 3 real vector or a string expected.\n"), "ForegroundColor");
+          sciprint(_("Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n"), "ForegroundColor");
           return SET_PROPERTY_ERROR;
         }
       
@@ -37,7 +37,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
 
       if (nbvalues != 3) /* Wrong format string */
         {
-          sciprint(_("Wrong value for '%s' property: 1 x 3 real vector or a string expected.\n"), "ForegroundColor");
+          sciprint(_("Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n"), "ForegroundColor");
           return SET_PROPERTY_ERROR;
         }
 
@@ -73,7 +73,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
     {
       if(nbCol != 3 || nbRow != 1) /* Wrong matrix size */
         {
-          sciprint(_("Wrong size for '%s' property: 1 x 3 real vector or a string expected.\n"), "ForegroundColor");
+          sciprint(_("Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n"), "ForegroundColor");
           return SET_PROPERTY_ERROR;
         }
 
@@ -108,7 +108,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, int stackPointer, int valueT
   else
     {
       /* Wrong value type */
-      sciprint(_("Wrong type for '%s' property: 1 x 3 real vector or a string expected.\n"), "ForegroundColor");
+      sciprint(_("Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n"), "ForegroundColor");
       return SET_PROPERTY_ERROR;
     }
 
