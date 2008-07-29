@@ -29,7 +29,7 @@ function genmoc(path,force,verbose)
   //++ Check that modelica compiler is available
   //++ Otherwise, give some feedback and quit
   if ~with_modelica_compiler() then
-    error(sprintf(gettext("%s: Fatal error: Modelica compiler (MODELICAC) is unavailable.\n"), "genmoc"));
+    error(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"), "genmoc"))
     return
   end
 
@@ -42,7 +42,7 @@ function genmoc(path,force,verbose)
   files = listfiles(path + '*.mo', %f)
 
   if files == [] | files == "" then
-    error(sprintf(gettext('%s: Cannot find any MO files in %s.\n'), "genmoc", path));
+    error(sprintf(gettext("%s: Cannot find any MO files in the following location: %s.\n"), "genmoc", path))
     return
   end
 
@@ -52,15 +52,15 @@ function genmoc(path,force,verbose)
     for i=1:size(files,'*')  // loop on .mo files
       mof = files(i);
       if verbose then
-        write(%io(2),' '+names(i) + '.mo compilation forced');
+        mprintf(gettext(" %s.mo compilation forced\n"), names(i))
       end
-      mocf = strsubst(mof,'.mo','.moc')
-      unix_s(compilerpath+' -c '+mof+' -o '+mocf)
+      mocf = strsubst(mof, ".mo", ".moc")
+      unix_s(compilerpath + " -c " + mof + " -o " + mocf)
     end
   else
     for i=1:size(files,'*')  // loop on .mo files
       mof       = files(i);
-      mocf      = strsubst(mof,'.mo','.moc')
+      mocf      = strsubst(mof, ".mo", ".moc")
       mocf_info = fileinfo(mocf);
       recompile = %f ;
       if mocf_info == [] then
@@ -73,10 +73,10 @@ function genmoc(path,force,verbose)
       end
       if recompile == %t then
         if verbose then
-          write(%io(2), ' ' + names(i) + '.mo must be recompiled');
+          mprintf(gettext(" %s.mo must be recompiled\n"), names(i))
         end
         if execstr('unix_s(compilerpath + '' -c '' + mof + '' -o '' + mocf)', 'errcatch') <> 0 then
-          write(%io(2),' '+names(i) + '.mo cannot be compiled');
+          mprintf(gettext(" %s.mo cannot be compiled\n"), names(i))
         end
       end
     end
@@ -92,7 +92,7 @@ function genmoc(path,force,verbose)
   make = ilib_gen_Make(libname,['',''], names, [], path + 'Makelib', %f, '', '', '')
   make = strsubst(make, '.mak', '')
   if execstr('ilib_compile(libname, make, names);', 'errcatch') <> 0 then
-    write(%io(2),'Problem while building library ' + libname)
+    mprintf(gettext("Problem while building library %s\n"), libname)
   end
 
 endfunction

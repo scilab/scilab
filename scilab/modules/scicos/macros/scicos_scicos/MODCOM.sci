@@ -80,7 +80,7 @@ function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
       //++ Check that modelica compiler is available
       //++ Otherwise, give some feedback and quit
       if ~with_modelica_compiler() then
-        x_message(sprintf(gettext("%s: Fatal error: Modelica compiler (MODELICAC) is unavailable."), "MODCOM"));
+        x_message(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "MODCOM"));
         ok = %f
         break
       end

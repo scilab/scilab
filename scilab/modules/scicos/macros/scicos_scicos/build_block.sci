@@ -28,8 +28,8 @@ function [model, ok] = build_block(o)
 
   if model.sim(1)=='scifunc' then
     if model.ipar==0 then
-      message("A scifunc block has not been defined")
-      ok = %f;
+      x_message(sprintf(gettext("%s: Error: A scifunc block has not been defined."), "build_block"))
+      ok = %f
       return
     end
     model.sim = list(genmac(model.ipar,size(model.in,'*'),size(model.out,'*')),3);
@@ -72,7 +72,7 @@ function [model, ok] = build_block(o)
       //++ Check that modelica compiler is available
       //++ Otherwise, give some feedback and quit
       if ~with_modelica_compiler() then
-        x_message(sprintf(gettext("%s: Fatal error: Modelica compiler (MODELICAC) is unavailable."), "build_block"));
+        x_message(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "build_block"));
         ok = %f
       end
 
@@ -86,8 +86,10 @@ function [model, ok] = build_block(o)
 
       compilerpath = 'modelicac' //** thanks to automatic detection
 
+      // build compilation command line, execute it and test for result
       strCmd = compilerpath + ' -c ' + funam + ' -o ' + fullfile(tarpath, nameF + '.moc')
       if execstr('unix_s(''' + strCmd + ''')', 'errcatch') <> 0 then
+        error(sprintf(gettext("%s: Error : the following command line failed to execute: %s.\n"), "build_block", strCmd))
         ok = %f
       end
     end

@@ -25,7 +25,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
   //++ Check that modelica compiler is available
   //++ Otherwise, give some feedback and quit
   if ~with_modelica_compiler() then
-    x_message(sprintf(gettext("%s: Fatal error: Modelica compiler (MODELICAC) is unavailable."), "compile_modelica"));
+    x_message(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "compile_modelica"));
     ok   = %f
     name = ''
     nx = 0; nin = 0; nout = 0; ng = 0 ; nm = 0; nz = 0;
@@ -78,14 +78,14 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     else
       modelicac = modelicac + strcat(' -L '+ mlibs)
     end
-    
+
     instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + filesep() + modelicac_err
     if MSDOS
       //++ Put the instructions in a batch file
       mputl(instr, path + 'genc.bat')
       instr = path + 'genc.bat'
     end
-    
+
     if fileinfo(SCI + '/bin/translator') <> [] then
       OUTM = unix(instr) <> 0; // in order to mask the message in the Scilab windows
     else
