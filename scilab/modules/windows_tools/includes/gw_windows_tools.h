@@ -28,8 +28,6 @@ int sci_mcisendstring(char *fname,unsigned long l);
 int sci_oemtochar(char *fname,unsigned long l);
 int sci_chartooem(char *fname,unsigned long l);
 int sci_consolebox(char *fname,unsigned long l);
-int sci_printsetupbox(char *fname,unsigned long l);
-int sci_toprint(char *fname,unsigned long l);
 int sci_win64(char *fname,unsigned long l);
 int sci_istssession(char *fname,unsigned long l);
 int sci_getsystemmetrics(char *fname,unsigned long l);

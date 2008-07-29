@@ -279,7 +279,10 @@ jintgetScreenResolutionID=NULL;
 jdoublegetScreenWidthID=NULL; 
 jdoublegetScreenHeightID=NULL; 
 jintgetScreenDepthID=NULL; 
-voidprintFigurejintID=NULL; 
+jbooleanprintFigurejintjbooleanjbooleanID=NULL; 
+jbooleanprintFilejstringID=NULL; 
+jbooleanprintStringjstringjstringID=NULL; 
+jbooleanpageSetupID=NULL; 
 voidrequestWidgetFocusjintID=NULL; 
 voidrequestFrameFocusjintID=NULL; 
 
@@ -484,7 +487,10 @@ jintgetScreenResolutionID=NULL;
 jdoublegetScreenWidthID=NULL; 
 jdoublegetScreenHeightID=NULL; 
 jintgetScreenDepthID=NULL; 
-voidprintFigurejintID=NULL; 
+jbooleanprintFigurejintjbooleanjbooleanID=NULL; 
+jbooleanprintFilejstringID=NULL; 
+jbooleanprintStringjstringjstringID=NULL; 
+jbooleanpageSetupID=NULL; 
 voidrequestWidgetFocusjintID=NULL; 
 voidrequestFrameFocusjintID=NULL; 
 
@@ -5020,25 +5026,106 @@ return res;
 
 }
 
-void CallScilabBridge::printFigure (JavaVM * jvm_, long figID){
+bool CallScilabBridge::printFigure (JavaVM * jvm_, long figID, bool postScript, bool displayDialog){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread((void **) &curEnv, NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidprintFigurejintID = curEnv->GetStaticMethodID(cls, "printFigure", "(I)V" ) ;
-if (voidprintFigurejintID == NULL) {
+jmethodID jbooleanprintFigurejintjbooleanjbooleanID = curEnv->GetStaticMethodID(cls, "printFigure", "(IZZ)Z" ) ;
+if (jbooleanprintFigurejintjbooleanjbooleanID == NULL) {
 std::cerr << "Could not access to the method " << "printFigure" << std::endl;
 exit(EXIT_FAILURE);
 }
 
-                         curEnv->CallStaticVoidMethod(cls, voidprintFigurejintID ,figID);
+jboolean postScript_ = ((bool) postScript ? JNI_TRUE : JNI_FALSE);
+
+jboolean displayDialog_ = ((bool) displayDialog ? JNI_TRUE : JNI_FALSE);
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanprintFigurejintjbooleanjbooleanID ,figID, postScript_, displayDialog_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;
 }
 
                         
+return (res == JNI_TRUE);
+
+}
+
+bool CallScilabBridge::printFile (JavaVM * jvm_, char * fileName){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleanprintFilejstringID = curEnv->GetStaticMethodID(cls, "printFile", "(Ljava/lang/String;)Z" ) ;
+if (jbooleanprintFilejstringID == NULL) {
+std::cerr << "Could not access to the method " << "printFile" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring fileName_ = curEnv->NewStringUTF( fileName );
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanprintFilejstringID ,fileName_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
+}
+
+bool CallScilabBridge::printString (JavaVM * jvm_, char * theString, char * pageHeader){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleanprintStringjstringjstringID = curEnv->GetStaticMethodID(cls, "printString", "(Ljava/lang/String;Ljava/lang/String;)Z" ) ;
+if (jbooleanprintStringjstringjstringID == NULL) {
+std::cerr << "Could not access to the method " << "printString" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+jstring theString_ = curEnv->NewStringUTF( theString );
+
+jstring pageHeader_ = curEnv->NewStringUTF( pageHeader );
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanprintStringjstringjstringID ,theString_, pageHeader_);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
+}
+
+bool CallScilabBridge::pageSetup (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleanpageSetupID = curEnv->GetStaticMethodID(cls, "pageSetup", "()Z" ) ;
+if (jbooleanpageSetupID == NULL) {
+std::cerr << "Could not access to the method " << "pageSetup" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanpageSetupID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+return (res == JNI_TRUE);
+
 }
 
 void CallScilabBridge::requestWidgetFocus (JavaVM * jvm_, long objID){

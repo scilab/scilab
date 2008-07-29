@@ -10,18 +10,25 @@
  *
  */
  
-#include "gw_gui.h"
+#include "CallScilabBridge.hxx"
+extern "C"
+{
 #include "stack-c.h"
 #include "Scierror.h"
 #include "scilabmode.h"
 #include "localization.h"
 #include "IsAScalar.h"
-#include "PrinterManagement.h"
+#include "gw_gui.h"
+#include "getScilabJavaVM.h"
+}
+/*--------------------------------------------------------------------------*/
+using namespace org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
 int sci_printfigure(char *fname,unsigned long l)
 {
   static int l1,n1,m1;
   int num_win = -2;
+  int *status = NULL;
 
   Rhs=Max(0,Rhs);
   CheckRhs(1,1);
@@ -43,12 +50,14 @@ int sci_printfigure(char *fname,unsigned long l)
           if (num_win>=0)
             {
               /* Call Java */
-              printFigure(num_win);
-              m1=0;
-              n1=0;
-              CreateVar(1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
-              LhsVar(1)=1;
+              status = new int[1];
+              status[0] = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, true, true); /* postscript mode and display dialog */
+              m1=1;
+              n1=1;
+              CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE,  &m1, &n1, &status);
+              LhsVar(1)=Rhs+1;
               C2F(putlhsvar)();	
+              delete[] status;
               return TRUE;
             }
           else

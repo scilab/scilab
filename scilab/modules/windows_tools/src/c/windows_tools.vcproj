@@ -432,14 +432,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_printsetupbox.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_toprint.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_win64.c"
 				>
 			</File>

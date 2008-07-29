@@ -48,6 +48,8 @@ int sci_getcallbackobject(char *fname,unsigned long fname_len);
 #include "sci_mpopup.h"
 int sci_printfigure(char *fname,unsigned long fname_len);
 #include "sci_exportUI.h"
+int sci_printsetupbox(char *fname,unsigned long l);
+int sci_toprint(char *fname,unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

@@ -44,7 +44,6 @@ src/cpp/CallMessageBox.cpp \
 src/cpp/CallMainWindow.cpp \
 src/cpp/CallWaitBar.cpp \
 src/cpp/CallHelpBrowser.cpp \
-src/cpp/PrinterManagement.cpp \
 src/cpp/PushButton.cpp \
 src/cpp/EditBox.cpp \
 src/cpp/Label.cpp \
@@ -147,8 +146,10 @@ sci_gateway/c/sci_helpbrowser.c \
 sci_gateway/c/sci_uigetfont.c \
 sci_gateway/c/sci_uigetcolor.c \
 sci_gateway/c/sci_getcallbackobject.c \
-sci_gateway/c/sci_printfigure.c \
-sci_gateway/c/sci_exportUI.c
+sci_gateway/c/sci_exportUI.c \
+sci_gateway/cpp/sci_printsetupbox.cpp \
+sci_gateway/cpp/sci_toprint.cpp \
+sci_gateway/cpp/sci_printfigure.cpp
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \
@@ -317,7 +318,6 @@ includes/Toolbar.h \
 includes/DestroyUicontrol.h \
 includes/DestroyUimenu.h \
 includes/CallClipboard.h \
-includes/PrinterManagement.h \
 includes/Widget.h \
 includes/sci_exportUI.h \
 includes/exportUserInterface.hxx

@@ -638,8 +638,19 @@
         </method>      
 	<method name="getScreenDepth" returnType="int" modifier="static">
         </method>      
-	<method name="printFigure" returnType="void" modifier="static">
+	<method name="printFigure" returnType="boolean" modifier="static">
           <parameter type="int" name="figID"/>
+          <parameter type="boolean" name="postScript"/>
+          <parameter type="boolean" name="displayDialog"/>
+        </method>      
+	<method name="printFile" returnType="boolean" modifier="static">
+          <parameter type="String" name="fileName"/>
+        </method>      
+	<method name="printString" returnType="boolean" modifier="static">
+          <parameter type="String" name="theString"/>
+          <parameter type="String" name="pageHeader"/>
+        </method>      
+	<method name="pageSetup" returnType="boolean" modifier="static">
         </method>      
 	<method name="requestWidgetFocus" returnType="void" modifier="static">
           <parameter type="int" name="objID"/>

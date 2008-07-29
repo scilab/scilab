@@ -132,7 +132,7 @@ public class CallScilabBridge {
 	private static final double DEFAULT_BLUE_FOREGROUND = 0;
 	
 	private static PrintRequestAttributeSet scilabPageFormat = new HashPrintRequestAttributeSet();
-	private static String tmpPrinterFile = System.getenv("TMPDIR") + "scilabfigure.eps";
+	private static String tmpPrinterFile = System.getenv("TMPDIR") + "scilabfigure";
 	
 	/**
 	 * Constructor
@@ -2221,37 +2221,123 @@ public class CallScilabBridge {
 	}
 
 	/**
-	 * Display a dialog to print a figure
-	 * @param figID the ID of the figure to print
+	 * Print a character string
+	 * @param theString the string to print
+	 * @param pageHeader header for printed pages
+	 * @return execution status
 	 */
-	public static void printFigure(int figID) {
-		final int figureID = figID;
+	public static boolean printString(String theString, String pageHeader) {
+		
+		/* TODO use pageHeader */
+		
 		// Get the PrinterJob object
 		PrinterJob printerJob = PrinterJob.getPrinterJob();
 
-		if (printerJob.printDialog(scilabPageFormat)) {
+		Doc myDoc = new SimpleDoc(theString, DocFlavor.STRING.TEXT_PLAIN, null);
+		DocPrintJob job = printerJob.getPrintService().createPrintJob();
+
+		try {
+			job.print(myDoc, scilabPageFormat);
+		} catch (PrintException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Display a dialog to print a file
+	 * @param fileName the name of the file
+	 * @return execution status
+	 */
+	public static boolean printFile(String fileName) {
+		// Get the PrinterJob object
+		PrinterJob printerJob = PrinterJob.getPrinterJob();
+		
+		try {
+			/** Read file */
+			FileInputStream psStream = null; 
+			try { 
+				psStream = new FileInputStream(fileName);
+			} catch (FileNotFoundException ffne) {
+				ffne.printStackTrace();
+				return false;
+			}
+
+			Doc myDoc = new SimpleDoc(psStream, DocFlavor.INPUT_STREAM.TEXT_PLAIN_HOST, null);
+			DocPrintJob job = printerJob.getPrintService().createPrintJob();
+			
+			// Remove Orientation option from page setup because already managed in FileExporter
+			PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet(scilabPageFormat);
+			aset.add(OrientationRequested.PORTRAIT);
+			
+			job.print(myDoc, aset);
+			return true;
+		} catch (PrintException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * Display a dialog to print a figure (Called from graphics figures menus)
+	 * @param figID the ID of the figure to print
+	 * @return execution status
+	 */
+	public static boolean printFigure(int figID) {
+		return printFigure(figID, true, true);
+	}
+	
+	/**
+	 * Display a dialog to print a figure
+	 * @param figID the ID of the figure to print
+	 * @param postScript true to print in postscript mode
+	 * @param displayDialog true to display a print setup dialog
+	 * @return execution status
+	 */
+	public static boolean printFigure(int figID, boolean postScript, boolean displayDialog) {
+		final int figureID = figID;
+		// Get the PrinterJob object
+		PrinterJob printerJob = PrinterJob.getPrinterJob();
+		
+		int exportRendererMode = ExportRenderer.EPS_EXPORT;
+		DocFlavor printDocFlavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
+		String fileExtension = ".eps";
+		
+		if (!postScript) {
+			exportRendererMode = ExportRenderer.PNG_EXPORT;
+			printDocFlavor = DocFlavor.INPUT_STREAM.PNG;
+			fileExtension = ".png";
+		}
+
+		boolean userOK = true;
+		if (displayDialog) {
+			userOK = printerJob.printDialog(scilabPageFormat);
+		}
+		
+		if (userOK) {
 			try {
 				/** Export image to PostScript */
 				if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
 					FileExporter.fileExport(figureID, 
-							tmpPrinterFile,
-							ExportRenderer.EPS_EXPORT, 0);
+							tmpPrinterFile + fileExtension,
+							exportRendererMode, 0);
 				} else {
 					FileExporter.fileExport(figureID, 
-							tmpPrinterFile,
-							ExportRenderer.EPS_EXPORT, 1);
+							tmpPrinterFile + fileExtension,
+							exportRendererMode, 1);
 				}
 				
 				/** Read file */
 				FileInputStream psStream = null; 
 				try { 
-					psStream = new FileInputStream(tmpPrinterFile);
+					psStream = new FileInputStream(tmpPrinterFile + fileExtension);
 				} catch (FileNotFoundException ffne) {
 					ffne.printStackTrace();
+					return false;
 				}
 
-				DocFlavor psInFormat = DocFlavor.INPUT_STREAM.POSTSCRIPT;
-				Doc myDoc = new SimpleDoc(psStream, psInFormat, null);
+				Doc myDoc = new SimpleDoc(psStream, printDocFlavor, null);
 				DocPrintJob job = printerJob.getPrintService().createPrintJob();
 
 				// Remove Orientation option from page setup because already managed in FileExporter
@@ -2259,21 +2345,25 @@ public class CallScilabBridge {
 				aset.add(OrientationRequested.PORTRAIT);
 
 				job.print(myDoc, aset);
+				return true;
 			} catch (PrintException e) {
 				e.printStackTrace();
+				return false;
 			}
 		}
+		return false;
 	}
 
 	/**
 	 * Display a page setup dialog for printing
+	 * @return true if the user clicked the OK button
 	 */
-	public static void pageSetup() {
+	public static boolean pageSetup() {
 	    // Get the PrinterJob object
 	    PrinterJob job = PrinterJob.getPrinterJob();
 
 	    // Get the default page format, then allow the user to modify it
-	    job.pageDialog(scilabPageFormat);
+	    return (job.pageDialog(scilabPageFormat) != null);
 	}
 
 	/***********************/

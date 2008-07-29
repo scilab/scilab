@@ -26,8 +26,6 @@ static gw_generic_table Tab[]=
 {sci_oemtochar,"oemtochar"},
 {sci_chartooem,"chartooem"},
 {sci_consolebox,"consolebox"},
-{sci_printsetupbox,"printsetupbox"},
-{sci_toprint,"toprint"},
 {sci_win64,"win64"},
 {sci_istssession,"istssession"},
 {sci_getsystemmetrics,"getsystemmetrics"},

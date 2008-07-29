@@ -50,7 +50,9 @@ static gw_generic_table Tab[]=
 	{sci_uigetcolor,"uigetcolor"},
         {sci_getcallbackobject, "getcallbackobject"},
         {sci_printfigure, "printfigure"},
-        {sci_exportUI, "exportUI"}
+        {sci_exportUI, "exportUI"},
+        {sci_printsetupbox,"printsetupbox"},
+        {sci_toprint,"toprint"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

@@ -16,24 +16,37 @@
   </info>
   <refnamediv>
     <refname>printsetupbox</refname>
-    <refpurpose>Display print dialog box
-  (Windows)</refpurpose>
+    <refpurpose>Display print dialog box.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>printsetupbox()
-bOK=printsetupbox()</synopsis>
+    <synopsis>
+printsetupbox()
+status=printsetupbox()
+</synopsis>
   </refsynopsisdiv>
   <refsection>
+    <title>Parameters</title>
+      <varlistentry>
+        <term>status</term>
+        <listitem>
+          <para>Boolean: <emphasis>%T</emphasis> if the user clicked on the <literal>OK</literal> button, <emphasis>%F</emphasis> otherwise.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
     <title>Description</title>
-    <para>bOK=printsetupbox() displays the built-in printing dialogbox for
-    Windows and configure the printer. returns %T if you push 'OK' button</para>
+    <para>Displays the built-in printing dialogbox and configure the printer.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="toprint">toprint</link>
+      </member>
+      <member>
+        <link linkend="printfigure">printfigure</link>
       </member>
     </simplelist>
   </refsection>

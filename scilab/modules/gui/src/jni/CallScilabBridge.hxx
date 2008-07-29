@@ -230,7 +230,10 @@ jmethodID jintgetScreenResolutionID; // cache method id
 jmethodID jdoublegetScreenWidthID; // cache method id
 jmethodID jdoublegetScreenHeightID; // cache method id
 jmethodID jintgetScreenDepthID; // cache method id
-jmethodID voidprintFigurejintID; // cache method id
+jmethodID jbooleanprintFigurejintjbooleanjbooleanID; // cache method id
+jmethodID jbooleanprintFilejstringID; // cache method id
+jmethodID jbooleanprintStringjstringjstringID; // cache method id
+jmethodID jbooleanpageSetupID; // cache method id
 jmethodID voidrequestWidgetFocusjintID; // cache method id
 jmethodID voidrequestFrameFocusjintID; // cache method id
 
@@ -628,7 +631,13 @@ static double getScreenHeight(JavaVM * jvm_);
 
 static long getScreenDepth(JavaVM * jvm_);
 
-static void printFigure(JavaVM * jvm_, long figID);
+static bool printFigure(JavaVM * jvm_, long figID, bool postScript, bool displayDialog);
+
+static bool printFile(JavaVM * jvm_, char * fileName);
+
+static bool printString(JavaVM * jvm_, char * theString, char * pageHeader);
+
+static bool pageSetup(JavaVM * jvm_);
 
 static void requestWidgetFocus(JavaVM * jvm_, long objID);
 

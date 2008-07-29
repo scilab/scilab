@@ -42,10 +42,8 @@
 <PRIMITIVE gatewayId="47" primitiveId="6" primitiveName="oemtochar" />
 <PRIMITIVE gatewayId="47" primitiveId="7" primitiveName="chartooem" />
 <PRIMITIVE gatewayId="47" primitiveId="8" primitiveName="consolebox" />
-<PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="printsetupbox" />
-<PRIMITIVE gatewayId="47" primitiveId="10" primitiveName="toprint" />
-<PRIMITIVE gatewayId="47" primitiveId="11" primitiveName="win64" />
-<PRIMITIVE gatewayId="47" primitiveId="12" primitiveName="istssession" />
-<PRIMITIVE gatewayId="47" primitiveId="13" primitiveName="getsystemmetrics" />
-<PRIMITIVE gatewayId="47" primitiveId="14" primitiveName="createGUID" />
+<PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="win64" />
+<PRIMITIVE gatewayId="47" primitiveId="10" primitiveName="istssession" />
+<PRIMITIVE gatewayId="47" primitiveId="11" primitiveName="getsystemmetrics" />
+<PRIMITIVE gatewayId="47" primitiveId="12" primitiveName="createGUID" />
 </GATEWAY>

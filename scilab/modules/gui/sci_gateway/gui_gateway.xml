@@ -61,4 +61,6 @@
 <PRIMITIVE gatewayId="25" primitiveId="28" primitiveName="getcallbackobject" />
 <PRIMITIVE gatewayId="25" primitiveId="29" primitiveName="printfigure" />
 <PRIMITIVE gatewayId="25" primitiveId="30" primitiveName="exportUI" />
+<PRIMITIVE gatewayId="25" primitiveId="31" primitiveName="printsetupbox" />
+<PRIMITIVE gatewayId="25" primitiveId="32" primitiveName="toprint" />
 </GATEWAY>

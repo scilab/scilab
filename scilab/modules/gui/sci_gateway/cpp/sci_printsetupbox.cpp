@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
+* Copyright (C) 2008 - INRIA - Vincent COUVERT (Java version)
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -11,34 +12,32 @@
 */
 
 /*--------------------------------------------------------------------------*/
-#include "TextToPrint.h"
-#include "gw_windows_tools.h"
-#include "machine.h"
-#include "stack-c.h"
+#include "CallScilabBridge.hxx"
+extern "C" 
+{
 #include "MALLOC.h"
+#include "stack-c.h"
 #include "localization.h"
+#include "getScilabJavaVM.h"
+#include "gw_gui.h"
+}
+/*--------------------------------------------------------------------------*/
+using namespace org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
 int sci_printsetupbox(char *fname,unsigned long l)
 {
 	static int n1;
-	int *paramoutINT=(int*)MALLOC(sizeof(int));
+	int* paramoutINT=new int[1];
 
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	if (ConfigurePrinterDialogBox())
-	{
-		*paramoutINT=(int)(TRUE);
-	}
-	else
-	{
-		*paramoutINT=(int)(FALSE);
-	}
+        paramoutINT[0]=(int)CallScilabBridge::pageSetup(getScilabJavaVM());
 
 	n1=1;
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1,&paramoutINT);
 	LhsVar(1)=Rhs+1;
-	FREE(paramoutINT);
+	delete[] paramoutINT;
 	C2F(putlhsvar)();
 
 	return 0;
