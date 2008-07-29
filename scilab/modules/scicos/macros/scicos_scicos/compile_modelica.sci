@@ -32,7 +32,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     return
   end
 
-  ng    = 0;
+  ng    = 0
   fil   = pathconvert(fil, %f, %t)
   mlibs = pathconvert(modelica_libs, %f, %t)
 
@@ -70,7 +70,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     FlatName = fil;
 
     if MSDOS then
-      //++ Enclose paths with double quotes when they contain spaces
+      //++ Windows platforms: enclose paths in double quotes when they contain spaces
       if strindex(modelicac, ' ') <> [] then
         modelicac = '""' + modelicac + '""'
       end
@@ -81,7 +81,8 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
 
     instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + filesep() + modelicac_err
     if MSDOS
-      //++ Put the instructions in a batch file
+      //++ WINDOWS PLATFORMS: Put the instruction in a batch file instead of
+      //++ executing it directly
       mputl(instr, path + 'genc.bat')
       instr = path + 'genc.bat'
     end
@@ -144,7 +145,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
       else // if_translator_exists
         x_message(['-------Modelica compiler error (without the translator):-------'; ..
                    MSG1; ..
-                   'Please read the error message in the Scilab window';
+                   'Please read the error message in the Scilab window'; ..
                    ' '; ..
                    'Please install the Modelica translator (available at www.scicos.org) in ""SCI' + filesep() + 'bin"" and try again']);
         ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
@@ -231,16 +232,14 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     //   return;
     // end
 
-    files = name;
+    files = name
 
-    ok = buildnewblock(name, files, '', libs, TMPDIR, '', E2); //** here we are
+    ok = buildnewblock(name, files, '', libs, TMPDIR, '', E2)
 
     if ~ok then
       return
     end
-
   end
-
 endfunction
 
 //------------------------------------------------------------------------------
