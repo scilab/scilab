@@ -35,4 +35,5 @@
 <path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar"/>
 <path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar"/>
 <path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar"/>
+<path value="$SCILAB/modules/helptools/jar/org.scilab.modules.helptools.jar"/>
 </classpaths>

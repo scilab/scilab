@@ -384,10 +384,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\helptools.rc"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\cpp\sci_buildDoc.cpp"
 				>
 			</File>
@@ -431,6 +427,10 @@
 		</Filter>
 		<File
 			RelativePath="..\..\helptools.iss"
+			>
+		</File>
+		<File
+			RelativePath=".\helptools.rc"
 			>
 		</File>
 		<File

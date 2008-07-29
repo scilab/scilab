@@ -18,6 +18,11 @@
 ;
 #define HELPTOOLS "helptools"
 
+Source: bin\helptools.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\jar\org.scilab.modules.helptools.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\sci_gateway\helptools_gateway.xml; DestDir: {app}\modules\{#HELPTOOLS}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: thirdparty\docbook\*.*;DestDir: {app}\thirdparty\docbook; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+
 Source: thirdparty\jhall.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\avalon-framework.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\avalon-framework.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
@@ -68,16 +73,14 @@ Source: modules\{#HELPTOOLS}\readme.txt; DestDir: {app}\modules\{#HELPTOOLS}; Co
 Source: modules\{#HELPTOOLS}\license.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\changelog.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HELPTOOLS}\jar\scilab_fr_FR_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\jar\scilab_en_US_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
+;Source: modules\{#HELPTOOLS}\jar\scilab_fr_FR_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
+;Source: modules\{#HELPTOOLS}\jar\scilab_en_US_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#HELPTOOLS}\*.htm; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HELPTOOLS}\*.xsl; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HELPTOOLS}\help.dtd; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HELPTOOLS}\css\*.*; DestDir: {app}\modules\{#HELPTOOLS}\css; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\doc\*.*; DestDir: {app}\modules\{#HELPTOOLS}\doc; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: modules\{#HELPTOOLS}\docbook_xsl\*.*; DestDir: {app}\modules\{#HELPTOOLS}\docbook_xsl; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\schema\*.*; DestDir: {app}\modules\{#HELPTOOLS}\schema; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\xsl\*.*; DestDir: {app}\modules\{#HELPTOOLS}\xsl; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

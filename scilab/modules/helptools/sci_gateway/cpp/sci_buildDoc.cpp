@@ -31,19 +31,19 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 int sci_buildDoc(char *fname,unsigned long l)
 {
-	static int l1,n1,m1;
-	static int l2,n2,m2;
-	char * exportFormat=NULL;
-	char * SciPath=getSCIpath(); /* Scilab path */
-	char * masterXML=NULL; /* Which file contains all the doc stuff */
-	char * masterXMLTMP;
+	static int l1 = 0,n1 = 0,m1 = 0;
+	static int l2 = 0,n2 = 0,m2 = 0;
+	char * exportFormat = NULL;
+	char * SciPath = getSCIpath(); /* Scilab path */
+	char * masterXML = NULL; /* Which file contains all the doc stuff */
+	char * masterXMLTMP = NULL;
 
 	char * styleSheet=(char*)MALLOC((strlen(SciPath)+strlen(PATHTOCSS)+1)*sizeof(char));; /* the CSS */
 
 	char * outputDirectory = NULL; /* Working directory */
-	char * outputDirectoryTMP=NULL;
+	char * outputDirectoryTMP = NULL;
 
-	char * currentLanguage=getlanguage();
+	char * currentLanguage = getlanguage();
 
 	CheckRhs(0,2);
 	CheckLhs(1,1);
@@ -52,36 +52,40 @@ int sci_buildDoc(char *fname,unsigned long l)
 	strcat(styleSheet,PATHTOCSS);
 
 	/* Update the path with the localization */
-	outputDirectoryTMP=(char*) MALLOC ((strlen(PATHTOBUILDDOC)-strlen("%s")+strlen(currentLanguage)+1)*sizeof(char)); /* - strlen(%s) because it is going to be be replaced by currentLanguage */
+	outputDirectoryTMP = (char*) MALLOC ((strlen(PATHTOBUILDDOC)-strlen("%s")+strlen(currentLanguage)+1)*sizeof(char)); /* - strlen(%s) because it is going to be be replaced by currentLanguage */
 	sprintf(outputDirectoryTMP, PATHTOBUILDDOC, currentLanguage);
 
-	outputDirectory=(char*)MALLOC((strlen(SciPath)+strlen(outputDirectoryTMP)+1)*sizeof(char)); 
+	outputDirectory = (char*)MALLOC((strlen(SciPath)+strlen(outputDirectoryTMP)+1)*sizeof(char)); 
 	strcpy(outputDirectory, SciPath);
 	strcat(outputDirectory, outputDirectoryTMP);
 	FREE(outputDirectoryTMP);
 
-	
 
-	if (Rhs < 1) {
-		exportFormat=(char*)MALLOC((strlen(DEFAULTEXPORT)+1)*sizeof(char));
+	if (Rhs < 1) 
+	{
+		exportFormat = (char*)MALLOC((strlen(DEFAULTEXPORT)+1)*sizeof(char));
 		strcpy(exportFormat,DEFAULTEXPORT);
-	}else{
-		if (GetType(1) != sci_strings) {
+	}
+	else
+	{
+		if (GetType(1) != sci_strings) 
+		{
 			Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+			return 0;
 			// Wrong type string
 		}
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		exportFormat=cstk(l1);
+		exportFormat = cstk(l1);
 	}
 
 
 	if (Rhs < 2) 
 	{
 		/* Update the path with the localization */
-		masterXMLTMP=(char*) MALLOC ((strlen(PATHTOMASTERXML)-strlen("%s")+strlen(currentLanguage)+1)*sizeof(char));
+		masterXMLTMP = (char*) MALLOC ((strlen(PATHTOMASTERXML)-strlen("%s")+strlen(currentLanguage)+1)*sizeof(char));
 		sprintf(masterXMLTMP, PATHTOMASTERXML, currentLanguage);
-		masterXML=(char*)MALLOC((strlen(SciPath)+strlen(masterXMLTMP)+1)*sizeof(char));
+		masterXML = (char*)MALLOC((strlen(SciPath)+strlen(masterXMLTMP)+1)*sizeof(char));
 		strcpy(masterXML,SciPath);
 		strcat(masterXML,masterXMLTMP);
 		FREE(masterXMLTMP);
@@ -96,27 +100,32 @@ int sci_buildDoc(char *fname,unsigned long l)
 		}
 
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-		masterXML=cstk(l2);
+		masterXML = cstk(l2);
 	}
 
-
 	org_scilab_modules_helptools::BuildDocObject *doc = new org_scilab_modules_helptools::BuildDocObject(getScilabJavaVM());
+
 	if (doc->setOutputDirectory(outputDirectory)) 
 	{
 		doc->setWorkingLanguage(currentLanguage);
 		doc->setExportFormat(exportFormat);
 		doc->process(masterXML, styleSheet);
+		delete doc;
+		FREE(masterXML);
+		FREE(outputDirectory);
+		FREE(styleSheet);
 	}
 	else
 	{
 		Scierror(999,_("%s: Could find or create the working directory %s.\n"),fname, outputDirectory);
+		delete doc;
+		FREE(masterXML);
+		FREE(outputDirectory);
+		FREE(styleSheet);
 		return 0;
 	}
-	FREE(masterXML);
-	FREE(outputDirectory);
-	FREE(styleSheet);
 
-	LhsVar(1)=Rhs+1;
+	LhsVar(1) = 0;
 	C2F(putlhsvar)();
 
 	return 0;
