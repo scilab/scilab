@@ -19,22 +19,26 @@
 extern int C2F(sci_cleanp) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_spclean) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(ref2val) __PARAMS((void));
+extern double C2F(dasum)();
 
 int C2F(sci_clean) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
 	int iRows1		= 0;
 	int iCols1		= 0;
+	int iSize1		= 0;
 	int iRealData1	= 0;
 	int iImgData1	= 0;
 	
 	int iRows2		= 0;
 	int iCols2		= 0;
+	int iSize2		= 0;
 	int iRealData2	= 0;
 	int iImgData2	= 0;
 	
 	int iRows3		= 0;
 	int iCols3		= 0;
+	int iSize3		= 0;
 	int iRealData3	= 0;
 	int iImgData3	= 0;
 
@@ -93,6 +97,7 @@ int C2F(sci_clean) _PARAMS((char *fname,unsigned long fname_len))
 			Error(60);
 			return 0;
 		}
+		iSize3 = iRows3 * iCols3;
 		dblEpsR = stk(iRealData3)[0];
 	}
 
@@ -117,6 +122,7 @@ int C2F(sci_clean) _PARAMS((char *fname,unsigned long fname_len))
 			Error(60);
 			return 0;
 		}
+		iSize2 = iRows2 * iCols2;
 		dblEpsA = stk(iRealData2)[0];
 	}
 	iCurrentVar--; //1 donc
@@ -126,6 +132,7 @@ int C2F(sci_clean) _PARAMS((char *fname,unsigned long fname_len))
 		GetRhsVar(iCurrentVar, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &iRealData1);
 		pdblRealData	= stk(iRealData1);
 		pdblImgData		= stk(iImgData1);
+		dblNorm			= 
 		dblNorm			= wasums(iRows1 * iCols1, pdblRealData, pdblImgData);
 
 		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows1, iCols1, &pReturnRealData, &pReturnImgData);
@@ -147,10 +154,15 @@ int C2F(sci_clean) _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
+		int iOne	= 1;
+
 		GetRhsCVar(iCurrentVar, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &iRealData1, &iImgData1);
 		pdblRealData	= stk(iRealData1);
-		dblNorm			= dasums(iRows1 * iCols1, pdblRealData);
 
+		iSize1			= iRows1 * iCols1;
+		dblNorm			= C2F(dasum)(&iSize1, pdblRealData, &iOne);
+
+		dblEps = Max(dblEpsA, dblEpsR * dblNorm);
 		iAllocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pReturnRealData);
 		//pReturnRealData = (double*)malloc(iRows1 * iCols1 * sizeof(double));
 		for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)

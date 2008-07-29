@@ -14,6 +14,8 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 
+extern int C2F(dscal)();
+
 int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
@@ -45,17 +47,21 @@ int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
 	{
 		if(iIsComplex(1))
 		{
-
+			int iOne		= 1;
+			int iSize		= 0;
+			double dblCoef	= -1;
 			GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
 			pdblRealData	= stk(iRealData);
 			pdblImgData		= stk(iImgData);
+			iSize			= iRows * iCols;
 
 			iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
 			//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
 			//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
 
-			memcpy(pReturnRealData, pdblRealData, iRows * iCols * sizeof(double));
-			ddscals(pdblImgData, iRows * iCols, -1, pReturnImgData);
+			memcpy(pReturnRealData, pdblRealData, iSize * sizeof(double));
+
+			C2F(dscal)(&iSize, &dblCoef, pdblImgData, pReturnImgData);
 
 			//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
 			LhsVar(1) = Rhs + 1;
@@ -89,10 +95,14 @@ int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
 
 		if(iIsComplex(1))
 		{
+			int iOne		= 1;
+			int iSize		= 0;
+			double dblCoef	= -1;
 			GetRhsCPolyVar(1, &piVarName, &iRows, &iCols, NULL, &iRealData, &iImgData);
 			piPow				= (int*)malloc(iRows * iCols * sizeof(int));
 			GetRhsCPolyVar(1, &piVarName, &iRows, &iCols, piPow, &iRealData, &iImgData);
 			iMaxData			= iArraySum(piPow, 0, iRows * iCols);
+			iSize				= iRows * iCols;
 
 			pdblRealData		= stk(iRealData);
 			pdblImgData			= stk(iImgData);
@@ -101,7 +111,7 @@ int C2F(sci_conj) _PARAMS((char *fname,unsigned long fname_len))
 			//pReturnImgData		= (double*)malloc(iMaxData * sizeof(double));
 
 			memcpy(pReturnRealData, pdblRealData, iMaxData * sizeof(double));
-			ddscals(pdblImgData, iMaxData, -1, pReturnImgData);
+			C2F(dscal)(&iSize, &dblCoef, pdblImgData, pReturnImgData);
 			//CreateCPolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData, pReturnImgData);
 			LhsVar(1) = Rhs + 1;
 			PutLhsVar();

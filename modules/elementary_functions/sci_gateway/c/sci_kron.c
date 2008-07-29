@@ -26,7 +26,9 @@ void vKronC(	double* _pdblRealIn1, double* _pdblImgIn1, int _iIncIn1, int _iRows
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(intkron) _PARAMS((int *id));
-extern int C2F(dcopy)(integer *,double *,integer *,double *,integer *);
+extern int C2F(dcopy)();
+extern int C2F(dscal)();
+
 /*--------------------------------------------------------------------------*/
 int C2F(sci_kron) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -185,7 +187,7 @@ void vKronR(	double* _pdblDataIn1, int _iIncIn1, int _iRowsIn1, int _iColsIn1,
 				double* _pdblDataIn2, int _iIncIn2, int _iRowsIn2, int _iColsIn2,
 				double* _pdblDataOut, int _iIncOut)
 {
-	int iUn		= 1;
+	int iOne	= 1;
 	int iLoop1	= 0;
 	int iLoop2	= 0;
 	int iLoop3	= 0;
@@ -203,8 +205,10 @@ void vKronR(	double* _pdblDataIn1, int _iIncIn1, int _iRowsIn1, int _iColsIn1,
 			int iIndex5 = (iLoop2 + iIndex2) * _iIncOut;
 			for(iLoop3 = 0 ; iLoop3 < _iRowsIn1 ; iLoop3++)
 			{
-				C2F(dcopy)(&_iRowsIn2, &_pdblDataIn2[iIndex3], &iUn, &_pdblDataOut[iIndex5], &iUn);
-				ddscals(&_pdblDataOut[iIndex5], _iRowsIn2, _pdblDataIn1[iIndex4], &_pdblDataOut[iIndex5]);
+				C2F(dcopy)(&_iRowsIn2, &_pdblDataIn2[iIndex3], &iOne, &_pdblDataOut[iIndex5], &iOne);
+//				ddscals(&_pdblDataOut[iIndex5], _iRowsIn2, _pdblDataIn1[iIndex4], &_pdblDataOut[iIndex5]);
+				C2F(dscal)(&_iRowsIn2, &_pdblDataIn1[iIndex4], _pdblDataOut[iIndex5], &iOne);
+
 				iIndex5 += _iRowsIn2;
 				iIndex4++;
 			}

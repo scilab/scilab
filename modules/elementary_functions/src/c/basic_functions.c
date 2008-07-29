@@ -140,68 +140,25 @@ double dceilsEx(double _dblVal, int _iPrecision)
 double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg)
 {
 	double dblRetVal = 0;
-	int iIndex = 0;
+	int iIndex		= 0;
+	int iOne		= 1;
 
-	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex ++)
+	dblRetVal	= C2F(dasum)(&_iNbElem, _pdblReal, &iOne);
+	dblRetVal	+= C2F(dasum)(&_iNbElem, _pdblImg, &iOne);
+
+/*	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex ++)
 		dblRetVal += dabss(_pdblReal[iIndex]) + dabss(_pdblImg[iIndex]);
-
-	return dblRetVal;
-}
-
-/*absolute sum*/
-double dasums(int _iNbElem, double* _pdblReal)
-{
-	double dblRetVal = 0;
-	int iIndex = 0;
-	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex++)
-		dblRetVal += dabss(_pdblReal[iIndex]);
-	return dblRetVal;
-
-/*the original source code "Optimization" ?!?
-   20 m = mod(n,6)
-      if( m .eq. 0 ) go to 40
-      do 30 i = 1,m
-        dtemp = dtemp + dabs(dx(i))
-   30 continue
-      if( n .lt. 6 ) go to 60
-   40 mp1 = m + 1
-      do 50 i = mp1,n,6
-        dtemp = dtemp + dabs(dx(i)) + dabs(dx(i + 1)) + dabs(dx(i + 2))
-     *  + dabs(dx(i + 3)) + dabs(dx(i + 4)) + dabs(dx(i + 5))
-   50 continue
-   60 dasum = dtemp
 */
-
+	return dblRetVal;
 }
 
-/*scales a vector by a constant*/
-void ddscals(double* _pdblIn, int _iNbElem, double _dblMulti, double* _pdblOut)
-{
-	int iIndex = 0;
-	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex++)
-	{
-		_pdblOut[iIndex] = _dblMulti * _pdblIn[iIndex];
-	}
-}
-
-/*scales a vector by a complex constant*/
-void zwscals(double* _pdblRealIn, double* _pdblImgIn, int _iNbElem, double _dblMultiReal, double _dblMultiImg, double* _pdblRealOut, double* _pdblImgOut, int _iInc)
-{
-	int iIndex = 0;
-	int iIndex2 = 0;
-	for(iIndex = 0 ; iIndex < _iNbElem ; iIndex++)
-	{
-		zwmuls(_dblMultiReal, _dblMultiImg, _pdblRealIn[iIndex2], _pdblImgIn[iIndex2], &_pdblRealOut[iIndex2], &_pdblImgOut[iIndex2]);
-		iIndex2 += _iInc;
-	}
-}
-
-
+/*
 void zwmuls(double _dblReal1, double _dblImg1, double _dblReal2, double _dblImg2, double *_pRealOut, double *_pImgOut)
 {
 	*_pImgOut	= _dblReal1 * _dblImg2 + _dblImg1 * _dblReal2;
 	*_pRealOut	= _dblReal1 * _dblReal2 - _dblImg1 * _dblImg2;
 }
+*/
 
 void zwmmuls(double* _pdblReal1	, double* _pdblImg1	, int _iRows1,
 			 double* _pdblReal2	, double* _pdblImg2	, int _iRows2,
@@ -213,7 +170,6 @@ void zwmmuls(double* _pdblReal1	, double* _pdblImg1	, int _iRows1,
 	double dblZero		= 0;
 
 	//Cr <-  1*Ar*Br + 0*Cr
-
 	F2C(dgemm)("N","N", &_iRowsOut, &_iCols2, &_iCols1, &dblOne		, _pdblReal1	, &_iRows1, _pdblReal2	, &_iRows2, &dblZero	, _pRealOut	, &_iRowsOut);
 	//Cr <- -1*Ai*Bi + 1*Cr
 	F2C(dgemm)("N","N", &_iRowsOut, &_iCols2, &_iCols1, &dblMinusOne	, _pdblImg1		, &_iRows1, _pdblImg2	, &_iRows2, &dblOne	, _pRealOut	, &_iRowsOut);
@@ -355,6 +311,20 @@ void vDadd(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iInc
 			iIndex2			+= _iIncIn2;
 		}
 	}
+}
+
+/*Substract two vectors*/
+void vDless(int _iNbElem, double* _pdblIn1, double* _pdblIn2, int _iIncIn1, int _iIncIn2, double* _pdblOut)
+{
+	int iIndex1			= 0;
+	double *pdblTemp	= NULL;
+
+	pdblTemp = (double*)malloc(sizeof(double) * _iNbElem);
+	for(iIndex1 = 0 ; iIndex1 < _iNbElem ; iIndex1++)
+		pdblTemp[iIndex1] = -_pdblIn2[iIndex1 * _iIncIn2];
+
+	vDadd(_iNbElem, _pdblIn1, pdblTemp, _iIncIn1, 1, _pdblOut);
+	free(pdblTemp);
 }
 
 /*memset on vector*/
@@ -1023,4 +993,11 @@ void magic_matrix(int _iSize, double *_pData)
 		}
 	}
 }
+
+void deyes(double *_pdblOut, int _iRows, int _iCols)
+{
+	vDset(_iRows * _iCols, 0, _pdblOut, 1);
+	vDset(Min(_iRows, _iCols), 1, _pdblOut, _iRows + 1);
+}
+
 

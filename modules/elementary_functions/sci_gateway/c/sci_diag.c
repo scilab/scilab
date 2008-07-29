@@ -107,9 +107,9 @@ int C2F(sci_diag) _PARAMS((char *fname,unsigned long fname_len))
 				int iIncIn	= iRows + 1;
 				int iIncOut = 1;
 				if(iComplex)
-					iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
+					iAllocComplexMatrixOfDouble(Rhs + 1, 1, iMatrixSize, 1, &pReturnRealData, &pReturnImgData);
 				else
-					iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
+					iAllocMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pReturnRealData);
 
 				if(iStartPos >= 0)
 				{
@@ -121,8 +121,6 @@ int C2F(sci_diag) _PARAMS((char *fname,unsigned long fname_len))
 						pdblStatAddr = pdblImgData + iStartPos * iRows;
 						C2F(unsfdcopy)(&iMatrixSize, pdblStatAddr, &iIncIn, pReturnImgData, &iIncOut);
 					}
-					iRows = iMatrixSize;
-					iCols = 1;
 				}
 				else
 				{
@@ -172,10 +170,9 @@ int C2F(sci_diag) _PARAMS((char *fname,unsigned long fname_len))
 				memset(pReturnImgData, 0x00, iMatrixSize * iMatrixSize * sizeof(double));
 			}
 			else
-			{
 				iAllocMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pReturnRealData);
-				memset(pReturnRealData, 0x00, iMatrixSize * iMatrixSize * sizeof(double));
-			}
+
+			memset(pReturnRealData, 0x00, iMatrixSize * iMatrixSize * sizeof(double));
 
 			if(iStartPos >= 0)
 			{

@@ -13,11 +13,6 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
-#include "localization.h"
-#include "Scierror.h"
-#include <time.h>
-#include <sys/types.h>
-#include <sys/timeb.h>
 
 int abs_double();
 int abs_poly();

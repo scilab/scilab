@@ -38,7 +38,7 @@ int C2F(sci_sqrt) _PARAMS((char *fname,unsigned long fname_len))
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	if(GetType(Rhs) != sci_matrix)
+	if(GetType(1) != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
@@ -67,20 +67,22 @@ int C2F(sci_sqrt) _PARAMS((char *fname,unsigned long fname_len))
 
 	if(iComplexCase == 0)
 	{
-		pReturnRealData = (double*)malloc(sizeof(double) * iRows * iCols);
+		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
+		//pReturnRealData = (double*)malloc(sizeof(double) * iRows * iCols);
 
 		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
 			pReturnRealData[iIndex] = dsqrts(pRealData[iIndex]);
 
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
+		//free(pReturnRealData);
 	}
 	else
 	{
-		pReturnRealData = (double*)malloc(sizeof(double) * iRows * iCols);
-		pReturnImgdata	= (double*)malloc(sizeof(double) * iRows * iCols);
+		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgdata);
+		//pReturnRealData = (double*)malloc(sizeof(double) * iRows * iCols);
+		//pReturnImgdata	= (double*)malloc(sizeof(double) * iRows * iCols);
 
 		if(iComplex == 0)
 			for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
@@ -89,11 +91,11 @@ int C2F(sci_sqrt) _PARAMS((char *fname,unsigned long fname_len))
 			for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
 				zsqrts(pRealData[iIndex], pImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgdata[iIndex]);
 
-		CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplexCase, &iRows, &iCols, &pReturnRealData, &pReturnImgdata);
+		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplexCase, &iRows, &iCols, &pReturnRealData, &pReturnImgdata);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
-		free(pReturnImgdata);
+		//free(pReturnRealData);
+		//free(pReturnImgdata);
 	}
 #else
 	C2F(intsqrt)(id);

@@ -92,8 +92,7 @@ int C2F(sci_eye) _PARAMS((char *fname,unsigned long fname_len))
 
 		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
 		//pReturnRealData = (double*)malloc(sizeof(double) * iRows * iCols);
-		vDset(iRows * iCols, 0, pReturnRealData, 1);
-		vDset(Min(iRows, iCols), 1, pReturnRealData, iRows + 1);
+		deyes(pReturnRealData, iRows, iCols);
 
 		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
 		LhsVar(1) = Rhs + 1;

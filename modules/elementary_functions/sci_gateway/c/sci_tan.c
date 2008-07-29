@@ -20,14 +20,16 @@ extern int C2F(inttan) _PARAMS((int *id));
 int C2F(sci_tan) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
-	int iRows1 = 0;
-	int iCols1 = 0;
-	int iRows2 = 0;
-	int iCols2 = 0;
-	int iRealData1 = 0;
-	int iRealData2 = 0;
-	int iImgData1 = 0;
+	int iRows = 0;
+	int iCols = 0;
+	int iRealData = 0;
+	int iImgData = 0;
 	int iIndex;
+
+	double *pdblRealData	= 0;
+	double *pdblImgData		= 0;
+	double *pReturnRealData = NULL;
+	double *pReturnImgData	= NULL;
 	
 
 	CheckRhs(1,1);
@@ -40,45 +42,41 @@ int C2F(sci_tan) _PARAMS((char *fname,unsigned long fname_len))
 	}
 
 	if(iIsComplex(1))
-	{// case complex
-		double *pdblRealData	= 0;
-		double *pdblImgData		= 0;
-		double *pReturnRealData = NULL;
-		double *pReturnImgData	= NULL;
+	{// complex case
 		int iComplex			= 1;
 
-		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &iRealData1, &iImgData1);
-		pdblRealData	= stk(iRealData1);
-		pdblImgData		= stk(iImgData1);
-		pReturnRealData	= (double*)malloc(iRows1 * iCols1 * sizeof(double));
-		pReturnImgData	= (double*)malloc(iRows1 * iCols1 * sizeof(double));
+		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
+		pdblRealData	= stk(iRealData);
+		pdblImgData		= stk(iImgData);
 
-		for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
-		{
+		iAllocComplexMatrixOfDouble(Rhs + 1, 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
+		//pReturnRealData	= (double*)malloc(iRows1 * iCols1 * sizeof(double));
+		//pReturnImgData	= (double*)malloc(iRows1 * iCols1 * sizeof(double));
+
+		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
 			ztans(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
-		}
 
-		CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &pReturnRealData, &pReturnImgData);
+		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &pReturnRealData, &pReturnImgData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
-		free(pReturnImgData);
+		//free(pReturnRealData);
+		//free(pReturnImgData);
 	}
 	else
-	{// case real
-		double *pdblRealData	= 0;
-		double *pReturnRealData = NULL;
+	{// real case
 
-		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &iRealData1);
-		pdblRealData		= stk(iRealData1);
-		pReturnRealData		= (double*)malloc(iRows1 * iCols1 * sizeof(double));
-		for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
+		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
+		pdblRealData		= stk(iRealData);
+
+		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
+		//pReturnRealData		= (double*)malloc(iRows1 * iCols1 * sizeof(double));
+		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
 			pReturnRealData[iIndex] = dtans(pdblRealData[iIndex]);
 
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &pReturnRealData);
+		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &pReturnRealData);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		free(pReturnRealData);
+		//free(pReturnRealData);
 	}
 	return 0;
 }

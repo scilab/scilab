@@ -31,7 +31,7 @@ int C2F(sci_ones) _PARAMS((char *fname,unsigned long fname_len))
 
 	if(Rhs > 2)
 	{
-		//trouver un moyen d'appeller %hm_matrix :(
+		//trouver un moyen d'appeller %hm_ones :(
 	}
 	else if(Rhs <= 0)
 	{
