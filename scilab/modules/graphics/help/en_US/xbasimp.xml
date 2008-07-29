@@ -65,6 +65,9 @@
         <link linkend="printfigure">printfigure</link>
       </member>
       <member>
+        <link linkend="toprint">toprint</link>
+      </member>
+      <member>
         <link linkend="xs2fig">xs2fig</link>
       </member>
       <member>

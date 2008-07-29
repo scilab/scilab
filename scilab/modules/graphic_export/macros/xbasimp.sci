@@ -11,8 +11,8 @@ function xbasimp(win_num,filen,printer)
 // to a Postscript file 
 //!
 
-warnobsolete("printfigure", "5.1");
-warning(gettext("""xbasimp"" has been replaced by ""printfigure"" for printing and by ""xs2ps"" for the file export"));
+warnobsolete("toprint", "5.1");
+warning(gettext("""xbasimp"" has been replaced by ""toprint"" for printing and by ""xs2ps"" for the file export"));
 
 [lhs,rhs]=argn(0);
 
@@ -37,7 +37,7 @@ end
 // if rhs == 3 we should select the printer to use
 if (rhs == 1 | rhs == 3) then
   for i = 1:n,
-    printfigure(win_num(i));
+    toprint(win_num(i));
   end
 end
 
