@@ -1211,9 +1211,9 @@ static int C2F(getsmati)(char *fname,integer *topk,integer *spos,integer *lw,int
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   if (*istk(il ) != sci_strings ) {
 	  if (*inlistx) {
-		  Scierror(999,_("%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
+		  Scierror(999,_("%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);
 	  } else {
-		  Scierror(201,_("%s: Wrong type for argument %d: Real or complex matrix expected.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk));
+		  Scierror(201,_("%s: Wrong type for argument %d: String matrix expected.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk));
 	  }
     return  FALSE;
   }
