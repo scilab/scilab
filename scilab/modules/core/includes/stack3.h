@@ -142,4 +142,26 @@ int iAllocMatrixOfBoolean(int _iNewVal, int _iRows, int _iCols, int** _piBoolDat
 int iAllocBooleanSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow);
 
 int iAllocMatricOfString(int _iNewVal, int _iRows, int _iCols, int *_piLen, char** _pszRealData);
+
+/*Get List Information*/
+//Get Item Count and type of each item
+int iGetListItemType(int _iVar, int *_piItemNumber, int *_pElemType);
+//Get Sparse Item
+int iGetListItemSparse(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int* _piTotalElem, int* _piElemByRow, double **_pdblReal, double **_pdblImg);
+//Get Poly Item
+int iGetListItemPoly(int _iVar, int _iItemNumber, int **_pVarName, int *_piRows, int *_piCols, int *_piPow, double **_pdblReal, double **_pdblImg);
+//Get Double Item
+int iGetListItemDouble(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, double **_pdblReal, double **_pdblImg);
+//Does Item Complex
+int iIsComplexItemElem(int _iVar, int _iItemNumber);
+//Get Item String
+int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData);
+
+//Internal fonctions to retrieve varaibles information from Address ( old "il" )
+int iGetDoubleFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piReal, int *_piImg);
+int iGetPolyFromAddress(int _iAddr, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg);
+int iGetSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal, int* _piImg);
+int iGetBooleanSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow);
+int iGetBooleanFromAddress(int _iAddr, int *_piRows, int *_piCols, int* _piBool);
+int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, int* _piString);
 #endif 
