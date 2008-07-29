@@ -195,7 +195,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 		Enumeration navigators = getHelpNavigators();
     
 		navigators.nextElement(); // JHelpTOCNavigator
-		navigators.nextElement();	// JHelpIndexNavigator 
+		//navigators.nextElement();	// JHelpIndexNavigator 
 		JHelpSearchNavigator searchNav = (JHelpSearchNavigator) navigators.nextElement();
 
 		setCurrentNavigator(searchNav);
