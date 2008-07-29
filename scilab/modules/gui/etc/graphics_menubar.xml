@@ -67,7 +67,7 @@
 				clear %fileToWrite isempty'
 				type="0"/>
 			</submenu>
-			<submenu label="P &amp;NG">
+			<submenu label="P&amp;NG">
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback
 				instruction='
@@ -151,14 +151,14 @@
             <callback instruction='clipboard([SCILAB_FIGURE_ID], "EMF");' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="P &amp;age setup...">
+        <submenu label="P&amp;age setup...">
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.pageSetup' type="3"/>
         </submenu>
         <submenu label="&amp;Print...">
             <callback instruction='printfigure([SCILAB_FIGURE_ID]);' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="C &amp;lose">
+        <submenu label="C&amp;lose">
             <callback instruction='
 				   if (get(get_figure_handle([SCILAB_FIGURE_ID]), "event_handler_enable") == "on" );
 				   execstr(get(get_figure_handle([SCILAB_FIGURE_ID]), "event_handler")+"([SCILAB_FIGURE_ID], -1, -1, -1000)");
@@ -169,7 +169,7 @@
     </menu>
 
     <menu label="&amp;Tools">
-        <submenu label="Show/Hide  &amp;Toolbar">
+        <submenu label="Show/Hide &amp;Toolbar">
              <callback
              instruction='
                if toolbar([SCILAB_FIGURE_ID])=="on" then
@@ -187,7 +187,7 @@
           <callback instruction='unzoom(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="2D/3D  &amp;Rotation">
+        <submenu label="2D/3D &amp;Rotation">
             <callback instruction='rotate_axes(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
         </submenu>
     </menu>
@@ -213,7 +213,7 @@
         <submenu label="&amp;Start entity picker">
             <callback instruction='ged(10,[SCILAB_FIGURE_ID]);' type="0"/>
         </submenu>
-        <submenu label="S &amp;top entity picker">
+        <submenu label="S&amp;top entity picker">
             <callback instruction='ged(11,[SCILAB_FIGURE_ID]);' type="0"/>
         </submenu>
     </menu>

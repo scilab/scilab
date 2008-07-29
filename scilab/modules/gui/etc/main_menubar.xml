@@ -67,7 +67,7 @@
             <callback instruction='if iswaitingforinput() then printf("\n%s\n\n%s\n",prompt(),getcwd()); else printf("\n\n%s\n\n",getcwd());end' type="0"/>
         </submenu> 
         <separator/>
-        <submenu label="P &amp;age setup..."> 
+        <submenu label="P&amp;age setup..."> 
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.pageSetup' type="3"/>
         </submenu>
         <submenu label="&amp;Print..."> 
@@ -81,7 +81,7 @@
 
     <!-- Edit menu -->
     <menu label="&amp;Edit" enabled="false">
-        <submenu label="C &amp;ut"> 
+        <submenu label="C&amp;ut"> 
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection' type="3"/>
         </submenu>
         <submenu label="&amp;Copy"> 
@@ -103,17 +103,17 @@
     <!-- Preferences menu -->
     <menu label="&amp;Preferences" enabled="false">
         <submenu label="&amp;Colors"> 
-            <submenu label="Console  &amp;Background..."> 
+            <submenu label="Console &amp;Background..."> 
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleBackground' type="3"/>
             </submenu>
-            <submenu label="Console  &amp;Font..."> 
+            <submenu label="Console &amp;Font..."> 
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleForeground' type="3"/>
             </submenu>
         </submenu>
         <submenu label="&amp;Font..."> 
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleFont' type="3"/>
         </submenu>
-        <submenu label="Show/Hide  &amp;Toolbar"> 
+        <submenu label="Show/Hide &amp;Toolbar"> 
               <callback 
               instruction='
                 if toolbar(-1)=="on" then
@@ -124,10 +124,10 @@
               type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Clear  &amp;History"> 
+        <submenu label="Clear &amp;History"> 
            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory' type="3"/>
         </submenu>
-        <submenu label="Clear C &amp;onsole"> 
+        <submenu label="Clear C&amp;onsole"> 
           <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.clear' type="3"/>
         </submenu>
     </menu>
@@ -155,7 +155,7 @@
             <callback instruction='scicos();' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Edit &amp;Graph"> 
+        <submenu label="Edit&amp;Graph"> 
             <callback instruction='edit_graph();' type="0"/>
         </submenu>
         <separator/>
@@ -170,16 +170,16 @@
 
     <!-- Help menu -->
     <menu label="&amp;?" enabled="false">
-        <submenu label="Scilab  &amp;Help"> 
+        <submenu label="Scilab &amp;Help"> 
             <callback instruction='help();' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="Scilab  &amp;Demonstrations">
+        <submenu label="Scilab &amp;Demonstrations">
              <callback instruction='demo_gui();' type="0"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Web links"> 
-            <submenu label="Scilab  &amp;Web Site"> 
+            <submenu label="Scilab &amp;Web Site"> 
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite' type="3"/>
             </submenu>
             <submenu label="&amp;Contributions"> 
