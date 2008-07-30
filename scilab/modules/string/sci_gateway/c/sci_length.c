@@ -141,12 +141,10 @@ static int lengthStrings(int RhsPosition)
 	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &m,&n, &outIndex );
 	for  ( x = 0; x < mn; x++ )
 	{
-		#define STK_POS_STRING ((integer *)&C2F(stack))
 		/* put length of strings */
-		/* beginning of string : STK_POS[ilrd + x ] */
-		/* end of string : STK_POS[ilrd + x - 1] */
-		stk(outIndex)[x] = (double) (STK_POS_STRING[ilrd + x ] - STK_POS_STRING[ilrd + x - 1]);
-		#undef STK_POS_STRING
+		/* beginning of string : *istk(ilrd + x + 1) */
+		/* end of string : *istk(ilrd + x) */
+		stk(outIndex)[x] = (double) (*istk(ilrd + x + 1) - *istk(ilrd + x));
 	}
 
 	LhsVar(1) = Rhs+1 ;
