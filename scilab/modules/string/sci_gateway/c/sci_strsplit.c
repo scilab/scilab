@@ -30,8 +30,6 @@ extern int C2F(icopy)(int *nbelements, int *arrayInput, int *incBetweenElementsI
 /*----------------------------------------------------------------------------*/
 int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
 {
-	#define I_STK ((integer *)&C2F(stack))
-
 	/* Check Input & Output parameters */
 	CheckRhs(2,2);
 	CheckLhs(1,1);
@@ -77,7 +75,7 @@ int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
 		/* Scilab strsplit stack3 : 12200 s */
 		/* slower because with stack3, scilab converts scilab code to strings and strings to code */
 
-		#define  get_value_param2(pos) C2F(stack).Stk[l2 + pos - 1]
+		#define  get_value_param2(pos) (*stk(l2 + pos))
 		#define  POSITION_FIRST_CHAR 1
 
 		int i = 0;
@@ -99,11 +97,11 @@ int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
 
 		/* check if parameter two is a reference */
 		il2 = iadr( C2F(vstk).lstk[Top - 1] );
-		bParam2IsaRef = (I_STK[il2 - 1] < 0);
-		if (bParam2IsaRef) il2 = iadr( I_STK[il2] );
+		bParam2IsaRef = (*istk(il2) < 0);
+		if (bParam2IsaRef) il2 = iadr( *istk(il2 + 1) );
 
 		/* get number elements in param2 */
-		m2n2 = I_STK[il2] * I_STK[il2 + 1];
+		m2n2 = *istk(il2 + 1) * *istk(il2 + 2);
 
 		l2 = sadr(il2 + 4);
 
@@ -130,13 +128,13 @@ int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
 
 		/* check if parameter one is a reference */
 		il1 = iadr( C2F(vstk).lstk[Top - 1] );
-		bParam1IsaRef = (I_STK[il1 - 1] < 0);
+		bParam1IsaRef = (*istk(il1) < 0);
 
-		if (bParam1IsaRef) il1 = iadr( I_STK[il1] );
+		if (bParam1IsaRef) il1 = iadr( *istk(il1+1) );
 
 		id1 = il1 + 4;
 		l1 = id1 + 2;
-		lengthInputString = I_STK[id1] - 1;
+		lengthInputString = *istk(id1+1) - 1;
 
 		/* check that last value if >=  than length of input string */
 		if ( get_value_param2(m2n2 - 1) >= (double) lengthInputString ) 
@@ -166,20 +164,20 @@ int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
 		}
 
 		/* create output strings matrix , see C2F(crematvar) stack1.c */
-		I_STK[ilr - 1] = sci_strings;
-		I_STK[ilr] = m2n2 + 1;
-		I_STK[ilr + 1] = 1;
-		I_STK[ilr + 2] = 0;
-		I_STK[ilr + 3] = 1;
+		*istk(ilr) = sci_strings;
+		*istk(ilr + 1) = m2n2 + 1;
+		*istk(ilr + 2) = 1;
+		*istk(ilr + 3) = 0;
+		*istk(ilr + 4) = 1;
 		
 		for (i = 1; i <= m2n2; ++i) 
 		{
-			I_STK[ilr + 4 + i - 1] = (int) (C2F(stack).Stk[l2 + i - 2] + 1);
+			*istk(ilr + 4 + i) = (int) (*stk(l2 + i - 1) + 1);
 		}
 
 		/* put values on stack */
-		I_STK[ilr + 5 + m2n2 - 1] = lengthInputString + 1;
-		C2F(icopy)(&lengthInputString, &I_STK[l1 - 1], &one, &I_STK[ilr + nsiz + m2n2 - 1], &one);
+		*istk(ilr + 5 + m2n2) = lengthInputString + 1;
+		C2F(icopy)(&lengthInputString, istk(l1), &one, istk(ilr + nsiz + m2n2), &one);
 
 		if (bParam1IsaRef && bParam2IsaRef) 
 		{
@@ -192,7 +190,7 @@ int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
 			int il = iadr( C2F(vstk).lstk[Top - 1]);
 
 			j = m2n2 + nsiz + lengthInputString;
-			C2F(icopy)(&j, &I_STK[ilr - 1], &one, &I_STK[il - 1], &one);
+			C2F(icopy)(&j, istk(ilr), &one, istk(il), &one);
 
 			j = il + nsiz + m2n2 + lengthInputString;
 			C2F(vstk).lstk[Top] = sadr(j);
@@ -210,8 +208,6 @@ int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
 		}
 	}
 	return 0;
-
-#undef I_STK
 }
 /*----------------------------------------------------------------------------*/
 //int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
