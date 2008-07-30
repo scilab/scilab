@@ -19,8 +19,6 @@
 #include "core_math.h"
 #include "matboolean.h"
 /*--------------------------------------------------------------------------*/
-#define ISTK ((integer *)&C2F(stack))
-/*--------------------------------------------------------------------------*/
 int C2F(matlog)(void)
 {
     static integer ou = 57;
@@ -38,26 +36,26 @@ int C2F(matlog)(void)
     if (Rhs == 2)
     {
 		il2 = C2F(vstk).lstk[Top - 1] + C2F(vstk).lstk[Top - 1] - 1;
-		if (ISTK[il2 - 1] < 0) 
+		if (*istk(il2) < 0) 
 		{
-	    	il2 = ISTK[il2] + ISTK[il2] - 1;
+	    	il2 = iadr(*istk(il2+1));
 		}
-		m2 = ISTK[il2];
-		n2 = ISTK[il2 + 1];
-		it2 = ISTK[il2 + 2];
+		m2 = *istk(il2 + 1);
+		n2 = *istk(il2 + 2);
+		it2 = *istk(il2 + 3);
 		l2 = (il2 + 4) / 2 + 1;
 		mn2 = m2 * n2;
 		--Top;
     }
 
     il1 = C2F(vstk).lstk[Top - 1] + C2F(vstk).lstk[Top - 1] - 1;
-    if (ISTK[il1 - 1] < 0) 
+    if (*istk(il1) < 0) 
    	{
-		il1 = ISTK[il1] + ISTK[il1] - 1;
+		il1 = iadr(*istk(il1+1));
     }
-    m1 = ISTK[il1];
-    n1 = ISTK[il1 + 1];
-    it1 = ISTK[il1 + 2];
+    m1 = *istk(il1 + 1);
+    n1 = *istk(il1 + 2);
+    it1 = *istk(il1 + 3);
 
     l1 = (il1 + 4) / 2 + 1;
     mn1 = m1 * n1;
@@ -65,27 +63,27 @@ int C2F(matlog)(void)
    	{
 		if (mn1 == 0) 
 		{
-			ISTK[il1 - 1] = 1;
-			ISTK[il1] = 0;
-			ISTK[il1 + 1] = 0;
-			ISTK[il1 + 2] = 0;
+			*istk(il1) = 1;
+			*istk(il1 + 1) = 0;
+			*istk(il1 + 2) = 0;
+			*istk(il1 + 3) = 0;
 
 			C2F(vstk).lstk[Top] = (il1 + 4) / 2 + 1;
 			return 0;
 		}
 		else
 		{
-			ISTK[il1 - 1] = 4;
+			*istk(il1) = 4;
 			for (j = 0; j <= mn1 - 1; ++j) 
 			{
-				e1 = C2F(stack).Stk[l1 + j - 1];
+				e1 = *stk(l1 + j);
 				if (e1 == 0.) 
 				{
-		    		ISTK[il1 + 3 + j - 1] = 1;
+		    		*istk(il1 + 3 + j) = 1;
 				}
 				else
 				{
-		    		ISTK[il1 + 3 + j - 1] = 0;
+		    		*istk(il1 + 3 + j) = 0;
 				}
 			}
 			C2F(vstk).lstk[Top] = (il1 + 3 + mn1) / 2 + 1;
@@ -95,10 +93,10 @@ int C2F(matlog)(void)
 	{
 		if (mn1 == 0 || mn2 == 0) 
 		{
-			ISTK[il1 - 1] = 1;
-			ISTK[il1] = 0;
-			ISTK[il1 + 1] = 0;
-			ISTK[il1 + 2] = 0;
+			*istk(il1) = 1;
+			*istk(il1 + 1) = 0;
+			*istk(il1 + 2) = 0;
+			*istk(il1 + 3) = 0;
 
 			C2F(vstk).lstk[Top] = (il1 + 4) / 2 + 1;
 			return 0;
@@ -131,15 +129,15 @@ int C2F(matlog)(void)
 		{
 	        for (j = 0; j <= mn1 - 1; ++j) 
 			{
-				e1 = C2F(stack).Stk[l1 + j * i1 - 1];
-				e2 = C2F(stack).Stk[l2 + j * i2 - 1];
+				e1 = *stk(l1 + j * i1);
+				e2 = *stk(l2 + j * i2);
 				if (e1 != 0. || e2 != 0.) 
 				{
-		    		ISTK[il1 + 3 + j - 1] = 1;
+		    		*istk(il1 + 3 + j) = 1;
 				}
 				else 
 				{
-		    		ISTK[il1 + 3 + j - 1] = 0;
+		    		*istk(il1 + 3 + j) = 0;
 				}
 			}
 		}
@@ -147,28 +145,27 @@ int C2F(matlog)(void)
 		{
 			for (j = 0; j <= mn1 - 1; ++j) 
 			{
-				e1 = C2F(stack).Stk[l1 + j * i1 - 1];
-				e2 = C2F(stack).Stk[l2 + j * i2 - 1];
+				e1 = *stk(l1 + j * i1);
+				e2 = *stk(l2 + j * i2);
 				if (e1 != 0. && e2 != 0.) 
 				{
-					ISTK[il1 + 3 + j - 1] = 1;
+					*istk(il1 + 3 + j) = 1;
 				}
 				else
 				{
-		    		ISTK[il1 + 3 + j - 1] = 0;
+		    		*istk(il1 + 3 + j) = 0;
 				}
 			}
 		}
-		ISTK[il1 - 1] = 4;
-		ISTK[il1] = Max(m1,m2);
-		ISTK[il1 + 1] = Max(n1,n2);
+		*istk(il1) = 4;
+		*istk(il1 + 1) = Max(m1,m2);
+		*istk(il1 + 2) = Max(n1,n2);
 
 		C2F(vstk).lstk[Top] = (il1 + 3 + mn1) / 2 + 1;
 		return 0;
 	}
 return 0;
 }
-#undef ISTK
 /*--------------------------------------------------------------------------*/
 
 
