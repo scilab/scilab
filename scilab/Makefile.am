@@ -80,7 +80,7 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
 doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
-if INSTALL_HELP_XML
+if BUILD_HELP
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		echo "-- Building documentation (English) --"; \
