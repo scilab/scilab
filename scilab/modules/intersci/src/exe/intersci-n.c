@@ -628,7 +628,7 @@ void WriteFortranCall(FILE *f)
 		#ifdef _MSC_VER
 		  _try
 		  {
-	      if (target == 'C' && variables[ivar-1]->C_name[0] != NULL)
+	      if (target == 'C' && variables[ivar-1]->C_name[0] != NULL && ((int)strlen(variables[ivar-1]->C_name[0])>0) )
 			{
 				strcat(call,"&");
 				strcat(call,variables[ivar-1]->C_name[0]);
@@ -639,7 +639,9 @@ void WriteFortranCall(FILE *f)
 		  _except (EXCEPTION_EXECUTE_HANDLER)
 		  {
 			  printf("Error EXCEPTION_EXECUTE_HANDLER %s %d\n",__FILE__,__LINE__);
-			  exit(1);
+			  /* bug 1957 */
+			  /* replaces last character ',' by ')' */
+			  if (call[strlen(call)-1] == ',') call[strlen(call)-1]=')';
 		  }
 		#else
 		  if (target == 'C' && variables[ivar-1]->C_name[0] != NULL)
