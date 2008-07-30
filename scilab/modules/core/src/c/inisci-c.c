@@ -193,12 +193,7 @@ int C2F(withgui)(int *rep)
 /*--------------------------------------------------------------------------*/
 int C2F(getdefaultgstacksize)(int *defaultsize)
 {
-#if defined(_MSC_VER) && defined(_WIN64)
 	*defaultsize = DEFAULTGSTACKSIZE;
-#else
-	*defaultsize = DEFAULTGSTACKSIZE;
-#endif
-	
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
