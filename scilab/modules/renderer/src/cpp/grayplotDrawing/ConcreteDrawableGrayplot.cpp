@@ -62,7 +62,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableGrayplot::drawGrayplot(void)
     yGrid = new double[nbRow];
     colors = new int[nbColors];
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // allocation failed
     sciprint(_("%s: No more memory.\n"), "ConcreteDrawableGrayplot::drawGrayplot");
@@ -83,7 +83,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableGrayplot::drawGrayplot(void)
                                    m_pDecomposer->getZCoordinate(),
                                    colors, nbColors);
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // some allocation failed
     sciprint(_("%s: No more memory.\n"), "ConcreteDrawableGrayplot::drawGrayplot");

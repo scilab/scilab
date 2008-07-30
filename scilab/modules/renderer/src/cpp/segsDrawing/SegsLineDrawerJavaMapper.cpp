@@ -79,7 +79,7 @@ void SegsLineDrawerJavaMapper::drawSegs(const double startXCoords[], const doubl
   {
     javaColors = new long[nbSegments];
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // propagate exception
     throw;

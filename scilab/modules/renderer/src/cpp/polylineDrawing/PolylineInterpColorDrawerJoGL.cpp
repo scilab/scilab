@@ -56,7 +56,7 @@ void PolylineInterpColorDrawerJoGL::drawPolyline( void )
     zCoords = new double[nbVertices];
     colors  = new int[nbVertices];;
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // allocation failed
     sciprint(_("Unable to render polyline, memory full.\n"));

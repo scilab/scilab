@@ -83,7 +83,7 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
     left    = new double[nbVertices];
     right   = new double[nbVertices]; 
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // allocation failed
     sciprint(_("%s: No more memory.\n"),"PolylineBarDrawerJoGL::drawPolyline");

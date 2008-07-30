@@ -73,7 +73,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableFec::drawFec(void)
     secondPoints = new int[nbTriangles];
     thirdPoints  = new int[nbTriangles];
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // allocation failed
     sciprint(_("%s: No more memory.\n"), "ConcreteDrawableFec::drawFec");
@@ -94,7 +94,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableFec::drawFec(void)
     drawFec(xCoords, yCoords, pFEC_FEATURE(m_pDrawed)->pfun, nbNodes,
             firstPoints, secondPoints, thirdPoints, nbTriangles);
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // allocation failed
     sciprint(_("%s: No more memory.\n"), "ConcreteDrawableFec::drawFec");

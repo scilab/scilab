@@ -63,7 +63,7 @@ void PolylineArrowDrawerJoGL::drawPolyline( void )
     yCoords = new double[nbVertices];
     zCoords = new double[nbVertices];
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // allocation failed
     sciprint(_("%s: No more memory.\n"),"PolylineArrowDrawerJoGL::drawPolyline");

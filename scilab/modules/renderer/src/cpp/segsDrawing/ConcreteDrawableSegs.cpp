@@ -117,7 +117,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableSegs::drawSegs(void)
       colors  = new int[nbSegs];
     }
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // allocation failed
     sciprint(_("%s: No more memory.\n"),"ConcreteDrawableSegs::drawSegs");
@@ -146,7 +146,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableSegs::drawSegs(void)
   {
     drawSegs(xStarts, xEnds, yStarts, yEnds, zStarts, zEnds, colors, nbSegs);
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // some allocation failed
     sciprint(_("%s: No more memory.\n"),"ConcreteDrawableSegs::drawSegs");

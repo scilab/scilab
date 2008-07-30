@@ -67,7 +67,7 @@ void SurfaceMarkDrawerJoGL::drawSurface( void )
     yCoords = new double[sizeYCoord];
     zCoords = new double[sizeZCoord];
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // allocation failed
     sciprint(_("%s: No more memory.\n"),"SurfaceMarkDrawerJoGL::drawSurface");

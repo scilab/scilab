@@ -90,7 +90,7 @@ void SegsArrowDrawerJavaMapper::drawSegs(const double startXCoords[], const doub
   {
     javaColors = new long[nbSegments];
   }
-  catch (std::exception e)
+  catch (const std::exception& e)
   {
     // propagate exception
     throw;
