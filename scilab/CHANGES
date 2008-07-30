@@ -43,6 +43,8 @@ Graphics:
 	* get_figure_handle - Get a figure handle from its id without changing current figure.
 	* rotate_axes - Interactive rotation of an Axes handle.
 	* is_handle_valid - Check wether a set of graphic handles is still valid.
+ - Behavior changes:
+    * clf now deletes user menus which are children of the figure (Created by addmenu or uimenu).
  - Obsolete functions:
     * xclea, xaxis and xtape functions has been removed because of their imcompatibility with new graphic syntax.
 
