@@ -53,22 +53,23 @@ host_triplet = @host@
 @USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@GUI_TRUE@am__append_3 = java
+@NEED_JAVA_TRUE@am__append_3 = java
 @SWIG_TRUE@am__append_4 = swig
 @GIWS_TRUE@am__append_5 = giws
 subdir = modules/double
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/matio.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
 	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -143,7 +144,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
-BATIK_PACKAGE = @BATIK_PACKAGE@
+BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
@@ -158,6 +159,7 @@ CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
 ECHO = @ECHO@
 ECHO_C = @ECHO_C@
@@ -189,6 +191,7 @@ JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
+JEUCLID_CORE = @JEUCLID_CORE@
 JHALL = @JHALL@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
@@ -202,7 +205,6 @@ LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
-MANGENERATOR = @MANGENERATOR@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIB = @MATIO_LIB@
@@ -237,6 +239,7 @@ PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
+RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
@@ -255,7 +258,6 @@ TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 VERSION = @VERSION@
-WITH = @WITH@
 WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
@@ -391,7 +393,7 @@ SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
-# Install HTML files into the right target
+# Install documentation files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
@@ -402,19 +404,8 @@ pkgdocdir = $(mydatadir)
 # Which directories we have to install
 DOCDIRS = help/fr_FR help/en_US
 
-# What is the mask of the help output
-DOCMASK = *.htm
-
-# Which directories we have to install
-DOCIMGDIRS = help/images
-# What is the mask of the help images
-DOCIMGMASK = *
-
 # What is the mask of the help source
 DOCMASKXML = *.xml
-
-# Chapter file
-HELP_CHAPTERFILE = addchapter.sce
 
 ########### INSTALL DATA ###################
 # Install macros
@@ -871,19 +862,21 @@ check-local: $(top_builddir)/scilab-bin
 	COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
-@GUI_TRUE@java:
+@NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@	if test -f build.xml; then \
-@GUI_TRUE@		$(ANT) jar; \
-@GUI_TRUE@	fi
+@NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@		$(ANT); \
+@NEED_JAVA_TRUE@	fi
 
-@GUI_TRUE@clean-java:
+@NEED_JAVA_TRUE@clean-java:
 # Some configurations needs to export JAVA_HOME in the current env
-@GUI_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
-@GUI_TRUE@	if test -f build.xml; then \
-@GUI_TRUE@		$(ANT) clean; \
-@GUI_TRUE@	fi
+@NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
+@NEED_JAVA_TRUE@	if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+@NEED_JAVA_TRUE@	if test -f build.xml -a $$USEANT -eq 1; then \
+@NEED_JAVA_TRUE@		$(ANT) clean; \
+@NEED_JAVA_TRUE@	fi;
 # If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
@@ -920,8 +913,8 @@ macros:
 clean-macros:
 # Removes macros (*.bin generated from .sci)
 	@for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
-		echo "rm -f $(srcdir)/$$dir/$(MACROBINMASK)"; \
-		rm -f $(srcdir)/$$dir/$(MACROBINMASK); \
+		echo "rm -f $(builddir)/$$dir/$(MACROBINMASK)"; \
+		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
 
 all-local: $(TARGETS_ALL)
@@ -935,39 +928,6 @@ all-local: $(TARGETS_ALL)
 	fi )
 
 install-html-local:
-	@echo "-- Install of htm help files --"; \
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-	for dir in $(DOCDIRS) ; do \
-		if test -d $$dir; then \
-			$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-			if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
-				for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-				done ; \
-			fi; \
-			if ls -lLd $(srcdir)/$$dir/$(HELP_CHAPTERFILE) >/dev/null 2>&1; then \
-				for file in $(srcdir)/$$dir/$(HELP_CHAPTERFILE) ; do \
-					echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-					$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-				done ; \
-			fi; \
-		fi; \
-	done
-	@echo "-- Install of images help files --"; \
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir); \
-	for dir in $(DOCIMGDIRS) ; do \
-	 if test -d $$dir; then \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(DOCIMGMASK) >/dev/null 2>&1; then \
-		  for file in $(srcdir)/$$dir/$(DOCIMGMASK) ; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-		  done ; \
-		fi; \
-	 fi; \
-	done
-
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@echo "-- Install of XML sources of help files --"; \
 @INSTALL_HELP_XML_TRUE@	for dir in $(DOCDIRS) ; do \
@@ -985,20 +945,30 @@ install-data-local:
 # Install the tests
 	@echo "-- Install tests (if any) --"; \
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		if test -d $(srcdir)/$$dir/; then \
-		  for file in `ls -1 $(srcdir)/$$dir/* 2>/dev/null`; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgmacrosdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgmacrosdir)/`dirname $$dir/$$file`" ; \
+		    fi \
 		  done; \
-		fi; \
-	done
+	  fi; \
+	done 
 # Install the macros
 	@echo "-- Install macros (if any) --"; \
 	for dir in $(MACRODIRS) $(MACROSDIRSEXT) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
-		  for file in `ls -1 $(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib 2>/dev/null`; do \
+			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
+			for specialExt in $(MACROSSPECIALEXT); do \
+				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+			done; \
+			FILELIST="$$FILELIST $$specialExtDir"; \
+		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
 		  done; \
@@ -1016,15 +986,8 @@ install-data-local:
 
 ########### CLEAN ###################
 # Clean macros and help (generated automatically by Scilab)
-@GUI_TRUE@clean-local: clean-java clean-macros
-@GUI_FALSE@clean-local: clean-macros
-# Removes documentation (*.htm generated from .xml) 
-	@for dir in $(DOCDIRS) ; do \
-		 if test -d $$dir -a -z "$(DISABLE_HELP_CLEAN)"; then \
-			echo "rm -f $(srcdir)/$$dir/$(DOCMASK)"; \
-			rm -f $(srcdir)/$$dir/$(DOCMASK); \
-		fi; \
-	done
+@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
+@NEED_JAVA_FALSE@clean-local: clean-macros
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
