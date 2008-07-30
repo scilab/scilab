@@ -30,7 +30,9 @@ c=[trace(F1*Z0);trace(F2*Z0)];
 abstol=1.d-8;
 reltol=1.d-10;
 options=[10,abstol,reltol,0,50];
+warning('off');
 [x,Z,ul,info]=semidef(x0,pack(ZZ0),pack(FF),blck_szs,c,options);
+warning('on');
 w=vec2list(unpack(Z,blck_szs),[blck_szs;blck_szs]);
 Z=sysdiag(w(1),w(2));
 // Check that info states that absolute convergence occured

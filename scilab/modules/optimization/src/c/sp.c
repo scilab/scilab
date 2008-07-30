@@ -10,14 +10,15 @@
  * representation or warranty of any kind concerning the merchantability
  * of this software or its fitness for any particular purpose.
  */
-
+/*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
 #include "spd.h"
 #include "sciprint.h"
 #include "localization.h"
-
+#include "warningmode.h"
+/*--------------------------------------------------------------------------*/
 /*
  * if itype = 1, computes C = B*A*B', otherwise, computes C = B'*A*B
  * A and B are nxn with A symmetric.
@@ -33,7 +34,7 @@
  *          the lower triangle of C in packed storage
  * @param temp:  n-array, workspace
  */
-
+/*--------------------------------------------------------------------------*/
 static void cngrncb(int itype,int n,double *AP,double *B,double *CP,double *temp)
 {
 
@@ -44,9 +45,11 @@ static void cngrncb(int itype,int n,double *AP,double *B,double *CP,double *temp
  /* C := 0 */
  F2C(dscal)(&lngth, &dbl0, CP, &int1);
 
- if (itype == 1){
+ if (itype == 1)
+ {
 
-   for (j=0, pos=0;  j<n;  pos+=n-j, j++){
+   for (j=0, pos=0;  j<n;  pos+=n-j, j++)
+   {
 
       /* temp = A*B(j,:)' */
       F2C(dspmv)("L", &n, &dbl1, AP, B+j, &n, &dbl0, temp, &int1);
@@ -58,9 +61,12 @@ static void cngrncb(int itype,int n,double *AP,double *B,double *CP,double *temp
 
    }
 
- } else {
+ } 
+ else 
+ {
 
-   for (j=0, pos=0;  j<n;  pos+=n-j, j++){
+   for (j=0, pos=0;  j<n;  pos+=n-j, j++)
+   {
 
       /* temp = A*B(:,j) */
       F2C(dspmv)("L", &n, &dbl1, AP, B+j*n, &int1, &dbl0, temp, &int1);
@@ -74,8 +80,7 @@ static void cngrncb(int itype,int n,double *AP,double *B,double *CP,double *temp
  }
 
 }
-
-
+/*--------------------------------------------------------------------------*/
 static double inprd(double *X, double *Z, int L, int *blck_szs)
 /*
  * Computes Tr X*Z
@@ -116,7 +121,7 @@ static double inprd(double *X, double *Z, int L, int *blck_szs)
 
  return result;
 }
-
+/*--------------------------------------------------------------------------*/
 int C2F(spf)(
 	     int *m,                /* no of variables */
 	     int *L,                /* no of blocks in F */
@@ -141,7 +146,7 @@ int C2F(spf)(
  return(sp(*m,*L,F,blck_szs,c,x,Z,ul,*nu,*abstol,*reltol,*tv,iters, work,
 	   *lwork,iwork,info));
 }
-
+/*--------------------------------------------------------------------------*/
 int sp(
        int m,                /* no of variables */
        int L,                /* no of blocks in F */
@@ -258,22 +263,22 @@ int sp(
  double dbl_epsilon;
 
  if (m < 1){
-    sciprint(_("m must be at least one.\n"));
+	 if ( getWarningMode() ) sciprint(_("m must be at least one.\n"));
     *info = -1;
     return 1;
  }
  if (L < 1){
-    sciprint(_("L must be at least one.\n"));
+    if ( getWarningMode() ) sciprint(_("L must be at least one.\n"));
     *info = -2;
     return 1;
  }
  for (i=0; i<L; i++) if (blck_szs[i] < 1){
-    sciprint(_("blck_szs[%d] must be at least one.\n"), i);
+    if ( getWarningMode() ) sciprint(_("blck_szs[%d] must be at least one.\n"), i);
     *info = -4;
     return 1;
  }
  if (nu < 1.0){
-    sciprint(_("nu must be at least 1.0.\n"));
+    if ( getWarningMode() ) sciprint(_("nu must be at least 1.0.\n"));
     *info = -9;
     return 1;
  }
@@ -308,7 +313,7 @@ int sp(
  nrmc = F2C(dnrm2)(&m, c, &int1);
  for (i=0; i<m; i++)
  if (fabs(inprd(F+(i+1)*sz, Z, L, blck_szs) - c[i]) > nrmc*TOLC){
-     sciprint(_("Z0 does not satisfy equality conditions for dual feasibility.\n"));
+     if ( getWarningMode() ) sciprint(_("Z0 does not satisfy equality conditions for dual feasibility.\n"));
 
     *info = -7;
     return 1;
@@ -343,7 +348,7 @@ int sp(
  minlwork = (m+2)*sz + up_sz + 2*n +
             Max( Max( m+sz, 3*max_n + max_n*(max_n+1) ), 3*m );
  if (lwork < minlwork){
-    sciprint(_("Work space is too small.  Need at least %d*sizeof(double).\n"), minlwork);
+    if ( getWarningMode() ) sciprint(_("Work space is too small.  Need at least %d*sizeof(double).\n"), minlwork);
     *info = -15;
     return 1;
  }
@@ -398,9 +403,9 @@ int sp(
        F2C(dspgv)(&int2, "V", "L", blck_szs+i, temp, X+pos, sigx+pos3,
               R+pos2, blck_szs+i, temp+lngth, &info2);
        if (info2){
-          sciprint(_("Error in dspgv, info = %d.\n"), info2);
+          if ( getWarningMode() ) sciprint(_("Error in dspgv, info = %d.\n"), info2);
           if (*iters == 0 && info2 > blck_szs[i]){
-             sciprint( _("x0 is not strictly primal feasible.\n"));
+             if ( getWarningMode() ) sciprint( _("x0 is not strictly primal feasible.\n"));
 	         *info = -6;
           } else *info = -18;
           return 1;
@@ -413,10 +418,10 @@ int sp(
           scal = sigx[pos3+k];
           if (scal < 0.0){
              if (*iters == 0){
-                sciprint(_("Z0 is not positive definite.\n"));
+                if ( getWarningMode() ) sciprint(_("Z0 is not positive definite.\n"));
                 *info = 7;
              } else {
-                sciprint(_("F(x)*Z has a negative eigenvalue.\n"));
+                if ( getWarningMode() ) sciprint(_("F(x)*Z has a negative eigenvalue.\n"));
                 *info = -18;
              }
              return 1;
@@ -438,10 +443,10 @@ int sp(
     ul[1] = -inprd(F,Z,L,blck_szs);         /* -Tr F_0 Z */
     ul[0] = F2C(ddot)(&m, c, &int1, x, &int1);  /* c^T x */
     if (*iters == 0){
-	sciprint(_("\n    primal obj.  dual obj.  dual. gap \n"));
+	if ( getWarningMode() ) sciprint(_("\n    primal obj.  dual obj.  dual. gap \n"));
 
     }
-    sciprint("% 13.2e % 12.2e %10.2e\n", ul[0], ul[1], gap);
+    if ( getWarningMode() ) sciprint("% 13.2e % 12.2e %10.2e\n", ul[0], ul[1], gap);
     if (gap <= Max(abstol, MINABSTOL))  *info = 2;
     else if ( (ul[1] > 0.0 && gap <= reltol*ul[1]) ||
               (ul[0] < 0.0 && gap <= reltol*(-ul[0])) ) *info = 3;
@@ -494,8 +499,9 @@ int sp(
 
     F2C(dgels)("N", &sz, &m, &int1, Fsc, &sz, rhs, &sz, temp, &ltemp,
            &info2);
-    if (info2){
-       sciprint(_("Error in dgels, info = %d.\n"), info2);
+    if (info2)
+	{
+       if ( getWarningMode() ) sciprint(_("Error in dgels, info = %d.\n"), info2);
        *info = -18; return 1;
     }
 
@@ -507,11 +513,11 @@ int sp(
        F2C(dtrcon)("1", "U", "N", &m, Fsc, &sz, &rcond, temp, iwork,
                 &info2);
        if (info2 < 0){
-          sciprint(_("Error in dtrcon, info = %d.\n"), info2);
+          if ( getWarningMode() ) sciprint(_("Error in dtrcon, info = %d.\n"), info2);
           *info = -18; return 1;
        }
        if (rcond < MINRCOND) {
-          sciprint(_("The matrices F_i, i=1,...,m are linearly dependent (or the initial points are very badly conditioned).\n"));
+          if ( getWarningMode() ) sciprint(_("The matrices F_i, i=1,...,m are linearly dependent (or the initial points are very badly conditioned).\n"));
           *info = -3; return 1;
        }
 
@@ -555,7 +561,7 @@ int sp(
         * and compute eigenvalues of L^{-1}*dF*L^{-T}  */
        F2C(dspgst)(&int1, "L", blck_szs+i, temp, X+pos, &info2);
        if (info2){
-          sciprint(_("Error in dspst, info = %d.\n"), info2);
+		   if ( getWarningMode() ) sciprint(_("Error in dspst, info = %d.\n"), info2);
 
           *info = -18;  return 1;
        }
@@ -563,7 +569,7 @@ int sp(
        F2C(dspev)("N", "L", blck_szs+i, temp, sigx+pos3, NULL, &int1,
               temp+2*lngth, &info2);
        if (info2){
-	   sciprint(_("Error in dspev, info = %d.\n"), info2);
+	   if ( getWarningMode() ) sciprint(_("Error in dspev, info = %d.\n"), info2);
 	   *info = -18;  return 1;
        }
 
@@ -582,7 +588,7 @@ int sp(
        F2C(dspgv)(&int1, "N", "L", blck_szs+i, temp, temp+lngth, sigz+pos3,
               NULL, &int1, temp+2*lngth, &info2);
        if (info2){
-	   sciprint(_("Error in dspgv, info = %d.\n"), info2);
+	   if ( getWarningMode() ) sciprint(_("Error in dspgv, info = %d.\n"), info2);
           *info = -18;  return 1;
        }
 
@@ -648,7 +654,7 @@ int sp(
        F2C(daxpy)(&m, &alphax, dx, &int1, x, &int1);
        F2C(daxpy)(&sz, &alphaz, dZ, &int1, Z, &int1);
        gap = newgap;  ul[0] = newu;   ul[1] = newl;
-       sciprint("% 13.2e % 12.2e %10.2e\n", ul[0], ul[1], gap);
+       if ( getWarningMode() ) sciprint("% 13.2e % 12.2e %10.2e\n", ul[0], ul[1], gap);
        (*iters)++;
        return 0;
     }

@@ -18,5 +18,6 @@ createvar_
 check_length
 check_square
 gettype_
+getWarningMode
 ;
 

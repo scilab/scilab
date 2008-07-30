@@ -29,20 +29,9 @@ c=[trace(F1*Z0);trace(F2*Z0)];
 abstol=1.d-8;
 reltol=1.d-10;
 options=[10,abstol,reltol,0,50];
+warning('off');
 [x,Z,ul,info]=semidef(x0,pack(ZZ0),pack(FF),blck_szs,c,options);
-
-    primal obj.  dual obj.  dual. gap 
-     0.00e+00    -6.00e+01   6.00e+01
-    -4.40e+01    -5.09e+01   6.84e+00
-    -4.44e+01    -4.50e+01   6.73e-01
-    -4.44e+01    -4.45e+01   5.11e-02
-    -4.44e+01    -4.44e+01   2.46e-03
-    -4.44e+01    -4.44e+01   3.15e-04
-    -4.44e+01    -4.44e+01   1.54e-05
-    -4.44e+01    -4.44e+01   1.80e-06
-    -4.44e+01    -4.44e+01   1.86e-07
-    -4.44e+01    -4.44e+01   2.00e-08
-    -4.44e+01    -4.44e+01   2.57e-09
+warning('on');
 w=vec2list(unpack(Z,blck_szs),[blck_szs;blck_szs]);
 Z=sysdiag(w(1),w(2));
 // Check that info states that absolute convergence occured
