@@ -33,7 +33,7 @@ function ge_set_winsize()
   gh_curwin.axes_size = [width height];
 
   //** axes settings
-  gh_axes = gh_curwin.children ; 
+  gh_axes = gca(); 
   gh_axes.tight_limits = "on"  ; 
   gh_axes.margins = [0,0,0,0] ;   
 
