@@ -17,7 +17,7 @@
 
 // first check that here is no memory leaks when opening windows
 plot(1:10);
-freeMemInit = getMemory();
+freeMemInit = getmemory();
 
 // create several windows and destroy them
 for i=1:100,
@@ -28,7 +28,7 @@ for i=1:100,
   plot(1:10);
 end
 
-freeMemEnd = getMemory();
+freeMemEnd = getmemory();
 
 // There should not be any memory difference, since we will have the same number of opened window. However we toterate a difference of 10Mb
 if (freeMemInit - freeMemEnd) > 1.0e5) then pause; end
