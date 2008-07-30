@@ -1040,17 +1040,18 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
 doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
-	-@if test -x $(top_builddir)/scilab-bin; then \
-		cd $(top_builddir);\
-		echo "-- Building documentation (English) --"; \
-		echo "$(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e \"xmltojar();exit;\"";\
-		DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar();exit;";\
-		echo "-- Building documentation (French) --"; \
-		echo "$(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e \"xmltojar();exit;\""; \
-		DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e "xmltojar();exit;"; \
-	else \
-		echo "Cannot find Scilab binary"; \
-	fi
+@INSTALL_HELP_XML_TRUE@	-@if test -x $(top_builddir)/scilab-bin; then \
+@INSTALL_HELP_XML_TRUE@		cd $(top_builddir);\
+@INSTALL_HELP_XML_TRUE@		echo "-- Building documentation (English) --"; \
+@INSTALL_HELP_XML_TRUE@		echo "$(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e \"xmltojar();exit;\"";\
+@INSTALL_HELP_XML_TRUE@		DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar();exit;";\
+@INSTALL_HELP_XML_TRUE@		echo "-- Building documentation (French) --"; \
+@INSTALL_HELP_XML_TRUE@		echo "$(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e \"xmltojar();exit;\""; \
+@INSTALL_HELP_XML_TRUE@		DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e "xmltojar();exit;"; \
+@INSTALL_HELP_XML_TRUE@	else \
+@INSTALL_HELP_XML_TRUE@		echo "Cannot find Scilab binary"; \
+@INSTALL_HELP_XML_TRUE@	fi
+@INSTALL_HELP_XML_FALSE@	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 
 check-help:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	@if test -x $(top_builddir)/scilab-bin; then \

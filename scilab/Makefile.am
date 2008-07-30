@@ -80,6 +80,7 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
 doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
+if INSTALL_HELP_XML
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		echo "-- Building documentation (English) --"; \
@@ -91,6 +92,9 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
+else
+	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
+endif
 
 check-help:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	@if test -x $(top_builddir)/scilab-bin; then \
