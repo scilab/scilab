@@ -390,7 +390,8 @@ libscielementary_functions_la_CPPFLAGS = 	-Iincludes/ \
 libscielementary_functions_la_CFLAGS= 	-Iincludes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -Isrc/c/ \
--I$(top_srcdir)/modules/output_stream/includes
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/double/includes/
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
 
