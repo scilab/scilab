@@ -41,7 +41,10 @@ int sci_csum(char *fname)
   *stk(l3) = c;
 
   LhsVar(1) = Rhs+1; 
+  /* WARNING : see bug 3321 */
+  #ifndef _MSC_VER
   PutLhsVar();
+  #endif
   
   return 0;
 }
