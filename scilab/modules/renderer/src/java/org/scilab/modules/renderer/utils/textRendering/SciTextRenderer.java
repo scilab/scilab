@@ -26,7 +26,7 @@ import com.sun.opengl.util.j2d.TextRenderer;
  */
 public class SciTextRenderer {
 
-	
+	private static final float EPSILON = 1.0e-4f; 
 
 	/** Size of the font to use */
 	private float fontSize;
@@ -78,13 +78,15 @@ public class SciTextRenderer {
 		// move position
 		//gl.glPushMatrix();
 		//gl.glTranslated(x, y, z);
-		//gl.glScalef(fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
-		//			fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
-		//			fontSize / TextRendererManager.DEFAULT_FONT_SIZE);
+//		gl.glScalef(fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
+//					fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
+//					fontSize / TextRendererManager.DEFAULT_FONT_SIZE);
 		if (useFractionalMetrics) {
 			renderer.draw3D(str, (float) x, (float) y, (float) z, scaleFactor);
 		} else {
-			renderer.draw3D(str, (float) x, (float) y, (float) z, 1.0f);
+			// we need to add a little offset othrwise texture interpolation
+			// sometimes (especially for title) leads to jaggy text.
+			renderer.draw3D(str, (float) x, (float) y, (float) z, 1.0f + EPSILON);
 		}
 		
 		// flush since we moved rendering position

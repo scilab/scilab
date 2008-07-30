@@ -101,10 +101,9 @@ public class TextRendererManager extends HashMap<String, TextRenderer[]> {
 			// but with a font size within the array
 			Font defaultFont = font.deriveFont(fontSize);
 			res = new TextRenderer(defaultFont, false, false, null, true);
-			// direct rendering
+			// direct rendering. Some report says that enabling
+			// vertex arrays may sometime slow down text rendering.
 			res.setUseVertexArrays(false);
-			// smooth by default might be changed after
-			res.setSmoothing(true);
 			
 			// add it to the list of textRenderer from this fotn family
 			usedRenderedList[fontSizeIndex] = res;
