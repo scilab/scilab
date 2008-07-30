@@ -33,7 +33,6 @@ status=printsetupbox()
           <para>Boolean: <emphasis>%T</emphasis> if the user clicked on the <literal>OK</literal> button, <emphasis>%F</emphasis> otherwise.</para>
         </listitem>
       </varlistentry>
-    </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
