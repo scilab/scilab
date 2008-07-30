@@ -92,8 +92,6 @@ int C2F(run)()
   static int    *Lin  = C2F(iop).lin-1;
   static int    *Lpt  = C2F(iop).lpt-1;
   static int    *Lct  = C2F(iop).lct-1;
-  static double *Stk  = C2F(stack).Stk-1;
-  static int    *Istk = (int *)( C2F(stack).Stk)-1;
   static int  *Infstk = C2F(vstk).infstk-1;
 
   static double equiv_4[1];
@@ -208,7 +206,7 @@ int C2F(run)()
 
 
  L11:   /*  next opcode */
-  op = Istk[lc];
+  op = *istk(lc);
   /*  label 49 retains to be able issue a compatibility error message */
   switch ((int)op) { /* step to corresponding part*/
   case 1:  goto L20;
@@ -268,7 +266,7 @@ int C2F(run)()
 
   if (op <= 0) {
     /* ------------- nop ---------------------------------- */
-    lc += Istk[1 + lc];
+    lc += *istk(1 + lc);
     goto L11;
   }
 
@@ -277,20 +275,20 @@ int C2F(run)()
 
  L20: /* stackp, retplaced by assign */
   /*     retained for 2.7 and earlier versions compatibility */
-  C2F(stackp)(&Istk[1 + lc], &c__0);
+  C2F(stackp)(istk(1 + lc), &c__0);
   /*     store info if printing is required see code 22 */
-  C2F(putid)(id, &Istk[1 + lc]);
+  C2F(putid)(id, istk(1 + lc));
   kid = Fin;
   lc += 7;
   goto L10;
 
  L25: /* stackg */
-  Fin = Istk[7 + lc];
+  Fin = *istk(7 + lc);
   ifin = Fin;
-  Rhs = Istk[8 + lc];
+  Rhs = *istk(8 + lc);
   lname = lc + 1;
  L26:
-  C2F(stackg)(&Istk[lname]);
+  C2F(stackg)(istk(lname));
   if (Err > 0||C2F(errgst).err1 > 0) {
     lc += 9;
     goto L10;
@@ -298,13 +296,13 @@ int C2F(run)()
   if (Fin != 0) {/* variable exists */
     goto L28;
   }
-  C2F(funs)(&Istk[1 + lc]); /* check if it is a function */
+  C2F(funs)(istk(1 + lc)); /* check if it is a function */
   if (Err > 0||C2F(errgst).err1 > 0) {
     lc += 9;
     goto L10;
   }
   if (C2F(com).fun != -2) {
-    C2F(putid)(&Ids[1 +(Pt + 1) * nsiz ], &Istk[1 + lc]);
+    C2F(putid)(&Ids[1 +(Pt + 1) * nsiz ], istk(1 + lc));
     if (C2F(com).fun == 0) {
       --Top;
       SciError(4);
@@ -318,41 +316,41 @@ int C2F(run)()
       if (ifin != -4 && ifin != 0) {
 	/* function call */
 	/* change current  opcode to nop */
-	Istk[lc] = 0;
-	Istk[1 + lc] = 9;
+	*istk(lc) = 0;
+	*istk(1 + lc) = 9;
 	lc += 9;
 	/* change the following opcode to matfn opcode */
 	op = C2F(com).fun * 100;
-	Istk[lc] = op;
-	Istk[1 + lc] = Istk[2 + lc] - 1;
-	Istk[2 + lc] = Istk[3 + lc];
-	Istk[3 + lc] = Fin;
+	*istk(lc) = op;
+	*istk(1 + lc) = *istk(2 + lc) - 1;
+	*istk(2 + lc) = *istk(3 + lc);
+	*istk(3 + lc) = Fin;
 	goto L80;
       } else {
 	/* only reference to a function */
 	/* stackg opcode replaced by varfun opcode */
-	Istk[lc] = 27;
-	Istk[1 + lc] = C2F(com).fun;
-	Istk[2 + lc] = Fin;
-	C2F(putid)(&Istk[3 + lc], &Ids[1 + (Pt + 1) * nsiz]);
+	*istk(lc) = 27;
+	*istk(1 + lc) = C2F(com).fun;
+	*istk(2 + lc) = Fin;
+	C2F(putid)(istk(3 + lc), &Ids[1 + (Pt + 1) * nsiz]);
 	goto L10;
       }
     }
     lc += 9;
     goto L10;
   }
-  Fin = Istk[7 + lc];
+  Fin = *istk(7 + lc);
   goto L26;
  L28:
-  if (Rhs == 0 && ((Istk[7 + lc] == -2)||(Istk[7 + lc] == -1)) && Fin == -1) {
+  if (Rhs == 0 && ((*istk(7 + lc) == -2)||(*istk(7 + lc) == -1)) && Fin == -1) {
     lc += 9;
 
-    if (Istk[7 + lc-9] == -2) {
+    if (*istk(7 + lc-9) == -2) {
 
       /* instruction reduced to <name> with name not a function, replace */
       /* next two op code by a single store */
       /* skip extract op-code <5 3 1 1> */
-      if (Istk[lc] != 5 || Istk[1 + lc] != 3) {
+      if (*istk(lc) != 5 || *istk(1 + lc) != 3) {
 	strcpy(C2F(cha1).buf,_("Unexpected opcode, please report into the Scilab bug tracker."));
 	SciError(9999);
 	return 0;
@@ -360,7 +358,7 @@ int C2F(run)()
       lc += 4;
     }
     /* skip assignment op_code <29 43 ans 0> */
-    if (Istk[lc] != 29) {
+    if (*istk(lc) != 29) {
       strcpy(C2F(cha1).buf,_("Unexpected opcode, please report into the Scilab bug tracker."));
       SciError(9999);
       return 0;
@@ -369,7 +367,7 @@ int C2F(run)()
     /* store */
     Rhs = 1;
     C2F(ref2val)();
-    C2F(stackp)(&Istk[lname], &c__0);
+    C2F(stackp)(istk(lname), &c__0);
     if (Err > 0 ||C2F(errgst).err1 > 0) {
       goto L10;
     }
@@ -383,9 +381,9 @@ int C2F(run)()
 
   /*     allops */
  L30:
-  Fin = Istk[1 + lc];
-  Rhs = Istk[2 + lc];
-  Lhs = Istk[3 + lc];
+  Fin = *istk(1 + lc);
+  Rhs = *istk(2 + lc);
+  Lhs = *istk(3 + lc);
   lc += 4;
   if (Fin == extrac) {
     C2F(isafunptr)(&Top, id, &ifun, &ifin);
@@ -421,13 +419,13 @@ int C2F(run)()
 
   /*     string */
  L40:
-  n = Istk[1 + lc];
+  n = *istk(1 + lc);
   if (C2F(errgst).err1 <= 0) {
     ++Top;
     if (C2F(cresmat)("run", &Top, &c__1, &c__1, &n, 3L)) {
       C2F(getsimat)("run", &Top, &Top, &mm1, &nn1, &c__1, &
 		    c__1, &lr, &nlr, 3L);
-      C2F(icopy)(&n, &Istk[2 + lc], &c__1, &Istk[lr], &c__1);
+      C2F(icopy)(&n, istk(2 + lc), &c__1, istk(lr), &c__1);
     }
   }
   lc = lc + n + 2;
@@ -437,15 +435,15 @@ int C2F(run)()
  L41:
   if (C2F(errgst).err1 <= 0) {
     if (C2F(getendian)() == 1) {
-      ix[0] = Istk[1 + lc];
-      ix[1] = Istk[2 + lc];
+      ix[0] = *istk(1 + lc);
+      ix[1] = *istk(2 + lc);
     } else {
-      ix[1] = Istk[1 + lc];
-      ix[0] = Istk[2 + lc];
+      ix[1] = *istk(1 + lc);
+      ix[0] = *istk(2 + lc);
     }
     ++Top;
     if (C2F(cremat)("run", &Top, &c__0, &c__1, &c__1, &lr, &lcc, 3L)) {
-      Stk[lr] = *x;
+      *stk(lr) = *x;
     }
   }
   lc += 3;
@@ -458,12 +456,12 @@ int C2F(run)()
 
   /*     for */
  L45:
-  nc = Istk[1 + lc];
+  nc = *istk(1 + lc);
   lc += 2;
   l0 = lc;
   if (Ptover(1)) {
     lc += nc;
-    lc = lc + nsiz + Istk[lc];
+    lc = lc + nsiz + *istk(lc);
     goto L10;
   }
   Rstk[Pt] = 611;
@@ -472,7 +470,7 @@ int C2F(run)()
   goto L10;
 
  L46:
-  nc = Istk[lc];
+  nc = *istk(lc);
   l0 = lc + 7;
   if  (C2F(errgst).errcatch>=1 &&C2F(errgst).err1 > 0) {
     /*an error occured in the loop variable expression evaluation, in 'continue' mode
@@ -493,7 +491,7 @@ int C2F(run)()
     SciError(115);
     goto L48;
   }
-  C2F(nextj)(&Istk[1 + l0 - 7], &Pstk[Pt]);
+  C2F(nextj)(istk(1 + l0 - 7), &Pstk[Pt]);
   if (Pstk[Pt] != 0) {
     Lct[8] = Ids[2 + Pt * nsiz];
     if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
@@ -508,7 +506,7 @@ int C2F(run)()
 
   /*     Very old if - while (removed) */
  L49:
-  if (Istk[1 + lc] < 0) {
+  if (*istk(1 + lc) < 0) {
     goto L55;
   }
  L52:
@@ -519,16 +517,16 @@ int C2F(run)()
   /*     "select- case"  or  "if elseif else end" */
  L55:
   if (Ptover(1)) {
-    lc += (i2 = Istk[1 + lc], abs(i2));
+    lc += (i2 = *istk(1 + lc), abs(i2));
     goto L10;
   }
   Pstk[Pt] = lc;
   Ids[3 + Pt * nsiz] = C2F(errgst).toperr;
 
  L551:
-  if (Istk[1 + lc] > 0) {
+  if (*istk(1 + lc) > 0) {
     /*    first expression */
-    nc = Istk[3 + lc];
+    nc = *istk(3 + lc);
     Rstk[Pt] = 614;
     lc += 4;
     l0 = lc;
@@ -547,7 +545,7 @@ int C2F(run)()
     goto L62;
   }
 
-  if (Istk[Pstk[Pt]] == 10) {
+  if (*istk(Pstk[Pt]) == 10) {
     /*     copy first expression */
     i2 = Top + 1;
     if (! C2F(vcopyobj)("run", &Top, &i2,3L)) {
@@ -556,7 +554,7 @@ int C2F(run)()
     ++Top;
   }
 
-  nc = Istk[lc];
+  nc = *istk(lc);
   Rstk[Pt] = 615;
   ++lc;
   l0 = lc;
@@ -574,11 +572,11 @@ int C2F(run)()
   if (nc == 0) {
     /* if nc=0 the instruction correspond to the else */
     ok = TRUE;
-    if (Istk[Pstk[Pt]] == 10) {
+    if (*istk(Pstk[Pt]) == 10) {
       --Top;
     }
     goto L59;
-  } else if (Istk[Pstk[Pt]] != 10) {
+  } else if (*istk(Pstk[Pt]) != 10) {
     ok = Istrue(1);
     if (Err > 0 || C2F(errgst).err1 > 0) {
       goto L10;
@@ -611,11 +609,11 @@ int C2F(run)()
     goto L10;
   }
  L59:
-  nc = Istk[lc];
+  nc = *istk(lc);
   C2F(errgst).toperr = Top;
   if (ok) {
     ++lc;
-    if (Istk[Pstk[Pt]] == 10) {
+    if (*istk(Pstk[Pt]) == 10) {
       --Top;
     }
     l0 = lc;
@@ -625,7 +623,7 @@ int C2F(run)()
     if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
     goto L10;
   } else {
-    if (Istk[Pstk[Pt]] == 9) {
+    if (*istk(Pstk[Pt]) == 9) {
       goto L62;
     }
     lc = lc + nc + 1;
@@ -635,23 +633,23 @@ int C2F(run)()
  L61:
   /*     fin if while select/case */
   l0 = Pstk[Pt];
-  if (Istk[Pstk[Pt]] == 9) {
+  if (*istk(Pstk[Pt]) == 9) {
     lc = l0 + 4;
     goto L56;
   }
  L62:
   l0 = Pstk[Pt];
-  lc = l0 + (i2 = Istk[1 + l0], abs(i2));
+  lc = l0 + (i2 = *istk(1 + l0), abs(i2));
   C2F(errgst).toperr = Ids[3 + Pt * nsiz];
   --Pt;
   goto L70;
 
   /*     macro */
  L65:
-  i2 = Istk[2 + lc] - 1;
+  i2 = *istk(2 + lc) - 1;
   Rhs = Max(i2,0);
   C2F(adjustrhs)();
-  Lhs = Istk[3 + lc];
+  Lhs = *istk(3 + lc);
 
   lc += 4;
 
@@ -692,23 +690,23 @@ int C2F(run)()
   case 2: /* back to a for */
     j = Pstk[Pt];
     l0 = Ids[1 + Pt * nsiz];
-    nc = Istk[l0 - 7];
+    nc = *istk(l0 - 7);
     goto L10;
   case 3: /* back to an if or a while */
     li = Ids[1 + Pt * nsiz];
     kc = Ids[2 + Pt * nsiz];
-    nc = Istk[2 + li];
+    nc = *istk(2 + li);
     l0 = li + 5;
     if (kc == 0) {
       goto L10;
     }
     l0 += nc;
-    nc = Istk[3 + li];
+    nc = *istk(3 + li);
     if (kc == 1) {
       goto L10;
     }
     l0 += nc;
-    nc = Istk[4 + li];
+    nc = *istk(4 + li);
     goto L10;
   case 4:
   case 5:
@@ -719,12 +717,12 @@ int C2F(run)()
     goto L10;
   case 8: /*back to a try*/
     l0 = Ids[1 + Pt * nsiz];
-    nc = Istk[l0 - 2];
+    nc = *istk(l0 - 2);
     goto L10;
   case 9:  /*back to a catch*/
     l0 = Ids[1 + Pt * nsiz];
-    nc = Istk[l0 - 1];
-    l0 = l0 + Istk[l0 - 2];
+    nc = *istk(l0 - 1);
+    l0 = l0 + *istk(l0 - 2);
     goto L10;
   default :
     goto L10;
@@ -732,10 +730,10 @@ int C2F(run)()
 
  L80:
   C2F(com).fun = op / 100;
-  Rhs = Istk[1 + lc];
+  Rhs = *istk(1 + lc);
   C2F(adjustrhs)();
-  Lhs = Istk[2 + lc];
-  Fin = Istk[3 + lc];
+  Lhs = *istk(2 + lc);
+  Fin = *istk(3 + lc);
   lc += 4;
 
  L81:
@@ -803,15 +801,15 @@ int C2F(run)()
   if (Rstk[p] == 612) {
     /*     break in a for */
     l0 = Ids[1 + p * nsiz];
-    lc = l0 + Istk[1 + l0 - 8];
+    lc = l0 + *istk(1 + l0 - 8);
     Pt = p - 1;
     --Top;
     goto L70;
-  } else if (Rstk[p] == 616 && Istk[1 + Pstk[p] - 1] == 9)
+  } else if (Rstk[p] == 616 && *istk(1 + Pstk[p] - 1) == 9)
     {
       /*     break in a while */
       l0 = Pstk[p];
-      lc = l0 + (i2 = Istk[1 + l0], abs(i2));
+      lc = l0 + (i2 = *istk(1 + l0), abs(i2));
       Pt = p - 1;
       goto L70;
     } else if (Rstk[p] == 501 || Rstk[p] == 502 ||
@@ -836,15 +834,15 @@ int C2F(run)()
     l0 = Ids[1 + p * nsiz];
     /* nc is required for the end of loop */
     lc = l0 - 7;
-    nc = Istk[lc];
+    nc = *istk(lc);
     Pt = p;
     goto L47;
-  } else if (Rstk[p] == 616 && Istk[1 + Pstk[p] - 1] == 9)
+  } else if (Rstk[p] == 616 && *istk(1 + Pstk[p] - 1) == 9)
     {
       /*     continue in a while */
       l0 = Pstk[p];
       lc = l0;
-      nc = Istk[lc];
+      nc = *istk(lc);
       Pt = p;
       goto L551;
     } else {
@@ -966,7 +964,7 @@ int C2F(run)()
    *   ligne sans avoir a analyser la suite des codes operatoires */
 
  L110:
-  Lct[8] = Istk[1 + lc];
+  Lct[8] = *istk(1 + lc);
   lc += 2;
   goto L10;
 
@@ -1031,20 +1029,20 @@ int C2F(run)()
 
  L130:
   Infstk[Top] = 1;
-  C2F(putid)(&C2F(vstk).idstk[Top * nsiz - nsiz], &Istk[1 + lc]);
+  C2F(putid)(&C2F(vstk).idstk[Top * nsiz - nsiz], istk(1 + lc));
   lc += 7;
   goto L10;
 
   /*     form recursive extraction list */
 
  L140:
-  m = Istk[2 + lc];
+  m = *istk(2 + lc);
   if (Rstk[Pt] == 617) {
     /* runtime arg count (list extraction) */
     m += Pstk[Pt];
     Pstk[Pt] = 0;
   }
-  C2F(mkindx)(&Istk[1 + lc], &m);
+  C2F(mkindx)(istk(1 + lc), &m);
   lc += 3;
   goto L10;
 
@@ -1073,14 +1071,14 @@ int C2F(run)()
 
  L170:
   /*     print stored variable */
-  if (Lct[4] >= 0 && Istk[1 + lc] != semi && kid != 0) {
+  if (Lct[4] >= 0 && *istk(1 + lc) != semi && kid != 0) {
     C2F(print)(id, &kid, &C2F(iop).wte);
   }
   lc += 2;
   goto L10;
  L180:
   /*     name2var */
-  C2F(name2var)(&Istk[1 + lc]);
+  C2F(name2var)(istk(1 + lc));
   lc += 7;
   goto L10;
 
@@ -1093,9 +1091,9 @@ int C2F(run)()
 
  L200:
   /*     profile */
-  ++Istk[1 + lc];
+  ++*istk(1 + lc);
   t = clock();
-  Istk[2 + lc] = Istk[2 + lc] + t - tref;
+  *istk(2 + lc) = *istk(2 + lc) + t - tref;
   tref = t;
   lc += 3;
   goto L10;
@@ -1103,8 +1101,8 @@ int C2F(run)()
  L210:
   /*     character string vector */
   if (C2F(errgst).err1 <= 0) {
-    n = Istk[1 + lc] * Istk[2 + lc];
-    nc = Istk[lc + 4 + n] - 1;
+    n = *istk(1 + lc) * *istk(2 + lc);
+    nc = *istk(lc + 4 + n) - 1;
     ++Top;
     il = Lstk[Top] + Lstk[Top] - 1;
     i2 = il + 5 + n + nc;
@@ -1115,8 +1113,8 @@ int C2F(run)()
       goto L10;
     }
     i2 = n + 5 + nc;
-    C2F(icopy)(&i2, &Istk[lc], &c__1, &Istk[il], &c__1);
-    Istk[il] = 10;
+    C2F(icopy)(&i2, istk(lc), &c__1, istk(il), &c__1);
+    *istk(il) = 10;
     i2 = il + 5 + n + nc;
     Lstk[1 + Top] = i2 / 2 + 1;
   }
@@ -1124,26 +1122,26 @@ int C2F(run)()
   goto L10;
  L220:
   /*     varfun */
-  C2F(varfunptr)(&Istk[3 + lc], &Istk[1 + lc], &Istk[2 + lc]);
+  C2F(varfunptr)(istk(3 + lc), istk(1 + lc), istk(2 + lc));
   lc += 9;
   goto L10;
  L230:
   /*     affectation */
-  Lhs = Istk[1 + lc];
-  ip = Istk[2 + lc];
+  Lhs = *istk(1 + lc);
+  ip = *istk(2 + lc);
   li = lc + 3;
   lc = li + Lhs * 7;
   /*     following code is an adaptation of corresponding code in parse.f */
   ndel = 0;
  L231:
-  Rhs = Istk[6 + li];
+  Rhs = *istk(6 + li);
   lastindpos = Top - Lhs - ndel;
   if (C2F(errgst).err1 != 0) {
     goto L253;
   }
   if (Rhs == 0) {
     /* goto simple affectation */
-    C2F(stackp)(&Istk[li], &c__0);
+    C2F(stackp)(istk(li), &c__0);
     if (Err > 0 || C2F(errgst).err1 > 0) {
       goto L10;
     }
@@ -1154,7 +1152,7 @@ int C2F(run)()
     if (!(Lct[4] >= 0 && ip != semi && Fin != 0)) goto L253;
     ifin=Fin;
   L232:
-    C2F(print)(&Istk[li], &ifin, &C2F(iop).wte);
+    C2F(print)(istk(li), &ifin, &C2F(iop).wte);
     if (Rstk[Pt]!=1101) goto L253;
     ++Pt;
     Pstk[Pt] = li;
@@ -1168,7 +1166,7 @@ int C2F(run)()
     return 0;
   L240:
     li = Pstk[Pt];
-    ip = Istk[li-1];
+    ip = *istk(li-1);
     ndel =       Ids[1 + Pt * nsiz];
     lastindpos = Ids[2 + Pt * nsiz];
     tref =       Ids[3 + Pt * nsiz];
@@ -1201,7 +1199,7 @@ int C2F(run)()
   lastindpos -= Rhs;
   /*     put a reference to the lhs variable */
   Fin = -3;
-  C2F(stackg)(&Istk[li]);
+  C2F(stackg)(istk(li));
   if (Err > 0 || C2F(errgst).err1 > 0) {
     goto L10;
   }
@@ -1227,7 +1225,7 @@ int C2F(run)()
   return 0;
  L250:
   li = Pstk[Pt];
-  ip = Istk[li-1];
+  ip = *istk(li-1);
   ndel =       Ids[1 + Pt * nsiz];
   lastindpos = Ids[2 + Pt * nsiz];
   tref =       Ids[3 + Pt * nsiz];
@@ -1236,7 +1234,7 @@ int C2F(run)()
   nc =         Ids[6 + Pt * nsiz];
   --Pt;
   /*     store the updated value */
-  C2F(stackp)(&Istk[li], &c__0);
+  C2F(stackp)(istk(li), &c__0);
 
   if (Err > 0 || C2F(errgst).err1 > 0) {
     goto L10;
@@ -1248,7 +1246,7 @@ int C2F(run)()
   if (!(Lct[4] >= 0 && ip != semi && Fin != 0)) goto L252;
   ifin=Fin;
  L251:
-  C2F(print)(&Istk[li], &ifin, &C2F(iop).wte);
+  C2F(print)(istk(li), &ifin, &C2F(iop).wte);
   if (Rstk[Pt]!=1101) goto L252;
   ++Pt;
   Pstk[Pt] = li;
@@ -1262,7 +1260,7 @@ int C2F(run)()
   return 0;
  L254:
   li = Pstk[Pt];
-  ip = Istk[li-1];
+  ip = *istk(li-1);
   ndel =       Ids[1 + Pt * nsiz];
   lastindpos = Ids[2 + Pt * nsiz];
   tref =       Ids[3 + Pt * nsiz];
@@ -1288,15 +1286,15 @@ int C2F(run)()
 
   /*     logical expression shortcircuit */
  L260:
-  if (Istk[1 + lc] == 1) {
+  if (*istk(1 + lc) == 1) {
     /* | case */
     if (C2F(gettype)(&Top) != sci_ints && Istrue(0)) {
-      lc += Istk[2 + lc];
+      lc += *istk(2 + lc);
     }
   } else {
     /* & case */
     if (C2F(gettype)(&Top) != sci_ints && ! Istrue(0)) {
-      lc += Istk[2 + lc];
+      lc += *istk(2 + lc);
     }
   }
   lc += 3;
@@ -1304,17 +1302,17 @@ int C2F(run)()
  /*     comment */
  L261:
 
-  lc += 2+Istk[1 + lc];
+  lc += 2+*istk(1 + lc);
   goto L10;
 
  /*     try catch */
  L270:
-  nc = Istk[1 + lc];
+  nc = *istk(1 + lc);
   lc += 3;
   l0 = lc;
   if (Ptover(1)) {
     lc += nc;
-    lc += nsiz + Istk[lc];
+    lc += nsiz + *istk(lc);
     goto L10;
   }
   Rstk[Pt] = 618;
@@ -1344,15 +1342,15 @@ int C2F(run)()
   Lct[4]            = Ids[6 + Pt * nsiz]-10000*C2F(com).sym-100;
   if (ok) {
     /* no error occured in the try part*/
-    nc = Istk[l0-1];
+    nc = *istk(l0-1);
     lc += nc; /*skip catch  instructions*/
     /* finish try catch context and continue*/
     --Pt;
     goto L70;
   }
   /*an error occured in the try part*/
-  lc = l0+Istk[l0-2];/*skip remaining try instruction*/
-  nc = Istk[l0-1];
+  lc = l0+*istk(l0-2);/*skip remaining try instruction*/
+  nc = *istk(l0-1);
   /*execute catch instructions (next op-codes)*/
   l0 = lc;
   Rstk[Pt] = 619;
