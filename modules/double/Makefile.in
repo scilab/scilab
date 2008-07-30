@@ -96,7 +96,9 @@ libscidouble_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(am__append_1) $(am__append_2)
 am__objects_1 = libscidouble_la-matmult.lo libscidouble_la-matldiv.lo \
-	libscidouble_la-matrdiv.lo libscidouble_la-matrix_division.lo
+	libscidouble_la-matrdiv.lo \
+	libscidouble_la-matrix_multiplication.lo \
+	libscidouble_la-matrix_division.lo
 am__objects_2 = libscidouble_la-gw_double.lo
 am__objects_3 = vecldiv.lo vecmul.lo matxpow.lo vecimpl.lo matldiv.lo \
 	matsubst.lo vecrdiv.lo matchsgn.lo matrdiv.lo matrc.lo \
@@ -324,6 +326,7 @@ top_srcdir = @top_srcdir@
 DOUBLE_C_SOURCES = src/c/matmult.c \
 			src/c/matldiv.c \
 			src/c/matrdiv.c \
+			src/c/matrix_multiplication.c \
 			src/c/matrix_division.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_double.c
@@ -372,7 +375,7 @@ modulename = double
 libscidouble_la_rootdir = $(mydatadir)
 libscidouble_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### double : init scripts ####
+####ï¿½double : init scripts ####
 libscidouble_la_etcdir = $(mydatadir)/etc
 libscidouble_la_etc_DATA = etc/double.quit etc/double.start
 
@@ -499,6 +502,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-matmult.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-matrdiv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-matrix_division.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidouble_la-matrix_multiplication.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -541,6 +545,13 @@ libscidouble_la-matrdiv.lo: src/c/matrdiv.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrdiv.c' object='libscidouble_la-matrdiv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -c -o libscidouble_la-matrdiv.lo `test -f 'src/c/matrdiv.c' || echo '$(srcdir)/'`src/c/matrdiv.c
+
+libscidouble_la-matrix_multiplication.lo: src/c/matrix_multiplication.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -MT libscidouble_la-matrix_multiplication.lo -MD -MP -MF $(DEPDIR)/libscidouble_la-matrix_multiplication.Tpo -c -o libscidouble_la-matrix_multiplication.lo `test -f 'src/c/matrix_multiplication.c' || echo '$(srcdir)/'`src/c/matrix_multiplication.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscidouble_la-matrix_multiplication.Tpo $(DEPDIR)/libscidouble_la-matrix_multiplication.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_multiplication.c' object='libscidouble_la-matrix_multiplication.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -c -o libscidouble_la-matrix_multiplication.lo `test -f 'src/c/matrix_multiplication.c' || echo '$(srcdir)/'`src/c/matrix_multiplication.c
 
 libscidouble_la-matrix_division.lo: src/c/matrix_division.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidouble_la_CFLAGS) $(CFLAGS) -MT libscidouble_la-matrix_division.lo -MD -MP -MF $(DEPDIR)/libscidouble_la-matrix_division.Tpo -c -o libscidouble_la-matrix_division.lo `test -f 'src/c/matrix_division.c' || echo '$(srcdir)/'`src/c/matrix_division.c

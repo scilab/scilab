@@ -1,6 +1,7 @@
 DOUBLE_C_SOURCES = 	src/c/matmult.c \
 			src/c/matldiv.c \
 			src/c/matrdiv.c \
+			src/c/matrix_multiplication.c \
 			src/c/matrix_division.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_double.c
@@ -56,7 +57,7 @@ libscidouble_la_rootdir = $(mydatadir)
 libscidouble_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 
-#### double : init scripts ####
+####ï¿½double : init scripts ####
 libscidouble_la_etcdir = $(mydatadir)/etc
 libscidouble_la_etc_DATA = etc/double.quit etc/double.start
 
