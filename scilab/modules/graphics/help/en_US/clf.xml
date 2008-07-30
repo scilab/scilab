@@ -75,13 +75,17 @@ clf(num,&lt;opt_job_arg&gt;)</synopsis>
    f4.figure_size = [400, 200];
    plot2d()
    clf(f4,'reset')
+   
    f0=scf(0); //creates figure with id==0 and make it the current one
-   f0.color_map=hotcolormap(128);
-   plot3d1();
+   f0.color_map=hotcolormap(128); // change color map
+   t=-%pi:0.3:%pi;
+   plot3d1(t,t,sin(t)'*cos(t));
+
    clf() // equivalent to clf(gcf(),'clear')
-   plot3d1();  // color_map unchanged
+   plot3d1(t,t,sin(t)'*cos(t));  // color_map unchanged
+   
    clf(gcf(),'reset')
-   plot3d1();  // color_map changed (back to the default one with 32 colors)
+   plot3d1(t,t,sin(t)'*cos(t));  // color_map changed (back to the default one with 32 colors)
 
   ]]></programlisting>
   </refsection>

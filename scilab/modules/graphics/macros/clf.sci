@@ -8,15 +8,17 @@
 
 function clf(varargin)
 
-if size(varargin)==0 then
+nbArg = size(varargin);
+
+if nbArg==0 then
   h=gcf()
   job='clear'
-elseif size(varargin)==1 then
+elseif nbArg==1 then
   if type(varargin(1))==1 then // win num given
     num=varargin(1)
-    //f=gcf();
+
     h=[];for k=1:size(num,'*'),h=[h;get_figure_handle(num(k))];end
-    //scf(f);
+
     job='clear'
   elseif type(varargin(1))==9 then // handle given
     h=varargin(1);job='clear'
@@ -24,38 +26,59 @@ elseif size(varargin)==1 then
     h=gcf()
     job=varargin(1)
   end
-elseif size(varargin)==2 then
+elseif nbArg==2 then
   if type(varargin(1))==1 then // win num given
     num=varargin(1)
-    //f=gcf();
+
     h=[];for k=1:size(num,'*'),h=[h;get_figure_handle(num(k))];end
-    //scf(f);
+
   elseif type(varargin(1))==9 then // handle given
     h=varargin(1);
   end
   job=varargin(2);
 else
-  error('clf must be called with at most 2 arguments')
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "clf", 0, 2));
 end
-if and(job<>['clear','reset']) then 
-  error('clf: job argument possible values are '"clear"' or '"reset"'')
-end
-for k=1:size(h,'*') 
-  hk=h(k)
-  if stripblanks(hk.type)<>'Figure' then
-    error('handle should be of type '"Figure"'')
-  end
-  c=hk.children;
-  vis=hk.visible;hk.visible='off';
 
-  for i=1:size(c,'*'),delete(c(i)),end
-  hk.visible=vis
-  if job=='reset' then
-    props=['axes_size','auto_resize','figure_name','color_map','pixmap','pixel_drawing_mode','background','visible','rotation_style']
-    df=gdf()
-    for p=props
-      hk(p)=df(p);
-    end
+if and(job<>['clear','reset']) then
+  error(msprintf(gettext("%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."), "clf", nbArg));
+end
+
+nbHandles = size(h,'*');
+
+// check that all the handles are figures
+for k=1:nbHandles
+  curFig = h(k);
+  if curFig.type <> 'Figure' then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A vector of ''Figure'' handle expected."), "clf", 1));
   end
 end
+
+if (job == 'reset') then
+  for k = 1: nbHandles
+    curFig = h(k);
+
+    // delete the figure and recreate a new one with same id.
+    // consequently we are sure it is reset to the default values.
+    figId = curFig.figure_id;
+    delete(curFig);
+    scf(figId);
+  end 
+end
+
+
+for k=1:nbHandles 
+  curFig = h(k)
+
+  // drawlater
+  immediateMode = curFig.immediate_drawing;
+  curFig.immediate_drawing = 'off';
+  
+  delete(curFig.children);
+
+  // drawnow
+  curFig.immediate_drawing = immediateMode;
+end
+
 endfunction
+
