@@ -258,7 +258,7 @@ L72:
 			} 
 			else 
 			{
-				temp = (i = ((int *)&C2F(stack))[C2F(vstk).lstk[Top - 1] + C2F(vstk).lstk[Top - 1] - 1 - 1], abs(i));
+				temp = (i = *istk(iadr(C2F(vstk).lstk[Top - 1])), abs(i));
 				if ( (temp != 8) && (C2F(istrue)(&val)) )
 				{
 					/* first term is true there is no use to evaluate the other */
@@ -345,7 +345,7 @@ L81:
 			} 
 			else 
 			{
-				temp = (i = ((int *)&C2F(stack))[C2F(vstk).lstk[Top - 1] + C2F(vstk).lstk[Top - 1] - 1 - 1], abs(i));
+				temp = (i = *istk(iadr(C2F(vstk).lstk[Top - 1])), abs(i));
 				if ( (temp != 8) && (! C2F(istrue)(&val)) )
 				{
 					/* first term is false there is no use to evaluate the other */
