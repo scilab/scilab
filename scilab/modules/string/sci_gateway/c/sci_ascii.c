@@ -152,22 +152,20 @@ static int asciiStrings(char *fname)
 	int  l = 0, il = 0, lr = 0;
 	int ilr = 0;
 
-	#define I_STK ((int *)&C2F(stack))
-
 	il = iadr( C2F(vstk).lstk[Top - 1] );
 
 	ilr = il;
-	if (I_STK[il - 1] < 0) 
+	if (*istk(il) < 0) 
 	{
-		il = I_STK[il] + I_STK[il] - 1;
+		il = iadr(*istk(il+1));
 	}
 	/* check if parameter is a reference */
 	is_a_reference_on_stack = (il != ilr);
 
 	/* find number of characters */
-	nbr_characters = I_STK[il + 4 +I_STK[il] * I_STK[il + 1] - 1] - 1;
+	nbr_characters = *istk(il + 4 + *istk(il + 1) * *istk(il + 2)) - 1;
 
-	l = il + 5 + I_STK[il] * I_STK[il + 1];
+	l = il + 5 + *istk(il+1) * *istk(il+2);
 
 	if (is_a_reference_on_stack) 
 	{
@@ -195,15 +193,15 @@ static int asciiStrings(char *fname)
 			Error(17);
 			return 0;
 		}
-		C2F(icopy)(&nbr_characters, &I_STK[l - 1], &one, &I_STK[(l + nbr_characters) - 1], &one);
+		C2F(icopy)(&nbr_characters, istk(l), &one, istk(l + nbr_characters), &one);
 		l = lw;
 	}
 
 	/* create output int matrix , see C2F(crematvar) stack1.c */
-	I_STK[ilr - 1] = sci_matrix;
-	I_STK[ilr] = 1;
-	I_STK[ilr + 1] = nbr_characters;
-	I_STK[ilr + 2] = 0;
+	*istk(ilr) = sci_matrix;
+	*istk(ilr+1) = 1;
+	*istk(ilr+2) = nbr_characters;
+	*istk(ilr+3) = 0;
 
 	j = ilr + 4;
 	lr = j / 2 + 1;
@@ -211,13 +209,11 @@ static int asciiStrings(char *fname)
 	/* put each value on stack */
 	for (i = 0; i < nbr_characters; i++) 
 	{
-		int scilab_code = I_STK[l + i - 1];
+		int scilab_code = *istk(l + i);
 		C2F(stack).Stk[lr + i - 1] = convertScilabCodeToAsciiCode(scilab_code);
 	}
 	/* update Top of stack */
 	C2F(vstk).lstk[Top] = lr + nbr_characters;
-
-	#undef I_STK 
 
 	return 0;
 	
