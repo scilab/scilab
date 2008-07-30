@@ -128,8 +128,6 @@ int C2F(parse)(void)
   static int *Lin     = C2F(iop).lin-1;
   static int *Lpt     = C2F(iop).lpt-1;
   static int *Lct     = C2F(iop).lct-1;
-  /*static double *Stk  = C2F(stack).Stk-1;*/
-  /*static int    *Istk = (int *)( C2F(stack).Stk)-1;*/
 
   /* System generated locals */
   int i__2, i__3;
@@ -1549,7 +1547,6 @@ void C2F(parsecomment)()
   static int *Lin     = C2F(iop).lin-1;
   static int *Lpt     = C2F(iop).lpt-1;
   static int *Comp    = C2F(com).comp-1;
-  static int *Istk    = (int *)( C2F(stack).Stk)-1;
 
 
   static integer l, ll, lkp, l0,c1=1;
@@ -1574,9 +1571,9 @@ void C2F(parsecomment)()
       SciError(17);
       return ;
     }
-    Istk[lkp] = 31;
-    Istk[lkp+1] = ll;
-    C2F(icopy)(&ll, &(Lin[l0]), &c1, &(Istk[lkp+2]), &c1);
+    *istk(lkp) = 31;
+    *istk(lkp+1) = ll;
+    C2F(icopy)(&ll, &(Lin[l0]), &c1, istk(lkp+2), &c1);
     Comp[1] = lkp + 2 + ll;
   }
   Lpt[4] = l;
