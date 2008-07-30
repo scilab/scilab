@@ -47,8 +47,8 @@ function scs_m = do_color(%win, %pt, scs_m)
   //**-----------------------------------------------------
   
   //** pick a color
-  coul = getcolor('Choose a color', 1); //** coul is the index of the chosen
-                                        //** color in current figure's colormap
+  coul = getcolor('Choose a color:', 1); //** coul is the index of the chosen
+                                         //** color in current figure's colormap
    
   //**----------------------------------------------------------
   //** the code below is modified according the new graphics API
