@@ -1123,10 +1123,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_help_gtk.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_is_handle_valid.c"
 				>
 			</File>
@@ -2150,10 +2146,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_grayplot.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_help_gtk.h"
 				>
 			</File>
 			<File

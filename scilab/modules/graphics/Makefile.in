@@ -427,7 +427,7 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	sci_gateway/c/sci_relocate_handle.c sci_gateway/c/sci_get.c \
 	sci_gateway/c/sci_xarcs.c sci_gateway/c/sci_xfpoly.c \
 	sci_gateway/c/sci_drawlater.c sci_gateway/c/sci_champ.c \
-	sci_gateway/c/sci_help_gtk.c sci_gateway/c/sci_set.c \
+	sci_gateway/c/sci_set.c \
 	sci_gateway/c/sci_showalluimenushandles.c \
 	sci_gateway/c/sci_unglue.c sci_gateway/c/gw_graphics.c \
 	sci_gateway/c/sci_zoom_rect.c sci_gateway/c/sci_delete.c \
@@ -798,7 +798,6 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-sci_xfpoly.lo \
 @GUI_TRUE@	libscigraphics_la-sci_drawlater.lo \
 @GUI_TRUE@	libscigraphics_la-sci_champ.lo \
-@GUI_TRUE@	libscigraphics_la-sci_help_gtk.lo \
 @GUI_TRUE@	libscigraphics_la-sci_set.lo \
 @GUI_TRUE@	libscigraphics_la-sci_showalluimenushandles.lo \
 @GUI_TRUE@	libscigraphics_la-sci_unglue.lo \
@@ -876,16 +875,16 @@ am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/InitObjects.h includes/sci_xfpoly.h \
 	includes/sci_drawlater.h includes/Format.h \
 	includes/sci_set_posfig_dim.h includes/sci_set.h \
-	includes/sci_help_gtk.h includes/sci_delete.h \
-	includes/sci_plot2d.h includes/sci_StringBox.h \
-	includes/sci_xgetmouse.h includes/Interaction.h \
-	includes/sci_xfarcs.h includes/sci_contour2di.h \
-	includes/HandleManagement.h includes/sci_fec.h \
-	includes/sci_matplot1.h includes/XsetXgetParameters.h \
-	includes/sci_xfpolys.h includes/WindowList.h \
-	includes/sci_xget.h includes/sci_swap_handles.h \
-	includes/sci_newaxes.h includes/PloEch.h includes/sci_xclick.h \
-	includes/sci_xclear.h includes/sci_xtape.h includes/sci_xset.h \
+	includes/sci_delete.h includes/sci_plot2d.h \
+	includes/sci_StringBox.h includes/sci_xgetmouse.h \
+	includes/Interaction.h includes/sci_xfarcs.h \
+	includes/sci_contour2di.h includes/HandleManagement.h \
+	includes/sci_fec.h includes/sci_matplot1.h \
+	includes/XsetXgetParameters.h includes/sci_xfpolys.h \
+	includes/WindowList.h includes/sci_xget.h \
+	includes/sci_swap_handles.h includes/sci_newaxes.h \
+	includes/PloEch.h includes/sci_xclick.h includes/sci_xclear.h \
+	includes/sci_xtape.h includes/sci_xset.h \
 	includes/sci_xgetech.h includes/sci_glue.h \
 	includes/sci_xstringb.h includes/sci_xname.h \
 	includes/DrawObjects.h includes/Vect2Matrix.h \
@@ -1465,7 +1464,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@sci_gateway/c/sci_xfpoly.c \
 @GUI_TRUE@sci_gateway/c/sci_drawlater.c \
 @GUI_TRUE@sci_gateway/c/sci_champ.c \
-@GUI_TRUE@sci_gateway/c/sci_help_gtk.c \
 @GUI_TRUE@sci_gateway/c/sci_set.c \
 @GUI_TRUE@sci_gateway/c/sci_showalluimenushandles.c \
 @GUI_TRUE@sci_gateway/c/sci_unglue.c \
@@ -1570,7 +1568,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/Format.h \
 @GUI_TRUE@includes/sci_set_posfig_dim.h \
 @GUI_TRUE@includes/sci_set.h \
-@GUI_TRUE@includes/sci_help_gtk.h \
 @GUI_TRUE@includes/sci_delete.h \
 @GUI_TRUE@includes/sci_plot2d.h \
 @GUI_TRUE@includes/sci_StringBox.h \
@@ -2144,7 +2141,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_get.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_glue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_grayplot.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_help_gtk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_is_handle_valid.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_matplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_matplot1.Plo@am__quote@
@@ -4844,13 +4840,6 @@ libscigraphics_la-sci_champ.lo: sci_gateway/c/sci_champ.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_champ.c' object='libscigraphics_la-sci_champ.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_champ.lo `test -f 'sci_gateway/c/sci_champ.c' || echo '$(srcdir)/'`sci_gateway/c/sci_champ.c
-
-libscigraphics_la-sci_help_gtk.lo: sci_gateway/c/sci_help_gtk.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_help_gtk.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_help_gtk.Tpo -c -o libscigraphics_la-sci_help_gtk.lo `test -f 'sci_gateway/c/sci_help_gtk.c' || echo '$(srcdir)/'`sci_gateway/c/sci_help_gtk.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_help_gtk.Tpo $(DEPDIR)/libscigraphics_la-sci_help_gtk.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_help_gtk.c' object='libscigraphics_la-sci_help_gtk.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_help_gtk.lo `test -f 'sci_gateway/c/sci_help_gtk.c' || echo '$(srcdir)/'`sci_gateway/c/sci_help_gtk.c
 
 libscigraphics_la-sci_set.lo: sci_gateway/c/sci_set.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_set.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_set.Tpo -c -o libscigraphics_la-sci_set.lo `test -f 'sci_gateway/c/sci_set.c' || echo '$(srcdir)/'`sci_gateway/c/sci_set.c

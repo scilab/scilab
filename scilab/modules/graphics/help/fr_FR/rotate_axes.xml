@@ -10,27 +10,27 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rotate_axes">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rotate_axes">
   <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008) $</pubdate>
+    <pubdate>$LastChangedDate: 2008-04-09 10:14:07 +0200 (mer., 09 avr. 2008) $</pubdate>
   </info>
   <refnamediv>
     <refname>rotate_axes</refname>
-    <refpurpose>Rotation interactive d'un handle de type Axes.</refpurpose>
+    <refpurpose>Interactive rotation of an Axes handle.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>Calling Sequence</title>
     <synopsis>rotate_axes()
 rotate_axes(h)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para>Handle de type Figure ou Axes. Spécifie le système d'axe à faire pivoter.</para>
+          <para>Figure or Axes handle. Specify on which Axes the rotation will apply.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -38,38 +38,40 @@ rotate_axes(h)
   <refsection>
     <title>Description</title>
     <para>
-      La fonction <literal>rotate_axes</literal> est utilisée pour faire pivoter interactivement un objet graphique de type Axes.
-      Une fois la fonction appelée, l'utilisateur doit cliquer deux fois sur la fenêtre graphique. Le premier clic démarre la rotation tandis que le second la termine.
+      <literal>rotate_axes</literal> funtion is used to perform an interactive rotation of an Axes object.
+      When the function is called, the user is requested to click twice on the graphic window. The first click
+      initializes the rotation and the second ends it.
+      
     </para>
     <para>
-      Si l'argument d'entrée est un handle de type Axes, la rotation s'applique à celui-ci.
-      S'il s'agit d'un handle de type figure, le premier clic détermine le système d'axe à pivoter.
-      Si la fonction est appelée sans argument, la rotation s'applique à la fenêtre courante.
+      If an Axes handle is specified as input argument, the rotation will apply on it.
+      If a figure handle is specified, the first click determines the Axes objet to rotate.
+      If the function is called with no argument, the rotation apply on the current figure.
     </para>
   </refsection>
   <refsection>
-    <title>Exemples</title>
+    <title>Examples</title>
     <programlisting role="example"><![CDATA[
       clf();
-      // création deux système d'axe à l'intérieur de la figure
+      // create two axes in the figure
       subplot(2, 1, 1);
       plot2d;
       suplot(2, 1, 2);
       plot3d;
 
-      // rotation du deuxième système d'axe uniquement
+      // rotate only the second axes
       axes2 = gca();
       rotate_axes(axes2);
 
-      // rotation du système d'axe sélectionné
+      // rotate the selected one
       rotate_axes();
-      // ou de façon équivalente
+      // or
       rotate_axes(gcf());
 
-  ]]></programlisting>
+]]></programlisting>
   </refsection>
   <refsection>
-    <title>Voir Aussi</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="zoom_rect">zoom_rect</link>
@@ -80,10 +82,8 @@ rotate_axes(h)
     </simplelist>
   </refsection>
   <refsection>
-    <title>Auteurs</title>
-    <para>Jean-Baptiste Silvy INRIA</para>
+    <title>Authors</title>
+    <para>Jean-Baptiste Silvy INRIA </para>
   </refsection>
 </refentry>
-
-
 

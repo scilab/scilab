@@ -10,67 +10,67 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="is_handle_valid">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="is_handle_valid">
   <info>
     <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008) $</pubdate>
   </info>
   <refnamediv>
     <refname>is_handle_valid</refname>
-    <refpurpose>Vérifie si un ensemble de handles graphiques est valide.</refpurpose>
+    <refpurpose>Check wether a set of graphic handles is still valid.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>Calling Sequence</title>
     <synopsis>isValid = is_handle_valid(h)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>Parameters</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para>Matrice de handles graphiques</para>
+          <para>Matrix of graphic handles</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>isValid</term>
         <listitem>
-	  <para>Matrice de booléens de même taille que <literal>h</literal></para>
+          <para>Matrix of boolean with the same size as <literal>h</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> La function <literal>is_handle_valid</literal> vérifie si un ensemble de handles graphiques est valide.
-      Un handle considéré comme valide s'il n'a pas été détruit.
-      Le résultat est la matrice de booléens <literal>isValid</literal>.
-      <literal>isValid(i,j)</literal> est vrai si <literal>h(i,j)</literal> est valide
-      et faux sinon.
+    <para><literal>is_handle_valid</literal> function tests wether a set of graphic handle
+    is still valid. A valid handle is a handle which has not been deleted.
+    The result, <literal>isValid</literal>, is a boolean matrix such as
+    <literal>isValid(i,j)</literal> is true if
+    <literal>h(i,j)</literal> is valid and false otherwise.
     </para>
   </refsection>
   <refsection>
-    <title>Exemples</title>
+    <title>Examples</title>
     <programlisting role="example"><![CDATA[
-    // Vérification de la validité des objets courants
+    // check that current objects are valid
     is_handle_valid([gcf(), gca(), gce()])
 
-    // création de 11 polylines
+    // create 11 polylines
     plot([0:10; 0:10; 0:10], [0:10; 0:0.5:5; 0:2:20]);
     
-    // Vérification de la validité des polylines
+    // check polylines validity
     axes = gca();
     polylines = axes.children(1).children
     is_handle_valid(polylines)
     
-    // destruction de quelques polylines
+    // delete some polylines
     delete(polylines(3:7));
-    // Affichage de la validité
+    // print validity
     is_handle_valid(polylines)
-
+    
   ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Voir Aussi</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="delete">delete</link>
@@ -81,10 +81,9 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Auteurs</title>
+    <title>Authors</title>
     <para>Jean-Baptiste Silvy INRIA</para>
   </refsection>
 </refentry>
-
 
 

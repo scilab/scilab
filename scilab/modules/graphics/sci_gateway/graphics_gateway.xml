@@ -94,10 +94,9 @@
 <PRIMITIVE gatewayId="7" primitiveId="68" primitiveName="newaxes" />
 <PRIMITIVE gatewayId="7" primitiveId="69" primitiveName="relocate_handle" />
 <PRIMITIVE gatewayId="7" primitiveId="70" primitiveName="swap_handles" />
-<PRIMITIVE gatewayId="7" primitiveId="71" primitiveName="help_gtk" />
-<PRIMITIVE gatewayId="7" primitiveId="72" primitiveName="showalluimenushandles" />
-<PRIMITIVE gatewayId="7" primitiveId="73" primitiveName="rubberbox" />
-<PRIMITIVE gatewayId="7" primitiveId="74" primitiveName="rotate_axes" />
-<PRIMITIVE gatewayId="7" primitiveId="75" primitiveName="is_handle_valid" />
-<PRIMITIVE gatewayId="7" primitiveId="76" primitiveName="captions" />
+<PRIMITIVE gatewayId="7" primitiveId="71" primitiveName="showalluimenushandles" />
+<PRIMITIVE gatewayId="7" primitiveId="72" primitiveName="rubberbox" />
+<PRIMITIVE gatewayId="7" primitiveId="73" primitiveName="rotate_axes" />
+<PRIMITIVE gatewayId="7" primitiveId="74" primitiveName="is_handle_valid" />
+<PRIMITIVE gatewayId="7" primitiveId="75" primitiveName="captions" />
 </GATEWAY>

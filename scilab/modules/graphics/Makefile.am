@@ -371,7 +371,6 @@ sci_gateway/c/sci_xarcs.c \
 sci_gateway/c/sci_xfpoly.c \
 sci_gateway/c/sci_drawlater.c \
 sci_gateway/c/sci_champ.c \
-sci_gateway/c/sci_help_gtk.c \
 sci_gateway/c/sci_set.c \
 sci_gateway/c/sci_showalluimenushandles.c \
 sci_gateway/c/sci_unglue.c \
@@ -487,7 +486,6 @@ includes/sci_drawlater.h \
 includes/Format.h \
 includes/sci_set_posfig_dim.h \
 includes/sci_set.h \
-includes/sci_help_gtk.h \
 includes/sci_delete.h \
 includes/sci_plot2d.h \
 includes/sci_StringBox.h \

@@ -68,7 +68,6 @@
 #include "sci_newaxes.h"
 #include "sci_relocate_handle.h"
 #include "sci_swap_handles.h"
-#include "sci_help_gtk.h"
 #include "sci_matplot.h"
 #include "sci_matplot1.h"
 #include "sci_showalluimenushandles.h"
