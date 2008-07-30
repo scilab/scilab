@@ -438,7 +438,7 @@ try,catch */
 				displayAndStoreError(_("Wrong number of arguments in function call...\n"));
 				displayAndStoreError(_("Arguments are :\n"));
 				/* print variables name on stack :( */
-				C2F(prntid)(&((integer *)&C2F(stack))[C2F(recu).pstk[C2F(recu).pt - 1] - 1], &Rhs, &C2F(iop).wte);
+				C2F(prntid)(istk(C2F(recu).pstk[C2F(recu).pt - 1]), &Rhs, &C2F(iop).wte);
 			}
 
 		}
@@ -454,7 +454,7 @@ try,catch */
 				displayAndStoreError(_("Incorrect # of outputs in the function\n"));
 				displayAndStoreError(_("Arguments are :\n"));
 				/* print variables name on stack :( */
-				C2F(prntid)(&((integer *)&C2F(stack))[C2F(recu).pstk[C2F(recu).pt - 1] - 1], &Lhs, &C2F(iop).wte);
+				C2F(prntid)(istk(C2F(recu).pstk[C2F(recu).pt - 1]), &Lhs, &C2F(iop).wte);
 			}
 		}
 		break;
