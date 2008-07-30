@@ -31,7 +31,7 @@ end
 freeMemEnd = getmemory();
 
 // There should not be any memory difference, since we will have the same number of opened window. However we toterate a difference of 10Mb
-if (freeMemInit - freeMemEnd) > 1.0e5) then pause; end
+if ((freeMemInit - freeMemEnd) > 1.0e5) then pause; end
 
 // second test. Open a lot of window. Scilab should provide an error but not crash.
 
