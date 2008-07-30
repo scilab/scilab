@@ -259,7 +259,20 @@ public class SwingScilabCanvas extends GLJPanel implements SimpleCanvas {
 	public void close() {
 		// remove the event listener
 		// so we won't have useless redraw
+		
 		removeGLEventListener(renderer);
+		renderer = null;
+		
+		// context need to be destroyed
+		// otherwise there are some memory leaks
+		try {
+			getContext().destroy();
+		} catch (NullPointerException e) {
+			// context not already created
+			// do nothing
+		}
+		
+		this.removeAll();
 	}
 	
 

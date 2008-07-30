@@ -72,7 +72,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 */
 	public SwingScilabWindow() {
 		super();
-
 		// TODO : Only for testing : Must be removed
 		this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
 		this.setTitle("Scilab");
@@ -230,7 +229,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
 	 */
 	public void removeTab(Tab tab) {
-		DockingManager.close((SwingScilabTab) tab.getAsSimpleTab());
+		DockingManager.close(((SwingScilabTab) tab.getAsSimpleTab()));
+		((SwingScilabTab) tab.getAsSimpleTab()).close();
 		if (getDockingPort().getDockables().isEmpty()) {
 			if (toolBar != null) {
 				UIElementMapper.removeMapping(toolBar.getElementId());
@@ -238,7 +238,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 			if (menuBar != null) {
 				UIElementMapper.removeMapping(menuBar.getElementId());
 			}
+			addMenuBar(null);
+			addToolBar(null);
+			addInfoBar(null);
 			UIElementMapper.removeMapping(this.elementId);
+			
+			this.removeAll();
 			this.dispose();
 		}
 	}

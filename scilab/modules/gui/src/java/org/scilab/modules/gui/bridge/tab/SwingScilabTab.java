@@ -15,6 +15,7 @@
 package org.scilab.modules.gui.bridge.tab;
 
 import java.awt.Component;
+import java.awt.Container;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.Action;
@@ -784,6 +785,22 @@ public class SwingScilabTab extends View implements SimpleTab {
 	public void setCallback(CallBack callback) {
 		callback.putValue(Action.NAME, DockingConstants.CLOSE_ACTION);
 		this.addAction(callback);
+	}
+	
+	/**
+	 * Close the tab and disable it.
+	 */
+	public void close() {
+		this.getContentPane().removeAll();
+		this.setMenuBar(null);
+		this.setToolBar(null);
+		this.setInfoBar(null);
+		this.setTitlebar(null);
+		this.removeAll();
+		
+		// without this children canvas are not released.
+		Container dummyContainer = new Container();
+		this.setContentPane(dummyContainer);
 	}
 
 }

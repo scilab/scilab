@@ -15,10 +15,12 @@ package org.scilab.modules.gui.bridge.canvas;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.media.opengl.GL;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.ScilabEventListener;
@@ -331,6 +333,22 @@ public class ScrolledSwingScilabCanvas extends JScrollPane implements SimpleCanv
 	 * Disable the canvas befor closing
 	 */
 	public void close() {
-		getCanvas().close();
+		// need to call it on the event dispatch thread, otherwise setCanvas(null)
+		// freezes gui.
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					disableEventHandler();
+					getCanvas().close();
+					setCanvas(null);
+					removeAll();
+					eventHandler = null;
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
 	}
 }

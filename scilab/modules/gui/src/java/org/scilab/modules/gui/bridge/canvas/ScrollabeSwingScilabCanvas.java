@@ -55,6 +55,9 @@ public class ScrollabeSwingScilabCanvas extends SwingScilabCanvas implements
 	 */
 	public static ScrollabeSwingScilabCanvas createCanvas(int figureIndex) {
 		GLCapabilities cap = new GLCapabilities();
+		// to enable anti aliasing
+		//cap.setSampleBuffers(true);
+	    //cap.setNumSamples(4);
 		
 		ScrollabeSwingScilabCanvas newCanvas = new ScrollabeSwingScilabCanvas(cap, figureIndex);
 		
