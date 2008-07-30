@@ -25,11 +25,9 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
   //++ Check that modelica compiler is available
   //++ Otherwise, give some feedback and quit
   if ~with_modelica_compiler() then
-    x_message(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "compile_modelica"));
-    ok   = %f
+    x_message(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "compile_modelica"))
     name = ''
-    nx = 0; nin = 0; nout = 0; ng = 0 ; nm = 0; nz = 0;
-    return
+    ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nm = 0, nz = 0; return
   end
 
   ng    = 0
@@ -41,9 +39,9 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
 
   JacobianEnabled = %t
   if JacobianEnabled then
-    JAC = ' -jac ';
+    JAC = ' -jac '
   else
-    JAC = ' ';
+    JAC = ' '
   end
 
   // do not update C code if needcompile == 0
@@ -67,7 +65,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
       unix_err       = 'Lunix.err'
     end
 
-    FlatName = fil;
+    FlatName = fil
 
     if MSDOS then
       //++ Windows platforms: enclose paths in double quotes when they contain spaces
@@ -94,51 +92,51 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     end
 
     if OUTM then // if_modelicac_fails_then_use_translator
-      MSG1 = mgetl(TMPDIR + filesep() + modelicac_err);
+      MSG1 = mgetl(TMPDIR + filesep() + modelicac_err)
       if fileinfo(fullfile(SCI, 'bin', translator_bin)) <> [] then // if_translator_exists
         translator = pathconvert(SCI + filesep() + 'bin' + filesep() + translator_bin, %f, %t)
-        ext = filesep() + '*.mo';
-        molibs = [];
+        ext = filesep() + '*.mo'
+        molibs = []
         for k = 1:size(mlibs,'*')
-          molibs = [molibs ; listfiles(mlibs(k) + ext)];
+          molibs = [molibs ; listfiles(mlibs(k) + ext)]
         end
-        txt = [];
+        txt = []
         for k = 1:size(molibs, '*')
-          [pathx, fnamex, extensionx] = fileparts(molibs(k));
+          [pathx, fnamex, extensionx] = fileparts(molibs(k))
           if (fnamex <> 'MYMOPACKAGE') then
-            txt=[txt ; mgetl(molibs(k))];
+            txt=[txt ; mgetl(molibs(k))]
           end
         end
-        mputl(txt, TMPDIR + '/MYMOPACKAGE.mo');
+        mputl(txt, TMPDIR + '/MYMOPACKAGE.mo')
         // all Modelica files found in "modelica_libs" directories are
         // merged into the temporary file  "MYMOPACKAGE.mo". This is done
         // because in Windows the length of the command line is limited.
-        FlatName   = path + name + '_flattened.mo';
-        translator = translator + strcat(' -lib '+ TMPDIR + '/MYMOPACKAGE.mo');
-        //translator = translator + strcat(' -lib ' + molibs);
+        FlatName   = path + name + '_flattened.mo'
+        translator = translator + strcat(' -lib '+ TMPDIR + '/MYMOPACKAGE.mo')
+        //translator = translator + strcat(' -lib ' + molibs)
         instr = translator + ' -lib ' + fil + ' -o ' + FlatName + " -command ""' + name + ' x;"" > ' + TMPDIR + filesep() + translator_err
         if MSDOS
           mputl(instr, path + 'gent.bat')
           instr = path + 'gent.bat'
         end
         if execstr('unix_s(instr)', 'errcatch') <> 0 then
-          MSG2 = mgetl(TMPDIR + filesep() + translator_err);
+          MSG2 = mgetl(TMPDIR + filesep() + translator_err)
           x_message(['-------Modelica compiler error:-------'; ..
                      MSG1; ..
                      '-------Modelica translator error:-------'; ..
                      MSG2; ..
-                     'Please read the error message in the Scilab window']);
-          ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
+                     'Please read the error message in the Scilab window'])
+          ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nm = 0, nz = 0; return
         end
         instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + filesep() + unix_err
         if execstr('unix_s(instr)', 'errcatch') <> 0 then
-          MSG3 = mgetl(TMPDIR + filesep() + unix_err);
+          MSG3 = mgetl(TMPDIR + filesep() + unix_err)
           x_message(['-------Modelica compiler error (without the translator):-------'; ..
                      MSG1; ..
                      '-------Modelica compiler error (with the translator):-------'; ..
                      MSG3; ..
-                     'Please read the error message in the Scilab window']);
-          ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
+                     'Please read the error message in the Scilab window'])
+          ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nm = 0, nz = 0; return
         else
           mprintf('   Flat modelica code generated at ' + FlatName + '\n')
         end
@@ -147,8 +145,8 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
                    MSG1; ..
                    'Please read the error message in the Scilab window'; ..
                    ' '; ..
-                   'Please install the Modelica translator (available at www.scicos.org) in ""SCI' + filesep() + 'bin"" and try again']);
-        ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nz = 0; return
+                   'Please install the Modelica translator (available at www.scicos.org) in ""SCI' + filesep() + 'bin"" and try again'])
+        ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nm = 0, nz = 0; return
       end // if_translator_exists
     end // if_modelicac_fails_then_use_translator
 
@@ -166,14 +164,14 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
   // get the generated block properties
   [nx, nin, nout, ng, nm, nz] = analyze_c_code(mgetl(Cfile))
 
-  mprintf('\n\r Modelica blocks are reduced to a block with:');
-  mprintf('\n\r Number of continuous time states: %d',nx);
-  mprintf('\n\r Number of discrete time states  : %d',nz);
-  mprintf('\n\r Number of zero-crossing surfaces: %d',ng);
-  mprintf('\n\r Number of modes  : %d',nm);
-  mprintf('\n\r Number of inputs : %d',nin);
-  mprintf('\n\r Number of outputs: %d',nout);
-  mprintf('\n\r ');
+  mprintf('\n\r Modelica blocks are reduced to a block with:')
+  mprintf('\n\r Number of continuous time states: %d',nx)
+  mprintf('\n\r Number of discrete time states  : %d',nz)
+  mprintf('\n\r Number of zero-crossing surfaces: %d',ng)
+  mprintf('\n\r Number of modes  : %d',nm)
+  mprintf('\n\r Number of inputs : %d',nin)
+  mprintf('\n\r Number of outputs: %d',nout)
+  mprintf('\n\r ')
 
   // below newest(Cfile, Ofile) is used instead of  updateC in case where
   // Cfile has been manually modified (debug, ...)
@@ -183,37 +181,37 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     //  build the list of external functions libraries
 
     // remove repreated directories from mlibs
-    rep = [];
+    rep = []
     for k = 1:size(mlibs,'*')
       for j = k+1:size(mlibs,'*')
         if stripblanks(mlibs(k)) == stripblanks(mlibs(j)) then rep = [rep,j]; end
       end
     end
-    mlibs(rep) = [];
+    mlibs(rep) = []
     //--------------------------------
-    libs = [];
+    libs = []
     if MSDOS then ext = '\*.lib', else ext='/*.a', end
     // removing .a or .lib sufixs
     for k = 1:size(mlibs,'*')
-      aa = listfiles(mlibs(k) + ext);
+      aa = listfiles(mlibs(k) + ext)
       for j = 1:size(aa,'*')
-        [pathx, fnamex, extensionx] = fileparts(aa(j));
-        libsname = fullfile(pathx, fnamex);
-        libs = [libs; libsname];
+        [pathx, fnamex, extensionx] = fileparts(aa(j))
+        libsname = fullfile(pathx, fnamex)
+        libs = [libs; libsname]
       end
     end
     // add modelica_libs to the list of directories to be searched for *.h
     // if MSDOS then ext='\*.h',else ext='/*.h',end
     EIncludes = ''
     for k = 1:size(mlibs,'*')
-      EIncludes = EIncludes + '  -I""' + mlibs(k)+ '""';
+      EIncludes = EIncludes + '  -I""' + mlibs(k)+ '""'
     end
-    E2 = '';
+    E2 = ''
     for i = 1:length(EIncludes)
       if (part(EIncludes, i) == '\') then
-        E2 = E2 + '\';
+        E2 = E2 + '\'
       end
-      E2 = E2 + part(EIncludes, i);
+      E2 = E2 + part(EIncludes, i)
     end
 
     //** build shared library with the C code
@@ -221,15 +219,15 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     // files=name+'.o';Make=path+'Make'+name;loader=path+name+'.sce'
     // ierr=execstr('libn=ilib_for_link(name,files,libs,''c'',Make,loader,'''','''',E2)','errcatch')
     // if ierr<>0 then
-    //   ok=%f;x_message(['sorry compilation problem';lasterror()]);
-    //   return;
+    //   ok=%f;x_message(['sorry compilation problem';lasterror()])
+    //   return
     // end
 
     // executing loader file
     // if execstr('exec(loader); ','errcatch')<>0 then
     //   ok=%f;
-    //   x_message(['Problem while linking generated code';lasterror()]);
-    //   return;
+    //   x_message(['Problem while linking generated code';lasterror()])
+    //   return
     // end
 
     files = name
