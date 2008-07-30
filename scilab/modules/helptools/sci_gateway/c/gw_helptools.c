@@ -16,6 +16,8 @@
 #include "inisci-c.h"
 #include "scilabmode.h"
 #include "callFunctionFromGateway.h"
+#include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
  static gw_generic_table Tab[]=
  {
@@ -24,6 +26,13 @@
 /*--------------------------------------------------------------------------*/
 int gw_helptools(void)
 {
+	Rhs = Max(0, Rhs);
+
+	if ( getScilabMode() == SCILAB_NWNI)
+	{
+		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "helptools");
+		return 0;
+	}
 	callFunctionFromGateway(Tab);
 	return 0;
 }
