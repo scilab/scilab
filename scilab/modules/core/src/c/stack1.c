@@ -306,10 +306,10 @@ int C2F(crematvar)(integer *id, integer *lw, integer *it, integer *m, integer *n
 	/* Function Body */
 	C2F(putid)(&C2F(vstk).idstk[*lw * 6 - 6], &id[1]);
 	il = C2F(vstk).lstk[*lw - 1] + C2F(vstk).lstk[*lw - 1] - 1;
-	((integer *)&C2F(stack))[il - 1] = 1;
-	((integer *)&C2F(stack))[il] = *m;
-	((integer *)&C2F(stack))[il + 1] = *n;
-	((integer *)&C2F(stack))[il + 2] = *it;
+	*istk(il) = 1;
+	*istk(il+1) = *m;
+	*istk(il+2) = *n;
+	*istk(il+3) = *it;
 	i__1 = il + 4;
 	lr = i__1 / 2 + 1;
 	lc = lr + *m * *n;
@@ -319,11 +319,11 @@ int C2F(crematvar)(integer *id, integer *lw, integer *it, integer *m, integer *n
 		C2F(vstk).lstk[*lw] = i__1 / 2 + 1 + *m * *n * (*it + 1);
 	}
 	i__1 = *m * *n;
-	C2F(unsfdcopy)(&i__1, &rtab[1], &c__1, &C2F(stack).Stk[lr - 1], &c__1);
+	C2F(unsfdcopy)(&i__1, &rtab[1], &c__1, stk(lr), &c__1);
 	if (*it == 1) 
 	{
 		i__1 = *m * *n;
-		C2F(unsfdcopy)(&i__1, &itab[1], &c__1, &C2F(stack).Stk[lc - 1], &c__1);
+		C2F(unsfdcopy)(&i__1, &itab[1], &c__1, stk(lc), &c__1);
 	}
 	return 0;
 } 
@@ -345,14 +345,14 @@ int C2F(crebmatvar)(integer *id, integer *lw, integer *m, integer *n, integer *v
 
 	C2F(putid)(&C2F(vstk).idstk[*lw * 6 - 6], &id[1]);
 	il = C2F(vstk).lstk[*lw - 1] + C2F(vstk).lstk[*lw - 1] - 1;
-	((integer *)&C2F(stack))[il - 1] = 4;
-	((integer *)&C2F(stack))[il] = *m;
-	((integer *)&C2F(stack))[il + 1] = *n;
+	*istk(il) = 4;
+	*istk(il+1) = *m;
+	*istk(il+2) = *n;
 	lr = il + 3;
 	i__1 = il + 3 + *m * *n + 2;
 	C2F(vstk).lstk[*lw] = i__1 / 2 + 1;
 	i__1 = *m * *n;
-	C2F(icopy)(&i__1, &val[1], &c__1, &((integer *)&C2F(stack))[lr - 1], &c__1);
+	C2F(icopy)(&i__1, &val[1], &c__1, istk(lr), &c__1);
 	return 0;
 } 
 /*--------------------------------------------------------- 
@@ -371,17 +371,17 @@ int C2F(cresmatvar)(integer *id, integer *lw, char *str, integer *lstr, unsigned
 	il = C2F(vstk).lstk[*lw - 1] + C2F(vstk).lstk[*lw - 1] - 1;
 	mn = 1;
 	ix1 = il + 4 + (*lstr + 1) + (mn + 1);
-	((integer *)&C2F(stack))[il - 1] = 10;
-	((integer *)&C2F(stack))[il] = 1;
-	((integer *)&C2F(stack))[il + 1] = 1;
-	((integer *)&C2F(stack))[il + 2] = 0;
+	*istk(il) = 10;
+	*istk(il+1) = 1;
+	*istk(il+2) = 1;
+	*istk(il+3) = 0;
 	ilp = il + 4;
-	((integer *)&C2F(stack))[ilp - 1] = 1;
-	((integer *)&C2F(stack))[ilp] = ((integer *)&C2F(stack))[ilp - 1] + *lstr;
+	*istk(ilp) = 1;
+	*istk(ilp+1) = *istk(ilp) + *lstr;
 	ilast = ilp + mn;
-	lr1 = ilast + ((integer *)&C2F(stack))[ilp - 1];
-	C2F(cvstr)(lstr, &((integer *)&C2F(stack))[lr1 - 1], str, &c__0, str_len);
-	ix1 = ilast + ((integer *)&C2F(stack))[ilast - 1];
+	lr1 = ilast + *istk(ilp);
+	C2F(cvstr)(lstr, istk(lr1), str, &c__0, str_len);
+	ix1 = ilast + *istk(ilast);
 	C2F(vstk).lstk[*lw] = ix1 / 2 + 1;
 	return 0;
 }
