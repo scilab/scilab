@@ -210,7 +210,7 @@ static int asciiStrings(char *fname)
 	for (i = 0; i < nbr_characters; i++) 
 	{
 		int scilab_code = *istk(l + i);
-		C2F(stack).Stk[lr + i - 1] = convertScilabCodeToAsciiCode(scilab_code);
+		*stk(lr + i) = convertScilabCodeToAsciiCode(scilab_code);
 	}
 	/* update Top of stack */
 	C2F(vstk).lstk[Top] = lr + nbr_characters;
