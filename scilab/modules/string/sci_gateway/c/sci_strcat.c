@@ -467,9 +467,7 @@ static int sumlengthstring(int rhspos)
 
 		for  ( x = 0; x < mn; x++ )
 		{
-			#define STK_POS_STRING ((integer *)&C2F(stack))
-			lenstrcat +=  (int) (STK_POS_STRING[ilrd + x ] - STK_POS_STRING[ilrd + x - 1]);
-			#undef STK_POS_STRING
+			lenstrcat +=  (int) (*istk(ilrd + x + 1) - *istk(ilrd + x));
 		}
 		sumlength = lenstrcat;
 	}
