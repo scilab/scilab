@@ -1,6 +1,8 @@
 package org.scilab.modules.helptools;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -83,6 +85,8 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add("variablelist.as.blocks=1");
 			specificArgs.add("shade.verbatim=1");
 		} 
+		if (format.equalsIgnoreCase("PS")) {
+		}
 		if (format.equalsIgnoreCase("HTML")) {
 			specificArgs.add("use.id.as.filename=1");
 			specificArgs.add("html.stylesheet=html.css");
@@ -101,6 +105,28 @@ public class BuildDocObject extends StyleSheet {
 		this.format = format;
 	}
 
+
+	private String preProcessMaster(String masterXML, String styleSheet) {
+
+		String filename = (String) new File(masterXML).getName();
+		/* Create the output file which will be created by copyconvert.run into the working directory  */
+		File masterXMLTransformed = new File(this.outputDirectory + File.separator + filename.substring(0, filename.lastIndexOf(".")) + "-processed.xml");
+
+		this.copyFile(new File(styleSheet), new File(this.outputDirectory + File.separator + (String) new File(styleSheet).getName()));
+        CopyConvert copyConvert = new CopyConvert();
+        copyConvert.setVerbose(true);
+        copyConvert.setPrintFormat(this.format);
+		
+        try {
+            copyConvert.run(new File(masterXML), masterXMLTransformed);
+        } catch (Exception e) {
+            System.err.println("Cannot copy/convert '" + masterXML + "' to '"
+							   + masterXMLTransformed + "': " + Helpers.reason(e));
+            System.exit(2);
+        }
+		return masterXMLTransformed.getAbsolutePath();
+	}
+
     /**
      * Private method which manages the post processing
      *
@@ -108,6 +134,25 @@ public class BuildDocObject extends StyleSheet {
 	private void postProcess() {
 		if (this.format.equalsIgnoreCase("JH") || format.equalsIgnoreCase("javaHelp")) {
 			BuildJavaHelp.buildJavaHelp(this.outputDirectory, this.language);
+		}
+	}
+
+
+	private void copyFile(File in, File out) {
+		try {
+			FileInputStream fis = new FileInputStream(in);
+			FileOutputStream fos = new FileOutputStream(out);
+			byte[] buf = new byte[1024];
+			int i = 0;
+			while ((i = fis.read(buf)) != -1) {
+				fos.write(buf, 0, i);
+			}
+			fis.close();
+			fos.close();
+		} catch(java.io.FileNotFoundException e) {
+			System.err.println("Error while copying " + in + " to " + out + " : " + e.getMessage());			
+		} catch (java.io.IOException e) {
+			System.err.println("Error while copying " + in + " to " + out + " : " + e.getMessage());			
 		}
 	}
 
@@ -136,15 +181,21 @@ public class BuildDocObject extends StyleSheet {
 		if (!new File(this.outputDirectory).isDirectory()) {
 			throw new FileNotFoundException("Could not find directory: " + this.outputDirectory);
 		}
+		String sourceDocProcessed = this.preProcessMaster(sourceDoc, styleSheet);
 
-		args.add(sourceDoc);
+		args.add(sourceDocProcessed);
 		args.add(this.styleDoc);
 		args.add("base.dir=" + this.outputDirectory);
 		args.add("html.stylesheet=" + styleSheet);
 		args.addAll(specificArgs);
-		
-		doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
+
+		//		doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
+
+		/* Delete the master temp file to avoid to be shipped with the rest */
+		new File(sourceDocProcessed).delete();
+
 		this.postProcess();
+
 	}
 	
     /**

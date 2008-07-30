@@ -20,11 +20,28 @@ import java.io.FileInputStream;
 import java.util.zip.ZipEntry;
 import java.util.jar.JarOutputStream;
 
+import java.util.ArrayList;
 
 /**
  * This class manages the build of the Java Help
  */
 public class BuildJavaHelp {
+
+	private static ArrayList<File> buildFileList(File directory) {
+		ArrayList<File> listFile = new ArrayList<File>();
+
+		File [] files = directory.listFiles();
+		for (int i = 0; i < files.length; i++) {
+
+			if (files[i].isDirectory()) {
+				listFile.addAll(buildFileList(files[i]));
+			}else{
+				listFile.add(files[i]);
+			}
+		}
+
+		return listFile;
+	}
 
     /**
      * Private method which is trying to build the jar
@@ -52,30 +69,27 @@ public class BuildJavaHelp {
 		}
 
 		jarFile.setLevel(compressionLevel);
-
-		/* Defines the filter to know what we want to ship in the jar */
-		FilenameFilter filter = new FilenameFilter() {
-				public boolean accept(File dir, String name) {
-					return name.endsWith(".html") || name.endsWith(".xml") || name.endsWith(".jhm") || name.endsWith(".hs");
-				}
-			};
-
-        File currentDir = new File(outputDirectory);
-		File []allFiles = currentDir.listFiles(filter);
+		ArrayList<File> fileList=BuildJavaHelp.buildFileList(new File(outputDirectory));
+		File []allFiles = fileList.toArray(new File [fileList.size()]);
 		for (int i = 0; i < allFiles.length; i++) {			
 			try {
-				FileInputStream fileInputStream = new FileInputStream(allFiles[i]);
+				File workingFile = allFiles[i];
+				FileInputStream fileInputStream = new FileInputStream(workingFile);
  
-				int length = (int) allFiles[i].length();
+				int length = (int) workingFile.length();
 				byte[] buffer = new byte[length];
-
 				try {
 					fileInputStream.read(buffer, 0, length);
 				} catch (java.io.IOException e) {
-					System.err.println("buildDoc: Could not find/access to " + allFiles[i] + " ( " + e.getLocalizedMessage() + " )");
+					System.err.println("buildDoc: Could not find/access to " + workingFile + " ( " + e.getLocalizedMessage() + " )");
 				}
- 
-				ZipEntry zipEntry = new ZipEntry(baseName + "/" + allFiles[i].getName());
+				String relativeFileName=null;
+				if (workingFile.getPath().indexOf("JavaHelpSearch") == -1) {
+					relativeFileName = baseName + "/" + workingFile.getName();
+				} else {
+					relativeFileName = baseName + "/JavaHelpSearch/" + workingFile.getName();
+				}
+				ZipEntry zipEntry = new ZipEntry(relativeFileName);
 				jarFile.putNextEntry(zipEntry);
 
 				jarFile.write(buffer, 0, length);
@@ -106,6 +120,8 @@ public class BuildJavaHelp {
 
 		try {
 			String[] args = new String[] {
+				"-db",
+				outputDirectory + "/JavaHelpSearch/", /* Where the Java Help Index should be created */
 				outputDirectory
 			};
 			indexer.compile(args);
