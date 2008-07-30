@@ -26,8 +26,14 @@ for k = size(names,'*'):-1:1
 end
 
 for k=1:size(names,'*')
+
+  //** "Safe" version without ALT shortcut   
+  //** addmenu(win, names(k), menus(k+1), list(0,names(k))); 
+
   //** Automatically add the [ALT] menufile shortcut  
   addmenu(win, "&"+names(k), menus(k+1), list(0,names(k))); 
 end
+
 datas = []; 
+
 endfunction

@@ -63,7 +63,6 @@ function Open_()
     
     options = scs_m.props.options ; 
 
-    clf() ; 
     set_background();
     
     if size(scs_m.props.wpar,'*')>12 then
