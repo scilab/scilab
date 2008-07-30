@@ -80,6 +80,15 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     private File gs;
     private File ps2pdf;
 
+
+	public void setVerbose(boolean verbose){
+		this.verbose=verbose;
+	}
+
+	public void setPrintFormat(String printFormat){
+		this.printFormat=printFormat;
+	}
+   
     // -----------------------------------------------------------------------
 
     public void run(File inFile, File outFile) 
@@ -374,9 +383,9 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         String ext = Helpers.getFileExtension(baseName);
 
         if ("tex".equalsIgnoreCase(ext)) {
-            if ("ps".equals(printFormat)) {
+            if ("ps".equalsIgnoreCase(printFormat)) {
                 baseName = rootName + "_tex.eps";
-            } else if ("pdf".equals(printFormat)) {
+            } else if ("pdf".equalsIgnoreCase(printFormat)) {
                 baseName = rootName + "_tex.pdf";
             } else {
                 baseName = rootName + "_tex.png";
@@ -520,9 +529,9 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
             shellExec(cmd.toString(), tmpDir);
 
-            if ("ps".equals(printFormat)) {
+            if ("ps".equalsIgnoreCase(printFormat)) {
                 Helpers.copyFile(epsFile, outFile);
-            } else if ("pdf".equals(printFormat)) {
+            } else if ("pdf".equalsIgnoreCase(printFormat)) {
                 cmd = new StringBuilder();
                 cmd.append('\"');
                 cmd.append(ps2pdf);
@@ -716,11 +725,11 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         for (; l < args.length; ++l) {
             String arg = args[l];
 
-            if ("-v".equals(arg)) {
+            if ("-v".equalsIgnoreCase(arg)) {
                 verbose = true;
-            } else if ("-ps".equals(arg)) {
+            } else if ("-ps".equalsIgnoreCase(arg)) {
                 printFormat = "ps";
-            } else if ("-pdf".equals(arg)) {
+            } else if ("-pdf".equalsIgnoreCase(arg)) {
                 printFormat = "pdf";
             } else {
                 if (arg.startsWith("-")) {
