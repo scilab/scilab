@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-06-03 13:29+0100\n"
+"Revision-Date: 2008-07-31 17:54+0100\n"
 
 # File: macros/x_choices.sci, line: 29
 # File: macros/addmenu.sci, line: 27
@@ -49,8 +49,8 @@ msgstr ""
 # File: sci_gateway/c/sci_xgetfile.c, line: 190
 # File: sci_gateway/c/sci_xgetfile.c, line: 205
 # File: sci_gateway/c/sci_xgetfile.c, line: 232
-# File: sci_gateway/c/sci_uicontrol.c, line: 226
-# File: sci_gateway/c/sci_uicontrol.c, line: 279
+# File: sci_gateway/c/sci_uicontrol.c, line: 227
+# File: sci_gateway/c/sci_uicontrol.c, line: 280
 # File: sci_gateway/c/sci_waitbar.c, line: 168
 # File: sci_gateway/c/sci_unsetmenu.c, line: 45
 # File: sci_gateway/c/sci_unsetmenu.c, line: 121
@@ -71,6 +71,8 @@ msgstr ""
 # File: sci_gateway/c/sci_uigetdir.c, line: 88
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 84
 # File: sci_gateway/c/sci_uigetfont.c, line: 54
+# File: sci_gateway/c/sci_uigetcolor.c, line: 85
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 214
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -122,12 +124,12 @@ msgstr ""
 # File: sci_gateway/c/sci_delmenu.c, line: 63
 # File: sci_gateway/c/sci_setmenu.c, line: 110
 # File: sci_gateway/c/sci_setmenu.c, line: 136
-# File: sci_gateway/c/sci_printfigure.c, line: 62
 # File: sci_gateway/c/sci_uigetfont.c, line: 73
-# File: sci_gateway/c/sci_uigetcolor.c, line: 58
-# File: sci_gateway/c/sci_uigetcolor.c, line: 93
-# File: sci_gateway/c/sci_uigetcolor.c, line: 111
+# File: sci_gateway/c/sci_uigetcolor.c, line: 149
+# File: sci_gateway/c/sci_uigetcolor.c, line: 165
+# File: sci_gateway/c/sci_uigetcolor.c, line: 181
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 43
+# File: sci_gateway/cpp/sci_printfigure.cpp, line: 71
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
@@ -217,7 +219,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
-# File: macros/close.sci, line: 30
+# File: macros/close.sci, line: 32
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
@@ -257,6 +259,10 @@ msgstr ""
 msgid "http://www.scilab.org/"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 62
+msgid "Loading help browser..."
+msgstr ""
+#
 # File: src/nogui/nogui.c, line: 26
 # File: src/nogui/nogui.c, line: 138
 # File: src/nogui/nogui.c, line: 142
@@ -278,39 +284,39 @@ msgstr ""
 msgid "%s: Could not create uicontrol of type %s."
 msgstr ""
 #
-# File: src/cpp/SetUicontrolPosition.cpp, line: 33
-# File: src/cpp/SetUicontrolPosition.cpp, line: 55
+# File: src/cpp/SetUicontrolPosition.cpp, line: 42
+# File: src/cpp/SetUicontrolPosition.cpp, line: 64
 #, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a 1 x 4 real row vector expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolPosition.cpp, line: 41
+# File: src/cpp/SetUicontrolPosition.cpp, line: 50
 #, c-format
 msgid ""
 "Wrong value for '%s' property: A string or a 1 x 4 real row vector "
 "expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolPosition.cpp, line: 68
+# File: src/cpp/SetUicontrolPosition.cpp, line: 77
 #, c-format
 msgid ""
 "Wrong type for '%s' property: A string or a 1 x 4 real row vector expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolParent.cpp, line: 28
+# File: src/cpp/SetUicontrolParent.cpp, line: 30
 #, c-format
 msgid "Wrong size for '%s' property: A graphic handle expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolParent.cpp, line: 83
-# File: src/cpp/SetUicontrolParent.cpp, line: 124
+# File: src/cpp/SetUicontrolParent.cpp, line: 97
+# File: src/cpp/SetUicontrolParent.cpp, line: 138
 #, c-format
 msgid "No '%s' property for uicontrols of style: %s.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolParent.cpp, line: 134
-# File: src/cpp/SetUicontrolParent.cpp, line: 141
+# File: src/cpp/SetUicontrolParent.cpp, line: 166
+# File: src/cpp/SetUicontrolParent.cpp, line: 173
 #, c-format
 msgid "Wrong value for '%s' property: A 'Figure' handle expected.\n"
 msgstr ""
@@ -337,6 +343,7 @@ msgid "Wrong size for '%s' property: A string expected.\n"
 msgstr ""
 #
 # File: src/cpp/SetUimenuLabel.cpp, line: 44
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 34
 # File: src/cpp/GetUicontrolPosition.cpp, line: 52
 # File: src/cpp/GetUiobjectCallback.cpp, line: 48
 # File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 67
@@ -366,36 +373,42 @@ msgstr ""
 # File: src/cpp/SetUicontrolFontName.cpp, line: 52
 # File: src/cpp/SetUiobjectVisible.cpp, line: 72
 # File: src/cpp/GetUiobjectVisible.cpp, line: 62
+# File: src/cpp/SetUiobjectEnable.cpp, line: 72
+# File: src/cpp/GetUiobjectEnable.cpp, line: 62
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr ""
 #
-# File: src/cpp/InitUIMenu.cpp, line: 85
 # File: src/cpp/InitUIMenu.cpp, line: 98
+# File: src/cpp/InitUIMenu.cpp, line: 111
 #, c-format
-msgid ""
-"%s: Wrong type for '%s' property: A 'Figure' or 'Uimenu' handle expected.\n"
+msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 33
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 64
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 43
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 74
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 32
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 76
 #, c-format
-msgid "Wrong size for '%s' property: 1 x 3 real vector or a string expected.\n"
+msgid ""
+"Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 42
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 52
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 40
 #, c-format
 msgid ""
-"Wrong value for '%s' property: 1 x 3 real vector or a string expected.\n"
+"Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
 msgstr ""
 #
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 85
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 95
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 111
 #, c-format
-msgid "Wrong type for '%s' property: 1 x 3 real vector or a string expected.\n"
+msgid ""
+"Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
 msgstr ""
 #
 # File: src/cpp/SetUiobjectCallback.cpp, line: 48
@@ -564,13 +577,16 @@ msgid "Wrong type for '%s' property: 1 x 2 real row vector.\n"
 msgstr ""
 #
 # File: src/cpp/DestroyWaitBar.cpp, line: 32
-# File: src/cpp/DestroyJavaUicontrol.cpp, line: 35
+# File: src/cpp/DestroyJavaUiobject.cpp, line: 40
 msgid "Could not destroy this object.\n"
 msgstr ""
 #
 # File: src/cpp/SetUiobjectVisible.cpp, line: 26
 # File: src/cpp/SetUiobjectVisible.cpp, line: 34
 # File: src/cpp/SetUiobjectVisible.cpp, line: 41
+# File: src/cpp/SetUiobjectEnable.cpp, line: 26
+# File: src/cpp/SetUiobjectEnable.cpp, line: 34
+# File: src/cpp/SetUiobjectEnable.cpp, line: 41
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
 msgstr ""
@@ -598,12 +614,12 @@ msgstr ""
 # File: sci_gateway/c/sci_setmenu.c, line: 84
 # File: sci_gateway/c/sci_setmenu.c, line: 104
 # File: sci_gateway/c/sci_setmenu.c, line: 130
-# File: sci_gateway/c/sci_printfigure.c, line: 38
 # File: sci_gateway/c/sci_uigetfont.c, line: 67
-# File: sci_gateway/c/sci_uigetcolor.c, line: 52
-# File: sci_gateway/c/sci_uigetcolor.c, line: 87
-# File: sci_gateway/c/sci_uigetcolor.c, line: 105
+# File: sci_gateway/c/sci_uigetcolor.c, line: 143
+# File: sci_gateway/c/sci_uigetcolor.c, line: 159
+# File: sci_gateway/c/sci_uigetcolor.c, line: 175
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 36
+# File: sci_gateway/cpp/sci_printfigure.cpp, line: 45
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
@@ -621,8 +637,8 @@ msgid ""
 msgstr ""
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 75
-# File: sci_gateway/c/sci_uicontrol.c, line: 98
-# File: sci_gateway/c/sci_uicontrol.c, line: 177
+# File: sci_gateway/c/sci_uicontrol.c, line: 99
+# File: sci_gateway/c/sci_uicontrol.c, line: 178
 # File: sci_gateway/c/sci_uimenu.c, line: 80
 # File: sci_gateway/c/sci_uiwait.c, line: 51
 # File: sci_gateway/c/sci_progressionbar.c, line: 48
@@ -671,6 +687,9 @@ msgstr ""
 # File: sci_gateway/c/sci_uigetdir.c, line: 81
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 78
 # File: sci_gateway/c/sci_uigetfont.c, line: 48
+# File: sci_gateway/c/sci_uigetcolor.c, line: 59
+# File: sci_gateway/c/sci_uigetcolor.c, line: 79
+# File: sci_gateway/c/sci_uigetcolor.c, line: 123
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -753,8 +772,8 @@ msgid "Scilab Choose Message"
 msgstr ""
 #
 # File: sci_gateway/c/sci_xgetfile.c, line: 44
-# File: sci_gateway/c/sci_uicontrol.c, line: 140
-# File: sci_gateway/c/sci_uicontrol.c, line: 240
+# File: sci_gateway/c/sci_uicontrol.c, line: 141
+# File: sci_gateway/c/sci_uicontrol.c, line: 241
 # File: sci_gateway/c/sci_ClipBoard.c, line: 157
 #, c-format
 msgid "%s: No more memory.\n"
@@ -767,54 +786,56 @@ msgstr ""
 msgid "%s: Wrong name for optional input argument #%d: '%s' expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 89
+# File: sci_gateway/c/sci_uicontrol.c, line: 90
 # File: sci_gateway/c/sci_uimenu.c, line: 71
 # File: sci_gateway/c/sci_uiwait.c, line: 69
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 124
-# File: sci_gateway/c/sci_uicontrol.c, line: 337
+# File: sci_gateway/c/sci_uicontrol.c, line: 125
+# File: sci_gateway/c/sci_uicontrol.c, line: 383
 # File: sci_gateway/c/sci_uimenu.c, line: 155
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 130
+# File: sci_gateway/c/sci_uicontrol.c, line: 131
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
 "expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 169
-# File: sci_gateway/c/sci_uicontrol.c, line: 183
-# File: sci_gateway/c/sci_uicontrol.c, line: 199
+# File: sci_gateway/c/sci_uicontrol.c, line: 170
+# File: sci_gateway/c/sci_uicontrol.c, line: 184
+# File: sci_gateway/c/sci_uicontrol.c, line: 200
 # File: sci_gateway/c/sci_waitbar.c, line: 183
 # File: sci_gateway/c/sci_uiwait.c, line: 63
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 193
+# File: sci_gateway/c/sci_uicontrol.c, line: 194
 # File: sci_gateway/c/sci_waitbar.c, line: 112
 # File: sci_gateway/c/sci_waitbar.c, line: 129
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 264
+# File: sci_gateway/c/sci_uicontrol.c, line: 265
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 288
+# File: sci_gateway/c/sci_uicontrol.c, line: 289
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_waitbar.c, line: 59
+# File: sci_gateway/c/sci_uigetcolor.c, line: 65
+# File: sci_gateway/c/sci_uigetcolor.c, line: 129
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
@@ -845,9 +866,9 @@ msgstr ""
 msgid "Scilab Choices Request"
 msgstr ""
 #
-# File: sci_gateway/c/gw_gui.c, line: 61
+# File: sci_gateway/c/gw_gui.c, line: 64
 #, c-format
-msgid "Scilab '%s' module disabled -nogui or -nwni mode."
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
 msgstr ""
 #
 # File: sci_gateway/c/sci_x_dialog.c, line: 54
@@ -883,18 +904,19 @@ msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 266
-# File: sci_gateway/c/sci_printfigure.c, line: 56
+# File: sci_gateway/cpp/sci_printfigure.cpp, line: 65
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 286
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 220
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 293
-# File: sci_gateway/c/sci_printfigure.c, line: 68
+# File: sci_gateway/cpp/sci_printfigure.cpp, line: 77
 #, c-format
 msgid "%s: Function not available in NWNI mode.\n"
 msgstr ""
@@ -916,31 +938,141 @@ msgstr ""
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uigetcolor.c, line: 34
-#, c-format
-msgid "%s: Wrong number of input arguments: %d, %d or %d expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_uigetcolor.c, line: 40
+# File: sci_gateway/c/sci_uigetcolor.c, line: 38
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uigetcolor.c, line: 69
+# File: sci_gateway/c/sci_uigetcolor.c, line: 50
+# File: sci_gateway/c/sci_uigetcolor.c, line: 95
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %d x %d real row vector expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_uigetcolor.c, line: 75
+# File: sci_gateway/c/sci_uigetcolor.c, line: 101
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: %d x %d real row vector expected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_exportUI.c, line: 43
+# File: sci_gateway/c/sci_exportUI.c, line: 60
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle "
+"expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_exportUI.c, line: 48
+# File: sci_gateway/c/sci_exportUI.c, line: 66
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle "
+"expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 61
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 67
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 87
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 93
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 99
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 157
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 169
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 201
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 207
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Non-negative integers expected\n"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 58
+msgid "Control Plot3d"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 62
 # File: scilab_fake_localization_file.c, line: 1
 # File: scilab_fake_localization_file.c, line: 37
 # File: scilab_fake_localization_file.c, line: 41
 msgid "&File"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 63
+# File: scilab_fake_localization_file.c, line: 21
+msgid "&Tools"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 64
+# File: scilab_fake_localization_file.c, line: 26
+# File: scilab_fake_localization_file.c, line: 51
+msgid "&Edit"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 65
+# File: scilab_fake_localization_file.c, line: 34
+# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 75
+msgid "&?"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 71
+msgid "File"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 74
+msgid "Close"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 219
+msgid "Jetcolormap"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 237
+msgid "Hotcolormap"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 255
+msgid "Graycolormap"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 375
+msgid "Tics"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 391
+msgid "Title"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 407
+msgid "Labels"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 423
+msgid "Edges"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 2
@@ -956,7 +1088,7 @@ msgid "&Save..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 5
-msgid "&Bitmap export"
+msgid "&Export to..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 6
@@ -972,7 +1104,7 @@ msgid "&JPG"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 9
-msgid "P &NG"
+msgid "P&NG"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 10
@@ -1009,7 +1141,7 @@ msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 18
 # File: scilab_fake_localization_file.c, line: 48
-msgid "P &age setup..."
+msgid "P&age setup..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 19
@@ -1018,16 +1150,12 @@ msgid "&Print..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 20
-msgid "C &lose"
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 21
-msgid "&Tools"
+msgid "C&lose"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 22
 # File: scilab_fake_localization_file.c, line: 62
-msgid "Show/Hide  &Toolbar"
+msgid "Show/Hide &Toolbar"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 23
@@ -1039,12 +1167,7 @@ msgid "&UnZoom"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 25
-msgid "2D/3D  &Rotation"
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 26
-# File: scilab_fake_localization_file.c, line: 51
-msgid "&Edit"
+msgid "2D/3D &Rotation"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 27
@@ -1072,13 +1195,7 @@ msgid "&Start entity picker"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 33
-msgid "S &top entity picker"
-msgstr ""
-#
-# File: scilab_fake_localization_file.c, line: 34
-# File: scilab_fake_localization_file.c, line: 39
-# File: scilab_fake_localization_file.c, line: 75
-msgid "&?"
+msgid "S&top entity picker"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 35
@@ -1124,7 +1241,7 @@ msgid "&Quit"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 52
-msgid "C &ut"
+msgid "C&ut"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 53
@@ -1152,11 +1269,11 @@ msgid "&Colors"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 59
-msgid "Console  &Background..."
+msgid "Console &Background..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 60
-msgid "Console  &Font..."
+msgid "Console &Font..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 61
@@ -1164,11 +1281,11 @@ msgid "&Font..."
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 63
-msgid "Clear  &History"
+msgid "Clear &History"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 64
-msgid "Clear C &onsole"
+msgid "Clear C&onsole"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 65
@@ -1200,7 +1317,7 @@ msgid "&Scicos"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 72
-msgid "Edit &Graph"
+msgid "Edit&Graph"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 73
@@ -1212,11 +1329,11 @@ msgid "&Variable Editor"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 76
-msgid "Scilab  &Help"
+msgid "Scilab &Help"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 77
-msgid "Scilab  &Demonstrations"
+msgid "Scilab &Demonstrations"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 78
@@ -1224,7 +1341,7 @@ msgid "&Web links"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 79
-msgid "Scilab  &Web Site"
+msgid "Scilab &Web Site"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 80
@@ -1306,16 +1423,16 @@ msgstr ""
 msgid "Figure saved.\n"
 msgstr ""
 #
-# File: etc/graphics_menubar.xml, line: 39
-# File: etc/graphics_menubar.xml, line: 49
-# File: etc/graphics_menubar.xml, line: 59
-# File: etc/graphics_menubar.xml, line: 69
-# File: etc/graphics_menubar.xml, line: 79
-# File: etc/graphics_menubar.xml, line: 91
-# File: etc/graphics_menubar.xml, line: 101
-# File: etc/graphics_menubar.xml, line: 111
-# File: etc/graphics_menubar.xml, line: 121
+# File: etc/graphics_menubar.xml, line: 41
+# File: etc/graphics_menubar.xml, line: 52
+# File: etc/graphics_menubar.xml, line: 63
+# File: etc/graphics_menubar.xml, line: 74
+# File: etc/graphics_menubar.xml, line: 85
+# File: etc/graphics_menubar.xml, line: 98
+# File: etc/graphics_menubar.xml, line: 109
+# File: etc/graphics_menubar.xml, line: 120
 # File: etc/graphics_menubar.xml, line: 131
+# File: etc/graphics_menubar.xml, line: 142
 msgid "Select a file name"
 msgstr ""
 #

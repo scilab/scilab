@@ -287,6 +287,11 @@ msgid "http://www.scilab.org/"
 msgstr ""
 
 #
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 62
+msgid "Loading help browser..."
+msgstr ""
+
+#
 # File: src/nogui/nogui.c, line: 26
 # File: src/nogui/nogui.c, line: 138
 # File: src/nogui/nogui.c, line: 142
@@ -412,35 +417,39 @@ msgid "No '%s' property for this object.\n"
 msgstr ""
 
 #
-# File: src/cpp/InitUIMenu.cpp, line: 85
 # File: src/cpp/InitUIMenu.cpp, line: 98
+# File: src/cpp/InitUIMenu.cpp, line: 111
 #, c-format
-msgid ""
-"%s: Wrong type for '%s' property: A 'Figure' or 'Uimenu' handle expected.\n"
+msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 33
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 64
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 43
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 74
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 32
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 76
 #, c-format
-msgid "Wrong size for '%s' property: 1 x 3 real vector or a string expected.\n"
+msgid ""
+"Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 42
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 52
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 40
 #, c-format
 msgid ""
-"Wrong value for '%s' property: 1 x 3 real vector or a string expected.\n"
+"Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 85
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 95
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 111
 #, c-format
-msgid "Wrong type for '%s' property: 1 x 3 real vector or a string expected.\n"
+msgid ""
+"Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
 msgstr ""
 
 #
@@ -953,9 +962,9 @@ msgid "Scilab Choices Request"
 msgstr ""
 
 #
-# File: sci_gateway/c/gw_gui.c, line: 61
+# File: sci_gateway/c/gw_gui.c, line: 64
 #, c-format
-msgid "Scilab '%s' module disabled -nogui or -nwni mode."
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
 msgstr ""
 
 #
@@ -1037,12 +1046,6 @@ msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uigetcolor.c, line: 34
-#, c-format
-msgid "%s: Wrong number of input arguments: %d, %d or %d expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_uigetcolor.c, line: 40
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
@@ -1056,9 +1059,78 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uigetcolor.c, line: 75
+# File: sci_gateway/c/sci_uigetcolor.c, line: 101
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: %d x %d real row vector expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_exportUI.c, line: 43
+# File: sci_gateway/c/sci_exportUI.c, line: 60
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle "
+"expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_exportUI.c, line: 48
+# File: sci_gateway/c/sci_exportUI.c, line: 66
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle "
+"expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 61
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 67
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 87
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 93
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 99
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 157
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 169
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 201
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 207
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Non-negative integers expected\n"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 58
+msgid "Control Plot3d"
 msgstr ""
 
 #
@@ -1066,6 +1138,69 @@ msgstr ""
 # File: scilab_fake_localization_file.c, line: 37
 # File: scilab_fake_localization_file.c, line: 41
 msgid "&File"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 21
+msgid "&Tools"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 26
+# File: scilab_fake_localization_file.c, line: 51
+msgid "&Edit"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 34
+# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 75
+msgid "&?"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 71
+msgid "File"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 74
+msgid "Close"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 219
+msgid "Jetcolormap"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 237
+msgid "Hotcolormap"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 255
+msgid "Graycolormap"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 375
+msgid "Tics"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 391
+msgid "Title"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 407
+msgid "Labels"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 423
+msgid "Edges"
 msgstr ""
 
 #
@@ -1085,7 +1220,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 5
-msgid "&Bitmap export"
+msgid "&Export to..."
 msgstr ""
 
 #
@@ -1105,7 +1240,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 9
-msgid "P &NG"
+msgid "P&NG"
 msgstr ""
 
 #
@@ -1151,7 +1286,7 @@ msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 18
 # File: scilab_fake_localization_file.c, line: 48
-msgid "P &age setup..."
+msgid "P&age setup..."
 msgstr ""
 
 #
@@ -1162,18 +1297,13 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 20
-msgid "C &lose"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 21
-msgid "&Tools"
+msgid "C&lose"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 22
 # File: scilab_fake_localization_file.c, line: 62
-msgid "Show/Hide  &Toolbar"
+msgid "Show/Hide &Toolbar"
 msgstr ""
 
 #
@@ -1188,13 +1318,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 25
-msgid "2D/3D  &Rotation"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 26
-# File: scilab_fake_localization_file.c, line: 51
-msgid "&Edit"
+msgid "2D/3D &Rotation"
 msgstr ""
 
 #
@@ -1229,14 +1353,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 33
-msgid "S &top entity picker"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 34
-# File: scilab_fake_localization_file.c, line: 39
-# File: scilab_fake_localization_file.c, line: 75
-msgid "&?"
+msgid "S&top entity picker"
 msgstr ""
 
 #
@@ -1293,7 +1410,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 52
-msgid "C &ut"
+msgid "C&ut"
 msgstr ""
 
 #
@@ -1328,12 +1445,12 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 59
-msgid "Console  &Background..."
+msgid "Console &Background..."
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 60
-msgid "Console  &Font..."
+msgid "Console &Font..."
 msgstr ""
 
 #
@@ -1343,12 +1460,12 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 63
-msgid "Clear  &History"
+msgid "Clear &History"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 64
-msgid "Clear C &onsole"
+msgid "Clear C&onsole"
 msgstr ""
 
 #
@@ -1388,7 +1505,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 72
-msgid "Edit &Graph"
+msgid "Edit&Graph"
 msgstr ""
 
 #
@@ -1403,12 +1520,12 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 76
-msgid "Scilab  &Help"
+msgid "Scilab &Help"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 77
-msgid "Scilab  &Demonstrations"
+msgid "Scilab &Demonstrations"
 msgstr ""
 
 #
@@ -1418,7 +1535,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 79
-msgid "Scilab  &Web Site"
+msgid "Scilab &Web Site"
 msgstr ""
 
 #
