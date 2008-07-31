@@ -64,8 +64,21 @@ cplxdoublematrix = [1.23+7.89i 4.56-1.23i 7.89+4.56i;9.87+3.21i 6.54+9.87i 3.21-
 %
 % TESTS FOR SPARSE MATRICES
 %
+if 0 % Not done for the moment
+emptysparse = sparse([]);
 
-% TODO
+realscalarsparse = sparse(1.23);
+cplxscalarsparse = sparse(1.23 + 4.56i);
+
+realrowvectorsparse = sparse([1.23 0 7.89]);
+cplxrowvectorsparse = sparse([1.23+7.89i 0 7.89+4.56i]);
+
+realcolvectorsparse = sparse([1.23;0;7.89]);
+cplxcolvectorsparse = sparse([1.23+7.89i;;7.89+4.56i]);
+
+realmatrixsparse = sparse([1.23 0 7.89;0 6.54 -3.21]);
+cplxmatrixsparse = sparse([1.23+7.89i 0 7.89+4.56i;0 6.54+9.87i 3.21-6.54i]);
+end
 
 %
 % TESTS FOR 8-BITS SIGNED INTEGERS

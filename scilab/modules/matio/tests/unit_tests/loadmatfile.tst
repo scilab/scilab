@@ -81,7 +81,21 @@ for formatIndex = 1:size(binFormats, "*")
   // TESTS FOR SPARSE MATRICES
   //
 
-  // TODO
+  if 0 then // Not done for the moment
+  if or(emptysparse <> []) then pause; end
+
+  if or(realscalarsparse <> sparse(1.23)) then pause; end
+  if or(cplxscalarsparse <> sparse(1.23 + 4.56i)) then pause; end
+  
+  if or(realrowvectorsparse <> sparse([1.23 0 7.89])) then pause; end
+  if or(cplxrowvectorsparse <> sparse([1.23+7.89i 0 7.89+4.56i])) then pause; end
+  
+  if or(realcolvectorsparse <> sparse([1.23;0;7.89])) then pause; end
+  if or(cplxcolvectorsparse <> sparse([1.23+7.89i;;7.89+4.56i])) then pause; end
+  
+  if or(realmatrixsparse <> sparse([1.23 0 7.89;0 6.54 -3.21])) then pause; end
+  if or(cplxmatrixsparse <> sparse([1.23+7.89i 0 7.89+4.56i;0 6.54+9.87i 3.21-6.54i])) then pause; end
+  end
 
   if binFormats(formatIndex) <> "-v4" then // Inetegers can not be stored in Matlab 4 binary files
     
