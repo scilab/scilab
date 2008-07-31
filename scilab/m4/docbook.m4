@@ -16,12 +16,14 @@ AC_ARG_WITH(docbook,
 		[with_docbook='yes']
 		)
 
-	for dir in /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/; do
+	for dir in $withval /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/; do
 		if test -d "$dir"; then
 			DOCBOOK_ROOT=$dir
         fi
 	done
-
+	if test -z "$DOCBOOK_ROOT"; then
+		AC_MSG_ERROR([Could not find the Docbook root directory. If you have installed it on your system and we haven't been able to find it. Please report a bug])
+	fi
 	# xml.apache.org SVG Library
 	AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library])
 	BATIK=$PACKAGE_JAR_FILE
