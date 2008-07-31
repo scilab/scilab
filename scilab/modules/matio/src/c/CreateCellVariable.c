@@ -14,7 +14,7 @@
 
 int CreateCellVariable(int stkPos, matvar_t *matVariable)
 {
-  static const char *fieldNames[] = {"hm", "dims","entries"};
+  static const char *fieldNames[] = {"ce", "dims","entries"};
   int nbFields = 3;
 
   int nbRow = 0;
@@ -78,36 +78,57 @@ int CreateCellVariable(int stkPos, matvar_t *matVariable)
 
   allData = (matvar_t**) (matVariable->data);
 
-  listAdr = stkPos + 1;
-      
-  sizeOfList = prodDims;
-  
-  il = iadr(*Lstk(listAdr));
-  *istk(il) = 15;
-  *istk(il+1) = sizeOfList;
-  *istk(il+2) = 1;
-  
-  *Lstk(listAdr+1) = sadr(il+2+sizeOfList+1);
-  
-  for (valueIndex = 0; valueIndex < prodDims; valueIndex++)
+  if (prodDims == 1) /* Scalar cell */
     {
-      /* Create list entry in the stack */
-      if (!CreateMatlabVariable(listAdr + 1 + Rhs - Top, allData[valueIndex])) /* Could not Create Variable */
+      listAdr = stkPos + 1;
+
+      for (valueIndex = 0; valueIndex < prodDims; valueIndex++)
         {
-          sciprint("Do not know how to read a variable of class %d.\n", allData[valueIndex]->class_type);
-        };
+          /* Create list entry in the stack */
+          if (!CreateMatlabVariable(listAdr + Rhs - Top, allData[valueIndex])) /* Could not Create Variable */
+            {
+              sciprint("Do not know how to read a variable of class %d.\n", allData[valueIndex]->class_type);
+            }
+          
+          /* Update the returned list "pointers" */
+          *istk(ilStruct+5+valueIndex) = *istk(ilStruct+4+valueIndex) + *Lstk(listAdr + 1) - *Lstk(listAdr);
+          /* Reinit current variable address */
+          *Lstk(listAdr) = *Lstk(listAdr + 1);
+        }
+    }
+  else
+    {
+      listAdr = stkPos + 1;
       
-      /* Update the list "pointers" */
-      *istk(il+2+valueIndex+1) = *istk(il+1+valueIndex+1) + *Lstk(listAdr + 2) - *Lstk(listAdr + 1);
+      sizeOfList = prodDims;
+      
+      il = iadr(*Lstk(listAdr));
+      *istk(il) = 15;
+      *istk(il+1) = sizeOfList;
+      *istk(il+2) = 1;
+      
+      *Lstk(listAdr+1) = sadr(il+2+sizeOfList+1);
+      
+      for (valueIndex = 0; valueIndex < prodDims; valueIndex++)
+        {
+          /* Create list entry in the stack */
+          if (!CreateMatlabVariable(listAdr + 1 + Rhs - Top, allData[valueIndex])) /* Could not Create Variable */
+            {
+              sciprint("Do not know how to read a variable of class %d.\n", allData[valueIndex]->class_type);
+            };
+          
+          /* Update the list "pointers" */
+          *istk(il+2+valueIndex+1) = *istk(il+1+valueIndex+1) + *Lstk(listAdr + 2) - *Lstk(listAdr + 1);
+          /* Reinit current variable address */
+          *Lstk(listAdr + 1) = *Lstk(listAdr + 2);
+        }
+      
+      /* Update the returned list "pointers" */
+      *istk(ilStruct+5) = *istk(ilStruct+4) + *Lstk(stkPos + 2) - *Lstk(stkPos + 1);
       /* Reinit current variable address */
-      *Lstk(listAdr + 1) = *Lstk(listAdr + 2);
+      *Lstk(stkPos + 1) = *Lstk(stkPos + 2);
     }
   
-  /* Update the returned list "pointers" */
-  *istk(ilStruct+5) = *istk(ilStruct+4) + *Lstk(stkPos + 2) - *Lstk(stkPos + 1);
-  /* Reinit current variable address */
-  *Lstk(stkPos + 1) = *Lstk(stkPos + 2);
-
   /* Emulate stack2.c returned values management */
   C2F(intersci).ntypes[stkPos - Top + Rhs - 1] = '$';
   C2F(intersci).lad[stkPos - Top + Rhs - 1] = ilStruct + 2 + nbFields + 1;
