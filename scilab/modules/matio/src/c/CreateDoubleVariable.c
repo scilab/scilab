@@ -16,8 +16,6 @@ int CreateDoubleVariable(int stkPos, matvar_t *matVariable)
 {
   int nbRow = 0, nbCol = 0;
 
-  double * complexData = NULL;
-
   struct ComplexSplit *mat5ComplexData = NULL;
 
   if(matVariable->rank==2) /* 2-D array */
@@ -43,8 +41,8 @@ int CreateDoubleVariable(int stkPos, matvar_t *matVariable)
         }
       else
         {
-          complexData = (double *)&(((unsigned char *)matVariable->data)[matVariable->nbytes/2]);
-          CreateHyperMatrixVariable(stkPos, MATRIX_OF_DOUBLE_DATATYPE,  &matVariable->isComplex, &matVariable->rank, matVariable->dims, matVariable->data, complexData);
+          mat5ComplexData = matVariable->data;
+          CreateHyperMatrixVariable(stkPos, MATRIX_OF_DOUBLE_DATATYPE,  &matVariable->isComplex, &matVariable->rank, matVariable->dims, mat5ComplexData->Re, mat5ComplexData->Im);
         }
     }
   return TRUE;
