@@ -15,7 +15,7 @@
 
 int CreateCharVariable(int stkPos, matvar_t *matVariable)
 {
-  int nbRow = 0, nbCol = 0;
+  int nbRow = 0, nbCol = 0, emptyStringAdr = 0;
 
   char **charData = NULL;
 
@@ -24,7 +24,7 @@ int CreateCharVariable(int stkPos, matvar_t *matVariable)
   if(matVariable->rank==2) /* 2-D array */
     {
       nbRow = matVariable->dims[0];
-      nbCol = 1;
+      nbCol = nbRow==0 ? 0 : 1; /* In Scilab empty string has size 0x0 */
 
       if (nbRow != 0)
         {
@@ -50,12 +50,26 @@ int CreateCharVariable(int stkPos, matvar_t *matVariable)
         {
           for(L=0; L<matVariable->dims[1]; L++) /* Loop over chars */
             {
-              charData[K][L] = ((char *)matVariable->data)[L*matVariable->dims[0]+K];
+              if (matVariable->fp->version != MAT_FT_MAT4) /* MAT_FT_MAT4 format ==> data is a char* pointer */
+                {
+                  charData[K][L] = ((char *)matVariable->data)[L*matVariable->dims[0]+K];
+                }
+              else /* MAT_FT_MAT4 format ==> data is a double* pointer */
+                {
+                  charData[K][L] = (char) ((double *)matVariable->data)[L*matVariable->dims[0]+K];
+                }
             }
           charData[K][L] = '\0';
         }
 
-      CreateVarFromPtr(stkPos, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, charData);
+      if (nbRow*nbCol != 0)
+        {
+          CreateVarFromPtr(stkPos, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, charData);
+        }
+      else /* Empty character string */
+        {
+          CreateVar(stkPos, STRING_DATATYPE, &nbRow, &nbCol, &emptyStringAdr);
+        }
       
       freeArrayOfString(charData,nbRow*nbCol);
     }
