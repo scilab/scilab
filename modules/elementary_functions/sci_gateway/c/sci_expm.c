@@ -2628,9 +2628,11 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
 		pdblMatrixImgEye		= (double*)malloc(sizeof(double) * iSquare);
 		pdblMatrixImgTemp		= (double*)malloc(sizeof(double) * iSquare);
 		pdblMatrixImgTemp2		= (double*)malloc(sizeof(double) * iSquare);
+
+               	memset(pdblMatrixImgEye, 0x00, sizeof(double) * iSquare);
 	}
 
-	memset(pdblMatrixImgEye, 0x00, sizeof(double) * iSquare);
+
 	// Scale A by power of 2 so that its norm is < 1/2 .
 	dfrexps(dblGetMatrixInfiniteNorm(_pdblReal, _pdblImg, _iLeadDim, _iLeadDim), &dblExp);
 	dblS	= Max(0, dblExp + 1);
