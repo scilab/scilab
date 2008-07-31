@@ -30,16 +30,9 @@ int CreateDoubleVariable(int stkPos, matvar_t *matVariable)
         }
       else
         {
-          if(matVariable->fp->version==MAT_FT_MAT4) /* MATLAB4: data is a table of value */
-            {
-              complexData =  (double *)&(((unsigned char *)matVariable->data)[matVariable->nbytes/2]); //&((matVariable->data)[nbRow*nbCol]);
-              CreateCVarFromPtr(stkPos, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &nbRow, &nbCol, &matVariable->data, &complexData);
-            }
-          else /* MATLAB5 file: data is a ComplexSplit */
-            {
-              mat5ComplexData = matVariable->data;
-              CreateCVarFromPtr(stkPos, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &nbRow, &nbCol, &(mat5ComplexData->Re), &(mat5ComplexData->Im));                 
-            }
+          /* Since MATIO 1.3.2 data is a ComplexSplit for MAT4 and MAT5 formats */
+          mat5ComplexData = matVariable->data;
+          CreateCVarFromPtr(stkPos, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &nbRow, &nbCol, &(mat5ComplexData->Re), &(mat5ComplexData->Im));                 
         }
     }
   else /* Multi-dimension array -> Scilab HyperMatrix */
@@ -50,7 +43,7 @@ int CreateDoubleVariable(int stkPos, matvar_t *matVariable)
         }
       else
         {
-		  complexData = (double *)&(((unsigned char *)matVariable->data)[matVariable->nbytes/2]);
+          complexData = (double *)&(((unsigned char *)matVariable->data)[matVariable->nbytes/2]);
           CreateHyperMatrixVariable(stkPos, MATRIX_OF_DOUBLE_DATATYPE,  &matVariable->isComplex, &matVariable->rank, matVariable->dims, matVariable->data, complexData);
         }
     }
