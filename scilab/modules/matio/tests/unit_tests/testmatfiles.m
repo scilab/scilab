@@ -12,14 +12,39 @@ clear all
 %
 % TESTS FOR CELL ARRAYS
 %
-
-% TODO
+emptycell = {};
+scalarcell = {1.23};
+rowcell = {'abc', [1.23+7.89i 4.56-1.23i 7.89+4.56i], 1.23};
+colcell = {[1.23+7.89i 4.56-1.23i 7.89+4.56i]; 'abc'; 1.23};
+arraycell = {'a', [1.23+7.89i 4.56-1.23i 7.89+4.56i], int8(1); 'abc', 1.23, eye(100,100)};
+stringcell = {'abc', 'def', 'ghi';'jkl', 'mno', 'pqr'};
 
 %
 % TESTS FOR STRUCTURE ARRAYS
 %
-
-% TODO
+if 0 % Not done for the moment
+emptystruct = struct();
+scalarstruct = struct('f1', 10, 'ftwo', 'Hello', 'field3', int8(12));
+rowstruct = struct('field1', 10, 'field2', 'Hello', 'field3', int8(12));
+rowstruct(1,2).field1 = 'test';
+rowstruct(1,2).field2 = eye(10, 10);
+rowstruct(1,3).field2 = 'a field contents';
+rowstruct(1,3).field3 = 1.23+4.56i;
+colstruct = struct('name', 10, 'phone', 'Hello', 'address', int8(12));
+colstruct(2,1).name = 'test';
+colstruct(2,1).phone = eye(10, 10);
+colstruct(3,1).phone = 'a field contents';
+colstruct(3,1).address = 1.23+4.56i;
+arraystruct = struct('field1', 10, 'field2', 'Hello', 'field3', int8(12));
+arraystruct(1,2).field1 = 'test';
+arraystruct(1,2).field2 = eye(10, 10);
+arraystruct(1,3).field2 = 'a field contents';
+arraystruct(1,3).field3 = 1.23+4.56i;
+arraystruct(2,1).name = 'test';
+arraystruct(2,1).phone = eye(10, 10);
+arraystruct(3,1).phone = 'a field contents';
+arraystruct(3,1).address = 1.23+4.56i;
+end
 
 %
 % TESTS FOR OBJECTS
@@ -165,7 +190,8 @@ for varIndex=1:length(varNames)
      for formatIndex=1:length(binFormats)
         % Integers and NDarrays not saved in -v4 format
        if formatIndex>1 | ...
-             (formatIndex==1 & isempty(strfind(varNames{varIndex}, 'int')) & isempty(strfind(varNames{varIndex}, 'NDarray')))
+             (formatIndex==1 & isempty(strfind(varNames{varIndex}, 'int')) ...
+              & isempty(strfind(varNames{varIndex}, 'NDarray')) & isempty(strfind(varNames{varIndex}, 'cell')) & isempty(strfind(varNames{varIndex}, 'struct')))
          saveCmd = ['save ' pwd filesep varNames{varIndex} binFormats{formatIndex} '.mat ' varNames{varIndex} ' ' binFormats{formatIndex}];
          eval(saveCmd);
        end
