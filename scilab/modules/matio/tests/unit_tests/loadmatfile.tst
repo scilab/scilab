@@ -87,7 +87,7 @@ for formatIndex = 1:size(binFormats, "*")
 
   // TODO
 
-  if binFormats(formatIndex) <> "-v4" then
+  if binFormats(formatIndex) <> "-v4" then // Inetegers can not be stored in Matlab 4 binary files
     
     //
     // TESTS FOR 8-BITS SIGNED INTEGERS

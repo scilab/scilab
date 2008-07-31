@@ -136,6 +136,7 @@ uint32matrix = uint32([1 -4 7;-9 6 -3]);
 % TODO: uint64 tests ?
 
 % TODO: ND-Array tests ?
+realdoubleNDarray = reshape(1:24, 2, 3, 4);
 
 %
 % MISC
@@ -149,7 +150,9 @@ varNames = who();
 binFormats = {'-v4';'-v6';'-v7'};
 for varIndex=1:length(varNames)
      for formatIndex=1:length(binFormats)
-       if formatIndex>1 | (formatIndex==1 & isempty(strfind(varNames{varIndex}, 'int'))) % Integers not saved in -v4 format
+        % Integers and NDarrays not saved in -v4 format
+       if formatIndex>1 | ...
+             (formatIndex==1 & isempty(strfind(varNames{varIndex}, 'int')) & isempty(strfind(varNames{varIndex}, 'NDarray')))
          saveCmd = ['save ' pwd filesep varNames{varIndex} binFormats{formatIndex} '.mat ' varNames{varIndex} ' ' binFormats{formatIndex}];
          eval(saveCmd);
        end
