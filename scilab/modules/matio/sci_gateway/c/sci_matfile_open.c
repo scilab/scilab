@@ -96,10 +96,17 @@ int sci_matfile_open(char *fname,unsigned long fname_len)
   
   if(matfile==NULL) /* Opening failed */
     {
-      /* Function returns -1 */
-      fileIndex = -1;
+      /* Try to open the file (as a Matlab 4 file) */
+      matfile = Mat_Open(filename, option | MAT_FT_MAT4);
+      
+      if(matfile==NULL) /* Opening failed */
+        {
+          /* Function returns -1 */
+          fileIndex = -1;
+        }
     }
-  else /* Opening succeed */
+
+  if (matfile != NULL) /* Opening succeed */
     {
       /* Add the file to the manager */
       matfile_manager(MATFILEMANAGER_ADDFILE, &fileIndex, &matfile);
