@@ -49,8 +49,6 @@ for formatIndex = 1:size(binFormats, "*")
   if or(stringcolvector <> ["a";"b";"c"]) then pause; end
   if or(stringmatrix <> ["abc";"def"]) then pause; end
 
-  // TODO: ND-Array tests ?
-
   clear emptystringmatrix stringscalar stringrowvector stringcolvector stringmatrix
 
   //
@@ -70,8 +68,6 @@ for formatIndex = 1:size(binFormats, "*")
 
   if or(realdoublematrix <> [1.23 -4.56 7.89;9.87 6.54 -3.21]) then pause; end
   if or(cplxdoublematrix <> [1.23+7.89*%i 4.56-1.23*%i 7.89+4.56*%i;9.87+3.21*%i 6.54+9.87*%i 3.21-6.54*%i]) then pause; end
-
-  // TODO: ND-Array tests ?
 
   clear emptydoublematrix realdoublescalar cplxdoublescalar realdoublerowvector cplxdoublerowvector realdoublecolvector cplxdoublecolvector realdoublematrix cplxdoublematrix
 
@@ -174,10 +170,19 @@ for formatIndex = 1:size(binFormats, "*")
 
     // TODO: uint64 tests ?
 
+  
+    //
+    // TESTS FOR ND-ARRAYS
+    //
+    sciemptyNDarray = hypermat([0 0 0], []);
+    if or(emptyNDarray.dims <> sciemptyNDarray.dims) | or(emptyNDarray.entries <> sciemptyNDarray.entries) then pause; end
+    if or(realdoubleNDarray <> matrix(1:24, 2, 3, 4)) then pause; end
+    if or(complexdoubleNDarray <> matrix((1:24) + (1:24)*%i, 2, 3, 4)) then pause; end
+    
+    clear sciemptyNDarray emptyNDarray realdoubleNDarray complexdoubleNDarray
+  
   end
-  
-  // TODO: ND-Array tests ?
-  
+
   //
   // MISC
   //

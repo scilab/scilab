@@ -37,8 +37,6 @@ stringrowvector = ['a' 'b' 'c'];
 stringcolvector = ['a';'b';'c'];
 stringmatrix = ['a' 'b' 'c';'d' 'e' 'f'];
 
-% TODO: ND-Array tests ?
-
 %
 % TESTS FOR DOUBLE PRECISION ARRAYS
 %
@@ -56,8 +54,6 @@ cplxdoublecolvector = [1.23+7.89i;4.56-1.23i;7.89+4.56i];
 
 realdoublematrix = [1.23 -4.56 7.89;9.87 6.54 -3.21];
 cplxdoublematrix = [1.23+7.89i 4.56-1.23i 7.89+4.56i;9.87+3.21i 6.54+9.87i 3.21-6.54i];
-
-% TODO: ND-Array tests ?
 
 %
 % TESTS FOR SINGLE PRECISION ARRAYS
@@ -135,8 +131,12 @@ uint32matrix = uint32([1 -4 7;-9 6 -3]);
 
 % TODO: uint64 tests ?
 
-% TODO: ND-Array tests ?
+%
+% TESTS FOR ND-ARRAYS
+%
+emptyNDarray = reshape([], 0, 0, 0);
 realdoubleNDarray = reshape(1:24, 2, 3, 4);
+complexdoubleNDarray = reshape((1:24) + (1:24)*i, 2, 3, 4);
 
 %
 % MISC
