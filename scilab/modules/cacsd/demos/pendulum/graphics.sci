@@ -120,7 +120,7 @@ function draw1()
   a1.axes_visible='on';
   a1.x_label.text='time';
   a1.y_label.text='position';
-  disp(a1.background);
+  a1.box = "on";
   p1=xpoly(1,y(1,1));p1=gce();
 
   a2=newaxes();sca(a2);
@@ -130,12 +130,14 @@ function draw1()
   a2.axes_visible='on';
   a2.x_label.text='time';
   a2.y_label.text='theta';
+  a2.box = "on";
   xpoly(1,y(2,1));;p2=gce();
 
   a3=newaxes();
   a3.axes_bounds= [0,0.5,1,0.5];
   a3.isoview='on';
   a3.data_bounds=[-0.4 -0.1;0.4 0.4];
+  a3.box = "on";
   y1=0;lb=l;hc=0.05;lc=0.1;teta=100*y(2,1);r=0.013;xg=100*y(1,1);
   sca(a3);
   P=build_pendulum([xg,y1],[lc,hc,lb,teta,r])
@@ -175,6 +177,7 @@ function draw2()
   a1.axes_visible='on';
   a1.x_label.text='time';
   a1.y_label.text='Control (u)';
+  a1.box = "on";
   p1=xpoly(t1(1),c(1));p1=gce();
 
   a2=newaxes();sca(a2);
@@ -184,6 +187,7 @@ function draw2()
   a2.axes_visible='on';
   a2.x_label.text='time';
   a2.y_label.text='theta';
+  a2.box = "on";
   xpoly(t1(1),theta(1));p2=gce();
   xpoly(t1(1),thetaE(1));p3=gce();p3.line_style=2;
 
@@ -191,6 +195,7 @@ function draw2()
   a3.axes_bounds= [0,0.5,1,0.5];
   a3.isoview='on';
   a3.data_bounds=[-0.4 -0.1;0.4 0.4];
+  a3.box = "on";
   y1=0;lb=l;hc=0.05;lc=0.1;;r=0.013;
   sca(a3);
   P=build_pendulum([100*x(1),y1],[lc,hc,lb,100*theta(1),r])
