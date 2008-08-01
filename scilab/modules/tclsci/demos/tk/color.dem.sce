@@ -7,6 +7,7 @@
 
 tkpath = get_absolute_file_path("color.dem.sce");
 
+lines(0);
 RGB=[];
 RGB1=[0 0 0];
 TCL_SetVar('rgb',tkpath+'rgb.txt');
