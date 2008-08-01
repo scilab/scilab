@@ -41,7 +41,6 @@ for formatIndex = 1:size(binFormats, "*")
   //
   if binFormats(formatIndex) <> "-v4" then // Struct arrays can not be stored in Matlab 4 binary files
     
-    if 0 then // Not done for the moment
     sciemptystruct = struct();
     if or(emptystruct <> sciemptystruct) then pause; end
     
@@ -52,30 +51,29 @@ for formatIndex = 1:size(binFormats, "*")
     scirowstruct(1,2).field1 = "test";
     scirowstruct(1,2).field2 = eye(10, 10);
     scirowstruct(1,3).field2 = "a field contents";
-    scirowstruct(1,3).field3 = 1.23+4.56i;
+    scirowstruct(1,3).field3 = 1.23+4.56*%i;
     if or(rowstruct <> scirowstruct) then pause; end
     
     scicolstruct = struct("name", 10, "phone", "Hello", "address", int8(12));
     scicolstruct(2,1).name = "test";
     scicolstruct(2,1).phone = eye(10, 10);
     scicolstruct(3,1).phone = "a field contents";
-    scicolstruct(3,1).address = 1.23+4.56i;
+    scicolstruct(3,1).address = 1.23+4.56*%i;
     if or(colstruct <> scicolstruct) then pause; end
     
     sciarraystruct = struct("field1", 10, "field2", "Hello", "field3", int8(12));
     sciarraystruct(1,2).field1 = "test";
     sciarraystruct(1,2).field2 = eye(10, 10);
     sciarraystruct(1,3).field2 = "a field contents";
-    sciarraystruct(1,3).field3 = 1.23+4.56i;
+    sciarraystruct(1,3).field3 = 1.23+4.56*%i;
     sciarraystruct(2,1).name = "test";
     sciarraystruct(2,1).phone = eye(10, 10);
     sciarraystruct(3,1).phone = "a field contents";
-    sciarraystruct(3,1).address = 1.23+4.56i;
+    sciarraystruct(3,1).address = 1.23+4.56*%i;
     if or(arraystruct <> sciarraystruct) then pause; end
     
     clear emptystruct scalarstruct rowstruct colstruct arraystruct
     clear sciemptystruct sciscalarstruct scirowstruct scicolstruct sciarraystruct
-    end
   
   end
 

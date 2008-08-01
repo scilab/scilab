@@ -22,7 +22,6 @@ stringcell = {'abc', 'def', 'ghi';'jkl', 'mno', 'pqr'};
 %
 % TESTS FOR STRUCTURE ARRAYS
 %
-if 0 % Not done for the moment
 emptystruct = struct();
 scalarstruct = struct('f1', 10, 'ftwo', 'Hello', 'field3', int8(12));
 rowstruct = struct('field1', 10, 'field2', 'Hello', 'field3', int8(12));
@@ -44,7 +43,6 @@ arraystruct(2,1).name = 'test';
 arraystruct(2,1).phone = eye(10, 10);
 arraystruct(3,1).phone = 'a field contents';
 arraystruct(3,1).address = 1.23+4.56i;
-end
 
 %
 % TESTS FOR OBJECTS
@@ -192,8 +190,13 @@ for varIndex=1:length(varNames)
        if formatIndex>1 | ...
              (formatIndex==1 & isempty(strfind(varNames{varIndex}, 'int')) ...
               & isempty(strfind(varNames{varIndex}, 'NDarray')) & isempty(strfind(varNames{varIndex}, 'cell')) & isempty(strfind(varNames{varIndex}, 'struct')))
-         saveCmd = ['save ' pwd filesep varNames{varIndex} binFormats{formatIndex} '.mat ' varNames{varIndex} ' ' binFormats{formatIndex}];
-         eval(saveCmd);
+         if exist([pwd filesep varNames{varIndex} binFormats{formatIndex} ...
+                   '.mat']) ~= 2 % If file does not already exist it is created
+           saveCmd = ['save ' pwd filesep varNames{varIndex} binFormats{formatIndex} '.mat ' varNames{varIndex} ' ' binFormats{formatIndex}];
+           eval(saveCmd);
+         else
+           %disp([pwd filesep varNames{varIndex} binFormats{formatIndex} '.mat already exists.'])
+         end
        end
      end
 end
