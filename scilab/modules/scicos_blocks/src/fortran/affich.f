@@ -29,10 +29,7 @@ c     z(7)=text_handle
 
       integer wid
 
-      integer cur,v
-      double precision dv,sciround,ur
-      character*40 drv
-      data cur/0/
+      double precision sciround,ur
 
 
 c     
