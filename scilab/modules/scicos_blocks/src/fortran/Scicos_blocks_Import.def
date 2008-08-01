@@ -3,7 +3,6 @@ LIBRARY    scicos_blocks.dll
 
 EXPORTS
 ;
-createaffichstring_
 affichin_
 affichup_
 affin2_
