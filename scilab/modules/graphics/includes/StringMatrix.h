@@ -36,6 +36,11 @@ typedef sciMatrix StringMatrix ;
  */
 StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol ) ;
 
+/**
+ * Create a new string matrix filled with empty strings
+ */
+StringMatrix * newEmptyStringMatrix(int nbRow, int nbCol);
+
 /** 
  * copy constructor
  */
@@ -56,6 +61,11 @@ char ** getStrMatData(  const StringMatrix * mat ) ;
 void copyStrMatElement( StringMatrix * mat, int row, int col, const char * copyStr ) ;
 
 /*----------------------------------------------------------------------------------*/
-
+/* utilities */
+/**
+ * Print the matrix using printf
+ */
+void printStrMat(StringMatrix * mat);
+/*----------------------------------------------------------------------------------*/
 
 #endif /* _SCI_STRING_MATRIX_H_ */

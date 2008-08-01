@@ -845,3 +845,23 @@ BOOL isHandleValid(long handle)
   return (sciGetPointerFromHandle(handle) != NULL);
 }
 /*--------------------------------------------------------------------------*/
+/**
+ * Get a son of an object knowing its position within the children.
+ * @return a pointer on the object or NULL if the index is out of bounds
+ */
+sciPointObj * sciGetIndexedSon(sciPointObj * pobj, int index)
+{
+  sciSons * curSon = sciGetSons( pobj ) ;
+  int curIndex = 0;
+  while (curSon != NULL && curIndex < index)
+  {
+    curSon = curSon->pnext ;
+    curIndex++;
+  }
+  if (curSon == NULL)
+  {
+    return NULL;
+  }
+  return curSon->pointobj ;
+}
+/*--------------------------------------------------------------------------*/

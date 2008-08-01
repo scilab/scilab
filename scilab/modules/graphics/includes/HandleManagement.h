@@ -54,4 +54,6 @@ extern int swapHandles( unsigned long firstHdl, unsigned long secondHdl ) ;
  */
 BOOL isHandleValid(long handle);
 
+sciPointObj * sciGetIndexedSon(sciPointObj * pobj, int index);
+
 #endif /* __SCI_HANDLE_MANAGEMENT__ */

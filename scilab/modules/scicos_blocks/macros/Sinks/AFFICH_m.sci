@@ -104,21 +104,9 @@ case 'set' then
 
     if ok then
       model.ipar=[font;fontsize;colr;xget('window');nt;nd;in(1,1)];
-      model.dstate = [-1;0;0;1;1;zeros(in(1,1)*in(1,2),1)]
+      model.dstate = [-1;0;0;1;1;0;zeros(in(1,1)*in(1,2),1)]
       model.evtin=ones(1-herit,1)
       graphics.exprs=exprs;
-//       sz_ref=[60 40];
-//       if model.in2<>1 then
-//         graphics.sz(1)=sz_ref(1)*(model.in2-1);
-//       else
-//         graphics.sz(1)=sz_ref(1)
-//       end
-//       if model.in<>1 then
-//         graphics.sz(2)=sz_ref(2)*model.in*0.75;
-//       else
-//         graphics.sz(2)=sz_ref(2)
-//       end
-
       x.graphics=graphics;x.model=model
       break
     end
@@ -139,7 +127,7 @@ case 'define' then
   model.in = in(1,1);
   model.in2 = in(1,2);
   model.evtin  = 1 ;
-  model.dstate = [-1;0;0;1;1;zeros(in(1,1)*in(1,2),1)]
+  model.dstate = [-1;0;0;1;1;0;zeros(in(1,1)*in(1,2),1)]
   model.ipar   = [font;fontsize;colr;1000;nt;nd;in(1,1)]
   model.blocktype = 'c' ;
   model.firing = []     ;

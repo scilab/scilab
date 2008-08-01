@@ -17,9 +17,10 @@
 /*----------------------------------------------------------------------------------*/
 
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "StringMatrix.h"
 #include "MALLOC.h"
-#include <stdlib.h>
 
 /*----------------------------------------------------------------------------------*/
 StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol )
@@ -39,9 +40,26 @@ StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol )
   return newMat ;
 }
 /*----------------------------------------------------------------------------------*/
+StringMatrix * newEmptyStringMatrix(int nbRow, int nbCol)
+{
+  int i ;
+  /* create the matrix */
+  StringMatrix * newMat = newMatrix( nbRow, nbCol ) ;
+
+  /* copy each element */
+  for ( i = 0 ; i < nbRow * nbCol ; i++ )
+  {
+    /* +1 for the /0 last character */
+    newMat->data[i] = MALLOC( (strlen("") + 1) * sizeof(char) ) ;
+    strcpy( newMat->data[i], "" ) ;
+  }
+
+  return newMat ;
+}
+/*----------------------------------------------------------------------------------*/
 StringMatrix * copyStringMatrix( const StringMatrix * copyMat )
 {
-  return newFullStringMatrix( (char **) copyMat->data, copyMat->nbCol, copyMat->nbRow ) ;
+  return newFullStringMatrix( (char **) copyMat->data, copyMat->nbRow, copyMat->nbCol ) ;
 }
 /*----------------------------------------------------------------------------------*/
 char * getStrMatElement( const StringMatrix * mat, int row, int col )
@@ -64,5 +82,21 @@ void copyStrMatElement( StringMatrix * mat, int row, int col, const char * copyS
   changedString = MALLOC( (strlen( copyStr ) + 1) * sizeof(char) ) ;
   strcpy( changedString, copyStr ) ;
   mat->data[row + col * mat->nbRow] = changedString ;
+}
+/*----------------------------------------------------------------------------------*/
+void printStrMat(StringMatrix * mat)
+{
+  int i;
+  int j;
+  int nbRow = getMatNbRow(mat);
+  int nbCol = getMatNbCol(mat);
+  for (i = 0; i < nbRow; i++)
+  {
+    for (j = 0; j < nbCol; j++)
+    {
+      printf("%s ", getStrMatElement(mat, i, j));
+    }
+    printf("\n");
+  }
 }
 /*----------------------------------------------------------------------------------*/

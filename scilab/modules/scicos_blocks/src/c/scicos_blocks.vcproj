@@ -388,6 +388,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\affich.c"
+				>
+			</File>
+			<File
 				RelativePath=".\andlog.c"
 				>
 			</File>
@@ -501,6 +505,10 @@
 			</File>
 			<File
 				RelativePath=".\counter.c"
+				>
+			</File>
+			<File
+				RelativePath=".\createaffichstring.c"
 				>
 			</File>
 			<File
@@ -1592,6 +1600,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\affich.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\blocks.h"
 				>

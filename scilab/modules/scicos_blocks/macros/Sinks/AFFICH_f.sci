@@ -40,11 +40,15 @@ case 'getorigin' then
 
 case 'set' then
   x = arg1;
-  graphics = arg1.graphics; exprs = graphics.exprs
+  graphics = arg1.graphics;
+  exprs = graphics.exprs
   model = arg1.model;
-  if size(exprs,'*')==5 then exprs(6)='0';end //compatibility
-  if size(exprs,'*')==4 then exprs(4)=' ';exprs(5)=' ';end //compatibility
-  if size(model.dstate,'*')<>6 then model.dstate=[0;-1;0;0;1;1];end //compatibility
+  //** if size(exprs,'*')==5 then exprs(6)='0';end //compatibility
+  //** if size(exprs,'*')==4 then exprs(4)=' ';exprs(5)=' ';end //compatibility
+  //** if size(model.dstate,'*')<>6 then model.dstate=[0;-1;0;0;1;1];end //compatibility
+  
+  model.dstate = [0;-1;0;0;1;1;0] ; //** set the initial value of "z" and the associated "nz"
+
   while %t do
     [ok,font,fontsize,colr,nt,nd,herit,exprs]=getvalue(..
 	'Set  parameters',..
@@ -116,7 +120,7 @@ case 'set' then
 
 
 case 'define' then
-  font = 1     ; //** 1 --> greek font 
+  font = 2     ; //** 1 --> greek font 
   fontsize = 1 ; //** 1
   colr = 1 ;
   nt = 9   ;
@@ -132,7 +136,7 @@ case 'define' then
   model.sim = 'affich' ; 
   model.in = 1 ;
   model.evtin  = 1 ;
-  model.dstate = [0;-1;0;0;1;1]
+  model.dstate = [0;-1;0;0;1;1;0]; ; //** set the initial value of "z" and the associated "nz"
   model.ipar   = [font;fontsize;colr;1000;nt;nd]
   model.blocktype = 'c' ;
   model.firing = []     ;

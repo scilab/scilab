@@ -29,8 +29,10 @@ function g=getgeom()
 
 path=%cpr.corinv(curblock())
 
-g=[-1;zeros(4,1)],
+g=[-1;zeros(5,1)],
+
 direc=path(1:$-1)
+
 if direc==[]&or(curwin==winsid()) then
   g(1)=curwin
 else
@@ -43,15 +45,28 @@ else
     end
   end
 end
+
 if g(1)>-1 then
   Path=list('objs');
   for pk=direc
     Path=lstcat(Path,pk,'model','rpar','objs');
   end
   Path=lstcat(Path,path($))
-  o=scs_m(Path)
-  orig=o.graphics.orig;sz=o.graphics.sz
-  g(2:5)=[orig(:);sz(:)]
-end
+  o = scs_m(Path);  
+  orig = o.graphics.orig;
+  sz = o.graphics.sz 
+  k  =  Path($) ; //** scs_m index
+  f = scf(g(1)); 
+  a = gca();
+  p_size = size(a.children, '*'); 
+  gr_k = get_gri(k,p_size);
+  // gh_obj = a.children(gr_k);
+  // gh_text = gh_obj.children(2);
+  //** 
+  g(2:5) = [orig(:);sz(:)];  
+  g(6) =  gr_k ;
+
+end 
+
 endfunction
 
