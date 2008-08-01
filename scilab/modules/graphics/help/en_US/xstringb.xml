@@ -49,7 +49,9 @@
     <title>Description</title>
     <para><literal>xstringb</literal> draws the matrix of strings <literal>str</literal> centered inside 
     the rectangle <literal>rect=[x,y,w,h]</literal>
-    (lower-left point, width, height) in the current graphic scale.
+    (lower-left point, width, height) in user coordinates.
+    </para>
+    <para>
     If <literal>option</literal> is given with the value <literal>"fill"</literal>, the character size is 
     computed so as to fill as much as possible in the rectangle.</para>
     <para>

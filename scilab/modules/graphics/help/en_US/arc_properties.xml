@@ -122,14 +122,14 @@
         <listitem>
           <para>This property is to return the coordinates of the upper-left
           point, the width and the height of the inclosing rectangle as well
-          as the boundary angles of the sector. It is the matrix
+          as the boundary angles of the sector. It is the matrix in user coordinates
           <literal>[xleft,yup,[zup],width,height,a1,a2]</literal> where
           <literal>a1</literal> and <literal>a2</literal> are the sector
           boundary angles in degree.</para>
 
           <para><emphasis role="bold">Warning:</emphasis> in Scilab versions
-          up to 4.1.2 <literal>a1</literal> and <literal>a2 are given in
-          degree/64.</literal></para>
+          up to 4.1.2 <literal>a1</literal> and <literal>a2</literal> were given in
+          degree/64.</para>
         </listitem>
       </varlistentry>
 

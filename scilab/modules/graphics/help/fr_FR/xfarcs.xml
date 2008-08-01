@@ -36,6 +36,7 @@
     <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> où chaque ellipse est définie 
     par les 6 paramètres <literal>(x,y,w,h,a1,a2)</literal> (voir <literal>xarc</literal>).
   </para>
+  <para>Les paramètres <literal>x, y, w, h</literal> sont spécifiés en coordonnées utilisateur.</para>
     <para><literal>style(i)</literal> donne la couleur utilisée pour remplir l'ellipse <literal>i</literal>.
   </para>
   </refsection>

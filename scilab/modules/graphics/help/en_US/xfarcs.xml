@@ -44,6 +44,7 @@
     <para><literal>xarcs</literal> fills parts of a set of ellipses described by <literal>arcs</literal>: 
     <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> where each ellipse is defined 
     by the 6 parameters <literal>(x,y,w,h,a1,a2)</literal> (see <literal>xfarc</literal>).</para>
+    <para><literal>x, y, w, h</literal> parameters are specified in user coordinates.</para>
     <para><literal>style(i)</literal> gives the color number for filling ellipse number <literal>i</literal>.</para>
   </refsection>
   <refsection>

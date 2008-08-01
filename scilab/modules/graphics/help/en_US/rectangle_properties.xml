@@ -151,8 +151,7 @@
         <term>data: </term>
         <listitem>
           <para>This property is to return the coordinates of the upper-left point
-        of the rectangle and its width and height in the data units of the
-        axes. The result is the matrix
+        of the rectangle and its width and height in user coordinates. The result is the matrix
         <literal>[xleft,yup,[zup],width,height]</literal></para>
         </listitem>
       </varlistentry>

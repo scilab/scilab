@@ -43,7 +43,7 @@
     <title>Description</title>
     <para><literal>xrects</literal> draws or fills a set of rectangles. 
     Each column of <literal>rects</literal> describes 
-    a rectangle (upper-left point, width, height):
+    a rectangle (upper-left point, width, height) in user coordinates:
     <literal>rects=[x1 y1 w1 h1;x2 y2 w2 h2;...]'</literal>.</para>
     <para><literal>fill(i)</literal> gives the pattern to use for filling or drawing rectangle i:</para>
     <para>

@@ -20,7 +20,6 @@ List of missing/buggy features:
 - Graphics:
     * Graphic rendering is slower in a large graphic window than in a small 
       one.
-    * Text object space management.
     * Rendering is slow or not functional on some
       computer / graphic card / graphic card driver combination.
       Errors often appear on ATI and Intel cards under Linux and also with 
@@ -28,7 +27,10 @@ List of missing/buggy features:
       A solution should be added in Scilab RC1
     * The Symbol font is not compatible with the one used in Scilab 4.
     * By default arcs and circles are now approximated using a constant number of lines.
-      To switch to real arcs, set their arc_drawing_methiod property to "nurbs".
+      To switch to real arcs, set their arc_drawing_method property to "nurbs".
+    * Sector boundary angles of arc objects are now specified in degree whereas it used to
+      be specified in degree/64.
+    * The text_box property of text objects now refers to user coordinates even in axes_reverse mode.
 
 - It is strongly recommended to update graphic cards drivers to the latest 
 	revision:

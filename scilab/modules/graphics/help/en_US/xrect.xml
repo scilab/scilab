@@ -37,7 +37,7 @@ xrect(rect) // rect =[x,y,w,h]</synopsis>
   <refsection>
     <title>Description</title>
     <para><literal>xrect</literal> draws a rectangle defined by <literal>[x,y,w,h]</literal> 
-    (upper-left point, width, height) using the current scale and style.</para>
+    (upper-left point, width, height) in user coordinates.</para>
     <para>WARNING: please note that height is positive downwards.</para>
   </refsection>
   <refsection>

@@ -40,8 +40,8 @@
   <refsection>
     <title>Description</title>
     <para><literal>xstringb</literal> dessine la matrice de chaînes de caractères <literal>str</literal> centrée dans le 
-    le rectangle <literal>rect=[x,y,w,h]</literal> (point en haut à gauche, largeur, hauteur) dans l'échelle graphique courante.
-    Si <literal>option</literal> est donné avec la valeur <literal>"fill"</literal>, la taille de la police est calculée 
+    le rectangle <literal>rect=[x,y,w,h]</literal> (point en haut à gauche, largeur, hauteur) en coordonnées utilisateurs.
+    Si <literal>option</literal> est spécifiée avec la valeur <literal>"fill"</literal>, la taille de la police est calculée 
     de manière à remplir le rectangle au maximum.
   </para>
     <para>
