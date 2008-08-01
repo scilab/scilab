@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+// <-- NO CHECK REF -->
 //
 // companion.tst --
 //   Test "companion" for real and complex polynomials

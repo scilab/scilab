@@ -1,10 +1,10 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
+// Copyright (C) ????-2008 - INRIA Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+// <-- NO CHECK REF -->
 eps=100*%eps;
 // inf 
 if norm([1,2,3,-1,-2,-3],0)<>%inf then pause,end 
