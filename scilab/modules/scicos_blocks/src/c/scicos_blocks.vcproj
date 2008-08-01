@@ -508,10 +508,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\createaffichstring.c"
-				>
-			</File>
-			<File
 				RelativePath=".\cscope.c"
 				>
 			</File>
