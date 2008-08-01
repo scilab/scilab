@@ -197,7 +197,10 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see java.awt.Frame#setTitle(java.lang.String)
 	 */
 	public void setTitle(String newWindowTitle) {
-		super.setTitle(newWindowTitle);
+		// set only if required
+		if (!newWindowTitle.equals(getTitle())) {
+			super.setTitle(newWindowTitle);
+		}
 	}
 
 	/**
@@ -256,14 +259,22 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
 	 */
 	public void addMenuBar(MenuBar newMenuBar) {
-		if (newMenuBar != null) {
-			this.menuBar = newMenuBar.getAsSimpleMenuBar();
-			super.setJMenuBar((SwingScilabMenuBar) newMenuBar.getAsSimpleMenuBar());
+		
+		if (newMenuBar == null) {
+			if (this.menuBar != null) {
+				this.menuBar = null;
+				super.setJMenuBar(null);
+				this.repaint();
+			}
+			// else nothing to do both are null
 		} else {
-			this.menuBar = null;
-			super.setJMenuBar(null);
+			if (this.menuBar != newMenuBar.getAsSimpleMenuBar()) {
+				this.menuBar = newMenuBar.getAsSimpleMenuBar();
+				super.setJMenuBar((SwingScilabMenuBar) newMenuBar.getAsSimpleMenuBar());
+				this.repaint();
+			}
+			//  else nothing to do element alredy set
 		}
-		this.repaint();
 	}
 
 	/**
@@ -272,17 +283,27 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
 	 */
 	public void addToolBar(ToolBar newToolBar) {
-		// Remove old toolbar if already set
-		if (this.toolBar != null) {
-			super.remove((SwingScilabToolBar) this.toolBar);
-		}
-		if (newToolBar != null) {
-			this.toolBar = newToolBar.getAsSimpleToolBar();
-			super.add((SwingScilabToolBar) this.toolBar, java.awt.BorderLayout.PAGE_START);
+		
+		if (newToolBar == null) {
+			if (this.toolBar != null) {
+				// Remove old InfoBar if already set
+				super.remove((SwingScilabToolBar) this.toolBar);
+				this.toolBar = null;
+				this.repaint();
+			}
+			// else nothing to do both are null
 		} else {
-			this.toolBar = null;
+			if (this.toolBar != newToolBar.getAsSimpleToolBar()) {
+				if (this.toolBar != null) {
+					// Remove old InfoBar if already set
+					super.remove((SwingScilabToolBar) this.toolBar);
+				}
+				this.toolBar = newToolBar.getAsSimpleToolBar();
+				super.add((SwingScilabToolBar) this.toolBar, java.awt.BorderLayout.PAGE_START);
+				this.repaint();
+			}
+			//  else nothing to do element alredy set
 		}
-		this.repaint();
 	}
 
 	/**
@@ -291,17 +312,27 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
 	 */
 	public void addInfoBar(TextBox newInfoBar) {
-		// Remove old InfoBar if already set
-		if (this.infoBar != null) {
-			super.remove((SwingScilabTextBox) this.infoBar);
-		}
-		if (newInfoBar != null) {
-			this.infoBar = newInfoBar.getAsSimpleTextBox();
-			super.add((SwingScilabTextBox) this.infoBar, java.awt.BorderLayout.PAGE_END);
+		
+		if (newInfoBar == null) {
+			if (this.infoBar != null) {
+				// Remove old InfoBar if already set
+				super.remove((SwingScilabTextBox) this.infoBar);
+				this.infoBar = null;
+				this.repaint();
+			}
+			// else nothing to do both are null
 		} else {
-			this.infoBar = null;
+			if (this.infoBar != newInfoBar.getAsSimpleTextBox()) {
+				if (this.infoBar != null) {
+					// Remove old InfoBar if already set
+					super.remove((SwingScilabTextBox) this.infoBar);
+				}
+				this.infoBar = newInfoBar.getAsSimpleTextBox();
+				super.add((SwingScilabTextBox) this.infoBar, java.awt.BorderLayout.PAGE_END);
+				this.repaint();
+			}
+			//  else nothing to do element alredy set
 		}
-		this.repaint();
 	}
 
 	/**
