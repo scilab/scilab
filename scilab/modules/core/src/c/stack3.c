@@ -23,7 +23,8 @@
 #include "stack-c.h"
 #include "cvstr.h"
 #include "localization.h"
-#include "Scierror.h"
+#include "Scierror.h" 
+#include "code2str.h"
 extern int C2F(dmcopy)(double *a, integer *na, double *b, integer *nb, integer *m, integer *n);
 extern int C2F(stackp)(integer *id, integer *macmod);
 
@@ -1582,7 +1583,7 @@ int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, 
 	if(iAddrData == 0 || _pszData == NULL)
 		return 0;
 
-	code2str(&_pszData, cstk(iAddrData), iArraySum(_piLen, 0, *_piRows * *_piCols));
+	code2str(&_pszData, (int*) cstk(iAddrData), iArraySum(_piLen, 0, *_piRows * *_piCols));
 	return 0;
 }
 
