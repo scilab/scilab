@@ -318,14 +318,14 @@ src/c/tows_c.c \
 src/c/variable_delay.c \
 src/c/writeau.c \
 src/c/writec.c \
-src/c/zcross2.c \
-src/c/affich.c
+src/c/zcross2.c
 
 NON_BLOCK_C_SOURCES =  src/c/scoGetProperty.c \
 src/c/scoSetProperty.c \
 src/c/scoMisc.c \
 src/c/scoMemoryScope.c\
-src/c/scoWindowScope.c
+src/c/scoWindowScope.c \
+src/c/affich.c
 
 SCICOS_BLOCKS_FORTRAN_SOURCES = src/fortran/affich2.f \
 src/fortran/affich.f \
