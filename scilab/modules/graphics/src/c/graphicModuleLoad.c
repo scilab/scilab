@@ -50,21 +50,19 @@ void closeGraphicModule( void )
 {
   if ( !isGraphicModuleLoaded ) { return ; }
 
-  startGraphicDataWriting();
+  /* destroy all graphic windows */
+  AllGraphWinDelete() ;
+
   /* destroy hashtables */
   destroyScilabGetHashTable() ;
   destroyScilabSetHashTable() ;
-
-  /* destroy all graphic windows */
-  AllGraphWinDelete() ;
 
   /* destroy default objects */
   destroyDefaultObjects() ;
 
   /* deleteTemporary points points in peri***.c */
   deletePoints() ;
-  endGraphicDataWriting();
-
+  
   /* Delete synchronization data */
   destroyGraphicSynchronizer();
 

@@ -2778,7 +2778,7 @@ sciPointObj * createFullFigure(int * winNum)
   if (newSubwin == NULL)
   {
     DestroyFigure(newFig);
-    endGraphicDataWriting();
+    endFigureDataWriting(newFig);
     return NULL;
   }
 
