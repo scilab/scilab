@@ -91,6 +91,11 @@ int CreateStructVariable(int stkPos, matvar_t *matVariable)
   integerMatrix.it = I_INT32;
   integerMatrix.m = 1;
   integerMatrix.n = matVariable->rank;
+  if (nbFields==2) /* Empty struct must have size 0x0 in Scilab */
+    {
+      matVariable->dims[0] = 0;
+      matVariable->dims[1] = 0;
+    }
   integerMatrix.D = matVariable->dims;
 
   if(matVariable->rank==2) /* Two dimensions */
@@ -125,7 +130,10 @@ int CreateStructVariable(int stkPos, matvar_t *matVariable)
           /* Create list entry in the stack */
           if (!CreateMatlabVariable(listAdr + Rhs - Top, allData[fieldIndex])) /* Could not Create Variable */
             {
-              sciprint("Do not know how to read a variable of class %d.\n", allData[fieldIndex]->class_type);
+              if (allData[fieldIndex]->class_type != 0) /* class is 0 for not initialized fields */
+                {
+                  sciprint("Do not know how to read a variable of class %d.\n", allData[fieldIndex]->class_type);
+                }
             }
           
           /* Update the returned list "pointers" */
@@ -154,7 +162,10 @@ int CreateStructVariable(int stkPos, matvar_t *matVariable)
               /* Create list entry in the stack */
               if (!CreateMatlabVariable(listAdr + 1 + Rhs - Top, allData[(fieldIndex-1) + (nbFields-2)*valueIndex])) /* Could not Create Variable */
                 {
-                  sciprint("Do not know how to read a variable of class %d.\n", allData[(fieldIndex-1) + (nbFields-2)*valueIndex]->class_type);
+                  if (allData[(fieldIndex-1) + (nbFields-2)*valueIndex]->class_type != 0) /* class is 0 for not initialized fields */
+                    {
+                      sciprint("Do not know how to read a variable of class %d.\n", allData[(fieldIndex-1) + (nbFields-2)*valueIndex]->class_type);
+                    }
                 }
 
               /* Update the list "pointers" */
