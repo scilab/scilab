@@ -43,7 +43,7 @@
 #include "MALLOC.h"
 #include "defaultlanguage.h"
 #include "scilabDefaults.h"
-#include "../../../io/includes/setenvc.h"
+#include "setenvc.h"
 /*--------------------------------------------------------------------------*/
 static char CURRENTLANGUAGESTRING[6] = SCILABDEFAULTLANGUAGE;
 /*--------------------------------------------------------------------------*/
