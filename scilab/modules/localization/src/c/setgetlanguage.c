@@ -56,7 +56,7 @@ BOOL setlanguage(char *lang)
 		/* Load the locale from the system */
 		#ifndef _MSC_VER
 		/* get current value LC_MESSAGES */
-		char *ret = setlocale("LC_MESSAGES","");
+		char *ret = setlocale(LC_MESSAGES,"");
 		if (strlen(lang) == 5) /* example : en_US */
 		{
 			char *langEncoding = NULL;
@@ -67,7 +67,7 @@ BOOL setlanguage(char *lang)
 				if (langEncoding) 
 				{
 					sprintf(langEncoding,"%s.%s",lang,Encoding);
-					ret = setlocale("LC_MESSAGES",langEncoding);
+					ret = setlocale(LC_MESSAGES,langEncoding);
 					FREE(langEncoding);
 					langEncoding = NULL;
 				}
@@ -77,7 +77,7 @@ BOOL setlanguage(char *lang)
 		}
 		else
 		{
-			ret = setlocale("LC_MESSAGES",lang);
+			ret = setlocale(LC_MESSAGES,lang);
 		}
 		#else
 		/* Load the user locale from the system */
