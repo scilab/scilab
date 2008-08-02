@@ -186,7 +186,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
-SWIGEXPORT jstring JNICALL Java_org_scilab_modules_localization_LocalizationJNI_getTextWarp(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_localization_LocalizationJNI_getTextC(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   char *arg1 = (char *) 0 ;
   char *result = 0 ;
@@ -198,7 +198,7 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_localization_LocalizationJNI_
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  result = (char *)getTextWarp(arg1);
+  result = (char *)getTextC(arg1);
   {
     if (result != NULL)
     {

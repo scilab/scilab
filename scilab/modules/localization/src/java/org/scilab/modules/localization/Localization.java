@@ -10,12 +10,26 @@ package org.scilab.modules.localization;
 
 
  /** 
+   * gettext warp
    * @author Allan CORNET
    * @copyright DIGITEO 2008
    */
 public class Localization {
-  public static String getTextWarp(String stringIn) {
-    return LocalizationJNI.getTextWarp(stringIn);
+
+ /**
+   * Constructor
+   */
+ protected Localization() {
+	throw new UnsupportedOperationException();
+ }
+  
+/**
+* gettext function
+* @param[in] english string
+* @return translated string
+*/
+public static String getTextC(String stringIn) {
+    return LocalizationJNI.getTextC(stringIn);
   }
 
 }

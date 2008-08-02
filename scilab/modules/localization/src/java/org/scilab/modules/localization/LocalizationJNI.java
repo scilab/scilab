@@ -10,22 +10,33 @@ package org.scilab.modules.localization;
 
 
  /** 
+   * gettext warp
    * @author Allan CORNET
    * @copyright DIGITEO 2008
    */
 public class LocalizationJNI {
+
+  /**
+    * Constructor
+    */
+  protected LocalizationJNI() {
+	throw new UnsupportedOperationException();
+  }
 
   static {
     try {
         System.loadLibrary("scilocalization");
     } catch (SecurityException e) {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
-		e.printStackTrace(System.err);
+		System.err.println(e.getLocalizedMessage());
+		System.exit(-1);
 	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library scicompletion does not exist or cannot be found.");
-		e.printStackTrace(System.err);
+		System.err.println("The native library scilocalization does not exist or cannot be found :");
+		System.err.println(e.getLocalizedMessage());
+		System.err.println("Current java.library.path is : "+System.getProperty("java.library.path"));
+		System.exit(-1);
     }
   }
 
-  public final static native String getTextWarp(String jarg1);
+  public final static native String getTextC(String jarg1);
 }

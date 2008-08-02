@@ -20,7 +20,7 @@
 * @param[in] english string
 * @return 
 */
-char *getTextWarp(char *stringIn);
+char *getTextC(char *stringIn);
 
 #endif /* __GETTEXTWARP__H__ */
 /*--------------------------------------------------------------------------*/ 

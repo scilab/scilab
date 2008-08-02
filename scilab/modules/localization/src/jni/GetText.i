@@ -9,10 +9,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/* Completion.i */
-/*  swig -java -package org.scilab.modules.localization -outdir ../java/org/scilab/modules/localization/ GetText.i */
-%module Localization
 
+/* GetText.i */
+/* swig -java -package org.scilab.modules.localization -outdir ../java/org/scilab/modules/localization/ GetText.i */
+
+
+%module Localization
 %{
 #include "MALLOC.h"
 #include "getTextWarp.h"
@@ -20,14 +22,24 @@
 
 %include "../../../jvm/src/jni/scilab_typemaps.i"
 
-/* JavaDoc for GetTextWrapJNI class */
+/* JavaDoc for GetTextWarpJNI class */
 %pragma(java) jniclassclassmodifiers=%{
  /** 
+   * gettext warp
    * @author Allan CORNET
    * @copyright DIGITEO 2008
    */
 public class%}
 
+/* Constructor for GetTextWarpJNI class */
+%pragma(java) jniclasscode="
+  /**
+    * Constructor
+    */
+  protected LocalizationJNI() {
+	throw new UnsupportedOperationException();
+  }";
+  
 /* static load of library */
 %pragma(java) jniclasscode=%{
   static {
@@ -35,28 +47,41 @@ public class%}
         System.loadLibrary("scilocalization");
     } catch (SecurityException e) {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
-		e.printStackTrace(System.err);
+		System.err.println(e.getLocalizedMessage());
+		System.exit(-1);
 	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library scicompletion does not exist or cannot be found.");
-		e.printStackTrace(System.err);
+		System.err.println("The native library scilocalization does not exist or cannot be found :");
+		System.err.println(e.getLocalizedMessage());
+		System.err.println("Current java.library.path is : "+System.getProperty("java.library.path"));
+		System.exit(-1);
     }
   }
 %}
 
-/* JavaDoc for Completion class */
+/* JavaDoc for GetTextWarp class */
 %pragma(java) moduleclassmodifiers="
  /** 
+   * gettext warp
    * @author Allan CORNET
    * @copyright DIGITEO 2008
    */
 public class";
 
+/* Constructor for GetTextWarp class */
+%pragma(java) modulecode="
+ /**
+   * Constructor
+   */
+ protected Localization() {
+	throw new UnsupportedOperationException();
+ }";
+
 /* JavaDoc */
-%javamethodmodifiers GetText(char *stringIn) "
+%javamethodmodifiers getTextC(char *stringIn) "
 /**
-* completion function on all types for scilab
+* gettext function
 * @param[in] english string
 * @return translated string
 */
 public";
-char *getTextWarp(char *stringIn);
+char *getTextC(char *stringIn);

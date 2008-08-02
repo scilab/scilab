@@ -18,7 +18,7 @@
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/ 
-char *getTextWarp(char *stringIn)
+char *getTextC(char *stringIn)
 {
 	return strdup(gettext(stringIn));
 }
