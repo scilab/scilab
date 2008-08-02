@@ -149,8 +149,8 @@ void TicksDrawer::getInitTicksPos(double ticksPositions[], char ** ticksLabels)
     // concatenate labels and exponents
     for (int i = 0; i < nbTicks; i++)
     {
-      int labelLength = strlen(labels[i]);
-      int exponentLength = strlen(labelsExponents[i]);
+      int labelLength = (int)strlen(labels[i]);
+      int exponentLength = (int)strlen(labelsExponents[i]);
 
       // +1 for the e and +1 for the null terminating character
       if (ticksLabels[i] != NULL)

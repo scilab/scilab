@@ -68,7 +68,7 @@ int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,unsig
 		int l = 0;
 
 		/* check *n value */
-		if ( (int)strlen(str) > *n ) l = strlen(str);
+		if ( (int)strlen(str) > *n ) l = (int)strlen(str);
 		else l = *n;
 
 		for (nn = l - 1 ; nn >= 0; --nn) 
