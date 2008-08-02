@@ -10,6 +10,7 @@
  *
  */
 
+/*--------------------------------------------------------------------------*/ 
 #ifndef __LOCALETOUTF_H__
 #define __LOCALETOUTF_H__
 
@@ -28,4 +29,13 @@ void localeToUTF(char** buffer) ;
  */
 void openLocaleToUTFConverter(char *sysLocale,char *lang);
 
+
+/**
+* get characters encoding from language
+* @param[in] language example zh_CN.UTF-8
+* @return character encoding
+*/
+char *getEncoding(char *lang);
+
 #endif 
+/*--------------------------------------------------------------------------*/ 
