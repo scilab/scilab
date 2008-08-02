@@ -37,6 +37,22 @@ int C2F(sci_setlanguage)(char *fname,unsigned long fname_len)
 
 		newlang = getLanguageFromAlias(cstk(l1));
 
+		if ( !isValidLanguage(newlang) )
+		{
+			if (getWarningMode())
+			{
+				sciprint(_("Unsupported language '%s'.\n"),newlang);
+			}
+
+			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+			*istk(l1)=(int)(FALSE);
+			if (newlang) { FREE(newlang); newlang = NULL; }
+
+			LhsVar(1)=Rhs+1;
+			C2F(putlhsvar)();
+			return 0;
+		}
+
 		if ( strcmp(newlang,getlanguage()) == 0 )
 		{
 			/* do nothing */

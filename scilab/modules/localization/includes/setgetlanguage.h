@@ -14,7 +14,7 @@
 #ifndef __SETGETLANGUAGE_H__
 #define __SETGETLANGUAGE_H__
 
-#include "machine.h"
+#include "BOOL.h"
 
 /** 
  * change language
@@ -37,6 +37,13 @@ char *getlanguage(void);
  */
 
 char *getLanguageFromAlias(char *alias);
+
+/**
+ * check if lang have a correct locale format
+ * @param[in] lang
+ * @return TRUE or FALSE
+ */
+BOOL isValidLanguage(char *lang);
 
 #endif /* __SETGETLANGUAGE_H__ */
 /*--------------------------------------------------------------------------*/ 

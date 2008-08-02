@@ -171,3 +171,19 @@ char *getLanguageFromAlias(char *alias)
 	else return strdup("");
 }
 /*--------------------------------------------------------------------------*/
+BOOL isValidLanguage(char *lang)
+{
+	/* Try to detect if it is a correct language */
+	if (lang)
+	{
+		if ( strcmp(lang,"") == 0) return TRUE;
+		if ( strcmp(lang,"C") == 0) return TRUE;
+		if ( strcmp(lang,"en") == 0) return TRUE;
+		if ( strcmp(lang,"fr") == 0) return TRUE;
+		if ( ((int) strlen(lang) == 5) && (lang[2] == '_') ) return TRUE; /* xx_XX */
+		if ( ((int) strlen(lang) > 5) && (lang[5] == '.') ) return TRUE; /* xx_XX.CP */
+	}
+	return FALSE;
+
+}
+/*--------------------------------------------------------------------------*/
