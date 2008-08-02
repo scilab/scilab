@@ -69,8 +69,10 @@ endfunction
 // ======================================
 // Main
 LANGUAGES = findLanguagesToBuild();
+mprintf("-- Build localization (.mo from .po) --\n");
+
 for L = LANGUAGES
-  mprintf("-- Building for ""%s"" --\n",L);
+  mprintf("        -- Building for ""%s"" --\n",L);
   generatePoFile(L);
 end
 // ======================================
