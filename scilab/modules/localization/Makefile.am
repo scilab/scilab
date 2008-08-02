@@ -11,7 +11,6 @@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
-src/c/loadsavelanguage.c \
 src/c/localetoutf.c \
 src/c/LanguagePref.c \
 src/c/saveLanguagePref.c \
@@ -70,7 +69,7 @@ libscilocalization_la_includedir=$(pkgincludedir)/localization
 libscilocalization_la_include_HEADERS = includes/localization.h \
 includes/gw_localization.h \
 includes/InitializeLocalization.h \
-includes/setgetlanguage.h \
+includes/setgetlanguage.h 
 
 if GUI
 USEANT=1
