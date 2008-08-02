@@ -12,10 +12,15 @@ LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
 src/c/loadsavelanguage.c \
-src/c/localetoutf.c
+src/c/localetoutf.c \
+src/c/LanguagePref.c \
+src/c/saveLanguagePref.c \
+src/c/loadLanguagePref.c
+
 
 if GUI
-#LOCALIZATION_C_SOURCES += src/c/org_scilab_modules_localization_QueryString.c
+#LOCALIZATION_C_SOURCES += src/jni/GetText_wrap.c
+#LOCALIZATION_C_SOURCES += src/c/getTextWarp.c
 endif
 
 
@@ -26,10 +31,6 @@ sci_gateway/c/sci_setlanguage.c \
 sci_gateway/c/sci_getdefaultlanguage.c \
 sci_gateway/c/sci_getlanguage.c
 
-#sci_gateway/c/sci_getlanguagealias.c \
-#sci_gateway/c/sci_getlanguagestable.c \
-#sci_gateway/c/sci_addtext.c \
-#sci_gateway/c/sci_removetext.c
 
 libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-Iincludes/ \
@@ -70,7 +71,6 @@ libscilocalization_la_include_HEADERS = includes/localization.h \
 includes/gw_localization.h \
 includes/InitializeLocalization.h \
 includes/setgetlanguage.h \
-includes/TerminateLocalization.h
 
 if GUI
 USEANT=1

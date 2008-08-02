@@ -1138,7 +1138,7 @@ msgstr ""
 # File: scilab_fake_localization_file.c, line: 37
 # File: scilab_fake_localization_file.c, line: 41
 msgid "&File"
-msgstr ""
+msgstr "&Fichier"
 
 #
 # File: scilab_fake_localization_file.c, line: 21

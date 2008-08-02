@@ -403,10 +403,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\scilab_windows\setLC_MESSAGES.c"
-				>
-			</File>
-			<File
 				RelativePath=".\WScilex.c"
 				>
 			</File>

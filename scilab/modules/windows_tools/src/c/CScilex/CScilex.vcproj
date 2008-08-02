@@ -370,10 +370,6 @@
 				RelativePath="..\scilab_windows\setDOCBOOK_ROOT.c"
 				>
 			</File>
-			<File
-				RelativePath="..\scilab_windows\setLC_MESSAGES.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

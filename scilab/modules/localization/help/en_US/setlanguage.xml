@@ -38,6 +38,7 @@
   <refsection>
     <title>Description</title>
     <para><literal>setlanguage(language)</literal> changes current language in scilab.</para>
+    <para>You need to restart scilab, if you want to use menus.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

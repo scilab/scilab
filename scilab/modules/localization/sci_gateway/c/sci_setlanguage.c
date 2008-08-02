@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007/2008 - INRIA - Sylvestre LEDRU
- * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2008 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,68 +16,72 @@
 #include "Scierror.h"
 #include "sciprint.h"
 #include "warningmode.h"
-#include "defaultlanguage.h"
 #include "MALLOC.h"
-#include "loadhashtableslocalization.h"
 #include "localization.h"
 #include "stack-c.h"
+#include "saveLanguagePref.h"
+#include "LanguagePref.h"
+#include "deleteafile.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_setlanguage)(char *fname,unsigned long fname_len)
 {
-	static int l1,n1,m1;
-
 	CheckRhs(0,1);
 	CheckLhs(1,1);
 
 	if (GetType(1) == sci_strings)
 	{
-		char *param=NULL;
-		char *newlanguage=NULL;
+		static int l1 = 0, n1 = 0, m1 = 0;
+		char *newlang = NULL;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		param=cstk(l1);
-		/* Convert small code to long code fr => fr_FR */
-		newlanguage=convertlanguagealias(param);
 
-		if ( LanguageIsOK(param) && (newlanguage == NULL) )
-		{
-		  newlanguage=param;
-		}
+		newlang = getLanguageFromAlias(cstk(l1));
 
-		if (newlanguage)
+		if ( strcmp(newlang,getlanguage()) == 0 )
 		{
-			if (needtochangelanguage(newlanguage))
-			{
-				if (!setlanguage(newlanguage,TRUE,TRUE))
-				{
-					CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-					*istk(l1)=(int)(FALSE);
-				}
-				else
-				{
-					CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-					*istk(l1)=(int)(TRUE);
-				}
-			}
-			else
-			{
-				/* do nothing */
-				CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-				*istk(l1)=(int)(TRUE);
-			}
+			/* do nothing */
+			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+			*istk(l1)=(int)(TRUE);
 		}
 		else
 		{
-			if (getWarningMode())
+			if ( !setlanguage(newlang) )
 			{
-				sciprint(_("Unsupported language '%s'.\n"),param);
-				sciprint(_("Switching to default language : '%s'.\n"),SCILABDEFAULTLANGUAGE);	
+				CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+				*istk(l1)=(int)(FALSE);
 			}
-			setlanguage(SCILABDEFAULTLANGUAGE,TRUE,TRUE);
+			else
+			{
+				if ( getWarningMode() )
+				{
+					sciprint("\n");
+					sciprint(_("The language for menus cannot be changed on a running console.\n"));
+					sciprint(_("Restart Scilab to apply to menus.\n"));
+				}
+				
+				CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+				if ( strcmp(newlang,"") )
+				{
+					*istk(l1)=(int)saveLanguagePref();
+				}
+				else /* "" language fixed by yhe system */
+				{
+					char *FileFilenameLanguagePref = getFilenameLanguagePref();
+					if (FileFilenameLanguagePref)
+					{
+						/* remove preference file */
+						deleteafile(FileFilenameLanguagePref);
+						FREE(FileFilenameLanguagePref);
+						FileFilenameLanguagePref = NULL;
+					}
 
-			CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-			*istk(l1)=(int)(FALSE);
+					*istk(l1)=(int)(TRUE);
+				}
+			}
 		}
+
+		if (newlang) { FREE(newlang); newlang = NULL; }
+
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
 	}

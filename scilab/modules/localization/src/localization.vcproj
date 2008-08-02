@@ -16,6 +16,9 @@
 		/>
 	</Platforms>
 	<ToolFiles>
+		<ToolFile
+			RelativePath="..\..\..\Visual-Studio-settings\swig.rules"
+		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -33,6 +36,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="swig rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -125,6 +131,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="swig rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -220,6 +229,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="swig rule"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -312,6 +324,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="swig rule"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -399,7 +414,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\c\getentrieshashtable.h"
+				RelativePath=".\c\defaultlanguage.h"
 				>
 			</File>
 			<File
@@ -407,11 +422,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\includes\gw_localization.h"
+				RelativePath=".\c\getTextWarp.h"
 				>
 			</File>
 			<File
-				RelativePath=".\c\hashtable_localization.h"
+				RelativePath="..\includes\gw_localization.h"
 				>
 			</File>
 			<File
@@ -419,11 +434,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\loadhashtableslocalization.h"
+				RelativePath=".\c\LanguagePref.h"
 				>
 			</File>
 			<File
-				RelativePath=".\c\loadsavelanguage.h"
+				RelativePath=".\c\loadLanguagePref.h"
 				>
 			</File>
 			<File
@@ -431,39 +446,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\org_scilab_modules_localization_QueryString.h"
-				>
-			</File>
-			<File
-				RelativePath="..\includes\QueryStringError.h"
-				>
-			</File>
-			<File
-				RelativePath="..\includes\QueryStringMenu.h"
-				>
-			</File>
-			<File
-				RelativePath="..\includes\QueryStringMessage.h"
-				>
-			</File>
-			<File
-				RelativePath="..\sci_gateway\c\sci_getlanguage.h"
-				>
-			</File>
-			<File
-				RelativePath="..\sci_gateway\c\sci_setlanguage.h"
+				RelativePath=".\c\saveLanguagePref.h"
 				>
 			</File>
 			<File
 				RelativePath="..\includes\setgetlanguage.h"
-				>
-			</File>
-			<File
-				RelativePath=".\c\tableslanguages.h"
-				>
-			</File>
-			<File
-				RelativePath="..\includes\TerminateLocalization.h"
 				>
 			</File>
 		</Filter>
@@ -508,6 +495,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\jni\GetText_wrap.c"
+				>
+			</File>
+			<File
+				RelativePath=".\c\getTextWarp.c"
+				>
+			</File>
+			<File
 				RelativePath="..\sci_gateway\c\gw_localization.c"
 				>
 			</File>
@@ -516,11 +511,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\loadsavelanguage.c"
+				RelativePath=".\c\LanguagePref.c"
+				>
+			</File>
+			<File
+				RelativePath=".\c\loadLanguagePref.c"
 				>
 			</File>
 			<File
 				RelativePath=".\c\localetoutf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\c\saveLanguagePref.c"
 				>
 			</File>
 			<File
