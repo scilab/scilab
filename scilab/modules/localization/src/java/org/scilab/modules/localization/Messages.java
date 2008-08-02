@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2008 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,14 +12,16 @@
  */
 package org.scilab.modules.localization;
 
-
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import java.io.File;
 import java.util.Locale;
 
 public class Messages {
 
-    private static final String systemLocale = "LC_MESSAGES"; 
+	public static final boolean IS_WINDOWS = (File.pathSeparatorChar == ';');
+	
+	private static final String systemLocale = "LC_MESSAGES"; 
     private static final String defaultLocale = "en_US"; 
 	private static final String pathToTheClass = "org.scilab.modules.localization.Messages";
     private static ResourceBundle resourceBundle;
@@ -54,7 +57,9 @@ public class Messages {
      * @return The translated string (or the same if the translation is not avaiable)
 	 */
     public static String gettext(String key) {
-        /* If the bundle failed to load, just return the key */
+		if (IS_WINDOWS){
+		return Localization.getTextC(key);
+		}else /* If the bundle failed to load, just return the key */
         if (failedToLoadBundle) {
             return key;
         }
@@ -73,5 +78,4 @@ public class Messages {
             return key;
         }
     }
-
 }
