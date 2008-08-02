@@ -70,6 +70,7 @@ endfunction
 // Main
 LANGUAGES = findLanguagesToBuild();
 for L = LANGUAGES
+  mprintf("-- Building for ""%s"" --\n",L);
   generatePoFile(L);
 end
 // ======================================
