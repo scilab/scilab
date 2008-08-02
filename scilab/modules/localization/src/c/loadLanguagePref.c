@@ -40,7 +40,7 @@ char *loadLanguagePref(void)
 			fclose(fileR);
 		}
 
-		FREE(filepref)
+		FREE(filepref);
 		filepref = NULL;
 
 		if (LANGUAGE) return LANGUAGE;
