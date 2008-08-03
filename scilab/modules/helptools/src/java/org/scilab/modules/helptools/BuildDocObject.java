@@ -18,6 +18,8 @@ public class BuildDocObject extends StyleSheet {
 	private String docbookPath;
 	private String styleDoc;
 	private ArrayList<String> specificArgs = new ArrayList<String>();
+	
+	public static final boolean IS_WINDOWS = (File.pathSeparatorChar == ';');
 
     /**
      * Creator ... creates the BuildDocObject object
@@ -25,6 +27,13 @@ public class BuildDocObject extends StyleSheet {
 	public BuildDocObject() {
 		super();
 		this.docbookPath = System.getenv("DOCBOOK_ROOT");
+		
+		if (IS_WINDOWS) {
+			if (this.docbookPath == null) {
+				String SCI = System.getenv("SCI");
+				this.docbookPath = SCI + "/thirdparty/docbook";
+			}
+		}
 	}
 
     /**

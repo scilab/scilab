@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include "GetWindowsVersion.h"
 #include "win_mem_alloc.h" /* MALLOC */
-#include "setDOCBOOK_ROOT.h"
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_2K_OR_MORE "Scilab requires Windows 2000 or more."
 #define MSG_WARNING "Warning"
@@ -75,8 +74,6 @@ int main (int argc, char **argv)
 		}
 		argcbis=argc;
 	}
-
-	setDOCBOOK_ROOT();
 
 	/* Disable system errors msgbox */
 	LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS );

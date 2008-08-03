@@ -366,10 +366,6 @@
 				RelativePath=".\CScilex.c"
 				>
 			</File>
-			<File
-				RelativePath="..\scilab_windows\setDOCBOOK_ROOT.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

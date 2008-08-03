@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include "GetWindowsVersion.h"
 #include "win_mem_alloc.h" /* MALLOC */
-#include "setDOCBOOK_ROOT.h"
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_2K_OR_MORE "Scilab requires Windows 2000 or more."
 #define MSG_WARNING "Warning"
@@ -38,9 +37,6 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 		MessageBox(NULL,TEXT(MSG_DETECT_2K_OR_MORE),TEXT(MSG_WARNING),MB_ICONWARNING);
 		return -1;
 	}
-//	SetEnvironmentVariableA("LC_MESSAGES","en_US");
-
-	setDOCBOOK_ROOT();
 
 	hinstLib = LoadLibrary(TEXT(SCILAB_LIBRARY)); 	
 	if (hinstLib != NULL) 
