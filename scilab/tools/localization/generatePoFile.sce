@@ -34,11 +34,30 @@ for MODULE = getmodules()'
   PATH_PO = SCI + filesep() + 'modules' + filesep() + MODULE + filesep() + 'locales' + filesep() + LANGUAGE;
   FULLFILENAMEPO = PATH_PO + filesep() + MODULE + ".po*";
   FINDFULLFILENAMEPO = ls(FULLFILENAMEPO);
+  
+  // we take only .pot or .po
+  if ( size(FINDFULLFILENAMEPO,'*')>1 ) then
+  
+    FULLFILENAMEPO = PATH_PO + filesep() + MODULE + ".pot";
+    FINDFULLFILENAMEPO = ls(FULLFILENAMEPO);
+    
+    if (FINDFULLFILENAMEPO == []) then
+    
+      FULLFILENAMEPO = PATH_PO + filesep() + MODULE + ".po";
+      FINDFULLFILENAMEPO = ls(FULLFILENAMEPO);
+      
+    end
+    
+  end
+  
   if FINDFULLFILENAMEPO <> [] then
     if (fileinfo(FINDFULLFILENAMEPO)<>[]) then
-      // '""' path windows with blank
-      List_files(j) = '""'+FINDFULLFILENAMEPO+'""';
-      j = j + 1;
+      ext = fileext(FINDFULLFILENAMEPO);
+      if ( ( ext == '.pot' ) | (ext == '.po') ) then
+        // '""' path windows with blank
+        List_files(j) = '""'+FINDFULLFILENAMEPO+'""';
+        j = j + 1;
+      end
     end
   end
 end
