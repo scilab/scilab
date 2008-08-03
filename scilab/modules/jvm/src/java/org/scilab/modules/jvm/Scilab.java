@@ -1,9 +1,10 @@
    /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) 2007-2008 - INRIA - Allan CORNET
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
- * Copyright (C) INRIA - Bruno JOFRET
+ * Copyright (C) 2007-2008 - INRIA - Jean-Baptiste SILVY
+ * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,8 +35,9 @@ import org.scilab.modules.localization.Messages;
 /**
  * Main Class for Scilab
  * @author Allan CORNET
+ * @author Jean-Baptiste SILVY
  * @author Vincent COUVERT
- * @author Sylvestre Ledru INRIA 2007
+ * @author Sylvestre Ledru
  * @author Bruno JOFRET
  */
 public class Scilab {
@@ -68,18 +70,25 @@ public class Scilab {
 		// they must be set before creating GUI
 		setJOGLFlags();
 		
+		/* http://java.sun.com/docs/books/tutorial/uiswing/lookandfeel/plaf.html */
 		
 		try {
-			String gtkLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+		
+			String scilabLookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
+			
+		    if (isWindowsPlateform()) {
+				scilabLookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+		    } else {
+				scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+		    }
+		    
 			/* Init the LookAndFeelManager all the time since we can
 			 * create windows in the NW mode */
 
 			LookAndFeelManager lookAndFeel = new LookAndFeelManager();
 
-			/* TODO Manages also windows */
-			
-			if (lookAndFeel.isSupportedLookAndFeel(gtkLookAndFeel)) {
-				lookAndFeel.setLookAndFeel(gtkLookAndFeel);
+			if (lookAndFeel.isSupportedLookAndFeel(scilabLookAndFeel)) {
+				lookAndFeel.setLookAndFeel(scilabLookAndFeel);
 			} else {
 				lookAndFeel.setSystemLookAndFeel();
 			}
