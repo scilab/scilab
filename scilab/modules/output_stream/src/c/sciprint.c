@@ -20,7 +20,6 @@
 #include "../../console/includes/ConsolePrintf.h"
 #ifdef _MSC_VER
 #include "TermPrintf.h"
-#include "charEncoding.h"
 #endif
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
@@ -87,19 +86,7 @@ void printf_scilab(char *buffer,BOOL withDiary)
 	{
 		if (getScilabMode() == SCILAB_STD)
 		{
-			#ifdef _MSC_VER
-			{
-				char *UTF8Buffer = ANSIToUTF8(buffer);
-				if (UTF8Buffer)
-				{
-					ConsolePrintf(UTF8Buffer);
-					FREE(UTF8Buffer);
-				}
-				else ConsolePrintf(buffer);
-			}
-			#else
 			ConsolePrintf(buffer);
-			#endif
 		}
 		else
 		{
