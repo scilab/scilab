@@ -648,12 +648,17 @@ AC_CHECK_FUNCS([mkdir])
 AC_CHECK_FUNCS([munmap])
 
 # Provided by math.h
+save_LDFLAGS="$LDFLAGS"
+LDFLAGS="$LDFLAGS -lm"
+
 AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor])
 
 AC_CHECK_FUNC([exp10],,[
 				AC_DEFINE([log_10_],[2.3025850929940456840179914546844],[Provide a macro to do exp10])
 				AC_DEFINE([exp10(x)],[exp( (log_10_) * (x) )],[Provide a macro to do exp10])
 				])
+
+LDFLAGS="$save_LDFLAGS"
 
 # Provided by regex.h
 AC_CHECK_FUNCS([re_comp])
