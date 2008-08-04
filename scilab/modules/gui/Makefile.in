@@ -101,9 +101,7 @@ libscigui_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
-	src/c/getlookandfeel.c src/c/setlookandfeel.c \
-	src/c/getinstalledlookandfeels.c src/c/TerminateGui.c \
+am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 	src/c/buildMainWindowTitle.c src/c/getMainWindowTitle.c \
 	src/c/InitializeGUI.c src/c/setMainWindowTitle.c \
 	src/c/addmenu.c src/c/CreateUIControl.c src/c/CreateUimenu.c \
@@ -116,9 +114,6 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_x_choose_modeless.c \
 	sci_gateway/c/sci_xgetfile.c sci_gateway/c/sci_unsetmenu.c \
 	sci_gateway/c/sci_delmenu.c sci_gateway/c/sci_setmenu.c \
-	sci_gateway/c/sci_getlookandfeel.c \
-	sci_gateway/c/sci_getinstalledlookandfeels.c \
-	sci_gateway/c/sci_setlookandfeel.c \
 	sci_gateway/c/sci_ClipBoard.c sci_gateway/c/sci_toolbar.c \
 	sci_gateway/c/sci_uigetdir.c sci_gateway/c/sci_uicontrol.c \
 	sci_gateway/c/sci_uicontextmenu.c sci_gateway/c/sci_uimenu.c \
@@ -131,7 +126,10 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	sci_gateway/c/sci_exportUI.c \
 	sci_gateway/cpp/sci_printsetupbox.cpp \
 	sci_gateway/cpp/sci_toprint.cpp \
-	sci_gateway/cpp/sci_printfigure.cpp src/cpp/InitUIMenu.cpp \
+	sci_gateway/cpp/sci_printfigure.cpp \
+	sci_gateway/cpp/sci_setlookandfeel.cpp \
+	sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
+	sci_gateway/cpp/sci_getlookandfeel.cpp src/cpp/InitUIMenu.cpp \
 	src/jni/CallScilabBridge.cpp src/jni/Jxclick.cpp \
 	src/cpp/DestroyUimenu.cpp src/cpp/DestroyUicontrol.cpp \
 	src/cpp/DestroyJavaUiobject.cpp src/cpp/DestroyWaitBar.cpp \
@@ -184,12 +182,10 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 	src/cpp/GetUicontrolSliderStep.cpp \
 	src/cpp/SetUiobjectVisible.cpp src/cpp/GetUiobjectVisible.cpp \
 	src/cpp/UnitsConversion.cpp src/cpp/GetScreenProperty.cpp \
-	src/cpp/CallClipboard.cpp src/cpp/exportUserInterface.cpp
+	src/cpp/CallClipboard.cpp src/cpp/exportUserInterface.cpp \
+	src/jni/LookAndFeelManager.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
-@GUI_TRUE@am__objects_1 = libscigui_la-getlookandfeel.lo \
-@GUI_TRUE@	libscigui_la-setlookandfeel.lo \
-@GUI_TRUE@	libscigui_la-getinstalledlookandfeels.lo \
-@GUI_TRUE@	libscigui_la-TerminateGui.lo \
+@GUI_TRUE@am__objects_1 = libscigui_la-TerminateGui.lo \
 @GUI_TRUE@	libscigui_la-buildMainWindowTitle.lo \
 @GUI_TRUE@	libscigui_la-getMainWindowTitle.lo \
 @GUI_TRUE@	libscigui_la-InitializeGUI.lo \
@@ -212,9 +208,6 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-sci_unsetmenu.lo \
 @GUI_TRUE@	libscigui_la-sci_delmenu.lo \
 @GUI_TRUE@	libscigui_la-sci_setmenu.lo \
-@GUI_TRUE@	libscigui_la-sci_getlookandfeel.lo \
-@GUI_TRUE@	libscigui_la-sci_getinstalledlookandfeels.lo \
-@GUI_TRUE@	libscigui_la-sci_setlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-sci_ClipBoard.lo \
 @GUI_TRUE@	libscigui_la-sci_toolbar.lo \
 @GUI_TRUE@	libscigui_la-sci_uigetdir.lo \
@@ -233,7 +226,10 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-sci_exportUI.lo \
 @GUI_TRUE@	libscigui_la-sci_printsetupbox.lo \
 @GUI_TRUE@	libscigui_la-sci_toprint.lo \
-@GUI_TRUE@	libscigui_la-sci_printfigure.lo
+@GUI_TRUE@	libscigui_la-sci_printfigure.lo \
+@GUI_TRUE@	libscigui_la-sci_setlookandfeel.lo \
+@GUI_TRUE@	libscigui_la-sci_getinstalledlookandfeels.lo \
+@GUI_TRUE@	libscigui_la-sci_getlookandfeel.lo
 @GUI_TRUE@am__objects_3 = libscigui_la-InitUIMenu.lo \
 @GUI_TRUE@	libscigui_la-CallScilabBridge.lo \
 @GUI_TRUE@	libscigui_la-Jxclick.lo \
@@ -310,7 +306,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c \
 @GUI_TRUE@	libscigui_la-UnitsConversion.lo \
 @GUI_TRUE@	libscigui_la-GetScreenProperty.lo \
 @GUI_TRUE@	libscigui_la-CallClipboard.lo \
-@GUI_TRUE@	libscigui_la-exportUserInterface.lo
+@GUI_TRUE@	libscigui_la-exportUserInterface.lo \
+@GUI_TRUE@	libscigui_la-LookAndFeelManager.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -591,9 +588,6 @@ JARDIR = jar/
 JARMASK = *.jar
 @GUI_FALSE@GUI_C_SOURCES = src/nogui/nogui.c
 @GUI_TRUE@GUI_C_SOURCES = \
-@GUI_TRUE@src/c/getlookandfeel.c \
-@GUI_TRUE@src/c/setlookandfeel.c \
-@GUI_TRUE@src/c/getinstalledlookandfeels.c \
 @GUI_TRUE@src/c/TerminateGui.c \
 @GUI_TRUE@src/c/buildMainWindowTitle.c \
 @GUI_TRUE@src/c/getMainWindowTitle.c \
@@ -689,7 +683,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/UnitsConversion.cpp \
 @GUI_TRUE@src/cpp/GetScreenProperty.cpp \
 @GUI_TRUE@src/cpp/CallClipboard.cpp \
-@GUI_TRUE@src/cpp/exportUserInterface.cpp
+@GUI_TRUE@src/cpp/exportUserInterface.cpp \
+@GUI_TRUE@src/jni/LookAndFeelManager.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/CallScilabBridge.giws.xml \
@@ -710,9 +705,6 @@ JARMASK = *.jar
 @GUI_TRUE@sci_gateway/c/sci_unsetmenu.c \
 @GUI_TRUE@sci_gateway/c/sci_delmenu.c \
 @GUI_TRUE@sci_gateway/c/sci_setmenu.c \
-@GUI_TRUE@sci_gateway/c/sci_getlookandfeel.c \
-@GUI_TRUE@sci_gateway/c/sci_getinstalledlookandfeels.c \
-@GUI_TRUE@sci_gateway/c/sci_setlookandfeel.c \
 @GUI_TRUE@sci_gateway/c/sci_ClipBoard.c \
 @GUI_TRUE@sci_gateway/c/sci_toolbar.c \
 @GUI_TRUE@sci_gateway/c/sci_uigetdir.c \
@@ -731,7 +723,10 @@ JARMASK = *.jar
 @GUI_TRUE@sci_gateway/c/sci_exportUI.c \
 @GUI_TRUE@sci_gateway/cpp/sci_printsetupbox.cpp \
 @GUI_TRUE@sci_gateway/cpp/sci_toprint.cpp \
-@GUI_TRUE@sci_gateway/cpp/sci_printfigure.cpp
+@GUI_TRUE@sci_gateway/cpp/sci_printfigure.cpp \
+@GUI_TRUE@sci_gateway/cpp/sci_setlookandfeel.cpp \
+@GUI_TRUE@sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
+@GUI_TRUE@sci_gateway/cpp/sci_getlookandfeel.cpp
 
 @GUI_FALSE@libscigui_la_CFLAGS = -Iincludes/ \
 @GUI_FALSE@			-I$(top_srcdir)/modules/output_stream/includes
@@ -1044,6 +1039,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Jxgetmouse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Label.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-ListBox.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-LookAndFeelManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PopupMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PushButton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-RadioButton.Plo@am__quote@
@@ -1081,8 +1077,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-buildMainWindowTitle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-exportUserInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getMainWindowTitle.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getinstalledlookandfeels.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getlookandfeel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-gw_gui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-messageboxoptions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-nogui.Plo@am__quote@
@@ -1119,7 +1113,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_mdialog.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_xgetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-setMainWindowTitle.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-setlookandfeel.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -1148,27 +1141,6 @@ libscigui_la-nogui.lo: src/nogui/nogui.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nogui/nogui.c' object='libscigui_la-nogui.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-nogui.lo `test -f 'src/nogui/nogui.c' || echo '$(srcdir)/'`src/nogui/nogui.c
-
-libscigui_la-getlookandfeel.lo: src/c/getlookandfeel.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-getlookandfeel.lo -MD -MP -MF $(DEPDIR)/libscigui_la-getlookandfeel.Tpo -c -o libscigui_la-getlookandfeel.lo `test -f 'src/c/getlookandfeel.c' || echo '$(srcdir)/'`src/c/getlookandfeel.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-getlookandfeel.Tpo $(DEPDIR)/libscigui_la-getlookandfeel.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getlookandfeel.c' object='libscigui_la-getlookandfeel.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-getlookandfeel.lo `test -f 'src/c/getlookandfeel.c' || echo '$(srcdir)/'`src/c/getlookandfeel.c
-
-libscigui_la-setlookandfeel.lo: src/c/setlookandfeel.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-setlookandfeel.lo -MD -MP -MF $(DEPDIR)/libscigui_la-setlookandfeel.Tpo -c -o libscigui_la-setlookandfeel.lo `test -f 'src/c/setlookandfeel.c' || echo '$(srcdir)/'`src/c/setlookandfeel.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-setlookandfeel.Tpo $(DEPDIR)/libscigui_la-setlookandfeel.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setlookandfeel.c' object='libscigui_la-setlookandfeel.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-setlookandfeel.lo `test -f 'src/c/setlookandfeel.c' || echo '$(srcdir)/'`src/c/setlookandfeel.c
-
-libscigui_la-getinstalledlookandfeels.lo: src/c/getinstalledlookandfeels.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-getinstalledlookandfeels.lo -MD -MP -MF $(DEPDIR)/libscigui_la-getinstalledlookandfeels.Tpo -c -o libscigui_la-getinstalledlookandfeels.lo `test -f 'src/c/getinstalledlookandfeels.c' || echo '$(srcdir)/'`src/c/getinstalledlookandfeels.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-getinstalledlookandfeels.Tpo $(DEPDIR)/libscigui_la-getinstalledlookandfeels.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getinstalledlookandfeels.c' object='libscigui_la-getinstalledlookandfeels.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-getinstalledlookandfeels.lo `test -f 'src/c/getinstalledlookandfeels.c' || echo '$(srcdir)/'`src/c/getinstalledlookandfeels.c
 
 libscigui_la-TerminateGui.lo: src/c/TerminateGui.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-TerminateGui.lo -MD -MP -MF $(DEPDIR)/libscigui_la-TerminateGui.Tpo -c -o libscigui_la-TerminateGui.lo `test -f 'src/c/TerminateGui.c' || echo '$(srcdir)/'`src/c/TerminateGui.c
@@ -1338,27 +1310,6 @@ libscigui_la-sci_setmenu.lo: sci_gateway/c/sci_setmenu.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_setmenu.lo `test -f 'sci_gateway/c/sci_setmenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setmenu.c
 
-libscigui_la-sci_getlookandfeel.lo: sci_gateway/c/sci_getlookandfeel.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_getlookandfeel.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_getlookandfeel.Tpo -c -o libscigui_la-sci_getlookandfeel.lo `test -f 'sci_gateway/c/sci_getlookandfeel.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getlookandfeel.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_getlookandfeel.Tpo $(DEPDIR)/libscigui_la-sci_getlookandfeel.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getlookandfeel.c' object='libscigui_la-sci_getlookandfeel.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_getlookandfeel.lo `test -f 'sci_gateway/c/sci_getlookandfeel.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getlookandfeel.c
-
-libscigui_la-sci_getinstalledlookandfeels.lo: sci_gateway/c/sci_getinstalledlookandfeels.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_getinstalledlookandfeels.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Tpo -c -o libscigui_la-sci_getinstalledlookandfeels.lo `test -f 'sci_gateway/c/sci_getinstalledlookandfeels.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getinstalledlookandfeels.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Tpo $(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getinstalledlookandfeels.c' object='libscigui_la-sci_getinstalledlookandfeels.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_getinstalledlookandfeels.lo `test -f 'sci_gateway/c/sci_getinstalledlookandfeels.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getinstalledlookandfeels.c
-
-libscigui_la-sci_setlookandfeel.lo: sci_gateway/c/sci_setlookandfeel.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_setlookandfeel.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_setlookandfeel.Tpo -c -o libscigui_la-sci_setlookandfeel.lo `test -f 'sci_gateway/c/sci_setlookandfeel.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setlookandfeel.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_setlookandfeel.Tpo $(DEPDIR)/libscigui_la-sci_setlookandfeel.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_setlookandfeel.c' object='libscigui_la-sci_setlookandfeel.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_setlookandfeel.lo `test -f 'sci_gateway/c/sci_setlookandfeel.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setlookandfeel.c
-
 libscigui_la-sci_ClipBoard.lo: sci_gateway/c/sci_ClipBoard.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_ClipBoard.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_ClipBoard.Tpo -c -o libscigui_la-sci_ClipBoard.lo `test -f 'sci_gateway/c/sci_ClipBoard.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ClipBoard.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_ClipBoard.Tpo $(DEPDIR)/libscigui_la-sci_ClipBoard.Plo
@@ -1512,6 +1463,27 @@ libscigui_la-sci_printfigure.lo: sci_gateway/cpp/sci_printfigure.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_printfigure.cpp' object='libscigui_la-sci_printfigure.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_printfigure.lo `test -f 'sci_gateway/cpp/sci_printfigure.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_printfigure.cpp
+
+libscigui_la-sci_setlookandfeel.lo: sci_gateway/cpp/sci_setlookandfeel.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_setlookandfeel.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_setlookandfeel.Tpo -c -o libscigui_la-sci_setlookandfeel.lo `test -f 'sci_gateway/cpp/sci_setlookandfeel.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_setlookandfeel.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_setlookandfeel.Tpo $(DEPDIR)/libscigui_la-sci_setlookandfeel.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_setlookandfeel.cpp' object='libscigui_la-sci_setlookandfeel.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_setlookandfeel.lo `test -f 'sci_gateway/cpp/sci_setlookandfeel.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_setlookandfeel.cpp
+
+libscigui_la-sci_getinstalledlookandfeels.lo: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_getinstalledlookandfeels.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Tpo -c -o libscigui_la-sci_getinstalledlookandfeels.lo `test -f 'sci_gateway/cpp/sci_getinstalledlookandfeels.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getinstalledlookandfeels.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Tpo $(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_getinstalledlookandfeels.cpp' object='libscigui_la-sci_getinstalledlookandfeels.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_getinstalledlookandfeels.lo `test -f 'sci_gateway/cpp/sci_getinstalledlookandfeels.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getinstalledlookandfeels.cpp
+
+libscigui_la-sci_getlookandfeel.lo: sci_gateway/cpp/sci_getlookandfeel.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_getlookandfeel.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_getlookandfeel.Tpo -c -o libscigui_la-sci_getlookandfeel.lo `test -f 'sci_gateway/cpp/sci_getlookandfeel.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getlookandfeel.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_getlookandfeel.Tpo $(DEPDIR)/libscigui_la-sci_getlookandfeel.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_getlookandfeel.cpp' object='libscigui_la-sci_getlookandfeel.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_getlookandfeel.lo `test -f 'sci_gateway/cpp/sci_getlookandfeel.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getlookandfeel.cpp
 
 libscigui_la-InitUIMenu.lo: src/cpp/InitUIMenu.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-InitUIMenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitUIMenu.Tpo -c -o libscigui_la-InitUIMenu.lo `test -f 'src/cpp/InitUIMenu.cpp' || echo '$(srcdir)/'`src/cpp/InitUIMenu.cpp
@@ -2086,6 +2058,13 @@ libscigui_la-exportUserInterface.lo: src/cpp/exportUserInterface.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/exportUserInterface.cpp' object='libscigui_la-exportUserInterface.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-exportUserInterface.lo `test -f 'src/cpp/exportUserInterface.cpp' || echo '$(srcdir)/'`src/cpp/exportUserInterface.cpp
+
+libscigui_la-LookAndFeelManager.lo: src/jni/LookAndFeelManager.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-LookAndFeelManager.lo -MD -MP -MF $(DEPDIR)/libscigui_la-LookAndFeelManager.Tpo -c -o libscigui_la-LookAndFeelManager.lo `test -f 'src/jni/LookAndFeelManager.cpp' || echo '$(srcdir)/'`src/jni/LookAndFeelManager.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-LookAndFeelManager.Tpo $(DEPDIR)/libscigui_la-LookAndFeelManager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/LookAndFeelManager.cpp' object='libscigui_la-LookAndFeelManager.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-LookAndFeelManager.lo `test -f 'src/jni/LookAndFeelManager.cpp' || echo '$(srcdir)/'`src/jni/LookAndFeelManager.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
