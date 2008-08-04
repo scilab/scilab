@@ -21,6 +21,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "BOOL.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int sci_setlookandfeel(char *fname,unsigned long fname_len)
 {
