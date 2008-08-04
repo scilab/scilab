@@ -1,9 +1,9 @@
       SUBROUTINE DBDSQR( UPLO, N, NCVT, NRU, NCC, D, E, VT, LDVT, U,
      $                   LDU, C, LDC, WORK, INFO )
 *
-*  -- LAPACK routine (version 3.1) --
+*  -- LAPACK routine (version 3.1.1) --
 *     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
-*     November 2006
+*     January 2007
 *
 *     .. Scalar Arguments ..
       CHARACTER          UPLO
@@ -106,7 +106,7 @@
 *          LDC >= max(1,N) if NCC > 0; LDC >=1 if NCC = 0.
 *
 *  WORK    (workspace) DOUBLE PRECISION array, dimension (2*N)
-*          if NCVT = NRU = NCC = 0, (max(1, 4*N-4)) otherwise
+*          if NCVT = NRU = NCC = 0, (max(1, 4*N)) otherwise
 *
 *  INFO    (output) INTEGER
 *          = 0:  successful exit

@@ -2,9 +2,9 @@
      $                   LDD, E, LDE, F, LDF, SCALE, RDSUM, RDSCAL,
      $                   IWORK, PQ, INFO )
 *
-*  -- LAPACK auxiliary routine (version 3.1) --
+*  -- LAPACK auxiliary routine (version 3.1.1) --
 *     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
-*     November 2006
+*     January 2007
 *
 *     .. Scalar Arguments ..
       CHARACTER          TRANS
@@ -54,10 +54,10 @@
 *  This case is used to compute an estimate of Dif[(A, D), (B, E)] =
 *  sigma_min(Z) using reverse communicaton with DLACON.
 *
-*  DTGSY2 also (IJOB >= 1) contributes to the computation in STGSYL
+*  DTGSY2 also (IJOB >= 1) contributes to the computation in DTGSYL
 *  of an upper bound on the separation between to matrix pairs. Then
 *  the input (A, D), (B, E) are sub-pencils of the matrix pair in
-*  DTGSYL. See STGSYL for details.
+*  DTGSYL. See DTGSYL for details.
 *
 *  Arguments
 *  =========
@@ -142,7 +142,7 @@
 *          On exit, the corresponding sum of squares updated with the
 *          contributions from the current sub-system.
 *          If TRANS = 'T' RDSUM is not touched.
-*          NOTE: RDSUM only makes sense when DTGSY2 is called by STGSYL.
+*          NOTE: RDSUM only makes sense when DTGSY2 is called by DTGSYL.
 *
 *  RDSCAL  (input/output) DOUBLE PRECISION
 *          On entry, scaling factor used to prevent overflow in RDSUM.
@@ -512,7 +512,7 @@
                      CALL DGER( MB, N-JE, ONE, RHS( 3 ), 1,
      $                          B( JS, JE+1 ), LDB, C( IS, JE+1 ), LDC )
                      CALL DGER( MB, N-JE, ONE, RHS( 3 ), 1,
-     $                          E( JS, JE+1 ), LDB, F( IS, JE+1 ), LDC )
+     $                          E( JS, JE+1 ), LDE, F( IS, JE+1 ), LDF )
                   END IF
 *
                ELSE IF( ( MB.EQ.2 ) .AND. ( NB.EQ.2 ) ) THEN

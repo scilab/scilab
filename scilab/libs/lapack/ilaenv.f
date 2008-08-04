@@ -1,8 +1,8 @@
       INTEGER FUNCTION ILAENV( ISPEC, NAME, OPTS, N1, N2, N3, N4 )
 *
-*  -- LAPACK auxiliary routine (version 3.1) --
+*  -- LAPACK auxiliary routine (version 3.1.1) --
 *     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
-*     November 2006
+*     January 2007
 *
 *     .. Scalar Arguments ..
       CHARACTER*( * )    NAME, OPTS
@@ -15,6 +15,10 @@
 *  ILAENV is called from the LAPACK routines to choose problem-dependent
 *  parameters for the local environment.  See ISPEC for a description of
 *  the parameters.
+*
+*  ILAENV returns an INTEGER
+*  if ILAENV >= 0: ILAENV returns the value of the parameter specified by ISPEC
+*  if ILAENV < 0:  if ILAENV = -k, the k-th argument had an illegal value.
 *
 *  This version provides a set of parameters which should give good,
 *  but not optimal, performance on many of the currently available
@@ -75,10 +79,6 @@
 *  N4      (input) INTEGER
 *          Problem dimensions for the subroutine NAME; these may not all
 *          be required.
-*
-* (ILAENV) (output) INTEGER
-*          >= 0: the value of the parameter specified by ISPEC
-*          < 0:  if ILAENV = -k, the k-th argument had an illegal value.
 *
 *  Further Details
 *  ===============
