@@ -91,7 +91,9 @@ c
       if(.not.createvar(9,'d', N, N, lVSR)) return
       if(.not.createvar(10,'i', 2*N, 1, lBWORK)) return
 
-      LWORKMIN = 7*(N+1)+16
+c To adapt to Lapack 3.1.1
+c Old version : LWORKMIN = 7*(N+1)+16
+      LWORKMIN = MAX( 8*N, 6*N + 16 )
       LWORK=LWORKMIN
       if(.not.createvar(11,'d',1,LWORK,lDWORK)) return
       nfree = 12
