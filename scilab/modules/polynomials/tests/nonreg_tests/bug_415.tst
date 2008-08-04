@@ -7,6 +7,7 @@
 
 
 
+// <-- NO CHECK REF -->
 // <-- Non-regression test for bug 415 -->
 //
 // <-- Bugzilla URL -->
@@ -85,8 +86,9 @@ expectedroots  = [..
 - 0.5652255834927423228109 + 0.0655079626336916437390*%i ;..
 0.3354022818049053333844 + 0.1602901760665648156490*%i ;..
 0.3354022818049053333844 - 0.1602901760665648156490*%i..
-]
-if or(abs(computedroots-expectedroots)>%eps) then pause,end
+];
+// Precision measured with experiments
+if or(abs(computedroots-expectedroots)>1000*%eps) then pause,end
 
 
 
