@@ -30,9 +30,9 @@ static gw_generic_table Tab[]=
 	{sci_unsetmenu,"unsetmenu"},
 	{C2F(sci_xgetfile),"xgetfile"},
  	{C2F(sci_raise_window),"raise_window"},
-	{C2F(sci_getlookandfeel),"getlookandfeel"},
-	{C2F(sci_getinstalledlookandfeels),"getinstalledlookandfeels"},
-	{C2F(sci_setlookandfeel),"setlookandfeel"},
+	{sci_getlookandfeel,"getlookandfeel"},
+	{sci_getinstalledlookandfeels,"getinstalledlookandfeels"},
+	{sci_setlookandfeel,"setlookandfeel"},
 	{C2F(sci_ClipBoard),"ClipBoard"},
 	{sci_toolbar,"toolbar"},
 	{sci_uigetdir,"uigetdir"},
@@ -48,11 +48,11 @@ static gw_generic_table Tab[]=
 	{sci_helpbrowser,"helpbrowser"},
 	{sci_uigetfont,"uigetfont"},
 	{sci_uigetcolor,"uigetcolor"},
-        {sci_getcallbackobject, "getcallbackobject"},
-        {sci_printfigure, "printfigure"},
-        {sci_exportUI, "exportUI"},
-        {sci_printsetupbox,"printsetupbox"},
-        {sci_toprint,"toprint"}
+    {sci_getcallbackobject, "getcallbackobject"},
+    {sci_printfigure, "printfigure"},
+    {sci_exportUI, "exportUI"},
+    {sci_printsetupbox,"printsetupbox"},
+    {sci_toprint,"toprint"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

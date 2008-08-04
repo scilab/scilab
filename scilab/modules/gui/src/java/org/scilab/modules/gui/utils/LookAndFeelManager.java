@@ -44,6 +44,14 @@ public class LookAndFeelManager {
 	}
 	
 	/**
+	 * Get numbers of Installed Look and Feels
+	 * @return size of array of String
+	 */
+	public int numbersOfInstalledLookAndFeels() {
+		return availableLookAndFeels.length;
+	}
+	
+	/**
 	 * Get Look and Feel
 	 * @return a String
 	 */

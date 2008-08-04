@@ -9,9 +9,6 @@ include $(top_srcdir)/Makefile.incl.am
 
 if GUI
 GUI_C_SOURCES = \
-src/c/getlookandfeel.c \
-src/c/setlookandfeel.c \
-src/c/getinstalledlookandfeels.c \
 src/c/TerminateGui.c \
 src/c/buildMainWindowTitle.c \
 src/c/getMainWindowTitle.c \
@@ -107,7 +104,8 @@ src/cpp/GetUiobjectVisible.cpp \
 src/cpp/UnitsConversion.cpp \
 src/cpp/GetScreenProperty.cpp \
 src/cpp/CallClipboard.cpp \
-src/cpp/exportUserInterface.cpp
+src/cpp/exportUserInterface.cpp \
+src/jni/LookAndFeelManager.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -128,9 +126,6 @@ sci_gateway/c/sci_xgetfile.c \
 sci_gateway/c/sci_unsetmenu.c \
 sci_gateway/c/sci_delmenu.c \
 sci_gateway/c/sci_setmenu.c \
-sci_gateway/c/sci_getlookandfeel.c \
-sci_gateway/c/sci_getinstalledlookandfeels.c \
-sci_gateway/c/sci_setlookandfeel.c \
 sci_gateway/c/sci_ClipBoard.c \
 sci_gateway/c/sci_toolbar.c \
 sci_gateway/c/sci_uigetdir.c \
@@ -149,7 +144,10 @@ sci_gateway/c/sci_getcallbackobject.c \
 sci_gateway/c/sci_exportUI.c \
 sci_gateway/cpp/sci_printsetupbox.cpp \
 sci_gateway/cpp/sci_toprint.cpp \
-sci_gateway/cpp/sci_printfigure.cpp
+sci_gateway/cpp/sci_printfigure.cpp \
+sci_gateway/cpp/sci_setlookandfeel.cpp \
+sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
+sci_gateway/cpp/sci_getlookandfeel.cpp
 
 libscigui_la_CFLAGS=	-Isrc/c/ \
 			-Isrc/c/xsci/ \

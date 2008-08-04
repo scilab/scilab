@@ -820,7 +820,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\org\scilab\modules\gui\utils\LookAndFeel.java"
+					RelativePath=".\org\scilab\modules\gui\utils\LookAndFeelManager.java"
 					>
 				</File>
 				<File
