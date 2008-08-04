@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="Giws"
+	Version="8,00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="Giws rule"
+			DisplayName="giws rule"
+			CommandLine="&quot;$(SolutionDir)tools\python\python&quot; &quot;$(SolutionDir)tools\giws\giws.py&quot; -f $(InputName).giws.xml"
+			Outputs="&quot;$(InputDir)$(InputName).cpp&quot;"
+			FileExtensions="*.giws.xml"
+			ExecutionDescription="giws process of $(InputName).giws.xml ..."
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>
