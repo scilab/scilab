@@ -463,6 +463,10 @@ Tests:
     + unitary_test_run
     + nonreg_test_run
 
+OTHERS IMPROVEMENTS:
+====================
+ - Linear algebra primitives are based on Lapack 3.1.1 .
+
 
 Internal API:
 =============
