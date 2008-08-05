@@ -30,6 +30,8 @@ function Open_()
   //** %ppt = []; //** used to store last valid click position for "Paste" operation 
   //** Clipboard = []; //** used in Copy Cut and Paste function  
   
+  gh_curwin = scf(curwin); 
+
   if edited & ~super_block then //** if is edited and is NOT a superblock
     num = x_message(["Diagram has not been saved"],['OK','Go Back'])
     if num==2 then 
@@ -77,11 +79,11 @@ function Open_()
       end
 	
       %zoom = scs_m.props.wpar(13)
-      pwindow_read_size() ;
-      window_read_size()  ;
+      pwindow_read_size(gh_curwin) ;
+      window_read_size(gh_curwin)  ;
     else
-      pwindow_set_size();
-      window_set_size();
+      pwindow_set_size(gh_curwin);
+      window_set_size(gh_curwin);
     end
 
     //** ----------------- 

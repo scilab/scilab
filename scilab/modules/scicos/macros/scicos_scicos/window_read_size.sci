@@ -20,11 +20,6 @@
 //
 
 function window_read_size(gh_window)
-   rhs = argn(2) ; //** get the number of right side arguments  
-  
-  if rhs==0 then 
-     gh_window = gh_current_window ;   
-  end  
   
   r = gh_window.figure_size ; 
   gh_window.auto_resize = "off" ; //**
@@ -32,11 +27,12 @@ function window_read_size(gh_window)
   gh_window.axes_size = scs_m.props.wpar(5:6)
 
   //** axes settings
-  gh_axes = gh_window.children ; //** axes handle
+  scf(gh_window) ; 
+  gh_axes = gca(); 
+
   gh_axes.tight_limits = "on"  ; //** set the limit "gh_axes.data_bounds" in "hard mode"
 
   gh_axes.margins = [0,0,0,0] ;     //**
-
 
   gh_axes.data_bounds = matrix(scs_m.props.wpar(1:4),2,2)
 
