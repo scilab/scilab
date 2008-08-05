@@ -24,18 +24,17 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 int sci_getlookandfeel(char *fname,unsigned long fname_len)
 {
-	static integer n1 = 0,m1 = 0,l1 = 0;
-	char *look= NULL;
-
-	Rhs = Max(0, Rhs);
 	CheckRhs(0,0);
 	CheckLhs(1,1);
 
 	org_scilab_modules_gui_utils::LookAndFeelManager *lnf = new org_scilab_modules_gui_utils::LookAndFeelManager(getScilabJavaVM());
 	if (lnf)
 	{
-		look = lnf->getCurrentLookAndFeel();
+		static integer n1 = 0,m1 = 0,l1 = 0;
+
+		char *look = lnf->getCurrentLookAndFeel();
 		delete lnf;
+
 		if (look)
 		{	
 			m1 = (int)strlen(look);

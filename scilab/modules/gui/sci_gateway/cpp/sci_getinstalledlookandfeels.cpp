@@ -23,8 +23,6 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 int sci_getinstalledlookandfeels(char *fname,unsigned long fname_len)
 {
-
-	Rhs = Max(0, Rhs);
 	CheckRhs(0,0);
 	CheckLhs(1,1);
 
@@ -57,7 +55,7 @@ int sci_getinstalledlookandfeels(char *fname,unsigned long fname_len)
 				}
 			}
 			free(lookandfeels);
-			lookandfeels=NULL;
+			lookandfeels = NULL;
 		}
 	}
 	else
