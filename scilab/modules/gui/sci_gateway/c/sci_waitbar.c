@@ -174,7 +174,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
           GetRhsVar(3, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &handleAdr);
           if (nbRow*nbCol != 1)
             {
-              Scierror(999, _("%s: Wrong size for input argument %#d: A '%s' handle expected.\n"), fname, 3, "Waitbar");
+              Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle expected.\n"), fname, 3, "Waitbar");
               return FALSE;
             }
         }
