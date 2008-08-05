@@ -40,10 +40,9 @@ end
 //** xset('window',windows(kw,2))
 navig_win_id = windows(kw,2) ;
 
-gh_navig = scf(navig_win_id) ; 
-
-//** xbasc();
-clf(gh_navig) ;
+gh_navig = scf(navig_win_id) ;
+gh_axnav = gca(); 
+delete(gh_axnav.children) ; //** clear all the objects inside the window
 //**----------------------------------------------------------------------------
 
 n_node = size(lp) ; 

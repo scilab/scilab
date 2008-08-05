@@ -23,7 +23,7 @@ function do_exit()
 
 //** This function is executed at the end of the SCICOS main loop
 //
-//** N.B. In case of "super_block" the 'scicos()' is resursively reactivate 
+//** N.B. In case of "super_block" the 'scicos()' is recursively reactivate 
 //**      inside the 'set' section of 'SUPER_f.sci' interfacing function of
 //**      Super Block 
 
@@ -97,6 +97,7 @@ for i=winrem
     win=windows(i,2)
     if or(win==winsid()) then
       gh_del = scf(win) ; //** select the 'win'window and get the handle
+      //** this line is a source of problems .... 
       delete (gh_del)   ; //** delete the window   
     end
   end

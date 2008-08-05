@@ -21,11 +21,7 @@
 
 function %zoom = restore(gh_curwin)
 // Copyright INRIA
-
   gh_current_window = gh_curwin ; 
-  
-  clf(gh_curwin) ;
-  //** gh_curwin.pixmap = "on"
   gh_curwin.pixmap = "off"
   
   if ~set_cmap(scs_m.props.options('Cmap')) then // add colors if required

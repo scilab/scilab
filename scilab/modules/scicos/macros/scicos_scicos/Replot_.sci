@@ -37,7 +37,7 @@ function Replot_()
     gh_axes = gca();   
     
     drawlater();
-       clf(gh_curwin) ; //** clear the current graphic window
+       delete(gh_axes.children) ; //** clear the current graphic window: OBJECTS ONLY ! NO Menus
        %wdm = scs_m.props.wpar
        window_set_size(gh_curwin) ; //** OK
        set_background(gh_curwin)  ; //** OK
