@@ -72,11 +72,53 @@ int SetUicontrolMax(sciPointObj* sciObj, int stackPointer, int valueType, int nb
         }
       else if (pUICONTROL_FEATURE(sciObj)->style == SCI_CHECKBOX)
         {
-          // TODO
+          if (pUICONTROL_FEATURE(sciObj)->valueSize != 0) /* Value set by the user */
+            {
+              if ((pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->min) && (pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->max))
+                {
+                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "Checkbox", "Min", "Max");
+                }
+
+              CallScilabBridge::setCheckBoxChecked(getScilabJavaVM(), 
+                                                   pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                   pUICONTROL_FEATURE(sciObj)->value[0] == pUICONTROL_FEATURE(sciObj)->max);
+            }
+          else  /* Default Value is 0 */
+            {
+              if ((pUICONTROL_FEATURE(sciObj)->min != 0) && (pUICONTROL_FEATURE(sciObj)->max != 0))
+                {
+                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "Checkbox", "Min", "Max");
+                }
+
+              CallScilabBridge::setCheckBoxChecked(getScilabJavaVM(), 
+                                                   pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                   pUICONTROL_FEATURE(sciObj)->max == 0);
+            }
         }
       else if (pUICONTROL_FEATURE(sciObj)->style == SCI_RADIOBUTTON)
         {
-          // TODO
+          if (pUICONTROL_FEATURE(sciObj)->valueSize != 0) /* Value set by the user */
+            {
+              if ((pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->min) && (pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->max))
+                {
+                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "Radiobutton", "Min", "Max");
+                }
+
+              CallScilabBridge::setRadioButtonChecked(getScilabJavaVM(), 
+                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                      pUICONTROL_FEATURE(sciObj)->value[0] == pUICONTROL_FEATURE(sciObj)->max);
+            }
+          else  /* Default Value is 0 */
+            {
+              if ((pUICONTROL_FEATURE(sciObj)->min != 0) && (pUICONTROL_FEATURE(sciObj)->max != 0))
+                {
+                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "Radiobutton", "Min", "Max");
+                }
+
+              CallScilabBridge::setRadioButtonChecked(getScilabJavaVM(), 
+                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                      pUICONTROL_FEATURE(sciObj)->max == 0);
+            }
         }
       return SET_PROPERTY_SUCCEED;
     }

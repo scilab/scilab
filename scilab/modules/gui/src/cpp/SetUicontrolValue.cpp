@@ -120,6 +120,11 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
         case SCI_CHECKBOX:
           if (pUICONTROL_FEATURE(sciObj)->valueSize != 0)
             {
+              if ((pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->min) && (pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->max))
+                {
+                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "Checkbox", "Min", "Max");
+               }
+
               CallScilabBridge::setCheckBoxChecked(getScilabJavaVM(), 
                                                    pUICONTROL_FEATURE(sciObj)->hashMapIndex,
                                                    pUICONTROL_FEATURE(sciObj)->value[0] == pUICONTROL_FEATURE(sciObj)->max);
@@ -128,6 +133,11 @@ int SetUicontrolValue(sciPointObj* sciObj, int stackPointer, int valueType, int 
         case SCI_RADIOBUTTON:
           if (pUICONTROL_FEATURE(sciObj)->valueSize != 0)
             {
+              if ((pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->min) && (pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->max))
+                {
+                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "RadioButton", "Min", "Max");
+               }
+
               CallScilabBridge::setRadioButtonChecked(getScilabJavaVM(), 
                                                       pUICONTROL_FEATURE(sciObj)->hashMapIndex,
                                                       pUICONTROL_FEATURE(sciObj)->value[0] == pUICONTROL_FEATURE(sciObj)->max);
