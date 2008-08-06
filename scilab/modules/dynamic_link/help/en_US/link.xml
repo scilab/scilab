@@ -129,7 +129,6 @@ lst=link()</synopsis>
     //Example of the use of ilib_for_link with  a simple C code
     f1=['#include &lt;math.h&gt;'
     'void fooc(double c[],double a[],double *b,int *m,int *n)'
-    'double a[],*b,c[];'
     'int *m,*n;'
     '{'
     '   int i;'
