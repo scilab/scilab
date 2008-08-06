@@ -31,7 +31,8 @@ public class Messages {
 		try {
 			String locale = System.getenv(systemLocale);
 			if (locale != null && !locale.equals("")) { /* If we haven't been able to get the language from the env */
-				resourceBundle = ResourceBundle.getBundle(pathToTheClass, new Locale(locale));
+				String[] localeLanguageCountry = convertLocale(locale);
+				resourceBundle = ResourceBundle.getBundle(pathToTheClass, new Locale(localeLanguageCountry[0],localeLanguageCountry[1]));
 			} else {
 				failedToLoadBundle = true;
 			}
@@ -39,12 +40,24 @@ public class Messages {
 			System.err.println("Could not file localization file for " + systemLocale);
 			System.err.println("Switch back to the default language " + defaultLocale);
 			try {
-				resourceBundle = ResourceBundle.getBundle(pathToTheClass, new Locale(defaultLocale));
+				String[] localeLanguageCountry = convertLocale(defaultLocale);
+				resourceBundle = ResourceBundle.getBundle(pathToTheClass, new Locale(localeLanguageCountry[0],localeLanguageCountry[1]));
 			} catch (java.util.MissingResourceException e2) {
 				failedToLoadBundle = true;
 			}
 		}
 	}
+	
+	/**
+     * converts locale string RFC 1766 to String[] ISO639 , ISO3166
+	 * Returns String[] ISO639 , ISO3166
+     * @param localeRFC1766 the string to translate
+     * @return String[] ISO639 , ISO3166
+	 */
+	private static String[] convertLocale(String localeRFC1766) {
+		return localeRFC1766.split("_");
+	}
+	
 
     /**
      * Returns the translation of a message
