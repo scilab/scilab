@@ -317,26 +317,28 @@ msgid "%s: Could not create uicontrol of type %s."
 msgstr ""
 
 #
-# File: src/cpp/SetUicontrolPosition.cpp, line: 33
-# File: src/cpp/SetUicontrolPosition.cpp, line: 55
+# File: src/cpp/SetUicontrolPosition.cpp, line: 42
+# File: src/cpp/SetUicontrolPosition.cpp, line: 64
 #, c-format
 msgid ""
-"Wrong size for '%s' property: A string or a 1 x 4 real row vector expected.\n"
-msgstr ""
-
-#
-# File: src/cpp/SetUicontrolPosition.cpp, line: 41
-#, c-format
-msgid ""
-"Wrong value for '%s' property: A string or a 1 x 4 real row vector "
+"Wrong size for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/SetUicontrolPosition.cpp, line: 68
+# File: src/cpp/SetUicontrolPosition.cpp, line: 50
 #, c-format
 msgid ""
-"Wrong type for '%s' property: A string or a 1 x 4 real row vector expected.\n"
+"Wrong value for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr ""
+
+#
+# File: src/cpp/SetUicontrolPosition.cpp, line: 77
+#, c-format
+msgid ""
+"Wrong type for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
 msgstr ""
 
 #
@@ -634,13 +636,13 @@ msgstr ""
 #
 # File: src/cpp/SetUicontrolSliderStep.cpp, line: 27
 #, c-format
-msgid "Wrong size for '%s' property: 1 x 2 real row vector.\n"
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
 
 #
 # File: src/cpp/SetUicontrolSliderStep.cpp, line: 60
 #, c-format
-msgid "Wrong type for '%s' property: 1 x 2 real row vector.\n"
+msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
 
 #
@@ -937,12 +939,6 @@ msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_waitbar.c, line: 177
-#, c-format
-msgid "%s: Wrong size for input argument %#d: A '%s' handle expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_unsetmenu.c, line: 92
 # File: sci_gateway/c/sci_setmenu.c, line: 92
 #, c-format
@@ -1052,17 +1048,18 @@ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uigetcolor.c, line: 69
+# File: sci_gateway/c/sci_uigetcolor.c, line: 50
+# File: sci_gateway/c/sci_uigetcolor.c, line: 95
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: %d x %d real row vector expected.\n"
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_uigetcolor.c, line: 101
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: %d x %d real row vector expected.\n"
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
 msgstr ""
 
 #
@@ -1126,6 +1123,17 @@ msgstr ""
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 207
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative integers expected\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
+msgid "Impossible to get current look and feel"
 msgstr ""
 
 #

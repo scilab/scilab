@@ -47,7 +47,7 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
           GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
           if ((nbRow != 1) || (nbCol != 3))
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: %d x %d real row vector expected.\n"), fname, 1, 1, 3);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 1, 3);
               return FALSE;
             }
         }
@@ -92,13 +92,13 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
           GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
           if (nbRow*nbCol != 3)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: %d x %d real row vector expected.\n"), fname, 2, 1, 3);
+              Scierror(999, _("%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 2, 3);
               return FALSE;
             }
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: %d x %d real row vector expected.\n"), fname, 2, 1, 3);
+          Scierror(999, _("%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 2, 3);
           return FALSE;
         }
     }
