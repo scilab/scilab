@@ -1,6 +1,5 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-###�TEMPLATE MAKEFILE
 ### INRIA - Scilab 2007
 ##########
 
@@ -251,7 +250,10 @@ src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
 src/jni/TicksDrawerGL.cpp \
 src/jni/GridDrawerGL.cpp \
-src/jni/RenderingChecker.cpp
+src/jni/RenderingChecker.cpp \
+src/cpp/RendererFontManager.cpp \
+src/jni/XlFontManager.cpp
+
 
 
 # List of the gateway c files
@@ -322,7 +324,8 @@ src/jni/SurfaceLineDrawerGL.giws.xml \
 src/jni/SurfaceMarkDrawerGL.giws.xml \
 src/jni/TicksDrawerGL.giws.xml \
 src/jni/GridDrawerGL.giws.xml \
-src/jni/RenderingChecker.giws.xml
+src/jni/RenderingChecker.giws.xml \
+src/jni/XlFontManager.giws.xml
 
 else
 
@@ -362,7 +365,10 @@ includes/DrawingBridge.h \
 includes/GetJavaProperty.h \
 includes/GraphicSynchronizerInterface.h \
 includes/SetJavaProperty.h \
-includes/JavaInteraction.h
+includes/JavaInteraction.h \
+includes/RendererFontManager.h
+
+
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1

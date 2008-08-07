@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) DIGITEO - 2008 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,125 +11,112 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xlfont">
+<refentry version="5.0-subset Scilab" xml:id="xlfont" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>xlfont</refname>
-    <refpurpose> load a font in the graphic context or query loaded font</refpurpose>
+
+    <refpurpose>load a font in the graphic context or query loaded
+    font</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>xlfont(font-name,font-id)
+
+    <synopsis>xlfont(font-name)
+xlfont(font-name,font-id)
+xlfont(font-name,font-id,bold)
+xlfont(font-name,font-id,bold,italic)
+fonts=xlfont('AVAILABLE_FONTS')
 fonts=xlfont()</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>font-name</term>
+
         <listitem>
           <para>string, name of the font family.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>font-id</term>
+
         <listitem>
-          <para>integer between 0 and 10.</para>
+          <para>integer &gt;= 0 .</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>fonts</term>
+
         <listitem>
-          <para>a column vector of currently loaded font names.</para>
+          <para>a column vector of font names.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    Without any argument, <literal>xlfont()</literal> returns the list of
-    currently loaded fonts.
-    </para>
-    <para>
-    With arguments, <literal>xlfont</literal> is used to load a new font at different sizes 
-    in the graphics context. The font must be available with size 8, 10, 12, 14, 18 and 24.
-    </para>
-    <para>
-    Default fonts are "Courier Roman" (0), "Symbol" (1), "Times Roman" 
-    (2), "Times Italic" (3), "Times Bold" (4), "Times Bold Italic" 
-    (5), "Helvetica" (6), "Helvetica Oblique" (7), "Helvetica Bold" 
-    (8), "Helvetica Bold Oblique" (9). These default fonts are automaticaly loaded
-    when needed and so <literal>xlfont</literal> is not really required for them. In fact 
-    <literal>xlfont</literal> is essentially useful to load a new font.
-    </para>
-    <para>
-    font-name can be of 2 types:
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para> if it contains the character "%", it is supposed to be an  X11 font name 
-            with %s in the size field of the name, for example 
-            <literal>"-b&amp;h-lucidabright-demibold-r-normal--%s-*-75-75-p-*-iso8859-1"</literal>
-        </para>
-      </listitem>
-      <listitem>
-        <para> if it does not contain the character "%", it is supposed  to be an alias 
-            name and the fonts aliased by <literal>font-name08,...,font-name24</literal> are loaded.
-        </para>
-      </listitem>
-      <listitem>
-        <para>give the id <literal>font-id</literal> to the loaded font <literal>font-name</literal>.</para>
-      </listitem>
-    </itemizedlist>
-    <para>
-       Currently this load font feature works only for screen drivers and not for others
-       (Postscript, Fig, Gif, PPM). If you export a graphical screen output in Postscript,
-       Fig, Gif or PPM while you have previously loaded a new font, the behavior depends of
-       the choice of the identifier <literal>font-id</literal> for the loaded font :
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>if <literal>font-id=10</literal> then the strings (drawn
-        with this font) will be drawn with the default font (Times) at the same size;</para>
-      </listitem>
-      <listitem>
-        <para>else the strings will be drawn with the default font
-        corresponding to <literal>font-id</literal>.</para>
-      </listitem>
-    </itemizedlist>
+
+    <para>Without any argument, <literal>xlfont()</literal> returns the list
+    of currently loaded fonts.</para>
+
+    <para>xlfont('AVAILABLE_FONTS') returns list of fonts available on your
+    system.</para>
+
+    <para>With arguments, <literal>xlfont</literal> is used to load a new font
+    at different sizes in the graphics context.</para>
+
+    <para>Default fonts are "Monospaced" (0), "Symbol" (1), "Serif" (2),
+    "Serif Italic" (3), "Serif Bold" (4), "Serif Bold Italic" (5), "SansSerif"
+    (6), "SansSerif Italic" (7), "SansSerif Bold" (8), "SansSerif Bold Italic"
+    (9). These default fonts are automaticaly loaded when needed and so
+    <literal>xlfont</literal> is not really required for them. In fact
+    <literal>xlfont</literal> is essentially useful to load a new font.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
-// Caution : this example may not work if your system have not
-//           the schoolbook bold font 
-if MSDOS then
-   xlfont("Century Schoolbook Bold",10)
-else
-   xlfont("-adobe-new century schoolbook-bold-r-normal-*-%s-*-75-75-*-*-iso8859-1",10)
-end
-xset("font", 10, 4) // use Schoolbook bold at 18 pts
+    <programlisting role="example">
+
+// Caution : this example may not work if your system have not Monospaced font.
+xlfont("Monospaced",10,true,true)
+xset("font", 10, 4) // use Monospaced Bold Italic
 plot2d()
  
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="xset">xset</link>
-      </member>
-      <member>
-        <link linkend="getfont">getfont</link>
-      </member>
+      <member><link linkend="xset">xset</link></member>
+
+      <member><link linkend="getfont">getfont</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
-    <para>J.Ph.C.  </para>
+
+    <para>Allan CORNET.</para>
   </refsection>
 </refentry>

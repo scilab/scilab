@@ -24,94 +24,95 @@ import java.util.ArrayList;
  */
 public class FontManager {
 
-	private static final float[] INTERVALS = {3.0f, 4.0f, 5.0f};
-	private static final float[] FIRST_POLY = {2.0f, 8.0f};
-	private static final float[] SECOND_POLY = {4.0f, 2.0f};
-	private static final float[] THIRD_POLY = {6.0f, -6.0f};
-	private static final float[] FOURTH_POLY = {10.0f, -26.0f};
-	
-	private static final float SIX = 6.0f;
-	
-	private static final float[] INV_INTERVALS = {14.0f, 18.0f, 24.0f};
-	private static final float[] INV_FIRST_POLY = {0.5f, -4.0f};
-	private static final float[] INV_SECOND_POLY = {0.25f, -0.5f};
-	private static final float[] INV_THIRD_POLY = {1.0f / SIX, 1.0f};
-	private static final float[] INV_FOURTH_POLY = {0.1f, 2.6f};
-	
-	
-	// logical awt fonts
-	// JRE Java guaranteed: "Dialog", "DialogInput", "Monospaced","Serif", "SansSerif", "Symbol", "Lucida"
-	// Scilab 4.x fonts --> fonts with JRE 1.5 ore more
-	// Times            --> Serif
-	// Helvetica        --> SansSerif
-	// Courier          --> Monospaced
-	// Symbol           --> Symbol
-	
-	private static final String MONOSPACED = "Monospaced";
-	private static final String SANSSERIF = "SansSerif";
-	private static final String SYMBOL = "Symbol";
-	private static final String SERIF = "Serif";
-	private static final Font DEFAULT_FONT = new Font("Default", Font.PLAIN, 1);
-	
-	/** Singleton instance */
-	private static FontManager sciFontManager;
-	
-	/**
-	 * A list of fonts.
-	 */
-	private class FontList extends ArrayList<Font> {
-		
-		private static final long serialVersionUID = 1L;
+    private static final float[] INTERVALS = {3.0f, 4.0f, 5.0f};
+    private static final float[] FIRST_POLY = {2.0f, 8.0f};
+    private static final float[] SECOND_POLY = {4.0f, 2.0f};
+    private static final float[] THIRD_POLY = {6.0f, -6.0f};
+    private static final float[] FOURTH_POLY = {10.0f, -26.0f};
 
-		/**
-		 * Default constructor.
-		 */
-		public FontList() {
-			super();
-		}
-		
-	}
+    private static final float SIX = 6.0f;
+
+    private static final float[] INV_INTERVALS = {14.0f, 18.0f, 24.0f};
+    private static final float[] INV_FIRST_POLY = {0.5f, -4.0f};
+    private static final float[] INV_SECOND_POLY = {0.25f, -0.5f};
+    private static final float[] INV_THIRD_POLY = {1.0f / SIX, 1.0f};
+    private static final float[] INV_FOURTH_POLY = {0.1f, 2.6f};
 	
-	private FontList sciFonts;
+	
+    // logical awt fonts
+    // JRE Java guaranteed: "Dialog", "DialogInput",
+    // "Monospaced","Serif", "SansSerif", "Symbol", "Lucida"
+    // Scilab 4.x fonts --> fonts with JRE 1.5 or more
+    // Times            --> Serif
+    // Helvetica        --> SansSerif
+    // Courier          --> Monospaced
+    // Symbol           --> Symbol
+
+    private static final String MONOSPACED = "Monospaced";
+    private static final String SANSSERIF = "SansSerif";
+    private static final String SYMBOL = "Symbol";
+    private static final String SERIF = "Serif";
+    private static final Font DEFAULT_FONT = new Font("Default", Font.PLAIN, 1);
+
+    /** Singleton instance. */
+    private static FontManager sciFontManager;
+
+    /**
+     * A list of fonts.
+     */
+    private class FontList extends ArrayList < Font > {
+
+        private static final long serialVersionUID = 1L;
+
+        /**
+         * Default constructor.
+         */
+        public FontList() {
+           super();
+        }
+
+    }
+	
+	private static FontList sciFonts;
 
 	/**
 	 * Default constructor.
 	 * Should not be called.
 	 */
 	protected FontManager() {
-		sciFonts = new FontList();
-		// set default font
-    /* Fonts order in Scilab 4.x for compatibility */
-    /* Courrier --> Monospaced
-   	   Symbol --> Symbol
-   	   Times --> Serif
-   	   Times Italic --> Serif Italic
-   	   Times Bold --> Serif Bold
-   	   Times Bold Italic --> Serif Bold Italic
-   	   Helvetica --> SansSerif
-   	   Helvetica Italic --> SansSerif Italic
-   	   Helvetica Bold --> SansSerif Bold
-   	   Helveticas Bold Italic --> SansSerif bold Italic
-     */
+		if (sciFontManager == null) {
+			sciFonts = new FontList();
+			// set default font
+    	/* Fonts order in Scilab 4.x for compatibility */
+    	/* Courrier --> Monospaced
+   	  	 Symbol --> Symbol
+   	   	Times --> Serif
+   	   	Times Italic --> Serif Italic
+   	   	Times Bold --> Serif Bold
+   	   	Times Bold Italic --> Serif Bold Italic
+   	   	Helvetica --> SansSerif
+   	   	Helvetica Italic --> SansSerif Italic
+   	   	Helvetica Bold --> SansSerif Bold
+   	   	Helveticas Bold Italic --> SansSerif bold Italic
+     	*/
        
-   	   sciFonts.add(createFont(MONOSPACED));           /* scilab font_style 0 */
+   	  sciFonts.add(createFont(MONOSPACED));           /* scilab font_style 0 */
    	   /* Problem with Symbol font */
    	   /* on scilab 4.x a --> alpha symbol */
    	   /* with java , symbols are not ascii codes */
-   	   sciFonts.add(createFont(SYMBOL));               /* scilab font_style 1 */
-   	   sciFonts.add(createFont(SERIF));                /* scilab font_style 2 */
-   	   sciFonts.add(createFont(SERIF, false, true));     /* scilab font_style 3 */
-   	   sciFonts.add(createFont(SERIF, true, false));     /* scilab font_style 4 */
-   	   sciFonts.add(createFont(SERIF, true, true));      /* scilab font_style 5 */
-   	   sciFonts.add(createFont(SANSSERIF));            /* scilab font_style 6 */
-   	   sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 7 */
-   	   sciFonts.add(createFont(SANSSERIF, true, false)); /* scilab font_style 8 */
-   	   sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 9 */
-   	   sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 10 */
+   	  sciFonts.add(createFont(SYMBOL));               /* scilab font_style 1 */
+   	  sciFonts.add(createFont(SERIF));                /* scilab font_style 2 */
+   	  sciFonts.add(createFont(SERIF, false, true));     /* scilab font_style 3 */
+   	  sciFonts.add(createFont(SERIF, true, false));     /* scilab font_style 4 */
+   	  sciFonts.add(createFont(SERIF, true, true));      /* scilab font_style 5 */
+   	  sciFonts.add(createFont(SANSSERIF));            /* scilab font_style 6 */
+   	  sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 7 */
+   	  sciFonts.add(createFont(SANSSERIF, true, false)); /* scilab font_style 8 */
+   	  sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 9 */
+   	  sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 10 */
    	   /* font 10 was defined by user in Scilab 4.x */
    	   /* @TO DO add a method to do same thing in Scilab 5.x */
-   	   
-   	   
+   	 } 
 	}
 	
 	/**
@@ -120,8 +121,10 @@ public class FontManager {
 	 */
 	public static FontManager getSciFontManager() {
 		if (sciFontManager == null) {
+			
 			sciFontManager = new FontManager();
 		}
+		
 		return sciFontManager;
 	}
 	
@@ -154,25 +157,25 @@ public class FontManager {
 	 * @param size size of a AWT font
 	 * @return corresponding size in Scilab
 	 */
-	public static double awtSizeToScilabSize(float size) {
-		// sqrt(|x - c| / a) - b
-		if (size < INV_INTERVALS[0]) {
-			return INV_FIRST_POLY[0] * size + INV_FIRST_POLY[1];
-		} else if (size < INV_INTERVALS[1]) {
-			return INV_SECOND_POLY[0] * size + INV_SECOND_POLY[1];
-		} else if (size < INV_INTERVALS[2]) {
-			return INV_THIRD_POLY[0] * size + INV_THIRD_POLY[1];
-		} else {
-			return INV_FOURTH_POLY[0] * size + INV_FOURTH_POLY[1];
-		}
-	}
-	
-	/**
-	 * Get a font from its index in Scilab.
-	 * @param fontIndex scilab index of the font.
-	 * @return font corresponding to the index with size 1.
-	 */
-	public Font getFontFromIndex(int fontIndex) {
+     public static double awtSizeToScilabSize(float size) {
+        // sqrt(|x - c| / a) - b
+       if (size < INV_INTERVALS[0]) {
+            return INV_FIRST_POLY[0] * size + INV_FIRST_POLY[1];
+        } else if (size < INV_INTERVALS[1]) {
+            return INV_SECOND_POLY[0] * size + INV_SECOND_POLY[1];
+        } else if (size < INV_INTERVALS[2]) {
+            return INV_THIRD_POLY[0] * size + INV_THIRD_POLY[1];
+        } else {
+           return INV_FOURTH_POLY[0] * size + INV_FOURTH_POLY[1];
+        }
+     }
+
+    /**
+     * Get a font from its index in Scilab.
+     * @param fontIndex scilab index of the font.
+     * @return font corresponding to the index with size 1.
+     */
+     public final Font getFontFromIndex(int fontIndex) {
 		if (fontIndex >= 0 && fontIndex < sciFonts.size()) {
 			return sciFonts.get(fontIndex);
 		} else if (fontIndex < 0) {
@@ -188,7 +191,7 @@ public class FontManager {
 	 * @param fontSize size of the font (scilab size).
 	 * @return font corresponding to the index.
 	 */
-	public Font getFontFromIndex(int fontIndex, double fontSize) {
+	public final Font getFontFromIndex(int fontIndex, double fontSize) {
 		Font res = getFontFromIndex(fontIndex);
 		return res.deriveFont(scilabSizeToAwtSize(fontSize));
 	}
@@ -197,7 +200,7 @@ public class FontManager {
 	 * @param newFont font to add to the list
 	 * @return index of added font.
 	 */
-	public int addFont(Font newFont) {
+	public final int addFont(Font newFont) {
 		sciFonts.add(newFont);
 		return sciFonts.size();
 	}
@@ -206,13 +209,13 @@ public class FontManager {
 	 * Replace a font in the font list by a new one.
 	 * @param index index of the font to replace
 	 * @param newFont font to add in the font list.
-	 * @return index of the added fonr or -1 if an error occured.
+	 * @return index of the added font or -1 if an error occured.
 	 */
-	public int changeFont(int index, Font newFont) {
+	public final int changeFont(int index, Font newFont) {
 		int nbFonts = sciFonts.size();
 		if (index > nbFonts) {
 			// we need to add fonts untils index
-			for (int i = nbFonts; i < index; i++) {
+			for (int i = nbFonts - 1; i < index; i++) {
 				addFont(DEFAULT_FONT);
 			}
 			return addFont(newFont);
@@ -225,13 +228,16 @@ public class FontManager {
 		}
 		
 	}
+
+
+	
 	
 	/**
 	 * Create a new font knowing its name and size.
 	 * @param fontName Name of the font.
 	 * @return new font.
 	 */
-	protected Font createFont(String fontName) {
+	protected final Font createFont(String fontName) {
 		// size must be applied after.
 		// by default, we use PLAIN font.
 		return new Font(fontName, Font.PLAIN, 1); 
@@ -244,7 +250,7 @@ public class FontManager {
 	 * @param isItalic wether the font is in italic or not.
 	 * @return new font.
 	 */
-	protected static Font createFont(String fontName, boolean isBold, boolean isItalic) {
+	protected final Font createFont(String fontName, boolean isBold, boolean isItalic) {
 		int style;
 		if (isBold && isItalic) {
 			style = Font.BOLD | Font.ITALIC;
@@ -263,7 +269,7 @@ public class FontManager {
 	 * @param fontName name of the font to add.
 	 * @return index of the added font.
 	 */
-	public int addFont(String fontName) {
+	public final int addFont(String fontName) {
 		return addFont(createFont(fontName));
 	}
 	
@@ -274,16 +280,89 @@ public class FontManager {
 	 * @param isItalic wether the font is in italic or not.
 	 * @return index of the added font.
 	 */
-	public int addFont(String fontName, boolean isBold, boolean isItalic) {
+	public final int addFont(String fontName, boolean isBold, boolean isItalic) {
 		return addFont(createFont(fontName, isBold, isItalic));
 	}
+
+	/**
+	 * Replace a font in the font list by a new one.
+	 * @param index index of the font to replace
+	 * @param fontName Name of the font.
+	 * @return index of the added font or -1 if an error occured.
+	 */
+	
+		public final int changeFont(int index, String fontName) {
+			return changeFont(index, createFont(fontName));
+	}
+		
+	/**
+	 * Replace a font in the font list by a new one.
+	 * @param index index of the font to replace
+	 * @param fontName Name of the font.
+	 * @param isBold wether the font is bold or not.
+	 * @param isItalic wether the font is in italic or not.
+	 * @return index of the added font or -1 if an error occured.
+	 */
+		public final int changeFont(int index, String fontName, boolean isBold, boolean isItalic) {
+		  return changeFont(index, createFont(fontName, isBold, isItalic));
+	}
+
+
 	
 	/**
 	 * Get the list of all fonts available.
 	 * @return Names of the available fonts.
 	 */
-	public String[] getAllFontsName() {
+	public final String[] getAvailableFontsName() {
 		return GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 	}
+
+	/**
+	 * Get the size of list of all fonts available.
+	 * @return size.
+	 */
+	public final int getSizeAvailableFontsName() {
+		return GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames().length;
+	}
 	
+    /**
+     * Check if fontname is available
+     * @param fontname Name of the font.
+     * @return true or false.
+     */
+	public final boolean isAvailableFontName(String fontname) {
+		int i = getSizeAvailableFontsName();
+		String[] availableFontsName = getAvailableFontsName();
+		for (i = 0; i < getSizeAvailableFontsName(); i++) {
+			if (fontname.compareTo(availableFontsName[i]) == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+		
+    /**
+     * returns fontnames installed (used) by scilab
+     * @return fonts name      
+     */
+     public final String[] getInstalledFontsName() {
+        int nbFonts = sciFonts.size();
+        String[] fontnames = new String[nbFonts];
+
+        for (int i = 0; i < nbFonts; i++) {
+            Font res = getFontFromIndex(i);
+            fontnames[i] = res.getFamily();
+        }
+
+        return fontnames;
+    }
+
+    /**
+     * Returns number of fonts installed.
+     * @return number of fonts installed.
+     */
+    public final int getSizeInstalledFontsName() {
+        return sciFonts.size();
+    }
+
 }
