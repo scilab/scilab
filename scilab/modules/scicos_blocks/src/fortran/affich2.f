@@ -51,10 +51,10 @@ c     z(7:7+nu*nu2)=value
       double precision sciround,ur
 
       nu2 = int(nu/ipar(7))
-c ----------- state evolution --------------------------------
+
+c ----------- State Update -------------------------------
       if(flag.eq.2) then
 c     state evolution
-
 
          ok = 1
 
@@ -69,22 +69,25 @@ c     state evolution
          if (ok.eq.1) then
            return
          endif
-  2      wid = z(1)
+ 
+ 2       wid = z(1)
          if(wid.lt.0) return
 
         do 3 i=1,nu
- 	   ur=10.0d0**ipar(6)
-         ur=sciround(u(i)*ur)/ur
-         z(6+i)=ur
+ 
+	   ur = 10.0d0**ipar(6)
+           ur = sciround(u(i)*ur)/ur
+           z(6+i) = ur
+ 
  3       continue
  
          call affdraw2(ipar(5),z(7),z(2),ipar(7),nu2,z(1),z(6))
 
 
-c ----------- INIT --------------------------------
+c ----------- Initializiation ------------------------------
       elseif(flag.eq.4) then
 c     init
-c     .  initial value         
+c     .  reset initial value         
         do 4 i=1,nu
           z(6+i)=0.0d0
  4      continue

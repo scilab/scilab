@@ -43,7 +43,8 @@ static sciPointObj * getAffichTextObject(int winNum, int compoundIndex)
 
   return sciGetIndexedSon(parentCompound, TEXT_INDEX_IN_BLOCK);
 }
-/*---------------------------------------------------------------------------------*/
+
+/*---------"affich" Initialization ------------------------------------------------*/
 void C2F(affichin)( int * fontId, 
                     int * fontSize,
                     int * color,
@@ -66,7 +67,8 @@ void C2F(affichin)( int * fontId,
   sciSetFontStyle(pText, *fontId);
   sciSetFontSize(pText, *fontSize);
   sciSetForeground(pText, -1);
-  sciSetTextPos(pText, *posX, *posY, 0.0);
+  //** little right, half height
+  sciSetTextPos(pText, *posX+(double) (0.10 * *width), *posY+(double) (0.4 * *height), 0.0); //** x, y, z :)
   sciSetUserSize(pText, *width, *height);
   sciSetAutoSize(pText, TRUE);
   sciSetText(pText, &defaultText, 1, 1);
@@ -94,7 +96,7 @@ void C2F(affichup)( double * textIndex,
 
 
 }
-/*---------------------------------------------------------------------------------*/
+/*---------"affich2" Initialization ------------------------------------------------*/
 void C2F(affin2)( int * fontId, 
                     int * fontSize,
                     int * color,
@@ -117,7 +119,7 @@ void C2F(affin2)( int * fontId,
   sciSetFontStyle(pText, *fontId);
   sciSetFontSize(pText, *fontSize);
   sciSetForeground(pText, -1);
-  sciSetTextPos(pText, *posX, *posY, 0.0);
+  sciSetTextPos(pText, *posX+(double) (0.10 * *width), *posY+(double) (0.2 * *height), 0.0); //** x, y, z :)
   sciSetUserSize(pText, *width, *height);
   sciSetAutoSize(pText, TRUE);
   sciSetStrings(pText, mat);
@@ -125,7 +127,6 @@ void C2F(affin2)( int * fontId,
   sciDrawObj(pText);
 
   deleteMatrix(mat);
-
 
 
 }

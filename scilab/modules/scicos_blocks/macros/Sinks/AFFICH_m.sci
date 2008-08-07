@@ -21,37 +21,43 @@
 
 function [x,y,typ]=AFFICH_m(job,arg1,arg2)
 //** 22 Aug 2006: looking for a nasty "font" bugs 
-x=[];y=[];typ=[]
+//** 
+//** 07 Aug 2008: this function has been update for Scilab 5.0 by
+//**              Simone Mannori and Jean-Baptiste Silvy
+ 
+x=[]; y=[]; typ=[] ;
 
 select job
 
-case 'plot' then
+case "plot" then
   ipar = arg1.model.ipar
   standard_draw(arg1)
 
-case 'getinputs' then
+case "getinputs" then
   [x,y,typ]=standard_inputs(arg1)
 
-case 'getoutputs' then
+case "getoutputs" then
   x=[];y=[];typ=[];
 
-case 'getorigin' then
-  [x,y]=standard_origin(arg1)
+case "getorigin" then
+  [x,y] = standard_origin(arg1)
 
-case 'set' then
-  x = arg1;
-  graphics = arg1.graphics; exprs = graphics.exprs
-  model = arg1.model;
+case "set" then
+  x = arg1 ;
+  graphics = arg1.graphics ;
+  exprs = graphics.exprs ;
+  model = arg1.model ;
+  
   while %t do
     [ok,in,font,fontsize,colr,nt,nd,herit,exprs]=getvalue(..
-         'Set  parameters',..
-        ['Input Size',
-         'Font number';
-         'Font size';
-         'Color';
-         'Total number of digits';
-         'Number of rational part digits';
-         'Block inherits (1) or not (0)'],..
+         "Set  parameters",..
+        ["Input Size",
+         "Font number";
+         "Font size";
+         "Color";
+         "Total number of digits";
+         "Number of rational part digits";
+         "Block inherits (1) or not (0)"],..
          list('mat',[1 2],'vec',1,'vec',1,'vec',1,'vec',1,'vec',1,'vec',1),exprs)
 
     if ~ok then break,end //user cancel modification
@@ -59,62 +65,61 @@ case 'set' then
     mess = [] ; //** no message
 
     if font<=0 then
-      mess=[mess;'Font number must be positive';' ']
+      mess=[mess;"Font number must be positive";' ']
       ok=%f
     end
 
     if fontsize<=0 then
-      mess=[mess;'Font size must be positive';' ']
+      mess=[mess;"Font size must be positive";' ']
       ok=%f
     end
 
     if nt<=3 then
-      mess=[mess;'Total number of digits must be greater than 3';' ']
+      mess=[mess;"Total number of digits must be greater than 3";' ']
       ok=%f
     end
 
     if nd<0 then
-      mess=[mess;'Number of rational part digits must be '
-                 'greater or equal 0';' ']
+      mess=[mess;"Number of rational part digits must be "
+                 "greater or equal 0";' ']
       ok=%f
     end
 
     if ~ok then
-      message(['Some specified values are inconsistent:';
+      message(["Some specified values are inconsistent:";
                ' ';mess]);
     end
 
     if ~or(herit==[0 1]) then
-      mess=[mess;'Accept inherited values are 0 and 1';' ']
+      mess=[mess;"Accept inherited values are 0 and 1";' ']
       ok=%f
     end
 
     if ~ok then
-      message(['Some specified values are inconsistent:';
+      message(["Some specified values are inconsistent:";
                ' ';mess])
     end
 
     //** Positive case ->
     if ok then
       //[model,graphics,ok]=check_io(model,graphics,1,[],ones(1-herit,1),[])
-      [model,graphics,ok]=set_io(model,graphics,...
-                                 list(in,1),list(),...
-                                 ones(1-herit,1),[])
+      [model,graphics,ok] = set_io(model, graphics, list(in,1), list(), ones(1-herit,1), [])
     end
 
     if ok then
-      model.ipar=[font;fontsize;colr;xget('window');nt;nd;in(1,1)];
+      model.ipar = [font;fontsize;colr;xget('window');nt;nd;in(1,1)];
       model.dstate = [-1;0;0;1;1;0;zeros(in(1,1)*in(1,2),1)]
-      model.evtin=ones(1-herit,1)
-      graphics.exprs=exprs;
-      x.graphics=graphics;x.model=model
+      model.evtin = ones(1-herit,1)
+      graphics.exprs = exprs;
+      x.graphics = graphics;
+      x.model = model ;
       break
     end
 
   end
 
 
-case 'define' then
+case "define" then
   font = 1
   fontsize = 1
   colr = 1

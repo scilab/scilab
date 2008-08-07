@@ -33,28 +33,30 @@ c     z(7)=text_handle
 
 
 c     
-c     
+c     ------------------- State Update -----------------------------     
       if(flag.eq.2) then
 c     state evolution
          ur=10.0d0**ipar(6)
          ur=sciround(u(1)*ur)/ur
+
          if (ur.eq.z(1)) return
+
          wid=z(2)
+
          if(wid.lt.0) return
 
          call setblockwin(int(z(2)),cur)
 
-
          z(1)=ur
-
          
          call affdraw(ipar(5),z(1), z(2), z(7))
 
-c     INIT ----------------------------------------------------------
+c     ----------------- Initialization -----------------------------
       elseif(flag.eq.4) then
 c     init
 c     .  initial value = 0         
          z(1)=0.0d0 
+
 c     .  get geometry of the block
          call getgeom(z(2))
       
@@ -62,12 +64,13 @@ c     .  get geometry of the block
 c     . Check that the winId is valid.
          if(z(2).lt.0.0d0) return
          
-         
+c     ---------------------------------------------------------------    
       call initdraw(ipar(1), ipar(2), ipar(3), z(2), z(3), z(4), z(5),
      &              z(6), z(7))
 
       endif
       end
+c     ---------------------------------------------------------------
 
       subroutine setblockwin(win,cur)
       integer win,cur
@@ -78,7 +81,7 @@ c     . Check that the winId is valid.
       return
       end
 
-c --------------------------------------------------
+c     -------- Build the string and draw it inside the box  --------
       subroutine affdraw(form, val, winnum, textind)
       integer textind 
       integer form(2)
@@ -87,23 +90,22 @@ c --------------------------------------------------
       double precision val
       character*40 fmt,value
 
-c     . Compute the string to display
+c     --------- Compute the string to display ---------------
       write(fmt,'(''(f'',i3,''.'',i3,'')'')') form(1),form(2)
       value=' '
       write(value,fmt) val
+c     .Add the "0" at the end of the string (C standard string)
       ln=lnblnk(value)
       value(ln+1:ln+1)=char(0)
        
        call affichup(textind, winnum, value)
        
- 
       return
  
       end
 
 
 c -------------------------------------------------------------------------------------
-
 
       subroutine getgeom(g)
       include "stack.h"
