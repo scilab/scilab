@@ -272,12 +272,10 @@ function scicos_unitary(varargin)
   mprintf('\n ======================================\n')
   mprintf('  Summary')
   mprintf('\n ======================================\n\n')
-  mprintf('  Total number of tests:               %04d\n\n', nbTotal)
-  if nbTotal ~= 0
-    mprintf('  Successful tests:                    %04d    [ %5.1f%% ]\n', nbSuccessful, nbSuccessful/nbTotal*100)
-    mprintf('  Failed tests:                        %04d    [ %5.1f%% ]\n', nbFailed,     nbFailed/nbTotal*100)
-    mprintf('  Undetermined tests (no result):      %04d    [ %5.1f%% ]\n', nbNoResult,   nbNoResult/nbTotal*100)
-  end
+  mprintf('  Total number of tests:               %4d - 100.0% \n', nbTotal)
+  mprintf('  Successful tests:                    %4d - %5.1f %% \n', nbSuccessful, nbSuccessful/nbTotal*100)
+  mprintf('  Failed tests:                        %4d - %5.1f %% \n', nbFailed,     nbFailed/nbTotal*100)
+  mprintf('  Undetermined tests (no result):      %4d - %5.1f %% \n', nbNoResult,   nbNoResult/nbTotal*100)
 
 endfunction
 
