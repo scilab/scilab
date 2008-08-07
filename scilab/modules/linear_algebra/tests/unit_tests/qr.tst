@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NO CHECK REF -->
 function r=Err(x),r=norm(x,1),endfunction
 rand('normal')
 //==========================================================================

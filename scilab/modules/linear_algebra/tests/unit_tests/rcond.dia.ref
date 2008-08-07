@@ -6,28 +6,24 @@
 // =============================================================================
 function r=Err(x),r=norm(x,1),endfunction
 rand('normal')
-
 //==========================================================================
-//==============================    rcond     ============================== 
+//==============================    rcond     ==============================
 //==========================================================================
 //Empty matrix
 A=[];
-if rcond(A)<>[] then pause,end
-
+if rcond(A)<>[] then bugmes();quit;end
 //Rectangular matrix
-if execstr('rcond(rand(2,3))','errcatch')==0 then pause,end
-if execstr('rcond(rand(2,3)+%i*eye())','errcatch')==0 then pause,end
+if execstr('rcond(rand(2,3))','errcatch')==0 then bugmes();quit;end
+if execstr('rcond(rand(2,3)+%i*eye())','errcatch')==0 then bugmes();quit;end
 //Small dimension
 //---------------
 //Real Case
-if Err(rcond(eye(5,5))-1)>10*%eps then pause,end
+if Err(rcond(eye(5,5))-1)>10*%eps then bugmes();quit;end
 //Complex Case
-if  Err(rcond(eye(5,5)*(1+%i))-1)>10*%eps then pause,end
-
-
+if  Err(rcond(eye(5,5)*(1+%i))-1)>10*%eps then bugmes();quit;end
 //Large dimension
 //---------------
 //Real Case
-if Err(rcond(eye(50,50))-1)>10*%eps then pause,end
+if Err(rcond(eye(50,50))-1)>10*%eps then bugmes();quit;end
 //Complex Case
-if  Err(rcond(eye(50,50)*(1+%i))-1)>10*%eps then pause,end
+if  Err(rcond(eye(50,50)*(1+%i))-1)>10*%eps then bugmes();quit;end

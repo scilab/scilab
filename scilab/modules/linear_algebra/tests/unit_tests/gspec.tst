@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NO CHECK REF -->
 rand('normal')
 
 //define tools
