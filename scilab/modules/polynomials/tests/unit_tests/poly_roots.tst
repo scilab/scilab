@@ -5,6 +5,16 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// poly_roots.tst --
+//   Check the computation of the roots of a polynomial
+//   with different kinds of polynomials and different 
+//   kinds of roots :
+//   - real poly,
+//   - complex poly,
+//   - real roots,
+//   - complex roots.
+
+
 //roots : 3 real roots -> RPOLY
 p=-6+11*%s-6*%s^2+%s^3;
 myroots=roots(p);
@@ -69,6 +79,22 @@ myroots=roots(p,"e");
 computedroots = sort(myroots);
 expectedroots  = [%pi;%pi];
 if (abs(computedroots-expectedroots)>10*%eps) then pause,end
+//
+// Caution !
+// The following are difficult root-finding problems
+// with expected precision problems.
+// See "Principles for testing polynomial 
+// zerofinding programs"
+// Jenkins, Traub
+// 1975
+// p.28
+// "The accuracy which one may expect to achieve in calculating
+// zeros is limited by the condition of these zeros. In particular,
+// for multiple zeros perturbations of size epsilon in the 
+// coefficients cause perturbations of size epsilon^(1/m)
+// in the zeros."
+// 
+//
 // 3 real roots with a zero derivate at the root -> RPOLY
 // *** PRECISION PROBLEM : only simple precision computed, instead of double precision ***
 p=(%s-%pi)^3
