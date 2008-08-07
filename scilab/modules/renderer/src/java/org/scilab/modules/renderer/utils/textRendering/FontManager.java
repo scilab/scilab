@@ -51,6 +51,7 @@ public class FontManager {
     private static final String MONOSPACED = "Monospaced";
     private static final String SANSSERIF = "SansSerif";
     private static final String SYMBOL = "Symbol";
+    private static final String OPENSYMBOL = "OpenSymbol";
     private static final String SERIF = "Serif";
     private static final Font DEFAULT_FONT = new Font("Default", Font.PLAIN, 1);
 
@@ -100,7 +101,16 @@ public class FontManager {
    	   /* Problem with Symbol font */
    	   /* on scilab 4.x a --> alpha symbol */
    	   /* with java , symbols are not ascii codes */
-   	  sciFonts.add(createFont(SYMBOL));               /* scilab font_style 1 */
+   	  if ( isAvailableFontName(SYMBOL) ) {
+   		sciFonts.add(createFont(SYMBOL));               /* scilab font_style 1 */
+   	  }
+   	  else {
+   		if ( isAvailableFontName(SYMBOL) ) {
+   		sciFonts.add(createFont(OPENSYMBOL));               /* scilab font_style 1 */
+   		} else {
+   		sciFonts.add(DEFAULT_FONT);               /* scilab font_style 1 */
+   		}
+   	  }
    	  sciFonts.add(createFont(SERIF));                /* scilab font_style 2 */
    	  sciFonts.add(createFont(SERIF, false, true));     /* scilab font_style 3 */
    	  sciFonts.add(createFont(SERIF, true, false));     /* scilab font_style 4 */

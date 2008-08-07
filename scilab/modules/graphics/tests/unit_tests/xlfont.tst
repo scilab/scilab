@@ -23,7 +23,11 @@ default_fonts = [ "Monospaced" , ..
 "SansSerif" , ..
 "SansSerif" ];
 
-if ( and(fonts <> default_fonts) ) then pause,end
+if ~MSDOS then 
+default_fonts = strsubst(default_fonts,'Symbol','OpenSymbol');
+end
+
+if ( or(fonts <> default_fonts) ) then pause,end
 
 availablefonts = xlfont('AVAILABLE_FONTS');
 if size(availablefonts,'*') < 11 then pause,end
