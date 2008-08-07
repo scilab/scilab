@@ -151,19 +151,19 @@ if ( getscilabmode() == 'STD') then
         setmenu(gettext("&Preferences"));
         setmenu(gettext("&Control"));
         setmenu(gettext("&Applications"));
-        if ~exists("scipadlib") then // Desactivate Editor menu
+        if ~with_module("scipad") then // Desactivate Editor menu
           unsetmenu(gettext("&Applications"),2);
         end
-        if ~exists("scicos_autolib") then // Desactivate Scicos menu
+        if ~with_module("scicos") then // Desactivate Scicos menu
           unsetmenu(gettext("&Applications"),4);
         end
-        if ~exists("metanetgraph_toolslib") then // Desactivate EditGraph menu
+        if ~with_module("metanet") then // Desactivate EditGraph menu
           unsetmenu(gettext("&Applications"),6);
         end
-        if ~exists("m2scilib") then // Desactivate mfile2sci menu
+        if ~with_module("m2sci") then // Desactivate mfile2sci menu
           unsetmenu(gettext("&Applications"),8);
         end
-        if ~exists("tclscilib") then // Desactivate Browsevar menu
+        if ~with_module("tclsci") then // Desactivate Browsevar menu
           unsetmenu(gettext("&Applications"),10);
         end
         setmenu(gettext("&?"));
