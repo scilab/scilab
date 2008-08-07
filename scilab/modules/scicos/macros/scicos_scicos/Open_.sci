@@ -128,7 +128,12 @@ function Open_()
       scs_m.props.context = ' '; //** put the context to void 
     end
     //**--------------
-    
+
+    gh_axes = gca();
+    if gh_axes.children<>[] then
+      drawlater();  
+      delete(gh_axes.children); //** delete all the object in the window
+    end
     drawobjs(scs_m) ; //** draw all the objects in the diagram data structure
     
     if size(%cpr)==0 then
