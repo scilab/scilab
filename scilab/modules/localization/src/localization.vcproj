@@ -495,14 +495,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\jni\GetText_wrap.c"
-				>
-			</File>
-			<File
-				RelativePath=".\c\getTextWarp.c"
-				>
-			</File>
-			<File
 				RelativePath="..\sci_gateway\c\gw_localization.c"
 				>
 			</File>

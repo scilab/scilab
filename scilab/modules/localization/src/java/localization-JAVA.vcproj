@@ -113,14 +113,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\org\scilab\modules\localization\Localization.java"
-				>
-			</File>
-			<File
-				RelativePath=".\org\scilab\modules\localization\LocalizationJNI.java"
-				>
-			</File>
-			<File
 				RelativePath=".\org\scilab\modules\localization\Messages.java"
 				>
 			</File>

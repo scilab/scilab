@@ -17,12 +17,6 @@ src/c/saveLanguagePref.c \
 src/c/loadLanguagePref.c
 
 
-if GUI
-#LOCALIZATION_C_SOURCES += src/jni/GetText_wrap.c
-#LOCALIZATION_C_SOURCES += src/c/getTextWarp.c
-endif
-
-
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
 sci_gateway/c/sci_dgettext.c \
