@@ -88,7 +88,7 @@ expectedroots  = [..
 0.3354022818049053333844 - 0.1602901760665648156490*%i..
 ];
 // Precision measured with experiments
-if or(abs(computedroots-expectedroots)>1000*%eps) then pause,end
+if or(abs(computedroots-expectedroots)>10^4*%eps) then pause,end
 
 
 
