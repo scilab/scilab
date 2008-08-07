@@ -16,7 +16,6 @@
 
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-###�TEMPLATE MAKEFILE
 ### INRIA - Scilab 2007
 ##########
 
@@ -326,7 +325,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
 	src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
 	src/jni/TicksDrawerGL.cpp src/jni/GridDrawerGL.cpp \
-	src/jni/RenderingChecker.cpp sci_gateway/c/gw_renderer.c
+	src/jni/RenderingChecker.cpp src/cpp/RendererFontManager.cpp \
+	src/jni/XlFontManager.cpp sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -571,7 +571,9 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-GridDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-TicksDrawerGL.lo \
 @GUI_TRUE@	libscirenderer_la-GridDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-RenderingChecker.lo
+@GUI_TRUE@	libscirenderer_la-RenderingChecker.lo \
+@GUI_TRUE@	libscirenderer_la-RendererFontManager.lo \
+@GUI_TRUE@	libscirenderer_la-XlFontManager.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -1045,7 +1047,9 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
 @GUI_TRUE@src/jni/TicksDrawerGL.cpp \
 @GUI_TRUE@src/jni/GridDrawerGL.cpp \
-@GUI_TRUE@src/jni/RenderingChecker.cpp
+@GUI_TRUE@src/jni/RenderingChecker.cpp \
+@GUI_TRUE@src/cpp/RendererFontManager.cpp \
+@GUI_TRUE@src/jni/XlFontManager.cpp
 
 
 # List of the gateway c files
@@ -1117,7 +1121,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/SurfaceMarkDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/TicksDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/GridDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/RenderingChecker.giws.xml
+@GUI_TRUE@src/jni/RenderingChecker.giws.xml \
+@GUI_TRUE@src/jni/XlFontManager.giws.xml
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -1148,7 +1153,8 @@ includes/DrawingBridge.h \
 includes/GetJavaProperty.h \
 includes/GraphicSynchronizerInterface.h \
 includes/SetJavaProperty.h \
-includes/JavaInteraction.h
+includes/JavaInteraction.h \
+includes/RendererFontManager.h
 
 
 # Provides macros compilation, Java compilation, cleaning
@@ -1467,6 +1473,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RendererFontManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RenderingChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RightYAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Plo@am__quote@
@@ -1511,6 +1518,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XLabelPositioner.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XlFontManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YGridDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YLabelPositioner.Plo@am__quote@
@@ -3291,6 +3299,20 @@ libscirenderer_la-RenderingChecker.lo: src/jni/RenderingChecker.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/RenderingChecker.cpp' object='libscirenderer_la-RenderingChecker.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RenderingChecker.lo `test -f 'src/jni/RenderingChecker.cpp' || echo '$(srcdir)/'`src/jni/RenderingChecker.cpp
+
+libscirenderer_la-RendererFontManager.lo: src/cpp/RendererFontManager.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RendererFontManager.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RendererFontManager.Tpo -c -o libscirenderer_la-RendererFontManager.lo `test -f 'src/cpp/RendererFontManager.cpp' || echo '$(srcdir)/'`src/cpp/RendererFontManager.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-RendererFontManager.Tpo $(DEPDIR)/libscirenderer_la-RendererFontManager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/RendererFontManager.cpp' object='libscirenderer_la-RendererFontManager.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RendererFontManager.lo `test -f 'src/cpp/RendererFontManager.cpp' || echo '$(srcdir)/'`src/cpp/RendererFontManager.cpp
+
+libscirenderer_la-XlFontManager.lo: src/jni/XlFontManager.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XlFontManager.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XlFontManager.Tpo -c -o libscirenderer_la-XlFontManager.lo `test -f 'src/jni/XlFontManager.cpp' || echo '$(srcdir)/'`src/jni/XlFontManager.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-XlFontManager.Tpo $(DEPDIR)/libscirenderer_la-XlFontManager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/XlFontManager.cpp' object='libscirenderer_la-XlFontManager.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XlFontManager.lo `test -f 'src/jni/XlFontManager.cpp' || echo '$(srcdir)/'`src/jni/XlFontManager.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
