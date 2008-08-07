@@ -32,7 +32,8 @@ public class Messages {
 			String locale = System.getenv(systemLocale);
 			if (locale != null && !locale.equals("")) { /* If we haven't been able to get the language from the env */
 				String[] localeLanguageCountry = convertLocale(locale);
-				resourceBundle = ResourceBundle.getBundle(pathToTheClass, new Locale(localeLanguageCountry[0],localeLanguageCountry[1]));
+				resourceBundle = ResourceBundle.getBundle(pathToTheClass, 
+						new Locale(localeLanguageCountry[0], localeLanguageCountry[1]));
 			} else {
 				failedToLoadBundle = true;
 			}
@@ -41,7 +42,8 @@ public class Messages {
 			System.err.println("Switch back to the default language " + defaultLocale);
 			try {
 				String[] localeLanguageCountry = convertLocale(defaultLocale);
-				resourceBundle = ResourceBundle.getBundle(pathToTheClass, new Locale(localeLanguageCountry[0],localeLanguageCountry[1]));
+				resourceBundle = ResourceBundle.getBundle(pathToTheClass, 
+						new Locale(localeLanguageCountry[0], localeLanguageCountry[1]));
 			} catch (java.util.MissingResourceException e2) {
 				failedToLoadBundle = true;
 			}
