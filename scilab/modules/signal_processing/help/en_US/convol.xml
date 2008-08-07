@@ -122,9 +122,18 @@
  
    <para>Overlap add method can be used.</para>
 
-    <para>USE OF OVERLAP ADD METHOD: For x=[x1,x2,...,xNm1,xN] First call is
-    [y1,e1]=convol(h,x1); Subsequent calls : [yk,ek]=convol(h,xk,ekm1); Final
-    call : [yN]=convol(h,xN,eNm1); Finally y=[y1,y2,...,yNm1,yN]</para>
+    <para>USE OF OVERLAP ADD METHOD: For
+    <literal>x=[x1,x2,...,xNm1,xN]</literal> First call is
+    <literal>[y1,e1]=convol(h,x1);</literal> Subsequent calls :
+    <literal>[yk,ek]=convol(h,xk,ekm1)</literal>; Final call :
+    <literal>[yN]=convol(h,xN,eNm1);</literal> Finally
+    <literal>y=[y1,y2,...,yNm1,yN]</literal>.</para>
+    <para>The algorithm based on the convolution definition is
+    implemented for polynomial
+    product: <literal>y=convol(h,x)</literal> is equivalent
+    to <literal>y=coeff(poly(h,'z','c')*poly(x,'z','c')</literal> but
+    much more efficient if <literal>x</literal> is a "long" array.</para>
+
   </refsection>
 
   <refsection>
