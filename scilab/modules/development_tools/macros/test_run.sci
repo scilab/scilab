@@ -8,6 +8,9 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// test_run  --
+// Arguments:
+//   ???
 // =============================================================================
 // Launch tests
 // =============================================================================
@@ -584,9 +587,11 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		return;
 	end
 	
-	// On test l'existence de la ref si besoin
-	
-	if check_ref then
+        // Check the reference file only if check_ref (i.e. for the whole 
+        // test sequence) is true and this_check_ref (i.e. for the specific current .tst)
+        // is true.
+
+	if ( check_ref & this_check_ref ) then
 		if (fileinfo(reffile) == []) & (fileinfo(altreffile) == []) then
 			status_msg     = "failed  : the ref file doesn''t exist";
 			status_details = "     Add or create the following file"+reffile+" file";
