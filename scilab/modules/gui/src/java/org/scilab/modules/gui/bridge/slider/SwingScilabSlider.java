@@ -216,8 +216,8 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 		if (adjustmentListener != null) {
 			removeAdjustmentListener(adjustmentListener);
 		}
-		
-		setMaximum(value);	
+
+		setMaximum(value + getVisibleAmount());
 		
 		/* Put back the listener */
 		if (adjustmentListener != null) {
@@ -238,9 +238,17 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 * @param space the increment value
 	 */
 	public void setMajorTickSpacing(int space) {
+		/* Remove the listener to avoid the callback to be executed */
+		if (adjustmentListener != null) {
+			removeAdjustmentListener(adjustmentListener);
+		}
+
 		setBlockIncrement(space);
-		/* Set the size of the knob */
-		getModel().setExtent(getBlockIncrement());
+
+		/* Put back the listener */
+		if (adjustmentListener != null) {
+			addAdjustmentListener(adjustmentListener);
+		}
 	}
 
 	/**
@@ -248,7 +256,17 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 * @param space the increment value
 	 */
 	public void setMinorTickSpacing(int space) {
+		/* Remove the listener to avoid the callback to be executed */
+		if (adjustmentListener != null) {
+			removeAdjustmentListener(adjustmentListener);
+		}
+
 		setUnitIncrement(space);
+
+		/* Put back the listener */
+		if (adjustmentListener != null) {
+			addAdjustmentListener(adjustmentListener);
+		}
 	}
 	
 	/**
