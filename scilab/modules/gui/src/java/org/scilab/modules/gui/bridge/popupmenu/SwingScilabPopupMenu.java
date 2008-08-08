@@ -183,6 +183,11 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 * @param index the index of the item to be selected
 	 */
 	public void setSelectedIndex(int index) {
+		/* Remove the listener to avoid the callback to be executed */
+		if (this.callback != null) {
+			removeActionListener(this.callback);
+		}
+
 		for (int i = 0; i < getItemCount(); i++) {
 			// Scilab indices in Value begin at 1 and Java indices begin at 0
 			if (i == (index - 1)) {
@@ -198,6 +203,11 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 					addActionListener(this.callback);
 				}
 			}
+		}
+		
+		/* Put back the listener */
+		if (this.callback != null) {
+			removeActionListener(this.callback);
 		}
 	}
 	
@@ -223,7 +233,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	public String[] getAllItemsText() {
 		String[] retValue = new String[getItemCount()];
 		for (int i = 0; i < getItemCount(); i++) {
-			retValue[i] = (String) getItemAt(i);
+			retValue[i] = getItemAt(i).toString();
 		}
 		return retValue;
 		
@@ -247,6 +257,10 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 		
 		/* Special case if the text contains | to separate items */
 		if (text.length == 1) {
+			if (text[0].isEmpty()) {
+				/* Clear the popup items */
+				return;
+			}
 			StringTokenizer strTok = new StringTokenizer(text[0], "|");
 			while (strTok.hasMoreTokens()) {
 				addItem(strTok.nextToken());
