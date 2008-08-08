@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2008 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,7 +20,8 @@ import java.util.Locale;
 public class Messages {
 
     private static final String systemLocale = "LC_MESSAGES"; 
-    private static final String defaultLocale = "en_US"; 
+    private static final String defaultLocale = "en_US";
+    private static final String UTF8 = "UTF-8"; 
 	private static final String pathToTheClass = "org.scilab.modules.localization.Messages";
     private static ResourceBundle resourceBundle;
     private static boolean failedToLoadBundle;
@@ -51,13 +53,37 @@ public class Messages {
 	}
 	
 	/**
-     * converts locale string RFC 1766 to String[] ISO639 , ISO3166
-	 * Returns String[] ISO639 , ISO3166
-     * @param localeRFC1766 the string to translate
-     * @return String[] ISO639 , ISO3166
+     * converts locale string Language_Country.CodePage to 
+	 * returns language, country, code page
+     * @param localeEnv Language_Country.CodePage
+     * @return String[] language, country, code page
 	 */
-	private static String[] convertLocale(String localeRFC1766) {
-		return localeRFC1766.split("_");
+	private static String[] convertLocale(String localeEnv) {
+		final int SIZELOCALESPLIT = 3; 
+		final int CASETHREE = 3;
+		final int CASETWO = 2;
+		String [] localeSplit = new String[SIZELOCALESPLIT];
+		
+		String [] splitString = localeEnv.split("[_.]");
+		switch (splitString.length) {
+			case CASETHREE : localeSplit = splitString;	break;
+			case CASETWO : {
+			localeSplit[0] = splitString[0]; 
+			localeSplit[1] = splitString[1];
+			localeSplit[2] = new String(UTF8);
+		}
+		break;
+		
+		default : {
+			/* error in format localeEnv then we use default language */
+			localeSplit[0] = new String("en");
+			localeSplit[1] = new String("US");
+			localeSplit[2] = new String(UTF8);
+		}
+		break;
+		
+		}
+		return localeSplit;
 	}
 	
 

@@ -140,6 +140,7 @@ char *getEncoding(char *lang)
 			}
 		}
 	}
+	else encoding = strdup("UTF-8"); 
 	return encoding;
 }
 /*--------------------------------------------------------------------------*/
