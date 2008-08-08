@@ -47,21 +47,21 @@ set(h, "fontweight", "bold");
 
 // Current figure size
 f=gcf();
-figsize = f.figure_size;
+figsize = f.axes_size;
 
-h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [0 0 200 20], "string", "I''m a left "+uicontrol_style);
+h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [0 0 200 20], "string", "Bottom left "+uicontrol_style);
 set(h, "backgroundcolor", [1 0 0]);
 set(h, "foregroundcolor", [0 0 1]);
 
-h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [figsize(1)-200 0 200 20], "string", "I''m a right "+uicontrol_style);
+h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [figsize(1)-200 0 200 20], "string", "Bottom right "+uicontrol_style);
 set(h, "backgroundcolor", [0 1 0]);
 set(h, "foregroundcolor", [1 0 0]);
 
-h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [0 figsize(2)-20 200 20], "string", "I''m a top left "+uicontrol_style);
+h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [0 figsize(2)-20 200 20], "string", "Top left "+uicontrol_style);
 set(h, "backgroundcolor", [0 0 1]);
 set(h, "foregroundcolor", [1 0.5 0]);
 
-h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [figsize(1)-200 figsize(2)-20 200 20], "string", "I''m a top right "+uicontrol_style, "fontweight", "bold");
+h = uicontrol("parent", gcf(), "style", uicontrol_style, "position", [figsize(1)-200 figsize(2)-20 200 20], "string", "Top right "+uicontrol_style, "fontweight", "bold");
 set(h, "backgroundcolor", [1 0 1]);
 set(h, "foregroundcolor", [0 0 0]);
 
@@ -70,10 +70,10 @@ set(h, "foregroundcolor", [0 0 0]);
 // - Then: read the property and copare to the value set
 
 // Create a new figure
-scf();
+f = scf();
 
 // Create a new uicontrol
-h = uicontrol("parent", gcf(), "style", uicontrol_style);
+h = uicontrol("parent", f, "style", uicontrol_style);
 
 // --- BackgroundColor ---
 // TODO test default value
@@ -108,22 +108,37 @@ if get(h, "callback_type") <> -1 then
   pause
 end
 // Set a callback and do not precise type
-set(h, "callback", "exit();");
-if get(h, "callback") <> "exit();" then
+set(h, "callback", "disp(0);");
+if get(h, "callback") <> "disp(0);" then
   pause
 end
 if get(h, "callback_type") <> 0 then
   pause
 end
-set(h, "callback", "quit();");
+set(h, "callback", "disp(1);");
 set(h, "callback_type", 0);
-if get(h, "callback") <> "quit();" then
+if get(h, "callback") <> "disp(1);" then
   pause
 end
 if get(h, "callback_type") <> 0 then
   pause
 end
 // TODO tests with wrong callbackType ??
+
+// --- Enable ---
+// Default value
+if get(h, "enable") <> "on" then
+  pause
+end
+set(h, "enable", "off");
+if get(h, "enable") <> "off" then
+  pause
+end
+set(h, "enable", "on");
+if get(h, "enable") <> "on" then
+  pause
+end
+// TODO test with wrong values
 
 // --- FontAngle ---
 // Default value
@@ -146,11 +161,11 @@ end
 
 // --- FontSize ---
 // Default value
-if get(h, "fontsize") <> 12 then
+if get(h, "fontsize") <> 10 then
   pause
 end
-set(h, "fontsize", 10);
-if get(h, "fontsize") <> 10 then
+set(h, "fontsize", 12);
+if get(h, "fontsize") <> 12 then
   pause
 end
 // TODO test with wrong values
@@ -265,6 +280,11 @@ set(h, "max", 10);
 if get(h, "max") <> 10 then
   pause
 end
+set(h, "max", 1); // Back to default value needed by SliderStep test
+if get(h, "max") <> 1 then
+  pause
+end
+
 // TODO test with min > max
 // TODO test with wrong values
 
@@ -277,27 +297,34 @@ set(h, "min", 1);
 if get(h, "min") <> 1 then
   pause
 end
+set(h, "min", 0); // Back to default value needed by SliderStep test
+if get(h, "min") <> 0 then
+  pause
+end
 // TODO test with min > max
 // TODO test with wrong values
 
 // TODO Parent tests
 
 // --- Position ---
-// TODO Default value
+// Default value
+if ~and(get(h, "position") == [20 40 40 20]) then
+  pause
+end
 // Vector of 'integer' values
-set(h, "position", [0 10 100 200]);
+set(h, "position", [0 10 100 200])
 if ~and(get(h, "position") == [0 10 100 200]) then
-//  pause
+  pause
 end
 // String of 'integer' values
-//set(h, "position", "10|20|50|100");
+set(h, "position", "10|20|50|100");
 if ~and(get(h, "position") == [10 20 50 100]) then
-//  pause
+  pause
 end
 // TODO Test with wrong format values: "aze", "", [], ...
 
 // --- Relief ---
-// Default value is tested in separate files beause is different according the style
+// Default value is tested in separate files because is different according the style
 set(h, "relief", "groove");
 if get(h, "relief") <> "groove" then
   pause
@@ -344,7 +371,7 @@ end
 if get(h, "string") <> "" then
   pause
 end
-set(h, "string", "test for string");
+set(h, "string", ["test for string"]);
 if get(h, "string") <> "test for string" then
   pause
 end
@@ -352,6 +379,7 @@ set(h, "string", "");
 if get(h, "string") <> "" then
   pause
 end
+
 // TODO test with wrong values
 
 // --- Style ---
@@ -378,19 +406,19 @@ end
 
 // --- Units ---
 // Default value
-if get(h, "units") <> "points" then
+if get(h, "units") <> "pixels" then
   pause
 end
-set(h, "units", "pixels");
-if get(h, "units") <> "pixels" then
+set(h, "units", "points");
+if get(h, "units") <> "points" then
   pause
 end
 set(h, "units", "normalized");
 if get(h, "units") <> "normalized" then
   pause
 end
-set(h, "units", "points");
-if get(h, "units") <> "points" then
+set(h, "units", "pixels");
+if get(h, "units") <> "pixels" then
   pause
 end
 // TODO test with wrong values

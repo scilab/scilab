@@ -14,7 +14,7 @@ uicontrol_generic_test("frame");
 
 // Default relief value
 h = uicontrol("parent", scf(), "style", "frame");
-if get(h, "relief") <> "flat" then
+if get(h, "relief") <> "ridge" then
   pause
 end
 

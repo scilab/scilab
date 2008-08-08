@@ -5,8 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- INTERACTIVE TEST -->
-
 // Unitary tests for Scilab Java checkboxes
 
 // Exec tests common to all uicontrols
@@ -39,3 +37,4 @@ end
 //  pause
 //end
 // TODO test with wrong values
+delete("all")

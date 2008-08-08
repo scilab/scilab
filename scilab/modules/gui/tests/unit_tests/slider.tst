@@ -23,8 +23,9 @@ end
 if get(h, "value") <> get(h,"min") then
   pause
 end
-set(h, "value", [1]);
-if get(h, "value") <> 1 then
+set(h, "max", 10);
+set(h, "value", 10);
+if get(h, "value") <> 10 then
   pause
 end
 // TODO return an error
