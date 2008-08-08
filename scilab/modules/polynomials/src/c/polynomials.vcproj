@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="polynomials"
 	ProjectGUID="{620D8FA7-3704-438E-BB1E-391C84401A2E}"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -359,10 +359,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_div.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_eval.c"
 				>
 			</File>
 			<File

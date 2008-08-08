@@ -22,7 +22,6 @@ int C2F(sci_poly)(char *fname,unsigned long fname_len);
 int C2F(sci_roots)(char *fname,unsigned long fname_len);
 int C2F(sci_degree)(char *fname,unsigned long fname_len);
 int C2F(sci_coeff)(char *fname,unsigned long fname_len);
-int C2F(sci_eval)(char *fname,unsigned long fname_len);
 int C2F(sci_pppdiv)(char *fname,unsigned long fname_len);
 int C2F(sci_simp)(char *fname,unsigned long fname_len);
 int C2F(sci_psum)(char *fname,unsigned long fname_len);

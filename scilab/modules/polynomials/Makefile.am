@@ -82,7 +82,6 @@ sci_gateway/c/sci_div.c \
 sci_gateway/c/sci_coeff.c \
 sci_gateway/c/sci_poly.c \
 sci_gateway/c/sci_triu.c \
-sci_gateway/c/sci_eval.c \
 sci_gateway/c/sci_degree.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_simp.f \

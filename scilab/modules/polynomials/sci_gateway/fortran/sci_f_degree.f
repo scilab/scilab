@@ -88,10 +88,6 @@ c
          l=sadr(ilr+4)
          call dset(mn1,0.0d+0,stk(l),1)
          lstk(top+1)=l+mn1
-c      else
-c     ????????
-c         fun=15
-c         fin=5
       endif
       return
       end

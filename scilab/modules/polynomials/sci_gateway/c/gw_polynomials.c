@@ -14,13 +14,19 @@
 #include "gw_polynomials.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
+static int C2F(sci_notused)(char *fname,unsigned long fname_len)
+{
+	/* not used */
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
 {C2F(sci_poly),"poly"},
 {C2F(sci_roots),"roots"},
 {C2F(sci_degree),"degree"},
 {C2F(sci_coeff),"coeff"},
-{C2F(sci_eval),"eval"},
+{C2F(sci_notused),""}, /* not used but required primitives order (short cut fin,fun) */
 {C2F(sci_pppdiv),"pppdiv"},
 {C2F(sci_simp),"simp"},
 {C2F(sci_psum),"sum"},
