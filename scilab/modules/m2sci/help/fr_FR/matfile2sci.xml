@@ -28,14 +28,14 @@
       <varlistentry>
         <term>mat_file_path</term>
         <listitem>
-          <para>Chaï¿½ne de caractères contenant le chemin du fichier d'entrée 
+          <para>Chaîne de caractères contenant le chemin du fichier d'entrée 
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sci_file_path </term>
         <listitem>
-          <para> Chaï¿½ne de caractères contenant le chemin du fichier rï¿½sultant
+          <para> Chaîne de caractères contenant le chemin du fichier résultant
 </para>
         </listitem>
       </varlistentry>
@@ -70,6 +70,6 @@
   <refsection>
     <title>Bibliographie</title>
     <para>Cette fonction a été développée en suivant le document   "MAT-File Format":
-www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf</para>
+<link linkend="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</link></para>
   </refsection>
 </refentry>
