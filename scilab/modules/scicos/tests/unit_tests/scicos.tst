@@ -5,10 +5,11 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-load SCI/modules/scicos/macros/scicos/lib;
+load('SCI/modules/scicos/macros/scicos_scicos/lib');
 exec(loadpallibs,-1) 
 
-getf SCI/tests/basic_tests/scicos_tests.sci;
+exec('SCI/modules/scicos/tests/unit_tests/scicos_tests.sci');
+
 options=default_options();
 //build the block set
 blockslib='scs'+['Branching','Events','Misc','Sinks','Threshold','Linear', ...
@@ -30,6 +31,3 @@ if checkdeput() then pause,end
 if checkfiring() then pause,end
 if check_define_ports() then pause,end
 if check_set_ports() then pause,end
-    
-
-
