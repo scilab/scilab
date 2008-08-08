@@ -200,7 +200,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	
 
     //**--------------------------------------------------------------
-    //** initialize the "scicos_contex" datastructure (Scilab script inside SCICOS simulation)
+    //** initialize the "scicos_contex" data structure (Scilab script inside SCICOS simulation)
 	
         if ~exists('%scicos_context') then
 	  %scicos_context = struct() ;
@@ -284,6 +284,14 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     //** load - if present - the used defined local shortcut
     execstr('load(''.scicos_short'')','errcatch')  // keyboard shortcuts
 
+  end
+  //**----------------------------------------------------------------------------------
+
+  //** Scilab 5 patch for font handling. This patch fif the "Symbol" font issue 
+  //** 
+  if ~super_block then 
+    scilab5fonts = xlfont() ; //** recover the full font list 
+    xlfont(scilab5fonts(1), 1) ; //** substitute the font in position one 
   end
   //**----------------------------------------------------------------------------------
 
@@ -838,6 +846,14 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       clearglobal %diagram_path_objective
       close_inactive_windows(inactive_windows,[])
       clearglobal inactive_windows
+
+      pause
+
+      //** restore the original Scilab 5 font list before exit 
+      for i=1:size(scilab5fonts,'*'):1
+         xlfont(scilab5fonts(i),i-1);
+      end 
+      
     end
 
   elseif Cmenu=="Leave" then

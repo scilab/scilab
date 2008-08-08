@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=AFFICH_m(job,arg1,arg2)
+function [x,y,typ] = AFFICH_m(job,arg1,arg2)
 //** 22 Aug 2006: looking for a nasty "font" bugs 
 //** 
 //** 07 Aug 2008: this function has been update for Scilab 5.0 by
