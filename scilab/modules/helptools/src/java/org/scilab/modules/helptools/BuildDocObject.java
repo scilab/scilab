@@ -198,7 +198,7 @@ public class BuildDocObject extends StyleSheet {
 		args.add("html.stylesheet=" + styleSheet);
 		args.addAll(specificArgs);
 
-		//		doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
+		doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
 
 		/* Delete the master temp file to avoid to be shipped with the rest */
 		new File(sourceDocProcessed).delete();

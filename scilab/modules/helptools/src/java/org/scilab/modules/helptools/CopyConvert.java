@@ -106,7 +106,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             factory.setFeature(
                 "http://xml.org/sax/features/namespace-prefixes", true);
             factory.setValidating(false);
-            factory.setXIncludeAware(false);
+            //factory.setXIncludeAware(false);
 
             parser = factory.newSAXParser();
         } catch (Exception e) {
