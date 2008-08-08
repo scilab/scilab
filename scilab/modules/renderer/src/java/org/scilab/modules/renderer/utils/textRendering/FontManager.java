@@ -101,11 +101,11 @@ public class FontManager {
    	   /* Problem with Symbol font */
    	   /* on scilab 4.x a --> alpha symbol */
    	   /* with java , symbols are not ascii codes */
-   	  if ( isAvailableFontName(SYMBOL) ) {
+   	  if (isAvailableFontName(SYMBOL)) {
    		sciFonts.add(createFont(SYMBOL));               /* scilab font_style 1 */
    	  }
    	  else {
-   		if ( isAvailableFontName(SYMBOL) ) {
+   		if (isAvailableFontName(OPENSYMBOL)) {
    		sciFonts.add(createFont(OPENSYMBOL));               /* scilab font_style 1 */
    		} else {
    		sciFonts.add(DEFAULT_FONT);               /* scilab font_style 1 */
