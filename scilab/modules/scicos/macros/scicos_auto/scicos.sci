@@ -847,13 +847,9 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       close_inactive_windows(inactive_windows,[])
       clearglobal inactive_windows
 
-      //** experimental font restoring 
-      // pause
-      // //** restore the original Scilab 5 font list before exit 
-      // for i=1:size(scilab5fonts,'*'):1
-      //    xlfont(scilab5fonts(i),i-1);
-      // end 
-      
+      //** restore the original Scilab 5 font list before exit 
+      xlfont(scilab5fonts(2),1);
+
     end
 
   elseif Cmenu=="Leave" then
