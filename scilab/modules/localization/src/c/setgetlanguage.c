@@ -196,25 +196,35 @@ BOOL isValidLanguage(char *lang)
 */
 static char* addCodePage(char *lang)
 {
-	#ifndef _MSC_VER
-	char *retCTYPE = setlocale(LC_MESSAGES,"");
-	#else
-	char *retCTYPE = setlocale(LC_CTYPE,"");
-	#endif
-	char *encoding = getEncoding(retCTYPE);
 	char *languageCountryCodePage = NULL;
-	int sizelanguageCountryCodePage = strlen(lang) + strlen(encoding) + strlen(".") + 1;
 
-	languageCountryCodePage = (char*)MALLOC(sizeof(char) * sizelanguageCountryCodePage);
-	if (languageCountryCodePage)
+	if ( strcmp(lang,"") == 0 ) /* default system */
 	{
-		strcpy(languageCountryCodePage,lang);
-		strcat(languageCountryCodePage,".");
-		strcat(languageCountryCodePage,encoding);
+		#ifndef _MSC_VER
+		languageCountryCodePage = strdup(setlocale(LC_MESSAGES,""));
+		#else
+		languageCountryCodePage = getLocaleUserInfo();
+		#endif
 	}
+	else
+	{
+		#ifndef _MSC_VER
+		char *retCTYPE = setlocale(LC_MESSAGES,"");
+		#else
+		char *retCTYPE = setlocale(LC_CTYPE,"");
+		#endif
+		char *encoding = getEncoding(retCTYPE);
+		int sizelanguageCountryCodePage = strlen(lang) + strlen(encoding) + strlen(".") + 1;
 
-	if (encoding) {FREE(encoding); encoding = NULL;}
-
+		languageCountryCodePage = (char*)MALLOC(sizeof(char) * sizelanguageCountryCodePage);
+		if (languageCountryCodePage)
+		{
+			strcpy(languageCountryCodePage,lang);
+			strcat(languageCountryCodePage,".");
+			strcat(languageCountryCodePage,encoding);
+		}
+		if (encoding) {FREE(encoding); encoding = NULL;}
+	}
 	return languageCountryCodePage;
 }
 /*--------------------------------------------------------------------------*/
