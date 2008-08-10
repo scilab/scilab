@@ -27,7 +27,7 @@ function xmltoformat(output_format,dirs,titles,directory_language,default_langua
 	 
 	 // set java classpath only when we need
 	 javaclasspath(SCI+'/thirdparty/jeuclid-core.jar');
-	 javaclasspath(SCI+'/thirdparty/commons-logging.jar');
+	 javaclasspath(SCI+'/thirdparty/commons-logging-1.1.jar');
 	 javaclasspath(SCI+'/thirdparty/batik.jar');
 	 javaclasspath(SCI+'/thirdparty/js.jar');
 	 javaclasspath(SCI+'/thirdparty/saxon.jar');
