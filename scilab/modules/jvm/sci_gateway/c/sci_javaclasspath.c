@@ -53,7 +53,7 @@ int C2F(sci_javaclasspath)(char *fname,unsigned long fname_len)
 
 			for (i = 0; i<m1*n1 ;i++)
 			{
-				if (!addToClasspath(classPaths[i]))
+				if (!addToClasspath(classPaths[i],STARTUP))
 				{
 					Scierror(999,_("%s: Could not add URL to system classloader : %s.\n"),fname,classPaths[i]);
 					freeArrayOfString(classPaths,m1*n1);
@@ -66,7 +66,7 @@ int C2F(sci_javaclasspath)(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
 		}
 	}
 	return 0;

@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -45,7 +44,7 @@ int C2F(sci_system_getproperty)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("invalid parameter.\n"));
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
 		return 0;
 	}
 	return 0;
