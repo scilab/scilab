@@ -14,6 +14,7 @@
 
 extern "C"
 {
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "stack-c.h"
 #include "gw_helptools.h"
@@ -23,11 +24,14 @@ extern "C"
 #include "setgetlanguage.h"
 #include "getScilabJavaVM.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "ConvertSlash.h"
+#endif
+/*--------------------------------------------------------------------------*/
 #define PATHTOCSS "/modules/helptools/css/javahelp.css"
 #define PATHTOBUILDDOC "/modules/helptools/build/doc/scilab_%s_help/"
 #define PATHTOMASTERXML "/modules/helptools/master_%s_help.xml"
 #define DEFAULTEXPORT "JH"
-
 /*--------------------------------------------------------------------------*/
 int sci_buildDoc(char *fname,unsigned long l)
 {
@@ -37,13 +41,16 @@ int sci_buildDoc(char *fname,unsigned long l)
 	char * SciPath = getSCIpath(); /* Scilab path */
 	char * masterXML = NULL; /* Which file contains all the doc stuff */
 	char * masterXMLTMP = NULL;
-
-	char * styleSheet=(char*)MALLOC((strlen(SciPath)+strlen(PATHTOCSS)+1)*sizeof(char));; /* the CSS */
-
 	char * outputDirectory = NULL; /* Working directory */
 	char * outputDirectoryTMP = NULL;
-
 	char * currentLanguage = getlanguage();
+	char * styleSheet = (char*)MALLOC((strlen(SciPath)+strlen(PATHTOCSS)+1)*sizeof(char));; /* the CSS */
+
+	if ( styleSheet == NULL )
+	{
+		Scierror(999,_("%s: No more memory.\n"),fname);
+		return 0;
+	}
 
 	CheckRhs(0,2);
 	CheckLhs(1,1);
@@ -53,9 +60,20 @@ int sci_buildDoc(char *fname,unsigned long l)
 
 	/* Update the path with the localization */
 	outputDirectoryTMP = (char*) MALLOC ((strlen(PATHTOBUILDDOC)-strlen("%s")+strlen(currentLanguage)+1)*sizeof(char)); /* - strlen(%s) because it is going to be be replaced by currentLanguage */
+	if ( outputDirectoryTMP == NULL )
+	{
+		Scierror(999,_("%s: No more memory.\n"),fname);
+		return 0;
+	}
 	sprintf(outputDirectoryTMP, PATHTOBUILDDOC, currentLanguage);
 
 	outputDirectory = (char*)MALLOC((strlen(SciPath)+strlen(outputDirectoryTMP)+1)*sizeof(char)); 
+	if ( outputDirectory == NULL )
+	{
+		Scierror(999,_("%s: No more memory.\n"),fname);
+		return 0;
+	}
+
 	strcpy(outputDirectory, SciPath);
 	strcat(outputDirectory, outputDirectoryTMP);
 	FREE(outputDirectoryTMP);
@@ -64,6 +82,12 @@ int sci_buildDoc(char *fname,unsigned long l)
 	if (Rhs < 1) 
 	{
 		exportFormat = (char*)MALLOC((strlen(DEFAULTEXPORT)+1)*sizeof(char));
+		if ( exportFormat == NULL )
+		{
+			Scierror(999,_("%s: No more memory.\n"),fname);
+			return 0;
+		}
+
 		strcpy(exportFormat,DEFAULTEXPORT);
 	}
 	else
@@ -84,8 +108,20 @@ int sci_buildDoc(char *fname,unsigned long l)
 	{
 		/* Update the path with the localization */
 		masterXMLTMP = (char*) MALLOC ((strlen(PATHTOMASTERXML)-strlen("%s")+strlen(currentLanguage)+1)*sizeof(char));
+		if ( masterXMLTMP == NULL )
+		{
+			Scierror(999,_("%s: No more memory.\n"),fname);
+			return 0;
+		}
+		
 		sprintf(masterXMLTMP, PATHTOMASTERXML, currentLanguage);
+
 		masterXML = (char*)MALLOC((strlen(SciPath)+strlen(masterXMLTMP)+1)*sizeof(char));
+		if ( masterXML == NULL )
+		{
+			Scierror(999,_("%s: No more memory.\n"),fname);
+			return 0;
+		}
 		strcpy(masterXML,SciPath);
 		strcat(masterXML,masterXMLTMP);
 		FREE(masterXMLTMP);
@@ -105,23 +141,29 @@ int sci_buildDoc(char *fname,unsigned long l)
 
 	org_scilab_modules_helptools::BuildDocObject *doc = new org_scilab_modules_helptools::BuildDocObject(getScilabJavaVM());
 
+	#ifdef _MSC_VER
+	slashToAntislash(outputDirectory,outputDirectory);
+	slashToAntislash(styleSheet,styleSheet);
+	slashToAntislash(masterXML,masterXML);
+	#endif
+
 	if (doc->setOutputDirectory(outputDirectory)) 
 	{
 		doc->setWorkingLanguage(currentLanguage);
 		doc->setExportFormat(exportFormat);
 		doc->process(masterXML, styleSheet);
 		delete doc;
-		FREE(masterXML);
-		FREE(outputDirectory);
-		FREE(styleSheet);
+		FREE(masterXML); masterXML = NULL;
+		FREE(outputDirectory); outputDirectory = NULL;
+		FREE(styleSheet); styleSheet = NULL;
 	}
 	else
 	{
 		Scierror(999,_("%s: Could find or create the working directory %s.\n"),fname, outputDirectory);
 		delete doc;
-		FREE(masterXML);
-		FREE(outputDirectory);
-		FREE(styleSheet);
+		FREE(masterXML); masterXML = NULL;
+		FREE(outputDirectory); outputDirectory = NULL;
+		FREE(styleSheet); styleSheet = NULL;
 		return 0;
 	}
 
