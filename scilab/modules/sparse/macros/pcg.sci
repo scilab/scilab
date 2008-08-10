@@ -47,10 +47,10 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
 // -----------------------
   [lhs,rhs] = argn(0);
   if (rhs < 2),
-    error("pcg: not enough input arguments");
+	error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"pcg",2,7));
   end
   if (rhs > 7),
-    error("pcg: too many input arguments");
+	error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"pcg",2,7));
   end
   if exists('tol','local')==0 then tol=1e-8,end
   if exists('maxIter','local') == 0 then maxIter=min(size(b,1),50);end
@@ -73,34 +73,35 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
     %A=%A(1);
     matrixType = 0;
   else
-    error("pcg: unknown type for A");
+	error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"pcg",1));
   end
 
   // If %A is a matrix (dense or sparse)
   if (matrixType == 1),
     if (size(%A,1) ~= size(%A,2)),
-      error("pcg: matrix A must be square");
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"pcg",1));
     end
   end
 
   // Parsing right hand side %b
   if (size(%b,2) ~= 1),
-    error("pcg: right hand side b must be a column vector");
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"pcg",2));
   end
   if (matrixType ==1),
     if (size(%b,1) ~= size(%A,1)),
-      error("pcg: right hand side b must have the size of the matrix A");
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"pcg",2,1));
     end 
   end
 
   // Parsing of the error tolerance tol
   if or(size(tol) ~= [1 1]) then
-    error("pcg: tol must be a scalar");
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"pcg",3));
+
   end
 
   // Parsing of the maximum number of iterations max_it
   if or(size(maxIter) ~= [1 1]) then
-    error("pcg: maxIter must be a scalar");
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"pcg",4));
   end 
 
   // Parsing the preconditioner %M
@@ -117,14 +118,14 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
     %M=%M(1);
     precondType = 2;
   else
-    error("pcg: unknown type for preconditionner");
+	error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"pcg",5));
   end 
   if (precondType == 1),
     if (size(%M,1) ~= size(%M,2)),
-      error("pcg: preconditionner matrix M must be square");
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"pcg",5));
     end 
     if ( size(%M,1) ~= size(%b,1) ),
-      error("pcg: preconditionner matrix M must have the size of b");
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"pcg",5,2));
     end
   end
 
@@ -141,25 +142,25 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
     M2args=list(%M2(2:$))
     %M2=%M2(1);
     precondType = 2;
-
   else
-    error("pcg: unknown type for preconditionner");
-  end 
+	error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"pcg",6));
+   end
+
   if (precondBis == 1),
     if (size(%M2,1) ~= size(%M2,2)),
-      error("pcg: preconditionner matrix M2 must be square");
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"pcg",6));
     end 
     if ( size(%M2,1) ~= size(%b,1) ),
-      error("pcg: preconditionner matrix M2 must have the size of b");
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"pcg",6,2));
     end
   end
 
   // Parsing the initial vector x
   if (size(x,2) ~= 1),
-    error("pcg: initial guess x0 must be a column vector");
+	error(msprintf(gettext("%s: Wrong value for input argument #%d: Column vector expected.\n"),"pcg",7));
   end
   if (size(x,1) ~= size(%b,1)),
-    error("pcg: initial guess x0 must have the size of b");
+	error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"pcg",7,2));
   end 
   
   // input arguments are parsed !
@@ -232,7 +233,7 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
   // test for convergence
   if (resNorm > tol) then
     flag = 1; 
-    if (lhs < 2) then warning('pcg: convergence error');end
+    if (lhs < 2) then warning(msprintf(gettext("%s: Convergence error.\n"),"pcg"));end
   end
   
 endfunction

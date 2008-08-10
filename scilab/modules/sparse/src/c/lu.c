@@ -29,7 +29,7 @@
  */
 
 #include "lu.h"
-
+#include "Scierror.h"
 /*
  *
  * lufact1  >>> Creation and LU factorisation of a sparse matrix
@@ -109,7 +109,7 @@ void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
 
   switch (error) {
   case spZERO_DIAG:
-    cerro(_("zero_diag: A zero was encountered on the diagonal the matrix "));
+	  Scierror(999,_("%s: A zero was encountered on the diagonal the matrix.\n"),"zero_diag");
     break;
   case spNO_MEMORY:
     *ierr=3;

@@ -48,7 +48,7 @@ function [x, flag, resNorm, iter, resVec] = gmres(A, varargin)
 
 [lhs,rhs]=argn(0);
 if ( rhs < 2 ),
-  error("gmres: not enough argument");
+  error(msprintf(gettext("%s: Wrong number of input argument: At least %d expected.\n"),"gmres",2));
 end
 
 // Parsing the matrix A et the right hand side vector b
@@ -63,16 +63,16 @@ end
 // If A is a matrix (full or sparse)
 if (matrixType == 1),
   if (size(A,1) ~= size(A,2)),
-    error("gmres: matrix A must be square");
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"gmres",1));
   end
 end
 b=varargin(1);
 if (size(b,2) ~= 1),
-  error("gmres: right hand side member must be a column vector");
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"gmres",2));
 end
 if (matrixType==1),
   if (size(b,1) ~= size(A,1)),
-    error("gmres: right hand side vector must have the size of the matrix A");
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: Same size as input argument #%d expected.\n"),"gmres",2,1));
   end 
 end
 
@@ -80,7 +80,7 @@ end
 if (rhs >= 3),
   restrt=varargin(2);
   if (size(restrt) ~= [1 1]),
-    error("gmres: restart must be a scalar");
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"gmres",3));
   end 
 else
   restrt=20;
@@ -90,7 +90,7 @@ end
 if (rhs >= 4),
   tol=varargin(3);
   if (size(tol) ~= [1 1]);
-    error("gmres: tol must be a scalar");
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"gmres",4));
   end
 else
   tol = 1e-6;
@@ -100,7 +100,7 @@ end
 if (rhs >= 5),
   max_it=varargin(4);
   if (size(max_it) ~= [1 1]),
-    error("gmres: max_it must be a scalar");
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"gmres",5));
   end 
 else
   max_it=size(b,1);
@@ -119,12 +119,13 @@ if (rhs >= 6),
   end 
   if (precondType == 1),
     if (size(M,1) ~= size(M,2)),
-      error("gmres: preconditionner matrix M must be square");
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"gmres",4));
+
     end 
     if (size(M,1) == 0),
       precondType = 2; // no preconditionning
-    elseif ( size(M,1) ~= size(b,1) ), 
-      error("Preconditionner matrix M must have same size as the problem");
+	elseif ( size(M,1) ~= size(b,1) ), 
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"gmres",4,2));
     end
   end
   if (precondType == 0),
@@ -138,17 +139,17 @@ end
 if (rhs >= 7),
   x=varargin(6);
   if (size(x,2) ~= 1),
-    error("Initial guess x0 must be a column vector");
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"gmres",3));
   end
   if ( size(x,1) ~= size(b,1) ),
-    error("gmres: initial guess x0 must have the size of the matrix A");
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Same size as the input argument #%d expected.\n"),"gmres",3,2));
   end 
 else
   x=zeros(b);
 end
 
 if (rhs > 7),
-  error("gmres: too many input arguments");
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"gmres",2,7));
 end
 
 // ------------
@@ -286,7 +287,7 @@ end
    if ( resNorm > tol ), 
      flag = 1; 
      if (lhs < 2),
-       warning('GMRES did not converge');
+       warning(msprintf(gettext("%s: Did not converge.\n"),"gmres"));
      end
    end
 endfunction //GMRES

@@ -58,7 +58,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
 // -----------------------
   [lhs,rhs]=argn(0);
   if ( rhs < 2 ),
-    error("qmr: not enough input arguments");
+    error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"qmr",2));
   end
 
   // Parsing the matrix A
@@ -70,16 +70,13 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   case 13 then
     cpt=0;
   else
-    error("qmr: unknown type for A");
+    error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"qmr",1));
   end
 
   // If A is a matrix (dense or sparse)
   if (cpt==1),
     if (size(A,1) ~= size(A,2)),
-      error("qmr: the matrix A must be square",502);
-    end
-    if (rhs == 1),
-      error("qmr: right hand side vector b is expected",502);
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"qmr",1));
     end
     deff('y=matvec(x)','y=A*x');
     deff('y=matvecp(x)','y=A''*x');
@@ -89,7 +86,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   // If A is a function
   if (cpt==0),
     if (rhs == 1),
-      error("qmr: transpose of the function A is expected",502);
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"),"qmr",1,"A"));
     end
     matvec=A;
     fct=1;
@@ -97,7 +94,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   if (rhs >= 2 & fct==1 ),
     matvecp=varargin(1);
     if ( type(matvecp) ~= 13 ),
-      error("qmr: the second variable must be the transpose of the function A",502);
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Transpose of the function %s expected.\n"),"qmr",2,"A"));
     end
   end
 
@@ -105,20 +102,20 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   if ( rhs >= fct+2 ),
     b=varargin(fct+1);
     if ( size(b,2) ~= 1),
-      error("qmr: right hand side member must be a column vector",502);
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Column vector expected.\n"),"qmr",3));
     end
   else 
-    error("qmr: right hand side vector b is expected",502);
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Vector expected.\n"),"qmr",3));
   end
 
   // Parsing initial vector x
   if ( rhs >= fct+3),
     x=varargin(fct+2);
     if (size(x,2) ~= 1),
-      error("qmr: initial guess x0 must be a column vector",502);
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"qmr",4));
     end
     if ( size(x,1) ~= size(b,1)),
-      error("qmr: initial guess x0 must have the size of the vector b",502);
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Same size as the input argument #%d expected.\n"),"qmr",4,3));
     end
   else
     x=zeros(size(b,1),1);
@@ -139,11 +136,11 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
       cpt=0;
     end 
     if ( cpt==1 ),
-      if (size(Prec_g,1) ~= size(Prec_g,2)),
-	error("qmr: the preconditionner matrix M1 must be square",502);
+	  if (size(Prec_g,1) ~= size(Prec_g,2)),
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"qmr",5));
       end 
       if (size(Prec_g,1)~=size(b,1)),
-	error("qmr: the size of the preconditionner matrix M1 must be the size of b",502);
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be same size as input argument #%d"),"qmr",5,3));
       end 
       deff('y=precond_g(x)','y=Prec_g \ x');
       deff('y=precondp_g(x)','y=Prec_g'' \ x');
@@ -164,11 +161,11 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
 	  precondp_g=Precp_g;
 	  fct=fct+1;
 	else
-	  error("qmr: the transpose function of M1 is expected",502);
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"),"qmr",5,"M1"));
 	end
-      else
-	error("qmr: the transpose function of M1 is expected",502);
-      end
+  else
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"),"qmr",5,"M1"));
+  end
     end
   else
     deff('y=precond_g(x)','y=x');
@@ -191,10 +188,10 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     end 
     if ( cpt==1 ),
       if (size(Prec_d,1) ~= size(Prec_d,2)),
-	error("qmr: the preconditionner matrix M2 must be square",502);
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"qmr",6));
       end 
       if (size(Prec_d,1)~=size(b,1)),
-	error("qmr: the size of the preconditionner matrix M2 must be the size of b",502);
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be same size as input argument #%d"),"qmr",6,3));
       end 
       deff('y=precond_d(x)','y=Prec_d \ x');
       deff('y=precondp_d(x)','y=Prec_d'' \ x');
@@ -215,10 +212,11 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
 	  precondp_d=Precp_d;
 	  fct=fct+1;
 	else
-	  error("qmr: the transpose function of M2 is expected",502);
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"),"qmr",6,"M2"));
+
 	end
-      else
-	error("qmr: the transpose function of M2 is expected",502);
+  else
+		  error(msprintf(gettext("%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"),"qmr",6,"M2"));
       end
     end
     
@@ -234,7 +232,8 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   if (rhs >= fct+6),
     max_it=varargin(fct+5);
     if (size(max_it,1) ~= 1 | size(max_it,2) ~=1),
-      error("qmr: max_it must be a scalar",502);
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"qmr",7));
+
     end 
   else
     max_it=size(b,1);
@@ -247,7 +246,8 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   if (rhs == fct+7),
     tol=varargin(fct+6);
     if (size(tol,1) ~= 1 | size(tol,2) ~=1),
-      error("qmr: tol must be a scalar",502);
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"qmr",8));
+	  
     end
   else
     tol=1000*%eps;
@@ -258,7 +258,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   //--------------------------------------------------------
 
   if (rhs > fct+8),
-    error("qmr: too many input arguments",502);
+	error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"qmr",2,8));
   end
 
   // ------------
