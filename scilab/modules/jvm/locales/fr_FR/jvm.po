@@ -16,80 +16,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
 
-#
-# File: src/c/createMainScilabObject.c, line: 24
-msgid "Could not access to the Main Scilab Class :\n"
-msgstr "Impossible d'accéder à la classe principale de Scilab:\n"
+# File: sci_gateway/c/sci_system_setproperty.c, line: 63
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
 
 #
-# File: src/c/createMainScilabObject.c, line: 36
-msgid "Could not create a Scilab main class. Error :\n"
-msgstr "Impossible de créer la classe principale Scialb. Erreur :\n"
+# File: sci_gateway/c/sci_system_getproperty.c, line: 47
+# File: sci_gateway/c/sci_javalibrarypath.c, line: 71
+# File: sci_gateway/c/sci_javaclasspath.c, line: 69
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/gw_jvm.c, line: 33
+msgid "JVM interface disabled in -nogui or -nwni modes.\n"
+msgstr "Java interface désactivée dans les modes -nogui ou -nwni.\n"
+
+#
+# File: sci_gateway/c/sci_javalibrarypath.c, line: 64
+#, fuzzy, c-format
+msgid "%s: Could not add path to java.library.path: %s.\n"
+msgstr "Impossible d'ajouter le chemin à java.library.path : %s.\n"
+
+#
+# File: sci_gateway/c/sci_javaclasspath.c, line: 64
+#, fuzzy, c-format
+msgid "%s: Could not add URL to system classloader : %s.\n"
+msgstr "Impossible d'ajouter l'URL au classloader système: %s.\n"
+
+#
+# File: src/nojvm/nojvm.c, line: 18
+msgid "Scilab Java module not installed.\n"
+msgstr "Module Scilab/Java non installée.\n"
+
+#
+# File: src/java/org/scilab/modules/jvm/Scilab.java, line: 134
+msgid "Console"
+msgstr ""
 
 #
 # File: src/c/loadClasspath.c, line: 36
 # File: src/c/loadLibrarypath.c, line: 36
-#, c-format
-msgid "Error: could not parse file %s\n"
+#, fuzzy, c-format
+msgid "Error: Could not parse file %s.\n"
 msgstr "Erreur: Impossible d'analyser (parser) le fichier %s\n"
 
 #
-# File: src/c/loadClasspath.c, line: 95
-# File: src/c/loadLibrarypath.c, line: 95
-#, c-format
-msgid "Wrong format for %s.\n"
-msgstr "Mauvais format dans %s.\n"
-
-#
-# File: src/c/loadClasspath.c, line: 100
-#, c-format
-msgid ""
-"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-"Erreur : Fichier de déclaration des classpaths invalide %s (codage non 'utf-"
-"8') Codage '%s' trouvé\n"
-
-#
-# File: src/c/loadClasspath.c, line: 104
-#, c-format
-msgid "Warning: could not find classpath declaration file %s\n"
-msgstr ""
-
-#
-# File: src/c/InitializeJVM.c, line: 33
-#, c-format
-msgid ""
-"\n"
-"Scilab cannot open JVM library.\n"
-msgstr ""
-"\n"
-"Scilab n'a pas pu ouvrir la bibliothèque de la JVM.\n"
-
-#
-# File: src/c/InitializeJVM.c, line: 33
-# File: src/c/InitializeJVM.c, line: 48
-# File: src/c/JVM.c, line: 43
-# File: src/c/JVM.c, line: 127
-# File: src/c/JVM.c, line: 167
-msgid "Error"
-msgstr "Erreur"
-
-#
-# File: src/c/InitializeJVM.c, line: 48
-#, c-format
-msgid ""
-"\n"
-"Scilab cannot create Scilab Java Main-Class. (we have not been able to find "
-"the main Scilab class. Check if the Scilab and thirdparty packages are "
-"available).\n"
-msgstr ""
-
-#
 # File: src/c/loadLibrarypath.c, line: 100
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
+"Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
+"found.\n"
 msgstr ""
 "Erreur : Fichier de déclaration des chemins (path) invalide %s (codage non "
 "'utf-8') Codage '%s' trouvé\n"
@@ -130,6 +109,99 @@ msgid "Undefined error code in the JNI. Weird problem"
 msgstr "Code erreur JNI indéfini. Problème étrange"
 
 #
+# File: src/c/InitializeJVM.c, line: 33
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot open JVM library.\n"
+msgstr ""
+"\n"
+"Scilab n'a pas pu ouvrir la bibliothèque de la JVM.\n"
+
+#
+# File: src/c/InitializeJVM.c, line: 33
+# File: src/c/InitializeJVM.c, line: 48
+# File: src/c/JVM.c, line: 43
+# File: src/c/JVM.c, line: 127
+# File: src/c/JVM.c, line: 167
+msgid "Error"
+msgstr "Erreur"
+
+#
+# File: src/c/InitializeJVM.c, line: 54
+# File: src/c/InitializeJVM.c, line: 56
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
+"the main Scilab class. Check if the Scilab and thirdparty packages are "
+"available).\n"
+msgstr ""
+
+#
+# File: src/c/addToClasspath.c, line: 60
+#, c-format
+msgid "Warning: Could not find Java package '%s'.\n"
+msgstr ""
+
+#
+# File: src/c/createMainScilabObject.c, line: 24
+#, fuzzy
+msgid "Could not access to the Main Scilab Class:\n"
+msgstr "Impossible d'accéder à la classe principale de Scilab:\n"
+
+#
+# File: src/c/createMainScilabObject.c, line: 24
+#, fuzzy
+msgid "Could not access to the constructor of the Main Scilab Class:\n"
+msgstr "Impossible d'accéder à la classe principale de Scilab:\n"
+
+#
+# File: src/c/createMainScilabObject.c, line: 36
+#, fuzzy
+msgid "Could not create a Scilab main class. Error:\n"
+msgstr "Impossible de créer la classe principale Scialb. Erreur :\n"
+
+#
+# File: src/c/loadClasspath.c, line: 36
+# File: src/c/loadLibrarypath.c, line: 36
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr "Erreur: Impossible d'analyser (parser) le fichier %s\n"
+
+#
+# File: src/c/loadClasspath.c, line: 95
+# File: src/c/loadLibrarypath.c, line: 95
+#, c-format
+msgid "Wrong format for %s.\n"
+msgstr "Mauvais format dans %s.\n"
+
+#
+# File: src/c/loadClasspath.c, line: 100
+#, c-format
+msgid ""
+"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+"Erreur : Fichier de déclaration des classpaths invalide %s (codage non 'utf-"
+"8') Codage '%s' trouvé\n"
+
+#
+# File: src/c/loadClasspath.c, line: 158
+#, c-format
+msgid "Warning: could not find classpath declaration file %s.\n"
+msgstr ""
+
+#
+# File: src/c/loadClasspath.c, line: 162
+#, c-format
+msgid ""
+"Some problems during the loading of the Java libraries occured.\n"
+"This could lead to inconsistent behaviours.\n"
+"Please check SCI/etc/classpath.xml.\n"
+msgstr ""
+
+#
 # File: src/c/JVM.c, line: 43
 # File: src/c/JVM.c, line: 45
 #, c-format
@@ -144,6 +216,31 @@ msgstr ""
 "cette fonction.\n"
 
 #
+# File: src/c/JVM.c, line: 95
+#, c-format
+msgid ""
+"\n"
+"Weird error. Calling from Java but haven't been able to find the already "
+"existing JVM.\n"
+msgstr ""
+
+#
+# File: src/c/JVM.c, line: 104
+#, c-format
+msgid ""
+"\n"
+"Could not load JVM dynamic library (libjava).\n"
+msgstr ""
+
+#
+# File: src/c/JVM.c, line: 139
+#, c-format
+msgid ""
+"\n"
+"Impossible to read %s.\n"
+msgstr ""
+
+#
 # File: src/c/JVM.c, line: 127
 #, c-format
 msgid ""
@@ -155,50 +252,45 @@ msgstr ""
 
 #
 # File: src/c/JVM.c, line: 153
-#, c-format
-msgid "Error in the creation of the Java VM : %s\n"
+#, fuzzy, c-format
+msgid "Error in the creation of the Java VM: %s\n"
 msgstr "Erreur lors de la création de la machine virtuelle Java : %s\n"
 
 #
-# File: src/c/JVM.c, line: 167
+# File: src/c/JVM.c, line: 194
+# File: src/c/JVM.c, line: 196
 #, c-format
 msgid ""
 "\n"
-"Call to AttachCurrentThread.\n"
+"JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
 msgstr ""
-"\n"
-"Appel à AttachCurrentThread.\n"
 
 #
-# File: src/nojvm/nojvm.c, line: 18
-msgid "Scilab Java module not installed.\n"
-msgstr "Module Scilab/Java non installée.\n"
-
-#
-# File: sci_gateway/c/sci_javalibrarypath.c, line: 64
+# File: src/c/loadLibrarypath.c, line: 100
 #, c-format
-msgid "could not add path to java.library.path : %s.\n"
-msgstr "Impossible d'ajouter le chemin à java.library.path : %s.\n"
+msgid ""
+"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
+msgstr ""
+"Erreur : Fichier de déclaration des chemins (path) invalide %s (codage non "
+"'utf-8') Codage '%s' trouvé\n"
+
+#
+# File: src/c/JVM.c, line: 167
+#~ msgid ""
+#~ "\n"
+#~ "Call to AttachCurrentThread.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Appel à AttachCurrentThread.\n"
 
 #
 # File: sci_gateway/c/sci_javalibrarypath.c, line: 73
 # File: sci_gateway/c/sci_javaclasspath.c, line: 73
-msgid "invalid parameter(s).\n"
-msgstr "Paramètre(s) incorrecte(s).\n"
-
-#
-# File: sci_gateway/c/sci_javaclasspath.c, line: 64
-#, c-format
-msgid "could not add URL to system classloader : %s.\n"
-msgstr "Impossible d'ajouter l'URL au classloader système: %s.\n"
+#~ msgid "invalid parameter(s).\n"
+#~ msgstr "Paramètre(s) incorrecte(s).\n"
 
 #
 # File: sci_gateway/c/sci_system_setproperty.c, line: 55
 # File: sci_gateway/c/sci_system_getproperty.c, line: 39
-msgid "invalid parameter.\n"
-msgstr "Paramètre incorrecte.\n"
-
-#
-# File: sci_gateway/c/gw_jvm.c, line: 33
-msgid "JVM interface disabled in -nogui or -nwni modes.\n"
-msgstr "Java interface désactivée dans les modes -nogui ou -nwni.\n"
+#~ msgid "invalid parameter.\n"
+#~ msgstr "Paramètre incorrecte.\n"
