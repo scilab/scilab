@@ -283,9 +283,9 @@ RealNumber LargestInCol;
 	    Matrix->NumRank=Step-1;
 #if ANNOTATE == FULL
 	    if (pPivot==NULL) 
-	      fprintf(stderr,_("//Matrix is Singular Returning LU "));
+	      fprintf(stderr,"//Matrix is Singular Returning LU ");
 	    else 
-	      fprintf(stderr,_("//Matrix is Singular at level prec [%f] I return LU\n"),ELEMENT_MAG(pPivot));
+	      fprintf(stderr,"//Matrix is Singular at level prec [%f] I return LU\n",ELEMENT_MAG(pPivot));
 #endif
 	     break;
 
