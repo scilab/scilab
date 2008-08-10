@@ -4,6 +4,7 @@ This module incorporates some thirdparty sources.
 ======
 
 GL2PS: 
+Files: src/c/gl2ps/gl2ps.c src/c/gl2ps/gl2ps.h
 See: http://www.geuz.org/gl2ps/COPYING.GL2PS
 
                            GL2PS LICENSE
