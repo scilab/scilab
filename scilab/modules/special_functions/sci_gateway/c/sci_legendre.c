@@ -66,21 +66,21 @@ int sci_legendre(char *fname,unsigned long fname_len)
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &mM, &nM, &lM);
   if ( ! verify_cstr(stk(lM), mM*nM, &m1, &m2) )
     {
-      Scierror(999,_("%s: Wrong type for second input argument.\n"), fname);
+      Scierror(999,_("%s: Wrong type for input argument #%d.\n"), fname,2);
       return 0;
     }
   if ( mM == 1 && nM == 1) M_is_scalar = 1;
 
   if ( ! M_is_scalar  &&  ! N_is_scalar )
     {
-      Scierror(999,_("%s: only one of arg1 and arg2 may be a vector\n"), fname);
+      Scierror(999,_("%s: Only one of arg1 and arg2 may be a vector.\n"), fname);
       return 0;
     };
 
   GetRhsCVar(3,MATRIX_OF_DOUBLE_DATATYPE, &it, &mx, &nx, &lx, &lc);
   if ( it != 0 )
     {
-      Scierror(999,_("%s: Wrong type for third input argument: Real matrix expected.\n"), fname);
+      Scierror(999,_("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 3);
       return 0;
     };
 
@@ -89,7 +89,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
   for ( i = 0 ; i < mnx ; i++ )
     if ( ! (fabs(x[i]) < 1.0) )
       {
-	Scierror(999,_("%s: Wrong value for third input argument: Matrix with elements in (%d,%d) expected.\n"), fname,-1,1);
+	Scierror(999,_("%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) expected.\n"), fname,3,-1,1);
 	return 0;
       };
 

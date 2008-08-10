@@ -8,7 +8,7 @@ function x=erfinv(y)
 //   coefficients of rational approximation are determined by solving non linear 
 //   linear least square problems given tabulated values of x and erf(x). 
   
-  if ~isreal(y) then error("erfinv:argument must be real.");end;
+  if ~isreal(y) then error(msprintf(gettext("%s: Wrong type for input argument #%d: Real expected.\n"),"erfinv",1));end;
   x = zeros(y)
 
   

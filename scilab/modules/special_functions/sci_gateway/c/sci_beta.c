@@ -51,7 +51,7 @@ int sci_beta(char *fname,unsigned long fname_len)
 
 	if ( (itx == 1)  ||  (ity == 1) )
 	{
-		Scierror(999,_("%s: Wrong type for input argument: Complex argument not accepted.\n"), fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d or #%d: Complex argument not accepted.\n"), fname, 1, 2);
 		return 0;
 	};
 
