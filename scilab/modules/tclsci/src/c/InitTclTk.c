@@ -177,7 +177,7 @@ int OpenTCLsci(void)
 	// Open TCL interpreter in a separated thread.
 	// Allows all Tcl application not to freeze nor decrease Scilab speed.
 	// Causes also Scilab let those application live their own lifes.
-	//__InitSignal(&InterpReady);
+
 	__CreateThread(&TclThread, &DaemonOpenTCLsci);
 	// Wait to be sure initialisation is complete.
 	__Wait(&InterpReady, &InterpReadyLock);

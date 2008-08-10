@@ -58,7 +58,7 @@ int sci_TCL_UpVar (char *fname,unsigned long l)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+				Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname, 3);
 				return 0;
 			}
 		}
@@ -85,8 +85,7 @@ int sci_TCL_UpVar (char *fname,unsigned long l)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
-		return 0;
+		Scierror(999,_("%s: Wrong type for input argument #%d or #%d: String expected.\n"),fname, 1, 2);
 	}
 
 	return 0;

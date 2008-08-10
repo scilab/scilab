@@ -16,7 +16,7 @@ function answ=buttondialog(msg,btn,icon)
 rhs = argn(2);
 
 if rhs == 1 then
-  error(msprintf(gettext("%s: Wrong number of input arguments: 2 or 3 expected.\n"), "buttondialog"));
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "buttondialog",2,3));
 elseif rhs == 2 then
   answ = messagebox(msg, "modal", tokens(btn, "|"));
 else

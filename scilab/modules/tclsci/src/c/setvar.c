@@ -53,7 +53,7 @@ BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,i
 
 			if (TCLinterpreter == NULL)
 			{
-				Scierror(999,_("TCL_SetVar: Error TCL interpreter not initialized.\n"));
+				Scierror(999,_("%s: Error TCL interpreter not initialized.\n"),"TCL_SetVar");
 				return FALSE;
 			}
 
@@ -69,7 +69,6 @@ BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,i
 /*--------------------------------------------------------------------------*/
 BOOL SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 {
-	BOOL bOK = FALSE;
 
 	/* just a scalar */
 	char buffer[2048];
@@ -78,7 +77,7 @@ BOOL SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 
 	if (TCLinterpreter == NULL)
 	{
-		Scierror(999,_("TCL_SetVar: Error TCL interpreter not initialized.\n"));
+		Scierror(999,_("%s: Error TCL interpreter not initialized.\n"),"TCL_SetVar");
 		return FALSE;
 	}
 
@@ -87,18 +86,16 @@ BOOL SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue)
 
 	if (!Tcl_SetVar(TCLinterpreter,VarName,buffer,TCL_GLOBAL_ONLY))
 	{
-		bOK = FALSE ;
+		return FALSE ;
 	}
 	else
 	{
-		bOK = TRUE;
+		return TRUE;
 	}
-	return bOK;
 }
 /*--------------------------------------------------------------------------*/
 BOOL SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int n)
 {
-	BOOL bOK = FALSE;
 
 	int i=0,j=0;
 	int l=0;
@@ -106,7 +103,7 @@ BOOL SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int
 
 	if (TCLinterpreter == NULL)
 	{
-		Scierror(999,_("TCL_SetVar: Error TCL interpreter not initialized.\n"));
+		Scierror(999,_("%s: Error TCL interpreter not initialized.\n"),"TCL_SetVar");
 		return FALSE;
 	}
 
@@ -126,29 +123,27 @@ BOOL SetVarStrings(Tcl_Interp *TCLinterpreter,char *VarName,char **Str,int m,int
 			}
 		}
 	}
-	bOK = TestOnAllTcl_SetVar;
+	return TestOnAllTcl_SetVar;
 
-	return bOK;
 }
 /*--------------------------------------------------------------------------*/
 BOOL SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str)
 {
-	BOOL bOK = FALSE;
 
 	if (TCLinterpreter == NULL)
 	{
-		Scierror(999,_("TCL_SetVar: Error TCL interpreter not initialized.\n"));
+		Scierror(999,_("%s: Error TCL interpreter not initialized.\n"),"TCL_SetVar");
 		return FALSE;
 	}
 
 	if ( !Tcl_SetVar(TCLinterpreter, VarName, Str[0], TCL_GLOBAL_ONLY) )
 	{
-		bOK = FALSE;
+		return FALSE;
 	}
 	else
 	{
-		bOK = TRUE;
+		return TRUE;
 	}
-	return bOK;
+
 }
 /*--------------------------------------------------------------------------*/

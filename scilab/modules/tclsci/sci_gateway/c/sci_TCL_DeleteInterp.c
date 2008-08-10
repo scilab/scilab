@@ -26,7 +26,6 @@ int sci_TCL_DeleteInterp(char *fname,unsigned long l)
 
   if (Rhs==1)
     {
-      int TypeVar1=GetType(1);
 
       if (getTclInterp() == NULL)
 	{
@@ -37,7 +36,7 @@ int sci_TCL_DeleteInterp(char *fname,unsigned long l)
 
       releaseTclInterp();
 
-      if (TypeVar1 == sci_strings)
+      if (GetType(1) == sci_strings)
 	{
 	  static int l2,n2,m2;
 	  Tcl_Interp *TCLinterpreter=NULL;
@@ -58,7 +57,7 @@ int sci_TCL_DeleteInterp(char *fname,unsigned long l)
 	}
       else
 	{
-	  Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+	  Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
 	  return 0;
 	}
     }

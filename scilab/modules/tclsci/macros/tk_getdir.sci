@@ -9,7 +9,7 @@
 
 
 function p=tk_getdir(startdir,Title)
-  if ~with_tk() then error(gettext('Tcl/Tk interface not defined.')),end
+  if ~with_tk() then error(gettext("Tcl/Tk interface not loaded.")),end
   arg=''
   if exists("startdir","local")==1 then 
     startdir=pathconvert(startdir,%f,%t)

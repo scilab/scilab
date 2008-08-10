@@ -23,7 +23,7 @@ if rhs <> 1 then
 end
 
 if size(num, "*")<>1 | type(num)<>1 then
-  error(msprintf(gettext("%s: Wrong type for first input argument: Single double value expected.\n"), "TCL_scf"));
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: Single double value expected.\n"), "TCL_scf",1));
 end
 
 if lhs > 1 then

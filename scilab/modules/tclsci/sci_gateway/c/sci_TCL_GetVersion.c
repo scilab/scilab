@@ -90,12 +90,12 @@ int sci_TCL_GetVersion(char *fname,unsigned long l)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong first input argument: '%s' expected.\n"),fname,"numbers");
+				Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname, 1, "numbers");
 			}
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument: String expected.\n"),fname);
+			Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
 		}
 
 	}

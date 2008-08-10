@@ -48,19 +48,19 @@ int sci_TCL_UnsetVar(char *fname,unsigned long l)
 	{
 	  /* two arguments given - get a pointer on the slave interpreter */
 	  if (GetType(2) == sci_strings)
-	    {
-	      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-	      TCLinterpreter=Tcl_GetSlave(getTclInterp(),cstk(l2));
-	      releaseTclInterp();
-	      if (TCLinterpreter==NULL)
-		{
-		  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
-		  return 0;
-		}
-	    }
+		  {
+			  GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
+			  TCLinterpreter=Tcl_GetSlave(getTclInterp(),cstk(l2));
+			  releaseTclInterp();
+			  if (TCLinterpreter==NULL)
+				  {
+					  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
+					  return 0;
+				  }
+		  }
 	  else
 	    {
-	      Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+	      Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
 	      return 0;
 	    }
 	}
@@ -89,7 +89,7 @@ int sci_TCL_UnsetVar(char *fname,unsigned long l)
   else
     {
       releaseTclInterp();
-      Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+      Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
       return 0;
     }
   releaseTclInterp();

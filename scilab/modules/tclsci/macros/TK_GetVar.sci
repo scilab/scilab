@@ -8,6 +8,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function ret=TK_GetVar(Var)
-  printf(gettext('Warning TK_GetVar obsolete please use TCL_GetVar.'));
+  warning(msprintf(gettext("%s: Obsolete function. Please use %s."),"TK_GetVar","TCL_GetVar"));
   ret=TCL_GetVar(Var)
 endfunction

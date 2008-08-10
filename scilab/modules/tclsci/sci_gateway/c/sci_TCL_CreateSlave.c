@@ -52,13 +52,13 @@ int sci_TCL_CreateSlave(char *fname,unsigned long l)
 		}
 		else
 		{
-			Scierror(999,_("%s: %s interpreter already exist.\n"),fname,cstk(l2));
+			Scierror(999,_("%s: %s interpreter already exists.\n"),fname,cstk(l2));
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
 		return 0;
 	}
 

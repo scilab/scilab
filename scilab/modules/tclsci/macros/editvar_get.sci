@@ -18,14 +18,13 @@ function outvar=editvar_get(winId)
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
 
- // mprintf("Please wait...");
   base="sciGUITable(win,"+string(winId)+",data";
   varType=TCL_GetVar(base+',type)');
   varni=evstr(TCL_GetVar(base+',ni)'));
   varnj=evstr(TCL_GetVar(base+',nj)'));
   
   outvar=[];
-  count=0;  winId=progressionbar('Updating, please wait');
+  count=0;  winId=progressionbar(gettext("Updating, please wait"));
 
   select varType
   case "constant" then

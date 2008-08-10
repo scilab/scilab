@@ -37,112 +37,112 @@ int sci_TCL_GetVar(char *fname,unsigned long l)
   CheckLhs(1,1);
 
   if (GetType(1) == sci_strings)
-    {
-      char *VarName=NULL;
+	  {
+		  char *VarName=NULL;
 
-      GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-      VarName=cstk(l1);
+		  GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+		  VarName=cstk(l1);
 
-      if (getTclInterp() == NULL)
-	{
-	  releaseTclInterp();
-	  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
-	  return 0;
-	}
-      releaseTclInterp();
+		  if (getTclInterp() == NULL)
+			  {
+				  releaseTclInterp();
+				  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
+				  return 0;
+			  }
+		  releaseTclInterp();
 
-      if (Rhs==2)
-	{
-	  /* two arguments given - get a pointer on the slave interpreter */
-	  if (GetType(2) == sci_strings)
-	    {
-	      GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-	      TCLinterpreter=Tcl_GetSlave(getTclInterp(),cstk(l2));
-	      //releaseTclInterp();
-	      if (TCLinterpreter==NULL)
-		{
-		  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
-		  return 0;
-		}
-	    }
-	  else
-	    {
-	      Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
-	      return 0;
-	    }
-	}
-      else
-	{
-	  /* only one argument given - use the main interpreter */
-	  TCLinterpreter=getTclInterp();
-	}
+		  if (Rhs==2)
+			  {
+				  /* two arguments given - get a pointer on the slave interpreter */
+				  if (GetType(2) == sci_strings)
+					  {
+						  GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
+						  TCLinterpreter=Tcl_GetSlave(getTclInterp(),cstk(l2));
+						  //releaseTclInterp();
+						  if (TCLinterpreter==NULL)
+							  {
+								  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
+								  return 0;
+							  }
+					  }
+				  else
+					  {
+						  Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+						  return 0;
+					  }
+			  }
+		  else
+			  {
+				  /* only one argument given - use the main interpreter */
+				  TCLinterpreter=getTclInterp();
+			  }
 
-      if (TCL_ArrayExist(TCLinterpreter,VarName))
-	{
-	  int i=0,j=0;
-	  int nrow=0,ncol=0;
-	  int k=0;
+		  if (TCL_ArrayExist(TCLinterpreter,VarName))
+			  {
+				  int i=0,j=0;
+				  int nrow=0,ncol=0;
+				  int k=0;
 
-	  char **ReturnArrayString=NULL;
+				  char **ReturnArrayString=NULL;
 
-	  TCL_ArrayDim(TCLinterpreter,VarName,&ncol,&nrow);
-	  ReturnArrayString = (char **) MALLOC(ncol*nrow*sizeof(char **));
-	  k=0;
-	  for (j=1;j<ncol+1;j++)	for (i=1;i<nrow+1;i++)
-	    {
-	      char *RetStr=NULL;
-	      char *AsciiFromUTF8=NULL;
+				  TCL_ArrayDim(TCLinterpreter,VarName,&ncol,&nrow);
+				  ReturnArrayString = (char **) MALLOC(ncol*nrow*sizeof(char **));
+				  k=0;
+				  for (j=1;j<ncol+1;j++)	for (i=1;i<nrow+1;i++)
+					  {
+						  char *RetStr=NULL;
+						  char *AsciiFromUTF8=NULL;
 
-	      RetStr=TCL_ArrayGetVar(TCLinterpreter,VarName,i,j);
-	      AsciiFromUTF8=UTF8toANSI(TCLinterpreter,RetStr);
+						  RetStr=TCL_ArrayGetVar(TCLinterpreter,VarName,i,j);
+						  AsciiFromUTF8=UTF8toANSI(TCLinterpreter,RetStr);
 
-	      ReturnArrayString[k++]=AsciiFromUTF8;
-	    }
+						  ReturnArrayString[k++]=AsciiFromUTF8;
+					  }
 
-	  CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &nrow, &ncol, ReturnArrayString);
+				  CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &nrow, &ncol, ReturnArrayString);
 
-	  LhsVar(1)=Rhs+1;
-	  C2F(putlhsvar)();
+				  LhsVar(1)=Rhs+1;
+				  C2F(putlhsvar)();
 
-	  for (i=0;i<ncol;i++) for (j=0;j<nrow;j++) { FREE(ReturnArrayString[i+ncol*j]);ReturnArrayString[i+ncol*j]=NULL; }
-	  FREE(ReturnArrayString);
-	}
-      else
-	{
-	  char *RetStr=NULL;
+				  for (i=0;i<ncol;i++) for (j=0;j<nrow;j++) { FREE(ReturnArrayString[i+ncol*j]);ReturnArrayString[i+ncol*j]=NULL; }
+				  FREE(ReturnArrayString);
+			  }
+		  else
+			  {
+				  char *RetStr=NULL;
 
-	  RetStr= (char*)Tcl_GetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY);
-	  if ( RetStr )
-	    {
-	      char *AsciiFromUTF8=NULL;
-	      char *output=NULL ;
+				  RetStr= (char*)Tcl_GetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY);
+				  if ( RetStr )
+					  {
+						  char *AsciiFromUTF8=NULL;
+						  char *output=NULL ;
 
-	      AsciiFromUTF8=UTF8toANSI(TCLinterpreter,RetStr);
-		  output = strdup(AsciiFromUTF8);
+						  AsciiFromUTF8=UTF8toANSI(TCLinterpreter,RetStr);
+						  output = strdup(AsciiFromUTF8);
 
-	      n1=1;
-	      CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
+						  n1=1;
+						  CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 
-	      LhsVar(1) = Rhs+1;
-	      C2F(putlhsvar)();
+						  LhsVar(1) = Rhs+1;
+						  C2F(putlhsvar)();
 
-	      if (output) {FREE(output);output=NULL;}
-	      if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
-	    }
-	  else
-	    {
+						  if (output) {FREE(output);output=NULL;}
+						  if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
+					  }
+				  else
+					  {
 
-	      releaseTclInterp();
-	      Scierror(999,_("%s: Could not read Tcl Var.\n"),"TCL_GetVar");
-	      return 0;
-	    }
-	}
-    }
+						  releaseTclInterp();
+						  Scierror(999,_("%s: Could not read Tcl Variable.\n"),"TCL_GetVar");
+						  return 0;
+					  }
+			  }
+	  }
   else
     {
 
       releaseTclInterp();
-      Scierror(999,_("%s: Input rgument type must be character string.\n"),fname);
+      Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
       return 0;
     }
 

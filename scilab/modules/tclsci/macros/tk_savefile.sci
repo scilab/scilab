@@ -9,7 +9,7 @@
 
 
 function p=tk_savefile(file_mask,path,Title,foo)
-  if ~with_tk() then error(gettext('Tcl/Tk interface not defined.')),end
+  if ~with_tk() then error(gettext("Tcl/Tk interface not loaded.")),end
   arg=''
   if exists('file_mask','local')==1 then 
     TCL_SetVar("ftypes",'{""Requested Extensions"" {'+file_mask+'} }')

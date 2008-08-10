@@ -23,7 +23,6 @@
 char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,int i,int j)
 {
 	char *RetStr=NULL;
-	char * StrValue=NULL;
 	char ArrayName[2048];
 
 	sprintf(ArrayName,"%s(%d,%d)",VarName,i,j);
@@ -32,13 +31,11 @@ char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,int i,int j)
 
 	if (RetStr)
 	{
-		StrValue = strdup(RetStr);
+		return strdup(RetStr);
 	}
 	else
 	{
-		StrValue = strdup(TCL_NOT_DEFINE);
+		return strdup(TCL_NOT_DEFINE);
 	}
-
-	return StrValue;
 }
 /*--------------------------------------------------------------------------*/

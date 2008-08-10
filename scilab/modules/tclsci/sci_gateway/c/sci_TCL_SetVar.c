@@ -53,7 +53,7 @@ int sci_TCL_SetVar(char *fname,unsigned long l)
 	}
       else
 	{
-	  Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+	  Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
 	  return 0;
 	}
     }
@@ -94,11 +94,12 @@ int sci_TCL_SetVar(char *fname,unsigned long l)
 	int *header=NULL;
 	int Cmplx;
 
-	header = (int *) GetData(2);   Cmplx=header[3];
+	header = (int *) GetData(2);   
+	Cmplx=header[3];
 	if (Cmplx==COMPLEX)
 	  {
 	    releaseTclInterp();
-	    Scierror(999,_("doesn't work with Complex\n"));
+	    Scierror(999,_("This function doesn't work with Complex.\n"));
 	    return 0;
 	  }
 
@@ -108,25 +109,30 @@ int sci_TCL_SetVar(char *fname,unsigned long l)
 	GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 
 	if ( (m1==0) && (n1==0) )
-	  {
-	    releaseTclInterp();
-	    Scierror(999,_("[] doesn't work with Tcl/Tk.\n"));
-	    return 0;
-	  }
-
+		{
+			releaseTclInterp();
+			Scierror(999,_("[] doesn't work with Tcl/Tk.\n"));
+			return 0;
+		}
+	
 	if ( (m1==1) && (n1==1) )
-	  {
-	    *paramoutINT=SetVarScalar(TCLinterpreter,VarName,(double)*stk(l1));
-	  }
+		{
+			*paramoutINT=SetVarScalar(TCLinterpreter,VarName,(double)*stk(l1));
+		}
 	else
-	  {
-	    *paramoutINT=SetVarMatrix(TCLinterpreter,VarName,l1,m1,n1);
-	  }
+		{
+			*paramoutINT=SetVarMatrix(TCLinterpreter,VarName,l1,m1,n1);
+		}
       }
     else
-      {
-	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-	Scierror(999,_("%s: Invalid argument type.\n"),fname);
+		{
+			if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
+			if (GetType(1) == sci_strings) {
+				Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname ,1);
+			} 
+			if (GetType(2) == sci_matrix) {
+				Scierror(999,_("%s: Wrong type for input argument #%d: Matrix expected.\n"),fname ,2);
+			}
 	releaseTclInterp();
 	return 0;
       }

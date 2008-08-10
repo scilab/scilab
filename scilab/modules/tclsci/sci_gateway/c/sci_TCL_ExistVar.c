@@ -58,7 +58,7 @@ int sci_TCL_ExistVar(char *fname,unsigned long l)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+				Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
 				return 0;
 			}
 		}
@@ -86,7 +86,7 @@ int sci_TCL_ExistVar(char *fname,unsigned long l)
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong input argument: String expected.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
 		return 0;
 	}
 

@@ -21,20 +21,20 @@ int setenvtcl(char *string,char *value)
 	sprintf(MyTclCommand,"env(%s)",string);
 
 	if (getTclInterp()==NULL)
-	  {
-	    releaseTclInterp();
-	    return FALSE;
-	  }
+		{
+			releaseTclInterp();
+			return FALSE;
+		}
 	releaseTclInterp();
 	if ( !Tcl_SetVar(getTclInterp(),MyTclCommand, value, TCL_GLOBAL_ONLY) )
-	{
-	  releaseTclInterp();
-	  return FALSE;
-	}
+		{
+			releaseTclInterp();
+			return FALSE;
+		}
 	else
-	{
-	  releaseTclInterp();
-	  return TRUE;
-	}
+		{
+			releaseTclInterp();
+			return TRUE;
+		}
 }
 /*--------------------------------------------------------------------------*/

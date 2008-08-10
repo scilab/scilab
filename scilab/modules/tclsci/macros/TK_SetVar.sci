@@ -9,6 +9,6 @@
 
 
 function ret=TK_SetVar(Var,Val)
-  printf(gettext('Warning TK_SetVar obsolete please use TCL_SetVar.'));
+  warning(msprintf(gettext("%s: Obsolete function. Please use %s."),"TK_SetVar","TCL_SetVar"));
   ret=TCL_SetVar(Var,Val)
 endfunction
