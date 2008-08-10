@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - Université de Nancy - Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
@@ -51,7 +50,7 @@ int sci_beta(char *fname,unsigned long fname_len)
 
 	if ( (itx == 1)  ||  (ity == 1) )
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d or #%d: Complex argument not accepted.\n"), fname, 1, 2);
+		Scierror(999,_("%s: Wrong type for input argument #%d or #%d: No complex input argument expected.\n"), fname, 1, 2);
 		return 0;
 	};
 
