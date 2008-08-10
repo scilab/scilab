@@ -257,7 +257,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 		
 		/* Special case if the text contains | to separate items */
 		if (text.length == 1) {
-			if (text[0].isEmpty()) {
+			if (text[0].length() == 0) {
 				/* Clear the popup items */
 				return;
 			}
