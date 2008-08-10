@@ -21,7 +21,7 @@ function s=samwr(sizam,numsamp,X)
   if X==[]|sizam==0|numsamp==0 then s=[]; return;end
   sizx=size(X,'*')
   if sizam>sizx then
-    error(msprintf(gettext("%s: Wrong value of first input argument: Less or equal than length of last input argument expected.\n"),"samwr")),
+    error(msprintf(gettext("%s: Wrong value of input argument #%d: Less or equal than length of last input argument expected.\n"),"samwr",1)),
   end
   
   perm=grand(numsamp,'prm',(1:sizx)')

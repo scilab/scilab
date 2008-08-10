@@ -43,6 +43,6 @@ function [s]=center(x,orient)
   elseif orient=='r'|orient==1 then
     xbar=sum(x,'r')/m
     s=x-(ones(m,1)*xbar)
-  else error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'', %d or %d expected.\n"),"center","r","c",1,2)), 
+  else error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"center",2,"r","c",1,2)), 
   end
 endfunction

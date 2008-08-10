@@ -28,13 +28,13 @@ function [p]=perctl(x,y)
 
   [lhs,rhs]=argn(0)
   if rhs<>2 then
-    error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"perctl",2));end
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"perctl",2));end
     if x==[]|y==[] then p=[];return;end
     if find((y-int(y)))<>[]|max(y)>100|min(y)<1 then
-      error(msprintf(gettext("%s: Wrong value for second input argument: Must be between %d and %d.\n"),"perctl",1,100))
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"perctl",2,1,100))
     end
     if type(x)<>1 then
-	  error(msprintf(gettext("%s: Wrong type for first input argument: Numerical expected.\n"),"perctl"))
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Numerical expected.\n"),"perctl",1))
     end
     lenx=size(x)
     lx=prod(lenx)

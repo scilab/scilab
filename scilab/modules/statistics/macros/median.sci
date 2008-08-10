@@ -1,4 +1,3 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1999 - INRIA - Carlos Klimann
 // 
@@ -31,7 +30,7 @@ else
     if orient==[] then orient=1,end
   else
     if type(orient)<>1|size(orient,'*')<>1|~isreal(orient)|orient<=0 then
-      error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'',''%s'' or a positive number expected.\n"),"median","r","c","m")),
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive number expected.\n"),"median",2,"r","c","m")),
     end
   end
 end

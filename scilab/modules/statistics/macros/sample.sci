@@ -46,6 +46,6 @@ function s=sample(n,X,orient)
     s=X(:,grand(n,1,'uin',1,size(X,'c'))),
     return
   end
-  error(msprintf(gettext("%s: Wrong value for third input argument: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"orient","*","r","c",1,2))
+  error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"orient",3,"*","r","c",1,2))
 endfunction
 

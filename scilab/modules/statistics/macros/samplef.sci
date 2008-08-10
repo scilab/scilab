@@ -49,25 +49,25 @@ function s=samplef(n,X,f,orient)
   end
   if orient=='*' then
     if size(f,'*')<>prod(sizx) then
-      error(msprintf(gettext("%s: Wrong size for second and third input argument: Same size expected.\n"), "samplef")),
+      error(msprintf(gettext("%s: Wrong size for input argument #%d and #%d: Same size expected.\n"), "samplef",2,3)),
     end
     s=X(ind)
     return
   end
   if orient=='r'|orient==1 then
     if size(f,'*')<>sizx(1) then
-	  error(msprintf(gettext("%s: Wrong size for third input argument: Same number of rows of the second input argument expected.\n"), "samplef")),
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same number of rows of the second input argument expected.\n"), "samplef",3)),
     end
     s=X(ind,:)
     return
   end
   if orient=='c'|orient==2 then
     if size(f,'*')<>sizx(2) then
-	  	  error(msprintf(gettext("%s: Wrong size for third input argument: Same number of columns of the second input argument expected.\n"), "samplef")),
+	  	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same number of columns of the second input argument expected.\n"), "samplef",3)),
     end
     s=X(:,ind)
     return
   end
-  error(msprintf(gettext("%s: Wrong value for fourth input argument: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"orient","*","r","c",1,2))
+  error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"orient",4,"*","r","c",1,2))
 endfunction
 

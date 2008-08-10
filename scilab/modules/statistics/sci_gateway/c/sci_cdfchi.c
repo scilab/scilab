@@ -58,7 +58,7 @@ int cdfchiI(char* fname,unsigned long l)
 	}
 	else
 	{
-		Scierror(999,_("%s: First input argument must be 'PQ', 'X' or 'DF'.\n"),fname);
+		Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"),fname,1,"PQ","X","DF");
 	}
 	return 0;
 }

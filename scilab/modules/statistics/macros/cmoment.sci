@@ -48,7 +48,7 @@ function mom= cmoment(x,ord,orien)
       m=m(ones(le,1),:)
     elseif orien=='c'|orien==1 then
       m=m(:,ones(le,1))
-	else error(msprintf(gettext("%s: Wrong value for third input argument: ''%s'', ''%s'', %d or %d expected.\n"),"cmoment","r","c",1,2)), 
+	else error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"cmoment",3,"r","c",1,2)), 
     end
     mom=sum((x-m).^ord,orien)/(le)
     return

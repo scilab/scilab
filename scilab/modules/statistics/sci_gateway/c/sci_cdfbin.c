@@ -65,7 +65,7 @@ int cdfbinI(char* fname,unsigned long l)
 	}
 	else
 	{
-		Scierror(999,_("%s: First input argument must be 'PQ', 'S', 'Xn' or 'PrOmpr'.\n"),fname);
+		Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"),fname,1,"PQ","S","Xn","PrOmpr");
 	}
 	return 0;
 }

@@ -26,11 +26,11 @@ if rhs == 0 | rhs > 2 then
   error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"mean",1,2)),
 else
   if type(x) ~= 1  &  typeof(x) ~= "hypermat" then
-	error(msprintf(gettext("%s: Wrong type for first input argument: Real vector or matrix expected.\n"), "mean"))
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"), "mean",1))
   end
   if type(x) ~= 1 then  // that is x is an hypermat !
 	if type(x.entries) ~= 1 then
-	  error(msprintf(gettext("%s: Wrong type for first input argument.\n"),"mean"))
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"mean",1))
 	end
   end
   if rhs == 2 then
@@ -47,7 +47,7 @@ else
 	  end
 	end
 	if floor(orient)~=orient | orient < 1 | orient > length(size(x)) then
-	  error(msprintf(gettext("%s: Wrong type for second input argument: Scalar or vector expected.\n"),"mean")),
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar or vector expected.\n"),"mean",2)),
 	end
   end 
 end

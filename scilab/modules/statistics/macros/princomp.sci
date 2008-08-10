@@ -34,7 +34,7 @@ function [facpr,comprinc,lambda,tsquare]=princomp(x,eco)
 //
   if argn(2)<2 then eco=%f,end
   if type(eco)<>4 then 
-    error(msprintf(_("%s: second argument must be a boolean"),"princomp"))
+    error(msprintf(_("%s: Wrong type for input argument #%d: Boolean expected."),"princomp",2))
   end
   
   if x==[] then

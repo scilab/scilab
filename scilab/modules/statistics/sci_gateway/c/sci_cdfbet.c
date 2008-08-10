@@ -65,8 +65,8 @@ int cdfbetI(char* fname,unsigned long l)
 	}
 	else
 	{
-		Scierror(999,_("%s: First input argument must be 'PQ', 'XY', 'A' or 'B'.\n"),fname);
-		return 0;
+		Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"),fname,1,"PQ","XY","A","B");
+
 	}
 	return 0;
 }

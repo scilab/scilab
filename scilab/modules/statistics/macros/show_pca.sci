@@ -21,7 +21,7 @@ function show_pca(lambda,facpr,N)
 
   if argn(2)<3 then N=[1 2],end
   if size(N,'*')<>2 then 
-      error(msprintf(gettext("%s: Wrong size for second input argument: Size %s expected.\n"),"show_pca","2x1")),
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: Size %s expected.\n"),"show_pca",2,"2x1")),
   end,
 
   colx=size(facpr,2)

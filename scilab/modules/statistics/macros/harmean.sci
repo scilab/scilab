@@ -39,7 +39,7 @@ function [hm]=harmean(x,orien)
       le=ones(1,size(x,1))*bool2s(x<>0)
     elseif orien=='c'|orien==2 then
       le=bool2s(x<>0)*ones(size(x,2),1)
-    else error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'', %d or %d expected.\n"),"harmean","r","c",1,2)), end
+    else error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"harmean",2,"r","c",1,2)), end
       x(x==0)=%inf
       hm=sum(1 ./x,orien) ./le
   else 

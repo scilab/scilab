@@ -56,8 +56,7 @@ int cdfpoiI(char* fname,unsigned long l)
 	}
 	else
 	{
-		Scierror(999,_("%s: First input argument must be 'PQ', 'S' or 'Xlam'.\n"),fname);
-
+		Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"),fname,1,"PQ","S","Xlam");
 	}
 	return 0;
 }

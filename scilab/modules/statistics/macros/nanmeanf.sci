@@ -45,6 +45,6 @@ function [m]=nanmeanf(val,fre,orient)
     m=sum(val.*fre)/sum(fre)
   elseif orient=='r'|orient=='c'|orient==1|orient==2 then
     m=sum(val.*fre,orient)./sum(fre,orient)
-  else error(msprintf(gettext("%s: Wrong value for third input argument: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"nanmeanf","*","r","c",1,2)),
+  else error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"nanmeanf",3,"*","r","c",1,2)),
   end
 endfunction

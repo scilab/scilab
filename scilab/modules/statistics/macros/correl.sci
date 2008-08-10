@@ -28,15 +28,14 @@ function rho=correl(x,y,fre)
   [lx,cx]=size(x)
   [ly,cy]=size(y)
   
-  if lx<>1 & cx<>1 then error(msprintf(gettext("%s: Wrong type for first input argument: Vector expected.\n"),"correl")), end
-  if ly<>1 & cy<>1 then error(msprintf(gettext("%s: Wrong type for second input argument: Vector expected.\n"),"correl")), end
+  if lx<>1 & cx<>1 then error(msprintf(gettext("%s: Wrong type for input argument #%d: Vector expected.\n"),"correl",1)), end
+  if ly<>1 & cy<>1 then error(msprintf(gettext("%s: Wrong type for input argument #%d: Vector expected.\n"),"correl",2)), end
   lx=lx*cx;
   cy=ly*cy;
 
   
-  if lx<>lfre then error(msprintf(gettext("%s: Wrong value for third input argument: Same number of line as first input argument expected.\n"),"correl")), end
-  if cy<>cfre then error(msprintf(gettext("%s: Wrong value for third input argument: Same number of column as first input argument expected.\n"),"correl")), end
-
+  if lx<>lfre then error(msprintf(gettext("%s: Wrong value for input argument #%d: Same number of line as first input argument expected.\n"),"correl",3)), end
+  if cy<>cfre then error(msprintf(gettext("%s: Wrong value for input argument #%d: Same number of column as first input argument expected.\n"),"correl",3)), end
   x=matrix(x,lx,1);
   y=matrix(y,1,cy);
   fr=fre/sum(fre)

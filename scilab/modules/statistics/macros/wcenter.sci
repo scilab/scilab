@@ -54,6 +54,6 @@ function [s]=wcenter(x,orient)
     s=x-(ones(m,1)*xbar)
     sigma=sqrt(sum((s.^2),'r')/(m-1))
     s=s./(ones(m,1)*sigma)
-  else error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'', %d or %d expected.\n"),"wcenter","r","c", 1, 2)),
+  else error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"wcenter",2,"r","c", 1, 2)),
   end
 endfunction

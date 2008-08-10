@@ -30,7 +30,7 @@ function [r]=strange(x,orien)
     elseif orien=='c'|orien==2 then
       r=max(x,'c')-min(x,'c')
     else 
-      error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'', %d or %d expected.\n"),"strange","r","c",1,2)),
+      error(msprintf(gettext("%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"),"strange",2,"r","c",1,2)),
     end
   end
 endfunction

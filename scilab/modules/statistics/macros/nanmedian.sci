@@ -27,7 +27,7 @@ function [m]=nanmedian(x,orient)
 //
   [lhs,rhs]=argn(0)
   if rhs<1|rhs>2 then  error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"nanmedian",1,2)), end
-    if type(x)<>1 then error(msprintf(gettext("%s: Wrong type for first input arguments: Numerical expected.\n"),"nanmedian")) , end
+    if type(x)<>1 then error(msprintf(gettext("%s: Wrong type for input arguments #%d: Numerical expected.\n"),"nanmedian",1)) , end
   if x==[] then m=[], return,end
   if rhs==1 then 
     p=perctl(x(~isnan(x)),50)
@@ -48,6 +48,6 @@ function [m]=nanmedian(x,orient)
       m=[m;p(1)];
 	end
 	else
-		error(msprintf(gettext("%s: Wrong value for third input argument: ''%s'', ''%s'', %d or %d expected.\n"),"nanmedian","r","c",1,2))
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"nanmedian",3,"r","c",1,2))
   end
 endfunction

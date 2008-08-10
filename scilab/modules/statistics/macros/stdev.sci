@@ -38,7 +38,7 @@ function sd=stdev(x,o)
   elseif o=='r'|o==1 then
     y=x - ones(x(:,1))*mean(x,'r')
   else
-    error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"stdev","*","c","r",1,2)),
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"stdev",2,"*","c","r",1,2)),
   end
   
   if size(x,o)==1 then

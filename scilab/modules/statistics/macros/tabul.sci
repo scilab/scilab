@@ -61,13 +61,13 @@ function [m] = tabul(X, order)
    end
    typeX = type(X)
    if typeX ~= 1 & typeX ~= 10 then
-      error(msprintf(gettext("%s: Wrong type for first input argument: Vector, matrix of numbers or strings expected.\n"),"tabul"))
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings expected.\n"),"tabul",1))
    end
    if type(order) ~= 10 then
-	 error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'' or ''%s'' expected.\n"),"tabul","i","d"))
+	 error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"tabul",2,"i","d"))
    end
    if order~="i" &  order~="d" then
-	 error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'' or ''%s'' expected.\n"),"tabul","i","d"))
+	 error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"tabul",2,"i","d"))
    end
    if ( X == [] ) then
       m = %nan

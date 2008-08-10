@@ -35,6 +35,6 @@ function sd=st_deviation(x,cr)
       sd=sqrt(sum((x-ones(x(:,1))*mean(x,'r')).^2,'r')/(m-1));
     end
   else
-    error(msprintf(gettext("%s: Wrong value for second input argument: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"st_deviation","*","r","c",1,2));
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"st_deviation",2,"*","r","c",1,2));
   end
 endfunction
