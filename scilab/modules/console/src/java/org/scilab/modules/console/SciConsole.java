@@ -269,7 +269,7 @@ public abstract class SciConsole extends JPanel {
     			if (allLines.length < totalNumberOfLines) {
     				// Delete lines
     				config.getOutputView().reset();
-    				config.getOutputView().append("Out of Screen");
+    				config.getOutputView().append(Messages.gettext("Out of Screen"));
     			} else {
     				// Delete lines
     				int lastEOL;

@@ -16,12 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.scilab.modules.completion.Completion;
+import org.scilab.modules.localization.Messages;
 
 import com.artenum.rosetta.core.CompletionItemImpl;
 import com.artenum.rosetta.interfaces.core.CompletionItem;
 import com.artenum.rosetta.interfaces.core.CompletionManager;
 import com.artenum.rosetta.interfaces.core.GenericInterpreter;
 import com.artenum.rosetta.interfaces.core.InputParsingManager;
+
 
 /**
  * Class used completion management in Scilab Java Console
@@ -52,26 +54,26 @@ public class SciCompletionManager implements CompletionManager {
 		String fileSearchedPattern = ((SciInputParsingManager) inputParsingManager).getFilePartLevel(compLevel);
 
 		String[] scilabFilesDictionnary = Completion.searchFilesDictionary(fileSearchedPattern);
-		addItemsToDictionnary("File or Directory", scilabFilesDictionnary);
+		addItemsToDictionnary(Messages.gettext("File or Directory"), scilabFilesDictionnary);
 
 		if (scilabFilesDictionnary == null) {
 			// Get the completion part used to filter the dictionary
 			String searchedPattern = inputParsingManager.getPartLevel(compLevel);
 
 			String[] scilabCommandsDictionnary = Completion.searchCommandsDictionary(searchedPattern);
-			addItemsToDictionnary("Scilab Command", scilabCommandsDictionnary);
+			addItemsToDictionnary(Messages.gettext("Scilab Command"), scilabCommandsDictionnary);
 
 			String[] scilabFunctionsDictionnary = Completion.searchFunctionsDictionary(searchedPattern);
-			addItemsToDictionnary("Scilab Function", scilabFunctionsDictionnary);
+			addItemsToDictionnary(Messages.gettext("Scilab Function"), scilabFunctionsDictionnary);
 
 			String[] scilabHandlesDictionnary = Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern);
-			addItemsToDictionnary("Graphics handle field", scilabHandlesDictionnary);
+			addItemsToDictionnary(Messages.gettext("Graphics handle field"), scilabHandlesDictionnary);
 
 			String[] scilabMacrosDictionnary = Completion.searchMacrosDictionary(searchedPattern);
-			addItemsToDictionnary("Scilab Macro", scilabMacrosDictionnary);
+			addItemsToDictionnary(Messages.gettext("Scilab Macro"), scilabMacrosDictionnary);
 
 			String[] scilabVariablesDictionnary = Completion.searchVariablesDictionary(searchedPattern);
-			addItemsToDictionnary("Scilab Variable", scilabVariablesDictionnary);
+			addItemsToDictionnary(Messages.gettext("Scilab Variable"), scilabVariablesDictionnary);
 		}
 		return dictionnary;
 	}
@@ -102,7 +104,7 @@ public class SciCompletionManager implements CompletionManager {
 	public void addItemsToDictionnary(String type, String[] items) {
 		if (items != null) {
 			for (int i = 0;	i < items.length; i++) {
-				dictionnary.add(new CompletionItemImpl(type, items[i] + " (" + type + ")", items[i], "No help"));
+				dictionnary.add(new CompletionItemImpl(type, items[i] + " (" + type + ")", items[i], Messages.gettext("No help")));
 			}
 		}
 
