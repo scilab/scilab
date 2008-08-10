@@ -64,7 +64,6 @@ extern int getscicosvarsfromimport(char *what,void *v,int *nv,int *mv);
 extern void C2F(vvtosci)();
 extern void C2F(itosci)();
 extern int C2F(mktlist)();
-extern int C2F(mklist)();
 extern void str2sci(char** x,int n,int m);
 extern integer C2F(scierr)();
 extern int C2F(namstr)();
