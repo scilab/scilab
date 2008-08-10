@@ -18,18 +18,19 @@ function  xinit(fileName)
   if (%driverName == "Rec" | %driverName == "X11" | %driverName == "" | %driverName == []) then
     // screen display, should be xinit without argument
     if (rhs <> 0) then
-      error(msprintf(gettext("%s: Wrong number of input arguments: Function has no input argument with ''Rec'' or ''X11'' drivers.\n"), "xinit"));
+      error(msprintf(gettext("%s: Wrong number of input arguments: Function has no input argument with ''%s'' or ''%s'' drivers.\n"), "xinit","Rec","X11"));
     end
     scf();
   else
     // file driver
     if (rhs <> 1) then
-      error(msprintf(gettext("%s: Wrong number of input arguments: A string expected with ''GIF'', ''PPM'', ''POS'' or ''Fig'' drivers.\n"), "xinit"));
+	  error(msprintf(gettext("%s: Wrong number of input argument: String expected with ''%s'', ''%s'', ''%s'' or ''%s'' drivers.\n"), "xinit","GIF","PPM","POS","Fig"));
+
     end
 
     if (type(fileName) <> 10) then
       // wrong type for driverName
-      error(msprintf(gettext("%s: Wrong type for input arguments #%d: A string expected with ''GIF'', ''PPM'', ''POS'' or ''Fig'' drivers.\n"), "xinit",1));
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xinit",1));
       return;
     end
   

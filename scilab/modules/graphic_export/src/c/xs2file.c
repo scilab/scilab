@@ -61,7 +61,7 @@ int xs2file(char * fname, ExportFileType fileType )
 		/* vectorial export with orientation specified */
 		if (GetType(3) != sci_strings)
 		{
-			Scierror(999,_("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"),fname, 3, "portrait", "landscape");
+			Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname, 3, "portrait", "landscape");
 		    return 0;
 		}
 		GetRhsVar(3,STRING_DATATYPE,&nbRow,&nbCol,&stackPointer);
@@ -78,7 +78,7 @@ int xs2file(char * fname, ExportFileType fileType )
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"),fname, 3, "portrait", "landscape");
+			Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname, 3, "portrait", "landscape");
 		    return 0;
 		}
 

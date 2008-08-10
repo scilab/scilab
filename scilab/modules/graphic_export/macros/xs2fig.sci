@@ -13,19 +13,19 @@ function xs2fig(figureNumber, fileName, orientation)
 	
 	//Input arguments checking
 	if rhs <> 2 & rhs <> 3 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "xs2emf",2));
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "xs2emf",2 ,3));
 		return;
 	end
 
 	//first argument checking
 	if type(figureNumber) <> 1 | size(figureNumber) <> [1,1] then
-		error(msprintf(gettext("%s: Wrong type for input argument: Integer expected.\n"), "xs2fig"));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Integer expected.\n"), "xs2fig",1));
 		return;
 	end
 		
 	//second argument checking
 	if type(fileName) <> 10 | fileName == "" then
-		error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"), "xs2fig"));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "xs2fig",2));
 		return;
 	end
 	
@@ -36,7 +36,7 @@ function xs2fig(figureNumber, fileName, orientation)
 		elseif orientation == 'p' | orientation == 'portrait' then 
 			orientation = "portrait"; 
 		else
-			error(msprintf(gettext("%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"), "xs2fig", 3, "landscape", "portrait"));
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"), "xs2fig", 3, "landscape", "portrait"));
 			return;
 		end
 	else

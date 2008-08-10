@@ -15,7 +15,7 @@ function xend()
 
   if (%exportFileName == []) then
     // filed not already selected : xinit has not been called
-    error(gettext("xend: xinit must be called before any action."));
+    error(msprintf(gettext("%s: %s must be called before any action.\n"),"xend","xinit"));
     return;
   end
 

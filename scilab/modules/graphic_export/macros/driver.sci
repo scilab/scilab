@@ -23,7 +23,7 @@ function  [curDriver] = driver(driverName)
     end
     
     if (~checkDriverName(driverName)) then
-      error(gettext("driver: wrong value for first input argument: must be ""Rec"", ""X11"", ""Pos"", ""PPM"", ""GIF"" or ""Fig""."));
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"driver",1,"Rec","X11","Pos","PPM","GIF","Fig"));
      return;
     end
     

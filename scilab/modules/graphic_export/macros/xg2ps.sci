@@ -10,7 +10,7 @@
 function xg2ps(figureNumber, fileName)
 
 	warnobsolete("xs2ps", "5.1");
-	warning(gettext("""xg2ps"" has been replaced by ""xs2ps"""));
+	warning(msprintf(gettext("""%s"" has been replaced by ""%s"""),"xg2ps","xs2ps"));
 	
 	xs2ps(figureNumber, fileName);
 
