@@ -101,12 +101,13 @@ libscijvm_la_DEPENDENCIES =  \
 am__libscijvm_la_SOURCES_DIST = src/nojvm/nojvm.c \
 	src/c/InitializeJVM.c src/c/TerminateJVM.c src/c/JVM_Unix.c \
 	src/c/JVM.c src/c/addToClasspath.c src/c/loadOnUseClassPath.c \
-	src/c/getClasspath.c src/c/system_getproperty.c \
-	src/c/system_setproperty.c src/c/loadClasspath.c \
-	src/c/createMainScilabObject.c src/c/JVM_commons.c \
-	src/c/catchIfJavaException.c src/c/loadLibrarypath.c \
-	src/c/getLibrarypath.c src/c/addToLibrarypath.c \
-	src/c/getJvmOptions.c sci_gateway/c/sci_system_getproperty.c \
+	src/c/loadBackGroundClassPath.c src/c/getClasspath.c \
+	src/c/system_getproperty.c src/c/system_setproperty.c \
+	src/c/loadClasspath.c src/c/createMainScilabObject.c \
+	src/c/JVM_commons.c src/c/catchIfJavaException.c \
+	src/c/loadLibrarypath.c src/c/getLibrarypath.c \
+	src/c/addToLibrarypath.c src/c/getJvmOptions.c \
+	sci_gateway/c/sci_system_getproperty.c \
 	sci_gateway/c/sci_system_setproperty.c \
 	sci_gateway/c/sci_with_embedded_jre.c \
 	sci_gateway/c/sci_javaclasspath.c sci_gateway/c/gw_jvm.c \
@@ -117,6 +118,7 @@ am__libscijvm_la_SOURCES_DIST = src/nojvm/nojvm.c \
 @GUI_TRUE@	libscijvm_la-JVM_Unix.lo libscijvm_la-JVM.lo \
 @GUI_TRUE@	libscijvm_la-addToClasspath.lo \
 @GUI_TRUE@	libscijvm_la-loadOnUseClassPath.lo \
+@GUI_TRUE@	libscijvm_la-loadBackGroundClassPath.lo \
 @GUI_TRUE@	libscijvm_la-getClasspath.lo \
 @GUI_TRUE@	libscijvm_la-system_getproperty.lo \
 @GUI_TRUE@	libscijvm_la-system_setproperty.lo \
@@ -405,6 +407,7 @@ includes/getScilabObject.h
 @GUI_TRUE@src/c/JVM.c \
 @GUI_TRUE@src/c/addToClasspath.c \
 @GUI_TRUE@src/c/loadOnUseClassPath.c \
+@GUI_TRUE@src/c/loadBackGroundClassPath.c \
 @GUI_TRUE@src/c/getClasspath.c \
 @GUI_TRUE@src/c/system_getproperty.c \
 @GUI_TRUE@src/c/system_setproperty.c \
@@ -551,6 +554,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-getJvmOptions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-getLibrarypath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-gw_jvm.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-loadBackGroundClassPath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-loadClasspath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-loadLibrarypath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijvm_la-loadOnUseClassPath.Plo@am__quote@
@@ -632,6 +636,13 @@ libscijvm_la-loadOnUseClassPath.lo: src/c/loadOnUseClassPath.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/loadOnUseClassPath.c' object='libscijvm_la-loadOnUseClassPath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-loadOnUseClassPath.lo `test -f 'src/c/loadOnUseClassPath.c' || echo '$(srcdir)/'`src/c/loadOnUseClassPath.c
+
+libscijvm_la-loadBackGroundClassPath.lo: src/c/loadBackGroundClassPath.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-loadBackGroundClassPath.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-loadBackGroundClassPath.Tpo -c -o libscijvm_la-loadBackGroundClassPath.lo `test -f 'src/c/loadBackGroundClassPath.c' || echo '$(srcdir)/'`src/c/loadBackGroundClassPath.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscijvm_la-loadBackGroundClassPath.Tpo $(DEPDIR)/libscijvm_la-loadBackGroundClassPath.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/loadBackGroundClassPath.c' object='libscijvm_la-loadBackGroundClassPath.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -c -o libscijvm_la-loadBackGroundClassPath.lo `test -f 'src/c/loadBackGroundClassPath.c' || echo '$(srcdir)/'`src/c/loadBackGroundClassPath.c
 
 libscijvm_la-getClasspath.lo: src/c/getClasspath.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscijvm_la_CFLAGS) $(CFLAGS) -MT libscijvm_la-getClasspath.lo -MD -MP -MF $(DEPDIR)/libscijvm_la-getClasspath.Tpo -c -o libscijvm_la-getClasspath.lo `test -f 'src/c/getClasspath.c' || echo '$(srcdir)/'`src/c/getClasspath.c
