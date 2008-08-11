@@ -494,6 +494,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\etc\classpath.xml.vc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\modules\jvm\etc\jvm_options.xml.vc"
 				>
 			</File>
