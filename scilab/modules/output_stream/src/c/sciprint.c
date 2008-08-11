@@ -44,6 +44,9 @@ void sciprint(char *fmt,...)
 /*--------------------------------------------------------------------------*/ 
 void scivprint(char *fmt,va_list args) 
 {
+	va_list savedargs;
+	va_copy(savedargs, args);
+	
 	scivprint_nd(fmt,args);
 
 	if (getdiary()) 
@@ -52,14 +55,15 @@ void scivprint(char *fmt,va_list args)
 		char s_buf[MAXPRINTF];
 		integer lstr = 0;
 
-		count= vsnprintf(s_buf,MAXPRINTF-1, fmt, args );
+		count= vsnprintf(s_buf,MAXPRINTF-1, fmt, savedargs );
 
 		if (count == -1) s_buf[MAXPRINTF-1]='\0';
 
 		lstr = (integer)strlen(s_buf);
 		diary_nnl(s_buf,&lstr);
 	}
-
+	
+	va_end(savedargs);
 }
 /*--------------------------------------------------------------------------*/ 
 /* as sciprint but with an added first argument which is ignored (used in do_printf) */
