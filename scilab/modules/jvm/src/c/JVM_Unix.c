@@ -47,8 +47,10 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 	{
 		  /* 2. search in LD_LIBRARY_PATH */
 			if (JVMLibFullName){FREE(JVMLibFullName);JVMLibFullName=NULL;};
-			JVMLibFullName=(char*)MALLOC( (strlen("libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
-			sprintf(JVMLibFullName,"%s%s","libjava",SHARED_LIB_EXT);
+			JVMLibFullName=(char*)MALLOC( (strlen("libjvm")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
+			sprintf(JVMLibFullName,"%s%s","libjvm",SHARED_LIB_EXT);
+			//			JVMLibFullName=(char*)MALLOC( (strlen("libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
+			//			sprintf(JVMLibFullName,"%s%s","libjava",SHARED_LIB_EXT);
 			if (LoadFuntionsJVM(JVMLibFullName)) bOK=TRUE;
 	}
 	else 

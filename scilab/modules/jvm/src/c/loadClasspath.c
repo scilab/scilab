@@ -16,6 +16,7 @@
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 #include <stdio.h>
+#include <string.h>
 #include "loadClasspath.h"
 #include "GetXmlFileEncoding.h"
 #include "../../fileio/includes/FileExist.h"
@@ -44,6 +45,8 @@ BOOL LoadClasspath(char *xmlfilename)
 			xmlXPathContextPtr xpathCtxt = NULL;
 			xmlXPathObjectPtr xpathObj = NULL;
 			char *classpath=NULL;
+			char *load="";
+			typeOfLoad eLoad=STARTUP;
 
 			doc = xmlParseFile (xmlfilename);
 
@@ -74,6 +77,22 @@ BOOL LoadClasspath(char *xmlfilename)
 							/* we found the tag value */
 							classpath=(char*)attrib->children->content;
 						}
+						if (xmlStrEqual (attrib->name, (const xmlChar*) "load"))
+						{ 
+							/* we found the tag load */
+							load=(const char*)attrib->children->content;
+
+							/* By default, it is startup */
+							if (strcasecmp(load,"background")==0){
+								eLoad=BACKGROUND;
+							} else {
+								if (strcasecmp(load,"onuse")==0) {
+									eLoad=ONUSE;
+								}
+							}
+						}else{
+							eLoad=STARTUP;
+						}
 						attrib = attrib->next;
 					}
 
@@ -101,7 +120,7 @@ BOOL LoadClasspath(char *xmlfilename)
   					    
 						if (FullClasspath)
 						{
-							if (!addToClasspath(FullClasspath))
+							if (!addToClasspath(FullClasspath, eLoad))
 							{
 								errorOnLoad=TRUE;
 							}

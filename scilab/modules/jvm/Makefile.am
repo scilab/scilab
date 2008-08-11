@@ -62,6 +62,7 @@ src/c/TerminateJVM.c \
 src/c/JVM_Unix.c \
 src/c/JVM.c \
 src/c/addToClasspath.c \
+src/c/loadBackGroundClassPath.c \
 src/c/getClasspath.c \
 src/c/system_getproperty.c \
 src/c/system_setproperty.c \

@@ -22,7 +22,7 @@
 #include "fromjava.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
-BOOL addToClasspath(char *classpathstring)
+BOOL addToClasspath(char *classpathstring, typeOfLoad load)
 {
 
 	if (classpathstring)
@@ -47,11 +47,11 @@ BOOL addToClasspath(char *classpathstring)
 				
 				if (cls)
 				{
-					jmethodID mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "addFile","(Ljava/lang/String;)V");
+					jmethodID mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "addFile","(Ljava/lang/String;I)V");
 					if (mid)
 					{
 						jstring jstr = (*currentENV)->NewStringUTF(currentENV,classpathstring);
-						(*currentENV)->CallStaticObjectMethod(currentENV,cls, mid,jstr);
+						(*currentENV)->CallStaticObjectMethod(currentENV,cls, mid,jstr, (int)load);
 						return TRUE;
 					}
 				}

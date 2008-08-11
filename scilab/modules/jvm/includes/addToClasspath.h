@@ -17,12 +17,20 @@
 
 #include "machine.h" /* BOOL */
 
+
+typedef enum { STARTUP = 0,
+			   BACKGROUND = 1,
+               ONUSE = 2
+	
+} typeOfLoad;
+
+
 /**
 * add a path to CLASSPATH
 * @param a new path to add
 * @return TRUE or FALSE
 */
-BOOL addToClasspath(char *classpathstring);
+BOOL addToClasspath(char *classpathstring, typeOfLoad load);
 
 #endif /* __ADDTOCLASSPATH_H__ */
 /*--------------------------------------------------------------------------*/ 
