@@ -69,7 +69,6 @@ public class ClassPath {
 			switch (i) {
 				case 0:
 			   
-					System.out.println("Invoke Live : "+u +" / prio :" +i);
 					method.invoke(sysloader , new Object[] { u });
 					break;
 				case 1:
@@ -123,7 +122,6 @@ public class ClassPath {
 						Iterator<URL> urlIt = queued.iterator();
 						System.out.println("loadBackGroundClassPath "+urlIt);
 						while (urlIt.hasNext()) {
-							System.out.println("Invoke later : "+urlIt+" / prio : bg");
 							
 							ClassPath.addURL(urlIt.next(),0);
 						}
