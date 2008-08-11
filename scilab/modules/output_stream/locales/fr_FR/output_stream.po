@@ -1,21 +1,3 @@
-# File: src/c/sciprint_full.c, line: 38
-# File: src/c/sciprint_full.c, line: 56
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr ""
-
-#
-# File: src/c/sciprint_full.c, line: 92
-#, c-format
-msgid "  (cont'd) %s"
-msgstr ""
-
-#
-# File: src/c/sciprint_full.c, line: 102
-#, c-format
-msgid "     (end) %s"
-msgstr ""
-
 #
 # File: src/c/errmsg.c, line: 55
 msgid "Incorrect assignment.\n"
@@ -27,9 +9,9 @@ msgid "Waiting for right parenthesis.\n"
 msgstr ""
 
 #
-# File: src/c/errmsg.c, line: 76
+# File: src/c/errmsg.c, line: 88
 #, c-format
-msgid "Undefined variable : %s\n"
+msgid "Undefined variable: %s\n"
 msgstr ""
 
 #
@@ -103,21 +85,21 @@ msgid "Use stacksize function to increase it.\n"
 msgstr ""
 
 #
-# File: src/c/errmsg.c, line: 154
+# File: src/c/errmsg.c, line: 166
 #, c-format
-msgid "Memory used for variables : %d\n"
+msgid "Memory used for variables: %d\n"
 msgstr ""
 
 #
-# File: src/c/errmsg.c, line: 155
+# File: src/c/errmsg.c, line: 167
 #, c-format
-msgid "Intermediate memory needed : %d\n"
+msgid "Intermediate memory needed: %d\n"
 msgstr ""
 
 #
-# File: src/c/errmsg.c, line: 156
+# File: src/c/errmsg.c, line: 168
 #, c-format
-msgid "Total memory available : %d\n"
+msgid "Total memory available: %d\n"
 msgstr ""
 
 #
@@ -236,6 +218,11 @@ msgstr ""
 # File: src/c/errmsg.c, line: 295
 #, c-format
 msgid "Incorrect function at line %d.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 310
+msgid "Incorrect function.\n"
 msgstr ""
 
 #
@@ -472,6 +459,11 @@ msgstr ""
 # File: src/c/errmsg.c, line: 556
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 579
+msgid "Indexing not allowed for output arguments of resume.\n"
 msgstr ""
 
 #
@@ -829,6 +821,12 @@ msgid "%s: Incorrect bounds.\n"
 msgstr ""
 
 #
+# File: src/c/errmsg.c, line: 969
+#, c-format
+msgid "Variable : %s must be a list\n"
+msgstr ""
+
+#
 # File: src/c/errmsg.c, line: 959
 #, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
@@ -998,6 +996,11 @@ msgid "reference to the cleared global variable %s.\n"
 msgstr ""
 
 #
+# File: src/c/errmsg.c, line: 1274
+msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgstr ""
+
+#
 # File: src/c/errmsg.c, line: 1393
 msgid "semi def fails.\n"
 msgstr ""
@@ -1094,6 +1097,12 @@ msgstr ""
 # File: src/c/errmsg.c, line: 1489
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1383
+#, c-format
+msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
 msgstr ""
 
 #
@@ -1268,6 +1277,24 @@ msgstr ""
 msgid "\"unknown data\""
 msgstr ""
 
+# File: src/c/sciprint_full.c, line: 38
+# File: src/c/sciprint_full.c, line: 56
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: src/c/sciprint_full.c, line: 97
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr ""
+
+#
+# File: src/c/sciprint_full.c, line: 101
+#, c-format
+msgid "     (end) %s\n"
+msgstr ""
+
 #
 # File: src/c/msgs.c, line: 482
 # File: src/c/msgs.c, line: 493
@@ -1439,17 +1466,13 @@ msgid "Breakpoints of function : %s\n"
 msgstr ""
 
 #
-# File: src/c/msgs.c, line: 719
-msgid ""
-"Warning: recursion problem..., cleared.\n"
-" will be cleared with next error...\n"
+# File: src/c/msgs.c, line: 728
+msgid "Warning: recursion problem..., cleared.\n"
 msgstr ""
 
 #
-# File: src/c/msgs.c, line: 726
-msgid ""
-"Warning: stack problem..., cleared\n"
-" will be cleared with next error...\n"
+# File: src/c/msgs.c, line: 735
+msgid "Warning: stack problem..., cleared.\n"
 msgstr ""
 
 #
@@ -1520,9 +1543,10 @@ msgid "Commands:\n"
 msgstr ""
 
 #
-# File: src/c/msgs.c, line: 843
+# File: src/c/msgs.c, line: 853
 #, c-format
-msgid "Warning : redefining function: %s"
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
 msgstr ""
 
 #
