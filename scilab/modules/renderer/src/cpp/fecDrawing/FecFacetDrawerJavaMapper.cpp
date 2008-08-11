@@ -75,9 +75,9 @@ void FecFacetDrawerJavaMapper::drawFec(const double xCoords[], const double yCoo
                                        const int thirdPoints[], int nbTriangles)
 {
   // convert to long
-  long * javaFirstPoints = new long[nbTriangles];
-  long * javaSecondPoints = new long[nbTriangles];
-  long * javaThirdPoints = new long[nbTriangles];
+  long * javaFirstPoints = NULL;
+  long * javaSecondPoints = NULL;
+  long * javaThirdPoints = NULL;
 
   try
   {
@@ -93,6 +93,13 @@ void FecFacetDrawerJavaMapper::drawFec(const double xCoords[], const double yCoo
     if( javaThirdPoints != NULL) { delete[] javaThirdPoints; }
     // propagate exception
     throw;
+  }
+
+  for (int i = 0; i < nbTriangles; i++)
+  {
+    javaFirstPoints[i] = firstPoints[i];
+    javaSecondPoints[i] = secondPoints[i];
+    javaThirdPoints[i] = thirdPoints[i];
   }
 
   m_pJavaObject->drawFec((double *)xCoords, nbNodes,

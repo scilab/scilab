@@ -74,9 +74,9 @@ void FecLineDrawerJavaMapper::drawFec(const double xCoords[], const double yCoor
                                       const int thirdPoints[], int nbTriangles)
 {
   // convert to long
-  long * javaFirstPoints = new long[nbTriangles];
-  long * javaSecondPoints = new long[nbTriangles];
-  long * javaThirdPoints = new long[nbTriangles];
+  long * javaFirstPoints = NULL;
+  long * javaSecondPoints = NULL;
+  long * javaThirdPoints = NULL;
 
   try
   {

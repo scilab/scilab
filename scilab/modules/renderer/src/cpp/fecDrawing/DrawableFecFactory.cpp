@@ -33,6 +33,7 @@ DrawableObject * DrawableFecFactory::create( void )
   DrawableFecBridgeFactory fact;
   fact.setDrawedFec(newFec);
   newFec->setDrawableImp(fact.create());
+  setStrategies(newFec);
 
   return newFec;
 }
