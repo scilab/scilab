@@ -23,9 +23,9 @@
 	{
 		/*  code for both increments equal to 1 */
 		/*  clean-up loop */
-		memcpy(dy , dx , (*n *sizeof(double)) );
+		memmove(dy , dx , (*n *sizeof(double)) );
 	}
-	else
+	else if(dx != dy)
 	{
 		int i = 0;
 
