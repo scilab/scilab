@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -67,25 +68,11 @@ public class ClassPath {
 			final Method method = sysclass.getDeclaredMethod("addURL", parameters);
 			method.setAccessible(true);
 			switch (i) {
-				case 0:
-			   
+				case 0: /* Load now */
 					method.invoke(sysloader , new Object[] { u });
 					break;
-				case 1:
+				case 1: /* Load later (background) */
 					queued.add(u);
-					/*			
-							Thread backgroundLoader = new Thread() {
-						public void run() { 
-							try {
-								System.out.println("Invoke later : "+u +" / prio : bg");
-
-								method.invoke(sysloader , new Object[] { u });
-							}catch (Exception e){
-								System.err.println("Error : "+e.getLocalizedMessage());
-							}
-						} 
-					};
-					backgroundLoader.start();*/
 					break;
 			}
 
@@ -115,16 +102,20 @@ public class ClassPath {
 	}
 
 
+    /**
+     * Load all the classpath in dedicated threads in background
+     */
 	public static void loadBackGroundClassPath(){
 		Thread backgroundLoader = new Thread() {
 				public void run() { 
 					try {
+
 						Iterator<URL> urlIt = queued.iterator();
-						System.out.println("loadBackGroundClassPath "+urlIt);
+
 						while (urlIt.hasNext()) {
-							
 							ClassPath.addURL(urlIt.next(),0);
 						}
+
 					}catch (Exception e){
 						System.err.println("Error : "+e.getLocalizedMessage());
 					}
