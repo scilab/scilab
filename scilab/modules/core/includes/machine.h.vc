@@ -89,4 +89,6 @@
 
 #define HAVE_LIBINTL_H
 
+#define va_copy(x,y) (x=(y))
+
 #endif /* MACHINE_H  */
