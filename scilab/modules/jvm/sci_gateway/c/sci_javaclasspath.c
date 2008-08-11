@@ -53,7 +53,7 @@ int C2F(sci_javaclasspath)(char *fname,unsigned long fname_len)
 
 			for (i = 0; i<m1*n1 ;i++)
 			{
-				if (!addToClasspath(classPaths[i],STARTUP))
+				if (!addToClasspath(classPaths[i]))
 				{
 					Scierror(999,_("%s: Could not add URL to system classloader : %s.\n"),fname,classPaths[i]);
 					freeArrayOfString(classPaths,m1*n1);
