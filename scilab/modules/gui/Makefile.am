@@ -105,7 +105,8 @@ src/cpp/UnitsConversion.cpp \
 src/cpp/GetScreenProperty.cpp \
 src/cpp/CallClipboard.cpp \
 src/cpp/exportUserInterface.cpp \
-src/jni/LookAndFeelManager.cpp
+src/jni/LookAndFeelManager.cpp \
+sci_gateway/cpp/sci_raise_window.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -119,7 +120,6 @@ GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/gw_gui.c \
 sci_gateway/c/sci_x_mdialog.c \
 sci_gateway/c/sci_x_dialog.c \
-sci_gateway/c/sci_raise_window.c \
 sci_gateway/c/sci_x_choose.c \
 sci_gateway/c/sci_x_choose_modeless.c \
 sci_gateway/c/sci_xgetfile.c \

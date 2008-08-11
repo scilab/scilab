@@ -802,5 +802,12 @@ public class SwingScilabTab extends View implements SimpleTab {
 		Container dummyContainer = new Container();
 		this.setContentPane(dummyContainer);
 	}
+	
+	/**
+	 * Set this tab as the current tab of its parent Window
+	 */
+	public void setCurrent() {
+		super.setActive(true);
+	}
 
 }

@@ -236,6 +236,7 @@ jmethodID jbooleanprintStringjstringjstringID; // cache method id
 jmethodID jbooleanpageSetupID; // cache method id
 jmethodID voidrequestWidgetFocusjintID; // cache method id
 jmethodID voidrequestFrameFocusjintID; // cache method id
+jmethodID voidraiseWindowjintID; // cache method id
 
 
 /**
@@ -642,6 +643,8 @@ static bool pageSetup(JavaVM * jvm_);
 static void requestWidgetFocus(JavaVM * jvm_, long objID);
 
 static void requestFrameFocus(JavaVM * jvm_, long objID);
+
+static void raiseWindow(JavaVM * jvm_, long objID);
 
 
                         /**

@@ -488,5 +488,13 @@ public class ScilabTab extends ScilabContainer implements Tab {
 	public Window getParentWindow() {
 		return (Window) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
 	}
+	
+	/**
+	 * Set this tab as the current tab of its parent Window
+	 */
+	public void setCurrent() {
+		ScilabBridge.setCurrent(this);
+	}
+
 }
 

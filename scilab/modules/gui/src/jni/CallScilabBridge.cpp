@@ -285,6 +285,7 @@ jbooleanprintStringjstringjstringID=NULL;
 jbooleanpageSetupID=NULL; 
 voidrequestWidgetFocusjintID=NULL; 
 voidrequestFrameFocusjintID=NULL; 
+voidraiseWindowjintID=NULL; 
 
 
 }
@@ -493,6 +494,7 @@ jbooleanprintStringjstringjstringID=NULL;
 jbooleanpageSetupID=NULL; 
 voidrequestWidgetFocusjintID=NULL; 
 voidrequestFrameFocusjintID=NULL; 
+voidraiseWindowjintID=NULL; 
 
 
 }
@@ -5162,6 +5164,27 @@ exit(EXIT_FAILURE);
 }
 
                          curEnv->CallStaticVoidMethod(cls, voidrequestFrameFocusjintID ,objID);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void CallScilabBridge::raiseWindow (JavaVM * jvm_, long objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidraiseWindowjintID = curEnv->GetStaticMethodID(cls, "raiseWindow", "(I)V" ) ;
+if (voidraiseWindowjintID == NULL) {
+std::cerr << "Could not access to the method " << "raiseWindow" << std::endl;
+exit(EXIT_FAILURE);
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidraiseWindowjintID ,objID);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

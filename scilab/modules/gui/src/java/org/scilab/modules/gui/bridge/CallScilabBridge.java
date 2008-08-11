@@ -2754,4 +2754,14 @@ public class CallScilabBridge {
 	public static void requestFrameFocus(int id) {
 		((Frame) UIElementMapper.getCorrespondingUIElement(id)).requestFocus();
 	}
+	
+	/**
+	 * Raise the window specified by the user
+	 * @param id the id of the figure
+	 */
+	public static void raiseWindow(int id) {
+		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().getParentWindow().raise();
+		((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().setCurrent();
+		
+	}
 }

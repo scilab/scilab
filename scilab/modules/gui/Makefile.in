@@ -109,8 +109,7 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 	src/c/CreateUIContextMenu.c src/c/UicontrolStyleToString.c \
 	src/c/messageboxoptions.c sci_gateway/c/sci_x_choice.c \
 	sci_gateway/c/gw_gui.c sci_gateway/c/sci_x_mdialog.c \
-	sci_gateway/c/sci_x_dialog.c sci_gateway/c/sci_raise_window.c \
-	sci_gateway/c/sci_x_choose.c \
+	sci_gateway/c/sci_x_dialog.c sci_gateway/c/sci_x_choose.c \
 	sci_gateway/c/sci_x_choose_modeless.c \
 	sci_gateway/c/sci_xgetfile.c sci_gateway/c/sci_unsetmenu.c \
 	sci_gateway/c/sci_delmenu.c sci_gateway/c/sci_setmenu.c \
@@ -183,7 +182,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 	src/cpp/SetUiobjectVisible.cpp src/cpp/GetUiobjectVisible.cpp \
 	src/cpp/UnitsConversion.cpp src/cpp/GetScreenProperty.cpp \
 	src/cpp/CallClipboard.cpp src/cpp/exportUserInterface.cpp \
-	src/jni/LookAndFeelManager.cpp
+	src/jni/LookAndFeelManager.cpp \
+	sci_gateway/cpp/sci_raise_window.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-TerminateGui.lo \
 @GUI_TRUE@	libscigui_la-buildMainWindowTitle.lo \
@@ -201,7 +201,6 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@am__objects_2 = libscigui_la-sci_x_choice.lo \
 @GUI_TRUE@	libscigui_la-gw_gui.lo libscigui_la-sci_x_mdialog.lo \
 @GUI_TRUE@	libscigui_la-sci_x_dialog.lo \
-@GUI_TRUE@	libscigui_la-sci_raise_window.lo \
 @GUI_TRUE@	libscigui_la-sci_x_choose.lo \
 @GUI_TRUE@	libscigui_la-sci_x_choose_modeless.lo \
 @GUI_TRUE@	libscigui_la-sci_xgetfile.lo \
@@ -307,7 +306,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@	libscigui_la-GetScreenProperty.lo \
 @GUI_TRUE@	libscigui_la-CallClipboard.lo \
 @GUI_TRUE@	libscigui_la-exportUserInterface.lo \
-@GUI_TRUE@	libscigui_la-LookAndFeelManager.lo
+@GUI_TRUE@	libscigui_la-LookAndFeelManager.lo \
+@GUI_TRUE@	libscigui_la-sci_raise_window.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -684,7 +684,8 @@ JARMASK = *.jar
 @GUI_TRUE@src/cpp/GetScreenProperty.cpp \
 @GUI_TRUE@src/cpp/CallClipboard.cpp \
 @GUI_TRUE@src/cpp/exportUserInterface.cpp \
-@GUI_TRUE@src/jni/LookAndFeelManager.cpp
+@GUI_TRUE@src/jni/LookAndFeelManager.cpp \
+@GUI_TRUE@sci_gateway/cpp/sci_raise_window.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/CallScilabBridge.giws.xml \
@@ -698,7 +699,6 @@ JARMASK = *.jar
 @GUI_TRUE@sci_gateway/c/gw_gui.c \
 @GUI_TRUE@sci_gateway/c/sci_x_mdialog.c \
 @GUI_TRUE@sci_gateway/c/sci_x_dialog.c \
-@GUI_TRUE@sci_gateway/c/sci_raise_window.c \
 @GUI_TRUE@sci_gateway/c/sci_x_choose.c \
 @GUI_TRUE@sci_gateway/c/sci_x_choose_modeless.c \
 @GUI_TRUE@sci_gateway/c/sci_xgetfile.c \
@@ -1260,13 +1260,6 @@ libscigui_la-sci_x_dialog.lo: sci_gateway/c/sci_x_dialog.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_dialog.c' object='libscigui_la-sci_x_dialog.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_x_dialog.lo `test -f 'sci_gateway/c/sci_x_dialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_dialog.c
-
-libscigui_la-sci_raise_window.lo: sci_gateway/c/sci_raise_window.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_raise_window.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_raise_window.Tpo -c -o libscigui_la-sci_raise_window.lo `test -f 'sci_gateway/c/sci_raise_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_raise_window.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_raise_window.Tpo $(DEPDIR)/libscigui_la-sci_raise_window.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_raise_window.c' object='libscigui_la-sci_raise_window.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_raise_window.lo `test -f 'sci_gateway/c/sci_raise_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_raise_window.c
 
 libscigui_la-sci_x_choose.lo: sci_gateway/c/sci_x_choose.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_x_choose.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_x_choose.Tpo -c -o libscigui_la-sci_x_choose.lo `test -f 'sci_gateway/c/sci_x_choose.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choose.c
@@ -2065,6 +2058,13 @@ libscigui_la-LookAndFeelManager.lo: src/jni/LookAndFeelManager.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/LookAndFeelManager.cpp' object='libscigui_la-LookAndFeelManager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-LookAndFeelManager.lo `test -f 'src/jni/LookAndFeelManager.cpp' || echo '$(srcdir)/'`src/jni/LookAndFeelManager.cpp
+
+libscigui_la-sci_raise_window.lo: sci_gateway/cpp/sci_raise_window.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_raise_window.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_raise_window.Tpo -c -o libscigui_la-sci_raise_window.lo `test -f 'sci_gateway/cpp/sci_raise_window.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_raise_window.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_raise_window.Tpo $(DEPDIR)/libscigui_la-sci_raise_window.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_raise_window.cpp' object='libscigui_la-sci_raise_window.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_raise_window.lo `test -f 'sci_gateway/cpp/sci_raise_window.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_raise_window.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

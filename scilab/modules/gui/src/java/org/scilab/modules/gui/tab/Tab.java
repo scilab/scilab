@@ -226,8 +226,14 @@ public interface Tab extends Container {
 	void setCallback(CallBack callback);
 	
 	/**
+	 * Get the parent Window
 	 * @return parent window of the tab object
 	 */
 	Window getParentWindow();
+	
+	/**
+	 * Set this tab as the current tab of its parent Window
+	 */
+	void setCurrent();
 
 }

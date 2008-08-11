@@ -298,4 +298,9 @@ public interface SimpleTab {
 	 */
 	void setCallback(CallBack callback);
 
+	/**
+	 * Set this tab as the current tab of its parent Window
+	 */
+	void setCurrent();
+
 }

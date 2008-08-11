@@ -884,6 +884,14 @@ public class ScilabBridge {
 		ScilabTabBridge.setCallback(tab, callback);
 	}
 	
+	/**
+	 * Set this tab as the current tab of its parent Window
+	 * @param tab the tab
+	 */
+	public static void setCurrent(Tab tab) {
+		ScilabTabBridge.setCurrent(tab);
+	}
+
 	/******************/
 	/* Console Bridge */
 	/******************/

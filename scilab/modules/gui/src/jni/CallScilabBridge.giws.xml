@@ -658,5 +658,8 @@
 	<method name="requestFrameFocus" returnType="void" modifier="static">
           <parameter type="int" name="objID"/>
         </method>      
+	<method name="raiseWindow" returnType="void" modifier="static">
+          <parameter type="int" name="objID"/>
+        </method>      
   </object>
 </package>
