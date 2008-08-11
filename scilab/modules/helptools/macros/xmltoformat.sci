@@ -728,6 +728,11 @@ function create_MD(dirs,titles,output_filename)
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
 	xml_files          = listfiles(dirs+"/*.xml");
+	
+	if MSDOS then
+	  xml_files = "file:///"+xml_files;
+	end
+	
 	master_document    = [master_document; ..
 		"<!ENTITY "+basename(xml_files)+" SYSTEM """+xml_files+""">"];
 	
