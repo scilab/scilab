@@ -27,6 +27,7 @@
 #ifdef _MSC_VER
 	#include "strdup_windows.h"
 #endif
+#include "stricmp.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL LoadClasspath(char *xmlfilename)
 {
@@ -80,13 +81,13 @@ BOOL LoadClasspath(char *xmlfilename)
 						if (xmlStrEqual (attrib->name, (const xmlChar*) "load"))
 						{ 
 							/* we found the tag load */
-							load=(const char*)attrib->children->content;
+							load = (char*)attrib->children->content;
 
 							/* By default, it is startup */
-							if (strcasecmp(load,"background")==0){
+							if (stricmp(load,"background")==0){
 								eLoad=BACKGROUND;
 							} else {
-								if (strcasecmp(load,"onuse")==0) {
+								if (stricmp(load,"onuse")==0) {
 									eLoad=ONUSE;
 								}
 							}

@@ -431,6 +431,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\loadBackGroundClassPath.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\loadClasspath.c"
 				>
 			</File>
