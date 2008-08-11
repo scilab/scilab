@@ -41,11 +41,11 @@ case 2 then
 end
 [l,k]=find(prec==prectbl)
 if l==[] then
-  error(msprintf(gettext("The format: %s is unknown."),prec))
+  error(msprintf(gettext("%s: The format ''%s'' is unknown.\n"), "mtlb_fread", prec))
 end
 Prec=prectbl(l,1)
 if Prec=="?" then 
-  error(msprintf(gettext("The format: %s is not yet handled."),prec))
+  error(msprintf(gettext("%s: The format ''%s'' is not yet handled.\n"), "mtlb_fread", prec))
 end
 if isinf(sz) then
   a=[]
@@ -63,7 +63,7 @@ else
 
   if meof(fid)<>0 then
     mclearerr(fid)
-    error(gettext("End of file reached before all matrix is read"))
+    error(msprintf(gettext("%s: End of file reached before all matrix is read.\n"), "mtlb_fread"))
   end
   if size(sz,"*")==1 then
     a=a(:)

@@ -12,7 +12,7 @@ function y=mtlb_legendre(n,x,flag)
 
 rhs=argn(2)
 if ndims(n) <> 2 | size(n,"*") <> 1 | floor(n)-n <> 0 | n<0 then
-  error(msprintf(gettext("%s: Wrong first input argument: positive integer expected."),"mtlb_legendre"));
+  error(msprintf(gettext("%s: Wrong first input argument: A positive integer value expected.\n"),"mtlb_legendre"));
 end
 
 m = 0:n;

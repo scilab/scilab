@@ -37,7 +37,7 @@ if size(size(x),"*")<=2 then
       y(k)=ascii(x(k,:))
     end
   else
-    error(msprintf(gettext("%s: This feature has not been implemented: Input argument of type %d.\n"),"asciimat",type(x)));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A Real, Integer or String matrix expected.\n"),"asciimat", 1));
   end
 elseif size(size(x),"*")>2 then
   if typeof(x)=="hypermat" then
