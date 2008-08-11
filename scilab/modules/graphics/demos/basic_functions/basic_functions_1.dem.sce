@@ -13,6 +13,7 @@ demo_viewCode("basic_functions_1.dem.sce");
 
 my_plot_desc          = "rectangles, arcs, polylines, segments and numbers";
 my_handle.figure_name = my_plot_desc;
+colorMapSize = size(my_handle.color_map,1);
 
 plot2d([-100,500],[-100,600],[-1,-1],"022");
 
@@ -39,7 +40,7 @@ execstr(expr);
 // Demo I.2
 expr=['x=0:40:240;';
 	'boxes=[x;45*ones(x);30*ones(x);30*ones(x)];';
-	'pats=[0,4,8,12,15,xget(''white''),0];';
+	'pats=[0,4,8,12,15,colorMapSize,0];';
 	'xrects(boxes,pats);'];
 x_message(["[I.2] fonction xrects : filling rectangles";expr]);
 execstr(expr);
@@ -48,7 +49,7 @@ execstr(expr);
 expr=['x=0:40:240;';
 	'boxes=[x;90*ones(x);30*ones(x);30*ones(x)];';
 	'arcs=[boxes; 0*ones(x);64*180*ones(x)];';
-	'pats=[0,4,8,12,15,xget(''white''),0];';
+	'pats=[0,4,8,12,15,colorMapSize,0];';
 	'xarcs(arcs,pats);'];
 x_message(["[I.3] xarcs(arcs,patterns)";expr]);
 execstr(expr);
@@ -74,7 +75,7 @@ execstr(expr0);
 // Demo I.6
 expr=[ expr0;
 	'ypols=transl(ypols,60);';
-	'pats=[0,4,8,12,15,xget(''white''),0];';
+	'pats=[0,4,8,12,15,colorMapSize,0];';
 	'xfpolys(xpols'',ypols'',pats);'];
 x_message(["[I.6] xfpolys(x,y,pattern)";expr]);
 execstr(expr);
