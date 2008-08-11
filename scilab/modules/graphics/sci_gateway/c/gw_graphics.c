@@ -19,7 +19,12 @@
 #include "callFunctionFromGateway.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "BOOL.h"
+#include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/ 
+
+static BOOL loadedDep=FALSE;
+
 static gw_generic_table Tab[]={
 	{sci_champ,"champ"},	
 	{sci_champ1,"champ1"},
@@ -103,8 +108,13 @@ static gw_generic_table Tab[]={
 int gw_graphics(void)
 {  
 	Rhs = Max(0, Rhs);
+
 	if ( getScilabMode() != SCILAB_NWNI )
 		{
+			if (!loadedDep) {
+				loadOnUseClassPath("graphics");
+				loadedDep=TRUE;
+			}
 			callFunctionFromGateway(Tab);
 			C2F(putlhsvar)();
 		}

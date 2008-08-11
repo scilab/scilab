@@ -24,10 +24,11 @@
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "stricmp.h"
 #ifdef _MSC_VER
 	#include "strdup_windows.h"
 #endif
-#include "stricmp.h"
+
 /*--------------------------------------------------------------------------*/ 
 BOOL LoadClasspath(char *xmlfilename)
 {
@@ -40,7 +41,7 @@ BOOL LoadClasspath(char *xmlfilename)
 		/* Don't care about line return / empty line */
 		xmlKeepBlanksDefault(0);
 		/* check if the XML file has been encoded with utf8 (unicode) or not */
-		if ( (strcmp("utf-8", encoding)!=0) || (strcmp("UTF-8", encoding)==0) )
+		if ( stricmp("utf-8", encoding)==0 )
 		{
 			xmlDocPtr doc;
 			xmlXPathContextPtr xpathCtxt = NULL;
@@ -100,17 +101,15 @@ BOOL LoadClasspath(char *xmlfilename)
 					if ( (classpath) && (strlen(classpath) > 0) && (strncmp(classpath,"@",1) != 0) ) /* If it starts by a @ that means it hasn't been able to find it... which is normal... for example with the documentation */
 					{
 						#define KEYWORDSCILAB "$SCILAB" 
-						char *SCIPATH = NULL;
+						char *sciPath = getSCIpath();
 						char *FullClasspath = NULL;
-
-						SCIPATH = getSCIpath();
 						
 						if (strncmp(classpath,KEYWORDSCILAB,strlen(KEYWORDSCILAB))==0)
 						{
-							FullClasspath = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(classpath)+1));
+							FullClasspath = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(classpath)+1));
 							if (FullClasspath)
 							{
-								strcpy(FullClasspath,SCIPATH);
+								strcpy(FullClasspath,sciPath);
 								strcat(FullClasspath,&classpath[strlen(KEYWORDSCILAB)]);
 							}
 						}
@@ -129,7 +128,7 @@ BOOL LoadClasspath(char *xmlfilename)
 							FullClasspath = NULL;
 						}
 
-						if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
+						if (sciPath) {FREE(sciPath);sciPath=NULL;}
 						classpath = NULL;
 					}
 				}

@@ -11,11 +11,18 @@
  Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
+<!-- 
+load can be:
+* background
+* onUse
+* startup
+startup is the default
+-->
 
 <classpaths>
 <path value="$SCILAB/thirdparty/"/>
-<path value="@JOGL@"/>
-<path value="@GLUEGEN_RT@"/>
+
+<!-- Mandatory on startup -->
 <path value="@FLEXDOCK@"/>
 <path value="@JROSETTA_API@"/>
 <path value="@JROSETTA_ENGINE@"/>
@@ -24,12 +31,29 @@
 <path value="@COMMONS_LOGGING@"/>
 <path value="@JHALL@"/>
 
+<!-- Load when needed -->
+<path value="@JOGL@" load="onUse">
+	<load on="graphics"/>
+	<load on="graphic_export"/>
+</path>
+<path value="@GLUEGEN_RT@" load="onUse">
+	<load on="graphics"/>
+	<load on="graphic_export"/>
+</path>
+
 <!-- Documentation (not mandatory) -->
-<path value="@JEUCLID_CORE@" />
-<path value="@FOP@" />
-<path value="@SAXON@" />
-<path value="@BATIK@" />
-<path value="@TEST_VIDE@" />
+<path value="@JEUCLID_CORE@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="@FOP@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="@SAXON@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+<path value="@BATIK@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
 
 <path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
 <path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar"/>

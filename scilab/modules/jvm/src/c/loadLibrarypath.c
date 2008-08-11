@@ -21,6 +21,8 @@
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "stricmp.h"
+
 #ifdef _MSC_VER
 	#include "strdup_windows.h"
 #endif
@@ -35,7 +37,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
 		/* Don't care about line return / empty line */
 		xmlKeepBlanksDefault(0);
 		/* check if the XML file has been encoded with utf8 (unicode) or not */
-		if ( (strcmp("utf-8", encoding)!=0) || (strcmp("UTF-8", encoding)==0) )
+		if ( stricmp("utf-8", encoding)==0 )
 		{
 			xmlDocPtr doc;
 			xmlXPathContextPtr xpathCtxt = NULL;

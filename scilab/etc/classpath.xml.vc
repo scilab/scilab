@@ -11,6 +11,13 @@
  Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
+<!-- 
+load can be:
+* background
+* onuse
+* startup
+startup is the default
+-->
 
 <classpaths>
 

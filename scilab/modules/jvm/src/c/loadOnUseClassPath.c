@@ -1,0 +1,116 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - INRIA - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+/*--------------------------------------------------------------------------*/ 
+#include <jni.h>
+#include <stdio.h>
+#include <libxml/xpath.h>
+#include <libxml/xmlreader.h>
+#include "MALLOC.h"
+#include "scilabDefaults.h"
+#include "getScilabJNIEnv.h"
+#include "localization.h"
+#include "setgetSCIpath.h"
+#include "stricmp.h"
+#include "addToClasspath.h"
+#include "loadOnUseClassPath.h"
+#include "../../fileio/includes/FileExist.h"
+
+/*--------------------------------------------------------------------------*/ 
+BOOL loadOnUseClassPath(char *tag)
+{
+	BOOL bOK = FALSE;
+	char *sciPath = getSCIpath();
+
+	char *classpathfile = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(XMLCLASSPATH)+1));
+
+	sprintf(classpathfile,XMLCLASSPATH,sciPath);
+
+	// Load the XML
+	if ( FileExist(classpathfile) )
+	{
+		char *encoding=GetXmlFileEncoding(classpathfile);
+
+		/* Don't care about line return / empty line */
+		xmlKeepBlanksDefault(0);
+		/* check if the XML file has been encoded with utf8 (unicode) or not */
+		if ( stricmp("utf-8", encoding)==0 )
+		{
+			xmlDocPtr doc;
+			xmlXPathContextPtr xpathCtxt = NULL;
+			xmlXPathObjectPtr xpathObj = NULL;
+			#define XPATH "//classpaths/path[@load='onUse']/load[@on='%s']"
+			char * XPath=(char*)MALLOC(sizeof(char)*(strlen(XPATH)+strlen(tag)-2+1)); /* -2 = strlen(%s) */
+			sprintf(XPath,XPATH,tag);
+			doc = xmlParseFile (classpathfile);
+			if (doc == NULL) 
+			{
+				fprintf(stderr,_("Error: could not parse file %s\n"), classpathfile);
+				if (encoding) {FREE(encoding);encoding=NULL;}
+				return bOK;
+			}
+
+			xpathCtxt = xmlXPathNewContext(doc);
+			// Look for all the tag which matches
+			xpathObj = xmlXPathEval((const xmlChar*)XPath, xpathCtxt);
+
+			if(xpathObj && xpathObj->nodesetval->nodeMax) 
+			{
+				/* the Xpath has been understood and there are node */
+				int	i;
+				for(i = 0; i < xpathObj->nodesetval->nodeNr; i++)
+				{
+					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->parent->properties;
+					while (attrib != NULL) {
+						
+					/* loop until when have read all the attributes */
+						if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
+						{ 
+							// @TODO Check if it has been loaded before
+
+							/* we found the tag value  & load the jar */
+							addToClasspath((char*)attrib->children->content,STARTUP);
+						}
+
+						attrib = attrib->next;
+
+					}
+
+
+				}
+			}
+			else
+			{
+					fprintf(stderr,_("Wrong format for %s.\n"), classpathfile);
+			}
+
+			if(xpathObj) xmlXPathFreeObject(xpathObj);
+			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
+			xmlFreeDoc (doc);
+			/*
+			* Cleanup function for the XML library.
+			*/
+			xmlCleanupParser();
+		}
+		else
+		{
+			fprintf(stderr,_("Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' found\n"), classpathfile, encoding);
+		}
+		if (encoding) {FREE(encoding);encoding=NULL;}
+
+		} else
+	{
+		fprintf(stderr,_("Warning: could not find classpath declaration file %s.\n"), classpathfile);
+	}
+	
+}
+/*--------------------------------------------------------------------------*/ 

@@ -25,17 +25,17 @@
 #include "scilabDefaults.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
-static void DoLoadClasspathInEtc(char *SCIPATH);
-static void DoLoadLibrarypathInEtc(char *SCIPATH);
+static void DoLoadClasspathInEtc(char *sciPath);
+static void DoLoadLibrarypathInEtc(char *sciPath);
 /*--------------------------------------------------------------------------*/ 
 BOOL InitializeJVM(void)
 {
 	BOOL bOK=FALSE;
-	char *SCIPATH=NULL;
+	char *sciPath=NULL;
 
-	SCIPATH=getSCIpath();
+	sciPath=getSCIpath();
 
-	if (!startJVM(SCIPATH))
+	if (!startJVM(sciPath))
 	{
 #ifdef _MSC_VER
 		MessageBox(NULL,_("\nScilab cannot open JVM library.\n"),_("Error"),MB_ICONEXCLAMATION|MB_OK);
@@ -45,8 +45,8 @@ BOOL InitializeJVM(void)
 	}
 	else
 	{
-		DoLoadLibrarypathInEtc(SCIPATH);
-		DoLoadClasspathInEtc(SCIPATH);
+		DoLoadLibrarypathInEtc(sciPath);
+		DoLoadClasspathInEtc(sciPath);
 
 		if (!createMainScilabObject())
 		{
@@ -62,27 +62,25 @@ BOOL InitializeJVM(void)
 			}
 	}
 
-	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
+	if (sciPath) {FREE(sciPath);sciPath=NULL;}
 
 	if (!bOK) exit(1);
 
 	return TRUE;
 }
 /*--------------------------------------------------------------------------*/ 
-static void DoLoadClasspathInEtc(char *SCIPATH)
+static void DoLoadClasspathInEtc(char *sciPath)
 {
-	char *classpathfile = NULL;
-	classpathfile = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(XMLCLASSPATH)+1));
-	sprintf(classpathfile,XMLCLASSPATH,SCIPATH);
+	char *classpathfile = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(XMLCLASSPATH)+1));
+	sprintf(classpathfile,XMLCLASSPATH,sciPath);
 	LoadClasspath(classpathfile);
 	if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
 }
 /*--------------------------------------------------------------------------*/ 
-static void DoLoadLibrarypathInEtc(char *SCIPATH)
+static void DoLoadLibrarypathInEtc(char *sciPath)
 {
-	char *librarypathfile = NULL;
-	librarypathfile = (char*)MALLOC(sizeof(char)*(strlen(SCIPATH)+strlen(XMLLIBRARYPATH)+1));
-	sprintf(librarypathfile,XMLLIBRARYPATH,SCIPATH);
+	char *librarypathfile = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(XMLLIBRARYPATH)+1));
+	sprintf(librarypathfile,XMLLIBRARYPATH,sciPath);
 	LoadLibrarypath(librarypathfile);
 	if (librarypathfile) {FREE(librarypathfile); librarypathfile = NULL;}
 }

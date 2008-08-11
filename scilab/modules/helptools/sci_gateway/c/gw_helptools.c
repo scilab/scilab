@@ -17,20 +17,29 @@
 #include "callFunctionFromGateway.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
- static gw_generic_table Tab[]=
- {
-  {sci_buildDoc,"buildDoc"}
- };
+
+static BOOL loadedDep=FALSE;
+
+static gw_generic_table Tab[]=
+	{
+		{sci_buildDoc,"buildDoc"}
+	};
 /*--------------------------------------------------------------------------*/
 int gw_helptools(void)
 {
 	Rhs = Max(0, Rhs);
 
+
 	if ( getScilabMode() == SCILAB_NWNI)
 	{
 		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "helptools");
 		return 0;
+	}
+	if (!loadedDep) {
+		loadOnUseClassPath("documentationGeneration");
+		loadedDep=TRUE;
 	}
 	callFunctionFromGateway(Tab);
 	return 0;
