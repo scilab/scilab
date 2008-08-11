@@ -14,15 +14,23 @@
 
 <classpaths>
 <path value="$SCILAB/thirdparty/"/>
-<path value="$SCILAB/thirdparty/jogl.jar"/>
-<path value="$SCILAB/thirdparty/gluegen-rt.jar"/>
-<path value="$SCILAB/thirdparty/flexdock-0.5.1.jar"/>
-<path value="$SCILAB/thirdparty/jrosetta-API.jar"/>
-<path value="$SCILAB/thirdparty/jrosetta-engine.jar"/>
-<path value="$SCILAB/thirdparty/skinlf.jar"/>
-<path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
-<path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
-<path value="$SCILAB/thirdparty/jhall.jar"/>
+<path value="@JOGL@"/>
+<path value="@GLUEGEN_RT@"/>
+<path value="@FLEXDOCK@"/>
+<path value="@JROSETTA_API@"/>
+<path value="@JROSETTA_ENGINE@"/>
+<path value="@SKINLF@"/>
+<path value="@LOOKS@"/>
+<path value="@COMMONS_LOGGING@"/>
+<path value="@JHALL@"/>
+
+<!-- Documentation (not mandatory) -->
+<path value="@JEUCLID_CORE@" />
+<path value="@FOP@" />
+<path value="@SAXON@" />
+<path value="@BATIK@" />
+<path value="@TEST_VIDE@" />
+
 <path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
 <path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar"/>
 <path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar"/>

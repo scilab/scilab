@@ -51,7 +51,8 @@ subdir = .
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
 	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
-	$(top_srcdir)/configure $(top_srcdir)/etc/modules.xml.in \
+	$(top_srcdir)/configure $(top_srcdir)/etc/classpath.xml.in \
+	$(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
 	$(top_srcdir)/modules/jvm/etc/jvm_options.xml.in ABOUT-NLS \
@@ -79,8 +80,9 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
-	scilab.pc etc/modules.xml modules/jvm/etc/jvm_options.xml \
-	scilab-lib.properties scilab-lib-doc.properties
+	scilab.pc etc/modules.xml etc/classpath.xml \
+	modules/jvm/etc/jvm_options.xml scilab-lib.properties \
+	scilab-lib-doc.properties
 @ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(profilingdir)" \
@@ -222,6 +224,7 @@ LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
+LOOKS = @LOOKS@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -267,6 +270,7 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
+SKINLF = @SKINLF@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
@@ -449,6 +453,8 @@ modules/helptools/macros/xmlfiletohtml.sci: $(top_builddir)/config.status $(top_
 scilab.pc: $(top_builddir)/config.status $(srcdir)/scilab.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 etc/modules.xml: $(top_builddir)/config.status $(top_srcdir)/etc/modules.xml.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+etc/classpath.xml: $(top_builddir)/config.status $(top_srcdir)/etc/classpath.xml.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 modules/jvm/etc/jvm_options.xml: $(top_builddir)/config.status $(top_srcdir)/modules/jvm/etc/jvm_options.xml.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@

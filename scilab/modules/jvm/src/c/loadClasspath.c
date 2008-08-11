@@ -97,7 +97,7 @@ BOOL LoadClasspath(char *xmlfilename)
 						attrib = attrib->next;
 					}
 
-					if ( (classpath) && (strlen(classpath) > 0) )
+					if ( (classpath) && (strlen(classpath) > 0) && (strncmp(classpath,"@",1) != 0) ) /* If it starts by a @ that means it hasn't been able to find it... which is normal... for example with the documentation */
 					{
 						#define KEYWORDSCILAB "$SCILAB" 
 						char *SCIPATH = NULL;

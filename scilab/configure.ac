@@ -540,6 +540,16 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				FLEXDOCK=$PACKAGE_JAR_FILE
 				AC_SUBST(FLEXDOCK)
 
+				# Swing look&feel implementations
+				AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel])
+				LOOKS=$PACKAGE_JAR_FILE
+				AC_SUBST(LOOKS)
+
+				#  Skin Look and Feel 
+				AC_JAVA_CHECK_PACKAGE([skinlf],[com.l2fprod.util.AccessUtils],[Scilab Gui - Skin Look and Feel])
+				SKINLF=$PACKAGE_JAR_FILE
+				AC_SUBST(SKINLF)
+
 				# JOGL
 				AC_JAVA_CHECK_PACKAGE([jogl],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 1.1.1])
 				JOGL=$PACKAGE_JAR_FILE
@@ -1169,6 +1179,7 @@ libs/Makefile
 Makefile
 scilab.pc
 etc/modules.xml
+etc/classpath.xml
 modules/jvm/etc/jvm_options.xml
 scilab-lib.properties
 scilab-lib-doc.properties
