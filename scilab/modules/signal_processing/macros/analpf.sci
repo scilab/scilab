@@ -53,7 +53,7 @@ function [hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
       [zers,pols,gain]=zpell(epsilon,att,omega,omegar);
       hs=gain*real(poly(zers,'s'))./real(poly(pols,'s'));
    else
-     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n",..
-			    "analpf",2,'''butt'',''cheb1'',''cheb2'',''ellip''')));
+     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
+			    "analpf",2,'''butt'',''cheb1'',''cheb2'',''ellip'''));
    end
 endfunction

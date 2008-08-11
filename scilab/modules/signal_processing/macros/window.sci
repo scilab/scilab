@@ -150,7 +150,7 @@ function [win_l,cwp]=window(wtype,n,par)
     
     //Error in window type
   else 
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n" ,..
-			   "window",1,'''re'',''tr'',''hn'',''hm'',''kr'',''ch''')));
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n") ,..
+			   "window",1,'''re'',''tr'',''hn'',''hm'',''kr'',''ch'''));
   end
 endfunction

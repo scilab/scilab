@@ -53,6 +53,6 @@ elseif size(varargin) == 3 then
   end
   x=fft2(x);
 else 
-  error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),'fft2'));
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),'fft2',1,3));
 end
 endfunction

@@ -105,6 +105,6 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
     //input error
     
   else,
-    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be less than argument #%d.\n","pspect",1,2,1,2)));
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be less than argument #%d.\n"),"pspect",1,2,1,2));
   end
 endfunction

@@ -32,10 +32,10 @@ function xh=hilb(n,wtype,par)
    end,
       
    if type(n)<>1|size(n,'*')<>1 then
-     error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n","hilb",1)));
+     error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n"),"hilb",1));
    end
    if and(wtype<>['re','tr','hn','hm','kr','ch']) then
-     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n" ,"hilb",2,'''re'',''tr'',''hn'',''hm'',''kr'',''ch''')));
+     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n") ,"hilb",2,'''re'',''tr'',''hn'',''hm'',''kr'',''ch'''));
    
    end
    no2=int(n/2)
@@ -43,7 +43,6 @@ function xh=hilb(n,wtype,par)
      xh0=[]
    else
      xh0=0
-      //error(msprintf(gettext("%s: An error occurred: %s\n"),'hilb',gettext('Filter length must be odd.')));
    end,
    th=zeros(1,no2);
    th(1:2:no2)=ones(1:2:no2)./(1:2:no2);

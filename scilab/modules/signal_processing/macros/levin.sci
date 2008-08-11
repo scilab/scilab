@@ -44,11 +44,11 @@ function [la,sig,lb]=levin(n,cov)
 
    [lhs,rhs]=argn(0);
    if rhs<>2 then
-     error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),'levin'));
+     error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),'levin',2));
    end
-      [l,d]=size(cov);
+   [l,d]=size(cov);
    if d>l then
-     error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"),'levin',2));
+     error(msprintf(gettext("%s: Wrong size for input argument #%d: A tall matrix expected.\n"),'levin',2));
    end
 //
 //   Initializations
@@ -56,25 +56,25 @@ function [la,sig,lb]=levin(n,cov)
    a=eye(d,d);b=a;
    z=poly(0,'z');la=list();lb=list();sig=list();
    p=n+1;cv=cov;
-          for j=1:p,cv=[cov(j*d+1:(j+1)*d,:)';cv];end;
+   for j=1:p,cv=[cov(j*d+1:(j+1)*d,:)';cv];end;
    for j=0:n-1,
-//
-//   Bloc permutation matrix
-//
-   jd=jmat(j+1,d);
-//
-//   Levinson algorithm
-//
-   r1=jd*cv((p+1)*d+1:(p+2+j)*d,:);
-   r2=jd*cv(p*d+1:(p+1+j)*d,:);
-   r3=jd*cv((p-1-j)*d+1:p*d,:);
-   r4=jd*cv((p-j)*d+1:(p+1)*d,:);
-   c1=coeff(a);c2=coeff(b);
-   sig1=c1*r4;gam1=c2*r2;
-   k1=(c1*r1)*inv(gam1);
-   k2=(c2*r3)*inv(sig1);
-   a1=a-k1*z*b;
-   b=-k2*a+z*b;a=a1;
-   la(j+1)=a;lb(j+1)=b;sig(j+1)=sig1;
+     //
+     //   Bloc permutation matrix
+     //
+     jd=jmat(j+1,d);
+     //
+     //   Levinson algorithm
+     //
+     r1=jd*cv((p+1)*d+1:(p+2+j)*d,:);
+     r2=jd*cv(p*d+1:(p+1+j)*d,:);
+     r3=jd*cv((p-1-j)*d+1:p*d,:);
+     r4=jd*cv((p-j)*d+1:(p+1)*d,:);
+     c1=coeff(a);c2=coeff(b);
+     sig1=c1*r4;gam1=c2*r2;
+     k1=(c1*r1)*inv(gam1);
+     k2=(c2*r3)*inv(sig1);
+     a1=a-k1*z*b;
+     b=-k2*a+z*b;a=a1;
+     la(j+1)=a;lb(j+1)=b;sig(j+1)=sig1;
    end;
 endfunction

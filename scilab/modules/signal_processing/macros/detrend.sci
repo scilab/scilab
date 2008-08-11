@@ -79,8 +79,8 @@ function [y] = detrend(x, flag, bp)
       // piecewise linear func off the signal
       y = x - A*(A\x)
    else
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n" ,..
-			     'detrend',2,'''constant'',''c'',''linear'',''l''')));
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n") ,..
+			     'detrend',2,'''constant'',''c'',''linear'',''l'''));
    end
 
    if x_is_vector then
