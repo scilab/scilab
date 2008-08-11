@@ -15,25 +15,25 @@
 #include "sciprint.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-static double *the_p=NULL;
-static double *the_ps=NULL;
-static double *the_gp=NULL;
-static double *the_gps=NULL;
+static char *the_p=NULL;
+static char *the_ps=NULL;
+static char *the_gp=NULL;
+static char *the_gps=NULL;
 /*--------------------------------------------------------------------------*/
 integer C2F(scimem)(integer *n, integer *ptr)
 {
-  register double *p1 = NULL;
+  register char *p1 = NULL;
   if (*n > 0)
   {
 	/* add 1 for alignment problems */
-    p1 = (double *) SCISTACKMALLOC(((unsigned long) sizeof(double)) * (*n + 1));
+    p1 = (char *) SCISTACKMALLOC(((unsigned long) sizeof(double)) * (*n + 1));
 		  
     if (p1 != NULL) 
 	{
 		the_ps = the_p;
 		the_p = p1;
 		/* add 1 for alignment problems */
-		*ptr = ((int) (the_p - (double *)C2F(stack).Stk))/sizeof(double) + 1;
+		*ptr = ((int) (the_p - (char *)C2F(stack).Stk))/sizeof(double) + 1;
     }
     else 
     {
@@ -50,17 +50,17 @@ integer C2F(scimem)(integer *n, integer *ptr)
 /*--------------------------------------------------------------------------*/
 integer C2F(scigmem)(integer *n, integer *ptr)
 {
-  register double *p1=NULL;
+  register char *p1=NULL;
   if (*n > 0)
   {
     /* add 1 for alignment problems */
-    p1 = (double *) SCISTACKMALLOC((unsigned)sizeof(double) * (*n + 1));
+    p1 = (char *) SCISTACKMALLOC((unsigned)sizeof(double) * (*n + 1));
     if (p1 != NULL) 
 	{
 		the_gps = the_gp;
 		the_gp = p1;
 		/* add 1 for alignment problems */
-		*ptr = ((int) (the_gp - (double *)C2F(stack).Stk))/sizeof(double) + 1;
+		*ptr = ((int) (the_gp - (char *)C2F(stack).Stk))/sizeof(double) + 1;
     }
     else 
     {
