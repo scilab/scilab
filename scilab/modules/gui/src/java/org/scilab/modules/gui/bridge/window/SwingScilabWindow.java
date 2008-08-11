@@ -20,12 +20,18 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 
+import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
+import org.flexdock.docking.DockingStrategy;
 import org.flexdock.docking.defaults.DefaultDockingPort;
+import org.flexdock.docking.drag.DragOperation;
+import org.flexdock.docking.drag.effects.EffectsManager;
+import org.flexdock.docking.drag.preview.GhostPreview;
 import org.flexdock.view.View;
 
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
@@ -82,6 +88,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		
 		/* Create automatically a docking port associated to the window */
 		sciDockingPort = new DefaultDockingPort();
+		DockingManager.setFloatingEnabled(true);
+		EffectsManager.setPreview(new GhostPreview());
 		/* The docking port is the center of the Layout of the Window */
 		super.add(sciDockingPort, java.awt.BorderLayout.CENTER);
 		
@@ -207,7 +215,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * Gets the docking port associated to the window (created by default at window creation)
 	 * @return the docking port associated to the window
 	 */
-	private DockingPort getDockingPort() {
+	public DockingPort getDockingPort() {
 		//return (DockingPort) centerFrame.getContentPane();
 		return (DockingPort) sciDockingPort;
 	}

@@ -16,10 +16,19 @@ package org.scilab.modules.gui.utils;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.JRootPane;
+
 import org.flexdock.docking.Dockable;
+import org.flexdock.docking.DockingManager;
+import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.event.DockingListener;
+import org.flexdock.docking.floating.frames.FloatingDockingPort;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 
 /**
@@ -28,10 +37,10 @@ import org.scilab.modules.gui.window.Window;
  * @author Bruno JOFRET
  */
 public class SciDockingListener implements DockingListener {
-	
+
 	private int associatedScilabWindowId;
 	private int nbDockedObjects;
-	
+
 	/**
 	 * Default constructor
 	 */
@@ -59,7 +68,8 @@ public class SciDockingListener implements DockingListener {
 		int newId = 0;
 
 		DockingListener[] newListeners = e.getNewDockingPort().getDockingListeners();
-		if (newListeners.length == 2) { 
+		SwingScilabTab dockedTab = (SwingScilabTab) e.getDockable();
+		if (newListeners.length == 2) {
 			/* This docking port has been created when the parent window were created */
 			/* So this docking port has a sciDockingListener */
 			newId = ((SciDockingListener) newListeners[1]).getAssociatedWindowId();
@@ -69,14 +79,42 @@ public class SciDockingListener implements DockingListener {
 			/* Have to find an other dockable than the one we just docked */
 			Iterator<Dockable> it =  allDockables.iterator();
 			Dockable dock = it.next();
-			while (dock == e.getDockable()) {
-				dock = it.next();
+			
+			if (it.hasNext()) { /** More than one dockable --> already existing docking port */
+				while (e.getDockable() == dock) {
+					dock = it.next();
+				}
+				newId = ((SwingScilabTab) dock).getParentWindowId();
+			} else { /** Create a new Window to display the tab inside it */
+
+				DefaultDockingPort dockingPort = ((DefaultDockingPort) e.getOldDockingPort());
+				JPanel parentPanel = (JPanel) dockingPort.getParent();
+				JLayeredPane parentLayeredPane = (JLayeredPane) parentPanel.getParent();
+				JRootPane parentRootPane = (JRootPane) parentLayeredPane.getParent();
+
+				/* Computes new position for the created Window */
+				int offsetX = dockingPort.getX() + parentPanel.getX() + parentLayeredPane.getX() + parentRootPane.getX();
+				int offsetY = dockingPort.getY() + parentPanel.getY() + parentLayeredPane.getY() + parentRootPane.getY();
+				int newX = -offsetX;
+				int newY = -offsetY;
+				if (e.getNewDockingPort() instanceof FloatingDockingPort) {
+					newX += (int) (((FloatingDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getX());
+					newY += (int) (((FloatingDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getY());
+				} else {
+					newX += (int) (((DefaultDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getX());
+					newY += (int) (((DefaultDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getY());
+				}
+
+				Window newWindow = ScilabWindow.createWindow();
+				newWindow.setPosition(new Position(newX, newY));
+				newWindow.setDims(UIElementMapper.getCorrespondingUIElement(associatedScilabWindowId).getDims());
+				DockingManager.dock(dockedTab, ((SwingScilabWindow) newWindow.getAsSimpleWindow()).getDockingPort());
+				newWindow.setVisible(true);
+				newId = newWindow.getAsSimpleWindow().getElementId();
 			}
-			newId = ((SwingScilabTab) dock).getParentWindowId();
 		}
-		SwingScilabTab dockedTab = (SwingScilabTab) e.getDockable();
 		dockedTab.setParentWindowId(newId);
-		
+
 		// one more tab in the list
 		nbDockedObjects++;
 
@@ -114,7 +152,7 @@ public class SciDockingListener implements DockingListener {
 		if (e.getOldDockingPort().getDockables().isEmpty()) {
 			((Window) UIElementMapper.getCorrespondingUIElement(associatedScilabWindowId)).getAsSimpleWindow().close();
 		}
-		
+
 		// one tab left
 		nbDockedObjects--;
 	}
@@ -128,7 +166,7 @@ public class SciDockingListener implements DockingListener {
 		// DEBUG
 		debug("undockingStarted");
 	}	
-	
+
 	/**
 	 * Set the window object associated to this docking listener
 	 * @param id the id of the window associated
@@ -136,7 +174,7 @@ public class SciDockingListener implements DockingListener {
 	public void setAssociatedWindowId(int id) {
 		this.associatedScilabWindowId = id;
 	}
-	
+
 	/**
 	 * Get the window object associated to this docking listener
 	 * @return the id of the window associated
@@ -144,14 +182,14 @@ public class SciDockingListener implements DockingListener {
 	public int getAssociatedWindowId() {
 		return this.associatedScilabWindowId;
 	}
-	
+
 	/**
 	 * @return Number of docked objects in the associated window.
 	 */
 	public int getNbDockedObjects() {
 		return nbDockedObjects;
 	}
-	
+
 	/**
 	 * Display debug information
 	 * @param method the name of the method called
