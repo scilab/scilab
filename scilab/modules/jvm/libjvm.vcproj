@@ -431,15 +431,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\loadBackGroundClassPath.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\loadClasspath.c"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\loadLibrarypath.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\loadOnUseClassPath.c"
 				>
 			</File>
 			<File

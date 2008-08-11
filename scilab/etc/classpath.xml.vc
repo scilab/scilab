@@ -21,29 +21,29 @@ startup is the default
 
 <classpaths>
 
-<path value="$SCILAB/thirdparty/jogl.jar"/>
-<path value="$SCILAB/thirdparty/gluegen-rt.jar"/>
-<path value="$SCILAB/thirdparty/flexdock-0.5.1.jar"/>
-<path value="$SCILAB/thirdparty/jrosetta-API.jar"/>
-<path value="$SCILAB/thirdparty/jrosetta-engine.jar"/>
-<path value="$SCILAB/thirdparty/skinlf.jar"/>
-<path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
-<path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
-<path value="$SCILAB/thirdparty/jhall.jar"/>
+<!-- Mandatory on startup -->
+<path value="$SCILAB/thirdparty/flexdock-0.5.1.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/jrosetta-API.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/skinlf.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/looks-2.1.1.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/commons-logging-1.1.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/jhall.jar" load="startup"/>
 
+<path value="$SCILAB/thirdparty/jogl.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/gluegen-rt.jar" load="startup"/>
 
-<path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
-<path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar"/>
-<path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar"/>
-<path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar"/>
-<path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar"/>
-<path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
-<path value="$SCILAB/modules/gui/etc"/> <!-- Temporary fix for Flexdock using GTK theme -->
-<path value="$SCILAB/modules/javasci/jar/javasci.jar"/>
-<path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
-<path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar"/>
-<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar"/>
-<path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar"/>
-<path value="$SCILAB/modules/helptools/jar/org.scilab.modules.helptools.jar"/>
+<!-- Mandatory on startup -->
+<path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar" load="startup"/>
+<path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" load="startup"/>
+<path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar" load="startup"/>
+<path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar" load="startup"/>
+<path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar" load="startup"/>
+<path value="$SCILAB/modules/javasci/jar/javasci.jar" load="startup"/>
+<path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar" load="startup"/>
+<path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar" load="startup"/>
+<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" load="startup"/>
+<path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar" load="startup"/>
+<path value="$SCILAB/modules/helptools/jar/org.scilab.modules.helptools.jar" load="startup"/>
 
 </classpaths>

@@ -24,7 +24,7 @@
 #include "addToClasspath.h"
 #include "loadOnUseClassPath.h"
 #include "../../fileio/includes/FileExist.h"
-
+#include "GetXmlFileEncoding.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL loadOnUseClassPath(char *tag)
 {
@@ -38,7 +38,7 @@ BOOL loadOnUseClassPath(char *tag)
 	// Load the XML
 	if ( FileExist(classpathfile) )
 	{
-		char *encoding=GetXmlFileEncoding(classpathfile);
+		char *encoding = GetXmlFileEncoding(classpathfile);
 
 		/* Don't care about line return / empty line */
 		xmlKeepBlanksDefault(0);
@@ -70,9 +70,9 @@ BOOL loadOnUseClassPath(char *tag)
 				for(i = 0; i < xpathObj->nodesetval->nodeNr; i++)
 				{
 					xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[i]->parent->properties;
-					while (attrib != NULL) {
-						
-					/* loop until when have read all the attributes */
+					while (attrib != NULL) 
+					{
+						/* loop until when have read all the attributes */
 						if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
 						{ 
 							// @TODO Check if it has been loaded before
@@ -80,17 +80,13 @@ BOOL loadOnUseClassPath(char *tag)
 							/* we found the tag value  & load the jar */
 							addToClasspath((char*)attrib->children->content,STARTUP);
 						}
-
 						attrib = attrib->next;
-
 					}
-
-
 				}
 			}
 			else
 			{
-					fprintf(stderr,_("Wrong format for %s.\n"), classpathfile);
+				fprintf(stderr,_("Wrong format for %s.\n"), classpathfile);
 			}
 
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
@@ -107,10 +103,11 @@ BOOL loadOnUseClassPath(char *tag)
 		}
 		if (encoding) {FREE(encoding);encoding=NULL;}
 
-		} else
+	} 
+	else
 	{
 		fprintf(stderr,_("Warning: could not find classpath declaration file %s.\n"), classpathfile);
 	}
-	
+	return FALSE;	
 }
 /*--------------------------------------------------------------------------*/ 

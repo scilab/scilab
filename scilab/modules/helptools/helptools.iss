@@ -73,8 +73,8 @@ Source: modules\{#HELPTOOLS}\readme.txt; DestDir: {app}\modules\{#HELPTOOLS}; Co
 Source: modules\{#HELPTOOLS}\license.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\changelog.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#HELPTOOLS}\jar\scilab_fr_FR_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
-;Source: modules\{#HELPTOOLS}\jar\scilab_en_US_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\jar\scilab_fr_FR_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
+Source: modules\{#HELPTOOLS}\jar\scilab_en_US_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#HELPTOOLS}\*.xsl; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HELPTOOLS}\help.dtd; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}

@@ -22,9 +22,8 @@
 #include "BOOL.h"
 #include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/ 
-
-static BOOL loadedDep=FALSE;
-
+static BOOL loadedDep = FALSE;
+/*--------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[]={
 	{sci_champ,"champ"},	
 	{sci_champ1,"champ1"},
@@ -110,18 +109,21 @@ int gw_graphics(void)
 	Rhs = Max(0, Rhs);
 
 	if ( getScilabMode() != SCILAB_NWNI )
+	{
+#ifndef _MSC_VER
+		if (!loadedDep) 
 		{
-			if (!loadedDep) {
-				loadOnUseClassPath("graphics");
-				loadedDep=TRUE;
-			}
-			callFunctionFromGateway(Tab);
-			C2F(putlhsvar)();
+			loadOnUseClassPath("graphics");
+			loadedDep = TRUE;
 		}
+#endif
+		callFunctionFromGateway(Tab);
+		C2F(putlhsvar)();
+	}
 	else
-		{
-			Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode.\n"));
-		}
+	{
+		Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode.\n"));
+	}
 
 	return 0;
 }

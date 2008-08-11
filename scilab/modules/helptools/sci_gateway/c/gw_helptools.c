@@ -23,9 +23,9 @@
 static BOOL loadedDep=FALSE;
 
 static gw_generic_table Tab[]=
-	{
-		{sci_buildDoc,"buildDoc"}
-	};
+{
+	{sci_buildDoc,"buildDoc"}
+};
 /*--------------------------------------------------------------------------*/
 int gw_helptools(void)
 {
@@ -37,10 +37,13 @@ int gw_helptools(void)
 		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "helptools");
 		return 0;
 	}
-	if (!loadedDep) {
+	#ifndef _MSC_VER
+	if (!loadedDep) 
+	{
 		loadOnUseClassPath("documentationGeneration");
 		loadedDep=TRUE;
 	}
+	#endif
 	callFunctionFromGateway(Tab);
 	return 0;
 }
