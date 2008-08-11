@@ -22,7 +22,7 @@ else
   if type(f)==10 then
     s=msprintf(f,x)
   else
-    error(gettext("Not implemented."))
+    error(msprintf(gettext("%s: Not yet implemented.\n"),"mtlb_num2str"))
   end
 end
 endfunction

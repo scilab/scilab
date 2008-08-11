@@ -25,7 +25,7 @@ elseif rhs==2 then
 	indexlist=list((1:size(A,1))');
 	
 	if size(cls,2)>1 then
-		error(msprintf(gettext("%s: Wrong type for second input argument: Column vector expected.\n"),'mtlb_sortrows'))
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"mtlb_sortrows",2))
 	end
 
 	if type(A)==10 then

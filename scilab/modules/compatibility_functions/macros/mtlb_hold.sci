@@ -24,7 +24,7 @@ else
   elseif flag=="off" then
     a=gca();a.auto_clear="on"
   else
-    error(gettext("Not implemented."))
+    error(msprintf(gettext("%s: Not yet implemented.\n"),"mtlb_hold"))
   end
 end
 endfunction

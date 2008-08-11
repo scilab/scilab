@@ -22,6 +22,6 @@ if rhs==1 then
     end
   end  
 else
-  error(gettext("mtlb_eig() used with 2 rhs: not yet implemented."));
+  error(msprintf(gettext("%s: use with %d input argument(s) is not yet implemented.\n"),"mtlb_eig",2));
 end
 endfunction

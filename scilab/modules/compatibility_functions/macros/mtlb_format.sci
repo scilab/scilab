@@ -7,7 +7,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function []=mtlb_format(type,prec)
+function []=mtlb_format(_type,prec)
 // Emulation function for format() Matlab function
 
 rhs1=rhs
@@ -28,7 +28,7 @@ symb=%f;
 unk=%f
 
 if rhs==1 then
-  select type
+  select _type
   case "''short''" then
     d=5
   case "''long''" then
@@ -54,9 +54,9 @@ end
 
 
 if unk then
-  error(gettext("Unknown type in mtlb_format()."))
+  error(msprintf(gettext("%s: Unknown type.\n"),"mtlb_format"))
 elseif ratf|loose|compact|bank|hex then
-  warning(msprintf(gettext("Unknown type %s in mtlb_format(): IGNORED."),type));
+  warning(msprintf(gettext("%s: Unknown type ''%s'': IGNORED.\n"),"mtlb_format",_type));
 else
   if rhs1==1 then
     format(d+1)

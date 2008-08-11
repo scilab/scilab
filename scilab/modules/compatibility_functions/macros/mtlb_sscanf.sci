@@ -9,7 +9,7 @@
 
 function [a,nvars,errmsg,nextindex] = mtlb_sscanf(s,fmt,sz)
 [lhs,rhs]=argn()
-if lhs==4 then error(gettext("mtlb_sscanf: nextindex not implemented.")),end
+if lhs==4 then error(msprintf(gettext("%s: ''%s'' not implemented.\n"),"mtlb_sscanf","nextindex")),end
 if rhs<3 then sz=%inf,end
 nmx=prod(sz)
 nvars=0
@@ -22,7 +22,7 @@ lvars=msscanf(s,fmt);
 if lvars==-1 then
   a=''
   return
-  errmsg=gettext("End of string reached before a datun has been read.");
+  errmsg=msprintf(gettext("%s: End of string reached before data has been read.\n"),"mtlb_sscanf");
 else
   nvars=size(lvars)
   nv=min(nvars,nmx)

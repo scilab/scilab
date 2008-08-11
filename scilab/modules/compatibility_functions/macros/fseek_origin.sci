@@ -23,6 +23,6 @@ case 0 then
 case 1 then
   flag="end" 
 else
-  error(msprintf(gettext("%s: Wrong value for input argument.\n"),"mseek"));
+  error(msprintf(gettext("%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' expected.\n"),"mseek", 1, "-1", "0", "1", "bof", "cof", "eof"));
 end
 endfunction

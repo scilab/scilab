@@ -19,7 +19,7 @@ if type(x)==17 then
   return
 end
 if type(x)<>10 then
-  error(msprintf(gettext("%s: Wrong type for input argument: Matrix of strings expected.\n"),"mstr2sci"));
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"mstr2sci", 1));
   return
 end
 nr=size(x,1);

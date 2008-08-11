@@ -7,16 +7,18 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// @OBSOLETE
+
 function mtlb_save(mtlb_thefile,varargin)
 //save variable under  matlab 4.x .mat binary format files
 //see: www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
 
-warning(msprintf(gettext("This function is obsolete, use %s instead."),"savematfile"));
+warnobsolete("savematfile", "5.1");
 
 // Verify that all inputs are character strings
 for k=1:size(varargin)
   if type(varargin(k))<>10 then
-    error(gettext("All inputs must be character strings."));
+    error(msprintf(gettext("%s: All inputs must be character strings.\n"),"mtlb_save"));
   end
 end
 
@@ -69,7 +71,7 @@ if mtlb_opts==[] then //binary save
   // check name conflicts
   for k=['mtlb_thefile','varargin','mtlb_names','mtlb_opts','mtlb_fd']
     if or(mtlb_names==k) then
-      error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k));
+      error(msprintf(gettext("%s: Name conflict, it is not possible to save variable with name ''%s''.\n"),"mtlb_save",k));
     end
   end
   // clear variable wich are no more used to avoid name conflicts
@@ -124,7 +126,7 @@ if mtlb_opts==[] then //binary save
       P=5
       T=1
     else
-      error(gettext("Attempt to write an unsupported data type to an ASCII file."))
+      error(msprintf(gettext("%s: Attempt to write an unsupported data type to an ASCII file.\n"),"mtlb_save")
     end
     [m,n]=size(x)
   
@@ -169,7 +171,7 @@ if mtlb_opts==[] then //binary save
 else //ascii save
 
   if convstr(mtlb_opts(1))<>'-ascii' then 
-    error(msprintf(gettext("Unknown or misplaced option %s."),mtlb_opts(1)));
+    error(msprintf(gettext("%s: Unknown or misplaced option ''%s''.\n"),"mtlb_save",mtlb_opts(1)));
   end
     if size(mtlb_opts,'*')==3 then
     sep=str2code(-40)
@@ -186,7 +188,7 @@ else //ascii save
   // clear variable wich are no more used to avoid name conflicts
   for k=['mtlb_thefile','varargin','mtlb_names','mtlb_fmt','mtlb_fd']
     if or(mtlb_names==k) then
-      error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k));
+      error(msprintf(gettext("%s: Name conflict, it is not possible to save variable with name ''%s''.\n"),"mtlb_save",k));
     end
   end
   clear('rhs','lhs','kk','err','sep');

@@ -14,155 +14,162 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-08-08 22:38+0100\n"
+"Revision-Date: 2008-08-11 22:17+0100\n"
 
 # File: macros/mtlb_type.sci, line: 29
 #, c-format
-msgid "Could not open neither %s nor %s nor %s."
+msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
 msgstr ""
 #
 # File: macros/mtlb_plot.sci, line: 128
-msgid "MarkerEdgeColor option ignored."
+#, c-format
+msgid "%s: ''%s'' option ignored.\n"
 msgstr ""
 #
 # File: macros/mtlb_plot.sci, line: 197
 #, c-format
-msgid "Unknown line style found in ''%s'' -> set to 6."
+msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
 msgstr ""
 #
 # File: macros/mtlb_plot.sci, line: 215
 #, c-format
-msgid "Unknown color found in ''%s'' -> set to black."
+msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
 msgstr ""
 #
 # File: macros/mtlb_sscanf.sci, line: 12
-msgid "mtlb_sscanf: nextindex not implemented."
+#, c-format
+msgid "%s: ''%s'' not implemented.\n"
 msgstr ""
 #
 # File: macros/mtlb_sscanf.sci, line: 25
-msgid "End of string reached before a datun has been read."
+#, c-format
+msgid "%s: End of string reached before data has been read.\n"
 msgstr ""
 #
 # File: macros/mtlb_sprintf.sci, line: 39
 #, c-format
-msgid "%s: this particular case is not implemented.\n"
+msgid "%s: This particular case is not implemented.\n"
 msgstr ""
 #
 # File: macros/mtlb_sortrows.sci, line: 28
 #, c-format
-msgid "%s: Wrong type for second input argument: Column vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
 #
-# File: macros/mtlb_save.sci, line: 14
-# File: macros/mtlb_load.sci, line: 13
+# File: macros/mtlb_save.sci, line: 21
 #, c-format
-msgid "This function is obsolete, use %s instead."
+msgid "%s: All inputs must be character strings.\n"
 msgstr ""
 #
-# File: macros/mtlb_save.sci, line: 19
-msgid "All inputs must be character strings."
-msgstr ""
-#
-# File: macros/mtlb_save.sci, line: 72
-# File: macros/mtlb_save.sci, line: 189
+# File: macros/mtlb_save.sci, line: 74
+# File: macros/mtlb_save.sci, line: 191
 #, c-format
-msgid "Name conflict: it is not possible to save variable with name %s."
+msgid ""
+"%s: Name conflict, it is not possible to save variable with name ''%s''.\n"
 msgstr ""
 #
-# File: macros/mtlb_save.sci, line: 127
-msgid "Attempt to write an unsupported data type to an ASCII file."
-msgstr ""
-#
-# File: macros/mtlb_save.sci, line: 172
+# File: macros/mtlb_save.sci, line: 129
 #, c-format
-msgid "Unknown or misplaced option %s."
+msgid "%s: Attempt to write an unsupported data type to an ASCII file.\n"
+msgstr ""
+#
+# File: macros/mtlb_save.sci, line: 174
+#, c-format
+msgid "%s: Unknown or misplaced option ''%s''.\n"
 msgstr ""
 #
 # File: macros/mtlb_realmin.sci, line: 21
 # File: macros/mtlb_realmax.sci, line: 21
+# File: macros/mtlb_num2str.sci, line: 25
+# File: macros/mtlb_hold.sci, line: 27
 # File: macros/mtlb_echo.sci, line: 23
 # File: macros/mtlb_echo.sci, line: 26
-msgid "Not yet implemented."
+#, c-format
+msgid "%s: Not yet implemented.\n"
 msgstr ""
 #
 # File: macros/mtlb_realmin.sci, line: 24
 # File: macros/mtlb_realmax.sci, line: 24
-msgid "Wrong number of inputs."
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 #
 # File: macros/mtlb_qz.sci, line: 21
-msgid "qz: pencil is not diagonalizable."
+#, c-format
+msgid "%s: pencil is not diagonalizable.\n"
 msgstr ""
 #
 # File: macros/mtlb_qr.sci, line: 16
 #, c-format
-msgid "Not yet implemented for %d lhs argument(s)."
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 #
 # File: macros/mtlb_qr.sci, line: 19
 #, c-format
-msgid "Not yet implemented for %d rhs argument(s)."
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 #
-# File: macros/mtlb_num2str.sci, line: 25
-# File: macros/mtlb_hold.sci, line: 27
-msgid "Not implemented."
-msgstr ""
-#
-# File: macros/mtlb_load.sci, line: 24
+# File: macros/mtlb_load.sci, line: 27
 #, c-format
-msgid "%s: Unknown option."
+msgid "%s: Unknown option ''%s''.\n"
 msgstr ""
 #
-# File: macros/mtlb_load.sci, line: 42
+# File: macros/mtlb_load.sci, line: 45
 #, c-format
-msgid "File %s cannot be opened for reading."
+msgid "%s: File ''%s'' cannot be opened for reading.\n"
 msgstr ""
 #
-# File: macros/mtlb_load.sci, line: 57
-# File: macros/mtlb_load.sci, line: 83
+# File: macros/mtlb_load.sci, line: 60
 # File: macros/mtlb_load.sci, line: 86
-# File: macros/mtlb_load.sci, line: 93
-# File: macros/mtlb_load.sci, line: 101
-# File: macros/mtlb_load.sci, line: 115
-msgid "Incorrect file."
+# File: macros/mtlb_load.sci, line: 89
+# File: macros/mtlb_load.sci, line: 96
+# File: macros/mtlb_load.sci, line: 104
+# File: macros/mtlb_load.sci, line: 118
+#, c-format
+msgid "%s: Incorrect file.\n"
 msgstr ""
 #
-# File: macros/mtlb_load.sci, line: 74
-msgid "VAX D-float not handled."
+# File: macros/mtlb_load.sci, line: 77
+#, c-format
+msgid "%s: VAX D-float not handled.\n"
 msgstr ""
 #
-# File: macros/mtlb_load.sci, line: 76
-msgid "VAX G-float not handled."
+# File: macros/mtlb_load.sci, line: 79
+#, c-format
+msgid "%s: VAX G-float not handled.\n"
 msgstr ""
 #
-# File: macros/mtlb_load.sci, line: 78
-msgid "Cray encoding not handled."
+# File: macros/mtlb_load.sci, line: 81
+#, c-format
+msgid "%s: Cray encoding not handled.\n"
 msgstr ""
 #
-# File: macros/mtlb_load.sci, line: 80
-msgid "Unknown binary number format."
+# File: macros/mtlb_load.sci, line: 83
+#, c-format
+msgid "%s: Unknown binary number format.\n"
 msgstr ""
 #
-# File: macros/mtlb_load.sci, line: 111
-msgid "Unknown sparse type."
+# File: macros/mtlb_load.sci, line: 114
+#, c-format
+msgid "%s: Unknown sparse type.\n"
 msgstr ""
 #
 # File: macros/mtlb_legendre.sci, line: 15
 #, c-format
-msgid "%s: Wrong first input argument: A positive integer value expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
 msgstr ""
 #
 # File: macros/mtlb_isa.sci, line: 45
 #, c-format
-msgid "Unhandled class: %s."
+msgid "%s: Unhandled class ''%s''.\n"
 msgstr ""
 #
 # File: macros/mtlb_is.sci, line: 17
 # File: macros/mtlb_is.sci, line: 33
 #, c-format
 msgid ""
-"%s: Wrong first for input argument: Matlab vector of strings expected.\n"
+"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
 msgstr ""
 #
 # File: macros/mtlb_grid.sci, line: 35
@@ -174,7 +181,8 @@ msgstr ""
 # File: macros/mtlb_grid.sci, line: 42
 # File: macros/mtlb_grid.sci, line: 58
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
 # File: macros/mtlb_get.sci, line: 24
@@ -207,27 +215,19 @@ msgstr ""
 # File: macros/mtlb_get.sci, line: 92
 # File: macros/mtlb_get.sci, line: 96
 #, c-format
-msgid "%s: No equivalent for '%s' property.\n"
+msgid "%s: No equivalent for ''%s'' property.\n"
 msgstr ""
 #
 # File: macros/mtlb_fwrite.sci, line: 40
+# File: macros/mtlb_fread.sci, line: 44
 #, c-format
-msgid "The format: %s is unknown."
+msgid "%s: The format ''%s'' is unknown.\n"
 msgstr ""
 #
 # File: macros/mtlb_fwrite.sci, line: 44
-#, c-format
-msgid "The format: %s is not yet handled."
-msgstr ""
-#
-# File: macros/mtlb_fread.sci, line: 44
-#, c-format
-msgid "%s: The format '%s' is unknown.\n"
-msgstr ""
-#
 # File: macros/mtlb_fread.sci, line: 48
 #, c-format
-msgid "%s: The format '%s' is not yet handled.\n"
+msgid "%s: The format ''%s'' is not yet handled.\n"
 msgstr ""
 #
 # File: macros/mtlb_fread.sci, line: 66
@@ -236,41 +236,37 @@ msgid "%s: End of file reached before all matrix is read.\n"
 msgstr ""
 #
 # File: macros/mtlb_fprintf.sci, line: 43
+# File: macros/mtlb_fprintf.sci, line: 92
+# File: macros/mtlb_fprintf.sci, line: 94
 #, c-format
-msgid "In mtlb_fprintf: mprintf(%s) is not implemented."
+msgid "%s: %s is not implemented.\n"
 msgstr ""
 #
 # File: macros/mtlb_fprintf.sci, line: 57
 # File: macros/mtlb_fprintf.sci, line: 114
+#, c-format
 msgid ""
-"In mtlb_fprintf: mprintf Scilab function does not work with more than one "
-"row variables."
-msgstr ""
-#
-# File: macros/mtlb_fprintf.sci, line: 92
-msgid "In mtlb_fprintf: mprintf(format) is not implemented."
-msgstr ""
-#
-# File: macros/mtlb_fprintf.sci, line: 94
-msgid "In mtlb_fprintf: mfprintf(fid,format) is not implemented."
+"%s: %s Scilab function does not work with more than one row variables.\n"
 msgstr ""
 #
 # File: macros/mtlb_format.sci, line: 57
-msgid "Unknown type in mtlb_format()."
+#, c-format
+msgid "%s: Unknown type.\n"
 msgstr ""
 #
 # File: macros/mtlb_format.sci, line: 59
 #, c-format
-msgid "Unknown type %s in mtlb_format(): IGNORED."
+msgid "%s: Unknown type ''%s'': IGNORED.\n"
 msgstr ""
 #
 # File: macros/mtlb_fopen.sci, line: 18
 #, c-format
-msgid "Cannot open file %s."
+msgid "%s: Cannot open file ''%s''.\n"
 msgstr ""
 #
 # File: macros/mtlb_eig.sci, line: 25
-msgid "mtlb_eig() used with 2 rhs: not yet implemented."
+#, c-format
+msgid "%s: use with %d input argument(s) is not yet implemented.\n"
 msgstr ""
 #
 # File: macros/mtlb_dir.sci, line: 45
@@ -333,19 +329,18 @@ msgstr ""
 #
 # File: macros/mtlb_cond.sci, line: 15
 #, c-format
-msgid "%s: Wrong type for first input argument: Square matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
 #
 # File: macros/mtlb_cond.sci, line: 36
 #, c-format
 msgid ""
-"%s: Wrong value for second input argument: %s, %s,''%s'' or ''%s'' "
-"expected.\n"
+"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
 # File: macros/mtlb_close.sci, line: 15
 #, c-format
-msgid "%s: Status ignored.\n"
+msgid "%s: ''%s' ignored.\n"
 msgstr ""
 #
 # File: macros/mtlb_close.sci, line: 51
@@ -359,49 +354,31 @@ msgstr ""
 #
 # File: macros/mtlb_axis.sci, line: 34
 #, c-format
-msgid "%s: Wrong size for data_bounds: Vector expected.\n"
+msgid "%s: Wrong size for ''%s'': Vector expected.\n"
 msgstr ""
 #
 # File: macros/mtlb_axis.sci, line: 49
+# File: macros/mtlb_axis.sci, line: 71
+# File: macros/mtlb_axis.sci, line: 87
+# File: macros/mtlb_axis.sci, line: 102
+# File: macros/mtlb_axis.sci, line: 127
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: data_bounds=[xmin xmax ymin ymax "
-"zmin zmax cmin cmax].\n"
+msgid "%s: This feature has not been implemented: %s.\n"
 msgstr ""
 #
 # File: macros/mtlb_axis.sci, line: 52
 #, c-format
-msgid "%s: Wrong value for affectation to data_bounds.\n"
-msgstr ""
-#
-# File: macros/mtlb_axis.sci, line: 71
-#, c-format
-msgid "%s: This feature has not been implemented: axis fill.\n"
-msgstr ""
-#
-# File: macros/mtlb_axis.sci, line: 87
-#, c-format
-msgid "%s: This feature has not been implemented: axis image.\n"
+msgid "%s: Wrong value for affectation to ''%s''.\n"
 msgstr ""
 #
 # File: macros/mtlb_axis.sci, line: 92
 #, c-format
-msgid "%s: cube_scaling only used in 3d mode."
-msgstr ""
-#
-# File: macros/mtlb_axis.sci, line: 102
-#, c-format
-msgid "%s: This feature has not been implemented: axis normal.\n"
-msgstr ""
-#
-# File: macros/mtlb_axis.sci, line: 127
-#, c-format
-msgid "%s: This feature has not been implemented: axis %s.\n"
+msgid "%s: ''%s'' only used in 3d mode."
 msgstr ""
 #
 # File: macros/mtlb_axis.sci, line: 143
 #, c-format
-msgid "%s: This feature has not been implemented: Argument of type %d."
+msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr ""
 #
 # File: macros/mstr2sci.sci, line: 18
@@ -411,7 +388,7 @@ msgstr ""
 #
 # File: macros/mstr2sci.sci, line: 22
 #, c-format
-msgid "%s: Wrong type for input argument: Matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 #
 # File: macros/makecell.sci, line: 21
@@ -423,7 +400,9 @@ msgstr ""
 #
 # File: macros/fseek_origin.sci, line: 26
 #, c-format
-msgid "%s: Wrong value for input argument.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
 msgstr ""
 #
 # File: macros/char.sci, line: 44
@@ -448,7 +427,7 @@ msgstr ""
 #
 # File: macros/asciimat.sci, line: 27
 #, c-format
-msgid "%s: Wrong input argument: Inconsistent size.\n"
+msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
 msgstr ""
 #
 # File: macros/asciimat.sci, line: 40

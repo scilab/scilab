@@ -31,7 +31,7 @@ if rhs>0 then
   for krhs=1:rhs
     if type(listvar(krhs))==1 then
         if size(listvar(krhs),1)>1 & size(listvar(krhs),2)>1 then
-      	  error(msprintf(gettext("%s: Wrong size for data_bounds: Vector expected.\n"),"mtlb_axis"));
+      	  error(msprintf(gettext("%s: Wrong size for ''%s'': Vector expected.\n"),"mtlb_axis","data_bounds"));
       	end
         listvar(krhs) = matrix(listvar(krhs),1,-1);
 	
@@ -46,10 +46,10 @@ if rhs>0 then
 	      set(gca(),"axes_visible",'on')
       // axis([xmin xmax ymin ymax zmin zmax cmin cmax]) 
       elseif size(listvar(krhs),2)==8 then
-      	error(msprintf(gettext("%s: This feature has not been implemented: data_bounds=[xmin xmax ymin ymax zmin zmax cmin cmax].\n"),"mtlb_axis"));
+      	error(msprintf(gettext("%s: This feature has not been implemented: %s.\n"),"mtlb_axis", "data_bounds=[xmin xmax ymin ymax zmin zmax cmin cmax]"));
       // Unknown column number for listvar(krhs)
       else
-      	error(msprintf(gettext("%s: Wrong value for affectation to data_bounds.\n"),"mtlb_axis"));
+      	error(msprintf(gettext("%s: Wrong value for affectation to ''%s''.\n"),"mtlb_axis", "data_bounds"));
       end
       
     elseif type(listvar(krhs))==10 then
@@ -68,7 +68,7 @@ if rhs>0 then
 	
     	// axis fill
       elseif listvar(krhs)=="fill" then
-      	error(msprintf(gettext("%s: This feature has not been implemented: axis fill.\n"),"mtlb_axis"));
+      	error(msprintf(gettext("%s: This feature has not been implemented: %s.\n"),"mtlb_axis", "axis fill"));
 
     	// axis ij
       elseif listvar(krhs)=="ij" then
@@ -84,12 +84,12 @@ if rhs>0 then
 	
 	    // axis image
       elseif listvar(krhs)=="image" then
-      	error(msprintf(gettext("%s: This feature has not been implemented: axis image.\n"),"mtlb_axis"));
+      	error(msprintf(gettext("%s: This feature has not been implemented: %s.\n"),"mtlb_axis","axis image"));
 
     	// axis square
       elseif listvar(krhs)=="square" then
 	      if a.view=="2d" then
-	        warning(msprintf(gettext("%s: cube_scaling only used in 3d mode."),"mtlb_axis"));
+	        warning(msprintf(gettext("%s: ''%s'' only used in 3d mode."),"mtlb_axis","cube_scaling"));
 	      end
 	      a.cube_scaling="on"
 	
@@ -99,7 +99,7 @@ if rhs>0 then
 	
     	// axis normal
       elseif listvar(krhs)=="normal" then
-      	error(msprintf(gettext("%s: This feature has not been implemented: axis normal.\n"),"mtlb_axis"));
+      	error(msprintf(gettext("%s: This feature has not been implemented: %s.\n"),"mtlb_axis","axis normal"));
 	
     	// axis on
       elseif listvar(krhs)=="on" then
@@ -124,7 +124,7 @@ if rhs>0 then
       	end
     	// Unknown character string
       else
-      	error(msprintf(gettext("%s: This feature has not been implemented: axis %s.\n"),"mtlb_axis",listvar(krhs)));
+      	error(msprintf(gettext("%s: This feature has not been implemented: %s.\n"),"mtlb_axis","axis "+listvar(krhs)));
       end
       
     // axis(axes_handles,...)
@@ -140,7 +140,7 @@ if rhs>0 then
       end
     // Wrong type for listvar(krhs)
     else
-    	error(msprintf(gettext("%s: This feature has not been implemented: Argument of type %d."),"mtlb_axis",type(listvar(krhs))));
+    	error(msprintf(gettext("%s: This feature has not been implemented: Argument of type %d.\n"),"mtlb_axis",type(listvar(krhs))));
     end
       varargout(1)=matrix(a.data_bounds,1,-1);
   end

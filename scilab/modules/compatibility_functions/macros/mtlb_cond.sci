@@ -12,7 +12,7 @@ function c=mtlb_cond(A,flag)
 
 if A == [] then c = 0, return, end
 if size(A,1) <> size(A,2) &  flag <> 2 then
-  error(msprintf(gettext("%s: Wrong type for first input argument: Square matrix expected.\n"),"mtlb_cond"));
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"mtlb_cond", 1));
 end
 
 if flag == 1
@@ -33,6 +33,6 @@ elseif flag == "fro"
 elseif flag == "inf"
   c = norm(A,'inf')*norm(inv(A),'inf');
 else
-  error(msprintf(gettext("%s: Wrong value for second input argument: %s, %s,''%s'' or ''%s'' expected.\n"),"mtlb_cond","1","2","fro","inf"));  
+  error(msprintf(gettext("%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"),"mtlb_cond",2,"1","2","fro","inf"));  
 end
 endfunction

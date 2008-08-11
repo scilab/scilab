@@ -40,7 +40,7 @@ elseif type(varargin(1))==10 then
     mprintf(fmt,l(:))
     count=size(a,"*")
   elseif nv==0 then
-    error(msprintf(gettext("In mtlb_fprintf: mprintf(%s) is not implemented."),fmt));
+    error(msprintf(gettext("%s: %s is not implemented.\n"),"mtlb_fprintf","mprintf("+fmt+")"));
   else
     sz=[]
     for k=1:nv
@@ -54,7 +54,7 @@ elseif type(varargin(1))==10 then
       mprintf(fmt,varargin(2:$))
       count=size(sz,"*")
     else
-      error(gettext("In mtlb_fprintf: mprintf Scilab function does not work with more than one row variables."))
+      error(msprintf(gettext("%s: %s Scilab function does not work with more than one row variables.\n"),"mtlb_fprintf","mprintf"))
     end
   end  
 // mtlb_fprintf(fid,fmt,...)
@@ -89,9 +89,9 @@ else
     count=length(varargin(2))
   elseif nv==0 then
     if or(fid==[1 2]) then
-      error(gettext("In mtlb_fprintf: mprintf(format) is not implemented."))
+      error(msprintf(gettext("%s: %s is not implemented.\n"),"mtlb_fprintf", "mprintf(format)"))
     else
-      error(gettext("In mtlb_fprintf: mfprintf(fid,format) is not implemented."))
+      error(msprintf(gettext("%s: %s is not implemented.\n"),"mtlb_fprintf","mfprintf(fid,format)"))
     end 
   else
     sz=[]
@@ -111,7 +111,7 @@ else
       end
     else
       if or(fid==[1 2]) then
-	error(gettext("In mtlb_fprintf: mprintf Scilab function does not work with more than one row variables."))
+	error(msprintf(gettext("%s: %s Scilab function does not work with more than one row variables.\n"),"mtlb_fprintf", "mprintf"))
       else
 	mfprintfMat(fid,varargin(3:$),fmt)
 	for k=1:nv

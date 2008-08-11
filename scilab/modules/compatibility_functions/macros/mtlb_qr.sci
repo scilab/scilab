@@ -13,10 +13,10 @@ function [Q,R,E]=mtlb_qr(A,B)
 [lhs,rhs]=argn()
 
 if lhs<>3 then
-  error(msprintf(gettext("Not yet implemented for %d lhs argument(s)."),lhs));
+  error(msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"),"mtlb_qr",3));
 end
 if rhs<>2 then
-  error(msprintf(gettext("Not yet implemented for %d rhs argument(s)."),rhs));
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"mtlb_qr",2));
 end  
 
 [Q,R,E] = qr(A)

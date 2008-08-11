@@ -20,9 +20,9 @@ elseif rhs==1 then
   elseif arg1=="off" then
     mode(0);
   else
-    error(gettext("Not yet implemented."));
+    error(msprintf(gettext("%s: Not yet implemented.\n"),"mtlb_echo"));
   end
 else
-    error(gettext("Not yet implemented."));
+    error(msprintf(gettext("%s: Not yet implemented.\n"),"mtlb_echo"));
 end
 endfunction

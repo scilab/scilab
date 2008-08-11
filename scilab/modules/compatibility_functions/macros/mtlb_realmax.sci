@@ -18,9 +18,9 @@ elseif rhs==1 then
   if prec=="double" then
     val=number_properties("huge");
   else
-    error(gettext("Not yet implemented."));
+    error(msprintf(gettext("%s: Not yet implemented.\n"),"mtlb_realmax"));
   end
 else
-  error(gettext("Wrong number of inputs."));
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"),"mtlb_realmax",0,1));
 end
 endfunction

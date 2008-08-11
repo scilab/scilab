@@ -26,7 +26,7 @@ else
       if ierr==0 then // filename.sci exists
 	disp(mgetl(mopen(SCIfilename,"r")))
       else
-	disp(msprintf(gettext("Could not open neither %s nor %s nor %s."),filename,Mfilename,SCIfilename)); 
+	disp(msprintf(gettext("%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"),"mtlb_type",filename,Mfilename,SCIfilename)); 
       end
     end
   end

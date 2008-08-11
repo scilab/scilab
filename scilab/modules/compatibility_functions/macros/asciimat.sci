@@ -24,7 +24,7 @@ if size(size(x),"*")<=2 then
       end
       nbcol= size(ytemp,'*')*size(x,2)/size(x,'*') 
       if nbcol-floor(nbcol)<>0 then
-        error(msprintf(gettext("%s: Wrong input argument: Inconsistent size.\n"),"asciimat"));
+        error(msprintf(gettext("%s: Wrong input argument #%d: Inconsistent size.\n"),"asciimat", 1));
       end
       y=[]
       for i=1:size(x,1)
