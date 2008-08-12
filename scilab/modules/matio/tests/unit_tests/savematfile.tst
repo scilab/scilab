@@ -206,10 +206,10 @@ for varIndex=1:size(varNames,"*")
 	execstr("sci"+varNames(varIndex)+"="+varNames(varIndex)); // Save variable for comparison
 	execstr("clear "+varNames(varIndex)); // Clear variable
 	execstr("loadmatfile "+filename); // Load file contaning variable
-	//disp("compareOK=and(sci"+varNames(varIndex)+"=="+varNames(varIndex)+")");
 	execstr("compareOK=and(sci"+varNames(varIndex)+"=="+varNames(varIndex)+")"); // Compare
 	if ~compareOK then pause;end // Stop execution if necessary
 	clear compareOK
+	mdelete(filename)
     end
   end
 end
