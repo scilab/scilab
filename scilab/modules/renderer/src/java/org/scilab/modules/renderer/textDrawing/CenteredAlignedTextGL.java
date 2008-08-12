@@ -39,8 +39,10 @@ public class CenteredAlignedTextGL implements TextAlignementStrategy {
 	 * @param renderer renderer to use for drawing
 	 * @param text matrix of strings
 	 * @param positionMatrix matrix of positions.
+	 * @param angle angle of the text to draw
 	 */
-	public void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix) {
+	public void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text,
+			                    TextGrid positionMatrix, double angle) {
 		renderer.begin3DRendering();
 		for (int i = 0; i < text.getNbRow(); i++) {
 			for (int j = 0; j < text.getNbCol(); j++) {
@@ -49,7 +51,7 @@ public class CenteredAlignedTextGL implements TextAlignementStrategy {
 				double xCoord = ((curCell[2].getX() + curCell[1].getX()) - text.getStringWidth(i, j)) / 2.0;
 				double yCoord = curCell[1].getY() - (curCell[1].getY() - curCell[0].getY()) * TextGrid.EXTEND_FACTOR_Y / 2.0;
 				renderer.draw3D(gl, text.getMatrixElement(i, j), xCoord,
-						        yCoord, curCell[1].getZ());
+						        yCoord, curCell[1].getZ(), angle);
 			}
 		}
 		

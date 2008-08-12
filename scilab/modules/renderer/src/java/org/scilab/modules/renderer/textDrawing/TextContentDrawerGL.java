@@ -397,7 +397,7 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	public void drawText(SciTextRenderer renderer, StringMatrixGL text, TextGrid stringPositions) {
 		GL gl = getGL();
 		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
-		textDrawer.drawTextContent(gl, renderer, text, stringPositions);
+		textDrawer.drawTextContent(gl, renderer, text, stringPositions, rotationAngle);
 		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
 	}
 	

@@ -73,14 +73,16 @@ public class SciTextRenderer {
 	 * @param x X coordinate of the text
 	 * @param y Y coordinate of the text
 	 * @param z Z coordinate of the text
+	 * @param angle angle of the text to draw
 	 */
-	public void draw3D(GL gl, String str, double x, double y, double z) {
+	public void draw3D(GL gl, String str, double x, double y, double z, double angle) {
 		// move position
 		//gl.glPushMatrix();
 		//gl.glTranslated(x, y, z);
 //		gl.glScalef(fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
 //					fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
 //					fontSize / TextRendererManager.DEFAULT_FONT_SIZE);
+		// with OpenGL strings, angle is already set
 		if (useFractionalMetrics) {
 			renderer.draw3D(str, (float) x, (float) y, (float) z, scaleFactor);
 		} else {

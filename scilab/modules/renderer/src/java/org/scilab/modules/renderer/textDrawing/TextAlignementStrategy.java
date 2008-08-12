@@ -37,8 +37,9 @@ public interface TextAlignementStrategy {
 	 * @param renderer renderer to use for drawing
 	 * @param text matrix of strings
 	 * @param positionMatrix matrix of positions.
+	 * @param angle angle of the text to draw
 	 */
-	void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix);
+	void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix, double angle);
 	
 	
 }

@@ -43,14 +43,15 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 	 * @param x X coordinate of the text
 	 * @param y Y coordinate of the text
 	 * @param z Z coordinate of the text
+	 * @param angle angle of the text to draw
 	 */
-	public void draw3D(GL gl, String str, double x, double y, double z) {
+	public void draw3D(GL gl, String str, double x, double y, double z, double angle) {
 		//Put the text on the figure
 		
 		GL2PS gl2ps = new GL2PS();
 		gl.glRasterPos3d(x, y, z);
-		gl2ps.gl2psText(str, getFont().getPSName(), (short) getFont().getSize());
-		//gl2ps.gl2psTextOpt(str, getFont().getFontName(), (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL, 0);
+		gl2ps.gl2psTextOpt(str, getFont().getPSName(),
+				           (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL, (float) Math.toDegrees(angle));
 	}	
 
 

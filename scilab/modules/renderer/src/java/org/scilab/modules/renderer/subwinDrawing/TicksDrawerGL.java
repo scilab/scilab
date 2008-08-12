@@ -545,7 +545,9 @@ public class TicksDrawerGL extends DrawableObjectGL {
 			}
 			
 			labelsPositions[i] = new Vector3D(textCenter);
-			renderer.draw3D(gl, getTickLabel(i), labelsPositions[i].getX(), labelsPositions[i].getY(), labelsPositions[i].getZ());
+			renderer.draw3D(gl, getTickLabel(i),
+					        labelsPositions[i].getX(), labelsPositions[i].getY(),
+					        labelsPositions[i].getZ(), 0.0);
 			
 			
 			
@@ -565,7 +567,8 @@ public class TicksDrawerGL extends DrawableObjectGL {
 				exponentRenderer.draw3D(gl, getLabelExponent(i),
 										labelsExpPositions[i].getX(),
 										labelsExpPositions[i].getY(),
-										labelsExpPositions[i].getZ());
+										labelsExpPositions[i].getZ(),
+										0.0);
 			}
 			exponentRenderer.end3DRendering();
 		}
@@ -619,7 +622,8 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		
 		for (int i = 0; i < nbLabels; i++) {
 			if (labelsPositions[i] == null) { continue; }
-			renderer.draw3D(gl, getTickLabel(i), labelsPositions[i].getX(), labelsPositions[i].getY(), labelsPositions[i].getZ());
+			renderer.draw3D(gl, getTickLabel(i), labelsPositions[i].getX(), labelsPositions[i].getY(),
+					        labelsPositions[i].getZ(), 0.0);
 		}
 		
 		renderer.end3DRendering();
@@ -633,7 +637,8 @@ public class TicksDrawerGL extends DrawableObjectGL {
 				exponentRenderer.draw3D(gl, getLabelExponent(i),
 								labelsExpPositions[i].getX(),
 								labelsExpPositions[i].getY(),
-								labelsExpPositions[i].getZ());
+								labelsExpPositions[i].getZ(),
+								0.0);
 			}
 			exponentRenderer.end3DRendering();
 		}

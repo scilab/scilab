@@ -37,8 +37,10 @@ public class LeftAlignedTextGL implements TextAlignementStrategy {
 	 * @param renderer renderer to use for drawing
 	 * @param text matrix of strings
 	 * @param positionMatrix matrix of positions.
+	 * @param angle angle of the text to draw
 	 */
-	public void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text, TextGrid positionMatrix) {
+	public void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text,
+			                    TextGrid positionMatrix, double angle) {
 		renderer.begin3DRendering();
 		
 		for (int i = 0; i < text.getNbRow(); i++) {
@@ -47,7 +49,7 @@ public class LeftAlignedTextGL implements TextAlignementStrategy {
 				double xCoord = curCell[1].getX();
 				double yCoord = curCell[1].getY() - (curCell[1].getY() - curCell[0].getY()) * TextGrid.EXTEND_FACTOR_Y / 2.0;
 				renderer.draw3D(gl, text.getMatrixElement(i, j), xCoord,
-						        yCoord, curCell[1].getZ());
+						        yCoord, curCell[1].getZ(), angle);
 			}
 		}
 		
