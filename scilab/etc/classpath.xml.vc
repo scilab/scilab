@@ -12,19 +12,25 @@
 -->
 <!-- =================== -->
 <!-- 
-load can be:
-* background
-* onuse
-* startup
-startup is the default
+Scilab Java dependencies can be load in different ways. 
+It can be:
+* startup - Load immediatly the dep when Scilab starts (default behaviour)
+* background - After Scilab engine is loaded, load the dep in the background
+* onUse - Load the deps only when needed (once)
+
+Some deps can be also disabled only for a specific mode.
+The option is "disableUnderMode" and can be:
+* STD - Normal mode
+* NW - No Window mode (ie command line but with graphics 
+* API - Scilab as an API 
 -->
 
 <classpaths>
 
 <!-- Mandatory on startup -->
 <path value="$SCILAB/thirdparty/flexdock-0.5.1.jar" load="startup"/>
-<path value="$SCILAB/thirdparty/jrosetta-API.jar" load="startup"/>
-<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup"/>
+<path value="$SCILAB/thirdparty/jrosetta-API.jar" load="startup" disableUnderMode="NW"/>
+<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup" disableUnderMode="NW"/>
 <path value="$SCILAB/thirdparty/skinlf.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/looks-2.1.1.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/commons-logging-1.1.jar" load="startup"/>
@@ -60,15 +66,18 @@ startup is the default
 
 <!-- Mandatory on startup -->
 <path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar" load="startup"/>
-<path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar" load="startup"/>
-<path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" load="startup"/>
-<path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar" load="startup"/>
+<!-- Console GUI dep -->
+
+<path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar" load="startup" disableUnderMode="NW"/>
+<path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" load="startup" disableUnderMode="NW"/>
 <path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar" load="startup"/>
+<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" load="startup" disableUnderMode="NW"/>
+
+<path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar" load="startup"/>
 <path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar" load="startup"/>
 <path value="$SCILAB/modules/javasci/jar/javasci.jar" load="startup"/>
 <path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar" load="startup"/>
 <path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar" load="startup"/>
-<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" load="startup"/>
 <path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar" load="startup"/>
 <path value="$SCILAB/modules/helptools/jar/org.scilab.modules.helptools.jar" load="startup"/>
 

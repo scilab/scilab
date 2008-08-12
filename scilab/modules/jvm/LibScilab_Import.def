@@ -20,4 +20,5 @@ EXPORTS
  GetXmlFileEncoding
  callFunctionFromGateway
  freeArrayOfString
+ getScilabModeString
 ;
