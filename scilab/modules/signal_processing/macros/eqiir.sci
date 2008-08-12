@@ -29,54 +29,53 @@ function [cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-select part(approx,1);
-   case 'b'
-        iapro=1
-   case 'e'
-        iapro=4
-   case 'c'
-        last=part(approx,length(approx));
-        if last=='1' then iapro=2,end;
-        if last=='2' then iapro=3,end
-   else write(%io(2),msprintf(gettext("%s: An error occurred: %s\n"),'eqiir',gettext('Unknown filter approximation.')) );
-   
-        return;
-end
-select ftype;
-   case 'lp'
-        ityp=1
-   case 'hp'
-        ityp=2
-   case 'bp'
-        ityp=3
-   case 'sb'
-        ityp=4
-   else write(%io(2),msprintf(gettext("%s: Wrong values for input argument #%d"),'equiir',1));
-    
-     return;
-   end
-if maxi(size(om))==2 then
-      om=matrix([matrix(om,1,2),0,0],1,4),
-end
-[fact,b2,b1,b0,c1,c0,zzeros,zpoles]=...
-                           syredi(ityp,iapro,om,deltap,deltas);
-nb=maxi(size(b0));
-coeffs=[b0;b1;b2;c0;c1];
-coeffs=coeffs(:,1:nb);
-coeffs=[coeffs;ones(1,nb)];
-cells=[];
-for col=coeffs,
-  nf=col(1:3);nd=col(4:6);
-  [n1,d1]=simp(poly(nf,'z','c'),poly(nd,'z','c'));
+  select part(approx,1);
+  case 'b'
+    iapro=1
+  case 'e'
+    iapro=4
+  case 'c'
+    last=part(approx,length(approx));
+    if last=='1' then iapro=2,end;
+    if last=='2' then iapro=3,end
+  else 
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
+		   'eqiir',2,"''b[utt]'',''e[llip]'',''c[heb]1'',''c[heb]2''"))
+  end
+  select ftype;
+  case 'lp'
+    ityp=1
+  case 'hp'
+    ityp=2
+  case 'bp'
+    ityp=3
+  case 'sb'
+    ityp=4
+  else 
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"eqiir",1,"''lp'',''hp'',''bp'',''sb''"))
+  end
+  if maxi(size(om))==2 then
+    om=matrix([matrix(om,1,2),0,0],1,4),
+  end
+  pause
+  [fact,b2,b1,b0,c1,c0,zzeros,zpoles]=syredi(ityp,iapro,om,deltap,deltas);
+  nb=maxi(size(b0));
+  coeffs=[b0;b1;b2;c0;c1];
+  coeffs=coeffs(:,1:nb);
+  coeffs=[coeffs;ones(1,nb)];
+  cells=[];
+  for col=coeffs,
+    nf=col(1:3);nd=col(4:6);
+    [n1,d1]=simp(poly(nf,'z','c'),poly(nd,'z','c'));
     cells=[cells,syslin([],n1,d1)];
-end
-//crapaud...
-if iapro==1| iapro==2  then
-zzeros=[];
-[k,j]=size(cells);
-w=cells(2);
-for k=w;
-    zzeros=[zzeros,roots(k)'];
-end
-end
+  end
+  //crapaud...
+  if iapro==1| iapro==2  then
+    zzeros=[];
+    [k,j]=size(cells);
+    w=cells(2);
+    for k=w;
+      zzeros=[zzeros,roots(k)'];
+    end
+  end
 endfunction
