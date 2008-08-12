@@ -32,28 +32,28 @@ function [npl,nzr,ngn]=bilt(pl,zr,gn,num,den)
    if size(gn,'*')<>1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n") ,"bilt",3))
   end
-  if and(type(num)<>[1 2]) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Polynomial array expected.\n") ,"bilt",4))
-  end
-  if size(num,'*')<>1 then
+  if type(num)<>2|size(num,'*')<>1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: A polynomial expected.\n") ,"bilt",4))
   end
-
-  if and(type(den)<>[1 2]) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Polynomial array expected.\n") ,"bilt",5))
+  if type(den)<>2|size(den,'*')<>1 then 
+     error(msprintf(gettext("%s: Wrong size for input argument #%d: A polynomial expected.\n") ,"bilt",5))
   end
-  if size(den,'*')<>1 then
-    error(msprintf(gettext("%s: Wrong size for input argument #%d: A polynomial expected.\n") ,"bilt",5))
+  
+  order=degree(den)
+  
+  if and(order<>[1 2]) then
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"),"bilt",5,"1,2"))
   end
-
+  if degree(num)<>order then
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same degree expected.\n"),"bilt",4,5))
+  end
   n=coeff(num);
   d=coeff(den);
-  order=maxi(size(n))-1;
   ms=maxi(size(pl));ns=maxi(size(zr));
 
-  if order==1 then
+  select order
+    case 1  then
     n0=n(1);n1=n(2);
-    if prod(size(d))==1 then d=[d,0];end
     d0=d(1);d1=d(2);
     if zr == [] then      
       ngn=1/prod(n1*ones(pl)-d1*pl);
@@ -68,7 +68,7 @@ function [npl,nzr,ngn]=bilt(pl,zr,gn,num,den)
     elseif ms<ns then
       npl=[npl';-(d0/d1)*ones(ms-ns,1)];
     end
-  elseif order==2 then
+  case 2 then
     n0=n(1);n1=n(2);n2=n(3);
     d0=d(1);d1=d(2);d2=d(3);
     a=n2*ones(zr)-d2*zr;
@@ -95,7 +95,5 @@ function [npl,nzr,ngn]=bilt(pl,zr,gn,num,den)
       npl=[npl';-(d0/d1)*ones(ms-ns,1)];
     end
     ngn=real(ngn*(gw**(ms-ns)));
-  else
-   error(msprintf(gettext("%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"),"bilt",4,"1,2"))
   end
 endfunction

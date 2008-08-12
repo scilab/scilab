@@ -36,6 +36,6 @@ function [s]=sincd(n,flag)
      s=[eps*s s(2:npt+1)];
      s=s/n;
    else
-     error(msprintf(gettext("%s: Input argument #%d must be equal to 1 or 2.\n"),'sincd',2));
+     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),'sincd',2,"1,2"));
    end;
 endfunction

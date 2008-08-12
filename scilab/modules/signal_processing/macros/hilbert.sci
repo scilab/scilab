@@ -1,15 +1,18 @@
 function x = hilbert(xr)
-  // Marple, S.L., "Computing the discrete-time analytic signal via FFT,"
-  // IEEE Transactions on Signal Processing, Vol. 47, No.9 (September
-  // 1999), pp.2600-2603
-  // http://ieeexplore.ieee.org/iel5/78/16975/00782222.pdf?arnumber=782222  
+// Marple, S.L., "Computing the discrete-time analytic signal via FFT,"
+// IEEE Transactions on Signal Processing, Vol. 47, No.9 (September
+// 1999), pp.2600-2603
+// http://ieeexplore.ieee.org/iel5/78/16975/00782222.pdf?arnumber=782222  
+    
+  if  type(xr)<>1 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),"hilbert",1))
+  end
 
   n=size(xr,'*');
   
   if n==0 then x=[],return,end
-  
   if ~isreal(xr,0) then 
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real expected.\n"),'hilbert',1));
+    error(msprintf(gettext("%s: Input argument #%d must be real.\n"),'hilbert',1));
   end
   
   no2 = int(n/2);

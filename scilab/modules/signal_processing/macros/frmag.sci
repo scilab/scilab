@@ -24,39 +24,54 @@ function [xm,fr]=frmag(num,den,npts)
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
-   [lhs,rhs]=argn(0);
-   if rhs==2 then,
-      npts=den;
-   end,
-   fr=(0:.5/(npts-1):.5);
-   dfr=exp(2*%i*%pi*fr);
-   if rhs==2 then,
-     
-     //-compat type(num)==15 retained for list/tlist compatibility
-      if type(num)==15|type(num)==16 then,
-         xm=abs(freq(num(2),num(3),dfr));
-      else if type(num)==2 then,
-         xm=abs(freq(num,poly(1,'z','c'),dfr));
-      else if type(num)==1 then,
-         xz=poly(num,'z','c');
-         xm=abs(freq(xz,1,dfr))
-      else,
-         error(msprintf(gettext("%s: Wrong type for input argument(s).\n"),'frmag'));
-      end,
-      end,
-      end,
-   else if rhs==3 then,
-      if type(num)==2 then,
-         xm=abs(freq(num,den,dfr));
-      else if type(num)==1 then,
-         nz=poly(num,'z','c');
-         dz=poly(den,'z','c');
-         xm=abs(freq(nz,dz,dfr));
-      else,
-         error(msprintf(gettext("%s: Wrong type for input argument(s).\n"),'frmag'));
-      end,
-      end,
-   end,
-   end
+  select argn(2)
+  case 2 then //frmag(sys,npts)
+    npts=den;
+    if typeof(num)=="rational" then
+      h=num;
+      if size(h,'*')<>1 then
+	error(msprintf(_("%s: Wrong size for input argument #%d: A single input, single output system expected.\n"),'frmag',1))
+      end
+      num=h.num;den=h.den;
+    elseif typeof(num)=="state-space" then
+      h=ss2tf(num);
+      if size(h,'*')<>1 then
+	error(msprintf(_("%s: Wrong size for input argument #%d: A single input, single output system expected.\n"),'frmag',1))
+      end
+      num=h.num;den=h.den;
+    elseif type(num)==2 then,
+      if size(num,'*')<>1 then 
+	error(msprintf(_("%s: Wrong size for input argument #%d: A polynomial expected.\n"),'frmag',1));
+      end
+      den=poly(1,'z','c');
+    elseif type(num)==1 then,
+      num=poly(num,'z','c');
+      den=1
+    else
+      error(msprintf(_("%s: Wrong type for input argument #%d:  Linear state space, transfer function or row vector of floats expected.\n"),'frmag',1))
+    end,
+  case 3 then,//frmag(num,den,npts)
+    if type(num)==2 then,
+      if size(num,'*')<>1 then 
+	error(msprintf(_("%s: Wrong size for input argument #%d: A polynomial expected.\n"),'frmag',1));
+      end
+    elseif type(num)==1 then,
+      den=poly(den,'z','c');
+    else,
+      error(msprintf(_("%s: Wrong size for input argument #%d: A polynomial expected.\n"),'frmag',1));
+    end,
+    if type(den)==2 then,
+      if size(den,'*')<>1 then 
+	error(msprintf(_("%s: Wrong size for input argument #%d: A polynomial expected.\n"),'frmag',2));
+      end
+    elseif type(den)==1 then,
+      den=poly(den,'z','c');
+    else,
+      error(msprintf(_("%s: Wrong size for input argument #%d: A polynomial expected.\n"),'frmag',2));
+    end,
+    
+  end
+  fr=linspace(0,1/2,npts)
+  dfr=exp(2*%i*%pi*fr);
+  xm=abs(freq(num,den,dfr));
 endfunction
