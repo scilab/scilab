@@ -30,8 +30,6 @@ startup is the default
 <path value="$SCILAB/thirdparty/commons-logging-1.1.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/jhall.jar" load="startup"/>
 
-<path value="$SCILAB/thirdparty/jogl.jar" load="startup"/>
-<path value="$SCILAB/thirdparty/gluegen-rt.jar" load="startup"/>
 
 <!-- Load when needed -->
 <path value="$SCILAB/thirdparty/jogl.jar" load="onUse">
@@ -61,6 +59,7 @@ startup is the default
 </path>
 
 <!-- Mandatory on startup -->
+<path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar" load="startup"/>
 <path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar" load="startup"/>
 <path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" load="startup"/>
 <path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar" load="startup"/>

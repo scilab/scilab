@@ -25,6 +25,9 @@
 #include "loadOnUseClassPath.h"
 #include "../../fileio/includes/FileExist.h"
 #include "GetXmlFileEncoding.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 BOOL loadOnUseClassPath(char *tag)
 {
@@ -78,7 +81,28 @@ BOOL loadOnUseClassPath(char *tag)
 							// @TODO Check if it has been loaded before
 
 							/* we found the tag value  & load the jar */
-							addToClasspath((char*)attrib->children->content,STARTUP);
+							/* replaces $SCILAB by current path of SCI */
+							#define KEYWORDSCILAB "$SCILAB" 
+							char *sciPath = getSCIpath();
+							char *FullClasspath = NULL;
+							char *classpath = (char*)attrib->children->content;
+						
+							if (strncmp(classpath,KEYWORDSCILAB,strlen(KEYWORDSCILAB))==0)
+							{
+								FullClasspath = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(classpath)+1));
+								if (FullClasspath)
+								{
+									strcpy(FullClasspath,sciPath);
+									strcat(FullClasspath,&classpath[strlen(KEYWORDSCILAB)]);
+								}
+							}
+							else
+							{
+								FullClasspath = strdup(classpath);
+							}
+
+							addToClasspath(FullClasspath,STARTUP);
+							FREE(FullClasspath);
 						}
 						attrib = attrib->next;
 					}

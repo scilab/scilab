@@ -136,7 +136,7 @@ BOOL LoadClasspath(char *xmlfilename)
 			}
 			else
 			{
-					fprintf(stderr,_("Wrong format for %s.\n"), xmlfilename);
+				fprintf(stderr,_("Wrong format for %s.\n"), xmlfilename);
 			}
 
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
