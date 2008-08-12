@@ -26,9 +26,6 @@ import javax.media.opengl.GL;
  */
 public class GL2PSGL extends DebugGL {
 	
-	private static final double[] GL2PS_DEPTH_TEST_RANGE = {0.0, 0.95};
-	private static final double[] GL2PS_NO_DEPTH_TEST_RANGE = {0.95, 1.0};
-	
 	private GL gl;
 	private GL2PS gl2ps;
 	
@@ -40,7 +37,7 @@ public class GL2PSGL extends DebugGL {
 	public GL2PSGL(GL gl, GL2PS gl2ps) {
 		super(gl);
 		this.gl = gl;
-		this.gl2ps = gl2ps;		
+		this.gl2ps = gl2ps;	
 	}
 
 	/**
@@ -80,14 +77,6 @@ public class GL2PSGL extends DebugGL {
 		//case GL.GL_POLYGON_BOUNDARY):
 			//gl2ps.gl2psEnable(GL2PS.GL2PS_POLYGON_BOUNDARY);
 			//break;
-		case GL.GL_DEPTH_TEST:
-			// workaround here for GL2PS
-			// glEnable(GL_DEPTH_TEST) does not work in GL2PS for know
-			// we use the workaround found here http://www.geuz.org/pipermail/gl2ps/2007/000266.html
-			// all primitives drawn with dpeth test are drawn using the depth range [0,0.95] and
-			// the one without depth test with the range [0.95,1], so they are always put behind
-			gl.glDepthRange(GL2PS_DEPTH_TEST_RANGE[0], GL2PS_DEPTH_TEST_RANGE[1]);
-			break;
 		default:
 			break;
 		}
@@ -114,14 +103,6 @@ public class GL2PSGL extends DebugGL {
 		//case GL.GL_POLYGON_BOUNDARY):
 			//gl2ps.gl2psDisable(GL2PS.GL2PS_POLYGON_BOUNDARY);
 			//break;
-		case GL.GL_DEPTH_TEST:
-			// workaround here for GL2PS
-			// glEnable(GL_DEPTH_TEST) does not work in GL2PS for know
-			// we use the workaround found here http://www.geuz.org/pipermail/gl2ps/2007/000266.html
-			// all primitives drawn with dpeth test are drawn using the depth range [0,0.95] and
-			// the one without depth test with the range [0.95,1], so they are always put behind
-			gl.glDepthRange(GL2PS_NO_DEPTH_TEST_RANGE[0], GL2PS_NO_DEPTH_TEST_RANGE[1]);
-			break;
 		default:
 			break;
 		}

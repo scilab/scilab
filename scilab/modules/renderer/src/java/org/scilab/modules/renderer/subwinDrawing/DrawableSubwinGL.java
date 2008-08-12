@@ -15,19 +15,44 @@
 package org.scilab.modules.renderer.subwinDrawing;
 
 
+import javax.media.opengl.GL;
+
 import org.scilab.modules.renderer.DrawableObjectGL;
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 
 /**
  * Class containing functions called by DrawableSubwinJoGL.cpp
  * @author Jean-Baptiste Silvy
  */
 public class DrawableSubwinGL extends DrawableObjectGL {
-
+	
 	/**
 	 * Default Constructor
 	 */
 	public DrawableSubwinGL() {
 		super();
+	}
+	
+	
+	/**
+	 * Specify the index of the subwindow within other subwindows siblings
+	 * @param index index of the subwindow
+	 */
+	public void setSubwinIndex(int index) {
+		GL gl = getGL();
+		double nbSubwins = getParentFigureGL().getNbSubwins();
+		// the last subwin should be drawn before others
+		// so the one with higher index is drawn behind.
+		// To acheive this, we put it in the back of the depth range.
+		// Consequently first subwin will be put between 0 and 1/nbsubwins
+		// last one between (nbsubwinws - 1)/nbsubwins and 1.
+		// the depth range is fully initialized.
+
+		CoordinateTransformation transform = getParentFigureGL().getCoordinateTransformation();
+		transform.setDepthRange(index / nbSubwins, (index + 1) / nbSubwins);
+		
+		// default mode, draw in the middle of depth range
+		transform.drawMiddle(gl);
 	}
 
 	/**
@@ -36,6 +61,15 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 	 */
 	public void show(int parentFigureIndex) {
 		
+	}
+	
+	/**
+	 * Function called at the end of the OpenGL use.
+	 */
+	public void endDrawing() {
+		// back to default
+		//getGL().glDepthRange(0.0, 1.0);
+		getParentFigureGL().getCoordinateTransformation().setDepthRange(0.0, 1.0);
 	}
 
 	

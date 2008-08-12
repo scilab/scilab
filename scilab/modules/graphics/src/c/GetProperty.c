@@ -4534,7 +4534,27 @@ BOOL sciGetIsAbleToCreateWindow(void)
   return sciGetJavaIsAbleToCreateWindow();
 }
 /*----------------------------------------------------------------------------------*/
+/**
+ * @return index of the subwin between all the subwins lying below its parent figure
+ */
+int sciGetSubwinIndex(sciPointObj * pSubwin)
+{
+  sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
+  int subwinIndex = 0;
+  sciSons * pSons = sciGetSons(parentFigure);
 
+  while (pSons->pointobj != pSubwin)
+  {
+    if (sciGetEntityType(pSons->pointobj) == SCI_SUBWIN)
+    {
+      // subwin found
+      subwinIndex++;
+    }
+    pSons = pSons->pnext;
+  }
+  return subwinIndex;
+}
+/*----------------------------------------------------------------------------------*/
 /**
  * Print the message "This object has no xxx property." in Scilab.
  */

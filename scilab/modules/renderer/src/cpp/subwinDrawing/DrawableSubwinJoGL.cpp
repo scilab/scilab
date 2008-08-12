@@ -18,6 +18,11 @@
 #include "../DrawableObjectJoGL.h"
 #include "../DrawableObjectBridge.h"
 
+extern "C"
+{
+#include "GetProperty.h"
+}
+
 namespace sciGraphics
 {
 
@@ -31,6 +36,12 @@ DrawableSubwinJoGL::DrawableSubwinJoGL( DrawableSubwin * drawer )
 DrawableSubwinJoGL::~DrawableSubwinJoGL( void )
 {
 
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableSubwinJoGL::initializeDrawing( void )
+{
+  DrawableObjectJoGL::initializeDrawing();
+  getSubwinJavaMapper()->setSubwinIndex(sciGetSubwinIndex(getSubwinDrawer()->getDrawedObject()));
 }
 /*---------------------------------------------------------------------------------*/
 DrawableSubwin * DrawableSubwinJoGL::getSubwinDrawer( void )

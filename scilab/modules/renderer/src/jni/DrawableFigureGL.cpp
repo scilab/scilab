@@ -135,6 +135,7 @@ voidsetTitlejstringID=NULL;
 jintArraygetRotationDisplacementID=NULL; 
 voidstopRotationRecordingID=NULL; 
 voidshowWindowID=NULL; 
+voidsetNbSubwinsjintID=NULL; 
 
 
 }
@@ -193,6 +194,7 @@ voidsetTitlejstringID=NULL;
 jintArraygetRotationDisplacementID=NULL; 
 voidstopRotationRecordingID=NULL; 
 voidshowWindowID=NULL; 
+voidsetNbSubwinsjintID=NULL; 
 
 
 }
@@ -936,6 +938,25 @@ exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidshowWindowID );
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void DrawableFigureGL::setNbSubwins (long nbSubwins){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetNbSubwinsjintID==NULL) { /* Use the cache Luke */ voidsetNbSubwinsjintID = curEnv->GetMethodID(this->instanceClass, "setNbSubwins", "(I)V" ) ;
+if (voidsetNbSubwinsjintID == NULL) {
+std::cerr << "Could not access to the method " << "setNbSubwins" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidsetNbSubwinsjintID ,nbSubwins);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

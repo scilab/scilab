@@ -108,6 +108,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
+voidsetSubwinIndexjintID=NULL; 
 
 
 }
@@ -139,6 +140,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
+voidsetSubwinIndexjintID=NULL; 
 
 
 }
@@ -269,6 +271,25 @@ exit(EXIT_FAILURE);
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidsetFigureIndexjintID ,figureIndex);
+                        
+if (curEnv->ExceptionOccurred()) {
+curEnv->ExceptionDescribe() ;
+}
+
+                        
+}
+
+void DrawableSubwinGL::setSubwinIndex (long index){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetSubwinIndexjintID==NULL) { /* Use the cache Luke */ voidsetSubwinIndexjintID = curEnv->GetMethodID(this->instanceClass, "setSubwinIndex", "(I)V" ) ;
+if (voidsetSubwinIndexjintID == NULL) {
+std::cerr << "Could not access to the method " << "setSubwinIndex" << std::endl;
+exit(EXIT_FAILURE);
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidsetSubwinIndexjintID ,index);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

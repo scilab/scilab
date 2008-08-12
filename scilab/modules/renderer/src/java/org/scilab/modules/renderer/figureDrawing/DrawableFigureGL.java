@@ -63,6 +63,7 @@ public class DrawableFigureGL extends ObjectGL {
 											  GL.GL_NAND,
 											  GL.GL_SET};
 	
+	
 	/** Canvas to draw the figure */
 	private RendererProperties guiProperties;
 	/** store the figureIndex */
@@ -95,6 +96,9 @@ public class DrawableFigureGL extends ObjectGL {
 	/** Coordinate transfomrations used to draw this figure */
 	private CoordinateTransformation transform;
 	
+	/** Number of subwins */
+	private int nbSubwins;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -114,6 +118,7 @@ public class DrawableFigureGL extends ObjectGL {
       	renderRequested = false;
       	transform = new CoordinateTransformation();
       	clipPlaneManager = new ClipPlane3DManager();
+      	nbSubwins = 0;
     }
 	
 	/**
@@ -240,6 +245,20 @@ public class DrawableFigureGL extends ObjectGL {
 	public void drawCanvas() {
 		setRenderingRequested(true);
 		guiProperties.forceDisplay();
+	}
+	
+	/**
+	 * @param nbSubwins number of subwins among figure children
+	 */
+	public void setNbSubwins(int nbSubwins) {
+		this.nbSubwins = nbSubwins;
+	}
+	
+	/**
+	 * @return number of subwinws under the figure.
+	 */
+	public int getNbSubwins() {
+		return nbSubwins;
 	}
 	
 	/**

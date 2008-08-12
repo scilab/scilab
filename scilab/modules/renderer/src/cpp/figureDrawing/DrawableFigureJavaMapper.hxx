@@ -87,6 +87,8 @@ public:
   virtual void stopRotationRecording(void);
   virtual void showWindow(void);
 
+  virtual void setNbSubwins(int nbSubwins);
+
   static bool isAbleToCreateFigure(void);
 
   /*----------------------------------------------------------------------*/

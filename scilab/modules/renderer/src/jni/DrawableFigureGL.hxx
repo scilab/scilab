@@ -85,6 +85,7 @@ jmethodID voidsetTitlejstringID; // cache method id
 jmethodID jintArraygetRotationDisplacementID; // cache method id
 jmethodID voidstopRotationRecordingID; // cache method id
 jmethodID voidshowWindowID; // cache method id
+jmethodID voidsetNbSubwinsjintID; // cache method id
 
 
 /**
@@ -191,6 +192,8 @@ long * getRotationDisplacement();
 void stopRotationRecording();
 
 void showWindow();
+
+void setNbSubwins(long nbSubwins);
 
 
                         /**

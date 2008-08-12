@@ -33,6 +33,11 @@ namespace sciGraphics
     virtual ~DrawableSubwinJoGL( void ) ;
 
     /**
+     * Initialize the context for drawing (incl starting recording display list)
+     */
+    virtual void initializeDrawing( void ) ;
+
+    /**
      * Return the drawn object
      */
     virtual DrawableSubwin * getSubwinDrawer( void ) ;
@@ -45,8 +50,6 @@ namespace sciGraphics
      */
     DrawableSubwinJavaMapper * getSubwinJavaMapper(void);
     /*----------------------------------------------------------------*/
-
-    DrawableSubwin * m_pDrawed ;
 
   } ;
 

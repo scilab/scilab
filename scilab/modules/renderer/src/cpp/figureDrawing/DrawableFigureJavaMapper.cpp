@@ -250,6 +250,11 @@ void DrawableFigureJavaMapper::showWindow(void)
   m_pJavaObject->showWindow();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::setNbSubwins(int nbSubwins)
+{
+  m_pJavaObject->setNbSubwins(nbSubwins);
+}
+/*---------------------------------------------------------------------------------*/
 bool DrawableFigureJavaMapper::isAbleToCreateFigure(void)
 {
   return org_scilab_modules_renderer_utils::RenderingChecker::isAbleToCreateWindow(getScilabJavaVM());

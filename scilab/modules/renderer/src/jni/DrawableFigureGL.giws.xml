@@ -89,5 +89,8 @@
     </method>
     <method name="showWindow" returnType="void">
     </method>
+    <method name="setNbSubwins" returnType="void">
+      <param type="int" name="nbSubwins" />
+    </method>
   </object>
 </package>

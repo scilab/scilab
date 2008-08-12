@@ -17,6 +17,7 @@ package org.scilab.modules.renderer.subwinDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.DrawableObjectGL;
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
@@ -207,7 +208,9 @@ public class GridDrawerGL extends DrawableObjectGL {
 		gl.glColor3d(color[0], color[1], color[2]);
 		
 		// draw grid behind
-		gl.glDisable(GL.GL_DEPTH_TEST);
+		CoordinateTransformation transform = getParentFigureGL().getCoordinateTransformation();
+		transform.drawBack(gl);
+		//gl.glDisable(GL.GL_DEPTH_TEST);
 		gl.glBegin(GL.GL_LINES);
 		for (int i = 0; i < startingPoints.length; i++) {
 			
@@ -226,7 +229,8 @@ public class GridDrawerGL extends DrawableObjectGL {
 			
 		}
 		gl.glEnd();
-		gl.glEnable(GL.GL_DEPTH_TEST);
+		//gl.glEnable(GL.GL_DEPTH_TEST);
+		transform.drawMiddle(gl);
 		
 		GLTools.endDashMode(gl);
 	}

@@ -162,3 +162,5 @@ sciInitArrowSize
 rotate2D
 sciGetPointerFromHandle
 isFigureModel
+sciGetSubwinIndex
+sciGetNbTypedObjects

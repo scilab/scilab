@@ -282,6 +282,8 @@ void sciGetZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabe
 
 BOOL sciGetIsAbleToCreateWindow(void);
 
+int sciGetSubwinIndex(sciPointObj * pSubwin); /* GET */
+
 void printSetGetErrorMessage(const char * propertyName);
 
 #endif /* __SCI_GET_PROPERTY__ */

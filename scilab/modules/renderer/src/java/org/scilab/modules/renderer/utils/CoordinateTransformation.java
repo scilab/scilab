@@ -33,6 +33,11 @@ public class CoordinateTransformation {
 	/** Size of the view port */
 	public static final int VIEW_PORT_SIZE = 4;
 	
+	/** relative back depth is between this value and 1*/
+	private static final double START_BACK_DEPTH = 0.95;
+	/** relative front depth is between 0 and this value*/
+	private static final double END_FRONT_DEPTH = 0.05;
+	
 	private Matrix4D projectionMatrix;
 	private Matrix4D modelViewMatrix;
 	
@@ -42,6 +47,9 @@ public class CoordinateTransformation {
 	
 	private Vector3D additionalTranslation;
 	private Vector3D additionalTranslationPix;
+	
+	private double zNear;
+	private double zFar;
 	
 	/**
 	 * default constructor
@@ -54,6 +62,8 @@ public class CoordinateTransformation {
 		viewPort = new double[VIEW_PORT_SIZE];
 		additionalTranslation = null;
 		additionalTranslationPix = null;
+		zNear = 0.0;
+		zFar = 1.0;
 	}
 	
 	/**
@@ -253,6 +263,59 @@ public class CoordinateTransformation {
 	@Override
 	public String toString() {
 		return completeProjectMatrix.toString();
+	}
+	
+	/**
+	 * Set the depth range to use to draw the following primitives
+	 * @param zNear Specifies the mapping of the near clipping plane t window coordinates.
+	 *              The initial value is 0.
+	 * @param zFar Specifies the mapping of the far clipping plane to
+     *             window coordinates. The initial value is 1.
+	 */
+	public void setDepthRange(double zNear, double zFar) {
+		this.zNear = zNear;
+		this.zFar = zFar;
+	}
+	
+	/**
+	 * Draw the following primitives in front of any others
+	 * by setting the depth range to something close to 0.
+	 * @param gl current gl pipeline
+	 */
+	public void drawFront(GL gl) {
+		gl.glDepthRange(zNear, getFrontEndDepth());
+	}
+	
+	/**
+	 * Draw the following primitives behind of any others
+	 * by setting the depth range to something close to 0.
+	 * @param gl current gl pipeline
+	 */
+	public void drawBack(GL gl) {
+		gl.glDepthRange(getBackStartDepth(), zFar);
+	}
+	
+	/**
+	 * Standard mode. Draw primitives in the middle behind the one
+	 * drawn in front and the above drawn in back.
+	 * @param gl current gl pipeline
+	 */
+	public void drawMiddle(GL gl) {
+		gl.glDepthRange(getFrontEndDepth(), getBackStartDepth());
+	}
+	
+	/**
+	 * @return end depth of the front depth range
+	 */
+	private double getFrontEndDepth() {
+		return (1 - END_FRONT_DEPTH) * zNear + END_FRONT_DEPTH * zFar;
+	}
+	
+	/**
+	 * @return startdepth of the back depth range
+	 */
+	private double getBackStartDepth() {
+		return (1 - START_BACK_DEPTH) * zNear + START_BACK_DEPTH * zFar;
 	}
 	
 }

@@ -72,6 +72,7 @@ void DrawableFigureJoGL::setFigureParameters(void)
 {
   sciPointObj * pFigure = getFigureDrawer()->getDrawedObject();
   getFigureJavaMapper()->setLogicalOp(sciGetXorMode(pFigure));
+  getFigureJavaMapper()->setNbSubwins(sciGetNbTypedObjects(pFigure, SCI_SUBWIN));
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::drawBackground(void)
