@@ -412,6 +412,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\InnosetupMutex.c"
+				>
+			</File>
+			<File
 				RelativePath=".\killScilabProcess.c"
 				>
 			</File>
@@ -490,6 +494,10 @@
 			</File>
 			<File
 				RelativePath=".\getScilabDirectory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\InnosetupMutex.h"
 				>
 			</File>
 			<File

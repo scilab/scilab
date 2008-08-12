@@ -152,11 +152,6 @@ int Console_Main(int argc, char **argv)
     {
         MessageBox(NULL,"-nw or -nwni not found","ERROR",MB_ICONWARNING);
     }
-
-  ExitScilab();
-
-  RestoreConsoleColors();
-  
   return 0;
 }
 /*--------------------------------------------------------------------------*/ 

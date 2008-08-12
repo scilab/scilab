@@ -12,10 +12,37 @@
 
 /*--------------------------------------------------------------------------*/ 
 #include "TerminateWindows_tools.h"
+#include "scilabmode.h"
+#include "console.h"
+#include "InnosetupMutex.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL TerminateWindows_tools(void)
 {
 	BOOL bOK = FALSE;
+	int scilabMode = getScilabMode();
+
+	switch (scilabMode)
+	{
+		case SCILAB_STD:
+		{
+			CloseScilabConsole();
+			closeInnosetupMutex();
+			bOK = TRUE;
+		}
+		break;
+
+		case SCILAB_NW:
+		{
+			RestoreConsoleColors();
+			RestoreExitButton();
+			bOK = TRUE;
+		}
+		break;
+
+		default:
+		break;
+	}
+
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/ 

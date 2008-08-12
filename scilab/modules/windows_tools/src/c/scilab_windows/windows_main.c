@@ -30,6 +30,7 @@
 #include "splashScreen.h"
 #include "WndThread.h"
 #include "strdup_windows.h"
+#include "InnosetupMutex.h"
 /*--------------------------------------------------------------------------*/ 
 #define MIN_STACKSIZE 180000
 #define WSCILEX "wscilex.exe"
@@ -54,8 +55,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	char *ScilabDirectory=NULL;
 	char *pFullCmdLine=NULL;
 	char *pFullCmdLineTmp=NULL;
-	HANDLE hMutexScilabID;
-
 
 	forbiddenToUseScilab();
 
@@ -272,19 +271,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		CreateScilabConsole(sci_show_banner);
 		HideScilex(); /* Cache la fenetre Console */
 	
-		/* http://www.vincenzo.net/isxkb/index.php?title=Application_considerations */
-		/* creates a named mutex used by Innosetup */
-		hMutexScilabID = CreateMutex (NULL, FALSE,SCI_VERSION_STRING );
-
+		createInnosetupMutex();
 		sci_windows_main (&startupf, path,(InitScriptType)pathtype, &lpath,memory);
-
-		/* close named mutex */
-		CloseHandle(hMutexScilabID);
-
-		CloseScilabConsole();
-
-		ExitScilab();
-
+		
 		return 0;
 }
 /*--------------------------------------------------------------------------*/ 

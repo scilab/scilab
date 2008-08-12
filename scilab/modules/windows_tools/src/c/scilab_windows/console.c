@@ -91,8 +91,21 @@ void RenameConsole(void)
 	{
 		HMENU hmenuConsole = NULL;
 		// Desactive croix dans la console
-		hmenuConsole=GetSystemMenu(hScilex, FALSE);
+		hmenuConsole = GetSystemMenu(hScilex, FALSE);
 		DeleteMenu(hmenuConsole, SC_CLOSE, MF_BYCOMMAND);
+	}
+}
+/*--------------------------------------------------------------------------*/
+void RestoreExitButton(void)
+{
+	HWND hScilex = NULL;
+	hScilex = GetConsoleWindow();
+	if (hScilex)
+	{
+		HMENU hmenuConsole = NULL;
+		// Active croix dans la console
+		hmenuConsole = GetSystemMenu(hScilex, FALSE);
+		AppendMenu( hmenuConsole, MF_BYCOMMAND, SC_CLOSE, "&Close Alt+F4" ); 
 	}
 }
 /*--------------------------------------------------------------------------*/

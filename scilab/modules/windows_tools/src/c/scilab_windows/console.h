@@ -32,6 +32,11 @@ void SaveConsoleColors(void);
 void RestoreConsoleColors(void);
 
 /**
+* Restore Exit button 
+*/
+void RestoreExitButton(void);
+
+/**
 * Rename Scilab Console  with correct name
 */
 void RenameConsole(void);
