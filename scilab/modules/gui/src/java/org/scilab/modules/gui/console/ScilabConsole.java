@@ -61,6 +61,14 @@ public class ScilabConsole extends ScilabDockable implements Console {
 		}
 		return instance;
 	}
+
+	public static boolean isExistingConsole(){
+		if (instance == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 	
 	/**
 	 * Gets this Bridge component object

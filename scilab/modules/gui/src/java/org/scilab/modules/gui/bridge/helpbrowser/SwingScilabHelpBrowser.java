@@ -58,7 +58,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 		super();
 			
 		/* Send information to the user using status bar and cursor */
-		if (ScilabConsole.getConsole().getInfoBar() != null) {
+		if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
 			ScilabConsole.getConsole().getInfoBar().setText(Messages.gettext("Loading help browser..."));
 			ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		}
@@ -139,7 +139,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 			} catch (HelpSetException e) {
 				System.out.println("Could not load file: " + jarFiles[i] + ". Please check its contents, must be a Java Help file.");
 				/* Reinit status bar and cursor */
-				if (ScilabConsole.getConsole().getInfoBar() != null) {
+				if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
 					ScilabConsole.getConsole().getInfoBar().setText("");
 					ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
@@ -154,7 +154,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	    removeHelpNavigator((JHelpIndexNavigator) navigators.nextElement());
 	    
 		/* Reinit status bar and cursor */
-		if (ScilabConsole.getConsole().getInfoBar() != null) {
+		if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
 			ScilabConsole.getConsole().getInfoBar().setText("");
 			ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
