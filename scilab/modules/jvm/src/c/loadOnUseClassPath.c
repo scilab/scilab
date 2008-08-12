@@ -51,6 +51,10 @@ BOOL loadOnUseClassPath(char *tag)
 			xmlDocPtr doc;
 			xmlXPathContextPtr xpathCtxt = NULL;
 			xmlXPathObjectPtr xpathObj = NULL;
+			/* 
+			 * Xpath query: Retrieve all nodes what have the property
+			 * load="onUse" and the tag we are looking for 
+			 */
 			#define XPATH "//classpaths/path[@load='onUse']/load[@on='%s']"
 			char * XPath=(char*)MALLOC(sizeof(char)*(strlen(XPATH)+strlen(tag)-2+1)); /* -2 = strlen(%s) */
 			sprintf(XPath,XPATH,tag);
