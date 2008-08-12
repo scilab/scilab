@@ -27,5 +27,5 @@ function Purge_()
     scs_m = do_purge(scs_m);
     needcompile = 4;
     edited = %t ;
-    Cmenu = 'Replot' ; 
+    Cmenu = "Replot" ; 
 endfunction

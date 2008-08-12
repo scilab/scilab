@@ -37,12 +37,14 @@ function Replot_()
     gh_axes = gca();   
     
     drawlater();
-       delete(gh_axes.children) ; //** clear the current graphic window: OBJECTS ONLY ! NO Menus
-       %wdm = scs_m.props.wpar
+
+       if gh_axes.children<>[] then   //** protection : you cannot delete "non existant" "empty" object ! 
+           delete(gh_axes.children) ; //** clear the current graphic window: OBJECTS ONLY ! NO Menus
+       end
+
+       %wdm = scs_m.props.wpar    ; //** 
        window_set_size(gh_curwin) ; //** OK
        set_background(gh_curwin)  ; //** OK
        drawobjs(scs_m,gh_curwin)  ;  //** Redraw all
-       //** drawnow()   ; 
-       //**  show_pixmap();
     
 endfunction
