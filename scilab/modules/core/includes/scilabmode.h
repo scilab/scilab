@@ -36,6 +36,12 @@ BOOL setScilabMode(scilabMode newmode);
 */
 scilabMode getScilabMode(void);
 
+/**
+* Get scilab mode as a string
+* @return current scilab mode
+*/
+char * getScilabModeString(void);
+
 
 /**
  * Gives the mode of scilab

@@ -19,6 +19,27 @@ scilabMode getScilabMode(void)
 	return CurrentScilabMode;
 }
 /*--------------------------------------------------------------------------*/ 
+char * getScilabModeString(void)
+{
+	switch (CurrentScilabMode){
+		case SCILAB_API:
+			return "API";
+			break;
+		case SCILAB_STD:
+			return "STD";
+			break;
+		case SCILAB_NW:
+			return "NW";
+			break;
+		case SCILAB_NWNI:
+			return "NWNI";
+			break;
+		default:
+			return "STD";
+			break;
+	}
+}
+/*--------------------------------------------------------------------------*/ 
 BOOL setScilabMode(scilabMode newmode)
 {
 	if ( (newmode == SCILAB_API) || (newmode == SCILAB_STD) || (newmode == SCILAB_NW) || (newmode == SCILAB_NWNI) )
