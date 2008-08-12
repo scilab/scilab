@@ -37,13 +37,13 @@ int gw_helptools(void)
 		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "helptools");
 		return 0;
 	}
-	#ifndef _MSC_VER
+
 	if (!loadedDep) 
 	{
 		loadOnUseClassPath("documentationGeneration");
 		loadedDep=TRUE;
 	}
-	#endif
+
 	callFunctionFromGateway(Tab);
 	return 0;
 }

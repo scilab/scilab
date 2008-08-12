@@ -43,13 +43,12 @@ int gw_graphic_export(void)
 	Rhs = Max(0, Rhs);
 	if ( getScilabMode() != SCILAB_NWNI )
 	{
-		#ifndef _MSC_VER
 		if (!loadedDep) 
 		{
 			loadOnUseClassPath("graphics");
 			loadedDep=TRUE;
 		}
-		#endif
+
 		callFunctionFromGateway(Tab);
 		C2F(putlhsvar)();
 	}

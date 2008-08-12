@@ -110,13 +110,12 @@ int gw_graphics(void)
 
 	if ( getScilabMode() != SCILAB_NWNI )
 	{
-#ifndef _MSC_VER
 		if (!loadedDep) 
 		{
 			loadOnUseClassPath("graphics");
 			loadedDep = TRUE;
 		}
-#endif
+
 		callFunctionFromGateway(Tab);
 		C2F(putlhsvar)();
 	}
