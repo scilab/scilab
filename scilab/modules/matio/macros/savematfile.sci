@@ -276,6 +276,8 @@ if bin then
 	if ~matfile_varwrite(mtlb_fd, mtlb_names(k), evstr(mtlb_names(k)), %F) then
 	  error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
 	end
+      else
+	error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
       end
     end
     
@@ -299,6 +301,8 @@ if bin then
 	if ~matfile_varwrite(mtlb_fd, mtlb_names(k), evstr(mtlb_names(k)), %T) then
 	  error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
 	end
+      else
+	error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
       end
     end
     
