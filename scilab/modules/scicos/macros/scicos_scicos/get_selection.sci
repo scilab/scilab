@@ -32,8 +32,8 @@ function [%pt,%win,o] = get_selection(Select,%pt,%win)
   
   elseif windows(kc,1)<0 then //palette
     
-    scs_m=palettes(-windows(kc,1))
-  
+    scs_m = palettes(-windows(kc,1))
+   
   elseif win==curwin then //selected object in current window
     
     // scs_m is fine
@@ -51,21 +51,21 @@ function [%pt,%win,o] = get_selection(Select,%pt,%win)
   
   o = scs_m.objs(num)
   
-  if typeof(o)=='Block' then
+  if typeof(o)=="Block" then
     o = disconnect_ports(o)
-    [orig,sz] = (o.graphics.orig,o.graphics.sz)
-    %pt=orig(:)+sz(:)/2
-  
-  elseif typeof(o)=='Text'  then  
     [orig,sz] = (o.graphics.orig,o.graphics.sz)
     %pt = orig(:)+sz(:)/2
   
-  elseif typeof(o)=='Link' then  
-    %pt=[(o.xx(1)+o.xx(2))/2,(o.yy(1)+o.yy(2))/2] //middle of first
-                                                  //segment
-  else
-    o=[]  // perhaps deleted
+  elseif typeof(o)=="Text"  then  
+    [orig,sz] = (o.graphics.orig,o.graphics.sz)
+    %pt = orig(:)+sz(:)/2
   
+  elseif typeof(o)=="Link" then  
+    %pt = [(o.xx(1)+o.xx(2))/2,(o.yy(1)+o.yy(2))/2] // middle of first
+                                                    // segment
+  else
+    o = []  // perhaps deleted
+
   end
   
   %win = win

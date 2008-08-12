@@ -95,17 +95,20 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 
     // second pass
     if ext=='cos'|ext=='COS' then
+      //** standard '*.cos' files  
       ierr=execstr('load(fname)','errcatch')
       ok=%t
     elseif ext=='cosf'|ext=='COSF' then
-      ierr=execstr('exec(fname,-1)','errcatch')
-      ok=%t
+      //** .cosf files, palettes 
+      ierr = execstr('exec(fname,-1)','errcatch') ;
+      ok = %t ;
     elseif ext=='new'
-      ok=%t
-      ierr=0
-      scs_m=scicos_diagram(version=current_version)
-      scs_m.props.title=name
+      ok = %t
+      ierr = 0
+      scs_m = scicos_diagram(version=current_version)
+      scs_m.props.title = name ; 
     end
+
     if ierr<>0 then
       message('An error has occur during execution of '+name+'.')
       ok=%f
