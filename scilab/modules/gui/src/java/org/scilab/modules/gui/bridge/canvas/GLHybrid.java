@@ -13,12 +13,14 @@
 package org.scilab.modules.gui.bridge.canvas;
 
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
-import java.awt.Panel;
 import java.awt.Toolkit;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.nio.ByteBuffer;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
@@ -28,8 +30,6 @@ import javax.media.opengl.GLCapabilitiesChooser;
 import javax.media.opengl.GLContext;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.sun.opengl.util.Screenshot;
@@ -37,12 +37,14 @@ import com.sun.opengl.util.Screenshot;
 
 public class GLHybrid extends JPanel implements GLAutoDrawable {
 
-    private final static boolean VERBOSE = true;
-    private final static boolean TIMED = false;
-    
+    private final static boolean VERBOSE = false;
+    private final static boolean TIMED = true;
+    private final static boolean SHOWCANVAS = true;
+    private final static boolean ACCELERATESCREENSHOT = false;
+
     private boolean needReDump = true;
 
-    private final GLCanvas canvas;
+    private GLCanvas canvas;
     private BufferedImage dump;
     private final int screenWidth;
     private final int screenHeight;
@@ -60,7 +62,7 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 	    System.err.println("[GLHybrid] "+msg+" --> "+(tac - tic)+"ms");
 	}
     }
-    
+
 
     public GLHybrid() {
 	this(null);
@@ -86,7 +88,7 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 	screenHeight = screenSize.height;
 	canvas.setSize(screenSize.width, screenSize.height);
 	canvas.setLocation(0, 0);
-	canvas.setVisible(true);
+	canvas.setVisible(SHOWCANVAS);
 
 	//Animator animator = new Animator(canvas);
 	//animator.setRunAsFastAsPossible(true);
@@ -119,25 +121,58 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 	canvas.display();
 	tac = System.currentTimeMillis();
 	time("canvas.display();", tic, tac);
-	
+
 	/** MAKE CURRENT */
 	tic = System.currentTimeMillis();
 	canvas.getContext().makeCurrent();
 	tac = System.currentTimeMillis();
 	time("canvas.getContext().makeCurrent();", tic, tac);
-	
+
 	/** SCREEN SHOT*/
-	tic = System.currentTimeMillis();
-	dump = Screenshot.readToBufferedImage(getWidth(), getHeight());
-	tac = System.currentTimeMillis();
-	time("Screenshot.readToBufferedImage...", tic, tac);
-	
+	if (ACCELERATESCREENSHOT) {
+	    tic = System.currentTimeMillis();
+	    /** --- MY BEAUTIFUL SCREENSHOT --- */
+	    BufferedImage image = new BufferedImage(getWidth(), getHeight(),  BufferedImage.TYPE_3BYTE_BGR);
+	    GL gl = canvas.getGL();
+
+	    /** Set up pixel storage modes */
+	    PixelStorageModes psm = new PixelStorageModes();
+	    psm.save(gl);
+
+	    /** read the BGR values into the image */
+	    gl.glReadPixels(0, 0, getWidth(), getHeight(), GL.GL_BGR,
+		    GL.GL_UNSIGNED_BYTE,
+		    ByteBuffer.wrap(((DataBufferByte) image.getRaster().getDataBuffer()).getData()));
+
+	    /** Restore pixel storage modes */
+	    psm.restore(gl);
+
+	    /** Flip the image vertically */
+	    dump = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_3BYTE_BGR);
+	    Graphics2D g2d = dump.createGraphics();
+	    AffineTransform at = AffineTransform.getTranslateInstance(0, getHeight());
+	    at.scale(1, -1);
+	    g2d.drawRenderedImage(image, at);
+	    g2d.dispose();
+	    /** --- MY BEAUTIFUL SCREENSHOT --- */
+	    tac = System.currentTimeMillis();
+	    time("My screenshot...", tic, tac);
+	}
+	else {
+	    tic = System.currentTimeMillis();
+	    /** --- JOGL SCREENSHOT --- */
+	    dump = Screenshot.readToBufferedImage(getWidth(), getHeight());
+	    /** --- JOGL SCREENSHOT --- */
+	    tac = System.currentTimeMillis();
+	    time("Screenshot.readToBufferedImage...", tic, tac);
+	}
+
 	/** RELEASE CONTEXT */
 	tic = System.currentTimeMillis();
 	canvas.getContext().release();	
 	tac = System.currentTimeMillis();
 	time("canvas.getContext().release();", tic, tac);
-	
+
 	synchronized (this) {
 	    needReDump = false;    
 	}
@@ -150,10 +185,10 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 	canvas.display();
 	tac = System.currentTimeMillis();
 	time("canvas.display();", tic, tac);
-	
+
 	/** DRAWIMAGE */
 	tic = System.currentTimeMillis();
-	g.drawImage(dump, 0, 0, screenWidth, screenHeight, this);
+	g.drawImage(dump, 0, 0, getWidth(), getHeight(), this);
 	tac = System.currentTimeMillis();
 	time("g.drawImage...", tic, tac);
     }
@@ -254,16 +289,52 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
     public void setSize(int width, int height) {
 	super.setSize(width, height);
 	call("setSize(int width, int height)");
-	//canvas.setSize(width, height);
+	canvas.setSize(width, height);
     }
 
     public void setSize(Dimension dim) {
 	super.setSize(dim);
 	call("setSize(Dimension dim)");
-	//canvas.setSize(dim);
+	canvas.setSize(dim);
 	//canvas.paint(canvas.getGraphics());
 	//canvas.repaint();
 	//canvas.display();
+    }
+
+    private static class PixelStorageModes {
+	int packAlignment;
+	int packRowLength;
+	int packSkipRows;
+	int packSkipPixels;
+	int packSwapBytes;
+	int[] tmp = new int[1];
+
+	void save(GL gl) {
+	    gl.glGetIntegerv(GL.GL_PACK_ALIGNMENT, tmp, 0);
+	    packAlignment  = tmp[0];
+	    gl.glGetIntegerv(GL.GL_PACK_ROW_LENGTH, tmp, 0);
+	    packRowLength  = tmp[0];
+	    gl.glGetIntegerv(GL.GL_PACK_SKIP_ROWS, tmp, 0);
+	    packSkipRows   = tmp[0];
+	    gl.glGetIntegerv(GL.GL_PACK_SKIP_PIXELS, tmp, 0);
+	    packSkipPixels = tmp[0];
+	    gl.glGetIntegerv(GL.GL_PACK_SWAP_BYTES, tmp, 0);
+	    packSwapBytes  = tmp[0];
+
+	    gl.glPixelStorei(GL.GL_PACK_ALIGNMENT, 1);
+	    gl.glPixelStorei(GL.GL_PACK_ROW_LENGTH, 0);
+	    gl.glPixelStorei(GL.GL_PACK_SKIP_ROWS, 0);
+	    gl.glPixelStorei(GL.GL_PACK_SKIP_PIXELS, 0);
+	    gl.glPixelStorei(GL.GL_PACK_SWAP_BYTES, 0);
+	}
+
+	void restore(GL gl) {
+	    gl.glPixelStorei(GL.GL_PACK_ALIGNMENT, packAlignment);
+	    gl.glPixelStorei(GL.GL_PACK_ROW_LENGTH, packRowLength);
+	    gl.glPixelStorei(GL.GL_PACK_SKIP_ROWS, packSkipRows);
+	    gl.glPixelStorei(GL.GL_PACK_SKIP_PIXELS, packSkipPixels);
+	    gl.glPixelStorei(GL.GL_PACK_SWAP_BYTES, packSwapBytes);
+	}
     }
 
 }
