@@ -157,7 +157,7 @@ void cscope(scicos_block * block,int flag)
             /*Maybe we are in the end of axes so we have to draw new ones */
 	    scoRefreshDataBoundsX(pScopeMemory,t);
 
-	    //Cannot be factorized depends of the scope
+	    // Cannot be factorized depends of the scope
 	    u1 = GetRealInPortPtrs(block,1);
 	    for (i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
 	       {
@@ -167,9 +167,9 @@ void cscope(scicos_block * block,int flag)
 	         pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort] = u1[i];
 	         pPOLYLINE_FEATURE(pShortDraw)->n1++;
   	       }
-	    //End of Cannot
+	    // End of Cannot
 
-	    //Draw the Scope
+	    // Draw the Scope
 	    scoDrawScopeAmplitudeTimeStyle(pScopeMemory, t); //** the scope update condition
                                                              //** is hidden here 
 	  }

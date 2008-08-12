@@ -158,6 +158,7 @@ void cmscope(scicos_block * block, int flag)
   scoGraphicalObject pShortDraw;
   int i,j;
 
+  double d_current_real_time ; 
 
   /* Initializations and Allocations*/
   //Allocations are done here because there are dependent of some values presents below
@@ -168,7 +169,13 @@ void cmscope(scicos_block * block, int flag)
     case Initialization:
       {
 	cmscope_draw(block,&pScopeMemory,1);
-	break; //Break of the switch condition don t forget it
+        
+        //** Init the real time section
+          //** current real time as double [second] 
+          d_current_real_time = scoGetRealTime();
+          pScopeMemory->d_last_scope_update_time = d_current_real_time ; //** update the ds for the next step 
+
+	break; //Break of the switch condition: dont forget it 
       } //End of Initialization
   
     case StateUpdate:
@@ -202,14 +209,16 @@ void cmscope(scicos_block * block, int flag)
 		  }
 	      }
 
-	    scoDrawScopeAmplitudeTimeStyle(pScopeMemory, t);
+            // Draw the Scope
+	    scoDrawScopeAmplitudeTimeStyle(pScopeMemory, t); //** the scope update condition
+                                                             //** is hidden here 
 
-	    
-	    //Break of the switch don t forget it !
-	  }//End of stateupdate
+	  } 
 	break; 
-	//This case is activated when the simulation is done or when we close scicos
-      }
+
+      } //**End of stateupdate
+    
+   //** Ending is activated when the simulation is done or when we close Scicos
     case Ending:
       {
 	scoRetrieveScopeMemory(block->work, &pScopeMemory);
@@ -222,9 +231,7 @@ void cmscope(scicos_block * block, int flag)
 	    scoDelCoupleOfPolylines(pScopeMemory);
 
 	  }
-	
-        //** printf("On entre dans le free scope de cmscope\n");
-	//** ... see inside the following function for more details
+
         scoFreeScopeMemory(block->work, &pScopeMemory);
 
 	break;
