@@ -2447,14 +2447,15 @@ ConstructCompoundSeq (int number)
     return NULL ;
   }
 
-  for ( i = 0 ; i < number ; i++ )
+  /* Remove the created objects after the compound and add them */
+  /* Under the compound in the same order */
+  for ( i = number ; i > 0 ; i-- )
   {
-    // get the second and consequently lastly added son
-    // after the compound
-    sciPointObj * curObj = sciGetSons(psubwin)->pnext->pointobj;
-    // remove it from the subwin
+    /* get the first added son, ie the last one of the i - 1 remainings. */
+    sciPointObj * curObj = sciGetIndexedSon(psubwin, i);
+    /* remove it from the subwin */
     sciDelThisToItsParent(curObj, psubwin);
-    // add it to the agreg
+    /* add it to the agreg */
     sciAddThisToItsParent(curObj, pobj);
   }
 
