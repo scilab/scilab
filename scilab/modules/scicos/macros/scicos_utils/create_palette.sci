@@ -19,7 +19,7 @@
 // See the file ./license.txt
 //
 
-function [routines,IntFunc]=create_palette(Path)
+function [routines,IntFunc] = create_palette(Path)
 // This function generates a palette if Path is a string indicating
 // the directoy in which the interfacing functions of the blocks are
 // to be found.
@@ -27,23 +27,27 @@ function [routines,IntFunc]=create_palette(Path)
 // palettes are regenerated. If %f, then only IntFunc (list of
 // interfacing functions) is returned. List of routines is empty in
 // this case.
+
   load SCI/modules/scicos/macros/scicos_scicos/lib;
   load SCI/modules/scicos/macros/scicos_auto/lib;
   load SCI/modules/scicos/macros/scicos_utils/lib;
 
-  scicos_ver=get_scicos_version();
-  rhs=argn(2)
+  scicos_ver = get_scicos_version();
+  rhs = argn(2)
+
   if rhs==1 & type(Path)==4 then // generate scicos palettes
-    rhs=0
-    gener=Path
-  elseif rhs==0 then
-    gener=%t
+    rhs = 0 ; 
+    gener = Path ; 
+  elseif rhs==0 then 
+    gener = %t
   end
+
+  //** Regenerate a specific palette 
   if rhs==1 then
-    Path=pathconvert(Path,%t,%t)
-    PalName=basename(part(Path,1:length(Path)-1))
-    to_del=[]
-    lisf=listfiles(Path+'*.sci')
+    Path = pathconvert(Path,%t,%t)
+    PalName = basename(part(Path,1:length(Path)-1))
+    to_del = [];
+    lisf = listfiles(Path+'*.sci')
     for i=1:size(lisf,'*')
       fil=lisf(i)
       ierror=execstr('getf(fil)','errcatch')
@@ -53,16 +57,22 @@ function [routines,IntFunc]=create_palette(Path)
     end
     lisf(to_del)=[];
     routines=build_palette(lisf,Path,PalName);IntFunc=lisf
-  else
+  
+  else //** regenerate ALL the palettes 
+  
     [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
-     %scicos_display_mode, modelica_libs,scicos_pal_libs,..
-     %scicos_gif,%scicos_contrib] = initial_scicos_tables()
+    %scicos_display_mode, modelica_libs,scicos_pal_libs,..
+    %scicos_gif,%scicos_contrib] = initial_scicos_tables();
+ 
     clear %scicos_menu  %scicos_short %scicos_help %scicos_display_mode modelica_libs
-    exec(loadpallibs,-1)
-    path='SCI/modules/scicos_blocks/macros/'
 
-    routines=[];IntFunc=[];
-    for txt=scicos_pal(:,1)'
+    exec(loadpallibs,-1)
+
+    path = "SCI/modules/scicos/macros/scicos_scicos/" ; //** ... for the moment, the palettes stay here (for compatibility). 
+
+    routines = [];
+    IntFunc  = [];
+    for txt = scicos_pal(:,1)'
       disp('Constructing '+txt)
       if txt=='Sources' then
 	lisf=['CONST_m.sci';'GENSQR_f.sci';'RAMP.sci';
@@ -169,52 +179,65 @@ function [routines,IntFunc]=create_palette(Path)
       else
 	error('Palette '+txt+' does not exists')
       end
-      IntFunc=[IntFunc;lisf];
-      if gener then routines=[routines;build_palette(lisf,path,txt)];end
+      IntFunc = [IntFunc;lisf];
+      if gener then
+          routines = [routines;build_palette(lisf,path,txt)];
+      end
     end
   end
-  routines=unique(routines);IntFunc=unique(IntFunc);
+  routines = unique(routines);
+  IntFunc = unique(IntFunc);
 endfunction
 
 
-function [routines]=build_palette(lisf,path,fname)
-  scs_m=scicos_diagram()
-  X=0
-  Y=0
-  yy=0
-  sep=30
-  routines=[];
-  for fil=lisf'
-    name=basename(fil)
+function [routines] = build_palette(lisf,path,fname)
+  scs_m = scicos_diagram()
+  X = 0
+  Y = 0
+  yy  = 0
+  sep = 30
+  routines = [];
+  
+  for fil = lisf'
+    name = basename(fil)
+
     //name= part(fil,1:length(fil)-4)
-    ierror=execstr('blk='+name+'(''define'')','errcatch')
+    ierror = execstr('blk='+name+'(''define'')','errcatch')
     if ierror <>0 then
       message(['Error in GUI function';lasterror()] )
       fct=[]
       return
     end
-    routines=[routines;blk.model.sim(1)]
-    blk.graphics.sz=20*blk.graphics.sz;
-    blk.graphics.orig=[X Y]
-    X=X+blk.graphics.sz(1)+sep
-    yy=max(yy,blk.graphics.sz(2))
-    if X>400 then X=0,Y=Y+yy+sep,yy=0,end
-    scs_m.objs($+1)=blk
+
+    routines = [routines;blk.model.sim(1)]
+    blk.graphics.sz = 20*blk.graphics.sz;
+    blk.graphics.orig = [X Y] ;
+    X = X+blk.graphics.sz(1)+sep ;
+    yy = max(yy,blk.graphics.sz(2)) ;
+    if X>400 then 
+      X = 0
+      Y = Y + yy + sep
+      yy= 0
+    end
+
+    scs_m.objs($+1) = blk
+
   end
   [u,err]=file('open',path+fname+'.cosf','unknown','formatted')
   if err<>0 then
-    message('File or directory write access denied')
+    message("File or directory write access denied")
     return
   end
-  scs_m.props.title=[fname,path]
-  ierr=cos2cosf(u,do_purge(scs_m))
+  scs_m.props.title = [fname,path]
+  ierr = cos2cosf(u,do_purge(scs_m))
   if ierr<>0 then
-    message('Directory write access denied')
+    message("Directory write access denied")
     file('close',u)
     return
   end
 
   file('close',u)
   mprintf('Wrote '+path+fname+'.cosf \n')
+
 endfunction
 
