@@ -126,7 +126,7 @@ if mtlb_opts==[] then //binary save
       P=5
       T=1
     else
-      error(msprintf(gettext("%s: Attempt to write an unsupported data type to an ASCII file.\n"),"mtlb_save")
+      error(msprintf(gettext("%s: Attempt to write an unsupported data type to an ASCII file.\n"),"mtlb_save"))
     end
     [m,n]=size(x)
   

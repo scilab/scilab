@@ -12,7 +12,7 @@ function [status]=mtlb_close(h)
 
 rhs=argn(2)
 
-warning(msprintf(gettext("%s: ''%s' ignored.\n"),"mtlb_close", "status"));
+warning(msprintf(gettext("%s: ''%s'' ignored.\n"),"mtlb_close", "status"));
 status=1
 
 // close
