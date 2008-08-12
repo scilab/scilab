@@ -24,6 +24,7 @@
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "scilabmode.h"
 #include "stricmp.h"
 #ifdef _MSC_VER
 	#include "strdup_windows.h"
@@ -49,6 +50,13 @@ BOOL LoadClasspath(char *xmlfilename)
 			char *classpath=NULL;
 			char *load="";
 			typeOfLoad eLoad=STARTUP;
+			char *currentMode = getScilabModeString();
+			/* Xpath Query :
+			 * Retrieve all the path which are not disabled in our mode 
+			 */
+			#define XPATH "//classpaths/path[not(@disableUnderMode='%s')]"
+			char * XPath=(char*)MALLOC(sizeof(char)*(strlen(XPATH)+strlen(currentMode)-2+1)); /* -2 = strlen(%s) */
+			sprintf(XPath,XPATH,currentMode);
 
 			doc = xmlParseFile (xmlfilename);
 
@@ -60,7 +68,7 @@ BOOL LoadClasspath(char *xmlfilename)
 			}
 
 			xpathCtxt = xmlXPathNewContext(doc);
-			xpathObj = xmlXPathEval((const xmlChar*)"//classpaths/path", xpathCtxt);
+			xpathObj = xmlXPathEval((const xmlChar*)XPath, xpathCtxt);
 
 			if(xpathObj && xpathObj->nodesetval->nodeMax) 
 			{
