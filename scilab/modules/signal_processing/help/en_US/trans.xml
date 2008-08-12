@@ -9,8 +9,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>hzt=trans(hz,tr_type,frq)
-hzt=trans(pd,zd,gd,tr_type,frq)</synopsis>
+    <synopsis>hzt=trans(hz,tr_type,frq)</synopsis>
+    <synopsis>hzt=trans(pd,zd,gd,tr_type,frq)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -18,25 +18,25 @@ hzt=trans(pd,zd,gd,tr_type,frq)</synopsis>
       <varlistentry>
         <term>hz</term>
         <listitem>
-          <para>given fiter transfert function</para>
+          <para>a single input single output discrete transfer function, the low pass filter</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>pd</term>
         <listitem>
-          <para>Vector of given fiter poles</para>
+          <para>Vector of given filter poles</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>zd</term>
         <listitem>
-          <para>Vector of given fiter zeros</para>
+          <para>Vector of given filter zeros</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>gd</term>
         <listitem>
-          <para>scalar: the given fiter gain</para>
+          <para>scalar: the given filter gain</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -48,7 +48,9 @@ hzt=trans(pd,zd,gd,tr_type,frq)</synopsis>
       <varlistentry>
         <term>frq</term>
         <listitem>
-          <para>2-vector of discrete cut-off frequencies (i.e.,<literal>0&lt;frq&lt;.5</literal>). For lp and hp filters only frq(1) is used. For bp and sb filters frq(1) is the lower cut-off frequency and frq(2) is the upper cut-off frequency. </para>
+          <para>2-vector of discrete cut-off frequencies
+          (i.e.,<literal>0&lt;frq&lt;.5</literal>). see description
+          for details. </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,56 +63,66 @@ hzt=trans(pd,zd,gd,tr_type,frq)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>
-    function for transforming standardized low-pass filter given its
+    <para>function for transforming standardized low-pass filter given its
       poles-zeros_gain representation into
-    one of the following filters:
-    </para>
-    <para>
-      low-pass ('lp'), the cutoff frequency is given by the first entry of frq,
-      the second one is ignored
-    </para>
-    <para>
-      high-pass ('hp'),  the cutoff frequency is given by the first entry of frq,
-      the second one is ignored
-    </para>
-    <para>
-      
-      band-pass ('bp'), the frequency range is given by frq(1) and frq(2)
-    </para>
-    <para>
-      stop-band ('sb') , the frequency range is given by frq(1) and frq(2).
-    </para>
+    one of the following filters:</para>
+    <variablelist>
+      <varlistentry>
+	<term>tr_type='lp'</term>
+	<listitem>
+	  <para>low pass filter, the cutoff frequency is given by the
+	  first entry of <literal>frq</literal>, the second one is ignored.</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>tr_type='hp'</term>
+	<listitem>
+	  <para>high pass filter, the cutoff frequency is given by the
+	  first entry of  <literal>frq</literal>, the second one is ignored.</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>tr_type='bp'</term>
+	<listitem>
+	  <para>band pass filter, the frequency range is given by <literal>frq(1)</literal> and <literal>frq(2)</literal>.</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>tr_type='sb'</term>
+	<listitem>
+	  <para>stop band filter, the frequency range is given by <literal>frq(1)</literal> and <literal>frq(2)</literal>.</para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+ 
+  <title>Used functions</title>
+  <para><link linkend="bilt">bilt</link></para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
 clf()
-
 Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
-subplot(311)
-gainplot(Hlp,1d-3,0.48)
-legend('original low pass')
-
-
 Hbp=trans(Hlp,'bp',[0.01 0.1]);
-subplot(312)
-gainplot(Hbp,1d-3,0.48)
-legend('band pass')
-
-
 Hsb=trans(Hlp,'sb',[0.01 0.1])
-subplot(313)
-gainplot(Hsb,1d-3,0.48)
-legend('stop band')
 
-
- 
+clf();gainplot([Hlp;Hbp;Hsb],1d-3,0.48);
+l=legend(['original low pass';'band pass';'stop band']);
+l.legend_location="in_lower_left";
   ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>
-    <para>C. Bunks ;   </para>
+    <para>Carey Bunks ;   </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member><link linkend="iir">iir</link></member>
+       <member><link linkend="bilt">bilt</link></member>
+    </simplelist>
   </refsection>
 </refentry>
