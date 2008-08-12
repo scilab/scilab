@@ -16,6 +16,7 @@ package org.scilab.modules.renderer.polylineDrawing;
 
 import javax.media.opengl.GL;
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.GeomAlgos;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
@@ -33,11 +34,14 @@ public class PolylineInterpColorDrawerGL extends FillDrawerGL {
 	
 	private static final int TRIANGLE_NB_EDGE = 3;
 	
+	private boolean isZconstant;
+	
 	/**
 	 * Default constructor
 	 */
 	public PolylineInterpColorDrawerGL() {
-		
+		super();
+		isZconstant = false;
 	}
 	
 	/**
@@ -50,6 +54,9 @@ public class PolylineInterpColorDrawerGL extends FillDrawerGL {
 	public void drawPolyline(double[] xCoords, double[] yCoords,
 							 double[] zCoords, int[] colors) {
 		
+		// check if Z is constant
+		this.isZconstant = checkIfZconstant(zCoords);
+		
 		GL gl = getGL();
 		
 		Vector3D[] vertices = new Vector3D[xCoords.length];
@@ -61,6 +68,9 @@ public class PolylineInterpColorDrawerGL extends FillDrawerGL {
 		
 		ShadeFacetDrawer sfd = getParentFigureGL().getShadeFacetDrawer();
 		
+		// push polygons back if needed
+		CoordinateTransformation transform = getParentFigureGL().getCoordinateTransformation();
+		transform.pushPolygonsBack(gl, this);
 		
 		Texture colorMapTexture = getColorMap().getTexture();
 		colorMapTexture.enable();
@@ -88,6 +98,32 @@ public class PolylineInterpColorDrawerGL extends FillDrawerGL {
 		gl.glEnd();
 		
 		colorMapTexture.disable();
-	}	
+		
+		transform.endPushPolygonsBack(gl, this);
+	}
+	
+	/**
+	 * Check if the z coordinate of the polyline is constant
+	 * @param zCoords z coordinates of the polyline vertices
+	 * @return true if z is constant, false otherwise
+	 */
+	private boolean checkIfZconstant(double[] zCoords) {
+		for (int i = 0; i < zCoords.length; i++) {
+			if (zCoords[0] != zCoords[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * This method is used to know if polygon offset is needed in 2d mode.
+	 * If this function returns true, then the polygon offset is not needed in 2d mode.
+	 * If it returns false, polygon offset is always needed.
+	 * @return true if the object is flat along Z coordinate
+	 */
+	public boolean isZConstant() {
+		return isZconstant;
+	}
 
 }

@@ -40,8 +40,10 @@ DrawableSubwinJoGL::~DrawableSubwinJoGL( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableSubwinJoGL::initializeDrawing( void )
 {
+  sciPointObj * pSubwin = getSubwinDrawer()->getDrawedObject();
   DrawableObjectJoGL::initializeDrawing();
-  getSubwinJavaMapper()->setSubwinIndex(sciGetSubwinIndex(getSubwinDrawer()->getDrawedObject()));
+  getSubwinJavaMapper()->setSubwinParameters(sciGetSubwinIndex(pSubwin),
+                                             sciGetIs3d(pSubwin) == FALSE);
 }
 /*---------------------------------------------------------------------------------*/
 DrawableSubwin * DrawableSubwinJoGL::getSubwinDrawer( void )

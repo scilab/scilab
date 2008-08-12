@@ -108,7 +108,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetSubwinIndexjintID=NULL; 
+voidsetSubwinParametersjintjbooleanID=NULL; 
 
 
 }
@@ -140,7 +140,7 @@ voidendDrawingID=NULL;
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
 voidsetFigureIndexjintID=NULL; 
-voidsetSubwinIndexjintID=NULL; 
+voidsetSubwinParametersjintjbooleanID=NULL; 
 
 
 }
@@ -279,17 +279,19 @@ curEnv->ExceptionDescribe() ;
                         
 }
 
-void DrawableSubwinGL::setSubwinIndex (long index){
+void DrawableSubwinGL::setSubwinParameters (long index, bool is2d){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voidsetSubwinIndexjintID==NULL) { /* Use the cache Luke */ voidsetSubwinIndexjintID = curEnv->GetMethodID(this->instanceClass, "setSubwinIndex", "(I)V" ) ;
-if (voidsetSubwinIndexjintID == NULL) {
-std::cerr << "Could not access to the method " << "setSubwinIndex" << std::endl;
+if (voidsetSubwinParametersjintjbooleanID==NULL) { /* Use the cache Luke */ voidsetSubwinParametersjintjbooleanID = curEnv->GetMethodID(this->instanceClass, "setSubwinParameters", "(IZ)V" ) ;
+if (voidsetSubwinParametersjintjbooleanID == NULL) {
+std::cerr << "Could not access to the method " << "setSubwinParameters" << std::endl;
 exit(EXIT_FAILURE);
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voidsetSubwinIndexjintID ,index);
+jboolean is2d_ = ((bool) is2d ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetSubwinParametersjintjbooleanID ,index, is2d_);
                         
 if (curEnv->ExceptionOccurred()) {
 curEnv->ExceptionDescribe() ;

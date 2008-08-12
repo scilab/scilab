@@ -33,6 +33,13 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 		super();
 	}
 	
+	/**
+	 * Specify if the subwin is drawn in 2d or not
+	 * @param is2d if true subwindow is considered in 2d mode
+	 */
+	public void setIs2d(boolean is2d) {
+		getParentFigureGL().getCoordinateTransformation().set2dMode(is2d);
+	}
 	
 	/**
 	 * Specify the index of the subwindow within other subwindows siblings
@@ -53,6 +60,16 @@ public class DrawableSubwinGL extends DrawableObjectGL {
 		
 		// default mode, draw in the middle of depth range
 		transform.drawMiddle(gl);
+	}
+	
+	/**
+	 * Set all the subwin parameters
+	 * @param index index of the subwindow
+	 * @param is2d if true subwindow is considered in 2d mode
+	 */
+	public void setSubwinParameters(int index, boolean is2d) {
+		setSubwinIndex(index);
+		setIs2d(is2d);
 	}
 
 	/**

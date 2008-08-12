@@ -15,7 +15,6 @@
 package org.scilab.modules.renderer.drawers;
 
 import org.scilab.modules.renderer.AutoDrawableObjectGL;
-import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
  * Class containing functions called by RectangleFillDrawerJoGL.cpp
@@ -41,9 +40,6 @@ public class FillDrawerGL extends AutoDrawableObjectGL {
 	 */
 	public void initializeDrawing(int parentFigureIndex) {
 		super.initializeDrawing(parentFigureIndex);
-		
-		// polygons are pushed back for better drawing with lines
-		GLTools.pushPolygonsBack(getGL());
 	}
 	
 	
@@ -51,8 +47,7 @@ public class FillDrawerGL extends AutoDrawableObjectGL {
 	 * Function called at the end of the OpenGL use.
 	 */
 	public void endDrawing() {
-		GLTools.endPushPolygonsBack(getGL());
-                super.endDrawing();
+        super.endDrawing();
 	}
 	
 	
@@ -76,6 +71,16 @@ public class FillDrawerGL extends AutoDrawableObjectGL {
 	 */
 	public double[] getBackColor() {
 		return getColorMap().getColor(backColor);
+	}
+	
+	/**
+	 * This method is used to know if polygon offset is needed in 2d mode.
+	 * If this function returns true, then the polygon offset is not needed in 2d mode.
+	 * If it returns false, polygon offset is always needed.
+	 * @return true if the object is flat along Z coordinate
+	 */
+	public boolean isZConstant() {
+		return false;
 	}
 	
 }

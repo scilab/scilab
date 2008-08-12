@@ -45,7 +45,7 @@ public:
   virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for subwins
-  virtual void setSubwinIndex(int subwinIndex);
+  virtual void setSubwinParameters(int subwinIndex, bool is2d);
   /*----------------------------------------------------------------------*/
 
 protected:

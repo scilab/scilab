@@ -58,7 +58,7 @@ jmethodID voidendDrawingID; // cache method id
 jmethodID voidshowjintID; // cache method id
 jmethodID voiddestroyjintID; // cache method id
 jmethodID voidsetFigureIndexjintID; // cache method id
-jmethodID voidsetSubwinIndexjintID; // cache method id
+jmethodID voidsetSubwinParametersjintjbooleanID; // cache method id
 
 
 /**
@@ -112,7 +112,7 @@ void destroy(long figureIndex);
 
 void setFigureIndex(long figureIndex);
 
-void setSubwinIndex(long index);
+void setSubwinParameters(long index, bool is2d);
 
 
                         /**

@@ -16,8 +16,10 @@ package org.scilab.modules.renderer.utils;
 
 import javax.media.opengl.GL;
 
+import org.scilab.modules.renderer.drawers.FillDrawerGL;
 import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 
 /**
@@ -51,6 +53,8 @@ public class CoordinateTransformation {
 	private double zNear;
 	private double zFar;
 	
+	private boolean is2dMode;
+	
 	/**
 	 * default constructor
 	 */
@@ -64,6 +68,15 @@ public class CoordinateTransformation {
 		additionalTranslationPix = null;
 		zNear = 0.0;
 		zFar = 1.0;
+		is2dMode = false;
+	}
+	
+	
+	/**
+	 * @param is2d specify if the drawing is 2d or not
+	 */
+	public void set2dMode(boolean is2d) {
+		this.is2dMode = is2d;
 	}
 	
 	/**
@@ -316,6 +329,28 @@ public class CoordinateTransformation {
 	 */
 	private double getBackStartDepth() {
 		return (1 - START_BACK_DEPTH) * zNear + START_BACK_DEPTH * zFar;
+	}
+	
+	/**
+	 * Enable polygon offset
+	 * @param gl current gl pipeline
+	 * @param drawer object drawing polygons
+	 */
+	public void pushPolygonsBack(GL gl, FillDrawerGL drawer) {
+		if (!is2dMode || !drawer.isZConstant()) {
+			GLTools.pushPolygonsBack(gl);
+		}
+	}
+	
+	/**
+	 * Disable polygon offset
+	 * @param gl current gl pipeline
+	 * @param drawer object drawing polygons
+	 */
+	public void endPushPolygonsBack(GL gl, FillDrawerGL drawer) {
+		if (!is2dMode || !drawer.isZConstant()) {
+			GLTools.endPushPolygonsBack(gl);
+		}
 	}
 	
 }

@@ -19,6 +19,7 @@ package org.scilab.modules.renderer.arcDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 
 /**
@@ -31,6 +32,8 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 	private ArcFillTools drawer;
 	
 	private boolean useNurbs;
+	
+	private boolean isZconstant;
 	
 	/**
 	 * Default constructor
@@ -46,6 +49,7 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 	 */
 	public void setUseNurbs(boolean useNurbs) {
 		this.useNurbs = useNurbs;
+		this.isZconstant = false;
 	}
 	
 	/**
@@ -73,6 +77,13 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 		Vector3D semiMinorAxis = new Vector3D(semiMinorAxisX, semiMinorAxisY, semiMinorAxisZ);
 		Vector3D semiMajorAxis = new Vector3D(semiMajorAxisX, semiMajorAxisY, semiMajorAxisZ);
 	
+		// check if Z is constant
+		if (semiMajorAxisZ == 0.0 && semiMajorAxisZ == 0.0) {
+			isZconstant = true;
+		} else {
+			isZconstant = false;
+		}
+		
 		ArcRendererFactory arcFactory = null;
 		if (useNurbs) {
 			arcFactory = getParentFigureGL().getArcRendererFactory();
@@ -82,7 +93,6 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 			arcFactory = new FastArcRendererFactory();
 		}
 		drawer = arcFactory.createArcFillRenderer(center, semiMinorAxis, semiMajorAxis, startAngle, endAngle);
-		
 		drawArc();
 		
 	}
@@ -105,9 +115,26 @@ public class ArcFillDrawerGL extends FillDrawerGL implements ArcDrawerStrategy {
 	public void drawArc() {
 		GL gl = getGL();
 		
+		// push polygons back if needed
+		CoordinateTransformation transform = getParentFigureGL().getCoordinateTransformation();
+		transform.pushPolygonsBack(gl, this);
+		
 		drawer.beginRendering(gl, getBackColor());
 		drawer.drawCircle(gl);
 		drawer.endRendering(gl);
+		
+		transform.endPushPolygonsBack(gl, this);
+		
+	}
+	
+	/**
+	 * This method is used to know if polygon offset is needed in 2d mode.
+	 * If this function returns true, then the polygon offset is not needed in 2d mode.
+	 * If it returns false, polygon offset is always needed.
+	 * @return true if the object is flat along Z coordinate
+	 */
+	public boolean isZConstant() {
+		return isZconstant;
 	}
 	
 }

@@ -163,5 +163,4 @@ public abstract class ObjectGL {
 		return getParentFigureGL().getCoordinateTransformation();
 	}
 	
-	
 }

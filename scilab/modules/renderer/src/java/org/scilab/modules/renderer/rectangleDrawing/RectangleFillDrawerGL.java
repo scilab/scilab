@@ -16,6 +16,7 @@
 package org.scilab.modules.renderer.rectangleDrawing;
 
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 
 import javax.media.opengl.GL;
 
@@ -25,11 +26,14 @@ import javax.media.opengl.GL;
  */
 public class RectangleFillDrawerGL extends FillDrawerGL implements RectangleDrawerStrategy {
 	
+	private boolean isZconstant;
+	
 	/**
 	 * Default Constructor
 	 */
 	public RectangleFillDrawerGL() {
 		super();
+		isZconstant = false;
 	}
 
 	/**
@@ -53,9 +57,17 @@ public class RectangleFillDrawerGL extends FillDrawerGL implements RectangleDraw
 							  double corner4X, double corner4Y, double corner4Z) {
 		GL gl = getGL();
 		
+		isZconstant =    corner1Z == corner2Z
+		              && corner1Z == corner3Z
+		              && corner1Z == corner4Z;
+		
 		// set color
 		double[] color = getBackColor();
 		gl.glColor3d(color[0], color[1], color[2]);
+		
+		// push polygons back if needed
+		CoordinateTransformation transform = getParentFigureGL().getCoordinateTransformation();
+		transform.pushPolygonsBack(gl, this);
 		
 		gl.glBegin(GL.GL_QUADS);
 		gl.glVertex3d(corner1X, corner1Y, corner1Z);
@@ -64,5 +76,17 @@ public class RectangleFillDrawerGL extends FillDrawerGL implements RectangleDraw
 		gl.glVertex3d(corner4X, corner4Y, corner4Z);
 		gl.glEnd();
 		
+		transform.endPushPolygonsBack(gl, this);
+		
+	}
+	
+	/**
+	 * This method is used to know if polygon offset is needed in 2d mode.
+	 * If this function returns true, then the polygon offset is not needed in 2d mode.
+	 * If it returns false, polygon offset is always needed.
+	 * @return true if the object is flat along Z coordinate
+	 */
+	public boolean isZConstant() {
+		return isZconstant;
 	}
 }

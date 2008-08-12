@@ -16,8 +16,9 @@
     <method name="setFigureIndex" returnType="void">
       <param type="int" name="figureIndex" />
     </method>
-    <method name="setSubwinIndex" returnType="void">
+    <method name="setSubwinParameters" returnType="void">
       <param type="int" name="index" />
+      <param type="boolean" name="is2d" />
     </method>
   </object>
 </package>
