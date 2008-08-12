@@ -59,9 +59,6 @@ Source: thirdparty\js.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCIL
 Source: thirdparty\saxon.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\saxon.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\saxon.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\sci_doc_kit.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\sci_doc_kit.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\sci_doc_kit.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xercesImpl.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xml-apis.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xmlgraphics-commons.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
