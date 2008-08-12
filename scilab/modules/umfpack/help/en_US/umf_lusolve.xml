@@ -51,7 +51,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function must be used in conjonction with <link linkend="umf_lufact">umf_lufact</link> which
+    This function must be used in conjonction with <link linkend='umf_lufact'>umf_lufact</link> which
     computes the LU factors of a sparse matrix. The optional
     <literal>st</literal> argument lets us choose between the solving of Ax=b (general case)
     or of A'x=b (sometimes useful). If you give the 4th argument then
@@ -62,7 +62,7 @@
   <refsection>
     <title>Examples</title>
     <para>
-    see the example section of <link linkend="umf_lufact">umf_lufact</link>
+    see the example section of <link linkend='umf_lufact'>umf_lufact</link>
   </para>
   </refsection>
   <refsection>

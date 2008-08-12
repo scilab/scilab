@@ -49,7 +49,7 @@ UMFPACK is available under alternate licences; contact T. Davis for details.
   <refsection>
     <title>Availability</title>
     <para>
-      <link xlink:href="http://www.cise.ufl.edu/research/sparse">http://www.cise.ufl.edu/research/sparse</link>
+<link linkend='http://www.cise.ufl.edu/research/sparse'>http://www.cise.ufl.edu/research/sparse</link>
     </para>
   </refsection>
 </refentry>

@@ -1,85 +1,113 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fftw">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="fftw" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>October 2006</pubdate>
   </info>
+
   <refnamediv>
     <refname>fftw</refname>
-    <refpurpose>transformée de Fourier rapide qui utilise la librairie FFTW</refpurpose>
+
+    <refpurpose>transformÃ©e de Fourier rapide qui utilise la librairie
+    FFTW</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>[y]=fftw(x)
 [y]=fftw(x,sign)
 [y]=fftw(x,sign,dim,incr)
 [y]=fftw(x,sign,[dim1 dim2 ...dimN],[incr1 incr2 ...incrN])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
+
     <variablelist>
       <varlistentry>
         <term>y,x</term>
+
         <listitem>
-          <para>matrice/vecteur de donnée réelle ou complexe. Données d'entrée/sortie.</para>
+          <para>matrice/vecteur de donnÃ©e rÃ©elle ou complexe. DonnÃ©es
+          d'entrÃ©e/sortie.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>sign</term>
+
         <listitem>
-          <para>entier. 1 ou -1. Choix du type de transformée (inverse ou directe).</para>
+          <para>entier. 1 ou -1. Choix du type de transformÃ©e (inverse ou
+          directe).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>dim</term>
+
         <listitem>
-          <para>entier. Donne la dimension (la longueur) de la transformée.</para>
+          <para>entier. Donne la dimension (la longueur) de la
+          transformÃ©e.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>incr</term>
+
         <listitem>
-          <para>entier. Donne l'entrelacement (l'écart entre les données consécutives) de la transformée.</para>
+          <para>entier. Donne l'entrelacement (l'Ã©cart entre les donnÃ©es
+          consÃ©cutives) de la transformÃ©e.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    Cette fonction réalise une Transformée de Fourier Discrete (TFD) inverse ou directe au moyen de la libraire FFTW.
-    </para>
-    <para>
-    Elle permet le calcul de transformée vectorielle, 2D et M-D.
-    </para>
-    <para>
-    Pour plus de détails concernant la syntaxe de l'appel à fftw, consultez la fonction <link xlink:href="fft.htm"><literal>fft</literal></link> de scilab.
-    </para>
-    <para>
-    Pour plus de détails concernant la libraire FFW, consultez le site web <link xlink:href="http://www.fftw.org"><literal> http://www.fftw.org </literal></link>.
-    </para>
-    <para>
-    Rmq : La fonction ffw enregistre automatiquement les dernières paramètres utilisés lors d'un appel pour les ré-utiliser une seconde fois.
-    </para>
-    <para>
-    Cela permet une amélioration significative du temps de calcul lorsque la fonction fftw est appelée consécutivement avec les mêmes paramètres.
-    </para>
+
+    <para>Cette fonction rÃ©alise une TransformÃ©e de Fourier Discrete (TFD)
+    inverse ou directe au moyen de la libraire FFTW.</para>
+
+    <para>Elle permet le calcul de transformÃ©e vectorielle, 2D et M-D.</para>
+
+    <para>Pour plus de dÃ©tails concernant la syntaxe de l'appel Ã  fftw,
+    consultez la fonction <link linkend="fft">fft</link> de scilab.</para>
+
+    <para>Pour plus de dÃ©tails concernant la libraire FFW, consultez le site
+    web <link linkend="http://www.fftw.org">http://www.fftw.org</link>.</para>
+
+    <para>Rmq : La fonction ffw enregistre automatiquement les derniÃ¨res
+    paramÃ¨tres utilisÃ©s lors d'un appel pour les rÃ©-utiliser une seconde
+    fois.</para>
+
+    <para>Cela permet une amÃ©lioration significative du temps de calcul
+    lorsque la fonction fftw est appelÃ©e consÃ©cutivement avec les mÃªmes
+    paramÃ¨tres.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
   
-  //transformée 1D
+  //transformÃ©e 1D
   a = rand(50,1)+%i*rand(50,1);
   y = fftw(a);
   y = fftw(a,-1);
-  //transformée inverse
+  //transformÃ©e inverse
   b = fftw(y,1);
 
-  //transformée 2D
+  //transformÃ©e 2D
   a = rand(512,512)+%i*rand(512,512);
   y = fftw(a);
 
-  //transformée M-D -ancienne séquence d'appel-
+  //transformÃ©e M-D -ancienne sÃ©quence d'appel-
   a = rand(120,1);
   y = a;
   dim=[5 6 4];incr=[1 5 30];
@@ -87,34 +115,33 @@
     y = fftw(y,-1,dim(i),incr(i));
   end
 
-  //transformée M-D transform -nouvelle séquence d'appel-
+  //transformÃ©e M-D transform -nouvelle sÃ©quence d'appel-
   //plus performante que l'ancienne
   y = fftw(a,-1,[5 6 4],[1 5 30]);
   b = fftw(y,1,[5 6 4],[1 5 30]);
   
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="fftw_flags">fftw_flags</link>
-      </member>
-      <member>
-        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
-      </member>
-      <member>
-        <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
-      </member>
-      <member>
-        <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
-      </member>
+      <member><link linkend="fftw_flags">fftw_flags</link></member>
+
+      <member><link linkend="get_fftw_wisdom">get_fftw_wisdom</link></member>
+
+      <member><link linkend="set_fftw_wisdom">set_fftw_wisdom</link></member>
+
+      <member><link
+      linkend="fftw_forget_wisdom">fftw_forget_wisdom</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Bibliographie</title>
-    <para>
-    Matteo Frigo and Steven G. Johnson, "FFTW Manual fo version 3.1.2" June 2006. Available : http://www.fftw.org
-    </para>
+
+    <para>Matteo Frigo and Steven G. Johnson, "FFTW Manual fo version 3.1.2"
+    June 2006. Available : http://www.fftw.org</para>
   </refsection>
 </refentry>

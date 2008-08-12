@@ -33,7 +33,7 @@
   <refsection>
     <title>Availability</title>
     <para>
-      <link xlink:href="http://www.tau.ac.il/~stoledo/taucs/">http://www.tau.ac.il/~stoledo/taucs/</link>
+<link linkend='http://www.tau.ac.il/~stoledo/taucs/'>http://www.tau.ac.il/~stoledo/taucs/</link>
     </para>
   </refsection>
 </refentry>
