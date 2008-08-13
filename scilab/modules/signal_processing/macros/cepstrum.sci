@@ -29,8 +29,8 @@ function fresp = cepstrum(w,mag)
     error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be positive.\n"),"cepstrum",1)); 
   end
   if pw<1.d-8 then 
-   error(msprintf(gettext("%s: Wrong values for input argument #%d: "+..
-			  "Distance between Max and Min elements must be greater than %g.\n"),"cepstrum",1,1d-8));  
+   error(msprintf(gettext("%s: Wrong values for input argument #%d: Distance between Max and Min elements must be greater than %g.\n"),..
+		  "cepstrum",1,1d-8));  
   end
   if size(w,'*')<>size(mag,'*') then
     error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same numbers of elements expected.\n"),"cepstrum",1,2)); 
@@ -77,7 +77,7 @@ function fresp = cepstrum(w,mag)
       fresp(i)=wrat*xhat(p) + (1-wrat)*xhat(p-1);
     end
   else
-    error(msprintf(gettext("%s: Wrong values for input argument #%d: Not sampled high enough.\n'),"cepstrum",1));
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Not sampled high enough.\n"),"cepstrum",1));
   end
   fresp=fresp(:);
 

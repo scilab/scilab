@@ -48,7 +48,7 @@ function [xm,fr]=frmag(num,den,npts)
       num=poly(num,'z','c');
       den=1
     else
-      error(msprintf(_("%s: Wrong type for input argument #%d:  Linear state space, transfer function or row vector of floats expected.\n"),'frmag',1))
+      error(msprintf(_("%s: Wrong type for input argument #%d:  Linear dynamical system or row vector of floats expected.\n"),'frmag',1))
     end,
   case 3 then,//frmag(num,den,npts)
     if type(num)==2 then,
