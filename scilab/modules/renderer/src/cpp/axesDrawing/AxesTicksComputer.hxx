@@ -29,47 +29,36 @@ public:
   virtual ~AxesTicksComputer(void);
 
   /**
-  * Reinitialize ticks computer data.
-  */
+   * Reinitialize ticks computer data.
+   */
   virtual void reinit(void);
 
   /**
-  * Get the number of ticks which will be computed by the strategy.
-  */
+   * Get the number of ticks which will be computed by the strategy.
+   */
   virtual int getNbTicks(void);
 
   /**
-  * Fill positions parameters
-  * with the ticks abscissas, ordinate, ...
-  */
+   * Fill positions parameters
+   * with the ticks abscissas, ordinate, ...
+   */
   virtual void getTicksPosition(double positions[], char * labels[], char * labelsExponents[]);
 
   /**
-  * Get the number of subticks which will be computed by the strategy.
-  */
-  virtual int getNbSubticks(double ticksPositions[], int nbTicks);
-
-  /**
-  * Get the subticks positions.
-  */
-  virtual void getSubticksPosition(const double ticksPositions[], int nbTicks,
-                                    double subTickspositions[]);
-
-  /**
-  * To be called when there are too many ticks.
-  * Compute a new sequence of ticks with less ticks.
-  */
+   * To be called when there are too many ticks.
+   * Compute a new sequence of ticks with less ticks.
+   */
   virtual void reduceTicksNumber(void);
 
   /**
-  * To know if the ticks computer needs decimation.
-  */
+   * To know if the ticks computer needs decimation.
+   */
   virtual bool needTicksDecimation(void) {return false;}
 
 
   /**
-  * To know if we need to get ticks exposants or not.
-  */
+   * To know if we need to get ticks exposants or not.
+   */
   virtual bool isDisplayingLabelsExponents(void) {return false;}
 
 protected:

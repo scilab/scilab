@@ -92,35 +92,6 @@ void AutomaticTicksComputer::getTicksPosition(double positions[], char * labels[
 
 }
 /*------------------------------------------------------------------------------------------*/
-int AutomaticTicksComputer::getNbSubticks(double ticksPositions[], int nbTicks)
-{
-  return Max(0, ComputeNbSubTics(m_pDrawer->getDrawedObject(), nbTicks, 'n', ticksPositions, 0) * (m_iNbTicks - 1));
-}
-/*------------------------------------------------------------------------------------------*/
-void AutomaticTicksComputer::getSubticksPosition(const double ticksPositions[], int nbTicks,
-                                                 double subTickspositions[])
-{
-  // compute number of subtics
-  int nbSubtics = ComputeNbSubTics(m_pDrawer->getDrawedObject(), nbTicks, 'n', ticksPositions, 0);
-
-  /*    |              |              |    */
-  /* ___|____|____|____|____|____|____|___ */
-  /*   t0             t1             t2   */
-
-  // draw only between two ticks, so skip last one
-  for (int i = 0; i < nbTicks - 1; i++)
-  {
-    // decompose interval in nbsubtics parts
-    double prevTick = ticksPositions[i];
-    double nextTick = ticksPositions[i + 1];
-    for (int j = 0; j < nbSubtics; j++)
-    {
-      subTickspositions[j + nbSubtics * i]
-        =  prevTick + (nextTick - prevTick) * (j + 1.0) / (nbSubtics + 1.0); 
-    }
-  }
-}
-/*------------------------------------------------------------------------------------------*/
 void AutomaticTicksComputer::reduceTicksNumber(void)
 {
   m_iNbTicks = (m_iNbTicks + 1) / 2;

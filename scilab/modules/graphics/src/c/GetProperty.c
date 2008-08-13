@@ -4244,6 +4244,23 @@ void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3])
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * Get auto_ticks property for each axis
+ */
+BOOL sciGetAutoSubticks(sciPointObj * pObj)
+{
+  switch(sciGetEntityType(pObj))
+  {
+  case SCI_SUBWIN:
+    return !(pSUBWIN_FEATURE(pObj)->flagNax);
+    break;
+  default:
+    return FALSE;
+    printSetGetErrorMessage("auto_subticks");
+    break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
  * Get the axes visible property for each axis.
  */
 void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3])

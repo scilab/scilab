@@ -16,6 +16,7 @@
 #include "DrawableAxesBridgeFactory.hxx"
 #include "AxesTicksDrawerJoGL.hxx"
 #include "AxesTicksComputer.hxx"
+#include "AxesSubticksComputer.hxx"
 #include "getHandleDrawer.h"
 #include "AxesPositioner.hxx"
 #include "../subwinDrawing/TicksDrawer.hxx"
@@ -55,6 +56,7 @@ void DrawableAxesFactory::setStrategies( ConcreteDrawableAxes * axes )
   TicksDrawer * ticksDrawer = new TicksDrawer(axes);
   ticksDrawer->setTicksDrawer(new TicksDrawerJoGL(axes));
   ticksDrawer->setTicksComputer(new AxesTicksComputer(axes));
+  ticksDrawer->setSubticksComputer(new AxesSubticksComputer(axes));
   ticksDrawer->setAxisPositioner(new AxesPositioner(axes));
   
   axes->setTicksDrawer(ticksDrawer);

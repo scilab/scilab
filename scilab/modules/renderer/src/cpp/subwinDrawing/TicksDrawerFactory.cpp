@@ -23,6 +23,10 @@
 #include "AutomaticTicksComputer.hxx"
 #include "AutoLogTicksComputer.hxx"
 #include "UserDefLogTicksComputer.hxx"
+#include "UserDefLogSubticksComputer.hxx"
+#include "UserDefinedSubticksComputer.hxx"
+#include "AutomaticSubticksComputer.hxx"
+#include "AutoLogSubticksComputer.hxx"
 #include "XGridDrawerJoGL.hxx"
 #include "YGridDrawerJoGL.hxx"
 #include "ZGridDrawerJoGL.hxx"
@@ -107,6 +111,12 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
     ticksComputer->setAxisBounds(bounds[0], bounds[1]);
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
+
+  // set subTicks computer
+  newTicksDrawer->setSubticksComputer(createRightSubTicksComputer(m_pDrawer,
+                                                                  sciGetAutoSubticks(pSubwin) == TRUE,
+                                                                  logFlags[0],
+                                                                  pSUBWIN_FEATURE(pSubwin)->axes.nbsubtics[0]));
 
   // set ticks positioner
   AxisPositioner * ticksPositioner = NULL;
@@ -209,6 +219,12 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
     ticksComputer->setAxisBounds(bounds[2], bounds[3]);
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
+
+  // set subTicks computer
+  newTicksDrawer->setSubticksComputer(createRightSubTicksComputer(m_pDrawer,
+                                                                  sciGetAutoSubticks(pSubwin) == TRUE,
+                                                                  logFlags[1],
+                                                                  pSUBWIN_FEATURE(pSubwin)->axes.nbsubtics[1]));
 
   // set ticks positioner
   AxisPositioner * ticksPositioner = NULL;
@@ -331,6 +347,12 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
 
+  // set subTicks computer
+  newTicksDrawer->setSubticksComputer(createRightSubTicksComputer(m_pDrawer,
+                                                                  sciGetAutoSubticks(pSubwin) == TRUE,
+                                                                  logFlags[2],
+                                                                  pSUBWIN_FEATURE(pSubwin)->axes.nbsubtics[2]));
+
   // set ticks positioner
   AxisPositioner * ticksPositioner = NULL;
 
@@ -353,6 +375,39 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
   }
 
   return newTicksDrawer;
+}
+/*------------------------------------------------------------------------------------------*/
+ComputeSubticksStrategy * TicksDrawerFactory::createRightSubTicksComputer(DrawableSubwin * subwin,
+                                                                          bool isAuto,
+                                                                          char logFlag,
+                                                                          int defaultNbSubticks)
+{
+  if (isAuto)
+  {
+    if (logFlag == 'l')
+    {
+      return new AutoLogSubticksComputer(subwin);
+    }
+    else
+    {
+      return new AutomaticSubticksComputer(subwin);
+    }
+  }
+  else
+  {
+    UserDefinedSubticksComputer * res;
+    if (logFlag == 'l')
+    {
+      res = new UserDefLogSubticksComputer(subwin);
+    }
+    else
+    {
+      res = new UserDefinedSubticksComputer(subwin);
+    }
+    res->setUserSubticks(defaultNbSubticks);
+    return res;
+  }
+
 }
 /*------------------------------------------------------------------------------------------*/
 }

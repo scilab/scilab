@@ -65,13 +65,12 @@ int set_sub_tics_property( sciPointObj * pobj, int stackPointer, int valueType, 
         ppSubWin->axes.nbsubtics[i] = 0 ;
       }
     }
-    return SET_PROPERTY_SUCCEED ;
   }
   else
   {
     sciprint(_("%s property does not exist for this handle.\n"),"sub_ticks") ;
     return SET_PROPERTY_ERROR ;
   }
-  return SET_PROPERTY_ERROR ;
+  return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/

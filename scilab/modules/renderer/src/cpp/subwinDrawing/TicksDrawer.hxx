@@ -16,6 +16,7 @@
 
 #include "../DrawableObjectBridge.h"
 #include "ComputeTicksStrategy.hxx"
+#include "ComputeSubticksStrategy.hxx"
 #include "DrawableSubwin.h"
 #include "GridDrawer.hxx"
 #include "AxisPositioner.hxx"
@@ -33,6 +34,8 @@ public:
   virtual ~TicksDrawer(void);
 
   void setTicksComputer(ComputeTicksStrategy * ticksComputer);
+
+  void setSubticksComputer(ComputeSubticksStrategy * subticksComputer);
 
   void setGridDrawer(GridDrawer * gridDrawer);
 
@@ -90,6 +93,8 @@ protected:
   double showTicks(void);
   /*----------------------------------------------------------------------*/
   ComputeTicksStrategy * m_pTicksComputer;
+
+  ComputeSubticksStrategy * m_pSubticksComputer;
 
   AxisPositioner * m_pPositioner;
 

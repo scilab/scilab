@@ -16,6 +16,8 @@
 
 #include "DrawableSubwin.h"
 #include "TicksDrawer.hxx"
+#include "ComputeSubticksStrategy.hxx"
+#include "ComputeTicksStrategy.hxx"
 
 namespace sciGraphics
 {
@@ -48,6 +50,16 @@ protected:
 
   /** To know properties of the axes handle */
   DrawableSubwin * m_pDrawer;
+
+private:
+
+  /**
+   * Create a subticks computer.
+   */
+  ComputeSubticksStrategy * createRightSubTicksComputer(DrawableSubwin * subwin,
+                                                        bool isAuto,
+                                                        char logFlag,
+                                                        int defaultNbSubticks);
 
 };
 

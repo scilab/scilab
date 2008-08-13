@@ -28,6 +28,7 @@ namespace sciGraphics
 TicksDrawer::TicksDrawer(DrawableObject * drawer)
 {
   m_pTicksComputer = NULL;
+  m_pSubticksComputer = NULL;
   m_pGridDrawer = NULL;
   m_pPositioner = NULL;
   m_pTicksDrawer = NULL;
@@ -36,6 +37,7 @@ TicksDrawer::TicksDrawer(DrawableObject * drawer)
 TicksDrawer::~TicksDrawer(void)
 {
   setTicksComputer(NULL);
+  setSubticksComputer(NULL);
   setGridDrawer(NULL);
   setAxisPositioner(NULL);
   setTicksDrawer(NULL);
@@ -48,6 +50,15 @@ void TicksDrawer::setTicksComputer(ComputeTicksStrategy * ticksComputer)
     delete m_pTicksComputer;
   }
   m_pTicksComputer = ticksComputer;
+}
+/*------------------------------------------------------------------------------------------*/
+void TicksDrawer::setSubticksComputer(ComputeSubticksStrategy * subticksComputer)
+{
+  if (m_pSubticksComputer != NULL)
+  {
+    delete m_pSubticksComputer;
+  }
+  m_pSubticksComputer = subticksComputer;
 }
 /*------------------------------------------------------------------------------------------*/
 void TicksDrawer::setGridDrawer(GridDrawer * gridDrawer)
@@ -210,9 +221,9 @@ double TicksDrawer::drawTicks(void)
   int nbTicks = initNbTicks;
 
   // ticks are computed, now we can get subticks
-  int initNbSubticks = m_pTicksComputer->getNbSubticks(ticksPos, nbTicks);
+  int initNbSubticks = m_pSubticksComputer->getNbSubticks(ticksPos, nbTicks);
   double * subticksPos = new double[initNbSubticks];
-  m_pTicksComputer->getSubticksPosition(ticksPos, nbTicks, subticksPos);
+  m_pSubticksComputer->getSubticksPosition(ticksPos, nbTicks, subticksPos);
   int nbSubticks = initNbSubticks;
 
   // get relative ticks positions
@@ -239,7 +250,7 @@ double TicksDrawer::drawTicks(void)
         nbTicks = m_pTicksComputer->getNbTicks();
         m_pTicksComputer->getTicksPosition(ticksPos, labels, labelsExponents);
 
-        nbSubticks = m_pTicksComputer->getNbSubticks(ticksPos, nbTicks);
+        nbSubticks = m_pSubticksComputer->getNbSubticks(ticksPos, nbTicks);
         // unfortunately subticks numbers may increase
         // so somtime we need to reallocate subticks
         if (nbSubticks > initNbSubticks)
@@ -248,7 +259,7 @@ double TicksDrawer::drawTicks(void)
           subticksPos = new double[nbSubticks];
           initNbSubticks = nbSubticks;
         }
-        m_pTicksComputer->getSubticksPosition(ticksPos, nbTicks, subticksPos);
+        m_pSubticksComputer->getSubticksPosition(ticksPos, nbTicks, subticksPos);
 
          // get relative ticks positions
         m_pPositioner->getRelativeTicksPosition(ticksPos, nbTicks);

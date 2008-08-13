@@ -44,17 +44,6 @@ public:
   virtual void getTicksPosition(double positions[], char * labels[], char * labelsExponents[]) = 0;
 
   /**
-   * Get the number of subticks which will be computed by the strategy.
-   */
-  virtual int getNbSubticks(double ticksPositions[], int nbTicks) = 0;
-
-  /**
-   * Get the subticks positions.
-   */
-  virtual void getSubticksPosition(const double ticksPositions[], int nbTicks,
-                                   double subTickspositions[]) = 0;
-
-  /**
    * To be called when there are too many ticks.
    * Compute a new sequence of ticks with less ticks.
    */

@@ -33,12 +33,6 @@ public:
   */
   virtual void getTicksPosition(double positions[], char * labels[], char * labelsExponents[]);
 
-  /**
-  * Get the subticks positions.
-  */
-  virtual void getSubticksPosition(const double ticksPositions[], int nbTicks,
-                                   double subTickspositions[]);
-
 
 protected:
 

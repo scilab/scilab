@@ -39,17 +39,6 @@ public:
   virtual void getTicksPosition(double positions[], char * labels[], char * labelsExponents[]);
 
   /**
-   * Get the number of subticks which will be computed by the strategy.
-   */
-  virtual int getNbSubticks(double ticksPositions[], int nbTicks);
-
-  /**
-   * Get the subticks positions.
-   */
-  virtual void getSubticksPosition(const double ticksPositions[], int nbTicks,
-                                   double subTickspositions[]);
-
-  /**
   * To know if we need to get ticks exposants or not.
   */
   virtual bool isDisplayingLabelsExponents(void) {return true;}

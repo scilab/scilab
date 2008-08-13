@@ -252,8 +252,12 @@ src/jni/TicksDrawerGL.cpp \
 src/jni/GridDrawerGL.cpp \
 src/jni/RenderingChecker.cpp \
 src/cpp/RendererFontManager.cpp \
-src/jni/XlFontManager.cpp
-
+src/jni/XlFontManager.cpp \
+src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
+src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
+src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
+src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
+src/cpp/axesDrawing/AxesSubticksComputer.cpp
 
 
 # List of the gateway c files

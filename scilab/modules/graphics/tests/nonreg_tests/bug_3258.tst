@@ -7,10 +7,10 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-// <-- Non-regression test for bug 2920 -->
+// <-- Non-regression test for bug 3258 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=2920
+// http://bugzilla.scilab.org/show_bug.cgi?id=3258
 //
 // <-- Short Description -->
 // Incompatibility detected between scilab4 and 5
