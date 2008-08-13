@@ -16,14 +16,14 @@ function [nk,W]=hankelsv(sl,tol)
     warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"hankelsv",1));
     sl.dt='c'
   elseif sl.dt<>'c' then 
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Continuous-time linear system expected.\n'),"hankelsv",1)),
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Continuous-time linear system expected.\n"),"hankelsv",1)),
   end
   //
   [lhs,rhs]=argn(0),
   if rhs==1 then tol=1000*%eps,end,
   lf=spec(sl(2)),
   if mini(abs(lf))<=tol then
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Pure imaginary  poles unexpected.\n"),"hankelsv",1)),
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"),"hankelsv",1)),
   end
   if maxi(real(lf)) > tol then 
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Stable system expected.\n"),"hankelsv",1)),

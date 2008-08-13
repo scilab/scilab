@@ -22,8 +22,8 @@ function []=bode(varargin)
       [frq,repf]=repfreq(varargin(1),1d-3,1d3)
     elseif rhs==2 then //sys,frq
       if size(varargin(2),2)<2 then
-	error(msprintf(_("%s: Wrong size for input argument #%d: A 1-by-n array expected with n>%d.\n"),..
-		       fname,1,1))
+	error(msprintf(_("%s: Wrong size for input argument #%d: A row vector with length>%d expected.\n"),..
+		       fname,2,1))
       end
       [frq,repf]=repfreq(varargin(1:rhs))
     elseif or(rhs==(3:4)) then //sys,fmin,fmax [,pas]
@@ -118,7 +118,7 @@ function []=bode(varargin)
       xpoly(max(frq)*[1;1],axes.y_ticks.locations([1 $]));e=gce();
       e.foreground=5;
   end
-  xtitle("",_("Frequency (Hz)"),_("Phase (°)"));
+  xtitle("",_("Frequency (Hz)"),_("Phase (degree)"));
   // create legend
   if comments<>[] then
     captions(ephi.children,comments,'lower_caption')

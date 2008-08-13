@@ -87,7 +87,7 @@ if job==[] then job = 2;end
 if nin<7 then meth = 2;end
 if meth == [] then meth = 2;end
 if nin<6 then
-  error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n'),"findBDK",6,11));
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"findBDK",6,11));
 end
 // 
 jobl = job+2;
@@ -116,7 +116,7 @@ elseif nout==6 then
 elseif nout==7 then
   [B,D,K,Q,Ry,S,rcnd] = sident(meth,jobl,s,n,l,R,tol,nsmpl,A,C,printw);
 else
-  error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n'),"findBDK",1,7));
+  error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"),"findBDK",1,7));
 end
 // 
 // end findBDK

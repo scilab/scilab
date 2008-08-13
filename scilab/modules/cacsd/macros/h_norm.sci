@@ -27,12 +27,16 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
   
   sltyp=typeof(Sl)
   if and(sltyp<>['rational','state-space']) then
-     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"h_norm",1))
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),..
+		    "h_norm",1))
   end
   if sltyp=='rational' then Sl=tf2ss(Sl);end
 
   eps=1.d-8;
-  if Sl.dt=='d'|type(sl.dt)==1 then hinfnorm=dhnorm(Sl);frequency=[];return;end
+  if Sl.dt=='d'|type(sl.dt)==1 then 
+    hinfnorm=dhnorm(Sl);frequency=[];
+    return;
+  end
   [a,b,c,d]=Sl(2:5);
   eiga=spec(a);
   if maxi(real(eiga)) >= -1e-12 then 

@@ -22,7 +22,7 @@ function plzr(a,b,c,d)
     end
   case 'state-space' then
     if rhs<>1 then 
-      error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"plzr",1)),
+      error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1)),
     end
     [a,b,c,d]=a(2:5)
     if type(d)<>1 then 
@@ -39,13 +39,14 @@ function plzr(a,b,c,d)
 
   else
     if rhs==1 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"plzr",1))
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"plzr",1))
     else
-      error(msprintf(gettext("%s: Wrong type of input argument #%d: matrix of floating point numbers expected.\n"),"plzr",1))
+      error(msprintf(gettext("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"),"plzr",1))
     end
   end
   if type(d)<>1 then 
-    error(msprintf(gettext("%s: The given transfer fuction is not proper.\n"),"plzr"));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
+		   "plzr",4));
   end
 
 

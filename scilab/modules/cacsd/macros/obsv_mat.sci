@@ -23,9 +23,9 @@ function o=obsv_mat(a,c)
     [n,n]=size(a)
   else 
     if rhs==1 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"obsv_mat",1))
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"obsv_mat",1))
     else
-      error(msprintf(gettext("%s: Wrong type of input argument #%d: matrix of floating point numbers expected.\n"),"obsv_mat",1))
+      error(msprintf(gettext("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"),"obsv_mat",1))
     end
   end;
   o=c;for k=1:n-1, o=[c;o*a],end

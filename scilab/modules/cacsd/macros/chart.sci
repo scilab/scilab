@@ -75,7 +75,7 @@ function chart(attenu,angl,flags)
   k2=ceil(phi_max/180)
   //
   drawlater()
-  if flags(2) then xtitle(titre,_("phase(y) (°)"),_("magnitude(y) (Db)")),end
+  if flags(2) then xtitle(titre,_("phase(y) (degree)"),_("magnitude(y) (Db)")),end
   llrect=xstringl(0,0,'1')
   
   //isogain curves

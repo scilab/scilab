@@ -39,7 +39,7 @@ function [a,b,c]=obsvss(a,b,c,tol)
     if rhs==1 then
       error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space  expected.\n"),"obsvss",1))
     else
-      error(msprintf(gettext("%s: Wrong type of input argument #%d: matrix of floating point numbers expected.\n"),"obsvss",1))
+      error(msprintf(gettext("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"),"obsvss",1))
     end
   end;
   //

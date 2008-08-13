@@ -66,7 +66,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
 
     if type(num)==2 & type(den)==2 then
       if varn(num)<>varn(den) then 
-	error(msprintf(gettext("%s: Incompatible input arguments #%d² and #%d: Same formal variable names expected.\n"),"syslin",2,3))
+	error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same formal variable names expected.\n"),"syslin",2,3))
       end
     end
     if type(num)==1 then

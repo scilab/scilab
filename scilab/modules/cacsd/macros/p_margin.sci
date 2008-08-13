@@ -17,7 +17,7 @@ function [phm,fr]=p_margin(h)
     error(97,1)
   end
   if or(size(h)<>[1 1]) then 
-   error(msprintf(_("%s: Wrong size for input argument #%d: Single input, single output system expected"),"p_margin",1))
+   error(msprintf(_("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"p_margin",1))
   end
   eps=1.e-7// threshold used for testing if complex numbers are real or pure imaginary
   

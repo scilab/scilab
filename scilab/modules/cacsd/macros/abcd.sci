@@ -18,6 +18,6 @@ function [A,B,C,D]=abcd(sl)
     w=tf2ss(sl);
     [A,B,C,D]=w(2:5)
   else
-    error(msprintf(_("%s: Wrong type for input argument: syslin structure expected.\n"),"abcd"))
+    error(msprintf(_("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"abcd"))
   end
 endfunction

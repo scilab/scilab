@@ -47,17 +47,39 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
 //F.D.
 //function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
   [LHS,RHS]=argn(0);
-  if RHS==1 then Alfa=-1;Beta=-1;flag='ge';end
-  if RHS==2 then Beta=Alfa;flag='ge';end
-  if RHS==3 then flag='ge';end
-  if RHS==4 then 
-    if type(flag)~=10 then 
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"abinv",4));
+  if and(typeof(Sl)<>['state-space' 'rational']) then
+     error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"abinv",1))
+  end
+  select argn(2)
+  case 1 then 
+    Alfa=-1;Beta=-1;
+    flag='ge';
+  case 2 then 
+    Beta=Alfa;
+    if type(Beta)<>1 then
+      error(msprintf(_("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
+		     "abinv",2))
+    end
+    flag='ge';
+  case 3 then 
+    if type(Alfa)<>1 then
+      error(msprintf(_("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
+		     "abinv",2))
+    end
+    if type(Beta)<>1 then
+      error(msprintf(_("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
+		     "abinv",3))
+    end
+    flag='ge';
+  case 4 then 
+    if and(flag<>['ge','st','pp']) then
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
+		     "abinv",4,"''ge'',''st'',''pp''"));
     end
   end
   timedomain=Sl.dt;
   if timedomain==[] then    
-    warning(msprintf(gettext("%s: Time domain not defined: Assumed continuous.\n."),"abinv"));
+    warning(msprintf(gettext(%s: Input argument %d is assumed continuous time.\n"),"abinv",1));
     timedomain='c';
   end
   [A,B,C,D]=abcd(Sl);
@@ -78,9 +100,14 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
     [U,k]=colcomp([B;D]);
     [ns,nc,X]=st_ility(Sl);
     F=stabil(Sl('A'),Sl('B'),Beta);
-    if flag=='ge' then dims=[0,0,0,nc,ns];end
-    if flag=='st' then dims=[0,0,nc,ns];end
-    if flag=='pp' then dims=[0,nc,ns];end
+    select flag
+    case 'ge' then 
+      dims=[0,0,0,nc,ns];
+    case 'st' then 
+      dims=[0,0,nc,ns];
+    case 'pp' then 
+      dims=[0,nc,ns];
+    end
     Z=syslin(timedomain,A+B*F,B*U,F,U);
     return;
   end
