@@ -326,7 +326,13 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
 	src/jni/TicksDrawerGL.cpp src/jni/GridDrawerGL.cpp \
 	src/jni/RenderingChecker.cpp src/cpp/RendererFontManager.cpp \
-	src/jni/XlFontManager.cpp sci_gateway/c/gw_renderer.c
+	src/jni/XlFontManager.cpp \
+	src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
+	src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
+	src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
+	src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
+	src/cpp/axesDrawing/AxesSubticksComputer.cpp \
+	sci_gateway/c/gw_renderer.c
 @GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -573,7 +579,12 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-GridDrawerGL.lo \
 @GUI_TRUE@	libscirenderer_la-RenderingChecker.lo \
 @GUI_TRUE@	libscirenderer_la-RendererFontManager.lo \
-@GUI_TRUE@	libscirenderer_la-XlFontManager.lo
+@GUI_TRUE@	libscirenderer_la-XlFontManager.lo \
+@GUI_TRUE@	libscirenderer_la-AutoLogSubticksComputer.lo \
+@GUI_TRUE@	libscirenderer_la-AutomaticSubticksComputer.lo \
+@GUI_TRUE@	libscirenderer_la-UserDefLogSubticksComputer.lo \
+@GUI_TRUE@	libscirenderer_la-UserDefinedSubticksComputer.lo \
+@GUI_TRUE@	libscirenderer_la-AxesSubticksComputer.lo
 @GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
 @GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
 @GUI_FALSE@	libscirenderer_la-norenderer.lo
@@ -1051,7 +1062,12 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/GridDrawerGL.cpp \
 @GUI_TRUE@src/jni/RenderingChecker.cpp \
 @GUI_TRUE@src/cpp/RendererFontManager.cpp \
-@GUI_TRUE@src/jni/XlFontManager.cpp
+@GUI_TRUE@src/jni/XlFontManager.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
+@GUI_TRUE@src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
+@GUI_TRUE@src/cpp/axesDrawing/AxesSubticksComputer.cpp
 
 
 # List of the gateway c files
@@ -1287,9 +1303,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerJoGL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutoLogSubticksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutomaticSubticksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxesPositioner.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxesSubticksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxesTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxesTicksDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxisPositioner.Plo@am__quote@
@@ -1514,7 +1533,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TitlePositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TopXAxisPositioner.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefLogSubticksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefinedSubticksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XAxisPositioner.Plo@am__quote@
@@ -3315,6 +3336,41 @@ libscirenderer_la-XlFontManager.lo: src/jni/XlFontManager.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/XlFontManager.cpp' object='libscirenderer_la-XlFontManager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XlFontManager.lo `test -f 'src/jni/XlFontManager.cpp' || echo '$(srcdir)/'`src/jni/XlFontManager.cpp
+
+libscirenderer_la-AutoLogSubticksComputer.lo: src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AutoLogSubticksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AutoLogSubticksComputer.Tpo -c -o libscirenderer_la-AutoLogSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-AutoLogSubticksComputer.Tpo $(DEPDIR)/libscirenderer_la-AutoLogSubticksComputer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp' object='libscirenderer_la-AutoLogSubticksComputer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AutoLogSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp
+
+libscirenderer_la-AutomaticSubticksComputer.lo: src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AutomaticSubticksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AutomaticSubticksComputer.Tpo -c -o libscirenderer_la-AutomaticSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-AutomaticSubticksComputer.Tpo $(DEPDIR)/libscirenderer_la-AutomaticSubticksComputer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp' object='libscirenderer_la-AutomaticSubticksComputer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AutomaticSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp
+
+libscirenderer_la-UserDefLogSubticksComputer.lo: src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-UserDefLogSubticksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-UserDefLogSubticksComputer.Tpo -c -o libscirenderer_la-UserDefLogSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-UserDefLogSubticksComputer.Tpo $(DEPDIR)/libscirenderer_la-UserDefLogSubticksComputer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp' object='libscirenderer_la-UserDefLogSubticksComputer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-UserDefLogSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp
+
+libscirenderer_la-UserDefinedSubticksComputer.lo: src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-UserDefinedSubticksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-UserDefinedSubticksComputer.Tpo -c -o libscirenderer_la-UserDefinedSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-UserDefinedSubticksComputer.Tpo $(DEPDIR)/libscirenderer_la-UserDefinedSubticksComputer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp' object='libscirenderer_la-UserDefinedSubticksComputer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-UserDefinedSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp
+
+libscirenderer_la-AxesSubticksComputer.lo: src/cpp/axesDrawing/AxesSubticksComputer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AxesSubticksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AxesSubticksComputer.Tpo -c -o libscirenderer_la-AxesSubticksComputer.lo `test -f 'src/cpp/axesDrawing/AxesSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesSubticksComputer.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-AxesSubticksComputer.Tpo $(DEPDIR)/libscirenderer_la-AxesSubticksComputer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/AxesSubticksComputer.cpp' object='libscirenderer_la-AxesSubticksComputer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AxesSubticksComputer.lo `test -f 'src/cpp/axesDrawing/AxesSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesSubticksComputer.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
