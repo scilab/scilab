@@ -779,8 +779,14 @@ function create_MD_dir(my_dir,my_title,output_filename)
 	
 	xml_files(grep(xml_files,"master_help.xml")) = [];
 	
+	if MSDOS then
+	  xml_files_tmp = "file:///"+xml_files;
+	else
+	  xml_files_tmp = xml_files;
+	end
+	
 	master_document    = [master_document; ..
-		"<!ENTITY "+basename(xml_files)+" SYSTEM """+xml_files+""">"];
+		"<!ENTITY "+basename(xml_files)+" SYSTEM """+xml_files_tmp+""">"];
 	
 	master_document    = [ master_document; ..
 		"<!--End Entities-->"; ..
