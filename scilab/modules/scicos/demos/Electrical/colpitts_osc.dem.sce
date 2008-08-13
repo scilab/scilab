@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("colpitts_osc.dem.sce");
-scicos(thispath+"/Colpitts_Oscillator.cosf");
+scicos_demostration(thispath+"/Colpitts_Oscillator.cosf");
 clear thispath;

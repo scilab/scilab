@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("boost_conv.dem.sce");
-scicos(thispath+"/Boost_Converter.cosf");
+scicos_demostration(thispath+"/Boost_Converter.cosf");
 clear thispath;

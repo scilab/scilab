@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("logic_nor.dem.sce");
-scicos(thispath+"/NOR_Gate.cosf");
+scicos_demostration(thispath+"/NOR_Gate.cosf");
 clear thispath;

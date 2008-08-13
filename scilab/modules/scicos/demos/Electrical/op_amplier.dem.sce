@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("op_amplier.dem.sce");
-scicos(thispath+"/Opamp_Amplifier.cosf");
+scicos_demostration(thispath+"/Opamp_Amplifier.cosf");
 clear thispath;

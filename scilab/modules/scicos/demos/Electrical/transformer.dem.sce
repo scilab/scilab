@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("transformer.dem.sce");
-scicos(thispath+"/Transformer.cosf");
+scicos_demostration(thispath+"/Transformer.cosf");
 clear thispath;

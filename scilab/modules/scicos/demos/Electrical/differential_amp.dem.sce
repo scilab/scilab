@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("differential_amp.dem.sce");
-scicos(thispath+"/Difference_amplifier.cosf");
+scicos_demostration(thispath+"/Difference_amplifier.cosf");
 clear thispath;
