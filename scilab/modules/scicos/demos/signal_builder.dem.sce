@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("signal_builder.dem.sce");
-scicos(thispath+"/Signal_Builder.cosf");
+scicos_demostration(thispath+"/Signal_Builder.cosf");
 clear thispath;

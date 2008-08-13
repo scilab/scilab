@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("bounce.dem.sce");
-scicos(thispath+"/bounce.cosf");
+scicos_demostration(thispath+"/bounce.cosf");
 clear thispath;

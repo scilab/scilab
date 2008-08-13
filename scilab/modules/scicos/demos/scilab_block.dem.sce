@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("scilab_block.dem.sce");
-scicos(thispath+"/Scilab_Block.cosf");
+scicos_demostration(thispath+"/Scilab_Block.cosf");
 clear thispath;

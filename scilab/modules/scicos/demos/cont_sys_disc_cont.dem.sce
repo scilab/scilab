@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("cont_sys_disc_cont.dem.sce");
-scicos(thispath+"/Cont.Disc-Observer.cosf");
+scicos_demostration(thispath+"/Cont.Disc-Observer.cosf");
 clear thispath;

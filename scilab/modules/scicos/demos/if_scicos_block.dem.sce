@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("if_scicos_block.dem.sce");
-scicos(thispath+"/IF_block.cosf");
+scicos_demostration(thispath+"/IF_block.cosf");
 clear thispath;

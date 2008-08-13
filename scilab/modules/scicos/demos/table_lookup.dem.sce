@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("table_lookup.dem.sce");
-scicos(thispath+"/Table_Lookup.cosf");
+scicos_demostration(thispath+"/Table_Lookup.cosf");
 clear thispath;

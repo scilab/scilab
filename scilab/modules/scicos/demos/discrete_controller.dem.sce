@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("discrete_controller.dem.sce");
-scicos(thispath+"/Plant_DiscreteController.cosf");
+scicos_demostration(thispath+"/Plant_DiscreteController.cosf");
 clear thispath;

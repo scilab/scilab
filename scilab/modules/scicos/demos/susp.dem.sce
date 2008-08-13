@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("susp.dem.sce");
-scicos(thispath+"/susp.cosf");
+scicos_demostration(thispath+"/susp.cosf");
 clear thispath;

@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("kalman.dem.sce");
-scicos(thispath+"/Kalman.cosf");
+scicos_demostration(thispath+"/Kalman.cosf");
 clear thispath;

@@ -7,5 +7,5 @@
 
 thispath = get_absolute_file_path("inverted_pendulum.dem.sce");
 exec (thispath+"/setw.sci");
-scicos(thispath+"/Inverted_pendulum.cosf");
+scicos_demostration(thispath+"/Inverted_pendulum.cosf");
 clear thispath;
