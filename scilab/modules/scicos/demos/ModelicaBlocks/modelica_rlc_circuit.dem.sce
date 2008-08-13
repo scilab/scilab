@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("modelica_rlc_circuit.dem.sce");
-scicos(thispath+"/RLC_Modelica.cosf");
+scicos_demostration(thispath+"/RLC_Modelica.cosf");
 clear thispath;

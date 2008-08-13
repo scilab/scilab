@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("modelica_bouncing_ball.dem.sce");
-scicos(thispath+"/BouncingBall_Modelica.cosf");
+scicos_demostration(thispath+"/BouncingBall_Modelica.cosf");
 clear thispath;

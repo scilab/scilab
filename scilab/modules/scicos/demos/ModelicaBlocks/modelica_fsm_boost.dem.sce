@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("modelica_fsm_boost.dem.sce");
-scicos(thispath+"/Finite_state_SwingUp.cosf");
+scicos_demostration(thispath+"/Finite_state_SwingUp.cosf");
 clear thispath;
