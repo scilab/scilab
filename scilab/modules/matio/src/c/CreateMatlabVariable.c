@@ -17,6 +17,9 @@ int CreateMatlabVariable(int stkPos, matvar_t *matVariable)
   int nbRow = 0, nbCol = 0;
   int valueAdr = 0;
   
+  /* To be sure isComplex is 0 or 1 */
+  matVariable->isComplex =  matVariable->isComplex != 0;
+
   switch(matVariable->class_type)
     {
     case MAT_C_CELL: /* 1 */

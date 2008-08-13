@@ -91,6 +91,9 @@ int sci_matfile_varreadnext(char *fname,unsigned long fname_len)
 
       return TRUE;
     }
+
+  /* To be sure isComplex is 0 or 1 */
+  matvar->isComplex =  matvar->isComplex != 0;
   
   /* Return the variable name */
   varname = strdup(matvar->name);

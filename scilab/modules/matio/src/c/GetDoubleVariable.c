@@ -51,6 +51,7 @@ matvar_t * GetDoubleVariable(int stkPos, const char* name, int matfile_version)
               mat5ComplexData.Im = stk(complexDataAdr);
               createdVar = Mat_VarCreate(name, MAT_C_DOUBLE, MAT_T_DOUBLE, rank, dims, &mat5ComplexData, MAT_F_COMPLEX);
             }
+          createdVar->isComplex = 1;
         }
     }
   else
