@@ -47,7 +47,18 @@ DrawableObject::EDisplayStatus DrawableArc::draw( void )
 DrawableObject::EDisplayStatus DrawableArc::redraw(void)
 {
   // force redrawing
-  return draw();
+  if ( !checkVisibility() )
+  {
+    return UNCHANGED;
+  }
+  initializeDrawing() ;
+  clip();
+  translate();
+  redrawArc() ;
+  endTranslate();
+  unClip();
+  endDrawing();
+  return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableArc::show( void )
