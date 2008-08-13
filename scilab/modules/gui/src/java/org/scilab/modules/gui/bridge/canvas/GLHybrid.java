@@ -13,6 +13,7 @@
 package org.scilab.modules.gui.bridge.canvas;
 
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
@@ -38,16 +39,17 @@ import com.sun.opengl.util.Screenshot;
 public class GLHybrid extends JPanel implements GLAutoDrawable {
 
     private final static boolean VERBOSE = false;
-    private final static boolean TIMED = true;
+    private final static boolean TIMED = false;
     private final static boolean SHOWCANVAS = true;
+    private final static boolean SHOWFRAME = false;
     private final static boolean ACCELERATESCREENSHOT = false;
 
     private boolean needReDump = true;
 
-    private GLCanvas canvas;
+    private final GLCanvas canvas;
+    private final Frame frame;
+    
     private BufferedImage dump;
-    private final int screenWidth;
-    private final int screenHeight;
     private long tic = 0;
     private long tac = 0;
     private long lastGetGLTime = System.currentTimeMillis();
@@ -62,7 +64,6 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 	    System.err.println("[GLHybrid] "+msg+" --> "+(tac - tic)+"ms");
 	}
     }
-
 
     public GLHybrid() {
 	this(null);
@@ -82,30 +83,22 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 	call("GLHybrid(GLCapabilities capabilities, GLCapabilitiesChooser chooser, GLContext shareWith, GraphicsDevice device)");
 
 	canvas = new GLCanvas(capabilities, chooser, shareWith, device);
-
+	frame = new Frame();
+	
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	screenWidth = screenSize.width;
-	screenHeight = screenSize.height;
 	canvas.setSize(screenSize.width, screenSize.height);
 	canvas.setLocation(0, 0);
 	canvas.setVisible(SHOWCANVAS);
-
-	//Animator animator = new Animator(canvas);
-	//animator.setRunAsFastAsPossible(true);
-	//animator.start();
+	frame.add(canvas);
+	frame.setVisible(SHOWFRAME);
+	frame.pack();
     }
 
     public void paintComponent(final Graphics g) {
-	//super.paintComponents(g);
 	call("paintComponent(final Graphics g)");
-	//if (needReDump) {
-	//    dumpCanvas();
-	//}
-	//drawDumpedImage(g);
     }
 
     public void paint(Graphics g) {
-	//super.paint(g);
 	call("paint(Graphics g)");
 	if (needReDump) {
 	    dumpCanvas();
@@ -289,16 +282,17 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
     public void setSize(int width, int height) {
 	super.setSize(width, height);
 	call("setSize(int width, int height)");
+	
 	canvas.setSize(width, height);
+	frame.setSize(width, height);
     }
 
     public void setSize(Dimension dim) {
 	super.setSize(dim);
 	call("setSize(Dimension dim)");
+
 	canvas.setSize(dim);
-	//canvas.paint(canvas.getGraphics());
-	//canvas.repaint();
-	//canvas.display();
+	frame.setSize(dim);
     }
 
     private static class PixelStorageModes {
