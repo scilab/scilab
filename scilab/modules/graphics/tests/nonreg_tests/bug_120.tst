@@ -30,13 +30,13 @@ bode(h,fmin,fmax,my_title);
 curFig = gcf();
 
 // get data bounds of phase plot
-dataBounds1 = curFig.children(2).data_bounds
+dataBounds1 = curFig.children(1).data_bounds
 // chack that the X bounds are [fmin, fmax]
 if (dataBounds1(1,1) <> fmin) then pause; end;
 if (dataBounds1(2,1) <> fmax) then pause; end;
 
 // same for magnitude plot
-dataBounds2 = curFig.children(3).data_bounds
+dataBounds2 = curFig.children(2).data_bounds
 // chack that the X bounds are [fmin, fmax]
 if (dataBounds2(1,1) <> fmin) then pause; end;
 if (dataBounds2(2,1) <> fmax) then pause; end;
