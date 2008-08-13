@@ -103,8 +103,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
             {
               //We are getting the Handle of the current axes but in the same time we are constructing it (see below)
               //Here pTemp is the pointer on the ScopeWindow
-              //scoSetHandleAxes(pScopeMemory,i,sciGetHandle(sciGetSelectedSubWin(pTemp)));
-                  // J-B please check this 
+                 // J-B please check this 
                         scoSetHandleAxes(pScopeMemory,i,sciGetHandle(sciGetFirstTypedSelectedSon( pTemp, SCI_SUBWIN )) );
             }
           else
@@ -187,7 +186,6 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
   int i,j;
   int c__1 =   1 ;
   double period;
-  int bool = 0;
   /*Go on the window*/
   sciSetUsedWindow(scoGetWindowID(pScopeMemory));
   for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
@@ -195,7 +193,6 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
       /*if we have to redraw the axis for x-axis*/
       if (scoGetNewDraw(pScopeMemory,i) < 0)
         {
-          bool = 1;
           pAxes = scoGetPointerAxes(pScopeMemory,i);
           period = scoGetPeriod(pScopeMemory,i);
 
@@ -228,7 +225,7 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
                     pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
                     pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
                     //We don't have to draw it because for instance there will be only one point and if it is a line it is not good
-                    pPOLYLINE_FEATURE(pShortDraw)->visible = FALSE;
+                    //** pPOLYLINE_FEATURE(pShortDraw)->visible = FALSE;
 
                     pPOLYLINE_FEATURE(pLongDraw)->n1 = 0;
                     //We copy previous values to ensure the continuity
@@ -250,7 +247,7 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
                   {
                     pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
                     pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
-                    pSEGS_FEATURE(pShortDraw)->visible = FALSE;
+                    //** pSEGS_FEATURE(pShortDraw)->visible = FALSE;
 
                     pSEGS_FEATURE(pLongDraw)->Nbr1 = 0;
                     pSEGS_FEATURE(pLongDraw)->Nbr2 = 0;
@@ -267,30 +264,14 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
             }
           //Dont forget to reinit it
           scoSetNewDraw(pScopeMemory,i,0);
-        }
-    }
-  //if we have modified some thing it is that we need to redraw the window
-  if(bool == 1)
-    {
-      if(scoGetPointerScopeWindow(pScopeMemory) !=  NULL)
-        {
-          sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-          //pixmap mode
-          if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-            {
-                        /* TODO : not implemented */
-                        /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-            }
-	  forceRedraw(pShortDraw);
+
+          //we have modified some thing it is that we need to redraw the subwin
+          forceRedraw(pShortDraw);
 	  forceRedraw(pLongDraw);
-           sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
-          //**redrawHierarchy(scoGetPointerScopeWindow(pScopeMemory));
-        }
-      else
-        {
-          scoScopeError(pScopeMemory,0);
+	  sciDrawSingleObj(pAxes);
         }
     }
+  
 
   //Now that we have redraw the window we can reactivate the shortdraw because there will be more than one point in the futur
   //THIS PART CAN BE RECODED - NOT EFFICIENT
@@ -327,11 +308,9 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
 
 //** ------------------------------------------------------------------------------------------------
 //**
-//**
 //** ------------ The physical redraw of the scope is hidden here ----------------------------------- 
 //**
 //**
- 
 void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 {
   int c__1 = 1;
@@ -339,57 +318,89 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
   int NbrPtsShort,NbrPtsLong,inc;
   int NbrPtsToCopy;
   int current_period_counter;
+  int NumCurvInSubWin;
+  int NumSubWin ;
+  int NumCurvTotal;
+  int ShortDrawTableIndex;  
   scoGraphicalObject pLongDraw;
   scoGraphicalObject pShortDraw;
+  scoGraphicalObject *pShortDrawTable;
 
   double d_current_real_time ; //** the current real time as  double (52 bit) data structure
   double last_update_time , delta_time, refresh_time;
-  int force_update ;     
-
-  for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++) //** for all the curves in the scope 
-    {
-      pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
-      switch(sciGetEntityType(pShortDraw))
-        {
-        case SCI_POLYLINE:
-          NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1; //** this is incremented by one at each iteration 
-          break;
-        case SCI_SEGS:
-          NbrPtsShort = pSEGS_FEATURE(pShortDraw)->Nbr1;
-          break;
-        default:
-          sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
-          break;
-        }
+  int force_update[256]; //** ... for some headroom :)
  
-      //**-------------------------------------------------------------------------------------------------------
-      /*If this scope needs a redraw*/
-      //**  inc_var   >= buffer_size
-      //** if (NbrPtsShort >= scoGetShortDrawSize(pScopeMemory,i) ) //** if the buffer is full the scope need a redraw 
-   
-      //** current real time as double [second] 
-      d_current_real_time = scoGetRealTime();  
+       //** ------ Real Time section -------------------------------------------------------------  
+       //** current real time as double [second] 
+       d_current_real_time = scoGetRealTime();  
+       last_update_time = pScopeMemory->d_last_scope_update_time; //** recover the last update time 
+       delta_time = d_current_real_time - last_update_time ; 
+       refresh_time = 0.040 ; //** 40ms -> 25 fps min  
+       //** ------ End of Real Time section ------------------------------------------------------
 
-      last_update_time = pScopeMemory->d_last_scope_update_time; //** recover the last update time 
+  ShortDrawTableIndex = 0; 
+  NumCurvTotal = 0;  
+  NumSubWin = scoGetNumberOfSubwin(pScopeMemory);
+  for(i = 0 ; i < NumSubWin ; i++) //** for all the subwindows in the scope 
+    {
+       pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
+       switch (sciGetEntityType(pShortDraw))
+             {
 
-      delta_time = d_current_real_time - last_update_time ; 
+                case SCI_POLYLINE:
+                      NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1; //** this is incremented by one at each iteration 
+                break;
 
-      refresh_time = 0.040 ; //** for a quick test
-      force_update = 0 ; //** false  
+                case SCI_SEGS:
+                      NbrPtsShort = pSEGS_FEATURE(pShortDraw)->Nbr1;
+                break;
 
-      if (delta_time > refresh_time )
-        { 
-          //** printf("Delta Time Forced Update = %f ; buffer = %d \n", delta_time, NbrPtsShort); 
-          force_update = 1 ; 
-          pScopeMemory->d_last_scope_update_time = d_current_real_time ; //** update the ds for the next step 
-        }
-           
+                default:
+                      sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                break;
+             }
 
-      if (NbrPtsShort >= scoGetShortDrawSize(pScopeMemory,i) || force_update == 1) //** if the buffer is full the scope need a redraw 
-        {
+       //** combined condition for forced redraw
+       if ( ((delta_time>refresh_time) && (NbrPtsShort>=2)) || (NbrPtsShort>=scoGetShortDrawSize(pScopeMemory,i)) )
+         { 
+           //** printf("Delta Time Forced Update = %f ; buffer = %d \n", delta_time, NbrPtsShort); //** DEBUG ONLY 
+           force_update[i] = 1; 
+         }
+       else
+         { 
+           force_update[i] = 0; //** do not update the subwin 
+         }                  
+       //** ------ End of Real Time section ------------------------------------------------------
 
-           //** pScopeMemory->d_last_scope_update_time = scoGetRealTime(); //** update 
-           
+      NumCurvTotal += scoGetNumberOfCurvesBySubwin(pScopeMemory,i);
+
+    } 
+
+  pShortDrawTable = scicos_malloc( NumCurvTotal * sizeof(scoGraphicalObject) );
+  //** for all the sub window in the scope 
+  for (i = 0 ; i < NumSubWin ; i++) 
+     {
+       pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
+       switch (sciGetEntityType(pShortDraw))
+             {
+
+                case SCI_POLYLINE:
+                      NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1; //** this is incremented by one at each iteration 
+                break;
+
+                case SCI_SEGS:
+                      NbrPtsShort = pSEGS_FEATURE(pShortDraw)->Nbr1;
+                break;
+
+                default:
+                      sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                break;
+             }
+
+       //**-------------------------------------------------------------------------------------------------------    
+       //**  
+       if (force_update[i] == 1) 
+         {   
            /*Block for Realloc*/
            pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
            switch (sciGetEntityType(pLongDraw))
@@ -397,11 +408,9 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                   case SCI_POLYLINE:
                       NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
                   break;
-                  
                   case SCI_SEGS:
                       NbrPtsLong = pSEGS_FEATURE(pLongDraw)->Nbr1;
                   break;
-                
                   default:
                       sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
                   break;
@@ -414,15 +423,61 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                   pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
                   scoReallocLongDraw(pLongDraw, NbrPtsLong, scoGetShortDrawSize(pScopeMemory,i),10000);
                 }
-              //Dont forget this one - If in the futur LongDrawSize is a table we can put it in the scoReallocLongDraw() function
-              scoSetLongDrawSize(pScopeMemory,i,NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i)+10000);
-            }
-          pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
-          /*End od block for Realloc*/
+               //Dont forget this one - If in the futur LongDrawSize is a table we can put it in the scoReallocLongDraw() function
+               scoSetLongDrawSize(pScopeMemory,i,NbrPtsLong + scoGetShortDrawSize(pScopeMemory,i)+10000);
+             }
+           pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
+           /*End od block for Realloc*/
+          
+           /*Block for Draw*/
+           NumCurvInSubWin = scoGetNumberOfCurvesBySubwin(pScopeMemory,i); //** get number of curves in subwin 
+           for (j = 0 ; j < NumCurvInSubWin ; j++)
+              {
+                pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
+                pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
 
-          /*Block for Draw*/
-          switch(sciGetEntityType(pLongDraw))
-            {
+                if (pShortDraw != NULL) //** protection for NULL pointer 
+                  {
+                    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+                    sciSetSelectedSubWin(scoGetPointerAxes(pScopeMemory,i));
+                    pPOLYLINE_FEATURE(pShortDraw)->visible = TRUE;
+                    pShortDrawTable[ShortDrawTableIndex] = pShortDraw ;
+                    ShortDrawTableIndex++;
+                  }
+                else
+                 {
+                    scoScopeError(pScopeMemory,0);
+                 }
+              } //** end of the for() loop
+            /*End of Block for Draw*/
+ 
+        }
+    } //** end of the for loop for all the subwindow in the scope 
+
+    /* Draw all short draw(s) in all the _concerned_ subwindows in a row :) */
+    sciDrawSetOfObj(pShortDrawTable, ShortDrawTableIndex );
+    scicos_free(pShortDrawTable);
+
+    for (i = 0 ; i < NumSubWin ; i++) //** for all the subwin in the scope 
+       {
+         pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,0);
+         pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,0);
+         switch (sciGetEntityType(pShortDraw))
+               {
+                case SCI_POLYLINE:
+                    NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1; //** this is incremented by one at each iteration 
+                break;
+                case SCI_SEGS:
+                    NbrPtsShort = pSEGS_FEATURE(pShortDraw)->Nbr1;
+                break;
+                default:
+                    sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                break;
+               }
+         if (force_update[i] == 1) //** scope need a redraw 
+         {
+          switch (sciGetEntityType(pLongDraw))
+          {
             case SCI_POLYLINE:
               NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1-1;
               NbrPtsLong = pPOLYLINE_FEATURE(pLongDraw)->n1;
@@ -434,107 +489,83 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
             default:
               sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
               break;
-            }
+          }
 
           for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+          {
+            pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
+            pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
+            /*Block for Memory*/
+            /*
+             * Alan's patch, 04/10/2007 : add NbrPtsToCopy to copy good numbers of pts for the first buffer in LongDraw + 
+             * Tricks to handle the trace empty case
+             */
+            inc = NbrPtsLong!=0; 
+            NbrPtsToCopy = NbrPtsShort + (NbrPtsLong==0);
+
+            switch (sciGetEntityType(pShortDraw))
             {
-              pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
-              pLongDraw = scoGetPointerLongDraw(pScopeMemory,i,j);
-              if(pShortDraw != NULL)
+              case SCI_POLYLINE:
+                NbrPtsToCopy = NbrPtsShort + (NbrPtsLong==0);
+                // We have draw but now we have to copy values in the memory of the shortdraw
+                C2F(dcopy)(&NbrPtsToCopy,pPOLYLINE_FEATURE(pShortDraw)->pvx+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx+NbrPtsLong,&c__1);
+                C2F(dcopy)(&NbrPtsToCopy,pPOLYLINE_FEATURE(pShortDraw)->pvy+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy+NbrPtsLong,&c__1);
+                pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPtsLong+NbrPtsToCopy;
+                break;
+              case SCI_SEGS:
+                C2F(dcopy)(&NbrPtsShort,pSEGS_FEATURE(pShortDraw)->vx,&c__1,pSEGS_FEATURE(pLongDraw)->vx+NbrPtsLong,&c__1);
+                C2F(dcopy)(&NbrPtsShort,pSEGS_FEATURE(pShortDraw)->vy,&c__1,pSEGS_FEATURE(pLongDraw)->vy+NbrPtsLong,&c__1);
+                pSEGS_FEATURE(pLongDraw)->Nbr1 = NbrPtsLong+NbrPtsShort;
+                pSEGS_FEATURE(pLongDraw)->Nbr2 = NbrPtsLong+NbrPtsShort;
+                break;
+              default:
+                sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                break;
+            }
+            /*End of Block for Memory*/
+          }
+
+              /* Block for Detecting redrawing of x-axis values and others activities*/
+              current_period_counter = (int)(t/scoGetPeriod(pScopeMemory,i));
+              // Maybe for the axes we are at the end of it - it is here that we detect and notify it
+              if (current_period_counter != scoGetPeriodCounter(pScopeMemory,i))
                 {
-                  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-                  sciSetSelectedSubWin(scoGetPointerAxes(pScopeMemory,i));
-                  //Not sure that this trick is useful - leak of code ?
-                  pPOLYLINE_FEATURE(pShortDraw)->visible = TRUE;
-                  //pixmap
-                  if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
-                    {
-                                /* TODO : not implemented */
-                                /*C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-                    }
-                  sciDrawSingleObj(pShortDraw);
-                  //Here too but - if you delete the line on top dont forget to delete this line
-                  pPOLYLINE_FEATURE(pShortDraw)->visible = FALSE;
+                  scoSetNewDraw(pScopeMemory,i,-1);
+                  scoSetPeriodCounter(pScopeMemory,i,current_period_counter);
                 }
               else
                 {
-                  scoScopeError(pScopeMemory,0);
-                }
-              /*End of Block for Draw*/
+                  for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+                     {
+                       pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
+                       switch (sciGetEntityType(pShortDraw))
+                             {
+                               case SCI_POLYLINE:
+                                   /* Last point is next first point*/
+                                   pPOLYLINE_FEATURE(pShortDraw)->pvx[0] = pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort];
+                                   pPOLYLINE_FEATURE(pShortDraw)->pvy[0] = pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort];
+                                   pPOLYLINE_FEATURE(pShortDraw)->n1 = 1;
+                               break;
+                               case SCI_SEGS:
+                                   /* Do Nothing */
+                               break;
+                               default:
+                                   sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                               break;
+                             }
+                     }
+                } //** close of if() 
 
-              /*Block for Memory*/
+              pScopeMemory->d_last_scope_update_time = scoGetRealTime(); //** update the time stamping AFTER the draw 
+              //** this "trick" assure at least 25ms of pure simulation (if the buffer is big enough)
 
-              /*
-               * Alan's patch, 04/10/2007 : add NbrPtsToCopy
-               * to copy good numbers of pts for the first buffer
-               * in LongDraw
-               */
+          } //** the scope has been updated  
 
-              /*
-               * Tricks to handle the trace empty case
-               */
-              inc = NbrPtsLong!=0; 
-              NbrPtsToCopy = NbrPtsShort + (NbrPtsLong==0);
+       } //** for all the subwin
 
-              switch(sciGetEntityType(pShortDraw))
-                {
-                case SCI_POLYLINE:
-                  NbrPtsToCopy = NbrPtsShort + (NbrPtsLong==0);
-                  //We have draw but now we have to copy values in the memory of the shortdraw
-                  C2F(dcopy)(&NbrPtsToCopy,pPOLYLINE_FEATURE(pShortDraw)->pvx+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvx+NbrPtsLong,&c__1);
-                  C2F(dcopy)(&NbrPtsToCopy,pPOLYLINE_FEATURE(pShortDraw)->pvy+inc,&c__1,pPOLYLINE_FEATURE(pLongDraw)->pvy+NbrPtsLong,&c__1);
-                  pPOLYLINE_FEATURE(pLongDraw)->n1 = NbrPtsLong+NbrPtsToCopy;
-                  break;
-                case SCI_SEGS:
-                  C2F(dcopy)(&NbrPtsShort,pSEGS_FEATURE(pShortDraw)->vx,&c__1,pSEGS_FEATURE(pLongDraw)->vx+NbrPtsLong,&c__1);
-                  C2F(dcopy)(&NbrPtsShort,pSEGS_FEATURE(pShortDraw)->vy,&c__1,pSEGS_FEATURE(pLongDraw)->vy+NbrPtsLong,&c__1);
-                  pSEGS_FEATURE(pLongDraw)->Nbr1 = NbrPtsLong+NbrPtsShort;
-                  pSEGS_FEATURE(pLongDraw)->Nbr2 = NbrPtsLong+NbrPtsShort;
-                  break;
-                default:
-                  sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
-                  break;
-                }
-              /*End of Block for Memory*/
-            }
-
-          /*Block for Detecting redrawing of x-axis values and others activities*/
-          current_period_counter = (int)(t/scoGetPeriod(pScopeMemory,i));
-          //Maybe for the axes we are at the end of it - it is here that we detect and notify it
-          if (current_period_counter != scoGetPeriodCounter(pScopeMemory,i))
-            {
-              scoSetNewDraw(pScopeMemory,i,-1);
-              scoSetPeriodCounter(pScopeMemory,i,current_period_counter);
-            }
-          else
-            {
-              for (j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-                {
-                  pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
-                  switch(sciGetEntityType(pShortDraw))
-                    {
-                    case SCI_POLYLINE:
-                      /*Last point is next first point*/
-                      pPOLYLINE_FEATURE(pShortDraw)->pvx[0] = pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort];
-                      pPOLYLINE_FEATURE(pShortDraw)->pvy[0] = pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort];
-                      pPOLYLINE_FEATURE(pShortDraw)->n1 = 1;
-                      break;
-                    case SCI_SEGS:
-                      /*Do Nothing*/
-                      break;
-                    default:
-                      sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
-                      break;
-                    }
-                }
-            }
-
-          pScopeMemory->d_last_scope_update_time = scoGetRealTime(); //** update 
-
-        }
-    }
 }
 
+//**-------------------------------------------------------------------------------------------------------------
 scoGraphicalObject scoCreatePolyline(scoGraphicalObject pAxes, scoInteger polyline_size, int color)
 {
   scoGraphicalObject pPolyline;
