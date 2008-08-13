@@ -12,7 +12,7 @@ function r=routh_t(h,k)
 h1=h(1);
 if rhs==2 then
   if typeof(h)<>'rational' then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Rational array expected.\n"),"routh_t",1));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: rational fraction array expected.\n"),"routh_t",1));
   end
   [n,d]=h(2:3)
   if size(n,'*')<>1 then

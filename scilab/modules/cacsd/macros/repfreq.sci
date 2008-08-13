@@ -14,7 +14,7 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
   [lhs,rhs]=argn(0)
   //discretization 
   if and(typeof(sys)<>[ 'rational' 'state-space' ]) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"repfreq",1))
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"repfreq",1))
   end
   dom=sys.dt
   if dom==[]|dom==0 then error(96,1),end
@@ -61,7 +61,8 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
 	frq= [exp(l10*((log(-fmax)/l10):pas:(log(-fmin)/l10))) -fmin];
 	frq=-frq($:-1:1);
       elseif fmin >= fmax then
-	error(msprintf(gettext("%s: Wrong value for input arguments: %s < %s expected.\n"),"reqfreq","fmin","fmax"));
+	 error(msprintf(gettext("%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"),..
+		   "repfreq",2,3,"fmin","fmax"));
       else
 	fmin=max(eps,fmin);
 	frq=[exp(l10*((log(fmin)/l10):pas:(log(fmax)/l10))) fmax];

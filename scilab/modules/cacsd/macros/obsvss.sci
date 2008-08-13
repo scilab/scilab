@@ -24,7 +24,7 @@ function [a,b,c]=obsvss(a,b,c,tol)
     end;
   case 'state-space' then
     if lhs<>1 then 
-      error(msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"),"obsvss",1)),
+      error(msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"),"obsvss",1)),
     end
     select rhs
     case 1 then 
@@ -32,7 +32,7 @@ function [a,b,c]=obsvss(a,b,c,tol)
     case 2 then 
       tol=b
     else  
-      error(msprintf(gettext("%s Wrong number of input arguments: %d or %d expected.\n"),"obsvss",1,2))
+      error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"obsvss",1,2))
     end;
     [a,b,c,d,x0,dom]=a(2:7)
   else

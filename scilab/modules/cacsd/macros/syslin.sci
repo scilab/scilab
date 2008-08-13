@@ -17,7 +17,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
     if size(domain,'*')<=2 then
       tp=domain
     else
-      error(msprintf(gettext("%s: Wrong size for input argument #%d: A real expected.\n"),"syslin",1))
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n"),"syslin",1))
     end
     z='z'
   case 10 //continuous or discrete
@@ -80,21 +80,21 @@ function [sl]=syslin(domain,a,b,c,d,x0)
     //============================================================================
   elseif rhs>3 then // syslin(domaine,A,B,C [,D [X0]])
     if type(a)<>1 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of floating point numbers expected.\n"),"syslin",2))
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),"syslin",2))
     end
     [ma,na]=size(a);
     if ma<>na then 
       error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"syslin",2))
     end
     if type(b)<>1 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of floating point numbers expected.\n"),"syslin",3))
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),"syslin",3))
     end
     [mb,nb]=size(b);
     if na<>mb&mb<>0 then 
       error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"),"syslin",2,3));
     end
     if type(c)<>1 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of floating point numbers expected.\n"),"syslin",4))
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),"syslin",4))
     end
     [mc,nc]=size(c);
     if na<>nc&nc<>0 then 
@@ -104,7 +104,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
       x0=0*ones(na,1)
     else
       if type(x0)>1 then
-	error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of floating point numbers expected.\n"),"syslin",6))
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),"syslin",6))
       end
       [mx,nx]=size(x0);
       if mx<>na|nx<>min(na,1) then 

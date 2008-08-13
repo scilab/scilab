@@ -18,7 +18,7 @@ function kp=krac2(n)
      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"kpure",1))
   end
   if dom<>'c' then 
-    error(msprintf(gettext("%s: Wrong values for input argument #%d: Continuous time system expected.\n"),"krac2",1))
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"krac2",1))
   end
   if size(n,'*')<>1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"krac2",1))

@@ -20,7 +20,7 @@ function [y,R]=kpure(sl,eps)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"kpure",1))
   end
   if sl.dt<>'c' then 
-    error(msprintf(gettext("%s: Wrong values for input argument #%d: Continuous time system expected.\n"),"kpure",1))
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"kpure",1))
   end
   if size(sl.D,'*')<>1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"kpure",1))

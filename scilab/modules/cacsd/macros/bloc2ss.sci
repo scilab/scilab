@@ -227,15 +227,15 @@ for k=2:nsyst
   end,end
 end;
 if lsorties==[] then
-  error(msprintf(gettext("%s: Internal error: Wrong number of output arguments.\n"),"bloc2ss")),
+  error(msprintf(gettext("%s: No output found.\n"),"bloc2ss")),
 end
 if lentrees==[] then
-  error(msprintf(gettext("%s: Internal error: Wrong number of input arguments.\n"),"bloc2ss")),
+  error(msprintf(gettext("%s: No input found.\n"),"bloc2ss")),
 end
 if mini(lsorties)==0 then
-  error(msprintf(gettext("%s: Internal error: Undefined output.\n"),"bloc2ss")),
+  error(msprintf(gettext("%s: Some output(s) are undefined.\n"),"bloc2ss")),
 end
 if mini(lentrees)==0 then
-  error(msprintf(gettext("%s: Internal error: Undefined input.\n"),"bloc2ss")),
+  error(msprintf(gettext("%s: Some input(s) are undefined.\n"),"bloc2ss")),
 end
 endfunction

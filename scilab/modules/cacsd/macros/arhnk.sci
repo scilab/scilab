@@ -20,7 +20,7 @@ function [slm]=arhnk(a,ordre,tol)
   
   [a,b,c,d,x0,dom]=a(2:7);
   if(maxi(real(spec(a)))) > 0 then
-    error(_("%s: Invalid input argument #%d: system must be stable\n","arhnk",1));
+    error(msprintf(_("%s: Wrong values for input argument #%d: Stable system expected.\n"),"arhnk",1));
   end
   domaine='c'
   wc=lyap(a',-b*b',domaine)

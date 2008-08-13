@@ -22,11 +22,11 @@ function [nh]=h2norm(g,tol)
   select typeof(g)
   case 'state-space' then
     if norm(g(5))>0 then 
-      error(msprintf(gettext("%s: Wrong values for input argument #%d: Proper system expected.\n"),"h2norm",1)),
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Proper system expected.\n"),"h2norm",1)),
     end;
     sp=spec(g(2)),
     if maxi(real(sp))>=-tol then
-      error(msprintf(gettext("%s: Wrong values for input argument #%d: Stable system expected.\n"),"h2norm",1)),
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Stable system expected.\n"),"h2norm",1)),
     end,
     w=obs_gram(g(2),g(4),'c'),
     nh=abs(sqrt(sum(diag(g(3)'*w*g(3))))),return,
@@ -41,11 +41,11 @@ function [nh]=h2norm(g,tol)
 	  nh(i,j)=0,
 	else
 	  if degree(n)>=degree(d) then
-	    error(msprintf(gettext("%s: Wrong values for input argument #%d: Proper system expected.\n"),"h2norm",1)),
+	    error(msprintf(gettext("%s: Wrong value for input argument #%d: Proper system expected.\n"),"h2norm",1)),
 	  end
 	  pol=roots(d),
 	  if maxi(real(pol))>-tol then
-	     error(msprintf(gettext("%s: Wrong values for input argument #%d: Stable system expected.\n"),"h2norm",1)),
+	     error(msprintf(gettext("%s: Wrong value for input argument #%d: Stable system expected.\n"),"h2norm",1)),
 	  end,
 	  nt=horner(n,-s),dt=horner(d,-s),
 	  nh(i,j)=residu(n*nt,d,dt),

@@ -13,18 +13,28 @@ function plzr(a,b,c,d)
   select typeof(a)
   case 'rational' then
     if rhs<>1 then 
-      error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"plzr",1)),
+      error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1)),
     end
     a=tf2ss(a),
     [a,b,c,d]=a(2:5)
+    if type(d)<>1 then 
+      error(msprintf(gettext("%s: Wrong value for of input argument %d: Proper system expected.\n"),"plzr",1));
+    end
   case 'state-space' then
     if rhs<>1 then 
       error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"plzr",1)),
     end
     [a,b,c,d]=a(2:5)
+    if type(d)<>1 then 
+      error(msprintf(gettext("%s: Wrong value for of input argument %d: Proper system expected.\n"),"plzr",1));
+    end
   case 'constant' then
     if rhs<>4 then 
       error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"plzr",4)),
+    end
+    if type(d)<>1 then 
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
+		     "plzr",4));
     end
 
   else
@@ -84,7 +94,7 @@ function plzr(a,b,c,d)
   ax.grid=ones(1,3)*color('gray')
   xarc(-1,1,2,2,0,360*64)
   xtitle(gettext("Transmission zeros and poles"),gettext("Real axis"), ...
-	 gettext("Imaginary. axis"));
+	 gettext("Imaginary axis"));
   if legs<>[] then legend(lhandle,legs,1),end
   drawnow()
   xselect();

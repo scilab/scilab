@@ -39,10 +39,10 @@ function evans(n,d,kmax)
     n=ss2tf(n);
     [n,d]=n(2:3);n=clean(n);d=clean(d);
   else 
-     error(msprintf(gettext("%s: Wrong type for input argument #%d: A syslin data structure or a polynomial expected.\n"),"evans",1));
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: A linear dynamical system or a polynomial expected.\n"),"evans",1));
   end
   if prod(size(n))<>1 then
-    error(msprintf(gettext("%s: Wrong values for input argument #%d: Single input, single output system expected.\n"),"evans",1));
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Single input, single output system expected.\n"),"evans",1));
   end
   if kmax<=0 then
     nm=mini([degree(n),degree(d)])

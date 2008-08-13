@@ -74,7 +74,7 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     else 
       up_s=size(up)
       if up_s(1)<>mmu|up_s(2)<>(bl1/mmu) then
-      	error(msprintf(gettext("%s: %s must be of dimension (%s, %s).\n'),"arsimul","up=[u(0),u(-1),..,]",string(mmu),string(bl1/mmu)));
+      	error(msprintf(gettext("%s: %s must be of dimension (%s, %s).\n"),"arsimul","up=[u(0),u(-1),..,]",string(mmu),string(bl1/mmu)));
         return 
       end
       up=matrix(up,bl1,1);

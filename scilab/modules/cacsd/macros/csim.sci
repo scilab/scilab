@@ -45,7 +45,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
   if rhs<3 then error(39),end
   sltyp=typeof(sl)
   if and(sltyp<>['state-space' 'rational']) then 
-    error(msprintf(_("%s: Wrong type for input argument #%d: %s data structure.\n"),"csim",3,"syslin"))
+    error(msprintf(_("%s: Wrong type for input argument #%d: %s data structure expected.\n"),"csim",3,"syslin"))
   end
   if sltyp=='rational' then sl=tf2ss(sl),end
   if sl.dt<>'c' then 

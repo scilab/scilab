@@ -13,10 +13,10 @@ function X = sylv(A,B,C,flag)
   if size(A,1)<> size(A,2) then error(20,1),end
   if size(B,1)<> size(B,2) then error(20,2),end
   if size(C,1)<> size(A,1) then 
-    error(msprintf(gettext("%s: Wrong values for input arguments #%d and #%d: Same row dimensions expected.\n"),"sylv",1,3))
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"),"sylv",1,3))
   end
   if size(C,2)<> size(B,2) then 
-    error(msprintf(gettext("%s: Wrong values for input arguments #%d and #%d:Same column dimensions expected.\n"),"sylv",2,3))
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),"sylv",2,3))
   end
     
   if flag=='c' then 

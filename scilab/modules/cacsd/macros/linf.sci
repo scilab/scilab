@@ -22,7 +22,7 @@ function [n]=linf(g,eps,tol)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"linf",1))
   end
   if g.dt<>'c'&g.dt<>[] then
-    error(msprintf(gettext("%s: Wrong values for input argument #%d: Continuous time system expected.\n"),"linf",1))
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"linf",1))
   end
   g.dt='c'
   if typeof(g)=='rational' then g=tf2ss(g),end

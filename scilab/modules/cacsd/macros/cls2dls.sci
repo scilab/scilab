@@ -28,7 +28,7 @@ function [s1]=cls2dls(s,t,fp)
     s.dt='c';
   end
   if s.dt<>'c' then
-    error(msprintf(gettext("%s: Wrong values for input argument #%d: Continuous time system expected.\n"),"cls2dls",1))
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"cls2dls",1))
   end
   fs=1/t 
   if rhs==3 then fp=2*%pi*fp;fs=fp/tan(fp/fs/2)/2,end //prewarping

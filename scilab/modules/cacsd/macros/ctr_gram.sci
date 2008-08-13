@@ -59,7 +59,7 @@ function [gc]=ctr_gram(a,b,domaine)
   end
   s=spec(a)
   if (domaine=='c'&maxi(real(s))>=0)|(domaine=='d'&maxi(abs(s))>=1) then
-    error(msprintf(gettext("%s: Wrong values for input argument #%d: Stable system expected.\n"),"ctr_gram",1));
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Stable system expected.\n"),"ctr_gram",1));
   end
   gc=lyap(a',-b*b',domaine)
 endfunction

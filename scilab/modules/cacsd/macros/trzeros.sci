@@ -38,7 +38,7 @@ function [nt,dt,rk]=trzeros(Sl)
   end
   
   if typeof(Sl)<>'state-space' then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Polynomial, linear state space or transfer function expected.\n"),"trzeros",1))
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: A linear dynamical system or a polynomial expected.\n"),"trzeros",1))
   end
   
   //Sl=minss(Sl);
@@ -46,7 +46,7 @@ function [nt,dt,rk]=trzeros(Sl)
   if type(D)==2 then 
     [m,n]=size(D);
     if m<>n then 
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: Square system expected.\n'),"trzeros",1));
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: Square system expected.\n'),"trzeros",1));
     end
     chis=det(systmat(Sl));nt=roots(chis);dt=ones(nt);
     if LHS==1 then nt=nt./dt;dt=[];rk=[];end
@@ -58,7 +58,7 @@ function [nt,dt,rk]=trzeros(Sl)
     if type(D)==2 then 
       [m,n]=size(D);
       if m<>n then 
-	error(msprintf(gettext("%s: Wrong value for input argument #%d: Square system expected.\n"),"trzeros",1));
+	error(msprintf(gettext("%s: Wrong size for input argument #%d: Square system expected.\n"),"trzeros",1));
       end
       chis=det(D);nt=roots(chis);dt=ones(nt);
       if LHS==1 then nt=nt./dt;dt=[];rk=[];end

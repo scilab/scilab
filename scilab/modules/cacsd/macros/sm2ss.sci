@@ -27,11 +27,12 @@ function des=sm2ss(sysmat)
   end
 
   if n1<>n then 
-    warning(msprintf(gettext("%s: Cannot find %s.\n"),"sm2ss","n"));
+    warning(msprintf(gettext("%s: Cannot find the state dimension.\n"),"sm2ss"));
   end
+  
   E=E(1:n,1:n);
   if E<>eye(n,n) then 
-    error(msprintf(gettext("%s: Wrong values for input argument #%d: Not a state-space system.\n"),"sm2ss",1));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space system expected.\n"),"sm2ss",1));
   end
   A=coeff(sysmat(1:n,1:n),0);
   B=coeff(sysmat(1:n,n+1:nc),0);

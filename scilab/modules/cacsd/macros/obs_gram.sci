@@ -55,7 +55,7 @@ function [go]=obs_gram(a,c,domaine)
   //
   s=spec(a)
   if (domaine=='c'&maxi(real(s))>=0)|(domaine=='d'&maxi(abs(s))>=1) then
-    error(msprintf(gettext("%s: Wrong values for input argument #%d: Stable system expected.\n"),"obs_gram",1));
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Stable system expected.\n"),"obs_gram",1));
   end
   go=lyap(a,-c'*c,domaine)
 endfunction
