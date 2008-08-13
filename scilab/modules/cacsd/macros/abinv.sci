@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 
-// 
+// Copyright (C) INRIA -
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
@@ -20,7 +20,7 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
 // For X=[V,X2] (X2=X(:,dimV+1:nx)) one has X2'*(A+B*F)*V=0 and (C+D*F)*V=0
 // The zeros (transmission zeros for minimal Sl) are given by :
 // X0=X(:,dimR+1:dimV); spec(X0'*(A+B*F)*X0) i.e. dimV-dimR closed-loop fixed modes
-// If optional real parameter Alfa is given as input, the dimR controllable 
+// If optional real parameter Alfa is given as input, the dimR controllable
 // modes of (A+BF) are set to Alfa.
 // Generically, for strictly proper systems one has:
 // Fat plants (ny<nu): dimV=dimR=nx-nu --> no zeros
@@ -38,7 +38,7 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
 //    xdot=Ax+Bu+Qd
 //    y=Cx+Du
 //
-//     DDPS has a solution iff Im(Q) is included in Vg + Im(B). 
+//     DDPS has a solution iff Im(Q) is included in Vg + Im(B).
 //     Let G=(X(:,dimVg+1:nx))'= left anihilator of Vg i.e. G*Vg=0;
 //     B2=G*B; Q2=G*Q; DDP solvable if B2(:,1:k)*R1 + Q2 =0 has a solution.
 //     R=[R1;*] is the solution  (with F=output of abinv).
@@ -51,17 +51,17 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
      error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"abinv",1))
   end
   select argn(2)
-  case 1 then 
+  case 1 then
     Alfa=-1;Beta=-1;
     flag='ge';
-  case 2 then 
+  case 2 then
     Beta=Alfa;
     if type(Beta)<>1 then
       error(msprintf(_("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
 		     "abinv",2))
     end
     flag='ge';
-  case 3 then 
+  case 3 then
     if type(Alfa)<>1 then
       error(msprintf(_("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
 		     "abinv",2))
@@ -71,15 +71,15 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
 		     "abinv",3))
     end
     flag='ge';
-  case 4 then 
+  case 4 then
     if and(flag<>['ge','st','pp']) then
       error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
 		     "abinv",4,"''ge'',''st'',''pp''"));
     end
   end
   timedomain=Sl.dt;
-  if timedomain==[] then    
-    warning(msprintf(gettext(%s: Input argument %d is assumed continuous time.\n"),"abinv",1));
+  if timedomain==[] then
+    warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"abinv",1));
     timedomain='c';
   end
   [A,B,C,D]=abcd(Sl);
@@ -95,17 +95,17 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
 
   //V=X(:,1:dimV);    // V subspace
   // Fast return if V=[];
-  if dimV==0 then 
+  if dimV==0 then
     dimR=0;dimVg=0;
     [U,k]=colcomp([B;D]);
     [ns,nc,X]=st_ility(Sl);
     F=stabil(Sl('A'),Sl('B'),Beta);
     select flag
-    case 'ge' then 
+    case 'ge' then
       dims=[0,0,0,nc,ns];
-    case 'st' then 
+    case 'st' then
       dims=[0,0,nc,ns];
-    case 'pp' then 
+    case 'pp' then
       dims=[0,nc,ns];
     end
     Z=syslin(timedomain,A+B*F,B*U,F,U);
@@ -121,7 +121,7 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
   X(:,1:dimV)=X(:,1:dimV)*Ur;
   Anew=X'*A*X;Bnew=X'*B;Cnew=C*X;
   //Bnew=Bnew*U;
-  //   Cut appropriate subspace  
+  //   Cut appropriate subspace
   dim=dimVg;   //dim=dimVg   //dim=dimR
   select flag
   case 'ge'
@@ -141,12 +141,12 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
   A21=Anew(dim+1:nx,1:dim);
   A22=Anew(dim+1:$,dim+1:$);
   C1=Cnew(:,1:dim);
-  B2bar=B2*Urange;Dbar=D*Urange; 
+  B2bar=B2*Urange;Dbar=D*Urange;
   // B2bar,Dbar have k columns , B1t has nu-k columns and dim rows
-  Z=[A21,B2bar;C1,Dbar]; //Z is (nx-dim)+ny x dim+k 
+  Z=[A21,B2bar;C1,Dbar]; //Z is (nx-dim)+ny x dim+k
   [W,nn]=colcomp(Z);    // ? (dim+k-nn)=dim  <=> k=nn ? if not-->problem
   W1=W(:,1:dim)*inv(W(1:dim,1:dim));
-  F1bar=W1(dim+1:dim+k,:);  
+  F1bar=W1(dim+1:dim+k,:);
   //[A21,B2bar;C1,Dbar]*[eye(dim,dim);F1bar]=zeros(nx-dim+ny,dim)
   //
   A11=A11+B1bar*F1bar;  //add B1bar*F1bar is not necessary.
@@ -160,12 +160,12 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
   else
     voidB1t=%t;F1t_tmp=[];dimR=0;
   end
-  
+
   if ~voidB1t then
     if norm(B1t,1)<1.d-10 then
       F1t_tmp=zeros(nu-k,dim);dimR=0;
-    end       
-  end     
+    end
+  end
 
   sl2=syslin(timedomain,A22,B2*Urange,0*(B2*Urange)');
   [ns2,nc2,U2,sl3]=st_ility(sl2);
