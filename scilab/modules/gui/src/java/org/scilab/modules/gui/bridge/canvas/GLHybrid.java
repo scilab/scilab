@@ -33,6 +33,7 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 import javax.swing.JPanel;
 
+import com.sun.opengl.util.Animator;
 import com.sun.opengl.util.Screenshot;
 
 
@@ -89,9 +90,14 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 	canvas.setSize(screenSize.width, screenSize.height);
 	canvas.setLocation(0, 0);
 	canvas.setVisible(SHOWCANVAS);
+	frame.setSize(screenSize.width, screenSize.height);
 	frame.add(canvas);
 	frame.setVisible(SHOWFRAME);
 	frame.pack();
+	
+	// Add animator for display
+	Animator animator = new Animator(this);
+	animator.start();
     }
 
     public void paintComponent(final Graphics g) {
@@ -284,7 +290,7 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 	call("setSize(int width, int height)");
 	
 	canvas.setSize(width, height);
-	frame.setSize(width, height);
+	//frame.setSize(width, height);
     }
 
     public void setSize(Dimension dim) {
@@ -292,7 +298,7 @@ public class GLHybrid extends JPanel implements GLAutoDrawable {
 	call("setSize(Dimension dim)");
 
 	canvas.setSize(dim);
-	frame.setSize(dim);
+	//frame.setSize(dim);
     }
 
     private static class PixelStorageModes {
