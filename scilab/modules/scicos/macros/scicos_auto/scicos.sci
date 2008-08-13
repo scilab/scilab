@@ -40,8 +40,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   global %scicos_navig
   global %diagram_path_objective
   global inactive_windows
-  global Scicos_commands   // programmed commands
-  global Scicos_is_active 
+  global Scicos_commands   // programmed commands 
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -66,18 +65,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   slevel = prod ( size ( find ( %mac=='scicos') ) ) ; //** "slevel" is the superblock level
   super_block = slevel > 1 ; //** ... means that the actual SCICOS is a superblock diagram
   
-  //** ---------------------- Scicos auto protection --------------------------- **
-  //** Scicos_is_active MUST be preinit to ZERO inside "scicos_initial tables" 
-  if ~super_block then
-    if Scicos_is_active == 1 then 
-      disp("Scicos is already active. Just one Scicos at time ...");
-      return ; //** EXIT point
-    else
-      disp("Scicos FIRST activation ...");
-      Scicos_is_active = 1; //** up activation flag 
-    end
-  end
-  //** ------------- end of Scicos auto protection -------------------------------------------
 
   //** ----------------------- Scicos splash message and workspace stuff -----------------------
   if ~super_block then
@@ -862,9 +849,10 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       //** restore the original Scilab 5 font list before exit 
       xlfont(scilab5fonts(2),1);
 
-      global Scicos_is_active ; 
-      Scicos_is_active = 0 ; //** Scicos is not active 
-
+      //** TO DO
+      //** For future implementation ..... 
+      //** This is the place of the windows cleaning section 
+      
     end
 
   elseif Cmenu=="Leave" then
