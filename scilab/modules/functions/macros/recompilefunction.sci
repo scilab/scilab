@@ -7,7 +7,7 @@ function recompilefunction(funname,kind,force)
   clear fvar funtext tempfun
   execstr("fvar="+funname)
   if ~or(type(fvar)==[11 13]) then
-     error(msprintf(gettext("%s must be the name of a scilab function variable."), funname))
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"),"recompilefunction",1))
   end
   if type(fvar)==11 & ~force then 
     oldkind="n"

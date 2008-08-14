@@ -50,8 +50,7 @@ function genlib_old(nam,path,force,verbose,names)
     // list the sci files 
     files=listfiles(path+'*.sci',%f)
     if files==[] | files== "" then 
-      error('I cannot find any sci files in '+path);
-      return ;
+      error(msprintf(gettext("%s: I cannot find any files with extension %s in %s\n"),"genlib_old",".sci", path));
     end
     names = basename(files,%f);
   else
@@ -71,7 +70,7 @@ function genlib_old(nam,path,force,verbose,names)
     for i=1:size(files,'*')  // loop on .sci files
       scif = files(i); 
       if verbose then 
-	write(%io(2),' '+names(i) + '.sci compilation forced');
+	mprintf(gettext("%s: %s file compilation forced\n"),"genlib_old",names(i)+".sci");
       end
       // getf sci file and save functions it defines as a .bin file
       getsave(scif);
@@ -92,7 +91,7 @@ function genlib_old(nam,path,force,verbose,names)
        end
        if recompile == %t then 
 	 if verbose then 
-	   write(%io(2),'Processing file '+names(i) + '.sci');
+	   mprintf(gettext("%s: Processing file: %s\n"),"genlib_old",names(i)+".sci");
 	 end
 	 // getf sci file and save functions it defines as a .bin file
 	 getsave(scif);
@@ -102,7 +101,10 @@ function genlib_old(nam,path,force,verbose,names)
   end
   
   if modified then 
-    if verbose then write(%io(2),'Regenerate names and lib');end
+    if verbose then 
+      mprintf(gettext("%s: Regenerate names and lib\n"),"genlib_old");
+    end
+    
     if names_changed
       mputl(names,path+'names') // write 'names' file in directory 
     end
@@ -110,7 +112,7 @@ function genlib_old(nam,path,force,verbose,names)
     execstr(nam+'=lib('''+path1+''')')
     //save it
     if execstr('save('''+path1+'lib'''+','+nam+')','errcatch')<>0 then
-      error(path+'lib file cannot be created')
+      error(msprintf(gettext("%s: ''%s'' file cannot be created\n"),"genlib_old",path+'lib'));
     end
   else
      execstr(nam+'=lib('''+path1+''')')
@@ -119,9 +121,7 @@ function genlib_old(nam,path,force,verbose,names)
     if ~predefined then
       execstr(nam+'=resume('+nam+')')
     else
-      write(%io(2),[ '   Library file '+path1+'lib'+ ' has been updated, '
-		     '   but cannot be loaded into Scilab,'
-		     '   because '+nam+' is a protected variable.']);
+      mprintf(gettext("Library file ''%s'' has been updated,\nbut cannot be loaded into Scilab because ''%s'' is a protected variable.\n"),path1+'lib',nam);
     end
   end
 endfunction
@@ -136,8 +136,8 @@ function getsave(fl)
 
   ierr=execstr('getf(fl)','errcatch') // get functions defined in file 'fl'
   if ierr<>0 then
-  	clear ierr
-    mprintf('Warning: Error in file '+fl+' :""'+lasterror()+'""; file ignored')
+    clear ierr
+    mprintf(gettext("%s: Warning: Error in file %s : ""%s"". File ignored\n"),"genlib_old",fl,lasterror())
   else
     clear ierr
     // lookfor names of the functions defined in file 'fl'
@@ -151,13 +151,13 @@ function getsave(fl)
       clear ierr
       nf=length(fl)
       if nf>40 then fl='...'+part(fl,nf-40:nf),end
-      error('Impossible to open file '+fl+' for writing, ')
+      error(msprintf(gettext("%s: Impossible to open file ''%s'' for writing\n"),"genlib_old",fl));
     end
     clear ierr
     if new<>[] then 
       execstr('save(u,'+strcat(new($:-1:1),',')+')'); 
     else 
-      write(%io(2),'function ""'+fl+'"" does not contain any functions');
+      msprintf(gettext("%s: File ''%s'' does not contain any function.\n"),"genlib_old",fl)
     end
     mclose(u)
   end

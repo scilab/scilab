@@ -55,7 +55,7 @@ function c1=bytecodewalk(code,query,job)
       lc0=lc
     case 8 then //if
       if code(lc+1)==0 then //very old code
-	error('no more supported')
+	error(msprintf(gettext("%s: obsolete op-code %d.\n"),"bytecodewalk",8))
       end
       c1=[c1 code(lc0:lc-1)]
       ll=lc
@@ -94,7 +94,7 @@ function c1=bytecodewalk(code,query,job)
     
     case 9 then //while
       if code(lc+1)==0 then //very old code
-	error('no more supported')
+	error(msprintf(gettext("%s: obsolete op-code %d.\n"),"bytecodewalk",9))
       end
       c1=[c1 code(lc0:lc-1)]
       ll=lc

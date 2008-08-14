@@ -42,7 +42,7 @@ function plotprofile(fun)
   end
   n=size(count,1)
   if n==0 then 
-    error(gettext("%s: Perhaps the function(s) has not been loaded for profiling?\n"),"plotprofile")
+    error(msprintf(gettext("%s: Wrong values for input argument: No profile data in the function\n"),"plotprofile"))
   end
   
   //xset("window",win)
@@ -100,7 +100,7 @@ function plotprofile(fun)
     delmenu(win,gettext("&Edit"))
     delmenu(win,gettext("&Insert"))
   end   
-  addmenu(win,gettext("Exit"));
+  addmenu(win,gettext("Exit"),list(0,"Exit"));
   str="execstr(Exit_"+string(win)+"(1))"
   xinfo(gettext("Click to get corresponding line, move with a-z."))
 
@@ -243,7 +243,7 @@ function [h,M]=dispfuntxt(txt,k,h,M)
       	delmenu(curwin,gettext("&Edit"))
       	delmenu(curwin,gettext("&Tools"))
       	delmenu(curwin,gettext("&Insert"))
-  	 end     
+    end     
     
     xsetech(wrect=[0 0 1 1],frect=[0 0 400 600],arect=[0.1 0 0 0])
     w=xstringl(0,0,t);h=w(4);w=max(400,w(3))

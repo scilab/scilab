@@ -12,10 +12,12 @@ function head_comments(name,%paths)
 //displays the first comments of a function
   if exists('%paths')==0 then %paths='./',end
   name=stripblanks(name)
-  if exists(name)==0 then error(msprintf(gettext("%s: Undefined function.\n"),"head_comments")),end
+  if exists(name)==0 then 
+    error(msprintf(gettext("%s: Undefined function %s.\n"),"head_comments",name)),
+  end
   execstr('t=type('+name+')')
   if t<>11 & t<>13 then
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"),"head_comments",1))
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"),"head_comments",1))
   end
   l=whereis(name)
   if l<>[] then
@@ -24,7 +26,7 @@ function head_comments(name,%paths)
   else
     files= listfiles(%paths+'*.sci')
     if files==[] then
-      error(msprintf(gettext("%s.sci file cannot be found with the given paths.\n"),name))
+      error(msprintf(gettext("%s: ''%s'' file cannot be found in the given paths.\n"),"head_comments",name))
     end
     k=grep(files,name+'.sci')
     if k<>[] then
@@ -34,26 +36,27 @@ function head_comments(name,%paths)
     end
   end
   if path==[] then
-    error(msprintf(gettext("%s.sci file cannot be found with the given paths.\n"),name))
+    error(msprintf(gettext("%s: ''%s'' file cannot be found in the given paths.\n"),"head_comments",name))
   end
   txt=mgetl(path);
   k=grep(txt,'function');
   if k==[] then
-    error(gettext("argument is not the name of a Scilab function"))
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"),"head_comments",1))
+
   end
   head=txt(k(1))
   txt=txt(k(1)+1:$)
   K=grep(part(txt,1:2),'//')
   if K(1)<>1 then 
-     write(%io(2),gettext("No comment available."),'(a)')
+     mprintf(gettext("No comment available."))
      return
   end
   k2=find(K(2:$)-K(1:$-1)<>1,1)
   if k2==[] then k2=size(K,'*'),end
   sel=K(1):k2(1)
   if sel<>[] then
-    write(%io(2),[head;strsubst(txt(sel),'//','')],'(a)')
+    mprintf("%s\n",[head;strsubst(txt(sel),'//','')])
   else
-    write(%io(2),gettext("No comment available."),'(a)')
+    mprintf(gettext("No comment available."))
   end
 endfunction

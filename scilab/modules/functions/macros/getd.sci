@@ -43,7 +43,7 @@ function getd(path,option)
 	end
   
   if lst==[] | lst== "" then
-    error(msprintf(gettext("%s: I cannot find any sci files in %s.\n"),"getd",path));
+    error(msprintf(gettext("%s: I cannot find any files with extension %s in %s\n"),"getd",".sci",path));
     return ;
   end
   
