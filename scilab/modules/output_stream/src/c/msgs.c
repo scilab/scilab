@@ -529,7 +529,7 @@ static int msg_4(integer *n, integer *ierr)
 static int msg_5(integer *n, integer *ierr)
 {
 	char localbuf[14];
-	strncpy(localbuf,BUF,13);
+	strncpy(localbuf,BUF,13); // 0>12
 	localbuf[13]='\0';
 	sciprint(_("Warning :\n"));
 	sciprint(_("matrix is close to singular or badly scaled. rcond = %s\n"),localbuf);
@@ -544,7 +544,7 @@ static int msg_5(integer *n, integer *ierr)
 static int msg_6(integer *n, integer *ierr)
 {
 	char localbuf[14];
-	strncpy(localbuf,BUF,13);
+	strncpy(localbuf,BUF,13); // 0>12
 	localbuf[13]='\0';
 	sciprint(_("Warning :\n"));
 	sciprint(_("eigenvectors are badly conditioned.\n"));
@@ -586,17 +586,23 @@ static int msg_11(integer *n, integer *ierr)
 /*--------------------------------------------------------------------------*/
 static int msg_12(integer *n, integer *ierr)
 {
-	char localbuf[16];
-	strncpy(localbuf,BUF,15);
+        // Copy BUF (src, with size 4096) into localbuf (dest, with size 16)
+        // man strncpy :
+        // "Thus, if there is no null byte among the first n bytes of src, the result will not be null-terminated."
+        // Obviously, the src string does not contain \0, since it comes from Fortran.
+        char localbuf[16];// 0>15
+        strncpy(localbuf,BUF,15);// 0>14
+        localbuf[15]='\0';
 	sciprint(_("Norm of projected gradient lower than %s.\n"),localbuf);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int msg_13(integer *n, integer *ierr)
 {
+        // Same comment as for msg_12
 	char localbuf[16];
 	strncpy(localbuf,BUF,15);
-
+        localbuf[15]='\0';
 	sciprint(_("at last iteration f decreases by less than %s.\n"),localbuf);
 	return 0;
 }
