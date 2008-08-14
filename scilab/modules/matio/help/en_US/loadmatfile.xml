@@ -99,6 +99,6 @@ loadmatfile(filename[,var1[,var2,[,...[,format]]]])</synopsis>
     <title>Bibliography</title>
     <para>This function has been developped following the "MAT-File Format"
   description: 
-<literal>www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf</literal></para>
+<literal><ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink></literal></para>
   </refsection>
 </refentry>

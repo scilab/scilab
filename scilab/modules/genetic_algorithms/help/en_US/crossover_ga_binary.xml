@@ -87,7 +87,7 @@
         <link linkend="crossover_ga_default"> crossover_ga_default </link>
       </member>
       <member>
-        <link linkend="mutation_ga_binary"> mutation_func_binary </link>
+        <link linkend="mutation_ga_binary"> mutation_ga_binary </link>
       </member>
       <member>
         <link linkend="optim_ga"> optim_ga </link>

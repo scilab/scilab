@@ -77,10 +77,10 @@
         <link linkend="optim_ga"> optim_ga </link>
       </member>
       <member>
-        <link linkend="mutation_ga_binary"> mutation_func_binary </link>
+        <link linkend="mutation_ga_binary"> mutation_ga_binary </link>
       </member>
       <member>
-        <link linkend="crossover_ga_binary"> crossover_func_binary </link>
+        <link linkend="crossover_ga_binary"> crossover_ga_binary </link>
       </member>
     </simplelist>
   </refsection>

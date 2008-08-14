@@ -149,7 +149,7 @@
     given handles:</para>
 
     <para>The <literal>captions</literal> function creates a <link
-    linkend="legend_property">Legend</link> data structure.</para>
+    linkend="legend_properties">Legend</link> data structure.</para>
 
     <para>There is at most one <literal>Legend</literal> associated with each
     axes. If the caption function is recalled while a

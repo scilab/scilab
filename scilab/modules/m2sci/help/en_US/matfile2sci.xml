@@ -68,6 +68,6 @@
   <refsection>
     <title>Bibliography</title>
     <para>This function has been developped according to the document  "MAT-File Format":
- <link linkend="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</link></para>
+><ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink></para>
   </refsection>
 </refentry>

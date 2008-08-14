@@ -86,7 +86,7 @@
 
     <para>For more details of fftw syntax see <link linkend='fft'>fft</link> scilab function.</para> 
 
-    <para>For more details about FFTW library see FFTW Web site : <link linkend='http://www.fftw.org'>http://www.fftw.org</link>
+    <para>For more details about FFTW library see FFTW Web site : <ulink url='http://www.fftw.org'>http://www.fftw.org</ulink>
     </para>
 
     <para>Remark : fftw function automaticaly stores his last parameters in
