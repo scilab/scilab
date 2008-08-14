@@ -62,7 +62,7 @@ to_record = %T;
 [fopt,xopt,gopt]=optim(myf,x0,algo="nd","ar",nap=20,iter=10,epsg=1e-1,epsf=1e-1,epsx=[1e-2;1e-2],imp=2);
 myf: ||xn(1) - xn_1(1)|| = 0.000000 - ||xn(2) - xn_1(2)|| = 0.000000 - iter = 1 - ||fn - fn_1|| = 0.000000 - ||gn - gn_1|| = 0.000000
 entry in n1fc1 . n=   2 memax= 10  
-  minimal array sizes  iz(  22)    rz(    70)     
+minimal array sizes: iz(    22)  rz(    70)  dz(   198)
 myf: ||xn(1) - xn_1(1)|| = 0.008127 - ||xn(2) - xn_1(2)|| = 0.116422 - iter = 2 - ||fn - fn_1|| = 1.077458 - ||gn - gn_1|| = 1.188493
 myf: ||xn(1) - xn_1(1)|| = 0.073147 - ||xn(2) - xn_1(2)|| = 1.047800 - iter = 3 - ||fn - fn_1|| = 1.585370 - ||gn - gn_1|| = 17.276036
 myf: ||xn(1) - xn_1(1)|| = 0.036573 - ||xn(2) - xn_1(2)|| = 0.523900 - iter = 4 - ||fn - fn_1|| = 0.918803 - ||gn - gn_1|| = 11.192719
@@ -81,7 +81,7 @@ myf: ||xn(1) - xn_1(1)|| = 0.000112 - ||xn(2) - xn_1(2)|| = 0.001607 - iter = 16
 myf: ||xn(1) - xn_1(1)|| = 0.000102 - ||xn(2) - xn_1(2)|| = 0.001458 - iter = 17 - ||fn - fn_1|| = 0.025055 - ||gn - gn_1|| = 0.015094
 myf: ||xn(1) - xn_1(1)|| = 0.000092 - ||xn(2) - xn_1(2)|| = 0.001325 - iter = 18 - ||fn - fn_1|| = 0.023007 - ||gn - gn_1|| = 0.013720
 myf: ||xn(1) - xn_1(1)|| = 0.000084 - ||xn(2) - xn_1(2)|| = 0.001204 - iter = 19 - ||fn - fn_1|| = 0.021105 - ||gn - gn_1|| = 0.012478
-     nlis2   contrainte implicite   5 active
+     nlis2   contrainte implicite   1 active
 n1fc1  end (dxmin reached)
 Optimization stops because too small variations for x.
 
