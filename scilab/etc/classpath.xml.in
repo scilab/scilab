@@ -61,6 +61,12 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 </path>
 
+<!-- PDF doc generation -->
+<path value="@COMMONS_IO@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
+
+
 <path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
 
 <!-- Console GUI dep -->

@@ -1385,6 +1385,7 @@ if test ! -z "$HELP_ENABLE"; then
    echo "Saxon XSLT ............. = $SAXON"
    echo "FOP (XML => PDF) ....... = $FOP"
    echo "Jeuclid (MathML) ....... = $JEUCLID_CORE"
+   echo "Commons I/O  ........... = $COMMONS_IO"
 else
    echo "No documentation generated"
 fi

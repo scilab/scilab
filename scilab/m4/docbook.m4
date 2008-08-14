@@ -34,7 +34,7 @@ AC_ARG_WITH(docbook,
 	SAXON=$PACKAGE_JAR_FILE
 	AC_SUBST(SAXON)
 
-	# XML to PDF Translator
+	# XML to PDF/other Translator
 	AC_JAVA_CHECK_PACKAGE([fop],[org.apache.fop.pdf.PDFInfo],[XML to PDF Translator (fop)])
 	FOP=$PACKAGE_JAR_FILE
 	AC_SUBST(FOP)
@@ -43,6 +43,12 @@ AC_ARG_WITH(docbook,
 	AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.MathBase],[MathML rendering solution])
 	JEUCLID_CORE=$PACKAGE_JAR_FILE
 	AC_SUBST(JEUCLID_CORE)
+
+	# Commons I/O library
+	AC_JAVA_CHECK_PACKAGE([commons-io],[org.apache.commons.io.output.CountingOutputStream],[Commons I/O library])
+	COMMONS_IO=$PACKAGE_JAR_FILE
+	AC_SUBST(COMMONS_IO)
+
 
 AC_SUBST(DOCBOOK_ROOT)
 
