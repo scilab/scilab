@@ -67,6 +67,7 @@ double sciGetFontSize(sciPointObj * pobj); /* GET */
 double sciGetFontOrientation (sciPointObj * pobj); /* GET */
 StringMatrix * sciGetText (sciPointObj * pobj); /* GET */
 void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol ) ; /* GET */
+BOOL sciisTextEmpty( sciPointObj * pobj);
 unsigned int sciGetTextLength (sciPointObj * pobj); /* GET */
 
 int sciGetFontBackground (sciPointObj * pobj); /* GET */

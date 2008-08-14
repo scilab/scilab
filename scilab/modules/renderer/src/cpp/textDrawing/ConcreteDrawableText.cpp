@@ -130,31 +130,7 @@ void ConcreteDrawableText::showTextContent(void)
 /*---------------------------------------------------------------------------------*/
 bool ConcreteDrawableText::isTextEmpty(void)
 {
-  StringMatrix * text = sciGetText(m_pDrawed);
-  if (text == NULL)
-  {
-    return true;
-  }
-  
-  int nbElements = getMatNbRow(text) * getMatNbCol(text);
-
-  if (nbElements == 0) {return true;}
-
-  if (nbElements == 1)
-  {
-    char * firstElement = getStrMatElement(text, 0, 0);
-    if (firstElement == NULL)
-    {
-      return true;
-    }
-    else if (firstElement[0] == 0)
-    {
-      // empty string
-      return true;
-    }
-  }
-
-  return false;
+  return sciisTextEmpty(m_pDrawed);
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::updateTextBox(void)

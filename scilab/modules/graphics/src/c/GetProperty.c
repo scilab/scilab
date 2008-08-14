@@ -840,6 +840,34 @@ void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol )
     *nbCol = getMatNbCol( text ) ;
   }
 }
+/**
+ * Checks if a text object is empty #rows*#columns==0 or #rows*#columns==1 and entry is  zero length
+ */
+BOOL sciisTextEmpty( sciPointObj * pobj)
+{
+  int nbElements;
+  StringMatrix * text = sciGetText( pobj ) ;
+  if ( text == NULL )
+  {
+    return TRUE;
+  }
+  nbElements = getMatNbRow(text) * getMatNbCol(text);
+  if (nbElements == 0) {return TRUE;}
+  if (nbElements == 1)
+    {
+    char * firstElement = getStrMatElement(text, 0, 0);
+    if (firstElement == NULL)
+    {
+      return TRUE;
+    }
+    else if (firstElement[0] == 0)
+    {
+      // empty string
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
 
 
 /**sciGetFontBackground
@@ -3457,13 +3485,7 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
 BOOL sciGetLegendDefined( sciPointObj * pObj )
 {
   sciSubWindow * ppSubWin ;
-  int xlNbRow ;
-  int xlNbCol ;
-  int ylNbRow ;
-  int ylNbCol ;
-  int zlNbRow ;
-  int zlNbCol ;
-
+ 
   if ( pObj == NULL )
   {
     return FALSE ;
@@ -3472,19 +3494,13 @@ BOOL sciGetLegendDefined( sciPointObj * pObj )
   ppSubWin = pSUBWIN_FEATURE( pObj ) ;
 
   /* get the text size of labels */
-  sciGetTextSize( ppSubWin->mon_x_label, &xlNbRow, &xlNbCol ) ;
-  sciGetTextSize( ppSubWin->mon_y_label, &ylNbRow, &ylNbCol ) ;
-  sciGetTextSize( ppSubWin->mon_z_label, &zlNbRow, &zlNbCol ) ;
-
-  
-  if ( xlNbRow <= 0 || ylNbRow <= 0 || zlNbRow <= 0 )
-  {
+  if (sciisTextEmpty(ppSubWin->mon_x_label) && 
+      sciisTextEmpty(ppSubWin->mon_y_label) && 
+      sciisTextEmpty(ppSubWin->mon_z_label))
     return FALSE ;
-  }
   else
-  {
     return TRUE ;
-  }
+ 
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL sciGetAutoSize( sciPointObj * pObj )
