@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Hussein SHAFIE
+ * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -75,6 +76,14 @@ public final class Helpers {
     }
 
     // -----------------------------------------------------------------------
+
+	public static String getBaseName(String language) {
+		 return "scilab_" + language + "_help";
+	}
+
+	public static String getTemporaryNameFo(String baseDirectory) {
+		return baseDirectory+"/__doc.fo";
+	}
 
     public static String getFileExtension(File file) {
         return getFileExtension(file.getPath());
@@ -157,6 +166,7 @@ public final class Helpers {
 			}
 
             dst.flush();
+
         } finally {
             dst.close();
         }
