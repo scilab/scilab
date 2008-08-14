@@ -37,9 +37,12 @@ c
       ndz=i5(1)
       write (buf,'(''entry in n1fc1 . n='',i4,'' memax='',i3)')  n,memax
       call basout(io,lunit,buf(1:35))
-      write (buf(1:50),'(''  minimal array sizes'',2x,''iz('',i4,'//
-     &     ' '')    rz('',i6,'')'')') niz,nrz,ndz
-      call basout(io,lunit,buf(1:50))
+      write (buf,"(a24,i6,a6,i6,a6,i6,a1)") 
+     &     "minimal array sizes: iz(", niz, 
+     &     ")  rz(", nrz, 
+     &     ")  dz(", ndz,
+     &     ")"
+      call basout(io,lunit,buf(1:55))
       goto 100
  13   continue
       call basout(io,lunit,'n1fc1 initial gradient norm is zero')
