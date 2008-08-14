@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-08-13 15:07+0200\n"
+"PO-Revision-Date: 2008-08-14 09:46+0200\n"
 "Last-Translator: Serge Steer <Serge.Steer@scilab.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"\"Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,15 +19,15 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_contr.c, line: 49
 #, c-format
-msgid "%s: Wrong values for input arguments #%d and #%d.\n"
-msgstr "%s: Mauvaises valeurs pour les arguments d'entrée  #%d et #%d.\n"
+msgid "%s: Wrong values for input arguments n° %d and n° %d.\n"
+msgstr "%s: Mauvaises valeurs pour les arguments d'entrée  n° %d et n° %d.\n"
 
 #
 # File: sci_gateway/c/sci_contr.c, line: 56
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
+msgid "%s: Wrong value for input argument n° %d: Must be in [%d %d].\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée #%d: Les élements doivent être "
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Les élements doivent être "
 "dans l'intervalle [%d, %d].\n"
 
 #
@@ -41,9 +41,9 @@ msgstr ""
 # File: macros/lqr.sci, line: 18
 # File: macros/observer.sci, line: 47
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
+msgid "%s: Wrong type for input argument n° %d: Linear state space expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Une représentation d'état est "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une représentation d'état est "
 "attendue.\n"
 
 #
@@ -66,18 +66,18 @@ msgstr ""
 # File: macros/copfac.sci, line: 32
 # File: macros/narsimul.sci, line: 141
 #, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgid "%s: Wrong type for input argument n° %d: %s data structure expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Une structure de donnée de "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une structure de donnée de "
 "type %s est attendue.\n"
 
 #
 # File: macros/sgrid.sci, line: 25
 # File: macros/cainv.sci, line: 60
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgid "%s: Wrong type for input argument n° %d: String array expected.\n"
 msgstr ""
-"%s: Mauvais type pour largument d'entrée #%d: Un vecteur de chaines de "
+"%s: Mauvais type pour largument d'entrée n° %d: Un vecteur de chaines de "
 "caractères est attendu.\n"
 
 #
@@ -85,9 +85,9 @@ msgstr ""
 # File: macros/cainv.sci, line: 63
 # File: macros/syslin.sci, line: 25
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument n° %d: A string expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée #%d: Une chaine de caractères "
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Une chaine de caractères "
 "est attendue.\n"
 
 #
@@ -108,18 +108,16 @@ msgstr ""
 
 #
 # File: macros/linfn.sci, line: 214
-#, c-format
+#, c-format, fuzzy
 msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
-msgstr ""
-"%s: Tous les modes de A sont quasi non-minimaux, donc || G || est presque "
-"0.\n"
+msgstr "%s: Tous les modes de A sont quasi non-minimaux de telle façon || G || est presque égale à 0.\n"
 
 #
 # File: macros/linfn.sci, line: 229
 # File: macros/linfn.sci, line: 238
 #, c-format
 msgid "%s: The computed value of || G || may be inaccurate.\n"
-msgstr "%s: La valeur calculée pour || G || peut-être imprécise.\n"
+msgstr "%s: La valeur calculée pour || G || est peut-être imprécise.\n"
 
 #
 # File: macros/riccati.sci, line: 34
@@ -133,10 +131,10 @@ msgstr "%s: Mauvaise dimension (%d) du sous espace stable: %d est attendue.\n"
 # File: macros/syslin.sci, line: 49
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Linear state space or a transfer "
+"%s: Wrong type for input argument n° %d: Linear state space or a transfer "
 "function expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'agument d'entrée #%d: Une representation d'état ou "
+"%s: Mauvais type pour l'agument d'entrée n° %d: Une representation d'état ou "
 "une fonction de transfert est attendue.\n"
 
 #
@@ -147,9 +145,9 @@ msgstr ""
 # File: macros/krac2.sci, line: 21
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Continuous time system expected.\n"
+"%s: Wrong value for input argument n° %d: Continuous time system expected.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée #%d: Le système doit être en "
+"%s : Mauvaise valeur pour l'argument d'entrée n° %d: Le système doit être en "
 "temps continu.\n"
 
 #
@@ -159,9 +157,9 @@ msgstr ""
 # File: macros/h2norm.sci, line: 48
 # File: macros/ctr_gram.sci, line: 62
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid "%s: Wrong value for input argument n° %d: Stabilizable system expected.\n"
 msgstr ""
-"%s: Mauvaise valeur Pour l'argument d'entrée #%d: Un système stabilisable "
+"%s: Mauvaise valeur Pour l'argument d'entrée n° %d: Un système stabilisable "
 "est attendu.\n"
 
 #
@@ -171,9 +169,9 @@ msgstr ""
 # File: macros/h2norm.sci, line: 48
 # File: macros/ctr_gram.sci, line: 62
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
+msgid "%s: Wrong value for input argument n° %d: Detectable system expected.\n"
 msgstr ""
-"%s: Mauvaise valeur Pour l'argument d'entrée #%d: Un système détectable est "
+"%s: Mauvaise valeur Pour l'argument d'entrée n° %d: Un système détectable est "
 "attendu.\n"
 
 #
@@ -200,10 +198,10 @@ msgstr "%s : Il n'est pas possible de déterminer la dimension de l'état.\n"
 # File: macros/syslin.sci, line: 127
 #, c-format
 msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"%s: Incompatible input arguments n° %d and n° %d: Same column dimensions "
 "expected.\n"
 msgstr ""
-"%s: Les arguments d'entrée #%d et #%d sont incompatibles: Ils doivent avoir "
+"%s: Les arguments d'entrée n° %d et n° %d sont incompatibles: Ils doivent avoir "
 "le même nombre de colonnes.\n"
 
 #
@@ -224,9 +222,9 @@ msgstr "%s: Mauvais nombre d'arguments d'entrée: %d est attendu."
 # File: macros/lqr.sci, line: 18
 # File: macros/observer.sci, line: 47
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Linear dynamical system .\n"
+msgid "%s: Wrong type for input argument n° %d: Linear dynamical system .\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Un système dynamique linéaire "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un système dynamique linéaire "
 "est attendu.\n"
 
 #
@@ -238,10 +236,10 @@ msgstr ""
 # File: macros/ctr_gram.sci, line: 57
 #, c-format
 msgid ""
-"%s: Wrong type of input argument #%d: Array of floating point numbers "
+"%s: Wrong type of input argument n° %d: Array of floating point numbers "
 "expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: un tableau de nombres "
+"%s: Mauvais type pour l'argument d'entrée n° %d: un tableau de nombres "
 "flottants est attendu.\n"
 
 #
@@ -257,9 +255,9 @@ msgstr ""
 # File: macros/ctr_gram.sci, line: 22
 # File: macros/syslin.sci, line: 35
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgid "%s: Wrong value for input argument n° %d: Must be in the set {%s}.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée #%d: Elle doit être dans "
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Elle doit être dans "
 "l'ensemble {%s}.\n"
 
 #
@@ -273,19 +271,19 @@ msgstr "%s: La résolution de l'équation de Riccati statique a échoué.\n"
 # File: macros/frep2tf.sci, line: 105
 #, c-format
 msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
+"%s: Incompatible input arguments n° %d and n° %d: Same numbers of elements "
 "expected.\n"
 msgstr ""
-"%s: Les arguments d'entrée #%d et #%d sont incompatibles: Ils doivent avoir "
+"%s: Les arguments d'entrée n° %d et n° %d sont incompatibles: Ils doivent avoir "
 "le même nombre d'élements.\n"
 
 #
 # File: macros/tf2des.sci, line: 20
 # File: macros/ss2des.sci, line: 18
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgid "%s: Wrong value for input argument n° %d: ''%s'' expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée #%d: ''%s'' est attendue.\n"
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: ''%s'' est attendue.\n"
 
 #
 # File: macros/plzr.sci, line: 16
@@ -304,7 +302,7 @@ msgstr "%s: Mauvais nombre d'argument(s) d'entrée: %d attendu(s).\n"
 #, c-format
 msgid "%s: Wrong value for of input argument %d: Proper system expected.\n"
 msgstr ""
-"%s: Mauvaise valeur Pour l'argument d'entrée #%d: Un système propre est "
+"%s: Mauvaise valeur Pour l'argument d'entrée n° %d: Un système propre est "
 "attendu.\n"
 
 #
@@ -324,10 +322,10 @@ msgstr "%s: Mauvais nombre d'argument(s) d'entrée: %d attendu(s).\n"
 # File: macros/ctr_gram.sci, line: 57
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Array of floating point numbers "
+"%s: Wrong type for input argument n° %d: Array of floating point numbers "
 "expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: un tableau de nombres "
+"%s: Mauvais type pour l'argument d'entrée n° %d: un tableau de nombres "
 "flottants est attendu.\n"
 
 #
@@ -342,9 +340,9 @@ msgstr ""
 # File: macros/observer.sci, line: 47
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
+"%s: Wrong type for input argument n° %d: Linear dynamical system expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Un système dynamique linéaire "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un système dynamique linéaire "
 "est attendu.\n"
 
 #
@@ -425,9 +423,9 @@ msgstr "%s: Mauvais nombre d'arguments de sortie: au moins %d attendu.\n"
 #
 # File: macros/findx0BD.sci, line: 77
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgid "%s: Wrong value for input argument n° %d: %d or %d expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée #%d: %d ou %d est attendu.\n"
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: %d ou %d est attendu.\n"
 
 #
 # File: macros/abinv.sci, line: 124
@@ -471,19 +469,19 @@ msgstr "%s: Plus que %d itérations.\n"
 # File: macros/hankelsv.sci, line: 13
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: State-space linear system expected.\n"
+"%s: Wrong type for input argument n° %d: State-space linear system expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Un système linéaire sous "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un système linéaire sous "
 "forme d'état est attendu.\n"
 
 #
 # File: macros/hankelsv.sci, line: 19
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Continuous-time linear system "
+"%s: Wrong type for input argument n° %d: Continuous-time linear system "
 "expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Un système temps continu est "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un système temps continu est "
 "attendu.\n"
 
 #
@@ -491,9 +489,9 @@ msgstr ""
 # File: macros/nehari.sci, line: 56
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
+"%s: Wrong value for input argument n° %d: Pure imaginary poles unexpected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée #%d: Des poles sont proches de "
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Des poles sont proches de "
 "l'axe imaginaire.\n"
 
 #
@@ -503,16 +501,16 @@ msgstr ""
 # File: macros/h2norm.sci, line: 48
 # File: macros/ctr_gram.sci, line: 62
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
+msgid "%s: Wrong value for input argument n° %d: Stable system expected.\n"
 msgstr ""
-"%s: Mauvaise valeur Pour l'argument d'entrée #%d: Un système stable est "
+"%s: Mauvaise valeur Pour l'argument d'entrée n° %d: Un système stable est "
 "attendu.\n"
 
 #
 # File: macros/gfrancis.sci, line: 63
-#, c-format
+#, c-format, fuzzy
 msgid "%s: Francis equations not satisfied.\n"
-msgstr "%s: Les équations de Francis ne sont pas satisfaites.\n"
+msgstr "%s: L'équation de Francis n'est pas satisfaite.\n"
 
 #
 # File: macros/armac.sci, line: 25
@@ -520,19 +518,19 @@ msgstr "%s: Les équations de Francis ne sont pas satisfaites.\n"
 # File: macros/armac.sci, line: 42
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
+"%s: Wrong size for input argument n° %d: row dimension must be equal to %d.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée #%d: Le nombre de lignes doit "
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Le nombre de lignes doit "
 "être égal à %d.\n"
 
 #
 # File: macros/armac.sci, line: 34
 #, c-format
 msgid ""
-"%s: Wrong size of input argument #%d: Number of columns are incompatible "
+"%s: Wrong size of input argument n° %d: Number of columns are incompatible "
 "with %s.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée #%d: Le nombre de colonnes est "
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Le nombre de colonnes est "
 "incompatible avec %s.\n"
 
 #
@@ -598,20 +596,20 @@ msgstr ""
 # File: macros/syslin.sci, line: 25
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A row vector with length>%d "
+"%s: Wrong size for input argument n° %d: A row vector with length>%d "
 "expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée #%d: Un vecteur ligne de "
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Un vecteur ligne de "
 "longueur>%d est attendu.\n"
 
 #
 # File: macros/syslin.sci, line: 49
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
+"%s: Wrong type for input argument n° %d: Linear dynamical system or row vector "
 "of floats expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Un système dynamique linéaire "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un système dynamique linéaire "
 "ou un vecteur ligne est attendu.\n"
 
 #
@@ -621,10 +619,10 @@ msgstr ""
 # File: macros/bode.sci, line: 75
 #, c-format
 msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same number of elements "
+"%s: Incompatible input arguments n° %d and n° %d: Same number of elements "
 "expected.\n"
 msgstr ""
-"%s: Les arguments d'entrée #%d et #%d sont incompatibles: Ils avoir le même "
+"%s: Les arguments d'entrée n° %d et n° %d sont incompatibles: Ils avoir le même "
 "nombre d'élements.\n"
 
 #
@@ -640,9 +638,9 @@ msgstr "Courbe de Nyquist"
 # File: macros/bloc2ss.sci, line: 17
 # File: macros/bloc2ss.sci, line: 21
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgid "%s: Wrong type for input argument n° %d: A list expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée  #%d: Une list est attendue.\n"
+"%s: Mauvais type pour l'argument d'entrée  n° %d: Une list est attendue.\n"
 
 #
 # File: macros/bloc2ss.sci, line: 48
@@ -708,9 +706,9 @@ msgstr "%s: Des sorties ne sont pas définies.\n"
 #
 # File: macros/ssrand.sci, line: 193
 #, c-format
-msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
+msgid "%s: Wrong values for input argument n° %d: you must choose rk<nout.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée #%d: rk<nout est attendu.\n"
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: rk<nout est attendu.\n"
 
 #
 # File: macros/findBDK.sci, line: 119
@@ -748,10 +746,10 @@ msgstr "%s: Les domaines temps ne sont pas compatibles.\n"
 # File: macros/p_margin.sci, line: 20
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: Single input, single output system "
+"%s: Wrong size for input argument n° %d: Single input, single output system "
 "expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée #%d: Un système mono-entrée, "
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Un système mono-entrée, "
 "mono-sortie est attendu.\n"
 
 #
@@ -759,6 +757,14 @@ msgstr ""
 #, c-format
 msgid "%s: Infinite solution.\n"
 msgstr "%s: Solution infinie.\n"
+
+#
+# File: macros/invsyslin.sci, line: 18
+#, c-format
+msgid "%s: Wrong size for input argument n° %d: Square system expected.\n"
+msgstr ""
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Un système carré est "
+"attendu.\n"
 
 #
 # File: macros/invrs.sci, line: 15
@@ -772,9 +778,9 @@ msgstr "%s: Solution infinie.\n"
 # File: macros/observer.sci, line: 47
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
+"%s: Wrong type for input argument n° %d: Linear dynamical system  expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Un système dynamique linéaire "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un système dynamique linéaire "
 "est attendu.\n"
 
 #
@@ -803,17 +809,17 @@ msgstr ""
 #
 # File: macros/calfrq.sci, line: 90
 #, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
+msgid "%s: Wrong value for input arguments n° %d and n° %d: %s < %s expected.\n"
 msgstr ""
-"%s: Mauvaise valeurs pour les arguments d'entré  #%d et  #%d: %s doit être "
+"%s: Mauvaise valeurs pour les arguments d'entré  n° %d et  n° %d: %s doit être "
 "inférieur à %s .\n"
 
 #
 # File: macros/ss2tf.sci, line: 37
 #, c-format
-msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
+msgid "%s: Wrong type for input argument n° %d: State-space form expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Une représentation d'état est "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une représentation d'état est "
 "attendue.\n"
 
 #
@@ -824,9 +830,9 @@ msgstr ""
 # File: macros/syslin.sci, line: 124
 #, c-format
 msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
+"%s: Incompatible input arguments n° %d and n° %d: Same row dimensions expected.\n"
 msgstr ""
-"%s: Les arguments d'entrée #%d et #%d sont incompatibles: Ils doivent avoir "
+"%s: Les arguments d'entrée n° %d et n° %d sont incompatibles: Ils doivent avoir "
 "le même nombre de lignes.\n"
 
 #
@@ -847,9 +853,9 @@ msgstr "%s: Le nombre de lignes de %s est incompatible avec l'objet %s.\n"
 # File: macros/arsimul.sci, line: 90
 # File: macros/arsimul.sci, line: 109
 #, c-format
-msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
+msgid "%s: Wrong size for input argument n° %d: An empty matrix expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée  #%d: Une maytrice vide est "
+"%s: Mauvaise taille pour l'argument d'entrée  n° %d: Une maytrice vide est "
 "attendue.\n"
 
 #
@@ -865,18 +871,18 @@ msgstr "%s: %s doivent être de dimensions (%s, %s).\n"
 #
 # File: macros/statgain.sci, line: 25
 #, c-format
-msgid "%s: Wrong values for input argument #%d: State matrix is singular.\n"
+msgid "%s: Wrong values for input argument n° %d: State matrix is singular.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée #%d: La matrice d'état est "
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: La matrice d'état est "
 "singulière.\n"
 
 #
 # File: macros/statgain.sci, line: 25
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
+"%s: Wrong values for input argument n° %d: State matrix - eye is singular.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée #%d: La matrice d'état a des "
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: La matrice d'état a des "
 "valeurs propres égales à 1.\n"
 
 #
@@ -900,9 +906,9 @@ msgstr "%s: Itération %s, erreur=%s.\n"
 # File: macros/h2norm.sci, line: 48
 # File: macros/ctr_gram.sci, line: 62
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
+msgid "%s: Wrong value for input argument n° %d: Proper system expected.\n"
 msgstr ""
-"%s: Mauvaise valeur Pour l'argument d'entrée #%d: Un système propre est "
+"%s: Mauvaise valeur Pour l'argument d'entrée n° %d: Un système propre est "
 "attendu.\n"
 
 #
@@ -929,9 +935,9 @@ msgstr "%s: Mauvais nombre d'arguments d'entrée: Il doit valoir %d ou %d.\n"
 #
 # File: macros/obsvss.sci, line: 40
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid "%s: Wrong type for input argument n° %d: Linear state space  expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'arguments d'entrée #%d: Une représentation d'état "
+"%s: Mauvais type pour l'arguments d'entrée n° %d: Une représentation d'état "
 "est attendue.\n"
 
 #
@@ -951,10 +957,10 @@ msgstr "Fonction d'autocorrélation"
 # File: macros/observer.sci, line: 47
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A linear dynamical system or a "
+"%s: Wrong type for input argument n° %d: A linear dynamical system or a "
 "polynomial expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Un système dynamique linéaire "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un système dynamique linéaire "
 "ou un polynôme est attendu.\n"
 
 #
@@ -965,10 +971,10 @@ msgstr ""
 # File: macros/trfmod.sci, line: 25
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single input, single output system "
+"%s: Wrong value for input argument n° %d: Single input, single output system "
 "expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée #%d: Un système mono-entrée, "
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Un système mono-entrée, "
 "mono-sortie est attendu.\n"
 
 #
@@ -1023,18 +1029,18 @@ msgstr "%s: L'écart type de l'estimateur %s est:\n"
 #
 # File: macros/dtsi.sci, line: 39
 #, c-format
-msgid "%s: Wrong values for input argument #%d: proper elements expected.\n"
+msgid "%s: Wrong values for input argument n° %d: proper elements expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée  #%d: Les élements doivent être "
+"%s: Mauvaise valeur pour l'argument d'entrée  n° %d: Les élements doivent être "
 "propres.\n"
 
 #
 # File: macros/dtsi.sci, line: 127
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Proper transfer function expected.\n"
+"%s: Wrong values for input argument n° %d: Proper transfer function expected.\n"
 msgstr ""
-"%s: Mauvaise valeur  pour l'argument d'entrée  #%d: Le système doit être "
+"%s: Mauvaise valeur  pour l'argument d'entrée  n° %d: Le système doit être "
 "propre.\n"
 
 #
@@ -1080,9 +1086,10 @@ msgstr "%s: %s a un zéro sur ou proche de l'axe imaginaire.\n"
 # File: macros/h_inf.sci, line: 297
 # File: macros/h_inf.sci, line: 304
 #, c-format
-msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
+msgid "%s: Wrong values for input argument n° %d:  %s is not full rank.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée  #%d: %s n'est pas de plein rang.\n"
+"%s: Mauvaise valeur pour l'argument d'entrée  n° %d: %s n'est pas de plein "
+"rang.\n"
 
 #
 # File: macros/h_inf.sci, line: 243
@@ -1095,7 +1102,8 @@ msgstr "%s: gamma est trop petit.\n"
 # File: macros/h_inf.sci, line: 452
 #, c-format
 msgid "%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"
-msgstr "%s: Une valeur propre du controlleur %s est proche de l'axe imaginaire.\n"
+msgstr ""
+"%s: Une valeur propre du controlleur %s est proche de l'axe imaginaire.\n"
 
 #
 # File: macros/h_inf.sci, line: 352
@@ -1152,8 +1160,8 @@ msgstr "%s: Le terme de transfert direct est assigné à zéro.\n"
 #
 # File: sci_gateway/c/sci_tzer.c, line: 18
 #, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: "
-msgstr "%s: les arguments d'entrée #%d et #%d sont incompatibles: "
+msgid "%s: Incompatible input arguments n° %d and n° %d: "
+msgstr "%s: les arguments d'entrée n° %d et n° %d sont incompatibles: "
 
 #
 # File: macros/ui_observer.sci, line: 96
@@ -1177,9 +1185,9 @@ msgstr "%s: Mauvais conditionnement.\n"
 # File: macros/nehari.sci, line: 56
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Pure imaginary  poles unexpected.\n"
+"%s: Wrong value for input argument n° %d: Pure imaginary  poles unexpected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée #%d: Des poles sont proches de "
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Des poles sont proches de "
 "l'axe imaginaire.\n"
 
 #
@@ -1212,40 +1220,44 @@ msgstr "%s: %s n'est pas symétrique.\n"
 # File: macros/lqr.sci, line: 26
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
+"%s: Wrong value for input argument n° %d: Time domain must be ''c'' or ''d''.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée #%d: Le domaine temps doit être "
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Le domaine temps doit être "
 "''c'' ou ''d''.\n"
 
 #
 # File: macros/invsyslin.sci, line: 18
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgid "%s: Wrong size for input argument n° %d: Square matrix expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée #%d: Une matrice carrée est "
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Une matrice carrée est "
 "attendue.\n"
 
 #
 # File: macros/invsyslin.sci, line: 18
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
-msgstr "%s: Mauvaise taille pour l'argument d'entrée #%d: Un système carré est attendu.\n"
+msgid ""
+"%s: Wrong size for input argument n° %d: Square system expected.\n"
+"'),"
+msgstr ""
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Un système carré est "
+"attendu.\n"
 
 #
 # File: macros/dscr.sci, line: 18
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgid "%s: Wrong size for input argument n° %d: A scalar expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée #%d: Un scalaire est attendu.\n"
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Un scalaire est attendu.\n"
 
 #
 # File: macros/syslin.sci, line: 38
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: String, Scalar or empty matrix "
+"%s: Wrong type for input argument n° %d: String, Scalar or empty matrix "
 "expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Une chaine de caractères, un "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaine de caractères, un "
 "scalaire ou une matrice vide sont attendus.\n"
 
 #
@@ -1255,27 +1267,27 @@ msgstr ""
 # File: macros/sm2ss.sci, line: 16
 # File: macros/routh_t.sci, line: 27
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
+msgid "%s: Wrong type for input argument n° %d: Polynomial array expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Un tableau de polynômes est "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un tableau de polynômes est "
 "attendu.\n"
 
 #
 # File: macros/syslin.sci, line: 64
 #, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Incompatible input arguments n° %d and n° %d: Same sizes expected.\n"
 msgstr ""
-"%s: Les arguments d'entrée #%d et #%d sont incompatibles: Ils doivent avoir "
+"%s: Les arguments d'entrée n° %d et n° %d sont incompatibles: Ils doivent avoir "
 "les mêmes dimensions.\n"
 
 #
 # File: macros/syslin.sci, line: 69
 #, c-format
 msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same formal variable names "
+"%s: Incompatible input arguments n° %d and n° %d: Same formal variable names "
 "expected.\n"
 msgstr ""
-"%s: Les arguments d'entrée #%d et #%d sont incompatibles: Ils doivent avoir "
+"%s: Les arguments d'entrée n° %d et n° %d sont incompatibles: Ils doivent avoir "
 "les mêmes variables formelles.\n"
 
 #
@@ -1302,36 +1314,36 @@ msgstr "%s: au moins %s valeurs passées sont nécessaires.\n"
 # File: macros/observer.sci, line: 47
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Linear state space system expected.\n"
+"%s: Wrong type for input argument n° %d: Linear state space system expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Une représentation d'état est "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une représentation d'état est "
 "attendue.\n"
 
 #
 # File: macros/syslin.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgid "%s: Wrong type for input argument n° %d: A real expected.\n"
 msgstr ""
 
 #
 # File: macros/dscr.sci, line: 21
 #, c-format
-msgid "%s: Input argument #%d must be real.\n"
-msgstr "%s: L'argument d'entrée #%d doit être réel.\n"
+msgid "%s: Input argument n° %d must be real.\n"
+msgstr "%s: L'argument d'entrée n° %d doit être réel.\n"
 
 #
 # File: macros/dscr.sci, line: 25
 #, c-format
-msgid "%s: Input argument #%d must be strictly positive.\n"
-msgstr "%s: L'argument d'entrée #%d doit être strictement positif.\n"
+msgid "%s: Input argument n° %d must be strictly positive.\n"
+msgstr "%s: L'argument d'entrée n° %d doit être strictement positif.\n"
 
 #
 # File: macros/inistate.sci, line: 55
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Discrete time system expected.\n"
+"%s: Wrong values for input argument n° %d: Discrete time system expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée #%d: Un système discret est "
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un système discret est "
 "attendu.\n"
 
 #
@@ -1350,17 +1362,17 @@ msgstr "%s: Mauvais nombre d'arguments d'entrée: Au moins %d sont attendus.\n"
 # File: macros/cainv.sci, line: 60
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+"%s: Wrong type for input argument n° %d: rational fraction array expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée #%d: Un tableau de fraction "
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un tableau de fraction "
 "rationnelles est attendu.\n"
 
 #
 # File: macros/routh_t.sci, line: 30
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
+msgid "%s: Wrong size for input argument n° %d: A polynomial expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée #%d: Un polynôme est attendu.\n"
+"%s: Mauvaise taille pour l'argument d'entrée n° %d: Un polynôme est attendu.\n"
 
 #
 # File: macros/hankelsv.sci, line: 29
@@ -1369,9 +1381,9 @@ msgstr ""
 # File: macros/h2norm.sci, line: 48
 # File: macros/ctr_gram.sci, line: 62
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
+msgid "%s: Wrong values for input argument n° %d: Stable system expected.\n"
 msgstr ""
-"%s: Mauvaise valeur Pour l'argument d'entrée #%d: Un système stable est "
+"%s: Mauvaise valeur Pour l'argument d'entrée n° %d: Un système stable est "
 "attendu.\n"
 
 #
@@ -1455,10 +1467,10 @@ msgstr ""
 # File: macros/g_margin.sci, line: 20
 # File: macros/p_margin.sci, line: 20
 #~ msgid ""
-#~ "%s: Wrong size for input argument #%d: Single input, single output system "
+#~ "%s: Wrong size for input argument n° %d: Single input, single output system "
 #~ "expected"
 #~ msgstr ""
-#~ "%s: Mauvaise taille pour l'argument d'entrée #%d: Un système mono-entrée, "
+#~ "%s: Mauvaise taille pour l'argument d'entrée n° %d: Un système mono-entrée, "
 #~ "mono-sortie est attendu.\n"
 
 #
@@ -1474,10 +1486,10 @@ msgstr ""
 # File: macros/obsvss.sci, line: 42
 # File: macros/ctr_gram.sci, line: 57
 #~ msgid ""
-#~ "%s: Wrong type of input argument #%d: matrix of floating point numbers "
+#~ "%s: Wrong type of input argument n° %d: matrix of floating point numbers "
 #~ "expected.\n"
 #~ msgstr ""
-#~ "%s: Mauvais type pour l'argument d'entrée #%d: un tableau de nombre "
+#~ "%s: Mauvais type pour l'argument d'entrée n° %d: un tableau de nombre "
 #~ "flottants est attendu.\n"
 
 #
@@ -1487,9 +1499,9 @@ msgstr ""
 
 #
 # File: macros/abinv.sci, line: 54
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgid "%s: Wrong type for input argument n° %d: String expected.\n"
 #~ msgstr ""
-#~ "%s: Mauvais type pour l'argument d'entrée #%d: Une chaine de caractères "
+#~ "%s: Mauvais type pour l'argument d'entrée n° %d: Une chaine de caractères "
 #~ "est attendue.\n"
 
 #
@@ -1498,8 +1510,8 @@ msgstr ""
 # File: macros/gainplot.sci, line: 26
 # File: macros/bode.sci, line: 25
 #~ msgid ""
-#~ "%s: Wrong size for input argument #%d: A 1-by-n array expected with n>%"
+#~ "%s: Wrong size for input argument n° %d: A 1-by-n array expected with n>%"
 #~ "d.\n"
 #~ msgstr ""
-#~ "%s: Mauvaise taille pour l'argument d'entrée #%d: Un tableau 1 par n avec "
+#~ "%s: Mauvaise taille pour l'argument d'entrée n° %d: Un tableau 1 par n avec "
 #~ "n>%d est attendu.\n"
