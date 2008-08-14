@@ -1,6 +1,7 @@
 # see examples/mex-examples/mex-with-so/Makefile 
 # for an example of Makemex use 
 # some variables are defined here and other are defined in Makefile.incl 
+# @TODO: probably dead code
 
 SHELL = @SHELL@
 top_builddir = $(SCIDIR)
