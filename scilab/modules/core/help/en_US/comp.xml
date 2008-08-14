@@ -61,7 +61,7 @@
 
     <para>The value opt==2 causes the function to be compiled "for profiling".
     Note that now it is possible to add profiling instruction after
-    compilation using the <link linkend="add_profile">add_profile</link> function.</para>
+    compilation using the <link linkend="add_profiling">add_profiling</link> function.</para>
 
     <para>The osolete opt==1 option was specific to code analysis purposes and
     is now ignored, i.e treated as opt==0.</para>
