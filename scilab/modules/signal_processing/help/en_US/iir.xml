@@ -132,7 +132,7 @@ hzd=horner(hz,1/q)
     <simplelist type="inline">
       <member><link linkend="eqfir">eqfir</link></member>
       <member><link linkend="eqiir">eqiir</link></member>
-      <member><link linkend="analpl">analpf</link></member>
+      <member><link linkend="analpf">analpf</link></member>
       <member><link linkend="bilt">bilt</link></member>
     </simplelist>
   </refsection>
