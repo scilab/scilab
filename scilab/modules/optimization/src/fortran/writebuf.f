@@ -59,7 +59,11 @@ c     ====================================
       character*(*) buffer
       double precision r1
       
-      write(buffer(1:15),'(1pd15.7)') r1
+c Initialize the buffer with empty blanks
+c      write(buffer(:),'(a)') " "
+c What is the p format edit descriptor ?
+c      write(buffer(1:15),'(1pd15.7)') r1
+      write(buffer(1:15),'(1d15.7)') r1
 
       end
 c     ====================================
