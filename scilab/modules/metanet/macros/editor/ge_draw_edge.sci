@@ -50,7 +50,8 @@ function e=ge_draw_edge(n)
   vis=Id<>[]
   font=ge_get_edge_font(n)
   if Id==[] then Id=' ',end
-  r=xstringl(0,0,Id,font(2),font(1));r=r(3)
+  r = stringbox(Id, 0, 0, 0, font(2), font(1));
+  r = abs(r(1,3) - r(1,1));
   if ang>90&ang<270 then //co negatif
     a=ang*%pi/180
     xstring(xyl(1)+r*cos(a),xyl(2)-r*sin(a),Id,ang+180 );
