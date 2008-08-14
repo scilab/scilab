@@ -24,10 +24,13 @@ c
       integer topin
       logical chkvar
       integer sadr,iadr
+      integer colonid(nsiz)
 c
       data plus/45/,minus/46/,star/47/,dstar/62/,slash/48/
       data bslash/49/,dot/51/,colon/44/,quote/53/
       data equal/50/,less/59/,great/60/,insert/2/,extrac/3/
+      data colonid/673720364,673720360,673720360,673720360,
+     $     673720360,673720360/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -2055,17 +2058,15 @@ c      a [:b]:c
       if(rhs.eq.3) then
          il3=iadr(lstk(top))
          if(istk(il3).lt.0) il3=iadr(istk(il3+1))
-         if(istk(il3).ne.1.and.istk(il3).ne.2) then
+         if(istk(il3+1).ne.1.or.istk(il3+2).ne.1) then
             err=3
-            buf='Invalid indexing '
-            call error(1501)
+            call putid(ids(1,pt+1),colonid)
+            call error(204)
             return
          endif
-         if(istk(il3+1).ne.1.or.istk(il3+2).ne.1.or.
-     $        istk(il3+3).ne.0) then
+         if(istk(il3+3).ne.0) then
             err=3
-            buf='Invalid indexing '
-            call error(1501)
+            call error(52)
             return
          endif
          if(istk(il3).eq.1) then
@@ -2081,17 +2082,15 @@ c      a [:b]:c
       if (rhs.ge.2) then
          il2=iadr(lstk(top))
          if(istk(il2).lt.0) il2=iadr(istk(il2+1))
-         if(istk(il2).ne.1.and.istk(il2).ne.2) then
-           err=2
-            buf='Invalid indexing '
-            call error(1501)
+         if(istk(il2+1).ne.1.or.istk(il2+2).ne.1) then
+            err=2
+            call putid(ids(1,pt+1),colonid)
+            call error(204)
             return
          endif
-         if(istk(il2+1).ne.1.or.istk(il2+2).ne.1.or.
-     $        istk(il2+3).ne.0) then
+         if(istk(il2+3).ne.0) then
             err=2
-            buf='Invalid indexing '
-            call error(1501)
+            call error(52)
             return
          endif
          if(istk(il2).eq.1) then
@@ -2104,9 +2103,7 @@ c      a [:b]:c
                if(var1(1).ne.istk(il2+4).or.var1(2).ne.istk(il2+5).or
      $              .var1(3).ne.istk(il2+6).or.var1(4).ne.istk(il2+7))
      $              then
-                  err=2
-                  buf='Invalid indexing '
-                  call error(1501)
+                  call error(278)
                   return
                endif
             else
@@ -2117,19 +2114,17 @@ c      a [:b]:c
       endif
       il1=iadr(lstk(top))
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
-      if(istk(il1).ne.1.and.istk(il1).ne.2) then
-         err=1
-         buf='Invalid indexing '
-         call error(1501)
-         return
-      endif
-      if(istk(il1+1).ne.1.or.istk(il1+2).ne.1.or.
-     $     istk(il1+3).ne.0) then
-         err=1
-         buf='Invalid indexing '
-         call error(1501)
-         return
-      endif
+      if(istk(il1+1).ne.1.or.istk(il1+2).ne.1) then
+            err=1
+            call putid(ids(1,pt+1),colonid)
+            call error(204)
+            return
+         endif
+         if(istk(il1+3).ne.0) then
+            err=2
+            call error(52)
+            return
+         endif
       if(istk(il1).eq.1) then
          n1=1
          l1=sadr(il1+4)
@@ -2139,9 +2134,7 @@ c      a [:b]:c
          if (var1(1).ne.0) then
             if(var1(1).ne.istk(il1+4).or.var1(2).ne.istk(il1+5).or.
      $           var1(3).ne.istk(il1+6).or.var1(4).ne.istk(il1+7)) then
-               err=1
-               buf='Invalid indexing '
-               call error(1501)
+               call error(278)
                return
             endif
          else
